@@ -1,0 +1,30 @@
+Setup
+<%= form_for '', url: setup_index_path do |f| %>
+  <%= f.fields_for @user do |ff| %>
+    <div>
+      <%= ff.label :first_name %>
+      <%= ff.text_field :first_name, required: true %>
+    </div>
+    <div>
+      <%= ff.label :last_name %>
+      <%= ff.text_field :last_name, required: true %>
+    </div>
+  <% end %>
+  <%= f.fields_for @account do |ff| %>
+    <div>
+      <%= ff.label :name, 'Company name' %>
+      <%= ff.text_field :name, required: true %>
+    </div>
+  <% end %>
+  <%= f.fields_for @user do |ff| %>
+    <div>
+      <%= ff.label :email %>
+      <%= ff.email_field :email, required: true %>
+    </div>
+    <div>
+      <%= ff.label :password %>
+      <%= ff.password_field :password, required: true %>
+    </div>
+  <% end %>
+  <%= f.button button_title %>
+<% end %>

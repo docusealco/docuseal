@@ -1,0 +1,19 @@
+<%= render 'shared/turbo_modal' do %>
+  <%= form_for '', url: flow_submissions_path(@flow), data: { turbo_frame: :_top } do |f| %>
+    <div>
+      <%= f.label :emails %>
+      <%= f.text_area :emails, required: true %>
+    </div>
+    <div>
+      <%= f.check_box :send_email, { onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)" } %>
+      <%= f.label :send_email %>
+    </div>
+    <div id="message_field" class="hidden">
+      Hi There,
+      <%= f.text_area :message, value: SubmissionMailer::DEFAULT_MESSAGE, required: true %>
+      Thanks,
+      <%= current_account.name %>
+    </div>
+    <%= f.button button_title %>
+  <% end %>
+<% end %>

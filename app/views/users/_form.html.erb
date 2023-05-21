@@ -1,0 +1,19 @@
+<%= form_for user, data: { turbo_frame: :_top } do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, required: true %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, required: true %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: user.new_record? %>
+  </div>
+  <%= f.button button_title %>
+<% end %>

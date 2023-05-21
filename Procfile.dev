@@ -1,0 +1,2 @@
+web: PORT=3000 bundle exec rails s -p 3000
+webpacker: bundle exec ./bin/webpacker-dev-server

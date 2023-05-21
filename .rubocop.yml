@@ -1,0 +1,55 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/schema.rb
+    - node_modules/**/*
+    - bin/*
+  TargetRubyVersion: '3.2'
+
+Metrics/BlockLength:
+  Exclude:
+    - Rakefile
+    - '**/*.rake'
+    - spec/**/*
+    - config/environments/**/*
+    - config/routes.rb
+
+Style/Documentation:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/migrate/**'
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/AbcSize:
+  Max: 35
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/MultipleExpectations:
+  Max: 7
+
+RSpec/ExampleLength:
+  Max: 15
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/ApplicationController:
+  Enabled: false

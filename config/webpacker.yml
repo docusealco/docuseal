@@ -1,0 +1,47 @@
+default: &default
+  source_path: app/javascript
+  source_entry_path: /
+  nested_entries: false
+  public_root_path: public
+  public_output_path: packs
+  cache_path: tmp/webpacker
+  webpacker_precompile: true
+  webpack_compile_output: true
+  additional_paths: []
+  webpack_loader: 'babel'
+  compiler_strategy: digest
+  cache_manifest: false
+  ensure_consistent_versioning: false
+
+development:
+  <<: *default
+  compile: true
+  compiler_strategy: mtime
+
+  dev_server:
+    https: false
+    host: localhost
+    port: 3035
+    hmr: false
+    inline_css: true
+    live_reload: false
+    client:
+      overlay: false
+    compress: true
+    allowed_hosts: "all"
+    pretty: true
+    headers:
+      'Access-Control-Allow-Origin': '*'
+    static:
+      watch:
+        ignored: '**/node_modules/**'
+
+test:
+  <<: *default
+  compile: true
+  public_output_path: packs-test
+
+production:
+  <<: *default
+  compile: false
+  cache_manifest: true

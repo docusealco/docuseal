@@ -1,0 +1,16 @@
+Hellp
+<div>
+  <%= link_to 'Create Flow', new_flow_path, data: { turbo_frame: :modal } %>
+  <%= link_to 'Storage settings', settings_storage_index_path %>
+  <%= link_to 'Email settings', settings_email_index_path %>
+  <%= link_to 'Users', settings_users_path %>
+</div>
+<div>
+  <% @flows.each do |flow| %>
+    <div>
+      <%= flow.name %> |
+      <a href="<%= flow_path(flow) %>">edit</a> |
+      <a href="<%= flow_submissions_path(flow) %>">submissions</a> |
+    </div>
+  <% end %>
+</div>

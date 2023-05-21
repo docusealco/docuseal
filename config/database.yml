@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
+  database: docuseal_dev
+
+test:
+  <<: *default
+  database: docuseal_test
+
+production:
+  <<: *default
+  database: db/production.sqlite3

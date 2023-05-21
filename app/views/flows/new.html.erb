@@ -1,0 +1,9 @@
+<%= render 'shared/turbo_modal' do %>
+  <%= form_for @flow, data: { turbo_frame: :_top } do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+    </div>
+    <%= f.button button_title %>
+  <% end %>
+<% end %>

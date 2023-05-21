@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "standard",
+    "plugin:vue/vue3-recommended"
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "vue/no-deprecated-html-element-is": 0,
+    "vue/no-mutating-props": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "parser": "@babel/eslint-parser"
+  }
+}

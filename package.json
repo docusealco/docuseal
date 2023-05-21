@@ -1,0 +1,62 @@
+{
+  "name": "docuseal",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "7.21.8",
+    "@babel/plugin-transform-runtime": "7.21.4",
+    "@babel/preset-env": "7.21.5",
+    "@babel/runtime": "7.21.5",
+    "@github/catalyst": "^2.0.0-beta",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/activestorage": "^7.0.4-3",
+    "@tailwindcss/forms": "^0.5.0",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "9.1.2",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-macros": "^3.1.0",
+    "compression-webpack-plugin": "10.0.0",
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss": "^8.4.23",
+    "postcss-import": "^15.1.0",
+    "postcss-loader": "^7.3.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "shakapacker": "6.6.0",
+    "signature_pad": "^4.1.5",
+    "tailwindcss": "^3.3.2",
+    "terser-webpack-plugin": "5.3.8",
+    "uuid": "^9.0.0",
+    "vue": "^3.3.2",
+    "vue-loader": "^17.1.1",
+    "webpack": "5.82.1",
+    "webpack-assets-manifest": "5",
+    "webpack-bundle-analyzer": "^4.7.0",
+    "webpack-cli": "5.1.1",
+    "webpack-dev-server": "^4.15.0",
+    "webpack-merge": "5"
+  },
+  "version": "0.1.0",
+  "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js \"app/javascript/**/*.{js,vue}\" --fix"
+  },
+  "babel": {
+    "presets": [
+      "./node_modules/shakapacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "last 3 years"
+  ],
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.21.8",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.40.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.12.0"
+  }
+}

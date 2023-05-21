@@ -1,0 +1,21 @@
+Flow: <%= @submission.flow.name %>
+Sub: <%= @submission.slug %>
+Copy share link:
+<input autocomplete="off" type="text" class="w-full" value="<%= submit_flow_url(slug: @submission.slug) %>" disabled>
+<% @submission.flow.fields.each do |field| %>
+  <div>
+    <%= field['name'] %>:
+    <% if ['image', 'signature'].include?(field['type']) %>
+      <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
+        <img src="<%= ActiveStorage::Attachment.find_by(uuid:).url %>">
+      <% end %>
+    <% elsif ['attachment'].include?(field['type']) %>
+      <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
+        <% attachment = ActiveStorage::Attachment.find_by(uuid:) %>
+        <a href="<%= attachment.url %>"><%= attachment.filename %></a>
+      <% end %>
+    <% else %>
+      <%= @submission.values[field['uuid']] %>
+    <% end %>
+  </div>
+<% end %>

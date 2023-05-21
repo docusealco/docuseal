@@ -1,0 +1,27 @@
+Email settings
+<% value = @encrypted_config.value || {} %>
+<%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off' } do |f| %>
+  <%= f.fields_for :value do |ff| %>
+    <div>
+      <%= ff.label :host %>
+      <%= ff.text_field :host, value: value['host'], required: true %>
+    </div>
+    <div>
+      <%= ff.label :port %>
+      <%= ff.text_field :port, value: value['port'], required: true %>
+    </div>
+    <div>
+      <%= ff.label :username %>
+      <%= ff.text_field :username, value: value['username'], required: true %>
+    </div>
+    <div>
+      <%= ff.label :password %>
+      <%= ff.password_field :password, value: value['password'], required: true %>
+    </div>
+    <div>
+      <%= ff.label :from_email, 'Send from' %>
+      <%= ff.email_field :from_email, value: value['from_email'], required: true %>
+    </div>
+  <% end %>
+  <%= f.button button_title %>
+<% end %>

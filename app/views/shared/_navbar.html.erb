@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <div>
+    <%= link_to 'Home', root_path, class: 'bg-red-500' %>
+    <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+    <%= current_user.email %>
+  </div>
+<% end %>

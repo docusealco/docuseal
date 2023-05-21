@@ -1,0 +1,37 @@
+<div>
+  Users
+  <a href="<%= new_user_path %>" data-turbo-frame="modal">New User</a>
+</div>
+<table>
+  <tr>
+    <th>
+      User
+    </th>
+    <th>
+      Role
+    </th>
+    <th>
+      Last session
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.full_name %><br>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.role %>
+      </td>
+      <td>
+        <%= user.last_sign_in_at ? l(user.last_sign_in_at) : '-' %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_user_path(user), data: { turbo_frame: 'modal' } %>
+        <%= button_to 'Remove', user_path(user), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

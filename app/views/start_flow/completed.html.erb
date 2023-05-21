@@ -1,0 +1,5 @@
+<p>
+  Form has been submitted alredy by ypu - thanks!
+</p>
+<%= button_to button_title('Send copy to Email'), send_submission_email_index_path, params: { flow_slug: @flow.slug, email: params[:email] }, form: { onsubmit: 'event.submitter.disabled = true' } %>
+<%# do not allow donwload for securetiy reaosn<a href="">Download documets</a> %>

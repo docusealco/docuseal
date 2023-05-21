@@ -1,0 +1,32 @@
+@config "../../tailwind.flow.config.js";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+a[href],
+input[type='checkbox'],
+input[type='submit'],
+input[type='image'],
+input[type='radio'],
+label[for],
+select,
+button {
+  cursor: pointer;
+}
+
+button .disabled {
+  display: none;
+}
+
+button[disabled] .disabled {
+  display: initial;
+}
+
+button .enabled {
+  display: initial;
+}
+
+button[disabled] .enabled {
+  display: none;
+}

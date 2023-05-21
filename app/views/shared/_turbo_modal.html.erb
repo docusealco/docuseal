@@ -1,0 +1,11 @@
+<turbo-frame id="modal">
+  <turbo-modal class="left-52 absolute top-0 z-50 bg-white h-[100vh] w-full">
+    <div>
+      Modal window Title
+      <a href="#" data-action="click:turbo-modal#close">&times;</a>
+    </div>
+    <div>
+      <%= yield %>
+    </div>
+  </turbo-modal>
+</turbo-frame>

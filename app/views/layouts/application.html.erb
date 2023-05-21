@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Docuseal
+    </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= javascript_pack_tag 'application', defer: true %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= yield :head %>
+  </head>
+  <body class="font-sans antialiased font-normal leading-normal bg-white text-gray-700">
+    <turbo-frame id="modal"></turbo-frame>
+    <%= render 'shared/navbar' %>
+    <div>
+      <%= flash[:notice] || flash[:alert] %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+Submissions
+Flow <%= @flow.name %>
+Copy share link:
+<input autocomplete="off" type="text" class="w-full" value="<%= start_flow_url(slug: @flow.slug) %>" disabled>
+<a href="<%= new_flow_submission_path(@flow) %>" class="bg-green-600" data-turbo-frame="modal">Add Recepients</a>
+<table>
+  <tr>
+    <th>
+      Email
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @submissions.each do |submission| %>
+    <tr>
+      <td>
+        <%= submission.email %>
+      </td>
+      <td>
+        <% if submission.completed_at? %>
+          Completed
+        <% elsif submission.opened_at? %>
+          Opened
+        <% elsif submission.sent_at? %>
+          Sent
+        <% else %>
+          Awaiting
+        <% end %>
+      </td>
+      <td>
+        copy link<br>
+        <%= link_to 'View', submission_path(@flow) %>
+        <%= button_to 'Remove', submission_path(submission), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
