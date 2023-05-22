@@ -5,16 +5,42 @@
       :key="field.uuid"
       class="border"
       :field="field"
+      @remove="fields.splice(fields.indexOf($event), 1)"
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
   <button
     v-for="item in fieldTypes"
     :key="item.type"
-    class="block w-full"
+    draggable="true"
+    class="w-full flex items-center justify-center"
+    @dragstart="onDragstart(item.value)"
+    @dragend="$emit('drag-end')"
     @click="addField(item.value)"
   >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="cursor-move"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        stroke="none"
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+      <path d="M4 6l16 0" />
+      <path d="M4 12l16 0" />
+      <path d="M4 18l16 0" />
+    </svg>
     Add {{ item.label }}
+    &plus;
   </button>
 </template>
 
@@ -33,7 +59,7 @@ export default {
       required: true
     }
   },
-  emits: ['set-draw'],
+  emits: ['set-draw', 'set-drag', 'drag-end'],
   computed: {
     fieldTypes () {
       return [
@@ -49,7 +75,10 @@ export default {
     }
   },
   methods: {
-    addField (type) {
+    onDragstart (fieldType) {
+      this.$emit('set-drag', fieldType)
+    },
+    addField (type, area = null) {
       const field = {
         name: type === 'signature' ? 'Signature' : '',
         uuid: v4(),
@@ -59,6 +88,10 @@ export default {
 
       if (['select', 'checkbox', 'radio'].includes(type)) {
         field.options = ['']
+      }
+
+      if (area) {
+        field.areas = [area]
       }
 
       this.fields.push(field)

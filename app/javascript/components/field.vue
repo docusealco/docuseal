@@ -1,6 +1,11 @@
 <template>
   <div>
-    {{ field.type }}
+    <button @click="$emit('remove', field)">
+      Remove
+    </button>
+    <div>
+      {{ field.type }}
+    </div>
     <div v-if="field.type !== 'signature'">
       <label>Name</label>
       <input
@@ -24,7 +29,10 @@
           Remove
         </button>
       </div>
-      <button @click="field.options.push('')">
+      <button
+        v-if="field.options"
+        @click="field.options.push('')"
+      >
         Add option
       </button>
     </div>
@@ -66,7 +74,7 @@ export default {
       required: true
     }
   },
-  emits: ['set-draw'],
+  emits: ['set-draw', 'remove'],
   computed: {
     areas () {
       return this.field.areas || []

@@ -35,7 +35,9 @@
         :areas-index="fieldAreasIndex[document.uuid]"
         :document="document"
         :is-draw="!!drawField"
+        :is-drag="!!dragFieldType"
         @draw="onDraw"
+        @drop-field="onDropfield"
       />
     </div>
     <div
@@ -55,8 +57,11 @@
       <div>
         FIelds
         <Fields
+          ref="fields"
           v-model:fields="flow.fields"
           @set-draw="drawField = $event"
+          @set-drag="dragFieldType = $event"
+          @drag-end="dragFieldType = null"
         />
       </div>
     </div>
@@ -84,6 +89,7 @@ export default {
   data () {
     return {
       drawField: null,
+      dragFieldType: null,
       flow: {
         name: '',
         schema: [],
@@ -133,6 +139,9 @@ export default {
       this.drawField.areas.push(area)
 
       this.drawField = null
+    },
+    onDropfield (area) {
+      this.$refs.fields.addField(this.dragFieldType, area)
     },
     updateFromUpload ({ schema, documents }) {
       this.flow.schema.push(...schema)

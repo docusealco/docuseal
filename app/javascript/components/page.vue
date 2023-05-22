@@ -28,12 +28,14 @@
       />
     </div>
     <div
-      v-show="isDraw || showMask"
+      v-show="isDraw || isDrag || showMask"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onPointerdown"
       @pointermove="onPointermove"
+      @dragover.prevent
+      @drop="onDrop"
       @pointerup="onPointerup"
     />
   </div>
@@ -62,12 +64,17 @@ export default {
       required: false,
       default: false
     },
+    isDrag: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     number: {
       type: Number,
       required: true
     }
   },
-  emits: ['draw'],
+  emits: ['draw', 'drop-field'],
   data () {
     return {
       scale: 1,
@@ -94,6 +101,15 @@ export default {
   methods: {
     onResize () {
       this.scale = this.$refs.image.clientWidth / this.image.metadata.width
+    },
+    onDrop (e) {
+      this.$emit('drop-field', {
+        x: e.layerX / this.scale,
+        y: e.layerY / this.scale,
+        w: 200,
+        h: 40,
+        page: this.number
+      })
     },
     onPointerdown (e) {
       if (this.isDraw) {

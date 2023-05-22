@@ -5,8 +5,10 @@
     :number="index"
     :areas="areasIndex[index]"
     :is-draw="isDraw"
+    :is-drag="isDrag"
     :class="{ 'cursor-crosshair': isDraw }"
     :image="image"
+    @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
     @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
   />
 </template>
@@ -32,9 +34,14 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    isDrag: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['draw'],
+  emits: ['draw', 'drop-field'],
   computed: {
     sortedPreviewImages () {
       return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))
