@@ -1,3 +1,3 @@
-<flow-area data-field-uuid="<%= field['uuid'] %>" data-action="click:flow-view#focusField" data-targets="flow-view.areas" class=" cursor-pointer bg-red-100 absolute" style="width: <%= area['w'] * 100 / page.metadata['width'] %>%; height: <%= area['h'] * 100 / page.metadata['height'] %>%; left: <%= area['x'] * 100 / page.metadata['width'] %>%; top: <%= area['y'] * 100 / page.metadata['height'] %>%">
+<flow-area data-field-uuid="<%= field['uuid'] %>" data-action="click:flow-view#focusField" data-targets="flow-view.areas" class=" cursor-pointer bg-red-100 absolute" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100  %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
   <%= submission.values[field['uuid']] %>
 </flow-area>

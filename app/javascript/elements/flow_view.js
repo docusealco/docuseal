@@ -2,8 +2,6 @@ import { targets, target, targetable } from '@github/catalyst/lib/targetable'
 import { actionable } from '@github/catalyst/lib/actionable'
 
 export default actionable(targetable(class extends HTMLElement {
-  static observedAttributes = ['data-scale']
-
   static [target.static] = [
     'form',
     'completed',

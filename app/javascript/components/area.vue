@@ -21,11 +21,6 @@
 export default {
   name: 'FieldArea',
   props: {
-    scale: {
-      type: Number,
-      required: false,
-      default: 1
-    },
     bounds: {
       type: Object,
       required: false,
@@ -56,22 +51,22 @@ export default {
       const { x, y, w, h } = this.bounds
 
       return {
-        top: this.scale * y + 'px',
-        left: this.scale * x + 'px',
-        width: this.scale * w + 'px',
-        height: this.scale * h + 'px'
+        top: y * 100 + '%',
+        left: x * 100 + '%',
+        width: w * 100 + '%',
+        height: h * 100 + '%'
       }
     }
   },
   methods: {
     resize (e) {
-      this.bounds.w = e.layerX / this.scale - this.bounds.x
-      this.bounds.h = e.layerY / this.scale - this.bounds.y
+      this.bounds.w = e.layerX / e.toElement.clientWidth - this.bounds.x
+      this.bounds.h = e.layerY / e.toElement.clientHeight - this.bounds.y
     },
     drag (e) {
       if (e.toElement.id === 'mask') {
-        this.bounds.x = (e.layerX - this.dragFrom.x) / this.scale
-        this.bounds.y = (e.layerY - this.dragFrom.y) / this.scale
+        this.bounds.x = (e.layerX - this.dragFrom.x) / e.toElement.clientWidth
+        this.bounds.y = (e.layerY - this.dragFrom.y) / e.toElement.clientHeight
       }
     },
     startDrag (e) {

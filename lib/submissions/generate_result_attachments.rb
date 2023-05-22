@@ -20,15 +20,13 @@ module Submissions
 
             next if blocks.blank?
 
-            scale = page.page_size[2] / 1400.0
-
             blocks.each do |block|
               area, field = block.values_at(:area, :field)
               page.textbox(submission.values[field['uuid']],
-                           x: (area['x'] * scale) - 10,
-                           y: page.page_size[2] - (area['y'] * scale) + 150,
-                           width: area['w'] * scale,
-                           height: area['h'] * scale)
+                           x: area['x'] * page.page_size[2],
+                           y: page.page_size[3] - (area['y'] * page.page_size[3]),
+                           width: area['w'] * page.page_size[2],
+                           height: area['h'] * page.page_size[3])
             end
           end
 

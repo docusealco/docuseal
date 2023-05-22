@@ -13,7 +13,6 @@
       <FieldArea
         v-for="(item, i) in areas"
         :key="i"
-        :scale="scale"
         :bounds="item.area"
         :field="item.field"
         @start-resize="showMask = true"
@@ -23,7 +22,6 @@
       />
       <FieldArea
         v-if="newArea"
-        :scale="scale"
         :bounds="newArea"
       />
     </div>
@@ -77,7 +75,6 @@ export default {
   emits: ['draw', 'drop-field'],
   data () {
     return {
-      scale: 1,
       showMask: false,
       newArea: null
     }
@@ -90,34 +87,23 @@ export default {
       return this.image.metadata.height
     }
   },
-  mounted () {
-    this.resizeObserver = new ResizeObserver(this.onResize)
-
-    this.resizeObserver.observe(this.$refs.image)
-  },
-  beforeUnmount () {
-    this.resizeObserver.unobserve(this.$refs.image)
-  },
   methods: {
-    onResize () {
-      this.scale = this.$refs.image.clientWidth / this.image.metadata.width
-    },
     onDrop (e) {
       this.$emit('drop-field', {
-        x: e.layerX / this.scale,
-        y: e.layerY / this.scale,
-        w: 200,
-        h: 40,
+        x: e.layerX / this.$refs.mask.clientWidth,
+        y: e.layerY / this.$refs.mask.clientHeight,
+        w: this.$refs.mask.clientWidth / 5 / this.$refs.mask.clientWidth,
+        h: this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth,
         page: this.number
       })
     },
     onPointerdown (e) {
       if (this.isDraw) {
         this.newArea = {
-          initialX: e.layerX / this.scale,
-          initialY: e.layerY / this.scale,
-          x: e.layerX / this.scale,
-          y: e.layerY / this.scale,
+          initialX: e.layerX / this.$refs.mask.clientWidth,
+          initialY: e.layerY / this.$refs.mask.clientHeight,
+          x: e.layerX / this.$refs.mask.clientWidth,
+          y: e.layerY / this.$refs.mask.clientHeight,
           w: 0,
           h: 0
         }
@@ -125,19 +111,19 @@ export default {
     },
     onPointermove (e) {
       if (this.newArea) {
-        const dx = e.layerX / this.scale - this.newArea.initialX
-        const dy = e.layerY / this.scale - this.newArea.initialY
+        const dx = e.layerX / this.$refs.mask.clientWidth - this.newArea.initialX
+        const dy = e.layerY / this.$refs.mask.clientHeight - this.newArea.initialY
 
         if (dx > 0) {
           this.newArea.x = this.newArea.initialX
         } else {
-          this.newArea.x = e.layerX / this.scale
+          this.newArea.x = e.layerX / this.$refs.mask.clientWidth
         }
 
         if (dy > 0) {
           this.newArea.y = this.newArea.initialY
         } else {
-          this.newArea.y = e.layerY / this.scale
+          this.newArea.y = e.layerY / this.$refs.mask.clientHeight
         }
 
         this.newArea.w = Math.abs(dx)
@@ -149,8 +135,8 @@ export default {
         this.$emit('draw', {
           x: this.newArea.x,
           y: this.newArea.y,
-          w: Math.max(this.newArea.w, 50),
-          h: Math.max(this.newArea.h, 40),
+          w: Math.max(this.newArea.w, this.$refs.mask.clientWidth / 5 / this.$refs.mask.clientWidth),
+          h: Math.max(this.newArea.h, this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth),
           page: this.number
         })
       }
