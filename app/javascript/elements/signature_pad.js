@@ -7,7 +7,9 @@ import { DirectUpload } from '@rails/activestorage'
 export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
     'canvas',
-    'input'
+    'input',
+    'okButton',
+    'clearButton'
   ]
 
   connectedCallback () {
@@ -16,6 +18,8 @@ export default actionable(targetable(class extends HTMLElement {
 
   submit (e) {
     e?.preventDefault()
+
+    this.okButton.disabled = true
 
     this.canvas.toBlob((blob) => {
       const file = new File([blob], 'signature.jpg', { type: 'image/jpg' })

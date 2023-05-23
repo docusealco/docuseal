@@ -4,8 +4,7 @@ import { actionable } from '@github/catalyst/lib/actionable'
 export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
     'form',
-    'completed',
-    'submitButton'
+    'completed'
   ]
 
   static [targets.static] = [
@@ -22,16 +21,28 @@ export default actionable(targetable(class extends HTMLElement {
     })
   }
 
-  submitSignature () {
-    this.submitButton.click()
-  }
-
   setVisibleStep (uuid) {
     this.steps.forEach((step) => {
       step.classList.toggle('hidden', step.dataset.fieldUuid !== uuid)
     })
 
-    this.fields.find(f => f.id === uuid).focus()
+    this.fields.find(f => f.id === uuid)?.focus()
+  }
+
+  submitSignature (e) {
+    e.target.okButton.disabled = true
+
+    fetch(this.form.action, {
+      method: this.form.method,
+      body: new FormData(this.form)
+    }).then(response => {
+      console.log('Form submitted successfully!', response)
+      this.moveNextStep()
+    }).catch(error => {
+      console.error('Error submitting form:', error)
+    }).finally(() => {
+      e.target.okButton.disabled = false
+    })
   }
 
   submitForm (e) {

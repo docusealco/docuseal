@@ -41,7 +41,7 @@
         v-for="(area, index) in areas"
         :key="index"
       >
-        {{ area }}
+        Area {{ index + 1 }}
         <button @click="removeArea(area)">
           &times;
         </button>
