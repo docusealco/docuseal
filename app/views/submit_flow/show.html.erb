@@ -1,4 +1,6 @@
 <% fields_index = Flows.build_field_areas_index(@submission.flow) %>
+<% attachment_field_uuids = @submission.flow.fields.select { |f| f['type'].in?(%w[image signature attachment]) }.pluck('uuid') %>
+<% attachments = ActiveStorage::Attachment.where(uuid: @submission.values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
 <flow-view class="mx-auto block" style="max-width: 1000px">
   <% @submission.flow.schema.each do |item| %>
     <% document = @submission.flow.documents.find { |a| a.uuid == item['attachment_uuid'] } %>
@@ -7,7 +9,7 @@
         <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
         <div class="top-0 bottom-0 left-0 right-0 absolute">
           <% fields_index.dig(document.uuid, index)&.each do |values| %>
-            <%= render 'area', submission: @submission, page:, **values %>
+            <%= render 'area', submission: @submission, attachments:, page:, **values %>
           <% end %>
         </div>
       </div>
@@ -66,14 +68,24 @@
                 <button type="submit"><%= button_title %></button>
               </div>
             <% elsif field['type'] == 'signature' %>
+              <% attachment = attachments.find { |a| a.uuid == @submission.values[field['uuid']] } %>
               <signature-pad data-submission-slug="<%= @submission.slug %>" data-action="upload:flow-view#submitSignature">
                 <input data-target="signature-pad.input" type="hidden" name="values[<%= field['uuid'] %>]" value="<%= @submission.values[field['uuid']] %>">
-                <canvas data-target="signature-pad.canvas"></canvas>
-                <button data-target="signature-pad.clearButton" data-action="click:signature-pad#clear">
+                <canvas class="<%= 'hidden' if attachment %>" data-target="signature-pad.canvas"></canvas>
+                <% if  attachment %>
+                  <img data-target="signature-pad.image" src="<%= attachment.url %>">
+                  <button data-target="signature-pad.redrawButton" data-action="click:signature-pad#redraw">
+                    Redraw
+                  </button>
+                  <button data-target="signature-pad.nextButton" data-action="click:flow-view#moveNextStep">
+                    Submit
+                  </button>
+                <% end %>
+                <button class="<%= 'hidden' if attachment %>" data-target="signature-pad.clearButton" data-action="click:signature-pad#clear">
                   Clear
                 </button>
                 <br>
-                <button data-target="signature-pad.okButton" data-action="click:signature-pad#submit">
+                <button class="<%= 'hidden' if attachment %>" data-target="signature-pad.okButton" data-action="click:signature-pad#submit">
                   <%= button_title %>
                 </button>
               </signature-pad>

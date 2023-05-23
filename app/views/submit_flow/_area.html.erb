@@ -1,3 +1,8 @@
-<flow-area data-field-uuid="<%= field['uuid'] %>" data-action="click:flow-view#focusField" data-targets="flow-view.areas" class=" cursor-pointer bg-red-100 absolute" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100  %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
-  <%= submission.values[field['uuid']] %>
+<% value = submission.values[field['uuid']] %>
+<flow-area data-field-type="<%= field['type'] %>" data-field-uuid="<%= field['uuid'] %>" data-action="click:flow-view#focusField" data-targets="flow-view.areas" class="flex cursor-pointer bg-red-100 absolute" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
+  <% if field['type'] == 'signature' && attachment = attachments.find { |a| a.uuid == value } %>
+    <img class="w-full h-full object-contain" src="<%= attachment.url %>" width="<%= attachment.metadata['width'] %>px" height="<%= attachment.metadata['height'] %>px">
+  <% else %>
+    <%= value %>
+  <% end %>
 </flow-area>

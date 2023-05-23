@@ -14,9 +14,13 @@ export default actionable(targetable(class extends HTMLElement {
   ]
 
   passValueToArea (e) {
+    this.areasSetValue(e.target.id, e.target.value)
+  }
+
+  areasSetValue (fieldUuid, value) {
     return (this.areas || []).forEach((area) => {
-      if (area.dataset.fieldUuid === e.target.id) {
-        area.setValue(e.target.value)
+      if (area.dataset.fieldUuid === fieldUuid) {
+        area.setValue(value)
       }
     })
   }
@@ -42,6 +46,8 @@ export default actionable(targetable(class extends HTMLElement {
       console.error('Error submitting form:', error)
     }).finally(() => {
       e.target.okButton.disabled = false
+
+      this.areasSetValue(e.target.closest('disable-hidden').dataset.fieldUuid, e.detail)
     })
   }
 
@@ -64,7 +70,7 @@ export default actionable(targetable(class extends HTMLElement {
   }
 
   moveStepBack (e) {
-    e.preventDefault()
+    e?.preventDefault()
 
     const currentStepIndex = this.steps.findIndex((el) => !el.classList.contains('hidden'))
 
@@ -75,7 +81,9 @@ export default actionable(targetable(class extends HTMLElement {
     }
   }
 
-  moveNextStep () {
+  moveNextStep (e) {
+    e?.preventDefault()
+
     const currentStepIndex = this.steps.findIndex((el) => !el.classList.contains('hidden'))
 
     const nextStep = this.steps[currentStepIndex + 1]
@@ -89,7 +97,7 @@ export default actionable(targetable(class extends HTMLElement {
   }
 
   focusField ({ target }) {
-    this.setVisibleStep(target.dataset.fieldUuid)
+    this.setVisibleStep(target.closest('flow-area').dataset.fieldUuid)
   }
 
   focusArea ({ target }) {

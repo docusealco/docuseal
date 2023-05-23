@@ -9,7 +9,10 @@ export default actionable(targetable(class extends HTMLElement {
     'canvas',
     'input',
     'okButton',
-    'clearButton'
+    'image',
+    'clearButton',
+    'redrawButton',
+    'nextButton'
   ]
 
   connectedCallback () {
@@ -22,7 +25,7 @@ export default actionable(targetable(class extends HTMLElement {
     this.okButton.disabled = true
 
     this.canvas.toBlob((blob) => {
-      const file = new File([blob], 'signature.jpg', { type: 'image/jpg' })
+      const file = new File([blob], 'signature.png', { type: 'image/png' })
 
       new DirectUpload(
         file,
@@ -38,10 +41,23 @@ export default actionable(targetable(class extends HTMLElement {
           headers: { 'Content-Type': 'application/json' }
         }).then((resp) => resp.json()).then((attachment) => {
           this.input.value = attachment.uuid
-          this.dispatchEvent(new CustomEvent('upload', { details: attachment }))
+          this.dispatchEvent(new CustomEvent('upload', { detail: attachment }))
         })
       })
-    }, 'image/jpeg', 0.95)
+    }, 'image/png')
+  }
+
+  redraw (e) {
+    e?.preventDefault()
+
+    this.input.value = ''
+
+    this.canvas.classList.remove('hidden')
+    this.clearButton.classList.remove('hidden')
+    this.okButton.classList.remove('hidden')
+    this.image.remove()
+    this.redrawButton.remove()
+    this.nextButton.remove()
   }
 
   clear (e) {
