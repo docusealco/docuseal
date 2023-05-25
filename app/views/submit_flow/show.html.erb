@@ -1,4 +1,3 @@
-<% fields_index = Flows.build_field_areas_index(@submission.flow) %>
 <% attachment_field_uuids = @submission.flow.fields.select { |f| f['type'].in?(%w[image signature attachment]) }.pluck('uuid') %>
 <% attachments = ActiveStorage::Attachment.where(uuid: @submission.values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
 <flow-view class="mx-auto block" style="max-width: 1000px">
@@ -7,123 +6,13 @@
     <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
       <div class="relative">
         <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
-        <div class="top-0 bottom-0 left-0 right-0 absolute">
-          <% fields_index.dig(document.uuid, index)&.each do |values| %>
-            <%= render 'area', submission: @submission, attachments:, page:, **values %>
-          <% end %>
-        </div>
+        <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute"></div>
       </div>
     <% end %>
   <% end %>
   <div class="sticky bottom-8 w-full">
     <div class="bg-white mx-8 md:mx-32 border p-4 rounded">
-      <form data-target="flow-view.form" data-action="submit:flow-view#submitForm" action="<%= submit_flow_path(slug: @submission.slug) %>" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input value="put" name="_method" type="hidden">
-        <% visible_step_index = nil %>
-        <% @submission.flow.fields.each_with_index do |field, index| %>
-          <% visible_step_index ||= index if @submission.values[field['uuid']].blank? %>
-          <disable-hidden data-field-type="<%= field['type'] %>" data-field-uuid="<%= field['uuid'] %>" data-targets="flow-view.steps" class="block <%= 'hidden' if index != visible_step_index %>">
-            <% if index != 0 %>
-              <button data-action="click:flow-view#moveStepBack">
-                Back
-              </button>
-            <% end %>
-            <label for="<%= field['uuid'] %>"><%= field['name'].presence || 'FIeld' %></label>
-            <br>
-            <% if index == @submission.flow.fields.size - 1 %>
-              <input type="hidden" name="completed" value="true">
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% end %>
-            <% if field['type'].in?(['text', 'date']) %>
-              <input class="text-xl" <%= html_attributes(required: 'true') if field['required'] %> id="<%= field['uuid'] %>" data-targets="flow-view.fields" data-action="input:flow-view#passValueToArea focus:flow-view#focusArea" value="<%= @submission.values[field['uuid']] %>" type="<%= field['type'] %>" name="values[<%= field['uuid'] %>]">
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% elsif field['type'] == 'select' %>
-              <select <%= html_attributes(required: 'true') if field['required'] %> id="<%= field['uuid'] %>" data-targets="flow-view.fields" data-action="input:flow-view#passValueToArea focus:flow-view#focusArea" name="values[<%= field['uuid'] %>]">
-                <option value="" disabled selected>Select your option</option>
-                <% field['options'].each do |option| %>
-                  <option <%= html_attributes(selected: 'true') if @submission.values[field['uuid']] == option %> value="<%= option %>"><%= option %></option>
-                <% end %>
-              </select>
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% elsif field['type'] == 'image' || field['type'] == 'attachment' %>
-              <br>
-              <files-list data-field-uuid="<%= field['uuid'] %>">
-                <file-dropzone data-action="upload:files-list#add" data-submission-slug="<%= @submission.slug %>">
-                  <% uuid = SecureRandom.uuid %>
-                  <label for="<%= uuid %>">
-                    Upload
-                    <%= field['name'] || 'Attach' %>
-                  </label>
-                  <input multiple data-target="file-dropzone.input" data-action="change:file-dropzone#onSelectFiles" id="<%= uuid %>" type="file" class="hidden">
-                </file-dropzone>
-              </files-list>
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% elsif field['type'] == 'signature' %>
-              <% attachment = attachments.find { |a| a.uuid == @submission.values[field['uuid']] } %>
-              <signature-pad data-submission-slug="<%= @submission.slug %>" data-action="upload:flow-view#submitSignature">
-                <input data-target="signature-pad.input" type="hidden" name="values[<%= field['uuid'] %>]" value="<%= @submission.values[field['uuid']] %>">
-                <canvas class="<%= 'hidden' if attachment %>" data-target="signature-pad.canvas"></canvas>
-                <% if  attachment %>
-                  <img data-target="signature-pad.image" src="<%= attachment.url %>">
-                  <button data-target="signature-pad.redrawButton" data-action="click:signature-pad#redraw">
-                    Redraw
-                  </button>
-                  <button data-target="signature-pad.nextButton" data-action="click:flow-view#moveNextStep">
-                    Submit
-                  </button>
-                <% end %>
-                <button class="<%= 'hidden' if attachment %>" data-target="signature-pad.clearButton" data-action="click:signature-pad#clear">
-                  Clear
-                </button>
-                <br>
-                <button class="<%= 'hidden' if attachment %>" data-target="signature-pad.okButton" data-action="click:signature-pad#submit">
-                  <%= button_title %>
-                </button>
-              </signature-pad>
-            <% elsif field['type'] == 'radio' %>
-              <% field['options'].each do |option| %>
-                <div>
-                  <input <%= html_attributes(checked: true) if @submission.values[field['uuid']] == option %> id="<%= field['uuid'] + option %>" type="radio" name="values[<%= field['uuid'] %>]" value="<%= option %>">
-                  <label for="<%= field['uuid'] + option %>">
-                    <%= option %>
-                  </label>
-                </div>
-              <% end %>
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% elsif field['type'] == 'checkbox' %>
-              <% field['options'].each do |option| %>
-                <div>
-                  <input <%= html_attributes(checked: true) if @submission.values[field['uuid']]&.include?(option) %> id="<%= field['uuid'] + option %>" type="checkbox" name="values[<%= field['uuid'] %>]" value="<%= option %>">
-                  <label for="<%= field['uuid'] + option %>">
-                    <%= option %>
-                  </label>
-                </div>
-              <% end %>
-              <div>
-                <button type="submit"><%= button_title %></button>
-              </div>
-            <% end %>
-          </disable-hidden>
-        <% end %>
-      </form>
-      <div data-target="flow-view.completed" class="hidden">
-        <p>
-          Form completed - thanks!
-        </p>
-        <%= button_to 'Send copy to Email', send_submission_email_index_path, params: { submission_slug: @submission.slug }, form: { onsubmit: 'event.submitter.disabled = true' } %>
-        <%= button_to button_title('Download documents'), submission_download_index_path(@submission.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' } %>
-      </div>
+      <flow-form data-submission-slug="<%= @submission.slug %>" data-attachments="<%= attachments.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submission.flow.fields.to_json %>" data-values="<%= @submission.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></flow-form>
     </div>
   </div>
 </flow-view>

@@ -14,7 +14,7 @@ class SubmitFlowController < ApplicationController
 
   def update
     submission = Submission.find_by!(slug: params[:slug])
-    submission.values.merge!(params[:values].to_unsafe_h)
+    submission.values.merge!(normalized_values)
     submission.completed_at = Time.current if params[:completed] == 'true'
 
     submission.save
@@ -24,5 +24,11 @@ class SubmitFlowController < ApplicationController
 
   def completed
     @submission = Submission.find_by!(slug: params[:submit_flow_slug])
+  end
+
+  private
+
+  def normalized_values
+    params[:values].to_unsafe_h.transform_values { |v| v.is_a?(Array) ? v.compact_blank : v }
   end
 end

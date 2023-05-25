@@ -81,21 +81,15 @@ export default {
     Fields
   },
   props: {
-    dataFlow: {
-      type: String,
-      default: '{}'
+    flow: {
+      type: Object,
+      required: true
     }
   },
   data () {
     return {
       drawField: null,
-      dragFieldType: null,
-      flow: {
-        name: '',
-        schema: [],
-        documents: [],
-        fields: []
-      }
+      dragFieldType: null
     }
   },
   computed: {
@@ -121,8 +115,6 @@ export default {
     }
   },
   mounted () {
-    this.flow = JSON.parse(this.dataFlow)
-
     document.addEventListener('keyup', this.disableDrawOnEsc)
   },
   unmounted () {

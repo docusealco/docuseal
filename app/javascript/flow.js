@@ -1,13 +1,26 @@
-import FlowArea from './elements/flow_area'
-import FlowView from './elements/flow_view'
-import DisableHidden from './elements/disable_hidden'
-import FileDropzone from './elements/file_dropzone'
-import SignaturePad from './elements/signature_pad'
-import FilesList from './elements/files_list'
+import { createApp, reactive } from 'vue'
 
-window.customElements.define('flow-view', FlowView)
-window.customElements.define('flow-area', FlowArea)
-window.customElements.define('disable-hidden', DisableHidden)
-window.customElements.define('file-dropzone', FileDropzone)
-window.customElements.define('signature-pad', SignaturePad)
-window.customElements.define('files-list', FilesList)
+import Flow from './flow_form/form'
+
+window.customElements.define('flow-form', class extends HTMLElement {
+  connectedCallback () {
+    this.appElem = document.createElement('div')
+
+    this.app = createApp(Flow, {
+      submissionSlug: this.dataset.submissionSlug,
+      authenticityToken: this.dataset.authenticityToken,
+      values: reactive(JSON.parse(this.dataset.values)),
+      attachments: reactive(JSON.parse(this.dataset.attachments)),
+      fields: JSON.parse(this.dataset.fields)
+    })
+
+    this.app.mount(this.appElem)
+
+    this.appendChild(this.appElem)
+  }
+
+  disconnectedCallback () {
+    this.app?.unmount()
+    this.appElem?.remove()
+  }
+})
