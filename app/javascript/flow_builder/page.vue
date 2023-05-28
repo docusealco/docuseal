@@ -91,7 +91,7 @@ export default {
     onDrop (e) {
       this.$emit('drop-field', {
         x: e.layerX / this.$refs.mask.clientWidth,
-        y: e.layerY / this.$refs.mask.clientHeight,
+        y: e.layerY / this.$refs.mask.clientHeight - (this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth) / 2,
         w: this.$refs.mask.clientWidth / 5 / this.$refs.mask.clientWidth,
         h: this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth,
         page: this.number

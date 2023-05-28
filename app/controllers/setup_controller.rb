@@ -17,6 +17,9 @@ class SetupController < ApplicationController
     @user = @account.users.new(user_params)
 
     if @user.save
+      @account.encrypted_configs.create!(key: EncryptedConfig::ESIGN_CERTS_KEY,
+                                         value: GenerateCertificate.call)
+
       sign_in(@user)
 
       redirect_to root_path

@@ -83,7 +83,7 @@ export default {
               body: JSON.stringify({
                 submission_slug: this.submissionSlug,
                 blob_signed_id: data.signed_id,
-                name: 'signatures'
+                name: 'attachments'
               }),
               headers: { 'Content-Type': 'application/json' }
             }).then((resp) => resp.json()).then((attachment) => {

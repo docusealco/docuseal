@@ -48,11 +48,13 @@ Rails.application.routes.draw do
 
   resources :submissions, only: %i[], param: 'slug' do
     resources :download, only: %i[index], controller: 'submissions_download'
+    resources :debug, only: %i[index], controller: 'submissions_debug'
   end
 
   scope '/settings', as: :settings do
     resources :storage, only: %i[index create], controller: 'storage_settings'
     resources :email, only: %i[index create], controller: 'email_settings'
+    resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
   end
 end

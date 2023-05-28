@@ -40,8 +40,6 @@ class Submission < ApplicationRecord
   has_many_attached :documents
 
   has_many_attached :attachments
-  has_many_attached :images
-  has_many_attached :signatures
 
   scope :active, -> { where(deleted_at: nil) }
 end

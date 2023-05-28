@@ -1,14 +1,16 @@
 <template>
   <div
-    class="flex cursor-pointer bg-red-100 absolute"
+    class="flex cursor-pointer bg-red-100 bg-opacity-60 absolute"
     :style="computedStyle"
   >
     <img
       v-if="field.type === 'image' && image"
+      class="object-contain"
       :src="image.url"
     >
     <img
       v-else-if="field.type === 'signature' && signature"
+      class="object-contain"
       :src="signature.url"
     >
     <div v-else-if="field.type === 'attachment'">
