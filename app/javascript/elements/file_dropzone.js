@@ -31,7 +31,6 @@ export default actionable(targetable(class extends HTMLElement {
   }
 
   async uploadFiles (files) {
-    console.log( files )
     const blobs = await Promise.all(
       Array.from(files).map(async (file) => {
         const upload = new DirectUpload(

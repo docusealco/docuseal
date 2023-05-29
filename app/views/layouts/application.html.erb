@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="cupcake">
+<html data-theme="cupcake" class="h-full">
   <head>
     <title>
       Docuseal
@@ -11,7 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= yield :head %>
   </head>
-  <body>
+  <body class="h-full">
     <turbo-frame id="modal"></turbo-frame>
     <%= render 'shared/navbar' %>
     <% if flash.present? %>
