@@ -1,44 +1,91 @@
 <div class="max-w-6xl mx-auto">
   <div class="flex space-x-8">
     <%= render 'shared/settings_nav' %>
-    <div class="mt-4">
-      <div>
-        Users
-        <a href="<%= new_user_path %>" data-turbo-frame="modal">New User</a>
-      </div>
-      <table>
-        <tr>
-          <th>
-            User
-          </th>
-          <th>
-            Role
-          </th>
-          <th>
-            Last session
-          </th>
-          <th>
-          </th>
-        </tr>
-        <% @users.each do |user| %>
-          <tr>
-            <td>
-              <%= user.full_name %><br>
-              <%= user.email %>
-            </td>
-            <td>
-              <%= user.role %>
-            </td>
-            <td>
-              <%= user.last_sign_in_at ? l(user.last_sign_in_at) : '-' %>
-            </td>
-            <td>
-              <%= link_to 'Edit', edit_user_path(user), data: { turbo_frame: 'modal' } %>
-              <%= button_to 'Remove', user_path(user), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-            </td>
-          </tr>
+    <div class="mt-4 w-full px-2">
+      <div class="flex justify-between mb-4 items-center">
+        <h1 class="text-3xl font-bold text-left">Users</h1>
+        <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
+          <svg
+            class="w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              stroke="none"
+              d="M0 0h24v24H0z"
+              fill="none" />
+            <line
+              x1="12"
+              y1="5"
+              x2="12"
+              y2="19" />
+            <line
+              x1="5"
+              y1="12"
+              x2="19"
+              y2="12" />
+          </svg>
+          <span>New User</span>
         <% end %>
-      </table>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th scope="col">
+                Name
+              </th>
+              <th scope="col">
+                Email
+              </th>
+              <th scope="col">
+                Role
+              </th>
+              <th scope="col">
+                Last session
+              </th>
+              <th scope="col" class="text-right" width="1px">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr scope="row">
+                <td>
+                  <%= user.full_name %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <span class="badge badge-success badge-outline">
+                    <%= user.role %>
+                  </span>
+                </td>
+                <td>
+                  <%= user.last_sign_in_at ? l(user.last_sign_in_at, format: :short) : '-' %>
+                </td>
+                <td class="flex items-center space-x-2 justify-end">
+                  <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
+                    Edit
+                  <% end %>
+                  <%= link_to user_path(user), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                    Remove
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

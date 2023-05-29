@@ -1,23 +1,25 @@
 <div class="max-w-xl mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center my-8">Log In 👋</h1>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-control">
-      <%= f.label :email, class: 'label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
-    </div>
-    <div class="form-control mt-2">
-      <%= f.label :password, class: 'label' %>
-      <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
-    </div>
-    <% if devise_mapping.rememberable? %>
-      <div class="form-control mt-2">
-        <%= f.label :remember_me, class: 'flex items-center cursor-pointer' do %>
-          <%= f.check_box :remember_me, checked: true, class: 'base-checkbox' %>
-          <span class="label">Remember me</span>
-        <% end %>
+  <h1 class="text-4xl font-bold text-center my-8">Log In</h1>
+  <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, url: session_path(resource_name)) do |f| %>
+    <div class="space-y-2">
+      <div class="form-control">
+        <%= f.label :email, class: 'label' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
       </div>
-    <% end %>
-    <div class="form-control my-4">
+      <div class="form-control">
+        <%= f.label :password, class: 'label' %>
+        <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="form-control">
+          <%= f.label :remember_me, class: 'flex items-center cursor-pointer' do %>
+            <%= f.check_box :remember_me, checked: true, class: 'base-checkbox' %>
+            <span class="label">Remember me</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-control">
       <%= f.submit 'Log in', class: 'base-button' %>
     </div>
   <% end %>

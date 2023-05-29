@@ -1,34 +1,45 @@
 <div class="max-w-6xl mx-auto">
   <div class="flex space-x-8">
     <%= render 'shared/settings_nav' %>
-    <div class="mt-4">
-      Email settings
-      <% value = @encrypted_config.value || {} %>
-      <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off' } do |f| %>
-        <%= f.fields_for :value do |ff| %>
-          <div>
-            <%= ff.label :host %>
-            <%= ff.text_field :host, value: value['host'], required: true %>
-          </div>
-          <div>
-            <%= ff.label :port %>
-            <%= ff.text_field :port, value: value['port'], required: true %>
-          </div>
-          <div>
-            <%= ff.label :username %>
-            <%= ff.text_field :username, value: value['username'], required: true %>
-          </div>
-          <div>
-            <%= ff.label :password %>
-            <%= ff.password_field :password, value: value['password'], required: true %>
-          </div>
-          <div>
-            <%= ff.label :from_email, 'Send from' %>
-            <%= ff.email_field :from_email, value: value['from_email'], required: true %>
+    <div class="mt-4 w-full">
+      <div class="max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold text-left mb-4">Email Settings</h1>
+        <% value = @encrypted_config.value || {} %>
+        <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+          <%= f.fields_for :value do |ff| %>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="form-control">
+                <%= ff.label :host, class: 'label' %>
+                <%= ff.text_field :host, value: value['host'], required: true, class: 'base-input' %>
+              </div>
+              <div class="form-control">
+                <%= ff.label :port, class: 'label' %>
+                <%= ff.text_field :port, value: value['port'], required: true, class: 'base-input' %>
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="form-control">
+                <%= ff.label :username, class: 'label' %>
+                <%= ff.text_field :username, value: value['username'], required: true, class: 'base-input' %>
+              </div>
+              <div class="form-control">
+                <%= ff.label :password, class: 'label' %>
+                <%= ff.password_field :password, value: value['password'], required: true, class: 'base-input' %>
+              </div>
+            </div>
+            <div class="form-control">
+              <%= ff.label :from_email, 'Send from', class: 'label' %>
+              <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>
+            </div>
+          <% end %>
+          <div class="flex justify-end">
+            <div class="form-control">
+              <%= f.button button_title, class: 'base-button' %>
+            </div>
           </div>
         <% end %>
-        <%= f.button button_title %>
-      <% end %>
+      </div>
     </div>
+    <div class="px-2 w-52"></div>
   </div>
 </div>

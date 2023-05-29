@@ -1,19 +1,23 @@
-<%= form_for user, data: { turbo_frame: :_top } do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, required: true %>
+<%= form_for user, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+  <div class="space-y-2">
+    <div class="form-control">
+      <%= f.label :first_name, class: 'label' %>
+      <%= f.text_field :first_name, required: true, class: 'base-input' %>
+    </div>
+    <div class="form-control">
+      <%= f.label :last_name, class: 'label' %>
+      <%= f.text_field :last_name, required: true, class: 'base-input' %>
+    </div>
+    <div class="form-control">
+      <%= f.label :email, class: 'label' %>
+      <%= f.email_field :email, required: true, class: 'base-input' %>
+    </div>
+    <div class="form-control">
+      <%= f.label :password, class: 'label' %>
+      <%= f.password_field :password, required: user.new_record?, class: 'base-input' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, required: true %>
+  <div class="form-control">
+    <%= f.button button_title, class: 'base-button' %>
   </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
-  </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, required: user.new_record? %>
-  </div>
-  <%= f.button button_title %>
 <% end %>
