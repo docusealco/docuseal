@@ -1,67 +1,74 @@
-Storage settings
-<% value = @encrypted_config.value || { 'service' => 'disk' } %>
-<% configs = value['configs'] || {} %>
-<%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off' } do |f| %>
-  <% options = [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']] %>
-  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>">
-    <% [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']].each do |(label, val)| %>
-      <%= f.radio_button :selected, val, checked: value['service'] == val, data: { action: 'change:toggle-visible#trigger' } %>
-      <%= f.label :selected, label, value: val %>
-    <% end %>
-  </toggle-visible>
-  <disable-hidden id="disk" class="<%= 'hidden' if value['service'] != 'disk' %>">
-    <%= f.fields_for :value do |ff| %>
-      <%= ff.hidden_field :service, value: 'disk' %>
-    <% end %>
-    <div>
-      Disk storage - no configs needed but make sure you have a persistant disk (heroku doesnt not have one)
+<div class="max-w-6xl mx-auto">
+  <div class="flex space-x-8">
+    <%= render 'shared/settings_nav' %>
+    <div class="mt-4">
+      Storage settings
+      <% value = @encrypted_config.value || { 'service' => 'disk' } %>
+      <% configs = value['configs'] || {} %>
+      <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off' } do |f| %>
+        <% options = [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']] %>
+        <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>">
+          <% [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']].each do |(label, val)| %>
+            <%= f.radio_button :selected, val, checked: value['service'] == val, data: { action: 'change:toggle-visible#trigger' } %>
+            <%= f.label :selected, label, value: val %>
+          <% end %>
+        </toggle-visible>
+        <disable-hidden id="disk" class="<%= 'hidden' if value['service'] != 'disk' %>">
+          <%= f.fields_for :value do |ff| %>
+            <%= ff.hidden_field :service, value: 'disk' %>
+          <% end %>
+          <div>
+            Disk storage - no configs needed but make sure you have a persistant disk (heroku doesnt not have one)
+          </div>
+        </disable-hidden>
+        <disable-hidden id="aws_s3" class="<%= 'hidden' if value['service'] != 'aws_s3' %>">
+          <%= f.fields_for :value do |ff| %>
+            <%= ff.hidden_field :service, value: 'aws_s3' %>
+            <%= ff.fields_for :configs, configs do |fff| %>
+              <div>
+                <%= fff.label :access_key_id, 'Access key ID' %>
+                <%= fff.text_field :access_key_id, value: configs['access_key_id'], required: true %>
+              </div>
+              <div>
+                <%= fff.label :secret_access_key %>
+                <%= fff.password_field :secret_access_key, value: configs['secret_access_key'], required: true %>
+              </div>
+              <div>
+                <%= fff.label :region %>
+                <%= fff.text_field :region, value: configs['region'], required: true %>
+              </div>
+              <div>
+                <%= fff.label :bucket %>
+                <%= fff.text_field :bucket, value: value['service'] == 'aws_s3' ? configs['bucket'] : '', required: true %>
+              </div>
+              <div>
+                <%= fff.label :endpoint %>
+                <%= fff.text_field :endpoint, value: configs['endpoint'], type: :url %>
+              </div>
+            <% end %>
+          <% end %>
+        </disable-hidden>
+        <disable-hidden id="google" class="<%= 'hidden' if value['service'] != 'google' %>">
+          <%= f.fields_for :value do |ff| %>
+            <%= ff.hidden_field :service, value: 'google' %>
+            <%= ff.fields_for :configs, configs do |fff| %>
+              <div>
+                <%= fff.label :project, 'Project' %>
+                <%= fff.text_field :project, value: configs['project'], required: true %>
+              </div>
+              <div>
+                <%= fff.label :bucket %>
+                <%= fff.text_field :bucket, value: value['service'] == 'google' ? configs['bucket'] : '', required: true %>
+              </div>
+              <div>
+                <%= fff.label :credentials, 'Credentials (JSON key content)' %>
+                <%= fff.text_area :credentials, value: configs['credentials'], required: true %>
+              </div>
+            <% end %>
+          <% end %>
+        </disable-hidden>
+        <%= f.button button_title %>
+      <% end %>
     </div>
-  </disable-hidden>
-  <disable-hidden id="aws_s3" class="<%= 'hidden' if value['service'] != 'aws_s3' %>">
-    <%= f.fields_for :value do |ff| %>
-      <%= ff.hidden_field :service, value: 'aws_s3' %>
-      <%= ff.fields_for :configs, configs do |fff| %>
-        <div>
-          <%= fff.label :access_key_id, 'Access key ID' %>
-          <%= fff.text_field :access_key_id, value: configs['access_key_id'], required: true %>
-        </div>
-        <div>
-          <%= fff.label :secret_access_key %>
-          <%= fff.password_field :secret_access_key, value: configs['secret_access_key'], required: true %>
-        </div>
-        <div>
-          <%= fff.label :region %>
-          <%= fff.text_field :region, value: configs['region'], required: true %>
-        </div>
-        <div>
-          <%= fff.label :bucket %>
-          <%= fff.text_field :bucket, value: value['service'] == 'aws_s3' ? configs['bucket'] : '', required: true %>
-        </div>
-        <div>
-          <%= fff.label :endpoint %>
-          <%= fff.text_field :endpoint, value: configs['endpoint'], type: :url %>
-        </div>
-      <% end %>
-    <% end %>
-  </disable-hidden>
-  <disable-hidden id="google" class="<%= 'hidden' if value['service'] != 'google' %>">
-    <%= f.fields_for :value do |ff| %>
-      <%= ff.hidden_field :service, value: 'google' %>
-      <%= ff.fields_for :configs, configs do |fff| %>
-        <div>
-          <%= fff.label :project, 'Project' %>
-          <%= fff.text_field :project, value: configs['project'], required: true %>
-        </div>
-        <div>
-          <%= fff.label :bucket %>
-          <%= fff.text_field :bucket, value: value['service'] == 'google' ? configs['bucket'] : '', required: true %>
-        </div>
-        <div>
-          <%= fff.label :credentials, 'Credentials (JSON key content)' %>
-          <%= fff.text_area :credentials, value: configs['credentials'], required: true %>
-        </div>
-      <% end %>
-    <% end %>
-  </disable-hidden>
-  <%= f.button button_title %>
-<% end %>
+  </div>
+</div>

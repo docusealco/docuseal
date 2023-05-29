@@ -1,10 +1,17 @@
-<%= form_for '', url: settings_esign_index_path, method: :post do |f| %>
-  <file-dropzone data-name="verify_attachments">
-    <label for="file">
-      <input id="attachment_uuid" name="attachment_uuid" class="hidden" data-target="file-dropzone.valueField" type="text">
-      <input id="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file">
-      LCick to upload
-    </label>
-  </file-dropzone>
-  <%= f.button button_title %>
-<% end %>
+<div class="max-w-6xl mx-auto">
+  <div class="flex space-x-8">
+    <%= render 'shared/settings_nav' %>
+    <div class="mt-4">
+      <%= form_for '', url: settings_esign_index_path, method: :post do |f| %>
+        <file-dropzone data-name="verify_attachments">
+          <label for="file">
+            <input id="attachment_uuid" name="attachment_uuid" class="hidden" data-target="file-dropzone.valueField" type="text">
+            <input id="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file">
+            LCick to upload
+          </label>
+        </file-dropzone>
+        <%= f.button button_title %>
+      <% end %>
+    </div>
+  </div>
+</div>

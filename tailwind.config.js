@@ -3,6 +3,13 @@ module.exports = {
     require('daisyui')
   ],
   daisyui: {
-    themes: ['cupcake']
+    themes: [
+      {
+        cupcake: {
+          ...require('daisyui/src/colors/themes')['[data-theme=cupcake]'],
+          primary: '#E4E0E1'
+        }
+      }
+    ]
   }
 }
