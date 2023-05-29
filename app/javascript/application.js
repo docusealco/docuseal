@@ -9,6 +9,10 @@ import FileDropzone from './elements/file_dropzone'
 
 import FlowBuilder from './flow_builder/builder'
 
+document.addEventListener('turbo:before-cache', () => {
+  window.flash?.remove()
+})
+
 window.customElements.define('toggle-visible', ToggleVisible)
 window.customElements.define('disable-hidden', DisableHidden)
 window.customElements.define('turbo-modal', TurboModal)

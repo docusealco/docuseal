@@ -1,9 +1,11 @@
-<%= render 'shared/turbo_modal' do %>
+<%= render 'shared/turbo_modal', title: 'New Flow' do %>
   <%= form_for @flow, data: { turbo_frame: :_top } do |f| %>
-    <div>
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true %>
+    <div class="form-control">
+      <%= f.label :name, 'Flow name', class: 'label' %>
+      <%= f.text_field :name, required: true, class: 'base-input' %>
     </div>
-    <%= f.button button_title %>
+    <div class="form-control mt-4">
+      <%= f.button button_title('Create'), class: 'base-button' %>
+    </div>
   <% end %>
 <% end %>
