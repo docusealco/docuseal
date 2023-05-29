@@ -30,3 +30,19 @@ button .enabled {
 button[disabled] .enabled {
   display: none;
 }
+
+.base-input {
+  @apply input input-bordered bg-white;
+}
+
+.base-button {
+  @apply btn text-white text-base no-animation;
+}
+
+.white-button {
+  @apply btn btn-outline text-base bg-white border-2;
+}
+
+.base-checkbox {
+  @apply checkbox rounded bg-white checkbox-sm no-animation;
+}

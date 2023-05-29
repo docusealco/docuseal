@@ -1,30 +1,36 @@
-Setup
-<%= form_for '', url: setup_index_path do |f| %>
-  <%= f.fields_for @user do |ff| %>
-    <div>
-      <%= ff.label :first_name %>
-      <%= ff.text_field :first_name, required: true %>
-    </div>
-    <div>
-      <%= ff.label :last_name %>
-      <%= ff.text_field :last_name, required: true %>
+<div class="max-w-xl mx-auto px-2">
+  <h1 class="text-4xl font-bold text-center my-8">Initial Setup 👋</h1>
+  <%= form_for '', url: setup_index_path do |f| %>
+    <%= f.fields_for @user do |ff| %>
+      <div class="flex space-x-4">
+        <div class="form-control w-1/2">
+          <%= ff.label :first_name, class: 'label' %>
+          <%= ff.text_field :first_name, required: true, class: 'base-input' %>
+        </div>
+        <div class="form-control w-1/2">
+          <%= ff.label :last_name, class: 'label' %>
+          <%= ff.text_field :last_name, required: true, class: 'base-input' %>
+        </div>
+      </div>
+    <% end %>
+    <%= f.fields_for @account do |ff| %>
+      <div class="form-control mt-2">
+        <%= ff.label :name, 'Company name', class: 'label' %>
+        <%= ff.text_field :name, required: true, class: 'base-input' %>
+      </div>
+    <% end %>
+    <%= f.fields_for @user do |ff| %>
+      <div class="form-control mt-2">
+        <%= ff.label :email, class: 'label' %>
+        <%= ff.email_field :email, required: true, class: 'base-input' %>
+      </div>
+      <div class="form-control mt-2">
+        <%= ff.label :password, class: 'label' %>
+        <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input' %>
+      </div>
+    <% end %>
+    <div class="form-control mt-8">
+      <%= f.button button_title, class: 'base-button' %>
     </div>
   <% end %>
-  <%= f.fields_for @account do |ff| %>
-    <div>
-      <%= ff.label :name, 'Company name' %>
-      <%= ff.text_field :name, required: true %>
-    </div>
-  <% end %>
-  <%= f.fields_for @user do |ff| %>
-    <div>
-      <%= ff.label :email %>
-      <%= ff.email_field :email, required: true %>
-    </div>
-    <div>
-      <%= ff.label :password %>
-      <%= ff.password_field :password, required: true %>
-    </div>
-  <% end %>
-  <%= f.button button_title %>
-<% end %>
+</div>

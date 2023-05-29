@@ -1,7 +1,12 @@
-<% if signed_in? %>
-  <div>
-    <%= link_to 'Home', root_path, class: 'bg-red-500' %>
-    <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
-    <%= current_user.email %>
-  </div>
-<% end %>
+<div class="max-w-6xl mx-auto px-2 py-2">
+  <a href="<%= root_path %>" class="text-2xl font-bold">
+    <span>DocuSeal</span>
+  </a>
+  <% if signed_in? %>
+    <div>
+      <%= link_to 'Home', root_path, class: 'bg-red-500' %>
+      <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+      <%= current_user.email %>
+    </div>
+  <% end %>
+</div>
