@@ -50,3 +50,7 @@ button[disabled] .enabled {
 .base-checkbox {
   @apply checkbox rounded bg-white checkbox-sm no-animation;
 }
+
+.base-radio {
+  @apply radio bg-white radio-sm;
+}

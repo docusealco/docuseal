@@ -1,9 +1,12 @@
 <div class="max-w-6xl mx-auto">
-  <div class="flex space-x-8">
+  <div class="flex">
     <%= render 'shared/settings_nav' %>
     <div class="mt-4 w-full">
       <div class="max-w-xl mx-auto">
-        <h1 class="text-3xl font-bold text-left mb-4">Email Settings</h1>
+        <h1 class="text-4xl font-bold mb-4">Email SMTP</h1>
+        <p>
+          Configure your to send emails (TODO)
+        </p>
         <% value = @encrypted_config.value || {} %>
         <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
           <%= f.fields_for :value do |ff| %>
@@ -32,14 +35,14 @@
               <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>
             </div>
           <% end %>
-          <div class="flex justify-end">
-            <div class="form-control">
+          <div>
+            <div class="form-control mt-8">
               <%= f.button button_title, class: 'base-button' %>
             </div>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="px-2 w-52"></div>
+    <div class="px-2 w-52 flex-none"></div>
   </div>
 </div>
