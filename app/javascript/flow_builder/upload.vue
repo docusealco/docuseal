@@ -1,17 +1,36 @@
 <template>
-  <input
-    ref="input"
-    type="file"
-    multiple
-    @change="upload"
-  >
+  <div>
+    <label
+      :for="inputId"
+      class="btn btn-outline w-full"
+      :class="{ 'btn-disabled': isLoading }"
+    >
+      <IconUpload
+        width="20"
+        class="mr-2"
+      />
+      Add Document
+    </label>
+    <input
+      :id="inputId"
+      ref="input"
+      type="file"
+      class="hidden"
+      multiple
+      @change="upload"
+    >
+  </div>
 </template>
 
 <script>
 import { DirectUpload } from '@rails/activestorage'
+import { IconUpload } from '@tabler/icons-vue'
 
 export default {
   name: 'DocumentsUpload',
+  components: {
+    IconUpload
+  },
   props: {
     flowId: {
       type: [Number, String],
@@ -19,8 +38,20 @@ export default {
     }
   },
   emits: ['success'],
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+  computed: {
+    inputId () {
+      return 'el' + Math.random().toString(32).split('.')[1]
+    }
+  },
   methods: {
     async upload () {
+      this.isLoading = true
+
       const blobs = await Promise.all(
         Array.from(this.$refs.input.files).map(async (file) => {
           const upload = new DirectUpload(
@@ -52,6 +83,8 @@ export default {
       }).then(resp => resp.json()).then((data) => {
         this.$emit('success', data)
         this.$refs.input.value = ''
+      }).finally(() => {
+        this.isLoading = false
       })
     }
   }

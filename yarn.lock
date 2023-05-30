@@ -1131,6 +1131,18 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.25.24.tgz#8c7688559979f7079aacaf31aa881c3aa410b718"
   integrity sha512-XJfwUVUKDHF5ugKwIcxEgc9k8b7HbznCp6eUfWgu710hMPNIO4aw4/zB5RogDQz8nd6gyCDpU9O/m6qYEWY6yQ==
 
+"@tabler/icons-vue@^2.20.0":
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-2.20.0.tgz#e8ff057727feceb58e480643d9fa0aace135c5b8"
+  integrity sha512-KLu2XjeUBScUlTq3GbISinXsolBnEIm/nGdQoUqlWaFH5haBlHYmv/pHTZuBdW32uRxzGnidxfu/LT3DvAU/AQ==
+  dependencies:
+    "@tabler/icons" "2.20.0"
+
+"@tabler/icons@2.20.0":
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.20.0.tgz#42a11bb91b9d347fdf6b296274cf68998122bb10"
+  integrity sha512-BsUEJoqREs8bqcrf5HfJBq6/rDvsRI3h+T+0X1o7i8LBHonsH0iAngcyL0I82YKoSy9NiVDvM3LV63zDP0nPYQ==
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"

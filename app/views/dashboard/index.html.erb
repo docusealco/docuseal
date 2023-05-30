@@ -1,12 +1,5 @@
-Hellp
-<div>
+<div class="max-w-6xl mx-auto px-2 py-3">
   <%= link_to 'Create Flow', new_flow_path, data: { turbo_frame: :modal } %>
-  <%= link_to 'Storage settings', settings_storage_index_path %>
-  <%= link_to 'Email settings', settings_email_index_path %>
-  <%= link_to 'eSign', settings_esign_index_path %>
-  <%= link_to 'Users', settings_users_path %>
-</div>
-<div>
   <% @flows.each do |flow| %>
     <div>
       <%= flow.name %> |

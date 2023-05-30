@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FlowsController < ApplicationController
+  layout false
+
   def show
     @flow = current_account.flows.preload(documents_attachments: { preview_images_attachments: :blob })
                            .find(params[:id])

@@ -1,1 +1,16 @@
-<flow-builder data-flow="<%= @flow.to_json(include: { documents: { include: { preview_images: { methods: %i[url metadata filename] } } } }) %>"></flow-builder>
+<!DOCTYPE html>
+<html data-theme="docuseal" class="h-full">
+  <head>
+    <title>
+      Docuseal
+    </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= javascript_pack_tag 'application', defer: true %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+  </head>
+  <body class="h-full" data>
+    <flow-builder data-flow="<%= @flow.to_json(include: { documents: { include: { preview_images: { methods: %i[url metadata filename] } } } }) %>"></flow-builder>
+  </body>
+</html>
