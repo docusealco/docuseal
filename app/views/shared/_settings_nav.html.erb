@@ -1,32 +1,22 @@
 <menu-active class="block w-full md:w-52">
   <div class="-ml-3.5">
-    <ul class="menu menu-compact px-2">
+    <ul class="menu menu-compact px-2 space-y-1">
       <li class="menu-title"><span>Settings</span></li>
       <li></li>
       <li>
-        <a href="<%= settings_profile_index_path %>" class="hover:bg-base-300 text-base">
-          Profile
-        </a>
+        <%= link_to 'Profile', settings_profile_index_path, class: "text-base hover:bg-base-300" %>
       </li>
       <li>
-        <a href="<%= settings_email_index_path %>" class="hover:bg-base-300 text-base">
-          Email
-        </a>
+        <%= link_to 'Email', settings_email_index_path, class: "text-base hover:bg-base-300" %>
       </li>
       <li>
-        <a href="<%= settings_storage_index_path %>" class="hover:bg-base-300 text-base">
-          Storage
-        </a>
+        <%= link_to 'Storage', settings_storage_index_path, class: "text-base hover:bg-base-300" %>
       </li>
       <li>
-        <a href="<%= settings_esign_index_path %>" class="hover:bg-base-300 text-base">
-          eSign
-        </a>
+        <%= link_to 'eSign', settings_esign_index_path, class: "text-base hover:bg-base-300" %>
       </li>
       <li>
-        <a href="<%= settings_users_path %>" class="hover:bg-base-300 text-base">
-          Team
-        </a>
+        <%= link_to 'Team', settings_users_path, class: "text-base hover:bg-base-300" %>
       </li>
     </ul>
   </div>

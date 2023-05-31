@@ -1,36 +1,36 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-16">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl">
-        <h1 class="text-4xl font-bold mb-4">Storage</h1>
-        <p class="mb-4">
-          Select files torage option (TODO)
-        </p>
-        <% value = @encrypted_config.value || { 'service' => 'disk' } %>
-        <% configs = value['configs'] || {} %>
-        <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
-          <% options = [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']] %>
-          <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
-            <div class="flex space-x-2 relative">
-              <% [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']].each do |(label, val)| %>
-                <%= f.label :selected, value: val, class: 'w-full flex flex-1 items-center space-x-2 btn btn-outline rounded-xl' do %>
-                  <%= f.radio_button :selected, val, checked: value['service'] == val, data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio' %>
-                  <span><%= label %></span>
-                <% end %>
-              <% end %>
-            </div>
-          </toggle-visible>
-          <disable-hidden id="disk" class="<%= 'hidden' if value['service'] != 'disk' %>">
-            <%= render "disk_form", f: f %>
-          </disable-hidden>
-          <disable-hidden id="aws_s3" class="<%= 'hidden' if value['service'] != 'aws_s3' %>">
-            <%= render "aws_form", f: f, configs: configs, value: value %>
-          </disable-hidden>
-          <disable-hidden id="google" class="<%= 'hidden' if value['service'] != 'google' %>">
-            <%= render "google_cloud", f: f, configs: configs, value: value %>
-          </disable-hidden>
-          <div class="form-control">
-            <%= f.button button_title('OK'), class: 'base-button' %>
-          </div>
-        <% end %>
+    <h1 class="text-4xl font-bold mb-4">Storage</h1>
+    <p class="mb-4">
+      Select files storage option (TODO)
+    </p>
+    <% value = @encrypted_config.value || { 'service' => 'disk' } %>
+    <% configs = value['configs'] || {} %>
+    <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
+      <% options = [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']] %>
+      <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
+        <div class="flex space-x-2 relative">
+          <% [['Disk', 'disk'], ['AWS S3', 'aws_s3'], ['Google Cloud', 'google']].each do |(label, val)| %>
+            <%= f.label :selected, value: val, class: 'w-full flex flex-1 items-center space-x-2 btn btn-outline rounded-xl' do %>
+              <%= f.radio_button :selected, val, checked: value['service'] == val, data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio' %>
+              <span><%= label %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </toggle-visible>
+      <disable-hidden id="disk" class="<%= 'block my-4 hidden' if value['service'] != 'disk' %>">
+        <%= render "disk_form", f: f %>
+      </disable-hidden>
+      <disable-hidden id="aws_s3" class="<%= 'block my-4 hidden' if value['service'] != 'aws_s3' %>">
+        <%= render "aws_form", f: f, configs: configs, value: value %>
+      </disable-hidden>
+      <disable-hidden id="google" class="<%= 'block my-4 hidden' if value['service'] != 'google' %>">
+        <%= render "google_cloud", f: f, configs: configs, value: value %>
+      </disable-hidden>
+      <div class="form-control">
+        <%= f.button button_title('OK'), class: 'base-button' %>
       </div>
+    <% end %>
+  </div>
 </div>
