@@ -4,11 +4,16 @@
     class="mx-auto px-4"
   >
     <div class="flex justify-between py-1.5 items-center">
-      <Contenteditable
-        :model-value="template.name"
-        class="text-3xl focus:text-clip"
-        @update:model-value="updateName"
-      />
+      <div class="flex space-x-3">
+        <a href="/">
+          <Logo />
+        </a>
+        <Contenteditable
+          :model-value="template.name"
+          class="text-3xl font-semibold focus:text-clip"
+          @update:model-value="updateName"
+        />
+      </div>
       <div class="space-x-3 flex items-center">
         <a
           :href="`/templates/${template.id}/submissions`"
@@ -105,6 +110,7 @@
 import Upload from './upload'
 import Fields from './fields'
 import Document from './document'
+import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import { IconUsersPlus, IconDeviceFloppy } from '@tabler/icons-vue'
@@ -115,6 +121,7 @@ export default {
     Upload,
     Document,
     Fields,
+    Logo,
     DocumentPreview,
     Contenteditable,
     IconUsersPlus,

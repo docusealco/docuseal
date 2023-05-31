@@ -1,5 +1,6 @@
 <div class="max-w-6xl mb-4 mx-auto px-2 py-3 flex items-center justify-between">
-  <a href="<%= root_path %>" class="text-2xl font-bold">
+  <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
+    <%= render 'shared/logo' %>
     <span>DocuSeal</span>
   </a>
   <% if signed_in? %>
