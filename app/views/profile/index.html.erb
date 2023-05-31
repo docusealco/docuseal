@@ -1,0 +1,21 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-16">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow max-w-xl">
+    <h1 class="text-4xl font-bold mb-4">Profile</h1>
+    <%= form_for @user, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <%= f.label :first_name, class: 'label' %>
+          <%= f.text_field :first_name, required: true, class: 'base-input' %>
+        </div>
+        <div class="form-control">
+          <%= f.label :last_name, class: 'label' %>
+          <%= f.text_field :last_name, required: true, class: 'base-input' %>
+        </div>
+      </div>
+      <div class="form-control mt-8">
+        <%= f.button button_title, class: 'base-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>

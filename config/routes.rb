@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     resources :storage, only: %i[index create], controller: 'storage_settings'
     resources :email, only: %i[index create], controller: 'email_settings'
     resources :esign, only: %i[index create], controller: 'esign_settings'
-    resources :profile, only: %i[index create]
+    resources :profile, only: %i[index update]
     resources :users, only: %i[index]
   end
 end

@@ -1,0 +1,10 @@
+<%= f.fields_for :value do |ff| %>
+  <%= ff.hidden_field :service, value: 'disk' %>
+<% end %>
+<div class="text-center max-w-xl mx-auto my-8 text-xl font-medium leading-9">
+  Store all files on disk
+  <br>
+  No configs are needed but make sure your disk is persistent
+  <br>
+  (not suitable for Heroku and other PaaS)
+</div>

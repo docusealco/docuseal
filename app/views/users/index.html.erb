@@ -1,9 +1,8 @@
-<div class="max-w-6xl mx-auto">
-  <div class="flex space-x-2">
+ <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-16">
     <%= render 'shared/settings_nav' %>
-    <div class="mt-4 w-full px-2">
+    <div class="w-full">
       <div class="flex justify-between mb-4">
-        <h1 class="text-4xl font-bold">Users</h1>
+        <h1 class="text-4xl font-bold">Team</h1>
         <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
           <svg
             class="w-6 h-6"
@@ -87,4 +86,3 @@
       </div>
     </div>
   </div>
-</div>

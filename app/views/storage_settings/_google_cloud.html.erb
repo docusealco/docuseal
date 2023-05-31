@@ -1,0 +1,17 @@
+ <%= f.fields_for :value do |ff| %>
+  <%= ff.hidden_field :service, value: 'google' %>
+  <%= ff.fields_for :configs, configs do |fff| %>
+    <div>
+      <%= fff.label :project, 'Project' %>
+      <%= fff.text_field :project, value: configs['project'], required: true %>
+    </div>
+    <div>
+      <%= fff.label :bucket %>
+      <%= fff.text_field :bucket, value: value['service'] == 'google' ? configs['bucket'] : '', required: true %>
+    </div>
+    <div>
+      <%= fff.label :credentials, 'Credentials (JSON key content)' %>
+      <%= fff.text_area :credentials, value: configs['credentials'], required: true %>
+    </div>
+  <% end %>
+<% end %>
