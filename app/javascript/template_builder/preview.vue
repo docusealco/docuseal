@@ -15,9 +15,10 @@
         <div
           class="flex flex-col justify-between opacity-0 group-hover:opacity-100"
         >
-          <div>
+          <div class="rounded-bl rounded-tr bg-white border">
             <button
-              class="px-1.5 rounded bg-white border border-red-400 text-red-400 hover:bg-red-50"
+              class="rounded-bl rounded-tr hover:text-base-100 hover:bg-base-content w-full transition-colors"
+              style="width: 24px"
               @click.stop="$emit('remove', item)"
             >
               &times;
@@ -25,16 +26,18 @@
           </div>
           <div
             v-if="withArrows"
-            class="flex flex-col"
+            class="flex flex-col border rounded-br rounded-tl bg-white divide-y"
           >
             <button
-              class="px-1.5"
+              class="rounded-tl hover:text-base-100 hover:bg-base-content w-full transition-colors"
+              style="width: 24px"
               @click.stop="$emit('up', item)"
             >
               &uarr;
             </button>
             <button
-              class="px-1.5"
+              class="rounded-br hover:text-base-100 hover:bg-base-content w-full transition-colors"
+              style="width: 24px"
               @click.stop="$emit('down', item)"
             >
               &darr;
