@@ -1,0 +1,18 @@
+<% attachment_field_uuids = @submission.template.fields.select { |f| f['type'].in?(%w[image signature attachment]) }.pluck('uuid') %>
+<% attachments = ActiveStorage::Attachment.where(uuid: @submission.values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
+<div class="mx-auto block" style="max-width: 1000px">
+  <% @submission.template.schema.each do |item| %>
+    <% document = @submission.template.documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+    <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
+      <div class="relative">
+        <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
+        <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute"></div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="sticky bottom-8 w-full">
+    <div class="bg-white mx-8 md:mx-32 border p-4 rounded">
+      <submission-form data-submission-slug="<%= @submission.slug %>" data-attachments="<%= attachments.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submission.template.fields.to_json %>" data-values="<%= @submission.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+    </div>
+  </div>
+</div>

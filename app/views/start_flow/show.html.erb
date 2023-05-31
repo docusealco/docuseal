@@ -1,9 +1,0 @@
-You have been invited to submit flow <%= @flow.name %>
-<%= form_for @submission, url: start_flow_path(@flow.slug), data: { turbo_frame: :_top }, method: :put do |f| %>
-  Provide youe email to start
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
-  </div>
-  <%= f.button button_title %>
-<% end %>

@@ -8,7 +8,7 @@ import TurboModal from './elements/turbo_modal'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 
-import FlowBuilder from './flow_builder/builder'
+import TemplateBuilder from './template_builder/builder'
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -20,12 +20,12 @@ window.customElements.define('turbo-modal', TurboModal)
 window.customElements.define('file-dropzone', FileDropzone)
 window.customElements.define('menu-active', MenuActive)
 
-window.customElements.define('flow-builder', class extends HTMLElement {
+window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
 
-    this.app = createApp(FlowBuilder, {
-      flow: reactive(JSON.parse(this.dataset.flow))
+    this.app = createApp(TemplateBuilder, {
+      template: reactive(JSON.parse(this.dataset.template))
     })
 
     this.app.mount(this.appElem)

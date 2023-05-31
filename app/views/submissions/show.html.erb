@@ -1,8 +1,8 @@
-Flow: <%= @submission.flow.name %>
+template: <%= @submission.template.name %>
 Sub: <%= @submission.slug %>
 Copy share link:
-<input autocomplete="off" type="text" class="w-full" value="<%= submit_flow_url(slug: @submission.slug) %>" disabled>
-<% @submission.flow.fields.each do |field| %>
+<input autocomplete="off" type="text" class="w-full" value="<%= submit_form_url(slug: @submission.slug) %>" disabled>
+<% @submission.template.fields.each do |field| %>
   <div>
     <%= field['name'] %>:
     <% if ['image', 'signature'].include?(field['type']) %>

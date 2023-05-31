@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class SubmitFlowController < ApplicationController
-  layout 'flow'
+class SubmitFormController < ApplicationController
+  layout 'form'
 
   skip_before_action :authenticate_user!
 
   def show
-    @submission = Submission.preload(flow: { documents_attachments: { preview_images_attachments: :blob } })
+    @submission = Submission.preload(template: { documents_attachments: { preview_images_attachments: :blob } })
                             .find_by!(slug: params[:slug])
 
-    return redirect_to submit_flow_completed_path(@submission.slug) if @submission.completed_at?
+    return redirect_to submit_form_completed_path(@submission.slug) if @submission.completed_at?
   end
 
   def update
@@ -23,7 +23,7 @@ class SubmitFlowController < ApplicationController
   end
 
   def completed
-    @submission = Submission.find_by!(slug: params[:submit_flow_slug])
+    @submission = Submission.find_by!(slug: params[:submit_form_slug])
   end
 
   private

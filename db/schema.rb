@@ -60,25 +60,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
     t.index ["account_id"], name: "index_encrypted_configs_on_account_id"
   end
 
-  create_table "flows", force: :cascade do |t|
-    t.string "slug", null: false
-    t.string "name", null: false
-    t.string "schema", null: false
-    t.string "fields", null: false
-    t.bigint "author_id", null: false
-    t.bigint "account_id", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_flows_on_account_id"
-    t.index ["author_id"], name: "index_flows_on_author_id"
-    t.index ["slug"], name: "index_flows_on_slug", unique: true
-  end
-
   create_table "submissions", force: :cascade do |t|
     t.string "email", null: false
     t.string "slug", null: false
-    t.bigint "flow_id", null: false
+    t.bigint "template_id", null: false
     t.string "values", null: false
     t.string "ua"
     t.string "ip"
@@ -89,8 +74,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_submissions_on_email"
-    t.index ["flow_id"], name: "index_submissions_on_flow_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
+    t.index ["template_id"], name: "index_submissions_on_template_id"
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "name", null: false
+    t.string "schema", null: false
+    t.string "fields", null: false
+    t.bigint "author_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_templates_on_account_id"
+    t.index ["author_id"], name: "index_templates_on_author_id"
+    t.index ["slug"], name: "index_templates_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,8 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "encrypted_configs", "accounts"
-  add_foreign_key "flows", "accounts"
-  add_foreign_key "flows", "users", column: "author_id"
-  add_foreign_key "submissions", "flows"
+  add_foreign_key "submissions", "templates"
+  add_foreign_key "templates", "accounts"
+  add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "users", "accounts"
 end

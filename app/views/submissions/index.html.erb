@@ -1,8 +1,8 @@
 Submissions
-Flow <%= @flow.name %>
+template <%= @template.name %>
 Copy share link:
-<input autocomplete="off" type="text" class="w-full" value="<%= start_flow_url(slug: @flow.slug) %>" disabled>
-<a href="<%= new_flow_submission_path(@flow) %>" class="bg-green-600" data-turbo-frame="modal">Add Recepients</a>
+<input autocomplete="off" type="text" class="w-full" value="<%= start_form_url(slug: @template.slug) %>" disabled>
+<a href="<%= new_template_submission_path(@template) %>" class="bg-green-600" data-turbo-frame="modal">Add Recepients</a>
 <table>
   <tr>
     <th>
@@ -32,7 +32,7 @@ Copy share link:
       </td>
       <td>
         copy link<br>
-        <%= link_to 'View', submission_path(@flow) %>
+        <%= link_to 'View', submission_path(@template) %>
         <%= button_to 'Remove', submission_path(submission), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
       </td>
     </tr>

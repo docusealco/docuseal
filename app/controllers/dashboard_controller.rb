@@ -2,6 +2,6 @@
 
 class DashboardController < ApplicationController
   def index
-    @flows = current_account.flows.active
+    @templates = current_account.templates.active
   end
 end

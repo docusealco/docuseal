@@ -5,13 +5,13 @@
   >
     <div class="flex justify-between py-1.5 items-center">
       <Contenteditable
-        :model-value="flow.name"
+        :model-value="template.name"
         class="text-3xl focus:text-clip"
         @update:model-value="updateName"
       />
       <div class="space-x-3 flex items-center">
         <a
-          :href="`/flows/${flow.id}/submissions`"
+          :href="`/templates/${template.id}/submissions`"
           class="btn btn-primary"
         >
           <IconUsersPlus
@@ -40,9 +40,9 @@
         class="overflow-auto w-52 flex-none pr-4 mt-0.5 pt-0.5"
       >
         <DocumentPreview
-          v-for="(item, index) in flow.schema"
+          v-for="(item, index) in template.schema"
           :key="index"
-          :with-arrows="flow.schema.length > 1"
+          :with-arrows="template.schema.length > 1"
           :item="item"
           :document="sortedDocuments[index]"
           @scroll-to="scrollIntoDocument(item)"
@@ -53,7 +53,7 @@
         />
         <div class="sticky bottom-0 bg-base-100 py-2">
           <Upload
-            :flow-id="flow.id"
+            :template-id="template.id"
             @success="updateFromUpload"
           />
         </div>
@@ -90,7 +90,7 @@
           FIelds
           <Fields
             ref="fields"
-            v-model:fields="flow.fields"
+            v-model:fields="template.fields"
             @set-draw="drawField = $event"
             @set-drag="dragFieldType = $event"
             @drag-end="dragFieldType = null"
@@ -110,7 +110,7 @@ import DocumentPreview from './preview'
 import { IconUsersPlus, IconDeviceFloppy } from '@tabler/icons-vue'
 
 export default {
-  name: 'FlowBuilder',
+  name: 'TemplateBuilder',
   components: {
     Upload,
     Document,
@@ -121,7 +121,7 @@ export default {
     IconDeviceFloppy
   },
   props: {
-    flow: {
+    template: {
       type: Object,
       required: true
     }
@@ -138,7 +138,7 @@ export default {
     fieldAreasIndex () {
       const areas = {}
 
-      this.flow.fields.forEach((f) => {
+      this.template.fields.forEach((f) => {
         (f.areas || []).forEach((a) => {
           areas[a.attachment_uuid] ||= {}
 
@@ -151,8 +151,8 @@ export default {
       return areas
     },
     sortedDocuments () {
-      return this.flow.schema.map((item) => {
-        return this.flow.documents.find(doc => doc.uuid === item.attachment_uuid)
+      return this.template.schema.map((item) => {
+        return this.template.documents.find(doc => doc.uuid === item.attachment_uuid)
       })
     }
   },
@@ -191,8 +191,8 @@ export default {
       this.$refs.fields.addField(this.dragFieldType, area)
     },
     updateFromUpload ({ schema, documents }) {
-      this.flow.schema.push(...schema)
-      this.flow.documents.push(...documents)
+      this.template.schema.push(...schema)
+      this.template.documents.push(...documents)
 
       this.$nextTick(() => {
         this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
@@ -203,28 +203,28 @@ export default {
       this.save()
     },
     updateName (value) {
-      this.flow.name = value
+      this.template.name = value
 
       this.save()
     },
     onDocumentRemove (item) {
       if (window.confirm('Are you sure?')) {
-        this.flow.schema.splice(this.flow.schema.indexOf(item), 1)
+        this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 
       this.save()
     },
     moveDocument (item, direction) {
-      const currentIndex = this.flow.schema.indexOf(item)
+      const currentIndex = this.template.schema.indexOf(item)
 
-      this.flow.schema.splice(currentIndex, 1)
+      this.template.schema.splice(currentIndex, 1)
 
-      if (currentIndex + direction > this.flow.schema.length) {
-        this.flow.schema.unshift(item)
+      if (currentIndex + direction > this.template.schema.length) {
+        this.template.schema.unshift(item)
       } else if (currentIndex + direction < 0) {
-        this.flow.schema.push(item)
+        this.template.schema.push(item)
       } else {
-        this.flow.schema.splice(currentIndex + direction, 0, item)
+        this.template.schema.splice(currentIndex + direction, 0, item)
       }
 
       this.save()
@@ -239,9 +239,9 @@ export default {
       })
     },
     save () {
-      return fetch(`/api/flows/${this.flow.id}`, {
+      return fetch(`/api/templates/${this.template.id}`, {
         method: 'PUT',
-        body: JSON.stringify({ flow: this.flow }),
+        body: JSON.stringify({ template: this.template }),
         headers: { 'Content-Type': 'application/json' }
       }).then((resp) => {
         console.log(resp)

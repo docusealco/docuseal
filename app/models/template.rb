@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: flows
+# Table name: templates
 #
 #  id         :bigint           not null, primary key
 #  deleted_at :datetime
@@ -17,16 +17,16 @@
 #
 # Indexes
 #
-#  index_flows_on_account_id  (account_id)
-#  index_flows_on_author_id   (author_id)
-#  index_flows_on_slug        (slug) UNIQUE
+#  index_templates_on_account_id  (account_id)
+#  index_templates_on_author_id   (author_id)
+#  index_templates_on_slug        (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (account_id => accounts.id)
 #  fk_rails_...  (author_id => users.id)
 #
-class Flow < ApplicationRecord
+class Template < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :account
 

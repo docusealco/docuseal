@@ -44,7 +44,7 @@
 import FieldArea from './area'
 
 export default {
-  name: 'FlowPage',
+  name: 'TemplatePage',
   components: {
     FieldArea
   },

@@ -32,7 +32,7 @@ export default {
     IconUpload
   },
   props: {
-    flowId: {
+    templateId: {
       type: [Number, String],
       required: true
     }
@@ -76,7 +76,7 @@ export default {
         })
       )
 
-      fetch(`/api/flows/${this.flowId}/documents`, {
+      fetch(`/api/templates/${this.templateId}/documents`, {
         method: 'POST',
         body: JSON.stringify({ blobs }),
         headers: { 'Content-Type': 'application/json' }

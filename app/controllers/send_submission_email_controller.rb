@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SendSubmissionEmailController < ApplicationController
-  layout 'flow'
+  layout 'form'
 
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
@@ -10,8 +10,8 @@ class SendSubmissionEmailController < ApplicationController
 
   def create
     @submission =
-      if params[:flow_slug]
-        Submission.joins(:flow).find_by!(email: params[:email], flow: { slug: params[:flow_slug] })
+      if params[:template_slug]
+        Submission.joins(:template).find_by!(email: params[:email], template: { slug: params[:template_slug] })
       else
         Submission.find_by!(slug: params[:submission_slug])
       end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateFlows < ActiveRecord::Migration[7.0]
+class CreateTemplates < ActiveRecord::Migration[7.0]
   def change
-    create_table :flows do |t|
+    create_table :templates do |t|
       t.string :slug, null: false, index: { unique: true }
       t.string :name, null: false
       t.string :schema, null: false

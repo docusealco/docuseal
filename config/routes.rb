@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :attachments, only: %i[create]
-    resources :flows, only: %i[update] do
-      resources :documents, only: %i[create destroy], controller: 'flows_documents'
+    resources :templates, only: %i[update] do
+      resources :documents, only: %i[create destroy], controller: 'templates_documents'
     end
   end
 
@@ -30,15 +30,15 @@ Rails.application.routes.draw do
   resources :setup, only: %i[index create]
   resources :users, only: %i[new create edit update destroy]
   resources :submissions, only: %i[show destroy]
-  resources :flows, only: %i[new create show destroy] do
+  resources :templates, only: %i[new create show destroy] do
     resources :submissions, only: %i[index new create]
   end
 
-  resources :start_flow, only: %i[show update], path: 'f', param: 'slug' do
+  resources :start_form, only: %i[show update], path: 'f', param: 'slug' do
     get :completed
   end
 
-  resources :submit_flow, only: %i[show update], path: 'l', param: 'slug' do
+  resources :submit_form, only: %i[show update], path: 'l', param: 'slug' do
     get :completed
   end
 

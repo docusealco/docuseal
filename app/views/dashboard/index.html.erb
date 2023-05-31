@@ -1,10 +1,10 @@
 <div class="max-w-6xl mx-auto px-2 py-3">
-  <%= link_to 'Create Flow', new_flow_path, data: { turbo_frame: :modal } %>
-  <% @flows.each do |flow| %>
+  <%= link_to 'Create Template', new_template_path, data: { turbo_frame: :modal } %>
+  <% @templates.each do |template| %>
     <div>
-      <%= flow.name %> |
-      <a href="<%= flow_path(flow) %>">edit</a> |
-      <a href="<%= flow_submissions_path(flow) %>">submissions</a> |
+      <%= template.name %> |
+      <a href="<%= template_path(template) %>">edit</a> |
+      <a href="<%= template_submissions_path(template) %>">submissions</a> |
     </div>
   <% end %>
 </div>

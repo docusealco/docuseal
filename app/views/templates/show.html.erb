@@ -11,6 +11,6 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body class="h-full" data>
-    <flow-builder data-flow="<%= @flow.to_json(include: { documents: { include: { preview_images: { methods: %i[url metadata filename] } } } }) %>"></flow-builder>
+    <template-builder data-template="<%= @template.to_json(include: { documents: { include: { preview_images: { methods: %i[url metadata filename] } } } }) %>"></template-builder>
   </body>
 </html>

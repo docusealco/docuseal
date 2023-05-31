@@ -16,20 +16,20 @@
 #  values       :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  flow_id      :bigint           not null
+#  template_id  :bigint           not null
 #
 # Indexes
 #
-#  index_submissions_on_email    (email)
-#  index_submissions_on_flow_id  (flow_id)
-#  index_submissions_on_slug     (slug) UNIQUE
+#  index_submissions_on_email        (email)
+#  index_submissions_on_slug         (slug) UNIQUE
+#  index_submissions_on_template_id  (template_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (flow_id => flows.id)
+#  fk_rails_...  (template_id => templates.id)
 #
 class Submission < ApplicationRecord
-  belongs_to :flow
+  belongs_to :template
 
   attribute :values, :string, default: -> { {} }
   attribute :slug, :string, default: -> { SecureRandom.base58(8) }

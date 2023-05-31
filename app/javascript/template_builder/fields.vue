@@ -49,7 +49,7 @@ import Field from './field'
 import { v4 } from 'uuid'
 
 export default {
-  name: 'FlowFields',
+  name: 'TemplateFields',
   components: {
     Field
   },

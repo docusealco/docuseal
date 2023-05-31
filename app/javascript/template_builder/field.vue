@@ -67,7 +67,7 @@
 
 <script>
 export default {
-  name: 'FlowField',
+  name: 'TemplateField',
   props: {
     field: {
       type: Object,

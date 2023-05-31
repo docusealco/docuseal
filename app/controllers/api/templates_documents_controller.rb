@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 module Api
-  class FlowsDocumentsController < ApiBaseController
+  class TemplatesDocumentsController < ApiBaseController
     def create
-      @flow = current_account.flows.find(params[:flow_id])
+      @template = current_account.templates.find(params[:template_id])
 
       documents =
         params[:blobs].map do |blob|
           blob = ActiveStorage::Blob.find_signed(blob[:signed_id])
 
-          document = @flow.documents.create!(blob:)
+          document = @template.documents.create!(blob:)
 
-          Flows::ProcessDocument.call(document)
+          Templates::ProcessDocument.call(document)
         end
 
       schema = documents.map do |doc|

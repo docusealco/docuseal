@@ -5,7 +5,7 @@ class CreateSubmissions < ActiveRecord::Migration[7.0]
     create_table :submissions do |t|
       t.string :email, null: false, index: true
       t.string :slug, null: false, index: { unique: true }
-      t.references :flow, null: false, foreign_key: true, index: true
+      t.references :template, null: false, foreign_key: true, index: true
       t.string :values, null: false
       t.string :ua
       t.string :ip

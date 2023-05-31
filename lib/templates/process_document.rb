@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Flows
+module Templates
   module ProcessDocument
     DPI = 200
     FORMAT = '.jpg'

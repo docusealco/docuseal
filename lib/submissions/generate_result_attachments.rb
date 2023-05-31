@@ -9,18 +9,18 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submission)
-      cert = submission.flow.account.encrypted_configs
+      cert = submission.template.account.encrypted_configs
                        .find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
 
       zip_file = Tempfile.new
       zip_stream = Zip::ZipOutputStream.open(zip_file)
 
       pdfs_index =
-        submission.flow.documents.to_h do |attachment|
+        submission.template.documents.to_h do |attachment|
           [attachment.uuid, HexaPDF::Document.new(io: StringIO.new(attachment.download))]
         end
 
-      submission.flow.fields.each do |field|
+      submission.template.fields.each do |field|
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
@@ -96,29 +96,29 @@ module Submissions
         end
       end
 
-      submission.flow.schema.map do |item|
-        document = submission.flow.documents.find { |a| a.uuid == item['attachment_uuid'] }
+      submission.template.schema.map do |item|
+        document = submission.template.documents.find { |a| a.uuid == item['attachment_uuid'] }
 
         io = StringIO.new
-
-        zip_stream.put_next_entry("#{item['name']}.pdf")
-        zip_stream.write(io.string)
 
         pdf = pdfs_index[item['attachment_uuid']]
 
         pdf.sign(io, reason: "Signed by #{submission.email}",
-                     doc_mdp_permissions: :no_changes,
+                     # doc_mdp_permissions: :no_changes,
                      certificate: OpenSSL::X509::Certificate.new(cert['cert']),
                      key: OpenSSL::PKey::RSA.new(cert['key']),
                      certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),
                                          OpenSSL::X509::Certificate.new(cert['root_ca'])])
+
+        zip_stream.put_next_entry("#{item['name']}.pdf")
+        zip_stream.write(io.string)
 
         submission.documents.attach(io: StringIO.new(io.string), filename: document.filename)
       end
 
       zip_stream.close
 
-      submission.archive.attach(io: zip_file, filename: "#{submission.flow.name}.zip")
+      submission.archive.attach(io: zip_file, filename: "#{submission.template.name}.zip")
     end
     # rubocop:enable Metrics
   end

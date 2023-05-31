@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class SubmissionsDebugController < ApplicationController
-  layout 'flow'
+  layout 'form'
 
   skip_before_action :authenticate_user!
 
   def index
     @submission = Submission.preload({ attachments_attachments: :blob },
-                                     flow: { documents_attachments: :blob })
+                                     template: { documents_attachments: :blob })
                             .find_by(slug: params[:submission_slug])
 
     respond_to do |f|
       f.html do
-        render 'submit_flow/show'
+        render 'submit_template/show'
       end
       f.pdf do
         Submissions::GenerateResultAttachments.call(@submission)

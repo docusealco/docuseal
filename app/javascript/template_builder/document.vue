@@ -18,7 +18,7 @@
 import Page from './page'
 
 export default {
-  name: 'FlowDocument',
+  name: 'TemplateDocument',
   components: {
     Page
   },

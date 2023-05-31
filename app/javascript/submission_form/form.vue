@@ -164,7 +164,7 @@ import CheckboxStep from './checkbox_step'
 import FormCompleted from './completed'
 
 export default {
-  name: 'FlowForm',
+  name: 'SubmissionForm',
   components: {
     FieldAreas,
     ImageStep,

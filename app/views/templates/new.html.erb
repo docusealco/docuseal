@@ -1,0 +1,10 @@
+<%= render 'shared/turbo_modal', title: 'New Template' do %>
+  <%= form_for @template, data: { turbo_frame: :_top } do |f| %>
+    <div class="form-control my-6">
+      <%= f.text_field :name, required: true, placeholder: 'Template Name', class: 'base-input' %>
+    </div>
+    <div class="form-control mt-4">
+      <%= f.button button_title('Create'), class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>
