@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative cursor-crosshair">
     <img
       ref="image"
       :src="image.url"
@@ -10,10 +10,12 @@
     >
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
+      @pointerdown="onStartDraw"
     >
       <FieldArea
         v-for="(item, i) in areas"
         :key="i"
+        :ref="setAreaRefs"
         :bounds="item.area"
         :field="item.field"
         @start-resize="showMask = true"
@@ -27,11 +29,10 @@
       />
     </div>
     <div
-      v-show="isDraw || isDrag || showMask"
+      v-show="isDrag || showMask"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      @pointerdown="onPointerdown"
       @pointermove="onPointermove"
       @dragover.prevent
       @drop="onDrop"
@@ -58,11 +59,6 @@ export default {
       required: false,
       default: () => []
     },
-    isDraw: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     isDrag: {
       type: Boolean,
       required: false,
@@ -76,6 +72,7 @@ export default {
   emits: ['draw', 'drop-field'],
   data () {
     return {
+      areaRefs: [],
       showMask: false,
       newArea: null
     }
@@ -88,7 +85,15 @@ export default {
       return this.image.metadata.height
     }
   },
+  beforeUpdate () {
+    this.areaRefs = []
+  },
   methods: {
+    setAreaRefs (el) {
+      if (el) {
+        this.areaRefs.push(el)
+      }
+    },
     onDrop (e) {
       this.$emit('drop-field', {
         x: e.layerX / this.$refs.mask.clientWidth,
@@ -98,8 +103,10 @@ export default {
         page: this.number
       })
     },
-    onPointerdown (e) {
-      if (this.isDraw) {
+    onStartDraw (e) {
+      this.showMask = true
+
+      this.$nextTick(() => {
         this.newArea = {
           initialX: e.layerX / this.$refs.mask.clientWidth,
           initialY: e.layerY / this.$refs.mask.clientHeight,
@@ -108,7 +115,7 @@ export default {
           w: 0,
           h: 0
         }
-      }
+      })
     },
     onPointermove (e) {
       if (this.newArea) {
@@ -132,16 +139,17 @@ export default {
       }
     },
     onPointerup (e) {
-      if (this.isDraw && this.newArea) {
+      if (this.newArea) {
         this.$emit('draw', {
           x: this.newArea.x,
           y: this.newArea.y,
-          w: Math.max(this.newArea.w, this.$refs.mask.clientWidth / 5 / this.$refs.mask.clientWidth),
-          h: Math.max(this.newArea.h, this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth),
+          w: this.newArea.w,
+          h: this.newArea.h,
           page: this.number
         })
       }
 
+      this.showMask = false
       this.newArea = null
     }
   }

@@ -1,14 +1,35 @@
 <template>
   <div
-    class="bg-red-100 absolute opacity-70"
+    class="absolute overflow-visible group"
     :style="positionStyle"
-    @mousedown="startDrag"
+    @pointerdown.stop
+    @mousedown.stop="startDrag"
   >
     <div
       v-if="field"
-      class="flex items-center justify-center h-full w-full"
+      class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap hidden group-hover:block group-hover:z-10"
+      style="top: -25px; height: 25px"
+      @mousedown.stop
+      @pointerdown.stop
     >
-      {{ field?.name || field.type }}
+      <button
+        v-for="(component, type, index) in iconComponents"
+        :key="type"
+        class="px-0.5 hover:text-base-100 hover:bg-base-content transition-colors"
+        :class="{ 'bg-base-content text-base-100': field.type === type, 'rounded-tl': index === 0, 'rounded-tr': index === 4 }"
+        @click="changeTypeTo(type)"
+      >
+        <component
+          :is="component"
+          :width="20"
+          stroke-width="1.5"
+        />
+      </button>
+    </div>
+    <div
+      class="bg-red-100 opacity-70 flex items-center justify-center h-full w-full"
+    >
+      {{ field?.name || field?.type }}
     </div>
     <span
       class="h-2 w-2 right-0 bottom-0 bg-red-900 absolute cursor-nwse-resize"
@@ -18,6 +39,8 @@
 </template>
 
 <script>
+import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox } from '@tabler/icons-vue'
+
 export default {
   name: 'FieldArea',
   props: {
@@ -47,6 +70,15 @@ export default {
     }
   },
   computed: {
+    iconComponents () {
+      return {
+        text: IconTextSize,
+        signature: IconWriting,
+        date: IconCalendarEvent,
+        image: IconPhoto,
+        checkbox: IconCheckbox
+      }
+    },
     positionStyle () {
       const { x, y, w, h } = this.bounds
 
@@ -59,9 +91,14 @@ export default {
     }
   },
   methods: {
+    changeTypeTo (type) {
+      this.field.type = type
+    },
     resize (e) {
-      this.bounds.w = e.layerX / e.toElement.clientWidth - this.bounds.x
-      this.bounds.h = e.layerY / e.toElement.clientHeight - this.bounds.y
+      if (e.toElement.id === 'mask') {
+        this.bounds.w = e.layerX / e.toElement.clientWidth - this.bounds.x
+        this.bounds.h = e.layerY / e.toElement.clientHeight - this.bounds.y
+      }
     },
     drag (e) {
       if (e.toElement.id === 'mask') {

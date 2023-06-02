@@ -46,10 +46,11 @@
         </div>
       </div>
     </div>
-    <div class="flex py-2">
+    <div class="flex pb-2 pt-1.5">
       <Contenteditable
         :model-value="item.name"
         :icon-width="16"
+        style="max-width: 95%"
         class="mx-auto"
         @update:model-value="onUpdateName"
       />

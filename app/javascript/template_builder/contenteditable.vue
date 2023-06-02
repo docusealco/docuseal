@@ -1,19 +1,25 @@
 <template>
-  <div class="group flex items-center relative overflow-visible">
-    <div
+  <div
+    class="group relative overflow-visible"
+    :class="{ 'flex items-center': !iconInline }"
+  >
+    <span
       ref="contenteditable"
       contenteditable
       style="min-width: 2px"
-      class="peer outline-none"
+      :class="iconInline ? 'inline' : 'block'"
+      class="peer outline-none focus:block"
       @keydown.enter.prevent="onEnter"
+      @focus="$emit('focus', $event)"
       @blur="onBlur"
     >
       {{ value }}
-    </div>
+    </span>
     <IconPencil
       contenteditable="false"
-      class="absolute ml-1 cursor-pointer inline opacity-0 group-hover:opacity-100 peer-focus:opacity-0 align-middle"
-      :style="{ right: -(1.1 * iconWidth) + 'px' }"
+      class="cursor-pointer ml-1 flex-none opacity-0 group-hover:opacity-100 align-middle peer-focus:hidden"
+      :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
+      :class="{ 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       @click="onPencilClick"
     />
@@ -34,13 +40,18 @@ export default {
       required: false,
       default: ''
     },
+    iconInline: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     iconWidth: {
       type: Number,
       required: false,
       default: 30
     }
   },
-  emits: ['update:model-value'],
+  emits: ['update:model-value', 'focus', 'blur'],
   data () {
     return {
       value: ''
@@ -59,6 +70,7 @@ export default {
       this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue
 
       this.$emit('update:model-value', this.value)
+      this.$emit('blur', e)
     },
     onPencilClick () {
       this.$refs.contenteditable.focus()

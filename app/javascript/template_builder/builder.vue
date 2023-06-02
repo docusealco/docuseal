@@ -1,9 +1,9 @@
 <template>
   <div
     style="max-width: 1600px"
-    class="mx-auto px-4"
+    class="mx-auto pl-4"
   >
-    <div class="flex justify-between py-1.5 items-center">
+    <div class="flex justify-between py-1.5 items-center pr-4">
       <div class="flex space-x-3">
         <a href="/">
           <Logo />
@@ -42,7 +42,7 @@
     >
       <div
         ref="previews"
-        class="overflow-auto w-52 flex-none pr-4 mt-0.5 pt-0.5"
+        class="overflow-auto w-52 flex-none pr-3 mt-0.5 pt-0.5"
       >
         <DocumentPreview
           v-for="(item, index) in template.schema"
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
-        <div class="px-3">
+        <div class="pr-3.5 pl-0.5">
           <Document
             v-for="document in sortedDocuments"
             :key="document.uuid"
@@ -79,12 +79,12 @@
         </div>
       </div>
       <div
-        class="relative w-72 flex-none"
+        class="relative w-80 flex-none pt-0.5 pr-4"
         :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
       >
         <div
           v-if="drawField"
-          class="sticky inset-0 bg-white h-full"
+          class="sticky inset-0 bg-base-100 h-full"
         >
           Draw {{ drawField.name }} field on the page
           <button @click="drawField = false">
@@ -92,13 +92,13 @@
           </button>
         </div>
         <div>
-          FIelds
           <Fields
             ref="fields"
             v-model:fields="template.fields"
             @set-draw="drawField = $event"
             @set-drag="dragFieldType = $event"
             @drag-end="dragFieldType = null"
+            @scroll-to-area="scrollToArea"
           />
         </div>
       </div>
@@ -114,6 +114,7 @@ import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import { IconUsersPlus, IconDeviceFloppy } from '@tabler/icons-vue'
+import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateBuilder',
@@ -189,10 +190,22 @@ export default {
       }
     },
     onDraw (area) {
-      this.drawField.areas ||= []
-      this.drawField.areas.push(area)
+      if (this.drawField) {
+        this.drawField.areas ||= []
+        this.drawField.areas.push(area)
 
-      this.drawField = null
+        this.drawField = null
+      } else {
+        const field = {
+          name: '',
+          uuid: v4(),
+          required: true,
+          type: 'text',
+          areas: [area]
+        }
+
+        this.template.fields.push(field)
+      }
     },
     onDropfield (area) {
       this.$refs.fields.addField(this.dragFieldType, area)
@@ -244,6 +257,11 @@ export default {
       }).finally(() => {
         this.isSaving = false
       })
+    },
+    scrollToArea (area) {
+      const documentRef = this.documentRefs.find((a) => a.document.uuid === area.attachment_uuid)
+
+      documentRef.scrollToArea(area)
     },
     save () {
       return fetch(`/api/templates/${this.template.id}`, {
