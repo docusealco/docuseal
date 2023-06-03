@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-2">
+  <div class="mb-1">
     <Field
       v-for="field in fields"
       :key="field.uuid"
@@ -14,13 +14,13 @@
   </div>
   <div class="grid grid-cols-3 gap-1">
     <button
-      v-for="item in fieldTypes"
-      :key="item.type"
+      v-for="(icon, type) in fieldIcons"
+      :key="type"
       draggable="true"
       class="flex items-center justify-center border border-dashed border-gray-300 bg-base-100 w-full rounded relative"
-      @dragstart="onDragstart(item.value)"
+      @dragstart="onDragstart(type)"
       @dragend="$emit('drag-end')"
-      @click="addField(item.value)"
+      @click="addField(type)"
     >
       <div class="w-0 absolute left-0">
         <svg
@@ -49,9 +49,9 @@
         </svg>
       </div>
       <div class="flex items-center flex-col px-2 py-2">
-        <component :is="item.icon" />
+        <component :is="icon" />
         <span class="text-xs mt-1">
-          {{ item.label }}
+          {{ $t(type) }}
         </span>
       </div>
     </button>
@@ -61,7 +61,7 @@
 <script>
 import Field from './field'
 import { v4 } from 'uuid'
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot } from '@tabler/icons-vue'
+import FieldType from './field_type'
 
 export default {
   name: 'TemplateFields',
@@ -76,18 +76,7 @@ export default {
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area'],
   computed: {
-    fieldTypes () {
-      return [
-        { label: 'Text', value: 'text', icon: IconTextSize },
-        { label: 'Signature', value: 'signature', icon: IconWriting },
-        { label: 'Date', value: 'date', icon: IconCalendarEvent },
-        { label: 'Image', value: 'image', icon: IconPhoto },
-        { label: 'File', value: 'attachment', icon: IconPaperclip },
-        { label: 'Select', value: 'select', icon: IconSelect },
-        { label: 'Checkbox', value: 'checkbox', icon: IconCheckbox },
-        { label: 'Radio', value: 'radio', icon: IconCircleDot }
-      ]
-    }
+    fieldIcons: FieldType.computed.fieldIcons
   },
   methods: {
     onDragstart (fieldType) {
@@ -108,7 +97,7 @@ export default {
     },
     addField (type, area = null) {
       const field = {
-        name: type === 'signature' ? 'Signature' : '',
+        name: '',
         uuid: v4(),
         required: true,
         type
@@ -116,10 +105,6 @@ export default {
 
       if (['select', 'checkbox', 'radio'].includes(type)) {
         field.options = ['']
-      }
-
-      if (area) {
-        field.areas = [area]
       }
 
       this.fields.push(field)

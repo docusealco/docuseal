@@ -11,6 +11,7 @@
         <Contenteditable
           :model-value="template.name"
           class="text-3xl font-semibold focus:text-clip"
+          :icon-stroke-width="2.3"
           @update:model-value="updateName"
         />
       </div>
@@ -42,7 +43,7 @@
     >
       <div
         ref="previews"
-        class="overflow-auto w-52 flex-none pr-3 mt-0.5 pt-0.5"
+        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5"
       >
         <DocumentPreview
           v-for="(item, index) in template.schema"
@@ -64,7 +65,10 @@
         </div>
       </div>
       <div class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
-        <div class="pr-3.5 pl-0.5">
+        <div
+          ref="documents"
+          class="pr-3.5 pl-0.5"
+        >
           <Document
             v-for="document in sortedDocuments"
             :key="document.uuid"
@@ -75,6 +79,7 @@
             :is-drag="!!dragFieldType"
             @draw="onDraw"
             @drop-field="onDropfield"
+            @remove-area="removeArea"
           />
         </div>
       </div>
@@ -115,9 +120,14 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import { IconUsersPlus, IconDeviceFloppy } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
+import i18n from './i18n'
+import { ref, computed } from 'vue'
+
+const selectedAreaRef = ref(null)
 
 export default {
   name: 'TemplateBuilder',
+  i18n,
   components: {
     Upload,
     Document,
@@ -127,6 +137,12 @@ export default {
     Contenteditable,
     IconUsersPlus,
     IconDeviceFloppy
+  },
+  provide () {
+    return {
+      template: this.template,
+      selectedAreaRef: computed(() => selectedAreaRef)
+    }
   },
   props: {
     template: {
@@ -157,6 +173,9 @@ export default {
       })
 
       return areas
+    },
+    selectedField () {
+      return this.template.fields.find((f) => f.areas?.includes(selectedAreaRef.value))
     },
     sortedDocuments () {
       return this.template.schema.map((item) => {
@@ -189,6 +208,13 @@ export default {
         this.drawField = null
       }
     },
+    removeArea ({ field, area }) {
+      field.areas.splice(field.areas.indexOf(area), 1)
+
+      if (!field.areas.length) {
+        this.template.fields.splice(this.template.fields.indexOf(field), 1)
+      }
+    },
     onDraw (area) {
       if (this.drawField) {
         this.drawField.areas ||= []
@@ -196,19 +222,84 @@ export default {
 
         this.drawField = null
       } else {
+        const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+        const pageMask = documentRef.pageRefs[area.page].$refs.mask
+
+        const type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
+
+        if (type === 'checkbox') {
+          if ((pageMask.clientWidth * area.w) < 5) {
+            area.x = area.x - (30 / pageMask.clientWidth) / 2
+            area.y = area.y - (30 / pageMask.clientHeight) / 2
+          }
+          area.w = 30 / pageMask.clientWidth
+          area.h = 30 / pageMask.clientHeight
+        }
+
         const field = {
           name: '',
           uuid: v4(),
           required: true,
-          type: 'text',
+          type,
           areas: [area]
         }
+
+        selectedAreaRef.value = area
 
         this.template.fields.push(field)
       }
     },
     onDropfield (area) {
-      this.$refs.fields.addField(this.dragFieldType, area)
+      const field = {
+        name: '',
+        type: this.dragFieldType,
+        uuid: v4(),
+        required: true
+      }
+
+      const fieldArea = {
+        x: (area.x - 6) / area.maskW,
+        y: area.y / area.maskH,
+        page: area.page,
+        attachment_uuid: area.attachment_uuid
+      }
+
+      const previousField = [...this.template.fields].reverse().find((f) => f.type === field.type)
+
+      let baseArea
+
+      if (this.selectedField?.type === this.dragFieldType) {
+        baseArea = selectedAreaRef.value
+      } else if (previousField) {
+        baseArea = previousField.areas[previousField.areas.length - 1]
+      } else {
+        if (['checkbox', 'radio'].includes(this.dragFieldType)) {
+          baseArea = {
+            w: area.maskW / 30 / area.maskW,
+            h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
+          }
+        } else if (this.dragFieldType === 'image') {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
+          }
+        } else {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: area.maskW / 35 / area.maskW
+          }
+        }
+      }
+
+      fieldArea.w = baseArea.w
+      fieldArea.h = baseArea.h
+      fieldArea.y = fieldArea.y - baseArea.h / 2
+
+      field.areas = [fieldArea]
+
+      selectedAreaRef.value = fieldArea
+
+      this.template.fields.push(field)
     },
     updateFromUpload ({ schema, documents }) {
       this.template.schema.push(...schema)
@@ -264,6 +355,8 @@ export default {
       documentRef.scrollToArea(area)
     },
     save () {
+      this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
+
       return fetch(`/api/templates/${this.template.id}`, {
         method: 'PUT',
         body: JSON.stringify({ template: this.template }),

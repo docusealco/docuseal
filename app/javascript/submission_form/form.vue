@@ -130,7 +130,7 @@
         @attached="attachments.push($event)"
       />
       <AttachmentStep
-        v-else-if="currentField.type === 'attachment'"
+        v-else-if="currentField.type === 'file'"
         v-model="values[currentField.uuid]"
         :field="currentField"
         :attachments-index="attachmentsIndex"

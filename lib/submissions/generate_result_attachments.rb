@@ -48,7 +48,7 @@ module Submissions
                                   (((attachment.metadata['height'] * scale) + (area['h'] * height)) / 2)],
                              width: attachment.metadata['width'] * scale,
                              height: attachment.metadata['height'] * scale)
-          when 'attachment'
+          when 'file'
             Array.wrap(value).each_with_index do |uuid, index|
               attachment = submission.attachments.find { |a| a.uuid == uuid }
 

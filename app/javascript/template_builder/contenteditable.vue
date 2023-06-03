@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative overflow-visible"
+    class="group/contenteditable relative overflow-visible"
     :class="{ 'flex items-center': !iconInline }"
   >
     <span
@@ -17,10 +17,12 @@
     </span>
     <IconPencil
       contenteditable="false"
-      class="cursor-pointer ml-1 flex-none opacity-0 group-hover:opacity-100 align-middle peer-focus:hidden"
+      class="cursor-pointer ml-1 flex-none opacity-0 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
+      title="Edit"
       :class="{ 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
+      :stroke-width="iconStrokeWidth"
       @click="onPencilClick"
     />
   </div>
@@ -49,6 +51,11 @@ export default {
       type: Number,
       required: false,
       default: 30
+    },
+    iconStrokeWidth: {
+      type: Number,
+      required: false,
+      default: 2
     }
   },
   emits: ['update:model-value', 'focus', 'blur'],

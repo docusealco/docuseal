@@ -10,6 +10,7 @@
       :is-drag="isDrag"
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
+      @remove-area="$emit('remove-area', $event)"
       @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
     />
   </div>
@@ -43,7 +44,7 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field'],
+  emits: ['draw', 'drop-field', 'remove-area'],
   data () {
     return {
       pageRefs: []
@@ -59,7 +60,7 @@ export default {
   },
   methods: {
     scrollToArea (area) {
-      this.pageRefs[area.page].areaRefs.find((e) => e.bounds === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
     },
     setPageRefs (el) {
       if (el) {

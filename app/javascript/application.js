@@ -14,6 +14,12 @@ document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
 })
 
+document.addEventListener('keyup', (e) => {
+  if (e.code === 'Escape') {
+    document.activeElement?.blur()
+  }
+})
+
 window.customElements.define('toggle-visible', ToggleVisible)
 window.customElements.define('disable-hidden', DisableHidden)
 window.customElements.define('turbo-modal', TurboModal)
@@ -28,6 +34,8 @@ window.customElements.define('template-builder', class extends HTMLElement {
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template))
     })
+
+    this.app.config.globalProperties.$t = (key) => TemplateBuilder.i18n[key] || key
 
     this.app.mount(this.appElem)
 

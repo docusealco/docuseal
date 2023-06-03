@@ -1,68 +1,36 @@
 <template>
   <div
     class="group pb-2"
-    @mouseleave="closeDropdown"
+    @click="field.areas?.[0] && $emit('scroll-to', field.areas[0])"
   >
     <div
-      class="border border-base-content rounded rounded-tr-none relative group"
+      class="border border-gray-300 rounded rounded-tr-none relative group"
     >
       <div class="flex items-center justify-between space-x-1">
         <div class="flex items-center p-1 space-x-1">
-          <span class="dropdown">
-            <label
-              tabindex="0"
-              title="Type"
-              class="cursor-pointer"
-            >
-              <component
-                :is="fieldIcons[field.type]"
-                width="18"
-                :stroke-width="1.6"
-              />
-            </label>
-            <ul
-              tabindex="0"
-              class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52"
-              @click="closeDropdown"
-            >
-              <li
-                v-for="(name, type) in fieldNames"
-                :key="type"
-              >
-                <a
-                  href="#"
-                  class="text-sm py-1 px-2"
-                  :class="{ 'active': type === field.type }"
-                  @click.prevent="field.type = type"
-                >
-                  <component
-                    :is="fieldIcons[type]"
-                    :stroke-width="1.6"
-                    :width="20"
-                  />
-                  {{ name }}
-                </a>
-              </li>
-            </ul>
-          </span>
+          <FieldType
+            v-model="field.type"
+            :button-width="20"
+          />
           <Contenteditable
             ref="name"
             :model-value="field.name || defaultName"
             :icon-inline="true"
-            :icon-width="19"
+            :icon-width="18"
+            :icon-stroke-width="1.6"
             @focus="onNameFocus"
             @blur="onNameBlur"
           />
         </div>
-        <div class="flex items-center space-x-1 opacity-0 group-hover:opacity-100">
+        <div class="flex items-center space-x-1">
           <span class="dropdown dropdown-end">
             <label
               tabindex="0"
               title="Areas"
-              class="cursor-pointer"
+              class="cursor-pointer text-base-100 group-hover:text-base-content"
             >
               <IconShape
-                :width="20"
+                :width="18"
                 :stroke-width="1.6"
               />
             </label>
@@ -102,13 +70,17 @@
               </li>
             </ul>
           </span>
-          <button @click="$emit('remove', field)">
+          <button
+            class=" text-base-100 group-hover:text-base-content"
+            title="Remove"
+            @click="$emit('remove', field)"
+          >
             <IconTrashX
-              :width="20"
+              :width="18"
               :stroke-width="1.6"
             />
           </button>
-          <div class="flex flex-col pr-1">
+          <div class="flex flex-col pr-1 text-base-100 group-hover:text-base-content">
             <button
               title="Up"
               style="font-size: 10px; margin-bottom: -2px"
@@ -135,7 +107,7 @@
           :key="index"
           class="flex space-x-1.5 items-center"
         >
-          <span class="text-sm">
+          <span class="text-sm w-3.5">
             {{ index + 1 }}.
           </span>
           <input
@@ -145,7 +117,7 @@
             required
           >
           <button
-            class="text-sm"
+            class="text-sm w-3.5"
             @click="field.options.splice(index, 1)"
           >
             &times;
@@ -165,7 +137,8 @@
 
 <script>
 import Contenteditable from './contenteditable'
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconShape, IconNewSection, IconTrashX } from '@tabler/icons-vue'
+import FieldType from './field_type'
+import { IconShape, IconNewSection, IconTrashX } from '@tabler/icons-vue'
 
 export default {
   name: 'TemplateField',
@@ -173,50 +146,25 @@ export default {
     Contenteditable,
     IconShape,
     IconNewSection,
-    IconTrashX
+    IconTrashX,
+    FieldType
   },
+  inject: ['template'],
   props: {
     field: {
       type: Object,
       required: true
-    },
-    typeIndex: {
-      type: Number,
-      required: false,
-      default: 0
     }
   },
   emits: ['set-draw', 'remove', 'move-up', 'move-down', 'scroll-to'],
   computed: {
     defaultName () {
-      return `${this.fieldNames[this.field.type]} Field ${this.typeIndex + 1}`
+      const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
+
+      return `${this.$t(this.field.type)} Field ${typeIndex + 1}`
     },
     areas () {
       return this.field.areas || []
-    },
-    fieldNames () {
-      return {
-        text: 'Text',
-        signature: 'Signature',
-        date: 'Date',
-        image: 'Image',
-        attachment: 'File',
-        select: 'Select',
-        checkbox: 'Checkbox',
-        radio: 'Radio'
-      }
-    },
-    fieldIcons () {
-      return {
-        text: IconTextSize,
-        signature: IconWriting,
-        date: IconCalendarEvent,
-        image: IconPhoto,
-        attachment: IconPaperclip,
-        select: IconSelect,
-        checkbox: IconCheckbox,
-        radio: IconCircleDot
-      }
     }
   },
   methods: {

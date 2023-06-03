@@ -1,5 +1,5 @@
 <template>
-  <div class="relative cursor-crosshair">
+  <div class="relative cursor-crosshair select-none">
     <img
       ref="image"
       :src="image.url"
@@ -16,16 +16,17 @@
         v-for="(item, i) in areas"
         :key="i"
         :ref="setAreaRefs"
-        :bounds="item.area"
+        :area="item.area"
         :field="item.field"
         @start-resize="showMask = true"
         @stop-resize="showMask = false"
         @start-drag="showMask = true"
         @stop-drag="showMask = false"
+        @remove="$emit('remove-area', item)"
       />
       <FieldArea
         v-if="newArea"
-        :bounds="newArea"
+        :area="newArea"
       />
     </div>
     <div
@@ -59,6 +60,11 @@ export default {
       required: false,
       default: () => []
     },
+    selectedArea: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     isDrag: {
       type: Boolean,
       required: false,
@@ -69,7 +75,7 @@ export default {
       required: true
     }
   },
-  emits: ['draw', 'drop-field'],
+  emits: ['draw', 'drop-field', 'remove-area'],
   data () {
     return {
       areaRefs: [],
@@ -96,10 +102,10 @@ export default {
     },
     onDrop (e) {
       this.$emit('drop-field', {
-        x: e.layerX / this.$refs.mask.clientWidth,
-        y: e.layerY / this.$refs.mask.clientHeight - (this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth) / 2,
-        w: this.$refs.mask.clientWidth / 5 / this.$refs.mask.clientWidth,
-        h: this.$refs.mask.clientWidth / 30 / this.$refs.mask.clientWidth,
+        x: e.layerX,
+        y: e.layerY,
+        maskW: this.$refs.mask.clientWidth,
+        maskH: this.$refs.mask.clientHeight,
         page: this.number
       })
     },
