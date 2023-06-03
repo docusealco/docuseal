@@ -1,21 +1,81 @@
-template: <%= @submission.template.name %>
-Sub: <%= @submission.slug %>
-Copy share link:
-<input autocomplete="off" type="text" class="w-full" value="<%= submit_form_url(slug: @submission.slug) %>" disabled>
-<% @submission.template.fields.each do |field| %>
-  <div>
-    <%= field['name'] %>:
-    <% if ['image', 'signature'].include?(field['type']) %>
-      <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
-        <img src="<%= ActiveStorage::Attachment.find_by(uuid:).url %>">
-      <% end %>
-    <% elsif ['attachment'].include?(field['type']) %>
-      <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
-        <% attachment = ActiveStorage::Attachment.find_by(uuid:) %>
-        <a href="<%= attachment.url %>"><%= attachment.filename %></a>
-      <% end %>
-    <% else %>
-      <%= @submission.values[field['uuid']] %>
-    <% end %>
+<div class="card card-compact bg-base-200 md:card-normal">
+  <div class="card-body">
+    <div>
+      <h3 class="text-4xl font-bold leading-7 text-gray-900">Submission Information</h3>
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-gray-500">Personal details</p>
+    </div>
+    <div class="mt-2 border-t border-gray-300">
+      <dl class="divide-y divide-gray-300">
+        <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Template</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <%= link_to @submission.template.name, template_submissions_path(@submission.template), class: 'link link-hover'  %>
+          </dd>
+        </div>
+        <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt class="text-sm font-medium leading-6 text-gray-900">URL</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <%= link_to submit_form_url(slug: @submission.slug), submit_form_url(slug: @submission.slug), class: 'link link-hover' %>
+          </dd>
+        </div>
+        <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <%= mail_to @submission.email %>
+          </dd>
+        </div>
+        <%- if @submission.completed_at.present? %>
+          <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Completed at</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <%= l(@submission.completed_at, format: :long) %>
+            </dd>
+          </div>
+        <% end %>
+        <% @submission.template.fields.each do |field| %>
+          <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="text-sm font-medium leading-6 text-gray-900">
+              <%= field['name'] %>
+            </dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <% if ['image', 'signature'].include?(field['type']) %>
+                <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+                  <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
+                    <li class="py-4 pl-4 pr-5 text-sm leading-6">
+                      <div class="flex w-0 flex-1 items-center">
+                        <%= image_tag ActiveStorage::Attachment.find_by(uuid:).url %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              <% elsif ['attachment'].include?(field['type']) %>
+                <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+                  <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
+                    <% attachment = ActiveStorage::Attachment.find_by(uuid:) %>
+                    <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                      <div class="flex w-0 flex-1 items-center">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                        </svg>
+                        <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                          <span class="truncate font-medium">
+                            <%= attachment.filename %>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="ml-4 flex-shrink-0">
+                        <%= link_to 'Download', attachment.url, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <%= @submission.values[field['uuid']] %>
+              <% end %>
+            </dt>
+          </div>
+        <% end %>
+      </dl>
+    </div>
   </div>
-<% end %>
+</div>

@@ -16,6 +16,7 @@
       ref="input"
       type="file"
       class="hidden"
+      accept=".pdf"
       multiple
       @change="upload"
     >

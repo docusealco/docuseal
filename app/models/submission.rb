@@ -42,4 +42,16 @@ class Submission < ApplicationRecord
   has_many_attached :attachments
 
   scope :active, -> { where(deleted_at: nil) }
+
+  def status
+    if completed_at?
+      'completed'
+    elsif opened_at?
+      'opened'
+    elsif sent_at?
+      'sent'
+    else
+      'awaiting'
+    end
+  end
 end

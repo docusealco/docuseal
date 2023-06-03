@@ -1,40 +1,78 @@
-Submissions
-template <%= @template.name %>
-Copy share link:
-<input autocomplete="off" type="text" class="w-full" value="<%= start_form_url(slug: @template.slug) %>" disabled>
-<a href="<%= new_template_submission_path(@template) %>" class="bg-green-600" data-turbo-frame="modal">Add Recepients</a>
-<table>
-  <tr>
-    <th>
-      Email
-    </th>
-    <th>
-      Status
-    </th>
-    <th>
-    </th>
-  </tr>
-  <% @submissions.each do |submission| %>
-    <tr>
-      <td>
-        <%= submission.email %>
-      </td>
-      <td>
-        <% if submission.completed_at? %>
-          Completed
-        <% elsif submission.opened_at? %>
-          Opened
-        <% elsif submission.sent_at? %>
-          Sent
-        <% else %>
-          Awaiting
-        <% end %>
-      </td>
-      <td>
-        copy link<br>
-        <%= link_to 'View', submission_path(@template) %>
-        <%= button_to 'Remove', submission_path(submission), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
+<div class="card card-compact	bg-primary mb-12 md:card-normal">
+  <div class="card-body">
+    <h2 class="card-title text-4xl flex justify-between">
+      <%= @template.name %>
+      <%= link_to 'Edit', template_path(@template), class: 'btn btn-outline btn-sm' %>
+    </h2>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text text-opacity-70">Send this link your clients who must sign this document</span>
+      </label>
+      <label class="input-group input-group-lg">
+        <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full" value="<%= start_form_url(slug: @template.slug) %>" disabled>
+        <clipboard-copy class="btn btn-square text-white bg-neutral font-bold swap hover:bg-opacity-70 active:bg-opacity-90" for="share-link-input">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 swap-off" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 swap-on" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+            <path d="M9 14l2 2l4 -4" />
+          </svg>
+        </clipboard-copy>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="flex justify-between mb-4">
+  <h1 class="text-3xl font-bold">Recepients</h1>
+  <%= link_to new_template_submission_path(@template), class: 'btn btn-primary btn-sm gap-2', data: { turbo_frame: 'modal' } do %>
+    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+    <span class="hidden md:block">Add Recepients</span>
   <% end %>
-</table>
+</div>
+<div class="overflow-x-auto">
+  <%- if @submissions.any? %>
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>
+            Email
+          </th>
+          <th>
+            Status
+          </th>
+          <th class="text-right" width="1px">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @submissions.each do |submission| %>
+          <tr>
+            <td>
+              <%= submission.email %>
+            </td>
+            <td>
+              <span class="badge badge-accent">
+                <%= submission.status.humanize %>
+              </span>
+            </td>
+            <td  class="flex items-center space-x-2 justify-end">
+              <%= link_to 'View', submission_path(@template), title: 'View', class: 'btn btn-outline btn-xs' %>
+              <%= button_to 'Remove', submission_path(submission), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%= render 'shared/no_data_banner' %>
+  <% end %>
+</div>

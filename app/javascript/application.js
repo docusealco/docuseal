@@ -7,7 +7,7 @@ import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
-
+import ClipboardCopy from './elements/clipboard_copy'
 import TemplateBuilder from './template_builder/builder'
 
 document.addEventListener('turbo:before-cache', () => {
@@ -19,6 +19,7 @@ window.customElements.define('disable-hidden', DisableHidden)
 window.customElements.define('turbo-modal', TurboModal)
 window.customElements.define('file-dropzone', FileDropzone)
 window.customElements.define('menu-active', MenuActive)
+window.customElements.define('clipboard-copy', ClipboardCopy)
 
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
@@ -37,4 +38,8 @@ window.customElements.define('template-builder', class extends HTMLElement {
     this.app?.unmount()
     this.appElem?.remove()
   }
+})
+
+document.addEventListener('clipboard-copy', function(event) {
+  console.log('Copied to clipboard') // TODO: Add a toast message
 })

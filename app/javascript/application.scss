@@ -39,6 +39,10 @@ button[disabled] .enabled {
   @apply input input-bordered bg-white;
 }
 
+.base-textarea {
+  @apply textarea textarea-bordered bg-white;
+}
+
 .base-button {
   @apply btn text-white text-base;
 }

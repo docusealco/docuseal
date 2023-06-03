@@ -1,7 +1,7 @@
  <%= f.fields_for :value do |ff| %>
   <%= ff.hidden_field :service, value: 'google' %>
   <%= ff.fields_for :configs, configs do |fff| %>
-   <div class="grid md:grid-cols-2 gap-4">
+    <div class="grid md:grid-cols-2 gap-4">
       <div class="form-control">
         <%= fff.label :project, 'Project', class: 'label' %>
         <%= fff.text_field :project, value: configs['project'], required: true, class: 'base-input' %>
@@ -13,7 +13,7 @@
     </div>
     <div class="form-control">
       <%= fff.label :credentials, 'Credentials (JSON key content)', class: 'label' %>
-      <%= fff.text_area :credentials, value: configs['credentials'], required: true, class: 'base-input' %>
+      <%= fff.text_area :credentials, value: configs['credentials'], required: true, class: 'base-textarea' %>
     </div>
   <% end %>
 <% end %>

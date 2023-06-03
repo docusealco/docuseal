@@ -1,19 +1,34 @@
-<%= render 'shared/turbo_modal' do %>
-  <%= form_for '', url: template_submissions_path(@template), data: { turbo_frame: :_top } do |f| %>
-    <div>
-      <%= f.label :emails %>
-      <%= f.text_area :emails, required: true %>
+<%= render 'shared/turbo_modal', title: 'New Recepients' do %>
+  <%= form_for '', url: template_submissions_path(@template), html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+    <div class="form-control">
+      <%= f.label :emails, class: 'label' %>
+      <%= f.text_area :emails, required: true, class: 'base-textarea' %>
     </div>
-    <div>
-      <%= f.check_box :send_email, { onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)" } %>
-      <%= f.label :send_email %>
+    <div class="form-control">
+      <%= f.label :send_email, class: 'flex items-center cursor-pointer' do %>
+        <%= f.check_box :send_email, class: 'base-checkbox', onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)"  %>
+        <span class="label">Send Email</span>
+      <% end %>
     </div>
-    <div id="message_field" class="hidden">
-      Hi There,
-      <%= f.text_area :message, value: SubmissionMailer::DEFAULT_MESSAGE, required: true %>
-      Thanks,
-      <%= current_account.name %>
+    <div id="message_field" class="card card-compact bg-base-200 hidden">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hi There,</span>
+          </label>
+          <%= f.text_area :message, value: SubmissionMailer::DEFAULT_MESSAGE, required: true, class: 'base-textarea !rounded-lg' %>
+          <label class="label">
+            <span class="label-text">
+              Thanks,
+            </br>
+            <%= current_account.name %>
+          </span>
+        </label>
+      </div>
     </div>
-    <%= f.button button_title %>
-  <% end %>
+  </div>
+  <div class="form-control">
+    <%= f.button button_title, class: 'base-button' %>
+  </div>
+<% end %>
 <% end %>
