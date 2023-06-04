@@ -1,29 +1,21 @@
-<div class="card card-compact	bg-primary mb-12 md:card-normal">
+<div class="card card-compact bg-primary mb-12 md:card-normal">
   <div class="card-body">
     <h2 class="card-title text-4xl flex justify-between">
       <%= @template.name %>
       <%= link_to 'Edit', template_path(@template), class: 'btn btn-outline btn-sm' %>
     </h2>
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text text-opacity-70">Send this link your clients who must sign this document</span>
-      </label>
-      <label class="input-group input-group-lg">
-        <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full" value="<%= start_form_url(slug: @template.slug) %>" disabled>
-        <clipboard-copy class="btn btn-square text-white bg-neutral font-bold swap hover:bg-opacity-70 active:bg-opacity-90" for="share-link-input">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 swap-off" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 swap-on" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-            <path d="M9 14l2 2l4 -4" />
-          </svg>
-        </clipboard-copy>
-      </label>
+    <div class="join w-full">
+      <buttun class="btn bg-neutral btn-disabled text-white join-item">
+        Share link
+      </buttun>
+      <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full join-item" value="<%= start_form_url(slug: @template.slug) %>" disabled>
+      <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold" for="share-link-input">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+          <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+        </svg>
+      </clipboard-copy>
     </div>
   </div>
 </div>
@@ -40,9 +32,9 @@
 </div>
 <div class="overflow-x-auto">
   <%- if @submissions.any? %>
-    <table class="table w-full">
-      <thead>
-        <tr>
+    <table class="table w-full table-lg rounded-t-2xl overflow-hidden">
+      <thead class="bg-base-200">
+        <tr class="text-neutral uppercase">
           <th>
             Email
           </th>
@@ -60,7 +52,7 @@
               <%= submission.email %>
             </td>
             <td>
-              <span class="badge badge-accent">
+              <span class="badge badge-info badge-outline">
                 <%= submission.status.humanize %>
               </span>
             </td>
