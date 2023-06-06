@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
 
-  devise_for :users, path: '/', only: %i[sessions passwords]
+  devise_for :users, path: '/', only: %i[sessions passwords confirmations]
 
   devise_scope :user do
     if User.devise_modules.include?(:registerable)
@@ -55,7 +55,16 @@ Rails.application.routes.draw do
     resources :storage, only: %i[index create], controller: 'storage_settings'
     resources :email, only: %i[index create], controller: 'email_settings'
     resources :esign, only: %i[index create], controller: 'esign_settings'
-    resources :profile, only: %i[index update]
     resources :users, only: %i[index]
+    resources :profile, only: %i[] do
+      collection do
+        get :contact
+        get :password
+        get :email
+        patch :contact, :update_contact
+        patch :password, :update_password
+        patch :email, :update_email
+      end
+    end
   end
 end

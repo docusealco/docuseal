@@ -5,6 +5,9 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  deleted_at             :datetime
@@ -21,6 +24,7 @@
 #  reset_password_token   :string
 #  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
+#  unconfirmed_email      :string
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -45,12 +49,14 @@ class User < ApplicationRecord
 
   belongs_to :account
 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :confirmable
   devise :registerable # if ENV['APP_MULTITENANT']
 
   attribute :role, :string, default: 'admin'
 
   scope :active, -> { where(deleted_at: nil) }
+
+  accepts_nested_attributes_for :account, update_only: true
 
   def active_for_authentication?
     !deleted_at?

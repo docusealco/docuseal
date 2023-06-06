@@ -2,7 +2,8 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Profile</h1>
-    <%= form_for @user, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+    <%= render 'navigation' %>
+    <%= form_for current_user, url: update_contact_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="form-control">
           <%= f.label :first_name, class: 'label' %>
@@ -13,6 +14,12 @@
           <%= f.text_field :last_name, required: true, class: 'base-input' %>
         </div>
       </div>
+      <%= f.fields_for :account do |ff| %>
+        <div class="form-control">
+          <%= ff.label :name, 'Company Name', class: 'label' %>
+          <%= ff.text_field :name, required: true, class: 'base-input' %>
+        </div>
+      <% end %>
       <div class="form-control mt-8">
         <%= f.button button_title, class: 'base-button' %>
       </div>
