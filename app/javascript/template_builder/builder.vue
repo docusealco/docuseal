@@ -74,8 +74,8 @@
             :key="document.uuid"
             :ref="setDocumentRefs"
             :areas-index="fieldAreasIndex[document.uuid]"
+            :selected-submitter="selectedSubmitter"
             :document="document"
-            :is-draw="!!drawField"
             :is-drag="!!dragFieldType"
             @draw="onDraw"
             @drop-field="onDropfield"
@@ -84,7 +84,7 @@
         </div>
       </div>
       <div
-        class="relative w-80 flex-none pt-0.5 pr-4"
+        class="relative w-80 flex-none pt-0.5 pr-4 pl-0.5"
         :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
       >
         <div
@@ -99,9 +99,12 @@
         <div>
           <Fields
             ref="fields"
-            v-model:fields="template.fields"
+            :fields="template.fields"
+            :submitters="template.submitters"
+            :selected-submitter="selectedSubmitter"
             @set-draw="drawField = $event"
             @set-drag="dragFieldType = $event"
+            @change-submitter="selectedSubmitter = $event"
             @drag-end="dragFieldType = null"
             @scroll-to-area="scrollToArea"
           />
@@ -154,6 +157,7 @@ export default {
     return {
       documentRefs: [],
       isSaving: false,
+      selectedSubmitter: null,
       drawField: null,
       dragFieldType: null
     }
@@ -183,11 +187,14 @@ export default {
       })
     }
   },
+  created () {
+    this.selectedSubmitter = this.template.submitters[0]
+  },
   mounted () {
-    document.addEventListener('keyup', this.disableDrawOnEsc)
+    document.addEventListener('keyup', this.onKeyUp)
   },
   unmounted () {
-    document.removeEventListener('keyup', this.disableDrawOnEsc)
+    document.removeEventListener('keyup', this.onKeyUp)
   },
   beforeUpdate () {
     this.documentRefs = []
@@ -203,12 +210,21 @@ export default {
 
       ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
-    disableDrawOnEsc (e) {
+    onKeyUp (e) {
       if (e.code === 'Escape') {
         this.drawField = null
+        selectedAreaRef.value = null
+      }
+
+      if (['Backspace', 'Delete'].includes(e.key) && selectedAreaRef.value && document.activeElement === document.body) {
+        this.removeArea({ area: selectedAreaRef.value })
+
+        selectedAreaRef.value = null
       }
     },
-    removeArea ({ field, area }) {
+    removeArea ({ area }) {
+      const field = this.template.fields.find((f) => f.areas?.includes(area))
+
       field.areas.splice(field.areas.indexOf(area), 1)
 
       if (!field.areas.length) {
@@ -241,19 +257,21 @@ export default {
           uuid: v4(),
           required: true,
           type,
+          submitter_uuid: this.selectedSubmitter.uuid,
           areas: [area]
         }
 
-        selectedAreaRef.value = area
-
         this.template.fields.push(field)
       }
+
+      selectedAreaRef.value = area
     },
     onDropfield (area) {
       const field = {
         name: '',
         type: this.dragFieldType,
         uuid: v4(),
+        submitter_uuid: this.selectedSubmitter.uuid,
         required: true
       }
 
@@ -270,7 +288,7 @@ export default {
 
       if (this.selectedField?.type === this.dragFieldType) {
         baseArea = selectedAreaRef.value
-      } else if (previousField) {
+      } else if (previousField?.areas) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
         if (['checkbox', 'radio'].includes(this.dragFieldType)) {
@@ -344,7 +362,7 @@ export default {
       this.isSaving = true
 
       this.save().then(() => {
-        window.Turbo.visit('/')
+        // window.Turbo.visit('/')
       }).finally(() => {
         this.isSaving = false
       })
@@ -353,6 +371,8 @@ export default {
       const documentRef = this.documentRefs.find((a) => a.document.uuid === area.attachment_uuid)
 
       documentRef.scrollToArea(area)
+
+      selectedAreaRef.value = area
     },
     save () {
       this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)

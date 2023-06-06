@@ -10,6 +10,7 @@
 #  name       :string           not null
 #  schema     :string           not null
 #  slug       :string           not null
+#  submitters :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :bigint           not null
@@ -27,15 +28,19 @@
 #  fk_rails_...  (author_id => users.id)
 #
 class Template < ApplicationRecord
+  DEFAULT_SUBMITTER_NAME = 'Submitter 1'
+
   belongs_to :author, class_name: 'User'
   belongs_to :account
 
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
+  attribute :submitters, :string, default: -> { [{ name: DEFAULT_SUBMITTER_NAME, uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(8) }
 
   serialize :fields, JSON
   serialize :schema, JSON
+  serialize :submitters, JSON
 
   has_many_attached :documents
 

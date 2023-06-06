@@ -48,6 +48,6 @@ window.customElements.define('template-builder', class extends HTMLElement {
   }
 })
 
-document.addEventListener('clipboard-copy', function(event) {
+document.addEventListener('clipboard-copy', function (event) {
   console.log('Copied to clipboard') // TODO: Add a toast message
 })

@@ -14,7 +14,7 @@
     </label>
     <ul
       tabindex="0"
-      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52"
+      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
       :class="menuClasses"
       @click="closeDropdown"
     >

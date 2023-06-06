@@ -6,8 +6,8 @@
       :ref="setPageRefs"
       :number="index"
       :areas="areasIndex[index]"
-      :is-draw="isDraw"
       :is-drag="isDrag"
+      :selected-submitter="selectedSubmitter"
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
@@ -33,10 +33,9 @@ export default {
       required: false,
       default: () => ({})
     },
-    isDraw: {
-      type: Boolean,
-      required: false,
-      default: false
+    selectedSubmitter: {
+      type: Object,
+      required: true
     },
     isDrag: {
       type: Boolean,

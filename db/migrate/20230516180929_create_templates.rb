@@ -7,6 +7,7 @@ class CreateTemplates < ActiveRecord::Migration[7.0]
       t.string :name, null: false
       t.string :schema, null: false
       t.string :fields, null: false
+      t.string :submitters, null: false
 
       t.references :author, null: false, foreign_key: { to_table: :users }, index: true
       t.references :account, null: false, foreign_key: true, index: true

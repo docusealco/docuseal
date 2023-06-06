@@ -6,44 +6,32 @@
     @mousedown.stop="startDrag"
   >
     <div
-      v-if="field"
+      v-if="isSelected"
+      class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
+      :class="borderColors[submitterIndex]"
+    />
+    <div
+      v-if="field?.type"
       class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap group-hover:flex group-hover:z-10"
-      :class="{ flex: isNameFocus || isSelected, hidden: !isNameFocus && !isSelected }"
+      :class="{ 'flex z-10': isNameFocus || isSelected, hidden: !isNameFocus && !isSelected }"
       style="top: -25px; height: 25px"
       @mousedown.stop
       @pointerdown.stop
     >
-      <span class="dropdown dropdown-start border-r">
-        <label
-          tabindex="0"
-          title="Submitter"
-          class="cursor-pointer text-base-100"
-          @click="selectedAreaRef.value = area"
-        >
-          <button class="mx-1 w-3 h-3 rounded-full bg-yellow-600" />
-        </label>
-        <ul
-          tabindex="0"
-          class="dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none"
-          style="left: -1px"
-          @click="closeDropdown"
-        >
-          <li>
-            <a
-              href="#"
-              class="text-sm py-1 px-2"
-              @click.prevent
-            >
-              Submitter 1
-            </a>
-          </li>
-        </ul>
-      </span>
+      <FieldSubmitter
+        v-model="field.submitter_uuid"
+        class="border-r"
+        :compact="true"
+        :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
+        :submitters="template.submitters"
+        @click="selectedAreaRef.value = area"
+      />
       <FieldType
         v-model="field.type"
         :button-width="27"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
+        @update:model-value="maybeDeleteOptions"
         @click="selectedAreaRef.value = area"
       />
       <span
@@ -64,7 +52,8 @@
       </button>
     </div>
     <div
-      class="bg-red-100 opacity-50 flex items-center justify-center h-full w-full"
+      class="opacity-50 flex items-center justify-center h-full w-full"
+      :class="bgColors[submitterIndex]"
     >
       <span
         v-if="field"
@@ -74,23 +63,25 @@
       </span>
     </div>
     <div
-      class="absolute top-0 bottom-0 right-0 left-0"
+      class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
     <span
-      class="h-2 w-2 -right-1 rounded-full -bottom-1 bg-red-900 absolute cursor-nwse-resize"
+      class="h-2.5 w-2.5 -right-1.5 rounded-full -bottom-1.5 bg-white shadow border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
     />
   </div>
 </template>
 
 <script>
+import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
 
 export default {
   name: 'FieldArea',
   components: {
-    FieldType
+    FieldType,
+    FieldSubmitter
   },
   inject: ['template', 'selectedAreaRef'],
   props: {
@@ -115,6 +106,30 @@ export default {
   computed: {
     defaultName: Field.computed.defaultName,
     fieldIcons: FieldType.computed.fieldIcons,
+    submitter () {
+      return this.template.submitters.find((s) => s.uuid === this.field.submitter_uuid)
+    },
+    submitterIndex () {
+      return this.template.submitters.indexOf(this.submitter)
+    },
+    borderColors () {
+      return [
+        'border-red-500',
+        'border-sky-500',
+        'border-emerald-500',
+        'border-yellow-300',
+        'border-purple-600'
+      ]
+    },
+    bgColors () {
+      return [
+        'bg-red-100',
+        'bg-sky-100',
+        'bg-emerald-100',
+        'bg-yellow-100',
+        'bg-purple-100'
+      ]
+    },
     withName () {
       return !['checkbox', 'radio'].includes(this.field.type) || this.field.options
     },
@@ -143,6 +158,11 @@ export default {
         setTimeout(() => {
           this.$refs.name.innerText = ' '
         }, 1)
+      }
+    },
+    maybeDeleteOptions () {
+      if (!['radio', 'select', 'checkbox'].includes(this.field.type)) {
+        delete this.field.options
       }
     },
     onNameBlur (e) {

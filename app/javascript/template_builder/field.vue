@@ -4,13 +4,14 @@
     @click="field.areas?.[0] && $emit('scroll-to', field.areas[0])"
   >
     <div
-      class="border border-gray-300 rounded rounded-tr-none relative group"
+      class="border border-base-300 rounded rounded-tr-none relative group"
     >
       <div class="flex items-center justify-between space-x-1">
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
             :button-width="20"
+            @update:model-value="maybeDeleteOptions"
           />
           <Contenteditable
             ref="name"
@@ -36,7 +37,7 @@
             </label>
             <ul
               tabindex="0"
-              class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52"
+              class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
               @click="closeDropdown"
             >
               <li
@@ -177,6 +178,11 @@ export default {
     },
     closeDropdown () {
       document.activeElement.blur()
+    },
+    maybeDeleteOptions () {
+      if (!['radio', 'select', 'checkbox'].includes(this.field.type)) {
+        delete this.field.options
+      }
     },
     onNameBlur (e) {
       if (e.target.innerText.trim()) {

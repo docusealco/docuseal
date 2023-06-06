@@ -1,11 +1,18 @@
 <template>
-  <div class="mb-1">
+  <FieldSubmitter
+    :model-value="selectedSubmitter.uuid"
+    class="w-full"
+    :submitters="submitters"
+    @remove="removeSubmitter"
+    @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
+  />
+  <div class="mb-1 mt-2">
     <Field
-      v-for="field in fields"
+      v-for="field in submitterFields"
       :key="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      @remove="fields.splice(fields.indexOf($event), 1)"
+      @remove="removeField"
       @move-up="move(field, -1)"
       @move-down="move(field, 1)"
       @scroll-to="$emit('scroll-to-area', $event)"
@@ -17,7 +24,7 @@
       v-for="(icon, type) in fieldIcons"
       :key="type"
       draggable="true"
-      class="flex items-center justify-center border border-dashed border-gray-300 bg-base-100 w-full rounded relative"
+      class="flex items-center justify-center border border-dashed border-base-300 bg-base-100 w-full rounded relative"
       @dragstart="onDragstart(type)"
       @dragend="$emit('drag-end')"
       @click="addField(type)"
@@ -62,25 +69,51 @@
 import Field from './field'
 import { v4 } from 'uuid'
 import FieldType from './field_type'
+import FieldSubmitter from './field_submitter'
 
 export default {
   name: 'TemplateFields',
   components: {
-    Field
+    Field,
+    FieldSubmitter
   },
   props: {
     fields: {
       type: Array,
       required: true
+    },
+    submitters: {
+      type: Array,
+      required: true
+    },
+    selectedSubmitter: {
+      type: Object,
+      required: true
     }
   },
-  emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area'],
+  emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
   computed: {
-    fieldIcons: FieldType.computed.fieldIcons
+    fieldIcons: FieldType.computed.fieldIcons,
+    submitterFields () {
+      return this.fields.filter((f) => f.submitter_uuid === this.selectedSubmitter.uuid)
+    }
   },
   methods: {
     onDragstart (fieldType) {
       this.$emit('set-drag', fieldType)
+    },
+    removeSubmitter (submitter) {
+      [...this.fields].forEach((field) => {
+        if (field.submitter_uuid === submitter.uuid) {
+          this.removeField(field)
+        }
+      })
+
+      this.submitters.splice(this.submitters.indexOf(submitter), 1)
+
+      if (this.selectedSubmitter === submitter) {
+        this.$emit('change-submitter', this.submitters[0])
+      }
     },
     move (field, direction) {
       const currentIndex = this.fields.indexOf(field)
@@ -95,11 +128,15 @@ export default {
         this.fields.splice(currentIndex + direction, 0, field)
       }
     },
+    removeField (field) {
+      this.fields.splice(this.fields.indexOf(field), 1)
+    },
     addField (type, area = null) {
       const field = {
         name: '',
         uuid: v4(),
         required: true,
+        submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
 

@@ -18,14 +18,15 @@
         :ref="setAreaRefs"
         :area="item.area"
         :field="item.field"
-        @start-resize="showMask = true"
-        @stop-resize="showMask = false"
-        @start-drag="showMask = true"
-        @stop-drag="showMask = false"
+        @start-resize="[showMask = true, isResize = true]"
+        @stop-resize="[showMask = false, isResize = false]"
+        @start-drag="[showMask = true, isMove = true]"
+        @stop-drag="[showMask = false, isMove = false]"
         @remove="$emit('remove-area', item)"
       />
       <FieldArea
         v-if="newArea"
+        :field="{ submitter_uuid: selectedSubmitter.uuid }"
         :area="newArea"
       />
     </div>
@@ -33,7 +34,8 @@
       v-show="isDrag || showMask"
       id="mask"
       ref="mask"
-      class="top-0 bottom-0 left-0 right-0 absolute"
+      class="top-0 bottom-0 left-0 right-0 absolute z-10"
+      :class="{ 'cursor-grab': isDrag || isMove, ' cursor-nwse-resize': isResize }"
       @pointermove="onPointermove"
       @dragover.prevent
       @drop="onDrop"
@@ -60,10 +62,9 @@ export default {
       required: false,
       default: () => []
     },
-    selectedArea: {
+    selectedSubmitter: {
       type: Object,
-      required: false,
-      default: () => ({})
+      required: true
     },
     isDrag: {
       type: Boolean,
@@ -80,6 +81,8 @@ export default {
     return {
       areaRefs: [],
       showMask: false,
+      isMove: false,
+      isResize: false,
       newArea: null
     }
   },

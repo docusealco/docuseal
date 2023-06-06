@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
     t.string "name", null: false
     t.string "schema", null: false
     t.string "fields", null: false
+    t.string "submitters", null: false
     t.bigint "author_id", null: false
     t.bigint "account_id", null: false
     t.datetime "deleted_at"
