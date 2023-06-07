@@ -1,5 +1,6 @@
 <turbo-frame id="modal">
   <turbo-modal class="modal modal-open items-start">
+    <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
     <div class="modal-box pt-4 pb-6 px-6 mt-20">
       <% if local_assigns[:title] %>
         <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
