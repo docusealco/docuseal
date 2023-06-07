@@ -12,7 +12,7 @@
         </label>
         <ul tabindex="0" class="dropdown-content p-2 mt-2 shadow menu bg-base-100 rounded-box whitespace-nowrap">
           <li>
-            <%= link_to 'Profile Settings', contact_settings_profile_index_path, class: 'text-right' %>
+            <%= link_to 'Profile', settings_profile_index_path, class: 'text-right' %>
           </li>
           <li>
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>

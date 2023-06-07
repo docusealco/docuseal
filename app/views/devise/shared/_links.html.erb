@@ -1,22 +1,22 @@
-<div class="flex flex-wrap justify-center space-x-4 mt-4">
+<div class="flex justify-between mt-4">
   <%- if controller_name != 'sessions' %>
-    <%= link_to 'Log in', new_session_path(resource_name), class: 'badge badge-outline my-1' %>
+    <%= link_to 'Log in', new_session_path(resource_name), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to 'Sign up', new_registration_path, class: 'badge badge-outline my-1' %>
+    <%= link_to 'Sign up', new_registration_path, class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'badge badge-outline my-1' %>
+    <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'badge badge-outline my-1' %>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: 'badge badge-outline my-1' %>
+    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-outline my-1', data: { turbo: false } %>
+      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'link link-hover', data: { turbo: false } %>
     <% end %>
   <% end %>
 </div>
