@@ -14,7 +14,7 @@
     <label
       v-else
       tabindex="0"
-      class="rounded-md p-2 border border-base-300 w-full flex justify-between"
+      class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
     >
       <div class="flex items-center space-x-2">
         <span
@@ -23,6 +23,7 @@
         />
         <Contenteditable
           v-model="selectedSubmitter.name"
+          class="cursor-text"
           :icon-inline="true"
           :icon-width="18"
         />
@@ -126,6 +127,15 @@ export default {
         'bg-purple-600'
       ]
     },
+    names () {
+      return [
+        'First Submitter',
+        'Second Submitter',
+        'Third Submitter',
+        'Fourth Submitter',
+        'Fifth Submitter'
+      ]
+    },
     selectedSubmitter () {
       return this.submitters.find((e) => e.uuid === this.modelValue)
     }
@@ -141,7 +151,7 @@ export default {
     },
     addSubmitter () {
       const newSubmitter = {
-        name: `Submitter ${this.submitters.length + 1}`,
+        name: this.names[this.submitters.length],
         uuid: v4()
       }
 

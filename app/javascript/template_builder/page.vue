@@ -35,7 +35,7 @@
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute z-10"
-      :class="{ 'cursor-grab': isDrag || isMove, ' cursor-nwse-resize': isResize }"
+      :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': isResize || isDraw }"
       @pointermove="onPointermove"
       @dragover.prevent
       @drop="onDrop"
@@ -65,6 +65,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    isDraw: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     isDrag: {
       type: Boolean,

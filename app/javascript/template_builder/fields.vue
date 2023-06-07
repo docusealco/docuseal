@@ -116,16 +116,21 @@ export default {
       }
     },
     move (field, direction) {
-      const currentIndex = this.fields.indexOf(field)
+      const currentIndex = this.submitterFields.indexOf(field)
+      const fieldsIndex = this.fields.indexOf(field)
 
-      this.fields.splice(currentIndex, 1)
+      this.fields.splice(fieldsIndex, 1)
 
-      if (currentIndex + direction > this.fields.length) {
-        this.fields.unshift(field)
+      if (currentIndex + direction > this.submitterFields.length) {
+        const firstIndex = this.fields.indexOf(this.submitterFields[0])
+
+        this.fields.splice(firstIndex, 0, field)
       } else if (currentIndex + direction < 0) {
-        this.fields.push(field)
+        const lastIndex = this.fields.indexOf(this.submitterFields[this.submitterFields.length - 1])
+
+        this.fields.splice(lastIndex + 1, 0, field)
       } else {
-        this.fields.splice(currentIndex + direction, 0, field)
+        this.fields.splice(fieldsIndex + direction, 0, field)
       }
     },
     removeField (field) {

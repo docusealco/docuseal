@@ -1,17 +1,21 @@
 <template>
   <div
     class="group pb-2"
-    @click="field.areas?.[0] && $emit('scroll-to', field.areas[0])"
   >
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
     >
+      <div
+        class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
+        @click="scrollToFirstArea"
+      />
       <div class="flex items-center justify-between space-x-1">
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
             :button-width="20"
-            @update:model-value="maybeDeleteOptions"
+            @update:model-value="maybeUpdateOptions"
+            @click="scrollToFirstArea"
           />
           <Contenteditable
             ref="name"
@@ -19,7 +23,7 @@
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
-            @focus="onNameFocus"
+            @focus="[onNameFocus(), scrollToFirstArea()]"
             @blur="onNameBlur"
           />
         </div>
@@ -72,7 +76,7 @@
             </ul>
           </span>
           <button
-            class=" text-base-100 group-hover:text-base-content"
+            class="relative text-base-100 group-hover:text-base-content"
             title="Remove"
             @click="$emit('remove', field)"
           >
@@ -84,6 +88,7 @@
           <div class="flex flex-col pr-1 text-base-100 group-hover:text-base-content">
             <button
               title="Up"
+              class="relative"
               style="font-size: 10px; margin-bottom: -2px"
               @click="$emit('move-up')"
             >
@@ -91,6 +96,7 @@
             </button>
             <button
               title="Down"
+              class="relative"
               style="font-size: 10px; margin-top: -2px"
               @click="$emit('move-down')"
             >
@@ -176,12 +182,19 @@ export default {
         }, 1)
       }
     },
+    scrollToFirstArea () {
+      return this.field.areas?.[0] && this.$emit('scroll-to', this.field.areas[0])
+    },
     closeDropdown () {
       document.activeElement.blur()
     },
-    maybeDeleteOptions () {
-      if (!['radio', 'select', 'checkbox'].includes(this.field.type)) {
+    maybeUpdateOptions () {
+      if (!['radio', 'checkbox', 'select'].includes(this.field.type)) {
         delete this.field.options
+      }
+
+      if (this.field.type === 'select') {
+        this.field.options ||= ['']
       }
     },
     onNameBlur (e) {

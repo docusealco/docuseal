@@ -28,7 +28,7 @@
 #  fk_rails_...  (author_id => users.id)
 #
 class Template < ApplicationRecord
-  DEFAULT_SUBMITTER_NAME = 'Submitter 1'
+  DEFAULT_SUBMITTER_NAME = 'First Submitter'
 
   belongs_to :author, class_name: 'User'
   belongs_to :account

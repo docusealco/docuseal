@@ -6,7 +6,7 @@
     @mousedown.stop="startDrag"
   >
     <div
-      v-if="isSelected"
+      v-if="isSelected || !field?.type"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
       :class="borderColors[submitterIndex]"
     />
@@ -31,7 +31,7 @@
         :button-width="27"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
-        @update:model-value="maybeDeleteOptions"
+        @update:model-value="maybeUpdateOptions"
         @click="selectedAreaRef.value = area"
       />
       <span
@@ -45,10 +45,10 @@
         @blur="onNameBlur"
       >{{ field.name || defaultName }}</span>
       <button
-        class="pl-0.5 pr-1.5"
+        class="pr-1"
         @click.prevent="$emit('remove')"
       >
-        <span>&times;</span>
+        <IconX width="14" />
       </button>
     </div>
     <div
@@ -57,16 +57,22 @@
     >
       <span
         v-if="field"
-        class="flex justify-center items-center space-x-1"
+        class="flex justify-center items-center space-x-1 h-full"
       >
-        <component :is="fieldIcons[field.type]" />
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="max-h-10"
+        />
       </span>
     </div>
     <div
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
     <span
-      class="h-2.5 w-2.5 -right-1.5 rounded-full -bottom-1.5 bg-white shadow border absolute cursor-nwse-resize"
+      v-if="field?.type"
+      class="h-2.5 w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
     />
   </div>
@@ -76,12 +82,14 @@
 import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
+import { IconX } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
   components: {
     FieldType,
-    FieldSubmitter
+    FieldSubmitter,
+    IconX
   },
   inject: ['template', 'selectedAreaRef'],
   props: {
@@ -160,9 +168,13 @@ export default {
         }, 1)
       }
     },
-    maybeDeleteOptions () {
-      if (!['radio', 'select', 'checkbox'].includes(this.field.type)) {
+    maybeUpdateOptions () {
+      if (!['radio', 'checkbox', 'select'].includes(this.field.type)) {
         delete this.field.options
+      }
+
+      if (this.field.type === 'select') {
+        this.field.options ||= ['']
       }
     },
     onNameBlur (e) {

@@ -77,6 +77,7 @@
             :selected-submitter="selectedSubmitter"
             :document="document"
             :is-drag="!!dragFieldType"
+            :is-draw="!!drawField"
             @draw="onDraw"
             @drop-field="onDropfield"
             @remove-area="removeArea"
@@ -91,10 +92,19 @@
           v-if="drawField"
           class="sticky inset-0 bg-base-100 h-full"
         >
-          Draw {{ drawField.name }} field on the page
-          <button @click="drawField = false">
-            Cancel
-          </button>
+          <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
+            <p>
+              Draw {{ drawField.name }} field on the document
+            </p>
+            <p>
+              <button
+                class="base-button"
+                @click="drawField = false"
+              >
+                Cancel
+              </button>
+            </p>
+          </div>
         </div>
         <div>
           <Fields
@@ -244,12 +254,19 @@ export default {
         const type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
 
         if (type === 'checkbox') {
+          const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
+          const previousArea = previousField?.areas?.[previousField.areas.length - 1]
+
+          const areaW = previousArea?.w || (30 / pageMask.clientWidth)
+          const areaH = previousArea?.h || (30 / pageMask.clientHeight)
+
           if ((pageMask.clientWidth * area.w) < 5) {
-            area.x = area.x - (30 / pageMask.clientWidth) / 2
-            area.y = area.y - (30 / pageMask.clientHeight) / 2
+            area.x = area.x - (areaW / 2)
+            area.y = area.y - (areaH / 2)
           }
-          area.w = 30 / pageMask.clientWidth
-          area.h = 30 / pageMask.clientHeight
+
+          area.w = areaW
+          area.h = areaH
         }
 
         const field = {
