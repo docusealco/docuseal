@@ -1,0 +1,19 @@
+ <%= f.fields_for :value do |ff| %>
+  <%= ff.hidden_field :service, value: 'azure' %>
+  <%= ff.fields_for :configs, configs do |fff| %>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="form-control">
+        <%= fff.label :storage_account_name, 'Storage Account Name', class: 'label' %>
+        <%= fff.text_field :storage_account_name, value: configs['storage_account_name'], required: true, class: 'base-input' %>
+      </div>
+      <div class="form-control">
+        <%= fff.label :container, class: 'label' %>
+        <%= fff.text_field :container, value: configs['container'], required: true , class: 'base-input' %>
+      </div>
+    </div>
+    <div class="form-control">
+      <%= fff.label :storage_access_key, 'Storage Access Key', class: 'label' %>
+      <%= fff.text_field :storage_access_key, value: configs['storage_access_key'], required: true, class: 'base-textarea' %>
+    </div>
+  <% end %>
+<% end %>

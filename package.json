@@ -17,7 +17,7 @@
     "compression-webpack-plugin": "10.0.0",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^5.0.0",
-    "daisyui": "^3.0.17",
+    "daisyui": "^3.0.19",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
