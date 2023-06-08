@@ -30,7 +30,7 @@ module Templates
       image = Vips::Image.new_from_buffer(binary, '')
       image = image.resize(MAX_WIDTH / image.width.to_f)
 
-      io = StringIO.new(image.write_to_buffer(FORMAT, Q: Q))
+      io = StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -46,12 +46,13 @@ module Templates
       binary = attachment.download
 
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
+      number_of_pages = HexaPDF::Document.new(io: StringIO.new(binary)).pages.size - 1
 
-      (0..).each do |page_number|
+      (0..number_of_pages).each do |page_number|
         page = Vips::Image.new_from_buffer(binary, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
-        io = StringIO.new(page.write_to_buffer(FORMAT, Q: Q))
+        io = StringIO.new(page.write_to_buffer(FORMAT, Q: Q, interlace: true))
 
         ActiveStorage::Attachment.create!(
           blob: ActiveStorage::Blob.create_and_upload!(
@@ -61,8 +62,6 @@ module Templates
           name: ATTACHMENT_NAME,
           record: attachment
         )
-      rescue Vips::Error
-        break
       end
     end
   end
