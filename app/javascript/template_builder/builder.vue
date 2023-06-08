@@ -136,8 +136,6 @@ import { v4 } from 'uuid'
 import i18n from './i18n'
 import { ref, computed } from 'vue'
 
-const selectedAreaRef = ref(null)
-
 export default {
   name: 'TemplateBuilder',
   i18n,
@@ -154,7 +152,7 @@ export default {
   provide () {
     return {
       template: this.template,
-      selectedAreaRef: computed(() => selectedAreaRef)
+      selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
   props: {
@@ -173,6 +171,7 @@ export default {
     }
   },
   computed: {
+    selectedAreaRef: () => ref(),
     fieldAreasIndex () {
       const areas = {}
 
@@ -189,7 +188,7 @@ export default {
       return areas
     },
     selectedField () {
-      return this.template.fields.find((f) => f.areas?.includes(selectedAreaRef.value))
+      return this.template.fields.find((f) => f.areas?.includes(this.selectedAreaRef.value))
     },
     sortedDocuments () {
       return this.template.schema.map((item) => {
@@ -223,16 +222,16 @@ export default {
     onKeyUp (e) {
       if (e.code === 'Escape') {
         this.drawField = null
-        selectedAreaRef.value = null
+        this.selectedAreaRef.value = null
       }
 
-      if (['Backspace', 'Delete'].includes(e.key) && selectedAreaRef.value && document.activeElement === document.body) {
-        this.removeArea({ area: selectedAreaRef.value })
+      if (['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
+        this.removeArea(this.selectedAreaRef.value)
 
-        selectedAreaRef.value = null
+        this.selectedAreaRef.value = null
       }
     },
-    removeArea ({ area }) {
+    removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
 
       field.areas.splice(field.areas.indexOf(area), 1)
@@ -281,7 +280,7 @@ export default {
         this.template.fields.push(field)
       }
 
-      selectedAreaRef.value = area
+      this.selectedAreaRef.value = area
     },
     onDropfield (area) {
       const field = {
@@ -304,7 +303,7 @@ export default {
       let baseArea
 
       if (this.selectedField?.type === this.dragFieldType) {
-        baseArea = selectedAreaRef.value
+        baseArea = this.selectedAreaRef.value
       } else if (previousField?.areas) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
@@ -332,7 +331,7 @@ export default {
 
       field.areas = [fieldArea]
 
-      selectedAreaRef.value = fieldArea
+      this.selectedAreaRef.value = fieldArea
 
       this.template.fields.push(field)
     },
@@ -389,7 +388,7 @@ export default {
 
       documentRef.scrollToArea(area)
 
-      selectedAreaRef.value = area
+      this.selectedAreaRef.value = area
     },
     save () {
       this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)

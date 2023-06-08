@@ -22,7 +22,7 @@
         @stop-resize="[showMask = false, isResize = false]"
         @start-drag="[showMask = true, isMove = true]"
         @stop-drag="[showMask = false, isMove = false]"
-        @remove="$emit('remove-area', item)"
+        @remove="$emit('remove-area', item.area)"
       />
       <FieldArea
         v-if="newArea"
