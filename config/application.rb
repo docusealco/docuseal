@@ -19,5 +19,7 @@ module Docuseal
     config.eager_load_paths << Rails.root.join('lib')
 
     config.active_storage.routes_prefix = ''
+
+    config.action_view.frozen_string_literal = true
   end
 end
