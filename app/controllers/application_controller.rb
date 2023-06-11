@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     render_to_string(partial: 'shared/button_title', locals: { title:, disabled_with:, icon: })
   end
 
-  def svg_icon(icon_name, options = {})
-    render_to_string(partial: "icons/#{icon_name}", locals: { attibutes: options })
+  def svg_icon(icon_name, class: '')
+    render_to_string(partial: "icons/#{icon_name}", locals: { class: })
   end
 end
