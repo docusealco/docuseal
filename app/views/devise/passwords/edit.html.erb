@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="form-control">
-      <%= f.submit 'Change my password', class: 'base-button' %>
+      <%= f.button button_title(title: 'Change my password', disabled_with: 'Changing password'), class: 'base-button' %>
     </div>
     <%= render 'devise/shared/links' %>
   <% end %>

@@ -34,7 +34,7 @@
         <%= render "azure_form", f: f, configs: configs, value: value %>
       </disable-hidden>
       <div class="form-control">
-        <%= f.button button_title('OK'), class: 'base-button' %>
+        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
       </div>
     <% end %>
   </div>

@@ -27,7 +27,7 @@
         </div>
       <% end %>
       <div class="form-control">
-        <%= f.button button_title, class: 'base-button' %>
+        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
       </div>
     <% end %>
     <h2 class="text-2xl font-bold mt-8 mb-4">Change Password</h2>
@@ -41,7 +41,7 @@
         <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
       </div>
       <div class="form-control">
-        <%= f.button button_title, class: 'base-button' %>
+        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
       </div>
     <% end %>
   </div>

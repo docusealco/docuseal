@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :devise_controller?
 
   helper_method :button_title,
-                :current_account
+                :current_account,
+                :svg_icon
 
   private
 
@@ -19,7 +20,11 @@ class ApplicationController < ActionController::Base
     redirect_to setup_index_path unless User.exists?
   end
 
-  def button_title(title = 'Submit', disabled_with = 'Submitting...')
-    render_to_string(partial: 'shared/button_title', locals: { title:, disabled_with: })
+  def button_title(title: 'Submit', disabled_with: 'Submitting', icon: nil)
+    render_to_string(partial: 'shared/button_title', locals: { title:, disabled_with:, icon: })
+  end
+
+  def svg_icon(icon_name, options = {})
+    render_to_string(partial: "icons/#{icon_name}", locals: { attibutes: options })
   end
 end

@@ -31,7 +31,7 @@
       <% end %>
     </div>
     <div class="form-control">
-      <%= f.submit 'Sign up', class: 'base-button' %>
+      <%= f.button button_title(title: 'Sign up', disabled_with: 'Signing up'), class: 'base-button' %>
     </div>
   <% end %>
   <%= render 'devise/shared/links' %>

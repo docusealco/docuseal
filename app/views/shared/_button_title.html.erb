@@ -1,6 +1,12 @@
 <span class="enabled">
-  <%= title %>
+  <span class="flex justify-center space-x-3">
+    <%= icon if icon %>
+    <span><%= title %></span>
+  </span>
 </span>
 <span class="disabled">
-  <%= disabled_with %>
+  <span class="flex justify-center space-x-3">
+    <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+    <span><%= disabled_with %>...</span>
+  </span>
 </span>

@@ -1,5 +1,5 @@
 <p>
   Form completed - thanks!
 </p>
-<%= button_to button_title('Send copy to Email'), send_submission_email_index_path, params: { submission_slug: @submission.slug }, form: { onsubmit: 'event.submitter.disabled = true' } %>
-<%= button_to button_title('Download documents'), submission_download_index_path(@submission.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' } %>
+<%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending'), send_submission_email_index_path, params: { submission_slug: @submission.slug }, form: { onsubmit: 'event.submitter.disabled = true' } %>
+<%= button_to button_title(title: 'Download documents', disabled_with: 'Downloading'), submission_download_index_path(@submission.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' } %>

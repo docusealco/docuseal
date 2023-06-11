@@ -20,7 +20,7 @@
       <% end %>
     </div>
     <div class="form-control">
-      <%= f.submit 'Log in', class: 'base-button' %>
+      <%= f.button button_title(title: 'Log In', disabled_with: 'Logging In'), class: 'base-button' %>
     </div>
   <% end %>
   <%= render 'devise/shared/links' %>

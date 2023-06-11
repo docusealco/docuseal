@@ -5,5 +5,5 @@ You have been invited to submit template <%= @template.name %>
     <%= f.label :email %>
     <%= f.email_field :email, required: true %>
   </div>
-  <%= f.button button_title %>
+  <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing') %>
 <% end %>

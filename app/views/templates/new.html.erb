@@ -4,7 +4,7 @@
       <%= f.text_field :name, required: true, placeholder: 'Template Name', class: 'base-input' %>
     </div>
     <div class="form-control mt-4">
-      <%= f.button button_title('Create'), class: 'base-button' %>
+      <%= f.button button_title(title: 'Create', disabled_with: 'Creating'), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>
