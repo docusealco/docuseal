@@ -47,7 +47,3 @@ window.customElements.define('template-builder', class extends HTMLElement {
     this.appElem?.remove()
   }
 })
-
-document.addEventListener('clipboard-copy', function (event) {
-  console.log('Copied to clipboard') // TODO: Add a toast message
-})

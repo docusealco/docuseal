@@ -99,9 +99,16 @@ async function copy (button) {
     button.dispatchEvent(new CustomEvent('clipboard-copy', { bubbles: true }))
   }
 
+  function toggleActiveIcon () {
+    if (button.classList.contains('swap')) {
+      button.classList.toggle('swap-active')
+    }
+  }
+
   if (text) {
     await copyText(text)
     trigger()
+    toggleActiveIcon()
   } else if (id) {
     const root = 'getRootNode' in Element.prototype ? button.getRootNode() : button.ownerDocument
 
@@ -112,6 +119,7 @@ async function copy (button) {
     if (node) {
       await copyTarget(node)
       trigger()
+      toggleActiveIcon()
     }
   }
 }

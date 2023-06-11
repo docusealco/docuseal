@@ -9,8 +9,9 @@
         Share link
       </buttun>
       <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full join-item" value="<%= start_form_url(slug: @template.slug) %>" disabled>
-      <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold" for="share-link-input">
-        <%= svg_icon('clipboard', class: 'w-6 h-6') %>
+      <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold swap swap-active" for="share-link-input">
+        <%= svg_icon('clipboard', class: 'w-6 h-6 swap-on text-white') %>
+        <%= svg_icon('clipboard_copy', class: 'w-6 h-6 swap-off text-white') %>
       </clipboard-copy>
     </div>
   </div>
