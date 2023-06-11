@@ -5,11 +5,11 @@
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
     >
-      <div
-        class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
-        @click="scrollToFirstArea"
-      />
-      <div class="flex items-center justify-between space-x-1">
+      <div class="flex items-center justify-between relative">
+        <div
+          class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
+          @click="scrollToFirstArea"
+        />
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
