@@ -1,11 +1,7 @@
 <div class="flex justify-between mb-4">
   <h1 class="text-4xl font-bold">Dashboard</h1>
   <%= link_to new_template_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: :modal } do %>
-    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <line x1="12" y1="5" x2="12" y2="19" />
-      <line x1="5" y1="12" x2="19" y2="12" />
-    </svg>
+    <%= svg_icon('plus', class: 'w-6 h-6') %>
     <span class="hidden md:block">Create Template</span>
   <% end %>
 </div>
@@ -20,15 +16,7 @@
         <div >
           <p class="text-sm opacity-70 mb-1">Created by <%= template.author.full_name %></p>
           <p class="flex items-center gap-1 text-xs opacity-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-              <path d="M16 3v4" />
-              <path d="M8 3v4" />
-              <path d="M4 11h16" />
-              <path d="M11 15h1" />
-              <path d="M12 15v3" />
-            </svg>
+            <%= svg_icon('calendar', class: 'w-4 h-4') %>
             <span><%= l(template.created_at, format: :long) %></span>
           </p>
         </div>

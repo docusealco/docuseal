@@ -4,11 +4,7 @@
     <div class="flex justify-between mb-4">
       <h1 class="text-4xl font-bold">Team</h1>
       <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
-        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
+        <%= svg_icon('plus', class: 'w-6 h-6') %>
         <span>New User</span>
       <% end %>
     </div>
