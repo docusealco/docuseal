@@ -1,26 +1,43 @@
-<div class="flex justify-between mb-4">
-  <h1 class="text-4xl font-bold">Dashboard</h1>
-  <%= link_to new_template_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: :modal } do %>
-    <%= svg_icon('plus', class: 'w-6 h-6') %>
-    <span class="hidden md:block">Create Template</span>
-  <% end %>
-</div>
-<div class="grid gap-4 md:grid-cols-3">
-  <% @templates.each do |template| %>
-    <div class="card bg-base-300">
-      <div class="card-body">
-        <h2 class="card-title flex justify-between">
-          <%= link_to template.name, template_submissions_path(template) %>
-          <%= link_to 'Edit', template_path(template), class: 'btn btn-outline btn-xs' %>
-        </h2>
-        <div >
-          <p class="text-sm opacity-70 mb-1">Created by <%= template.author.full_name %></p>
-          <p class="flex items-center gap-1 text-xs opacity-50">
-            <%= svg_icon('calendar', class: 'w-4 h-4') %>
-            <span><%= l(template.created_at, format: :long) %></span>
-          </p>
+<%- if @templates.any? %>
+  <div class="flex justify-between mb-4">
+    <h1 class="text-4xl font-bold">Templates</h1>
+    <%= link_to new_template_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: :modal } do %>
+      <%= svg_icon('plus', class: 'w-6 h-6') %>
+      <span class="hidden md:block">Create</span>
+    <% end %>
+  </div>
+  <div class="grid gap-4 md:grid-cols-3">
+    <% @templates.each do |template| %>
+      <div class="card bg-base-300">
+        <div class="card-body">
+          <h2 class="card-title flex justify-between">
+            <%= link_to template.name, template_submissions_path(template) %>
+            <%= link_to 'Edit', template_path(template), class: 'btn btn-outline btn-xs' %>
+          </h2>
+          <div >
+            <p class="text-sm opacity-70 mb-1">Created by <%= template.author.full_name %></p>
+            <p class="flex items-center gap-1 text-xs opacity-50">
+              <%= svg_icon('calendar', class: 'w-4 h-4') %>
+              <span><%= l(template.created_at, format: :long) %></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="card bg-base-200 h-96 mb-2">
+    <div class="card-body text-center">
+      <div class="flex items-center h-full">
+        <div class="max-w-lg mx-auto">
+          <h1 class="text-5xl font-bold">Welcome to DocuSeal</h1>
+          <p class="py-6">Streamline document workflows, from creating customizable templates to filling and signing document forms, with DocuSeal</p>
+          <%= link_to new_template_path, class: 'btn btn-neutral', data: { turbo_frame: :modal } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6') %>
+            <span>Create Template</span>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
