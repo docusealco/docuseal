@@ -28,7 +28,10 @@
           />
         </div>
         <div class="flex items-center space-x-1">
-          <span class="dropdown dropdown-end">
+          <span
+            v-if="field.areas?.length"
+            class="dropdown dropdown-end"
+          >
             <label
               tabindex="0"
               title="Areas"
@@ -75,6 +78,17 @@
               </li>
             </ul>
           </span>
+          <button
+            v-else
+            title="Areas"
+            class="relative cursor-pointer text-base-100 group-hover:text-base-content"
+            @click="$emit('set-draw', field)"
+          >
+            <IconShape
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
           <button
             class="relative text-base-100 group-hover:text-base-content"
             title="Remove"
