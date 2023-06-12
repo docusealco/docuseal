@@ -4,16 +4,18 @@
       <%= @template.name %>
       <%= link_to 'Edit', template_path(@template), class: 'btn btn-outline btn-sm' %>
     </h2>
-    <div class="join w-full">
-      <buttun class="btn bg-neutral btn-disabled text-white join-item">
-        Share link
-      </buttun>
-      <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full join-item" value="<%= start_form_url(slug: @template.slug) %>" disabled>
-      <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold swap swap-active" for="share-link-input">
-        <%= svg_icon('clipboard', class: 'w-6 h-6 swap-on text-white') %>
-        <%= svg_icon('clipboard_copy', class: 'w-6 h-6 swap-off text-white') %>
-      </clipboard-copy>
-    </div>
+    <% if @template.submitters.size == 1 %>
+      <div class="join w-full">
+        <buttun class="btn bg-neutral btn-disabled text-white join-item">
+          Share link
+        </buttun>
+        <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full join-item" value="<%= start_form_url(slug: @template.slug) %>" disabled>
+        <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold swap swap-active" for="share-link-input">
+          <%= svg_icon('clipboard', class: 'w-6 h-6 swap-on text-white') %>
+          <%= svg_icon('clipboard_copy', class: 'w-6 h-6 swap-off text-white') %>
+        </clipboard-copy>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class="flex justify-between mb-4">
@@ -42,15 +44,22 @@
         <% @submissions.each do |submission| %>
           <tr>
             <td>
-              <%= submission.email %>
+              <% submission.submitters.each do |submitter| %>
+                <%= submitter.email %>
+              <% end %>
             </td>
             <td>
-              <span class="badge badge-info badge-outline">
-                <%= submission.status.humanize %>
-              </span>
+              <% submission.submitters.each do |submitter| %>
+                <div>
+                  <span class="badge badge-info badge-outline">
+                    <%= submitter.status %>
+                  </span>
+                  <%= link_to 'Copy', submit_form_url(slug: submitter.slug), title: 'Copy', class: 'btn btn-outline btn-xs' %>
+                </div>
+              <% end %>
             </td>
             <td  class="flex items-center space-x-2 justify-end">
-              <%= link_to 'View', submission_path(@template), title: 'View', class: 'btn btn-outline btn-xs' %>
+              <%= link_to 'View', submission_path(submission), title: 'View', class: 'btn btn-outline btn-xs' %>
               <%= button_to 'Remove', submission_path(submission), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
             </td>
           </tr>

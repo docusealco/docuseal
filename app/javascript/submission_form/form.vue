@@ -1,14 +1,14 @@
 <template>
   <FieldAreas
     ref="areas"
-    :fields="fields"
+    :fields="submitterFields"
     :values="values"
     :attachments-index="attachmentsIndex"
     @focus-field="goToField"
   />
   <button
     v-if="currentStep !== 0"
-    @click="goToField(fields[currentStep - 1], true)"
+    @click="goToField(submitterFields[currentStep - 1], true)"
   >
     Back
   </button>
@@ -26,7 +26,7 @@
       :value="authenticityToken"
     >
     <input
-      v-if="currentStep === fields.length - 1"
+      v-if="currentStep === submitterFields.length - 1"
       type="hidden"
       name="completed"
       value="true"
@@ -117,7 +117,7 @@
         v-model="values[currentField.uuid]"
         :field="currentField"
         :attachments-index="attachmentsIndex"
-        :submission-slug="submissionSlug"
+        :submitter-slug="submitterSlug"
         @attached="attachments.push($event)"
       />
       <SignatureStep
@@ -126,7 +126,7 @@
         v-model="values[currentField.uuid]"
         :field="currentField"
         :attachments-index="attachmentsIndex"
-        :submission-slug="submissionSlug"
+        :submitter-slug="submitterSlug"
         @attached="attachments.push($event)"
       />
       <AttachmentStep
@@ -134,7 +134,7 @@
         v-model="values[currentField.uuid]"
         :field="currentField"
         :attachments-index="attachmentsIndex"
-        :submission-slug="submissionSlug"
+        :submitter-slug="submitterSlug"
         @attached="attachments.push($event)"
       />
     </div>
@@ -151,7 +151,7 @@
   </form>
   <FormCompleted
     v-else
-    :submission-slug="submissionSlug"
+    :submitter-slug="submitterSlug"
   />
 </template>
 
@@ -174,7 +174,11 @@ export default {
     FormCompleted
   },
   props: {
-    submissionSlug: {
+    submitterSlug: {
+      type: String,
+      required: true
+    },
+    submitterUuid: {
       type: String,
       required: true
     },
@@ -207,7 +211,10 @@ export default {
   },
   computed: {
     currentField () {
-      return this.fields[this.currentStep]
+      return this.submitterFields[this.currentStep]
+    },
+    submitterFields () {
+      return this.fields.filter((f) => f.submitter_uuid === this.submitterUuid)
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
@@ -217,18 +224,18 @@ export default {
       }, {})
     },
     submitPath () {
-      return `/l/${this.submissionSlug}`
+      return `/s/${this.submitterSlug}`
     }
   },
   mounted () {
     this.currentStep = Math.min(
-      this.fields.indexOf([...this.fields].reverse().find((field) => !!this.values[field.uuid])) + 1,
-      this.fields.length - 1
+      this.submitterFields.indexOf([...this.submitterFields].reverse().find((field) => !!this.values[field.uuid])) + 1,
+      this.submitterFields.length - 1
     )
   },
   methods: {
     goToField (field, scrollToArea = false) {
-      this.currentStep = this.fields.indexOf(field)
+      this.currentStep = this.submitterFields.indexOf(field)
 
       this.$nextTick(() => {
         if (scrollToArea) {
@@ -251,10 +258,10 @@ export default {
         method: 'POST',
         body: new FormData(this.$refs.form)
       }).then(response => {
-        const nextField = this.fields[this.currentStep + 1]
+        const nextField = this.submitterFields[this.currentStep + 1]
 
         if (nextField) {
-          this.goToField(this.fields[this.currentStep + 1], true)
+          this.goToField(this.submitterFields[this.currentStep + 1], true)
         } else {
           this.isCompleted = true
         }

@@ -13,7 +13,7 @@ Rails.configuration.to_prepare do
 
   LoadActiveStorageConfigs.call
 rescue StandardError => e
-  Rails.logger.debug(e)
+  Rails.logger.error(e)
 
   nil
 end

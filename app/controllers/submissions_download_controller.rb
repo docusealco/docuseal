@@ -4,10 +4,10 @@ class SubmissionsDownloadController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    submission = Submission.find_by(slug: params[:submission_slug])
+    submitter = Submitter.find_by(slug: params[:submitter_slug])
 
-    Submissions::GenerateResultAttachments.call(submission)
+    Submissions::GenerateResultAttachments.call(submitter)
 
-    redirect_to submission.archive.url, allow_other_host: true
+    redirect_to submitter.archive.url, allow_other_host: true
   end
 end

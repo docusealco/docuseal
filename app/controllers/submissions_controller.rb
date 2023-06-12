@@ -17,18 +17,18 @@ class SubmissionsController < ApplicationController
   def new; end
 
   def create
-    emails = params[:emails].to_s.scan(User::EMAIL_REGEXP)
-
     submissions =
-      emails.map do |email|
-        submission = @template.submissions.create!(email:, sent_at: params[:send_email] == '1' ? Time.current : nil)
-
-        if params[:send_email] == '1'
-          SubmissionMailer.invitation_email(submission, message: params[:message]).deliver_later!
-        end
-
-        submission
+      if params[:emails].present?
+        create_submissions_from_emails
+      else
+        create_submissions_from_submitters
       end
+
+    if params[:send_email] == '1'
+      submissions.flat_map(&:submitters).each do |submitter|
+        SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
+      end
+    end
 
     redirect_to template_submissions_path(@template), notice: "#{submissions.size} recepients added"
   end
@@ -43,6 +43,34 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
+  def create_submissions_from_emails
+    emails = params[:emails].to_s.scan(User::EMAIL_REGEXP)
+
+    emails.map do |email|
+      submission = @template.submissions.new
+      submission.submitters.new(email:, uuid: @template.submitters.first['uuid'],
+                                sent_at: params[:send_email] == '1' ? Time.current : nil)
+
+      submission.tap(&:save!)
+    end
+  end
+
+  def create_submissions_from_submitters
+    submissions_params.map do |attrs|
+      submission = @template.submissions.new
+
+      attrs[:submitters].each do |submitter_attrs|
+        submission.submitters.new(**submitter_attrs, sent_at: params[:send_email] == '1' ? Time.current : nil)
+      end
+
+      submission.tap(&:save!)
+    end
+  end
+
+  def submissions_params
+    params.require(:submission).map { |param| param.permit(submitters: [%i[uuid email]]) }
+  end
 
   def load_template
     @template = current_account.templates.find(params[:template_id])

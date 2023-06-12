@@ -1,5 +1,5 @@
 You have been invited to submit template <%= @template.name %>
-<%= form_for @submission, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put do |f| %>
+<%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put do |f| %>
   Provide youe email to start
   <div>
     <%= f.label :email %>

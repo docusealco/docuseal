@@ -33,7 +33,7 @@ export default {
       type: String,
       required: true
     },
-    submissionSlug: {
+    submitterSlug: {
       type: String,
       required: true
     },
@@ -97,7 +97,7 @@ export default {
             body: JSON.stringify({
               name: 'attachments',
               blob_signed_id: blob.signed_id,
-              submission_slug: this.submissionSlug
+              submitter_slug: this.submitterSlug
             }),
             headers: { 'Content-Type': 'application/json' }
           }).then(resp => resp.json()).then((data) => {

@@ -12,18 +12,6 @@
             <%= link_to @submission.template.name, template_submissions_path(@submission.template), class: 'link link-hover'  %>
           </dd>
         </div>
-        <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">URL</dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-            <%= link_to submit_form_url(slug: @submission.slug), submit_form_url(slug: @submission.slug), class: 'link link-hover' %>
-          </dd>
-        </div>
-        <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-            <%= mail_to @submission.email %>
-          </dd>
-        </div>
         <%- if @submission.completed_at.present? %>
           <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt class="text-sm font-medium leading-6 text-gray-900">Completed at</dt>
@@ -40,35 +28,41 @@
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <% if ['image', 'signature'].include?(field['type']) %>
                 <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
-                  <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
-                    <li class="py-4 pl-4 pr-5 text-sm leading-6">
-                      <div class="flex w-0 flex-1 items-center">
-                        <%= image_tag ActiveStorage::Attachment.find_by(uuid:).url %>
-                      </div>
-                    </li>
+                  <% @submission.submitters.each do |submitter| %>
+                    <% Array.wrap(submitter.values[field['uuid']]).each do |uuid| %>
+                      <li class="py-4 pl-4 pr-5 text-sm leading-6">
+                        <div class="flex w-0 flex-1 items-center">
+                          <%= image_tag ActiveStorage::Attachment.find_by(uuid:).url %>
+                        </div>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
               <% elsif ['attachment'].include?(field['type']) %>
                 <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
-                  <% Array.wrap(@submission.values[field['uuid']]).each do |uuid| %>
-                    <% attachment = ActiveStorage::Attachment.find_by(uuid:) %>
-                    <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                      <div class="flex w-0 flex-1 items-center">
-                        <%= svg_icon('paperclip', class: 'h-5 w-5 flex-shrink-0 text-gray-300') %>
-                        <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                          <span class="truncate font-medium">
-                            <%= attachment.filename %>
-                          </span>
+                  <% @submission.submitters.each do |submitter| %>
+                    <% Array.wrap(submitter.values[field['uuid']]).each do |uuid| %>
+                      <% attachment = ActiveStorage::Attachment.find_by(uuid:) %>
+                      <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                        <div class="flex w-0 flex-1 items-center">
+                          <%= svg_icon('paperclip', class: 'h-5 w-5 flex-shrink-0 text-gray-300') %>
+                          <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                            <span class="truncate font-medium">
+                              <%= attachment.filename %>
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <%= link_to 'Download', attachment.url, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
-                      </div>
-                    </li>
+                        <div class="ml-4 flex-shrink-0">
+                          <%= link_to 'Download', attachment.url, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                        </div>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
               <% else %>
-                <%= @submission.values[field['uuid']] %>
+                <% @submission.submitters.each do |submitter| %>
+                  <%= submitter.values[field['uuid']] %>
+                <% end %>
               <% end %>
             </dt>
           </div>

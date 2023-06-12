@@ -7,7 +7,8 @@ window.customElements.define('submission-form', class extends HTMLElement {
     this.appElem = document.createElement('div')
 
     this.app = createApp(Form, {
-      submissionSlug: this.dataset.submissionSlug,
+      submitterSlug: this.dataset.submitterSlug,
+      submitterUuid: this.dataset.submitterUuid,
       authenticityToken: this.dataset.authenticityToken,
       values: reactive(JSON.parse(this.dataset.values)),
       attachments: reactive(JSON.parse(this.dataset.attachments)),

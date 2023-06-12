@@ -8,25 +8,27 @@ class StartFormController < ApplicationController
   before_action :load_template
 
   def show
-    @submission = @template.submissions.new
+    @submitter = @template.submissions.new.submitters.new(uuid: @template.submitters.first['uuid'])
   end
 
   def update
-    @submission = @template.submissions.find_or_initialize_by(
-      deleted_at: nil, **submission_params
-    )
+    @submitter = Submitter.where(submission: @template.submissions.where(submission: { deleted_at: nil }))
+                          .find_or_initialize_by(**submitter_params)
 
-    if @submission.completed_at?
+    if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submission_params[:email])
     else
-      @submission.assign_attributes(
+      @submitter.assign_attributes(
+        uuid: @template.submitters.first['uuid'],
         opened_at: Time.current,
         ip: request.remote_ip,
         ua: request.user_agent
       )
 
-      if @submission.save
-        redirect_to submit_form_path(@submission.slug)
+      @submitter.build_submission(template: @template)
+
+      if @submitter.save
+        redirect_to submit_form_path(@submitter.slug)
       else
         render :show
       end
@@ -34,13 +36,13 @@ class StartFormController < ApplicationController
   end
 
   def completed
-    @submission = @template.submissions.find_by(email: params[:email])
+    @submitter = Submitter.where(submission: @template.submitters).find_by(email: params[:email])
   end
 
   private
 
-  def submission_params
-    params.require(:submission).permit(:email)
+  def submitter_params
+    params.require(:submitter).permit(:email)
   end
 
   def load_template

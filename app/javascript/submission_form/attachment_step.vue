@@ -33,7 +33,7 @@
     </template>
     <FileDropzone
       :message="'Attachments'"
-      :submission-slug="submissionSlug"
+      :submitter-slug="submitterSlug"
       @upload="onUpload"
     />
   </div>
@@ -52,7 +52,7 @@ export default {
       type: Object,
       required: true
     },
-    submissionSlug: {
+    submitterSlug: {
       type: String,
       required: true
     },

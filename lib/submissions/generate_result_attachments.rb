@@ -8,19 +8,18 @@ module Submissions
     module_function
 
     # rubocop:disable Metrics
-    def call(submission)
-      cert = submission.template.account.encrypted_configs
-                       .find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
+    def call(submitter)
+      template = submitter.submission.template
+
+      cert = submitter.submission.template.account.encrypted_configs
+                      .find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
 
       zip_file = Tempfile.new
       zip_stream = Zip::ZipOutputStream.open(zip_file)
 
-      pdfs_index =
-        submission.template.documents.to_h do |attachment|
-          [attachment.uuid, HexaPDF::Document.new(io: StringIO.new(attachment.download))]
-        end
+      pdfs_index = build_pdfs_index(submitter)
 
-      submission.template.fields.each do |field|
+      template.fields.each do |field|
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
@@ -29,7 +28,7 @@ module Submissions
           width = page.box.width
           height = page.box.height
 
-          value = submission.values[field['uuid']]
+          value = submitter.values[field['uuid']]
 
           canvas = page.canvas(type: :overlay)
 
@@ -88,7 +87,8 @@ module Submissions
             end
           when 'date'
             canvas.font(FONT_NAME, size: FONT_SIZE)
-            canvas.text(I18n.l(Date.parse(value)), at: [area['x'] * width, height - ((area['y'] * height) + FONT_SIZE)])
+            canvas.text(I18n.l(Date.parse(value)),
+                        at: [area['x'] * width, height - ((area['y'] * height) + FONT_SIZE)])
           else
             canvas.font(FONT_NAME, size: FONT_SIZE)
             canvas.text(value.to_s, at: [area['x'] * width, height - ((area['y'] * height) + FONT_SIZE)])
@@ -96,14 +96,14 @@ module Submissions
         end
       end
 
-      submission.template.schema.map do |item|
-        document = submission.template.documents.find { |a| a.uuid == item['attachment_uuid'] }
+      template.schema.map do |item|
+        template.documents.find { |a| a.uuid == item['attachment_uuid'] }
 
         io = StringIO.new
 
         pdf = pdfs_index[item['attachment_uuid']]
 
-        pdf.sign(io, reason: "Signed by #{submission.email}",
+        pdf.sign(io, reason: "Signed by #{submitter.email}",
                      # doc_mdp_permissions: :no_changes,
                      certificate: OpenSSL::X509::Certificate.new(cert['cert']),
                      key: OpenSSL::PKey::RSA.new(cert['key']),
@@ -113,13 +113,33 @@ module Submissions
         zip_stream.put_next_entry("#{item['name']}.pdf")
         zip_stream.write(io.string)
 
-        submission.documents.attach(io: StringIO.new(io.string), filename: document.filename)
+        ActiveStorage::Attachment.create!(
+          uuid: item['attachment_uuid'],
+          blob: ActiveStorage::Blob.create_and_upload!(
+            io: StringIO.new(io.string), filename: "#{item['name']}.pdf"
+          ),
+          name: 'documents',
+          record: submitter
+        )
       end
 
       zip_stream.close
 
-      submission.archive.attach(io: zip_file, filename: "#{submission.template.name}.zip")
+      submitter.archive.attach(io: zip_file, filename: "#{template.name}.zip")
     end
     # rubocop:enable Metrics
+
+    def build_pdfs_index(submitter)
+      latest_submitter = submitter.submission.submitters
+                                  .select { |e| e.id != submitter.id && e.completed_at? }
+                                  .max_by(&:completed_at)
+
+      documents   = latest_submitter&.documents.to_a.presence
+      documents ||= submitter.submission.template.documents
+
+      documents.to_h do |attachment|
+        [attachment.uuid, HexaPDF::Document.new(io: StringIO.new(attachment.download))]
+      end
+    end
   end
 end

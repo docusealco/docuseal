@@ -18,7 +18,7 @@
     >
     <FileDropzone
       :message="'Image'"
-      :submission-slug="submissionSlug"
+      :submitter-slug="submitterSlug"
       :accept="'image/*'"
       @upload="onImageUpload"
     />
@@ -37,7 +37,7 @@ export default {
       type: Object,
       required: true
     },
-    submissionSlug: {
+    submitterSlug: {
       type: String,
       required: true
     },

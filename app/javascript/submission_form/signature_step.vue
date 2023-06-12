@@ -39,7 +39,7 @@ export default {
       type: Object,
       required: true
     },
-    submissionSlug: {
+    submitterSlug: {
       type: String,
       required: true
     },
@@ -81,7 +81,7 @@ export default {
             fetch('/api/attachments', {
               method: 'POST',
               body: JSON.stringify({
-                submission_slug: this.submissionSlug,
+                submitter_slug: this.submitterSlug,
                 blob_signed_id: data.signed_id,
                 name: 'attachments'
               }),

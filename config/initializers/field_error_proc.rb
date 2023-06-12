@@ -10,10 +10,16 @@ ActionView::Base.field_error_proc = proc do |html_tag, instance|
 
   parsed_html_tag = Nokogiri::HTML::DocumentFragment.parse(html_tag)
   parsed_html_tag.children.add_class 'input-error'
+  # rubocop:disable Rails/OutputSafety
   html_tag = parsed_html_tag.to_s.html_safe
+  # rubocop:enable Rails/OutputSafety
 
   result = html_tag
-  result += ApplicationController.helpers.tag.label(ApplicationController.render(partial: 'shared/field_error', locals: { message: "#{field_name} #{errors}" }), class: 'label') if errors.present?
+
+  if errors.present?
+    result +=
+      ApplicationController.render(partial: 'shared/field_error', locals: { message: "#{field_name} #{errors}" })
+  end
 
   result
 end

@@ -34,11 +34,11 @@ Rails.application.routes.draw do
     resources :submissions, only: %i[index new create]
   end
 
-  resources :start_form, only: %i[show update], path: 'f', param: 'slug' do
+  resources :start_form, only: %i[show update], path: 't', param: 'slug' do
     get :completed
   end
 
-  resources :submit_form, only: %i[show update], path: 'l', param: 'slug' do
+  resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
     get :completed
   end
 
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     get :success, on: :collection
   end
 
-  resources :submissions, only: %i[], param: 'slug' do
+  resources :submitters, only: %i[], param: 'slug' do
     resources :download, only: %i[index], controller: 'submissions_download'
     resources :debug, only: %i[index], controller: 'submissions_debug'
   end

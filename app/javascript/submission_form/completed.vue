@@ -26,7 +26,7 @@
 export default {
   name: 'FormCompleted',
   props: {
-    submissionSlug: {
+    submitterSlug: {
       type: String,
       required: true
     }
@@ -41,7 +41,7 @@ export default {
     sendCopyToEmail () {
       this.isSendingCopy = true
 
-      fetch(`/send_submission_email.json?submission_slug=${this.submissionSlug}`, {
+      fetch(`/send_submission_email.json?submitter_slug=${this.submitterSlug}`, {
         method: 'POST'
       }).finally(() => {
         this.isSendingCopy = false
@@ -50,7 +50,7 @@ export default {
     download () {
       this.isDownloading = true
 
-      fetch(`/submissions/${this.submissionSlug}/download`).then(async (response) => {
+      fetch(`/submitters/${this.submitterSlug}/download`).then(async (response) => {
         const blob = new Blob([await response.text()], { type: `${response.headers.get('content-type')};charset=utf-8;` })
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')

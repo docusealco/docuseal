@@ -39,6 +39,12 @@ Metrics/PerceivedComplexity:
 Metrics/AbcSize:
   Max: 35
 
+Metrics/ModuleLength:
+  Max: 500
+
+Metrics/ClassLength:
+  Max: 500
+
 RSpec/NestedGroups:
   Max: 6
 

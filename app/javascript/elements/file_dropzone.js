@@ -62,7 +62,7 @@ export default actionable(targetable(class extends HTMLElement {
           body: JSON.stringify({
             name: this.dataset.name,
             blob_signed_id: blob.signed_id,
-            submission_slug: this.dataset.submissionSlug
+            submitter_slug: this.dataset.submitterSlug
           }),
           headers: { 'Content-Type': 'application/json' }
         }).then(resp => resp.json()).then((data) => {

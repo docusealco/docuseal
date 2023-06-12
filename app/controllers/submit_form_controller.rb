@@ -6,24 +6,25 @@ class SubmitFormController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    @submission = Submission.preload(template: { documents_attachments: { preview_images_attachments: :blob } })
-                            .find_by!(slug: params[:slug])
+    @submitter =
+      Submitter.preload(submission: { template: { documents_attachments: { preview_images_attachments: :blob } } })
+               .find_by!(slug: params[:slug])
 
-    return redirect_to submit_form_completed_path(@submission.slug) if @submission.completed_at?
+    return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
   end
 
   def update
-    submission = Submission.find_by!(slug: params[:slug])
-    submission.values.merge!(normalized_values)
-    submission.completed_at = Time.current if params[:completed] == 'true'
+    submitter = Submitter.find_by!(slug: params[:slug])
+    submitter.values.merge!(normalized_values)
+    submitter.completed_at = Time.current if params[:completed] == 'true'
 
-    submission.save
+    submitter.save
 
     head :ok
   end
 
   def completed
-    @submission = Submission.find_by!(slug: params[:submit_form_slug])
+    @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
   end
 
   private

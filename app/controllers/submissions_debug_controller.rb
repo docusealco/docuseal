@@ -6,16 +6,16 @@ class SubmissionsDebugController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @submission = Submission.preload({ attachments_attachments: :blob },
-                                     template: { documents_attachments: :blob })
-                            .find_by(slug: params[:submission_slug])
+    @submitter = Submitter.preload({ attachments_attachments: :blob },
+                                   submission: { template: { documents_attachments: :blob } })
+                          .find_by(slug: params[:submitter_slug])
 
     respond_to do |f|
       f.html do
         render 'submit_template/show'
       end
       f.pdf do
-        Submissions::GenerateResultAttachments.call(@submission)
+        Submissions::GenerateResultAttachments.call(@submitter.submission)
 
         send_data ActiveStorage::Attachment.where(name: :documents).last.download,
                   filename: 'debug.pdf',

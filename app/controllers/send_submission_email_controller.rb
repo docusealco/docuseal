@@ -9,14 +9,15 @@ class SendSubmissionEmailController < ApplicationController
   def success; end
 
   def create
-    @submission =
+    @submitter =
       if params[:template_slug]
-        Submission.joins(:template).find_by!(email: params[:email], template: { slug: params[:template_slug] })
+        Submitter.joins(submission: :template).find_by!(email: params[:email],
+                                                        template: { slug: params[:template_slug] })
       else
-        Submission.find_by!(slug: params[:submission_slug])
+        Submitter.find_by!(slug: params[:submitter_slug])
       end
 
-    SubmissionMailer.copy_to_submitter(@submission).deliver_later!
+    SubmitterMailer.copy_to_submitter(@submitter).deliver_later!
 
     respond_to do |f|
       f.html { redirect_to success_send_submission_email_index_path }

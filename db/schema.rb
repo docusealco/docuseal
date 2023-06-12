@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,21 +61,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
   end
 
   create_table "submissions", force: :cascade do |t|
+    t.bigint "template_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id"], name: "index_submissions_on_template_id"
+  end
+
+  create_table "submitters", force: :cascade do |t|
+    t.bigint "submission_id", null: false
+    t.string "uuid", null: false
     t.string "email", null: false
     t.string "slug", null: false
-    t.bigint "template_id", null: false
     t.string "values", null: false
     t.string "ua"
     t.string "ip"
     t.datetime "sent_at"
     t.datetime "opened_at"
     t.datetime "completed_at"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_submissions_on_email"
-    t.index ["slug"], name: "index_submissions_on_slug", unique: true
-    t.index ["template_id"], name: "index_submissions_on_template_id"
+    t.index ["email"], name: "index_submitters_on_email"
+    t.index ["slug"], name: "index_submitters_on_slug", unique: true
+    t.index ["submission_id"], name: "index_submitters_on_submission_id"
   end
 
   create_table "templates", force: :cascade do |t|
@@ -125,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_144036) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "encrypted_configs", "accounts"
   add_foreign_key "submissions", "templates"
+  add_foreign_key "submitters", "submissions"
   add_foreign_key "templates", "accounts"
   add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "users", "accounts"
