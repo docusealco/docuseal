@@ -34,7 +34,7 @@ module Submissions
 
           case field['type']
           when 'image', 'signature'
-            attachment = submission.attachments.find { |a| a.uuid == value }
+            attachment = submitter.attachments.find { |a| a.uuid == value }
             io = StringIO.new(attachment.download)
 
             Vips::Image.new_from_buffer(io.read, '')
@@ -49,7 +49,7 @@ module Submissions
                              height: attachment.metadata['height'] * scale)
           when 'file'
             Array.wrap(value).each_with_index do |uuid, index|
-              attachment = submission.attachments.find { |a| a.uuid == uuid }
+              attachment = submitter.attachments.find { |a| a.uuid == uuid }
 
               canvas.image(PdfIcons.paperclip_io,
                            at: [area['x'] * width,

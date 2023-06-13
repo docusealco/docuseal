@@ -6,6 +6,7 @@ module.exports = {
     './app/javascript/submission_form/**/*.vue',
     './app/views/submit_form/**/*.erb',
     './app/views/start_form/**/*.erb',
+    './app/views/shared/_button_title.html.erb',
     './app/views/send_submission_copy/**/*.erb'
   ]
 }

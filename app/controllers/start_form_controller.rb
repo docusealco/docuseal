@@ -12,7 +12,7 @@ class StartFormController < ApplicationController
   end
 
   def update
-    @submitter = Submitter.where(submission: @template.submissions.where(submission: { deleted_at: nil }))
+    @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
                           .find_or_initialize_by(**submitter_params)
 
     if @submitter.completed_at?
