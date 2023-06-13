@@ -30,3 +30,30 @@ button .enabled {
 button[disabled] .enabled {
   display: none;
 }
+
+button .disabled {
+  display: none;
+}
+
+button[disabled] .disabled {
+  display: initial;
+}
+
+button .enabled {
+  display: initial;
+}
+
+button[disabled] .enabled {
+  display: none;
+}
+
+.btn {
+  @apply no-animation;
+}
+
+.base-input {
+  @apply input input-bordered bg-white;
+}
+.base-button {
+  @apply btn btn-neutral text-white text-base;
+}

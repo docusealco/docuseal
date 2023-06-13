@@ -1,9 +1,44 @@
-You have been invited to submit template <%= @template.name %>
-<%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put do |f| %>
-  Provide youe email to start
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
+<div class="max-w-xl mx-auto px-2 mt-12">
+  <div class="card bg-base-200">
+    <div class="card-body">
+      <div class="space-y-4 mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-center">
+            <div class="flex items-center">
+              <div class="mr-3">
+                <%= render 'shared/logo', width: "50px", height: "50px"%>
+              </div>
+              <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
+            </div>
+          </div>
+          <h2 class="text-xl font-semibold text-center">You have been invited to submit the document</h2>
+          <div class="flex items-center justify-center bg-neutral rounded-xl p-4 md:justify-start">
+            <div class="flex items-center">
+              <div class="mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" />
+                  <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z" />
+                  <path d="M16 7h4" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-gray-100 font-bold mb-1"><%= @template.name %></h3>
+                <p class="text-sm text-gray-300">Invited by <%= @template.account.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
+          <div class="form-control !mt-0">
+            <%= f.label :email, class: 'label' %>
+            <%= f.email_field :email, required: true, class: 'base-input', placeholder: 'Provide youe email to start' %>
+          </div>
+          <div class="form-control">
+            <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing'), class: 'base-button' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing') %>
-<% end %>
+</div>

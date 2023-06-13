@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="docuseal" class="h-full">
   <head>
     <title>
       Docuseal
@@ -11,7 +11,9 @@
     <%= stylesheet_pack_tag 'form', media: 'all' %>
     <%= yield :head %>
   </head>
-  <body class="font-sans antialiased font-normal leading-normal bg-white text-gray-700">
-    <%= yield %>
+  <body class="h-full">
+    <div class="max-w-6xl mx-auto px-4 md:px-2">
+      <%= yield %>
+    </div>
   </body>
 </html>
