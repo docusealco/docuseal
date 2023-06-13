@@ -1,39 +1,35 @@
-<div class="max-w-xl mx-auto px-2 mt-12">
-  <div class="card bg-base-200">
-    <div class="card-body">
-      <div class="space-y-4 mx-auto">
-        <div class="space-y-4">
-          <div class="flex items-center justify-center">
-            <div class="flex items-center">
-              <div class="mr-3">
-                <%= render 'shared/logo', width: "50px", height: "50px"%>
-              </div>
-              <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
-            </div>
+<div class="max-w-md mx-auto px-2 mt-12">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= render 'shared/logo', width: "50px", height: "50px"%>
           </div>
-          <div class="flex items-center justify-center bg-base-300 rounded-xl p-4 md:justify-start mb-4">
-            <div class="flex items-center">
-              <div class="mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-700 " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" />
-                  <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z" />
-                  <path d="M16 7h4" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg text-gray-700 font-bold mb-1">Document signed</h3>
-                <p class="text-sm text-gray-500">Signed on <%= l(@submission.completed_at.to_date, format: :short) %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submission_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
-          <div class="divider">OR</div>
-          <%= button_to button_title(title: 'Download documents', disabled_with: 'Downloading', icon: svg_icon('download', class: 'w-6 h-6')), submission_download_index_path(@submitter.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+          <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
         </div>
       </div>
+      <div class="flex items-center justify-center bg-base-300 rounded-xl p-4 md:justify-start mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-700 " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" />
+              <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z" />
+              <path d="M16 7h4" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg text-gray-700 font-bold mb-1">Document signed</h3>
+            <p class="text-sm text-gray-500">Signed on <%= l(@submitter.completed_at.to_date, format: :short) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+      <div class="divider">OR</div>
+      <%= button_to button_title(title: 'Download documents', disabled_with: 'Downloading', icon: svg_icon('download', class: 'w-6 h-6')), submitter_download_index_path(@submitter.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
     </div>
   </div>
 </div>
