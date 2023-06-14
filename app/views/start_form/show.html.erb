@@ -12,7 +12,7 @@
             </div>
           </div>
           <h2 class="text-xl font-semibold text-center">You have been invited to submit the document</h2>
-          <div class="flex items-center justify-center bg-neutral rounded-xl p-4 md:justify-start">
+          <div class="flex items-center bg-neutral rounded-xl p-4">
             <div class="flex items-center">
               <div class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -32,7 +32,7 @@
         <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
           <div class="form-control !mt-0">
             <%= f.label :email, class: 'label' %>
-            <%= f.email_field :email, required: true, class: 'base-input', placeholder: 'Provide youe email to start' %>
+            <%= f.email_field :email, required: true, class: 'base-input', placeholder: 'Provide your email to start' %>
           </div>
           <div class="form-control">
             <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing'), class: 'base-button' %>

@@ -9,7 +9,7 @@
           <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
         </div>
       </div>
-      <div class="flex items-center justify-center bg-base-300 rounded-xl p-4 md:justify-start mb-4">
+      <div class="flex items-center bg-base-300 rounded-xl p-4 mb-4">
         <div class="flex items-center">
           <div class="mr-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-700 " width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -20,8 +20,8 @@
             </svg>
           </div>
           <div>
-            <h3 class="text-lg text-gray-700 font-bold mb-1">Document signed</h3>
-            <p class="text-sm text-gray-500">Signed on <%= l(@submitter.completed_at.to_date, format: :short) %></p>
+            <h3 class="text-lg text-gray-700 font-bold mb-1"><%= @submitter.submission.template.name %></h3>
+            <p class="text-sm text-gray-500">Signed on <%= l(@submitter.completed_at.to_date, format: :long) %></p>
           </div>
         </div>
       </div>
