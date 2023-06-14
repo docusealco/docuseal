@@ -1,23 +1,33 @@
 <template>
-  <div>
-    <img
-      v-if="modelValue"
-      class="w-80"
-      :src="attachmentsIndex[modelValue].url"
-    >
-    <button
-      v-if="modelValue"
-      @click.prevent="remove"
-    >
-      Remove
-    </button>
+  <div v-if="modelValue">
+    <div class="flex justify-between items-center w-full mb-2">
+      <label
+        class="label text-2xl"
+      >{{ field.name || 'Image' }}</label>
+      <button
+        class="btn btn-outline btn-sm"
+        @click.prevent="remove"
+      >
+        <IconReload :width="16" />
+        Reupload
+      </button>
+    </div>
+    <div>
+      <img
+        :src="attachmentsIndex[modelValue].url"
+        class="h-52 border border-base-300 rounded mx-auto"
+      >
+    </div>
     <input
       :value="modelValue"
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
+  </div>
+  <div>
     <FileDropzone
-      :message="'Image'"
+      v-if="!modelValue"
+      :message="`Upload ${field.name || 'Image'}`"
       :submitter-slug="submitterSlug"
       :accept="'image/*'"
       @upload="onImageUpload"
@@ -27,10 +37,13 @@
 
 <script>
 import FileDropzone from './dropzone'
+import { IconReload } from '@tabler/icons-vue'
+
 export default {
   name: 'ImageStep',
   components: {
-    FileDropzone
+    FileDropzone,
+    IconReload
   },
   props: {
     field: {

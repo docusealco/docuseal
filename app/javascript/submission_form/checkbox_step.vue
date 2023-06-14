@@ -1,22 +1,36 @@
 <template>
-  <div
-    v-for="(option, index) in field.options"
-    :key="index"
-  >
-    <label :for="field.uuid + option">
-      <input
-        :id="field.uuid + option"
-        :ref="setInputRef"
-        type="checkbox"
-        :name="`values[${field.uuid}][]`"
-        :value="option"
-        :checked="modelValue.includes(option)"
-        @change="onChange"
+  <label
+    v-if="field.name"
+    :for="field.uuid"
+    class="label text-2xl mb-2"
+  >{{ field.name }}</label>
+  <div class="space-y-3.5">
+    <div
+      v-for="(option, index) in field.options"
+      :key="index"
+    >
+      <label
+        :for="field.uuid + option"
+        class="flex items-center space-x-3"
       >
-      {{ option }}
-    </label>
+        <input
+          :id="field.uuid + option"
+          :ref="setInputRef"
+          type="checkbox"
+          :name="`values[${field.uuid}][]`"
+          :value="option"
+          class="base-checkbox !h-7 !w-7"
+          :checked="modelValue.includes(option)"
+          @change="onChange"
+        >
+        <span class="text-xl">
+          {{ option }}
+        </span>
+      </label>
+    </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'SheckboxStep',

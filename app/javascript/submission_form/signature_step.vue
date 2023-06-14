@@ -1,5 +1,26 @@
 <template>
   <div>
+    <div class="flex justify-between items-center w-full mb-2">
+      <label
+        class="label text-2xl"
+      >{{ field.name || 'Signature' }}</label>
+      <button
+        v-if="modelValue"
+        class="btn btn-outline btn-sm"
+        @click.prevent="remove"
+      >
+        <IconReload :width="16" />
+        Redraw
+      </button>
+      <button
+        v-else
+        class="btn btn-outline btn-sm"
+        @click.prevent="clear"
+      >
+        <IconReload :width="16" />
+        Clear
+      </button>
+    </div>
     <input
       :value="modelValue"
       type="hidden"
@@ -8,32 +29,26 @@
     <img
       v-if="modelValue"
       :src="attachmentsIndex[modelValue].url"
+      class="w-full bg-white border border-base-300 rounded"
     >
     <canvas
       v-show="!modelValue"
       ref="canvas"
+      class="bg-white border border-base-300 rounded"
     />
-    <button
-      v-if="modelValue"
-      @click.prevent="remove"
-    >
-      Redraw
-    </button>
-    <button
-      v-else
-      @click.prevent="clear"
-    >
-      Clear
-    </button>
   </div>
 </template>
 
 <script>
 import SignaturePad from 'signature_pad'
 import { DirectUpload } from '@rails/activestorage'
+import { IconReload } from '@tabler/icons-vue'
 
 export default {
   name: 'SignatureStep',
+  components: {
+    IconReload
+  },
   props: {
     field: {
       type: Object,
@@ -56,6 +71,9 @@ export default {
   },
   emits: ['attached', 'update:model-value'],
   mounted () {
+    this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
+    this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+
     this.pad = new SignaturePad(this.$refs.canvas)
   },
   methods: {

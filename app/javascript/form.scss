@@ -31,20 +31,8 @@ button[disabled] .enabled {
   display: none;
 }
 
-button .disabled {
-  display: none;
-}
-
-button[disabled] .disabled {
-  display: initial;
-}
-
-button .enabled {
-  display: initial;
-}
-
-button[disabled] .enabled {
-  display: none;
+select:required:invalid {
+  @apply text-gray-300;
 }
 
 .btn {
@@ -54,6 +42,15 @@ button[disabled] .enabled {
 .base-input {
   @apply input input-bordered bg-white;
 }
+
 .base-button {
   @apply btn btn-neutral text-white text-base;
+}
+
+.base-checkbox {
+  @apply checkbox rounded bg-white checkbox-sm;
+}
+
+.base-radio {
+  @apply radio bg-white radio-sm;
 }

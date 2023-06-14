@@ -1,33 +1,52 @@
 <template>
   <div
-    class="flex h-20 w-full"
+    class="flex h-32 w-full"
     @dragover.prevent
     @drop.prevent="onDropFiles"
   >
     <label
       :for="inputId"
-      class="w-full"
+      class="w-full relative bg-base-300 hover:bg-base-200 rounded-md border border-base-content border-dashed"
     >
-      Upload
-      {{ message }}
+      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+        <div class="flex flex-col items-center">
+          <IconCloudUpload
+            :width="30"
+            :height="30"
+          />
+          <div
+            v-if="message"
+            class="font-medium mb-1"
+          >
+            {{ message }}
+          </div>
+          <div class="text-xs">
+            <span class="font-medium">Click to upload</span> or drag and drop
+          </div>
+        </div>
+      </div>
+      <input
+        :id="inputId"
+        ref="input"
+        :multiple="multiple"
+        :accept="accept"
+        type="file"
+        class="hidden"
+        @change="onSelectFiles"
+      >
     </label>
-    <input
-      :id="inputId"
-      ref="input"
-      :multiple="multiple"
-      :accept="accept"
-      type="file"
-      class="hidden"
-      @change="onSelectFiles"
-    >
   </div>
 </template>
 
 <script>
 import { DirectUpload } from '@rails/activestorage'
+import { IconCloudUpload } from '@tabler/icons-vue'
 
 export default {
   name: 'FileDropzone',
+  components: {
+    IconCloudUpload
+  },
   props: {
     message: {
       type: String,
@@ -62,7 +81,9 @@ export default {
       e.preventDefault()
 
       this.uploadFiles(this.$refs.input.files).then(() => {
-        this.$refs.input.value = ''
+        if (this.$refs.input) {
+          this.$refs.input.value = ''
+        }
       })
     },
     async uploadFiles (files) {

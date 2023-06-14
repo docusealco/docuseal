@@ -1,29 +1,42 @@
 <template>
   <div>
-    <template v-if="modelValue.length">
+    <div v-if="modelValue.length">
       <div
         v-for="(val, index) in modelValue"
         :key="index"
+        class="flex mb-2"
       >
-        <a
-          v-if="val"
-          :href="attachmentsIndex[val].url"
-        >
-          {{ attachmentsIndex[val].filename }}
-        </a>
         <input
           :value="val"
           type="hidden"
           :name="`values[${field.uuid}][]`"
         >
+        <a
+          v-if="val"
+          class="flex items-center space-x-1.5 w-full"
+          :href="attachmentsIndex[val].url"
+          target="_blank"
+        >
+          <IconPaperclip
+            :width="16"
+            class="flex-none"
+            :heigh="16"
+          />
+          <span>
+            {{ attachmentsIndex[val].filename }}
+          </span>
+        </a>
         <button
           v-if="modelValue"
           @click.prevent="removeAttachment(val)"
         >
-          Remove
+          <IconTrashX
+            :width="18"
+            :heigh="19"
+          />
         </button>
       </div>
-    </template>
+    </div>
     <template v-else>
       <input
         value=""
@@ -32,7 +45,7 @@
       >
     </template>
     <FileDropzone
-      :message="'Attachments'"
+      :message="`Upload ${field.name || 'Attachments'}`"
       :submitter-slug="submitterSlug"
       @upload="onUpload"
     />
@@ -41,11 +54,14 @@
 
 <script>
 import FileDropzone from './dropzone'
+import { IconPaperclip, IconTrashX } from '@tabler/icons-vue'
 
 export default {
   name: 'AttachmentStep',
   components: {
-    FileDropzone
+    FileDropzone,
+    IconPaperclip,
+    IconTrashX
   },
   props: {
     field: {

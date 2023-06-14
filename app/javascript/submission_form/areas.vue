@@ -10,10 +10,11 @@
       <Teleport :to="`#page-${area.attachment_uuid}-${area.page}`">
         <FieldArea
           :ref="setAreaRef"
+          v-model="values[field.uuid]"
           :field="field"
           :area="area"
+          :is-active="currentField === field"
           :attachments-index="attachmentsIndex"
-          :value="values[field.uuid]"
           @click="$emit('focus-field', field)"
         />
       </Teleport>
@@ -44,6 +45,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    currentField: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   emits: ['focus-field'],
@@ -59,7 +65,7 @@ export default {
     scrollIntoField (field) {
       this.areaRefs.find((area) => {
         if (area.field === field) {
-          area.$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          area.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
           return true
         } else {

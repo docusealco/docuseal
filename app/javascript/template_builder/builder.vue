@@ -291,6 +291,10 @@ export default {
         required: true
       }
 
+      if (this.dragFieldType === 'select') {
+        field.options = ['']
+      }
+
       const fieldArea = {
         x: (area.x - 6) / area.maskW,
         y: area.y / area.maskH,
