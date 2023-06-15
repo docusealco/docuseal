@@ -1,11 +1,13 @@
 <template>
-  <FieldSubmitter
-    :model-value="selectedSubmitter.uuid"
-    class="w-full"
-    :submitters="submitters"
-    @remove="removeSubmitter"
-    @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
-  />
+  <div class="sticky -top-1 bg-base-100 pt-1 -mt-1 z-10">
+    <FieldSubmitter
+      :model-value="selectedSubmitter.uuid"
+      class="w-full bg-base-100"
+      :submitters="submitters"
+      @remove="removeSubmitter"
+      @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
+    />
+  </div>
   <div class="mb-1 mt-2">
     <Field
       v-for="field in submitterFields"
@@ -19,7 +21,7 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div class="grid grid-cols-3 gap-1">
+  <div class="grid grid-cols-3 gap-1 pb-2">
     <button
       v-for="(icon, type) in fieldIcons"
       :key="type"
@@ -145,7 +147,7 @@ export default {
         type
       }
 
-      if (['select', 'checkbox', 'radio'].includes(type)) {
+      if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = ['']
       }
 

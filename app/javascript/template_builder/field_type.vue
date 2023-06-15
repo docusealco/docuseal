@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot } from '@tabler/icons-vue'
+import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -77,6 +77,7 @@ export default {
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
+        multiple: IconChecks,
         radio: IconCircleDot
       }
     }

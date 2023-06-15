@@ -182,7 +182,9 @@ export default {
     defaultName () {
       const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
 
-      return `${this.$t(this.field.type)} Field ${typeIndex + 1}`
+      const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+
+      return `${this.$t(this.field.type)} ${suffix} ${typeIndex + 1}`
     },
     areas () {
       return this.field.areas || []
@@ -203,11 +205,11 @@ export default {
       document.activeElement.blur()
     },
     maybeUpdateOptions () {
-      if (!['radio', 'checkbox', 'select'].includes(this.field.type)) {
+      if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }
 
-      if (this.field.type === 'select') {
+      if (['radio', 'multiple', 'select'].includes(this.field.type)) {
         this.field.options ||= ['']
       }
     },

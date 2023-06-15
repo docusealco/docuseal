@@ -1,23 +1,31 @@
 <template>
   <template
-    v-for="field in fields"
-    :key="field.uuid"
+    v-for="step in steps"
+    :key="step[0].uuid"
   >
     <template
-      v-for="(area, index) in field.areas"
-      :key="index"
+      v-for="(field, fieldIndex) in step"
+      :key="field.uuid"
     >
-      <Teleport :to="`#page-${area.attachment_uuid}-${area.page}`">
-        <FieldArea
-          :ref="setAreaRef"
-          v-model="values[field.uuid]"
-          :field="field"
-          :area="area"
-          :is-active="currentField === field"
-          :attachments-index="attachmentsIndex"
-          @click="$emit('focus-field', field)"
-        />
-      </Teleport>
+      <template
+        v-for="(area, areaIndex) in field.areas"
+        :key="areaIndex"
+      >
+        <Teleport :to="`#page-${area.attachment_uuid}-${area.page}`">
+          <FieldArea
+            :ref="setAreaRef"
+            v-model="values[field.uuid]"
+            :field="field"
+            :values="values"
+            :area="area"
+            :field-index="fieldIndex"
+            :step="step"
+            :is-active="currentStep === step"
+            :attachments-index="attachmentsIndex"
+            @click="$emit('focus-step', step)"
+          />
+        </Teleport>
+      </template>
     </template>
   </template>
 </template>
@@ -31,7 +39,7 @@ export default {
     FieldArea
   },
   props: {
-    fields: {
+    steps: {
       type: Array,
       required: false,
       default: () => []
@@ -46,13 +54,13 @@ export default {
       required: false,
       default: () => ({})
     },
-    currentField: {
-      type: Object,
+    currentStep: {
+      type: Array,
       required: false,
-      default: () => ({})
+      default: () => []
     }
   },
-  emits: ['focus-field'],
+  emits: ['focus-step'],
   data () {
     return {
       areaRefs: []

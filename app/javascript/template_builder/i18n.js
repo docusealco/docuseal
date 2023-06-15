@@ -6,5 +6,6 @@ export default {
   file: 'File',
   select: 'Select',
   checkbox: 'Checkbox',
+  multiple: 'Multiple',
   radio: 'Radio'
 }

@@ -291,7 +291,7 @@ export default {
         required: true
       }
 
-      if (this.dragFieldType === 'select') {
+      if (['select', 'multiple', 'radio'].includes(this.dragFieldType)) {
         field.options = ['']
       }
 
@@ -311,7 +311,7 @@ export default {
       } else if (previousField?.areas) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox', 'radio'].includes(this.dragFieldType)) {
+        if (['checkbox'].includes(this.dragFieldType)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)

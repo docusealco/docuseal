@@ -1,11 +1,11 @@
 <template>
   <div
-    class="flex cursor-pointer bg-red-100 absolute border"
+    class="flex cursor-pointer bg-red-100 absolute border text-[1.5vw] lg:text-base"
     :style="computedStyle"
-    :class="{ 'border-red-100 bg-opacity-70': !isActive, 'border-red-500 border-dashed bg-opacity-30 z-10': isActive }"
+    :class="{ 'border-red-100': !isActive, 'bg-opacity-70': !isActive && !isValue, 'border-red-500 border-dashed z-10': isActive, 'bg-opacity-30': isActive || isValue }"
   >
     <div
-      v-if="!isActive && !modelValue"
+      v-if="!isActive && !isValue && field.type !== 'checkbox'"
       class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
     >
       <span
@@ -25,6 +25,9 @@
       class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap"
     >
       {{ field.name || fieldNames[field.type] }}
+      <template v-if="field.type === 'checkbox'">
+        {{ fieldIndex + 1 }}
+      </template>
     </div>
     <div
       v-if="isActive"
@@ -33,38 +36,82 @@
     />
     <img
       v-if="field.type === 'image' && image"
-      class="object-contain"
+      class="object-contain mx-auto"
       :src="image.url"
     >
     <img
       v-else-if="field.type === 'signature' && signature"
-      class="object-contain"
+      class="object-contain mx-auto"
       :src="signature.url"
     >
-    <div v-else-if="field.type === 'attachment'">
+    <div
+      v-else-if="field.type === 'file'"
+      class="px-0.5 flex items-center"
+    >
       <a
         v-for="(attachment, index) in attachments"
         :key="index"
+        target="_blank"
         :href="attachment.url"
       >
+        <IconPaperclip
+          class="inline w-[1.5vw] h-[1.5vw] lg:w-4 lg:h-4"
+        />
         {{ attachment.filename }}
       </a>
     </div>
-    <span v-else>
-      {{ modelValue }}
-    </span>
+    <div
+      v-else-if="field.type === 'checkbox'"
+      class="w-full p-[0.2vw] flex items-center justify-center"
+    >
+      <input
+        type="checkbox"
+        :value="false"
+        class="aspect-square base-checkbox"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+        :checked="!!modelValue"
+        @click="$emit('update:model-value', !modelValue)"
+      >
+    </div>
+    <div
+      v-else
+      class="flex items-center px-0.5"
+    >
+      <span v-if="Array.isArray(modelValue)">
+        {{ modelValue.join(', ') }}
+      </span>
+      <span v-else-if="field.type === 'date'">
+        {{ formattedDate }}
+      </span>
+      <span v-else>
+        {{ modelValue }}
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot } from '@tabler/icons-vue'
+import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
+  components: {
+    IconPaperclip
+  },
   props: {
     field: {
       type: Object,
       required: true
+    },
+    step: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    values: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     modelValue: {
       type: [Array, String, Number, Object, Boolean],
@@ -75,6 +122,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    fieldIndex: {
+      type: Number,
+      required: false,
+      default: 0
     },
     attachmentsIndex: {
       type: Object,
@@ -97,8 +149,12 @@ export default {
         file: 'File',
         select: 'Select',
         checkbox: 'Checkbox',
-        radio: 'Radio'
+        radio: 'Radio',
+        multiple: 'Multiple Select'
       }
+    },
+    isValue () {
+      return this.step.some((f) => ![null, undefined, ''].includes(this.values[f.uuid]))
     },
     fieldIcons () {
       return {
@@ -109,7 +165,8 @@ export default {
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
-        radio: IconCircleDot
+        radio: IconCircleDot,
+        multiple: IconChecks
       }
     },
     image () {
@@ -126,8 +183,15 @@ export default {
         return null
       }
     },
+    formattedDate () {
+      if (this.field.type === 'date' && this.modelValue) {
+        return new Intl.DateTimeFormat({ year: 'numeric', month: 'numeric', day: 'numeric' }).format(new Date(this.modelValue))
+      } else {
+        return ''
+      }
+    },
     attachments () {
-      if (this.field.type === 'attachment') {
+      if (this.field.type === 'file') {
         return (this.modelValue || []).map((uuid) => this.attachmentsIndex[uuid])
       } else {
         return []

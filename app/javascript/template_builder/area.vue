@@ -35,7 +35,7 @@
         @click="selectedAreaRef.value = area"
       />
       <span
-        v-if="withName"
+        v-if="field.type !== 'checkbox' || field.name"
         ref="name"
         contenteditable
         class="pr-1 cursor-text outline-none block"
@@ -138,9 +138,6 @@ export default {
         'bg-purple-100'
       ]
     },
-    withName () {
-      return !['checkbox', 'radio'].includes(this.field.type) || this.field.options
-    },
     isSelected () {
       return this.selectedAreaRef.value === this.area
     },
@@ -169,11 +166,11 @@ export default {
       }
     },
     maybeUpdateOptions () {
-      if (!['radio', 'checkbox', 'select'].includes(this.field.type)) {
+      if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }
 
-      if (this.field.type === 'select') {
+      if (['select', 'multiple', 'radio'].includes(this.field.type)) {
         this.field.options ||= ['']
       }
     },
