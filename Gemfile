@@ -27,7 +27,6 @@ gem 'sqlite3'
 gem 'strip_attributes'
 gem 'turbo-rails'
 gem 'tzinfo-data'
-gem 'zip'
 
 group :development, :test do
   gem 'annotate'

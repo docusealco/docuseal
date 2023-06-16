@@ -47,6 +47,10 @@ select:required:invalid {
   @apply btn btn-neutral text-white text-base;
 }
 
+.white-button {
+  @apply btn btn-outline text-base bg-white border-2;
+}
+
 .base-checkbox {
   @apply checkbox rounded bg-white checkbox-sm;
 }

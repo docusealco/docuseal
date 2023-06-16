@@ -1,11 +1,11 @@
 <template>
   <div
-    class="flex cursor-pointer bg-red-100 absolute border text-[1.5vw] lg:text-base"
+    class="flex absolute text-[1.5vw] lg:text-base"
     :style="computedStyle"
-    :class="{ 'border-red-100': !isActive, 'bg-opacity-70': !isActive && !isValue, 'border-red-500 border-dashed z-10': isActive, 'bg-opacity-30': isActive || isValue }"
+    :class="{ 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
   >
     <div
-      v-if="!isActive && !isValue && field.type !== 'checkbox'"
+      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable"
       class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
     >
       <span
@@ -65,6 +65,7 @@
       class="w-full p-[0.2vw] flex items-center justify-center"
     >
       <input
+        v-if="submittable"
         type="checkbox"
         :value="false"
         class="aspect-square base-checkbox"
@@ -72,6 +73,12 @@
         :checked="!!modelValue"
         @click="$emit('update:model-value', !modelValue)"
       >
+      <component
+        :is="modelValue ? 'IconCheckbox' : 'IconSquare'"
+        v-else
+        class="aspect-square"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+      />
     </div>
     <div
       v-else
@@ -91,27 +98,29 @@
 </template>
 
 <script>
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks } from '@tabler/icons-vue'
+import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconSquare } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
   components: {
-    IconPaperclip
+    IconPaperclip,
+    IconCheckbox,
+    IconSquare
   },
   props: {
     field: {
       type: Object,
       required: true
     },
-    step: {
-      type: Array,
+    isValueSet: {
+      type: Boolean,
       required: false,
-      default: () => []
+      default: false
     },
-    values: {
-      type: Object,
+    submittable: {
+      type: Boolean,
       required: false,
-      default: () => ({})
+      default: false
     },
     modelValue: {
       type: [Array, String, Number, Object, Boolean],
@@ -152,9 +161,6 @@ export default {
         radio: 'Radio',
         multiple: 'Multiple Select'
       }
-    },
-    isValue () {
-      return this.step.some((f) => ![null, undefined, ''].includes(this.values[f.uuid]))
     },
     fieldIcons () {
       return {

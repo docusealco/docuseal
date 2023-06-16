@@ -1,4 +1,21 @@
 <template>
+  <template
+    v-for="field in otherSubmitterFields"
+    :key="field.uuid"
+  >
+    <Teleport
+      v-for="(area, index) in field.areas"
+      :key="index"
+      :to="`#page-${area.attachment_uuid}-${area.page}`"
+    >
+      <FieldArea
+        :model-value="values[field.uuid]"
+        :field="field"
+        :area="area"
+        :attachments-index="attachmentsIndex"
+      />
+    </Teleport>
+  </template>
   <FieldAreas
     ref="areas"
     :steps="stepFields"
@@ -7,206 +24,221 @@
     :current-step="currentStepFields"
     @focus-step="goToStep($event, false, true)"
   />
-  <form
-    v-if="!isCompleted"
-    ref="form"
-    :action="submitPath"
-    method="post"
-    class="md:mx-16"
-    @submit.prevent="submitStep"
-  >
-    <input
-      type="hidden"
-      name="authenticity_token"
-      :value="authenticityToken"
+  <div>
+    <form
+      v-if="!isCompleted"
+      ref="form"
+      :action="submitPath"
+      method="post"
+      class="md:mx-16"
+      @submit.prevent="submitStep"
     >
-    <input
-      v-if="currentStep === stepFields.length - 1"
-      type="hidden"
-      name="completed"
-      value="true"
-    >
-    <input
-      value="put"
-      name="_method"
-      type="hidden"
-    >
-    <div class="mt-4">
-      <div v-if="currentField.type === 'text'">
-        <label
-          v-if="currentField.name"
-          :for="currentField.uuid"
-          class="label text-2xl mb-2"
-        >{{ currentField.name }}</label>
-        <div>
-          <input
+      <input
+        type="hidden"
+        name="authenticity_token"
+        :value="authenticityToken"
+      >
+      <input
+        v-if="currentStep === stepFields.length - 1"
+        type="hidden"
+        name="completed"
+        value="true"
+      >
+      <input
+        value="put"
+        name="_method"
+        type="hidden"
+      >
+      <div class="mt-4">
+        <div v-if="currentField.type === 'text'">
+          <label
+            v-if="currentField.name"
+            :for="currentField.uuid"
+            class="label text-2xl mb-2"
+          >{{ currentField.name }}</label>
+          <div>
+            <input
+              :id="currentField.uuid"
+              v-model="values[currentField.uuid]"
+              class="base-input !text-2xl w-full"
+              :required="currentField.required"
+              placeholder="Type here..."
+              type="text"
+              :name="`values[${currentField.uuid}]`"
+              @focus="$refs.areas.scrollIntoField(currentField)"
+            >
+          </div>
+        </div>
+        <div v-else-if="currentField.type === 'date'">
+          <label
+            v-if="currentField.name"
+            :for="currentField.uuid"
+            class="label text-2xl mb-2"
+          >{{ currentField.name }}</label>
+          <div class="text-center">
+            <input
+              :id="currentField.uuid"
+              v-model="values[currentField.uuid]"
+              class="base-input !text-2xl text-center w-full"
+              :required="currentField.required"
+              type="date"
+              :name="`values[${currentField.uuid}]`"
+              @focus="$refs.areas.scrollIntoField(currentField)"
+            >
+          </div>
+        </div>
+        <div v-else-if="currentField.type === 'select'">
+          <label
+            v-if="currentField.name"
+            :for="currentField.uuid"
+            class="label text-2xl mb-2"
+          >{{ currentField.name }}</label>
+          <select
             :id="currentField.uuid"
-            v-model="values[currentField.uuid]"
-            class="base-input !text-2xl w-full"
-            :required="currentField.required"
-            placeholder="Type here..."
-            type="text"
+            :required="true"
+            class="select base-input !text-2xl w-full text-center font-normal"
             :name="`values[${currentField.uuid}]`"
+            @change="values[currentField.uuid] = $event.target.value"
             @focus="$refs.areas.scrollIntoField(currentField)"
           >
-        </div>
-      </div>
-      <div v-else-if="currentField.type === 'date'">
-        <label
-          v-if="currentField.name"
-          :for="currentField.uuid"
-          class="label text-2xl mb-2"
-        >{{ currentField.name }}</label>
-        <div class="text-center">
-          <input
-            :id="currentField.uuid"
-            v-model="values[currentField.uuid]"
-            class="base-input !text-2xl text-center w-full"
-            :required="currentField.required"
-            type="date"
-            :name="`values[${currentField.uuid}]`"
-            @focus="$refs.areas.scrollIntoField(currentField)"
-          >
-        </div>
-      </div>
-      <div v-else-if="currentField.type === 'select'">
-        <label
-          v-if="currentField.name"
-          :for="currentField.uuid"
-          class="label text-2xl mb-2"
-        >{{ currentField.name }}</label>
-        <select
-          :id="currentField.uuid"
-          :required="true"
-          class="select base-input !text-2xl w-full text-center font-normal"
-          :name="`values[${currentField.uuid}]`"
-          @change="values[currentField.uuid] = $event.target.value"
-          @focus="$refs.areas.scrollIntoField(currentField)"
-        >
-          <option
-            value=""
-            :selected="!values[currentField.uuid]"
-          >
-            Select your option
-          </option>
-          <option
-            v-for="(option, index) in currentField.options"
-            :key="index"
-            :selected="values[currentField.uuid] == option"
-            :value="option"
-          >
-            {{ option }}
-          </option>
-        </select>
-      </div>
-      <div v-else-if="currentField.type === 'radio'">
-        <label
-          v-if="currentField.name"
-          :for="currentField.uuid"
-          class="label text-2xl mb-2"
-        >{{ currentField.name }}</label>
-        <div class="flex w-full">
-          <div class="space-y-3.5 mx-auto">
-            <div
+            <option
+              value=""
+              :selected="!values[currentField.uuid]"
+            >
+              Select your option
+            </option>
+            <option
               v-for="(option, index) in currentField.options"
               :key="index"
+              :selected="values[currentField.uuid] == option"
+              :value="option"
+            >
+              {{ option }}
+            </option>
+          </select>
+        </div>
+        <div v-else-if="currentField.type === 'radio'">
+          <label
+            v-if="currentField.name"
+            :for="currentField.uuid"
+            class="label text-2xl mb-2"
+          >{{ currentField.name }}</label>
+          <div class="flex w-full">
+            <div class="space-y-3.5 mx-auto">
+              <div
+                v-for="(option, index) in currentField.options"
+                :key="index"
+              >
+                <label
+                  :for="currentField.uuid + option"
+                  class="flex items-center space-x-3"
+                >
+                  <input
+                    :id="currentField.uuid + option"
+                    v-model="values[currentField.uuid]"
+                    type="radio"
+                    class="base-radio !h-7 !w-7"
+                    :name="`values[${currentField.uuid}]`"
+                    :value="option"
+                    required
+                  >
+                  <span class="text-xl">
+                    {{ option }}
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <MultiSelectStep
+          v-else-if="currentField.type === 'multiple'"
+          v-model="values[currentField.uuid]"
+          :field="currentField"
+        />
+        <div
+          v-else-if="currentField.type === 'checkbox'"
+          class="flex w-full"
+        >
+          <input
+            type="hidden"
+            name="cast_boolean"
+            value="true"
+          >
+          <div
+            class="space-y-3.5 mx-auto"
+          >
+            <div
+              v-for="(field, index) in currentStepFields"
+              :key="field.uuid"
             >
               <label
-                :for="currentField.uuid + option"
+                :for="field.uuid"
                 class="flex items-center space-x-3"
               >
                 <input
-                  :id="currentField.uuid + option"
-                  v-model="values[currentField.uuid]"
-                  type="radio"
-                  class="base-radio !h-7 !w-7"
-                  :name="`values[${currentField.uuid}]`"
-                  :value="option"
-                  required
+                  type="hidden"
+                  :name="`values[${field.uuid}]`"
+                  :value="!!values[field.uuid]"
+                >
+                <input
+                  :id="field.uuid"
+                  type="checkbox"
+                  class="base-checkbox !h-7 !w-7"
+                  :checked="!!values[field.uuid]"
+                  @click="values[field.uuid] = !values[field.uuid]"
                 >
                 <span class="text-xl">
-                  {{ option }}
+                  {{ currentField.name || currentField.type + ' ' + (index + 1) }}
                 </span>
               </label>
             </div>
           </div>
         </div>
+        <ImageStep
+          v-else-if="currentField.type === 'image'"
+          v-model="values[currentField.uuid]"
+          :field="currentField"
+          :attachments-index="attachmentsIndex"
+          :submitter-slug="submitterSlug"
+          @attached="attachments.push($event)"
+        />
+        <SignatureStep
+          v-else-if="currentField.type === 'signature'"
+          ref="currentStep"
+          v-model="values[currentField.uuid]"
+          :field="currentField"
+          :attachments-index="attachmentsIndex"
+          :submitter-slug="submitterSlug"
+          @attached="attachments.push($event)"
+        />
+        <AttachmentStep
+          v-else-if="currentField.type === 'file'"
+          v-model="values[currentField.uuid]"
+          :field="currentField"
+          :attachments-index="attachmentsIndex"
+          :submitter-slug="submitterSlug"
+          @attached="attachments.push($event)"
+        />
       </div>
-      <MultiSelectStep
-        v-else-if="currentField.type === 'multiple'"
-        v-model="values[currentField.uuid]"
-        :field="currentField"
-      />
-      <div
-        v-else-if="currentField.type === 'checkbox'"
-        class="flex w-full"
-      >
-        <div
-          class="space-y-3.5 mx-auto"
+      <div class="mt-8">
+        <button
+          type="submit"
+          class="base-button w-full"
+          :disabled="isSubmitting"
         >
-          <div
-            v-for="(field, index) in currentStepFields"
-            :key="field.uuid"
-          >
-            <label
-              :for="field.uuid"
-              class="flex items-center space-x-3"
-            >
-              <input
-                :id="field.uuid"
-                type="checkbox"
-                :name="`values[${field.uuid}]`"
-                :value="false"
-                class="base-checkbox !h-7 !w-7"
-                :checked="!!values[field.uuid]"
-                @click="values[field.uuid] = !values[field.uuid]"
-              >
-              <span class="text-xl">
-                {{ currentField.name || currentField.type + ' ' + (index + 1) }}
-              </span>
-            </label>
-          </div>
-        </div>
+          <span v-if="isSubmitting">
+            Submitting...
+          </span>
+          <span v-else>
+            Submit
+          </span>
+        </button>
       </div>
-      <ImageStep
-        v-else-if="currentField.type === 'image'"
-        v-model="values[currentField.uuid]"
-        :field="currentField"
-        :attachments-index="attachmentsIndex"
-        :submitter-slug="submitterSlug"
-        @attached="attachments.push($event)"
-      />
-      <SignatureStep
-        v-else-if="currentField.type === 'signature'"
-        ref="currentStep"
-        v-model="values[currentField.uuid]"
-        :field="currentField"
-        :attachments-index="attachmentsIndex"
-        :submitter-slug="submitterSlug"
-        @attached="attachments.push($event)"
-      />
-      <AttachmentStep
-        v-else-if="currentField.type === 'file'"
-        v-model="values[currentField.uuid]"
-        :field="currentField"
-        :attachments-index="attachmentsIndex"
-        :submitter-slug="submitterSlug"
-        @attached="attachments.push($event)"
-      />
-    </div>
-    <div class="mt-8">
-      <button
-        type="submit"
-        class="base-button w-full"
-      >
-        <span v-if="isSubmitting">
-          Submitting...
-        </span>
-        <span v-else>
-          Submit
-        </span>
-      </button>
-    </div>
+    </form>
+    <FormCompleted
+      v-else
+      :submitter-slug="submitterSlug"
+    />
     <div class="flex justify-center">
       <div class="flex items-center mt-5 mb-1">
         <a
@@ -214,20 +246,17 @@
           :key="step[0].uuid"
           href="#"
           class="inline border border-base-300 h-3 w-3 rounded-full mx-1"
-          :class="{ 'bg-base-200': index === currentStep, 'bg-base-content': index < currentStep, 'bg-white': index > currentStep }"
-          @click.prevent="goToStep(step, true)"
+          :class="{ 'bg-base-200': index === currentStep, 'bg-base-content': index < currentStep || isCompleted, 'bg-white': index > currentStep }"
+          @click.prevent="isCompleted ? '' : goToStep(step, true)"
         />
       </div>
     </div>
-  </form>
-  <FormCompleted
-    v-else
-    :submitter-slug="submitterSlug"
-  />
+  </div>
 </template>
 
 <script>
 import FieldAreas from './areas'
+import FieldArea from './area'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import AttachmentStep from './attachment_step'
@@ -238,6 +267,7 @@ export default {
   name: 'SubmissionForm',
   components: {
     FieldAreas,
+    FieldArea,
     ImageStep,
     SignatureStep,
     AttachmentStep,
@@ -287,11 +317,14 @@ export default {
     currentField () {
       return this.currentStepFields[0]
     },
-    submitterFields () {
+    currentSubmitterFields () {
       return this.fields.filter((f) => f.submitter_uuid === this.submitterUuid)
     },
+    otherSubmitterFields () {
+      return this.fields.filter((f) => f.submitter_uuid !== this.submitterUuid)
+    },
     stepFields () {
-      return this.submitterFields.reduce((acc, f) => {
+      return this.currentSubmitterFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {

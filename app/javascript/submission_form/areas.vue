@@ -16,11 +16,11 @@
             :ref="setAreaRef"
             v-model="values[field.uuid]"
             :field="field"
-            :values="values"
             :area="area"
+            :submittable="true"
             :field-index="fieldIndex"
-            :step="step"
             :is-active="currentStep === step"
+            :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
             @click="$emit('focus-step', step)"
           />

@@ -14,12 +14,11 @@ module Submissions
       cert = submitter.submission.template.account.encrypted_configs
                       .find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
 
-      zip_file = Tempfile.new
-      zip_stream = Zip::ZipOutputStream.open(zip_file)
-
       pdfs_index = build_pdfs_index(submitter)
 
       template.fields.each do |field|
+        next if field['submitter_uuid'] != submitter.uuid
+
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
@@ -110,9 +109,6 @@ module Submissions
                      certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),
                                          OpenSSL::X509::Certificate.new(cert['root_ca'])])
 
-        zip_stream.put_next_entry("#{item['name']}.pdf")
-        zip_stream.write(io.string)
-
         ActiveStorage::Attachment.create!(
           uuid: item['attachment_uuid'],
           blob: ActiveStorage::Blob.create_and_upload!(
@@ -122,10 +118,6 @@ module Submissions
           record: submitter
         )
       end
-
-      zip_stream.close
-
-      submitter.archive.attach(io: zip_file, filename: "#{template.name}.zip")
     end
     # rubocop:enable Metrics
 

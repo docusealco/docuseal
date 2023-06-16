@@ -6,8 +6,8 @@ class SubmissionsDownloadController < ApplicationController
   def index
     submitter = Submitter.find_by(slug: params[:submitter_slug])
 
-    Submissions::GenerateResultAttachments.call(submitter)
+    Submissions::GenerateResultAttachments.call(submitter) if submitter.documents.blank?
 
-    redirect_to submitter.archive.url, allow_other_host: true
+    render json: submitter.documents.map { |e| helpers.rails_blob_url(e) }
   end
 end

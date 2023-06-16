@@ -1,6 +1,7 @@
 <% attachment_field_uuids = @submitter.submission.template.fields.select { |f| f['type'].in?(%w[image signature file]) }.pluck('uuid') %>
-<% attachments = ActiveStorage::Attachment.where(uuid: @submitter.values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
-<div class="mx-auto block pb-72" style="max-width: 1000px">
+<% values = @submitter.submission.submitters.reduce({}) { |acc, e| acc.merge(e.values) } %>
+<% attachments = ActiveStorage::Attachment.where(uuid: values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
+<div class="mx-auto block pb-72 select-none" style="max-width: 1000px">
   <div class="mt-4 flex">
     <a href="<%= root_path %>" class="mx-auto text-2xl md:text-3xl font-bold items-center flex space-x-3">
       <%= render 'shared/logo', class: 'w-9 h-9 md:w-12 md:h-12' %>
@@ -25,7 +26,7 @@
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
       <div class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border border-base-200 p-4 rounded">
-        <submission-form data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-attachments="<%= attachments.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+        <submission-form data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-attachments="<%= attachments.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.to_json %>" data-values="<%= values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
       </div>
     </div>
   </div>

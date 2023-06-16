@@ -36,9 +36,7 @@ class Submitter < ApplicationRecord
 
   serialize :values, JSON
 
-  has_one_attached :archive
   has_many_attached :documents
-
   has_many_attached :attachments
 
   def status

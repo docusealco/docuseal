@@ -10,7 +10,7 @@ class SubmitFormController < ApplicationController
       Submitter.preload(submission: { template: { documents_attachments: { preview_images_attachments: :blob } } })
                .find_by!(slug: params[:slug])
 
-    return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+    redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
   end
 
   def update
@@ -30,6 +30,12 @@ class SubmitFormController < ApplicationController
   private
 
   def normalized_values
-    params[:values].to_unsafe_h.transform_values { |v| v.is_a?(Array) ? v.compact_blank : v }
+    params[:values].to_unsafe_h.transform_values do |v|
+      if params[:cast_boolean] == 'true'
+        v == 'true'
+      else
+        v.is_a?(Array) ? v.compact_blank : v
+      end
+    end
   end
 end
