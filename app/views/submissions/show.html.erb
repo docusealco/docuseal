@@ -12,18 +12,18 @@
             <%= link_to @submission.template.name, template_submissions_path(@submission.template), class: 'link link-hover'  %>
           </dd>
         </div>
-        <%- if @submission.completed_at.present? %>
+        <% @submission.submitters.each do |submitter| %>
           <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="text-sm font-medium leading-6 text-gray-900">Completed at</dt>
+            <dt class="text-sm font-medium leading-6 text-gray-900"><%= submitter.email %></dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <%= l(@submission.completed_at, format: :long) %>
+              <%= submitter.status %>
             </dd>
           </div>
         <% end %>
         <% @submission.template.fields.each do |field| %>
           <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt class="text-sm font-medium leading-6 text-gray-900">
-              <%= field['name'] %>
+              <%= field['name'].presence || "[FIELD NAME]" %>
             </dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <% if ['image', 'signature'].include?(field['type']) %>

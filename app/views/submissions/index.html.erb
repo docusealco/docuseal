@@ -36,6 +36,9 @@
           <th>
             Status
           </th>
+          <th>
+            Share Link
+          </th>
           <th class="text-right" width="1px">
           </th>
         </tr>
@@ -46,27 +49,40 @@
             <td>
               <% submission.submitters.each do |submitter| %>
                 <%= submitter.email %>
-              <% end %>
-            </td>
-            <td>
-              <% submission.submitters.each do |submitter| %>
-                <div>
-                  <span class="badge badge-info badge-outline">
-                    <%= submitter.status %>
-                  </span>
-                  <%= link_to 'Copy', submit_form_url(slug: submitter.slug), title: 'Copy', class: 'btn btn-outline btn-xs' %>
-                </div>
-              <% end %>
-            </td>
-            <td  class="flex items-center space-x-2 justify-end">
-              <%= link_to 'View', submission_path(submission), title: 'View', class: 'btn btn-outline btn-xs' %>
-              <%= button_to 'Remove', submission_path(submission), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <%= render 'shared/no_data_banner' %>
-  <% end %>
+              </br>
+            <% end %>
+          </td>
+          <td>
+            <% submission.submitters.each do |submitter| %>
+              <div>
+                <span class="badge badge-info badge-outline">
+                  <%= submitter.status %>
+                </span>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <% submission.submitters.each do |submitter| %>
+              <% share_link_input_id = "share-link-input_#{submitter.id}" %>
+              <div class="join ">
+                <input id="<%= share_link_input_id %>" autocomplete="off" type="text" class="input input-xs input-bordered join-item" value="<%= submit_form_url(slug: submitter.slug) %>" disabled>
+                <clipboard-copy class="btn btn-xs btn-neutral btn-square join-item text-white font-bold swap swap-active" for="<%= share_link_input_id %>">
+                  <%= svg_icon('clipboard', class: 'w-3 h-3 swap-on text-white') %>
+                  <%= svg_icon('clipboard_copy', class: 'w-3 h-3 swap-off text-white') %>
+                </clipboard-copy>
+              </div>
+              <br/>
+            <% end %>
+          </td>
+          <td  class="flex items-center space-x-2 justify-end">
+            <%= link_to 'View', submission_path(submission), title: 'View', class: 'btn btn-outline btn-xs' %>
+            <%= button_to 'Remove', submission_path(submission), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= render 'shared/no_data_banner' %>
+<% end %>
 </div>

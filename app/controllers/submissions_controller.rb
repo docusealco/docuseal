@@ -57,10 +57,10 @@ class SubmissionsController < ApplicationController
   end
 
   def create_submissions_from_submitters
-    submissions_params.map do |attrs|
+    submissions_params[:submission].to_h.map do |_, attrs|
       submission = @template.submissions.new
 
-      attrs[:submitters].each do |submitter_attrs|
+      attrs[:submitters].each do |_, submitter_attrs|
         submission.submitters.new(**submitter_attrs, sent_at: params[:send_email] == '1' ? Time.current : nil)
       end
 
@@ -69,7 +69,7 @@ class SubmissionsController < ApplicationController
   end
 
   def submissions_params
-    params.require(:submission).map { |param| param.permit(submitters: [%i[uuid email]]) }
+    params.permit(submission: { submitters: %i[uuid email] })
   end
 
   def load_template

@@ -9,6 +9,7 @@ import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 import ClipboardCopy from './elements/clipboard_copy'
 import TemplateBuilder from './template_builder/builder'
+import DynamicList from './elements/dynamic_list'
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -26,6 +27,7 @@ window.customElements.define('turbo-modal', TurboModal)
 window.customElements.define('file-dropzone', FileDropzone)
 window.customElements.define('menu-active', MenuActive)
 window.customElements.define('clipboard-copy', ClipboardCopy)
+window.customElements.define('dynamic-list', DynamicList)
 
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
