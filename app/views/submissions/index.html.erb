@@ -1,9 +1,22 @@
 <div class="card card-compact bg-primary mb-12 md:card-normal">
   <div class="card-body">
-    <h2 class="card-title text-4xl flex justify-between">
-      <%= @template.name %>
-      <%= link_to 'Edit', template_path(@template), class: 'btn btn-outline btn-sm' %>
-    </h2>
+    <div class="grid md:grid-cols-2 gap-4 md:flex md:justify-between">
+      <h2 class="card-title text-4xl ">
+        <%= @template.name %>
+      </h2>
+      <div class="flex md:justify-between space-x-2">
+        <%= link_to new_template_path(base_template_id: @template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
+          <%= svg_icon('copy', class: 'w-6 h-6') %>
+          <span>Clone</span>
+        <% end %>
+        <%= link_to template_path(@template), class: 'btn btn-outline btn-sm' do %>
+          <span class="flex items-center justify-center space-x-2">
+            <%= svg_icon('pencil', class: 'w-6 h-6') %>
+            <span>Edit</span>
+          </span>
+        <% end %>
+      </div>
+    </div>
     <% if @template.submitters.size == 1 %>
       <div class="join w-full">
         <buttun class="btn bg-neutral btn-disabled text-white join-item">

@@ -1,5 +1,8 @@
 <%= render 'shared/turbo_modal', title: 'New Template' do %>
   <%= form_for @template, data: { turbo_frame: :_top } do |f| %>
+    <% if @base_template %>
+      <%= hidden_field_tag :base_template_id, @base_template.id %>
+    <% end %>
     <div class="form-control my-6">
       <%= f.text_field :name, required: true, placeholder: 'Template Name', class: 'base-input' %>
     </div>
