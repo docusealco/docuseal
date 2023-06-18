@@ -46,7 +46,7 @@
     >
     <div
       v-else-if="field.type === 'file'"
-      class="px-0.5 flex items-center"
+      class="px-0.5 flex flex-col justify-center"
     >
       <a
         v-for="(attachment, index) in attachments"
@@ -73,9 +73,8 @@
         :checked="!!modelValue"
         @click="$emit('update:model-value', !modelValue)"
       >
-      <component
-        :is="modelValue ? 'IconCheckbox' : 'IconSquare'"
-        v-else
+      <IconCheck
+        v-else-if="modelValue"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />
@@ -98,14 +97,13 @@
 </template>
 
 <script>
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconSquare } from '@tabler/icons-vue'
+import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
   components: {
     IconPaperclip,
-    IconCheckbox,
-    IconSquare
+    IconCheck
   },
   props: {
     field: {

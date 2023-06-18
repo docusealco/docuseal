@@ -16,13 +16,13 @@
                 </a>
               </div>
               <div class="grid md:grid-cols-2 gap-4">
-                <% @template.submitters.each.with_index(1) do |item, index| %>
+                <% @template.submitters.each do |item| %>
                   <div class="form-control">
                     <label class="label">
                       <span class="label-text"> <%= item['name'] %></span>
                     </label>
-                    <input type="hidden" name="submission[1][submitters][<%= index %>][uuid]" value="<%= item['uuid'] %>" >
-                    <input type="email" name="submission[1][submitters][<%= index %>][email]" value="<%= item['email'] %>" class="input input-sm input-bordered" placeholder="Email" required>
+                    <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>" >
+                    <input type="email" name="submission[1][submitters][][email]" value="<%= item['email'] %>" class="input input-sm input-bordered" placeholder="Email" required>
                   </div>
                 <% end %>
               </div>

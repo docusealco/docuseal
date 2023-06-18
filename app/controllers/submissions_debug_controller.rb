@@ -12,10 +12,10 @@ class SubmissionsDebugController < ApplicationController
 
     respond_to do |f|
       f.html do
-        render 'submit_template/show'
+        render 'submit_form/show'
       end
       f.pdf do
-        Submissions::GenerateResultAttachments.call(@submitter.submission)
+        Submissions::GenerateResultAttachments.call(@submitter)
 
         send_data ActiveStorage::Attachment.where(name: :documents).last.download,
                   filename: 'debug.pdf',

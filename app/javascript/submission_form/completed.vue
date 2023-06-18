@@ -91,13 +91,12 @@ export default {
 
       fetch(`/submitters/${this.submitterSlug}/download`).then((response) => response.json()).then((urls) => {
         urls.forEach((url) => {
-          fetch(url).then(async (response) => {
-            const blob = new Blob([await response.text()], { type: `${response.headers.get('content-type')};charset=utf-8;` })
-            const url = URL.createObjectURL(blob)
+          fetch(url).then(async (resp) => {
+            const blobUrl = URL.createObjectURL(await resp.blob())
             const link = document.createElement('a')
 
-            link.href = url
-            link.setAttribute('download', response.headers.get('content-disposition').split('"')[1])
+            link.href = blobUrl
+            link.setAttribute('download', resp.headers.get('content-disposition').split('"')[1])
 
             link.click()
 

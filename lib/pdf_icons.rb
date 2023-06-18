@@ -3,6 +3,9 @@
 module PdfIcons
   PATH = Rails.root.join('lib/pdf_icons')
 
+  WIDTH = 240
+  HEIGHT = 240
+
   module_function
 
   def check_io

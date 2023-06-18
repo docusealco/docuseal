@@ -5,7 +5,7 @@ module Api
     skip_before_action :authenticate_user!
 
     def create
-      submitter = Submitter.find_by!(slug: params[:submitter_slug]) unless current_account
+      submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
       blob = ActiveStorage::Blob.find_signed(params[:blob_signed_id])
 

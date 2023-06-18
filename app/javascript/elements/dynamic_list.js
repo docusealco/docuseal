@@ -4,7 +4,7 @@ import { targets, targetable } from '@github/catalyst/lib/targetable'
 export default actionable(targetable(class extends HTMLElement {
   static [targets.static] = ['items']
 
-  addItem = (e) => {
+  addItem (e) {
     e.preventDefault()
 
     const originalItem = this.items[0]
@@ -26,8 +26,9 @@ export default actionable(targetable(class extends HTMLElement {
     originalItem.parentNode.append(duplicateItem)
   }
 
-  removeItem = (e) => {
+  removeItem (e) {
     e.preventDefault()
+
     this.items.find((item) => item.contains(e.target))?.remove()
   }
 }))
