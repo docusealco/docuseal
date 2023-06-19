@@ -20,5 +20,12 @@
         </ul>
       </div>
     </div>
+  <% else %>
+    <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
+      <span class="flex items-center justify-center space-x-1">
+        <%= svg_icon('login', class: 'w-6 h-6') %>
+        <span>Sign in</span>
+      </span>
+    <% end %>
   <% end %>
 </div>
