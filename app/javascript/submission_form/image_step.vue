@@ -27,7 +27,7 @@
   <div>
     <FileDropzone
       v-if="!modelValue"
-      :message="`Upload ${field.name || 'Image'}`"
+      :message="`Upload ${field.name || 'Image'}${field.required ? '' : ' (optional)'}`"
       :submitter-slug="submitterSlug"
       :accept="'image/*'"
       @upload="onImageUpload"

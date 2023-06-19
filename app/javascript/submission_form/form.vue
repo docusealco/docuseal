@@ -232,7 +232,7 @@
         <button
           type="submit"
           class="base-button w-full flex justify-center"
-          :disabled="isSubmitting"
+          :disabled="isSubmitting || (currentField.required && ['image', 'file'].includes(currentField.type) && !values[currentField.uuid]?.length)"
         >
           <span class="flex">
             <IconInnerShadowTop

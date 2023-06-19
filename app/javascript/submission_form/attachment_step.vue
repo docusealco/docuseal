@@ -45,7 +45,7 @@
       >
     </template>
     <FileDropzone
-      :message="`Upload ${field.name || 'Attachments'}`"
+      :message="`Upload ${field.name || 'Attachments'}${field.required ? '' : ' (optional)'}`"
       :submitter-slug="submitterSlug"
       @upload="onUpload"
     />
