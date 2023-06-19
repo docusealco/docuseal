@@ -321,6 +321,11 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
+        } else if (this.dragFieldType === 'signature') {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
+          }
         } else {
           baseArea = {
             w: area.maskW / 5 / area.maskW,

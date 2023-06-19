@@ -2,7 +2,7 @@
   <span class="dropdown">
     <label
       tabindex="0"
-      title="Type"
+      :title="$t(modelValue)"
       class="cursor-pointer"
     >
       <component

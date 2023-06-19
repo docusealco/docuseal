@@ -22,7 +22,7 @@
     :values="values"
     :attachments-index="attachmentsIndex"
     :current-step="currentStepFields"
-    @focus-step="goToStep($event, false, true)"
+    @focus-step="[saveStep(), goToStep($event, false, true)]"
   />
   <div>
     <form
@@ -55,14 +55,16 @@
             v-if="currentField.name"
             :for="currentField.uuid"
             class="label text-2xl mb-2"
-          >{{ currentField.name }}</label>
+          >{{ currentField.name }}
+            <template v-if="!currentField.required">(optional)</template>
+          </label>
           <div>
             <input
               :id="currentField.uuid"
               v-model="values[currentField.uuid]"
               class="base-input !text-2xl w-full"
               :required="currentField.required"
-              placeholder="Type here..."
+              :placeholder="`Type here...${currentField.required ? '' : ' (optional)'}`"
               type="text"
               :name="`values[${currentField.uuid}]`"
               @focus="$refs.areas.scrollIntoField(currentField)"
@@ -74,7 +76,9 @@
             v-if="currentField.name"
             :for="currentField.uuid"
             class="label text-2xl mb-2"
-          >{{ currentField.name }}</label>
+          >{{ currentField.name }}
+            <template v-if="!currentField.required">(optional)</template>
+          </label>
           <div class="text-center">
             <input
               :id="currentField.uuid"
@@ -92,10 +96,12 @@
             v-if="currentField.name"
             :for="currentField.uuid"
             class="label text-2xl mb-2"
-          >{{ currentField.name }}</label>
+          >{{ currentField.name }}
+            <template v-if="!currentField.required">(optional)</template>
+          </label>
           <select
             :id="currentField.uuid"
-            :required="true"
+            :required="currentField.required"
             class="select base-input !text-2xl w-full text-center font-normal"
             :name="`values[${currentField.uuid}]`"
             @change="values[currentField.uuid] = $event.target.value"
@@ -122,7 +128,9 @@
             v-if="currentField.name"
             :for="currentField.uuid"
             class="label text-2xl mb-2"
-          >{{ currentField.name }}</label>
+          >{{ currentField.name }}
+            <template v-if="!currentField.required">(optional)</template>
+          </label>
           <div class="flex w-full">
             <div class="space-y-3.5 mx-auto">
               <div
@@ -140,7 +148,7 @@
                     class="base-radio !h-7 !w-7"
                     :name="`values[${currentField.uuid}]`"
                     :value="option"
-                    required
+                    :required="currentField.required"
                   >
                   <span class="text-xl">
                     {{ option }}
@@ -185,7 +193,7 @@
                   type="checkbox"
                   class="base-checkbox !h-7 !w-7"
                   :checked="!!values[field.uuid]"
-                  @click="values[field.uuid] = !values[field.uuid]"
+                  @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                 >
                 <span class="text-xl">
                   {{ currentField.name || currentField.type + ' ' + (index + 1) }}
@@ -223,14 +231,23 @@
       <div class="mt-8">
         <button
           type="submit"
-          class="base-button w-full"
+          class="base-button w-full flex justify-center"
           :disabled="isSubmitting"
         >
-          <span v-if="isSubmitting">
-            Submitting...
-          </span>
-          <span v-else>
-            Submit
+          <span class="flex">
+            <IconInnerShadowTop
+              v-if="isSubmitting"
+              class="mr-1 animate-spin"
+            />
+            <span v-if="stepFields.length === currentStep + 1">
+              Submit
+            </span>
+            <span v-else>
+              Next
+            </span><span
+              v-if="isSubmitting"
+              class="w-6 flex justify-start mr-1"
+            ><span>...</span></span>
           </span>
         </button>
       </div>
@@ -262,6 +279,7 @@ import SignatureStep from './signature_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import FormCompleted from './completed'
+import { IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'SubmissionForm',
@@ -272,6 +290,7 @@ export default {
     SignatureStep,
     AttachmentStep,
     MultiSelectStep,
+    IconInnerShadowTop,
     FormCompleted
   },
   props: {
@@ -367,6 +386,12 @@ export default {
         if (clickUpload && !this.values[this.currentField.uuid]) {
           this.$refs.form.querySelector('input[type="file"]')?.click()
         }
+      })
+    },
+    saveStep () {
+      return fetch(this.submitPath, {
+        method: 'POST',
+        body: new FormData(this.$refs.form)
       })
     },
     async submitStep () {

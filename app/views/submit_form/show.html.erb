@@ -1,7 +1,7 @@
 <% attachment_field_uuids = @submitter.submission.template.fields.select { |f| f['type'].in?(%w[image signature file]) }.pluck('uuid') %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, e| acc.merge(e.values) } %>
 <% attachments = ActiveStorage::Attachment.where(uuid: values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
-<div class="mx-auto block pb-72 select-none" style="max-width: 1000px">
+<div class="mx-auto block pb-72" style="max-width: 1000px">
   <div class="mt-4 flex">
     <a href="<%= root_path %>" class="mx-auto text-2xl md:text-3xl font-bold items-center flex space-x-3">
       <%= render 'shared/logo', class: 'w-9 h-9 md:w-12 md:h-12' %>

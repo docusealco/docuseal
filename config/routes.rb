@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :submissions, only: %i[index new create]
   end
 
-  resources :start_form, only: %i[show update], path: 't', param: 'slug' do
+  resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
   end
 

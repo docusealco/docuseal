@@ -27,7 +27,28 @@
             @blur="onNameBlur"
           />
         </div>
-        <div class="flex items-center space-x-1">
+        <div
+          v-if="isNameFocus"
+          class="flex items-center relative"
+        >
+          <input
+            :id="`required-checkbox-${field.uuid}`"
+            v-model="field.required"
+            type="checkbox"
+            class="checkbox checkbox-xs no-animation rounded"
+            @mousedown.prevent
+          >
+          <label
+            :for="`required-checkbox-${field.uuid}`"
+            class="label text-xs"
+            @click.prevent="field.required = !field.required"
+            @mousedown.prevent
+          >Required</label>
+        </div>
+        <div
+          v-else
+          class="flex items-center space-x-1"
+        >
           <span
             v-if="field.areas?.length"
             class="dropdown dropdown-end"
@@ -178,6 +199,11 @@ export default {
     }
   },
   emits: ['set-draw', 'remove', 'move-up', 'move-down', 'scroll-to'],
+  data () {
+    return {
+      isNameFocus: false
+    }
+  },
   computed: {
     defaultName () {
       const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
@@ -192,6 +218,8 @@ export default {
   },
   methods: {
     onNameFocus (e) {
+      this.isNameFocus = true
+
       if (!this.field.name) {
         setTimeout(() => {
           this.$refs.name.$refs.contenteditable.innerText = ' '
@@ -220,6 +248,8 @@ export default {
         this.field.name = ''
         this.$refs.name.$refs.contenteditable.innerText = this.defaultName
       }
+
+      this.isNameFocus = false
     },
     removeArea (area) {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)

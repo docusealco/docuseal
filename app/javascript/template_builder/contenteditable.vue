@@ -9,21 +9,28 @@
       style="min-width: 2px"
       :class="iconInline ? 'inline' : 'block'"
       class="peer outline-none focus:block"
-      @keydown.enter.prevent="onEnter"
+      @keydown.enter.prevent="blurContenteditable"
       @focus="$emit('focus', $event)"
       @blur="onBlur"
     >
       {{ value }}
     </span>
+    <span
+      v-if="withRequired"
+      title="Required"
+      class="text-red-500 peer-focus:hidden"
+      @click="focusContenteditable"
+    >
+      *
+    </span>
     <IconPencil
-      contenteditable="false"
-      class="cursor-pointer ml-1 flex-none opacity-0 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
+      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
       title="Edit"
-      :class="{ 'absolute': !iconInline, 'inline align-bottom': iconInline }"
+      :class="{ 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
-      @click="onPencilClick"
+      @click="focusContenteditable"
     />
   </div>
 </template>
@@ -52,6 +59,11 @@ export default {
       required: false,
       default: 30
     },
+    withRequired: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     iconStrokeWidth: {
       type: Number,
       required: false,
@@ -79,10 +91,10 @@ export default {
       this.$emit('update:model-value', this.value)
       this.$emit('blur', e)
     },
-    onPencilClick () {
+    focusContenteditable () {
       this.$refs.contenteditable.focus()
     },
-    onEnter () {
+    blurContenteditable () {
       this.$refs.contenteditable.blur()
     }
   }

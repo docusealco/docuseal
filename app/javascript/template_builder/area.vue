@@ -44,8 +44,28 @@
         @focus="onNameFocus"
         @blur="onNameBlur"
       >{{ field.name || defaultName }}</span>
+      <div
+        v-if="isNameFocus"
+        class="flex items-center ml-1.5"
+      >
+        <input
+          :id="`required-checkbox-${field.uuid}`"
+          v-model="field.required"
+          type="checkbox"
+          class="checkbox checkbox-xs no-animation rounded"
+          @mousedown.prevent
+        >
+        <label
+          :for="`required-checkbox-${field.uuid}`"
+          class="label text-xs"
+          @click.prevent="field.required = !field.required"
+          @mousedown.prevent
+        >Required</label>
+      </div>
       <button
+        v-else
         class="pr-1"
+        title="Remove"
         @click.prevent="$emit('remove')"
       >
         <IconX width="14" />

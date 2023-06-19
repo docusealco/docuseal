@@ -28,6 +28,9 @@
       <template v-if="field.type === 'checkbox'">
         {{ fieldIndex + 1 }}
       </template>
+      <template v-else-if="!field.required">
+        (optional)
+      </template>
     </div>
     <div
       v-if="isActive"
