@@ -29,7 +29,16 @@
     <div>
       <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
       <div class="divider">OR</div>
-      <%= button_to button_title(title: 'Download documents', disabled_with: 'Downloading', icon: svg_icon('download', class: 'w-6 h-6')), submitter_download_index_path(@submitter.slug), method: :get, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+      <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
+        <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+          <%= svg_icon('download', class: 'w-6 h-6') %>
+          <span>Download documents</span>
+        </span>
+        <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+          <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+          <span>Downloading</span>
+        </span>
+      </download-button>
     </div>
   </div>
 </div>
