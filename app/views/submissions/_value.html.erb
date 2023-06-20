@@ -1,0 +1,26 @@
+<div class="flex absolute text-[1.5vw] lg:text-base" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
+  <% if field['type'].in?(['signature', 'image']) %>
+    <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
+  <% elsif field['type'] == 'file' %>
+    <div class="px-0.5 flex flex-col justify-center">
+      <% Array.wrap(value).each do |val| %>
+        <a target="_blank" href="<%= attachments_index[val].url %>">
+          <%= svg_icon('paperclip', class: "inline w-[1.5vw] h-[1.5vw] lg:w-4 lg:h-4") %>
+          <%= attachments_index[val].filename %>
+        </a>
+      <% end %>
+    </div>
+  <% elsif field['type'] == 'checkbox' %>
+    <div class="w-full p-[0.2vw] flex items-center justify-center">
+      <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
+    </div>
+  <% elsif field['type'] == 'date' %>
+    <div class="flex items-center px-0.5">
+      <%= l(Date.parse(value)) %>
+    </div>
+  <% else %>
+    <div class="flex items-center px-0.5">
+      <%= Array.wrap(value).join(', ') %>
+    </div>
+  <% end %>
+</div>

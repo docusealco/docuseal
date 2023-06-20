@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html data-theme="docuseal">
   <head>
     <title>
@@ -9,14 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= javascript_pack_tag 'application', defer: true %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= yield :head %>
   </head>
   <body>
-    <turbo-frame id="modal"></turbo-frame>
-    <%= render 'shared/navbar' %>
     <% if flash.present? %><% render 'shared/flash' %><% end %>
-    <div class="max-w-6xl mx-auto px-4 md:px-2">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>

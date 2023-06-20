@@ -1,6 +1,6 @@
-<% attachment_field_uuids = @submitter.submission.template.fields.select { |f| f['type'].in?(%w[image signature file]) }.pluck('uuid') %>
-<% values = @submitter.submission.submitters.reduce({}) { |acc, e| acc.merge(e.values) } %>
-<% attachments = ActiveStorage::Attachment.where(uuid: values.values_at(*attachment_field_uuids).flatten).preload(:blob) %>
+<% fields_index = Templates.build_field_areas_index(@submitter.submission.template) %>
+<% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
 <div class="mx-auto block pb-72" style="max-width: 1000px">
   <div class="mt-4 flex">
     <a href="<%= root_path %>" class="mx-auto text-2xl md:text-3xl font-bold items-center flex space-x-3">
@@ -13,7 +13,13 @@
     <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
       <div class="relative my-4 shadow-md">
         <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
-        <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute"></div>
+        <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
+          <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
+            <% value = values[field['uuid']] %>
+            <% next if value.blank? %>
+            <%= render 'submissions/value', area:, field:, attachments_index:, value: %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>
@@ -26,7 +32,7 @@
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
       <div class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border border-base-200 p-4 rounded">
-        <submission-form data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-attachments="<%= attachments.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.to_json %>" data-values="<%= values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+        <submission-form data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
       </div>
     </div>
   </div>

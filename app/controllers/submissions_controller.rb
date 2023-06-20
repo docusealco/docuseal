@@ -12,6 +12,8 @@ class SubmissionsController < ApplicationController
       Submission.joins(:template).where(template: { account_id: current_account.id })
                 .preload(template: { documents_attachments: { preview_images_attachments: :blob } })
                 .find(params[:id])
+
+    render :show, layout: 'plain'
   end
 
   def new; end

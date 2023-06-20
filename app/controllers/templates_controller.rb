@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
-  layout false
+  layout 'plain'
 
   before_action :load_base_template, only: %i[new create]
 

@@ -1,0 +1,11 @@
+<div id="flash" class="absolute top-0 w-full h-0">
+  <div class="max-w-xl mx-auto mt-1.5">
+    <div class="alert py-3">
+      <%= svg_icon('info_circle', class: 'stroke-info flex-shrink-0 w-6 h-6') %>
+      <div>
+        <span><%= flash[:notice] || flash[:alert] %></span>
+      </div>
+      <a href="#" class="w-6 h-6 rounded-lg text-center hover:bg-base-300" onclick="[event.preventDefault(), window.flash.remove()]">&times;</a>
+    </div>
+  </div>
+</div>

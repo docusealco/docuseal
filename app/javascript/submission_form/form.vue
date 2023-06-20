@@ -1,21 +1,4 @@
 <template>
-  <template
-    v-for="field in otherSubmitterFields"
-    :key="field.uuid"
-  >
-    <Teleport
-      v-for="(area, index) in field.areas"
-      :key="index"
-      :to="`#page-${area.attachment_uuid}-${area.page}`"
-    >
-      <FieldArea
-        :model-value="values[field.uuid]"
-        :field="field"
-        :area="area"
-        :attachments-index="attachmentsIndex"
-      />
-    </Teleport>
-  </template>
   <FieldAreas
     ref="areas"
     :steps="stepFields"
@@ -273,7 +256,6 @@
 
 <script>
 import FieldAreas from './areas'
-import FieldArea from './area'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import AttachmentStep from './attachment_step'
@@ -285,7 +267,6 @@ export default {
   name: 'SubmissionForm',
   components: {
     FieldAreas,
-    FieldArea,
     ImageStep,
     SignatureStep,
     AttachmentStep,
@@ -336,14 +317,8 @@ export default {
     currentField () {
       return this.currentStepFields[0]
     },
-    currentSubmitterFields () {
-      return this.fields.filter((f) => f.submitter_uuid === this.submitterUuid)
-    },
-    otherSubmitterFields () {
-      return this.fields.filter((f) => f.submitter_uuid !== this.submitterUuid)
-    },
     stepFields () {
-      return this.currentSubmitterFields.reduce((acc, f) => {
+      return this.fields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {
