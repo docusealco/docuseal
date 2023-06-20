@@ -81,10 +81,6 @@ Rails.application.configure do
     key_derivation_salt: ENV.fetch('SECRET_KEY_BASE', nil)
   }
 
-  config.action_mailer.default_url_options = { host: ENV.fetch('HOST', nil), port: ENV.fetch('PORT', nil) }
-  config.action_controller.default_url_options = config.action_mailer.default_url_options
-  routes.default_url_options = config.action_mailer.default_url_options
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

@@ -11,7 +11,7 @@ require 'active_job/railtie'
 
 Bundler.require(*Rails.groups)
 
-module Docuseal
+module DocuSeal
   class Application < Rails::Application
     config.load_defaults 7.0
 

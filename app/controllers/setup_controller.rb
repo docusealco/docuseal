@@ -10,6 +10,7 @@ class SetupController < ApplicationController
   def index
     @account = Account.new(account_params)
     @user = @account.users.new(user_params)
+    @encrypted_config = EncryptedConfig.new(account: @account, key: EncryptedConfig::APP_URL_KEY)
   end
 
   def create
@@ -17,8 +18,11 @@ class SetupController < ApplicationController
     @user = @account.users.new(user_params)
 
     if @user.save
-      @account.encrypted_configs.create!(key: EncryptedConfig::ESIGN_CERTS_KEY,
-                                         value: GenerateCertificate.call)
+      encrypted_configs = [
+        { key: EncryptedConfig::APP_URL_KEY, value: encrypted_config_params[:value] },
+        { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call }
+      ]
+      @account.encrypted_configs.create!(encrypted_configs)
 
       sign_in(@user)
 
@@ -40,6 +44,12 @@ class SetupController < ApplicationController
     return {} unless params[:account]
 
     params.require(:account).permit(:name)
+  end
+
+  def encrypted_config_params
+    return {} unless params[:encrypted_config]
+
+    params.require(:encrypted_config).permit(:value)
   end
 
   def redirect_to_root_if_signed

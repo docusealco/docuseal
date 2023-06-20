@@ -11,6 +11,7 @@ import ClipboardCopy from './elements/clipboard_copy'
 import TemplateBuilder from './template_builder/builder'
 import DynamicList from './elements/dynamic_list'
 import DownloadButton from './elements/download_button'
+import SetOriginUrl from './elements/set_origin_url'
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -30,6 +31,7 @@ window.customElements.define('menu-active', MenuActive)
 window.customElements.define('clipboard-copy', ClipboardCopy)
 window.customElements.define('dynamic-list', DynamicList)
 window.customElements.define('download-button', DownloadButton)
+window.customElements.define('set-origin-url', SetOriginUrl)
 
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {

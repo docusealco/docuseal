@@ -44,6 +44,15 @@
         <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
       </div>
     <% end %>
+    <h2 class="text-2xl font-bold mt-8 mb-4">App URL</h2>
+    <%= form_for @encrypted_config, url: update_app_url_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <div class="form-control">
+        <%= f.text_field :value, required: true, class: 'base-input' %>
+      </div>
+      <div class="form-control">
+        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

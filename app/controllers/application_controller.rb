@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
                 :current_account,
                 :svg_icon
 
+  def default_url_options
+    Docuseal.default_url_options
+  end
+
   private
 
   def current_account

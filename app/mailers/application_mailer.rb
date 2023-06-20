@@ -5,4 +5,8 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   register_interceptor ActionMailerConfigsInterceptor
+
+  def default_url_options
+    Docuseal.default_url_options
+  end
 end

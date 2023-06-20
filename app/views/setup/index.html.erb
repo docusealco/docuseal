@@ -30,6 +30,15 @@
           <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input' %>
         </div>
       <% end %>
+      <%= f.fields_for @encrypted_config do |ff| %>
+        <div class="form-control">
+          <% if @encrypted_config.value.blank? %>
+            <set-origin-url data-input-id="_encrypted_config_value"></set-origin-url>
+          <% end %>
+          <%= ff.label :value, 'App URL', class: 'label' %>
+          <%= ff.text_field :value, required: true, class: 'base-input' %>
+        </div>
+      <% end %>
     </div>
     <div class="form-control">
       <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing'), class: 'base-button' %>

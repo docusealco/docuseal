@@ -75,10 +75,6 @@ Rails.application.configure do
     key_derivation_salt: 'dev key derivation salt'
   }
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: ENV.fetch('PORT', 3000).to_i }
-  config.action_controller.default_url_options = config.action_mailer.default_url_options
-  routes.default_url_options = config.action_mailer.default_url_options
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
