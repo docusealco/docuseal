@@ -5,6 +5,8 @@ module Submissions
     FONT_SIZE = 11
     FONT_NAME = 'Helvetica'
 
+    A4_SIZE = [595, 842].freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -126,42 +128,101 @@ module Submissions
         end
       end
 
-      template.schema.map do |item|
-        template.documents.find { |a| a.uuid == item['attachment_uuid'] }
+      image_pdfs = []
+      original_documents = template.documents.preload(:blob)
 
-        io = StringIO.new
+      results =
+        template.schema.map do |item|
+          pdf = pdfs_index[item['attachment_uuid']]
 
-        pdf = pdfs_index[item['attachment_uuid']]
+          attachment = save_signed_pdf(pdf:, submitter:, cert:, uuid: item['attachment_uuid'], name: item['name'])
 
-        pdf.sign(io, reason: "Signed by #{submitter.email}",
-                     certificate: OpenSSL::X509::Certificate.new(cert['cert']),
-                     key: OpenSSL::PKey::RSA.new(cert['key']),
-                     certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),
-                                         OpenSSL::X509::Certificate.new(cert['root_ca'])])
+          image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
-        ActiveStorage::Attachment.create!(
-          uuid: item['attachment_uuid'],
-          blob: ActiveStorage::Blob.create_and_upload!(
-            io: StringIO.new(io.string), filename: "#{item['name']}.pdf"
-          ),
-          name: 'documents',
-          record: submitter
+          attachment
+        end
+
+      return results if image_pdfs.size < 2
+
+      images_pdf =
+        image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
+          pdf.pages.each { |page| doc.pages << doc.import(page) }
+        end
+
+      images_pdf_result =
+        save_signed_pdf(
+          pdf: images_pdf,
+          submitter:,
+          cert:,
+          uuid: images_pdf_uuid(original_documents.select(&:image?)),
+          name: template.name
         )
-      end
+
+      results + [images_pdf_result]
     end
     # rubocop:enable Metrics
+
+    def save_signed_pdf(pdf:, submitter:, cert:, uuid:, name:)
+      io = StringIO.new
+
+      pdf.sign(io, reason: "Signed by #{submitter.email}",
+                   certificate: OpenSSL::X509::Certificate.new(cert['cert']),
+                   key: OpenSSL::PKey::RSA.new(cert['key']),
+                   certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),
+                                       OpenSSL::X509::Certificate.new(cert['root_ca'])])
+
+      ActiveStorage::Attachment.create!(
+        uuid:,
+        blob: ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new(io.string), filename: "#{name}.pdf"
+        ),
+        name: 'documents',
+        record: submitter
+      )
+    end
+
+    def images_pdf_uuid(attachments)
+      Digest::UUID.uuid_v5(Digest::UUID::OID_NAMESPACE, attachments.map(&:uuid).sort.join(':'))
+    end
 
     def build_pdfs_index(submitter)
       latest_submitter = submitter.submission.submitters
                                   .select { |e| e.id != submitter.id && e.completed_at? }
                                   .max_by(&:completed_at)
 
-      documents   = latest_submitter&.documents.to_a.presence
-      documents ||= submitter.submission.template.documents
+      documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
+      documents ||= submitter.submission.template.documents.preload(:blob)
 
       documents.to_h do |attachment|
-        [attachment.uuid, HexaPDF::Document.new(io: StringIO.new(attachment.download))]
+        pdf =
+          if attachment.image?
+            build_pdf_from_image(attachment)
+          else
+            HexaPDF::Document.new(io: StringIO.new(attachment.download))
+          end
+
+        [attachment.uuid, pdf]
       end
+    end
+
+    def build_pdf_from_image(attachment)
+      pdf = HexaPDF::Document.new
+      page = pdf.pages.add
+
+      scale = [A4_SIZE.first / attachment.metadata['width'].to_f,
+               A4_SIZE.last / attachment.metadata['height'].to_f].min
+
+      page.box.width = attachment.metadata['width'] * scale
+      page.box.height = attachment.metadata['height'] * scale
+
+      page.canvas.image(
+        StringIO.new(attachment.download),
+        at: [0, 0],
+        width: page.box.width,
+        height: page.box.height
+      )
+
+      pdf
     end
   end
 end

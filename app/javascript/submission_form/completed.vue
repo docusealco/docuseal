@@ -90,20 +90,27 @@ export default {
       this.isDownloading = true
 
       fetch(`/submitters/${this.submitterSlug}/download`).then((response) => response.json()).then((urls) => {
-        urls.forEach((url) => {
-          fetch(url).then(async (resp) => {
-            const blobUrl = URL.createObjectURL(await resp.blob())
-            const link = document.createElement('a')
+        const fileRequests = urls.map((url) => {
+          return () => {
+            return fetch(url).then(async (resp) => {
+              const blobUrl = URL.createObjectURL(await resp.blob())
+              const link = document.createElement('a')
 
-            link.href = blobUrl
-            link.setAttribute('download', resp.headers.get('content-disposition').split('"')[1])
+              link.href = blobUrl
+              link.setAttribute('download', decodeURI(resp.headers.get('content-disposition').split('"')[1]))
 
-            link.click()
+              link.click()
 
-            URL.revokeObjectURL(url)
-          })
+              URL.revokeObjectURL(url)
+            })
+          }
         })
-      }).finally(() => {
+
+        fileRequests.reduce(
+          (prevPromise, request) => prevPromise.then(() => request()),
+          Promise.resolve()
+        )
+
         this.isDownloading = false
       })
     }

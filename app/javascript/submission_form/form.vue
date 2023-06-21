@@ -191,7 +191,7 @@
           :field="currentField"
           :attachments-index="attachmentsIndex"
           :submitter-slug="submitterSlug"
-          @attached="attachments.push($event)"
+          @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
         />
         <SignatureStep
           v-else-if="currentField.type === 'signature'"
@@ -208,7 +208,7 @@
           :field="currentField"
           :attachments-index="attachmentsIndex"
           :submitter-slug="submitterSlug"
-          @attached="attachments.push($event)"
+          @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
         />
       </div>
       <div class="mt-8">
