@@ -31,6 +31,18 @@ button[disabled] .enabled {
   display: none;
 }
 
+.input-bordered {
+  @apply border-base-content/20;
+}
+
+.select-bordered {
+  @apply border-base-content/20;
+}
+
+.textarea-bordered {
+  @apply border-base-content/20;
+}
+
 .btn {
   @apply no-animation;
 }
@@ -56,5 +68,5 @@ button[disabled] .enabled {
 }
 
 .base-radio {
-  @apply radio bg-white radio-sm;
+  @apply radio bg-white radio-sm no-animation;
 }

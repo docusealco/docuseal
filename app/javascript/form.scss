@@ -35,6 +35,18 @@ select:required:invalid {
   @apply text-gray-300;
 }
 
+.input-bordered {
+  @apply border-base-content/20;
+}
+
+.select-bordered {
+  @apply border-base-content/20;
+}
+
+.textarea-bordered {
+  @apply border-base-content/20;
+}
+
 .btn {
   @apply no-animation;
 }
