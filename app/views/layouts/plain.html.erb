@@ -10,7 +10,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body>
-    <% if flash.present? %><% render 'shared/flash' %><% end %>
+    <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <%= yield %>
   </body>
 </html>
