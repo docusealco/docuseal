@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :load_user, only: %i[edit update destroy]
 
   def index
-    @users = current_account.users.active.order(id: :desc)
+    @pagy, @users = pagy(current_account.users.active.order(id: :desc))
   end
 
   def new

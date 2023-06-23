@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
+  include Pagy::Backend
 
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?

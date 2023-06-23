@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   before_action :load_template, only: %i[index new create]
 
   def index
-    @submissions = @template.submissions.active
+    @pagy, @submissions = pagy(@template.submissions.active)
   end
 
   def show

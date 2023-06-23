@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
   def index
     return render 'pages/landing' unless signed_in?
 
-    @templates = current_account.templates.active
+    @pagy, @templates = pagy(current_account.templates.active, items: 12)
   end
 end
