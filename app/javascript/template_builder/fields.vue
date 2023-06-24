@@ -4,7 +4,9 @@
       :model-value="selectedSubmitter.uuid"
       class="w-full bg-base-100"
       :submitters="submitters"
+      @new-submitter="save"
       @remove="removeSubmitter"
+      @name-change="save"
       @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
     />
   </div>
@@ -79,6 +81,7 @@ export default {
     Field,
     FieldSubmitter
   },
+  inject: ['save'],
   props: {
     fields: {
       type: Array,
@@ -116,6 +119,8 @@ export default {
       if (this.selectedSubmitter === submitter) {
         this.$emit('change-submitter', this.submitters[0])
       }
+
+      this.save()
     },
     move (field, direction) {
       const currentIndex = this.submitterFields.indexOf(field)
@@ -134,9 +139,13 @@ export default {
       } else {
         this.fields.splice(fieldsIndex + direction, 0, field)
       }
+
+      this.save()
     },
     removeField (field) {
       this.fields.splice(this.fields.indexOf(field), 1)
+
+      this.save()
     },
     addField (type, area = null) {
       const field = {
@@ -152,6 +161,8 @@ export default {
       }
 
       this.fields.push(field)
+
+      this.save()
     }
   }
 }

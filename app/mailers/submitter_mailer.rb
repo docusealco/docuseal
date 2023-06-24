@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SubmitterMailer < ApplicationMailer
-  DEFAULT_MESSAGE = "You've been invited to submit documents."
+  DEFAULT_MESSAGE = "You've been invited to submit the following documents:"
 
   def invitation_email(submitter, message: DEFAULT_MESSAGE)
     @submitter = submitter

@@ -14,7 +14,7 @@
           <FieldType
             v-model="field.type"
             :button-width="20"
-            @update:model-value="maybeUpdateOptions"
+            @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
           />
           <Contenteditable
@@ -157,10 +157,11 @@
             class="w-full input input-primary input-xs text-sm"
             type="text"
             required
+            @blur="save"
           >
           <button
             class="text-sm w-3.5"
-            @click="field.options.splice(index, 1)"
+            @click="[field.options.splice(index, 1), save()]"
           >
             &times;
           </button>
@@ -168,7 +169,7 @@
         <button
           v-if="field.options"
           class="text-center text-sm w-full pb-1"
-          @click="field.options.push('')"
+          @click="[field.options.push(''), save()]"
         >
           + Add option
         </button>
@@ -191,7 +192,7 @@ export default {
     IconTrashX,
     FieldType
   },
-  inject: ['template'],
+  inject: ['template', 'save'],
   props: {
     field: {
       type: Object,
@@ -250,9 +251,13 @@ export default {
       }
 
       this.isNameFocus = false
+
+      this.save()
     },
     removeArea (area) {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)
+
+      this.save()
     }
   }
 }

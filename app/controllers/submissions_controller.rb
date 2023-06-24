@@ -32,7 +32,8 @@ class SubmissionsController < ApplicationController
       end
     end
 
-    redirect_to template_submissions_path(@template), notice: "#{submissions.size} recepients added"
+    redirect_to template_submissions_path(@template),
+                notice: "#{submissions.size} #{'recipient'.pluralize(submissions.size)} added"
   end
 
   def destroy

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html data-theme="docuseal">
   <head>
     <title>
@@ -12,5 +13,6 @@
   <body>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <%= yield %>
+    <turbo-frame id="modal"></turbo-frame>
   </body>
 </html>

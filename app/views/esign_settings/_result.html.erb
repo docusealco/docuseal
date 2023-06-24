@@ -32,12 +32,12 @@
                     <% if signature.signature_handler.signer_certificate.public_key.to_der == trusted_certs.first.public_key.to_der %>
                       <%= svg_icon('circle_check', class: 'w-6 h-6 text-green-500') %>
                       <span>
-                        Signed with DocuSeal Certificate
+                        Signed with DocuSeal certificate
                       </span>
                     <% else %>
                       <%= svg_icon('x_circle', class: 'w-6 h-6 text-red-500') %>
                       <span>
-                        Signed with External Certificate
+                        Signed with external certificate
                       </span>
                     <% end %>
                   </p>

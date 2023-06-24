@@ -1,4 +1,4 @@
-<%= render 'shared/turbo_modal', title: 'New Recepients' do %>
+<%= render 'shared/turbo_modal', title: 'New Recipients' do %>
   <%= form_for '', url: template_submissions_path(@template), html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
     <% if @template.submitters.size == 1 %>
       <div class="form-control">
@@ -11,14 +11,14 @@
           <div class="card card-compact bg-base-200" data-targets="dynamic-list.items">
             <div class="card-body">
               <div class="absolute right-4 top-5">
-                <a href="#" data-action="click:dynamic-list#removeItem" class="block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
+                <a href="#" data-action="click:dynamic-list#removeItem" class="-top-3 relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
                   <%= svg_icon('trash', class: 'w-4 h-4') %>
                 </a>
               </div>
               <div class="grid md:grid-cols-2 gap-4">
                 <% @template.submitters.each do |item| %>
                   <div class="form-control">
-                    <label class="label">
+                    <label class="label pt-0 pb-1 text-xs">
                       <span class="label-text"> <%= item['name'] %></span>
                     </label>
                     <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>" >
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing'), class: 'base-button' %>
+      <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>

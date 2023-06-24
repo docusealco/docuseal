@@ -24,6 +24,7 @@
         :compact="true"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
         :submitters="template.submitters"
+        @update:model-value="save"
         @click="selectedAreaRef.value = area"
       />
       <FieldType
@@ -31,7 +32,7 @@
         :button-width="27"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
-        @update:model-value="maybeUpdateOptions"
+        @update:model-value="[maybeUpdateOptions(), save()]"
         @click="selectedAreaRef.value = area"
       />
       <span
@@ -111,7 +112,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'selectedAreaRef'],
+  inject: ['template', 'selectedAreaRef', 'save'],
   props: {
     area: {
       type: Object,
@@ -127,6 +128,7 @@ export default {
   data () {
     return {
       isResize: false,
+      isDragged: false,
       isNameFocus: false,
       dragFrom: { x: 0, y: 0 }
     }
@@ -204,6 +206,8 @@ export default {
         this.field.name = ''
         this.$refs.name.innerText = this.defaultName
       }
+
+      this.save()
     },
     onNameEnter (e) {
       this.$refs.name.blur()
@@ -216,6 +220,8 @@ export default {
     },
     drag (e) {
       if (e.toElement.id === 'mask') {
+        this.isDragged = true
+
         this.area.x = (e.layerX - this.dragFrom.x) / e.toElement.clientWidth
         this.area.y = (e.layerY - this.dragFrom.y) / e.toElement.clientHeight
       }
@@ -236,6 +242,12 @@ export default {
       document.removeEventListener('mousemove', this.drag)
       document.removeEventListener('mouseup', this.stopDrag)
 
+      if (this.isDragged) {
+        this.save()
+      }
+
+      this.isDragged = false
+
       this.$emit('stop-drag')
     },
     startResize () {
@@ -251,6 +263,8 @@ export default {
       document.removeEventListener('mouseup', this.stopResize)
 
       this.$emit('stop-resize')
+
+      this.save()
     }
   }
 }

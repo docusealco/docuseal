@@ -26,6 +26,7 @@
           class="cursor-text"
           :icon-inline="true"
           :icon-width="18"
+          @update:model-value="$emit('name-change', selectedSubmitter)"
         />
       </div>
       <span>
@@ -116,7 +117,7 @@ export default {
       default: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full z-10'
     }
   },
-  emits: ['update:model-value', 'remove'],
+  emits: ['update:model-value', 'remove', 'new-submitter', 'name-change'],
   computed: {
     colors () {
       return [
@@ -158,6 +159,7 @@ export default {
       this.submitters.push(newSubmitter)
 
       this.$emit('update:model-value', newSubmitter.uuid)
+      this.$emit('new-submitter', newSubmitter)
     },
     closeDropdown () {
       document.activeElement.blur()

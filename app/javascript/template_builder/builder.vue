@@ -17,24 +17,32 @@
       </div>
       <div class="space-x-3 flex items-center">
         <a
-          :href="`/templates/${template.id}/submissions`"
+          :href="`/templates/${template.id}/submissions/new`"
+          data-turbo-frame="modal"
           class="btn btn-primary"
         >
           <IconUsersPlus
             width="20"
-            class="mr-2 inline"
+            class="inline"
           />
           Recipients
         </a>
-        <a
-          :href="`/`"
+        <button
           class="base-button"
+          :class="{ disabled: isSaving }"
           v-bind="isSaving ? { disabled: true } : {}"
           @click.prevent="onSaveClick"
-        ><IconDeviceFloppy
-          width="20"
-          class="mr-2"
-        />Save</a>
+        >
+          <IconInnerShadowTop
+            v-if="isSaving"
+            width="20"
+            class="animate-spin"
+          />
+          <IconDeviceFloppy
+            v-else
+            width="20"
+          />Save
+        </button>
       </div>
     </div>
     <div
@@ -131,7 +139,7 @@ import Document from './document'
 import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
-import { IconUsersPlus, IconDeviceFloppy } from '@tabler/icons-vue'
+import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import i18n from './i18n'
 import { ref, computed } from 'vue'
@@ -145,6 +153,7 @@ export default {
     Fields,
     Logo,
     DocumentPreview,
+    IconInnerShadowTop,
     Contenteditable,
     IconUsersPlus,
     IconDeviceFloppy
@@ -152,6 +161,7 @@ export default {
   provide () {
     return {
       template: this.template,
+      save: this.save,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -239,6 +249,8 @@ export default {
       if (!field.areas.length) {
         this.template.fields.splice(this.template.fields.indexOf(field), 1)
       }
+
+      this.save()
     },
     onDraw (area) {
       if (this.drawField) {
@@ -281,6 +293,8 @@ export default {
       }
 
       this.selectedAreaRef.value = area
+
+      this.save()
     },
     onDropfield (area) {
       const field = {
@@ -343,6 +357,8 @@ export default {
       this.selectedAreaRef.value = fieldArea
 
       this.template.fields.push(field)
+
+      this.save()
     },
     updateFromUpload ({ schema, documents }) {
       this.template.schema.push(...schema)
@@ -387,7 +403,7 @@ export default {
       this.isSaving = true
 
       this.save().then(() => {
-        // window.Turbo.visit('/')
+        window.Turbo.visit(`/templates/${this.template.id}/submissions`)
       }).finally(() => {
         this.isSaving = false
       })
@@ -404,7 +420,14 @@ export default {
 
       return fetch(`/api/templates/${this.template.id}`, {
         method: 'PUT',
-        body: JSON.stringify({ template: this.template }),
+        body: JSON.stringify({
+          template: {
+            name: this.template.name,
+            schema: this.template.schema,
+            submitters: this.template.submitters,
+            fields: this.template.fields
+          }
+        }),
         headers: { 'Content-Type': 'application/json' }
       }).then((resp) => {
         console.log(resp)

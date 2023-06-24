@@ -52,7 +52,7 @@ button[disabled] .enabled {
 }
 
 .base-textarea {
-  @apply textarea textarea-bordered bg-white;
+  @apply textarea textarea-bordered bg-white rounded-3xl;
 }
 
 .base-button {
