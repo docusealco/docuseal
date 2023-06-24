@@ -215,7 +215,7 @@
         <button
           type="submit"
           class="base-button w-full flex justify-center"
-          :disabled="isSubmitting || (currentField.required && ['image', 'file'].includes(currentField.type) && !values[currentField.uuid]?.length)"
+          :disabled="isButtonDisabled"
         >
           <span class="flex">
             <IconInnerShadowTop
@@ -313,6 +313,11 @@ export default {
   computed: {
     currentStepFields () {
       return this.stepFields[this.currentStep]
+    },
+    isButtonDisabled () {
+      return this.isSubmitting ||
+        (this.currentField.required && ['image', 'file'].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length) ||
+        (this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted)
     },
     currentField () {
       return this.currentStepFields[0]

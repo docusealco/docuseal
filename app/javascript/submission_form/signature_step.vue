@@ -70,11 +70,20 @@ export default {
     }
   },
   emits: ['attached', 'update:model-value'],
+  data () {
+    return {
+      isSignatureStarted: false
+    }
+  },
   mounted () {
     this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
     this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
 
     this.pad = new SignaturePad(this.$refs.canvas)
+
+    this.pad.addEventListener('beginStroke', () => {
+      this.isSignatureStarted = true
+    })
   },
   methods: {
     remove () {
@@ -82,6 +91,8 @@ export default {
     },
     clear () {
       this.pad.clear()
+
+      this.isSignatureStarted = false
     },
     submit () {
       if (this.modelValue) {

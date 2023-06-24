@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWriting, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -166,7 +166,7 @@ export default {
     fieldIcons () {
       return {
         text: IconTextSize,
-        signature: IconWriting,
+        signature: IconWritingSign,
         date: IconCalendarEvent,
         image: IconPhoto,
         file: IconPaperclip,
