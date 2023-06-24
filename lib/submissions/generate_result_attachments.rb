@@ -5,6 +5,8 @@ module Submissions
     FONT_SIZE = 11
     FONT_NAME = 'Helvetica'
 
+    INFO_CREATOR = 'DocuSeal (https://www.docuseal.co)'
+
     A4_SIZE = [595, 842].freeze
 
     module_function
@@ -165,7 +167,9 @@ module Submissions
     def save_signed_pdf(pdf:, submitter:, cert:, uuid:, name:)
       io = StringIO.new
 
-      pdf.sign(io, reason: "Signed by #{submitter.email}",
+      pdf.trailer[:Info][:Creator] = INFO_CREATOR
+
+      pdf.sign(io, reason: "Signed by #{submitter.email} with docuseal.co",
                    certificate: OpenSSL::X509::Certificate.new(cert['cert']),
                    key: OpenSSL::PKey::RSA.new(cert['key']),
                    certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),

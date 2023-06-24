@@ -11,6 +11,13 @@ Rails.configuration.to_prepare do
     response.set_header('Cache-Control', 'public, max-age=31536000') if action_name == 'show'
   end
 
+  ActiveStorage::DirectUploadsController.before_action do
+    next if current_user
+    next if Submitter.find_signed(cookies.signed[:submitter_sid])
+
+    head :forbidden
+  end
+
   LoadActiveStorageConfigs.call
 rescue StandardError => e
   Rails.logger.error(e)

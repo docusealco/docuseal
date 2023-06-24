@@ -7,10 +7,18 @@
     <label
       :for="inputId"
       class="w-full relative bg-base-300 hover:bg-base-200 rounded-md border border-base-content border-dashed"
+      :class="{ 'opacity-50': isLoading }"
     >
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
         <div class="flex flex-col items-center">
+          <IconInnerShadowTop
+            v-if="isLoading"
+            class="animate-spin"
+            :width="30"
+            :height="30"
+          />
           <IconCloudUpload
+            v-else
             :width="30"
             :height="30"
           />
@@ -40,12 +48,13 @@
 
 <script>
 import { DirectUpload } from '@rails/activestorage'
-import { IconCloudUpload } from '@tabler/icons-vue'
+import { IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'FileDropzone',
   components: {
-    IconCloudUpload
+    IconCloudUpload,
+    IconInnerShadowTop
   },
   props: {
     message: {
@@ -68,6 +77,11 @@ export default {
     }
   },
   emits: ['upload'],
+  data () {
+    return {
+      isLoading: false
+    }
+  },
   computed: {
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
@@ -87,6 +101,8 @@ export default {
       })
     },
     async uploadFiles (files) {
+      this.isLoading = true
+
       const blobs = await Promise.all(
         Array.from(files).map(async (file) => {
           const upload = new DirectUpload(
@@ -126,6 +142,8 @@ export default {
           })
         })).then((result) => {
         this.$emit('upload', result)
+      }).finally(() => {
+        this.isLoading = false
       })
     }
   }

@@ -1,19 +1,40 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">eSign</h1>
-    <p>
-      Upload your electronic signature
-    </p>
+    <h1 class="text-4xl font-bold mb-4">Verify PDF Signature</h1>
+    <div id="result">
+      <p class="mb-2">
+        Upload signed PDF file to validate its signature:
+      </p>
+    </div>
     <%= form_for '', url: settings_esign_index_path, method: :post do |f| %>
-      <file-dropzone data-name="verify_attachments" class="">
-        <label for="file">
-          <input id="attachment_uuid" name="attachment_uuid" class="hidden" data-target="file-dropzone.valueField" type="text" autocomplete="off">
-          <input id="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file">
-          Cick to upload
+      <%= f.button type: 'submit', class: 'flex' do %>
+        <div class="disabled mb-3">
+          <%= svg_icon('loader', class: 'w-5 h-5 animate-spin inline') %>
+          Analyzing...
+        </div>
+      <% end %>
+      <file-dropzone data-name="verify_attachments" data-submit-on-upload="true" class="w-full">
+        <label for="file" class="w-full block h-32 relative bg-base-300 hover:bg-base-200 rounded-md border border-base-content border-dashed">
+          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <span data-target="file-dropzone.icon">
+                <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
+              </span>
+              <span data-target="file-dropzone.loading" class="hidden">
+                <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+              </span>
+              <div class="font-medium mb-1">
+                Verify Signed PDF
+              </div>
+              <div class="text-xs">
+                <span class="font-medium">Click to upload</span> or drag and drop
+              </div>
+            </div>
+            <input id="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
+          </div>
         </label>
       </file-dropzone>
-      <%= f.button button_title(title: 'Save', disabled_with: 'Saving') %>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>

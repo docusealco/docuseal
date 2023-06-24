@@ -12,7 +12,7 @@ module Api
       attachment = ActiveStorage::Attachment.create!(
         blob:,
         name: params[:name],
-        record: submitter || current_account
+        record: submitter
       )
 
       render json: attachment.as_json(only: %i[uuid], methods: %i[url filename content_type])

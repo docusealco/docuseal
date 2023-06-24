@@ -10,6 +10,8 @@ class SubmitFormController < ApplicationController
       Submitter.preload(submission: { template: { documents_attachments: { preview_images_attachments: :blob } } })
                .find_by!(slug: params[:slug])
 
+    cookies.signed[:submitter_sid] = @submitter.signed_id
+
     redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
   end
 
@@ -18,7 +20,7 @@ class SubmitFormController < ApplicationController
     submitter.values.merge!(normalized_values)
     submitter.completed_at = Time.current if params[:completed] == 'true'
 
-    submitter.save
+    submitter.save!
 
     head :ok
   end

@@ -1,0 +1,68 @@
+<div id="result">
+  <% blobs.zip(pdfs).each do |blob, pdf| %>
+    <div class="mb-4 border border-base-300 rounded-md py-2 px-3">
+      <% if pdf.signatures.to_a.size == 0 %>
+        <div class="text-sm">
+          <%= blob.filename %>
+        </div>
+        <p class="text-xl font-medium">
+          There are no signatures...
+        </p>
+      <% else %>
+        <div class="flex items-center space-x-1 border-b border-dashed border-base-300 pb-2">
+          <%= svg_icon('file_text', class: 'w-5 h-5 inline') %>
+          <span><%= blob.filename %> - <%= pluralize(pdf.signatures.to_a.size, 'Signature') %></span>
+        </div>
+        <% pdf.signatures.to_a.each do |signature| %>
+          <div class="mt-3">
+            <div class="space-y-1 font-medium pb-2 text-xl">
+              <% signature.verify(trusted_certs:).messages.map(&:content).each do |message| %>
+                <p class="flex space-x-1 items-center">
+                  <% if message == 'Signature verification failed' %>
+                    <%= svg_icon('x_circle', class: 'w-6 h-6 text-red-500') %>
+                  <% elsif message == 'Signature valid' %>
+                    <%= svg_icon('circle_check', class: 'w-6 h-6 text-green-500') %>
+                  <% end %>
+                  <span>
+                    <%= message %>
+                  </span>
+                </p>
+                <% if message == 'Signature valid' %>
+                  <p class="flex space-x-1 items-center">
+                    <% if signature.signature_handler.signer_certificate.public_key.to_der == trusted_certs.first.public_key.to_der %>
+                      <%= svg_icon('circle_check', class: 'w-6 h-6 text-green-500') %>
+                      <span>
+                        Signed with DocuSeal Certificate
+                      </span>
+                    <% else %>
+                      <%= svg_icon('x_circle', class: 'w-6 h-6 text-red-500') %>
+                      <span>
+                        Signed with External Certificate
+                      </span>
+                    <% end %>
+                  </p>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="flex items-center space-x-1">
+              <%= svg_icon('user', class: 'w-5 h-5 inline') %>
+              <span><%= signature.signing_reason %></span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <%= svg_icon('calendar', class: 'w-5 h-5 inline') %>
+              <span><%= l(signature.signing_time, format: :long) %></span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <%= svg_icon('certificate', class: 'w-5 h-5 inline') %>
+              <span><%= signature.signer_name %></span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <%= svg_icon('lock_access', class: 'w-5 h-5 inline') %>
+              <span><%= signature.signature_type %></span>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

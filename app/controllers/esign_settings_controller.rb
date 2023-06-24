@@ -1,26 +1,25 @@
 # frozen_string_literal: true
 
 class EsignSettingsController < ApplicationController
-  before_action :load_encrypted_config
-
   def create
-    attachment = ActiveStorage::Attachment.find_by!(uuid: params[:attachment_uuid])
+    blobs =
+      params[:blob_signed_ids].map do |sid|
+        ActiveStorage::Blob.find_signed(sid)
+      end
 
-    pdf = HexaPDF::Document.new(io: StringIO.new(attachment.download))
+    pdfs =
+      blobs.map do |blob|
+        HexaPDF::Document.new(io: StringIO.new(blob.download))
+      end
 
-    pdf.signatures
-  end
+    cert = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY).value
 
-  private
+    trusted_certs = [OpenSSL::X509::Certificate.new(cert['cert']),
+                     OpenSSL::X509::Certificate.new(cert['sub_ca']),
+                     OpenSSL::X509::Certificate.new(cert['root_ca'])]
 
-  def load_encrypted_config
-    @encrypted_config =
-      EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)
-  end
-
-  def storage_configs
-    params.require(:encrypted_config).permit(value: {}).tap do |e|
-      e[:value].compact_blank!
-    end
+    render turbo_stream: turbo_stream.replace('result', partial: 'result', locals: { pdfs:, blobs:, trusted_certs: })
+  rescue HexaPDF::MalformedPDFError
+    render turbo_stream: turbo_stream.replace('result', html: helpers.tag.div('Invalid PDF', id: 'result'))
   end
 end

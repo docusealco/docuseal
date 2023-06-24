@@ -6,8 +6,8 @@ import { target, targetable } from '@github/catalyst/lib/targetable'
 export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
     'loading',
-    'input',
-    'valueField'
+    'icon',
+    'input'
   ]
 
   connectedCallback () {
@@ -30,8 +30,16 @@ export default actionable(targetable(class extends HTMLElement {
     })
   }
 
+  toggleLoading () {
+    this.loading.classList.toggle('hidden')
+    this.icon.classList.toggle('hidden')
+    this.classList.toggle('opacity-50')
+  }
+
   async uploadFiles (files) {
-    const blobs = await Promise.all(
+    this.toggleLoading()
+
+    await Promise.all(
       Array.from(files).map(async (file) => {
         const upload = new DirectUpload(
           file,
@@ -53,29 +61,26 @@ export default actionable(targetable(class extends HTMLElement {
           console.error(error)
         })
       })
-    )
+    ).then((blobs) => {
+      if (this.dataset.submitOnUpload) {
+        this.querySelectorAll('[name="blob_signed_ids[]"]').forEach((e) => e.remove())
+      }
 
-    await Promise.all(
-      blobs.map((blob) => {
-        return fetch('/api/attachments', {
-          method: 'POST',
-          body: JSON.stringify({
-            name: this.dataset.name,
-            blob_signed_id: blob.signed_id,
-            submitter_slug: this.dataset.submitterSlug
-          }),
-          headers: { 'Content-Type': 'application/json' }
-        }).then(resp => resp.json()).then((data) => {
-          return data
-        })
-      })).then((result) => {
-      result.forEach((attachment) => {
-        if (this.valueField) {
-          this.valueField.value = attachment.uuid
-        }
+      blobs.forEach((blob) => {
+        const input = document.createElement('input')
 
-        this.dispatchEvent(new CustomEvent('upload', { detail: attachment }))
+        input.type = 'hidden'
+        input.name = 'blob_signed_ids[]'
+        input.value = blob.signed_id
+
+        this.append(input)
       })
+
+      if (this.dataset.submitOnUpload) {
+        this.closest('form').querySelector('button[type="submit"]').click()
+      }
+    }).finally(() => {
+      this.toggleLoading()
     })
   }
 }))

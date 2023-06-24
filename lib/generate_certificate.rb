@@ -70,7 +70,7 @@ module GenerateCertificate
     key = OpenSSL::PKey::RSA.new(SIZE)
 
     cert = OpenSSL::X509::Certificate.new
-    cert.subject = OpenSSL::X509::Name.parse("/C=AT/O=#{name}/CN=#{name} Certificate")
+    cert.subject = OpenSSL::X509::Name.parse("/C=AT/O=#{name}/CN=#{name}")
     cert.issuer = ca_cert.subject
     cert.not_before = Time.current
     cert.not_after = 100.years.from_now
