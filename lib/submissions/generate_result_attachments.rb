@@ -7,7 +7,11 @@ module Submissions
 
     INFO_CREATOR = 'DocuSeal (https://www.docuseal.co)'
 
+    TEXT_LEFT_MARGIN = 1
+    TEXT_TOP_MARGIN = 1
+
     A4_SIZE = [595, 842].freeze
+    SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
     module_function
 
@@ -39,7 +43,16 @@ module Submissions
           case field['type']
           when 'image', 'signature'
             attachment = submitter.attachments.find { |a| a.uuid == value }
-            io = StringIO.new(attachment.download)
+
+            image_data =
+              if SUPPORTED_IMAGE_TYPES.include?(attachment.content_type)
+                attachment.download
+              else
+                Vips::Image.new_from_buffer(attachment.download, '')
+                           .write_to_buffer('.jpg', Q: 40)
+              end
+
+            io = StringIO.new(image_data)
 
             scale = [(area['w'] * width) / attachment.metadata['width'],
                      (area['h'] * height) / attachment.metadata['height']].min
@@ -86,9 +99,9 @@ module Submissions
                 {
                   Type: :Annot, Subtype: :Link,
                   Rect: [
-                    area['x'] * width,
+                    (area['x'] * width) + TEXT_LEFT_MARGIN,
                     height - (area['y'] * height) - lines[...index].sum(&:height) + height_diff,
-                    (area['x'] * width) + (area['w'] * width),
+                    (area['x'] * width) + (area['w'] * width) + TEXT_LEFT_MARGIN,
                     height - (area['y'] * height) - lines[..next_index].sum(&:height) + height_diff
                   ],
                   A: { Type: :Action, S: :URI, URI: attachment.url }
@@ -99,7 +112,8 @@ module Submissions
             end
 
             layouter.fit(items, area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
-                    .draw(canvas, area['x'] * width, height - (area['y'] * height) + height_diff)
+                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+                          height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
           when 'checkbox'
             next unless value == true
 
@@ -125,7 +139,8 @@ module Submissions
             height_diff = [0, box_height - (area['h'] * height)].max
 
             layouter.fit([text], area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
-                    .draw(canvas, area['x'] * width, height - (area['y'] * height) + height_diff)
+                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+                          height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
           end
         end
       end
@@ -167,7 +182,7 @@ module Submissions
     def save_signed_pdf(pdf:, submitter:, cert:, uuid:, name:)
       io = StringIO.new
 
-      pdf.trailer[:Info][:Creator] = INFO_CREATOR
+      pdf.trailer.info[:Creator] = INFO_CREATOR
 
       pdf.sign(io, reason: "Signed by #{submitter.email} with docuseal.co",
                    certificate: OpenSSL::X509::Certificate.new(cert['cert']),

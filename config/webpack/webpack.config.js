@@ -1,8 +1,8 @@
-const { webpackConfig, merge } = require('shakapacker')
+const { globalMutableWebpackConfig, merge } = require('shakapacker')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { VueLoaderPlugin } = require('vue-loader')
 
-const configs = merge(webpackConfig, {
+const configs = merge(globalMutableWebpackConfig, {
   resolve: {
     extensions: ['.css', '.scss', '.vue']
   },

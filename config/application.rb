@@ -21,5 +21,7 @@ module DocuSeal
     config.active_storage.routes_prefix = ''
 
     config.action_view.frozen_string_literal = true
+
+    config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
   end
 end

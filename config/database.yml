@@ -11,5 +11,6 @@ test:
   database: docuseal_test
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: <%= ENV['DATABASE_URL'].present? ? 'postgresql' : 'sqlite3' %>
+  encoding: unicode
+  database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3

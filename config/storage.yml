@@ -1,11 +1,11 @@
 local:
   service: Disk
-  root: <%= ENV['WORKDIR'] %>docuseal-attachments
+  root: <%= ENV['WORKDIR'] || '.' %>/attachments
   public: true
 
 disk:
   service: Disk
-  root: <%= ENV['WORKDIR'] %>docuseal-attachments
+  root: <%= ENV['WORKDIR'] || '.' %>/attachments
   public: true
 
 aws_s3:

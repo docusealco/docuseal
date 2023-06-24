@@ -6,6 +6,8 @@ ActiveSupport.on_load(:active_storage_attachment) do
   has_many_attached :preview_images
 end
 
+ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
+
 Rails.configuration.to_prepare do
   ActiveStorage::DiskController.after_action do
     response.set_header('Cache-Control', 'public, max-age=31536000') if action_name == 'show'

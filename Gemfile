@@ -9,8 +9,8 @@ gem 'aws-sdk-s3'
 gem 'azure-storage-blob'
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'dotenv', require: false
 gem 'faraday'
-gem 'geoip'
 gem 'google-cloud-storage'
 gem 'hexapdf'
 gem 'image_processing'

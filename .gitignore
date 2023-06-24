@@ -33,4 +33,5 @@ yarn-debug.log*
 .DS_Store
 
 /coverage
-/docuseal-attachments
+/attachments
+/docuseal

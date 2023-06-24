@@ -5,13 +5,14 @@ default: &default
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/webpacker
-  webpacker_precompile: true
+  shakapacker_precompile: true
   webpack_compile_output: true
   additional_paths: []
   webpack_loader: 'babel'
   compiler_strategy: digest
   cache_manifest: false
   ensure_consistent_versioning: false
+  useContentHash: false
 
 development:
   <<: *default

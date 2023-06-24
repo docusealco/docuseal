@@ -9,6 +9,11 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
+    'Expires' => 1.year.from_now.to_fs(:rfc822)
+  }
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -18,6 +23,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.active_record.sqlite3_production_warning = false
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -75,12 +81,24 @@ Rails.application.configure do
   logger.formatter = config.log_formatter
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
+  encryption_secret = Digest::SHA256.hexdigest(ENV['SECRET_KEY_BASE'].to_s)
+
   config.active_record.encryption = {
-    primary_key: ENV['SECRET_KEY_BASE'].first(32),
-    deterministic_key: ENV['SECRET_KEY_BASE'].last(32),
-    key_derivation_salt: ENV.fetch('SECRET_KEY_BASE', nil)
+    primary_key: encryption_secret.first(32),
+    deterministic_key: encryption_secret.last(32),
+    key_derivation_salt: encryption_secret
   }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+  config.lograge.base_controller_class = ['ActionController::API', 'ActionController::Base']
+
+  config.lograge.custom_payload do |controller|
+    {
+      fwd: controller.request.ip
+    }
+  end
 end
