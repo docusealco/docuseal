@@ -45,7 +45,6 @@
 
 <script>
 import { IconCircleCheck, IconMail, IconDownload, IconInnerShadowTop } from '@tabler/icons-vue'
-import confetti from 'canvas-confetti'
 
 export default {
   name: 'FormCompleted',
@@ -67,7 +66,9 @@ export default {
       isDownloading: false
     }
   },
-  mounted () {
+  async mounted () {
+    const { default: confetti } = await import('canvas-confetti')
+
     confetti({
       particleCount: 50,
       startVelocity: 30,

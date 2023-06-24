@@ -6,11 +6,22 @@ const configs = merge(webpackConfig, {
   resolve: {
     extensions: ['.css', '.scss', '.vue']
   },
+  performance: {
+    maxEntrypointSize: 0
+  },
   optimization: {
     runtimeChunk: false,
     splitChunks: {
       cacheGroups: {
-        default: false
+        default: false,
+        applicationVendors: {
+          test: /\/node_modules\//,
+          chunks: chunk => chunk.name === 'application'
+        },
+        formVendors: {
+          test: /\/node_modules\//,
+          chunks: chunk => chunk.name === 'form'
+        }
       }
     }
   },

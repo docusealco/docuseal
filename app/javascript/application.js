@@ -1,14 +1,11 @@
 import '@hotwired/turbo-rails'
 
-import { createApp, reactive } from 'vue'
-
 import ToggleVisible from './elements/toggle_visible'
 import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 import ClipboardCopy from './elements/clipboard_copy'
-import TemplateBuilder from './template_builder/builder'
 import DynamicList from './elements/dynamic_list'
 import DownloadButton from './elements/download_button'
 import SetOriginUrl from './elements/set_origin_url'
@@ -34,8 +31,16 @@ window.customElements.define('download-button', DownloadButton)
 window.customElements.define('set-origin-url', SetOriginUrl)
 
 window.customElements.define('template-builder', class extends HTMLElement {
-  connectedCallback () {
-    this.appElem = document.createElement('div')
+  async connectedCallback () {
+    const [
+      { createApp, reactive },
+      { default: TemplateBuilder }
+    ] = await Promise.all([
+      import('vue'),
+      import('./template_builder/builder')
+    ])
+
+    this.appElem = this.children[0]
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template))
@@ -50,6 +55,5 @@ window.customElements.define('template-builder', class extends HTMLElement {
 
   disconnectedCallback () {
     this.app?.unmount()
-    this.appElem?.remove()
   }
 })

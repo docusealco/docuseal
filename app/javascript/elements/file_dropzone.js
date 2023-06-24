@@ -1,5 +1,3 @@
-import { DirectUpload } from '@rails/activestorage'
-
 import { actionable } from '@github/catalyst/lib/actionable'
 import { target, targetable } from '@github/catalyst/lib/targetable'
 
@@ -11,6 +9,8 @@ export default actionable(targetable(class extends HTMLElement {
   ]
 
   connectedCallback () {
+    import('@rails/activestorage')
+
     this.addEventListener('drop', this.onDrop)
 
     this.addEventListener('dragover', (e) => e.preventDefault())
@@ -38,6 +38,8 @@ export default actionable(targetable(class extends HTMLElement {
 
   async uploadFiles (files) {
     this.toggleLoading()
+
+    const { DirectUpload } = await import('@rails/activestorage')
 
     await Promise.all(
       Array.from(files).map(async (file) => {

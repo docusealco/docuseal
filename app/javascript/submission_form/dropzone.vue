@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { DirectUpload } from '@rails/activestorage'
 import { IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
@@ -87,6 +86,9 @@ export default {
       return 'el' + Math.random().toString(32).split('.')[1]
     }
   },
+  mounted () {
+    import('@rails/activestorage')
+  },
   methods: {
     onDropFiles (e) {
       this.uploadFiles(e.dataTransfer.files)
@@ -102,6 +104,8 @@ export default {
     },
     async uploadFiles (files) {
       this.isLoading = true
+
+      const { DirectUpload } = await import('@rails/activestorage')
 
       const blobs = await Promise.all(
         Array.from(files).map(async (file) => {

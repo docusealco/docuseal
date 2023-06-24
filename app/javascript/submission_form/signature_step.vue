@@ -40,8 +40,6 @@
 </template>
 
 <script>
-import SignaturePad from 'signature_pad'
-import { DirectUpload } from '@rails/activestorage'
 import { IconReload } from '@tabler/icons-vue'
 
 export default {
@@ -75,9 +73,12 @@ export default {
       isSignatureStarted: false
     }
   },
-  mounted () {
+  async mounted () {
     this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
     this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+
+    import('@rails/activestorage')
+    const { default: SignaturePad } = await import('signature_pad')
 
     this.pad = new SignaturePad(this.$refs.canvas)
 
@@ -94,10 +95,12 @@ export default {
 
       this.isSignatureStarted = false
     },
-    submit () {
+    async submit () {
       if (this.modelValue) {
         return Promise.resolve({})
       }
+
+      const { DirectUpload } = await import('@rails/activestorage')
 
       return new Promise((resolve) => {
         this.$refs.canvas.toBlob((blob) => {

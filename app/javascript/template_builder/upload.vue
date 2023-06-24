@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { DirectUpload } from '@rails/activestorage'
 import { IconUpload } from '@tabler/icons-vue'
 
 export default {
@@ -49,9 +48,14 @@ export default {
       return 'el' + Math.random().toString(32).split('.')[1]
     }
   },
+  mounted () {
+    import('@rails/activestorage')
+  },
   methods: {
     async upload () {
       this.isLoading = true
+
+      const { DirectUpload } = await import('@rails/activestorage')
 
       const blobs = await Promise.all(
         Array.from(this.$refs.input.files).map(async (file) => {
