@@ -17,7 +17,9 @@ class SendSubmissionEmailController < ApplicationController
         Submitter.find_by!(slug: params[:submitter_slug])
       end
 
-    SubmitterMailer.copy_to_submitter(@submitter).deliver_later!
+    Submissions::GenerateResultAttachments.call(@submitter) if @submitter.documents.blank?
+
+    SubmitterMailer.documents_copy_email(@submitter).deliver_later!
 
     respond_to do |f|
       f.html { redirect_to success_send_submission_email_index_path }

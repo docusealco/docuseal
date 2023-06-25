@@ -1,0 +1,3 @@
+<p>Hi <%= @user.first_name %>,</p>
+<p><%= @submitter.email %> has completed the "<%= @submitter.submission.template.name %>" form.</p>
+<p><%= link_to 'View Submission', submission_url(@submitter.submission) %></p>

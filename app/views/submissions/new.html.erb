@@ -36,16 +36,30 @@
       </dynamic-list>
     <% end %>
     <div class="form-control">
+      <% is_smtp_configured = Docuseal.multitenant? || current_account.encrypted_configs.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY) %>
       <%= f.label :send_email, class: 'flex items-center cursor-pointer' do %>
-        <%= f.check_box :send_email, class: 'base-checkbox', onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)"  %>
+        <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)"  %>
         <span class="label">Send Email</span>
+      <% end %>
+      <% unless is_smtp_configured %>
+        <div class="alert my-4">
+          <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+          <div>
+            <h3 class="font-bold">SMTP not Configured</h3>
+            <p class="text-gray-700">
+              Configure SMTP settings in order to send emails:
+              <br>
+              <a class="link font-medium" data-turbo-frame="_top" href="<%= settings_email_index_path %>">Go to SMTP settings</a>
+            </p>
+          </div>
+        </div>
       <% end %>
     </div>
     <div id="message_field" class="card card-compact bg-base-200 hidden">
       <div class="card-body">
         <div class="form-control space-y-2">
           <span class="label-text">Hi there,</span>
-          <%= f.text_area :message, value: SubmitterMailer::DEFAULT_MESSAGE, required: true, class: 'base-textarea !rounded-lg' %>
+          <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg' %>
           <span class="label-text">
             Thanks,
           </br>

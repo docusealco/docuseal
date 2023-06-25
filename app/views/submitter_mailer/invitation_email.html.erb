@@ -1,4 +1,7 @@
 <p>Hi there,</p>
-<p>You have been invited to submit a form:</p>
-<p><%= link_to 'Submit', submit_form_url(slug: @submitter.slug) %></p>
-<p>If you didn't request this, please ignore this email.</p>
+<%= simple_format(@message) %>
+<p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug) %></p>
+<p>Please contact us by replying to this email if you didn't request this.</p>
+<p>
+  Thanks,<br><%= @submitter.submission.template.account.name %>
+</p>

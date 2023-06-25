@@ -22,6 +22,12 @@ class SubmitFormController < ApplicationController
 
     submitter.save!
 
+    if submitter.completed_at?
+      submitter.submission.template.account.users.active.each do |user|
+        SubmitterMailer.completed_email(submitter, user).deliver_later!
+      end
+    end
+
     head :ok
   end
 

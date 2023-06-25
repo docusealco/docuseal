@@ -63,22 +63,22 @@
             <div class="flex items-center space-x-1 ">
               <span class="mx-1 w-3 h-3 rounded-full <%= colors[index] %>"></span>
               <span class="text-lg">
-                <%= @submission.template.submitters.find { |e| e['uuid'] == submitter.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
+                <%= @submission.template.submitters.find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
               </span>
             </div>
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('mail', class: 'w-5 h-5') %>
               <span>
-                <%= submitter.email %>
+                <%= submitter&.email || 'N/A' %>
               </span>
             </div>
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
-                <%= submitter.completed_at? ? l(submitter.completed_at, format: :long) : 'Not completed yet' %>
+                <%= submitter&.completed_at? ? l(submitter.completed_at, format: :long) : 'Not completed yet' %>
               </span>
             </div>
-            <% unless submitter.completed_at? %>
+            <% if submitter && !submitter.completed_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-xs btn-primary w-full" target="_blank" href="<%= submit_form_url(slug: submitter.slug) %>">
                   Submit Form
@@ -89,7 +89,7 @@
         </div>
         <div class="px-1.5 mb-4">
           <% submitter_field_counters = Hash.new { 0 } %>
-          <% submitter_fields_index[submitter.uuid].each_with_index do |field, index| %>
+          <% submitter_fields_index[item['uuid']].to_a.each_with_index do |field, index| %>
             <% submitter_field_counters[field['type']] += 1 %>
             <% value = values[field['uuid']] %>
             <% next if value.blank? %>

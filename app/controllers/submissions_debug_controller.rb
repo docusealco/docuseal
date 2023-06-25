@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsDebugController < ApplicationController
-  layout 'form'
+  layout 'plain'
 
   skip_before_action :authenticate_user!
 

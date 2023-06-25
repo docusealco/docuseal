@@ -5,7 +5,8 @@ module Submissions
     FONT_SIZE = 11
     FONT_NAME = 'Helvetica'
 
-    INFO_CREATOR = 'DocuSeal (https://www.docuseal.co)'
+    INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
+    SIGN_REASON = 'Signed by %<email>s with docuseal.co'
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
@@ -184,7 +185,7 @@ module Submissions
 
       pdf.trailer.info[:Creator] = INFO_CREATOR
 
-      pdf.sign(io, reason: "Signed by #{submitter.email} with docuseal.co",
+      pdf.sign(io, reason: format(SIGN_REASON, email: submitter.email),
                    certificate: OpenSSL::X509::Certificate.new(cert['cert']),
                    key: OpenSSL::PKey::RSA.new(cert['key']),
                    certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),

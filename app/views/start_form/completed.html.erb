@@ -1,5 +1,4 @@
 <p>
-  Form has been submitted alredy by ypu - thanks!
+  Form has been submitted already - thanks!
 </p>
 <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending'), send_submission_email_index_path, params: { template_slug: @template.slug, email: params[:email] }, form: { onsubmit: 'event.submitter.disabled = true' } %>
-<%# do not allow donwload for securetiy reaosn<a href="">Download documets</a> %>

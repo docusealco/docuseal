@@ -1,4 +1,7 @@
 <p>Hello <%= @user.first_name %>,</p>
-<p>You have been invited to Docuseal. You can sign up this through the link below.</p>
-<p><%= link_to 'Set my password', invitation_url(reset_password_token: @token) %></p>
-<p>If you didn't request this, please ignore this email.</p>
+<p>You have been invited to <%= @user.account.name %> DocuSeal. Please sign up using the link below:</p>
+<p><%= link_to 'Sign up', invitation_url(reset_password_token: @token) %></p>
+<p>Please contact us by replying to this email if you didn't request this.</p>
+<p>
+  Thanks,<br><%= @user.account.name %>
+</p>

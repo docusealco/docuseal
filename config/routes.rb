@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :submitters, only: %i[], param: 'slug' do
     resources :download, only: %i[index], controller: 'submissions_download'
-    resources :debug, only: %i[index], controller: 'submissions_debug'
+    resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
   end
 
   scope '/settings', as: :settings do

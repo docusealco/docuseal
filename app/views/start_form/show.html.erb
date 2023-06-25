@@ -1,7 +1,7 @@
-<div class="max-w-xl mx-auto px-2 mt-12">
+<div class="max-w-xl mx-auto px-2 mt-12 mb-4">
   <div class="card bg-base-200">
     <div class="card-body">
-      <div class="space-y-4 mx-auto">
+      <div class="space-y-4 w-full md:px-10 mx-auto">
         <div class="space-y-4">
           <div class="flex items-center justify-center">
             <div class="flex items-center">
@@ -11,7 +11,7 @@
               <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
             </div>
           </div>
-          <h2 class="text-xl font-semibold text-center">You have been invited to submit the document</h2>
+          <h2 class="text-xl font-semibold text-center">You have been invited to submit the form</h2>
           <div class="flex items-center bg-neutral rounded-xl p-4">
             <div class="flex items-center">
               <div class="mr-3">
@@ -35,10 +35,11 @@
             <%= f.email_field :email, required: true, class: 'base-input', placeholder: 'Provide your email to start' %>
           </div>
           <div class="form-control">
-            <%= f.button button_title(title: 'Confirm', disabled_with: 'Processing'), class: 'base-button' %>
+            <%= f.button button_title(title: 'Start'), class: 'base-button' %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= render 'shared/attribution' %>

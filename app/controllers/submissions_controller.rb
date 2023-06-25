@@ -42,7 +42,7 @@ class SubmissionsController < ApplicationController
 
     submission.update!(deleted_at: Time.current)
 
-    redirect_to template_submissions_path(submission.template), notice: 'Submission has been archieved'
+    redirect_to template_submissions_path(submission.template), notice: 'Submission has been archived'
   end
 
   private

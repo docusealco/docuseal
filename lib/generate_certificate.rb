@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GenerateCertificate
-  NAME = 'DocuSeal'
+  NAME = Docuseal::PRODUCT_NAME
   SIZE = 2**11
 
   module_function
