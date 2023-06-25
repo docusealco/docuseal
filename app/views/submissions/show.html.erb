@@ -21,11 +21,12 @@
   </div>
   <div class="flex" style="max-height: calc(100vh - 60px)">
     <div class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5">
-      <% @submission.template.documents.each do |document| %>
+      <% @submission.template.schema.each do |item| %>
+        <% document = @submission.template.documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
           <img src="<%= document.preview_images.first.url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" >
           <div class="pb-2 pt-1.5 text-center">
-            <%= @submission.template.schema.find { |e| e['attachment_uuid'] == document.uuid }&.dig('name').presence || attachment.filename.base %>
+            <%= item['name'].presence || document.filename.base %>
           </div>
         </a>
       <% end %>

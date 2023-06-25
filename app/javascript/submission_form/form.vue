@@ -383,10 +383,7 @@ export default {
 
       await stepPromise()
 
-      return fetch(this.submitPath, {
-        method: 'POST',
-        body: new FormData(this.$refs.form)
-      }).then(response => {
+      this.saveStep().then(response => {
         const nextStep = this.stepFields[this.currentStep + 1]
 
         if (nextStep) {

@@ -49,7 +49,7 @@ module Submissions
                 attachment.download
               else
                 Vips::Image.new_from_buffer(attachment.download, '')
-                           .write_to_buffer('.jpg', Q: 40)
+                           .write_to_buffer('.png')
               end
 
             io = StringIO.new(image_data)

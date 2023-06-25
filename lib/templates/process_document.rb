@@ -15,7 +15,7 @@ module Templates
     def call(attachment)
       if attachment.content_type == PDF_CONTENT_TYPE
         generate_pdf_preview_images(attachment)
-      elsif attachment.content_type.starts_with?('image/')
+      elsif attachment.image?
         generate_preview_image(attachment)
       end
 
