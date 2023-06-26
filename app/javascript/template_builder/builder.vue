@@ -85,7 +85,7 @@
             :selected-submitter="selectedSubmitter"
             :document="document"
             :is-drag="!!dragFieldType"
-            :is-draw="!!drawField"
+            :draw-field="drawField"
             @draw="onDraw"
             @drop-field="onDropfield"
             @remove-area="removeArea"
@@ -141,12 +141,10 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
-import i18n from './i18n'
 import { ref, computed } from 'vue'
 
 export default {
   name: 'TemplateBuilder',
-  i18n,
   components: {
     Upload,
     Document,
@@ -351,6 +349,10 @@ export default {
       fieldArea.w = baseArea.w
       fieldArea.h = baseArea.h
       fieldArea.y = fieldArea.y - baseArea.h / 2
+
+      if (this.dragFieldType === 'cells') {
+        fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
+      }
 
       field.areas = [fieldArea]
 

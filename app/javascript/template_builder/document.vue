@@ -7,7 +7,7 @@
       :number="index"
       :areas="areasIndex[index]"
       :is-drag="isDrag"
-      :is-draw="isDraw"
+      :draw-field="drawField"
       :selected-submitter="selectedSubmitter"
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
@@ -38,10 +38,10 @@ export default {
       type: Object,
       required: true
     },
-    isDraw: {
-      type: Boolean,
+    drawField: {
+      type: Object,
       required: false,
-      default: false
+      default: null
     },
     isDrag: {
       type: Boolean,

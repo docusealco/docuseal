@@ -6,10 +6,29 @@
     @mousedown.stop="startDrag"
   >
     <div
-      v-if="isSelected || !field?.type"
+      v-if="isSelected || isDraw"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
       :class="borderColors[submitterIndex]"
     />
+    <div
+      v-if="field.type === 'cells' && (isSelected || isDraw)"
+      class="top-0 bottom-0 right-0 left-0 absolute"
+    >
+      <div
+        v-for="(cellW, index) in cells"
+        :key="index"
+        class="absolute top-0 bottom-0 border-r"
+        :class="borderColors[submitterIndex]"
+        :style="{ left: (cellW / area.w * 100) + '%' }"
+      >
+        <span
+          v-if="index === 0"
+          class="h-2.5 w-2.5 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-ew-resize z-10"
+          style="left: -4px"
+          @mousedown.stop="startResizeCell"
+        />
+      </div>
+    </div>
     <div
       v-if="field?.type"
       class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap group-hover:flex group-hover:z-10"
@@ -118,6 +137,11 @@ export default {
       type: Object,
       required: true
     },
+    isDraw: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     field: {
       type: Object,
       required: false,
@@ -135,7 +159,21 @@ export default {
   },
   computed: {
     defaultName: Field.computed.defaultName,
+    fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    cells () {
+      const cells = []
+
+      let currentWidth = 0
+
+      while (currentWidth + (this.area.cell_w + this.area.cell_w / 4) < this.area.w) {
+        currentWidth += this.area.cell_w || 9999999
+
+        cells.push(currentWidth)
+      }
+
+      return cells
+    },
     submitter () {
       return this.template.submitters.find((s) => s.uuid === this.field.submitter_uuid)
     },
@@ -187,6 +225,29 @@ export default {
         }, 1)
       }
     },
+    startResizeCell (e) {
+      document.addEventListener('mousemove', this.onResizeCell)
+      document.addEventListener('mouseup', this.stopResizeCell)
+
+      this.$emit('start-resize', 'ew')
+    },
+    stopResizeCell (e) {
+      document.removeEventListener('mousemove', this.onResizeCell)
+      document.removeEventListener('mouseup', this.stopResizeCell)
+
+      this.$emit('stop-resize')
+
+      this.save()
+    },
+    onResizeCell (e) {
+      if (e.toElement.id === 'mask') {
+        const positionX = e.layerX / (e.toElement.clientWidth - 1)
+
+        if (positionX > this.area.x) {
+          this.area.cell_w = positionX - this.area.x
+        }
+      }
+    },
     maybeUpdateOptions () {
       if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
@@ -195,6 +256,14 @@ export default {
       if (['select', 'multiple', 'radio'].includes(this.field.type)) {
         this.field.options ||= ['']
       }
+
+      (this.field.areas || []).forEach((area) => {
+        if (this.field.type === 'cells') {
+          area.cell_w = area.w * 2 / Math.floor(area.w / area.h)
+        } else {
+          delete area.cell_w
+        }
+      })
     },
     onNameBlur (e) {
       this.isNameFocus = false
@@ -256,7 +325,7 @@ export default {
       document.addEventListener('mousemove', this.resize)
       document.addEventListener('mouseup', this.stopResize)
 
-      this.$emit('start-resize')
+      this.$emit('start-resize', 'nwse')
     },
     stopResize () {
       document.removeEventListener('mousemove', this.resize)

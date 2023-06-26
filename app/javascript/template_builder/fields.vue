@@ -62,7 +62,7 @@
       <div class="flex items-center flex-col px-2 py-2">
         <component :is="icon" />
         <span class="text-xs mt-1">
-          {{ $t(type) }}
+          {{ fieldNames[type] }}
         </span>
       </div>
     </button>
@@ -98,6 +98,7 @@ export default {
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
   computed: {
+    fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
     submitterFields () {
       return this.fields.filter((f) => f.submitter_uuid === this.selectedSubmitter.uuid)

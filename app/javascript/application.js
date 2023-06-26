@@ -41,8 +41,6 @@ window.customElements.define('template-builder', class extends HTMLElement {
       template: reactive(JSON.parse(this.dataset.template))
     })
 
-    this.app.config.globalProperties.$t = (key) => TemplateBuilder.i18n[key] || key
-
     this.app.mount(this.appElem)
 
     this.appendChild(this.appElem)

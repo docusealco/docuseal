@@ -18,24 +18,25 @@
         :ref="setAreaRefs"
         :area="item.area"
         :field="item.field"
-        @start-resize="[showMask = true, isResize = true]"
-        @stop-resize="[showMask = false, isResize = false]"
-        @start-drag="[showMask = true, isMove = true]"
-        @stop-drag="[showMask = false, isMove = false]"
+        @start-resize="resizeDirection = $event"
+        @stop-resize="resizeDirection = null"
+        @start-drag="isMove = true"
+        @stop-drag="isMove = false"
         @remove="$emit('remove-area', item.area)"
       />
       <FieldArea
         v-if="newArea"
-        :field="{ submitter_uuid: selectedSubmitter.uuid }"
+        :is-draw="true"
+        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || 'text' }"
         :area="newArea"
       />
     </div>
     <div
-      v-show="isDrag || showMask"
+      v-show="resizeDirection || isMove || isDrag || showMask"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute z-10"
-      :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': isResize || isDraw }"
+      :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @dragover.prevent
       @drop="onDrop"
@@ -66,10 +67,10 @@ export default {
       type: Object,
       required: true
     },
-    isDraw: {
-      type: Boolean,
+    drawField: {
+      type: Object,
       required: false,
-      default: false
+      default: null
     },
     isDrag: {
       type: Boolean,
@@ -87,11 +88,17 @@ export default {
       areaRefs: [],
       showMask: false,
       isMove: false,
-      isResize: false,
+      resizeDirection: null,
       newArea: null
     }
   },
   computed: {
+    resizeDirectionClasses () {
+      return {
+        nwse: 'cursor-nwse-resize',
+        ew: 'cursor-ew-resize'
+      }
+    },
     width () {
       return this.image.metadata.width
     },
@@ -148,19 +155,29 @@ export default {
           this.newArea.y = e.layerY / this.$refs.mask.clientHeight
         }
 
+        if (this.drawField?.type === 'cells') {
+          this.newArea.cell_w = this.newArea.h * (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth)
+        }
+
         this.newArea.w = Math.abs(dx)
         this.newArea.h = Math.abs(dy)
       }
     },
     onPointerup (e) {
       if (this.newArea) {
-        this.$emit('draw', {
+        const area = {
           x: this.newArea.x,
           y: this.newArea.y,
           w: this.newArea.w,
           h: this.newArea.h,
           page: this.number
-        })
+        }
+
+        if ('cell_w' in this.newArea) {
+          area.cell_w = this.newArea.cell_w
+        }
+
+        this.$emit('draw', area)
       }
 
       this.showMask = false

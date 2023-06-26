@@ -2,7 +2,7 @@
   <span class="dropdown">
     <label
       tabindex="0"
-      :title="$t(modelValue)"
+      :title="fieldNames[modelValue]"
       class="cursor-pointer"
     >
       <component
@@ -33,7 +33,7 @@
             :stroke-width="1.6"
             :width="20"
           />
-          {{ $t(type) }}
+          {{ fieldNames[type] }}
         </a>
       </li>
     </ul>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3 } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -68,6 +68,20 @@ export default {
   },
   emits: ['update:model-value'],
   computed: {
+    fieldNames () {
+      return {
+        text: 'Text',
+        signature: 'Signature',
+        date: 'Date',
+        image: 'Image',
+        file: 'File',
+        select: 'Select',
+        checkbox: 'Checkbox',
+        multiple: 'Multiple',
+        radio: 'Radio',
+        cells: 'Cells'
+      }
+    },
     fieldIcons () {
       return {
         text: IconTextSize,
@@ -77,6 +91,7 @@ export default {
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
+        cells: IconColumns3,
         multiple: IconChecks,
         radio: IconCircleDot
       }

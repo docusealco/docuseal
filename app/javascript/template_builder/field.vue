@@ -206,12 +206,13 @@ export default {
     }
   },
   computed: {
+    fieldNames: FieldType.computed.fieldNames,
     defaultName () {
       const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
 
       const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
 
-      return `${this.$t(this.field.type)} ${suffix} ${typeIndex + 1}`
+      return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
     },
     areas () {
       return this.field.areas || []
@@ -241,6 +242,14 @@ export default {
       if (['radio', 'multiple', 'select'].includes(this.field.type)) {
         this.field.options ||= ['']
       }
+
+      (this.field.areas || []).forEach((area) => {
+        if (this.field.type === 'cells') {
+          area.cell_w = area.w * 2 / Math.floor(area.w / area.h)
+        } else {
+          delete area.cell_w
+        }
+      })
     },
     onNameBlur (e) {
       if (e.target.innerText.trim()) {

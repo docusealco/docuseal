@@ -83,6 +83,19 @@
       />
     </div>
     <div
+      v-else-if="field.type === 'cells'"
+      class="w-full flex items-center"
+    >
+      <div
+        v-for="(char, index) in modelValue"
+        :key="index"
+        class="text-center flex-none"
+        :style="{ width: (area.cell_w / area.w * 100) + '%' }"
+      >
+        {{ char }}
+      </div>
+    </div>
+    <div
       v-else
       class="flex items-center px-0.5"
     >
@@ -100,7 +113,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3 } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -153,6 +166,7 @@ export default {
     fieldNames () {
       return {
         text: 'Text',
+        cells: 'Text',
         signature: 'Signature',
         date: 'Date',
         image: 'Image',
@@ -173,6 +187,7 @@ export default {
         select: IconSelect,
         checkbox: IconCheckbox,
         radio: IconCircleDot,
+        cells: IconColumns3,
         multiple: IconChecks
       }
     },

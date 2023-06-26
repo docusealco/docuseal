@@ -33,7 +33,7 @@
         type="hidden"
       >
       <div class="mt-4">
-        <div v-if="currentField.type === 'text'">
+        <div v-if="['cells', 'text'].includes(currentField.type)">
           <label
             v-if="currentField.name"
             :for="currentField.uuid"
@@ -369,10 +369,14 @@ export default {
       })
     },
     saveStep () {
-      return fetch(this.submitPath, {
-        method: 'POST',
-        body: new FormData(this.$refs.form)
-      })
+      if (this.isCompleted) {
+        return Promise.resolve({})
+      } else {
+        return fetch(this.submitPath, {
+          method: 'POST',
+          body: new FormData(this.$refs.form)
+        })
+      }
     },
     async submitStep () {
       this.isSubmitting = true

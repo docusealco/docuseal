@@ -19,6 +19,8 @@ module Submissions
     # rubocop:disable Metrics
     def call(submitter)
       layouter = HexaPDF::Layout::TextLayouter.new(valign: :center)
+      cell_layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, align: :center)
+
       template = submitter.submission.template
 
       cert = submitter.submission.template.account.encrypted_configs
@@ -129,6 +131,17 @@ module Submissions
               width: PdfIcons::WIDTH * scale,
               height: PdfIcons::HEIGHT * scale
             )
+          when 'cells'
+            cell_width = area['cell_w'] * width
+
+            value.chars.each_with_index do |char, index|
+              text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
+                                                                font_size: FONT_SIZE)
+
+              cell_layouter.fit([text], cell_width, area['h'] * height)
+                           .draw(canvas, ((area['x'] * width) + (cell_width * index)),
+                                 height - (area['y'] * height))
+            end
           else
             value = I18n.l(Date.parse(value)) if field['type'] == 'date'
 
