@@ -405,7 +405,7 @@ export default {
       this.isSaving = true
 
       this.save().then(() => {
-        window.Turbo.visit(`/templates/${this.template.id}/submissions`)
+        window.Turbo.visit(`/templates/${this.template.id}`)
       }).finally(() => {
         this.isSaving = false
       })

@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   resources :setup, only: %i[index create]
   resources :users, only: %i[new create edit update destroy]
   resources :submissions, only: %i[show destroy]
-  resources :templates, only: %i[new create show destroy] do
-    resources :submissions, only: %i[index new create]
+  resources :templates, only: %i[new create edit show destroy] do
+    resources :submissions, only: %i[new create]
   end
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do

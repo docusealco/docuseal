@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsController < ApplicationController
-  before_action :load_template, only: %i[index new create]
-
-  def index
-    @pagy, @submissions = pagy(@template.submissions.active)
-  end
+  before_action :load_template, only: %i[new create]
 
   def show
     @submission =
@@ -32,7 +28,7 @@ class SubmissionsController < ApplicationController
       end
     end
 
-    redirect_to template_submissions_path(@template),
+    redirect_to template_path(@template),
                 notice: "#{submissions.size} #{'recipient'.pluralize(submissions.size)} added"
   end
 
@@ -42,7 +38,7 @@ class SubmissionsController < ApplicationController
 
     submission.update!(deleted_at: Time.current)
 
-    redirect_to template_submissions_path(submission.template), notice: 'Submission has been archived'
+    redirect_back(fallback_location: template_path(submission.template), notice: 'Submission has been archived')
   end
 
   private

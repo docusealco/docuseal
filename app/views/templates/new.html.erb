@@ -1,4 +1,4 @@
-<%= render 'shared/turbo_modal', title: 'New Template' do %>
+<%= render 'shared/turbo_modal', title: @base_template ? 'Clone Template' : 'New Template' do %>
   <%= form_for @template, data: { turbo_frame: :_top } do |f| %>
     <% if @base_template %>
       <%= hidden_field_tag :base_template_id, @base_template.id %>
@@ -7,7 +7,7 @@
       <%= f.text_field :name, required: true, placeholder: 'Template Name', class: 'base-input' %>
     </div>
     <div class="form-control mt-4">
-      <%= f.button button_title(title: 'Create', disabled_with: 'Creating'), class: 'base-button' %>
+      <%= f.button button_title(title: @base_template ? 'Submit' : 'Create', disabled_with: 'Creating'), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>
