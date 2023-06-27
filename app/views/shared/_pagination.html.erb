@@ -6,7 +6,7 @@
     </div>
     <div class="join">
       <% if @pagy.prev %>
-        <%== link.call(@pagy.prev, "«", 'class="join-item btn min-h-full h-10"') %>
+        <%== link.call(@pagy.prev, '«', 'class="join-item btn min-h-full h-10"') %>
       <% else %>
         <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
       <% end %>
@@ -14,7 +14,7 @@
         Page <%= @pagy.page %>
       </span>
       <% if @pagy.next %>
-        <%== link.call(@pagy.next, "»", 'class="join-item btn min-h-full h-10"') %>
+        <%== link.call(@pagy.next, '»', 'class="join-item btn min-h-full h-10"') %>
       <% else %>
         <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
       <% end %>

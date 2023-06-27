@@ -8,7 +8,7 @@
     <% value = @encrypted_config.value || { 'service' => 'disk' } %>
     <% configs = value['configs'] || {} %>
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
-      <% options = [['Disk', 'disk'], ['AWS', 'aws_s3'], ['GCP', 'google'], ['Azure', 'azure']] %>
+      <% options = [%w[Disk disk], %w[AWS aws_s3], %w[GCP google], %w[Azure azure]] %>
       <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
         <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
           <% options.each do |(label, val)| %>
@@ -24,16 +24,16 @@
         </ul>
       </toggle-visible>
       <disable-hidden id="disk" class="block my-4 <%= 'hidden' if value['service'] != 'disk' %>">
-        <%= render "disk_form", f: f %>
+        <%= render 'disk_form', f: %>
       </disable-hidden>
       <disable-hidden id="aws_s3" class="block my-4 space-y-4 <%= 'hidden' if value['service'] != 'aws_s3' %>">
-        <%= render "aws_form", f: f, configs: configs, value: value %>
+        <%= render 'aws_form', f:, configs:, value: %>
       </disable-hidden>
       <disable-hidden id="google" class="block mt-4 space-y-4 mb-8 <%= 'hidden' if value['service'] != 'google' %>">
-        <%= render "google_cloud_form", f: f, configs: configs, value: value %>
+        <%= render 'google_cloud_form', f:, configs:, value: %>
       </disable-hidden>
       <disable-hidden id="azure" class="block mt-4 space-y-4 mb-8 <%= 'hidden' if value['service'] != 'azure' %>">
-        <%= render "azure_form", f: f, configs: configs, value: value %>
+        <%= render 'azure_form', f:, configs:, value: %>
       </disable-hidden>
       <div class="form-control">
         <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>

@@ -13,7 +13,7 @@
           <div class="pb-4 text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
             <%= template.name %>
           </div>
-          <div class="pb-6 pt-1" >
+          <div class="pb-6 pt-1">
             <p class="flex items-center space-x-1 text-xs text-base-content/60">
               <%= svg_icon('user', class: 'w-4 h-4') %>
               <span><%= template.author.full_name %></span>
@@ -31,7 +31,7 @@
           <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs btn-outline bg-base-200 btn-circle">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
-          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: "btn btn-xs btn-outline bg-base-200 btn-circle" do %>
+          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs btn-outline bg-base-200 btn-circle' do %>
             <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>

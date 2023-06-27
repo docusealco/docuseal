@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal', title: 'New Recipients' do %>
-  <%= form_for '', url: template_submissions_path(@template), html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+  <%= form_for '', url: template_submissions_path(@template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
     <% if @template.submitters.size == 1 %>
       <div class="form-control">
         <%= f.label :emails, class: 'label' %>
@@ -21,8 +21,8 @@
                     <label class="label pt-0 pb-1 text-xs">
                       <span class="label-text"> <%= item['name'] %></span>
                     </label>
-                    <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>" >
-                    <input type="email" name="submission[1][submitters][][email]" value="<%= item['email'] %>" class="input input-sm input-bordered" placeholder="Email" required>
+                    <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
+                    <input type="email" name="submission[1][submitters][][email]" value="<%= item['email'] %>" autocomplete="off" class="input input-sm input-bordered" placeholder="Email" required>
                   </div>
                 <% end %>
               </div>
@@ -38,7 +38,7 @@
     <div class="form-control">
       <% is_smtp_configured = Docuseal.multitenant? || current_account.encrypted_configs.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY) %>
       <%= f.label :send_email, class: 'flex items-center cursor-pointer' do %>
-        <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)"  %>
+        <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)" %>
         <span class="label">Send Email</span>
       <% end %>
       <% unless is_smtp_configured %>
@@ -62,7 +62,7 @@
           <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg' %>
           <span class="label-text">
             Thanks,
-          </br>
+          <br>
           <%= current_account.name %>
         </div>
       </div>

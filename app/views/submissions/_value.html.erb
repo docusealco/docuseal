@@ -5,7 +5,7 @@
     <div class="px-0.5 flex flex-col justify-center">
       <% Array.wrap(value).each do |val| %>
         <a target="_blank" href="<%= attachments_index[val].url %>">
-          <%= svg_icon('paperclip', class: "inline w-[1.5vw] h-[1.5vw] lg:w-4 lg:h-4") %>
+          <%= svg_icon('paperclip', class: 'inline w-[1.5vw] h-[1.5vw] lg:w-4 lg:h-4') %>
           <%= attachments_index[val].filename %>
         </a>
       <% end %>
