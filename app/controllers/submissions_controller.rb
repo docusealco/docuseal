@@ -47,7 +47,7 @@ class SubmissionsController < ApplicationController
     emails = params[:emails].to_s.scan(User::EMAIL_REGEXP)
 
     emails.map do |email|
-      submission = @template.submissions.new
+      submission = @template.submissions.new(created_by_user: current_user)
       submission.submitters.new(email:, uuid: @template.submitters.first['uuid'],
                                 sent_at: params[:send_email] == '1' ? Time.current : nil)
 
@@ -57,7 +57,7 @@ class SubmissionsController < ApplicationController
 
   def create_submissions_from_submitters
     submissions_params[:submission].to_h.map do |_, attrs|
-      submission = @template.submissions.new
+      submission = @template.submissions.new(created_by_user: current_user)
 
       attrs[:submitters].each do |submitter_attrs|
         submission.submitters.new(**submitter_attrs, sent_at: params[:send_email] == '1' ? Time.current : nil)

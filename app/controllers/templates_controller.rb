@@ -4,9 +4,11 @@ class TemplatesController < ApplicationController
   before_action :load_base_template, only: %i[new create]
 
   def show
-    @template = current_account.templates.find(params[:id])
+    @template = current_account.templates.active.find(params[:id])
 
-    @pagy, @submissions = pagy(@template.submissions.active)
+    @pagy, @submissions = pagy(@template.submissions.active.preload(:submitters).order(id: :desc))
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
   end
 
   def new

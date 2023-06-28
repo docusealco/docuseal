@@ -60,7 +60,7 @@
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
         <div class="sticky -top-1 bg-base-100 pt-1 -mt-1 z-10">
           <div class="border border-base-300 rounded-md px-2 py-1 mb-1">
-            <div class="flex items-center space-x-1 ">
+            <div class="flex items-center space-x-1">
               <span class="mx-1 w-3 h-3 rounded-full <%= colors[index] %>"></span>
               <span class="text-lg">
                 <%= @submission.template.submitters.find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>

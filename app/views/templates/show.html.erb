@@ -1,103 +1,123 @@
-<div class="card card-compact bg-primary mb-12 md:card-normal">
-  <div class="card-body">
-    <div class="grid md:grid-cols-2 gap-4 md:flex md:justify-between">
-      <h2 class="card-title text-4xl ">
-        <%= @template.name %>
-      </h2>
-      <div class="flex md:justify-between space-x-2">
-        <%= link_to new_template_path(base_template_id: @template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
-          <%= svg_icon('copy', class: 'w-6 h-6') %>
-          <span>Clone</span>
-        <% end %>
-        <%= link_to edit_template_path(@template), class: 'btn btn-outline btn-sm' do %>
-          <span class="flex items-center justify-center space-x-2">
-            <%= svg_icon('pencil', class: 'w-6 h-6') %>
-            <span>Edit</span>
-          </span>
-        <% end %>
-      </div>
-    </div>
-    <% if @template.submitters.size == 1 %>
-      <div class="join w-full">
-        <buttun class="btn bg-neutral btn-disabled text-white join-item">
-          Share link
-        </buttun>
-        <input id="share-link-input" autocomplete="off" type="text" class="input input-bordered w-full join-item" value="<%= start_form_url(slug: @template.slug) %>" disabled>
-        <clipboard-copy class="btn btn-neutral btn-square join-item text-white font-bold swap swap-active" for="share-link-input">
-          <%= svg_icon('clipboard', class: 'w-6 h-6 swap-on text-white') %>
-          <%= svg_icon('clipboard_copy', class: 'w-6 h-6 swap-off text-white') %>
-        </clipboard-copy>
-      </div>
+<div class="flex md:justify-between items-start mb-6">
+  <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+    <%= @template.name %>
+  </h1>
+  <div class="flex md:justify-between space-x-2 flex-none">
+    <%= button_to button_title(title: 'Remove', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(@template), class: 'btn btn-outline', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+    <%= link_to new_template_path(base_template_id: @template.id), class: 'btn btn-outline', data: { turbo_frame: :modal } do %>
+      <%= svg_icon('copy', class: 'w-6 h-6') %>
+      <span>Clone</span>
+    <% end %>
+    <%= link_to edit_template_path(@template), class: 'btn btn-outline' do %>
+      <span class="flex items-center justify-center space-x-2">
+        <%= svg_icon('pencil', class: 'w-6 h-6') %>
+        <span>Edit</span>
+      </span>
     <% end %>
   </div>
 </div>
-<div class="flex justify-between mb-4">
-  <h1 class="text-3xl font-bold">Recipients</h1>
-  <%= link_to new_template_submission_path(@template), class: 'btn btn-primary btn-sm gap-2', data: { turbo_frame: 'modal' } do %>
-    <%= svg_icon('plus', class: 'w-6 h-6') %>
-    <span class="hidden md:block">Add Recipients</span>
-  <% end %>
+<div class="flex justify-between mb-4 items-end">
+  <p class="text-3xl font-bold">Submissions</p>
+  <div class="flex space-x-2">
+    <% if @template.submitters.to_a.size == 1 %>
+      <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
+    <% end %>
+    <%= link_to new_template_submission_path(@template), class: 'btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
+      <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+      <span class="hidden md:block">Add Recipients</span>
+    <% end %>
+  </div>
 </div>
-<div class="overflow-x-auto">
-  <% if @submissions.any? %>
-    <table class="table w-full table-lg rounded-t-2xl overflow-hidden">
-      <thead class="bg-base-200">
-        <tr class="text-neutral uppercase">
-          <th>
-            Email
-          </th>
-          <th>
-            Status
-          </th>
-          <th>
-            Share Link
-          </th>
-          <th class="text-right" width="1px">
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @submissions.each do |submission| %>
-          <tr>
-            <td>
-              <% submission.submitters.each do |submitter| %>
-                <%= submitter.email %>
-                <br>
-              <% end %>
-            </td>
-            <td>
-              <% submission.submitters.each do |submitter| %>
-                <div>
-                  <span class="badge badge-info badge-outline">
-                    <%= submitter.status %>
+<% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning' } %>
+<% if @submissions.present? %>
+  <div class="space-y-4">
+    <% @submissions.each do |submission| %>
+      <a href="<%= submission_path(submission) %>" class="bg-base-200 w-full flex justify-between rounded-2xl px-6 py-5 items-center">
+        <% if submission.template.submitters.size == 1 %>
+          <div>
+            <% submitter = submission.submitters.first %>
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center space-x-2">
+                <%= svg_icon('user', class: 'w-6 h-6 stroke-2') %>
+                <span class="text-lg">
+                  <%= submitter.email %>
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="flex space-x-2 items-center">
+            <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
+              <%= submitter.status %>
+            </span>
+            <% if submitter.completed_at? %>
+              <form onsubmit="event.preventDefault()">
+                <button onclick="event.stopPropagation()">
+                  <download-button data-src="<%= submitter_download_index_path(submitter.slug) %>" class="btn btn-sm btn-neutral text-white w-36">
+                    <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                      <%= svg_icon('download', class: 'w-5 h-5 stroke-2') %>
+                      <span>Download</span>
+                    </span>
+                    <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                      <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+                      <span>Downloa...</span>
+                    </span>
+                  </download-button>
+                </button>
+              </form>
+            <% else %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submission.submitters.first.slug), class: 'btn btn-sm btn-neutral text-white w-36', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link' %>
+            <% end %>
+            <%= button_to submitter.completed_at? ? 'Archive' : 'Remove', submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+          </div>
+        <% else %>
+          <div class="space-y-1 w-full mr-4">
+            <% submission.template.submitters.each_with_index do |item, index| %>
+              <% submitter = submission.submitters.find { |e| e.uuid == item['uuid'] } %>
+              <div class="flex justify-between items-center">
+                <span class="flex items-center space-x-2 text-lg">
+                  <%= render 'icons/user_number', class: 'w-6 h-6 stroke-2', number: index + 1 %>
+                  <span>
+                    <%= submitter.email %>
                   </span>
-                </div>
-              <% end %>
-            </td>
-            <td>
-              <% submission.submitters.each do |submitter| %>
-                <% share_link_input_id = "share-link-input_#{submitter.id}" %>
-                <div class="join ">
-                  <input id="<%= share_link_input_id %>" autocomplete="off" type="text" class="input input-xs input-bordered join-item" value="<%= submit_form_url(slug: submitter.slug) %>" disabled>
-                  <clipboard-copy class="btn btn-xs btn-neutral btn-square join-item text-white font-bold swap swap-active" for="<%= share_link_input_id %>">
-                    <%= svg_icon('clipboard', class: 'w-3 h-3 swap-on text-white') %>
-                    <%= svg_icon('clipboard_copy', class: 'w-3 h-3 swap-off text-white') %>
-                  </clipboard-copy>
-                </div>
-                <br>
-              <% end %>
-            </td>
-            <td class="flex items-center space-x-2 justify-end">
-              <%= link_to 'View', submission_path(submission), title: 'View', class: 'btn btn-outline btn-xs' %>
-              <%= button_to 'Remove', submission_path(submission), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-            </td>
-          </tr>
+                </span>
+                <% unless submission.submitters.all?(&:completed_at?) %>
+                  <div class="flex items-center space-x-3">
+                    <span class="badge w-24 <%= status_badges[submitter.status] %>  btn-xs uppercase text-xs font-medium border-1">
+                      <%= submitter.status %>
+                    </span>
+                    <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-xs text-xs btn-neutral text-white w-32', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link' %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex space-x-2 items-center">
+            <% if submission.submitters.all?(&:completed_at?) %>
+              <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
+                <%= submitter.status %>
+              </span>
+              <form onsubmit="event.preventDefault()">
+                <button onclick="event.stopPropagation()">
+                  <download-button data-src="<%= submitter_download_index_path(submission.submitters.select(&:completed_at?).max_by(&:completed_at).slug) %>" class="btn btn-sm btn-neutral text-white w-36">
+                    <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                      <%= svg_icon('download', class: 'w-5 h-5 stroke-2') %>
+                      <span>Download</span>
+                    </span>
+                    <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                      <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+                      <span>Downloa...</span>
+                    </span>
+                  </download-button>
+                </button>
+              </form>
+            <% end %>
+            <%= button_to submitter.completed_at? ? 'Archive' : 'Remove', submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+          </div>
         <% end %>
-      </tbody>
-    </table>
+      </a>
+    <% end %>
   </div>
   <%= render 'shared/pagination', pagy: @pagy, items_name: 'Submissions' %>
 <% else %>
   <%= render 'shared/no_data_banner' %>
 <% end %>
-</div>

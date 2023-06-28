@@ -47,15 +47,7 @@ module Submissions
           when 'image', 'signature'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            image_data =
-              if SUPPORTED_IMAGE_TYPES.include?(attachment.content_type)
-                attachment.download
-              else
-                Vips::Image.new_from_buffer(attachment.download, '')
-                           .write_to_buffer('.png')
-              end
-
-            io = StringIO.new(image_data)
+            io = StringIO.new(download_supported_image_data(attachment))
 
             scale = [(area['w'] * width) / attachment.metadata['width'],
                      (area['h'] * height) / attachment.metadata['height']].min
@@ -249,13 +241,22 @@ module Submissions
       page.box.height = attachment.metadata['height'] * scale
 
       page.canvas.image(
-        StringIO.new(attachment.download),
+        StringIO.new(download_supported_image_data(attachment)),
         at: [0, 0],
         width: page.box.width,
         height: page.box.height
       )
 
       pdf
+    end
+
+    def download_supported_image_data(attachment)
+      if SUPPORTED_IMAGE_TYPES.include?(attachment.content_type)
+        attachment.download
+      else
+        Vips::Image.new_from_buffer(attachment.download, '')
+                   .write_to_buffer('.png')
+      end
     end
   end
 end

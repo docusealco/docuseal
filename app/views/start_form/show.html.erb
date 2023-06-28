@@ -3,15 +3,13 @@
     <div class="card-body">
       <div class="space-y-4 w-full md:px-10 mx-auto">
         <div class="space-y-4">
-          <div class="flex items-center justify-center">
-            <div class="flex items-center">
-              <div class="mr-3">
-                <%= render 'shared/logo', width: '50px', height: '50px' %>
-              </div>
-              <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
-            </div>
-          </div>
-          <h2 class="text-xl font-semibold text-center">You have been invited to submit the form</h2>
+          <a href="/" class="flex justify-center">
+            <span class="mr-3">
+              <%= render 'shared/logo', width: '50px', height: '50px' %>
+            </span>
+            <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
+          </a>
+          <p class="text-xl font-semibold text-center">You have been invited to submit the form</p>
           <div class="flex items-center bg-neutral rounded-xl p-4">
             <div class="flex items-center">
               <div class="mr-3">
@@ -23,7 +21,7 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-gray-100 font-bold mb-1"><%= @template.name %></h3>
+                <p class="text-gray-100 font-bold mb-1"><%= @template.name %></p>
                 <p class="text-sm text-gray-300">Invited by <%= @template.account.name %></p>
               </div>
             </div>

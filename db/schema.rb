@@ -62,9 +62,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
 
   create_table "submissions", force: :cascade do |t|
     t.bigint "template_id", null: false
+    t.bigint "created_by_user_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["template_id"], name: "index_submissions_on_template_id"
   end
 
@@ -133,6 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "encrypted_configs", "accounts"
   add_foreign_key "submissions", "templates"
+  add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitters", "submissions"
   add_foreign_key "templates", "accounts"
   add_foreign_key "templates", "users", column: "author_id"

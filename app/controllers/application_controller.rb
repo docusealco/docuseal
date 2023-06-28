@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
                 :current_account,
                 :svg_icon
 
+  rescue_from Pagy::OverflowError do
+    redirect_to request.path
+  end
+
   def default_url_options
     Docuseal.default_url_options
   end

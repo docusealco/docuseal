@@ -1,8 +1,8 @@
 <% if @templates.any? %>
-  <div class="flex justify-between mb-4">
+  <div class="flex justify-between mb-4 items-center">
     <h1 class="text-4xl font-bold">Templates</h1>
-    <%= link_to new_template_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: :modal } do %>
-      <%= svg_icon('plus', class: 'w-6 h-6') %>
+    <%= link_to new_template_path, class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
+      <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
       <span class="hidden md:block">Create</span>
     <% end %>
   </div>
@@ -25,13 +25,13 @@
           </div>
         </a>
         <div class="absolute top-0 bottom-0 w-0 pt-7 space-y-1.5 hidden group-hover:block" style="right: 40px">
-          <a href="<%= edit_template_path(template) %>" class="btn btn-xs btn-outline bg-base-200 btn-circle">
+          <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('pencil', class: 'w-4 h-4') %>
           </a>
-          <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs btn-outline bg-base-200 btn-circle">
+          <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
-          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs btn-outline bg-base-200 btn-circle' do %>
+          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
             <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>

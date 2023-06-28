@@ -20,7 +20,7 @@
             </svg>
           </div>
           <div>
-            <h3 class="text-lg text-gray-700 font-bold mb-1"><%= @submitter.submission.template.name %></h3>
+            <p class="text-lg text-gray-700 font-bold mb-1"><%= @submitter.submission.template.name %></p>
             <p class="text-sm text-gray-500">Signed on <%= l(@submitter.completed_at.to_date, format: :long) %></p>
           </div>
         </div>
