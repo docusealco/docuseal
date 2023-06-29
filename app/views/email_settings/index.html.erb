@@ -2,9 +2,6 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Email SMTP</h1>
-    <p>
-      Configure your to send emails (TODO)
-    </p>
     <% value = @encrypted_config.value || {} %>
     <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.fields_for :value do |ff| %>
@@ -29,11 +26,11 @@
           </div>
         </div>
         <div class="form-control">
-          <%= ff.label :from_email, 'Send from', class: 'label' %>
+          <%= ff.label :from_email, 'Send from Email', class: 'label' %>
           <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>
         </div>
       <% end %>
-      <div class="form-control">
+      <div class="form-control pt-2">
         <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
       </div>
     <% end %>

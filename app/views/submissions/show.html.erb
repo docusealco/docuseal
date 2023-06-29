@@ -1,9 +1,9 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4">
-    <div class="flex space-x-3">
-      <a href="/"><%= render 'shared/logo' %></a>
+    <a href="<%= template_path(@submission.template) %>" class="flex space-x-3">
+      <span><%= render 'shared/logo' %></span>
       <span class="text-3xl font-semibold focus:text-clip"><%= @submission.template.name %></span>
-    </div>
+    </a>
     <div class="space-x-3 flex items-center">
       <% if last_submitter = @submission.submitters.select(&:completed_at?).max_by(&:completed_at) %>
         <download-button data-src="<%= submitter_download_index_path(last_submitter.slug) %>" class="base-button">
@@ -45,7 +45,7 @@
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']] %>
                   <% next if value.blank? %>
-                  <%= render 'submissions/value', area:, field:, attachments_index:, value: %>
+                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: current_account.locale %>
                 <% end %>
               </div>
             </div>
@@ -80,7 +80,7 @@
             </div>
             <% if submitter && !submitter.completed_at? %>
               <div class="mt-2 mb-1">
-                <a class="btn btn-xs btn-primary w-full" target="_blank" href="<%= submit_form_url(slug: submitter.slug) %>">
+                <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_url(slug: submitter.slug) %>">
                   Submit Form
                 </a>
               </div>
@@ -118,7 +118,7 @@
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
                 <% elsif field['type'] == 'date' %>
-                  <%= l(Date.parse(value)) %>
+                  <%= l(Date.parse(value), locale: current_account.locale, format: :long) %>
                 <% else %>
                   <%= Array.wrap(value).join(', ') %>
                 <% end %>

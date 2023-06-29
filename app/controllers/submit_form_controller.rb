@@ -19,6 +19,7 @@ class SubmitFormController < ApplicationController
     submitter = Submitter.find_by!(slug: params[:slug])
     submitter.values.merge!(normalized_values)
     submitter.completed_at = Time.current if params[:completed] == 'true'
+    submitter.opened_at ||= Time.current
 
     submitter.save!
 

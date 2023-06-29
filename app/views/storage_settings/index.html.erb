@@ -2,9 +2,6 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Storage</h1>
-    <p class="mb-4">
-      Select files storage option (TODO)
-    </p>
     <% value = @encrypted_config.value || { 'service' => 'disk' } %>
     <% configs = value['configs'] || {} %>
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
@@ -29,10 +26,10 @@
       <disable-hidden id="aws_s3" class="block my-4 space-y-4 <%= 'hidden' if value['service'] != 'aws_s3' %>">
         <%= render 'aws_form', f:, configs:, value: %>
       </disable-hidden>
-      <disable-hidden id="google" class="block mt-4 space-y-4 mb-8 <%= 'hidden' if value['service'] != 'google' %>">
+      <disable-hidden id="google" class="block mt-4 space-y-4 mb-6 <%= 'hidden' if value['service'] != 'google' %>">
         <%= render 'google_cloud_form', f:, configs:, value: %>
       </disable-hidden>
-      <disable-hidden id="azure" class="block mt-4 space-y-4 mb-8 <%= 'hidden' if value['service'] != 'azure' %>">
+      <disable-hidden id="azure" class="block mt-4 space-y-4 mb-6 <%= 'hidden' if value['service'] != 'azure' %>">
         <%= render 'azure_form', f:, configs:, value: %>
       </disable-hidden>
       <div class="form-control">

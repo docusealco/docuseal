@@ -20,7 +20,7 @@
             </p>
             <p class="flex items-center space-x-1 text-xs text-base-content/60">
               <%= svg_icon('calendar', class: 'w-4 h-4') %>
-              <span><%= l(template.created_at, format: :long) %></span>
+              <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
             </p>
           </div>
         </a>
@@ -39,18 +39,22 @@
       </div>
     <% end %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy, items_name: 'Templates' %>
+  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
 <% else %>
   <div class="card bg-base-200 h-96 mb-2">
     <div class="card-body text-center">
       <div class="flex items-center h-full">
-        <div class="max-w-lg mx-auto">
-          <h1 class="text-5xl font-bold">Welcome to DocuSeal</h1>
-          <p class="py-6">Streamline document workflows, from creating customizable templates to filling and signing document forms, with DocuSeal</p>
-          <%= link_to new_template_path, class: 'btn btn-neutral', data: { turbo_frame: :modal } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6') %>
-            <span>Create Template</span>
-          <% end %>
+        <div class="mx-auto">
+          <div class="max-w-xl mx-auto">
+            <h1 class="text-5xl font-bold text-base-content">👋 Welcome to DocuSeal</h1>
+          </div>
+          <div class="max-w-lg mx-auto">
+            <p class="py-6 text-gray-600">Streamline document workflows, from creating customizable templates to filling and signing document forms, with DocuSeal</p>
+            <%= link_to new_template_path, class: 'base-button', data: { turbo_frame: :modal } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+              <span>Create Template</span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

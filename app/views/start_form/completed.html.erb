@@ -1,4 +1,37 @@
-<p>
-  Form has been submitted already - thanks!
-</p>
-<%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending'), send_submission_email_index_path, params: { template_slug: @template.slug, email: params[:email] }, form: { onsubmit: 'event.submitter.disabled = true' } %>
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <a href="/" class="flex items-center">
+          <div class="mr-3">
+            <%= render 'shared/logo', width: '50px', height: '50px' %>
+          </div>
+          <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
+        </a>
+      </div>
+      <div class="flex items-center bg-base-300 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" />
+              <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z" />
+              <path d="M16 7h4" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
+            <p class="text-sm">Signed on <%= l(@submitter.completed_at.to_date, format: :long, locale: @submitter.submission.template.account.locale) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-2xl font-semibold">
+      Form has been submitter already
+    </div>
+    <div>
+      <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+    </div>
+  </div>
+</div>
+<%= render 'shared/attribution' %>

@@ -25,7 +25,7 @@
     </div>
   <% elsif field['type'] == 'date' %>
     <div class="flex items-center px-0.5">
-      <%= l(Date.parse(value)) %>
+      <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
     </div>
   <% else %>
     <div class="flex items-center px-0.5">

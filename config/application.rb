@@ -20,6 +20,9 @@ module DocuSeal
 
     config.active_storage.routes_prefix = ''
 
+    config.i18n.available_locales = %i[en en-US en-GB es-ES pt-PT de-DE]
+    config.i18n.fallbacks = [:en]
+
     config.action_view.frozen_string_literal = true
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater

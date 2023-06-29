@@ -16,7 +16,7 @@ class StartFormController < ApplicationController
                           .find_or_initialize_by(**submitter_params)
 
     if @submitter.completed_at?
-      redirect_to start_form_completed_path(@template.slug, email: submission_params[:email])
+      redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       @submitter.assign_attributes(
         uuid: @template.submitters.first['uuid'],
@@ -36,7 +36,7 @@ class StartFormController < ApplicationController
   end
 
   def completed
-    @submitter = Submitter.where(submission: @template.submitters).find_by(email: params[:email])
+    @submitter = Submitter.where(submission: @template.submissions).find_by!(email: params[:email])
   end
 
   private
@@ -46,7 +46,7 @@ class StartFormController < ApplicationController
   end
 
   def load_template
-    slug = params[:slug] || params[:start_template_slug]
+    slug = params[:slug] || params[:start_form_slug]
 
     @template = Template.find_by!(slug:)
   end

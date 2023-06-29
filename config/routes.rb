@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     resources :email, only: %i[index create], controller: 'email_settings'
     resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
+    resource :account, only: %i[show update]
     resources :profile, only: %i[index] do
       collection do
         patch :update_contact

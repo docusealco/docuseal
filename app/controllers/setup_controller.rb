@@ -15,6 +15,8 @@ class SetupController < ApplicationController
 
   def create
     @account = Account.new(account_params)
+    @account.timezone = Accounts.normalize_timezone(@account.timezone)
+
     @user = @account.users.new(user_params)
 
     if @user.save
@@ -23,6 +25,8 @@ class SetupController < ApplicationController
         { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call }
       ]
       @account.encrypted_configs.create!(encrypted_configs)
+
+      Docuseal.refresh_default_url_options!
 
       sign_in(@user)
 
@@ -43,7 +47,7 @@ class SetupController < ApplicationController
   def account_params
     return {} unless params[:account]
 
-    params.require(:account).permit(:name)
+    params.require(:account).permit(:name, :timezone)
   end
 
   def encrypted_config_params

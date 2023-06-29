@@ -14,17 +14,21 @@
           </div>
         </div>
       <% end %>
+      <%= f.fields_for @user do |ff| %>
+        <div class="form-control">
+          <%= ff.label :email, class: 'label' %>
+          <%= ff.email_field :email, required: true, class: 'base-input' %>
+        </div>
+      <% end %>
       <%= f.fields_for @account do |ff| %>
+        <set-timezone data-input-id="_account_timezone"></set-timezone>
+        <%= ff.hidden_field :timezone %>
         <div class="form-control">
           <%= ff.label :name, 'Company name', class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input' %>
         </div>
       <% end %>
       <%= f.fields_for @user do |ff| %>
-        <div class="form-control">
-          <%= ff.label :email, class: 'label' %>
-          <%= ff.email_field :email, required: true, class: 'base-input' %>
-        </div>
         <div class="form-control">
           <%= ff.label :password, class: 'label' %>
           <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input' %>

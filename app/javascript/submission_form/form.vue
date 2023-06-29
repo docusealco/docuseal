@@ -41,6 +41,10 @@
           >{{ currentField.name }}
             <template v-if="!currentField.required">(optional)</template>
           </label>
+          <div
+            v-else
+            class="py-1"
+          />
           <div>
             <input
               :id="currentField.uuid"
@@ -62,6 +66,10 @@
           >{{ currentField.name }}
             <template v-if="!currentField.required">(optional)</template>
           </label>
+          <div
+            v-else
+            class="py-1"
+          />
           <div class="text-center">
             <input
               :id="currentField.uuid"
@@ -82,6 +90,10 @@
           >{{ currentField.name }}
             <template v-if="!currentField.required">(optional)</template>
           </label>
+          <div
+            v-else
+            class="py-1"
+          />
           <select
             :id="currentField.uuid"
             :required="currentField.required"
@@ -246,7 +258,7 @@
           :key="step[0].uuid"
           href="#"
           class="inline border border-base-300 h-3 w-3 rounded-full mx-1"
-          :class="{ 'bg-base-200': index === currentStep, 'bg-base-content': index < currentStep || isCompleted, 'bg-white': index > currentStep }"
+          :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': index < currentStep || isCompleted, 'bg-white': index > currentStep }"
           @click.prevent="isCompleted ? '' : goToStep(step, true)"
         />
       </div>

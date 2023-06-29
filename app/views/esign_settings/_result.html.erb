@@ -50,7 +50,7 @@
             </div>
             <div class="flex items-center space-x-1">
               <%= svg_icon('calendar', class: 'w-5 h-5 inline') %>
-              <span><%= l(signature.signing_time, format: :long) %></span>
+              <span><%= l(signature.signing_time.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %></span>
             </div>
             <div class="flex items-center space-x-1">
               <%= svg_icon('certificate', class: 'w-5 h-5 inline') %>

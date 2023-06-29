@@ -4,13 +4,21 @@
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
       <%= f.fields_for resource do |ff| %>
-        <div class="form-control">
-          <%= ff.label :first_name, class: 'label' %>
-          <%= ff.text_field :first_name, required: true, class: 'base-input' %>
+        <div class="grid gap-2 md:grid-cols-2 md:gap-4">
+          <div class="form-control">
+            <%= ff.label :first_name, class: 'label' %>
+            <%= ff.text_field :first_name, required: true, class: 'base-input' %>
+          </div>
+          <div class="form-control">
+            <%= ff.label :last_name, class: 'label' %>
+            <%= ff.text_field :last_name, required: true, class: 'base-input' %>
+          </div>
         </div>
+      <% end %>
+      <%= f.fields_for resource do |ff| %>
         <div class="form-control">
-          <%= ff.label :last_name, class: 'label' %>
-          <%= ff.text_field :last_name, required: true, class: 'base-input' %>
+          <%= ff.label :email, class: 'label' %>
+          <%= ff.email_field :email, required: true, class: 'base-input' %>
         </div>
       <% end %>
       <%= f.fields_for resource.account do |ff| %>
@@ -20,10 +28,6 @@
         </div>
       <% end %>
       <%= f.fields_for resource do |ff| %>
-        <div class="form-control">
-          <%= ff.label :email, class: 'label' %>
-          <%= ff.email_field :email, required: true, class: 'base-input' %>
-        </div>
         <div class="form-control">
           <%= ff.label :password, class: 'label' %>
           <%= ff.password_field :password, required: true, class: 'base-input' %>

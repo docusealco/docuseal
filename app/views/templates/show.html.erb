@@ -16,18 +16,22 @@
     <% end %>
   </div>
 </div>
-<div class="flex justify-between mb-4 items-end">
-  <p class="text-3xl font-bold">Submissions</p>
-  <div class="flex space-x-2">
-    <% if @template.submitters.to_a.size == 1 %>
-      <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
-    <% end %>
-    <%= link_to new_template_submission_path(@template), class: 'btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
-      <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-      <span class="hidden md:block">Add Recipients</span>
-    <% end %>
+<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 %>
+  <div class="flex justify-between mb-4 items-end">
+    <p class="text-3xl font-bold">Submissions</p>
+    <div class="flex space-x-2">
+      <% if @template.submitters.to_a.size == 1 %>
+        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
+      <% end %>
+      <% unless @pagy.count.zero? %>
+        <%= link_to new_template_submission_path(@template), class: 'btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
+          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+          <span class="hidden md:block">Add Recipients</span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 <% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning' } %>
 <% if @submissions.present? %>
   <div class="space-y-4">
@@ -46,9 +50,11 @@
             </div>
           </div>
           <div class="flex space-x-2 items-center">
-            <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
-              <%= submitter.status %>
-            </span>
+            <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+              <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
+                <%= submitter.status %>
+              </span>
+            </div>
             <% if submitter.completed_at? %>
               <form onsubmit="event.preventDefault()">
                 <button onclick="event.stopPropagation()">
@@ -65,7 +71,7 @@
                 </button>
               </form>
             <% else %>
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submission.submitters.first.slug), class: 'btn btn-sm btn-neutral text-white w-36', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link' %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submission.submitters.first.slug), class: 'btn btn-sm btn-neutral text-white w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link' %>
             <% end %>
             <%= button_to submitter.completed_at? ? 'Archive' : 'Remove', submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </div>
@@ -82,10 +88,12 @@
                 </span>
                 <% unless submission.submitters.all?(&:completed_at?) %>
                   <div class="flex items-center space-x-3">
-                    <span class="badge w-24 <%= status_badges[submitter.status] %>  btn-xs uppercase text-xs font-medium border-1">
-                      <%= submitter.status %>
-                    </span>
-                    <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-xs text-xs btn-neutral text-white w-32', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link' %>
+                    <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                      <span class="badge w-24 <%= status_badges[submitter.status] %> btn-xs uppercase text-xs font-medium border-1">
+                        <%= submitter.status %>
+                      </span>
+                    </div>
+                    <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-xs text-xs btn-neutral text-white w-32 flex', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link' %>
                   </div>
                 <% end %>
               </div>
@@ -93,9 +101,11 @@
           </div>
           <div class="flex space-x-2 items-center">
             <% if submission.submitters.all?(&:completed_at?) %>
-              <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
-                <%= submitter.status %>
-              </span>
+              <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
+                  <%= submitter.status %>
+                </span>
+              </div>
               <form onsubmit="event.preventDefault()">
                 <button onclick="event.stopPropagation()">
                   <download-button data-src="<%= submitter_download_index_path(submission.submitters.select(&:completed_at?).max_by(&:completed_at).slug) %>" class="btn btn-sm btn-neutral text-white w-36">
@@ -117,7 +127,18 @@
       </a>
     <% end %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy, items_name: 'Submissions' %>
+  <%= render 'shared/pagination', pagy: @pagy, items_name: 'submissions' %>
 <% else %>
-  <%= render 'shared/no_data_banner' %>
+  <div class="card bg-base-200">
+    <div class="card-body text-center py-16">
+      <div class="max-w-md mx-auto">
+        <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions yet</p>
+        <p class="text-gray-600">Send an invitation to fill and submit the documents via email</p>
+        <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+          <span class="hidden md:block">Add Recipients</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>

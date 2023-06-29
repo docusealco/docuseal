@@ -52,8 +52,6 @@ class User < ApplicationRecord
 
   scope :active, -> { where(deleted_at: nil) }
 
-  accepts_nested_attributes_for :account, update_only: true
-
   def active_for_authentication?
     !deleted_at?
   end

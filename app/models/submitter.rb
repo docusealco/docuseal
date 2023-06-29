@@ -50,4 +50,8 @@ class Submitter < ApplicationRecord
       'awaiting'
     end
   end
+
+  def status_event_at
+    completed_at || opened_at || sent_at || created_at
+  end
 end

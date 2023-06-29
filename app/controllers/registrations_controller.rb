@@ -5,6 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def build_resource(_hash = {})
     account = Account.new(account_params)
+    account.timezone = Accounts.normalize_timezone(account.timezone)
 
     self.resource = account.users.new(user_params)
   end
@@ -18,6 +19,6 @@ class RegistrationsController < Devise::RegistrationsController
   def account_params
     return {} if params[:account].blank?
 
-    params.require(:account).permit(:name)
+    params.require(:account).permit(:name, :timezone)
   end
 end

@@ -135,7 +135,7 @@ module Submissions
                                  height - (area['y'] * height))
             end
           else
-            value = I18n.l(Date.parse(value)) if field['type'] == 'date'
+            value = I18n.l(Date.parse(value), format: :long) if field['type'] == 'date'
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
                                                                                       font_size: FONT_SIZE)
