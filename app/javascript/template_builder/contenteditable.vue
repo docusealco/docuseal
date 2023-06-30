@@ -86,10 +86,11 @@ export default {
   },
   methods: {
     onBlur (e) {
-      this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue
-
-      this.$emit('update:model-value', this.value)
-      this.$emit('blur', e)
+      setTimeout(() => {
+        this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue
+        this.$emit('update:model-value', this.value)
+        this.$emit('blur', e)
+      }, 1)
     },
     focusContenteditable () {
       this.$refs.contenteditable.focus()
