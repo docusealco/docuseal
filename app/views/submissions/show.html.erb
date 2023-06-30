@@ -75,7 +75,7 @@
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
-                <%= submitter&.completed_at? ? l(submitter.completed_at, format: :long) : 'Not completed yet' %>
+                <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) : 'Not completed yet' %>
               </span>
             </div>
             <% if submitter && !submitter.completed_at? %>

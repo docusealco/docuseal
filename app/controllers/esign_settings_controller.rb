@@ -12,11 +12,9 @@ class EsignSettingsController < ApplicationController
         HexaPDF::Document.new(io: StringIO.new(blob.download))
       end
 
-    cert = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY).value
+    certs = Accounts.load_signing_certs(current_account)
 
-    trusted_certs = [OpenSSL::X509::Certificate.new(cert['cert']),
-                     OpenSSL::X509::Certificate.new(cert['sub_ca']),
-                     OpenSSL::X509::Certificate.new(cert['root_ca'])]
+    trusted_certs = [certs[:cert], certs[:sub_ca], certs[:root_ca]]
 
     render turbo_stream: turbo_stream.replace('result', partial: 'result', locals: { pdfs:, blobs:, trusted_certs: })
   rescue HexaPDF::MalformedPDFError

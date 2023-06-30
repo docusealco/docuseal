@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, path: '/', only: %i[sessions passwords]
 
   devise_scope :user do
-    if User.devise_modules.include?(:registerable)
+    if Docuseal.multitenant?
       resource :registration, only: %i[create], path: 'sign_up' do
         get '' => :new, as: :new
       end
@@ -52,8 +52,10 @@ Rails.application.routes.draw do
   end
 
   scope '/settings', as: :settings do
-    resources :storage, only: %i[index create], controller: 'storage_settings'
-    resources :email, only: %i[index create], controller: 'email_settings'
+    unless Docuseal.multitenant?
+      resources :storage, only: %i[index create], controller: 'storage_settings'
+      resources :email, only: %i[index create], controller: 'email_settings'
+    end
     resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
     resource :account, only: %i[show update]

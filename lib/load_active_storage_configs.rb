@@ -2,6 +2,8 @@
 
 module LoadActiveStorageConfigs
   STORAGE_YML_PATH = Rails.root.join('config/storage.yml')
+  IS_ENV_CONFIGURED =
+    ENV['S3_ATTACHMENTS_BUCKET'].present? || ENV['GCS_BUCKET'].present? || ENV['AZURE_CONTAINER'].present?
 
   module_function
 
@@ -14,6 +16,9 @@ module LoadActiveStorageConfigs
   end
 
   def reload
+    return if Docuseal.multitenant?
+    return if IS_ENV_CONFIGURED
+
     encrypted_config = EncryptedConfig.find_by(key: EncryptedConfig::FILES_STORAGE_KEY)
 
     return unless encrypted_config

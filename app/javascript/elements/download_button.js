@@ -25,7 +25,7 @@ export default targetable(class extends HTMLElement {
             const link = document.createElement('a')
 
             link.href = blobUrl
-            link.setAttribute('download', decodeURI(resp.headers.get('content-disposition').split('"')[1]))
+            link.setAttribute('download', decodeURI(url.split('/').pop()))
 
             link.click()
 

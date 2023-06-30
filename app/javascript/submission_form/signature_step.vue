@@ -74,8 +74,10 @@ export default {
     }
   },
   async mounted () {
-    this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-    this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+    this.$nextTick(() => {
+      this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
+      this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+    })
 
     import('@rails/activestorage')
     const { default: SignaturePad } = await import('signature_pad')

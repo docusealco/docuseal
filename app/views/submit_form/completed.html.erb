@@ -27,8 +27,10 @@
       </div>
     </div>
     <div>
-      <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
-      <div class="divider">OR</div>
+      <% if Accounts.can_send_emails?(@submitter.submission.template.account) %>
+        <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+        <div class="divider">OR</div>
+      <% end %>
       <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
         <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
           <%= svg_icon('download', class: 'w-6 h-6') %>

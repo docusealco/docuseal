@@ -249,6 +249,7 @@
     </form>
     <FormCompleted
       v-else
+      :can-send-email="canSendEmail"
       :submitter-slug="submitterSlug"
     />
     <div class="flex justify-center">
@@ -290,6 +291,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    canSendEmail: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     submitterUuid: {
       type: String,

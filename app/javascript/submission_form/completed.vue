@@ -12,6 +12,7 @@
     </p>
     <div class="space-y-3 mt-5">
       <button
+        v-if="canSendEmail"
         class="white-button flex items-center space-x-1 w-full"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"
@@ -58,6 +59,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    canSendEmail: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -98,7 +104,7 @@ export default {
               const link = document.createElement('a')
 
               link.href = blobUrl
-              link.setAttribute('download', decodeURI(resp.headers.get('content-disposition').split('"')[1]))
+              link.setAttribute('download', decodeURI(url.split('/').pop()))
 
               link.click()
 

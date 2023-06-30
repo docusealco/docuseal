@@ -36,7 +36,7 @@
       </dynamic-list>
     <% end %>
     <div class="form-control">
-      <% is_smtp_configured = Docuseal.multitenant? || current_account.encrypted_configs.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY) %>
+      <% is_smtp_configured = Accounts.can_send_emails?(current_account) %>
       <%= f.label :send_email, class: 'flex items-center cursor-pointer' do %>
         <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)" %>
         <span class="label">Send Email</span>

@@ -9,12 +9,14 @@
       <li>
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
-      <li>
-        <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
-      </li>
-      <li>
-        <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
-      </li>
+      <% unless Docuseal.multitenant? %>
+        <li>
+          <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+        <li>
+          <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <li>
         <%= link_to 'Signature', settings_esign_index_path, class: 'text-base hover:bg-base-300' %>
       </li>

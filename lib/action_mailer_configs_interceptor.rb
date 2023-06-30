@@ -4,7 +4,11 @@ module ActionMailerConfigsInterceptor
   module_function
 
   def delivering_email(message)
-    return message unless Rails.env.production?
+    if Rails.env.production? && Rails.application.config.action_mailer.delivery_method
+      message.from = ENV.fetch('SMTP_FROM')
+
+      return message
+    end
 
     email_configs = EncryptedConfig.find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
 

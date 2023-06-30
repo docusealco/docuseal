@@ -23,8 +23,7 @@ module Submissions
 
       template = submitter.submission.template
 
-      cert = submitter.submission.template.account.encrypted_configs
-                      .find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
+      certs = Accounts.load_signing_certs(submitter.submission.template.account)
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -158,7 +157,7 @@ module Submissions
         template.schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_signed_pdf(pdf:, submitter:, cert:, uuid: item['attachment_uuid'], name: item['name'])
+          attachment = save_signed_pdf(pdf:, submitter:, certs:, uuid: item['attachment_uuid'], name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
@@ -176,7 +175,7 @@ module Submissions
         save_signed_pdf(
           pdf: images_pdf,
           submitter:,
-          cert:,
+          certs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
           name: template.name
         )
@@ -185,16 +184,15 @@ module Submissions
     end
     # rubocop:enable Metrics
 
-    def save_signed_pdf(pdf:, submitter:, cert:, uuid:, name:)
+    def save_signed_pdf(pdf:, submitter:, certs:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = INFO_CREATOR
 
       pdf.sign(io, reason: format(SIGN_REASON, email: submitter.email),
-                   certificate: OpenSSL::X509::Certificate.new(cert['cert']),
-                   key: OpenSSL::PKey::RSA.new(cert['key']),
-                   certificate_chain: [OpenSSL::X509::Certificate.new(cert['sub_ca']),
-                                       OpenSSL::X509::Certificate.new(cert['root_ca'])])
+                   certificate: certs[:cert],
+                   key: certs[:key],
+                   certificate_chain: [certs[:sub_ca], certs[:root_ca]])
 
       ActiveStorage::Attachment.create!(
         uuid:,

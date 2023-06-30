@@ -13,12 +13,12 @@ module GenerateCertificate
     cert, key = generate_certificate(name, sub_cert, sub_key)
 
     {
-      cert: cert.to_pem,
-      key: key.to_pem,
-      root_ca: root_cert.to_pem,
-      root_key: root_key.to_pem,
-      sub_ca: sub_cert.to_pem,
-      sub_key: sub_key.to_pem
+      cert:,
+      key:,
+      root_ca: root_cert,
+      root_key:,
+      sub_ca: sub_cert,
+      sub_key:
     }
   end
 
