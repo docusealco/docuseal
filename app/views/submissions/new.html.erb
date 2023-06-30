@@ -3,7 +3,9 @@
     <% if @template.submitters.size == 1 %>
       <div class="form-control">
         <%= f.label :emails, class: 'label' %>
-        <%= f.text_area :emails, required: true, class: 'base-textarea' %>
+        <autoresize-textarea>
+          <%= f.text_area :emails, required: true, class: 'base-textarea w-full' %>
+        </autoresize-textarea>
       </div>
     <% else %>
       <dynamic-list class="space-y-4">
@@ -59,11 +61,14 @@
       <div class="card-body">
         <div class="form-control space-y-2">
           <span class="label-text">Hi there,</span>
-          <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg' %>
+          <autoresize-textarea>
+            <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg w-full' %>
+          </autoresize-textarea>
           <span class="label-text">
             Thanks,
-          <br>
-          <%= current_account.name %>
+            <br>
+            <%= current_account.name %>
+          </span>
         </div>
       </div>
     </div>
