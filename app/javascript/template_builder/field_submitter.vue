@@ -4,7 +4,7 @@
       v-if="compact"
       tabindex="0"
       :title="selectedSubmitter.name"
-      class="cursor-pointer text-base-100"
+      class="cursor-pointer text-base-100 flex h-full items-center justify-center"
     >
       <button
         class="mx-1 w-3 h-3 rounded-full"

@@ -431,8 +431,6 @@ export default {
           }
         }),
         headers: { 'Content-Type': 'application/json' }
-      }).then((resp) => {
-        console.log(resp)
       })
     }
   }

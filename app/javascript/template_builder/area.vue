@@ -240,8 +240,8 @@ export default {
       this.save()
     },
     onResizeCell (e) {
-      if (e.toElement.id === 'mask') {
-        const positionX = e.layerX / (e.toElement.clientWidth - 1)
+      if (e.target.id === 'mask') {
+        const positionX = e.layerX / (e.target.clientWidth - 1)
 
         if (positionX > this.area.x) {
           this.area.cell_w = positionX - this.area.x
@@ -282,17 +282,17 @@ export default {
       this.$refs.name.blur()
     },
     resize (e) {
-      if (e.toElement.id === 'mask') {
-        this.area.w = e.layerX / e.toElement.clientWidth - this.area.x
-        this.area.h = e.layerY / e.toElement.clientHeight - this.area.y
+      if (e.target.id === 'mask') {
+        this.area.w = e.layerX / e.target.clientWidth - this.area.x
+        this.area.h = e.layerY / e.target.clientHeight - this.area.y
       }
     },
     drag (e) {
-      if (e.toElement.id === 'mask') {
+      if (e.target.id === 'mask') {
         this.isDragged = true
 
-        this.area.x = (e.layerX - this.dragFrom.x) / e.toElement.clientWidth
-        this.area.y = (e.layerY - this.dragFrom.y) / e.toElement.clientHeight
+        this.area.x = (e.layerX - this.dragFrom.x) / e.target.clientWidth
+        this.area.y = (e.layerY - this.dragFrom.y) / e.target.clientHeight
       }
     },
     startDrag (e) {

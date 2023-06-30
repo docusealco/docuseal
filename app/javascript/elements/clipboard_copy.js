@@ -1,5 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    this.clearChecked()
+
     this.addEventListener('click', (e) => {
       e.stopPropagation()
 
@@ -7,7 +9,7 @@ export default class extends HTMLElement {
     })
   }
 
-  disconnectedCallback () {
+  clearChecked () {
     this.querySelectorAll('input').forEach((e) => {
       e.checked = false
     })

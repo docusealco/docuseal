@@ -3,7 +3,7 @@
     <%= @template.name %>
   </h1>
   <div class="flex md:justify-between space-x-2 flex-none">
-    <%= button_to button_title(title: 'Remove', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(@template), class: 'btn btn-outline', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+    <%= button_to button_title(title: 'Remove', disabled_with: 'Removing', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(@template), class: 'btn btn-outline', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <%= link_to new_template_path(base_template_id: @template.id), class: 'btn btn-outline', data: { turbo_frame: :modal } do %>
       <%= svg_icon('copy', class: 'w-6 h-6') %>
       <span>Clone</span>
@@ -37,9 +37,10 @@
   <div class="space-y-4">
     <% @submissions.each do |submission| %>
       <a href="<%= submission_path(submission) %>" class="bg-base-200 w-full flex justify-between rounded-2xl px-6 py-5 items-center">
-        <% if submission.template.submitters.size == 1 %>
+        <% submitters = submission.template.submitters.filter_map { |item| submission.submitters.find { |e| e.uuid == item['uuid'] } } %>
+        <% if submitters.size == 1 %>
           <div>
-            <% submitter = submission.submitters.first %>
+            <% submitter = submitters.first %>
             <div class="flex items-center space-x-4">
               <span class="flex items-center space-x-2">
                 <%= svg_icon('user', class: 'w-6 h-6 stroke-2') %>
@@ -71,14 +72,13 @@
                 </button>
               </form>
             <% else %>
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submission.submitters.first.slug), class: 'btn btn-sm btn-neutral text-white w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link' %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link' %>
             <% end %>
-            <%= button_to submitter.completed_at? ? 'Archive' : 'Remove', submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+            <%= button_to button_title(title: submitter.completed_at? ? 'Archive' : 'Remove', disabled_with: 'Remov'), submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </div>
         <% else %>
           <div class="space-y-1 w-full mr-4">
-            <% submission.template.submitters.each_with_index do |item, index| %>
-              <% submitter = submission.submitters.find { |e| e.uuid == item['uuid'] } %>
+            <% submitters.each_with_index do |submitter, index| %>
               <div class="flex justify-between items-center">
                 <span class="flex items-center space-x-2 text-lg">
                   <%= render 'icons/user_number', class: 'w-6 h-6 stroke-2', number: index + 1 %>
@@ -86,7 +86,7 @@
                     <%= submitter.email %>
                   </span>
                 </span>
-                <% unless submission.submitters.all?(&:completed_at?) %>
+                <% unless submitters.all?(&:completed_at?) %>
                   <div class="flex items-center space-x-3">
                     <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                       <span class="badge w-24 <%= status_badges[submitter.status] %> btn-xs uppercase text-xs font-medium border-1">
@@ -100,15 +100,16 @@
             <% end %>
           </div>
           <div class="flex space-x-2 items-center">
-            <% if submission.submitters.all?(&:completed_at?) %>
-              <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
-                <span class="badge <%= status_badges[submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
-                  <%= submitter.status %>
+            <% if submitters.all?(&:completed_at?) %>
+              <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
+              <div class="tooltip flex" data-tip="<%= l(latest_submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge <%= status_badges[latest_submitter.status] %> w-32 badge-lg btn-sm uppercase text-sm font-medium border-1">
+                  <%= latest_submitter.status %>
                 </span>
               </div>
               <form onsubmit="event.preventDefault()">
                 <button onclick="event.stopPropagation()">
-                  <download-button data-src="<%= submitter_download_index_path(submission.submitters.select(&:completed_at?).max_by(&:completed_at).slug) %>" class="btn btn-sm btn-neutral text-white w-36">
+                  <download-button data-src="<%= submitter_download_index_path(latest_submitter.slug) %>" class="btn btn-sm btn-neutral text-white w-36">
                     <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                       <%= svg_icon('download', class: 'w-5 h-5 stroke-2') %>
                       <span>Download</span>
@@ -121,7 +122,7 @@
                 </button>
               </form>
             <% end %>
-            <%= button_to submitter.completed_at? ? 'Archive' : 'Remove', submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+            <%= button_to button_title(title: submitters.all?(&:completed_at?) ? 'Archive' : 'Remove', disabled_with: 'Remov'), submission_path(submission), class: 'btn btn-outline btn-sm w-28', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </div>
         <% end %>
       </a>
