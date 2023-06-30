@@ -3,13 +3,26 @@
     <label
       :for="inputId"
       class="btn btn-outline w-full"
-      :class="{ 'btn-disabled': isLoading }"
+      :class="{ 'btn-disabled': isLoading || isProcessing }"
     >
-      <IconUpload
+      <IconInnerShadowTop
+        v-if="isLoading || isProcessing"
         width="20"
-        class="mr-2"
+        class="animate-spin"
       />
-      Add Document
+      <IconUpload
+        v-else
+        width="20"
+      />
+      <span v-if="isLoading">
+        Uploading...
+      </span>
+      <span v-else-if="isProcessing">
+        Processing...
+      </span>
+      <span v-else>
+        Add Document
+      </span>
     </label>
     <input
       :id="inputId"
@@ -24,12 +37,13 @@
 </template>
 
 <script>
-import { IconUpload } from '@tabler/icons-vue'
+import { IconUpload, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'DocumentsUpload',
   components: {
-    IconUpload
+    IconUpload,
+    IconInnerShadowTop
   },
   props: {
     templateId: {
@@ -40,7 +54,8 @@ export default {
   emits: ['success'],
   data () {
     return {
-      isLoading: false
+      isLoading: false,
+      isProcessing: false
     }
   },
   computed: {
@@ -79,7 +94,11 @@ export default {
             console.error(error)
           })
         })
-      )
+      ).finally(() => {
+        this.isLoading = false
+      })
+
+      this.isProcessing = true
 
       fetch(`/api/templates/${this.templateId}/documents`, {
         method: 'POST',
@@ -89,7 +108,7 @@ export default {
         this.$emit('success', data)
         this.$refs.input.value = ''
       }).finally(() => {
-        this.isLoading = false
+        this.isProcessing = false
       })
     }
   }

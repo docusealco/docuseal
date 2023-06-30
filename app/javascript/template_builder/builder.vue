@@ -67,6 +67,7 @@
         />
         <div class="sticky bottom-0 bg-base-100 py-2">
           <Upload
+            v-if="sortedDocuments.length"
             :template-id="template.id"
             @success="updateFromUpload"
           />
@@ -77,19 +78,27 @@
           ref="documents"
           class="pr-3.5 pl-0.5"
         >
-          <Document
-            v-for="document in sortedDocuments"
-            :key="document.uuid"
-            :ref="setDocumentRefs"
-            :areas-index="fieldAreasIndex[document.uuid]"
-            :selected-submitter="selectedSubmitter"
-            :document="document"
-            :is-drag="!!dragFieldType"
-            :draw-field="drawField"
-            @draw="onDraw"
-            @drop-field="onDropfield"
-            @remove-area="removeArea"
-          />
+          <template v-if="!sortedDocuments.length">
+            <Dropzone
+              :template-id="template.id"
+              @success="updateFromUpload"
+            />
+          </template>
+          <template v-else>
+            <Document
+              v-for="document in sortedDocuments"
+              :key="document.uuid"
+              :ref="setDocumentRefs"
+              :areas-index="fieldAreasIndex[document.uuid]"
+              :selected-submitter="selectedSubmitter"
+              :document="document"
+              :is-drag="!!dragFieldType"
+              :draw-field="drawField"
+              @draw="onDraw"
+              @drop-field="onDropfield"
+              @remove-area="removeArea"
+            />
+          </template>
         </div>
       </div>
       <div
@@ -134,6 +143,7 @@
 
 <script>
 import Upload from './upload'
+import Dropzone from './dropzone'
 import Fields from './fields'
 import Document from './document'
 import Logo from './logo'
@@ -150,6 +160,7 @@ export default {
     Document,
     Fields,
     Logo,
+    Dropzone,
     DocumentPreview,
     IconInnerShadowTop,
     Contenteditable,
