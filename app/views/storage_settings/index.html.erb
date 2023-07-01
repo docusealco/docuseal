@@ -9,13 +9,9 @@
       <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
         <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
           <% options.each do |(label, val)| %>
-            <li class="w-full border border-neutral-focus rounded-xl hover:bg-neutral hover:text-white">
-              <%= f.label :selected, value: val, class: 'w-full py-3 text-sm font-medium flex items-center relative' do %>
-                <%= f.radio_button :selected, val, checked: value['service'] == val, data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio self-start ml-3' %>
-                <span class="absolute text-center left-0 right-0">
-                  <%= label %>
-                </span>
-              <% end %>
+            <li class="w-full text-sm font-medium flex items-center relative group py-3.5">
+              <%= f.radio_button :selected, val, checked: value['service'] == val, id: "#{val}_radio", data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio ml-3 relative peer z-10' %>
+              <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'absolute border-neutral-focus border rounded-xl left-0 right-0 top-0 bottom-0 flex items-center justify-center group-hover:bg-neutral group-hover:text-white' %>
             </li>
           <% end %>
         </ul>

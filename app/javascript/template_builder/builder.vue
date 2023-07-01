@@ -25,7 +25,9 @@
             width="20"
             class="inline"
           />
-          Recipients
+          <span class="hidden md:inline">
+            Recipients
+          </span>
         </a>
         <button
           class="base-button"
@@ -41,7 +43,10 @@
           <IconDeviceFloppy
             v-else
             width="20"
-          />Save
+          />
+          <span class="hidden md:inline">
+            Save
+          </span>
         </button>
       </div>
     </div>
@@ -51,7 +56,7 @@
     >
       <div
         ref="previews"
-        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5"
+        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
       >
         <DocumentPreview
           v-for="(item, index) in template.schema"
@@ -100,9 +105,20 @@
             />
           </template>
         </div>
+        <div
+          v-if="sortedDocuments.length"
+          class="sticky md:hidden"
+          style="bottom: 100px"
+        >
+          <div class="px-4 py-3 rounded-2xl bg-base-200 flex items-center justify-between ml-4 mr-6">
+            <span class="w-full text-center text-lg">
+              You need a larger screen to use builder tools.
+            </span>
+          </div>
+        </div>
       </div>
       <div
-        class="relative w-80 flex-none pt-0.5 pr-4 pl-0.5"
+        class="relative w-80 flex-none pt-0.5 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
       >
         <div
