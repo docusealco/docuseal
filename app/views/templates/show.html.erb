@@ -80,7 +80,7 @@
           <div class="space-y-1 w-full mr-4">
             <% submitters.each_with_index do |submitter, index| %>
               <div class="flex justify-between items-center">
-                <span class="flex items-center space-x-2 text-lg">
+                <span class="flex space-x-2 text-lg">
                   <%= render 'icons/user_number', class: 'w-6 h-6 stroke-2', number: index + 1 %>
                   <span>
                     <%= submitter.email %>
