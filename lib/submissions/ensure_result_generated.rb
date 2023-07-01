@@ -11,10 +11,10 @@ module Submissions
     module_function
 
     def call(submitter)
-      return submitter.documents if submitter.document_generation_events.complete.exists?
+      return submitter.documents if ApplicationRecord.uncached { submitter.document_generation_events.complete.exists? }
 
       events =
-        DocumentGenerationEvent.uncached do
+        ApplicationRecord.uncached do
           DocumentGenerationEvent.where(submitter:).order(:created_at).to_a
         end
 
@@ -45,7 +45,7 @@ module Submissions
         total_wait_time += CHECK_EVENT_INTERVAL
 
         last_event =
-          DocumentGenerationEvent.uncached do
+          ApplicationRecord.uncached do
             DocumentGenerationEvent.where(submitter:).order(:created_at).last
           end
 
