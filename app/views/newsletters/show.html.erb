@@ -1,0 +1,14 @@
+<div class="max-w-xl mx-auto px-2">
+  <h1 class="text-4xl font-bold text-center my-8">👨‍💻 Developer Newsletters</h1>
+  <%= form_for current_user, url: newsletter_path do |f| %>
+    <div class="form-control">
+      <%= f.email_field :email, placeholder: 'Email', required: true, class: 'base-input' %>
+    </div>
+    <div class="form-control mt-4">
+      <%= f.button button_title, class: 'base-button' %>
+    </div>
+    <div class="text-center mt-2">
+      <a href="/" class="link">Skip</a>
+    </div>
+  <% end %>
+</div>
