@@ -5,7 +5,15 @@ export default class extends HTMLElement {
     this.addEventListener('click', (e) => {
       e.stopPropagation()
 
-      navigator.clipboard.writeText(this.dataset.text || this.innerText.trim())
+      const text = this.dataset.text || this.innerText.trim()
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+      } else {
+        if (e.target.tagName !== 'INPUT') {
+          alert(`Clipboard not available. Make sure you're using https://\nCopy text: ${text}`)
+        }
+      }
     })
   }
 
