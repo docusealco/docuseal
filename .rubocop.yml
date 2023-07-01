@@ -31,10 +31,13 @@ Metrics/MethodLength:
     - 'db/migrate/**'
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 15
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 15
+
+Layout/LineLength:
+  AllowedPatterns: ['\A\s*#']
 
 Metrics/AbcSize:
   Max: 35

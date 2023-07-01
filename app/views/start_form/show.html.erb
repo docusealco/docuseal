@@ -33,7 +33,7 @@
             <%= f.email_field :email, required: true, class: 'base-input', placeholder: 'Provide your email to start' %>
           </div>
           <div class="form-control">
-            <%= f.button button_title(title: 'Start'), class: 'base-button' %>
+            <%= f.button button_title(title: 'Start', disabled_with: 'Starting'), class: 'base-button' %>
           </div>
         <% end %>
       </div>

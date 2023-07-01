@@ -6,7 +6,7 @@ class SubmissionsDownloadController < ApplicationController
   def index
     submitter = Submitter.find_by(slug: params[:submitter_slug])
 
-    Submissions::GenerateResultAttachments.call(submitter) if submitter.documents.blank?
+    Submissions::EnsureResultGenerated.call(submitter)
 
     urls =
       Submitters.select_attachments_for_download(submitter).map do |attachment|

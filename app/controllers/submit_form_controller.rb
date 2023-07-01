@@ -24,6 +24,8 @@ class SubmitFormController < ApplicationController
     submitter.save!
 
     if submitter.completed_at?
+      GenerateSubmitterResultAttachmentsJob.perform_later(submitter)
+
       submitter.submission.template.account.users.active.each do |user|
         SubmitterMailer.completed_email(submitter, user).deliver_later!
       end

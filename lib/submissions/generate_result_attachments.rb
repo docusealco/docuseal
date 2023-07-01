@@ -209,9 +209,13 @@ module Submissions
     end
 
     def build_pdfs_index(submitter)
-      latest_submitter = submitter.submission.submitters
-                                  .select { |e| e.id != submitter.id && e.completed_at? }
-                                  .max_by(&:completed_at)
+      latest_submitter =
+        submitter.submission.submitters
+                 .select(&:completed_at?)
+                 .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
+                 .max_by(&:completed_at)
+
+      Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
       documents ||= submitter.submission.template.documents.preload(:blob)

@@ -21,6 +21,9 @@ class SubmitterMailer < ApplicationMailer
 
   def documents_copy_email(submitter)
     @submitter = submitter
+
+    Submissions::EnsureResultGenerated.call(@submitter)
+
     @documents = Submitters.select_attachments_for_download(submitter)
 
     @documents.each do |attachment|

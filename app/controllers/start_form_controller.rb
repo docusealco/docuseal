@@ -13,7 +13,7 @@ class StartFormController < ApplicationController
 
   def update
     @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
-                          .find_or_initialize_by(**submitter_params)
+                          .find_or_initialize_by(email: submitter_params[:email])
 
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
@@ -25,7 +25,7 @@ class StartFormController < ApplicationController
         ua: request.user_agent
       )
 
-      @submitter.build_submission(template: @template)
+      @submitter.submission ||= Submission.new(template: @template)
 
       if @submitter.save
         redirect_to submit_form_path(@submitter.slug)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_01_075115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "document_generation_events", force: :cascade do |t|
+    t.bigint "submitter_id", null: false
+    t.string "event_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
+    t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
   end
 
   create_table "encrypted_configs", force: :cascade do |t|
@@ -135,6 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_182744) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "document_generation_events", "submitters"
   add_foreign_key "encrypted_configs", "accounts"
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"

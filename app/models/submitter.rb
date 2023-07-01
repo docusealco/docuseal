@@ -39,6 +39,8 @@ class Submitter < ApplicationRecord
   has_many_attached :documents
   has_many_attached :attachments
 
+  has_many :document_generation_events, dependent: :destroy
+
   def status
     if completed_at?
       'completed'
