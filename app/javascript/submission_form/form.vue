@@ -369,6 +369,13 @@ export default {
       this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1,
       this.stepFields.length - 1
     )
+
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.body.style.overflow = 'hidden'
+
+      window.scrollbox.classList.add('h-full', 'overflow-y-auto')
+      window.scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
+    }
   },
   methods: {
     goToStep (step, scrollToArea = false, clickUpload = false) {

@@ -73,13 +73,26 @@ export default {
     scrollIntoField (field) {
       this.areaRefs.find((area) => {
         if (area.field === field) {
-          area.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          if (document.body.style.overflow === 'hidden') {
+            this.scrollInContainer(area.$el)
+          } else {
+            area.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
 
           return true
         } else {
           return null
         }
       })
+    },
+    scrollInContainer (target) {
+      const padding = 64
+      const boxRect = window.scrollbox.children[0].getBoundingClientRect()
+      const targetRect = target.getBoundingClientRect()
+
+      const targetTopRelativeToBox = targetRect.top - boxRect.top
+
+      window.scrollbox.scrollTop = targetTopRelativeToBox - document.body.offsetHeight + window.form_container.offsetHeight + target.offsetHeight + padding
     },
     setAreaRef (el) {
       if (el) {
