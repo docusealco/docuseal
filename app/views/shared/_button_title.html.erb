@@ -1,7 +1,9 @@
 <span class="enabled">
   <span class="flex items-center justify-center space-x-2">
     <%= icon %>
-    <span><%= title %></span>
+    <% if title %>
+      <span><%= title %></span>
+    <% end %>
   </span>
 </span>
 <span class="disabled">

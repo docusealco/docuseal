@@ -10,12 +10,18 @@
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>
         </label>
-        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box whitespace-nowrap">
+        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box whitespace-nowrap text-right">
           <li>
-            <%= link_to 'Profile', settings_profile_index_path, class: 'text-right' %>
+            <%= link_to settings_profile_index_path do %>
+              <%= svg_icon('adjustments', class: 'w-5 h-5 stroke-2') %>
+              <span class="mr-1">Profile</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+              <%= svg_icon('logout', class: 'w-5 h-5 stroke-2') %>
+              <span class="mr-1">Sign out</span>
+            <% end %>
           </li>
         </ul>
       </div>
