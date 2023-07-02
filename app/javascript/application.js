@@ -1,4 +1,5 @@
-import '@hotwired/turbo-rails'
+import '@hotwired/turbo'
+import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascript/turbo/fetch_requests'
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -14,6 +15,10 @@ import DownloadButton from './elements/download_button'
 import SetOriginUrl from './elements/set_origin_url'
 import SetTimezone from './elements/set_timezone'
 import AutoresizeTextarea from './elements/autoresize_textarea'
+
+import * as TurboInstantClick from './lib/turbo_instant_click'
+
+TurboInstantClick.start()
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -36,6 +41,8 @@ window.customElements.define('download-button', DownloadButton)
 window.customElements.define('set-origin-url', SetOriginUrl)
 window.customElements.define('set-timezone', SetTimezone)
 window.customElements.define('autoresize-textarea', AutoresizeTextarea)
+
+document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {

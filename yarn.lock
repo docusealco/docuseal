@@ -988,10 +988,9 @@
     "@hotwired/turbo" "^7.3.0"
     "@rails/actioncable" "^7.0"
 
-"@hotwired/turbo@^7.3.0":
+"@hotwired/turbo@^7.3.0", "@hotwired/turbo@https://github.com/docusealco/turbo#main":
   version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-7.3.0.tgz#2226000fff1aabda9fd9587474565c9929dbf15d"
-  integrity sha512-Dcu+NaSvHLT7EjrDrkEmH4qET2ZJZ5IcCWmNXxNQTBwlnE5tBZfN6WxZ842n5cHV52DH/AKNirbPBtcEXDLW4g==
+  resolved "https://github.com/docusealco/turbo#64d286a14b0d11383719a9a09852a775863d621a"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
