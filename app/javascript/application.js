@@ -18,6 +18,8 @@ import AutoresizeTextarea from './elements/autoresize_textarea'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
+import './images/preview.png'
+
 TurboInstantClick.start()
 
 document.addEventListener('turbo:before-cache', () => {
