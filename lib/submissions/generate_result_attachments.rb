@@ -98,7 +98,8 @@ module Submissions
                     (area['x'] * width) + (area['w'] * width) + TEXT_LEFT_MARGIN,
                     height - (area['y'] * height) - lines[..next_index].sum(&:height) + height_diff
                   ],
-                  A: { Type: :Action, S: :URI, URI: attachment.url }
+                  A: { Type: :Action, S: :URI,
+                       URI: h.rails_blob_url(attachment, **Docuseal.default_url_options) }
                 }
               )
 
@@ -259,6 +260,10 @@ module Submissions
         Vips::Image.new_from_buffer(attachment.download, '')
                    .write_to_buffer('.png')
       end
+    end
+
+    def h
+      Rails.application.routes.url_helpers
     end
   end
 end

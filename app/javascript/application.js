@@ -51,7 +51,8 @@ window.customElements.define('template-builder', class extends HTMLElement {
     this.appElem = document.createElement('div')
 
     this.app = createApp(TemplateBuilder, {
-      template: reactive(JSON.parse(this.dataset.template))
+      template: reactive(JSON.parse(this.dataset.template)),
+      isDirectUpload: this.dataset.isDirectUpload === 'true'
     })
 
     this.app.mount(this.appElem)

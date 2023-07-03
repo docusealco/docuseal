@@ -19,6 +19,10 @@ module Docuseal
     ENV['MULTITENANT'] == 'true'
   end
 
+  def active_storage_public?
+    ENV['ACTIVE_STORAGE_PUBLIC'] == 'true'
+  end
+
   def default_url_options
     return DEFAULT_URL_OPTIONS if multitenant?
 

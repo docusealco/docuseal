@@ -69,6 +69,11 @@ export default {
       required: false,
       default: '*/*'
     },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     multiple: {
       type: Boolean,
       required: false,
@@ -87,7 +92,9 @@ export default {
     }
   },
   mounted () {
-    import('@rails/activestorage')
+    if (this.isDirectUpload) {
+      import('@rails/activestorage')
+    }
   },
   methods: {
     onDropFiles (e) {
@@ -105,50 +112,72 @@ export default {
     async uploadFiles (files) {
       this.isLoading = true
 
-      const { DirectUpload } = await import('@rails/activestorage')
+      if (this.isDirectUpload) {
+        const { DirectUpload } = await import('@rails/activestorage')
 
-      const blobs = await Promise.all(
-        Array.from(files).map(async (file) => {
-          const upload = new DirectUpload(
-            file,
-            '/direct_uploads',
-            this.$refs.input
-          )
+        const blobs = await Promise.all(
+          Array.from(files).map(async (file) => {
+            const upload = new DirectUpload(
+              file,
+              '/direct_uploads',
+              this.$refs.input
+            )
 
-          return new Promise((resolve, reject) => {
-            upload.create((error, blob) => {
-              if (error) {
-                console.error(error)
+            return new Promise((resolve, reject) => {
+              upload.create((error, blob) => {
+                if (error) {
+                  console.error(error)
 
-                return reject(error)
-              } else {
-                return resolve(blob)
-              }
+                  return reject(error)
+                } else {
+                  return resolve(blob)
+                }
+              })
+            }).catch((error) => {
+              console.error(error)
             })
-          }).catch((error) => {
-            console.error(error)
           })
-        })
-      )
+        )
 
-      return await Promise.all(
-        blobs.map((blob) => {
-          return fetch('/api/attachments', {
-            method: 'POST',
-            body: JSON.stringify({
-              name: 'attachments',
-              blob_signed_id: blob.signed_id,
-              submitter_slug: this.submitterSlug
-            }),
-            headers: { 'Content-Type': 'application/json' }
-          }).then(resp => resp.json()).then((data) => {
-            return data
-          })
-        })).then((result) => {
-        this.$emit('upload', result)
-      }).finally(() => {
-        this.isLoading = false
-      })
+        return await Promise.all(
+          blobs.map((blob) => {
+            return fetch('/api/attachments', {
+              method: 'POST',
+              body: JSON.stringify({
+                name: 'attachments',
+                blob_signed_id: blob.signed_id,
+                submitter_slug: this.submitterSlug
+              }),
+              headers: { 'Content-Type': 'application/json' }
+            }).then(resp => resp.json()).then((data) => {
+              return data
+            })
+          })).then((result) => {
+          this.$emit('upload', result)
+        }).finally(() => {
+          this.isLoading = false
+        })
+      } else {
+        return await Promise.all(
+          Array.from(files).map((file) => {
+            const formData = new FormData()
+
+            formData.append('file', file)
+            formData.append('submitter_slug', this.submitterSlug)
+            formData.append('name', 'attachments')
+
+            return fetch('/api/attachments', {
+              method: 'POST',
+              body: formData
+            }).then(resp => resp.json()).then((data) => {
+              return data
+            })
+          })).then((result) => {
+          this.$emit('upload', result)
+        }).finally(() => {
+          this.isLoading = false
+        })
+      }
     }
   }
 }

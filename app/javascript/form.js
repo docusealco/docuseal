@@ -13,6 +13,7 @@ window.customElements.define('submission-form', class extends HTMLElement {
       submitterUuid: this.dataset.submitterUuid,
       authenticityToken: this.dataset.authenticityToken,
       canSendEmail: this.dataset.canSendEmail === 'true',
+      isDirectUpload: this.dataset.isDirectUpload === 'true',
       values: reactive(JSON.parse(this.dataset.values)),
       attachments: reactive(JSON.parse(this.dataset.attachments)),
       fields: JSON.parse(this.dataset.fields)

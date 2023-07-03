@@ -1,9 +1,9 @@
 <div id="result">
-  <% blobs.zip(pdfs).each do |blob, pdf| %>
+  <% files.zip(pdfs).each do |file, pdf| %>
     <div class="mb-4 border border-base-300 rounded-md py-2 px-3">
       <% if pdf.signatures.to_a.size == 0 %>
         <div class="text-sm">
-          <%= blob.filename %>
+          <%= file.original_filename %>
         </div>
         <p class="text-xl font-medium">
           There are no signatures...
@@ -11,7 +11,7 @@
       <% else %>
         <div class="flex items-center space-x-1 border-b border-dashed border-base-300 pb-2">
           <%= svg_icon('file_text', class: 'w-5 h-5 inline') %>
-          <span><%= blob.filename %> - <%= pluralize(pdf.signatures.to_a.size, 'Signature') %></span>
+          <span><%= file.original_filename %> - <%= pluralize(pdf.signatures.to_a.size, 'Signature') %></span>
         </div>
         <% pdf.signatures.to_a.each do |signature| %>
           <div class="mt-3">

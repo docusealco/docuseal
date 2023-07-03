@@ -33,15 +33,20 @@
           </div>
         </div>
       </div>
-      <input
-        :id="inputId"
-        ref="input"
-        type="file"
+      <form
+        ref="form"
         class="hidden"
-        accept="image/*, application/pdf"
-        multiple
-        @change="upload"
       >
+        <input
+          :id="inputId"
+          ref="input"
+          type="file"
+          name="files[]"
+          accept="image/*, application/pdf"
+          multiple
+          @change="upload"
+        >
+      </form>
     </label>
   </div>
 </template>
@@ -60,6 +65,11 @@ export default {
     templateId: {
       type: [Number, String],
       required: true
+    },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   emits: ['success'],

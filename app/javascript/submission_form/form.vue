@@ -201,6 +201,7 @@
           v-else-if="currentField.type === 'image'"
           v-model="values[currentField.uuid]"
           :field="currentField"
+          :is-direct-upload="isDirectUpload"
           :attachments-index="attachmentsIndex"
           :submitter-slug="submitterSlug"
           @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
@@ -210,6 +211,7 @@
           ref="currentStep"
           v-model="values[currentField.uuid]"
           :field="currentField"
+          :is-direct-upload="isDirectUpload"
           :attachments-index="attachmentsIndex"
           :submitter-slug="submitterSlug"
           @attached="attachments.push($event)"
@@ -217,6 +219,7 @@
         <AttachmentStep
           v-else-if="currentField.type === 'file'"
           v-model="values[currentField.uuid]"
+          :is-direct-upload="isDirectUpload"
           :field="currentField"
           :attachments-index="attachmentsIndex"
           :submitter-slug="submitterSlug"
@@ -314,6 +317,11 @@ export default {
     authenticityToken: {
       type: String,
       required: true
+    },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
     },
     values: {
       type: Object,

@@ -47,6 +47,8 @@
     <FileDropzone
       :message="`Upload ${field.name || 'Attachments'}${field.required ? '' : ' (optional)'}`"
       :submitter-slug="submitterSlug"
+      :is-direct-upload="isDirectUpload"
+      :multiple="true"
       @upload="onUpload"
     />
   </div>
@@ -76,6 +78,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
     },
     modelValue: {
       type: Array,

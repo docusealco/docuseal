@@ -74,6 +74,7 @@
           <Upload
             v-if="sortedDocuments.length"
             :template-id="template.id"
+            :is-direct-upload="isDirectUpload"
             @success="updateFromUpload"
           />
         </div>
@@ -83,12 +84,12 @@
           ref="documents"
           class="pr-3.5 pl-0.5"
         >
-          <template v-if="!sortedDocuments.length">
-            <Dropzone
-              :template-id="template.id"
-              @success="updateFromUpload"
-            />
-          </template>
+          <Dropzone
+            v-if="!sortedDocuments.length"
+            :template-id="template.id"
+            :is-direct-upload="isDirectUpload"
+            @success="updateFromUpload"
+          />
           <template v-else>
             <Document
               v-for="document in sortedDocuments"
@@ -194,6 +195,11 @@ export default {
     template: {
       type: Object,
       required: true
+    },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   data () {

@@ -46,8 +46,10 @@ Rails.application.configure do
     elsif ENV['AZURE_CONTAINER'].present?
       :azure
     else
-      :local
+      :disk
     end
+
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy if ENV['ACTIVE_STORAGE_PUBLIC'] != 'true'
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

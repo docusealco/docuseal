@@ -24,15 +24,20 @@
         Add Document
       </span>
     </label>
-    <input
-      :id="inputId"
-      ref="input"
-      type="file"
+    <form
+      ref="form"
       class="hidden"
-      accept="image/*, application/pdf"
-      multiple
-      @change="upload"
     >
+      <input
+        :id="inputId"
+        ref="input"
+        name="files[]"
+        type="file"
+        accept="image/*, application/pdf"
+        multiple
+        @change="upload"
+      >
+    </form>
   </div>
 </template>
 
@@ -49,6 +54,11 @@ export default {
     templateId: {
       type: [Number, String],
       required: true
+    },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   emits: ['success'],
@@ -64,52 +74,66 @@ export default {
     }
   },
   mounted () {
-    import('@rails/activestorage')
+    if (this.isDirectUpload) {
+      import('@rails/activestorage')
+    }
   },
   methods: {
     async upload () {
       this.isLoading = true
 
-      const { DirectUpload } = await import('@rails/activestorage')
+      if (this.isDirectUpload) {
+        const { DirectUpload } = await import('@rails/activestorage')
 
-      const blobs = await Promise.all(
-        Array.from(this.$refs.input.files).map(async (file) => {
-          const upload = new DirectUpload(
-            file,
-            '/direct_uploads',
-            this.$refs.input
-          )
+        const blobs = await Promise.all(
+          Array.from(this.$refs.input.files).map(async (file) => {
+            const upload = new DirectUpload(
+              file,
+              '/direct_uploads',
+              this.$refs.input
+            )
 
-          return new Promise((resolve, reject) => {
-            upload.create((error, blob) => {
-              if (error) {
-                console.error(error)
+            return new Promise((resolve, reject) => {
+              upload.create((error, blob) => {
+                if (error) {
+                  console.error(error)
 
-                return reject(error)
-              } else {
-                return resolve(blob)
-              }
+                  return reject(error)
+                } else {
+                  return resolve(blob)
+                }
+              })
+            }).catch((error) => {
+              console.error(error)
             })
-          }).catch((error) => {
-            console.error(error)
           })
+        ).finally(() => {
+          this.isLoading = false
         })
-      ).finally(() => {
-        this.isLoading = false
-      })
 
-      this.isProcessing = true
+        this.isProcessing = true
 
-      fetch(`/api/templates/${this.templateId}/documents`, {
-        method: 'POST',
-        body: JSON.stringify({ blobs }),
-        headers: { 'Content-Type': 'application/json' }
-      }).then(resp => resp.json()).then((data) => {
-        this.$emit('success', data)
-        this.$refs.input.value = ''
-      }).finally(() => {
-        this.isProcessing = false
-      })
+        fetch(`/api/templates/${this.templateId}/documents`, {
+          method: 'POST',
+          body: JSON.stringify({ blobs }),
+          headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.json()).then((data) => {
+          this.$emit('success', data)
+          this.$refs.input.value = ''
+        }).finally(() => {
+          this.isProcessing = false
+        })
+      } else {
+        fetch(`/api/templates/${this.templateId}/documents`, {
+          method: 'POST',
+          body: new FormData(this.$refs.form)
+        }).then(resp => resp.json()).then((data) => {
+          this.$emit('success', data)
+          this.$refs.input.value = ''
+        }).finally(() => {
+          this.isLoading = false
+        })
+      }
     }
   }
 }
