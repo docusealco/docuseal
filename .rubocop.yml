@@ -9,6 +9,7 @@ AllCops:
     - db/schema.rb
     - node_modules/**/*
     - bin/*
+    - vendor/**/*
   TargetRubyVersion: '3.2'
 
 Metrics/BlockLength:
