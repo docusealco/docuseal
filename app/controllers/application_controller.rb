@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Backend
 
+  before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
@@ -20,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def sign_in_for_demo
+    sign_in(User.first) unless signed_in?
+  end
 
   def current_account
     current_user&.account

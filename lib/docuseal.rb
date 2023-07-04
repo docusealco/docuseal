@@ -23,6 +23,10 @@ module Docuseal
     ENV['MULTITENANT'] == 'true'
   end
 
+  def demo?
+    ENV['DEMO'] == 'true'
+  end
+
   def active_storage_public?
     ENV['ACTIVE_STORAGE_PUBLIC'] == 'true'
   end
