@@ -40,5 +40,9 @@
         <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
       </a>
     </div>
+    <a href="https://twitter.com/intent/tweet?<%= { text: "Open source DocuSign alternative\n#{Docuseal::GITHUB_URL} #{Docuseal::TWITTER_HANDLE}" }.to_query %>" target="_blank" class="btn btn-neutral btn-outline w-full mt-6">
+      <%= svg_icon('send', class: 'h-5 w-5') %>
+      Tell about us
+    </a>
   </div>
 </div>
