@@ -16,7 +16,15 @@ class AccountsController < ApplicationController
 
     @encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account,
                                                               key: EncryptedConfig::APP_URL_KEY)
-    @encrypted_config.update!(app_url_params)
+    @encrypted_config.assign_attributes(app_url_params)
+
+    unless URI.parse(@encrypted_config.value.to_s).class.in?([URI::HTTP, URI::HTTPS])
+      @encrypted_config.errors.add(:value, 'should be a valid URL')
+
+      return render :show, status: :unprocessable_entity
+    end
+
+    @encrypted_config.save!
 
     Docuseal.refresh_default_url_options!
 

@@ -19,6 +19,13 @@ class SetupController < ApplicationController
 
     @user = @account.users.new(user_params)
 
+    unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
+      @encrypted_config = EncryptedConfig.new(encrypted_config_params)
+      @encrypted_config.errors.add(:value, 'should be a valid URL')
+
+      return render :index, status: :unprocessable_entity
+    end
+
     if @user.save
       encrypted_configs = [
         { key: EncryptedConfig::APP_URL_KEY, value: encrypted_config_params[:value] },

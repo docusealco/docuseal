@@ -49,10 +49,10 @@
             <h1 class="text-5xl font-bold text-base-content">👋 Welcome to DocuSeal</h1>
           </div>
           <div class="max-w-lg mx-auto">
-            <p class="py-6 text-gray-600">Streamline document workflows, from creating customizable templates to filling and signing document forms, with DocuSeal</p>
+            <p class="py-6 text-gray-600">Streamline document workflows, from creating customizable templates to filling and signing document forms</p>
             <%= link_to new_template_path, class: 'base-button', data: { turbo_frame: :modal } do %>
               <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-              <span>Create Template</span>
+              <span class="mr-1">Create Template</span>
             <% end %>
           </div>
         </div>

@@ -1,6 +1,6 @@
-<menu-active class="block w-full md:w-52">
-  <div>
-    <ul class="menu px-0 space-y-1">
+<div>
+  <menu-active class="block w-full md:w-52">
+    <ul class="menu px-0">
       <li class="menu-title py-0"><span>Settings</span></li>
       <li></li>
       <li>
@@ -24,5 +24,21 @@
         <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
       </li>
     </ul>
+  </menu-active>
+  <div class="mx-4 border-t border-base-300">
+    <div class="text-sm mt-3">
+      Need help? Ask a question:
+    </div>
+    <div class="flex mt-3 space-x-3">
+      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+        <%= svg_icon('brand_github', class: 'w-8 h-8') %>
+      </a>
+      <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+        <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+      </a>
+      <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+        <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
+      </a>
+    </div>
   </div>
-</menu-active>
+</div>
