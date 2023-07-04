@@ -31,7 +31,7 @@ ENV BUNDLE_WITHOUT="development:test"
 
 WORKDIR /app
 
-RUN apk add --no-cache build-base sqlite-dev libpq-dev vips-dev vips-poppler vips-heif libc6-compat ttf-freefont
+RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler vips-heif libc6-compat ttf-freefont
 
 COPY ./Gemfile ./Gemfile.lock ./
 

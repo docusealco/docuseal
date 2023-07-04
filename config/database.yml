@@ -10,7 +10,8 @@ test:
   <<: *default
   database: docuseal_test
 
+<% if ENV['DATABASE_URL'].to_s.empty? %>
 production:
-  adapter: <%= ENV['DATABASE_URL'].present? ? 'postgresql' : 'sqlite3' %>
-  encoding: unicode
+  adapter: sqlite3
   database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3
+<% end %>

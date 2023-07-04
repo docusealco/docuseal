@@ -8,7 +8,7 @@ class CreateSubmitters < ActiveRecord::Migration[7.0]
       t.string :uuid, null: false
       t.string :email, null: false, index: true
       t.string :slug, null: false, index: { unique: true }
-      t.string :values, null: false
+      t.text :values, null: false
       t.string :ua
       t.string :ip
 

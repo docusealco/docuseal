@@ -286,6 +286,7 @@ GEM
     msgpack (1.7.1)
     multi_json (1.15.0)
     multipart-post (2.3.0)
+    mysql2 (0.5.5)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
     net-imap (0.3.6)
@@ -507,6 +508,7 @@ DEPENDENCIES
   image_processing
   letter_opener_web
   lograge
+  mysql2
   oj
   pagy
   pg
