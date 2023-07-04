@@ -10,7 +10,7 @@
   </div>
   <% if signed_in? %>
     <div class="space-x-6">
-      <%= link_to 'Settings', settings_profile_index_path, class: 'font-medium text-lg' %>
+      <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline font-medium text-lg' %>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>

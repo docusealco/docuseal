@@ -1,5 +1,5 @@
-<div>
-  <menu-active class="block w-full md:w-52">
+<div class="block w-full md:w-52">
+  <menu-active>
     <ul class="menu px-0">
       <li class="menu-title py-0"><span>Settings</span></li>
       <li></li>
@@ -25,7 +25,7 @@
       </li>
     </ul>
   </menu-active>
-  <div class="mx-4 border-t border-base-300">
+  <div class="mx-4 border-t border-base-300 hidden md:block">
     <div class="text-sm mt-3">
       Need help? Ask a question:
     </div>
@@ -40,7 +40,7 @@
         <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
       </a>
     </div>
-    <a href="https://twitter.com/intent/tweet?<%= { text: "Open source DocuSign alternative\n#{Docuseal::GITHUB_URL} #{Docuseal::TWITTER_HANDLE}" }.to_query %>" target="_blank" class="btn btn-neutral btn-outline w-full mt-6">
+    <a href="https://twitter.com/intent/tweet?<%= { text: "Open source DocuSign alternative\n#{Docuseal::GITHUB_URL} #{Docuseal::TWITTER_HANDLE}" }.to_query %>" target="_blank" class="btn btn-neutral btn-outline w-full mt-5">
       <%= svg_icon('send', class: 'h-5 w-5') %>
       Tell about us
     </a>
