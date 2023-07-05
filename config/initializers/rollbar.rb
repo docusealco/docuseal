@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-Rollbar.configure do |config|
-  config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN', nil)
+if defined?(Rollbar)
+  Rollbar.configure do |config|
+    config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN', nil)
 
-  config.enabled = !config.access_token.nil?
+    config.enabled = true
 
-  config.exception_level_filters['ActionController::RoutingError'] = 'ignore'
+    config.exception_level_filters['ActionController::RoutingError'] = 'ignore'
 
-  config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+    config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+  end
 end

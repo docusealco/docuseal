@@ -4,29 +4,28 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
-gem 'audited'
-gem 'aws-sdk-s3'
-gem 'azure-storage-blob'
+gem 'aws-sdk-s3', require: false
+gem 'azure-storage-blob', require: false
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'dotenv', require: false
 gem 'faraday'
-gem 'google-cloud-storage'
+gem 'google-cloud-storage', require: false
 gem 'hexapdf'
 gem 'image_processing'
 gem 'lograge'
-gem 'mysql2'
+gem 'mysql2', require: false
 gem 'oj'
 gem 'pagy'
-gem 'pg'
+gem 'pg', require: false
 gem 'premailer-rails'
 gem 'puma'
 gem 'rails'
 gem 'rails-i18n'
-gem 'rollbar'
+gem 'rollbar', require: ENV.key?('ROLLBAR_ACCESS_TOKEN')
 gem 'ruby-vips'
 gem 'shakapacker'
-gem 'sqlite3'
+gem 'sqlite3', require: false
 gem 'strip_attributes'
 gem 'turbo-rails'
 gem 'tzinfo-data'
