@@ -10,6 +10,7 @@
     <%= csp_meta_tag %>
     <%= javascript_pack_tag 'application', defer: true %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>
   <body>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>

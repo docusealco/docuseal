@@ -1,3 +1,6 @@
+<% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
+  <meta name="robots" content="noindex">
+<% end %>
 <meta name="description" content="Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.">
 <meta property="og:title" content="DocuSeal | Open Source Document Filling and Signing">
 <meta property="og:description" content="Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.">
