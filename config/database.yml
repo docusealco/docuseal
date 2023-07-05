@@ -1,6 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15) %>
 
 development:
   <<: *default
@@ -10,8 +11,16 @@ test:
   <<: *default
   database: docuseal_test
 
-<% if ENV['DATABASE_URL'].to_s.empty? %>
 production:
+<% if ENV['DATABASE_URL'].to_s.empty? %>
   adapter: sqlite3
   database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3
+<% elsif ENV['DATABASE_URL'].match?(/\Apostgres/) %>
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+<% elsif ENV['DATABASE_URL'].match?(/\Amysql/) %>
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15) %>
+  url: <%= ENV['DATABASE_URL'] %>
 <% end %>
