@@ -10,9 +10,9 @@ class SubmitFormController < ApplicationController
       Submitter.preload(submission: { template: { documents_attachments: { preview_images_attachments: :blob } } })
                .find_by!(slug: params[:slug])
 
-    cookies.signed[:submitter_sid] = @submitter.signed_id
+    return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
 
-    redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+    cookies[:submitter_sid] = @submitter.signed_id
   end
 
   def update
