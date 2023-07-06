@@ -28,7 +28,7 @@ module Templates
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       image = Vips::Image.new_from_buffer(binary, '')
-      image = image.resize(MAX_WIDTH / image.width.to_f)
+      image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
 
       io = StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true))
 
