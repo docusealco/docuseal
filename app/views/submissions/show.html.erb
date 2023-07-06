@@ -1,5 +1,5 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
-  <div class="flex justify-between py-1.5 items-center pr-4">
+  <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= template_path(@submission.template) %>" class="flex space-x-3 py-1">
       <span><%= render 'shared/logo', width: 40, height: 40 %></span>
       <span class="text-3xl font-semibold focus:text-clip"><%= @submission.template.name %></span>
@@ -21,7 +21,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex" style="max-height: calc(100vh - 60px)">
+  <div class="flex md:max-h-[calc(100vh-60px)]">
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5">
       <% @submission.template.schema.each do |item| %>
         <% document = @submission.template.documents.find { |a| item['attachment_uuid'] == a.uuid } %>

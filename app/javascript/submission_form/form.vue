@@ -32,7 +32,7 @@
         name="_method"
         type="hidden"
       >
-      <div class="mt-4">
+      <div class="md:mt-4">
         <div v-if="['cells', 'text'].includes(currentField.type)">
           <label
             v-if="currentField.name"
@@ -226,7 +226,7 @@
           @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
         />
       </div>
-      <div class="mt-8">
+      <div class="mt-6 md:mt-8">
         <button
           type="submit"
           class="base-button w-full flex justify-center"
