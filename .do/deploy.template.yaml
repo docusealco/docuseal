@@ -1,0 +1,18 @@
+spec:
+  name: docuseal
+  services:
+  - name: docuseal
+    dockerfile_path: Dockerfile
+    git:
+      repo_clone_url: https://github.com/docusealco/docuseal.git
+      branch: master
+    envs:
+    - key: SECRET_KEY_BASE
+      value: "- 64 characters string 64 characters string 64 characters string -"
+      type: SECRET
+      scope: RUN_TIME
+    - key: DATABASE_URL
+      scope: RUN_TIME
+      value: ${docuseal-db.DATABASE_URL}
+  databases:
+  - name: docuseal-db
