@@ -6,7 +6,7 @@ module Submissions
     FONT_NAME = 'Helvetica'
 
     INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
-    SIGN_REASON = 'Signed by %<email>s with docuseal.co'
+    SIGN_REASON = 'Signed by %<email>s with DocuSeal.co'
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
@@ -46,22 +46,21 @@ module Submissions
           when 'image', 'signature'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            scale = [(area['w'] * width) / attachment.metadata['width'],
-                     (area['h'] * height) / attachment.metadata['height']].min
+            image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
-            image = Vips::Image.new_from_buffer(attachment.download, '')
-            image = image.autorot.resize([scale * 4, 1].min)
+            scale = [(area['w'] * width) / image.width,
+                     (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.write_to_buffer('.png'))
+            io = StringIO.new(image.resize([scale * 4, 1].min).write_to_buffer('.png'))
 
             canvas.image(
               io,
               at: [
-                (area['x'] * width) + (area['w'] * width / 2) - ((attachment.metadata['width'] * scale) / 2),
-                height - (area['y'] * height) - (attachment.metadata['height'] * scale / 2) - (area['h'] * height / 2)
+                (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
+                height - (area['y'] * height) - (image.height * scale / 2) - (area['h'] * height / 2)
               ],
-              width: attachment.metadata['width'] * scale,
-              height: attachment.metadata['height'] * scale
+              width: image.width * scale,
+              height: image.height * scale
             )
           when 'file'
             page[:Annots] ||= []
