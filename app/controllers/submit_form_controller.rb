@@ -41,7 +41,7 @@ class SubmitFormController < ApplicationController
   private
 
   def normalized_values
-    params[:values].to_unsafe_h.transform_values do |v|
+    params.fetch(:values, {}).to_unsafe_h.transform_values do |v|
       if params[:cast_boolean] == 'true'
         v == 'true'
       else

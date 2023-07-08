@@ -22,12 +22,6 @@
         :value="authenticityToken"
       >
       <input
-        v-if="currentStep === stepFields.length - 1"
-        type="hidden"
-        name="completed"
-        value="true"
-      >
-      <input
         value="put"
         name="_method"
         type="hidden"
@@ -263,7 +257,7 @@
           href="#"
           class="inline border border-base-300 h-3 w-3 rounded-full mx-1"
           :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': index < currentStep || isCompleted, 'bg-white': index > currentStep }"
-          @click.prevent="isCompleted ? '' : goToStep(step, true)"
+          @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
         />
       </div>
     </div>
@@ -401,13 +395,13 @@ export default {
         }
       })
     },
-    saveStep () {
+    saveStep (formData) {
       if (this.isCompleted) {
         return Promise.resolve({})
       } else {
         return fetch(this.submitPath, {
           method: 'POST',
-          body: new FormData(this.$refs.form)
+          body: formData || new FormData(this.$refs.form)
         })
       }
     },
@@ -420,7 +414,13 @@ export default {
 
       await stepPromise()
 
-      this.saveStep().then(response => {
+      const formData = new FormData(this.$refs.form)
+
+      if (this.currentStep === this.stepFields.length - 1) {
+        formData.append('completed', 'true')
+      }
+
+      this.saveStep(formData).then(response => {
         const nextStep = this.stepFields[this.currentStep + 1]
 
         if (nextStep) {

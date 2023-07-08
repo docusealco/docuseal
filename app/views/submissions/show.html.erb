@@ -82,7 +82,7 @@
             </div>
             <% if submitter && !submitter.completed_at? %>
               <div class="mt-2 mb-1">
-                <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_url(slug: submitter.slug) %>">
+                <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   Submit Form
                 </a>
               </div>

@@ -40,6 +40,8 @@ module Submissions
 
           value = submitter.values[field['uuid']]
 
+          next if Array.wrap(value).compact_blank.blank?
+
           canvas = page.canvas(type: :overlay)
 
           case field['type']
