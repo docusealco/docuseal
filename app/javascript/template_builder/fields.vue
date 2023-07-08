@@ -67,6 +67,25 @@
       </div>
     </button>
   </div>
+  <div
+    v-if="fields.length < 4"
+    class="text-xs p-2 border border-base-200 rounded"
+  >
+    <ui>
+      <li>
+        Draw a text field on the page with a mouse
+      </li>
+      <li>
+        Single click of the page to add a checkbox
+      </li>
+      <li>
+        Drag &amp; drop any other field type on the page
+      </li>
+      <li>
+        Click on the field type above to add it to the form without drawing it on the document
+      </li>
+    </ui>
+  </div>
 </template>
 
 <script>

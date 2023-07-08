@@ -9,6 +9,7 @@ module Docuseal
   DISCORD_URL = 'https://discord.com/invite/B5wg5wKk'
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
+  SUPPORT_EMAIL = 'support@docuseal.co'
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
 

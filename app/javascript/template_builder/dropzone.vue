@@ -29,7 +29,7 @@
             {{ message }}
           </div>
           <div class="text-sm">
-            <span class="font-medium">Click to upload</span> or drag and drop
+            <span class="font-medium">Click to upload</span> or drag and drop files
           </div>
         </div>
       </div>
