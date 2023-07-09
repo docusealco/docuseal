@@ -14,7 +14,7 @@
   <a href="https://hub.docker.com/r/docuseal/docuseal">
     <img alt="Docker releases" src="https://img.shields.io/docker/v/docuseal/docuseal">
   </a>
-  <a href="https://discord.com/invite/B5wg5wKk">
+  <a href="https://discord.gg/qygYCDGck9">
     <img src="https://img.shields.io/discord/1125112641170448454?logo=discord"/>
   </a>
   <a href="https://twitter.com/intent/follow?screen_name=docusealco">

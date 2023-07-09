@@ -6,7 +6,7 @@ module Docuseal
   PRODUCT_NAME = 'DocuSeal'
   DEFAULT_APP_URL = 'http://localhost:3000'
   GITHUB_URL = 'https://github.com/docusealco/docuseal'
-  DISCORD_URL = 'https://discord.com/invite/B5wg5wKk'
+  DISCORD_URL = 'https://discord.gg/qygYCDGck9'
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
   SUPPORT_EMAIL = 'support@docuseal.co'
