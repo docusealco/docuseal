@@ -24,24 +24,30 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.invitation_email(@user).deliver_later!
 
-      redirect_to settings_users_path, notice: 'User has been invited.'
+      redirect_to settings_users_path, notice: 'User has been invited'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
     end
   end
 
   def update
+    return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
+
     if @user.update(user_params.compact_blank)
-      redirect_to settings_users_path, notice: 'User has been updated.'
+      redirect_to settings_users_path, notice: 'User has been updated'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity
     end
   end
 
   def destroy
+    if Docuseal.demo? || @user.id == current_user.id
+      return redirect_to settings_users_path, notice: 'Unable to remove user'
+    end
+
     @user.update!(deleted_at: Time.current)
 
-    redirect_to settings_users_path, notice: 'User has been removed.'
+    redirect_to settings_users_path, notice: 'User has been removed'
   end
 
   private
