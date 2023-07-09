@@ -30,3 +30,5 @@ linters:
         Enabled: false
       Style/ZeroLengthPredicate:
         Enabled: false
+      Style/RedundantConstantBase:
+        Enabled: false
