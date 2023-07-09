@@ -13,7 +13,7 @@
 #  slug          :string           not null
 #  ua            :string
 #  uuid          :string           not null
-#  values        :string           not null
+#  values        :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  submission_id :bigint           not null

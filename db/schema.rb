@@ -86,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_075115) do
     t.string "uuid", null: false
     t.string "email", null: false
     t.string "slug", null: false
-    t.string "values", null: false
+    t.text "values", null: false
     t.string "ua"
     t.string "ip"
     t.datetime "sent_at"
@@ -102,9 +102,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_075115) do
   create_table "templates", force: :cascade do |t|
     t.string "slug", null: false
     t.string "name", null: false
-    t.string "schema", null: false
-    t.string "fields", null: false
-    t.string "submitters", null: false
+    t.text "schema", null: false
+    t.text "fields", null: false
+    t.text "submitters", null: false
     t.bigint "author_id", null: false
     t.bigint "account_id", null: false
     t.datetime "deleted_at"

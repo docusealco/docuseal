@@ -6,11 +6,11 @@
 #
 #  id         :bigint           not null, primary key
 #  deleted_at :datetime
-#  fields     :string           not null
+#  fields     :text             not null
 #  name       :string           not null
-#  schema     :string           not null
+#  schema     :text             not null
 #  slug       :string           not null
-#  submitters :string           not null
+#  submitters :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :bigint           not null
