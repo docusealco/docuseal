@@ -110,7 +110,7 @@ Rails.application.configure do
   config.active_record.encryption = {
     primary_key: encryption_secret.first(32),
     deterministic_key: encryption_secret.last(32),
-    key_derivation_salt: encryption_secret
+    key_derivation_salt: Digest::SHA256.hexdigest(encryption_secret)
   }
 
   # Do not dump schema after migrations.
