@@ -64,7 +64,7 @@ Download docker-compose.yml into your private server:
 curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
 ```
 
-Run docker compose under a custom domain over https (make sure your DNS points to the server to automatically issue ssl certs with Caddy):
+Run the app under a custom domain over https using docker compose (make sure your DNS points to the server to automatically issue ssl certs with Caddy):
 ```sh
 HOST=your-domain-name.com docker-compose up
 ```
