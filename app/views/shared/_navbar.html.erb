@@ -4,13 +4,19 @@
       <%= render 'shared/logo' %>
       <span>DocuSeal</span>
     </a>
-    <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="inline">
-      <img alt="GitHub Repo stars" src="https://www.docuseal.co/github-badge.svg" style="height: 22px">
-    </a>
+    <% unless Docuseal.demo? %>
+      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="inline">
+        <img alt="GitHub Repo stars" src="https://www.docuseal.co/github-badge.svg" style="height: 22px">
+      </a>
+    <% end %>
   </div>
   <% if signed_in? %>
-    <div class="space-x-6">
-      <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline font-medium text-lg' %>
+    <div class="space-x-4 flex items-center">
+      <% if Docuseal.demo? %>
+        <%= render 'shared/github_button' %>
+      <% else %>
+        <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline font-medium text-lg mr-2' %>
+      <% end %>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>

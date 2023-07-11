@@ -33,7 +33,7 @@
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
       <div id="form_container" class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border border-base-200 border p-4 rounded">
-        <submission-form data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-can-send-email="<%= Accounts.can_send_emails?(Struct.new(:id).new(@submitter.submission.template.account_id)) %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+        <submission-form data-is-demo="<%= Docuseal.demo? %>" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-can-send-email="<%= Accounts.can_send_emails?(Struct.new(:id).new(@submitter.submission.template.account_id)) %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
       </div>
     </div>
   </div>

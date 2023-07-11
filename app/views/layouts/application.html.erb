@@ -15,7 +15,6 @@
   <body>
     <turbo-frame id="modal"></turbo-frame>
     <%= render 'shared/navbar' %>
-    <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>

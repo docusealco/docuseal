@@ -157,13 +157,19 @@
 <% else %>
   <div class="card bg-base-200">
     <div class="card-body text-center py-16">
-      <div class="max-w-md mx-auto">
+      <div class="max-w-lg mx-auto">
         <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions</p>
         <p class="text-gray-600">Send an invitation to fill and complete the form</p>
-        <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
-          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-          <span class="mr-1">Add Recipients</span>
-        <% end %>
+        <div class="space-x-2">
+          <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+            <span class="mr-1">Add Recipients</span>
+          <% end %>
+          <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
+            <%= svg_icon('writing', class: 'w-6 h-6') %>
+            <span class="mr-1">Submit it Yourself</span>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

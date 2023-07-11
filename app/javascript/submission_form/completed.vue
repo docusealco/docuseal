@@ -40,6 +40,17 @@
           Download
         </span>
       </button>
+      <a
+        v-if="isDemo"
+        target="_blank"
+        href="https://github.com/docusealco/docuseal"
+        class="white-button flex items-center space-x-1 w-full"
+      >
+        <IconBrandGithub />
+        <span>
+          Star on Github
+        </span>
+      </a>
     </div>
     <div class="text-center mt-4">
       Signed with
@@ -53,13 +64,14 @@
 </template>
 
 <script>
-import { IconCircleCheck, IconMail, IconDownload, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconCircleCheck, IconBrandGithub, IconMail, IconDownload, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'FormCompleted',
   components: {
     IconCircleCheck,
     IconInnerShadowTop,
+    IconBrandGithub,
     IconMail,
     IconDownload
   },
@@ -67,6 +79,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    isDemo: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     canSendEmail: {
       type: Boolean,

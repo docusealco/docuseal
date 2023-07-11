@@ -1,9 +1,11 @@
-<div class="absolute top-0 w-full h-0">
-  <div class="max-w-xl mx-auto mt-1.5">
-    <div class="px-4 py-3 rounded-2xl flex items-center justify-between mx-4 md:mx-0">
-      <a target="_blank" href="<%= start_form_url(slug: ::Template.first&.slug) %>" class="font-medium w-full text-center underline">
-        Demo Environment
-      </a>
+<div class="mx-auto mt-1.5">
+  <div class="py-3 rounded-2xl flex items-center justify-between mx-4 md:mx-0">
+    <div class="w-full text-center">
+      <span class="font-bold">DocuSeal Demo Environment</span>
+      <br>
+      Feel free to
+      <a href="<%= new_template_path %>" data-turbo-frame="modal" class="inline underline font-medium">create a new template</a> document form or
+      <a href="<%= start_form_url(slug: ::Template.first&.slug) %>" target="_blank" class="inline underline font-medium">submit the existing one</a> 😊
     </div>
   </div>
 </div>

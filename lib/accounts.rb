@@ -3,6 +3,31 @@
 module Accounts
   module_function
 
+  def create_duplicate(account)
+    new_account = account.dup
+
+    new_user = account.users.first.dup
+
+    new_user.account = new_account
+    new_user.encrypted_password = SecureRandom.hex
+    new_user.email = "#{SecureRandom.hex}@docuseal.co"
+
+    account.templates.each do |template|
+      new_template = template.dup
+
+      new_template.account = new_account
+      new_template.slug = SecureRandom.base58(10)
+
+      new_template.save!
+
+      Templates::CloneAttachments.call(template: new_template, original_template: template)
+    end
+
+    new_user.save!(validate: false)
+
+    new_account
+  end
+
   def load_signing_certs(account)
     certs =
       if Docuseal.multitenant?

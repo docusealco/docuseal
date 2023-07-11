@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   private
 
   def sign_in_for_demo
-    sign_in(User.first) unless signed_in?
+    sign_in(User.order('random()').take) unless signed_in?
   end
 
   def current_account

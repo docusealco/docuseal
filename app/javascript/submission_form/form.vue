@@ -246,6 +246,7 @@
     </form>
     <FormCompleted
       v-else
+      :is-demo="isDemo"
       :can-send-email="canSendEmail"
       :submitter-slug="submitterSlug"
     />
@@ -313,6 +314,11 @@ export default {
       required: true
     },
     isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    isDemo: {
       type: Boolean,
       required: true,
       default: false
