@@ -12,7 +12,7 @@
     </p>
     <div class="space-y-3 mt-5">
       <button
-        v-if="canSendEmail"
+        v-if="canSendEmail && !isDemo"
         class="white-button flex items-center space-x-1 w-full"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"

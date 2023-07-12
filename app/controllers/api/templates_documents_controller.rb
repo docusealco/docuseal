@@ -3,6 +3,8 @@
 module Api
   class TemplatesDocumentsController < ApiBaseController
     def create
+      return head :unprocessable_entity if params[:blobs].blank? && params[:files].blank?
+
       @template = current_account.templates.find(params[:template_id])
 
       documents =

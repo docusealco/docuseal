@@ -4,6 +4,12 @@ module ActionMailerConfigsInterceptor
   module_function
 
   def delivering_email(message)
+    if Docuseal.demo?
+      message.delivery_method(:test)
+
+      return message
+    end
+
     if Rails.env.production? && Rails.application.config.action_mailer.delivery_method
       message.from = ENV.fetch('SMTP_FROM')
 

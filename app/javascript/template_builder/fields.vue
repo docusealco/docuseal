@@ -71,7 +71,7 @@
     v-if="fields.length < 4"
     class="text-xs p-2 border border-base-200 rounded"
   >
-    <ui>
+    <ul class="list-disc list-outside ml-3">
       <li>
         Draw a text field on the page with a mouse
       </li>
@@ -84,7 +84,7 @@
       <li>
         Click on the field type above to add it to the form without drawing it on the document
       </li>
-    </ui>
+    </ul>
   </div>
 </template>
 
