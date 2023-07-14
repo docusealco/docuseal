@@ -16,7 +16,7 @@ module Accounts
       new_template = template.dup
 
       new_template.account = new_account
-      new_template.slug = SecureRandom.base58(10)
+      new_template.slug = SecureRandom.base58(14)
 
       new_template.save!
 
@@ -26,6 +26,20 @@ module Accounts
     new_user.save!(validate: false)
 
     new_account
+  end
+
+  def create_default_template(account)
+    template = Template.find(1)
+
+    new_template = Template.find(1).dup
+    new_template.account_id = account.id
+    new_template.slug = SecureRandom.base58(14)
+
+    new_template.save!
+
+    Templates::CloneAttachments.call(template: new_template, original_template: template)
+
+    new_template
   end
 
   def load_signing_certs(account)

@@ -46,7 +46,7 @@ class User < ApplicationRecord
   belongs_to :account
 
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
-  devise :registerable if Docuseal.multitenant?
+  devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
 
   attribute :role, :string, default: 'admin'
 

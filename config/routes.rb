@@ -5,11 +5,18 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
 
-  devise_for :users, path: '/', only: %i[sessions passwords]
+  devise_for :users,
+             path: '/', only: %i[sessions passwords omniauth_callbacks],
+             controllers: begin
+               options = { sessions: 'sessions' }
+               options[:omniauth_callbacks] = 'omniauth_callbacks' if Docuseal.multitenant?
+               options
+             end
 
   devise_scope :user do
     if Docuseal.multitenant?
-      resource :registration, only: %i[create], path: 'sign_up' do
+      resource :registration, only: %i[show], path: 'sign_up'
+      resource :registration, only: %i[create], path: 'new' do
         get '' => :new, as: :new
       end
     end

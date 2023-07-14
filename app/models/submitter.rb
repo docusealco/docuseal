@@ -32,7 +32,7 @@ class Submitter < ApplicationRecord
   belongs_to :submission
 
   attribute :values, :string, default: -> { {} }
-  attribute :slug, :string, default: -> { SecureRandom.base58(10) }
+  attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   serialize :values, JSON
 

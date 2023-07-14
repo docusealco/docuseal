@@ -1,6 +1,6 @@
 <div class="max-w-xl mx-auto px-2">
   <h1 class="text-4xl font-bold text-center my-8">Sign up</h1>
-  <%= form_for('', as: resource_name, html: { class: 'space-y-6' }, url: registration_path) do |f| %>
+  <%= form_for('', as: resource_name, html: { class: 'space-y-6' }, url: new_registration_path) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
       <%= f.fields_for resource do |ff| %>
@@ -16,7 +16,7 @@
         </div>
       <% end %>
       <%= f.fields_for resource do |ff| %>
-        <div class="form-control">
+        <div class="form-control <%= 'hidden' if (params[:oauth_callback] || params[:sign_up]) && resource.email? %>">
           <%= ff.label :email, class: 'label' %>
           <%= ff.email_field :email, required: true, class: 'base-input' %>
         </div>
@@ -25,14 +25,14 @@
         <set-timezone data-input-id="_account_timezone"></set-timezone>
         <%= ff.hidden_field :timezone %>
         <div class="form-control">
-          <%= ff.label :name, 'Company name', class: 'label' %>
-          <%= ff.text_field :name, required: true, class: 'base-input' %>
+          <%= ff.label :name, 'Company name (optional)', class: 'label' %>
+          <%= ff.text_field :name, class: 'base-input' %>
         </div>
       <% end %>
       <%= f.fields_for resource do |ff| %>
-        <div class="form-control">
+        <div class="form-control <%= 'hidden' if params[:oauth_callback] %>">
           <%= ff.label :password, class: 'label' %>
-          <%= ff.password_field :password, required: true, class: 'base-input' %>
+          <%= ff.password_field :password, required: !params[:oauth_callback], class: 'base-input' %>
         </div>
       <% end %>
     </div>

@@ -16,6 +16,8 @@ gem 'image_processing'
 gem 'lograge'
 gem 'mysql2', require: false
 gem 'oj'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'

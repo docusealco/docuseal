@@ -36,7 +36,7 @@ class Template < ApplicationRecord
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
   attribute :submitters, :string, default: -> { [{ name: DEFAULT_SUBMITTER_NAME, uuid: SecureRandom.uuid }] }
-  attribute :slug, :string, default: -> { SecureRandom.base58(10) }
+  attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   serialize :fields, JSON
   serialize :schema, JSON

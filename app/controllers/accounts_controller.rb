@@ -40,6 +40,8 @@ class AccountsController < ApplicationController
   end
 
   def app_url_params
+    return {} if params[:encrypted_config].blank?
+
     params.require(:encrypted_config).permit(:value)
   end
 end

@@ -29,8 +29,8 @@
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
-              <%= svg_icon('logout', class: 'w-5 h-5 stroke-2') %>
+            <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false } do %>
+              <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 inline') %>
               <span class="mr-1">Sign out</span>
             <% end %>
           </li>

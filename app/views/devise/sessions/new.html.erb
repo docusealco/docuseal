@@ -23,5 +23,8 @@
       <%= f.button button_title(title: 'Log In', disabled_with: 'Logging In'), class: 'base-button' %>
     </div>
   <% end %>
+  <% if devise_mapping.omniauthable? %>
+    <%= button_to button_title(title: 'Log in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
+  <% end %>
   <%= render 'devise/shared/links' %>
 </div>
