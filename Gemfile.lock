@@ -388,6 +388,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.8.1)
     reline (0.3.5)
       io-console (~> 0.5)
@@ -458,6 +460,11 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -554,6 +561,7 @@ DEPENDENCIES
   rubocop-rspec
   ruby-vips
   shakapacker
+  sidekiq
   simplecov
   sqlite3
   strip_attributes

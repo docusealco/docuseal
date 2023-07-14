@@ -27,6 +27,7 @@ gem 'rails-i18n'
 gem 'rollbar', require: ENV.key?('ROLLBAR_ACCESS_TOKEN')
 gem 'ruby-vips'
 gem 'shakapacker'
+gem 'sidekiq', require: ENV.key?('REDIS_URL')
 gem 'sqlite3', require: false
 gem 'strip_attributes'
 gem 'turbo-rails'
