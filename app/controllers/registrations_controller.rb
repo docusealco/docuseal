@@ -13,6 +13,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def require_no_authentication
+    super
+
+    flash.clear
+  end
+
   def build_resource(_hash = {})
     account = Account.new(account_params)
     account.timezone = Accounts.normalize_timezone(account.timezone)

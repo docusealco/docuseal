@@ -9,4 +9,12 @@ class SessionsController < Devise::SessionsController
 
     super
   end
+
+  private
+
+  def require_no_authentication
+    super
+
+    flash.clear
+  end
 end
