@@ -38,11 +38,21 @@
       </div>
     </div>
   <% else %>
-    <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
-      <span class="flex items-center justify-center space-x-1">
-        <%= svg_icon('login', class: 'w-6 h-6') %>
-        <span>Sign in</span>
-      </span>
-    <% end %>
+    <div class="flex space-x-6">
+      <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
+        <span class="flex items-center justify-center space-x-1">
+          <%= svg_icon('login', class: 'w-6 h-6') %>
+          <span>Sign in</span>
+        </span>
+      <% end %>
+      <% if Docuseal.multitenant? %>
+        <%= link_to registration_path, class: 'font-medium text-lg' do %>
+          <span class="flex items-center justify-center space-x-1">
+            <%= svg_icon('user_plus', class: 'w-6 h-6') %>
+            <span>Try for Free</span>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
