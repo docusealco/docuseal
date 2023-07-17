@@ -2300,13 +2300,14 @@ csstype@^3.1.1:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
-daisyui@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.1.5.tgz#49cb961d03504beebd238d58f0169dbe81103c95"
-  integrity sha512-3nk5L//IU31ISzsonKEFG8ris8hS/MRAc+PrOTOyRbssjv1fYmNKSdIrOhG6op2ED3RyJL4p6I81JUwd7RWqTw==
+daisyui@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.2.1.tgz#7fac542b03023adbde2afc869518840dbef509ee"
+  integrity sha512-gIqE6wiqoJt9G8+n3R/SwLeUnpNCE2eDhT73rP0yZYVaM7o6zVcakBH3aEW5RGpx3UkonPiLuvcgxRcb2lE8TA==
   dependencies:
     colord "^2.9"
     css-selector-tokenizer "^0.8"
+    postcss "^8"
     postcss-js "^4"
     tailwindcss "^3"
 
@@ -4447,6 +4448,15 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.1.0, postcss-value-parser@^
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
+
+postcss@^8:
+  version "8.4.26"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.26.tgz#1bc62ab19f8e1e5463d98cf74af39702a00a9e94"
+  integrity sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==
+  dependencies:
+    nanoid "^3.3.6"
+    picocolors "^1.0.0"
+    source-map-js "^1.0.2"
 
 postcss@^8.1.10, postcss@^8.4.21, postcss@^8.4.23:
   version "8.4.23"
