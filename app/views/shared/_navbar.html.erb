@@ -46,7 +46,7 @@
         </span>
       <% end %>
       <% if Docuseal.multitenant? %>
-        <%= link_to registration_path, class: 'font-medium text-lg' do %>
+        <%= link_to registration_path, class: 'font-medium text-lg hidden md:inline' do %>
           <span class="flex items-center justify-center space-x-1">
             <%= svg_icon('user_plus', class: 'w-6 h-6') %>
             <span>Try for Free</span>
