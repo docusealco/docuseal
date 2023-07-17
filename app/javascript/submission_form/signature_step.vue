@@ -4,7 +4,7 @@
       <label
         class="label text-2xl"
       >{{ field.name || 'Signature' }}</label>
-      <div class="space-x-2">
+      <div class="space-x-2 flex">
         <span
           class="tooltip"
           data-tip="Type text"
@@ -49,6 +49,16 @@
           <IconReload :width="16" />
           Clear
         </button>
+        <button
+          title="Minimize"
+          class="py-1.5 inline md:hidden"
+          @click.prevent="$emit('minimize')"
+        >
+          <IconArrowsDiagonalMinimize2
+            :width="20"
+            :height="20"
+          />
+        </button>
       </div>
     </div>
     <input
@@ -59,7 +69,7 @@
     <img
       v-if="modelValue"
       :src="attachmentsIndex[modelValue].url"
-      class="w-full bg-white border border-base-300 rounded"
+      class="mx-auto bg-white border border-base-300 rounded max-h-72"
     >
     <canvas
       v-show="!modelValue"
@@ -79,14 +89,15 @@
 </template>
 
 <script>
-import { IconReload, IconCamera, IconTextSize } from '@tabler/icons-vue'
+import { IconReload, IconCamera, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 
 export default {
   name: 'SignatureStep',
   components: {
     IconReload,
     IconCamera,
-    IconTextSize
+    IconTextSize,
+    IconArrowsDiagonalMinimize2
   },
   props: {
     field: {
@@ -113,7 +124,7 @@ export default {
       default: ''
     }
   },
-  emits: ['attached', 'update:model-value'],
+  emits: ['attached', 'update:model-value', 'start', 'minimize'],
   data () {
     return {
       isSignatureStarted: false,
@@ -136,6 +147,8 @@ export default {
 
     this.pad.addEventListener('beginStroke', () => {
       this.isSignatureStarted = true
+
+      this.$emit('start')
     })
   },
   methods: {
@@ -169,13 +182,19 @@ export default {
       context.fillText(e.target.value, canvas.width / 2, canvas.height / 2 + 11)
     },
     toggleTextInput () {
+      this.remove()
       this.isTextSignature = !this.isTextSignature
 
       if (this.isTextSignature) {
-        this.$nextTick(() => this.$refs.textInput.focus())
+        this.$nextTick(() => {
+          this.$refs.textInput.focus()
+
+          this.$emit('start')
+        })
       }
     },
     drawImage (event) {
+      this.remove()
       this.isSignatureStarted = true
 
       const file = event.target.files[0]
@@ -214,6 +233,8 @@ export default {
 
             context.clearRect(0, 0, canvas.width, canvas.height)
             context.drawImage(img, x, y, targetWidth, targetHeight)
+
+            this.$emit('start')
           }
         }
 
