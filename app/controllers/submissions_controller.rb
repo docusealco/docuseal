@@ -22,14 +22,16 @@ class SubmissionsController < ApplicationController
         create_submissions_from_submitters
       end
 
+    submitters = submissions.flat_map(&:submitters)
+
     if params[:send_email] == '1'
-      submissions.flat_map(&:submitters).each do |submitter|
+      submitters.each do |submitter|
         SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
       end
     end
 
     redirect_to template_path(@template),
-                notice: "#{submissions.size} #{'recipient'.pluralize(submissions.size)} added"
+                notice: "#{submitters.size} #{'recipient'.pluralize(submitters.size)} added"
   end
 
   def destroy
