@@ -26,6 +26,8 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 </p>
 <h2 align="center">
   <a href="https://demo.docuseal.co">✨ Live Demo</a>
+  <span>|</span>
+  <a href="https://docuseal.co/sign_up">☁️ Try in Cloud</a>
 </h2>
 
 [![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.co)
