@@ -51,6 +51,16 @@
           Star on Github
         </span>
       </a>
+      <a
+        v-if="isDemo"
+        href="https://docuseal.co/sign_up"
+        class="white-button flex items-center space-x-1 w-full"
+      >
+        <IconLogin />
+        <span>
+          Create a Free Account
+        </span>
+      </a>
     </div>
     <div class="text-center mt-4">
       Signed with
@@ -64,7 +74,7 @@
 </template>
 
 <script>
-import { IconCircleCheck, IconBrandGithub, IconMail, IconDownload, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconCircleCheck, IconBrandGithub, IconMail, IconDownload, IconInnerShadowTop, IconLogin } from '@tabler/icons-vue'
 
 export default {
   name: 'FormCompleted',
@@ -73,6 +83,7 @@ export default {
     IconInnerShadowTop,
     IconBrandGithub,
     IconMail,
+    IconLogin,
     IconDownload
   },
   props: {
