@@ -5,7 +5,7 @@
     :values="values"
     :attachments-index="attachmentsIndex"
     :current-step="currentStepFields"
-    @focus-step="[saveStep(), goToStep($event, false, true)]"
+    @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
   <button
     v-if="!isFormVisible"
@@ -20,7 +20,7 @@
     />
   </button>
   <div
-    v-else
+    v-show="isFormVisible"
     id="form_container"
     class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border-base-200 border p-4 rounded"
   >
@@ -430,7 +430,7 @@ export default {
 
         this.$refs.form.querySelector('input[type="date"], input[type="text"], select')?.focus()
 
-        if (clickUpload && !this.values[this.currentField.uuid]) {
+        if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
           this.$refs.form.querySelector('input[type="file"]')?.click()
         }
       })
