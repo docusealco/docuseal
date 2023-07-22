@@ -65,7 +65,7 @@
         @blur="onNameBlur"
       >{{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus"
+        v-if="isNameFocus && field.type !== 'checkbox'"
         class="flex items-center ml-1.5"
       >
         <input

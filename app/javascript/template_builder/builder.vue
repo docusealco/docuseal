@@ -314,7 +314,7 @@ export default {
         const field = {
           name: '',
           uuid: v4(),
-          required: true,
+          required: type !== 'checkbox',
           type,
           submitter_uuid: this.selectedSubmitter.uuid,
           areas: [area]
@@ -333,7 +333,7 @@ export default {
         type: this.dragFieldType,
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
-        required: true
+        required: this.dragFieldType !== 'checkbox'
       }
 
       if (['select', 'multiple', 'radio'].includes(this.dragFieldType)) {

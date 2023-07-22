@@ -171,7 +171,7 @@ export default {
       const field = {
         name: '',
         uuid: v4(),
-        required: true,
+        required: type !== 'checkbox',
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }

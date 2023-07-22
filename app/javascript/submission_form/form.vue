@@ -213,7 +213,7 @@
                     @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                   >
                   <span class="text-xl">
-                    {{ currentField.name || currentField.type + ' ' + (index + 1) }}
+                    {{ field.name || field.type + ' ' + (index + 1) }}
                   </span>
                 </label>
               </div>

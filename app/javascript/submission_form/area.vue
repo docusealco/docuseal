@@ -25,10 +25,10 @@
       class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap"
     >
       {{ field.name || fieldNames[field.type] }}
-      <template v-if="field.type === 'checkbox'">
+      <template v-if="field.type === 'checkbox' && !field.name">
         {{ fieldIndex + 1 }}
       </template>
-      <template v-else-if="!field.required">
+      <template v-else-if="!field.required && field.type !== 'checkbox'">
         (optional)
       </template>
     </div>

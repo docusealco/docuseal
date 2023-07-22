@@ -31,19 +31,21 @@
           v-if="isNameFocus"
           class="flex items-center relative"
         >
-          <input
-            :id="`required-checkbox-${field.uuid}`"
-            v-model="field.required"
-            type="checkbox"
-            class="checkbox checkbox-xs no-animation rounded"
-            @mousedown.prevent
-          >
-          <label
-            :for="`required-checkbox-${field.uuid}`"
-            class="label text-xs"
-            @click.prevent="field.required = !field.required"
-            @mousedown.prevent
-          >Required</label>
+          <template v-if="field.type !== 'checkbox'">
+            <input
+              :id="`required-checkbox-${field.uuid}`"
+              v-model="field.required"
+              type="checkbox"
+              class="checkbox checkbox-xs no-animation rounded"
+              @mousedown.prevent
+            >
+            <label
+              :for="`required-checkbox-${field.uuid}`"
+              class="label text-xs"
+              @click.prevent="field.required = !field.required"
+              @mousedown.prevent
+            >Required</label>
+          </template>
         </div>
         <div
           v-else
