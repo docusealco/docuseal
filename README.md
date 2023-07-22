@@ -44,6 +44,13 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - [x] Mobile-optimized
 - [x] Easy to deploy in minutes
 
+## For Companies
+### Integrate seamless document signing into your web or mobile apps with DocuSeal!
+
+At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
+
+[![Book an Integration Demo](https://cal.com/book-with-cal-dark.svg)](https://cal.com/docuseal)
+
 ## Deploy
 
 |Heroku|Railway|
