@@ -2,7 +2,7 @@
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
       <div class="text-center w-full space-y-6">
-        <a href="/" class="flex justify-center">
+        <a href="/" class="flex justify-center items-center">
           <span class="mr-3">
             <%= render 'shared/logo', width: '50px', height: '50px' %>
           </span>
@@ -10,14 +10,14 @@
         </a>
         <p class="text-xl font-semibold text-center">You have been invited to submit a form</p>
       </div>
-      <div class="flex items-center bg-base-300 rounded-xl p-4 mb-4">
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
         <div class="flex items-center">
           <div class="mr-3">
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
           </div>
           <div>
             <p class="text-lg font-bold mb-1"><%= @template.name %></p>
-            <p class="text-sm">Invited by <%= @template.account.name %></p>
+            <p class="text-sm">Invited by <span class="font-semibold"><%= @template.account.name %></span></p>
           </div>
         </div>
       </div>

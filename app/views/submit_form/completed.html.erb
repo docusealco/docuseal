@@ -9,7 +9,7 @@
           <h1 class="text-5xl font-bold text-center">DocuSeal</h1>
         </a>
       </div>
-      <div class="flex items-center bg-base-300 rounded-xl p-4 mb-4">
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
         <div class="flex items-center">
           <div class="mr-3">
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
@@ -23,7 +23,7 @@
     </div>
     <div>
       <% if Accounts.can_send_emails?(@submitter.submission.template.account) %>
-        <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
+        <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
         <div class="divider">OR</div>
       <% end %>
       <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
