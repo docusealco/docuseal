@@ -76,7 +76,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
 
-  if ENV['SMTP_USERNAME']
+  if ENV['SMTP_ADDRESS']
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address: ENV.fetch('SMTP_ADDRESS', nil),
@@ -86,7 +86,7 @@ Rails.application.configure do
       password: ENV.fetch('SMTP_PASSWORD', nil),
       authentication: ENV.fetch('SMTP_AUTHENTICATION', 'plain'),
       enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] == 'true'
-    }
+    }.compact
   end
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
