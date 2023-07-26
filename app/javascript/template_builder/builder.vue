@@ -136,7 +136,7 @@
             <p>
               <button
                 class="base-button"
-                @click="drawField = false"
+                @click="drawField = null"
               >
                 Cancel
               </button>
@@ -421,7 +421,7 @@ export default {
       }
 
       this.template.fields.forEach((field) => {
-        [...field.areas].forEach((area) => {
+        [...(field.areas || [])].forEach((area) => {
           if (area.attachment_uuid === item.attachment_uuid) {
             field.areas.splice(field.areas.indexOf(area), 1)
           }
@@ -434,7 +434,7 @@ export default {
       this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, schema[0])
       this.template.documents.push(...documents)
       this.template.fields.forEach((field) => {
-        field.areas.forEach((area) => {
+        (field.areas || []).forEach((area) => {
           if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
             area.attachment_uuid = schema[0].attachment_uuid
           }

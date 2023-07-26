@@ -172,6 +172,7 @@ export default {
         name: '',
         uuid: v4(),
         required: type !== 'checkbox',
+        areas: [],
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
