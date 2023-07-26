@@ -28,7 +28,7 @@
           >
             <div>
               <button
-                class="btn btn-neutral btn-xs rounded text-white border border-base-content w-full"
+                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
                 style="width: 24px; height: 24px"
                 @click.stop="$emit('remove', item)"
               >
@@ -40,14 +40,14 @@
               class="flex flex-col space-y-1"
             >
               <button
-                class="btn btn-neutral btn-xs text-white rounded hover:text-base-100 hover:bg-base-content w-full transition-colors"
+                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
                 style="width: 24px; height: 24px"
                 @click.stop="$emit('up', item)"
               >
                 &uarr;
               </button>
               <button
-                class="btn btn-neutral btn-xs text-white rounded hover:text-base-100 hover:bg-base-content w-full transition-colors"
+                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
                 style="width: 24px; height: 24px"
                 @click.stop="$emit('down', item)"
               >
