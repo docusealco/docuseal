@@ -44,6 +44,9 @@ class Template < ApplicationRecord
 
   has_many_attached :documents
 
+  has_many :schema_documents, ->(e) { where(uuid: e.schema.pluck('attachment_uuid')) },
+           class_name: 'ActiveStorage::Attachment', dependent: :destroy, as: :record, inverse_of: :record
+
   has_many :submissions, dependent: :destroy
 
   scope :active, -> { where(deleted_at: nil) }

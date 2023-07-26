@@ -64,8 +64,11 @@
           :with-arrows="template.schema.length > 1"
           :item="item"
           :document="sortedDocuments[index]"
+          :template="template"
+          :is-direct-upload="isDirectUpload"
           @scroll-to="scrollIntoDocument(item)"
           @remove="onDocumentRemove"
+          @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @down="moveDocument(item, 1)"
           @change="save"
@@ -416,6 +419,19 @@ export default {
       if (window.confirm('Are you sure?')) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
+
+      this.save()
+    },
+    onDocumentReplace ({ replaceSchemaItem, schema, documents }) {
+      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, schema[0])
+      this.template.documents.push(...documents)
+      this.template.fields.forEach((field) => {
+        field.areas.forEach((area) => {
+          if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
+            area.attachment_uuid = schema[0].attachment_uuid
+          }
+        })
+      })
 
       this.save()
     },

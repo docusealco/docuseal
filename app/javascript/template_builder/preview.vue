@@ -9,39 +9,51 @@
         loading="lazy"
       >
       <div
-        class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute"
+        class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1"
         @click="$emit('scroll-to', item)"
       >
-        <div
-          class="flex flex-col justify-between opacity-0 group-hover:opacity-100"
-        >
-          <div class="rounded-bl rounded-tr bg-white border">
-            <button
-              class="rounded-bl rounded-tr hover:text-base-100 hover:bg-base-content w-full transition-colors"
-              style="width: 24px"
-              @click.stop="$emit('remove', item)"
-            >
-              &times;
-            </button>
+        <div class="flex justify-between w-full">
+          <div style="width: 26px" />
+          <div class="">
+            <ReplaceButton
+              :is-direct-upload="isDirectUpload"
+              :template-id="template.id"
+              class="opacity-0 group-hover:opacity-100"
+              @click.stop
+              @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
+            />
           </div>
           <div
-            v-if="withArrows"
-            class="flex flex-col border rounded-br rounded-tl bg-white divide-y"
+            class="flex flex-col justify-between opacity-0 group-hover:opacity-100"
           >
-            <button
-              class="rounded-tl hover:text-base-100 hover:bg-base-content w-full transition-colors"
-              style="width: 24px"
-              @click.stop="$emit('up', item)"
+            <div>
+              <button
+                class="btn btn-neutral btn-xs rounded text-white border border-base-content w-full"
+                style="width: 24px; height: 24px"
+                @click.stop="$emit('remove', item)"
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              v-if="withArrows"
+              class="flex flex-col space-y-1"
             >
-              &uarr;
-            </button>
-            <button
-              class="rounded-br hover:text-base-100 hover:bg-base-content w-full transition-colors"
-              style="width: 24px"
-              @click.stop="$emit('down', item)"
-            >
-              &darr;
-            </button>
+              <button
+                class="btn btn-neutral btn-xs text-white rounded hover:text-base-100 hover:bg-base-content w-full transition-colors"
+                style="width: 24px; height: 24px"
+                @click.stop="$emit('up', item)"
+              >
+                &uarr;
+              </button>
+              <button
+                class="btn btn-neutral btn-xs text-white rounded hover:text-base-100 hover:bg-base-content w-full transition-colors"
+                style="width: 24px; height: 24px"
+                @click.stop="$emit('down', item)"
+              >
+                &darr;
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -60,14 +72,21 @@
 
 <script>
 import Contenteditable from './contenteditable'
+import Upload from './upload'
+import ReplaceButton from './replace'
 
 export default {
   name: 'DocumentPreview',
   components: {
-    Contenteditable
+    Contenteditable,
+    ReplaceButton
   },
   props: {
     item: {
+      type: Object,
+      required: true
+    },
+    template: {
       type: Object,
       required: true
     },
@@ -75,19 +94,30 @@ export default {
       type: Object,
       required: true
     },
+    isDirectUpload: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     withArrows: {
       type: Boolean,
       required: false,
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace'],
   computed: {
     previewImage () {
       return this.document.preview_images[0]
     }
   },
+  mounted () {
+    if (this.isDirectUpload) {
+      import('@rails/activestorage')
+    }
+  },
   methods: {
+    upload: Upload.methods.upload,
     onUpdateName (value) {
       this.item.name = value
 

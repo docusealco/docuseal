@@ -93,6 +93,11 @@ export default {
       }
     }
   },
+  mounted () {
+    if (this.isDirectUpload) {
+      import('@rails/activestorage')
+    }
+  },
   methods: {
     upload: Upload.methods.upload,
     onDropFiles (e) {
