@@ -61,5 +61,8 @@ RSpec/ExampleLength:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
 Rails/ApplicationController:
   Enabled: false

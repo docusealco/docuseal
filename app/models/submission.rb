@@ -4,12 +4,15 @@
 #
 # Table name: submissions
 #
-#  id                 :bigint           not null, primary key
-#  deleted_at         :datetime
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  created_by_user_id :bigint
-#  template_id        :bigint           not null
+#  id                  :bigint           not null, primary key
+#  deleted_at          :datetime
+#  template_fields     :text
+#  template_schema     :text
+#  template_submitters :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  created_by_user_id  :bigint
+#  template_id         :bigint           not null
 #
 # Indexes
 #
@@ -26,6 +29,10 @@ class Submission < ApplicationRecord
   belongs_to :created_by_user, class_name: 'User', optional: true
 
   has_many :submitters, dependent: :destroy
+
+  serialize :template_fields, JSON
+  serialize :template_schema, JSON
+  serialize :template_submitters, JSON
 
   scope :active, -> { where(deleted_at: nil) }
 end

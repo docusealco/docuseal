@@ -23,6 +23,10 @@ class SubmitFormController < ApplicationController
 
     submitter.save!
 
+    Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
+
+    submitter.submission.save!
+
     if submitter.completed_at?
       GenerateSubmitterResultAttachmentsJob.perform_later(submitter)
 

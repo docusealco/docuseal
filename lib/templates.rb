@@ -3,10 +3,10 @@
 module Templates
   module_function
 
-  def build_field_areas_index(template)
+  def build_field_areas_index(fields)
     hash = {}
 
-    template.fields.each do |field|
+    fields.each do |field|
       (field['areas'] || []).each do |area|
         hash[area['attachment_uuid']] ||= {}
         acc = (hash[area['attachment_uuid']][area['page']] ||= [])

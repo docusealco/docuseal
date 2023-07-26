@@ -27,7 +27,7 @@ module Submissions
 
       pdfs_index = build_pdfs_index(submitter)
 
-      template.fields.each do |field|
+      submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
         field.fetch('areas', []).each do |area|
@@ -159,7 +159,7 @@ module Submissions
       original_documents = template.documents.preload(:blob)
 
       results =
-        template.schema.map do |item|
+        submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
           attachment = save_signed_pdf(pdf:, submitter:, certs:, uuid: item['attachment_uuid'], name: item['name'])

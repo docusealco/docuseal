@@ -1,4 +1,4 @@
-<% fields_index = Templates.build_field_areas_index(@submitter.submission.template) %>
+<% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.where.not(id: @submitter.id).reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
 <div style="max-height: -webkit-fill-available;">
@@ -10,7 +10,7 @@
           <span>DocuSeal</span>
         </a>
       </div>
-      <% @submitter.submission.template.schema.each do |item| %>
+      <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template.documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
           <div class="relative my-4 shadow-md">
@@ -32,7 +32,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <submission-form data-is-demo="<%= Docuseal.demo? %>" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-can-send-email="<%= Accounts.can_send_emails?(Struct.new(:id).new(@submitter.submission.template.account_id)) %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= @submitter.submission.template.fields.select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+      <submission-form data-is-demo="<%= Docuseal.demo? %>" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-submitter-uuid="<%= @submitter.uuid %>" data-submitter-slug="<%= @submitter.slug %>" data-can-send-email="<%= Accounts.can_send_emails?(Struct.new(:id).new(@submitter.submission.template.account_id)) %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= (@submitter.submission.template_fields || @submitter.submission.template.fields).select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
     </div>
   </div>
 </div>
