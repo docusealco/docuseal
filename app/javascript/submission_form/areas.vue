@@ -11,7 +11,10 @@
         v-for="(area, areaIndex) in field.areas"
         :key="areaIndex"
       >
-        <Teleport :to="`#page-${area.attachment_uuid}-${area.page}`">
+        <Teleport
+          v-if="attachmentsIndex[area.attachment_uuid]"
+          :to="`#page-${area.attachment_uuid}-${area.page}`"
+        >
           <FieldArea
             :ref="setAreaRef"
             v-model="values[field.uuid]"

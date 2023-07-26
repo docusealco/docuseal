@@ -356,7 +356,7 @@ export default {
 
       if (this.selectedField?.type === this.dragFieldType) {
         baseArea = this.selectedAreaRef.value
-      } else if (previousField?.areas) {
+      } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
         if (['checkbox'].includes(this.dragFieldType)) {
@@ -419,6 +419,14 @@ export default {
       if (window.confirm('Are you sure?')) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
+
+      this.template.fields.forEach((field) => {
+        [...field.areas].forEach((area) => {
+          if (area.attachment_uuid === item.attachment_uuid) {
+            field.areas.splice(field.areas.indexOf(area), 1)
+          }
+        })
+      })
 
       this.save()
     },
