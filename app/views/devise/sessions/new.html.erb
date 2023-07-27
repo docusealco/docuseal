@@ -10,14 +10,6 @@
         <%= f.label :password, class: 'label' %>
         <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
       </div>
-      <% if devise_mapping.rememberable? %>
-        <div class="form-control">
-          <%= f.label :remember_me, class: 'flex items-center cursor-pointer' do %>
-            <%= f.check_box :remember_me, checked: true, class: 'base-checkbox' %>
-            <span class="label">Remember me</span>
-          <% end %>
-        </div>
-      <% end %>
     </div>
     <div class="form-control">
       <%= f.button button_title(title: 'Log In', disabled_with: 'Logging In'), class: 'base-button' %>

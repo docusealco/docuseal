@@ -56,6 +56,10 @@ class User < ApplicationRecord
     !deleted_at?
   end
 
+  def remember_me
+    true
+  end
+
   def initials
     [first_name.first, last_name.first].join.upcase
   end
