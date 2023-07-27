@@ -12,7 +12,6 @@
         :key="areaIndex"
       >
         <Teleport
-          v-if="attachmentsIndex[area.attachment_uuid]"
           :to="`#page-${area.attachment_uuid}-${area.page}`"
         >
           <FieldArea
