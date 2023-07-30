@@ -21,7 +21,7 @@
       </span>
     </div>
     <div
-      v-if="isActive"
+      v-if="isActive && withLabel"
       class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap"
     >
       {{ field.name || fieldNames[field.type] }}
@@ -145,6 +145,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withLabel: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     fieldIndex: {
       type: Number,

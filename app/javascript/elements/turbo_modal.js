@@ -13,7 +13,7 @@ export default actionable(class extends HTMLElement {
     document.body.classList.remove('overflow-hidden')
 
     document.removeEventListener('keyup', this.onEscKey)
-    document.removeEventListener('turbo:submit-end', this.handleSubmit)
+    document.removeEventListener('turbo:submit-end', this.onSubmit)
     document.removeEventListener('turbo:before-cache', this.close)
   }
 

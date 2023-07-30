@@ -22,6 +22,7 @@
             :submittable="true"
             :field-index="fieldIndex"
             :is-active="currentStep === step"
+            :with-label="withLabel"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
             @click="$emit('focus-step', step)"
@@ -55,6 +56,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    withLabel: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     currentStep: {
       type: Array,

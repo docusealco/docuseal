@@ -4,6 +4,7 @@
     :steps="stepFields"
     :values="values"
     :attachments-index="attachmentsIndex"
+    :with-label="!isAnonymousChecboxes"
     :current-step="currentStepFields"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
@@ -182,7 +183,7 @@
           />
           <div
             v-else-if="currentField.type === 'checkbox'"
-            class="flex w-full"
+            class="flex w-full max-h-44 overflow-y-auto"
           >
             <input
               type="hidden"
@@ -192,31 +193,36 @@
             <div
               class="space-y-3.5 mx-auto"
             >
-              <div
-                v-for="(field, index) in currentStepFields"
-                :key="field.uuid"
-              >
-                <label
-                  :for="field.uuid"
-                  class="flex items-center space-x-3"
+              <template v-if="isAnonymousChecboxes">
+                Complete hightlighted checkboxes and click <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? 'submit' : 'next' }}</span>.
+              </template>
+              <template v-else>
+                <div
+                  v-for="(field, index) in currentStepFields"
+                  :key="field.uuid"
                 >
-                  <input
-                    type="hidden"
-                    :name="`values[${field.uuid}]`"
-                    :value="!!values[field.uuid]"
+                  <label
+                    :for="field.uuid"
+                    class="flex items-center space-x-3"
                   >
-                  <input
-                    :id="field.uuid"
-                    type="checkbox"
-                    class="base-checkbox !h-7 !w-7"
-                    :checked="!!values[field.uuid]"
-                    @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
-                  >
-                  <span class="text-xl">
-                    {{ field.name || field.type + ' ' + (index + 1) }}
-                  </span>
-                </label>
-              </div>
+                    <input
+                      type="hidden"
+                      :name="`values[${field.uuid}]`"
+                      :value="!!values[field.uuid]"
+                    >
+                    <input
+                      :id="field.uuid"
+                      type="checkbox"
+                      class="base-checkbox !h-7 !w-7"
+                      :checked="!!values[field.uuid]"
+                      @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
+                    >
+                    <span class="text-xl">
+                      {{ field.name || field.type + ' ' + (index + 1) }}
+                    </span>
+                  </label>
+                </div>
+              </template>
             </div>
           </div>
           <ImageStep
@@ -373,6 +379,9 @@ export default {
   computed: {
     currentStepFields () {
       return this.stepFields[this.currentStep]
+    },
+    isAnonymousChecboxes () {
+      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4
     },
     isButtonDisabled () {
       return this.isSubmitting ||
