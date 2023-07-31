@@ -25,7 +25,7 @@ module ActionMailerConfigsInterceptor
                                      port: email_configs.value['port'],
                                      tls: email_configs.value['port'].to_s == '465')
 
-      message.from = email_configs.value['from_email']
+      message.from = "#{email_configs.account.name} <#{email_configs.value['from_email']}>"
     else
       message.delivery_method(:test)
     end
