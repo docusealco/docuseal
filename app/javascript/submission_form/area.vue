@@ -212,7 +212,7 @@ export default {
     },
     formattedDate () {
       if (this.field.type === 'date' && this.modelValue) {
-        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(this.modelValue))
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.modelValue))
       } else {
         return ''
       }
