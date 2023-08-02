@@ -83,3 +83,7 @@ At DocuSeal we have expertise and technologies to make documents creation, filli
 ## License
 
 DocuSeal is released under the GNU Affero General Public License v3.0.
+
+See [LICENSE](./LICENSE) for details.
+
+Unless otherwise noted, all files © 2023 Oleksandr Turchyn
