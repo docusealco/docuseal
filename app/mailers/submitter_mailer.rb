@@ -8,7 +8,8 @@ class SubmitterMailer < ApplicationMailer
     @message = message
 
     mail(to: @submitter.email,
-         subject: 'You have been invited to submit a form')
+         subject: 'You have been invited to submit a form',
+         reply_to: submitter.submission.created_by_user&.friendly_name)
   end
 
   def completed_email(submitter, user)
