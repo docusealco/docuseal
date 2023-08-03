@@ -9,6 +9,8 @@ require 'action_view/railtie'
 require 'action_mailer/railtie'
 require 'active_job/railtie'
 
+require './lib/api_path_consider_json_middleware'
+
 Bundler.require(*Rails.groups)
 
 module DocuSeal
@@ -26,5 +28,6 @@ module DocuSeal
     config.action_view.frozen_string_literal = true
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
+    config.middleware.insert_before ActionDispatch::Static, ApiPathConsiderJsonMiddleware
   end
 end

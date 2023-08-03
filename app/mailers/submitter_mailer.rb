@@ -3,9 +3,9 @@
 class SubmitterMailer < ApplicationMailer
   DEFAULT_MESSAGE = %(You have been invited to submit the "%<name>s" form:)
 
-  def invitation_email(submitter, message: format(DEFAULT_MESSAGE, name: submitter.submission.template.name))
+  def invitation_email(submitter, message: '')
     @submitter = submitter
-    @message = message
+    @message = message.presence || format(DEFAULT_MESSAGE, name: submitter.submission.template.name)
 
     mail(to: @submitter.email,
          subject: 'You have been invited to submit a form',

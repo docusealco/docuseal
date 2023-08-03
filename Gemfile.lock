@@ -540,6 +540,7 @@ DEPENDENCIES
   google-cloud-storage
   hexapdf
   image_processing
+  jwt
   letter_opener_web
   lograge
   mysql2

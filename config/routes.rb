@@ -27,9 +27,11 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
-    resources :templates, only: %i[update] do
+    resources :submissions, only: %i[create]
+    resources :templates, only: %i[update index] do
+      resources :submissions, only: %i[create]
       resources :documents, only: %i[create destroy], controller: 'templates_documents'
     end
   end

@@ -2,6 +2,10 @@
 
 module Api
   class TemplatesController < ApiBaseController
+    def index
+      render json: current_account.templates
+    end
+
     def update
       @template = current_account.templates.find(params[:id])
 

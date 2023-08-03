@@ -22,6 +22,7 @@
 #  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
 #  unlock_token           :string
+#  uuid                   :text             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  account_id             :bigint           not null
@@ -32,6 +33,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_uuid                  (uuid) UNIQUE
 #
 # Foreign Keys
 #
@@ -49,6 +51,7 @@ class User < ApplicationRecord
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
 
   attribute :role, :string, default: 'admin'
+  attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   scope :active, -> { where(deleted_at: nil) }
 

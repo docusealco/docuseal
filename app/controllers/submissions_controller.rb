@@ -17,9 +17,15 @@ class SubmissionsController < ApplicationController
   def create
     submissions =
       if params[:emails].present?
-        create_submissions_from_emails
+        Submissions.create_from_emails(template: @template,
+                                       user: current_user,
+                                       send_email: params[:send_email] == '1',
+                                       emails: params[:emails])
       else
-        create_submissions_from_submitters
+        Submissions.create_from_submitters(template: @template,
+                                           user: current_user,
+                                           send_email: params[:send_email] == '1',
+                                           submissions_attrs: submissions_params[:submission].to_h.values)
       end
 
     submitters = submissions.flat_map(&:submitters)
@@ -44,30 +50,6 @@ class SubmissionsController < ApplicationController
   end
 
   private
-
-  def create_submissions_from_emails
-    emails = params[:emails].to_s.scan(User::EMAIL_REGEXP)
-
-    emails.map do |email|
-      submission = @template.submissions.new(created_by_user: current_user)
-      submission.submitters.new(email:, uuid: @template.submitters.first['uuid'],
-                                sent_at: params[:send_email] == '1' ? Time.current : nil)
-
-      submission.tap(&:save!)
-    end
-  end
-
-  def create_submissions_from_submitters
-    submissions_params[:submission].to_h.map do |_, attrs|
-      submission = @template.submissions.new(created_by_user: current_user)
-
-      attrs[:submitters].each do |submitter_attrs|
-        submission.submitters.new(**submitter_attrs, sent_at: params[:send_email] == '1' ? Time.current : nil)
-      end
-
-      submission.tap(&:save!)
-    end
-  end
 
   def submissions_params
     params.permit(submission: { submitters: [%i[uuid email]] })
