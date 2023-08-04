@@ -101,9 +101,13 @@ export default {
   methods: {
     upload: Upload.methods.upload,
     onDropFiles (e) {
-      this.$refs.input.files = e.dataTransfer.files
+      if ([...e.dataTransfer.files].every((f) => f.type.match(/(?:image\/)|(?:application\/pdf)/))) {
+        this.$refs.input.files = e.dataTransfer.files
 
-      this.upload()
+        this.upload()
+      } else {
+        alert('Only PDF and images are supported.')
+      }
     }
   }
 }
