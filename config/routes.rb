@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     end
     resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
+    resources :api, only: %i[index], controller: 'api_settings' unless Docuseal.multitenant?
     resource :account, only: %i[show update]
     resources :profile, only: %i[index] do
       collection do

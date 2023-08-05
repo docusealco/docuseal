@@ -33,7 +33,9 @@ module Submissions
           template.submitters.find { |e| e['name'] == submitter_attrs[:name] }&.dig('uuid') ||
           template.submitters[index]&.dig('uuid')
 
-        submission.submitters.new(**submitter_attrs, uuid:, sent_at: send_email ? Time.current : nil)
+        next if uuid.blank?
+
+        submission.submitters.new(email: submitter_attrs[:email], uuid:, sent_at: send_email ? Time.current : nil)
       end
 
       submission.tap(&:save!)

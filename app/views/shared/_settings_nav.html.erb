@@ -23,6 +23,11 @@
       <li>
         <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
       </li>
+      <% unless Docuseal.multitenant? %>
+        <li>
+          <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <li>
         <%= link_to 'Console', console_redirect_index_path, class: 'text-base hover:bg-base-300' %>
       </li>

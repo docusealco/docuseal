@@ -1,0 +1,68 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow">
+    <h1 class="text-4xl font-bold mb-4">API</h1>
+    <div class="card bg-base-200">
+      <div class="card-body p-6">
+        <label for="api_key" class="text-sm font-semibold">X-Auth-Token</label>
+        <div class=" flex flex-row space-x-4">
+          <input id="api_key" type="text" value="<%= jwt = JsonWebToken.encode(uuid: current_user.uuid, scope: :api) %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+          <%= render 'shared/clipboard_copy', text: jwt, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+        </div>
+      </div>
+    </div>
+    <div class="space-y-4 mt-4">
+      <div class="collapse collapse-plus bg-base-200 px-1">
+        <input type="checkbox">
+        <div class="collapse-title text-xl font-medium">
+          <div>
+            Request signature, single submitter
+          </div>
+          <div class="mt-1">
+            <div class="badge badge-warning badge-lg">POST</div>
+            <div class="badge badge-primary badge-lg"><%= api_submissions_path %></div>
+          </div>
+        </div>
+        <div class="collapse-content" style="display: inherit">
+          <div class="mockup-code overflow-hidden">
+            <pre data-prefix="$"><code class="overflow-hidden w-full">curl --location '<%= api_submissions_url %>' \
+       --header 'X-Auth-Token: <%= jwt %>' \
+       --data-raw '{
+           "template_id": <%= current_account.templates.last.id %>,
+           "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
+       }'</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-200 px-1">
+        <input type="checkbox">
+        <div class="collapse-title text-xl font-medium">
+          <div>
+            Request signature, multiple submitters
+          </div>
+          <div class="mt-1">
+            <div class="badge badge-warning badge-lg">POST</div>
+            <div class="badge badge-primary badge-lg"><%= api_submissions_path %></div>
+          </div>
+        </div>
+        <div class="collapse-content" style="display: inherit">
+          <div class="mockup-code overflow-hidden">
+            <pre data-prefix="$"><code class="overflow-hidden w-full">curl --location '<%= api_submissions_url %>' \
+       --header 'X-Auth-Token: <%= jwt %>' \
+       --data-raw '{
+         "template_id": <%= current_account.templates.last.id %>,
+         "submission": [
+           {
+             "submitters": [
+               { "name": "<%= current_account.templates.last.submitters.first['name'] %>", "email": "<%= current_user.email.sub('@', '+test@') %>" },
+               { "name": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
+             ]
+           }
+         ]
+       }'</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
