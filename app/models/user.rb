@@ -42,8 +42,7 @@
 class User < ApplicationRecord
   ROLES = %w[admin].freeze
 
-  EMAIL_REGEXP =
-    /[a-z0-9][.']?(?:(?:[a-z0-9_-]++[.'])*[a-z0-9_-]++)*@(?:[a-z0-9]++[.-])*[a-z0-9]++\.[a-z]{2,}/i
+  EMAIL_REGEXP = /[^@,\s]+@[^@,\s]+/
 
   belongs_to :account
 

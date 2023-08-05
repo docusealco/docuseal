@@ -70,8 +70,10 @@ Rails.application.routes.draw do
     end
     resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
-    resources :api, only: %i[index], controller: 'api_settings' unless Docuseal.multitenant?
-    resource :webhooks, only: %i[show create update], controller: 'webhook_settings' unless Docuseal.multitenant?
+    if !Docuseal.multitenant? || Docuseal.demo?
+      resources :api, only: %i[index], controller: 'api_settings'
+      resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
+    end
     resource :account, only: %i[show update]
     resources :profile, only: %i[index] do
       collection do

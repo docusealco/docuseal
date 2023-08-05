@@ -9,7 +9,7 @@ require 'action_view/railtie'
 require 'action_mailer/railtie'
 require 'active_job/railtie'
 
-require './lib/api_path_consider_json_middleware'
+require_relative '../lib/api_path_consider_json_middleware'
 
 Bundler.require(*Rails.groups)
 

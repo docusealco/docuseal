@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './lib/auth_with_token_strategy'
+require_relative '../../lib/auth_with_token_strategy'
 
 Warden::Strategies.add(:auth_token, AuthWithTokenStrategy)
 

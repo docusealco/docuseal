@@ -23,7 +23,7 @@
       <li>
         <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
       </li>
-      <% unless Docuseal.multitenant? %>
+      <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <li>
           <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
         </li>
@@ -31,9 +31,14 @@
           <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <li>
-        <%= link_to 'Console', console_redirect_index_path, class: 'text-base hover:bg-base-300' %>
-      </li>
+      <% unless Docuseal.demo? %>
+        <li>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300' do %>
+            Console
+            <span class="badge badge-warning">New</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </menu-active>
   <div class="mx-4 border-t border-base-300 hidden md:block">
