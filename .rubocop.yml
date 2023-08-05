@@ -27,7 +27,7 @@ Lint/MissingSuper:
   Enabled: false
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
   Exclude:
     - 'db/migrate/**'
 

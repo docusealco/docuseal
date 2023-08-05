@@ -11,21 +11,22 @@ module Submissions
     submission.save!
   end
 
-  def create_from_emails(template:, user:, emails:, send_email: false)
+  def create_from_emails(template:, user:, emails:, source:, send_email: false)
     emails = emails.to_s.scan(User::EMAIL_REGEXP)
 
     emails.map do |email|
-      submission = template.submissions.new(created_by_user: user)
-      submission.submitters.new(email:, uuid: template.submitters.first['uuid'],
+      submission = template.submissions.new(created_by_user: user, source:)
+      submission.submitters.new(email:,
+                                uuid: template.submitters.first['uuid'],
                                 sent_at: send_email ? Time.current : nil)
 
       submission.tap(&:save!)
     end
   end
 
-  def create_from_submitters(template:, user:, submissions_attrs:, send_email: false)
+  def create_from_submitters(template:, user:, submissions_attrs:, source:, send_email: false)
     submissions_attrs.map do |attrs|
-      submission = template.submissions.new(created_by_user: user)
+      submission = template.submissions.new(created_by_user: user, source:)
 
       attrs[:submitters].each_with_index do |submitter_attrs, index|
         uuid =
@@ -35,7 +36,9 @@ module Submissions
 
         next if uuid.blank?
 
-        submission.submitters.new(email: submitter_attrs[:email], uuid:, sent_at: send_email ? Time.current : nil)
+        submission.submitters.new(email: submitter_attrs[:email],
+                                  sent_at: send_email ? Time.current : nil,
+                                  uuid:)
       end
 
       submission.tap(&:save!)

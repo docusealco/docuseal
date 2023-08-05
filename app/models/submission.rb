@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  deleted_at          :datetime
+#  source              :text             not null
 #  template_fields     :text
 #  template_schema     :text
 #  template_submitters :text
@@ -35,5 +36,14 @@ class Submission < ApplicationRecord
   serialize :template_schema, JSON
   serialize :template_submitters, JSON
 
+  attribute :source, :string, default: 'link'
+
   scope :active, -> { where(deleted_at: nil) }
+
+  enum :source, {
+    invite: 'invite',
+    api: 'api',
+    embed: 'embed',
+    link: 'link'
+  }, scope: false, prefix: true
 end

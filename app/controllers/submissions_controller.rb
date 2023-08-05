@@ -19,11 +19,13 @@ class SubmissionsController < ApplicationController
       if params[:emails].present?
         Submissions.create_from_emails(template: @template,
                                        user: current_user,
+                                       source: :invite,
                                        send_email: params[:send_email] == '1',
                                        emails: params[:emails])
       else
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
+                                           source: :invite,
                                            send_email: params[:send_email] == '1',
                                            submissions_attrs: submissions_params[:submission].to_h.values)
       end
