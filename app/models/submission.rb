@@ -26,6 +26,7 @@
 #
 class Submission < ApplicationRecord
   belongs_to :template
+  has_one :account, through: :template
   belongs_to :created_by_user, class_name: 'User', optional: true
 
   has_many :submitters, dependent: :destroy

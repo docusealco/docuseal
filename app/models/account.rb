@@ -15,6 +15,8 @@ class Account < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy
   has_many :templates, dependent: :destroy
+  has_many :submissions, through: :templates
+  has_many :submitters, through: :submissions
   has_many :active_users, -> { active }, dependent: :destroy,
                                          inverse_of: :account, class_name: 'User'
 

@@ -2,13 +2,13 @@
   <label class="<%= local_assigns[:class] %>">
     <input type="radio" class="peer hidden">
     <span class="peer-checked:hidden flex items-center space-x-2">
-      <%= svg_icon('link', class: local_assigns[:icon_class] || 'w-6 h-6 text-white') %>
+      <%= svg_icon(local_assigns[:icon] || 'link', class: local_assigns[:icon_class] || 'w-6 h-6 text-white') %>
       <span class="hidden md:inline">
         <%= local_assigns[:copy_title] || 'Copy' %>
       </span>
     </span>
     <span class="hidden peer-checked:flex items-center space-x-2">
-      <%= svg_icon('clipboard_copy', class: local_assigns[:icon_class] || 'w-6 h-6 text-white') %>
+      <%= svg_icon(local_assigns[:copied_icon] || 'clipboard_copy', class: local_assigns[:icon_class] || 'w-6 h-6 text-white') %>
       <span class="hidden md:inline">
         <%= local_assigns[:copied_title] || 'Copied' %>
       </span>

@@ -17,11 +17,8 @@ class SubmitFormController < ApplicationController
 
   def update
     submitter = Submitter.find_by!(slug: params[:slug])
-    submitter.values.merge!(normalized_values)
-    submitter.completed_at = Time.current if params[:completed] == 'true'
-    submitter.opened_at ||= Time.current
 
-    submitter.save!
+    update_submitter!(submitter)
 
     Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
 
@@ -29,6 +26,10 @@ class SubmitFormController < ApplicationController
 
     if submitter.completed_at?
       GenerateSubmitterResultAttachmentsJob.perform_later(submitter)
+
+      if submitter.account.encrypted_configs.exists?(key: EncryptedConfig::WEBHOOK_URL_KEY)
+        SendWebhookRequestJob.perform_later(submitter)
+      end
 
       submitter.submission.template.account.users.active.each do |user|
         SubmitterMailer.completed_email(submitter, user).deliver_later!
@@ -43,6 +44,16 @@ class SubmitFormController < ApplicationController
   end
 
   private
+
+  def update_submitter!(submitter)
+    submitter.values.merge!(normalized_values)
+    submitter.completed_at = Time.current if params[:completed] == 'true'
+    submitter.opened_at ||= Time.current
+
+    submitter.save!
+
+    submitter
+  end
 
   def normalized_values
     params.fetch(:values, {}).to_unsafe_h.transform_values do |v|

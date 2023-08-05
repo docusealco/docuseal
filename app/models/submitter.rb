@@ -30,6 +30,8 @@
 #
 class Submitter < ApplicationRecord
   belongs_to :submission
+  has_one :template, through: :submission
+  has_one :account, through: :template
 
   attribute :values, :string, default: -> { {} }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
