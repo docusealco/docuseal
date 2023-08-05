@@ -10,6 +10,11 @@ module Docuseal
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
   SUPPORT_EMAIL = 'support@docuseal.co'
+  CONSOLE_URL = if Rails.env.development?
+                  'http://console.localhost.io:3001'
+                else
+                  'https://console.docuseal.co'
+                end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
 
