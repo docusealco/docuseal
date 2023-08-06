@@ -45,6 +45,7 @@ class User < ApplicationRecord
   EMAIL_REGEXP = /[^@,\s]+@[^@,\s]+/
 
   belongs_to :account
+  has_one :access_token, dependent: :destroy
 
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
@@ -53,6 +54,10 @@ class User < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   scope :active, -> { where(deleted_at: nil) }
+
+  def access_token
+    super || build_access_token.tap(&:save!)
+  end
 
   def active_for_authentication?
     !deleted_at?

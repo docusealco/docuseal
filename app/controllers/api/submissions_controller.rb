@@ -11,7 +11,7 @@ module Api
                                          user: current_user,
                                          source: :api,
                                          send_email: params[:send_email] != 'false',
-                                         emails: params[:emails])
+                                         emails: params[:emails] || params[:email])
         else
           Submissions.create_from_submitters(template:,
                                              user: current_user,

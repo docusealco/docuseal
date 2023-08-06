@@ -6,9 +6,9 @@ class AuthWithTokenStrategy < Devise::Strategies::Base
   end
 
   def authenticate!
-    payload = JsonWebToken.decode(request.headers['X-Auth-Token'])
+    sha256 = Digest::SHA256.hexdigest(request.headers['X-Auth-Token'])
 
-    user = User.find_by(uuid: payload['uuid'])
+    user = User.joins(:access_token).find_by(access_token: { sha256: })
 
     if user
       success!(user)

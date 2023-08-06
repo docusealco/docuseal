@@ -6,8 +6,8 @@
       <div class="card-body p-6">
         <label for="api_key" class="text-sm font-semibold">X-Auth-Token</label>
         <div class="flex flex-row space-x-4">
-          <input id="api_key" type="text" value="<%= jwt = JsonWebToken.encode(uuid: current_user.uuid, scope: :api) %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-          <%= render 'shared/clipboard_copy', icon: 'copy', text: jwt, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+          <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
             <% text = capture do %>curl --location '<%= api_submissions_url %>' \
-       --header 'X-Auth-Token: <%= jwt %>' \
+       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
        --data-raw '{
            "template_id": <%= current_account.templates.last&.id || 1 %>,
            "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
@@ -52,7 +52,7 @@
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
             <% text = capture do %>curl --location '<%= api_submissions_url %>' \
-       --header 'X-Auth-Token: <%= jwt %>' \
+       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
        --data-raw '{
          "template_id": <%= current_account.templates.last&.id || 1 %>,
          "submission": [
