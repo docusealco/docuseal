@@ -195,6 +195,13 @@
             >
               <template v-if="isAnonymousChecboxes">
                 Complete hightlighted checkboxes and click <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? 'submit' : 'next' }}</span>.
+                <input
+                  v-for="field in currentStepFields"
+                  :key="field.uuid"
+                  type="hidden"
+                  :name="`values[${field.uuid}]`"
+                  :value="!!values[field.uuid]"
+                >
               </template>
               <template v-else>
                 <div
