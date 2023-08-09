@@ -37,6 +37,7 @@ module Submissions
 
           width = page.box.width
           height = page.box.height
+          font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           value = submitter.values[field['uuid']]
 
@@ -70,13 +71,13 @@ module Submissions
             items = Array.wrap(value).each_with_object([]) do |uuid, acc|
               attachment = submitter.attachments.find { |a| a.uuid == uuid }
 
-              acc << HexaPDF::Layout::InlineBox.create(width: FONT_SIZE, height: FONT_SIZE,
+              acc << HexaPDF::Layout::InlineBox.create(width: font_size, height: font_size,
                                                        margin: [0, 1, -2, 0]) do |cv, box|
                 cv.image(PdfIcons.paperclip_io, at: [0, 0], width: box.content_width)
               end
 
               acc << HexaPDF::Layout::TextFragment.create("#{attachment.filename}\n", font: pdf.fonts.add(FONT_NAME),
-                                                                                      font_size: FONT_SIZE)
+                                                                                      font_size:)
             end
 
             lines = layouter.fit(items, area['w'] * width, height).lines
@@ -132,7 +133,7 @@ module Submissions
 
             value.chars.each_with_index do |char, index|
               text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
-                                                                font_size: FONT_SIZE)
+                                                                font_size:)
 
               cell_layouter.fit([text], cell_width, area['h'] * height)
                            .draw(canvas, ((area['x'] * width) + (cell_width * index)),
@@ -142,7 +143,7 @@ module Submissions
             value = I18n.l(Date.parse(value), format: :long) if field['type'] == 'date'
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
-                                                                                      font_size: FONT_SIZE)
+                                                                                      font_size:)
 
             lines = layouter.fit([text], area['w'] * width, height).lines
             box_height = lines.sum(&:height)
