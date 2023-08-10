@@ -7,10 +7,16 @@ class EmailSettingsController < ApplicationController
 
   def create
     if @encrypted_config.update(storage_configs)
+      SettingsMailer.smtp_successful_setup(@encrypted_config.value['from_email']).deliver_now!
+
       redirect_to settings_email_index_path, notice: 'Changes have been saved'
     else
       render :index, status: :unprocessable_entity
     end
+  rescue Net::SMTPError, OpenSSL::SSL::SSLError, Net::ReadTimeout => e
+    flash[:alert] = e.message
+
+    render :index, status: :unprocessable_entity
   end
 
   private

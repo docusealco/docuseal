@@ -25,6 +25,27 @@
             <%= ff.password_field :password, value: value['password'], required: true, class: 'base-input' %>
           </div>
         </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="form-control">
+            <%= ff.label :domain, 'Domain (optional)', class: 'label' %>
+            <%= ff.text_field :domain, value: value['domain'], class: 'base-input' %>
+          </div>
+          <div class="form-control">
+            <%= ff.label :authentication, class: 'label' %>
+            <%= ff.select :authentication, options_for_select([%w[Plain plain], %w[Login login], %w[CRAM-MD5 cram_md5]], value.fetch('authentication', 'plain')), { prompt: true }, required: true, class: 'base-select' %>
+          </div>
+        </div>
+        <div class="form-control">
+          <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
+          <div class="flex items-center space-x-6">
+            <% [%w[None none], %w[SSL ssl], %w[TLS tls]].each do |(label, val)| %>
+              <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
+                <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
+                <%= label %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
         <div class="form-control">
           <%= ff.label :from_email, 'Send from Email', class: 'label' %>
           <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>

@@ -70,3 +70,7 @@ button[disabled] .enabled {
 .base-radio {
   @apply radio bg-white radio-sm no-animation;
 }
+
+.base-select {
+  @apply select base-input w-full font-normal;
+}

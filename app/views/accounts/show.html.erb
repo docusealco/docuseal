@@ -11,13 +11,13 @@
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
             <%= ff.label :timezone, class: 'label' %>
-            <%= ff.select :timezone, nil, {}, class: 'select base-input w-full font-normal' do %>
+            <%= ff.select :timezone, nil, {}, class: 'base-select' do %>
               <%= time_zone_options_for_select(current_account.timezone) %>
             <% end %>
           </div>
           <div class="form-control">
             <%= ff.label :locale, 'Time format', class: 'label' %>
-            <%= ff.select :locale, options_for_select(controller.class::LOCALE_OPTIONS.invert, current_account.locale), {}, class: 'select base-input w-full font-normal' %>
+            <%= ff.select :locale, options_for_select(controller.class::LOCALE_OPTIONS.invert, current_account.locale), {}, class: 'base-select' %>
           </div>
         </div>
       <% end %>
