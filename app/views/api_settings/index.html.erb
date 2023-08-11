@@ -42,7 +42,7 @@
         <input type="checkbox">
         <div class="collapse-title text-xl font-medium">
           <div>
-            Request signature, multiple submitters
+            Request signature, multiple submitters with default values
           </div>
           <div class="mt-1">
             <div class="badge badge-warning badge-lg">POST</div>
@@ -58,12 +58,40 @@
          "submission": [
            {
              "submitters": [
-               { "name": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'First Submitter' %>", "email": "<%= current_user.email.sub('@', '+test@') %>" },
+               {
+                 "name": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'First Submitter' %>",
+                 "email": "<%= current_user.email.sub('@', '+test@') %>",
+                 "values": {
+                   "Form Text Field Name": "Default Value"
+                 }
+               },
                { "name": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
              ]
            }
          ]
        }'<% end.to_str %>
+            <span class="top-0 right-0 absolute">
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+            </span>
+            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-200 px-1">
+        <input type="checkbox">
+        <div class="collapse-title text-xl font-medium">
+          <div>
+            Template details
+          </div>
+          <div class="mt-1">
+            <div class="badge badge-info badge-lg">GET</div>
+            <div class="badge badge-primary badge-lg"><%= api_template_path(':id') %></div>
+          </div>
+        </div>
+        <div class="collapse-content" style="display: inherit">
+          <div class="mockup-code overflow-hidden">
+            <% text = capture do %>curl '<%= api_template_url(current_account.templates.last) %>' \
+       --header 'X-Auth-Token: <%= current_user.access_token.token %>'<% end.to_str %>
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
             </span>

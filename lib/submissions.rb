@@ -38,6 +38,7 @@ module Submissions
 
         submission.submitters.new(email: submitter_attrs[:email],
                                   sent_at: send_email ? Time.current : nil,
+                                  values: submitter_attrs[:values] || {},
                                   uuid:)
       end
 

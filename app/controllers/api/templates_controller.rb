@@ -2,13 +2,17 @@
 
 module Api
   class TemplatesController < ApiBaseController
+    before_action :load_template, only: %i[show update]
+
     def index
       render json: current_account.templates
     end
 
-    def update
-      @template = current_account.templates.find(params[:id])
+    def show
+      render json: @template.as_json(include: { author: { only: %i[id email first_name last_name] } })
+    end
 
+    def update
       @template.update!(template_params)
 
       render :ok
@@ -22,6 +26,10 @@ module Api
                                        submitters: [%i[name uuid]],
                                        fields: [[:uuid, :submitter_uuid, :name, :type, :required,
                                                  { options: [], areas: [%i[x y w h cell_w attachment_uuid page]] }]])
+    end
+
+    def load_template
+      @template = current_account.templates.find(params[:id])
     end
   end
 end
