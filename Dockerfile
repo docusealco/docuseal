@@ -37,7 +37,15 @@ COPY ./Gemfile ./Gemfile.lock ./
 
 RUN bundle update --bundler && bundle install && rm -rf ~/.bundle
 
-COPY . ./
+COPY ./bin ./bin
+COPY ./app ./app
+COPY ./config ./config
+COPY ./db ./db
+COPY ./log ./log
+COPY ./lib ./lib
+COPY ./public ./public
+COPY ./tmp ./tmp
+COPY LICENSE README.md Rakefile config.ru ./
 
 COPY --from=webpack /app/public/packs ./public/packs
 
