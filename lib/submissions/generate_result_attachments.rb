@@ -35,6 +35,9 @@ module Submissions
 
           page = pdf.pages[area['page']]
 
+          page[:Annots] ||= []
+          page[:Annots] = page[:Annots].reject { |e| e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field') }
+
           width = page.box.width
           height = page.box.height
           font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
@@ -66,8 +69,6 @@ module Submissions
               height: image.height * scale
             )
           when 'file'
-            page[:Annots] ||= []
-
             items = Array.wrap(value).each_with_object([]) do |uuid, acc|
               attachment = submitter.attachments.find { |a| a.uuid == uuid }
 

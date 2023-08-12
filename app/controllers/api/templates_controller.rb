@@ -9,7 +9,8 @@ module Api
     end
 
     def show
-      render json: @template.as_json(include: { author: { only: %i[id email first_name last_name] } })
+      render json: @template.as_json(include: { author: { only: %i[id email first_name last_name] },
+                                                documents: { only: %i[id filename uuid], methods: %i[url] } })
     end
 
     def update

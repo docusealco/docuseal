@@ -15,6 +15,7 @@ window.customElements.define('submission-form', class extends HTMLElement {
       canSendEmail: this.dataset.canSendEmail === 'true',
       isDirectUpload: this.dataset.isDirectUpload === 'true',
       isDemo: this.dataset.isDemo === 'true',
+      withConfetti: true,
       values: reactive(JSON.parse(this.dataset.values)),
       attachments: reactive(JSON.parse(this.dataset.attachments)),
       fields: JSON.parse(this.dataset.fields)

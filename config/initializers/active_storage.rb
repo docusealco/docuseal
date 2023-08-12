@@ -13,6 +13,20 @@ Rails.configuration.to_prepare do
     response.set_header('Cache-Control', 'public, max-age=31536000') if action_name == 'show'
   end
 
+  ActiveStorage::Blobs::ProxyController.before_action do
+    response.set_header('Access-Control-Allow-Origin', '*')
+    response.set_header('Access-Control-Allow-Methods', 'GET')
+    response.set_header('Access-Control-Allow-Headers', '*')
+    response.set_header('Access-Control-Max-Age', '1728000')
+  end
+
+  ActiveStorage::Blobs::RedirectController.before_action do
+    response.set_header('Access-Control-Allow-Origin', '*')
+    response.set_header('Access-Control-Allow-Methods', 'GET')
+    response.set_header('Access-Control-Allow-Headers', '*')
+    response.set_header('Access-Control-Max-Age', '1728000')
+  end
+
   ActiveStorage::DirectUploadsController.before_action do
     next if current_user
     next if Submitter.find_signed(cookies[:submitter_sid])

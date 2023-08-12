@@ -55,6 +55,7 @@ export default {
     IconCloudUpload,
     IconInnerShadowTop
   },
+  inject: ['baseUrl'],
   props: {
     message: {
       type: String,
@@ -141,7 +142,7 @@ export default {
 
         return await Promise.all(
           blobs.map((blob) => {
-            return fetch('/api/attachments', {
+            return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: JSON.stringify({
                 name: 'attachments',
@@ -166,7 +167,7 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
 
-            return fetch('/api/attachments', {
+            return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
             }).then(resp => resp.json()).then((data) => {

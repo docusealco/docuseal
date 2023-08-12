@@ -12,7 +12,7 @@ module Submissions
   end
 
   def create_from_emails(template:, user:, emails:, source:, send_email: false)
-    emails = emails.to_s.scan(User::EMAIL_REGEXP)
+    emails = emails.to_s.scan(User::EMAIL_REGEXP) unless emails.is_a?(Array)
 
     emails.map do |email|
       submission = template.submissions.new(created_by_user: user, source:)

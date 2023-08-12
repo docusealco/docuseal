@@ -86,12 +86,18 @@ export default {
     IconLogin,
     IconDownload
   },
+  inject: ['baseUrl'],
   props: {
     submitterSlug: {
       type: String,
       required: true
     },
     isDemo: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withConfetti: {
       type: Boolean,
       required: false,
       default: false
@@ -109,19 +115,21 @@ export default {
     }
   },
   async mounted () {
-    const { default: confetti } = await import('canvas-confetti')
+    if (this.withConfetti) {
+      const { default: confetti } = await import('canvas-confetti')
 
-    confetti({
-      particleCount: 50,
-      startVelocity: 30,
-      spread: 140
-    })
+      confetti({
+        particleCount: 50,
+        startVelocity: 30,
+        spread: 140
+      })
+    }
   },
   methods: {
     sendCopyToEmail () {
       this.isSendingCopy = true
 
-      fetch(`/send_submission_email.json?submitter_slug=${this.submitterSlug}`, {
+      fetch(this.baseUrl + `/send_submission_email.json?submitter_slug=${this.submitterSlug}`, {
         method: 'POST'
       }).then(() => {
         alert('Email has been sent')
@@ -132,7 +140,7 @@ export default {
     download () {
       this.isDownloading = true
 
-      fetch(`/submitters/${this.submitterSlug}/download`).then((response) => response.json()).then((urls) => {
+      fetch(this.baseUrl + `/submitters/${this.submitterSlug}/download`).then((response) => response.json()).then((urls) => {
         const fileRequests = urls.map((url) => {
           return () => {
             return fetch(url).then(async (resp) => {

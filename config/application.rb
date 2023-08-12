@@ -29,5 +29,7 @@ module DocuSeal
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
     config.middleware.insert_before ActionDispatch::Static, ApiPathConsiderJsonMiddleware
+
+    ActiveSupport.run_load_hooks(:application_config, self)
   end
 end

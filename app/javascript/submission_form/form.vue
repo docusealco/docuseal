@@ -10,7 +10,7 @@
   />
   <button
     v-if="!isFormVisible"
-    class="btn btn-neutral text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
+    class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
     @click.prevent="isFormVisible = true"
   >
     Submit Form
@@ -194,7 +194,9 @@
               class="space-y-3.5 mx-auto"
             >
               <template v-if="isAnonymousChecboxes">
-                Complete hightlighted checkboxes and click <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? 'submit' : 'next' }}</span>.
+                <span class="text-xl">
+                  Complete hightlighted checkboxes and click <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? 'submit' : 'next' }}</span>.
+                </span>
                 <input
                   v-for="field in currentStepFields"
                   :key="field.uuid"
@@ -290,6 +292,7 @@
       <FormCompleted
         v-else
         :is-demo="isDemo"
+        :with-confetti="withConfetti"
         :can-send-email="canSendEmail"
         :submitter-slug="submitterSlug"
       />
@@ -331,6 +334,11 @@ export default {
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },
+  provide () {
+    return {
+      baseUrl: this.baseUrl
+    }
+  },
   props: {
     submitterSlug: {
       type: String,
@@ -350,6 +358,16 @@ export default {
       required: false,
       default: () => []
     },
+    withConfetti: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    baseUrl: {
+      type: String,
+      required: false,
+      default: ''
+    },
     fields: {
       type: Array,
       required: false,
@@ -357,16 +375,17 @@ export default {
     },
     authenticityToken: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     isDirectUpload: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false
     },
     isDemo: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false
     },
     values: {
@@ -429,10 +448,17 @@ export default {
     )
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      document.body.style.overflow = 'hidden'
+      this.$nextTick(() => {
+        const root = this.$root.$el.parentNode.getRootNode()
+        const scrollbox = root.getElementById('scrollbox')
+        const parent = root.body || root.querySelector('div')
 
-      window.scrollbox.classList.add('h-full', 'overflow-y-auto')
-      window.scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
+        parent.style.overflow = 'hidden'
+
+        scrollbox.classList.add('h-full', 'overflow-y-auto')
+        scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
+        scrollbox.parentNode.style.maxHeight = '-webkit-fill-available'
+      })
     }
   },
   methods: {
@@ -455,7 +481,7 @@ export default {
       if (this.isCompleted) {
         return Promise.resolve({})
       } else {
-        return fetch(this.submitPath, {
+        return fetch(this.baseUrl + this.submitPath, {
           method: 'POST',
           body: formData || new FormData(this.$refs.form)
         })

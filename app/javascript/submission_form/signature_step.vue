@@ -99,6 +99,7 @@ export default {
     IconTextSize,
     IconArrowsDiagonalMinimize2
   },
+  inject: ['baseUrl'],
   props: {
     field: {
       type: Object,
@@ -304,7 +305,7 @@ export default {
               file,
               '/direct_uploads'
             ).create((_error, data) => {
-              fetch('/api/attachments', {
+              fetch(this.baseUrl + '/api/attachments', {
                 method: 'POST',
                 body: JSON.stringify({
                   submitter_slug: this.submitterSlug,
@@ -326,12 +327,12 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
 
-            return fetch('/api/attachments', {
+            return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
             }).then((resp) => resp.json()).then((attachment) => {
-              this.$emit('update:model-value', attachment.uuid)
               this.$emit('attached', attachment)
+              this.$emit('update:model-value', attachment.uuid)
 
               return resolve(attachment)
             })

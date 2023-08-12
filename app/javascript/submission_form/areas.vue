@@ -12,7 +12,7 @@
         :key="areaIndex"
       >
         <Teleport
-          :to="`#page-${area.attachment_uuid}-${area.page}`"
+          :to="findPageElementForArea(area)"
         >
           <FieldArea
             :ref="setAreaRef"
@@ -78,10 +78,16 @@ export default {
     this.areaRefs = []
   },
   methods: {
+    findPageElementForArea (area) {
+      return (this.$root.$el?.parentNode?.getRootNode() || document).getElementById(`page-${area.attachment_uuid}-${area.page}`)
+    },
     scrollIntoField (field) {
       this.areaRefs.find((area) => {
         if (area.field === field) {
-          if (document.body.style.overflow === 'hidden') {
+          const root = this.$root.$el.parentNode.getRootNode()
+          const container = root.body || root.querySelector('div')
+
+          if (container.style.overflow === 'hidden') {
             this.scrollInContainer(area.$el)
           } else {
             area.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -94,13 +100,19 @@ export default {
       })
     },
     scrollInContainer (target) {
+      const root = this.$root.$el.parentNode.getRootNode()
+
+      const scrollbox = root.getElementById('scrollbox')
+      const formContainer = root.getElementById('form_container')
+      const container = root.body || root.querySelector('div')
+
       const padding = 64
-      const boxRect = window.scrollbox.children[0].getBoundingClientRect()
+      const boxRect = scrollbox.children[0].getBoundingClientRect()
       const targetRect = target.getBoundingClientRect()
 
       const targetTopRelativeToBox = targetRect.top - boxRect.top
 
-      window.scrollbox.scrollTop = targetTopRelativeToBox - document.body.offsetHeight + window.form_container.offsetHeight + target.offsetHeight + padding
+      scrollbox.scrollTop = targetTopRelativeToBox - container.offsetHeight + formContainer.offsetHeight + target.offsetHeight + padding
     },
     setAreaRef (el) {
       if (el) {

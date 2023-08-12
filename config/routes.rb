@@ -83,4 +83,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  ActiveSupport.run_load_hooks(:routes, self)
 end

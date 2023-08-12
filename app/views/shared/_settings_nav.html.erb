@@ -33,7 +33,7 @@
       <% end %>
       <% unless Docuseal.demo? %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300' do %>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             Console
             <span class="badge badge-warning">New</span>
           <% end %>
