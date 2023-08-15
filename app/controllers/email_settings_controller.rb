@@ -13,7 +13,7 @@ class EmailSettingsController < ApplicationController
     else
       render :index, status: :unprocessable_entity
     end
-  rescue Net::SMTPError, OpenSSL::SSL::SSLError, Net::ReadTimeout => e
+  rescue StandardError => e
     flash[:alert] = e.message
 
     render :index, status: :unprocessable_entity
