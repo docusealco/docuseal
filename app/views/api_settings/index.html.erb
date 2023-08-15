@@ -90,7 +90,7 @@
         </div>
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
-            <% text = capture do %>curl '<%= api_template_url(current_account.templates.last) %>' \
+            <% text = capture do %>curl '<%= api_template_url(current_account.templates&.last || 1) %>' \
        --header 'X-Auth-Token: <%= current_user.access_token.token %>'<% end.to_str %>
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
