@@ -24,6 +24,7 @@ gem 'pg', require: false
 gem 'premailer-rails'
 gem 'puma'
 gem 'rails'
+gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rollbar', require: ENV.key?('ROLLBAR_ACCESS_TOKEN')
 gem 'ruby-vips'

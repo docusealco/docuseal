@@ -1,0 +1,27 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow max-w-xl mx-auto">
+    <p class="text-4xl font-bold mb-4">Signature Request Email</p>
+    <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <%= f.hidden_field :key %>
+      <%= f.fields_for :value, OpenStruct.new(f.object.value) do |ff| %>
+        <div class="form-control">
+          <%= ff.label :subject, class: 'label' %>
+          <%= ff.text_field :subject, required: true, class: 'base-input' %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :body, class: 'label' %>
+          <autoresize-textarea>
+            <%= ff.text_area :body, required: true, class: 'base-input w-full py-2' %>
+          </autoresize-textarea>
+        </div>
+      <% end %>
+      <div class="form-control pt-2">
+        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+      </div>
+    <% end %>
+    <p class="text-4xl font-bold mb-4 mt-8">Company Logo</p>
+    <%= render 'logo_form' %>
+  </div>
+  <div class="w-0 md:w-52"></div>
+</div>

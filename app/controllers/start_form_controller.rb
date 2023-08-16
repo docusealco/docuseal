@@ -36,7 +36,9 @@ class StartFormController < ApplicationController
   end
 
   def completed
-    @submitter = Submitter.where(submission: @template.submissions).find_by!(email: params[:email])
+    @submitter = Submitter.where(submission: @template.submissions)
+                          .where.not(completed_at: nil)
+                          .find_by!(email: params[:email])
   end
 
   private

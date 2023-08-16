@@ -1,7 +1,11 @@
-<p>Hi there,</p>
-<%= simple_format(@message) %>
-<p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug) %></p>
-<p>Please contact us by replying to this email if you didn't request this.</p>
-<p>
-  Thanks,<br><%= @submitter.submission.template.account.name %>
-</p>
+<% if @email_config %>
+  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@email_config.value['body'], submitter: @submitter)))) %>
+<% else %>
+  <p>Hi there,</p>
+  <%= simple_format(@message) %>
+  <p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug) %></p>
+  <p>Please contact us by replying to this email if you didn't request this.</p>
+  <p>
+    Thanks,<br><%= @current_account.name %>
+  </p>
+<% end %>

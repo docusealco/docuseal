@@ -40,7 +40,7 @@
     <div class="form-control">
       <% is_smtp_configured = Accounts.can_send_emails?(current_account) %>
       <%= f.label :send_email, class: 'flex items-center cursor-pointer' do %>
-        <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "message_field.classList.toggle('hidden', !event.currentTarget.checked)" %>
+        <%= f.check_box :send_email, class: 'base-checkbox', disabled: !is_smtp_configured, onchange: "window.message_field && message_field.classList.toggle('hidden', !event.currentTarget.checked)" %>
         <span class="label">Send Email</span>
       <% end %>
       <% unless is_smtp_configured %>
@@ -57,21 +57,23 @@
         </div>
       <% end %>
     </div>
-    <div id="message_field" class="card card-compact bg-base-200 hidden">
-      <div class="card-body">
-        <div class="form-control space-y-2">
-          <span class="label-text">Hi there,</span>
-          <autoresize-textarea>
-            <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg w-full' %>
-          </autoresize-textarea>
-          <span class="label-text">
-            Thanks,
-            <br>
-            <%= current_account.name %>
-          </span>
+    <% unless AccountConfig.exists?(key: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
+      <div id="message_field" class="card card-compact bg-base-200 hidden">
+        <div class="card-body">
+          <div class="form-control space-y-2">
+            <span class="label-text">Hi there,</span>
+            <autoresize-textarea>
+              <%= f.text_area :message, value: format(SubmitterMailer::DEFAULT_MESSAGE, name: @template.name), required: true, class: 'base-textarea !rounded-lg w-full' %>
+            </autoresize-textarea>
+            <span class="label-text">
+              Thanks,
+              <br>
+              <%= current_account.name %>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
     <div class="form-control">
       <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
     </div>

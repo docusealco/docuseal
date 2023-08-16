@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_06_140534) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_15_190540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_140534) do
     t.datetime "updated_at", null: false
     t.index ["sha256"], name: "index_access_tokens_on_sha256", unique: true
     t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
+
+  create_table "account_configs", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "key", null: false
+    t.text "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "key"], name: "index_account_configs_on_account_id_and_key", unique: true
+    t.index ["account_id"], name: "index_account_configs_on_account_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -159,6 +169,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_140534) do
   end
 
   add_foreign_key "access_tokens", "users"
+  add_foreign_key "account_configs", "accounts"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"

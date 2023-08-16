@@ -31,6 +31,9 @@
           <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <li>
+        <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+      </li>
       <% unless Docuseal.demo? %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>

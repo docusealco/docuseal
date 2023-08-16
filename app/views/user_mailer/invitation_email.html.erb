@@ -3,5 +3,5 @@
 <p><%= link_to 'Sign up', invitation_url(reset_password_token: @token) %></p>
 <p>Please contact us by replying to this email if you didn't request this.</p>
 <p>
-  Thanks,<br><%= @user.account.name %>
+  Thanks,<br><%= @current_account.name %>
 </p>

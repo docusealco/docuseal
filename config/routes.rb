@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     end
     resources :esign, only: %i[index create], controller: 'esign_settings'
     resources :users, only: %i[index]
+    resource :personalization, only: %i[show create], controller: 'personalization_settings'
     if !Docuseal.multitenant? || Docuseal.demo?
       resources :api, only: %i[index], controller: 'api_settings'
       resource :webhooks, only: %i[show create update], controller: 'webhook_settings'

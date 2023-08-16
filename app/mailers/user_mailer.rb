@@ -2,6 +2,7 @@
 
 class UserMailer < ApplicationMailer
   def invitation_email(user)
+    @current_account = user.account
     @user = user
     @token = @user.send(:set_reset_password_token)
 
