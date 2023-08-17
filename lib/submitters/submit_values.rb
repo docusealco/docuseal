@@ -4,8 +4,8 @@ module Submitters
   module SubmitValues
     module_function
 
-    def call(submitter, params)
-      update_submitter!(submitter, params)
+    def call(submitter, params, request)
+      update_submitter!(submitter, params, request)
 
       Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
 
@@ -26,10 +26,15 @@ module Submitters
       submitter
     end
 
-    def update_submitter!(submitter, params)
+    def update_submitter!(submitter, params, request)
       submitter.values.merge!(normalized_values(params))
-      submitter.completed_at = Time.current if params[:completed] == 'true'
       submitter.opened_at ||= Time.current
+
+      if params[:completed] == 'true'
+        submitter.completed_at = Time.current
+        submitter.ip = request.remote_ip
+        submitter.ua = request.user_agent
+      end
 
       submitter.save!
 

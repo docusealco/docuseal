@@ -18,7 +18,7 @@ class SubmitFormController < ApplicationController
   def update
     submitter = Submitter.find_by!(slug: params[:slug])
 
-    Submitters::SubmitValues.call(submitter, params)
+    Submitters::SubmitValues.call(submitter, params, request)
 
     head :ok
   end
