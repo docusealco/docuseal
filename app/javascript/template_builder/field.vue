@@ -58,7 +58,7 @@
             <label
               tabindex="0"
               title="Areas"
-              class="cursor-pointer text-base-100 group-hover:text-base-content"
+              class="cursor-pointer text-transparent group-hover:text-base-content"
             >
               <IconShape
                 :width="18"
@@ -104,7 +104,7 @@
           <button
             v-else
             title="Areas"
-            class="relative cursor-pointer text-base-100 group-hover:text-base-content"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
             @click="$emit('set-draw', field)"
           >
             <IconShape
@@ -113,7 +113,7 @@
             />
           </button>
           <button
-            class="relative text-base-100 group-hover:text-base-content"
+            class="relative text-transparent group-hover:text-base-content"
             title="Remove"
             @click="$emit('remove', field)"
           >
@@ -122,7 +122,7 @@
               :stroke-width="1.6"
             />
           </button>
-          <div class="flex flex-col pr-1 text-base-100 group-hover:text-base-content">
+          <div class="flex flex-col pr-1 text-transparent group-hover:text-base-content">
             <button
               title="Up"
               class="relative"
@@ -156,7 +156,7 @@
           </span>
           <input
             v-model="field.options[index]"
-            class="w-full input input-primary input-xs text-sm"
+            class="w-full input input-primary input-xs text-sm bg-transparent"
             type="text"
             required
             @blur="save"
@@ -254,8 +254,10 @@ export default {
       })
     },
     onNameBlur (e) {
-      if (e.target.innerText.trim()) {
-        this.field.name = e.target.innerText.trim()
+      const text = this.$refs.name.$refs.contenteditable.innerText.trim()
+
+      if (text) {
+        this.field.name = text
       } else {
         this.field.name = ''
         this.$refs.name.$refs.contenteditable.innerText = this.defaultName

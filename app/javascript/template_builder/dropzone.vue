@@ -61,6 +61,7 @@ export default {
     IconCloudUpload,
     IconInnerShadowTop
   },
+  inject: ['baseFetch'],
   props: {
     templateId: {
       type: [Number, String],

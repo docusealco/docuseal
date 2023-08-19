@@ -26,6 +26,7 @@ import Upload from './upload'
 
 export default {
   name: 'ReplaceDocument',
+  inject: ['baseFetch'],
   props: {
     templateId: {
       type: [Number, String],

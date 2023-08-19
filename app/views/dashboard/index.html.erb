@@ -17,7 +17,7 @@
           <div class="pb-6 pt-1 space-y-1">
             <p class="flex items-center space-x-1 text-xs text-base-content/60">
               <%= svg_icon('user', class: 'w-4 h-4') %>
-              <span><%= template.author.full_name %></span>
+              <span><%= template.author.full_name.presence || template.author.email %></span>
             </p>
             <p class="flex items-center space-x-1 text-xs text-base-content/60">
               <%= svg_icon('calendar', class: 'w-4 h-4') %>

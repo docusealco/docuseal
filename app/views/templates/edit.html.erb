@@ -1,1 +1,1 @@
-<template-builder data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-template="<%= @template.as_json.merge(documents: @template.schema_documents.as_json(include: { preview_images: { methods: %i[url metadata filename] } })).to_json %>"></template-builder>
+<template-builder class="grid" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-template="<%= @template.as_json.merge(documents: @template.schema_documents.as_json(include: { preview_images: { methods: %i[url metadata filename] } })).to_json %>"></template-builder>

@@ -11,8 +11,8 @@
 #  email                  :string           not null
 #  encrypted_password     :string           not null
 #  failed_attempts        :integer          default(0), not null
-#  first_name             :string           not null
-#  last_name              :string           not null
+#  first_name             :string
+#  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
@@ -46,6 +46,7 @@ class User < ApplicationRecord
 
   belongs_to :account
   has_one :access_token, dependent: :destroy
+  has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
@@ -68,14 +69,18 @@ class User < ApplicationRecord
   end
 
   def initials
-    [first_name.first, last_name.first].join.upcase
+    [first_name&.first, last_name&.first].compact_blank.join.upcase
   end
 
   def full_name
-    [first_name, last_name].join(' ')
+    [first_name, last_name].compact_blank.join(' ')
   end
 
   def friendly_name
-    "#{full_name} <#{email}>"
+    if full_name.present?
+      "#{full_name} <#{email}>"
+    else
+      email
+    end
   end
 end

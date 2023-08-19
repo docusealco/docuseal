@@ -226,14 +226,14 @@ export default {
       }
     },
     startResizeCell (e) {
-      document.addEventListener('mousemove', this.onResizeCell)
-      document.addEventListener('mouseup', this.stopResizeCell)
+      this.$el.getRootNode().addEventListener('mousemove', this.onResizeCell)
+      this.$el.getRootNode().addEventListener('mouseup', this.stopResizeCell)
 
       this.$emit('start-resize', 'ew')
     },
     stopResizeCell (e) {
-      document.removeEventListener('mousemove', this.onResizeCell)
-      document.removeEventListener('mouseup', this.stopResizeCell)
+      this.$el.getRootNode().removeEventListener('mousemove', this.onResizeCell)
+      this.$el.getRootNode().removeEventListener('mouseup', this.stopResizeCell)
 
       this.$emit('stop-resize')
 
@@ -266,11 +266,13 @@ export default {
       })
     },
     onNameBlur (e) {
+      const text = this.$refs.name.innerText.trim()
+
       this.isNameFocus = false
       this.$refs.name.style.minWidth = ''
 
-      if (e.target.innerText.trim()) {
-        this.field.name = e.target.innerText.trim()
+      if (text) {
+        this.field.name = text
       } else {
         this.field.name = ''
         this.$refs.name.innerText = this.defaultName
@@ -302,14 +304,14 @@ export default {
 
       this.dragFrom = { x: e.clientX - rect.left, y: e.clientY - rect.top }
 
-      document.addEventListener('mousemove', this.drag)
-      document.addEventListener('mouseup', this.stopDrag)
+      this.$el.getRootNode().addEventListener('mousemove', this.drag)
+      this.$el.getRootNode().addEventListener('mouseup', this.stopDrag)
 
       this.$emit('start-drag')
     },
     stopDrag () {
-      document.removeEventListener('mousemove', this.drag)
-      document.removeEventListener('mouseup', this.stopDrag)
+      this.$el.getRootNode().removeEventListener('mousemove', this.drag)
+      this.$el.getRootNode().removeEventListener('mouseup', this.stopDrag)
 
       if (this.isDragged) {
         this.save()
@@ -322,14 +324,14 @@ export default {
     startResize () {
       this.selectedAreaRef.value = this.area
 
-      document.addEventListener('mousemove', this.resize)
-      document.addEventListener('mouseup', this.stopResize)
+      this.$el.getRootNode().addEventListener('mousemove', this.resize)
+      this.$el.getRootNode().addEventListener('mouseup', this.stopResize)
 
       this.$emit('start-resize', 'nwse')
     },
     stopResize () {
-      document.removeEventListener('mousemove', this.resize)
-      document.removeEventListener('mouseup', this.stopResize)
+      this.$el.getRootNode().removeEventListener('mousemove', this.resize)
+      this.$el.getRootNode().removeEventListener('mouseup', this.stopResize)
 
       this.$emit('stop-resize')
 

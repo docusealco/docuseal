@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :submissions, only: %i[create]
     resources :templates, only: %i[update show index] do
       resources :submissions, only: %i[create]
-      resources :documents, only: %i[create destroy], controller: 'templates_documents'
+      resources :documents, only: %i[create], controller: 'templates_documents'
     end
   end
 

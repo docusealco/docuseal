@@ -4,7 +4,7 @@
       ref="image"
       :src="image.url"
       :width="width"
-      class="shadow-md mb-4"
+      class="border rounded mb-4"
       :height="height"
       loading="lazy"
     >

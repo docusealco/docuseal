@@ -1,13 +1,17 @@
 <template>
   <div
     style="max-width: 1600px"
-    class="mx-auto pl-4"
+    class="mx-auto pl-4 h-full"
   >
     <div class="flex justify-between py-1.5 items-center pr-4">
       <div class="flex space-x-3">
-        <a href="/">
+        <a
+          v-if="withLogoLink"
+          href="/"
+        >
           <Logo />
         </a>
+        <Logo v-else />
         <Contenteditable
           :model-value="template.name"
           class="text-3xl font-semibold focus:text-clip"
@@ -16,46 +20,53 @@
         />
       </div>
       <div class="space-x-3 flex items-center">
-        <a
-          :href="`/templates/${template.id}/submissions/new`"
-          data-turbo-frame="modal"
-          class="btn btn-primary"
-        >
-          <IconUsersPlus
-            width="20"
-            class="inline"
-          />
-          <span class="hidden md:inline">
-            Recipients
-          </span>
-        </a>
-        <button
-          class="base-button"
-          :class="{ disabled: isSaving }"
-          v-bind="isSaving ? { disabled: true } : {}"
-          @click.prevent="onSaveClick"
-        >
-          <IconInnerShadowTop
-            v-if="isSaving"
-            width="20"
-            class="animate-spin"
-          />
-          <IconDeviceFloppy
-            v-else
-            width="20"
-          />
-          <span class="hidden md:inline">
-            Save
-          </span>
-        </button>
+        <slot
+          v-if="$slots.buttons"
+          name="buttons"
+        />
+        <template v-else>
+          <a
+            :href="`/templates/${template.id}/submissions/new`"
+            data-turbo-frame="modal"
+            class="btn btn-primary"
+          >
+            <IconUsersPlus
+              width="20"
+              class="inline"
+            />
+            <span class="hidden md:inline">
+              Recipients
+            </span>
+          </a>
+          <button
+            class="base-button"
+            :class="{ disabled: isSaving }"
+            v-bind="isSaving ? { disabled: true } : {}"
+            @click.prevent="onSaveClick"
+          >
+            <IconInnerShadowTop
+              v-if="isSaving"
+              width="20"
+              class="animate-spin"
+            />
+            <IconDeviceFloppy
+              v-else
+              width="20"
+            />
+            <span class="hidden md:inline">
+              Save
+            </span>
+          </button>
+        </template>
       </div>
     </div>
     <div
       class="flex"
-      style="max-height: calc(100vh - 60px)"
+      style="max-height: calc(100% - 60px)"
     >
       <div
         ref="previews"
+        :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
         class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
       >
         <DocumentPreview
@@ -94,19 +105,46 @@
             @success="updateFromUpload"
           />
           <template v-else>
-            <Document
+            <template
               v-for="document in sortedDocuments"
               :key="document.uuid"
-              :ref="setDocumentRefs"
-              :areas-index="fieldAreasIndex[document.uuid]"
-              :selected-submitter="selectedSubmitter"
-              :document="document"
-              :is-drag="!!dragFieldType"
-              :draw-field="drawField"
-              @draw="onDraw"
-              @drop-field="onDropfield"
-              @remove-area="removeArea"
-            />
+            >
+              <Document
+                :ref="setDocumentRefs"
+                :areas-index="fieldAreasIndex[document.uuid]"
+                :selected-submitter="selectedSubmitter"
+                :document="document"
+                :is-drag="!!dragFieldType"
+                :draw-field="drawField"
+                @draw="onDraw"
+                @drop-field="onDropfield"
+                @remove-area="removeArea"
+              />
+              <DocumentControls
+                v-if="isBreakpointLg"
+                :with-arrows="template.schema.length > 1"
+                :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
+                :document="document"
+                :template="template"
+                :is-direct-upload="isDirectUpload"
+                class="pb-2 mb-2 border-b border-base-300 border-dashed"
+                @remove="onDocumentRemove"
+                @replace="onDocumentReplace"
+                @up="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), -1)"
+                @down="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), 1)"
+                @change="save"
+              />
+            </template>
+            <div
+              v-if="sortedDocuments.length && isBreakpointLg"
+              class="pb-4"
+            >
+              <Upload
+                :template-id="template.id"
+                :is-direct-upload="isDirectUpload"
+                @success="updateFromUpload"
+              />
+            </div>
           </template>
         </div>
         <div
@@ -122,7 +160,7 @@
         </div>
       </div>
       <div
-        class="relative w-80 flex-none pt-0.5 pr-4 pl-0.5 hidden md:block"
+        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
       >
         <div
@@ -149,6 +187,7 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :with-sticky-submitters="withStickySubmitters"
             @set-draw="drawField = $event"
             @set-drag="dragFieldType = $event"
             @change-submitter="selectedSubmitter = $event"
@@ -169,6 +208,7 @@ import Document from './document'
 import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
+import DocumentControls from './controls'
 import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
@@ -182,6 +222,7 @@ export default {
     Logo,
     Dropzone,
     DocumentPreview,
+    DocumentControls,
     IconInnerShadowTop,
     Contenteditable,
     IconUsersPlus,
@@ -191,6 +232,7 @@ export default {
     return {
       template: this.template,
       save: this.save,
+      baseFetch: this.baseFetch,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -201,13 +243,34 @@ export default {
     },
     isDirectUpload: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false
+    },
+    baseUrl: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    withLogoLink: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withStickySubmitters: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    fetchOptions: {
+      type: Object,
+      required: false,
+      default: () => ({ headers: {} })
     }
   },
   data () {
     return {
       documentRefs: [],
+      isBreakpointLg: false,
       isSaving: false,
       selectedSubmitter: null,
       drawField: null,
@@ -244,15 +307,28 @@ export default {
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
+    this.$nextTick(() => {
+      this.onWindowResize()
+    })
+
     document.addEventListener('keyup', this.onKeyUp)
+
+    window.addEventListener('resize', this.onWindowResize)
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
+
+    window.removeEventListener('resize', this.onWindowResize)
   },
   beforeUpdate () {
     this.documentRefs = []
   },
   methods: {
+    onWindowResize (e) {
+      const breakpointLg = 1024
+
+      this.isBreakpointLg = this.$el.getRootNode().children[0].offsetWidth < breakpointLg
+    },
     setDocumentRefs (el) {
       if (el) {
         this.documentRefs.push(el)
@@ -474,10 +550,18 @@ export default {
 
       this.selectedAreaRef.value = area
     },
+    baseFetch (path, options = {}) {
+      return fetch(this.baseUrl + path, {
+        ...options,
+        headers: { ...this.fetchOptions.headers, ...options.headers }
+      })
+    },
     save () {
-      this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
+      if (this.$el.closest('template-builder')) {
+        this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
+      }
 
-      return fetch(`/api/templates/${this.template.id}`, {
+      return this.baseFetch(`/api/templates/${this.template.id}`, {
         method: 'PUT',
         body: JSON.stringify({
           template: {

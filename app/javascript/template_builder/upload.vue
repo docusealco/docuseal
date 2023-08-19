@@ -50,6 +50,7 @@ export default {
     IconUpload,
     IconInnerShadowTop
   },
+  inject: ['baseFetch'],
   props: {
     templateId: {
       type: [Number, String],
@@ -113,7 +114,7 @@ export default {
 
         this.isProcessing = true
 
-        fetch(`/api/templates/${this.templateId}/documents`, {
+        this.baseFetch(`/api/templates/${this.templateId}/documents`, {
           method: 'POST',
           body: JSON.stringify({ blobs }),
           headers: { 'Content-Type': 'application/json' }
@@ -124,7 +125,7 @@ export default {
           this.isProcessing = false
         })
       } else {
-        fetch(`/api/templates/${this.templateId}/documents`, {
+        this.baseFetch(`/api/templates/${this.templateId}/documents`, {
           method: 'POST',
           body: new FormData(this.$refs.form)
         }).then(resp => resp.json()).then((data) => {

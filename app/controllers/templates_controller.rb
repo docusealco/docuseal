@@ -17,7 +17,7 @@ class TemplatesController < ApplicationController
   end
 
   def edit
-    @template = current_account.templates.preload(documents_attachments: { preview_images_attachments: :blob })
+    @template = current_account.templates.preload(schema_documents: { preview_images_attachments: :blob })
                                .find(params[:id])
 
     render :edit, layout: 'plain'

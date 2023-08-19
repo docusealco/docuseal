@@ -1,8 +1,9 @@
 <template>
-  <div class="sticky -top-1 bg-base-100 pt-1 -mt-1 z-10">
+  <div :class="withStickySubmitters ? 'sticky top-0 z-10' : ''">
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
-      class="w-full bg-base-100"
+      class="w-full rounded-lg"
+      :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
       @new-submitter="save"
       @remove="removeSubmitter"
@@ -28,7 +29,7 @@
       v-for="(icon, type) in fieldIcons"
       :key="type"
       draggable="true"
-      class="flex items-center justify-center border border-dashed border-base-300 bg-base-100 w-full rounded relative"
+      class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
       @dragstart="onDragstart(type)"
       @dragend="$emit('drag-end')"
       @click="addField(type)"
@@ -105,6 +106,11 @@ export default {
     fields: {
       type: Array,
       required: true
+    },
+    withStickySubmitters: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     submitters: {
       type: Array,
