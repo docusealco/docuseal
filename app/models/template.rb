@@ -10,6 +10,7 @@
 #  name       :string           not null
 #  schema     :text             not null
 #  slug       :string           not null
+#  source     :text             not null
 #  submitters :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -37,6 +38,7 @@ class Template < ApplicationRecord
   attribute :schema, :string, default: -> { [] }
   attribute :submitters, :string, default: -> { [{ name: DEFAULT_SUBMITTER_NAME, uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
+  attribute :source, :string, default: 'native'
 
   serialize :fields, JSON
   serialize :schema, JSON
