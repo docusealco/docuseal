@@ -1,13 +1,17 @@
-<p>Hi there,</p>
-<p>Please check the copy of your "<%= @submitter.submission.template.name %>" submission in the email attachments.</p>
-<p>Alternatively, you can download the copy using:</p>
-<% @documents.each do |document| %>
-  <ul>
-    <li>
-      <%= link_to document.filename.to_s, rails_blob_url(document) %>
-    </li>
-  </ul>
+<% if @email_config %>
+  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@email_config.value['body'], submitter: @submitter)))) %>
+<% else %>
+  <p>Hi there,</p>
+  <p>Please check the copy of your "<%= @submitter.submission.template.name %>" submission in the email attachments.</p>
+  <p>Alternatively, you can download the copy using:</p>
+  <% @documents.each do |document| %>
+    <ul>
+      <li>
+        <%= link_to document.filename.to_s, rails_blob_url(document) %>
+      </li>
+    </ul>
+  <% end %>
+  <p>
+    Thanks,<br><%= @current_account.name %>
+  </p>
 <% end %>
-<p>
-  Thanks,<br><%= @current_account.name %>
-</p>

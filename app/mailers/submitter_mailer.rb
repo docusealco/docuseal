@@ -18,6 +18,7 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(to: @submitter.email,
+         from: from_address_for_submitter(submitter),
          subject:,
          reply_to: submitter.submission.created_by_user&.friendly_name)
   end
@@ -27,8 +28,18 @@ class SubmitterMailer < ApplicationMailer
     @submitter = submitter
     @user = user
 
-    mail(to: user.email,
-         subject: %(#{submitter.email} has completed the "#{submitter.submission.template.name}" form))
+    @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
+
+    subject =
+      if @email_config
+        ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
+      else
+        %(#{submitter.email} has completed the "#{submitter.submission.template.name}" form)
+      end
+
+    mail(from: from_address_for_submitter(submitter),
+         to: user.email,
+         subject:)
   end
 
   def documents_copy_email(submitter)
@@ -43,6 +54,23 @@ class SubmitterMailer < ApplicationMailer
       attachments[attachment.filename.to_s] = attachment.download
     end
 
-    mail(to: submitter.email, subject: 'Your copy of documents')
+    @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
+
+    subject =
+      if @email_config
+        ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
+      else
+        'Your copy of documents'
+      end
+
+    mail(from: from_address_for_submitter(submitter),
+         to: submitter.email,
+         subject:)
+  end
+
+  private
+
+  def from_address_for_submitter(submitter)
+    submitter.submission.created_by_user&.friendly_name || submitter.submission.template.author.friendly_name
   end
 end

@@ -22,6 +22,8 @@
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'
+  SUBMITTER_COMPLETED_EMAIL_KEY = 'submitter_completed_email'
+  SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
@@ -30,6 +32,23 @@ class AccountConfig < ApplicationRecord
                 "You have been invited to submit the \"{{template.name}}\" form:\n\n" \
                 "{{submitter.link}}\n\n" \
                 "Please contact us by replying to this email if you didn't request this.\n\n" \
+                "Thanks,\n" \
+                '{{account.name}}'
+    },
+    SUBMITTER_COMPLETED_EMAIL_KEY => {
+      'subject' => '{{submitter.email}} has completed the "{{template.name}}" form',
+      'body' => "Hi,\n\n" \
+                "{{submitter.email}} has completed the \"{{template.name}}\" form:\n\n" \
+                "{{submission.link}}\n\n" \
+                "Thanks,\n" \
+                '{{account.name}}'
+    },
+    SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => {
+      'subject' => 'Your copy of documents',
+      'body' => "Hi there,\n\n" \
+                "Please check the copy of your \"{{template.name}}\" submission in the email attachments.\n" \
+                "Alternatively, you can download the copy using:\n\n" \
+                "{{documents.links}}\n\n" \
                 "Thanks,\n" \
                 '{{account.name}}'
     }

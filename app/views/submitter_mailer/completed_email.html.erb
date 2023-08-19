@@ -1,3 +1,7 @@
-<p>Hi <%= @user.first_name %>,</p>
-<p><%= @submitter.email %> has completed the "<%= @submitter.submission.template.name %>" form.</p>
-<p><%= link_to 'View Submission', submission_url(@submitter.submission) %></p>
+<% if @email_config %>
+  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@email_config.value['body'], submitter: @submitter)))) %>
+<% else %>
+  <p>Hi <%= @user.first_name %>,</p>
+  <p><%= @submitter.email %> has completed the "<%= @submitter.submission.template.name %>" form.</p>
+  <p><%= link_to 'View Submission', submission_url(@submitter.submission) %></p>
+<% end %>
