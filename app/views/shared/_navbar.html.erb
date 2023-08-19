@@ -15,7 +15,14 @@
       <% if Docuseal.demo? %>
         <%= render 'shared/github_button' %>
       <% else %>
-        <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline font-medium text-lg mr-2' %>
+        <div class="flex items-center justify-center space-x-4 mr-1">
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'hidden md:inline-flex items-center font-medium text-lg', data: { prefetch: false } do %>
+            Console
+            <span class="badge badge-warning ml-1">New</span>
+          <% end %>
+          <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
+          <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
+        </div>
       <% end %>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
@@ -23,14 +30,28 @@
         </label>
         <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box whitespace-nowrap text-right">
           <li>
-            <%= link_to settings_profile_index_path do %>
+            <%= link_to settings_profile_index_path, class: 'flex items-center' do %>
               <%= svg_icon('adjustments', class: 'w-5 h-5 stroke-2') %>
               <span class="mr-1">Profile</span>
             <% end %>
           </li>
+          <% unless Docuseal.demo? %>
+            <li>
+              <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
+                <%= svg_icon('terminal', class: 'w-5 h-5 stroke-2') %>
+                Console
+              <% end %>
+            </li>
+          <% end %>
           <li>
-            <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false } do %>
-              <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 inline') %>
+            <%= link_to settings_esign_index_path, class: 'flex items-center' do %>
+              <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
+              <span class="mr-1">Verify PDF</span>
+            <% end %>
+          </li>
+          <li>
+            <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>
+              <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 mr-2 inline') %>
               <span class="mr-1">Sign out</span>
             <% end %>
           </li>
