@@ -1,0 +1,32 @@
+<%= render 'shared/turbo_modal', title: 'Export', close_after_submit: false do %>
+  <div class="space-y-2">
+    <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx }, method: :get, data: { turbo_frame: :_top } do %>
+      <div class="flex items-center p-4 text-left rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">
+        <div class="enabled">
+          <%= svg_icon('download', class: 'w-12 h-12 stroke-2 mr-2') %>
+        </div>
+        <div class="disabled">
+          <%= svg_icon('loader', class: 'w-12 h-12 stroke-2 mr-2 animate-spin') %>
+        </div>
+        <div class="flex flex-col">
+          <span class="mb-1 text-lg font-semibold">XLSX</span>
+          <p class="text-sm"> Primarily opened with Microsoft Excel. Other options include Google Sheets, LibreOffice Calc, and OpenOffice Calc.</p>
+        </div>
+      </div>
+    <% end %>
+    <%= button_to template_submissions_export_index_path(@template), params: { format: :csv }, method: :get, data: { turbo_frame: :_top } do %>
+      <div class="flex items-center text-left p-4 rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">
+        <div class="enabled">
+          <%= svg_icon('download', class: 'w-12 h-12 stroke-2 mr-2') %>
+        </div>
+        <div class="disabled">
+          <%= svg_icon('loader', class: 'w-12 h-12 stroke-2 mr-2 animate-spin') %>
+        </div>
+        <div class="flex flex-col">
+          <span class="mb-1 text-lg font-semibold">CSV</span>
+          <p class="text-sm">Can be opened with Microsoft Excel, Google Sheets, or any text editor like Notepad.</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

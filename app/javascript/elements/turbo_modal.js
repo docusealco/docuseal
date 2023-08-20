@@ -5,8 +5,12 @@ export default actionable(class extends HTMLElement {
     document.body.classList.add('overflow-hidden')
 
     document.addEventListener('keyup', this.onEscKey)
-    document.addEventListener('turbo:submit-end', this.onSubmit)
+
     document.addEventListener('turbo:before-cache', this.close)
+
+    if (this.dataset.closeAfterSubmit !== 'false') {
+      document.addEventListener('turbo:submit-end', this.onSubmit)
+    }
   }
 
   disconnectedCallback () {

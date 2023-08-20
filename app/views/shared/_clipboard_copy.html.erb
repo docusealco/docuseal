@@ -6,12 +6,22 @@
       <span class="hidden md:inline">
         <%= local_assigns[:copy_title] || 'Copy' %>
       </span>
+      <% if local_assigns[:copy_title_md] %>
+        <span class="inline md:hidden">
+          <%= local_assigns[:copy_title_md] %>
+        </span>
+      <% end %>
     </span>
     <span class="hidden peer-checked:flex items-center space-x-2">
       <%= svg_icon(local_assigns[:copied_icon] || 'clipboard_copy', class: local_assigns[:icon_class] || 'w-6 h-6 text-white') %>
       <span class="hidden md:inline">
         <%= local_assigns[:copied_title] || 'Copied' %>
       </span>
+      <% if local_assigns[:copied_title_md] %>
+        <span class="inline md:hidden">
+          <%= local_assigns[:copied_title_md] %>
+        </span>
+      <% end %>
     </span>
   </label>
 </clipboard-copy>

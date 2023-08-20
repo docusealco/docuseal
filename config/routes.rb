@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :console_redirect, only: %i[index]
   resources :templates, only: %i[new create edit show destroy] do
     resources :submissions, only: %i[new create]
+    resources :submissions_export, only: %i[index new]
   end
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do

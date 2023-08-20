@@ -45,6 +45,27 @@ window.customElements.define('set-timezone', SetTimezone)
 window.customElements.define('autoresize-textarea', AutoresizeTextarea)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
+document.addEventListener('turbo:submit-end', async (event) => {
+  const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
+
+  if (!resp?.headers?.get('content-disposition')?.includes('attachment')) {
+    return
+  }
+
+  const url = URL.createObjectURL(await resp.blob())
+  const link = document.createElement('a')
+
+  link.href = url
+  link.setAttribute('download', decodeURIComponent(resp.headers.get('content-disposition').split('"')[1]))
+
+  document.body.appendChild(link)
+
+  link.click()
+
+  document.body.removeChild(link)
+
+  URL.revokeObjectURL(url)
+})
 
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {

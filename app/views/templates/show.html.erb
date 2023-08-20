@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:justify-between items-start mb-8">
+<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center mb-8">
   <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
     <%= @template.name %>
   </h1>
@@ -17,16 +17,22 @@
   </div>
 </div>
 <% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 %>
-  <div class="flex justify-between mb-6 items-end">
+  <div class="flex justify-between mb-6 md:items-end flex-col md:flex-row">
     <p class="text-3xl font-bold">Submissions</p>
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 mt-3 md:mt-0">
+      <%= link_to new_template_submissions_export_path(@template), class: 'order-3 md:order-1 btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+        <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
+        <span>Export</span>
+      <% end %>
       <% if @template.submitters.to_a.size == 1 %>
-        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
+        <span class="order-1">
+          <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
+        </span>
       <% end %>
       <% unless @pagy.count.zero? %>
-        <%= link_to new_template_submission_path(@template), class: 'btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submission_path(@template), class: 'order-1 btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-          <span class="hidden md:block">Add Recipients</span>
+          <span>Add <span class="hidden md:inline">Recipients</span></span>
         <% end %>
       <% end %>
     </div>

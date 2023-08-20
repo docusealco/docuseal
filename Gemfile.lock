@@ -458,6 +458,10 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    rubyXL (3.4.25)
+      nokogiri (>= 1.10.8)
+      rubyzip (>= 1.3.0)
+    rubyzip (2.3.2)
     semantic_range (3.0.0)
     shakapacker (7.0.0)
       activesupport (>= 5.2)
@@ -566,6 +570,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-vips
+  rubyXL
   shakapacker
   sidekiq
   simplecov
