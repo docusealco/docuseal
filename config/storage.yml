@@ -27,3 +27,8 @@ azure:
   storage_access_key: <%= ENV['AZURE_STORAGE_ACCESS_KEY'] %>
   container: <%= ENV['AZURE_CONTAINER'] %>
   public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
+
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+  public: true

@@ -40,7 +40,9 @@
 #  fk_rails_...  (account_id => accounts.id)
 #
 class User < ApplicationRecord
-  ROLES = %w[admin].freeze
+  ROLES = [
+    ADMIN_ROLE = 'admin'
+  ].freeze
 
   EMAIL_REGEXP = /[^@,\s]+@[^@,\s]+/
 
@@ -51,10 +53,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
 
-  attribute :role, :string, default: 'admin'
+  attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :admins, -> { where(role: ADMIN_ROLE) }
 
   def access_token
     super || build_access_token.tap(&:save!)

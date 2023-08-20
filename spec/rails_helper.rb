@@ -7,6 +7,7 @@ require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/cuprite'
+require 'capybara/rspec'
 require 'webmock/rspec'
 
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -45,6 +46,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers
 
   config.before(:each, type: :system) do
     if ENV['HEADLESS'] == 'false'

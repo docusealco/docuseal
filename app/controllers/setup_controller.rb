@@ -16,15 +16,16 @@ class SetupController < ApplicationController
   def create
     @account = Account.new(account_params)
     @account.timezone = Accounts.normalize_timezone(@account.timezone)
-
     @user = @account.users.new(user_params)
+    @encrypted_config = EncryptedConfig.new(encrypted_config_params)
 
     unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
-      @encrypted_config = EncryptedConfig.new(encrypted_config_params)
       @encrypted_config.errors.add(:value, 'should be a valid URL')
 
       return render :index, status: :unprocessable_entity
     end
+
+    return render :index, status: :unprocessable_entity unless @account.valid?
 
     if @user.save
       encrypted_configs = [

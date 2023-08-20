@@ -10,6 +10,7 @@
           data-tip="Type text"
         >
           <button
+            id="type_text_button"
             class="btn btn-sm btn-circle"
             :class="{ 'btn-neutral': isTextSignature, 'btn-outline': !isTextSignature }"
             @click.prevent="toggleTextInput"
@@ -78,6 +79,7 @@
     />
     <input
       v-if="isTextSignature"
+      id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
       :required="field.required"

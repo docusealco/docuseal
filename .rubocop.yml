@@ -53,10 +53,13 @@ RSpec/NestedGroups:
   Max: 6
 
 RSpec/MultipleExpectations:
-  Max: 7
+  Max: 20
 
 RSpec/ExampleLength:
-  Max: 15
+  Max: 40
+
+RSpec/RSpec/MultipleMemoizedHelpers:
+  Max: 6
 
 Rails/I18nLocaleTexts:
   Enabled: false

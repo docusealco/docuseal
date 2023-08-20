@@ -4,6 +4,8 @@ module ActionMailerConfigsInterceptor
   module_function
 
   def delivering_email(message)
+    return message unless Rails.env.production?
+
     if Docuseal.demo?
       message.delivery_method(:test)
 

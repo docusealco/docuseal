@@ -21,13 +21,17 @@
 #  fk_rails_...  (account_id => accounts.id)
 #
 class EncryptedConfig < ApplicationRecord
-  FILES_STORAGE_KEY = 'active_storage'
-  EMAIL_SMTP_KEY = 'action_mailer_smtp'
-  ESIGN_CERTS_KEY = 'esign_certs'
-  APP_URL_KEY = 'app_url'
-  WEBHOOK_URL_KEY = 'webhook_url'
+  CONFIG_KEYS = [
+    FILES_STORAGE_KEY = 'active_storage',
+    EMAIL_SMTP_KEY = 'action_mailer_smtp',
+    ESIGN_CERTS_KEY = 'esign_certs',
+    APP_URL_KEY = 'app_url',
+    WEBHOOK_URL_KEY = 'webhook_url'
+  ].freeze
 
   belongs_to :account
+
+  validates :key, inclusion: { in: CONFIG_KEYS }
 
   encrypts :value
 
