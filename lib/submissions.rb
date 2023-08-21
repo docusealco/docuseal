@@ -6,7 +6,7 @@ module Submissions
   def update_template_fields!(submission)
     submission.template_fields = submission.template.fields
     submission.template_schema = submission.template.schema
-    submission.template_submitters = submission.template.submitters
+    submission.template_submitters = submission.template.submitters if submission.template_submitters.blank?
 
     submission.save!
   end
@@ -15,7 +15,7 @@ module Submissions
     emails = emails.to_s.scan(User::EMAIL_REGEXP) unless emails.is_a?(Array)
 
     emails.map do |email|
-      submission = template.submissions.new(created_by_user: user, source:)
+      submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
       submission.submitters.new(email:,
                                 uuid: template.submitters.first['uuid'],
                                 sent_at: send_email ? Time.current : nil)
@@ -26,7 +26,7 @@ module Submissions
 
   def create_from_submitters(template:, user:, submissions_attrs:, source:, send_email: false)
     submissions_attrs.map do |attrs|
-      submission = template.submissions.new(created_by_user: user, source:)
+      submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
 
       attrs[:submitters].each_with_index do |submitter_attrs, index|
         uuid =
