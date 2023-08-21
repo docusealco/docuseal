@@ -12,7 +12,6 @@ default: &default
   compiler_strategy: digest
   cache_manifest: false
   ensure_consistent_versioning: false
-  useContentHash: false
 
 development:
   <<: *default

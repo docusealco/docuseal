@@ -58,7 +58,7 @@ RSpec/MultipleExpectations:
 RSpec/ExampleLength:
   Max: 40
 
-RSpec/RSpec/MultipleMemoizedHelpers:
+RSpec/MultipleMemoizedHelpers:
   Max: 6
 
 Rails/I18nLocaleTexts:
