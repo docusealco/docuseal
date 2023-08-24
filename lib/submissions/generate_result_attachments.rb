@@ -3,7 +3,12 @@
 module Submissions
   module GenerateResultAttachments
     FONT_SIZE = 11
-    FONT_NAME = 'Helvetica'
+    FONT_PATH = '/LiberationSans-Regular.ttf'
+    FONT_NAME = if File.exist?(FONT_PATH)
+                  FONT_PATH
+                else
+                  'Helvetica'
+                end
 
     INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed by %<email>s with DocuSeal.co'
@@ -32,6 +37,7 @@ module Submissions
 
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
+          pdf.fonts.add(FONT_NAME)
 
           page = pdf.pages[area['page']]
 
@@ -47,6 +53,7 @@ module Submissions
           next if Array.wrap(value).compact_blank.blank?
 
           canvas = page.canvas(type: :overlay)
+          canvas.font(FONT_NAME, size: font_size)
 
           case field['type']
           when 'image', 'signature'
