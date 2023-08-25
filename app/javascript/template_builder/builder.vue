@@ -327,7 +327,7 @@ export default {
     onWindowResize (e) {
       const breakpointLg = 1024
 
-      this.isBreakpointLg = this.$el.getRootNode().children[0].offsetWidth < breakpointLg
+      this.isBreakpointLg = this.$el.getRootNode().querySelector('div').offsetWidth < breakpointLg
     },
     setDocumentRefs (el) {
       if (el) {

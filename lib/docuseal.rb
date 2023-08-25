@@ -15,6 +15,11 @@ module Docuseal
                 else
                   'https://console.docuseal.co'
                 end
+  CDN_URL = if Rails.env.development?
+              'http://localhost:3000'
+            else
+              'https://cdn.docuseal.co'
+            end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
 
