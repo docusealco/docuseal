@@ -81,15 +81,7 @@ RSpec.describe 'Submit Form' do
 
       expect do
         click_on 'Submit'
-      end.to change { ActionMailer::Base.deliveries.size }.by(1)
-
-      email = ActionMailer::Base.deliveries.last
-
-      expect(email.subject).to eq("#{submitter.email} has completed the \"#{template.name}\" form")
-
-      expect(email.body.encoded).to include "Hi #{user.first_name},"
-      expect(email.body.encoded).to include "#{submitter.email} has completed the \"#{template.name}\" form."
-      expect(email.body.encoded).to have_link('View Submission')
+      end.to change(enqueued_jobs, :size).by(3)
     end
   end
 end
