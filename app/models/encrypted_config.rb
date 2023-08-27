@@ -31,8 +31,6 @@ class EncryptedConfig < ApplicationRecord
 
   belongs_to :account
 
-  validates :key, inclusion: { in: CONFIG_KEYS }
-
   encrypts :value
 
   serialize :value, JSON
