@@ -2,6 +2,7 @@
 
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:show]
+  prepend_before_action :maybe_redirect_if_signed_in, only: [:show]
 
   def show; end
 
@@ -21,6 +22,13 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     super
+  end
+
+  def maybe_redirect_if_signed_in
+    return unless signed_in?
+    return if params[:redir].blank?
+
+    redirect_to after_sign_up_path_for(current_user)
   end
 
   def require_no_authentication
