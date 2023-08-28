@@ -30,6 +30,7 @@
       :key="type"
       draggable="true"
       class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+      :style="{ backgroundColor: backgroundColor }"
       @dragstart="onDragstart(type)"
       @dragend="$emit('drag-end')"
       @click="addField(type)"
@@ -101,7 +102,7 @@ export default {
     Field,
     FieldSubmitter
   },
-  inject: ['save'],
+  inject: ['save', 'backgroundColor'],
   props: {
     fields: {
       type: Array,

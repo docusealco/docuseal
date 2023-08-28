@@ -74,6 +74,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
+      backgroundColor: '#faf7f5',
       isDirectUpload: this.dataset.isDirectUpload === 'true'
     })
 

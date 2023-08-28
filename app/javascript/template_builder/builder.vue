@@ -84,7 +84,10 @@
           @down="moveDocument(item, 1)"
           @change="save"
         />
-        <div class="sticky bottom-0 bg-base-100 py-2">
+        <div
+          class="sticky bottom-0 py-2"
+          :class="{ 'bg-base-100': withStickySubmitters }"
+        >
           <Upload
             v-if="sortedDocuments.length"
             :template-id="template.id"
@@ -233,6 +236,7 @@ export default {
       template: this.template,
       save: this.save,
       baseFetch: this.baseFetch,
+      backgroundColor: this.backgroundColor,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -245,6 +249,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    backgroundColor: {
+      type: String,
+      required: false,
+      default: ''
     },
     baseUrl: {
       type: String,

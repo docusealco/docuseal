@@ -24,6 +24,7 @@
     v-show="isFormVisible"
     id="form_container"
     class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border-base-200 border p-4 rounded"
+    :style="{ backgroundColor: backgroundColor }"
   >
     <button
       v-if="!isCompleted"
@@ -374,6 +375,11 @@ export default {
       default: () => []
     },
     authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    backgroundColor: {
       type: String,
       required: false,
       default: ''
