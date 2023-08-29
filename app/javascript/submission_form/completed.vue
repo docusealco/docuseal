@@ -7,13 +7,13 @@
         :height="30"
       />
       <span>
-        Form has been completed!
+        {{ t('form_has_been_completed') }}
       </span>
     </p>
     <div class="space-y-3 mt-5">
       <button
         v-if="canSendEmail && !isDemo"
-        class="white-button flex items-center space-x-1 w-full"
+        class="white-button !h-auto flex items-center space-x-1 w-full"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"
       >
@@ -23,7 +23,7 @@
         />
         <IconMail v-else />
         <span>
-          Send copy via email
+          {{ t('send_copy_via_email') }}
         </span>
       </button>
       <button
@@ -37,7 +37,7 @@
         />
         <IconDownload v-else />
         <span>
-          Download
+          {{ t('download') }}
         </span>
       </button>
       <a
@@ -58,17 +58,17 @@
       >
         <IconLogin />
         <span>
-          Create a Free Account
+          {{ t('create_a_free_account') }}
         </span>
       </a>
     </div>
     <div class="text-center mt-4">
-      Signed with
+      {{ t('signed_with') }}
       <a
         href="https://www.docuseal.co"
         target="_blank"
         class="underline"
-      >DocuSeal</a> - open source documents software
+      >DocuSeal</a> - {{ t('open_source_documents_software') }}
     </div>
   </div>
 </template>
@@ -86,7 +86,7 @@ export default {
     IconLogin,
     IconDownload
   },
-  inject: ['baseUrl'],
+  inject: ['baseUrl', 't'],
   props: {
     submitterSlug: {
       type: String,

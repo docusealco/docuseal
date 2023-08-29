@@ -13,7 +13,7 @@
     class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
     @click.prevent="isFormVisible = true"
   >
-    Submit Form
+    {{ t('submit_form') }}
     <IconArrowsDiagonal
       class="absolute right-0 mr-4"
       :width="20"
@@ -63,7 +63,7 @@
               :for="currentField.uuid"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
-              <template v-if="!currentField.required">(optional)</template>
+              <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
             <div
               v-else
@@ -75,7 +75,7 @@
                 v-model="values[currentField.uuid]"
                 class="base-input !text-2xl w-full"
                 :required="currentField.required"
-                :placeholder="`Type here...${currentField.required ? '' : ' (optional)'}`"
+                :placeholder="`${t('type_here')}...${currentField.required ? '' : ` (${t('optional')})`}`"
                 type="text"
                 :name="`values[${currentField.uuid}]`"
                 @focus="$refs.areas.scrollIntoField(currentField)"
@@ -88,7 +88,7 @@
               :for="currentField.uuid"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
-              <template v-if="!currentField.required">(optional)</template>
+              <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
             <div
               v-else
@@ -112,7 +112,7 @@
               :for="currentField.uuid"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
-              <template v-if="!currentField.required">(optional)</template>
+              <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
             <div
               v-else
@@ -130,7 +130,7 @@
                 value=""
                 :selected="!values[currentField.uuid]"
               >
-                Select your option
+                {{ t('select_your_option') }}
               </option>
               <option
                 v-for="(option, index) in currentField.options"
@@ -148,7 +148,7 @@
               :for="currentField.uuid"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
-              <template v-if="!currentField.required">(optional)</template>
+              <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
             <div class="flex w-full">
               <div class="space-y-3.5 mx-auto">
@@ -196,7 +196,7 @@
             >
               <template v-if="isAnonymousChecboxes">
                 <span class="text-xl">
-                  Complete hightlighted checkboxes and click <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? 'submit' : 'next' }}</span>.
+                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
                 </span>
                 <input
                   v-for="field in currentStepFields"
@@ -278,10 +278,10 @@
                 class="mr-1 animate-spin"
               />
               <span v-if="stepFields.length === currentStep + 1">
-                Submit
+                {{ t('submit') }}
               </span>
               <span v-else>
-                Next
+                {{ t('next') }}
               </span><span
                 v-if="isSubmitting"
                 class="w-6 flex justify-start mr-1"
@@ -321,6 +321,7 @@ import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { t } from './i18n'
 
 export default {
   name: 'SubmissionForm',
@@ -337,7 +338,8 @@ export default {
   },
   provide () {
     return {
-      baseUrl: this.baseUrl
+      baseUrl: this.baseUrl,
+      t: this.t
     }
   },
   props: {
@@ -468,6 +470,7 @@ export default {
     }
   },
   methods: {
+    t,
     goToStep (step, scrollToArea = false, clickUpload = false) {
       this.currentStep = this.stepFields.indexOf(step)
 

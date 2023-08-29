@@ -29,7 +29,7 @@
             {{ message }}
           </div>
           <div class="text-xs">
-            <span class="font-medium">Click to upload</span> or drag and drop files
+            <span class="font-medium">{{ t('click_to_upload') }}</span> {{ t('or_drag_and_drop_files') }}
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
     IconCloudUpload,
     IconInnerShadowTop
   },
-  inject: ['baseUrl'],
+  inject: ['baseUrl', 't'],
   props: {
     message: {
       type: String,
