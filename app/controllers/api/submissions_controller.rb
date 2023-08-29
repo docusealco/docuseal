@@ -9,7 +9,7 @@ module Api
       template = current_account.templates.find(params[:template_id])
 
       submissions =
-        if params[:emails].present?
+        if (params[:emails] || params[:email]).present?
           Submissions.create_from_emails(template:,
                                          user: current_user,
                                          source: :api,
