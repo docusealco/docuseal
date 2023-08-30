@@ -28,7 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
     return unless signed_in?
     return if params[:redir].blank?
 
-    redirect_to after_sign_up_path_for(current_user)
+    redirect_to after_sign_up_path_for(current_user), allow_other_host: true
   end
 
   def require_no_authentication

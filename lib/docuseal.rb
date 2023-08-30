@@ -13,19 +13,23 @@ module Docuseal
   HOST = ENV.fetch('HOST', 'localhost')
   CONSOLE_URL = if Rails.env.development?
                   'http://console.localhost.io:3001'
-                else
+                elsif ENV['MULTITENANT'] == 'true'
                   "https://console.#{HOST}"
+                else
+                  'https://console.docuseal.co'
                 end
   CDN_URL = if Rails.env.development?
               'http://localhost:3000'
-            else
+            elsif ENV['MULTITENANT'] == 'true'
               "https://cdn.#{HOST}"
+            else
+              'https://cdn.docuseal.co'
             end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
 
   DEFAULT_URL_OPTIONS = {
-    host: ENV.fetch('HOST', 'localhost'),
+    host: HOST,
     protocol: ENV['FORCE_SSL'] == 'true' ? 'https' : 'http'
   }.freeze
 
