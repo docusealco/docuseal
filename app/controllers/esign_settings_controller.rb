@@ -42,9 +42,10 @@ class EsignSettingsController < ApplicationController
   def create
     @cert_record = CertFormRecord.new(**cert_params)
 
-    cert_configs = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)
+    cert_configs = EncryptedConfig.find_or_initialize_by(account: current_account,
+                                                         key: EncryptedConfig::ESIGN_CERTS_KEY)
 
-    if cert_configs.value['custom']&.any? { |e| e['name'] == @cert_record.name } ||
+    if (cert_configs.value && cert_configs.value['custom']&.any? { |e| e['name'] == @cert_record.name }) ||
        @cert_record.name == DEFAULT_CERT_NAME
 
       @cert_record.errors.add(:name, 'already exists')
@@ -89,6 +90,7 @@ class EsignSettingsController < ApplicationController
   def save_new_cert!(cert_configs, cert_record)
     pkcs = OpenSSL::PKCS12.new(cert_record.file.read, cert_record.password)
 
+    cert_configs.value ||= {}
     cert_configs.value['custom'] ||= []
     cert_configs.value['custom'].each { |e| e['status'] = 'validate' }
     cert_configs.value['custom'] << {
