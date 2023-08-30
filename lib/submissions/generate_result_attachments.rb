@@ -28,7 +28,7 @@ module Submissions
 
       template = submitter.submission.template
 
-      certs = Accounts.load_signing_certs(submitter.submission.template.account)
+      pkcs = Accounts.load_signing_pkcs(submitter.submission.template.account)
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -171,7 +171,7 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_signed_pdf(pdf:, submitter:, certs:, uuid: item['attachment_uuid'], name: item['name'])
+          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, uuid: item['attachment_uuid'], name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
@@ -189,7 +189,7 @@ module Submissions
         save_signed_pdf(
           pdf: images_pdf,
           submitter:,
-          certs:,
+          pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
           name: template.name
         )
@@ -198,15 +198,15 @@ module Submissions
     end
     # rubocop:enable Metrics
 
-    def save_signed_pdf(pdf:, submitter:, certs:, uuid:, name:)
+    def save_signed_pdf(pdf:, submitter:, pkcs:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = INFO_CREATOR
 
       pdf.sign(io, reason: format(SIGN_REASON, email: submitter.email),
-                   certificate: certs[:cert],
-                   key: certs[:key],
-                   certificate_chain: [certs[:sub_ca], certs[:root_ca]])
+                   certificate: pkcs.certificate,
+                   key: pkcs.key,
+                   certificate_chain: pkcs.ca_certs || [])
 
       ActiveStorage::Attachment.create!(
         uuid:,

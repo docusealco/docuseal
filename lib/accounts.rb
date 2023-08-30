@@ -42,22 +42,19 @@ module Accounts
     new_template
   end
 
-  def load_signing_certs(account)
-    certs =
+  def load_signing_pkcs(account)
+    cert_data =
       if Docuseal.multitenant?
         Docuseal::CERTS
       else
         EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY).value
       end
 
-    {
-      cert: OpenSSL::X509::Certificate.new(certs['cert']),
-      key: OpenSSL::PKey::RSA.new(certs['key']),
-      sub_ca: OpenSSL::X509::Certificate.new(certs['sub_ca']),
-      sub_key: OpenSSL::PKey::RSA.new(certs['sub_key']),
-      root_ca: OpenSSL::X509::Certificate.new(certs['root_ca']),
-      root_key: OpenSSL::PKey::RSA.new(certs['root_key'])
-    }
+    if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })
+      OpenSSL::PKCS12.new(Base64.urlsafe_decode64(default_cert['data']), default_cert['password'])
+    else
+      GenerateCertificate.load_pkcs(cert_data)
+    end
   end
 
   def can_send_emails?(account)

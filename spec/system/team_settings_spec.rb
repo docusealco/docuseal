@@ -70,7 +70,7 @@ RSpec.describe 'Team Settings' do
     it 'removes a user' do
       expect do
         accept_confirm('Are you sure?') do
-          first(:link, 'Delete').click
+          first(:button, 'Delete').click
         end
       end.to change { User.active.count }.by(-1)
 
@@ -86,7 +86,7 @@ RSpec.describe 'Team Settings' do
     it 'does not allow to remove the current user' do
       expect do
         accept_confirm('Are you sure?') do
-          first(:link, 'Delete').click
+          first(:button, 'Delete').click
         end
       end.not_to(change { User.admins.count })
 

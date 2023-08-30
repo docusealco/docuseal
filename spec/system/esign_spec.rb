@@ -8,7 +8,7 @@ RSpec.describe 'PDF Signature Settings' do
 
   before do
     sign_in(user)
-    visit settings_esign_index_path
+    visit settings_esign_path
   end
 
   it 'shows verify signed PDF page' do

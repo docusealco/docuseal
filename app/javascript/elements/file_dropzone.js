@@ -38,7 +38,11 @@ export default actionable(targetable(class extends HTMLElement {
     this.uploadFiles(this.input.files)
   }
 
-  toggleLoading = () => {
+  toggleLoading = (e) => {
+    if (e && e.target && !e.target.contains(this)) {
+      return
+    }
+
     this.loading.classList.toggle('hidden')
     this.icon.classList.toggle('hidden')
     this.classList.toggle('opacity-50')

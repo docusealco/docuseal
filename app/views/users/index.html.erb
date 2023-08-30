@@ -49,7 +49,7 @@
                 <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
                   Edit
                 <% end %>
-                <%= link_to user_path(user), class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
                   Remove
                 <% end %>
               </td>

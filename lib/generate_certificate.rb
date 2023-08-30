@@ -87,4 +87,19 @@ module GenerateCertificate
 
     [cert, key]
   end
+
+  def load_pkcs(cert_data)
+    cert = OpenSSL::X509::Certificate.new(cert_data['cert'])
+    key = OpenSSL::PKey::RSA.new(cert_data['key'])
+    sub_ca = OpenSSL::X509::Certificate.new(cert_data['sub_ca'])
+    root_ca = OpenSSL::X509::Certificate.new(cert_data['root_ca'])
+
+    OpenSSL::PKCS12.create(
+      '',
+      '',
+      key,
+      cert,
+      [sub_ca, root_ca]
+    )
+  end
 end

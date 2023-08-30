@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :verify_pdf_signature, only: %i[create]
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
@@ -71,7 +72,7 @@ Rails.application.routes.draw do
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :email, only: %i[index create], controller: 'email_settings'
     end
-    resources :esign, only: %i[index create], controller: 'esign_settings'
+    resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     if !Docuseal.multitenant? || Docuseal.demo?

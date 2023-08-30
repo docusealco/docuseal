@@ -1,0 +1,99 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow">
+    <div class="max-w-xl">
+      <h1 class="text-4xl font-bold mb-4">PDF Signature</h1>
+      <div id="result">
+        <p class="mb-2">
+          Upload signed PDF file to validate its signature:
+        </p>
+      </div>
+      <%= form_for '', url: verify_pdf_signature_index_path, method: :post, html: { enctype: 'multipart/form-data' } do |f| %>
+        <%= f.button type: 'submit', class: 'flex' do %>
+          <div class="disabled mb-3">
+            <%= svg_icon('loader', class: 'w-5 h-5 animate-spin inline') %>
+            Analyzing...
+          </div>
+        <% end %>
+        <file-dropzone data-is-direct-upload="false" data-name="verify_attachments" data-submit-on-upload="true" class="w-full">
+          <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">
+            <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+              <div class="flex flex-col items-center">
+                <span data-target="file-dropzone.icon">
+                  <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
+                </span>
+                <span data-target="file-dropzone.loading" class="hidden">
+                  <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+                </span>
+                <div class="font-medium mb-1">
+                  Verify Signed PDF
+                </div>
+                <div class="text-xs">
+                  <span class="font-medium">Click to upload</span> or drag and drop files
+                </div>
+              </div>
+              <input id="file" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
+            </div>
+          </label>
+        </file-dropzone>
+      <% end %>
+    </div>
+    <div class="flex justify-between items-end mb-4 mt-8">
+      <h2 class="text-3xl font-bold">Signing Certificates</h2>
+      <%= link_to new_settings_esign_path, class: 'btn btn-primary btn-md', data: { turbo_frame: 'modal' } do %>
+        <%= svg_icon('plus', class: 'w-6 h-6') %>
+        <span>Upload Cert</span>
+      <% end %>
+    </div>
+    <%= render 'alert' %>
+    <div class="overflow-x-auto">
+      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+        <thead class="bg-base-200">
+          <tr class="text-neutral uppercase">
+            <th>
+              Name
+            </th>
+            <th>
+              Valid To
+            </th>
+            <th>
+              Status
+            </th>
+            <th class="text-right" width="1px">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pkcs_list.each do |item| %>
+            <tr scope="row" class="group">
+              <td>
+                <%= item['name'] %>
+              </td>
+              <td>
+                <%= l(item['pkcs'].certificate.not_after.to_date, format: :long, locale: current_account.locale) %>
+              </td>
+              <td>
+                <% if item['status'] == 'default' %>
+                  <span class="badge badge-lg badge-info badge-outline">
+                    <%= item['status'] %>
+                  </span>
+                <% else %>
+                  <%= button_to settings_esign_path, method: :put, params: { name: item['name'] }, class: 'btn btn-outline btn-neutral btn-xs whitespace-nowrap', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
+                    Make Default
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% if item['name'] != EsignSettingsController::DEFAULT_CERT_NAME && item['status'] != 'default' %>
+                  <%= button_to settings_esign_path, params: { name: item['name'] }, method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
+                    Remove
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
