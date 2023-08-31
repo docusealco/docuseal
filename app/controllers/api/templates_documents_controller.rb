@@ -7,12 +7,7 @@ module Api
 
       @template = current_account.templates.find(params[:template_id])
 
-      documents =
-        find_or_create_blobs.map do |blob|
-          document = @template.documents.create!(blob:)
-
-          Templates::ProcessDocument.call(document)
-        end
+      documents = Templates::CreateAttachments.call(@template, params)
 
       schema = documents.map do |doc|
         { attachment_uuid: doc.uuid, name: doc.filename.base }
@@ -26,20 +21,6 @@ module Api
           }
         )
       }
-    end
-
-    private
-
-    def find_or_create_blobs
-      blobs = params[:blobs]&.map do |attrs|
-        ActiveStorage::Blob.find_signed(attrs[:signed_id])
-      end
-
-      blobs || params[:files].map do |file|
-        ActiveStorage::Blob.create_and_upload!(io: file.open,
-                                               filename: file.original_filename,
-                                               content_type: file.content_type)
-      end
     end
   end
 end

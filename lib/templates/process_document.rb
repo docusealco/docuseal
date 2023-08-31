@@ -12,22 +12,20 @@ module Templates
 
     module_function
 
-    def call(attachment)
+    def call(attachment, data)
       if attachment.content_type == PDF_CONTENT_TYPE
-        generate_pdf_preview_images(attachment)
+        generate_pdf_preview_images(attachment, data)
       elsif attachment.image?
-        generate_preview_image(attachment)
+        generate_preview_image(attachment, data)
       end
 
       attachment
     end
 
-    def generate_preview_image(attachment)
-      binary = attachment.download
-
+    def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      image = Vips::Image.new_from_buffer(binary, '')
+      image = Vips::Image.new_from_buffer(data, '')
       image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
 
       io = StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true))
@@ -42,14 +40,12 @@ module Templates
       )
     end
 
-    def generate_pdf_preview_images(attachment)
-      binary = attachment.download
-
+    def generate_pdf_preview_images(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
-      number_of_pages = HexaPDF::Document.new(io: StringIO.new(binary)).pages.size - 1
+      number_of_pages = PDF::Reader.new(StringIO.new(data)).pages.size - 1
 
       (0..number_of_pages).each do |page_number|
-        page = Vips::Image.new_from_buffer(binary, '', dpi: DPI, page: page_number)
+        page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
         io = StringIO.new(page.write_to_buffer(FORMAT, Q: Q, interlace: true))

@@ -19,7 +19,7 @@ FactoryBot.define do
         record: template
       )
 
-      Templates::ProcessDocument.call(attachment)
+      Templates::ProcessDocument.call(attachment, attachment.download)
 
       template.schema = [{ attachment_uuid: attachment.uuid, name: 'sample-document' }]
       template.submitters = [

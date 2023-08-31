@@ -7,7 +7,9 @@ class SubmitFormController < ApplicationController
 
   def show
     @submitter =
-      Submitter.preload(submission: { template: { documents_attachments: { preview_images_attachments: :blob } } })
+      Submitter.preload(submission: [
+                          :template, { template_schema_documents: [:blob, { preview_images_attachments: :blob }] }
+                        ])
                .find_by!(slug: params[:slug])
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?

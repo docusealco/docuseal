@@ -38,6 +38,10 @@ class Submission < ApplicationRecord
 
   attribute :source, :string, default: 'link'
 
+  has_many :template_schema_documents,
+           ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
+           through: :template, source: :documents_attachments
+
   scope :active, -> { where(deleted_at: nil) }
 
   enum :source, {

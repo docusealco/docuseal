@@ -24,7 +24,7 @@
   <div class="flex md:max-h-[calc(100vh-60px)]">
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5">
       <% (@submission.template_schema || @submission.template.schema).each do |item| %>
-        <% document = @submission.template.documents.find { |a| item['attachment_uuid'] == a.uuid } %>
+        <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
           <img src="<%= document.preview_images.first.url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
           <div class="pb-2 pt-1.5 text-center">
@@ -39,11 +39,15 @@
         <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% (@submission.template_schema || @submission.template.schema).each do |item| %>
-          <% document = @submission.template.documents.find { |e| e.uuid == item['attachment_uuid'] } %>
+          <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
+          <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
               <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>" loading="lazy">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
+                <% document_annots_index[index]&.each do |annot| %>
+                  <%= render 'submissions/annotation', annot: %>
+                <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']] %>
                   <% next if value.blank? %>

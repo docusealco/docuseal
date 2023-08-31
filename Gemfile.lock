@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.1.0)
     actioncable (7.0.7)
       actionpack (= 7.0.7)
       activesupport (= 7.0.7)
@@ -68,6 +69,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    afm (0.2.2)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -233,6 +235,7 @@ GEM
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
     hashdiff (1.0.1)
+    hashery (2.1.2)
     hashie (5.0.0)
     hexapdf (0.33.0)
       cmdparse (~> 3.0, >= 3.0.3)
@@ -335,6 +338,12 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    pdf-reader (2.11.0)
+      Ascii85 (~> 1.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     pg (1.5.3)
     premailer (1.21.0)
       addressable
@@ -461,6 +470,7 @@ GEM
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
+    ruby-rc4 (0.1.5)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -502,6 +512,7 @@ GEM
     thor (1.2.2)
     timeout (0.4.0)
     trailblazer-option (0.1.2)
+    ttfunk (1.7.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -564,6 +575,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pagy
+  pdf-reader
   pg
   premailer-rails
   pry-rails

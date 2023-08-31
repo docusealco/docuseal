@@ -10,13 +10,13 @@ class VerifyPdfSignatureController < ApplicationController
     cert_data = if Docuseal.multitenant?
                   Docuseal::CERTS
                 else
-                  EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+                  EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
                 end
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data)
 
-    custom_certs = (cert_data['custom'] || []).map do |e|
-      OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'])
+    custom_certs = cert_data.fetch('custom', []).map do |e|
+      OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'].to_s)
     end
 
     trusted_certs = [default_pkcs.certificate,

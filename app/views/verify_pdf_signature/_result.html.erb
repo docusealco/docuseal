@@ -54,7 +54,7 @@
             </div>
             <div class="flex items-center space-x-1">
               <%= svg_icon('certificate', class: 'w-5 h-5 inline') %>
-              <span><%= signature.signer_name %></span>
+              <span><%= signature.signer_name.force_encoding('UTF-8') %></span>
             </div>
             <div class="flex items-center space-x-1">
               <%= svg_icon('lock_access', class: 'w-5 h-5 inline') %>

@@ -8,11 +8,15 @@
         <%= render 'banner' %>
       </div>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
-        <% document = @submitter.submission.template.documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+        <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
         <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
           <div class="relative my-4 shadow-md">
             <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
             <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
+              <% document_annots_index[index]&.each do |annot| %>
+                <%= render 'submissions/annotation', annot: %>
+              <% end %>
               <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                 <% value = values[field['uuid']] %>
                 <% next if value.blank? %>
