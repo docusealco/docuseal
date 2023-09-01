@@ -37,18 +37,24 @@ module Submitters
 
     def build_documents_array(submitter)
       submitter.documents.preload(:blob).map do |attachment|
-        { name: attachment.filename.base, url: attachment.url }
+        { name: attachment.filename.base, url: rails_storage_proxy_url(attachment) }
       end
     end
 
     def fetch_field_value(field, value, attachments_index)
       if field['type'].in?(%w[image signature])
-        attachments_index[value]&.url
+        rails_storage_proxy_url(attachments_index[value])
       elsif field['type'] == 'file'
-        Array.wrap(value).compact_blank.filter_map { |e| attachments_index[e]&.url }
+        Array.wrap(value).compact_blank.filter_map { |e| rails_storage_proxy_url(e) }
       else
         value
       end
+    end
+
+    def rails_storage_proxy_url(attachment)
+      return if attachment.blank?
+
+      Rails.application.routes.url_helpers.rails_storage_proxy_url(attachment, **Docuseal.default_url_options)
     end
   end
 end
