@@ -1,4 +1,5 @@
 <div class="max-w-xl mx-auto px-2">
+  <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
   <h1 class="text-3xl font-bold text-center my-8">Create Free Account</h1>
   <%= form_for(User.new, html: { class: 'space-y-6' }, url: new_registration_path, data: { turbo: params[:redir].blank? }, method: :get) do |f| %>
     <% if params[:redir].present? %>
