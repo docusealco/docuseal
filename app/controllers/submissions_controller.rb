@@ -20,23 +20,19 @@ class SubmissionsController < ApplicationController
         Submissions.create_from_emails(template: @template,
                                        user: current_user,
                                        source: :invite,
-                                       send_email: params[:send_email] == '1',
+                                       mark_as_sent: params[:send_email] == '1',
                                        emails: params[:emails])
       else
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
-                                           send_email: params[:send_email] == '1',
+                                           mark_as_sent: params[:send_email] == '1',
                                            submissions_attrs: submissions_params[:submission].to_h.values)
       end
 
     submitters = submissions.flat_map(&:submitters)
 
-    if params[:send_email] == '1'
-      submitters.each do |submitter|
-        SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
-      end
-    end
+    Submitters.send_signature_requests(submitters, params)
 
     redirect_to template_path(@template),
                 notice: "#{submitters.size} #{'recipient'.pluralize(submitters.size)} added"
@@ -54,7 +50,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submissions_params
-    params.permit(submission: { submitters: [%i[uuid email]] })
+    params.permit(submission: { submitters: [%i[uuid email phone name]] })
   end
 
   def load_template

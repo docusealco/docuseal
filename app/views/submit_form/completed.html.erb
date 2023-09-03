@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <% if Accounts.can_send_emails?(@submitter.submission.template.account) %>
+      <% if Accounts.can_send_emails?(@submitter.submission.template.account) && @submitter.email.present? %>
         <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
         <div class="divider">OR</div>
       <% end %>

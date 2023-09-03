@@ -27,12 +27,12 @@ RSpec.describe 'Submit Form' do
       click_button 'Start'
 
       fill_in 'First Name', with: 'Adam'
-      click_on 'Next'
+      click_on 'next'
       click_on 'type_text_button'
       fill_in 'signature_text_input', with: 'Adam'
 
       expect do
-        click_on 'Submit'
+        click_on 'submit'
       end.not_to(change(Submitter, :count))
 
       submitter = Submitter.find_by(email: 'john.dou@example.com')
@@ -58,10 +58,10 @@ RSpec.describe 'Submit Form' do
 
     it 'completes the form' do
       fill_in 'First Name', with: 'Sally'
-      click_on 'Next'
+      click_on 'next'
       click_on 'type_text_button'
       fill_in 'signature_text_input', with: 'Sally'
-      click_on 'Submit'
+      click_on 'submit'
 
       submitter.reload
 
@@ -75,12 +75,12 @@ RSpec.describe 'Submit Form' do
 
     it 'sends completed email' do
       fill_in 'First Name', with: 'Adam'
-      click_on 'Next'
+      click_on 'next'
       click_on 'type_text_button'
       fill_in 'signature_text_input', with: 'Adam'
 
       expect do
-        click_on 'Submit'
+        click_on 'submit'
       end.to change(enqueued_jobs, :size).by(3)
     end
   end

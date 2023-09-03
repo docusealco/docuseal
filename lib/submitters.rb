@@ -28,4 +28,14 @@ module Submitters
       record: submitter
     )
   end
+
+  def send_signature_requests(submitters, params)
+    return unless params[:send_email] == true || params[:send_email] == '1'
+
+    submitters.each do |submitter|
+      next if submitter.email.blank?
+
+      SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
+    end
+  end
 end

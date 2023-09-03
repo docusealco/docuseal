@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_19_190316) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_02_171216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,7 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_19_190316) do
   create_table "submitters", force: :cascade do |t|
     t.bigint "submission_id", null: false
     t.string "uuid", null: false
-    t.string "email", null: false
+    t.string "email"
     t.string "slug", null: false
     t.text "values", null: false
     t.string "ua"
@@ -118,6 +118,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_19_190316) do
     t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "phone"
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
     t.index ["submission_id"], name: "index_submitters_on_submission_id"

@@ -1,0 +1,43 @@
+<%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+  <dynamic-list class="space-y-4">
+    <div class="space-y-4">
+      <div class="card card-compact bg-base-200" data-targets="dynamic-list.items">
+        <div class="card-body">
+          <div class="absolute right-4 top-5">
+            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= template.submitters.size == 1 ? 'right-2' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
+              <%= svg_icon('trash', class: 'w-4 h-4') %>
+            </a>
+          </div>
+          <div class="grid <%= 'md:grid-cols-2' if template.submitters.size > 1 %> gap-4">
+            <% template.submitters.each do |item| %>
+              <div class="form-control">
+                <% if template.submitters.size > 1 %>
+                  <label class="label pt-0 pb-1 text-xs">
+                    <span class="label-text"> <%= item['name'] %></span>
+                  </label>
+                <% end %>
+                <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
+                <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered" placeholder="Name" required>
+                <div class="grid <%= 'md:grid-cols-2 gap-1' if template.submitters.size == 1 %>">
+                  <input type="email" name="submission[1][submitters][][email]" autocomplete="off" class="input input-sm input-bordered mt-1.5" placeholder="Email (optional)">
+                  <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="input input-sm input-bordered mt-1.5" placeholder="Phone (optional)">
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
+      <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
+      <span>Add Recipient</span>
+    </a>
+  </dynamic-list>
+  <div>
+    <%= render 'send_email', f:, template: %>
+    <%= render 'send_sms', f: %>
+  </div>
+  <div class="form-control">
+    <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
+  </div>
+<% end %>

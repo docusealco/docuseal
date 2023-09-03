@@ -13,7 +13,7 @@ module Api
           Submissions.create_from_emails(template:,
                                          user: current_user,
                                          source: :api,
-                                         send_email: params[:send_email] != 'false',
+                                         mark_as_sent: params[:send_email] != 'false',
                                          emails: params[:emails] || params[:email])
         else
           submissions_attrs = normalize_submissions_params!(submissions_params[:submission], template)
@@ -21,13 +21,13 @@ module Api
           Submissions.create_from_submitters(template:,
                                              user: current_user,
                                              source: :api,
-                                             send_email: params[:send_email] != 'false',
+                                             mark_as_sent: params[:send_email] != 'false',
                                              submissions_attrs:)
         end
 
       submitters = submissions.flat_map(&:submitters)
 
-      send_invitation_emails(submitters) if params[:send_email] != 'false'
+      Submitters.send_signature_requests(submitters, send_email: params[:send_email] != 'false')
 
       render json: submitters
     rescue UnknownFieldName, UnknownSubmitterName => e
@@ -36,14 +36,8 @@ module Api
 
     private
 
-    def send_invitation_emails(submitters)
-      submitters.each do |submitter|
-        SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
-      end
-    end
-
     def submissions_params
-      params.permit(submission: [{ submitters: [[:uuid, :name, :email, { values: {} }]] }])
+      params.permit(submission: [{ submitters: [[:uuid, :name, :email, :role, :phone, { values: {} }]] }])
     end
 
     def normalize_submissions_params!(submissions_params, template)
@@ -53,7 +47,8 @@ module Api
 
           submitter[:values] =
             normalize_submitter_values(template,
-                                       submitter[:values], submitter[:name] || template.submitters[index]['name'])
+                                       submitter[:values],
+                                       submitter[:role] || template.submitters[index]['name'])
         end
       end
 

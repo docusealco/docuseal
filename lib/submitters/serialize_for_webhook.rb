@@ -14,7 +14,7 @@ module Submitters
                .except('uuid', 'values', 'slug')
                .merge('values' => values,
                       'documents' => documents,
-                      'submitter_name' => submitter_name)
+                      'role' => submitter_name)
     end
 
     def build_values_array(submitter)

@@ -294,7 +294,7 @@
         v-else
         :is-demo="isDemo"
         :with-confetti="withConfetti"
-        :can-send-email="canSendEmail"
+        :can-send-email="canSendEmail && submitter.email"
         :submitter-slug="submitterSlug"
       />
       <div class="flex justify-center">
@@ -343,18 +343,14 @@ export default {
     }
   },
   props: {
-    submitterSlug: {
-      type: String,
+    submitter: {
+      type: Object,
       required: true
     },
     canSendEmail: {
       type: Boolean,
       required: false,
       default: false
-    },
-    submitterUuid: {
-      type: String,
-      required: true
     },
     attachments: {
       type: Array,
@@ -413,6 +409,9 @@ export default {
   computed: {
     currentStepFields () {
       return this.stepFields[this.currentStep]
+    },
+    submitterSlug () {
+      return this.submitter.slug
     },
     isAnonymousChecboxes () {
       return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4

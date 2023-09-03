@@ -1,0 +1,5 @@
+<div class="mt-2 mb-1">
+  <div class="tooltip w-full" data-tip="Unlock with Enterpise">
+    <%= link_to submitter.sent_at? ? 'Re-send SMS' : 'Send SMS', "#{Docuseal::CONSOLE_URL}/#{Docuseal.multitenant? ? 'plans' : 'on_premise'}", class: 'btn btn-sm btn-primary text-gray-400 w-full' %>
+  </div>
+</div>

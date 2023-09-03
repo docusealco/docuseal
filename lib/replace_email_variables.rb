@@ -16,18 +16,22 @@ module ReplaceEmailVariables
         slug: submitter.slug, **Docuseal.default_url_options
       )
 
-    submission_link =
-      Rails.application.routes.url_helpers.submission_url(
-        submitter.submission, **Docuseal.default_url_options
-      )
+    if submitter.submission
+      submission_link =
+        Rails.application.routes.url_helpers.submission_url(
+          submitter.submission, **Docuseal.default_url_options
+        )
+    end
 
-    text = text.gsub(TEMAPLTE_NAME, submitter.template.name)
-    text = text.gsub(SUBMITTER_EMAIL, submitter.email)
+    text = text.gsub(TEMAPLTE_NAME, submitter.template.name) if submitter.template
+    text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
     text = text.gsub(SUBMITTER_LINK, submitter_link)
-    text = text.gsub(SUBMISSION_LINK, submission_link)
+    text = text.gsub(SUBMISSION_LINK, submission_link) if submission_link
     text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter))
 
-    text.gsub(ACCOUNT_NAME, submitter.template.account.name)
+    text.gsub(ACCOUNT_NAME, submitter.template.account.name) if submitter.template
+
+    text
   end
 
   def build_documents_links_text(submitter)

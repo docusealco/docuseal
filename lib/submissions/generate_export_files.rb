@@ -92,14 +92,22 @@ module Submissions
     def build_submission_data(submitter, submitter_name, submitters_count)
       [
         {
+          name: column_name('Name', submitter_name, submitters_count),
+          value: submitter.name
+        },
+        {
           name: column_name('Email', submitter_name, submitters_count),
           value: submitter.email
+        },
+        {
+          name: column_name('Phone', submitter_name, submitters_count),
+          value: submitter.phone
         },
         {
           name: column_name('Completed At', submitter_name, submitters_count),
           value: submitter.completed_at
         }
-      ]
+      ].reject { |e| e[:value].blank? }
     end
 
     def column_name(name, submitter_name, submitters_count = 1)

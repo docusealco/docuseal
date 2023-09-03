@@ -6,9 +6,11 @@
 #
 #  id            :bigint           not null, primary key
 #  completed_at  :datetime
-#  email         :string           not null
+#  email         :string
 #  ip            :string
+#  name          :string
 #  opened_at     :datetime
+#  phone         :string
 #  sent_at       :datetime
 #  slug          :string           not null
 #  ua            :string

@@ -72,18 +72,44 @@
                 <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
               </span>
             </div>
-            <div class="flex items-center space-x-1 mt-1">
-              <%= svg_icon('mail', class: 'w-5 h-5') %>
-              <span>
-                <%= submitter&.email || 'N/A' %>
-              </span>
-            </div>
+            <% if submitter&.name.present? %>
+              <div class="flex items-center space-x-1 mt-1">
+                <%= svg_icon('user', class: 'w-5 h-5') %>
+                <span>
+                  <%= submitter&.name %>
+                </span>
+              </div>
+            <% end %>
+            <% if submitter&.email.present? %>
+              <div class="flex items-center space-x-1 mt-1">
+                <%= svg_icon('mail', class: 'w-5 h-5') %>
+                <span>
+                  <%= submitter.email || 'N/A' %>
+                </span>
+              </div>
+            <% end %>
+            <% if submitter&.phone.present? %>
+              <div class="flex items-center space-x-1 mt-1">
+                <%= svg_icon('phone', class: 'w-5 h-5') %>
+                <span>
+                  <%= submitter.phone %>
+                </span>
+              </div>
+            <% end %>
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
                 <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) : 'Not completed yet' %>
               </span>
             </div>
+            <% if submitter && submitter.email && !submitter.completed_at %>
+              <div class="mt-2 mb-1">
+                <%= button_to button_title(title: submitter.sent_at? ? 'Re-send Email' : 'Send Email', disabled_with: 'Sending'), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
+              </div>
+            <% end %>
+            <% if submitter && submitter.phone && !submitter.completed_at %>
+              <%= render 'send_sms_button', submitter: %>
+            <% end %>
             <% if submitter && !submitter.completed_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">

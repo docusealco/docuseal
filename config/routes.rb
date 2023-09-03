@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
   resources :submitters, only: %i[], param: 'slug' do
     resources :download, only: %i[index], controller: 'submissions_download'
+    resources :send_email, only: %i[create], controller: 'submitters_send_email'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
   end
 
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
     unless Docuseal.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :email, only: %i[index create], controller: 'email_settings'
+      resources :sms, only: %i[index], controller: 'sms_settings'
     end
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
