@@ -33,7 +33,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <submission-form data-is-demo="<%= Docuseal.demo? %>" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-submitter="<%= @submitter.to_json(only: %i[uuid slug email]) %>" data-can-send-email="<%= Accounts.can_send_emails?(Struct.new(:id).new(@submitter.submission.template.account_id)) %>" data-attachments="<%= attachments_index.values.select { |e| e.record_id == @submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>" data-fields="<%= (@submitter.submission.template_fields || @submitter.submission.template.fields).select { |f| f['submitter_uuid'] == @submitter.uuid }.to_json %>" data-values="<%= @submitter.values.to_json %>" data-authenticity-token="<%= form_authenticity_token %>"></submission-form>
+      <%= render 'submission_form', attachments_index:, submitter: @submitter %>
     </div>
   </div>
 </div>

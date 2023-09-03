@@ -293,6 +293,7 @@
       <FormCompleted
         v-else
         :is-demo="isDemo"
+        :attribution="attribution"
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && submitter.email"
         :submitter-slug="submitterSlug"
@@ -391,6 +392,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    attribution: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     values: {
       type: Object,

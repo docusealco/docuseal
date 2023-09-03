@@ -62,7 +62,10 @@
         </span>
       </a>
     </div>
-    <div class="text-center mt-4">
+    <div
+      v-if="attribution"
+      class="text-center mt-4"
+    >
       {{ t('signed_with') }}
       <a
         href="https://www.docuseal.co"
@@ -96,6 +99,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    attribution: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withConfetti: {
       type: Boolean,
