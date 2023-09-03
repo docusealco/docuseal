@@ -110,7 +110,7 @@ const uk = {
   submit_form: 'Надіслати Форму',
   type_here: 'Введіть тут',
   optional: 'необов’язково',
-  select_your_option: 'Виберіть свій варіант',
+  select_your_option: 'Виберіть варіант',
   complete_hightlighted_checkboxes_and_click: 'Заповніть позначені прапорці та натисніть',
   submit: 'надіслати',
   next: 'далі',
@@ -124,7 +124,25 @@ const uk = {
   open_source_documents_software: 'відкритий програмний засіб для документів'
 }
 
-const i18n = { en, es, it, de, fr, pl, uk }
+const cs = {
+  submit_form: 'Odeslat formulář',
+  type_here: 'Zadejte zde',
+  optional: 'volitelné',
+  select_your_option: 'Vyberte svou volbu',
+  complete_hightlighted_checkboxes_and_click: 'Označte zvýrazněné zaškrtávací políčka a klikněte na',
+  submit: 'odeslat',
+  next: 'další',
+  click_to_upload: 'Klikněte pro nahrání',
+  or_drag_and_drop_files: 'nebo přetáhněte soubory sem',
+  send_copy_via_email: 'Odeslat kopii e-mailem',
+  download: 'Stáhnout',
+  form_has_been_completed: 'Formulář byl dokončen!',
+  create_a_free_account: 'Vytvořit bezplatný účet',
+  signed_with: 'Podepsáno pomocí',
+  open_source_documents_software: 'open source software pro dokumenty'
+}
+
+const i18n = { en, es, it, de, fr, pl, uk, cs }
 
 const browserLanguage = (navigator.language || navigator.userLanguage || 'en').split('-')[0]
 
