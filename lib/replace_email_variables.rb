@@ -5,6 +5,7 @@ module ReplaceEmailVariables
   SUBMITTER_LINK = '{{submitter.link}}'
   ACCOUNT_NAME = '{{account.name}}'
   SUBMITTER_EMAIL = '{{submitter.email}}'
+  SUBMITTER_NAME = '{{submitter.name}}'
   SUBMISSION_LINK = '{{submission.link}}'
   DOCUMENTS_LINKS = '{{documents.links}}'
 
@@ -25,6 +26,7 @@ module ReplaceEmailVariables
 
     text = text.gsub(TEMAPLTE_NAME, submitter.template.name) if submitter.template
     text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
+    text = text.gsub(SUBMITTER_NAME, submitter.name || submitter.email || submitter.phone)
     text = text.gsub(SUBMITTER_LINK, submitter_link)
     text = text.gsub(SUBMISSION_LINK, submission_link) if submission_link
     text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter))

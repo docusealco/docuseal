@@ -36,9 +36,9 @@ class AccountConfig < ApplicationRecord
                 '{{account.name}}'
     },
     SUBMITTER_COMPLETED_EMAIL_KEY => {
-      'subject' => '{{submitter.email}} has completed the "{{template.name}}" form',
+      'subject' => '{{submitter.name}} has completed the "{{template.name}}" form',
       'body' => "Hi,\n\n" \
-                "{{submitter.email}} has completed the \"{{template.name}}\" form:\n\n" \
+                "{{submitter.name}} has completed the \"{{template.name}}\" form:\n\n" \
                 "{{submission.link}}\n\n" \
                 "Thanks,\n" \
                 '{{account.name}}'
