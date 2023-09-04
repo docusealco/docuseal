@@ -421,7 +421,8 @@ export default {
       isCompleted: false,
       isFormVisible: true,
       currentStep: 0,
-      isSubmitting: false
+      isSubmitting: false,
+      recalculateButtonDisabledKey: ''
     }
   },
   computed: {
@@ -435,9 +436,13 @@ export default {
       return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4
     },
     isButtonDisabled () {
-      return this.isSubmitting ||
+      if (this.recalculateButtonDisabledKey) {
+        return this.isSubmitting ||
         (this.currentField.required && ['image', 'file'].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length) ||
         (this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted)
+      } else {
+        return false
+      }
     },
     currentField () {
       return this.currentStepFields[0]
@@ -485,6 +490,10 @@ export default {
         scrollbox.parentNode.style.maxHeight = '-webkit-fill-available'
       })
     }
+
+    this.$nextTick(() => {
+      this.recalculateButtonDisabledKey = Math.random()
+    })
   },
   methods: {
     t,
@@ -492,6 +501,8 @@ export default {
       this.currentStep = this.stepFields.indexOf(step)
 
       this.$nextTick(() => {
+        this.recalculateButtonDisabledKey = Math.random()
+
         if (scrollToArea) {
           this.$refs.areas.scrollIntoField(step[0])
         }
