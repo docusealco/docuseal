@@ -45,7 +45,7 @@ module Submitters
       if field['type'].in?(%w[image signature])
         rails_storage_proxy_url(attachments_index[value])
       elsif field['type'] == 'file'
-        Array.wrap(value).compact_blank.filter_map { |e| rails_storage_proxy_url(e) }
+        Array.wrap(value).compact_blank.filter_map { |e| rails_storage_proxy_url(attachments_index[e]) }
       else
         value
       end
