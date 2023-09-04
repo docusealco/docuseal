@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3 } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -179,7 +179,8 @@ export default {
         select: 'Select',
         checkbox: 'Checkbox',
         radio: 'Radio',
-        multiple: 'Multiple Select'
+        multiple: 'Multiple Select',
+        phone: 'Phone'
       }
     },
     fieldIcons () {
@@ -193,7 +194,8 @@ export default {
         checkbox: IconCheckbox,
         radio: IconCircleDot,
         cells: IconColumns3,
-        multiple: IconChecks
+        multiple: IconChecks,
+        phone: IconPhoneCheck
       }
     },
     image () {

@@ -13,7 +13,14 @@ const en = {
   form_has_been_completed: 'Form has been completed!',
   create_a_free_account: 'Create a Free Account',
   signed_with: 'Signed with',
-  open_source_documents_software: 'open source documents software'
+  open_source_documents_software: 'open source documents software',
+  verified_phone_number: 'Verify Phone Number',
+  use_international_format: 'Use internatioanl format: +1xxx',
+  six_digits_code: '6-digit code',
+  change_phone_number: 'Change phone number',
+  sending: 'Sending...',
+  resend_code: 'Re-send code',
+  verification_code_has_been_resent: 'Verification code has been re-sent via SMS'
 }
 
 const es = {
@@ -31,7 +38,14 @@ const es = {
   form_has_been_completed: '¡El formulario ha sido completado!',
   create_a_free_account: 'Crear una Cuenta Gratuita',
   signed_with: 'Firmado con',
-  open_source_documents_software: 'software de documentos de código abierto'
+  open_source_documents_software: 'software de documentos de código abierto',
+  verified_phone_number: 'Verificar número de teléfono',
+  use_international_format: 'Usar formato internacional: +1xxx',
+  six_digits_code: 'Código de 6 dígitos',
+  change_phone_number: 'Cambiar número de teléfono',
+  sending: 'Enviando...',
+  resend_code: 'Reenviar código',
+  verification_code_has_been_resent: 'El código de verificación ha sido reenviado por SMS'
 }
 
 const it = {
@@ -49,7 +63,14 @@ const it = {
   form_has_been_completed: 'Il modulo è stato completato!',
   create_a_free_account: 'Crea un Account Gratuito',
   signed_with: 'Firmato con',
-  open_source_documents_software: 'software di documenti open source'
+  open_source_documents_software: 'software di documenti open source',
+  verified_phone_number: 'Verifica numero di telefono',
+  use_international_format: 'Usa formato internazionale: +1xxx',
+  six_digits_code: 'Codice a 6 cifre',
+  change_phone_number: 'Cambia numero di telefono',
+  sending: 'Invio in corso...',
+  resend_code: 'Rinvia codice',
+  verification_code_has_been_resent: 'Il codice di verifica è stato rinviato tramite SMS'
 }
 
 const de = {
@@ -67,7 +88,14 @@ const de = {
   form_has_been_completed: 'Formular wurde ausgefüllt!',
   create_a_free_account: 'Kostenloses Konto erstellen',
   signed_with: 'Unterschrieben mit',
-  open_source_documents_software: 'Open-Source-Dokumentensoftware'
+  open_source_documents_software: 'Open-Source-Dokumentensoftware',
+  verified_phone_number: 'Telefonnummer überprüfen',
+  use_international_format: 'Internationales Format verwenden: +1xxx',
+  six_digits_code: '6-stelliger Code',
+  change_phone_number: 'Telefonnummer ändern',
+  sending: 'Senden...',
+  resend_code: 'Code erneut senden',
+  verification_code_has_been_resent: 'Die Verifizierungscode wurde erneut per SMS gesendet'
 }
 
 const fr = {
@@ -85,7 +113,14 @@ const fr = {
   form_has_been_completed: 'Le formulaire a été complété !',
   create_a_free_account: 'Créer un Compte Gratuit',
   signed_with: 'Signé avec',
-  open_source_documents_software: 'logiciel de documents open source'
+  open_source_documents_software: 'logiciel de documents open source',
+  verified_phone_number: 'Vérifier le numéro de téléphone',
+  use_international_format: 'Utiliser le format international : +1xxx',
+  six_digits_code: 'Code à 6 chiffres',
+  change_phone_number: 'Changer le numéro de téléphone',
+  sending: 'Envoi en cours...',
+  resend_code: 'Renvoyer le code',
+  verification_code_has_been_resent: 'Le code de vérification a été renvoyé par SMS'
 }
 
 const pl = {
@@ -103,7 +138,14 @@ const pl = {
   form_has_been_completed: 'Formularz został wypełniony!',
   create_a_free_account: 'Utwórz darmowe konto',
   signed_with: 'Podpisane za pomocą',
-  open_source_documents_software: 'oprogramowanie do dokumentów open source'
+  open_source_documents_software: 'oprogramowanie do dokumentów open source',
+  verified_phone_number: 'Zweryfikuj numer telefonu',
+  use_international_format: 'Użyj międzynarodowego formatu: +1xxx',
+  six_digits_code: '6-cyfrowy kod',
+  change_phone_number: 'Zmień numer telefonu',
+  sending: 'Wysyłanie...',
+  resend_code: 'Ponownie wyślij kod',
+  verification_code_has_been_resent: 'Kod weryfikacyjny został ponownie wysłany'
 }
 
 const uk = {
@@ -121,7 +163,14 @@ const uk = {
   form_has_been_completed: 'Форму заповнено!',
   create_a_free_account: 'Створити безкоштовний обліковий запис',
   signed_with: 'Підписано за допомогою',
-  open_source_documents_software: 'відкритий програмний засіб для документів'
+  open_source_documents_software: 'відкритий програмний засіб для документів',
+  verified_phone_number: 'Підтвердіть номер телефону',
+  use_international_format: 'Використовуйте міжнародний формат: +1xxx',
+  six_digits_code: '6-значний код',
+  change_phone_number: 'Змінити номер телефону',
+  sending: 'Надсилаю...',
+  resend_code: 'Повторно відправити код',
+  verification_code_has_been_resent: 'Код підтвердження був повторно надісланий'
 }
 
 const cs = {
@@ -139,7 +188,14 @@ const cs = {
   form_has_been_completed: 'Formulář byl dokončen!',
   create_a_free_account: 'Vytvořit bezplatný účet',
   signed_with: 'Podepsáno pomocí',
-  open_source_documents_software: 'open source software pro dokumenty'
+  open_source_documents_software: 'open source software pro dokumenty',
+  verified_phone_number: 'Ověřte telefonní číslo',
+  use_international_format: 'Použijte mezinárodní formát: +1xxx',
+  six_digits_code: '6-místný kód',
+  change_phone_number: 'Změnit telefonní číslo',
+  sending: 'Odesílání...',
+  resend_code: 'Znovu odeslat kód',
+  verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán'
 }
 
 const i18n = { en, es, it, de, fr, pl, uk, cs }

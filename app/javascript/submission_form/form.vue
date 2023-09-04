@@ -265,6 +265,16 @@
             :submitter-slug="submitterSlug"
             @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
           />
+          <PhoneStep
+            v-else-if="currentField.type === 'phone'"
+            ref="currentStep"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            :default-value="submitter.phone"
+            :submitter-slug="submitterSlug"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+            @submit="submitStep"
+          />
         </div>
         <div class="mt-6 md:mt-8">
           <button
@@ -295,7 +305,7 @@
         :is-demo="isDemo"
         :attribution="attribution"
         :with-confetti="withConfetti"
-        :can-send-email="canSendEmail && submitter.email"
+        :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
       />
       <div class="flex justify-center">
@@ -320,6 +330,7 @@ import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
+import PhoneStep from './phone_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import { t } from './i18n'
@@ -334,6 +345,7 @@ export default {
     MultiSelectStep,
     IconInnerShadowTop,
     IconArrowsDiagonal,
+    PhoneStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },
@@ -504,28 +516,40 @@ export default {
     async submitStep () {
       this.isSubmitting = true
 
-      const stepPromise = this.currentField.type === 'signature'
+      const stepPromise = ['signature', 'phone'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 
-      await stepPromise()
+      stepPromise().then(() => {
+        const formData = new FormData(this.$refs.form)
 
-      const formData = new FormData(this.$refs.form)
-
-      if (this.currentStep === this.stepFields.length - 1) {
-        formData.append('completed', 'true')
-      }
-
-      this.saveStep(formData).then(response => {
-        const nextStep = this.stepFields[this.currentStep + 1]
-
-        if (nextStep) {
-          this.goToStep(this.stepFields[this.currentStep + 1], true)
-        } else {
-          this.isCompleted = true
+        if (this.currentStep === this.stepFields.length - 1) {
+          formData.append('completed', 'true')
         }
+
+        this.saveStep(formData).then(async (response) => {
+          if (response.status === 422) {
+            const data = await response.json()
+
+            alert(data.error || 'Value is invalid')
+
+            return Promise.reject(new Error(data.error))
+          }
+
+          const nextStep = this.stepFields[this.currentStep + 1]
+
+          if (nextStep) {
+            this.goToStep(this.stepFields[this.currentStep + 1], true)
+          } else {
+            this.isCompleted = true
+          }
+        }).catch(error => {
+          console.error('Error submitting form:', error)
+        }).finally(() => {
+          this.isSubmitting = false
+        })
       }).catch(error => {
-        console.error('Error submitting form:', error)
+        console.log(error)
       }).finally(() => {
         this.isSubmitting = false
       })

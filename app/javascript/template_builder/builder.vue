@@ -237,6 +237,7 @@ export default {
       save: this.save,
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
+      withPhone: this.withPhone,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -269,6 +270,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withPhone: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     fetchOptions: {
       type: Object,

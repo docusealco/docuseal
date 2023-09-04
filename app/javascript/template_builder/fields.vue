@@ -25,49 +25,79 @@
     />
   </div>
   <div class="grid grid-cols-3 gap-1 pb-2">
-    <button
+    <template
       v-for="(icon, type) in fieldIcons"
       :key="type"
-      draggable="true"
-      class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-      :style="{ backgroundColor: backgroundColor }"
-      @dragstart="onDragstart(type)"
-      @dragend="$emit('drag-end')"
-      @click="addField(type)"
     >
-      <div class="w-0 absolute left-0">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="cursor-grab"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
+      <button
+        v-if="withPhone || type != 'phone'"
+        draggable="true"
+        class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+        :style="{ backgroundColor: backgroundColor }"
+        @dragstart="onDragstart(type)"
+        @dragend="$emit('drag-end')"
+        @click="addField(type)"
+      >
+        <div class="w-0 absolute left-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="cursor-grab"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
             fill="none"
-          />
-          <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M9 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M15 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M15 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M15 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-        </svg>
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              stroke="none"
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M9 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M15 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M15 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M15 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          </svg>
+        </div>
+        <div class="flex items-center flex-col px-2 py-2">
+          <component :is="icon" />
+          <span class="text-xs mt-1">
+            {{ fieldNames[type] }}
+          </span>
+        </div>
+      </button>
+      <div
+        v-else
+        class="tooltip flex"
+        data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
+      >
+        <a
+          href="https://www.docuseal.co/pricing"
+          target="_blank"
+          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          :style="{ backgroundColor: backgroundColor }"
+        >
+          <div class="w-0 absolute left-0">
+            <IconLock
+              width="18"
+              height="18"
+              stroke-width="1.5"
+            />
+          </div>
+          <div class="flex items-center flex-col px-2 py-2">
+            <component :is="icon" />
+            <span class="text-xs mt-1">
+              {{ fieldNames[type] }}
+            </span>
+          </div>
+        </a>
       </div>
-      <div class="flex items-center flex-col px-2 py-2">
-        <component :is="icon" />
-        <span class="text-xs mt-1">
-          {{ fieldNames[type] }}
-        </span>
-      </div>
-    </button>
+    </template>
   </div>
   <div
     v-if="fields.length < 4"
@@ -95,14 +125,16 @@ import Field from './field'
 import { v4 } from 'uuid'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
+import { IconLock } from '@tabler/icons-vue'
 
 export default {
   name: 'TemplateFields',
   components: {
     Field,
-    FieldSubmitter
+    FieldSubmitter,
+    IconLock
   },
-  inject: ['save', 'backgroundColor'],
+  inject: ['save', 'backgroundColor', 'withPhone'],
   props: {
     fields: {
       type: Array,

@@ -23,6 +23,8 @@ class SubmitFormController < ApplicationController
     Submitters::SubmitValues.call(submitter, params, request)
 
     head :ok
+  rescue Submitters::SubmitValues::ValidationError => e
+    render json: { error: e.message }, status: :unprocessable_entity
   end
 
   def completed

@@ -18,33 +18,36 @@
       :class="menuClasses"
       @click="closeDropdown"
     >
-      <li
+      <template
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <a
-          href="#"
-          class="text-sm py-1 px-2"
-          :class="{ 'active': type === modelValue }"
-          @click.prevent="$emit('update:model-value', type)"
-        >
-          <component
-            :is="icon"
-            :stroke-width="1.6"
-            :width="20"
-          />
-          {{ fieldNames[type] }}
-        </a>
-      </li>
+        <li v-if="withPhone || type !== 'phone'">
+          <a
+            href="#"
+            class="text-sm py-1 px-2"
+            :class="{ 'active': type === modelValue }"
+            @click.prevent="$emit('update:model-value', type)"
+          >
+            <component
+              :is="icon"
+              :stroke-width="1.6"
+              :width="20"
+            />
+            {{ fieldNames[type] }}
+          </a>
+        </li>
+      </template>
     </ul>
   </span>
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3 } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
+  inject: ['withPhone'],
   props: {
     modelValue: {
       type: String,
@@ -79,7 +82,8 @@ export default {
         checkbox: 'Checkbox',
         multiple: 'Multiple',
         radio: 'Radio',
-        cells: 'Cells'
+        cells: 'Cells',
+        phone: 'Phone'
       }
     },
     fieldIcons () {
@@ -93,7 +97,8 @@ export default {
         checkbox: IconCheckbox,
         cells: IconColumns3,
         multiple: IconChecks,
-        radio: IconCircleDot
+        radio: IconCircleDot,
+        phone: IconPhoneCheck
       }
     }
   },
