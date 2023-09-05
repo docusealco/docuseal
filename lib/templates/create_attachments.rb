@@ -3,14 +3,19 @@
 module Templates
   module CreateAttachments
     PDF_CONTENT_TYPE = 'application/pdf'
+    InvalidFileType = Class.new(StandardError)
 
     module_function
 
     def call(template, params)
       find_or_create_blobs(params).map do |blob|
-        document = template.documents.create!(blob:)
-
         document_data = blob.download
+
+        if !blob.image? && blob.content_type != PDF_CONTENT_TYPE
+          blob, document_data = handle_file_types(blob, document_data)
+        end
+
+        document = template.documents.create!(blob:)
 
         if blob.content_type == PDF_CONTENT_TYPE && blob.metadata['pdf'].nil?
           blob.metadata['pdf'] = { 'annotations' => Templates::BuildAnnotations.call(document_data) }
@@ -42,6 +47,10 @@ module Templates
           content_type: file.content_type
         )
       end
+    end
+
+    def handle_file_types(_document_data, blob)
+      raise InvalidFileType, blob.content_type
     end
   end
 end

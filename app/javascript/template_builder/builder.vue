@@ -75,6 +75,7 @@
           :with-arrows="template.schema.length > 1"
           :item="item"
           :document="sortedDocuments[index]"
+          :accept-file-types="acceptFileTypes"
           :template="template"
           :is-direct-upload="isDirectUpload"
           @scroll-to="scrollIntoDocument(item)"
@@ -90,6 +91,7 @@
         >
           <Upload
             v-if="sortedDocuments.length"
+            :accept-file-types="acceptFileTypes"
             :template-id="template.id"
             :is-direct-upload="isDirectUpload"
             @success="updateFromUpload"
@@ -104,6 +106,7 @@
           <Dropzone
             v-if="!sortedDocuments.length"
             :template-id="template.id"
+            :accept-file-types="acceptFileTypes"
             :is-direct-upload="isDirectUpload"
             @success="updateFromUpload"
           />
@@ -255,6 +258,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    acceptFileTypes: {
+      type: String,
+      required: false,
+      default: 'image/*, application/pdf'
     },
     baseUrl: {
       type: String,

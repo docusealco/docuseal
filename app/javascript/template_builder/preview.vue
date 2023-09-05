@@ -18,6 +18,7 @@
             <ReplaceButton
               :is-direct-upload="isDirectUpload"
               :template-id="template.id"
+              :accept-file-types="acceptFileTypes"
               class="opacity-0 group-hover:opacity-100"
               @click.stop
               @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
@@ -93,6 +94,11 @@ export default {
     document: {
       type: Object,
       required: true
+    },
+    acceptFileTypes: {
+      type: String,
+      required: false,
+      default: 'image/*, application/pdf'
     },
     isDirectUpload: {
       type: Boolean,

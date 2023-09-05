@@ -14,7 +14,7 @@
         ref="input"
         name="files[]"
         type="file"
-        accept="image/*, application/pdf"
+        :accept="acceptFileTypes"
         @change="upload"
       >
     </form>
@@ -31,6 +31,11 @@ export default {
     templateId: {
       type: [Number, String],
       required: true
+    },
+    acceptFileTypes: {
+      type: String,
+      required: false,
+      default: 'image/*, application/pdf'
     },
     isDirectUpload: {
       type: Boolean,

@@ -42,7 +42,7 @@
           ref="input"
           type="file"
           name="files[]"
-          accept="image/*, application/pdf"
+          :accept="acceptFileTypes"
           multiple
           @change="upload"
         >
@@ -67,6 +67,11 @@ export default {
       type: [Number, String],
       required: true
     },
+    acceptFileTypes: {
+      type: String,
+      required: false,
+      default: 'image/*, application/pdf'
+    },
     isDirectUpload: {
       type: Boolean,
       required: true,
@@ -89,8 +94,10 @@ export default {
         return 'Uploading...'
       } else if (this.isProcessing) {
         return 'Processing...'
-      } else {
+      } else if (this.acceptFileTypes === 'image/*, application/pdf') {
         return 'Add PDF documents or images'
+      } else {
+        return 'Add documents or images'
       }
     }
   },
@@ -102,7 +109,7 @@ export default {
   methods: {
     upload: Upload.methods.upload,
     onDropFiles (e) {
-      if ([...e.dataTransfer.files].every((f) => f.type.match(/(?:image\/)|(?:application\/pdf)/))) {
+      if (this.acceptFileTypes !== 'image/*, application/pdf' || [...e.dataTransfer.files].every((f) => f.type.match(/(?:image\/)|(?:application\/pdf)/))) {
         this.$refs.input.files = e.dataTransfer.files
 
         this.upload()
