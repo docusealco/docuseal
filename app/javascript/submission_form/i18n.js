@@ -20,7 +20,8 @@ const en = {
   change_phone_number: 'Change phone number',
   sending: 'Sending...',
   resend_code: 'Re-send code',
-  verification_code_has_been_resent: 'Verification code has been re-sent via SMS'
+  verification_code_has_been_resent: 'Verification code has been re-sent via SMS',
+  email_has_been_sent: 'Email has been sent'
 }
 
 const es = {
@@ -45,7 +46,8 @@ const es = {
   change_phone_number: 'Cambiar número de teléfono',
   sending: 'Enviando...',
   resend_code: 'Reenviar código',
-  verification_code_has_been_resent: 'El código de verificación ha sido reenviado por SMS'
+  verification_code_has_been_resent: 'El código de verificación ha sido reenviado por SMS',
+  email_has_been_sent: 'El correo electrónico ha sido enviado'
 }
 
 const it = {
@@ -70,7 +72,8 @@ const it = {
   change_phone_number: 'Cambia numero di telefono',
   sending: 'Invio in corso...',
   resend_code: 'Rinvia codice',
-  verification_code_has_been_resent: 'Il codice di verifica è stato rinviato tramite SMS'
+  verification_code_has_been_resent: 'Il codice di verifica è stato rinviato tramite SMS',
+  email_has_been_sent: "L'email è stata inviata"
 }
 
 const de = {
@@ -95,7 +98,8 @@ const de = {
   change_phone_number: 'Telefonnummer ändern',
   sending: 'Senden...',
   resend_code: 'Code erneut senden',
-  verification_code_has_been_resent: 'Die Verifizierungscode wurde erneut per SMS gesendet'
+  verification_code_has_been_resent: 'Die Verifizierungscode wurde erneut per SMS gesendet',
+  email_has_been_sent: 'Die E-Mail wurde gesendet'
 }
 
 const fr = {
@@ -120,7 +124,8 @@ const fr = {
   change_phone_number: 'Changer le numéro de téléphone',
   sending: 'Envoi en cours...',
   resend_code: 'Renvoyer le code',
-  verification_code_has_been_resent: 'Le code de vérification a été renvoyé par SMS'
+  verification_code_has_been_resent: 'Le code de vérification a été renvoyé par SMS',
+  email_has_been_sent: "L'email a été envoyé"
 }
 
 const pl = {
@@ -145,7 +150,8 @@ const pl = {
   change_phone_number: 'Zmień numer telefonu',
   sending: 'Wysyłanie...',
   resend_code: 'Ponownie wyślij kod',
-  verification_code_has_been_resent: 'Kod weryfikacyjny został ponownie wysłany'
+  verification_code_has_been_resent: 'Kod weryfikacyjny został ponownie wysłany',
+  email_has_been_sent: 'E-mail został wysłany'
 }
 
 const uk = {
@@ -170,7 +176,8 @@ const uk = {
   change_phone_number: 'Змінити номер телефону',
   sending: 'Надсилаю...',
   resend_code: 'Повторно відправити код',
-  verification_code_has_been_resent: 'Код підтвердження був повторно надісланий'
+  verification_code_has_been_resent: 'Код підтвердження був повторно надісланий',
+  email_has_been_sent: 'Електронний лист був відправлений'
 }
 
 const cs = {
@@ -195,7 +202,8 @@ const cs = {
   change_phone_number: 'Změnit telefonní číslo',
   sending: 'Odesílání...',
   resend_code: 'Znovu odeslat kód',
-  verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán'
+  verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán',
+  email_has_been_sent: 'E-mail byl odeslán'
 }
 
 const pt = {
@@ -220,7 +228,8 @@ const pt = {
   change_phone_number: 'Alterar número de telefone',
   sending: 'Enviando...',
   resend_code: 'Reenviar código',
-  verification_code_has_been_resent: 'O código de verificação foi reenviado via SMS'
+  verification_code_has_been_resent: 'O código de verificação foi reenviado via SMS',
+  email_has_been_sent: 'Email enviado'
 }
 
 const i18n = { en, es, it, de, fr, pl, uk, cs, pt }

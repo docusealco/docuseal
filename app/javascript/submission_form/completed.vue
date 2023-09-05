@@ -140,7 +140,7 @@ export default {
       fetch(this.baseUrl + `/send_submission_email.json?submitter_slug=${this.submitterSlug}`, {
         method: 'POST'
       }).then(() => {
-        alert('Email has been sent')
+        alert(this.t('email_has_been_sent'))
       }).finally(() => {
         this.isSendingCopy = false
       })
