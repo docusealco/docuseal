@@ -198,7 +198,32 @@ const cs = {
   verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán'
 }
 
-const i18n = { en, es, it, de, fr, pl, uk, cs }
+const pt = {
+  submit_form: 'Enviar Formulário',
+  type_here: 'Digite aqui',
+  optional: 'opcional',
+  select_your_option: 'Selecione sua opção',
+  complete_hightlighted_checkboxes_and_click: 'Complete as caixas de seleção destacadas e clique',
+  submit: 'enviar',
+  next: 'próximo',
+  click_to_upload: 'Clique para fazer o upload',
+  or_drag_and_drop_files: 'ou arraste e solte arquivos',
+  send_copy_via_email: 'Enviar cópia por e-mail',
+  download: 'Baixar',
+  form_has_been_completed: 'O formulário foi concluído!',
+  create_a_free_account: 'Criar uma Conta Gratuita',
+  signed_with: 'Assinado com',
+  open_source_documents_software: 'software de documentos de código aberto',
+  verified_phone_number: 'Verificar Número de Telefone',
+  use_international_format: 'Use formato internacional: +1xxx',
+  six_digits_code: 'Código de 6 dígitos',
+  change_phone_number: 'Alterar número de telefone',
+  sending: 'Enviando...',
+  resend_code: 'Reenviar código',
+  verification_code_has_been_resent: 'O código de verificação foi reenviado via SMS'
+}
+
+const i18n = { en, es, it, de, fr, pl, uk, cs, pt }
 
 const browserLanguage = (navigator.language || navigator.userLanguage || 'en').split('-')[0]
 
