@@ -202,7 +202,7 @@ const i18n = { en, es, it, de, fr, pl, uk, cs }
 
 const browserLanguage = (navigator.language || navigator.userLanguage || 'en').split('-')[0]
 
-const t = (key) => i18n[browserLanguage][key] || i18n.en[key] || key
+const t = (key) => i18n[browserLanguage]?.[key] || i18n.en[key] || key
 
 export default i18n
 export { t }
