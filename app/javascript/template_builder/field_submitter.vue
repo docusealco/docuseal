@@ -29,8 +29,11 @@
           @update:model-value="$emit('name-change', selectedSubmitter)"
         />
       </div>
-      <span>
-        ▼
+      <span class="flex items-center">
+        <IconPlus
+          width="18"
+          height="18"
+        />
       </span>
     </label>
     <ul
@@ -86,7 +89,7 @@
 </template>
 
 <script>
-import { IconUserPlus, IconTrashX } from '@tabler/icons-vue'
+import { IconUserPlus, IconTrashX, IconPlus } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
 
@@ -95,6 +98,7 @@ export default {
   components: {
     IconUserPlus,
     Contenteditable,
+    IconPlus,
     IconTrashX
   },
   props: {
