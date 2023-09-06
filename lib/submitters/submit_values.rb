@@ -21,7 +21,9 @@ module Submitters
         SendWebhookRequestJob.perform_later(submitter)
       end
 
-      submitter.submission.template.account.users.active.admins.each do |user|
+      user = submitter.submission.created_by_user || submitter.template.author
+
+      if submitter.template.account.users.exists?(id: user.id)
         SubmitterMailer.completed_email(submitter, user).deliver_later!
       end
 
