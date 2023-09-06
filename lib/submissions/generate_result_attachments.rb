@@ -40,6 +40,7 @@ module Submissions
           pdf.fonts.add(FONT_NAME)
 
           page = pdf.pages[area['page']]
+          page.rotate(0, flatten: true) if page[:Rotate] != 0
 
           page[:Annots] ||= []
           page[:Annots] = page[:Annots].reject { |e| e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field') }
