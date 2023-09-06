@@ -39,6 +39,7 @@ class SubmitterMailer < ApplicationMailer
 
     mail(from: from_address_for_submitter(submitter),
          to: user.email,
+         bcc: @current_account.account_configs.find_by(key: 'bcc_emails')&.value,
          subject:)
   end
 
