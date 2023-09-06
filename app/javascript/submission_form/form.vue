@@ -531,14 +531,14 @@ export default {
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 
-      stepPromise().then(() => {
+      stepPromise().then(async () => {
         const formData = new FormData(this.$refs.form)
 
         if (this.currentStep === this.stepFields.length - 1) {
           formData.append('completed', 'true')
         }
 
-        this.saveStep(formData).then(async (response) => {
+        await this.saveStep(formData).then(async (response) => {
           if (response.status === 422) {
             const data = await response.json()
 
