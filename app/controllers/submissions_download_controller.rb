@@ -8,7 +8,7 @@ class SubmissionsDownloadController < ApplicationController
 
     Submissions::EnsureResultGenerated.call(submitter)
 
-    last_submitter = submitter.submission.submitters.order(:completed_at).last
+    last_submitter = submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
 
     Submissions::EnsureResultGenerated.call(last_submitter)
 
