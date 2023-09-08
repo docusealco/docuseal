@@ -13,19 +13,9 @@ module Submitters
 
       submitter.submission.save!
 
-      return unless submitter.completed_at?
+      return submitter unless submitter.completed_at?
 
-      GenerateSubmitterResultAttachmentsJob.perform_later(submitter)
-
-      if submitter.account.encrypted_configs.exists?(key: EncryptedConfig::WEBHOOK_URL_KEY)
-        SendWebhookRequestJob.perform_later(submitter)
-      end
-
-      user = submitter.submission.created_by_user || submitter.template.author
-
-      if submitter.template.account.users.exists?(id: user.id)
-        SubmitterMailer.completed_email(submitter, user).deliver_later!
-      end
+      ProcessSubmitterCompletionJob.perform_later(submitter)
 
       submitter
     end

@@ -38,10 +38,8 @@ class AccountConfig < ApplicationRecord
     SUBMITTER_COMPLETED_EMAIL_KEY => {
       'subject' => '{{submitter.name}} has completed the "{{template.name}}" form',
       'body' => "Hi,\n\n" \
-                "{{submitter.name}} has completed the \"{{template.name}}\" form:\n\n" \
-                "{{submission.link}}\n\n" \
-                "Thanks,\n" \
-                '{{account.name}}'
+                "\"{{template.name}}\" form has been completed by {{submission.submitters}}\n\n" \
+                '{{submission.link}}'
     },
     SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => {
       'subject' => 'Your copy of documents',

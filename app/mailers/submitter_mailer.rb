@@ -17,18 +17,27 @@ class SubmitterMailer < ApplicationMailer
         'You have been invited to submit a form'
       end
 
-    mail(to: @submitter.email,
+    mail(to: @submitter.friendly_name,
          from: from_address_for_submitter(submitter),
          subject:,
-         reply_to: submitter.submission.created_by_user&.friendly_name)
+         reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name)
   end
 
-  def completed_email(submitter, user)
+  def completed_email(submitter, user, bcc: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
+    @submission = submitter.submission
     @user = user
 
+    Submissions::EnsureResultGenerated.call(submitter)
+
     @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
+
+    documents = Submitters.select_attachments_for_download(submitter)
+
+    documents.each do |attachment|
+      attachments[attachment.filename.to_s] = attachment.download
+    end
 
     subject =
       if @email_config
@@ -38,12 +47,12 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(from: from_address_for_submitter(submitter),
-         to: user.email,
-         bcc: @current_account.account_configs.find_by(key: 'bcc_emails')&.value,
+         to: user.friendly_name,
+         bcc:,
          subject:)
   end
 
-  def documents_copy_email(submitter)
+  def documents_copy_email(submitter, to: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
 
@@ -65,7 +74,7 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(from: from_address_for_submitter(submitter),
-         to: submitter.email,
+         to: to || @submitter.friendly_name,
          subject:)
   end
 

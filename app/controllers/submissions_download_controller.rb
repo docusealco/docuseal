@@ -8,8 +8,12 @@ class SubmissionsDownloadController < ApplicationController
 
     Submissions::EnsureResultGenerated.call(submitter)
 
+    last_submitter = submitter.submission.submitters.order(:completed_at).last
+
+    Submissions::EnsureResultGenerated.call(last_submitter)
+
     urls =
-      Submitters.select_attachments_for_download(submitter).map do |attachment|
+      Submitters.select_attachments_for_download(last_submitter).map do |attachment|
         helpers.rails_blob_url(attachment)
       end
 
