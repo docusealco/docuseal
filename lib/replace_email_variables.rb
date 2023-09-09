@@ -23,7 +23,7 @@ module ReplaceEmailVariables
     text = text.gsub(SUBMITTER_LINK, submitter_link)
     text = text.gsub(SUBMISSION_LINK, submission_link) if submission_link
     if text.include?(SUBMISSION_SUBMITTERS)
-      text = text.gsub(SUBMISSION_SUBMITTERS, build_submission_submitters(submission))
+      text = text.gsub(SUBMISSION_SUBMITTERS, build_submission_submitters(submitter.submission))
     end
     text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter))
 
