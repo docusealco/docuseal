@@ -7,6 +7,7 @@
 #  id                  :bigint           not null, primary key
 #  deleted_at          :datetime
 #  source              :text             not null
+#  submitters_order    :string           not null
 #  template_fields     :text
 #  template_schema     :text
 #  template_submitters :text
@@ -37,6 +38,7 @@ class Submission < ApplicationRecord
   serialize :template_submitters, JSON
 
   attribute :source, :string, default: 'link'
+  attribute :submitters_order, :string, default: 'random'
 
   has_many :template_schema_documents,
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
@@ -49,5 +51,10 @@ class Submission < ApplicationRecord
     api: 'api',
     embed: 'embed',
     link: 'link'
+  }, scope: false, prefix: true
+
+  enum :submitters_order, {
+    random: 'random',
+    preserved: 'preserved'
   }, scope: false, prefix: true
 end

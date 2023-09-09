@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Submissions
+  DEFAULT_SUBMITTERS_ORDER = 'random'
+
   module_function
 
   def update_template_fields!(submission)
@@ -24,9 +26,11 @@ module Submissions
     end
   end
 
-  def create_from_submitters(template:, user:, submissions_attrs:, source:, mark_as_sent: false)
+  def create_from_submitters(template:, user:, submissions_attrs:, source:, mark_as_sent: false,
+                             submitters_order: DEFAULT_SUBMITTERS_ORDER)
     submissions_attrs.map do |attrs|
-      submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
+      submission = template.submissions.new(created_by_user: user, source:,
+                                            template_submitters: template.submitters, submitters_order:)
 
       attrs[:submitters].each_with_index do |submitter_attrs, index|
         uuid =
@@ -36,15 +40,31 @@ module Submissions
 
         next if uuid.blank?
 
-        submission.submitters.new(email: submitter_attrs[:email],
-                                  phone: submitter_attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
-                                  name: submitter_attrs[:name],
-                                  sent_at: mark_as_sent && submitter_attrs[:email].present? ? Time.current : nil,
-                                  values: submitter_attrs[:values] || {},
-                                  uuid:)
+        is_order_sent = submitters_order == 'random' || index.zero?
+
+        submission.submitters.new(
+          email: submitter_attrs[:email],
+          phone: submitter_attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
+          name: submitter_attrs[:name],
+          sent_at: mark_as_sent && submitter_attrs[:email].present? && is_order_sent ? Time.current : nil,
+          values: submitter_attrs[:values] || {},
+          uuid:
+        )
       end
 
       submission.tap(&:save!)
+    end
+  end
+
+  def send_signature_requests(submissions, params)
+    submissions.each do |submission|
+      if submission.submitters_order_preserved?
+        first_submitter = submission.submitters.find { |e| e.uuid == submission.template_submitters.first['uuid'] }
+
+        Submitters.send_signature_requests([first_submitter], params)
+      else
+        Submitters.send_signature_requests(submission.submitters, params)
+      end
     end
   end
 end

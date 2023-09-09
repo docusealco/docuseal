@@ -26,16 +26,14 @@ class SubmissionsController < ApplicationController
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
+                                           submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
                                            mark_as_sent: params[:send_email] == '1',
                                            submissions_attrs: submissions_params[:submission].to_h.values)
       end
 
-    submitters = submissions.flat_map(&:submitters)
+    Submissions.send_signature_requests(submissions, params)
 
-    Submitters.send_signature_requests(submitters, params)
-
-    redirect_to template_path(@template),
-                notice: "#{submitters.size} #{'recipient'.pluralize(submitters.size)} added"
+    redirect_to template_path(@template), notice: 'New recipients have been added'
   end
 
   def destroy

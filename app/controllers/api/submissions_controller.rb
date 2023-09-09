@@ -9,25 +9,26 @@ module Api
       template = current_account.templates.find(params[:template_id])
 
       submissions =
-        if (params[:emails] || params[:email]).present?
+        if (emails = (params[:emails] || params[:email]).presence)
           Submissions.create_from_emails(template:,
                                          user: current_user,
                                          source: :api,
                                          mark_as_sent: params[:send_email] != 'false',
-                                         emails: params[:emails] || params[:email])
+                                         emails:)
         else
           submissions_attrs = normalize_submissions_params!(submissions_params[:submission], template)
 
-          Submissions.create_from_submitters(template:,
-                                             user: current_user,
-                                             source: :api,
-                                             mark_as_sent: params[:send_email] != 'false',
-                                             submissions_attrs:)
+          Submissions.create_from_submitters(
+            template:,
+            user: current_user,
+            source: :api,
+            mark_as_sent: params[:send_email] != 'false',
+            submitters_order: params[:submitters_order] || 'preserved',
+            submissions_attrs:
+          )
         end
 
-      submitters = submissions.flat_map(&:submitters)
-
-      Submitters.send_signature_requests(submitters, send_email: params[:send_email] != 'false')
+      Submissions.send_signature_requests(submissions, send_email: params[:send_email] != 'false')
 
       render json: submitters
     rescue UnknownFieldName, UnknownSubmitterName => e

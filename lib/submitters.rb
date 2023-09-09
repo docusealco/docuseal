@@ -35,7 +35,7 @@ module Submitters
     submitters.each do |submitter|
       next if submitter.email.blank?
 
-      SubmitterMailer.invitation_email(submitter, message: params[:message]).deliver_later!
+      SendSubmitterInvitationEmailJob.perform_later(submitter)
     end
   end
 end

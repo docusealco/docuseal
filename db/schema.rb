@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_02_171216) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_09_213212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_171216) do
     t.text "template_schema"
     t.text "template_submitters"
     t.text "source", null: false
+    t.string "submitters_order", null: false
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["template_id"], name: "index_submissions_on_template_id"
   end

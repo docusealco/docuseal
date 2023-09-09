@@ -1,0 +1,11 @@
+<% if template.submitters.size > 1 %>
+  <div class="form-control">
+    <%= f.label :preserve_order, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
+      <%= f.check_box :preserve_order, id: uuid, class: 'base-checkbox', checked: template.submissions.last&.submitters_order.in?(['preserved', nil]) %>
+      <span class="label">Preserve submitters order</span>
+      <span class="tooltip" data-tip="When checked, notifications will be sent to the second submitter once the form is completed by the previous submitter. Uncheck this option to send notifications to all submitters simultaneously right away.">
+        <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+      </span>
+    <% end %>
+  </div>
+<% end %>
