@@ -43,7 +43,9 @@ class SubmitterMailer < ApplicationMailer
       if @email_config
         ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
       else
-        %(#{submitter.email} has completed the "#{submitter.submission.template.name}" form)
+        submitters = submitter.submission.submitters.order(:completed_at)
+                              .map { |e| e.name || e.email || e.phone }.join(', ')
+        %(#{submitter.submission.template.name} has been completed by #{submitters})
       end
 
     mail(from: from_address_for_submitter(submitter),
