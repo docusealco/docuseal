@@ -27,6 +27,6 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     to = submitter.submission.submitters.order(:completed_at).select(&:email?).map(&:friendly_name).join(', ')
 
-    SubmitterMailer.documents_copy_email(submitter, to:).deliver_later!
+    SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! if to.present?
   end
 end
