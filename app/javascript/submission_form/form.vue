@@ -493,10 +493,44 @@ export default {
 
     this.$nextTick(() => {
       this.recalculateButtonDisabledKey = Math.random()
+
+      this.maybeTrackEmailClick()
+      this.trackViewForm()
     })
   },
   methods: {
     t,
+    maybeTrackEmailClick () {
+      const queryParams = new URLSearchParams(window.location.search)
+
+      if (queryParams.has('t')) {
+        fetch(this.baseUrl + '/api/submitter_email_clicks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            t: queryParams.get('t'),
+            submitter_slug: this.submitterSlug
+          })
+        })
+
+        queryParams.delete('t')
+        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
+        window.history.replaceState({}, document.title, newUrl)
+      }
+    },
+    trackViewForm () {
+      fetch(this.baseUrl + '/api/submitter_form_views', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          submitter_slug: this.submitterSlug
+        })
+      })
+    },
     goToStep (step, scrollToArea = false, clickUpload = false) {
       this.currentStep = this.stepFields.indexOf(step)
 

@@ -3,7 +3,7 @@
 <% else %>
   <p>Hi there,</p>
   <%= simple_format(@message) %>
-  <p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug) %></p>
+  <p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email')) %></p>
   <p>Please contact us by replying to this email if you didn't request this.</p>
   <p>
     Thanks,<br><%= @current_account.name %>

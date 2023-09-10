@@ -8,6 +8,8 @@ class SubmittersSendEmailController < ApplicationController
 
     SubmitterMailer.invitation_email(submitter).deliver_later!
 
+    SubmissionEvent.create!(submitter:, event_type: 'send_email')
+
     submitter.sent_at ||= Time.current
     submitter.save!
 

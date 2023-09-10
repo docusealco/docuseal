@@ -32,6 +32,7 @@ class Submission < ApplicationRecord
   belongs_to :created_by_user, class_name: 'User', optional: true
 
   has_many :submitters, dependent: :destroy
+  has_many :submission_events, dependent: :destroy
 
   serialize :template_fields, JSON
   serialize :template_schema, JSON

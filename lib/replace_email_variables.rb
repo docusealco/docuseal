@@ -45,7 +45,9 @@ module ReplaceEmailVariables
 
   def build_submitter_link(submitter)
     Rails.application.routes.url_helpers.submit_form_url(
-      slug: submitter.slug, **Docuseal.default_url_options
+      slug: submitter.slug,
+      t: SubmissionEvents.build_tracking_param(submitter, 'click_email'),
+      **Docuseal.default_url_options
     )
   end
 

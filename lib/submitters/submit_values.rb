@@ -7,7 +7,11 @@ module Submitters
     module_function
 
     def call(submitter, params, request)
-      Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
+      if submitter.submission.template_fields.blank?
+        Submissions.update_template_fields!(submitter.submission)
+
+        SubmissionEvents.create_with_tracking_data(submitter, 'start_form', request)
+      end
 
       update_submitter!(submitter, params, request)
 
@@ -32,6 +36,8 @@ module Submitters
         submitter.completed_at = Time.current
         submitter.ip = request.remote_ip
         submitter.ua = request.user_agent
+
+        SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request)
       end
 
       submitter.save!
