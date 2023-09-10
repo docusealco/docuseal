@@ -17,6 +17,8 @@ class ProcessSubmitterCompletionJob < ApplicationJob
     return unless is_all_completed
     return if submitter.completed_at != submitter.submission.submitters.maximum(:completed_at)
 
+    Submissions::GenerateAuditTrail.call(submitter.submission)
+
     enqueue_emails(submitter)
   end
 

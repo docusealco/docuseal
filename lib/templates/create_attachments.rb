@@ -19,6 +19,7 @@ module Templates
 
         if blob.content_type == PDF_CONTENT_TYPE && blob.metadata['pdf'].nil?
           blob.metadata['pdf'] = { 'annotations' => Templates::BuildAnnotations.call(document_data) }
+          blob.metadata['sha256'] = Base64.urlsafe_encode64(Digest::SHA256.digest(document_data))
         end
 
         blob.save!
@@ -37,6 +38,7 @@ module Templates
 
         if file.content_type == PDF_CONTENT_TYPE
           metadata = { 'identified' => true, 'analyzed' => true,
+                       'sha256' => Base64.urlsafe_encode64(Digest::SHA256.digest(data)),
                        'pdf' => { 'annotations' => Templates::BuildAnnotations.call(data) } }
         end
 

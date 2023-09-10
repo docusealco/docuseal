@@ -41,6 +41,8 @@ class Submission < ApplicationRecord
   attribute :source, :string, default: 'link'
   attribute :submitters_order, :string, default: 'random'
 
+  has_one_attached :audit_trail
+
   has_many :template_schema_documents,
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
            through: :template, source: :documents_attachments

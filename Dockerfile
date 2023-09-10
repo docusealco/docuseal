@@ -31,7 +31,7 @@ ENV BUNDLE_WITHOUT="development:test"
 
 WORKDIR /app
 
-RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler vips-heif libc6-compat ttf-freefont ttf-liberation && cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /LiberationSans-Regular.ttf && apk del ttf-liberation
+RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler vips-heif libc6-compat ttf-freefont ttf-liberation && cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf / && apk del ttf-liberation
 
 COPY ./Gemfile ./Gemfile.lock ./
 

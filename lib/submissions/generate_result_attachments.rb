@@ -28,7 +28,8 @@ module Submissions
 
       template = submitter.submission.template
 
-      pkcs = Accounts.load_signing_pkcs(submitter.submission.template.account)
+      account = submitter.submission.template.account
+      pkcs = Accounts.load_signing_pkcs(account)
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -149,7 +150,7 @@ module Submissions
                                  height - (area['y'] * height))
             end
           else
-            value = I18n.l(Date.parse(value), format: :long) if field['type'] == 'date'
+            value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
                                                                                       font_size:)
@@ -214,6 +215,7 @@ module Submissions
         blob: ActiveStorage::Blob.create_and_upload!(
           io: StringIO.new(io.string), filename: "#{name}.pdf"
         ),
+        metadata: { sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
         name: 'documents',
         record: submitter
       )

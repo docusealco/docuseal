@@ -15,4 +15,8 @@ module PdfIcons
   def paperclip_io
     @paperclip_io ||= StringIO.new(PATH.join('paperclip.png').read)
   end
+
+  def logo_io
+    @logo_io ||= StringIO.new(PATH.join('logo.png').read)
+  end
 end

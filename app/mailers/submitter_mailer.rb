@@ -33,11 +33,7 @@ class SubmitterMailer < ApplicationMailer
 
     @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
-    documents = Submitters.select_attachments_for_download(submitter)
-
-    documents.each do |attachment|
-      attachments[attachment.filename.to_s] = attachment.download
-    end
+    add_completed_email_attachments!(submitter)
 
     subject =
       if @email_config
@@ -60,11 +56,7 @@ class SubmitterMailer < ApplicationMailer
 
     Submissions::EnsureResultGenerated.call(@submitter)
 
-    @documents = Submitters.select_attachments_for_download(submitter)
-
-    @documents.each do |attachment|
-      attachments[attachment.filename.to_s] = attachment.download
-    end
+    @documents = add_completed_email_attachments!(submitter)
 
     @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
@@ -81,6 +73,20 @@ class SubmitterMailer < ApplicationMailer
   end
 
   private
+
+  def add_completed_email_attachments!(submitter)
+    documents = Submitters.select_attachments_for_download(submitter)
+
+    documents.each do |attachment|
+      attachments[attachment.filename.to_s] = attachment.download
+    end
+
+    if submitter.submission.audit_trail.present?
+      attachments[submitter.submission.audit_trail.filename.to_s] = submitter.submission.audit_trail.download
+    end
+
+    documents
+  end
 
   def from_address_for_submitter(submitter)
     submitter.submission.created_by_user&.friendly_name || submitter.submission.template.author.friendly_name
