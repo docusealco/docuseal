@@ -494,8 +494,9 @@ export default {
     this.$nextTick(() => {
       this.recalculateButtonDisabledKey = Math.random()
 
-      this.maybeTrackEmailClick()
-      this.trackViewForm()
+      this.maybeTrackEmailClick().finally(() => {
+        this.trackViewForm()
+      })
     })
   },
   methods: {
@@ -504,20 +505,24 @@ export default {
       const queryParams = new URLSearchParams(window.location.search)
 
       if (queryParams.has('t')) {
-        fetch(this.baseUrl + '/api/submitter_email_clicks', {
+        const t = queryParams.get('t')
+
+        queryParams.delete('t')
+        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
+        window.history.replaceState({}, document.title, newUrl)
+
+        return fetch(this.baseUrl + '/api/submitter_email_clicks', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            t: queryParams.get('t'),
+            t,
             submitter_slug: this.submitterSlug
           })
         })
-
-        queryParams.delete('t')
-        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
-        window.history.replaceState({}, document.title, newUrl)
+      } else {
+        return Promise.resolve({})
       }
     },
     trackViewForm () {
