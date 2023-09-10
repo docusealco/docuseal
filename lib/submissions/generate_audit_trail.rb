@@ -19,6 +19,11 @@ module Submissions
 
     INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
+    VERIFIED_TEXT = if Docuseal.multitenant?
+                      'Verified by DocuSeal'
+                    else
+                      'Verified'
+                    end
 
     module_function
 
@@ -59,12 +64,13 @@ module Submissions
       composer.column(columns: 1) do |column|
         column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
-        column.text('DocuSeal',
-                    font_size: 20,
-                    font: [FONT_BOLD_NAME, { variant: :bold }],
-                    width: 100,
-                    padding: [11, 0, 0, 8],
-                    position: :float, position_hint: :left)
+        column.formatted_text([{ text: 'DocuSeal',
+                                 link: Docuseal::PRODUCT_URL }],
+                              font_size: 20,
+                              font: [FONT_BOLD_NAME, { variant: :bold }],
+                              width: 100,
+                              padding: [12, 0, 0, 8],
+                              position: :float, position_hint: :left)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -91,19 +97,26 @@ module Submissions
           end
         end
 
-        [document.filename.to_s,
-         composer.document.layout.formatted_text_box(
-           [
-             { text: "Original SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
-             original_documents.map { |d| d.metadata['sha256'] || d.checksum }.join("\n"),
-             "\n",
-             { text: "Result SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
-             document.metadata['sha256'] || document.checksum,
-             "\n",
-             { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
-             I18n.l(document.created_at, format: :long, locale: account.locale)
-           ], line_spacing: 1.8
-         )]
+        link =
+          Rails.application.routes.url_helpers.rails_blob_url(document, **Docuseal.default_url_options)
+
+        [
+          composer.document.layout.formatted_text_box(
+            [{ text: document.filename.to_s, link: }]
+          ),
+          composer.document.layout.formatted_text_box(
+            [
+              { text: "Original SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
+              original_documents.map { |d| d.metadata['sha256'] || d.checksum }.join("\n"),
+              "\n",
+              { text: "Result SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
+              document.metadata['sha256'] || document.checksum,
+              "\n",
+              { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
+              I18n.l(document.created_at, format: :long, locale: account.locale)
+            ], line_spacing: 1.8
+          )
+        ]
       end
 
       composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
@@ -136,10 +149,10 @@ module Submissions
             composer.document.layout.formatted_text_box(
               [
                 submitter.email && {
-                  text: "Email verification: #{click_email_event ? 'Verified by DocuSeal' : 'Unverififed'}\n"
+                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : 'Unverififed'}\n"
                 },
                 submitter.phone && {
-                  text: "Phone verification: #{is_phone_verified ? 'Verified by DocuSeal' : 'Unverififed'}\n"
+                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : 'Unverififed'}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
@@ -203,7 +216,7 @@ module Submissions
 
       composer.draw_box(divider)
 
-      composer.text('Event Log', font_size: 12, padding: [20, 0, 20, 0])
+      composer.text('Event Log', font_size: 12, padding: [10, 0, 20, 0])
 
       events_data = submission.submission_events.sort_by(&:event_timestamp).map do |event|
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
@@ -224,7 +237,7 @@ module Submissions
         ]
       end
 
-      composer.table(events_data, cell_style: { padding: [0, 0, 20, 0], border: { width: 0 } })
+      composer.table(events_data, cell_style: { padding: [0, 0, 20, 0], border: { width: 0 } }) if events_data.present?
 
       io = StringIO.new
 
