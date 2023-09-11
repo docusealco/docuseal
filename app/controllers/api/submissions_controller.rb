@@ -30,7 +30,7 @@ module Api
 
       Submissions.send_signature_requests(submissions, send_email: params[:send_email] != 'false')
 
-      render json: submitters
+      render json: submissions.flat_map(&:submitters)
     rescue UnknownFieldName, UnknownSubmitterName => e
       render json: { error: e.message }, status: :unprocessable_entity
     end
