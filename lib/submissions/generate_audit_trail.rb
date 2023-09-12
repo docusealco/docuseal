@@ -123,8 +123,11 @@ module Submissions
 
       composer.draw_box(divider)
 
-      submitters_data = submission.template_submitters.map do |item|
+      submission.template_submitters.filter_map do |item|
         submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
+
+        next if submitter.blank?
+
         completed_event =
           submission.submission_events.find { |e| e.submitter_id == submitter.id && e.complete_form? } ||
           SubmissionEvent.new
@@ -132,11 +135,13 @@ module Submissions
         click_email_event =
           submission.submission_events.find { |e| e.submitter_id == submitter.id && e.click_email? }
         is_phone_verified =
-          submission.template_fields.any? { |e| e['type'] == 'phone' && e['submitter_uuid'] == submitter.uuid }
+          submission.template_fields.any? do |e|
+            e['type'] == 'phone' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
+          end
 
         submitter_field_counters = Hash.new { 0 }
 
-        [
+        info_rows = [
           [
             composer.document.layout.formatted_text_box(
               [
@@ -145,7 +150,9 @@ module Submissions
                 submitter.name && { text: "#{submitter.name}\n" },
                 submitter.phone && { text: "#{submitter.phone}\n" }
               ].compact_blank, line_spacing: 1.8, padding: [0, 20, 0, 0]
-            ),
+            )
+          ],
+          [
             composer.document.layout.formatted_text_box(
               [
                 submitter.email && {
@@ -158,9 +165,14 @@ module Submissions
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
                 completed_event.data['ua'] && { text: "User agent: #{completed_event.data['ua']}\n" },
                 "\n"
-              ].compact_blank, line_spacing: 1.8, padding: [10, 20, 0, 0]
+              ].compact_blank, line_spacing: 1.8, padding: [10, 20, 20, 0]
             )
-          ],
+          ]
+        ]
+
+        composer.table(info_rows, cell_style: { padding: [0, 0, 0, 0], border: { width: 0 } })
+
+        composer.column(columns: 1, gaps: 0, style: { padding: [0, 200, 0, 0] }) do |column|
           submission.template_fields.filter_map do |field|
             next if field['submitter_uuid'] != submitter.uuid
 
@@ -168,12 +180,14 @@ module Submissions
 
             value = submitter.values[field['uuid']]
 
+            next if Array.wrap(value).compact_blank.blank?
+
             [
-              composer.document.layout.formatted_text_box(
+              column.formatted_text_box(
                 [
                   {
-                    text: field['name'].presence ||
-                          "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}\n".upcase,
+                    text: field['name'].to_s.upcase.presence ||
+                          "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
                     font_size: 6
                   }
                 ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
@@ -186,9 +200,10 @@ module Submissions
 
                 io = StringIO.new(image.resize([scale, 1].min).write_to_buffer('.png'))
 
-                composer.document.layout.image(io, padding: [0, 100, 10, 0])
+                column.image(io, padding: [0, 100, 10, 0])
+                column.formatted_text_box([{ text: '' }])
               elsif field['type'] == 'file'
-                composer.document.layout.formatted_text_box(
+                column.formatted_text_box(
                   Array.wrap(value).map do |uuid|
                     attachment = submitter.attachments.find { |a| a.uuid == uuid }
                     link =
@@ -199,22 +214,19 @@ module Submissions
                   padding: [0, 0, 10, 0]
                 )
               elsif field['type'] == 'checkbox'
-                composer.document.layout.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
+                column.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
               else
                 value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
                 value = value.join(', ') if value.is_a?(Array)
 
-                composer.document.layout.formatted_text_box([{ text: value.to_s.presence || 'n/a' }],
-                                                            padding: [0, 0, 10, 0])
+                column.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
               end
             ]
-          end.flatten
-        ]
+          end
+        end
+
+        composer.draw_box(divider)
       end
-
-      composer.table(submitters_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
-
-      composer.draw_box(divider)
 
       composer.text('Event Log', font_size: 12, padding: [10, 0, 20, 0])
 
