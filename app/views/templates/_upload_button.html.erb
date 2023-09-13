@@ -1,0 +1,17 @@
+<%= form_for '', url: templates_upload_path, method: :post, class: 'inline', html: { enctype: 'multipart/form-data' } do %>
+  <button type="submit" class="btn btn-ghost text-base" onclick="[event.preventDefault(), window.upload_template.click()]">
+    <span class="enabled">
+      <span class="flex items-center justify-center space-x-2">
+        <%= svg_icon('upload', class: 'w-6 h-6 stroke-2') %>
+        <span class="hidden md:block">Upload</span>
+      </span>
+    </span>
+    <span class="disabled">
+      <span class="flex items-center justify-center space-x-2">
+        <%= local_assigns[:icon_disabled] || svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+        <span class="hidden md:block">Uploading...</span>
+      </span>
+    </span>
+  </button>
+  <input id="upload_template" name="files[]" class="hidden" onchange="this.form.requestSubmit()" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls' if Docuseal.multitenant? %>" multiple>
+<% end %>

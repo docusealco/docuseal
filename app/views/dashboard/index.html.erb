@@ -1,11 +1,14 @@
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <% if @templates.any? %>
   <div class="flex justify-between mb-4 items-center">
-    <h1 class="text-4xl font-bold">Templates</h1>
-    <%= link_to new_template_path, class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
-      <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-      <span class="hidden md:block">Create</span>
-    <% end %>
+    <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
+    <div class="flex space-x-2">
+      <%= render 'templates/upload_button' %>
+      <%= link_to new_template_path, class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
+        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+        <span class="hidden md:block">Create</span>
+      <% end %>
+    </div>
   </div>
   <div class="grid gap-4 md:grid-cols-3">
     <% @templates.each do |template| %>

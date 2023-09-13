@@ -1,4 +1,4 @@
-<%= render 'shared/turbo_modal', title: @base_template ? 'Clone Template' : 'New Template' do %>
+<%= render 'shared/turbo_modal', title: @base_template ? 'Clone Template' : 'New Document Template' do %>
   <%= form_for @template, data: { turbo_frame: :_top } do |f| %>
     <% if @base_template %>
       <%= hidden_field_tag :base_template_id, @base_template.id %>

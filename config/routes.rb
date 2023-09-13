@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit update destroy]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
+  resource :templates_upload, only: %i[create]
   resources :templates, only: %i[new create edit show destroy] do
     resources :submissions, only: %i[new create]
     resources :submissions_export, only: %i[index new]
