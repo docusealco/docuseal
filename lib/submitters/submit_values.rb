@@ -7,10 +7,12 @@ module Submitters
     module_function
 
     def call(submitter, params, request)
-      if submitter.submission.template_fields.blank?
-        Submissions.update_template_fields!(submitter.submission)
+      Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
 
+      unless submitter.submission_events.exists?(event_type: 'start_form')
         SubmissionEvents.create_with_tracking_data(submitter, 'start_form', request)
+
+        SendFormStartedWebhookRequestJob.perform_later(submitter)
       end
 
       update_submitter!(submitter, params, request)

@@ -11,7 +11,7 @@ class ProcessSubmitterCompletionJob < ApplicationJob
     Submissions::EnsureResultGenerated.call(submitter)
 
     if submitter.account.encrypted_configs.exists?(key: EncryptedConfig::WEBHOOK_URL_KEY)
-      SendWebhookRequestJob.perform_later(submitter)
+      SendFormCompletedWebhookRequestJob.perform_later(submitter)
     end
 
     return unless is_all_completed

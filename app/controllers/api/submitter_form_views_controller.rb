@@ -9,6 +9,8 @@ module Api
 
       SubmissionEvents.create_with_tracking_data(submitter, 'view_form', request)
 
+      SendFormViewedWebhookRequestJob.perform_later(submitter)
+
       render json: {}
     end
   end

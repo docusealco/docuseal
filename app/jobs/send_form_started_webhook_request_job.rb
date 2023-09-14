@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SendWebhookRequestJob < ApplicationJob
+class SendFormStartedWebhookRequestJob < ApplicationJob
   USER_AGENT = 'DocuSeal.co Webhook'
 
   def perform(submitter)
@@ -8,13 +8,11 @@ class SendWebhookRequestJob < ApplicationJob
 
     return if config.blank? || config.value.blank?
 
-    Submissions::EnsureResultGenerated.call(submitter)
-
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
     Faraday.post(config.value,
                  {
-                   event_type: 'form.submitted',
+                   event_type: 'form.started',
                    timestamp: Time.current.iso8601,
                    data: Submitters::SerializeForWebhook.call(submitter)
                  }.to_json,

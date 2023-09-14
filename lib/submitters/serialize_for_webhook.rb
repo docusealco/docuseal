@@ -18,7 +18,8 @@ module Submitters
     end
 
     def build_values_array(submitter)
-      fields_index = submitter.submission.template_fields.index_by { |e| e['uuid'] }
+      fields_index = (submitter.submission.template_fields ||
+                      submitter.submission.template.fields).index_by { |e| e['uuid'] }
       attachments_index = submitter.attachments.preload(:blob).index_by(&:uuid)
       submitter_field_counters = Hash.new { 0 }
 
