@@ -1,0 +1,11 @@
+<form action="<%= request.path %>" method="get" class="items-center hidden md:flex">
+  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12">
+  <button type="submit" title="Search" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
+    <span class="enabled">
+      <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
+    </span>
+    <span class="disabled">
+      <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+    </span>
+  </button>
+</form>

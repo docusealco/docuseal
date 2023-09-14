@@ -1,8 +1,11 @@
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<% if @templates.any? %>
+<% if @pagy.count > 0 || params[:q].present? %>
   <div class="flex justify-between mb-4 items-center">
     <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
     <div class="flex space-x-2">
+      <% if params[:q].present? || @pagy.pages > 1 %>
+        <%= render 'shared/search_input' %>
+      <% end %>
       <%= render 'templates/upload_button' %>
       <%= link_to new_template_path, class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
         <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
@@ -10,21 +13,29 @@
       <% end %>
     </div>
   </div>
-  <div class="grid gap-4 md:grid-cols-3">
-    <%= render partial: 'templates/template', collection: @templates %>
-  </div>
-  <% view_archived_html = capture do %>
-    <% if current_account.templates.where.not(deleted_at: nil).exists? %>
-      <div>
-        <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+  <% if @pagy.count > 0 %>
+    <div class="grid gap-4 md:grid-cols-3">
+      <%= render partial: 'templates/template', collection: @templates %>
+    </div>
+    <% view_archived_html = capture do %>
+      <% if current_account.templates.where.not(deleted_at: nil).exists? %>
+        <div>
+          <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @pagy.pages > 1 %>
+      <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
+    <% else %>
+      <div class="mt-2">
+        <%= view_archived_html %>
       </div>
     <% end %>
-  <% end %>
-  <% if @pagy.pages > 1 %>
-    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
-  <% else %>
-    <div class="mt-2">
-      <%= view_archived_html %>
+  <% elsif params[:q].present? %>
+    <div class="text-center">
+      <div class="mt-16 text-3xl font-semibold">
+        Templates not Found
+      </div>
     </div>
   <% end %>
 <% else %>

@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     return render 'pages/landing' unless signed_in?
 
     templates = current_account.templates.active.preload(:author).order(id: :desc)
+    templates = Templates.search(templates, params[:q])
 
     @pagy, @templates = pagy(templates, items: 12)
   end

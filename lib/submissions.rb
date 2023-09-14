@@ -5,6 +5,20 @@ module Submissions
 
   module_function
 
+  def search(submissions, keyword)
+    return submissions if keyword.blank?
+
+    term = "%#{keyword.downcase}%"
+
+    arel_table = Submitter.arel_table
+
+    arel = arel_table[:email].lower.matches(term)
+                             .or(arel_table[:phone].matches(term))
+                             .or(arel_table[:name].lower.matches(term))
+
+    submissions.joins(:submitters).where(arel).distinct
+  end
+
   def update_template_fields!(submission)
     submission.template_fields = submission.template.fields
     submission.template_schema = submission.template.schema

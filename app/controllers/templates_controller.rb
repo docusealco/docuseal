@@ -7,6 +7,7 @@ class TemplatesController < ApplicationController
     @template = current_account.templates.find(params[:id])
     submissions = @template.submissions
     submissions = submissions.active if @template.deleted_at.blank?
+    submissions = Submissions.search(submissions, params[:q])
 
     @pagy, @submissions = pagy(submissions.preload(:submitters).order(id: :desc))
   rescue ActiveRecord::RecordNotFound

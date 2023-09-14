@@ -17,4 +17,10 @@ module Templates
 
     hash
   end
+
+  def search(templates, keyword)
+    return templates if keyword.blank?
+
+    templates.where(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
+  end
 end

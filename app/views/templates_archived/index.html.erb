@@ -6,8 +6,19 @@
 </div>
 <div class="flex justify-between mb-4 items-center">
   <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates <span class="badge badge-outline badge-lg align-middle">Archived</span></h1>
+  <% if params[:q].present? || @pagy.pages > 1 %>
+    <%= render 'shared/search_input' %>
+  <% end %>
 </div>
-<div class="grid gap-4 md:grid-cols-3">
-  <%= render partial: 'templates/template', collection: @templates %>
-</div>
+<% if @pagy.count > 0 %>
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render partial: 'templates/template', collection: @templates %>
+  </div>
+<% elsif params[:q].present? %>
+  <div class="text-center">
+    <div class="mt-16 text-3xl font-semibold">
+      Templates not Found
+    </div>
+  </div>
+<% end %>
 <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
