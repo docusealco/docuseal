@@ -1,0 +1,13 @@
+<div>
+  <%= link_to root_path(@template) do %>
+    &larr;
+    <span>Back to Active</span>
+  <% end %>
+</div>
+<div class="flex justify-between mb-4 items-center">
+  <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates <span class="badge badge-outline badge-lg align-middle">Archived</span></h1>
+</div>
+<div class="grid gap-4 md:grid-cols-3">
+  <%= render partial: 'templates/template', collection: @templates %>
+</div>
+<%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>

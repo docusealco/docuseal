@@ -1,0 +1,38 @@
+<div class="h-36 relative group">
+  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 peer">
+    <div class="pb-4 text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+      <%= template.name %>
+    </div>
+    <div class="pb-6 pt-1 space-y-1">
+      <p class="flex items-center space-x-1 text-xs text-base-content/60">
+        <%= svg_icon('user', class: 'w-4 h-4') %>
+        <span><%= template.author.full_name.presence || template.author.email %></span>
+      </p>
+      <p class="flex items-center space-x-1 text-xs text-base-content/60">
+        <%= svg_icon('calendar', class: 'w-4 h-4') %>
+        <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
+      </p>
+    </div>
+  </a>
+  <div class="absolute top-0 bottom-0 w-0 pt-7 space-y-1.5 hidden md:group-hover:block" style="right: 40px">
+    <% if template.deleted_at? %>
+      <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
+        <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
+        <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+      <% end %>
+    <% else %>
+      <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+        <%= svg_icon('pencil', class: 'w-4 h-4') %>
+      </a>
+    <% end %>
+    <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+      <%= svg_icon('copy', class: 'w-4 h-4') %>
+    </a>
+    <% unless template.deleted_at? %>
+      <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+        <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
+        <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

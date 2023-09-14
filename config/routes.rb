@@ -48,7 +48,10 @@ Rails.application.routes.draw do
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
   resource :templates_upload, only: %i[create]
+  resources :templates_archived, only: %i[index], path: 'archived'
   resources :templates, only: %i[new create edit show destroy] do
+    resources :restore, only: %i[create], controller: 'templates_restore'
+    resource :archived, only: %i[show], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
     resources :submissions_export, only: %i[index new]
   end

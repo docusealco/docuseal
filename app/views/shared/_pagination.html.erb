@@ -3,6 +3,7 @@
   <div class="flex my-6 justify-center md:justify-between">
     <div class="hidden md:block text-sm">
       <%= @pagy.from %>-<%= @pagy.to %> of <%= @pagy.count %> <%= local_assigns[:items_name] || 'items' %>
+      <%= local_assigns[:left_additional_html] %>
     </div>
     <div class="join">
       <% if @pagy.prev %>

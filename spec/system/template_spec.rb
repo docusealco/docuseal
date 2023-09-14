@@ -51,7 +51,6 @@ RSpec.describe 'Template' do
       end.to change { Template.active.count }.by(-1)
 
       expect(page).to have_content('Template has been archived')
-      expect(page).to have_current_path(root_path, ignore_query: true)
     end
 
     it 'edits a template' do

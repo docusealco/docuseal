@@ -1,21 +1,4 @@
-<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center mb-8">
-  <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-    <%= @template.name %>
-  </h1>
-  <div class="flex md:justify-between space-x-2 flex-none">
-    <%= button_to button_title(title: 'Remove', disabled_with: 'Removing', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(@template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-    <%= link_to new_template_path(base_template_id: @template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
-      <%= svg_icon('copy', class: 'w-6 h-6') %>
-      <span>Clone</span>
-    <% end %>
-    <%= link_to edit_template_path(@template), class: 'btn btn-outline btn-sm' do %>
-      <span class="flex items-center justify-center space-x-2">
-        <%= svg_icon('pencil', class: 'w-6 h-6') %>
-        <span>Edit</span>
-      </span>
-    <% end %>
-  </div>
-</div>
+<%= render 'title', template: @template %>
 <% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 %>
   <div class="flex justify-between mb-6 md:items-end flex-col md:flex-row">
     <p class="text-3xl font-bold">Submissions</p>
@@ -24,12 +7,12 @@
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span>Export</span>
       <% end %>
-      <% if @template.submitters.to_a.size == 1 %>
+      <% if @template.submitters.to_a.size == 1 && !@template.deleted_at? %>
         <span class="order-1">
           <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
         </span>
       <% end %>
-      <% unless @pagy.count.zero? %>
+      <% if !@pagy.count.zero? && !@template.deleted_at? %>
         <%= link_to new_template_submission_path(@template), class: 'order-1 btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span>Add <span class="hidden md:inline">Recipients</span></span>
@@ -42,21 +25,36 @@
   <div class="space-y-4">
     <%= render partial: 'submission', collection: @submissions %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy, items_name: 'submissions' %>
+  <% view_archived_html = capture do %>
+    <% if @template.submissions.where.not(deleted_at: nil).exists? && !@template.deleted_at? %>
+      <div>
+        <a href="<%= template_archived_path(@template) %>" class="link text-sm">View Archived</a>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @pagy.pages > 1 %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: 'submissions', left_additional_html: view_archived_html %>
+  <% else %>
+    <div class="mt-2">
+      <%= view_archived_html %>
+    </div>
+  <% end %>
 <% else %>
   <div class="card bg-base-200">
     <div class="card-body text-center py-16">
       <div class="max-w-lg mx-auto">
         <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions</p>
-        <p class="text-gray-600">Send an invitation to fill and complete the form</p>
-        <div class="space-x-2">
-          <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <span class="mr-1">Add Recipients</span>
-          <% end %>
-          <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
-            <%= svg_icon('writing', class: 'w-6 h-6') %>
-            <span class="mr-1">Submit it Yourself</span>
+        <% if @template.deleted_at.blank? %>
+          <p class="text-gray-600">Send an invitation to fill and complete the form</p>
+          <div class="space-x-2">
+            <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+              <span class="mr-1">Add Recipients</span>
+            <% end %>
+            <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
+              <%= svg_icon('writing', class: 'w-6 h-6') %>
+              <span class="mr-1">Submit it Yourself</span>
+            <% end %>
           <% end %>
         </div>
       </div>

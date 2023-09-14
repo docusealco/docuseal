@@ -38,7 +38,9 @@
         <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
       <% end %>
       <span class="btn btn-outline btn-sm w-20 md:w-24">View</span>
-      <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+      <% unless submission.deleted_at? %>
+        <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+      <% end %>
     </div>
   <% else %>
     <div class="space-y-1 w-full md:mr-2">
@@ -110,7 +112,9 @@
         </form>
       <% end %>
       <span class="btn btn-outline btn-sm w-20 md:w-24">View</span>
-      <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+      <% unless submission.deleted_at? %>
+        <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
+      <% end %>
     </div>
   <% end %>
 </a>
