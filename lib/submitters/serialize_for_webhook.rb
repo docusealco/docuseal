@@ -8,7 +8,8 @@ module Submitters
       values = build_values_array(submitter)
       documents = build_documents_array(submitter)
 
-      submitter_name = submitter.submission.template_submitters.find { |e| e['uuid'] == submitter.uuid }['name']
+      submitter_name = (submitter.submission.template_submitters ||
+                        submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
       submitter.as_json(include: [template: { only: %i[id name created_at updated_at] }])
                .except('uuid', 'values', 'slug')
