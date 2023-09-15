@@ -1,0 +1,19 @@
+<div class="max-w-xl mx-auto px-2">
+  <h1 class="text-4xl font-bold text-center my-8">Log In</h1>
+  <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :password %>
+    <% if params[:redir].present? %>
+      <%= hidden_field_tag :redir, params[:redir] %>
+    <% end %>
+    <div class="space-y-2">
+      <div class="form-control">
+        <%= f.label :otp_attempt, 'Two-Factor Code', class: 'label' %>
+        <%= f.text_field :otp_attempt, autofocus: true, placeholder: 'XXX-XXX', required: true, class: 'base-input' %>
+      </div>
+    </div>
+    <div class="form-control">
+      <%= f.button button_title(title: 'Log In', disabled_with: 'Logging In'), class: 'base-button' %>
+    </div>
+  <% end %>
+</div>

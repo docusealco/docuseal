@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  consumed_timestep      :integer
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  deleted_at             :datetime
@@ -16,6 +17,8 @@
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
+#  otp_required_for_login :boolean          default(FALSE), not null
+#  otp_secret             :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -50,7 +53,7 @@ class User < ApplicationRecord
   has_one :access_token, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
 
   attribute :role, :string, default: ADMIN_ROLE

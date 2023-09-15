@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-Rails.application.config.filter_parameters += %i[password token]
+Rails.application.config.filter_parameters += %i[password token otp_attempt]

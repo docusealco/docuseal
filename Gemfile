@@ -8,6 +8,7 @@ gem 'aws-sdk-s3', require: false
 gem 'azure-storage-blob', require: false
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'devise-two-factor'
 gem 'dotenv', require: false
 gem 'faraday'
 gem 'google-cloud-storage', require: false
@@ -28,6 +29,8 @@ gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rollbar', require: ENV.key?('ROLLBAR_ACCESS_TOKEN')
+gem 'rotp'
+gem 'rqrcode'
 gem 'ruby-vips'
 gem 'rubyXL'
 gem 'shakapacker'

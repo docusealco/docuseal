@@ -1,0 +1,13 @@
+<%= render 'shared/turbo_modal', title: 'Remove 2FA' do %>
+  <%= form_for '', url: mfa_setup_path, method: :delete, data: { turbo_frame: :_top } do |f| %>
+    <div class="form-control my-6 space-y-2">
+      <%= f.text_field :otp_attempt, required: true, placeholder: 'XXX-XXX', class: 'base-input text-center' %>
+      <span>
+        <%= @error_message %>
+      </span>
+    </div>
+    <div class="form-control mt-4">
+      <%= f.button button_title(title: 'Remove 2FA'), class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>
