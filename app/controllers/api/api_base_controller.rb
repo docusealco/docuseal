@@ -5,6 +5,15 @@ module Api
     include ActiveStorage::SetCurrent
 
     before_action :authenticate_user!
+    check_authorization
+
+    if Rails.env.production?
+      rescue_from CanCan::AccessDenied do |e|
+        Rollbar.error(e) if defined?(Rollbar)
+
+        render json: { error: e.message }, status: :forbidden
+      end
+    end
 
     private
 

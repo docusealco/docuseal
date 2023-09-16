@@ -10,33 +10,49 @@
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <% unless Docuseal.multitenant? %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) %>
+          <li>
+            <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) %>
+          <li>
+            <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) %>
+          <li>
+            <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
-          <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-        <li>
-          <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-        <li>
-          <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to 'E-Signature', settings_esign_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <li>
-        <%= link_to 'E-Signature', settings_esign_path, class: 'text-base hover:bg-base-300' %>
-      </li>
-      <li>
-        <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
-      </li>
+      <% if can?(:read, User) %>
+        <li>
+          <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
+        <% if can?(:read, AccessToken) %>
+          <li>
+            <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::WEBHOOK_URL_KEY, account: current_account)) %>
+          <li>
+            <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if can?(:read, AccountConfig) %>
         <li>
-          <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-        <li>
-          <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <li>
-        <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
-      </li>
       <% unless Docuseal.demo? %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>

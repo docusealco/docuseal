@@ -4,6 +4,7 @@ class StartFormController < ApplicationController
   layout 'form'
 
   skip_before_action :authenticate_user!
+  skip_authorization_check
 
   before_action :load_template
 

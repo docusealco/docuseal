@@ -15,7 +15,7 @@
           <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
         </span>
       <% end %>
-      <% if (!@pagy.count.zero? || params[:q].present?) && !@template.deleted_at? %>
+      <% if (!@pagy.count.zero? || params[:q].present?) && !@template.deleted_at? && can?(:create, Submission) %>
         <%= link_to new_template_submission_path(@template), class: 'order-1 btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span>Add <span class="hidden md:inline">Recipients</span></span>
@@ -31,7 +31,7 @@
   <% view_archived_html = capture do %>
     <% if @template.submissions.where.not(deleted_at: nil).exists? && !@template.deleted_at? %>
       <div>
-        <a href="<%= template_archived_path(@template) %>" class="link text-sm">View Archived</a>
+        <a href="<%= template_archived_index_path(@template) %>" class="link text-sm">View Archived</a>
       </div>
     <% end %>
   <% end %>
@@ -50,9 +50,11 @@
         <% if @template.deleted_at.blank? && params[:q].blank? %>
           <p class="text-gray-600">Send an invitation to fill and complete the form</p>
           <div class="space-x-2">
-            <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
-              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-              <span class="mr-1">Add Recipients</span>
+            <% if can?(:create, Submission) %>
+              <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+                <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+                <span class="mr-1">Add Recipients</span>
+              <% end %>
             <% end %>
             <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
               <%= svg_icon('writing', class: 'w-6 h-6') %>

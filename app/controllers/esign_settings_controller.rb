@@ -11,9 +11,12 @@ class EsignSettingsController < ApplicationController
     end
   end
 
+  before_action :load_encrypted_config
+  authorize_resource :encrypted_config, parent: false, only: %i[new create]
+  authorize_resource :encrypted_config, only: %i[update destroy show]
+
   def show
-    cert_data = EncryptedConfig.find_by(account: current_account,
-                                        key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+    cert_data = @encrypted_config.value || {}
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data) if cert_data['cert'].present?
 
@@ -42,10 +45,7 @@ class EsignSettingsController < ApplicationController
   def create
     @cert_record = CertFormRecord.new(**cert_params)
 
-    cert_configs = EncryptedConfig.find_or_initialize_by(account: current_account,
-                                                         key: EncryptedConfig::ESIGN_CERTS_KEY)
-
-    if (cert_configs.value && cert_configs.value['custom']&.any? { |e| e['name'] == @cert_record.name }) ||
+    if (@encrypted_config.value && @encrypted_config.value['custom']&.any? { |e| e['name'] == @cert_record.name }) ||
        @cert_record.name == DEFAULT_CERT_NAME
 
       @cert_record.errors.add(:name, 'already exists')
@@ -54,7 +54,7 @@ class EsignSettingsController < ApplicationController
                     status: :unprocessable_entity
     end
 
-    save_new_cert!(cert_configs, @cert_record)
+    save_new_cert!(@encrypted_config, @cert_record)
 
     redirect_to settings_esign_path, notice: 'Certificate has been successfully added!'
   rescue OpenSSL::PKCS12::PKCS12Error
@@ -64,28 +64,30 @@ class EsignSettingsController < ApplicationController
   end
 
   def update
-    cert_configs = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)
+    @encrypted_config.value['custom'].each { |e| e['status'] = 'validate' }
 
-    cert_configs.value['custom'].each { |e| e['status'] = 'validate' }
-    custom_cert_data = cert_configs.value['custom'].find { |e| e['name'] == params[:name] }
+    custom_cert_data = @encrypted_config.value['custom'].find { |e| e['name'] == params[:name] }
     custom_cert_data['status'] = 'default' if custom_cert_data
 
-    cert_configs.save!
+    @encrypted_config.save!
 
     redirect_to settings_esign_path, notice: 'Default certificate has been selected'
   end
 
   def destroy
-    cert_configs = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)
+    @encrypted_config.value['custom'].reject! { |e| e['name'] == params[:name] }
 
-    cert_configs.value['custom'].reject! { |e| e['name'] == params[:name] }
-
-    cert_configs.save!
+    @encrypted_config.save!
 
     redirect_to settings_esign_path, notice: 'Certificate has been removed'
   end
 
   private
+
+  def load_encrypted_config
+    @encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account,
+                                                              key: EncryptedConfig::ESIGN_CERTS_KEY)
+  end
 
   def save_new_cert!(cert_configs, cert_record)
     pkcs = OpenSSL::PKCS12.new(cert_record.file.read, cert_record.password)

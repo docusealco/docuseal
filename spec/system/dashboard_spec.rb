@@ -23,6 +23,7 @@ RSpec.describe 'Dashboard Page' do
   context 'when there are templates' do
     let!(:authors) { create_list(:user, 5, account:) }
     let!(:templates) { authors.map { |author| create(:template, account:, author:) } }
+    let!(:other_template) { create(:template) }
 
     before do
       visit root_path
@@ -35,6 +36,7 @@ RSpec.describe 'Dashboard Page' do
       end
 
       expect(page).to have_content('Templates')
+      expect(page).not_to have_content(other_template.name)
       expect(page).to have_link('Create', href: new_template_path)
     end
 

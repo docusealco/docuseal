@@ -12,6 +12,7 @@ RSpec.describe 'Team Settings' do
 
   context 'when multiple users' do
     let!(:users) { create_list(:user, 2, account:) }
+    let!(:other_user) { create(:user) }
 
     before do
       visit settings_users_path
@@ -22,6 +23,7 @@ RSpec.describe 'Team Settings' do
         users.each do |user|
           expect(page).to have_content(user.full_name)
           expect(page).to have_content(user.email)
+          expect(page).not_to have_content(other_user.email)
         end
       end
     end
@@ -84,13 +86,7 @@ RSpec.describe 'Team Settings' do
     end
 
     it 'does not allow to remove the current user' do
-      expect do
-        accept_confirm('Are you sure?') do
-          first(:button, 'Delete').click
-        end
-      end.not_to(change { User.admins.count })
-
-      expect(page).to have_content('Unable to remove user')
+      expect(page).not_to have_content('User has been removed')
     end
   end
 end

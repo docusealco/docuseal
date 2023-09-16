@@ -2,10 +2,10 @@
 
 module Api
   class TemplatesDocumentsController < ApiBaseController
+    load_and_authorize_resource :template
+
     def create
       return head :unprocessable_entity if params[:blobs].blank? && params[:files].blank?
-
-      @template = current_account.templates.find(params[:template_id])
 
       documents = Templates::CreateAttachments.call(@template, params)
 

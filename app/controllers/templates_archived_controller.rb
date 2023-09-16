@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class TemplatesArchivedController < ApplicationController
-  def index
-    templates = current_account.templates.where.not(deleted_at: nil).preload(:author).order(id: :desc)
-    templates = Templates.search(templates, params[:q])
+  load_and_authorize_resource :template, parent: false
 
-    @pagy, @templates = pagy(templates, items: 12)
+  def index
+    @templates = @templates.where.not(deleted_at: nil).preload(:author).order(id: :desc)
+    @templates = Templates.search(@templates, params[:q])
+
+    @pagy, @templates = pagy(@templates, items: 12)
   end
 end

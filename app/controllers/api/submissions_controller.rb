@@ -5,21 +5,25 @@ module Api
     UnknownFieldName = Class.new(StandardError)
     UnknownSubmitterName = Class.new(StandardError)
 
-    def create
-      template = current_account.templates.find(params[:template_id])
+    load_and_authorize_resource :template
 
+    before_action do
+      authorize!(:create, Submission)
+    end
+
+    def create
       submissions =
         if (emails = (params[:emails] || params[:email]).presence)
-          Submissions.create_from_emails(template:,
+          Submissions.create_from_emails(template: @template,
                                          user: current_user,
                                          source: :api,
                                          mark_as_sent: params[:send_email] != 'false',
                                          emails:)
         else
-          submissions_attrs = normalize_submissions_params!(submissions_params[:submission], template)
+          submissions_attrs = normalize_submissions_params!(submissions_params[:submission], @template)
 
           Submissions.create_from_submitters(
-            template:,
+            template: @template,
             user: current_user,
             source: :api,
             mark_as_sent: params[:send_email] != 'false',

@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class SubmissionsExportController < ApplicationController
-  before_action :load_template
+  load_and_authorize_resource :template
+  load_and_authorize_resource :submission, through: :template, parent: false, only: :index
 
   def index
-    submissions = @template.submissions.active
-                           .preload(submitters: { documents_attachments: :blob,
-                                                  attachments_attachments: :blob })
-                           .order(id: :asc)
+    submissions = @submissions.active
+                              .preload(submitters: { documents_attachments: :blob,
+                                                     attachments_attachments: :blob })
+                              .order(id: :asc)
 
     if params[:format] == 'csv'
       send_data Submissions::GenerateExportFiles.call(submissions, format: params[:format]),
@@ -19,10 +20,4 @@ class SubmissionsExportController < ApplicationController
   end
 
   def new; end
-
-  private
-
-  def load_template
-    @template = current_account.templates.find(params[:template_id])
-  end
 end

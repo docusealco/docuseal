@@ -6,14 +6,16 @@
     <% end %>
   </h1>
   <div class="flex md:justify-between space-x-2 flex-none">
-    <% unless template.deleted_at? %>
+    <% if !template.deleted_at? && can?(:destroy, template) %>
       <%= button_to button_title(title: 'Remove', disabled_with: 'Removing', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>
-    <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
-      <%= svg_icon('copy', class: 'w-6 h-6') %>
-      <span>Clone</span>
+    <% if can?(:create, template) %>
+      <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
+        <%= svg_icon('copy', class: 'w-6 h-6') %>
+        <span>Clone</span>
+      <% end %>
     <% end %>
-    <% unless template.deleted_at? %>
+    <% if !template.deleted_at? && can?(:update, template) %>
       <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm' do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('pencil', class: 'w-6 h-6') %>
@@ -21,7 +23,7 @@
         </span>
       <% end %>
     <% end %>
-    <% if template.deleted_at? %>
+    <% if template.deleted_at? && can?(:create, template) %>
       <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm' %>
     <% end %>
   </div>

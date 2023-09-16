@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Backend
 
+  check_authorization unless: :devise_controller?
+
   before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
@@ -14,6 +16,14 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pagy::OverflowError do
     redirect_to request.path
+  end
+
+  if Rails.env.production?
+    rescue_from CanCan::AccessDenied do |e|
+      Rollbar.error(e) if defined?(Rollbar)
+
+      redirect_back(fallback_location: root_path, alert: e.message)
+    end
   end
 
   def default_url_options

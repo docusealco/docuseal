@@ -2,6 +2,8 @@
 
 class StorageSettingsController < ApplicationController
   before_action :load_encrypted_config
+  authorize_resource :encrypted_config, only: :index
+  authorize_resource :encrypted_config, parent: false, only: :create
 
   def index; end
 

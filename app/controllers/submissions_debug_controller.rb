@@ -4,6 +4,7 @@ class SubmissionsDebugController < ApplicationController
   layout 'plain'
 
   skip_before_action :authenticate_user!
+  skip_authorization_check
 
   def index
     @submitter = Submitter.preload({ attachments_attachments: :blob },

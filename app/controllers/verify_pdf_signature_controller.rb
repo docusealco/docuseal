@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class VerifyPdfSignatureController < ApplicationController
+  skip_authorization_check
+
   def create
     pdfs =
       params[:files].map do |file|

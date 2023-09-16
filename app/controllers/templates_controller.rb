@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
+  load_and_authorize_resource :template
+
   before_action :load_base_template, only: %i[new create]
 
   def show
-    @template = current_account.templates.find(params[:id])
     submissions = @template.submissions
     submissions = submissions.active if @template.deleted_at.blank?
     submissions = Submissions.search(submissions, params[:q])
@@ -15,19 +16,19 @@ class TemplatesController < ApplicationController
   end
 
   def new
-    @template = current_account.templates.new
     @template.name = "#{@base_template.name} (Clone)" if @base_template
   end
 
   def edit
-    @template = current_account.templates.preload(schema_documents: { preview_images_attachments: :blob })
-                               .find(params[:id])
+    ActiveRecord::Associations::Preloader.new(
+      records: [@template],
+      associations: [schema_documents: { preview_images_attachments: :blob }]
+    ).call
 
     render :edit, layout: 'plain'
   end
 
   def create
-    @template = current_account.templates.new(template_params)
     @template.author = current_user
     @template.assign_attributes(@base_template.slice(:fields, :schema, :submitters)) if @base_template
 
@@ -41,7 +42,6 @@ class TemplatesController < ApplicationController
   end
 
   def destroy
-    @template = current_account.templates.find(params[:id])
     @template.update!(deleted_at: Time.current)
 
     redirect_back(fallback_location: root_path, notice: 'Template has been archived.')
@@ -56,8 +56,6 @@ class TemplatesController < ApplicationController
   def load_base_template
     return if params[:base_template_id].blank?
 
-    @base_template = current_account.templates
-                                    .preload(documents_attachments: :preview_images_attachments)
-                                    .find_by(id: params[:base_template_id])
+    @base_template = current_account.templates.find_by(id: params[:base_template_id])
   end
 end

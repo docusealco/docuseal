@@ -2,6 +2,7 @@
 
 class SubmissionsDownloadController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_authorization_check
 
   def index
     submitter = Submitter.find_by(slug: params[:submitter_slug])

@@ -9,6 +9,9 @@ class AccountsController < ApplicationController
     'de-DE' => 'German (Germany)'
   }.freeze
 
+  before_action :load_account
+  authorize_resource :account
+
   def show; end
 
   def update
@@ -34,6 +37,10 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def load_account
+    @account = current_account
+  end
 
   def account_params
     params.require(:account).permit(:name, :timezone, :locale)

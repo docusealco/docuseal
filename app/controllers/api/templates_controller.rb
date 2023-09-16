@@ -2,10 +2,10 @@
 
 module Api
   class TemplatesController < ApiBaseController
-    before_action :load_template, only: %i[show update]
+    load_and_authorize_resource :template
 
     def index
-      render json: current_account.templates
+      render json: @templates
     end
 
     def show
@@ -27,10 +27,6 @@ module Api
                                        submitters: [%i[name uuid]],
                                        fields: [[:uuid, :submitter_uuid, :name, :type, :required,
                                                  { options: [], areas: [%i[x y w h cell_w attachment_uuid page]] }]])
-    end
-
-    def load_template
-      @template = current_account.templates.find(params[:id])
     end
   end
 end

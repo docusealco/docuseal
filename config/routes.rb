@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   resources :templates_archived, only: %i[index], path: 'archived'
   resources :templates, only: %i[new create edit show destroy] do
     resources :restore, only: %i[create], controller: 'templates_restore'
-    resource :archived, only: %i[show], controller: 'templates_archived_submissions'
+    resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
     resources :submissions_export, only: %i[index new]
   end

@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class PersonalizationSettingsController < ApplicationController
-  def show; end
+  def show
+    authorize!(:read, AccountConfig)
+  end
 
   def create
     account_config =
       current_account.account_configs.find_or_initialize_by(key: encrypted_config_params[:key])
+
+    authorize!(:create, account_config)
 
     account_config.update!(encrypted_config_params)
 

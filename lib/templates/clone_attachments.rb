@@ -5,7 +5,7 @@ module Templates
     module_function
 
     def call(template:, original_template:)
-      original_template.documents.each do |document|
+      original_template.documents.preload(:preview_images_attachments).each do |document|
         new_document = ActiveStorage::Attachment.create!(
           uuid: document.uuid,
           blob_id: document.blob_id,

@@ -16,6 +16,9 @@
       <%= f.label :password, class: 'label' %>
       <%= f.password_field :password, required: user.new_record?, class: 'base-input' %>
     </div>
+    <% if f.object != current_user %>
+      <%= render 'role_select', f: %>
+    <% end %>
   </div>
   <div class="form-control pt-2">
     <%= f.button button_title, class: 'base-button' %>

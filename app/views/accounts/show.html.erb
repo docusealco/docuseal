@@ -29,9 +29,11 @@
           </div>
         <% end %>
       <% end %>
-      <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
-      </div>
+      <% if can?(:update, current_account) %>
+        <div class="form-control pt-2">
+          <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class MfaSetupController < ApplicationController
+  before_action do
+    authorize!(:update, current_user)
+  end
+
   def new
     current_user.otp_secret ||= User.generate_otp_secret
 

@@ -2,19 +2,26 @@
 
 class SubmissionsController < ApplicationController
   before_action :load_template, only: %i[new create]
+  authorize_resource :template, only: %i[new create]
+
+  load_and_authorize_resource :submission, only: %i[show destroy]
 
   def show
-    @submission =
-      Submission.joins(:template).where(template: { account_id: current_account.id })
-                .preload(:template, template_schema_documents: [:blob, { preview_images_attachments: :blob }])
-                .find(params[:id])
+    ActiveRecord::Associations::Preloader.new(
+      records: [@submission],
+      associations: [:template, { template_schema_documents: [:blob, { preview_images_attachments: :blob }] }]
+    ).call
 
     render :show, layout: 'plain'
   end
 
-  def new; end
+  def new
+    authorize!(:new, Submission)
+  end
 
   def create
+    authorize!(:create, Submission)
+
     submissions =
       if params[:emails].present?
         Submissions.create_from_emails(template: @template,
@@ -37,12 +44,9 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    submission = Submission.joins(:template).where(template: { account_id: current_account.id })
-                           .find(params[:id])
+    @submission.update!(deleted_at: Time.current)
 
-    submission.update!(deleted_at: Time.current)
-
-    redirect_back(fallback_location: template_path(submission.template), notice: 'Submission has been archived')
+    redirect_back(fallback_location: template_path(@submission.template), notice: 'Submission has been archived')
   end
 
   private

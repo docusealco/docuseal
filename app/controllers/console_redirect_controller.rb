@@ -2,6 +2,7 @@
 
 class ConsoleRedirectController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_authorization_check
 
   def index
     return redirect_to(new_user_session_path({ redir: params[:redir] }.compact)) if current_user.blank?

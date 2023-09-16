@@ -3,9 +3,11 @@
   <div class="flex-grow">
     <div class="flex justify-between mb-4">
       <h1 class="text-4xl font-bold">Team</h1>
-      <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
-        <%= svg_icon('plus', class: 'w-6 h-6') %>
-        <span>New User</span>
+      <% if can?(:create, User.new(account: current_account)) %>
+        <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
+          <%= svg_icon('plus', class: 'w-6 h-6') %>
+          <span>New User</span>
+        <% end %>
       <% end %>
     </div>
     <div class="overflow-x-auto">
@@ -46,11 +48,15 @@
                 <%= user.last_sign_in_at ? l(user.last_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
-                <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
-                  Edit
+                <% if can?(:update, user) %>
+                  <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
+                    Edit
+                  <% end %>
                 <% end %>
-                <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
-                  Remove
+                <% if can?(:destroy, user) && user != current_user %>
+                  <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
+                    Remove
+                  <% end %>
                 <% end %>
               </td>
             </tr>
