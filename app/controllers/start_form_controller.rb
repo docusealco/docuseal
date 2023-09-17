@@ -26,7 +26,9 @@ class StartFormController < ApplicationController
         ua: request.user_agent
       )
 
-      @submitter.submission ||= Submission.new(template: @template, source: :link)
+      @submitter.submission ||= Submission.new(template: @template,
+                                               template_submitters: @template.submitters,
+                                               source: :link)
 
       if @submitter.save
         redirect_to submit_form_path(@submitter.slug)
