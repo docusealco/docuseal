@@ -47,7 +47,7 @@ class User < ApplicationRecord
     ADMIN_ROLE = 'admin'
   ].freeze
 
-  EMAIL_REGEXP = /[^@,\s]+@[^@,\s]+/
+  EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
   belongs_to :account
   has_one :access_token, dependent: :destroy

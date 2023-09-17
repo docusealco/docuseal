@@ -21,7 +21,7 @@
       <%= f.fields_for resource do |ff| %>
         <div class="form-control <%= 'hidden' if (params[:oauth_callback] || params[:sign_up]) && resource.email? %>">
           <%= ff.label :email, class: 'label' %>
-          <%= ff.email_field :email, required: true, class: 'base-input' %>
+          <%= ff.email_field :email, value: EmailTypo.call(resource.email), required: true, class: 'base-input' %>
         </div>
       <% end %>
       <%= f.fields_for resource.account do |ff| %>

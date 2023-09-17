@@ -11,6 +11,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'dotenv', require: false
+gem 'email_typo'
 gem 'faraday'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'

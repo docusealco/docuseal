@@ -158,6 +158,7 @@ GEM
       rake (>= 12.0.0, < 14.0.0)
     docile (1.4.0)
     dotenv (2.8.1)
+    email_typo (0.2.3)
     erb_lint (0.4.0)
       activesupport
       better_html (>= 2.0.1)
@@ -574,6 +575,7 @@ DEPENDENCIES
   devise
   devise-two-factor
   dotenv
+  email_typo
   erb_lint
   factory_bot_rails
   faker

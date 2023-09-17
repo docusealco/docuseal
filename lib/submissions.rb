@@ -32,7 +32,7 @@ module Submissions
 
     emails.map do |email|
       submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
-      submission.submitters.new(email:,
+      submission.submitters.new(email: normalize_email(email),
                                 uuid: template.submitters.first['uuid'],
                                 sent_at: mark_as_sent ? Time.current : nil)
 
@@ -55,12 +55,13 @@ module Submissions
         next if uuid.blank?
 
         is_order_sent = submitters_order == 'random' || index.zero?
+        email = normalize_email(submitter_attrs[:email])
 
         submission.submitters.new(
-          email: submitter_attrs[:email],
+          email:,
           phone: submitter_attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
           name: submitter_attrs[:name],
-          sent_at: mark_as_sent && submitter_attrs[:email].present? && is_order_sent ? Time.current : nil,
+          sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
           values: submitter_attrs[:values] || {},
           uuid:
         )
@@ -80,5 +81,12 @@ module Submissions
         Submitters.send_signature_requests(submission.submitters, params)
       end
     end
+  end
+
+  def normalize_email(email)
+    return if email.blank?
+    return email.downcase if email.to_s.include?(',')
+
+    EmailTypo.call(email.delete_prefix('<'))
   end
 end
