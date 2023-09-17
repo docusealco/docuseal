@@ -17,6 +17,8 @@ module Templates
           build_external_link_hash(page, annot).merge('page' => index)
         end
       end
+    rescue PDF::Reader::MalformedPDFError
+      []
     end
 
     def build_external_link_hash(page, annot)

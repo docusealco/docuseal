@@ -42,7 +42,7 @@ module Templates
 
     def generate_pdf_preview_images(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
-      number_of_pages = PDF::Reader.new(StringIO.new(data)).pages.size - 1
+      number_of_pages = HexaPDF::Document.new(io: StringIO.new(data)).pages.size - 1
 
       (0..number_of_pages).each do |page_number|
         page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
