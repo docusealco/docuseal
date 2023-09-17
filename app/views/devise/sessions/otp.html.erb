@@ -1,5 +1,5 @@
-<div class="max-w-xl mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center my-8">Log In</h1>
+<div class="max-w-lg mx-auto px-2">
+  <h1 class="text-4xl font-bold text-center mt-8">Log In</h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <%= f.hidden_field :email %>
     <%= f.hidden_field :password %>
