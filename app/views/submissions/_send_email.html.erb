@@ -1,9 +1,12 @@
 <div class="form-control">
   <% is_smtp_configured = Accounts.can_send_emails?(current_account) %>
-  <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
-    <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !is_smtp_configured, checked: is_smtp_configured %>
-    <span class="label">Send emails</span>
-  <% end %>
+  <div class="flex justify-between">
+    <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
+      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !is_smtp_configured, checked: is_smtp_configured %>
+      <span class="label">Send emails</span>
+    <% end %>
+    <%= render 'email_stats' %>
+  </div>
   <% unless is_smtp_configured %>
     <div class="alert my-4">
       <%= svg_icon('info_circle', class: 'w-6 h-6') %>

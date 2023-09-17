@@ -78,9 +78,10 @@ Rails.application.routes.draw do
   scope '/settings', as: :settings do
     unless Docuseal.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
-      resources :email, only: %i[index create], controller: 'email_settings'
+      resources :email, only: %i[index create], controller: 'email_smtp_settings'
       resources :sms, only: %i[index], controller: 'sms_settings'
     end
+    resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
     resource :personalization, only: %i[show create], controller: 'personalization_settings'

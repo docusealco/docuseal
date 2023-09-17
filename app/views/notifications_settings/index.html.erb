@@ -1,0 +1,14 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow max-w-xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4">Email Notifications</h1>
+    <%= render 'email_stats' %>
+    <%= render 'bcc_form', config: @bcc_config %>
+    <div class="flex justify-between items-end mb-4 mt-8">
+      <h2 class="text-3xl font-bold">Signature Email Reminders</h2>
+    </div>
+    <%= render 'reminder_banner' %>
+    <%= render 'reminder_form', config: @reminder_config %>
+  </div>
+  <div class="w-0 md:w-52"></div>
+</div>

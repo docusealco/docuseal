@@ -25,6 +25,7 @@
 #
 class SubmissionEvent < ApplicationRecord
   belongs_to :submission
+  has_one :account, through: :submission
   belongs_to :submitter, optional: true
 
   attribute :data, :string, default: -> { {} }
@@ -36,6 +37,7 @@ class SubmissionEvent < ApplicationRecord
 
   enum :event_type, {
     send_email: 'send_email',
+    send_reminder_email: 'send_reminder_email',
     send_sms: 'send_sms',
     open_email: 'open_email',
     click_email: 'click_email',

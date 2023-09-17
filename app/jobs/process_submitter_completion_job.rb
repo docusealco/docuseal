@@ -26,7 +26,8 @@ class ProcessSubmitterCompletionJob < ApplicationJob
     user = submitter.submission.created_by_user || submitter.template.author
 
     if submitter.template.account.users.exists?(id: user.id)
-      bcc = submitter.submission.template.account.account_configs.find_by(key: 'bcc_emails')&.value
+      bcc = submitter.submission.template.account.account_configs
+                     .find_by(key: AccountConfig::BCC_EMAILS)&.value
 
       SubmitterMailer.completed_email(submitter, user, bcc:).deliver_later!
     end

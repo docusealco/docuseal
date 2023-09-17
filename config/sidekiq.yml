@@ -1,6 +1,7 @@
 queues:
   - [default, 1]
   - [mailers, 1]
+  - [recurrent, 1]
 
 production:
   :concurrency: 15

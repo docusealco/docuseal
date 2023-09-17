@@ -5,6 +5,7 @@ module SubmissionEvents
 
   EVENT_NAMES = {
     send_email: 'Email sent',
+    send_reminder_email: 'Reminder email sent',
     send_sms: 'SMS sent',
     open_email: 'Email opened',
     click_email: 'Email link clicked',
