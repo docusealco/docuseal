@@ -29,6 +29,7 @@ class TemplatesController < ApplicationController
   end
 
   def create
+    @template.account = current_account
     @template.author = current_user
     @template.assign_attributes(@base_template.slice(:fields, :schema, :submitters)) if @base_template
 
