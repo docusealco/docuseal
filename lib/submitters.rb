@@ -35,7 +35,15 @@ module Submitters
     submitters.each do |submitter|
       next if submitter.email.blank?
 
-      SendSubmitterInvitationEmailJob.perform_later(submitter)
+      enqueue_invitation_email(submitter, params)
     end
+  end
+
+  def enqueue_invitation_email(submitter, params)
+    subject, body = params.values_at(:subject, :body) if params[:is_custom_message] == '1'
+
+    SendSubmitterInvitationEmailJob.perform_later('submitter_id' => submitter.id,
+                                                  'body' => body,
+                                                  'subject' => subject)
   end
 end

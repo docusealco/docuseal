@@ -1,8 +1,8 @@
-<% if @email_config %>
-  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@email_config.value['body'], submitter: @submitter)))) %>
+<% if @email_config || @body.present? %>
+  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@body.presence || @email_config.value['body'], submitter: @submitter)))) %>
 <% else %>
   <p>Hi there,</p>
-  <%= simple_format(@message) %>
+  <p>You have been invited to submit the "<%= @submitter.submission.template.name %>" form</p>
   <p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email')) %></p>
   <p>Please contact us by replying to this email if you didn't request this.</p>
   <p>

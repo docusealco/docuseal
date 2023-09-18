@@ -1,11 +1,17 @@
 <div class="form-control">
   <% is_smtp_configured = Accounts.can_send_emails?(current_account) %>
-  <div class="flex justify-between">
+  <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !is_smtp_configured, checked: is_smtp_configured %>
       <span class="label">Send emails</span>
     <% end %>
-    <%= render 'email_stats' %>
+    <div>
+      <label>
+        <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
+        <span class="link peer-checked:hidden">Edit message</span>
+      </label>
+      <%= render 'email_stats' %>
+    </div>
   </div>
   <% unless is_smtp_configured %>
     <div class="alert my-4">
@@ -20,4 +26,21 @@
       </div>
     </div>
   <% end %>
+</div>
+<% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
+<div id="message_field" class="card card-compact bg-base-200 hidden">
+  <div class="card-body">
+    <div class="form-control space-y-2">
+      <div class="form-control">
+        <%= f.label :subject, class: 'label' %>
+        <%= f.text_field :subject, value: config.value['subject'], required: true, class: '!text-sm base-input w-full' %>
+      </div>
+      <div class="form-control">
+        <%= f.label :message, 'Body', class: 'label' %>
+        <autoresize-textarea>
+          <%= f.text_area :body, value: config.value['body'], required: true, class: 'base-textarea w-full', rows: 10 %>
+        </autoresize-textarea>
+      </div>
+    </div>
+  </div>
 </div>

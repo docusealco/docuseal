@@ -1,18 +1,16 @@
 # frozen_string_literal: true
 
 class SubmitterMailer < ApplicationMailer
-  DEFAULT_MESSAGE = %(You have been invited to submit the "%<name>s" form:)
-
-  def invitation_email(submitter, message: '')
+  def invitation_email(submitter, body: nil, subject: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
-    @message = message.presence || format(DEFAULT_MESSAGE, name: submitter.submission.template.name)
+    @body = body.presence
 
     @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
     subject =
-      if @email_config
-        ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
+      if @email_config || subject.present?
+        ReplaceEmailVariables.call(subject.presence || @email_config.value['subject'], submitter:)
       else
         'You have been invited to submit a form'
       end
