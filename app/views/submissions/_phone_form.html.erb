@@ -37,8 +37,10 @@
       <span>Add New</span>
     </a>
   </dynamic-list>
-  <%= render 'send_sms', f: %>
-  <%= render('submitters_order', f:, template:) if Accounts.can_send_emails?(current_account) %>
+  <div>
+    <%= render('submitters_order', f:, template:) if Accounts.can_send_emails?(current_account) %>
+    <%= render 'send_sms', f: %>
+  </div>
   <div class="form-control">
     <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
   </div>
