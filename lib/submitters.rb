@@ -3,6 +3,20 @@
 module Submitters
   module_function
 
+  def search(submitters, keyword)
+    return submitters if keyword.blank?
+
+    term = "%#{keyword.downcase}%"
+
+    arel_table = Submitter.arel_table
+
+    arel = arel_table[:email].lower.matches(term)
+                             .or(arel_table[:phone].matches(term))
+                             .or(arel_table[:name].lower.matches(term))
+
+    submitters.where(arel)
+  end
+
   def select_attachments_for_download(submitter)
     original_documents = submitter.submission.template.documents.preload(:blob)
     is_more_than_two_images = original_documents.count(&:image?) > 1

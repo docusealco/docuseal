@@ -91,3 +91,30 @@ button[disabled] .enabled {
   right: auto;
   bottom: auto;
 }
+
+.autocomplete {
+  background: white;
+  z-index: 1000;
+  font: 14px/22px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: auto;
+  box-sizing: border-box;
+  @apply border border-base-300;
+}
+
+.autocomplete * {
+  font: inherit;
+}
+
+.autocomplete > div {
+  padding: 0 4px;
+}
+
+.autocomplete .group {
+  background: #eee;
+}
+
+.autocomplete > div:hover:not(.group),
+.autocomplete > div.selected {
+  @apply bg-base-300;
+  cursor: pointer;
+}

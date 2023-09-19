@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
+    resources :submitters_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submissions, only: %i[create]

@@ -8,25 +8,33 @@
               <%= svg_icon('trash', class: 'w-4 h-4') %>
             </a>
           </div>
-          <div class="grid md:grid-cols-2 <%= template.submitters.size > 1 ? 'gap-4' : 'gap-1' %>">
+          <div class="grid <%= template.submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1' %>">
             <% template.submitters.each do |item| %>
-              <div class="form-control">
-                <% if template.submitters.size > 1 %>
-                  <label class="label pt-0 pb-1 text-xs">
-                    <span class="label-text"> <%= item['name'] %></span>
-                  </label>
-                <% end %>
-                <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
-                <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="input input-sm input-bordered" placeholder="Phone" required>
-                <% if template.submitters.size > 1 %>
-                  <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered mt-1.5" placeholder="Name (optional)">
-                <% end %>
-              </div>
-              <% if template.submitters.size == 1 %>
-                <div class="form-control flex">
-                  <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered" placeholder="Name (optional)">
+              <submitter-item class="grid <%= template.submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1' %>">
+                <div class="form-control">
+                  <% if template.submitters.size > 1 %>
+                    <label class="label pt-0 pb-1 text-xs">
+                      <span class="label-text"> <%= item['name'] %></span>
+                    </label>
+                  <% end %>
+                  <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
+                  <submitters-autocomplete data-field="phone">
+                    <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="input input-sm input-bordered w-full" placeholder="Phone" required>
+                  </submitters-autocomplete>
+                  <% if template.submitters.size > 1 %>
+                    <submitters-autocomplete data-field="name">
+                      <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered mt-1.5 w-full" placeholder="Name (optional)">
+                    </submitters-autocomplete>
+                  <% end %>
                 </div>
-              <% end %>
+                <% if template.submitters.size == 1 %>
+                  <div class="form-control flex">
+                    <submitters-autocomplete data-field="name">
+                      <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered w-full" placeholder="Name (optional)">
+                    </submitters-autocomplete>
+                  </div>
+                <% end %>
+              </submitter-item>
             <% end %>
           </div>
         </div>
