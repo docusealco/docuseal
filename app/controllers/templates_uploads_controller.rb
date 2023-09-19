@@ -4,6 +4,7 @@ class TemplatesUploadsController < ApplicationController
   load_and_authorize_resource :template, parent: false
 
   def create
+    @template.account = current_account
     @template.author = current_user
     @template.name = File.basename(params[:files].first.original_filename, '.*')
 
