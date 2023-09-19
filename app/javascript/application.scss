@@ -74,3 +74,6 @@ button[disabled] .enabled {
 .base-select {
   @apply select base-input w-full font-normal;
 }
+.bg-redact{
+  background: black;
+}
