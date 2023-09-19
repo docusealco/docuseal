@@ -136,8 +136,8 @@
                 <%= field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}" %>
               </div>
               <div>
-                <% if field['type'] == 'signature' %>
-                  <div class="w-full bg-base-300">
+                <% if field['type'].in?(%w[signature initials]) %>
+                  <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>
                 <% elsif field['type'] == 'image' %>

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -75,6 +75,7 @@ export default {
       return {
         text: 'Text',
         signature: 'Signature',
+        initials: 'Initials',
         date: 'Date',
         image: 'Image',
         file: 'File',
@@ -90,14 +91,15 @@ export default {
       return {
         text: IconTextSize,
         signature: IconWritingSign,
+        initials: IconLetterCaseUpper,
         date: IconCalendarEvent,
         image: IconPhoto,
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
-        cells: IconColumns3,
-        multiple: IconChecks,
         radio: IconCircleDot,
+        multiple: IconChecks,
+        cells: IconColumns3,
         phone: IconPhoneCheck
       }
     }

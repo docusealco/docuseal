@@ -256,6 +256,19 @@
             @start="$refs.areas.scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
           />
+          <InitialsStep
+            v-else-if="currentField.type === 'initials'"
+            ref="currentStep"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            :is-direct-upload="isDirectUpload"
+            :attachments-index="attachmentsIndex"
+            :submitter-slug="submitterSlug"
+            @attached="attachments.push($event)"
+            @start="$refs.areas.scrollIntoField(currentField)"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+            @minimize="isFormVisible = false"
+          />
           <AttachmentStep
             v-else-if="currentField.type === 'file'"
             v-model="values[currentField.uuid]"
@@ -328,6 +341,7 @@
 import FieldAreas from './areas'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
+import InitialsStep from './initials_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
@@ -342,6 +356,7 @@ export default {
     ImageStep,
     SignatureStep,
     AttachmentStep,
+    InitialsStep,
     MultiSelectStep,
     IconInnerShadowTop,
     IconArrowsDiagonal,
@@ -439,7 +454,8 @@ export default {
       if (this.recalculateButtonDisabledKey) {
         return this.isSubmitting ||
         (this.currentField.required && ['image', 'file'].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length) ||
-        (this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted)
+        (this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted) ||
+        (this.currentField.required && this.currentField.type === 'initials' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isInitialsStarted)
       } else {
         return false
       }
@@ -566,7 +582,7 @@ export default {
     async submitStep () {
       this.isSubmitting = true
 
-      const stepPromise = ['signature', 'phone'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 

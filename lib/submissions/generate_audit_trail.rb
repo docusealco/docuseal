@@ -192,7 +192,7 @@ module Submissions
                   }
                 ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
               ),
-              if field['type'].in?(%w[image signature])
+              if field['type'].in?(%w[image signature initials])
                 attachment = submitter.attachments.find { |a| a.uuid == value }
                 image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
@@ -200,7 +200,7 @@ module Submissions
 
                 io = StringIO.new(image.resize([scale, 1].min).write_to_buffer('.png'))
 
-                column.image(io, padding: [0, 100, 10, 0])
+                column.image(io, padding: [0, field['type'] == 'initials' ? 200 : 100, 10, 0])
                 column.formatted_text_box([{ text: '' }])
               elsif field['type'] == 'file'
                 column.formatted_text_box(

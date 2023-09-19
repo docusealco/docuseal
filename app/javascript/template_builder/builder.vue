@@ -28,7 +28,7 @@
           <a
             :href="`/templates/${template.id}/submissions/new`"
             data-turbo-frame="modal"
-            class="btn btn-primary"
+            class="btn btn-primary text-base"
           >
             <IconUsersPlus
               width="20"
@@ -46,12 +46,12 @@
           >
             <IconInnerShadowTop
               v-if="isSaving"
-              width="20"
+              width="22"
               class="animate-spin"
             />
             <IconDeviceFloppy
               v-else
-              width="20"
+              width="22"
             />
             <span class="hidden md:inline">
               Save
@@ -472,6 +472,11 @@ export default {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
+          }
+        } else if (this.dragFieldType === 'initials') {
+          baseArea = {
+            w: area.maskW / 10 / area.maskW,
+            h: area.maskW / 35 / area.maskW
           }
         } else {
           baseArea = {

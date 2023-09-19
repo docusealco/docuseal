@@ -58,7 +58,7 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           case field['type']
-          when 'image', 'signature'
+          when 'image', 'signature', 'initials'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             image = Vips::Image.new_from_buffer(attachment.download, '').autorot

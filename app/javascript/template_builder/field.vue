@@ -99,6 +99,19 @@
                   Draw New Area
                 </a>
               </li>
+              <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2"
+                  @click.prevent="copyToAllPages(field)"
+                >
+                  <IconCopy
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  Copy to All Pages
+                </a>
+              </li>
             </ul>
           </span>
           <button
@@ -183,7 +196,7 @@
 <script>
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
-import { IconShape, IconNewSection, IconTrashX } from '@tabler/icons-vue'
+import { IconShape, IconNewSection, IconTrashX, IconCopy } from '@tabler/icons-vue'
 
 export default {
   name: 'TemplateField',
@@ -192,6 +205,7 @@ export default {
     IconShape,
     IconNewSection,
     IconTrashX,
+    IconCopy,
     FieldType
   },
   inject: ['template', 'save'],
@@ -221,6 +235,23 @@ export default {
     }
   },
   methods: {
+    copyToAllPages (field) {
+      const areaString = JSON.stringify(field.areas[0])
+
+      this.template.documents.forEach((attachment) => {
+        attachment.preview_images.forEach((page) => {
+          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === parseInt(page.filename))) {
+            field.areas.push({ ...JSON.parse(areaString), page: parseInt(page.filename) })
+          }
+        })
+      })
+
+      this.$nextTick(() => {
+        this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
+      })
+
+      this.save()
+    },
     onNameFocus (e) {
       this.isNameFocus = true
 

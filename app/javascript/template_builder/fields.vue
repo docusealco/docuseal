@@ -73,7 +73,7 @@
       </button>
       <div
         v-else
-        class="tooltip flex"
+        class="tooltip tooltip-bottom-end flex"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
         <a
