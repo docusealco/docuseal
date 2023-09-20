@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_202947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
   end
 
+  create_table "template_folders", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "author_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_template_folders_on_account_id"
+    t.index ["author_id"], name: "index_template_folders_on_author_id"
+  end
+
   create_table "templates", force: :cascade do |t|
     t.string "slug", null: false
     t.string "name", null: false
@@ -150,8 +161,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "source", null: false
+    t.bigint "folder_id", null: false
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
+    t.index ["folder_id"], name: "index_templates_on_folder_id"
     t.index ["slug"], name: "index_templates_on_slug", unique: true
   end
 
@@ -198,7 +211,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitters", "submissions"
+  add_foreign_key "template_folders", "accounts"
+  add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "templates", "accounts"
+  add_foreign_key "templates", "template_folders", column: "folder_id"
   add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "users", "accounts"
 end

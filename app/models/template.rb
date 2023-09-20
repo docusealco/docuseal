@@ -16,23 +16,29 @@
 #  updated_at :datetime         not null
 #  account_id :bigint           not null
 #  author_id  :bigint           not null
+#  folder_id  :bigint           not null
 #
 # Indexes
 #
 #  index_templates_on_account_id  (account_id)
 #  index_templates_on_author_id   (author_id)
+#  index_templates_on_folder_id   (folder_id)
 #  index_templates_on_slug        (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (account_id => accounts.id)
 #  fk_rails_...  (author_id => users.id)
+#  fk_rails_...  (folder_id => template_folders.id)
 #
 class Template < ApplicationRecord
   DEFAULT_SUBMITTER_NAME = 'First Submitter'
 
   belongs_to :author, class_name: 'User'
   belongs_to :account
+  belongs_to :folder, class_name: 'TemplateFolder'
+
+  before_validation :maybe_set_default_folder, on: :create
 
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
@@ -52,4 +58,10 @@ class Template < ApplicationRecord
   has_many :submissions, dependent: :destroy
 
   scope :active, -> { where(deleted_at: nil) }
+
+  private
+
+  def maybe_set_default_folder
+    self.folder ||= account.default_folder
+  end
 end
