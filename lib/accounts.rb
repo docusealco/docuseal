@@ -34,6 +34,7 @@ module Accounts
     new_template = Template.find(1).dup
     new_template.account_id = account.id
     new_template.slug = SecureRandom.base58(14)
+    new_template.folder = account.default_template_folder
 
     new_template.save!
 

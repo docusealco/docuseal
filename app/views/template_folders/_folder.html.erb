@@ -1,0 +1,12 @@
+<% is_long = folder.name.size > 32 %>
+<a href="<%= folder_path(folder) %>" class="flex h-full flex-col justify-between rounded-2xl py-5 px-6 w-full bg-base-200">
+  <% if !is_long %>
+    <%= svg_icon('folder', class: 'w-6 h-6') %>
+  <% end %>
+  <div class="text-lg font-semibold mt-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
+    <% if is_long %>
+      <%= svg_icon('folder', class: 'w-6 h-6 inline') %>
+    <% end %>
+    <%= folder.name %>
+  </div>
+</a>

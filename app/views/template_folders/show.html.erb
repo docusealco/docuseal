@@ -1,0 +1,45 @@
+<div>
+  <%= link_to root_path do %>
+    &larr;
+    <span>Home</span>
+  <% end %>
+</div>
+<div class="flex justify-between mb-4 items-center">
+  <h1 class="text-4xl font-bold flex items-center space-x-2">
+    <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
+    <span class="peer">
+      <%= @template_folder.name %>
+    </span>
+    <% if can?(:update, @template_folder) && @template_folder.name != TemplateFolder::DEFAULT_NAME %>
+      <span class="pl-1 opacity-0 hover:opacity-100 peer-hover:opacity-100">
+        <a href="<%= edit_folder_path(@template_folder) %>" data-turbo-frame="modal">
+          <%= svg_icon('pencil', class: 'w-7 h-7') %>
+        </a>
+      </span>
+    <% end %>
+  </h1>
+  <div class="flex space-x-2">
+    <% if params[:q].present? || @pagy.pages > 1 %>
+      <%= render 'shared/search_input' %>
+    <% end %>
+    <% if can?(:create, ::Template) %>
+      <%= render 'templates/upload_button', folder_name: @template_folder.name %>
+      <%= link_to new_template_path(folder_name: @template_folder.name), class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
+        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+        <span class="hidden md:block">Create</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% if @pagy.count > 0 %>
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render partial: 'templates/template', collection: @templates %>
+  </div>
+  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
+<% elsif params[:q].present? %>
+  <div class="text-center">
+    <div class="mt-16 text-3xl font-semibold">
+      Templates not Found
+    </div>
+  </div>
+<% end %>

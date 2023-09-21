@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
     resources :submitters_autocomplete, only: %i[index]
+    resources :template_folders_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submissions, only: %i[create]
@@ -51,10 +52,12 @@ Rails.application.routes.draw do
   resources :console_redirect, only: %i[index]
   resource :templates_upload, only: %i[create]
   resources :templates_archived, only: %i[index], path: 'archived'
+  resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :templates, only: %i[new create edit show destroy] do
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
+    resource :folder, only: %i[edit update], controller: 'templates_folders'
     resources :submissions_export, only: %i[index new]
   end
 

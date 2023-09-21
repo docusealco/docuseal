@@ -62,6 +62,6 @@ class Template < ApplicationRecord
   private
 
   def maybe_set_default_folder
-    self.folder ||= account.default_folder
+    self.folder ||= account.default_template_folder
   end
 end

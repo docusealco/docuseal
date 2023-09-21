@@ -31,6 +31,7 @@ class TemplatesController < ApplicationController
   def create
     @template.account = current_account
     @template.author = current_user
+    @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     @template.assign_attributes(@base_template.slice(:fields, :schema, :submitters)) if @base_template
 
     if @template.save

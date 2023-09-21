@@ -8,33 +8,58 @@
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email %></span>
       </p>
-      <p class="flex items-center space-x-1 text-xs text-base-content/60">
-        <%= svg_icon('calendar', class: 'w-4 h-4') %>
-        <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
+      <p class="flex text-xs text-base-content/60">
+        <span class="flex items-center space-x-1 w-1/2">
+          <%= svg_icon('calendar', class: 'w-4 h-4') %>
+          <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
+        </span>
+        <% if template.deleted_at? %>
+          <span class="flex items-center space-x-1 w-1/2">
+            <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
+            <span class="truncate"><%= template.folder.name %></span>
+          </span>
+        <% end %>
       </p>
     </div>
   </a>
-  <div class="absolute top-0 bottom-0 w-0 pt-7 space-y-1.5 hidden md:group-hover:block" style="right: 40px">
-    <% if template.deleted_at? && can?(:update, template) %>
-      <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
-        <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
-        <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+  <div class="absolute top-0 bottom-0 w-0 flex items-center hidden md:group-hover:flex" style="right: 37px">
+    <div class="space-y-1">
+      <% if can?(:update, template) && !template.deleted_at? %>
+        <span class="tooltip tooltip-left" data-tip="Move">
+          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+            <%= svg_icon('folder_share', class: 'w-4 h-4') %>
+          </a>
+        </span>
       <% end %>
-    <% elsif can?(:update, template) %>
-      <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
-        <%= svg_icon('pencil', class: 'w-4 h-4') %>
-      </a>
-    <% end %>
-    <% if can?(:create, template) %>
-      <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
-        <%= svg_icon('copy', class: 'w-4 h-4') %>
-      </a>
-    <% end %>
-    <% if !template.deleted_at? && can?(:destroy, template) %>
-      <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
-        <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
-        <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+      <% if template.deleted_at? && can?(:update, template) %>
+        <span class="tooltip tooltip-left" data-tip="Restore">
+          <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
+            <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
+            <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+          <% end %>
+        </span>
+      <% elsif can?(:update, template) %>
+        <span class="tooltip tooltip-left" data-tip="Edit">
+          <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+            <%= svg_icon('pencil', class: 'w-4 h-4') %>
+          </a>
+        </span>
       <% end %>
-    <% end %>
+      <% if can?(:create, template) %>
+        <span class="tooltip tooltip-left" data-tip="Clone">
+          <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+            <%= svg_icon('copy', class: 'w-4 h-4') %>
+          </a>
+        </span>
+      <% end %>
+      <% if !template.deleted_at? && can?(:destroy, template) %>
+        <span class="tooltip tooltip-left" data-tip="Archive">
+          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+            <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
+            <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
   </div>
 </div>

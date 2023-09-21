@@ -3,7 +3,7 @@
   <div class="flex justify-between mb-4 items-center">
     <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
     <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 %>
+      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
       <% if can?(:create, ::Template) %>
@@ -15,17 +15,31 @@
       <% end %>
     </div>
   </div>
-  <% if @pagy.count > 0 %>
-    <div class="grid gap-4 md:grid-cols-3">
-      <%= render partial: 'templates/template', collection: @templates %>
+  <% view_archived_html = capture do %>
+    <% if current_account.templates.where.not(deleted_at: nil).exists? %>
+      <div>
+        <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @template_folders.present? %>
+    <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
+      <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
     </div>
-    <% view_archived_html = capture do %>
-      <% if current_account.templates.where.not(deleted_at: nil).exists? %>
-        <div>
-          <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+    <% if @templates.blank? %>
+      <% if @pagy.pages > 1 %>
+        <%= render 'shared/pagination', pagy: @pagy, left_additional_html: view_archived_html %>
+      <% elsif params[:q].blank? %>
+        <div class="mt-2">
+          <%= view_archived_html %>
         </div>
       <% end %>
     <% end %>
+  <% end %>
+  <% if @templates.present? %>
+    <div class="grid gap-4 md:grid-cols-3">
+      <%= render partial: 'templates/template', collection: @templates %>
+    </div>
     <% if @pagy.pages > 1 %>
       <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
     <% else %>

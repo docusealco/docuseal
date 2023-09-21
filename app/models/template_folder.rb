@@ -28,7 +28,13 @@ class TemplateFolder < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :account
 
-  has_many :templates, dependent: :destroy
+  has_many :templates, dependent: :destroy, foreign_key: :folder_id, inverse_of: :folder
+  has_many :active_templates, -> { where(deleted_at: nil) },
+           class_name: 'Template', dependent: :destroy, foreign_key: :folder_id, inverse_of: :folder
 
   scope :active, -> { where(deleted_at: nil) }
+
+  def default?
+    name == DEFAULT_NAME
+  end
 end

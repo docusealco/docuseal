@@ -16,6 +16,7 @@ import SetOriginUrl from './elements/set_origin_url'
 import SetTimezone from './elements/set_timezone'
 import AutoresizeTextarea from './elements/autoresize_textarea'
 import SubmittersAutocomplete from './elements/submitter_autocomplete'
+import FolderAutocomplete from './elements/folder_autocomplete'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -45,6 +46,7 @@ window.customElements.define('set-origin-url', SetOriginUrl)
 window.customElements.define('set-timezone', SetTimezone)
 window.customElements.define('autoresize-textarea', AutoresizeTextarea)
 window.customElements.define('submitters-autocomplete', SubmittersAutocomplete)
+window.customElements.define('folder-autocomplete', FolderAutocomplete)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {
