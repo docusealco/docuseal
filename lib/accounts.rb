@@ -68,5 +68,7 @@ module Accounts
     tzinfo = TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[timezone] || timezone)
 
     ::ActiveSupport::TimeZone.all.find { |e| e.tzinfo == tzinfo }&.name || timezone
+  rescue TZInfo::InvalidTimezoneIdentifier
+    'UTC'
   end
 end
