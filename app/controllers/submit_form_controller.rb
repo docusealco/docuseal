@@ -15,6 +15,8 @@ class SubmitFormController < ApplicationController
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
 
+    Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
+
     cookies[:submitter_sid] = @submitter.signed_id
   end
 

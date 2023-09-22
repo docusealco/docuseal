@@ -415,6 +415,11 @@ export default {
       required: false,
       default: false
     },
+    goToLast: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     isDemo: {
       type: Boolean,
       required: false,
@@ -488,10 +493,12 @@ export default {
     }
   },
   mounted () {
-    this.currentStep = Math.min(
-      this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1,
-      this.stepFields.length - 1
-    )
+    if (this.goToLast) {
+      this.currentStep = Math.min(
+        this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1,
+        this.stepFields.length - 1
+      )
+    }
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {

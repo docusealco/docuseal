@@ -52,6 +52,7 @@ class User < ApplicationRecord
   belongs_to :account
   has_one :access_token, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
+  has_many :user_configs, dependent: :destroy
 
   devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?

@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import SignatureStep from './signature_step'
+import { cropCanvasAndExportToPNG } from './crop_canvas'
 import { IconReload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 
 export default {
@@ -146,7 +146,6 @@ export default {
     }
   },
   methods: {
-    cropCanvasAndExportToPNG: SignatureStep.methods.cropCanvasAndExportToPNG,
     remove () {
       this.$emit('update:model-value', '')
     },
@@ -195,7 +194,7 @@ export default {
       }
 
       return new Promise((resolve) => {
-        this.cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
           const file = new File([blob], 'initials.png', { type: 'image/png' })
 
           if (this.isDirectUpload) {

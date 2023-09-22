@@ -21,7 +21,6 @@ class StartFormController < ApplicationController
     else
       @submitter.assign_attributes(
         uuid: @template.submitters.first['uuid'],
-        opened_at: Time.current,
         ip: request.remote_ip,
         ua: request.user_agent
       )
