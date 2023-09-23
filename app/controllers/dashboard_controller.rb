@@ -51,7 +51,7 @@ class DashboardController < ApplicationController
 
   def filter_templates(templates)
     rel = templates.active.preload(:author).order(id: :desc)
-                   .where(folder_id: current_account.default_template_folder.id)
+    rel = rel.where(folder_id: current_account.default_template_folder.id) if params[:q].blank?
 
     Templates.search(rel, params[:q])
   end
