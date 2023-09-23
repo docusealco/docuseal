@@ -30,7 +30,7 @@
       :class="{ 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
-      @click="focusContenteditable"
+      @click="[focusContenteditable(), selectOnEditClick && selectContent()]"
     />
   </div>
 </template>
@@ -64,6 +64,11 @@ export default {
       required: false,
       default: false
     },
+    selectOnEditClick: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     iconStrokeWidth: {
       type: Number,
       required: false,
@@ -85,6 +90,19 @@ export default {
     }
   },
   methods: {
+    selectContent () {
+      const el = this.$refs.contenteditable
+
+      const range = document.createRange()
+
+      range.selectNodeContents(el)
+
+      const sel = window.getSelection()
+
+      sel.removeAllRanges()
+
+      sel.addRange(range)
+    },
     onBlur (e) {
       setTimeout(() => {
         this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue

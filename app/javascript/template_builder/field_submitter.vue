@@ -25,6 +25,7 @@
           v-model="selectedSubmitter.name"
           class="cursor-text"
           :icon-inline="true"
+          :select-on-edit-click="true"
           :icon-width="18"
           @update:model-value="$emit('name-change', selectedSubmitter)"
         />
