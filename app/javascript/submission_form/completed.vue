@@ -27,6 +27,7 @@
         </span>
       </button>
       <button
+        v-if="!isWebView"
         class="base-button flex items-center space-x-1 w-full"
         :disabled="isDownloading"
         @click.prevent="download"
@@ -120,6 +121,11 @@ export default {
     return {
       isSendingCopy: false,
       isDownloading: false
+    }
+  },
+  computed: {
+    isWebView () {
+      return /webview|wv|ip((?!.*Safari)|(?=.*like Safari))/i.test(window.navigator.userAgent)
     }
   },
   async mounted () {
