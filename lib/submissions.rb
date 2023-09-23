@@ -42,33 +42,9 @@ module Submissions
 
   def create_from_submitters(template:, user:, submissions_attrs:, source:, mark_as_sent: false,
                              submitters_order: DEFAULT_SUBMITTERS_ORDER)
-    submissions_attrs.map do |attrs|
-      submission = template.submissions.new(created_by_user: user, source:,
-                                            template_submitters: template.submitters, submitters_order:)
-
-      attrs[:submitters].each_with_index do |submitter_attrs, index|
-        uuid =
-          submitter_attrs[:uuid].presence ||
-          template.submitters.find { |e| e['name'] == submitter_attrs[:role] }&.dig('uuid') ||
-          template.submitters[index]&.dig('uuid')
-
-        next if uuid.blank?
-
-        is_order_sent = submitters_order == 'random' || index.zero?
-        email = normalize_email(submitter_attrs[:email])
-
-        submission.submitters.new(
-          email:,
-          phone: submitter_attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
-          name: submitter_attrs[:name],
-          sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
-          values: submitter_attrs[:values] || {},
-          uuid:
-        )
-      end
-
-      submission.tap(&:save!)
-    end
+    Submissions::CreateFromSubmitters.call(
+      template:, user:, submissions_attrs:, source:, mark_as_sent:, submitters_order:
+    )
   end
 
   def send_signature_requests(submissions, params)

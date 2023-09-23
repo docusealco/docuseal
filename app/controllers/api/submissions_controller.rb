@@ -2,9 +2,6 @@
 
 module Api
   class SubmissionsController < ApiBaseController
-    UnknownFieldName = Class.new(StandardError)
-    UnknownSubmitterName = Class.new(StandardError)
-
     load_and_authorize_resource :template
 
     before_action do
@@ -12,68 +9,83 @@ module Api
     end
 
     def create
+      is_send_email = !params[:send_email].in?(['false', false])
+
       submissions =
         if (emails = (params[:emails] || params[:email]).presence)
           Submissions.create_from_emails(template: @template,
                                          user: current_user,
                                          source: :api,
-                                         mark_as_sent: params[:send_email] != 'false',
+                                         mark_as_sent: is_send_email,
                                          emails:)
         else
-          submissions_attrs = normalize_submissions_params!(submissions_params[:submission], @template)
+          submissions_attrs, attachments = normalize_submissions_params!(submissions_params[:submission], @template)
 
           Submissions.create_from_submitters(
             template: @template,
             user: current_user,
             source: :api,
-            mark_as_sent: params[:send_email] != 'false',
+            mark_as_sent: is_send_email,
             submitters_order: params[:submitters_order] || 'preserved',
             submissions_attrs:
           )
         end
 
-      Submissions.send_signature_requests(submissions, send_email: params[:send_email] != 'false')
+      Submissions.send_signature_requests(submissions, send_email: is_send_email)
 
-      render json: submissions.flat_map(&:submitters)
-    rescue UnknownFieldName, UnknownSubmitterName => e
+      submitters = submissions.flat_map(&:submitters)
+
+      save_default_value_attachments!(attachments, submitters)
+
+      render json: submitters
+    rescue Submitters::NormalizeValues::UnknownFieldName, Submitters::NormalizeValues::UnknownSubmitterName => e
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
     private
 
     def submissions_params
-      params.permit(submission: [{ submitters: [[:uuid, :name, :email, :role, :phone, { values: {} }]] }])
+      params.permit(submission: [{
+                      submitters: [[:uuid, :name, :email, :role, :completed, :phone, { values: {} }]]
+                    }])
     end
 
     def normalize_submissions_params!(submissions_params, template)
-      submissions_params.each do |submission|
+      attachments = []
+
+      Array.wrap(submissions_params).each do |submission|
         submission[:submitters].each_with_index do |submitter, index|
           next if submitter[:values].blank?
 
-          submitter[:values] =
-            normalize_submitter_values(template,
-                                       submitter[:values],
-                                       submitter[:role] || template.submitters[index]['name'])
+          values, new_attachments =
+            Submitters::NormalizeValues.call(template,
+                                             submitter[:values],
+                                             submitter[:role] || template.submitters[index]['name'])
+
+          attachments.push(*new_attachments)
+
+          submitter[:values] = values
         end
       end
 
-      submissions_params
+      [submissions_params, attachments]
     end
 
-    def normalize_submitter_values(template, values, submitter_name)
-      submitter =
-        template.submitters.find { |e| e['name'] == submitter_name } ||
-        raise(UnknownSubmitterName, "Unknown submitter: #{submitter_name}")
+    def save_default_value_attachments!(attachments, submitters)
+      return if attachments.blank?
 
-      fields = template.fields.select { |e| e['submitter_uuid'] == submitter['uuid'] }
+      attachments_index = attachments.index_by(&:uuid)
 
-      fields_uuid_index = fields.index_by { |e| e['uuid'] }
-      fields_name_index = fields.index_by { |e| e['name'] }
+      submitters.each do |submitter|
+        submitter.values.to_a.each do |_, value|
+          attachment = attachments_index[value]
 
-      values.transform_keys do |key|
-        next key if fields_uuid_index[key].present?
+          next unless attachment
 
-        fields_name_index[key]&.dig('uuid') || raise(UnknownFieldName, "Unknown field: #{key}")
+          attachment.record = submitter
+
+          attachment.save!
+        end
       end
     end
   end
