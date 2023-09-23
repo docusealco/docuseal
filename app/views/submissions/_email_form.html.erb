@@ -1,10 +1,12 @@
 <%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
   <% if template.submitters.size == 1 %>
-    <div class="form-control">
-      <autoresize-textarea>
-        <%= f.text_area :emails, required: true, class: 'base-textarea w-full', placeholder: 'Type emails here...' %>
-      </autoresize-textarea>
-    </div>
+    <submitter-item class="form-control">
+      <submitters-autocomplete data-field="email">
+        <autoresize-textarea>
+          <%= f.text_area :emails, required: true, class: 'base-textarea w-full', placeholder: 'Type emails here...' %>
+        </autoresize-textarea>
+      </submitters-autocomplete>
+    </submitter-item>
   <% else %>
     <dynamic-list class="space-y-4">
       <div class="space-y-4">

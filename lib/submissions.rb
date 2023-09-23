@@ -30,7 +30,7 @@ module Submissions
   def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false)
     emails = emails.to_s.scan(User::EMAIL_REGEXP) unless emails.is_a?(Array)
 
-    emails.map do |email|
+    emails.uniq.map do |email|
       submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
       submission.submitters.new(email: normalize_email(email),
                                 uuid: template.submitters.first['uuid'],
