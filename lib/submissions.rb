@@ -49,12 +49,15 @@ module Submissions
 
   def send_signature_requests(submissions, params)
     submissions.each do |submission|
+      submitters = submission.submitters.reject(&:completed_at?)
+
       if submission.submitters_order_preserved?
-        first_submitter = submission.submitters.find { |e| e.uuid == submission.template_submitters.first['uuid'] }
+        first_submitter =
+          submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
 
         Submitters.send_signature_requests([first_submitter], params)
       else
-        Submitters.send_signature_requests(submission.submitters, params)
+        Submitters.send_signature_requests(submitters, params)
       end
     end
   end
