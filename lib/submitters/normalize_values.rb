@@ -17,7 +17,7 @@ module Submitters
       fields = template.fields.select { |e| e['submitter_uuid'] == submitter['uuid'] }
 
       fields_uuid_index = fields.index_by { |e| e['uuid'] }
-      fields_name_index = fields.index_by { |e| e['name'] }
+      fields_name_index = build_fields_index(fields)
 
       attachments = []
 
@@ -38,6 +38,10 @@ module Submitters
       end
 
       [normalized_values, attachments]
+    end
+
+    def build_fields_index(fields)
+      fields.index_by { |e| e['name'] }.merge(fields.index_by { |e| e['name'].parameterize.underscore })
     end
 
     def normalize_attachment_value(value, account)
