@@ -98,7 +98,7 @@ button[disabled] .enabled {
   font: 14px/22px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow: auto;
   box-sizing: border-box;
-  @apply border border-base-300;
+  @apply border border-base-300 mt-1 rounded-md;
 }
 
 .autocomplete * {
@@ -106,7 +106,7 @@ button[disabled] .enabled {
 }
 
 .autocomplete > div {
-  padding: 0 4px;
+  @apply px-2 py-1 font-normal text-sm;
 }
 
 .autocomplete .group {
