@@ -21,6 +21,7 @@
         <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
       </div>
     <% end %>
+    <%= render 'email_configs' %>
     <p class="text-2xl font-bold mt-8 mb-4">Signature</p>
     <% signature = UserConfigs.load_signature(current_user) %>
     <% if signature %>
