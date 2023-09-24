@@ -1,4 +1,9 @@
 <form action="<%= request.path %>" method="get" class="items-center hidden md:flex">
+  <% if params[:q].present? %>
+    <a href="<%= request.path %>" title="Clear" class="text-xl -mr-3.5 z-10">
+      &times;
+    </a>
+  <% end %>
   <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12">
   <button type="submit" title="Search" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
     <span class="enabled">

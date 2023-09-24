@@ -1,5 +1,5 @@
 <%= render 'title', template: @template %>
-<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 %>
+<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 || params[:q].present? %>
   <div class="flex justify-between mb-6 md:items-end flex-col md:flex-row">
     <p class="text-3xl font-bold">Submissions</p>
     <div class="flex space-x-2 mt-3 md:mt-0">
