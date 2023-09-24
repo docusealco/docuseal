@@ -32,7 +32,7 @@ RSpec.describe 'App Setup', js: true do
 
       expect do
         click_button 'Submit'
-        sleep 1
+        sleep 2
       end.to change(Account, :count).by(1).and change(User, :count).by(1).and change(EncryptedConfig, :count).by(2)
 
       user = User.last
