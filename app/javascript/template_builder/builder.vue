@@ -330,16 +330,21 @@ export default {
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
+    this.undoStack = [JSON.stringify(this.template)]
+    this.redoStack = []
+
     this.$nextTick(() => {
       this.onWindowResize()
     })
 
     document.addEventListener('keyup', this.onKeyUp)
+    window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
+    window.removeEventListener('keydown', this.onKeyDown)
 
     window.removeEventListener('resize', this.onWindowResize)
   },
@@ -347,6 +352,36 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    undo () {
+      if (this.undoStack.length > 1) {
+        this.undoStack.pop()
+        const stringData = this.undoStack[this.undoStack.length - 1]
+        const currentStringData = JSON.stringify(this.template)
+
+        if (stringData && stringData !== currentStringData) {
+          this.redoStack.push(currentStringData)
+
+          Object.assign(this.template, JSON.parse(stringData))
+
+          this.save()
+        }
+      }
+    },
+    redo () {
+      const stringData = this.redoStack.pop()
+      this.lastRedoData = stringData
+      const currentStringData = JSON.stringify(this.template)
+
+      if (stringData && stringData !== currentStringData) {
+        if (this.undoStack[this.undoStack.length - 1] !== currentStringData) {
+          this.undoStack.push(currentStringData)
+        }
+
+        Object.assign(this.template, JSON.parse(stringData))
+
+        this.save()
+      }
+    },
     onWindowResize (e) {
       const breakpointLg = 1024
 
@@ -374,6 +409,19 @@ export default {
         this.selectedAreaRef.value = null
       }
     },
+    onKeyDown (event) {
+      if ((event.metaKey && event.shiftKey && event.key === 'z') || (event.ctrlKey && event.key === 'Z')) {
+        event.stopImmediatePropagation()
+        event.preventDefault()
+
+        this.redo()
+      } else if ((event.ctrlKey || event.metaKey) && event.key === 'z') {
+        event.stopImmediatePropagation()
+        event.preventDefault()
+
+        this.undo()
+      }
+    },
     removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
 
@@ -384,6 +432,17 @@ export default {
       }
 
       this.save()
+    },
+    pushUndo () {
+      const stringData = JSON.stringify(this.template)
+
+      if (this.undoStack[this.undoStack.length - 1] !== stringData) {
+        this.undoStack.push(stringData)
+
+        if (this.lastRedoData !== stringData) {
+          this.redoStack = []
+        }
+      }
     },
     onDraw (area) {
       if (this.drawField) {
@@ -596,6 +655,8 @@ export default {
       if (this.$el.closest('template-builder')) {
         this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
       }
+
+      this.pushUndo()
 
       return this.baseFetch(`/api/templates/${this.template.id}`, {
         method: 'PUT',
