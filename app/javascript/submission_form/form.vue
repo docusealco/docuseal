@@ -442,6 +442,7 @@ export default {
       isFormVisible: true,
       currentStep: 0,
       isSubmitting: false,
+      submittedValues: {},
       recalculateButtonDisabledKey: ''
     }
   },
@@ -493,6 +494,8 @@ export default {
     }
   },
   mounted () {
+    this.submittedValues = JSON.parse(JSON.stringify(this.values))
+
     if (this.goToLast) {
       this.currentStep = Math.min(
         this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1,
@@ -517,7 +520,10 @@ export default {
     this.$nextTick(() => {
       this.recalculateButtonDisabledKey = Math.random()
 
-      this.maybeTrackEmailClick().finally(() => {
+      Promise.all([
+        this.maybeTrackEmailClick(),
+        this.maybeTrackSmsClick()
+      ]).finally(() => {
         this.trackViewForm()
       })
     })
@@ -541,6 +547,30 @@ export default {
           },
           body: JSON.stringify({
             t,
+            submitter_slug: this.submitterSlug
+          })
+        })
+      } else {
+        return Promise.resolve({})
+      }
+    },
+    maybeTrackSmsClick () {
+      const queryParams = new URLSearchParams(window.location.search)
+
+      if (queryParams.has('c')) {
+        const c = queryParams.get('c')
+
+        queryParams.delete('c')
+        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
+        window.history.replaceState({}, document.title, newUrl)
+
+        return fetch(this.baseUrl + '/api/submitter_sms_clicks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            c,
             submitter_slug: this.submitterSlug
           })
         })
@@ -594,9 +624,13 @@ export default {
         : () => Promise.resolve({})
 
       stepPromise().then(async () => {
+        const emptyRequiredField = this.stepFields.find((fields, index) => {
+          return index < this.currentStep && fields[0].required && fields[0].type === 'phone' && !this.submittedValues[fields[0].uuid]
+        })
+
         const formData = new FormData(this.$refs.form)
 
-        if (this.currentStep === this.stepFields.length - 1) {
+        if (this.currentStep === this.stepFields.length - 1 && !emptyRequiredField) {
           formData.append('completed', 'true')
         }
 
@@ -609,10 +643,12 @@ export default {
             return Promise.reject(new Error(data.error))
           }
 
-          const nextStep = this.stepFields[this.currentStep + 1]
+          this.submittedValues[this.currentField.uuid] = this.values[this.currentField.uuid]
+
+          const nextStep = emptyRequiredField || this.stepFields[this.currentStep + 1]
 
           if (nextStep) {
-            this.goToStep(this.stepFields[this.currentStep + 1], true)
+            this.goToStep(nextStep, true)
           } else {
             this.isCompleted = true
           }

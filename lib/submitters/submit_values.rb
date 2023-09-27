@@ -29,8 +29,6 @@ module Submitters
     def update_submitter!(submitter, params, request)
       values = normalized_values(params)
 
-      validate_values!(values, submitter, params)
-
       submitter.values.merge!(values)
       submitter.opened_at ||= Time.current
 
@@ -38,11 +36,15 @@ module Submitters
         submitter.completed_at = Time.current
         submitter.ip = request.remote_ip
         submitter.ua = request.user_agent
-
-        SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request)
       end
 
-      submitter.save!
+      ApplicationRecord.transaction do
+        validate_values!(values, submitter, params, request)
+
+        SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request) if params[:completed] == 'true'
+
+        submitter.save!
+      end
 
       submitter
     end
@@ -59,15 +61,15 @@ module Submitters
       end
     end
 
-    def validate_values!(values, submitter, params)
+    def validate_values!(values, submitter, params, request)
       values.each do |key, value|
         field = submitter.submission.template_fields.find { |e| e['uuid'] == key }
 
-        validate_value!(value, field, params)
+        validate_value!(value, field, params, submitter, request)
       end
     end
 
-    def validate_value!(_value, _field, _params)
+    def validate_value!(_value, _field, _params, _submitter, _request)
       true
     end
   end

@@ -239,10 +239,10 @@ module Submissions
               { text: SubmissionEvents::EVENT_NAMES[event.event_type.to_sym],
                 font: [FONT_BOLD_NAME, { variant: :bold }] },
               event.event_type.include?('send_') ? ' to ' : ' by ',
-              if event.event_type.include?('sms')
+              if event.event_type.include?('sms') || event.event_type.include?('phone')
                 submitter.phone
               else
-                (submitter.email || submitter.name || submitter.phone)
+                (submitter.name || submitter.email || submitter.phone)
               end
             ]
           )

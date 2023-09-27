@@ -12,8 +12,8 @@ module ReplaceEmailVariables
 
   module_function
 
-  def call(text, submitter:)
-    submitter_link = build_submitter_link(submitter)
+  def call(text, submitter:, tracking_event_type: 'click_email')
+    submitter_link = build_submitter_link(submitter, tracking_event_type)
 
     submission_link = build_submission_link(submitter.submission) if submitter.submission
 
@@ -43,12 +43,20 @@ module ReplaceEmailVariables
     end.join
   end
 
-  def build_submitter_link(submitter)
-    Rails.application.routes.url_helpers.submit_form_url(
-      slug: submitter.slug,
-      t: SubmissionEvents.build_tracking_param(submitter, 'click_email'),
-      **Docuseal.default_url_options
-    )
+  def build_submitter_link(submitter, tracking_event_type)
+    if tracking_event_type == 'click_email'
+      Rails.application.routes.url_helpers.submit_form_url(
+        slug: submitter.slug,
+        t: SubmissionEvents.build_tracking_param(submitter, 'click_email'),
+        **Docuseal.default_url_options
+      )
+    else
+      Rails.application.routes.url_helpers.submit_form_url(
+        slug: submitter.slug,
+        c: SubmissionEvents.build_tracking_param(submitter, 'click_sms'),
+        **Docuseal.default_url_options
+      )
+    end
   end
 
   def build_submission_link(submission)

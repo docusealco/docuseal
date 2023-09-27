@@ -10,6 +10,7 @@ module SubmissionEvents
     open_email: 'Email opened',
     click_email: 'Email link clicked',
     click_sms: 'SMS link clicked',
+    phone_verified: 'Phone verified',
     start_form: 'Submission started',
     view_form: 'Form viewed',
     complete_form: 'Submission completed'
