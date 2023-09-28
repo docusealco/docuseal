@@ -26,6 +26,7 @@ class AccountConfig < ApplicationRecord
   SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
   BCC_EMAILS = 'bcc_emails'
   SUBMITTER_REMAILERS = 'submitter_reminders'
+  FORM_COMPLETED_BUTTON_KEY = 'form_completed_button'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {

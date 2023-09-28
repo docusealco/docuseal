@@ -53,6 +53,15 @@
         </span>
       </a>
       <a
+        v-if="completedButton.url"
+        :href="completedButton.url"
+        class="white-button flex items-center space-x-1 w-full"
+      >
+        <span>
+          {{ completedButton.title || 'Back to Website' }}
+        </span>
+      </a>
+      <a
         v-if="isDemo"
         href="https://docuseal.co/sign_up"
         class="white-button flex items-center space-x-1 w-full"
@@ -115,6 +124,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    completedButton: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   data () {

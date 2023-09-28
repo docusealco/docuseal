@@ -317,6 +317,7 @@
         v-else
         :is-demo="isDemo"
         :attribution="attribution"
+        :completed-button="completedButton"
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
@@ -431,6 +432,11 @@ export default {
       default: true
     },
     values: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    completedButton: {
       type: Object,
       required: false,
       default: () => ({})
