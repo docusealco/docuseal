@@ -119,9 +119,11 @@ module Submissions
         ]
       end
 
-      composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
+      if documents_data.present?
+        composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
 
-      composer.draw_box(divider)
+        composer.draw_box(divider)
+      end
 
       submission.template_submitters.filter_map do |item|
         submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
