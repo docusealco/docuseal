@@ -118,3 +118,10 @@ button[disabled] .enabled {
   @apply bg-base-300;
   cursor: pointer;
 }
+
+.input-outlined {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: 3px;
+  outline-color: hsl(var(--bc) / 0.2);
+}

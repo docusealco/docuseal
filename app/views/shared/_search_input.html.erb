@@ -6,7 +6,7 @@
       </a>
     <% end %>
   </div>
-  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12 <%= 'pl-8 input-bordered' if params[:q].present? %>">
+  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12 <%= 'pl-8 input-outlined' if params[:q].present? %>">
   <button type="submit" title="Search" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
     <span class="enabled">
       <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>

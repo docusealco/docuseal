@@ -91,11 +91,13 @@ export default actionable(targetable(class extends HTMLElement {
           this.append(input)
         })
 
-        if (this.dataset.submitOnUpload) {
+        if (this.dataset.submitOnUpload === 'true') {
           this.closest('form').querySelector('button[type="submit"]').click()
         }
       }).finally(() => {
-        this.toggleLoading()
+        if (this.dataset.submitOnUpload !== 'true') {
+          this.toggleLoading()
+        }
       })
     } else {
       if (this.dataset.submitOnUpload) {

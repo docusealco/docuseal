@@ -26,20 +26,44 @@
     <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
       <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
     </div>
-    <% if @templates.blank? %>
-      <% if @pagy.pages > 1 %>
-        <%= render 'shared/pagination', pagy: @pagy, left_additional_html: view_archived_html %>
-      <% elsif params[:q].blank? %>
-        <div class="mt-2">
-          <%= view_archived_html %>
-        </div>
-      <% end %>
-    <% end %>
   <% end %>
   <% if @templates.present? %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
     </div>
+  <% end %>
+  <% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
+    <%= form_for '', url: templates_upload_path, method: :post, class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
+      <button type="submit" class="hidden"></button>
+      <file-dropzone data-submit-on-upload="true" class="w-full">
+        <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border border-2 border-base-300 border-dashed">
+          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <span data-target="file-dropzone.icon" class="flex flex-col items-center">
+                <span>
+                  <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
+                </span>
+                <div class="font-medium mb-1">
+                  Upload New Document
+                </div>
+                <div class="text-xs">
+                  <span class="font-medium">Click to upload</span> or drag and drop
+                </div>
+              </span>
+              <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
+                <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+                <div class="font-medium mb-1">
+                  Uploading...
+                </div>
+              </span>
+            </div>
+            <input id="file_dropzone_input" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls' if Docuseal.multitenant? %>" multiple>
+          </div>
+        </label>
+      </file-dropzone>
+    <% end %>
+  <% end %>
+  <% if @templates.present? || params[:q].blank? %>
     <% if @pagy.pages > 1 %>
       <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
     <% else %>
