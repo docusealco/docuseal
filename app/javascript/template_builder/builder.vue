@@ -6,12 +6,11 @@
     <div class="flex justify-between py-1.5 items-center pr-4">
       <div class="flex space-x-3">
         <a
-          v-if="withLogoLink"
+          v-if="withLogo"
           href="/"
         >
           <Logo />
         </a>
-        <Logo v-else />
         <Contenteditable
           :model-value="template.name"
           class="text-3xl font-semibold focus:text-clip"
@@ -269,7 +268,7 @@ export default {
       required: false,
       default: ''
     },
-    withLogoLink: {
+    withLogo: {
       type: Boolean,
       required: false,
       default: true
