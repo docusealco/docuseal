@@ -5,21 +5,50 @@ module Api
     load_and_authorize_resource :template
 
     def index
-      render json: @templates
+      templates = Templates.search(@templates, params[:q])
+
+      templates = params[:archived] ? templates.archived : templates.active
+
+      templates = paginate(templates.preload(:author, documents_attachments: :blob))
+
+      render json: {
+        data: templates.as_json(serialize_params),
+        pagination: {
+          count: templates.size,
+          next: templates.last&.id,
+          prev: templates.first&.id
+        }
+      }
     end
 
     def show
-      render json: @template.as_json(include: { author: { only: %i[id email first_name last_name] },
-                                                documents: { only: %i[id uuid], methods: %i[url filename] } })
+      render json: @template.as_json(serialize_params)
     end
 
     def update
+      if (folder_name = params.dig(:template, :folder_name))
+        @template.folder = TemplateFolders.find_or_create_by_name(current_user, folder_name)
+      end
+
       @template.update!(template_params)
 
-      render :ok
+      render json: @template.as_json(only: %i[id updated_at])
+    end
+
+    def destroy
+      @template.update!(deleted_at: Time.current)
+
+      render json: @template.as_json(only: %i[id deleted_at])
     end
 
     private
+
+    def serialize_params
+      {
+        include: { author: { only: %i[id email first_name last_name] },
+                   documents: { only: %i[id uuid], methods: %i[url filename] } }
+      }
+    end
 
     def template_params
       params.require(:template).permit(:name,

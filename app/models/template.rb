@@ -58,6 +58,7 @@ class Template < ApplicationRecord
   has_many :submissions, dependent: :destroy
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :archived, -> { where.not(deleted_at: nil) }
 
   private
 

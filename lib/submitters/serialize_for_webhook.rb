@@ -5,6 +5,11 @@ module Submitters
     module_function
 
     def call(submitter)
+      ActiveRecord::Associations::Preloader.new(
+        records: [submitter],
+        associations: [documents_attachments: :blob, attachments_attachments: :blob]
+      ).call
+
       values = build_values_array(submitter)
       documents = build_documents_array(submitter)
 
@@ -21,7 +26,7 @@ module Submitters
     def build_values_array(submitter)
       fields_index = (submitter.submission.template_fields ||
                       submitter.submission.template.fields).index_by { |e| e['uuid'] }
-      attachments_index = submitter.attachments.preload(:blob).index_by(&:uuid)
+      attachments_index = submitter.attachments.index_by(&:uuid)
       submitter_field_counters = Hash.new { 0 }
 
       submitter.values.map do |uuid, value|
@@ -38,7 +43,7 @@ module Submitters
     end
 
     def build_documents_array(submitter)
-      submitter.documents.preload(:blob).map do |attachment|
+      submitter.documents.map do |attachment|
         { name: attachment.filename.base, url: rails_storage_proxy_url(attachment) }
       end
     end

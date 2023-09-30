@@ -2,10 +2,50 @@
 
 module Api
   class SubmissionsController < ApiBaseController
-    load_and_authorize_resource :template
+    load_and_authorize_resource :template, only: :create
+    load_and_authorize_resource :submission, only: %i[show index]
 
-    before_action do
+    before_action only: :create do
       authorize!(:create, Submission)
+    end
+
+    def index
+      submissions = Submissions.search(@submissions, params[:q])
+      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
+
+      submissions = paginate(submissions.preload(:created_by_user, :template, :submitters))
+
+      render json: {
+        data: submissions.as_json(serialize_params),
+        pagination: {
+          count: submissions.size,
+          next: submissions.last&.id,
+          prev: submissions.first&.id
+        }
+      }
+    end
+
+    def show
+      serialized_subbmitters =
+        @submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob).map do |submitter|
+          Submissions::EnsureResultGenerated.call(submitter) if submitter.completed_at?
+
+          Submitters::SerializeForApi.call(submitter)
+        end
+
+      json = @submission.as_json(
+        serialize_params.deep_merge(
+          include: {
+            submission_events: {
+              only: %i[id submitter_id event_type event_timestamp]
+            }
+          }
+        )
+      )
+
+      json[:submitters] = serialized_subbmitters
+
+      render json:
     end
 
     def create
@@ -42,7 +82,27 @@ module Api
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
+    def destroy
+      @submission.update!(deleted_at: Time.current)
+
+      render json: @submission.as_json(only: %i[id deleted_at])
+    end
+
     private
+
+    def serialize_params
+      {
+        only: %i[id source submitters_order created_at updated_at],
+        include: {
+          submitters: { only: %i[id slug uuid name email phone
+                                 completed_at opened_at sent_at
+                                 created_at updated_at],
+                        methods: %i[status] },
+          template: { only: %i[id name created_at updated_at] },
+          created_by_user: { only: %i[id email first_name last_name] }
+        }
+      }
+    end
 
     def submissions_params
       params.permit(submission: [{
