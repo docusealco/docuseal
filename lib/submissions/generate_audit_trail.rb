@@ -92,7 +92,7 @@ module Submissions
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
         original_documents = submission.template.documents.select { |e| e.uuid == document.uuid }.presence
         original_documents ||= submission.template.documents.select do |e|
-          e.image? && submission.schema.any? do |item|
+          e.image? && submission.template_schema.any? do |item|
             item['attachment_uuid'] == e.uuid
           end
         end

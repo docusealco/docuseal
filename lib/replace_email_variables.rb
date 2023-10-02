@@ -33,7 +33,7 @@ module ReplaceEmailVariables
   end
 
   def build_documents_links_text(submitter)
-    submitter.documents.map do |document|
+    Submitters.select_attachments_for_download(submitter).map do |document|
       link =
         Rails.application.routes.url_helpers.rails_blob_url(
           document, **Docuseal.default_url_options
