@@ -4,6 +4,7 @@ ActiveSupport.on_load(:active_storage_attachment) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   has_many_attached :preview_images
+  has_many_attached :preview_secured_images
 end
 
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
