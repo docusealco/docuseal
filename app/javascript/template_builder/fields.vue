@@ -108,9 +108,6 @@
         Draw a text field on the page with a mouse
       </li>
       <li>
-        Single click on the page to add a checkbox
-      </li>
-      <li>
         Drag &amp; drop any other field type on the page
       </li>
       <li>
