@@ -1,20 +1,22 @@
 <template>
   <span class="dropdown">
-    <label
-      tabindex="0"
-      :title="fieldNames[modelValue]"
-      class="cursor-pointer"
-    >
-      <component
-        :is="fieldIcons[modelValue]"
-        :width="buttonWidth"
-        :class="buttonClasses"
-        :stroke-width="1.6"
-      />
-    </label>
+    <slot>
+      <label
+        tabindex="0"
+        :title="fieldNames[modelValue]"
+        class="cursor-pointer"
+      >
+        <component
+          :is="fieldIcons[modelValue]"
+          :width="buttonWidth"
+          :class="buttonClasses"
+          :stroke-width="1.6"
+        />
+      </label>
+    </slot>
     <ul
       tabindex="0"
-      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
+      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :class="menuClasses"
       @click="closeDropdown"
     >

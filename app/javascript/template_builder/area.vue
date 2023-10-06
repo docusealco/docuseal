@@ -4,6 +4,7 @@
     :style="positionStyle"
     @pointerdown.stop
     @mousedown.stop="startDrag"
+    @touchstart="startTouchDrag"
   >
     <div
       v-if="isSelected || isDraw"
@@ -32,7 +33,7 @@
     <div
       v-if="field?.type"
       class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap group-hover:flex group-hover:z-10"
-      :class="{ 'flex z-10': isNameFocus || isSelected, hidden: !isNameFocus && !isSelected }"
+      :class="{ 'flex z-10': isNameFocus || isSelected, invisible: !isNameFocus && !isSelected }"
       style="top: -25px; height: 25px"
       @mousedown.stop
       @pointerdown.stop
@@ -108,12 +109,14 @@
       </span>
     </div>
     <div
+      ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
     <span
       v-if="field?.type"
-      class="h-2.5 w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
+      class="h-4 w-4 md:h-2.5 md:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
+      @touchstart="startTouchResize"
     />
   </div>
 </template>
@@ -309,6 +312,47 @@ export default {
 
       this.$emit('start-drag')
     },
+    startTouchDrag (e) {
+      if (e.target !== this.$refs.touchTarget) {
+        return
+      }
+
+      this.$refs?.name?.blur()
+
+      e.preventDefault()
+
+      this.isDragged = true
+
+      const rect = e.target.getBoundingClientRect()
+
+      this.selectedAreaRef.value = this.area
+
+      this.dragFrom = { x: rect.left - e.touches[0].clientX, y: rect.top - e.touches[0].clientY }
+
+      this.$el.getRootNode().addEventListener('touchmove', this.touchDrag)
+      this.$el.getRootNode().addEventListener('touchend', this.stopTouchDrag)
+
+      this.$emit('start-drag')
+    },
+    touchDrag (e) {
+      const page = this.$parent.$refs.mask.previousSibling
+      const rect = page.getBoundingClientRect()
+
+      this.area.x = (this.dragFrom.x + e.touches[0].clientX - rect.left) / rect.width
+      this.area.y = (this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height
+    },
+    stopTouchDrag () {
+      this.$el.getRootNode().removeEventListener('touchmove', this.touchDrag)
+      this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
+
+      if (this.isDragged) {
+        this.save()
+      }
+
+      this.isDragged = false
+
+      this.$emit('stop-drag')
+    },
     stopDrag () {
       this.$el.getRootNode().removeEventListener('mousemove', this.drag)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopDrag)
@@ -332,6 +376,33 @@ export default {
     stopResize () {
       this.$el.getRootNode().removeEventListener('mousemove', this.resize)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopResize)
+
+      this.$emit('stop-resize')
+
+      this.save()
+    },
+    startTouchResize (e) {
+      this.selectedAreaRef.value = this.area
+
+      this.$refs?.name?.blur()
+
+      e.preventDefault()
+
+      this.$el.getRootNode().addEventListener('touchmove', this.touchResize)
+      this.$el.getRootNode().addEventListener('touchend', this.stopTouchResize)
+
+      this.$emit('start-resize', 'nwse')
+    },
+    touchResize (e) {
+      const page = this.$parent.$refs.mask.previousSibling
+      const rect = page.getBoundingClientRect()
+
+      this.area.w = (e.touches[0].clientX - rect.left) / rect.width - this.area.x
+      this.area.h = (e.touches[0].clientY - rect.top) / rect.height - this.area.y
+    },
+    stopTouchResize () {
+      this.$el.getRootNode().removeEventListener('touchmove', this.touchResize)
+      this.$el.getRootNode().removeEventListener('touchend', this.stopTouchResize)
 
       this.$emit('stop-resize')
 

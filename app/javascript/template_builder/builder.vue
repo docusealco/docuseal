@@ -1,9 +1,9 @@
 <template>
   <div
     style="max-width: 1600px"
-    class="mx-auto pl-4 h-full"
+    class="mx-auto pl-3 md:pl-4 h-full"
   >
-    <div class="flex justify-between py-1.5 items-center pr-4">
+    <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10 bg-base-100">
       <div class="flex space-x-3">
         <a
           v-if="withLogo"
@@ -59,10 +59,7 @@
         </template>
       </div>
     </div>
-    <div
-      class="flex"
-      style="max-height: calc(100% - 60px)"
-    >
+    <div class="flex md:max-h-[calc(100vh-60px)]">
       <div
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
@@ -97,7 +94,7 @@
           />
         </div>
       </div>
-      <div class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+      <div class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
         <div
           ref="documents"
           class="pr-3.5 pl-0.5"
@@ -152,17 +149,54 @@
             </div>
           </template>
         </div>
-        <div
-          v-if="sortedDocuments.length"
-          class="sticky md:hidden"
-          style="bottom: 100px"
+        <span
+          v-if="drawField"
+          class="fixed text-center w-full left-1/2 bottom-0 transform -translate-x-1/2"
         >
-          <div class="px-4 py-3 rounded-2xl bg-base-200 flex items-center justify-between ml-4 mr-6">
-            <span class="w-full text-center text-lg">
-              You need a larger screen to use builder tools.
+          <span
+            class="rounded bg-base-200 px-4 py-2 rounded-full inline-flex space-x-2 mx-auto items-center mb-4 z-20 md:hidden"
+          >
+            <component
+              :is="fieldIcons[drawField.type]"
+              :width="20"
+              :height="20"
+              class="inline"
+              :stroke-width="1.6"
+            />
+            <span>
+              Draw {{ fieldNames[drawField.type] }} Field
             </span>
-          </div>
-        </div>
+            <a
+              href="#"
+              class="link block text-center"
+              @click.prevent="drawField = null"
+            >
+              Cancel
+            </a>
+          </span>
+        </span>
+        <FieldType
+          v-if="sortedDocuments.length && !drawField"
+          class="dropdown-top dropdown-end fixed bottom-4 right-4 z-10 md:hidden"
+          :model-value="''"
+          @update:model-value="startFieldDraw($event)"
+        >
+          <label
+            class="btn btn-neutral text-white btn-circle btn-lg group"
+            tabindex="0"
+          >
+            <IconPlus
+              class="group-focus:hidden"
+              width="28"
+              height="28"
+            />
+            <IconX
+              class="hidden group-focus:inline"
+              width="28"
+              height="28"
+            />
+          </label>
+        </FieldType>
       </div>
       <div
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
@@ -214,7 +248,8 @@ import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
-import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop } from '@tabler/icons-vue'
+import FieldType from './field_type'
+import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 
@@ -224,6 +259,9 @@ export default {
     Upload,
     Document,
     Fields,
+    IconPlus,
+    FieldType,
+    IconX,
     Logo,
     Dropzone,
     DocumentPreview,
@@ -300,6 +338,8 @@ export default {
     }
   },
   computed: {
+    fieldIcons: FieldType.computed.fieldIcons,
+    fieldNames: FieldType.computed.fieldNames,
     selectedAreaRef: () => ref(),
     fieldAreasIndex () {
       const areas = {}
@@ -351,6 +391,22 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    startFieldDraw (type) {
+      const field = {
+        name: '',
+        uuid: v4(),
+        required: type !== 'checkbox',
+        areas: [],
+        submitter_uuid: this.selectedSubmitter.uuid,
+        type
+      }
+
+      if (['select', 'multiple', 'radio'].includes(type)) {
+        field.options = ['']
+      }
+
+      this.drawField = field
+    },
     undo () {
       if (this.undoStack.length > 1) {
         this.undoStack.pop()
@@ -447,6 +503,10 @@ export default {
       if (this.drawField) {
         this.drawField.areas ||= []
         this.drawField.areas.push(area)
+
+        if (this.template.fields.indexOf(this.drawField) === -1) {
+          this.template.fields.push(this.drawField)
+        }
 
         this.drawField = null
 

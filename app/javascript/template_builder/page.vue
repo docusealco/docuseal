@@ -1,5 +1,8 @@
 <template>
-  <div class="relative cursor-crosshair select-none">
+  <div
+    class="relative cursor-crosshair select-none"
+    :style="drawField ? 'touch-action: none' : ''"
+  >
     <img
       ref="image"
       :src="image.url"
@@ -32,12 +35,13 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask"
+      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile)"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute z-10"
       :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
+      @pointerdown="onStartDraw"
       @dragover.prevent
       @drop="onDrop"
       @pointerup="onPointerup"
@@ -93,6 +97,9 @@ export default {
     }
   },
   computed: {
+    isMobile () {
+      return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
     resizeDirectionClasses () {
       return {
         nwse: 'cursor-nwse-resize',
@@ -125,6 +132,10 @@ export default {
       })
     },
     onStartDraw (e) {
+      if (this.isMobile && !this.drawField) {
+        return
+      }
+
       this.showMask = true
 
       this.$nextTick(() => {

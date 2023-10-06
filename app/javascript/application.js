@@ -76,7 +76,6 @@ document.addEventListener('turbo:submit-end', async (event) => {
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
-    this.appElem.classList.add('max-h-screen')
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
