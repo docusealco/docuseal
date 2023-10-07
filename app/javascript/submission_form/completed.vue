@@ -11,6 +11,15 @@
       </span>
     </p>
     <div class="space-y-3 mt-5">
+      <a
+        v-if="completedButton.url"
+        :href="completedButton.url"
+        class="white-button flex items-center w-full"
+      >
+        <span>
+          {{ completedButton.title || 'Back to Website' }}
+        </span>
+      </a>
       <button
         v-if="canSendEmail && !isDemo"
         class="white-button !h-auto flex items-center space-x-1 w-full"
@@ -50,15 +59,6 @@
         <IconBrandGithub />
         <span>
           Star on Github
-        </span>
-      </a>
-      <a
-        v-if="completedButton.url"
-        :href="completedButton.url"
-        class="white-button flex items-center space-x-1 w-full"
-      >
-        <span>
-          {{ completedButton.title || 'Back to Website' }}
         </span>
       </a>
       <a
