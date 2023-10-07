@@ -224,6 +224,9 @@
                       :id="field.uuid"
                       type="checkbox"
                       class="base-checkbox !h-7 !w-7"
+                      :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
+                      :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
+                      :required="field.required"
                       :checked="!!values[field.uuid]"
                       @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                     >
