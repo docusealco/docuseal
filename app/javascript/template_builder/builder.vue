@@ -3,7 +3,10 @@
     style="max-width: 1600px"
     class="mx-auto pl-3 md:pl-4 h-full"
   >
-    <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10 bg-base-100">
+    <div
+      class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10"
+      :style="{ backgroundColor }"
+    >
       <div class="flex space-x-3">
         <a
           v-if="withLogo"
