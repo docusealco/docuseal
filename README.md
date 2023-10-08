@@ -86,4 +86,4 @@ At DocuSeal we have expertise and technologies to make documents creation, filli
 ## License
 
 Distributed under the AGPLv3 License. See [LICENSE](https://github.com/docusealco/docuseal/blob/master/LICENSE) for more information.
-Unless otherwise noted, all files © 2023 Oleksandr Turchyn.
+Unless otherwise noted, all files © 2023 DocuSeal LLC.
