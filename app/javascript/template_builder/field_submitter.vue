@@ -70,7 +70,7 @@
           </button>
         </a>
       </li>
-      <li v-if="submitters.length < 5">
+      <li v-if="submitters.length < 10">
         <a
           href="#"
           class="flex px-2"
@@ -130,7 +130,12 @@ export default {
         'bg-sky-500',
         'bg-emerald-500',
         'bg-yellow-300',
-        'bg-purple-600'
+        'bg-purple-600',
+        'bg-pink-500',
+        'bg-cyan-500',
+        'bg-orange-500',
+        'bg-lime-500',
+        'bg-indigo-500'
       ]
     },
     names () {
@@ -139,7 +144,12 @@ export default {
         'Second Submitter',
         'Third Submitter',
         'Fourth Submitter',
-        'Fifth Submitter'
+        'Fifth Submitter',
+        'Sixth Submitter',
+        'Seventh Submitter',
+        'Eighth Submitter',
+        'Ninth Submitter',
+        'Tenth Submitter'
       ]
     },
     selectedSubmitter () {

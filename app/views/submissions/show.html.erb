@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="hidden md:block relative w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
-      <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600] %>
+      <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% (@submission.template_submitters || @submission.template.submitters).each_with_index do |item, index| %>
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
