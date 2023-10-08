@@ -58,6 +58,7 @@
           <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <%= render 'shared/settings_nav_extra' %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
