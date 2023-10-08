@@ -21,8 +21,9 @@
           </div>
         </div>
       <% end %>
-      <% unless Docuseal.multitenant? %>
-        <%= f.fields_for @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) do |ff| %>
+      <% encrypted_config = @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) %>
+      <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
+        <%= f.fields_for encrypted_config do |ff| %>
           <div class="form-control">
             <%= ff.label :value, 'App URL', class: 'label' %>
             <%= ff.text_field :value, autocomplete: 'off', class: 'base-input' %>

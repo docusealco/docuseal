@@ -43,12 +43,19 @@ module Accounts
     new_template
   end
 
+  def load_webhook_configs(account)
+    account = Account.order(:id).first unless Docuseal.multitenant?
+
+    account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
+  end
+
   def load_signing_pkcs(account)
     cert_data =
       if Docuseal.multitenant?
-        Docuseal::CERTS
+        EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || Docuseal::CERTS
       else
-        EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY).value
+        EncryptedConfig.find_by(account: Account.order(:id).first,
+                                key: EncryptedConfig::ESIGN_CERTS_KEY).value
       end
 
     if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })

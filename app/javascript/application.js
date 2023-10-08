@@ -81,6 +81,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       template: reactive(JSON.parse(this.dataset.template)),
       backgroundColor: '#faf7f5',
       withPhone: this.dataset.withPhone === 'true',
+      withLogo: this.dataset.withLogo !== 'false',
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'
     })

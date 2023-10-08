@@ -58,7 +58,7 @@
           <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% unless Docuseal.demo? %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             Console
@@ -68,29 +68,31 @@
       <% end %>
     </ul>
   </menu-active>
-  <div class="mx-4 border-t border-base-300 hidden md:block">
-    <div class="text-sm mt-3">
-      Need help? Ask a question:
+  <% if !can?(:manage, :tenants) %>
+    <div class="mx-4 border-t border-base-300 hidden md:block">
+      <div class="text-sm mt-3">
+        Need help? Ask a question:
+      </div>
+      <div class="flex mt-3 space-x-3">
+        <div class="tooltip" data-tip="GitHub">
+          <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_github', class: 'w-8 h-8') %>
+          </a>
+        </div>
+        <div class="tooltip" data-tip="Discord Community">
+          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+          </a>
+        </div>
+        <div class="tooltip" data-tip="Twitter">
+          <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
+          </a>
+        </div>
+      </div>
+      <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
+        <%= Docuseal::SUPPORT_EMAIL %>
+      </a>
     </div>
-    <div class="flex mt-3 space-x-3">
-      <div class="tooltip" data-tip="GitHub">
-        <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-          <%= svg_icon('brand_github', class: 'w-8 h-8') %>
-        </a>
-      </div>
-      <div class="tooltip" data-tip="Discord Community">
-        <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-          <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-        </a>
-      </div>
-      <div class="tooltip" data-tip="Twitter">
-        <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-          <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
-        </a>
-      </div>
-    </div>
-    <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
-      <%= Docuseal::SUPPORT_EMAIL %>
-    </a>
-  </div>
+  <% end %>
 </div>

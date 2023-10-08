@@ -1,14 +1,9 @@
 <div class="max-w-6xl mb-4 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
   <div class="flex items-center space-x-4">
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
-      <%= render 'shared/logo' %>
-      <span>DocuSeal</span>
+      <%= render 'shared/title' %>
     </a>
-    <% unless Docuseal.demo? %>
-      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="inline">
-        <img alt="GitHub Repo stars" src="https://www.docuseal.co/github-badge.svg" style="height: 22px">
-      </a>
-    <% end %>
+    <%= render 'shared/github' %>
   </div>
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
@@ -16,11 +11,13 @@
         <%= render 'shared/github_button' %>
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'hidden md:inline-flex items-center font-medium text-lg', data: { prefetch: false } do %>
-            Console
-            <span class="badge badge-warning ml-1">New</span>
+          <% if can?(:manage, EncryptedConfig) && !can?(:manage, :tenants) %>
+            <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'hidden md:inline-flex items-center font-medium text-lg', data: { prefetch: false } do %>
+              Console
+              <span class="badge badge-warning ml-1">New</span>
+            <% end %>
+            <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
           <% end %>
-          <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
           <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
         </div>
       <% end %>
@@ -35,7 +32,7 @@
               <span class="mr-1">Profile</span>
             <% end %>
           </li>
-          <% unless Docuseal.demo? %>
+          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
             <li>
               <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
                 <%= svg_icon('terminal', class: 'w-5 h-5 stroke-2') %>
@@ -43,12 +40,14 @@
               <% end %>
             </li>
           <% end %>
-          <li>
-            <%= link_to settings_esign_path, class: 'flex items-center' do %>
-              <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
-              <span class="mr-1">Verify PDF</span>
-            <% end %>
-          </li>
+          <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+            <li>
+              <%= link_to settings_esign_path, class: 'flex items-center' do %>
+                <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
+                <span class="mr-1">Verify PDF</span>
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>
               <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 mr-2 inline') %>

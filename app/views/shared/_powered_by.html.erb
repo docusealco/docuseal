@@ -1,4 +1,13 @@
 <div class="text-center px-2">
-  Powered by
+  <% if local_assigns[:with_counter] %>
+    <% count = Submitter.where.not(completed_at: nil).distinct.count(:submission_id) %>
+    <% if count > 1 %>
+      <b><%= count %></b> documents signed with
+    <% else %>
+      Powered by
+    <% end %>
+  <% else %>
+    Powered by
+  <% end %>
   <a href="<%= Docuseal::PRODUCT_URL %>" class="underline"><%= Docuseal::PRODUCT_NAME %></a> - open source documents software
 </div>
