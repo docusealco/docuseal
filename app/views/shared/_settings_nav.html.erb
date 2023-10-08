@@ -73,20 +73,22 @@
       Need help? Ask a question:
     </div>
     <div class="flex mt-3 space-x-3">
-      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_github', class: 'w-8 h-8') %>
-      </a>
-      <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-      </a>
-      <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
-      </a>
+      <div class="tooltip" data-tip="GitHub">
+        <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+          <%= svg_icon('brand_github', class: 'w-8 h-8') %>
+        </a>
+      </div>
+      <div class="tooltip" data-tip="Discord Community">
+        <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+          <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+        </a>
+      </div>
+      <div class="tooltip" data-tip="Twitter">
+        <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+          <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
+        </a>
+      </div>
     </div>
-    <a href="https://twitter.com/intent/tweet?<%= { text: "Open source DocuSign alternative\n#{Docuseal::GITHUB_URL} #{Docuseal::TWITTER_HANDLE}" }.to_query %>" target="_blank" class="btn btn-neutral btn-outline w-full mt-5">
-      <%= svg_icon('send', class: 'h-5 w-5') %>
-      Tell about us
-    </a>
     <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
       <%= Docuseal::SUPPORT_EMAIL %>
     </a>
