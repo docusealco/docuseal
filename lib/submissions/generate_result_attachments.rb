@@ -52,7 +52,9 @@ module Submissions
 
           value = submitter.values[field['uuid']]
 
-          next if Array.wrap(value).compact_blank.blank?
+          if !field['type']=='redact'
+            next if Array.wrap(value).compact_blank.blank?
+          end
 
           canvas = page.canvas(type: :overlay)
           canvas.font(FONT_NAME, size: font_size)
@@ -149,6 +151,15 @@ module Submissions
                            .draw(canvas, ((area['x'] * width) + (cell_width * index)),
                                  height - (area['y'] * height))
             end
+          when 'redact'
+            x = area['x'] * width
+            y = height - (area['y'] * height) - (area['h'] * height)
+            w = area['w'] * width
+            h = area['h'] * height
+          
+            canvas.fill_color(0, 0, 0) # Set fill color to black
+            canvas.rectangle(x, y, w, h)
+            canvas.fill
           else
             value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
 
@@ -260,7 +271,7 @@ module Submissions
       page.box.height = attachment.metadata['height'] * scale
 
       page.canvas.image(
-        StringIO.new(attachment.preview_images.first.download),
+        StringIO.new(attachment.preview_secured_images.first.download),
         at: [0, 0],
         width: page.box.width,
         height: page.box.height
