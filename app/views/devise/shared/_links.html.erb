@@ -1,6 +1,6 @@
 <div class="flex justify-between mt-4">
   <%- if controller_name != 'sessions' %>
-    <%= link_to 'Log in', new_session_path(resource_name), class: 'link link-hover' %>
+    <%= link_to 'Sign in', new_session_path(resource_name), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= link_to 'Create free account', registration_path({ redir: params[:redir] }.compact_blank), class: 'link link-hover' %>

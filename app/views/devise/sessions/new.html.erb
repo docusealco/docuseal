@@ -1,6 +1,6 @@
 <div class="max-w-lg mx-auto px-2">
   <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
-  <h1 class="text-4xl font-bold text-center mt-8">Log In</h1>
+  <h1 class="text-4xl font-bold text-center mt-8">Sign In</h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <% if params[:redir].present? %>
       <%= hidden_field_tag :redir, params[:redir] %>
@@ -16,11 +16,11 @@
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Log In', disabled_with: 'Logging In'), class: 'base-button' %>
+      <%= f.button button_title(title: 'Sign In', disabled_with: 'Signing In'), class: 'base-button' %>
     </div>
   <% end %>
   <% if devise_mapping.omniauthable? %>
-    <%= button_to button_title(title: 'Log in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
+    <%= button_to button_title(title: 'Sign in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
   <% end %>
   <%= render 'devise/shared/links' %>
 </div>
