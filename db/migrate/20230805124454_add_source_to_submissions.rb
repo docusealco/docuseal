@@ -6,7 +6,7 @@ class AddSourceToSubmissions < ActiveRecord::Migration[7.0]
   end
 
   def up
-    add_column :submissions, :source, :text
+    add_column :submissions, :source, :string
 
     MigrationSubmission.where(source: nil).update_all(source: :invite)
 

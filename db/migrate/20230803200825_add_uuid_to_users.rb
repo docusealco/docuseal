@@ -6,7 +6,7 @@ class AddUuidToUsers < ActiveRecord::Migration[7.0]
   end
 
   def up
-    add_column :users, :uuid, :text
+    add_column :users, :uuid, :string
     add_index :users, :uuid, unique: true
 
     MigrationUser.all.each do |user|
