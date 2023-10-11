@@ -484,7 +484,7 @@ export default {
       return this.currentStepFields[0]
     },
     stepFields () {
-      return this.fields.reduce((acc, f) => {
+      return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {

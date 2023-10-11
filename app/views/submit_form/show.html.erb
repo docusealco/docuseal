@@ -1,5 +1,5 @@
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
-<% values = @submitter.submission.submitters.where.not(id: @submitter.id).reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
@@ -20,6 +20,7 @@
               <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                 <% value = values[field['uuid']] %>
                 <% next if value.blank? %>
+                <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
                 <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.submission.template.account.locale %>
               <% end %>
             </div>

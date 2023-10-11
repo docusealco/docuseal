@@ -106,7 +106,8 @@ module Api
 
     def submissions_params
       params.permit(submission: [{
-                      submitters: [[:uuid, :name, :email, :role, :completed, :phone, { values: {} }]]
+                      submitters: [[:uuid, :name, :email, :role, :completed, :phone,
+                                    { values: {}, readonly_fields: [] }]]
                     }])
     end
 
