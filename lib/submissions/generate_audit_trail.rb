@@ -17,7 +17,7 @@ module Submissions
                        'Helvetica'
                      end
 
-    INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
+    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
     VERIFIED_TEXT = if Docuseal.multitenant?
                       'Verified by DocuSeal'
@@ -62,15 +62,7 @@ module Submissions
       composer.new_page
 
       composer.column(columns: 1) do |column|
-        column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
-
-        column.formatted_text([{ text: 'DocuSeal',
-                                 link: Docuseal::PRODUCT_URL }],
-                              font_size: 20,
-                              font: [FONT_BOLD_NAME, { variant: :bold }],
-                              width: 100,
-                              padding: [12, 0, 0, 8],
-                              position: :float, position_hint: :left)
+        add_logo(column)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -269,6 +261,18 @@ module Submissions
         name: 'audit_trail',
         record: submission
       )
+    end
+
+    def add_logo(column)
+      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
+
+      column.formatted_text([{ text: 'DocuSeal',
+                               link: Docuseal::PRODUCT_URL }],
+                            font_size: 20,
+                            font: [FONT_BOLD_NAME, { variant: :bold }],
+                            width: 100,
+                            padding: [12, 0, 0, 8],
+                            position: :float, position_hint: :left)
     end
     # rubocop:enable Metrics
   end

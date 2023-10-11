@@ -1,5 +1,5 @@
 <div class="max-w-xl mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center my-8">👋 Welcome to Docuseal</h1>
+  <h1 class="text-4xl font-bold text-center my-8">👋 Welcome to <%= Docuseal.product_name %></h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>

@@ -58,6 +58,10 @@ module Docuseal
     end
   end
 
+  def product_name
+    PRODUCT_NAME
+  end
+
   def refresh_default_url_options!
     @default_url_options = nil
   end

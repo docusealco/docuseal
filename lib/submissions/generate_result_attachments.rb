@@ -10,7 +10,7 @@ module Submissions
                   'Helvetica'
                 end
 
-    INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
+    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed by %<email>s with DocuSeal.co'
 
     TEXT_LEFT_MARGIN = 1
@@ -203,9 +203,9 @@ module Submissions
     def save_signed_pdf(pdf:, submitter:, pkcs:, uuid:, name:)
       io = StringIO.new
 
-      pdf.trailer.info[:Creator] = INFO_CREATOR
+      pdf.trailer.info[:Creator] = info_creator
 
-      pdf.sign(io, reason: format(SIGN_REASON, email: submitter.email),
+      pdf.sign(io, reason: sign_reason(submitter.email),
                    certificate: pkcs.certificate,
                    key: pkcs.key,
                    certificate_chain: pkcs.ca_certs || [])
@@ -267,6 +267,14 @@ module Submissions
       )
 
       pdf
+    end
+
+    def sign_reason(email)
+      format(SIGN_REASON, email:)
+    end
+
+    def info_creator
+      INFO_CREATOR
     end
 
     def h
