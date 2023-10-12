@@ -107,7 +107,8 @@ module Api
     def submissions_params
       params.permit(submission: [{
                       submitters: [[:uuid, :name, :email, :role, :completed, :phone,
-                                    { values: {}, readonly_fields: [] }]]
+                                    { values: {}, readonly_fields: [],
+                                      fields: [%i[name default_value readonly validation_pattern invalid_message]] }]]
                     }])
     end
 
@@ -116,11 +117,15 @@ module Api
 
       Array.wrap(submissions_params).each do |submission|
         submission[:submitters].each_with_index do |submitter, index|
-          next if submitter[:values].blank?
+          default_values = submitter[:values] || {}
+
+          submitter[:fields]&.each { |f| default_values[f[:name]] = f[:default_value] if f[:default_value].present? }
+
+          next if default_values.blank?
 
           values, new_attachments =
             Submitters::NormalizeValues.call(template,
-                                             submitter[:values],
+                                             default_values,
                                              submitter[:role] || template.submitters[index]['name'])
 
           attachments.push(*new_attachments)

@@ -29,17 +29,11 @@ module Submissions
       template_fields = submission.template.fields.deep_dup
 
       submitters_attrs.each_with_index do |submitter_attrs, index|
-        next if submitter_attrs[:readonly_fields].blank?
+        submitter_uuid = find_submitter_uuid(submission.template, submitter_attrs, index)
 
-        uuid = find_submitter_uuid(submission.template, submitter_attrs, index)
+        process_readonly_fields_param(submitter_attrs[:readonly_fields], template_fields, submitter_uuid)
 
-        template_fields.each do |f|
-          next if f['submitter_uuid'] != uuid ||
-                  (!f['name'].in?(submitter_attrs[:readonly_fields]) &&
-                   !f['name'].parameterize.underscore.in?(submitter_attrs[:readonly_fields]))
-
-          f['readonly'] = true
-        end
+        process_fields_param(submitter_attrs[:fields], template_fields, submitter_uuid)
       end
 
       if template_fields != submission.template.fields
@@ -48,6 +42,39 @@ module Submissions
       end
 
       submission
+    end
+
+    def process_readonly_fields_param(readonly_fields, template_fields, submitter_uuid)
+      return if readonly_fields.blank?
+
+      template_fields.each do |f|
+        next if f['submitter_uuid'] != submitter_uuid ||
+                (!f['name'].in?(readonly_fields) &&
+                 !f['name'].parameterize.underscore.in?(readonly_fields))
+
+        f['readonly'] = true
+      end
+    end
+
+    def process_fields_param(fields, template_fields, submitter_uuid)
+      return if fields.blank?
+
+      template_fields.each do |f|
+        next if f['submitter_uuid'] != submitter_uuid
+
+        field_configs = fields.find { |e| e['name'] == f['name'] || e['name'] == f['name'].parameterize.underscore }
+
+        next if field_configs.blank?
+
+        f['readonly'] = field_configs['readonly'] if field_configs['readonly'].present?
+
+        next if field_configs['validation_pattern'].blank?
+
+        f['validation'] = {
+          'pattern' => field_configs['validation_pattern'],
+          'message' => field_configs['invalid_message']
+        }.compact_blank
+      end
     end
 
     def find_submitter_uuid(template, attrs, index)
