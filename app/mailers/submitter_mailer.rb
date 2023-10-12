@@ -12,7 +12,7 @@ class SubmitterMailer < ApplicationMailer
       if @email_config || subject.present?
         ReplaceEmailVariables.call(subject.presence || @email_config.value['subject'], submitter:)
       else
-        'You have been invited to submit a form'
+        'You are invited to submit a form'
       end
 
     mail(to: @submitter.friendly_name,
@@ -62,7 +62,7 @@ class SubmitterMailer < ApplicationMailer
       if @email_config
         ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
       else
-        'Your copy of documents'
+        'Your document copy'
       end
 
     mail(from: from_address_for_submitter(submitter),

@@ -30,9 +30,9 @@ class AccountConfig < ApplicationRecord
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
-      'subject' => 'You have been invited to submit a form',
+      'subject' => 'You are invited to submit a form',
       'body' => "Hi there,\n\n" \
-                "You have been invited to submit the \"{{template.name}}\" form:\n\n" \
+                "You have been invited to submit the \"{{template.name}}\" form.\n\n" \
                 "{{submitter.link}}\n\n" \
                 "Please contact us by replying to this email if you didn't request this.\n\n" \
                 "Thanks,\n" \
@@ -45,10 +45,10 @@ class AccountConfig < ApplicationRecord
                 '{{submission.link}}'
     },
     SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => {
-      'subject' => 'Your copy of documents',
+      'subject' => 'Your document copy',
       'body' => "Hi there,\n\n" \
                 "Please check the copy of your \"{{template.name}}\" submission in the email attachments.\n" \
-                "Alternatively, you can download the copy using:\n\n" \
+                "Alternatively, you can download your copy using:\n\n" \
                 "{{documents.links}}\n\n" \
                 "Thanks,\n" \
                 '{{account.name}}'

@@ -5,7 +5,7 @@
   <% end %>
 <% else %>
   <p>Hi there,</p>
-  <p>You have been invited to submit the "<%= @submitter.submission.template.name %>" form</p>
+  <p>You have been invited to submit the "<%= @submitter.submission.template.name %>" form.</p>
   <p><%= link_to 'Submit Form', submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email')) %></p>
   <p>Please contact us by replying to this email if you didn't request this.</p>
   <p>
