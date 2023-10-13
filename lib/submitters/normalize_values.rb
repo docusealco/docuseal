@@ -41,7 +41,7 @@ module Submitters
     end
 
     def build_fields_index(fields)
-      fields.index_by { |e| e['name'] }.merge(fields.index_by { |e| e['name'].parameterize.underscore })
+      fields.index_by { |e| e['name'] }.merge(fields.index_by { |e| e['name'].to_s.parameterize.underscore })
     end
 
     def normalize_attachment_value(value, account)
