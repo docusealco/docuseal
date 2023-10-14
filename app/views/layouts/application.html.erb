@@ -8,6 +8,7 @@
     <%= javascript_pack_tag 'application', defer: true %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
+    <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
   </head>
   <body>
     <turbo-frame id="modal"></turbo-frame>
