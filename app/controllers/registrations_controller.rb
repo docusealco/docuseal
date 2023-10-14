@@ -43,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     self.resource = account.users.new(user_params)
 
-    account.name ||= "#{resource.full_name}'s Company" if params[:action] == 'create'
+    account.name ||= resource.full_name if params[:action] == 'create'
   end
 
   def user_params
