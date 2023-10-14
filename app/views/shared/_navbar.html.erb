@@ -63,18 +63,19 @@
       </div>
     </div>
   <% else %>
-    <div class="flex space-x-6">
-      <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
-        <span class="flex items-center justify-center space-x-1">
-          <%= svg_icon('login', class: 'w-6 h-6') %>
-          <span>Sign in</span>
-        </span>
-      <% end %>
-      <% if Docuseal.multitenant? %>
-        <%= link_to registration_path, class: 'font-medium text-lg hidden md:inline' do %>
+    <div class="flex space-x-2">
+      <% if request.path != new_user_session_path %>
+        <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
           <span class="flex items-center justify-center space-x-1">
-            <%= svg_icon('user_plus', class: 'w-6 h-6') %>
-            <span>Try for Free</span>
+            <%= svg_icon('login', class: 'w-6 h-6') %>
+            <span>Sign in</span>
+          </span>
+        <% end %>
+      <% end %>
+      <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path])%>
+        <%= link_to registration_path, class: 'btn btn-neutral btn-sm btn-outline' do %>
+          <span class="flex items-center justify-center space-x-1">
+            <span>Create free Account</span>
           </span>
         <% end %>
       <% end %>
