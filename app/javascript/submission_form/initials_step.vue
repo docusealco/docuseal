@@ -9,33 +9,37 @@
           class="tooltip"
           :data-tip="t('draw_initials')"
         >
-          <button
+          <a
             id="type_text_button"
+            href="#"
             class="btn btn-sm btn-circle"
             :class="{ 'btn-neutral': isDrawInitials, 'btn-outline': !isDrawInitials }"
             @click.prevent="toggleTextInput"
           >
             <IconSignature :width="16" />
-          </button>
+          </a>
         </span>
-        <button
+        <a
           v-if="modelValue"
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
-        </button>
-        <button
+        </a>
+        <a
           v-else
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
-        </button>
-        <button
+        </a>
+        <a
           title="Minimize"
+          href="#"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
         >
@@ -43,7 +47,7 @@
             :width="20"
             :height="20"
           />
-        </button>
+        </a>
       </div>
     </div>
     <input
@@ -66,7 +70,7 @@
       id="initials_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6 text-center"
-      :required="field.required && !isInitialsStarted"
+      :required="field.required && !isInitialsStarted && !modelValue"
       :placeholder="`${t('type_initial_here')}...`"
       type="text"
       @focus="$emit('focus')"
