@@ -166,6 +166,7 @@
           </div>
           <MultiSelectStep
             v-else-if="currentField.type === 'multiple'"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
           />
@@ -227,6 +228,7 @@
           </div>
           <ImageStep
             v-else-if="currentField.type === 'image'"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
             :is-direct-upload="isDirectUpload"
@@ -237,6 +239,7 @@
           <SignatureStep
             v-else-if="currentField.type === 'signature'"
             ref="currentStep"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
             :is-direct-upload="isDirectUpload"
@@ -249,6 +252,7 @@
           <InitialsStep
             v-else-if="currentField.type === 'initials'"
             ref="currentStep"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
             :is-direct-upload="isDirectUpload"
@@ -261,6 +265,7 @@
           />
           <AttachmentStep
             v-else-if="currentField.type === 'file'"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :is-direct-upload="isDirectUpload"
             :field="currentField"
@@ -271,6 +276,7 @@
           <PhoneStep
             v-else-if="currentField.type === 'phone'"
             ref="currentStep"
+            :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
             :default-value="submitter.phone"
