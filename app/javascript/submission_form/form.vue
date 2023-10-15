@@ -86,17 +86,21 @@
             </div>
           </div>
           <div v-else-if="currentField.type === 'date'">
-            <label
-              v-if="currentField.name"
-              :for="currentField.uuid"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
-            </label>
-            <div
-              v-else
-              class="py-1"
-            />
+            <div class="flex justify-between items-center w-full mb-2">
+              <label
+                :for="currentField.uuid"
+                class="label text-2xl"
+              >{{ currentField.name || t('date') }}
+                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </label>
+              <button
+                class="btn btn-outline btn-sm !normal-case font-normal"
+                @click.prevent="setCurrentDate"
+              >
+                <IconCalendarCheck :width="16" />
+                {{ t('set_today') }}
+              </button>
+            </div>
             <div class="text-center">
               <input
                 :id="currentField.uuid"
@@ -360,7 +364,7 @@ import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import FormCompleted from './completed'
-import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2, IconCalendarCheck } from '@tabler/icons-vue'
 import { t } from './i18n'
 
 export default {
@@ -375,6 +379,7 @@ export default {
     IconInnerShadowTop,
     IconArrowsDiagonal,
     PhoneStep,
+    IconCalendarCheck,
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },
@@ -642,6 +647,13 @@ export default {
           this.$refs.form.querySelector('input[type="file"]')?.click()
         }
       })
+    },
+    setCurrentDate () {
+      const inputEl = document.getElementById(this.currentField.uuid)
+
+      inputEl.valueAsDate = new Date()
+
+      inputEl.dispatchEvent(new Event('input', { bubbles: true }))
     },
     saveStep (formData) {
       if (this.isCompleted) {

@@ -30,6 +30,8 @@ const en = {
   resend_code: 'Re-send code',
   verification_code_has_been_resent: 'Verification code has been re-sent via SMS',
   please_fill_all_required_fields: 'Please fill all required fields',
+  set_today: 'Set Today',
+  date: 'Date',
   email_has_been_sent: 'Email has been sent'
 }
 
@@ -65,6 +67,8 @@ const es = {
   resend_code: 'Reenviar código',
   verification_code_has_been_resent: 'El código de verificación ha sido reenviado por SMS',
   please_fill_all_required_fields: 'Por favor, complete todos los campos obligatorios',
+  set_today: 'Establecer Hoy',
+  date: 'Fecha',
   email_has_been_sent: 'El correo electrónico ha sido enviado'
 }
 
@@ -100,6 +104,8 @@ const it = {
   resend_code: 'Rinvia codice',
   verification_code_has_been_resent: 'Il codice di verifica è stato rinviato tramite SMS',
   please_fill_all_required_fields: 'Si prega di compilare tutti i campi obbligatori',
+  set_today: 'Imposta Oggi',
+  date: 'Data',
   email_has_been_sent: "L'email è stata inviata"
 }
 
@@ -135,6 +141,8 @@ const de = {
   resend_code: 'Code erneut senden',
   verification_code_has_been_resent: 'Die Verifizierungscode wurde erneut per SMS gesendet',
   please_fill_all_required_fields: 'Bitte füllen Sie alle erforderlichen Felder aus',
+  set_today: 'Heute einstellen',
+  date: 'Datum',
   email_has_been_sent: 'Die E-Mail wurde gesendet'
 }
 
@@ -170,6 +178,8 @@ const fr = {
   resend_code: 'Renvoyer le code',
   verification_code_has_been_resent: 'Le code de vérification a été renvoyé par SMS',
   please_fill_all_required_fields: 'Veuillez remplir tous les champs obligatoires',
+  set_today: "Définir Aujourd'hui",
+  date: 'Date',
   email_has_been_sent: "L'email a été envoyé"
 }
 
@@ -205,6 +215,8 @@ const pl = {
   resend_code: 'Ponownie wyślij kod',
   verification_code_has_been_resent: 'Kod weryfikacyjny został ponownie wysłany',
   please_fill_all_required_fields: 'Proszę wypełnić wszystkie wymagane pola',
+  set_today: 'Ustaw Dziś',
+  date: 'Data',
   email_has_been_sent: 'E-mail został wysłany'
 }
 
@@ -240,6 +252,8 @@ const uk = {
   resend_code: 'Повторно відправити код',
   verification_code_has_been_resent: 'Код підтвердження був повторно надісланий',
   please_fill_all_required_fields: "Будь ласка, заповніть всі обов'язкові поля",
+  set_today: 'Задати Сьогодні',
+  date: 'Дата',
   email_has_been_sent: 'Електронний лист був відправлений'
 }
 
@@ -275,6 +289,8 @@ const cs = {
   resend_code: 'Znovu odeslat kód',
   verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán',
   please_fill_all_required_fields: 'Prosím vyplňte všechny povinné položky',
+  set_today: 'Nastavit Dnes',
+  date: 'Datum',
   email_has_been_sent: 'E-mail byl odeslán'
 }
 
@@ -310,6 +326,8 @@ const pt = {
   resend_code: 'Reenviar código',
   verification_code_has_been_resent: 'O código de verificação foi reenviado via SMS',
   please_fill_all_required_fields: 'Por favor, preencha todos os campos obrigatórios',
+  set_today: 'Definir Hoje',
+  date: 'Data',
   email_has_been_sent: 'Email enviado'
 }
 
