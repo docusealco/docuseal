@@ -639,7 +639,7 @@ export default {
     setCurrentDate () {
       const inputEl = document.getElementById(this.currentField.uuid)
 
-      inputEl.valueAsDate = new Date()
+      inputEl.valueAsDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
 
       inputEl.dispatchEvent(new Event('input', { bubbles: true }))
     },
