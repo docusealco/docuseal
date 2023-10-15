@@ -89,6 +89,15 @@ export default {
       }
     }
   },
+  mounted () {
+    this.isTextArea = this.modelValue?.includes('\n')
+
+    if (this.isTextArea) {
+      this.$nextTick(() => {
+        this.resizeTextarea()
+      })
+    }
+  },
   methods: {
     resizeTextarea () {
       const textarea = this.$refs.textarea
