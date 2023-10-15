@@ -29,6 +29,7 @@ const en = {
   sending: 'Sending...',
   resend_code: 'Re-send code',
   verification_code_has_been_resent: 'Verification code has been re-sent via SMS',
+  please_fill_all_required_fields: 'Please fill all required fields',
   email_has_been_sent: 'Email has been sent'
 }
 
@@ -63,6 +64,7 @@ const es = {
   sending: 'Enviando...',
   resend_code: 'Reenviar código',
   verification_code_has_been_resent: 'El código de verificación ha sido reenviado por SMS',
+  please_fill_all_required_fields: 'Por favor, complete todos los campos obligatorios',
   email_has_been_sent: 'El correo electrónico ha sido enviado'
 }
 
@@ -97,6 +99,7 @@ const it = {
   sending: 'Invio in corso...',
   resend_code: 'Rinvia codice',
   verification_code_has_been_resent: 'Il codice di verifica è stato rinviato tramite SMS',
+  please_fill_all_required_fields: 'Si prega di compilare tutti i campi obbligatori',
   email_has_been_sent: "L'email è stata inviata"
 }
 
@@ -131,6 +134,7 @@ const de = {
   sending: 'Senden...',
   resend_code: 'Code erneut senden',
   verification_code_has_been_resent: 'Die Verifizierungscode wurde erneut per SMS gesendet',
+  please_fill_all_required_fields: 'Bitte füllen Sie alle erforderlichen Felder aus',
   email_has_been_sent: 'Die E-Mail wurde gesendet'
 }
 
@@ -165,6 +169,7 @@ const fr = {
   sending: 'Envoi en cours...',
   resend_code: 'Renvoyer le code',
   verification_code_has_been_resent: 'Le code de vérification a été renvoyé par SMS',
+  please_fill_all_required_fields: 'Veuillez remplir tous les champs obligatoires',
   email_has_been_sent: "L'email a été envoyé"
 }
 
@@ -199,6 +204,7 @@ const pl = {
   sending: 'Wysyłanie...',
   resend_code: 'Ponownie wyślij kod',
   verification_code_has_been_resent: 'Kod weryfikacyjny został ponownie wysłany',
+  please_fill_all_required_fields: 'Proszę wypełnić wszystkie wymagane pola',
   email_has_been_sent: 'E-mail został wysłany'
 }
 
@@ -233,6 +239,7 @@ const uk = {
   sending: 'Надсилаю...',
   resend_code: 'Повторно відправити код',
   verification_code_has_been_resent: 'Код підтвердження був повторно надісланий',
+  please_fill_all_required_fields: "Будь ласка, заповніть всі обов'язкові поля",
   email_has_been_sent: 'Електронний лист був відправлений'
 }
 
@@ -267,6 +274,7 @@ const cs = {
   sending: 'Odesílání...',
   resend_code: 'Znovu odeslat kód',
   verification_code_has_been_resent: 'Ověřovací kód byl znovu odeslán',
+  please_fill_all_required_fields: 'Prosím vyplňte všechny povinné položky',
   email_has_been_sent: 'E-mail byl odeslán'
 }
 
@@ -301,6 +309,7 @@ const pt = {
   sending: 'Enviando...',
   resend_code: 'Reenviar código',
   verification_code_has_been_resent: 'O código de verificação foi reenviado via SMS',
+  please_fill_all_required_fields: 'Por favor, preencha todos os campos obrigatórios',
   email_has_been_sent: 'Email enviado'
 }
 

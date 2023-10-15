@@ -297,6 +297,7 @@
         </div>
         <div class="mt-6 md:mt-8">
           <button
+            ref="submitButton"
             type="submit"
             class="base-button w-full flex justify-center"
             :disabled="isButtonDisabled"
@@ -317,6 +318,12 @@
               ><span>...</span></span>
             </span>
           </button>
+          <div
+            v-if="showFillAllRequiredFields"
+            class="text-center mt-1"
+          >
+            {{ t('please_fill_all_required_fields') }}
+          </div>
         </div>
       </form>
       <FormCompleted
@@ -335,7 +342,7 @@
             :key="step[0].uuid"
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1"
-            :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': index < currentStep || isCompleted, 'bg-white': index > currentStep }"
+            :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
             @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
           />
         </div>
@@ -457,9 +464,11 @@ export default {
     return {
       isCompleted: false,
       isFormVisible: true,
+      showFillAllRequiredFields: false,
       currentStep: 0,
       isSubmitting: false,
       submittedValues: {},
+      isSecondWalkthrough: false,
       recalculateButtonDisabledKey: ''
     }
   },
@@ -514,10 +523,20 @@ export default {
     this.submittedValues = JSON.parse(JSON.stringify(this.values))
 
     if (this.goToLast) {
-      this.currentStep = Math.min(
-        this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1,
-        this.stepFields.length - 1
-      )
+      const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.values[f.uuid])))
+      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1
+
+      const indexesList = [this.stepFields.length - 1]
+
+      if (requiredEmptyStepIndex !== -1) {
+        indexesList.push(requiredEmptyStepIndex)
+      }
+
+      if (lastFilledStepIndex !== -1) {
+        indexesList.push(lastFilledStepIndex)
+      }
+
+      this.currentStep = Math.min(...indexesList)
     }
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -608,6 +627,7 @@ export default {
     },
     goToStep (step, scrollToArea = false, clickUpload = false) {
       this.currentStep = this.stepFields.indexOf(step)
+      this.showFillAllRequiredFields = false
 
       this.$nextTick(() => {
         this.recalculateButtonDisabledKey = Math.random()
@@ -642,12 +662,13 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
+          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip || !this.isSecondWalkthrough) && !this.submittedValues[fields[0].uuid]
         })
 
         const formData = new FormData(this.$refs.form)
+        const isLastStep = this.currentStep === this.stepFields.length - 1
 
-        if (this.currentStep === this.stepFields.length - 1 && !emptyRequiredField) {
+        if (isLastStep && !emptyRequiredField) {
           formData.append('completed', 'true')
         }
 
@@ -662,10 +683,18 @@ export default {
 
           this.submittedValues[this.currentField.uuid] = this.values[this.currentField.uuid]
 
-          const nextStep = emptyRequiredField || this.stepFields[this.currentStep + 1]
+          if (isLastStep) {
+            this.isSecondWalkthrough = true
+          }
+
+          const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[this.currentStep + 1]
 
           if (nextStep) {
             this.goToStep(nextStep, true)
+
+            if (emptyRequiredField === nextStep) {
+              this.showFillAllRequiredFields = true
+            }
           } else {
             this.isCompleted = true
           }
