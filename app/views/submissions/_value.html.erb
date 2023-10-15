@@ -28,8 +28,6 @@
       <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
     </div>
   <% else %>
-    <div class="flex items-center px-0.5">
-      <%= Array.wrap(value).join(', ') %>
-    </div>
+    <div class="flex items-center px-0.5 whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
   <% end %>
 </div>

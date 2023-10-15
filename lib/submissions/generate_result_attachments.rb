@@ -23,7 +23,6 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submitter)
-      layouter = HexaPDF::Layout::TextLayouter.new(valign: :center)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, align: :center)
 
       template = submitter.submission.template
@@ -38,7 +37,6 @@ module Submissions
 
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
-          pdf.fonts.add(FONT_NAME)
 
           page = pdf.pages[area['page']]
           page.rotate(0, flatten: true) if page[:Rotate] != 0
@@ -49,6 +47,8 @@ module Submissions
           width = page.box.width
           height = page.box.height
           font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+
+          layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
 
           value = submitter.values[field['uuid']]
 

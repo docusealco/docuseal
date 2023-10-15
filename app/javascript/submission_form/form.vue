@@ -58,32 +58,12 @@
         >
         <div class="md:mt-4">
           <div v-if="['cells', 'text'].includes(currentField.type)">
-            <label
-              v-if="currentField.name"
-              :for="currentField.uuid"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
-            </label>
-            <div
-              v-else
-              class="py-1"
+            <TextStep
+              :key="currentField.uuid"
+              v-model="values[currentField.uuid]"
+              :field="currentField"
+              @focus="$refs.areas.scrollIntoField(currentField)"
             />
-            <div>
-              <input
-                :id="currentField.uuid"
-                v-model="values[currentField.uuid]"
-                class="base-input !text-2xl w-full"
-                :required="currentField.required"
-                :pattern="currentField.validation?.pattern"
-                :oninvalid="currentField.validation?.message ? `this.setCustomValidity(${JSON.stringify(currentField.validation.message)})` : ''"
-                :oninput="currentField.validation?.message ? `this.setCustomValidity('')` : ''"
-                :placeholder="`${t('type_here')}...${currentField.required ? '' : ` (${t('optional')})`}`"
-                type="text"
-                :name="`values[${currentField.uuid}]`"
-                @focus="$refs.areas.scrollIntoField(currentField)"
-              >
-            </div>
           </div>
           <div v-else-if="currentField.type === 'date'">
             <div class="flex justify-between items-center w-full mb-2">
@@ -363,6 +343,7 @@ import InitialsStep from './initials_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
+import TextStep from './text_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2, IconCalendarCheck } from '@tabler/icons-vue'
 import { t } from './i18n'
@@ -378,6 +359,7 @@ export default {
     MultiSelectStep,
     IconInnerShadowTop,
     IconArrowsDiagonal,
+    TextStep,
     PhoneStep,
     IconCalendarCheck,
     IconArrowsDiagonalMinimize2,

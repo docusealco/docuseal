@@ -47,6 +47,10 @@ select:required:invalid {
   @apply border-base-content/20;
 }
 
+.base-textarea {
+  @apply textarea textarea-bordered bg-white rounded-3xl;
+}
+
 .btn {
   @apply no-animation;
 }

@@ -1,0 +1,111 @@
+<template>
+  <label
+    v-if="field.name"
+    :for="field.uuid"
+    class="label text-2xl mb-2"
+  >{{ field.name }}
+    <template v-if="!field.required">({{ t('optional') }})</template>
+  </label>
+  <div
+    v-else
+    class="py-1"
+  />
+  <div class="items-center flex">
+    <input
+      v-if="!isTextArea"
+      :id="field.uuid"
+      v-model="text"
+      class="base-input !text-2xl w-full !pr-11 -mr-10"
+      :required="field.required"
+      :pattern="field.validation?.pattern"
+      :oninvalid="field.validation?.message ? `this.setCustomValidity(${JSON.stringify(field.validation.message)})` : ''"
+      :oninput="field.validation?.message ? `this.setCustomValidity('')` : ''"
+      :placeholder="`${t('type_here')}...${field.required ? '' : ` (${t('optional')})`}`"
+      type="text"
+      :name="`values[${field.uuid}]`"
+      @focus="$emit('focus')"
+    >
+    <textarea
+      v-if="isTextArea"
+      :id="field.uuid"
+      ref="textarea"
+      v-model="text"
+      class="base-textarea !text-2xl w-full"
+      :placeholder="`${t('type_here')}...${field.required ? '' : ` (${t('optional')})`}`"
+      :required="field.required"
+      :name="`values[${field.uuid}]`"
+      @input="resizeTextarea"
+      @focus="$emit('focus')"
+    />
+    <div
+      v-if="!isTextArea"
+      class="tooltip"
+      :data-tip="t('toggle_multiline_text')"
+    >
+      <a
+        href="#"
+        class="btn btn-ghost btn-circle btn-sm"
+        @click.prevent="toggleTextArea"
+      >
+        <IconAlignBoxLeftTop />
+      </a>
+    </div>
+  </div>
+</template>
+
+<script>
+import { IconAlignBoxLeftTop } from '@tabler/icons-vue'
+
+export default {
+  name: 'TextStep',
+  components: {
+    IconAlignBoxLeftTop
+  },
+  inject: ['t'],
+  props: {
+    field: {
+      type: Object,
+      required: true
+    },
+    modelValue: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
+  emits: ['update:model-value', 'focus'],
+  data () {
+    return {
+      isTextArea: false
+    }
+  },
+  computed: {
+    text: {
+      set (value) {
+        this.$emit('update:model-value', value)
+      },
+      get () {
+        return this.modelValue
+      }
+    }
+  },
+  methods: {
+    resizeTextarea () {
+      const textarea = this.$refs.textarea
+
+      textarea.style.height = 'auto'
+      textarea.style.height = textarea.scrollHeight + 'px'
+    },
+    toggleTextArea () {
+      this.isTextArea = true
+
+      this.$nextTick(() => {
+        this.$refs.textarea.focus()
+        this.$refs.textarea.setSelectionRange(this.$refs.textarea.value.length, this.$refs.textarea.value.length)
+
+        this.resizeTextarea()
+      })
+    }
+  }
+}
+</script>

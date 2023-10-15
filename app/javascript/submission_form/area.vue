@@ -110,9 +110,10 @@
       <span v-else-if="field.type === 'date'">
         {{ formattedDate }}
       </span>
-      <span v-else>
-        {{ modelValue }}
-      </span>
+      <span
+        v-else
+        class="whitespace-pre-wrap"
+      >{{ modelValue }}</span>
     </div>
   </div>
 </template>

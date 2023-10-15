@@ -31,6 +31,7 @@ const en = {
   verification_code_has_been_resent: 'Verification code has been re-sent via SMS',
   please_fill_all_required_fields: 'Please fill all required fields',
   set_today: 'Set Today',
+  toggle_multiline_text: 'Toggle Multiline Text',
   date: 'Date',
   email_has_been_sent: 'Email has been sent'
 }
@@ -69,6 +70,7 @@ const es = {
   please_fill_all_required_fields: 'Por favor, complete todos los campos obligatorios',
   set_today: 'Establecer Hoy',
   date: 'Fecha',
+  toggle_multiline_text: 'Alternar Texto Multilínea',
   email_has_been_sent: 'El correo electrónico ha sido enviado'
 }
 
@@ -106,6 +108,7 @@ const it = {
   please_fill_all_required_fields: 'Si prega di compilare tutti i campi obbligatori',
   set_today: 'Imposta Oggi',
   date: 'Data',
+  toggle_multiline_text: 'Attiva Testo Multilinea',
   email_has_been_sent: "L'email è stata inviata"
 }
 
@@ -143,6 +146,7 @@ const de = {
   please_fill_all_required_fields: 'Bitte füllen Sie alle erforderlichen Felder aus',
   set_today: 'Heute einstellen',
   date: 'Datum',
+  toggle_multiline_text: 'Mehrzeiligen Text umschalten',
   email_has_been_sent: 'Die E-Mail wurde gesendet'
 }
 
@@ -180,6 +184,7 @@ const fr = {
   please_fill_all_required_fields: 'Veuillez remplir tous les champs obligatoires',
   set_today: "Définir Aujourd'hui",
   date: 'Date',
+  toggle_multiline_text: 'Basculer le Texte Multiligne',
   email_has_been_sent: "L'email a été envoyé"
 }
 
@@ -217,6 +222,7 @@ const pl = {
   please_fill_all_required_fields: 'Proszę wypełnić wszystkie wymagane pola',
   set_today: 'Ustaw Dziś',
   date: 'Data',
+  toggle_multiline_text: 'Przełącz Tekst Wielolinijkowy',
   email_has_been_sent: 'E-mail został wysłany'
 }
 
@@ -254,6 +260,7 @@ const uk = {
   please_fill_all_required_fields: "Будь ласка, заповніть всі обов'язкові поля",
   set_today: 'Задати Сьогодні',
   date: 'Дата',
+  toggle_multiline_text: 'Перемкнути Багаторядковий Текст',
   email_has_been_sent: 'Електронний лист був відправлений'
 }
 
@@ -291,6 +298,7 @@ const cs = {
   please_fill_all_required_fields: 'Prosím vyplňte všechny povinné položky',
   set_today: 'Nastavit Dnes',
   date: 'Datum',
+  toggle_multiline_text: 'Přepnout Víceřádkový Text',
   email_has_been_sent: 'E-mail byl odeslán'
 }
 
@@ -328,6 +336,7 @@ const pt = {
   please_fill_all_required_fields: 'Por favor, preencha todos os campos obrigatórios',
   set_today: 'Definir Hoje',
   date: 'Data',
+  toggle_multiline_text: 'Alternar Texto Multilinha',
   email_has_been_sent: 'Email enviado'
 }
 
