@@ -72,7 +72,7 @@
           </span>
         <% end %>
       <% end %>
-      <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path])%>
+      <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path]) %>
         <%= link_to registration_path, class: 'btn btn-neutral btn-sm btn-outline' do %>
           <span class="flex items-center justify-center space-x-1">
             <span>Create free Account</span>
