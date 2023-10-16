@@ -78,7 +78,7 @@
     >
       {{ t('signed_with') }}
       <a
-        href="https://www.docuseal.co"
+        href="https://www.docuseal.co/start"
         target="_blank"
         class="underline"
       >DocuSeal</a> - {{ t('open_source_documents_software') }}
