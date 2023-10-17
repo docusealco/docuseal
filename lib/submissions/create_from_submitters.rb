@@ -92,6 +92,7 @@ module Submissions
         email:,
         phone: attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
         name: attrs[:name],
+        application_key: attrs[:application_key],
         completed_at: attrs[:completed] ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},

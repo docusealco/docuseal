@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :template_folders_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
-    resources :submitters, only: %i[show]
+    resources :submitters, only: %i[index show]
     resources :submissions, only: %i[index show create destroy] do
       collection do
         resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails

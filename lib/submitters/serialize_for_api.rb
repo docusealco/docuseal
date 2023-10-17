@@ -18,7 +18,7 @@ module Submitters
 
       serialize_params = {
         include: {},
-        only: %i[id slug uuid name email phone completed_at
+        only: %i[id slug uuid name email phone completed_at application_key
                  opened_at sent_at created_at updated_at]
       }
 

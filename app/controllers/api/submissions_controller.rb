@@ -106,7 +106,7 @@ module Api
 
     def submissions_params
       params.permit(submission: [{
-                      submitters: [[:uuid, :name, :email, :role, :completed, :phone,
+                      submitters: [[:uuid, :name, :email, :role, :completed, :phone, :application_key,
                                     { values: {}, readonly_fields: [],
                                       fields: [%i[name default_value readonly validation_pattern invalid_message]] }]]
                     }])
