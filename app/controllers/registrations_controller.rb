@@ -31,10 +31,10 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to after_sign_up_path_for(current_user), allow_other_host: true
   end
 
-  def require_no_authentication
-    super
+  def set_flash_message(key, kind, options = {})
+    return if key == :alert && kind == 'already_authenticated'
 
-    flash.clear
+    super
   end
 
   def build_resource(_hash = {})

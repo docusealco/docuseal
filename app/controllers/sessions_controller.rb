@@ -32,9 +32,9 @@ class SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_in, keys: [:otp_attempt])
   end
 
-  def require_no_authentication
-    super
+  def set_flash_message(key, kind, options = {})
+    return if key == :alert && kind == 'already_authenticated'
 
-    flash.clear
+    super
   end
 end
