@@ -10,6 +10,11 @@ class TemplatesController < ApplicationController
     submissions = submissions.active if @template.deleted_at.blank?
     submissions = Submissions.search(submissions, params[:q])
 
+    @base_submissions = submissions
+
+    submissions = submissions.pending if params[:status] == 'pending'
+    submissions = submissions.completed if params[:status] == 'completed'
+
     @pagy, @submissions = pagy(submissions.preload(:submitters).order(id: :desc))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path

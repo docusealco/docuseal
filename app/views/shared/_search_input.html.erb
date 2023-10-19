@@ -1,7 +1,10 @@
-<form action="<%= request.path %>" method="get" class="items-center hidden md:flex">
+<form action="<%= url_for %>" method="get" class="items-center hidden md:flex">
+  <% if params[:status].present? %>
+    <input name="status" value="<%= params[:status] %>" class="hidden">
+  <% end %>
   <% if params[:q].present? %>
     <div class="relative">
-      <a href="<%= request.path %>" title="Clear" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
+      <a href="<%= url_for(params.to_unsafe_h.except(:q)) %>" title="Clear" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
         &times;
       </a>
     </div>

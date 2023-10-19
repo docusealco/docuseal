@@ -48,6 +48,8 @@ class Submission < ApplicationRecord
            through: :template, source: :documents_attachments
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).distinct }
+  scope :completed, -> { left_joins(:submitters).where.not(submitters: { completed_at: nil }).distinct }
 
   enum :source, {
     invite: 'invite',
