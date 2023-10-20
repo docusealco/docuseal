@@ -13,8 +13,12 @@ class StartFormController < ApplicationController
   end
 
   def update
-    @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
-                          .find_or_initialize_by(email: submitter_params[:email])
+    @submitter = Submitter.new(email: submitter_params[:email])
+
+    if params[:resubmit].blank?
+      @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
+                            .find_by(email: submitter_params[:email]) || @submitter
+    end
 
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])

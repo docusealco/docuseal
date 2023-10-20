@@ -24,6 +24,9 @@
         <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
       </div>
     <% end %>
+    <div>
+      <%= button_to button_title(title: 'Resubmit', disabled_with: 'Resubmit', icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@template.slug), params: { submitter: { email: params[:email] }, resubmit: true }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
+    </div>
   </div>
 </div>
 <%= render 'shared/attribution', link_path: '/start' %>
