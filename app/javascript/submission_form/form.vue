@@ -425,7 +425,7 @@ export default {
     allowToSkip: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     goToLast: {
       type: Boolean,
@@ -461,7 +461,6 @@ export default {
       currentStep: 0,
       isSubmitting: false,
       submittedValues: {},
-      isSecondWalkthrough: false,
       recalculateButtonDisabledKey: ''
     }
   },
@@ -662,7 +661,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip || !this.isSecondWalkthrough) && !this.submittedValues[fields[0].uuid]
+          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
         })
 
         const formData = new FormData(this.$refs.form)
