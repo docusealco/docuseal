@@ -76,6 +76,14 @@ class User < ApplicationRecord
     true
   end
 
+  def self.sign_in_after_reset_password
+    if PasswordsController::Current.user.present?
+      !PasswordsController::Current.user.otp_required_for_login
+    else
+      true
+    end
+  end
+
   def initials
     [first_name&.first, last_name&.first].compact_blank.join.upcase
   end
