@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
+  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy]
   resource :user_signature, only: %i[edit update]
   resources :submissions, only: %i[show destroy]

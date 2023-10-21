@@ -3,6 +3,7 @@
 module Docuseal
   PRODUCT_URL = 'https://www.docuseal.co'
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
+  ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'DocuSeal'
   DEFAULT_APP_URL = 'http://localhost:3000'
   GITHUB_URL = 'https://github.com/docusealco/docuseal'
