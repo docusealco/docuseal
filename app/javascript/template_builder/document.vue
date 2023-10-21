@@ -56,8 +56,26 @@ export default {
     }
   },
   computed: {
+    numberOfPages () {
+      return this.document.metadata?.pdf?.number_of_pages || this.document.preview_images.length
+    },
     sortedPreviewImages () {
-      return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))
+      const lazyloadMetadata = this.document.preview_images[this.document.preview_images.length - 1].metadata
+
+      return [...Array(this.numberOfPages).keys()].map((i) => {
+        return this.previewImagesIndex[i] || {
+          metadata: lazyloadMetadata,
+          id: Math.random().toString(),
+          url: `/preview/${this.document.uuid}/${i}.jpg`
+        }
+      })
+    },
+    previewImagesIndex () {
+      return this.document.preview_images.reduce((acc, e) => {
+        acc[parseInt(e.filename)] = e
+
+        return acc
+      }, {})
     }
   },
   beforeUpdate () {

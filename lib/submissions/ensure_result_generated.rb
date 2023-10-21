@@ -4,7 +4,7 @@ module Submissions
   module EnsureResultGenerated
     WAIT_FOR_RETRY = 2.seconds
     CHECK_EVENT_INTERVAL = 1.second
-    CHECK_COMPLETE_TIMEOUT = 20.seconds
+    CHECK_COMPLETE_TIMEOUT = 90.seconds
 
     WaitForCompleteTimeout = Class.new(StandardError)
 

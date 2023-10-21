@@ -67,6 +67,9 @@ RSpec/MultipleMemoizedHelpers:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/FindEach:
+  Enabled: false
+
 Rails/SkipsModelValidations:
   Enabled: false
 

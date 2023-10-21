@@ -24,7 +24,7 @@
       </div>
     </div>
     <% unless @template.deleted_at? %>
-      <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
+      <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
         <div class="form-control !mt-0">
           <%= f.label :email, class: 'label' %>
           <%= f.email_field :email, value: current_user&.email, required: true, class: 'base-input', placeholder: 'Provide your email to start' %>

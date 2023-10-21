@@ -114,7 +114,7 @@ export default {
   emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace'],
   computed: {
     previewImage () {
-      return this.document.preview_images[0]
+      return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]
     }
   },
   mounted () {

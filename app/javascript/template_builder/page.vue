@@ -5,11 +5,12 @@
   >
     <img
       ref="image"
+      loading="lazy"
       :src="image.url"
       :width="width"
-      class="border rounded mb-4"
       :height="height"
-      loading="lazy"
+      class="border rounded mb-4"
+      @load="onImageLoad"
     >
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
@@ -117,6 +118,10 @@ export default {
     this.areaRefs = []
   },
   methods: {
+    onImageLoad (e) {
+      e.target.setAttribute('width', e.target.naturalWidth)
+      e.target.setAttribute('height', e.target.naturalHeight)
+    },
     setAreaRefs (el) {
       if (el) {
         this.areaRefs.push(el)

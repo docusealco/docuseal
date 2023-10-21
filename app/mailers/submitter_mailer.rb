@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmitterMailer < ApplicationMailer
+  MAX_ATTACHMENTS_SIZE = 10.megabytes
+
   def invitation_email(submitter, body: nil, subject: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
@@ -75,13 +77,25 @@ class SubmitterMailer < ApplicationMailer
   def add_completed_email_attachments!(submitter)
     documents = Submitters.select_attachments_for_download(submitter)
 
-    documents.each do |attachment|
-      attachments[attachment.filename.to_s] = attachment.download
-    end
+    total_size = 0
+    audit_trail_data = nil
 
     if submitter.submission.audit_trail.present?
-      attachments[submitter.submission.audit_trail.filename.to_s] = submitter.submission.audit_trail.download
+      audit_trail_data = submitter.submission.audit_trail.download
+
+      total_size = audit_trail_data.size
     end
+
+    documents.each do |attachment|
+      data = attachment.download
+      total_size += data.size
+
+      break if total_size >= MAX_ATTACHMENTS_SIZE
+
+      attachments[attachment.filename.to_s] = data
+    end
+
+    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
 
     documents
   end

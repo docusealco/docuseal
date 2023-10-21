@@ -30,6 +30,14 @@ class TemplatesController < ApplicationController
       associations: [schema_documents: { preview_images_attachments: :blob }]
     ).call
 
+    @template_data =
+      @template.as_json.merge(
+        documents: @template.schema_documents.as_json(
+          methods: [:metadata],
+          include: { preview_images: { methods: %i[url metadata filename] } }
+        )
+      ).to_json
+
     render :edit, layout: 'plain'
   end
 

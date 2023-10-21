@@ -6,14 +6,27 @@ class SubmitFormController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
+  PRELOAD_ALL_PAGES_AMOUNT = 200
+
   def show
-    @submitter =
-      Submitter.preload(submission: [
-                          :template, { template_schema_documents: [:blob, { preview_images_attachments: :blob }] }
-                        ])
-               .find_by!(slug: params[:slug])
+    @submitter = Submitter.find_by!(slug: params[:slug])
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+
+    ActiveRecord::Associations::Preloader.new(
+      records: [@submitter],
+      associations: [submission: [:template, { template_schema_documents: :blob }]]
+    ).call
+
+    total_pages =
+      @submitter.submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
+
+    if total_pages < PRELOAD_ALL_PAGES_AMOUNT
+      ActiveRecord::Associations::Preloader.new(
+        records: @submitter.submission.template_schema_documents,
+        associations: [:blob, { preview_images_attachments: :blob }]
+      ).call
+    end
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 

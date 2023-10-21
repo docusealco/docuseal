@@ -44,12 +44,16 @@
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+        <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
         <% (@submission.template_schema || @submission.template.schema).each do |item| %>
           <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
-          <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
+          <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
+          <% lazyload_metadata = document.preview_images.first.metadata %>
+          <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
+            <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>" loading="lazy">
+              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
