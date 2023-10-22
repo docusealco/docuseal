@@ -82,6 +82,7 @@
 <script>
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import { IconReload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import SignaturePad from 'signature_pad'
 
 export default {
   name: 'InitialsStep',
@@ -136,8 +137,6 @@ export default {
     if (this.isDirectUpload) {
       import('@rails/activestorage')
     }
-
-    const { default: SignaturePad } = await import('signature_pad')
 
     if (this.$refs.canvas) {
       this.pad = new SignaturePad(this.$refs.canvas)
