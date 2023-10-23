@@ -9,12 +9,7 @@ module Templates
     PDF_CONTENT_TYPE = 'application/pdf'
     Q = 35
     MAX_WIDTH = 1400
-    MAX_NUMBER_OF_PAGES_PROCESSED =
-      if Docuseal.multitenant?
-        70
-      else
-        40
-      end
+    MAX_NUMBER_OF_PAGES_PROCESSED = 30
 
     module_function
 
@@ -74,10 +69,24 @@ module Templates
     end
 
     def generate_pdf_preview_from_file(attachment, file_path, page_number)
-      page = Vips::Image.new_from_file(file_path, dpi: DPI, page: page_number)
-      page = page.resize(MAX_WIDTH / page.width.to_f)
+      io = StringIO.new
 
-      io = StringIO.new(page.write_to_buffer(FORMAT, Q: Q, interlace: true))
+      command = [
+        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{Q},optimize=y",
+        '-scale-to-x', MAX_WIDTH, '-scale-to-y', '-1',
+        '-r', DPI, '-f', page_number + 1, '-l', page_number + 1,
+        '-singlefile', Shellwords.escape(file_path), '-'
+      ].join(' ')
+
+      Open3.popen3(command) do |_, stdout, _, _|
+        io.write(stdout.read)
+
+        io.rewind
+      end
+
+      page = Vips::Image.new_from_buffer(io.read, '')
+
+      io.rewind
 
       ApplicationRecord.no_touching do
         ActiveStorage::Attachment.create!(

@@ -6,12 +6,6 @@ class PreviewDocumentPageController < ActionController::API
   FORMAT = Templates::ProcessDocument::FORMAT
 
   def show
-    if Docuseal.multitenant?
-      Rollbar.warning('load page')
-
-      return head :not_found
-    end
-
     attachment = ActiveStorage::Attachment.find_by(uuid: params[:attachment_uuid])
 
     return head :not_found unless attachment
