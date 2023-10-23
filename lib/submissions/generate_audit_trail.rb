@@ -166,57 +166,59 @@ module Submissions
 
         composer.table(info_rows, cell_style: { padding: [0, 0, 0, 0], border: { width: 0 } })
 
-        composer.column(columns: 1, gaps: 0, style: { padding: [0, 200, 0, 0] }) do |column|
-          submission.template_fields.filter_map do |field|
-            next if field['submitter_uuid'] != submitter.uuid
+        submission.template_fields.filter_map do |field|
+          next if field['submitter_uuid'] != submitter.uuid
 
-            submitter_field_counters[field['type']] += 1
+          submitter_field_counters[field['type']] += 1
 
-            value = submitter.values[field['uuid']]
+          value = submitter.values[field['uuid']]
 
-            next if Array.wrap(value).compact_blank.blank?
+          next if Array.wrap(value).compact_blank.blank?
 
-            [
-              column.formatted_text_box(
-                [
-                  {
-                    text: field['name'].to_s.upcase.presence ||
-                          "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
-                    font_size: 6
-                  }
-                ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
-              ),
-              if field['type'].in?(%w[image signature initials])
-                attachment = submitter.attachments.find { |a| a.uuid == value }
-                image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+          [
+            composer.formatted_text_box(
+              [
+                {
+                  text: field['name'].to_s.upcase.presence ||
+                        "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
+                  font_size: 6
+                }
+              ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
+            ),
+            if field['type'].in?(%w[image signature initials])
+              attachment = submitter.attachments.find { |a| a.uuid == value }
+              image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
-                scale = [300.0 / image.width, 300.0 / image.height].min
+              scale = [600.0 / image.width, 600.0 / image.height].min
 
-                io = StringIO.new(image.resize([scale, 1].min).write_to_buffer('.png'))
+              resized_image = image.resize([scale, 1].min)
+              io = StringIO.new(resized_image.write_to_buffer('.png'))
 
-                column.image(io, padding: [0, field['type'] == 'initials' ? 200 : 100, 10, 0])
-                column.formatted_text_box([{ text: '' }])
-              elsif field['type'] == 'file'
-                column.formatted_text_box(
-                  Array.wrap(value).map do |uuid|
-                    attachment = submitter.attachments.find { |a| a.uuid == uuid }
-                    link =
-                      Rails.application.routes.url_helpers.rails_blob_url(attachment, **Docuseal.default_url_options)
+              width = field['type'] == 'initials' ? 100 : 200
+              height = resized_image.height * (width.to_f / resized_image.width)
 
-                    { link:, text: "#{attachment.filename}\n", style: :link }
-                  end,
-                  padding: [0, 0, 10, 0]
-                )
-              elsif field['type'] == 'checkbox'
-                column.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
-              else
-                value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
-                value = value.join(', ') if value.is_a?(Array)
+              composer.image(io, width:, height:, margin: [0, 0, 10, 0])
+              composer.formatted_text_box([{ text: '' }])
+            elsif field['type'] == 'file'
+              composer.formatted_text_box(
+                Array.wrap(value).map do |uuid|
+                  attachment = submitter.attachments.find { |a| a.uuid == uuid }
+                  link =
+                    Rails.application.routes.url_helpers.rails_blob_url(attachment, **Docuseal.default_url_options)
 
-                column.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
-              end
-            ]
-          end
+                  { link:, text: "#{attachment.filename}\n", style: :link }
+                end,
+                padding: [0, 0, 10, 0]
+              )
+            elsif field['type'] == 'checkbox'
+              composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
+            else
+              value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
+              value = value.join(', ') if value.is_a?(Array)
+
+              composer.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
+            end
+          ]
         end
 
         composer.draw_box(divider)
