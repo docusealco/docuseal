@@ -87,12 +87,11 @@ class SubmitterMailer < ApplicationMailer
     end
 
     documents.each do |attachment|
-      data = attachment.download
-      total_size += data.size
+      total_size += attachment.byte_size
 
       break if total_size >= MAX_ATTACHMENTS_SIZE
 
-      attachments[attachment.filename.to_s] = data
+      attachments[attachment.filename.to_s] = attachment.download
     end
 
     attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
