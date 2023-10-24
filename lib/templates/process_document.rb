@@ -9,7 +9,7 @@ module Templates
     PDF_CONTENT_TYPE = 'application/pdf'
     Q = 35
     MAX_WIDTH = 1400
-    MAX_NUMBER_OF_PAGES_PROCESSED = 30
+    MAX_NUMBER_OF_PAGES_PROCESSED = 15
 
     module_function
 
