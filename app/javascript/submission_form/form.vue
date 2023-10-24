@@ -392,6 +392,13 @@ export default {
       required: false,
       default: () => []
     },
+    onComplete: {
+      type: Function,
+      required: false,
+      default () {
+        return () => {}
+      }
+    },
     withConfetti: {
       type: Boolean,
       required: false,
@@ -696,6 +703,12 @@ export default {
             }
           } else {
             this.isCompleted = true
+
+            const respData = await response.text()
+
+            if (respData) {
+              this.onComplete(JSON.parse(respData))
+            }
           }
         }).catch(error => {
           console.error('Error submitting form:', error)
