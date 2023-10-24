@@ -41,13 +41,6 @@
           <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
-        <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-            Plans
-          <% end %>
-        </li>
-      <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
@@ -66,6 +59,13 @@
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
+        <li>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+            Plans
+          <% end %>
+        </li>
+      <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
