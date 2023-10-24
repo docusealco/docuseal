@@ -5,7 +5,7 @@
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
     >
-      <div class="flex items-center justify-between relative">
+      <div class="flex items-center justify-between relative group/contenteditable-container">
         <div
           class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
           @click="scrollToFirstArea"

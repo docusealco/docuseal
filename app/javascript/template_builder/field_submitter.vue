@@ -14,7 +14,7 @@
     <label
       v-else
       tabindex="0"
-      class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
+      class="cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 w-full flex justify-between"
     >
       <div class="flex items-center space-x-2">
         <span
