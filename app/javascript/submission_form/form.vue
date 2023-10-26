@@ -65,34 +65,13 @@
               @focus="$refs.areas.scrollIntoField(currentField)"
             />
           </div>
-          <div v-else-if="currentField.type === 'date'">
-            <div class="flex justify-between items-center w-full mb-2">
-              <label
-                :for="currentField.uuid"
-                class="label text-2xl"
-              >{{ currentField.name || t('date') }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
-              </label>
-              <button
-                class="btn btn-outline btn-sm !normal-case font-normal"
-                @click.prevent="setCurrentDate"
-              >
-                <IconCalendarCheck :width="16" />
-                {{ t('set_today') }}
-              </button>
-            </div>
-            <div class="text-center">
-              <input
-                :id="currentField.uuid"
-                v-model="values[currentField.uuid]"
-                class="base-input !text-2xl text-center w-full"
-                :required="currentField.required"
-                type="date"
-                :name="`values[${currentField.uuid}]`"
-                @focus="$refs.areas.scrollIntoField(currentField)"
-              >
-            </div>
-          </div>
+          <DateStep
+            v-else-if="currentField.type === 'date'"
+            :key="currentField.uuid"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+          />
           <div v-else-if="currentField.type === 'select'">
             <label
               v-if="currentField.name"
@@ -350,8 +329,9 @@ import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import TextStep from './text_step'
+import DateStep from './date_step'
 import FormCompleted from './completed'
-import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2, IconCalendarCheck } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import { t } from './i18n'
 
 export default {
@@ -364,10 +344,10 @@ export default {
     InitialsStep,
     MultiSelectStep,
     IconInnerShadowTop,
+    DateStep,
     IconArrowsDiagonal,
     TextStep,
     PhoneStep,
-    IconCalendarCheck,
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },
@@ -641,13 +621,6 @@ export default {
           this.$refs.form.querySelector('input[type="file"]')?.click()
         }
       })
-    },
-    setCurrentDate () {
-      const inputEl = document.getElementById(this.currentField.uuid)
-
-      inputEl.valueAsDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
-
-      inputEl.dispatchEvent(new Event('input', { bubbles: true }))
     },
     saveStep (formData) {
       if (this.isCompleted) {
