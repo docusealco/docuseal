@@ -47,7 +47,7 @@ module Accounts
   end
 
   def load_webhook_configs(account)
-    account = Account.order(:id).first unless Docuseal.multitenant?
+    EncryptedConfig.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY) unless Docuseal.multitenant?
 
     account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
   end
@@ -57,8 +57,7 @@ module Accounts
       if Docuseal.multitenant?
         EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || Docuseal::CERTS
       else
-        EncryptedConfig.find_by(account: Account.order(:id).first,
-                                key: EncryptedConfig::ESIGN_CERTS_KEY).value
+        EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
       end
 
     if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })
@@ -68,11 +67,11 @@ module Accounts
     end
   end
 
-  def can_send_emails?(account)
+  def can_send_emails?(_account)
     return true if Docuseal.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?
 
-    EncryptedConfig.exists?(account_id: account.id, key: EncryptedConfig::EMAIL_SMTP_KEY)
+    EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY)
   end
 
   def normalize_timezone(timezone)
