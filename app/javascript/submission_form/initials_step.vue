@@ -20,7 +20,7 @@
           </a>
         </span>
         <a
-          v-if="modelValue"
+          v-if="modelValue || computedPreviousValue"
           href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="remove"
@@ -51,26 +51,26 @@
       </div>
     </div>
     <input
-      :value="modelValue"
+      :value="modelValue || computedPreviousValue"
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
     <img
-      v-if="modelValue"
-      :src="attachmentsIndex[modelValue].url"
+      v-if="modelValue || computedPreviousValue"
+      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72"
     >
     <canvas
-      v-show="!modelValue"
+      v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
       class="bg-white border border-base-300 rounded"
     />
     <input
-      v-if="!isDrawInitials"
+      v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
       id="initials_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6 text-center"
-      :required="field.required && !isInitialsStarted && !modelValue"
+      :required="field.required && !isInitialsStarted"
       :placeholder="`${t('type_initial_here')}...`"
       type="text"
       @focus="$emit('focus')"
@@ -111,6 +111,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    previousValue: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
@@ -120,8 +125,18 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'focus'],
   data () {
     return {
-      isInitialsStarted: false,
+      isInitialsStarted: !!this.previousValue,
+      isUsePreviousValue: true,
       isDrawInitials: false
+    }
+  },
+  computed: {
+    computedPreviousValue () {
+      if (this.isUsePreviousValue) {
+        return this.previousValue
+      } else {
+        return null
+      }
     }
   },
   async mounted () {
@@ -151,6 +166,9 @@ export default {
   methods: {
     remove () {
       this.$emit('update:model-value', '')
+
+      this.isUsePreviousValue = false
+      this.isInitialsStarted = false
     },
     clear () {
       this.pad.clear()
@@ -192,7 +210,11 @@ export default {
       }
     },
     async submit () {
-      if (this.modelValue) {
+      if (this.modelValue || this.computedPreviousValue) {
+        if (this.computedPreviousValue) {
+          this.$emit('update:model-value', this.computedPreviousValue)
+        }
+
         return Promise.resolve({})
       }
 

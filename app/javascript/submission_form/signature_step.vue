@@ -9,14 +9,15 @@
           class="tooltip"
           data-tip="Type text"
         >
-          <button
+          <a
             id="type_text_button"
+            href="#"
             class="btn btn-sm btn-circle"
             :class="{ 'btn-neutral': isTextSignature, 'btn-outline': !isTextSignature }"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
-          </button>
+          </a>
         </span>
         <span
           class="tooltip"
@@ -34,23 +35,26 @@
             >
           </label>
         </span>
-        <button
-          v-if="modelValue"
+        <a
+          v-if="modelValue || computedPreviousValue"
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
           {{ t('redraw') }}
-        </button>
-        <button
+        </a>
+        <a
           v-else
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
-        </button>
-        <button
+        </a>
+        <a
+          href="#"
           title="Minimize"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
@@ -59,21 +63,21 @@
             :width="20"
             :height="20"
           />
-        </button>
+        </a>
       </div>
     </div>
     <input
-      :value="modelValue"
+      :value="modelValue || computedPreviousValue"
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
     <img
-      v-if="modelValue"
-      :src="attachmentsIndex[modelValue].url"
+      v-if="modelValue || computedPreviousValue"
+      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72"
     >
     <canvas
-      v-show="!modelValue"
+      v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
       class="bg-white border border-base-300 rounded"
     />
@@ -123,6 +127,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    previousValue: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
@@ -132,8 +141,18 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize'],
   data () {
     return {
-      isSignatureStarted: false,
+      isSignatureStarted: !!this.previousValue,
+      isUsePreviousValue: true,
       isTextSignature: false
+    }
+  },
+  computed: {
+    computedPreviousValue () {
+      if (this.isUsePreviousValue) {
+        return this.previousValue
+      } else {
+        return null
+      }
     }
   },
   async mounted () {
@@ -161,6 +180,9 @@ export default {
   methods: {
     remove () {
       this.$emit('update:model-value', '')
+
+      this.isUsePreviousValue = false
+      this.isSignatureStarted = false
     },
     clear () {
       this.pad.clear()
@@ -249,7 +271,11 @@ export default {
       }
     },
     async submit () {
-      if (this.modelValue) {
+      if (this.modelValue || this.computedPreviousValue) {
+        if (this.computedPreviousValue) {
+          this.$emit('update:model-value', this.computedPreviousValue)
+        }
+
         return Promise.resolve({})
       }
 

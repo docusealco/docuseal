@@ -221,6 +221,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
+            :previous-value="previousSignatureValue"
             :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
@@ -234,6 +235,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
+            :previous-value="previousInitialsValue"
             :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
@@ -457,6 +459,16 @@ export default {
     },
     submitterSlug () {
       return this.submitter.slug
+    },
+    previousSignatureValue () {
+      const signatureField = [...this.fields].reverse().find((field) => field.type === 'signature' && !!this.values[field.uuid])
+
+      return this.values[signatureField?.uuid]
+    },
+    previousInitialsValue () {
+      const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
+
+      return this.values[initialsField?.uuid]
     },
     isAnonymousChecboxes () {
       return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4
