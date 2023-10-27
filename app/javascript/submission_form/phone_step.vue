@@ -28,6 +28,7 @@
         >
         <div class="flex justify-between mt-2 -mb-2 md:-mb-4">
           <a
+            v-if="!defaultValue"
             href="#"
             class="link"
             @click.prevent="isCodeSent = false"
@@ -48,6 +49,7 @@
         :id="field.uuid"
         ref="phone"
         :value="modelValue || defaultValue"
+        :readonly="!!defaultValue"
         class="base-input !text-2xl w-full"
         autocomplete="tel"
         pattern="^\+[0-9\s\-]+$"
