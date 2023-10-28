@@ -75,3 +75,6 @@ Rails/SkipsModelValidations:
 
 Rails/ApplicationController:
   Enabled: false
+
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false

@@ -31,6 +31,7 @@
             :href="`/templates/${template.id}/submissions/new`"
             data-turbo-frame="modal"
             class="btn btn-primary text-base"
+            @click="maybeShowEmptyTemplateAlert"
           >
             <IconUsersPlus
               width="20"
@@ -691,14 +692,25 @@ export default {
 
       this.save()
     },
-    onSaveClick () {
-      this.isSaving = true
+    maybeShowEmptyTemplateAlert (e) {
+      if (!this.template.fields.length) {
+        e.preventDefault()
 
-      this.save().then(() => {
-        window.Turbo.visit(`/templates/${this.template.id}`)
-      }).finally(() => {
-        this.isSaving = false
-      })
+        alert('Please draw fields to prepare the document.')
+      }
+    },
+    onSaveClick () {
+      if (this.template.fields.length) {
+        this.isSaving = true
+
+        this.save().then(() => {
+          window.Turbo.visit(`/templates/${this.template.id}`)
+        }).finally(() => {
+          this.isSaving = false
+        })
+      } else {
+        alert('Please draw fields to prepare the document.')
+      }
     },
     scrollToArea (area) {
       const documentRef = this.documentRefs.find((a) => a.document.uuid === area.attachment_uuid)

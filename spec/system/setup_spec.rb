@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'App Setup', js: true do
+RSpec.describe 'App Setup' do
   let(:form_data) do
     {
       first_name: 'John',

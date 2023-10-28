@@ -20,7 +20,7 @@ class AddFolderIdToTemplates < ActiveRecord::Migration[7.0]
   def up
     add_reference :templates, :folder, foreign_key: { to_table: :template_folders }, index: true, null: true
 
-    MigrationAccount.all.pluck(:id).each do |account_id|
+    MigrationAccount.pluck(:id).each do |account_id|
       author_id = MigrationUser.where(account_id:).minimum(:id)
 
       next if author_id.blank?

@@ -58,6 +58,9 @@ Rails.application.routes.draw do
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
   resource :templates_upload, only: %i[create]
+  authenticated do
+    resource :templates_upload, only: %i[show], path: 'new'
+  end
   resources :templates_archived, only: %i[index], path: 'archived'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :templates, only: %i[new create edit show destroy] do
