@@ -99,6 +99,8 @@ import { IconReload, IconCamera, IconTextSize, IconArrowsDiagonalMinimize2 } fro
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
 
+let isFontLoaded = false
+
 export default {
   name: 'SignatureStep',
   components: {
@@ -184,6 +186,19 @@ export default {
       this.isUsePreviousValue = false
       this.isSignatureStarted = false
     },
+    loadFont () {
+      if (!isFontLoaded) {
+        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript.otf) format("opentype")`)
+
+        font.load().then((loadedFont) => {
+          document.fonts.add(loadedFont)
+
+          isFontLoaded = true
+        }).catch((error) => {
+          console.error('Font loading failed:', error)
+        })
+      }
+    },
     clear () {
       this.pad.clear()
 
@@ -199,8 +214,8 @@ export default {
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')
 
-      const fontFamily = 'Arial'
-      const fontSize = '44px'
+      const fontFamily = 'Dancing Script'
+      const fontSize = '38px'
       const fontStyle = 'italic'
       const fontWeight = ''
 
@@ -217,6 +232,8 @@ export default {
       if (this.isTextSignature) {
         this.$nextTick(() => {
           this.$refs.textInput.focus()
+
+          this.loadFont()
 
           this.$emit('start')
         })

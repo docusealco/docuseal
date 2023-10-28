@@ -4,8 +4,8 @@ module Submissions
   module GenerateAuditTrail
     FONT_SIZE = 9
     TEXT_COLOR = '525252'
-    FONT_PATH = '/LiberationSans-Regular.ttf'
-    FONT_BOLD_PATH = '/LiberationSans-Bold.ttf'
+    FONT_PATH = '/fonts/LiberationSans-Regular.ttf'
+    FONT_BOLD_PATH = '/fonts/LiberationSans-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
