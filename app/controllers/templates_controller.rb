@@ -57,9 +57,18 @@ class TemplatesController < ApplicationController
   end
 
   def destroy
-    @template.update!(deleted_at: Time.current)
+    notice =
+      if !Docuseal.multitenant? && params[:permanently].present?
+        @template.destroy!
 
-    redirect_back(fallback_location: root_path, notice: 'Template has been archived.')
+        'Template has been removed.'
+      else
+        @template.update!(deleted_at: Time.current)
+
+        'Template has been archived.'
+      end
+
+    redirect_back(fallback_location: root_path, notice:)
   end
 
   private
