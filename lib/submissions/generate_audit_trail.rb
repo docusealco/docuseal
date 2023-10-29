@@ -105,7 +105,8 @@ module Submissions
               document.metadata['sha256'] || document.checksum,
               "\n",
               { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
-              I18n.l(document.created_at, format: :long, locale: account.locale)
+              "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
+              "#{timezone_abbr(account.timezone, document.created_at)}"
             ], line_spacing: 1.8
           )
         ]
@@ -229,7 +230,8 @@ module Submissions
       events_data = submission.submission_events.sort_by(&:event_timestamp).map do |event|
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
         [
-          I18n.l(event.event_timestamp, format: :long, locale: account.locale),
+          "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
+          "#{timezone_abbr(account.timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(
             [
               { text: SubmissionEvents::EVENT_NAMES[event.event_type.to_sym],
@@ -263,6 +265,14 @@ module Submissions
         name: 'audit_trail',
         record: submission
       )
+    end
+
+    def timezone_abbr(timezone, time = Time.current)
+      tz_info = TZInfo::Timezone.get(
+        ActiveSupport::TimeZone::MAPPING[timezone] || timezone || 'UTC'
+      )
+
+      tz_info.abbreviation(time)
     end
 
     def add_logo(column)
