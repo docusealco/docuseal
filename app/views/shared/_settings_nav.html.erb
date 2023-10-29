@@ -41,6 +41,13 @@
           <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <% unless Docuseal.multitenant? %>
+        <% if can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) %>
+          <li>
+            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+      <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
