@@ -31,7 +31,7 @@ module Docuseal
 
   DEFAULT_URL_OPTIONS = {
     host: HOST,
-    protocol: ENV['FORCE_SSL'] == 'true' ? 'https' : 'http'
+    protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http'
   }.freeze
 
   module_function
