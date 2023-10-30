@@ -1,22 +1,67 @@
-<div class="max-w-lg mx-auto px-2">
-  <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
-  <h1 class="text-3xl font-bold text-center mt-8 mb-6">Create Free Account</h1>
-  <%= form_for(User.new, html: { class: 'space-y-6' }, url: new_registration_path, data: { turbo: params[:redir].blank? }, method: :get) do |f| %>
-    <% if params[:redir].present? %>
-      <%= hidden_field_tag :redir, params[:redir] %>
-    <% end %>
-    <div class="space-y-2">
-      <div class="form-control">
-        <%= f.label :email, class: 'label' %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
+<% redir_new_params = params[:redir].to_s.starts_with?('/new') ? Rack::Utils.parse_query(params[:redir].split('?', 2).last.to_s) : {} %>
+<div class="mx-auto flex max-w-lg flex-col md:max-w-none md:flex-row">
+  <div class="hidden md:block max-w-md w-full rounded-3xl bg-base-200/50 px-4 py-10 text-neutral-700 sm:px-10 md:mr-8">
+    <% if redir_new_params['filename'].present? %>
+      <div class="flex items-center text-neutral-800 border border-base-content border-dashed rounded-xl p-4 mb-16 bg-base-100">
+        <div class="mr-3">
+          <%= svg_icon('file_text', class: 'w-10 h-10') %>
+        </div>
+        <div class="text-neutral-900 text-lg">
+          <%= redir_new_params['filename'] %>
+        </div>
       </div>
-    </div>
-    <div class="form-control">
-      <%= f.button button_title(title: 'Sign up', disabled_with: 'Sign up'), name: 'sign_up', value: true, class: 'base-button' %>
-    </div>
-  <% end %>
-  <% if devise_mapping.omniauthable? %>
-    <%= button_to button_title(title: 'Sign up with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
-  <% end %>
-  <%= render 'devise/shared/links' %>
+    <% else %>
+      <p class="mb-4 text-3xl font-bold md:text-4xl md:leading-snug">
+        #1 Open Source <br>
+        Document Signing
+      </p>
+      <p class="mb-8 leading-relaxed text-neutral-800">
+        DocuSeal allows you to create, fill and sign digital documents with ease.
+      </p>
+    <% end %>
+    <ul class="space-y-2">
+      <li class="flex items-center space-x-2">
+        <%= svg_icon('circle_check_filled', class: 'w-6 h-6 text-neutral shrink-0') %>
+        <span class="text-body-color text-base">Start signing documents immediately</span>
+      </li>
+      <li class="flex items-center space-x-2">
+        <%= svg_icon('circle_check_filled', class: 'w-6 h-6 text-neutral shrink-0') %>
+        <span class="text-body-color text-base">Sign unlimited documents for free</span>
+      </li>
+      <li class="flex items-center space-x-2">
+        <%= svg_icon('circle_check_filled', class: 'w-6 h-6 text-neutral shrink-0') %>
+        <span class="text-body-color text-base">Try API, Webhooks and Embedding</span>
+      </li>
+      <li class="flex items-center space-x-2">
+        <%= svg_icon('circle_check_filled', class: 'w-6 h-6 text-neutral shrink-0') %>
+        <span class="text-body-color text-base">ESIGN, UETA, eIDAS compliant</span>
+      </li>
+      <li class="flex items-center space-x-2">
+        <%= svg_icon('circle_check_filled', class: 'w-6 h-6 text-neutral shrink-0') %>
+        <span class="text-body-color text-base">No CC required</span>
+      </li>
+    </ul>
+  </div>
+  <div class="w-full max-w-lg mt-8 md:px-4">
+    <h1 class="text-3xl md:text-4xl font-bold text-center md:text-left mb-6">Create Free Account</h1>
+    <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
+    <%= form_for(User.new, html: { class: 'space-y-6' }, url: new_registration_path, data: { turbo: params[:redir].blank? }, method: :get) do |f| %>
+      <% if params[:redir].present? %>
+        <%= hidden_field_tag :redir, params[:redir] %>
+      <% end %>
+      <div class="space-y-2">
+        <div class="form-control">
+          <%= f.label :email, class: 'label' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
+        </div>
+      </div>
+      <div class="form-control">
+        <%= f.button button_title(title: 'Sign up', disabled_with: 'Sign up'), name: 'sign_up', value: true, class: 'base-button' %>
+      </div>
+    <% end %>
+    <% if devise_mapping.omniauthable? %>
+      <%= button_to button_title(title: 'Sign up with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
+    <% end %>
+    <%= render 'devise/shared/links' %>
+  </div>
 </div>
