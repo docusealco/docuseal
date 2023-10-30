@@ -3,7 +3,9 @@
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
       <%= render 'shared/title' %>
     </a>
-    <%= render 'shared/github' %>
+    <span class="hidden sm:inline">
+      <%= render 'shared/github' %>
+    </span>
   </div>
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
@@ -75,7 +77,8 @@
       <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path]) %>
         <%= link_to registration_path, class: 'btn btn-neutral btn-sm btn-outline' do %>
           <span class="flex items-center justify-center space-x-1">
-            <span>Create free Account</span>
+            <span class="hidden sm:block">Create free Account</span>
+            <span class="md:hidden">Sign Up</span>
           </span>
         <% end %>
       <% end %>
