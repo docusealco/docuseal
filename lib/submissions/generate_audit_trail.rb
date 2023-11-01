@@ -151,10 +151,10 @@ module Submissions
             composer.document.layout.formatted_text_box(
               [
                 submitter.email && {
-                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : 'Unverififed'}\n"
+                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : 'Unverified'}\n"
                 },
                 submitter.phone && {
-                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : 'Unverififed'}\n"
+                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : 'Unverified'}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
