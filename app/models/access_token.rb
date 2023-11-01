@@ -21,7 +21,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class AccessToken < ApplicationRecord
-  TOKEN_LENGTH = 22
+  TOKEN_LENGTH = 43
 
   belongs_to :user
 
