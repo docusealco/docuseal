@@ -62,4 +62,9 @@ class Submission < ApplicationRecord
     random: 'random',
     preserved: 'preserved'
   }, scope: false, prefix: true
+
+  def audit_trail_url
+    audit_trail&.url
+  end
+  alias audit_log_url audit_trail_url
 end

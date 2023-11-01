@@ -20,6 +20,7 @@ module Submitters
                .except('uuid', 'values', 'slug')
                .merge('values' => values,
                       'documents' => documents,
+                      'audit_log_url' => submitter.submission.audit_log_url,
                       'role' => submitter_name)
     end
 

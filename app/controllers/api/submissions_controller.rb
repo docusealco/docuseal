@@ -13,7 +13,8 @@ module Api
       submissions = Submissions.search(@submissions, params[:q])
       submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
 
-      submissions = paginate(submissions.preload(:created_by_user, :template, :submitters))
+      submissions = paginate(submissions.preload(:created_by_user, :template, :submitters,
+                                                 audit_trail_attachment: :blob))
 
       render json: {
         data: submissions.as_json(serialize_params),
@@ -93,6 +94,7 @@ module Api
     def serialize_params
       {
         only: %i[id source submitters_order created_at updated_at],
+        methods: %i[audit_log_url],
         include: {
           submitters: { only: %i[id slug uuid name email phone
                                  completed_at opened_at sent_at
