@@ -47,9 +47,13 @@ module Accounts
   end
 
   def load_webhook_configs(account)
-    EncryptedConfig.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY) unless Docuseal.multitenant?
+    configs = account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
 
-    account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
+    unless Docuseal.multitenant?
+      configs ||= Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
+    end
+
+    configs
   end
 
   def load_signing_pkcs(account)
