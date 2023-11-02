@@ -8,6 +8,7 @@ module Api
       templates = Templates.search(@templates, params[:q])
 
       templates = params[:archived] ? templates.archived : templates.active
+      templates = templates.where(application_key: params[:application_key]) if params[:application_key].present?
 
       templates = paginate(templates.preload(:author, documents_attachments: :blob))
 

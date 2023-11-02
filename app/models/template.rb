@@ -4,19 +4,20 @@
 #
 # Table name: templates
 #
-#  id         :bigint           not null, primary key
-#  deleted_at :datetime
-#  fields     :text             not null
-#  name       :string           not null
-#  schema     :text             not null
-#  slug       :string           not null
-#  source     :text             not null
-#  submitters :text             not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :bigint           not null
-#  author_id  :bigint           not null
-#  folder_id  :bigint           not null
+#  id              :bigint           not null, primary key
+#  application_key :string
+#  deleted_at      :datetime
+#  fields          :text             not null
+#  name            :string           not null
+#  schema          :text             not null
+#  slug            :string           not null
+#  source          :text             not null
+#  submitters      :text             not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  account_id      :bigint           not null
+#  author_id       :bigint           not null
+#  folder_id       :bigint           not null
 #
 # Indexes
 #
