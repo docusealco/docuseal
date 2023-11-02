@@ -49,7 +49,7 @@ class Submission < ApplicationRecord
 
   scope :active, -> { where(deleted_at: nil) }
   scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).distinct }
-  scope :completed, -> { left_joins(:submitters).where.not(submitters: { completed_at: nil }).distinct }
+  scope :completed, -> { where.not(id: pending.select(:submission_id)) }
 
   enum :source, {
     invite: 'invite',
