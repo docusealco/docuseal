@@ -1,6 +1,6 @@
 <div class="max-w-lg mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center mt-8">Sign In</h1>
   <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
+  <h1 class="text-4xl font-bold text-center mt-8">Sign In</h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <% if params[:redir].present? %>
       <%= hidden_field_tag :redir, params[:redir] %>
