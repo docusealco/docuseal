@@ -5,6 +5,7 @@
       class="w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
+      :editable="editable"
       @new-submitter="save"
       @remove="removeSubmitter"
       @name-change="save"
@@ -17,6 +18,7 @@
       :key="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
+      :editable="editable"
       @remove="removeField"
       @move-up="move(field, -1)"
       @move-down="move(field, 1)"
@@ -24,7 +26,10 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div class="grid grid-cols-3 gap-1 pb-2">
+  <div
+    v-if="editable"
+    class="grid grid-cols-3 gap-1 pb-2"
+  >
     <template
       v-for="(icon, type) in fieldIcons"
       :key="type"
@@ -100,7 +105,7 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4"
+    v-if="fields.length < 4 && editable"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
@@ -136,6 +141,11 @@ export default {
     fields: {
       type: Array,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withStickySubmitters: {
       type: Boolean,

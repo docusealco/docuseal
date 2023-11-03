@@ -5,6 +5,7 @@
       :key="image.id"
       :ref="setPageRefs"
       :number="index"
+      :editable="editable"
       :areas="areasIndex[index]"
       :is-drag="isDrag"
       :draw-field="drawField"
@@ -37,6 +38,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     drawField: {
       type: Object,

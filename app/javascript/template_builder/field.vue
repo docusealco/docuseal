@@ -13,6 +13,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
+            :editable="editable"
             :button-width="20"
             @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
@@ -20,6 +21,7 @@
           <Contenteditable
             ref="name"
             :model-value="field.name || defaultName"
+            :editable="editable"
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
@@ -46,7 +48,7 @@
           >Required</label>
         </div>
         <div
-          v-else
+          v-else-if="editable"
           class="flex items-center space-x-1"
         >
           <span
@@ -211,6 +213,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   emits: ['set-draw', 'remove', 'move-up', 'move-down', 'scroll-to'],

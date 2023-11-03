@@ -22,6 +22,7 @@
         :ref="setAreaRefs"
         :area="item.area"
         :field="item.field"
+        :editable="editable"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @start-drag="isMove = true"
@@ -76,6 +77,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     isDrag: {
       type: Boolean,
@@ -138,6 +144,10 @@ export default {
     },
     onStartDraw (e) {
       if (this.isMobile && !this.drawField) {
+        return
+      }
+
+      if (!this.editable) {
         return
       }
 

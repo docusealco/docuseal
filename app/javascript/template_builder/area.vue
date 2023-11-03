@@ -23,7 +23,7 @@
         :style="{ left: (cellW / area.w * 100) + '%' }"
       >
         <span
-          v-if="index === 0"
+          v-if="index === 0 && editable"
           class="h-2.5 w-2.5 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-ew-resize z-10"
           style="left: -4px"
           @mousedown.stop="startResizeCell"
@@ -42,6 +42,7 @@
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
+        :editable="editable"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
@@ -50,6 +51,7 @@
       <FieldType
         v-model="field.type"
         :button-width="27"
+        :editable="editable"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
@@ -58,7 +60,7 @@
       <span
         v-if="field.type !== 'checkbox' || field.name"
         ref="name"
-        contenteditable
+        :contenteditable="editable"
         class="pr-1 cursor-text outline-none block"
         style="min-width: 2px"
         @keydown.enter.prevent="onNameEnter"
@@ -84,7 +86,7 @@
         >Required</label>
       </div>
       <button
-        v-else
+        v-else-if="editable"
         class="pr-1"
         title="Remove"
         @click.prevent="$emit('remove')"
@@ -113,7 +115,7 @@
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
     <span
-      v-if="field?.type"
+      v-if="field?.type && editable"
       class="h-4 w-4 md:h-2.5 md:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
       @touchstart="startTouchResize"
@@ -144,6 +146,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     field: {
       type: Object,
@@ -312,6 +319,10 @@ export default {
     },
     startDrag (e) {
       this.selectedAreaRef.value = this.area
+
+      if (!this.editable) {
+        return
+      }
 
       const rect = e.target.getBoundingClientRect()
 

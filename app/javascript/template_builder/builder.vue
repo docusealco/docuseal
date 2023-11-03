@@ -16,6 +16,7 @@
         </a>
         <Contenteditable
           :model-value="template.name"
+          :editable="editable"
           class="text-3xl font-semibold focus:text-clip"
           :icon-stroke-width="2.3"
           @update:model-value="updateName"
@@ -76,6 +77,7 @@
           :item="item"
           :document="sortedDocuments[index]"
           :accept-file-types="acceptFileTypes"
+          :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
           @scroll-to="scrollIntoDocument(item)"
@@ -90,7 +92,7 @@
           :class="{ 'bg-base-100': withStickySubmitters }"
         >
           <Upload
-            v-if="sortedDocuments.length"
+            v-if="sortedDocuments.length && editable"
             :accept-file-types="acceptFileTypes"
             :template-id="template.id"
             :is-direct-upload="isDirectUpload"
@@ -122,12 +124,13 @@
                 :document="document"
                 :is-drag="!!dragFieldType"
                 :draw-field="drawField"
+                :editable="editable"
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
               />
               <DocumentControls
-                v-if="isBreakpointLg"
+                v-if="isBreakpointLg && editable"
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
                 :document="document"
@@ -142,7 +145,7 @@
               />
             </template>
             <div
-              v-if="sortedDocuments.length && isBreakpointLg"
+              v-if="sortedDocuments.length && isBreakpointLg && editable"
               class="pb-4"
             >
               <Upload
@@ -180,7 +183,7 @@
           </span>
         </span>
         <FieldType
-          v-if="sortedDocuments.length && !drawField"
+          v-if="sortedDocuments.length && !drawField && editable"
           class="dropdown-top dropdown-end fixed bottom-4 right-4 z-10 md:hidden"
           :model-value="''"
           @update:model-value="startFieldDraw($event)"
@@ -231,6 +234,7 @@
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
             :with-sticky-submitters="withStickySubmitters"
+            :editable="editable"
             @set-draw="drawField = $event"
             @set-drag="dragFieldType = $event"
             @change-submitter="selectedSubmitter = $event"
@@ -299,6 +303,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     acceptFileTypes: {
       type: String,

@@ -25,6 +25,7 @@
           v-model="selectedSubmitter.name"
           class="cursor-text"
           :icon-inline="true"
+          :editable="editable"
           :select-on-edit-click="true"
           :icon-width="18"
           @update:model-value="$emit('name-change', selectedSubmitter)"
@@ -38,6 +39,7 @@
       </span>
     </label>
     <ul
+      v-if="editable || !compact"
       tabindex="0"
       :class="menuClasses"
       @click="closeDropdown"
@@ -62,7 +64,7 @@
             </span>
           </span>
           <button
-            v-if="!compact && submitters.length > 1"
+            v-if="!compact && submitters.length > 1 && editable"
             class="hidden group-hover:block px-2"
             @click.stop="remove(submitter)"
           >
@@ -70,7 +72,7 @@
           </button>
         </a>
       </li>
-      <li v-if="submitters.length < 10">
+      <li v-if="submitters.length < 10 && editable">
         <a
           href="#"
           class="flex px-2"
@@ -106,6 +108,11 @@ export default {
     submitters: {
       type: Array,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     compact: {
       type: Boolean,

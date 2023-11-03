@@ -5,7 +5,7 @@
   >
     <span
       ref="contenteditable"
-      contenteditable
+      :contenteditable="editable"
       style="min-width: 2px"
       :class="iconInline ? 'inline' : 'block'"
       class="peer outline-none focus:block"
@@ -24,6 +24,7 @@
       *
     </span>
     <IconPencil
+      v-if="editable"
       class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
       title="Edit"
@@ -68,6 +69,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     iconStrokeWidth: {
       type: Number,
