@@ -53,7 +53,6 @@
           class="flex items-center space-x-1"
         >
           <span
-            v-if="field.areas?.length"
             class="dropdown dropdown-end"
           >
             <label
@@ -61,7 +60,7 @@
               title="Areas"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
-              <IconShape
+              <IconSettings
                 :width="18"
                 :stroke-width="1.6"
               />
@@ -69,8 +68,57 @@
             <ul
               tabindex="0"
               class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
+              draggable="true"
+              @dragstart.prevent.stop
               @click="closeDropdown"
             >
+              <div
+                v-if="field.type === 'text'"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <input
+                  v-model="field.default_value"
+                  type="text"
+                  placeholder="Default value"
+                  class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+                  @blur="save"
+                >
+                <label
+                  v-if="field.default_value"
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  Default value
+                </label>
+              </div>
+              <li @click.stop>
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.required"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="save"
+                  >
+                  <span class="label-text">Required</span>
+                </label>
+              </li>
+              <li
+                v-if="field.type === 'text'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.readonly"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="save"
+                  >
+                  <span class="label-text">Read-only</span>
+                </label>
+              </li>
+              <hr class="pb-0.5 mt-0.5">
               <li
                 v-for="(area, index) in field.areas || []"
                 :key="index"
@@ -115,17 +163,6 @@
               </li>
             </ul>
           </span>
-          <button
-            v-else
-            title="Areas"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
-            @click="$emit('set-draw', field)"
-          >
-            <IconShape
-              :width="18"
-              :stroke-width="1.6"
-            />
-          </button>
           <button
             class="relative text-transparent group-hover:text-base-content pr-1"
             title="Remove"
@@ -179,12 +216,13 @@
 <script>
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
-import { IconShape, IconNewSection, IconTrashX, IconCopy } from '@tabler/icons-vue'
+import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 
 export default {
   name: 'TemplateField',
   components: {
     Contenteditable,
+    IconSettings,
     IconShape,
     IconNewSection,
     IconTrashX,
@@ -256,6 +294,8 @@ export default {
       document.activeElement.blur()
     },
     maybeUpdateOptions () {
+      delete this.field.default_value
+
       if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }

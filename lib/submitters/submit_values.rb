@@ -4,6 +4,8 @@ module Submitters
   module SubmitValues
     ValidationError = Class.new(StandardError)
 
+    VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
+
     module_function
 
     def call(submitter, params, request)
@@ -36,6 +38,7 @@ module Submitters
         submitter.completed_at = Time.current
         submitter.ip = request.remote_ip
         submitter.ua = request.user_agent
+        submitter.values = merge_default_values(submitter)
       end
 
       ApplicationRecord.transaction do
@@ -66,6 +69,52 @@ module Submitters
         field = submitter.submission.template_fields.find { |e| e['uuid'] == key }
 
         validate_value!(value, field, params, submitter, request)
+      end
+    end
+
+    def merge_default_values(submitter)
+      default_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
+        next if field['submitter_uuid'] != submitter.uuid
+
+        value = field['default_value']
+
+        next if value.blank?
+
+        acc[field['uuid']] = template_default_value_for_submitter(value, submitter, with_time: true)
+      end
+
+      default_values.compact_blank.merge(submitter.values)
+    end
+
+    def template_default_value_for_submitter(value, submitter, with_time: false)
+      return if value.blank?
+
+      role = submitter.submission.template_submitters.find { |e| e['uuid'] == submitter.uuid }['name']
+
+      replace_default_variables(value,
+                                submitter.attributes.merge('role' => role),
+                                submitter.submission.template,
+                                with_time:)
+    end
+
+    def replace_default_variables(value, attrs, template, with_time: false)
+      return if value.blank?
+
+      value.gsub(VARIABLE_REGEXP) do |e|
+        case key = ::Regexp.last_match(1)
+        when 'time'
+          if with_time
+            I18n.l(Time.current.in_time_zone(template.account.timezone), format: :long, locale: template.account.locale)
+          end
+        when 'date'
+          I18n.l(Time.current.in_time_zone(template.account.timezone).to_date) if with_time
+        when 'name', 'full_name'
+          "#{attrs['first_name']} #{attrs['last_name']}".strip.presence || e
+        when 'role', 'email', 'phone'
+          attrs[key] || e
+        else
+          e
+        end
       end
     end
 

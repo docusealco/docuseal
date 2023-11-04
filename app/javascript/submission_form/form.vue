@@ -513,9 +513,15 @@ export default {
   mounted () {
     this.submittedValues = JSON.parse(JSON.stringify(this.values))
 
+    this.fields.forEach((field) => {
+      if (field.default_value && !field.readonly) {
+        this.values[field.uuid] = field.default_value
+      }
+    })
+
     if (this.goToLast) {
-      const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.values[f.uuid])))
-      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.values[f.uuid]))) + 1
+      const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.submittedValues[f.uuid])))
+      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
 
       const indexesList = [this.stepFields.length - 1]
 

@@ -95,18 +95,27 @@
       </button>
     </div>
     <div
-      class="opacity-50 flex items-center justify-center h-full w-full"
-      :class="bgColors[submitterIndex]"
+      class="flex items-center h-full w-full"
+      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
     >
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1 h-full"
       >
+        <div
+          v-if="field?.default_value"
+          class="text-[1.5vw] lg:text-base"
+        >
+          <div class="flex items-center px-0.5">
+            <span class="whitespace-pre-wrap">{{ field.default_value }}</span>
+          </div>
+        </div>
         <component
           :is="fieldIcons[field.type]"
+          v-else
           width="100%"
           height="100%"
-          class="max-h-10"
+          class="max-h-10 opacity-50"
         />
       </span>
     </div>
@@ -192,30 +201,30 @@ export default {
     },
     borderColors () {
       return [
-        'border-red-500',
-        'border-sky-500',
-        'border-emerald-500',
-        'border-yellow-300',
-        'border-purple-600',
-        'border-pink-500',
-        'border-cyan-500',
-        'border-orange-500',
-        'border-lime-500',
-        'border-indigo-500'
+        'border-red-500/50',
+        'border-sky-500/50',
+        'border-emerald-500/50',
+        'border-yellow-300/50',
+        'border-purple-600/50',
+        'border-pink-500/50',
+        'border-cyan-500/50',
+        'border-orange-500/50',
+        'border-lime-500/50',
+        'border-indigo-500/50'
       ]
     },
     bgColors () {
       return [
-        'bg-red-100',
-        'bg-sky-100',
-        'bg-emerald-100',
-        'bg-yellow-100',
-        'bg-purple-100',
-        'bg-pink-100',
-        'bg-cyan-100',
-        'bg-orange-100',
-        'bg-lime-100',
-        'bg-indigo-100'
+        'bg-red-100/50',
+        'bg-sky-100/50',
+        'bg-emerald-100/50',
+        'bg-yellow-100/50',
+        'bg-purple-100/50',
+        'bg-pink-100/50',
+        'bg-cyan-100/50',
+        'bg-orange-100/50',
+        'bg-lime-100/50',
+        'bg-indigo-100/50'
       ]
     },
     isSelected () {
@@ -269,6 +278,8 @@ export default {
       }
     },
     maybeUpdateOptions () {
+      delete this.field.default_value
+
       if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }
