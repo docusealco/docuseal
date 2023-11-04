@@ -4,6 +4,7 @@
   >
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
+      :style="{ backgroundColor: backgroundColor }"
     >
       <div class="flex items-center justify-between relative group/contenteditable-container">
         <div
@@ -126,7 +127,7 @@
             />
           </button>
           <button
-            class="relative text-transparent group-hover:text-base-content"
+            class="relative text-transparent group-hover:text-base-content pr-1"
             title="Remove"
             @click="$emit('remove', field)"
           >
@@ -135,24 +136,6 @@
               :stroke-width="1.6"
             />
           </button>
-          <div class="flex flex-col pr-1 text-transparent group-hover:text-base-content">
-            <button
-              title="Up"
-              class="relative"
-              style="font-size: 10px; margin-bottom: -2px"
-              @click="$emit('move-up')"
-            >
-              ▲
-            </button>
-            <button
-              title="Down"
-              class="relative"
-              style="font-size: 10px; margin-top: -2px"
-              @click="$emit('move-down')"
-            >
-              ▼
-            </button>
-          </div>
         </div>
       </div>
       <div
@@ -208,7 +191,7 @@ export default {
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save'],
+  inject: ['template', 'save', 'backgroundColor'],
   props: {
     field: {
       type: Object,
@@ -220,7 +203,7 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'remove', 'move-up', 'move-down', 'scroll-to'],
+  emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
       isNameFocus: false
