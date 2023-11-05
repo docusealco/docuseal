@@ -52,12 +52,23 @@
           v-else-if="editable"
           class="flex items-center space-x-1"
         >
+          <button
+            v-if="field && !field.areas.length"
+            title="Draw"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            @click="$emit('set-draw', field)"
+          >
+            <IconNewSection
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
           <span
             class="dropdown dropdown-end"
           >
             <label
               tabindex="0"
-              title="Areas"
+              title="Settings"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
               <IconSettings
