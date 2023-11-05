@@ -18,13 +18,7 @@
         </span>
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
-          <% if can?(:manage, EncryptedConfig) && !can?(:manage, :tenants) %>
-            <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'hidden md:inline-flex items-center font-medium text-lg', data: { prefetch: false } do %>
-              Console
-              <span class="badge badge-warning ml-1">New</span>
-            <% end %>
-            <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
-          <% end %>
+          <%= render 'shared/navbar_buttons' %>
           <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
         </div>
       <% end %>

@@ -1,7 +1,8 @@
 <div class="block w-full md:w-52 flex-none">
   <menu-active>
     <ul class="menu px-0">
-      <li class="menu-title py-0"><span>Settings</span></li>
+      <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium">&larr; Back</a></li>
+      <li class="menu-title py-0 !bg-transparent"><span class="!bg-transparent">Settings</span></li>
       <li></li>
       <li>
         <%= link_to 'Profile', settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
@@ -70,14 +71,14 @@
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             Plans
+            <span class="badge badge-warning">New</span>
           <% end %>
         </li>
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             Console
-            <span class="badge badge-warning">New</span>
           <% end %>
         </li>
       <% end %>
