@@ -40,7 +40,7 @@
       v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile)"
       id="mask"
       ref="mask"
-      class="top-0 bottom-0 left-0 right-0 absolute z-10"
+      class="top-0 bottom-0 left-0 right-0 absolute"
       :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
