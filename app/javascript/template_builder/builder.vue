@@ -157,11 +157,12 @@
           </template>
         </div>
         <MobileDrawField
-          v-if="drawField"
+          v-if="drawField && isBreakpointLg"
           :draw-field="drawField"
           :fields="template.fields"
           :submitters="template.submitters"
           :selected-submitter="selectedSubmitter"
+          class="md:hidden"
           :editable="editable"
           @cancel="drawField = null"
           @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
