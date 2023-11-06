@@ -105,12 +105,16 @@ module Submitters
         when 'time'
           if with_time
             I18n.l(Time.current.in_time_zone(template.account.timezone), format: :long, locale: template.account.locale)
+          else
+            e
           end
         when 'date'
-          I18n.l(Time.current.in_time_zone(template.account.timezone).to_date) if with_time
-        when 'name', 'full_name'
-          "#{attrs['first_name']} #{attrs['last_name']}".strip.presence || e
-        when 'role', 'email', 'phone'
+          if with_time
+            I18n.l(Time.current.in_time_zone(template.account.timezone).to_date)
+          else
+            e
+          end
+        when 'role', 'email', 'phone', 'name'
           attrs[key] || e
         else
           e
