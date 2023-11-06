@@ -156,32 +156,16 @@
             </div>
           </template>
         </div>
-        <span
+        <MobileDrawField
           v-if="drawField"
-          class="fixed text-center w-full left-1/2 bottom-0 transform -translate-x-1/2"
-        >
-          <span
-            class="rounded bg-base-200 px-4 py-2 rounded-full inline-flex space-x-2 mx-auto items-center mb-4 z-20 md:hidden"
-          >
-            <component
-              :is="fieldIcons[drawField.type]"
-              :width="20"
-              :height="20"
-              class="inline"
-              :stroke-width="1.6"
-            />
-            <span>
-              Draw {{ fieldNames[drawField.type] }} Field
-            </span>
-            <a
-              href="#"
-              class="link block text-center"
-              @click.prevent="drawField = null"
-            >
-              Cancel
-            </a>
-          </span>
-        </span>
+          :draw-field="drawField"
+          :fields="template.fields"
+          :submitters="template.submitters"
+          :selected-submitter="selectedSubmitter"
+          :editable="editable"
+          @cancel="drawField = null"
+          @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
+        />
         <FieldType
           v-if="sortedDocuments.length && !drawField && editable"
           class="dropdown-top dropdown-end fixed bottom-4 right-4 z-10 md:hidden"
@@ -251,6 +235,7 @@
 import Upload from './upload'
 import Dropzone from './dropzone'
 import Fields from './fields'
+import MobileDrawField from './mobile_draw_field'
 import Document from './document'
 import Logo from './logo'
 import Contenteditable from './contenteditable'
@@ -267,6 +252,7 @@ export default {
     Upload,
     Document,
     Fields,
+    MobileDrawField,
     IconPlus,
     FieldType,
     IconX,

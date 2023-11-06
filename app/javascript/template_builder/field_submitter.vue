@@ -1,5 +1,91 @@
 <template>
-  <div class="dropdown">
+  <div v-if="mobileView">
+    <div class="flex space-x-2 items-end">
+      <div class="group/contenteditable-container bg-base-100 rounded-md p-2 border border-base-300 w-full flex justify-between items-end">
+        <div class="flex items-center space-x-2">
+          <span
+            class="w-3 h-3 flex-shrink-0 rounded-full"
+            :class="colors[submitters.indexOf(selectedSubmitter)]"
+          />
+          <Contenteditable
+            v-model="selectedSubmitter.name"
+            class="cursor-text"
+            :icon-inline="true"
+            :editable="editable"
+            :select-on-edit-click="true"
+            :icon-width="18"
+            @update:model-value="$emit('name-change', selectedSubmitter)"
+          />
+        </div>
+      </div>
+      <div class="dropdown dropdown-top dropdown-end">
+        <label
+          tabindex="0"
+          class="bg-base-100 cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-center"
+        >
+          <IconChevronUp
+            width="24"
+            height="24"
+          />
+        </label>
+        <ul
+          v-if="editable"
+          tabindex="0"
+          class="rounded-md min-w-max mb-2"
+          :class="menuClasses"
+          @click="closeDropdown"
+        >
+          <li
+            v-for="(submitter, index) in submitters"
+            :key="submitter.uuid"
+          >
+            <a
+              href="#"
+              class="flex px-2 group justify-between items-center"
+              :class="{ 'active': submitter === selectedSubmitter }"
+              @click.prevent="selectSubmitter(submitter)"
+            >
+              <span class="py-1 flex items-center">
+                <span
+                  class="rounded-full w-3 h-3 ml-1 mr-3"
+                  :class="colors[index]"
+                />
+                <span>
+                  {{ submitter.name }}
+                </span>
+              </span>
+              <button
+                v-if="submitters.length > 1 && editable"
+                class="px-2"
+                @click.stop="remove(submitter)"
+              >
+                <IconTrashX :width="18" />
+              </button>
+            </a>
+          </li>
+          <li v-if="submitters.length < 10 && editable">
+            <a
+              href="#"
+              class="flex px-2"
+              @click.prevent="addSubmitter"
+            >
+              <IconUserPlus
+                :width="20"
+                :stroke-width="1.6"
+              />
+              <span class="py-1">
+                Add Submitter
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    v-else
+    class="dropdown"
+  >
     <label
       v-if="compact"
       tabindex="0"
@@ -92,7 +178,7 @@
 </template>
 
 <script>
-import { IconUserPlus, IconTrashX, IconPlus } from '@tabler/icons-vue'
+import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
 
@@ -102,7 +188,8 @@ export default {
     IconUserPlus,
     Contenteditable,
     IconPlus,
-    IconTrashX
+    IconTrashX,
+    IconChevronUp
   },
   props: {
     submitters: {
@@ -115,6 +202,11 @@ export default {
       default: true
     },
     compact: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    mobileView: {
       type: Boolean,
       required: false,
       default: false
