@@ -47,7 +47,7 @@ class StartFormController < ApplicationController
   private
 
   def submitter_params
-    params.require(:submitter).permit(:email, :phone).tap do |attrs|
+    params.require(:submitter).permit(:email, :phone, :name).tap do |attrs|
       attrs[:email] = Submissions.normalize_email(attrs[:email])
     end
   end
