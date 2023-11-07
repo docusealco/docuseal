@@ -157,6 +157,17 @@ module Submissions
 
             lines = layouter.fit([text], area['w'] * width, height).lines
             box_height = lines.sum(&:height)
+
+            if box_height > (area['h'] * height) + 1
+              text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '),
+                                                          font: pdf.fonts.add(FONT_NAME),
+                                                          font_size: (font_size / 1.4).to_i)
+
+              lines = layouter.fit([text], area['w'] * width, height).lines
+
+              box_height = lines.sum(&:height)
+            end
+
             height_diff = [0, box_height - (area['h'] * height)].max
 
             layouter.fit([text], area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)

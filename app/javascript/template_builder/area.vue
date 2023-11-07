@@ -104,9 +104,12 @@
       >
         <div
           v-if="field?.default_value"
-          class="text-[1.5vw] lg:text-base"
+          :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
-          <div class="flex items-center px-0.5">
+          <div
+            ref="textContainer"
+            class="flex items-center px-0.5"
+          >
             <span class="whitespace-pre-wrap">{{ field.default_value }}</span>
           </div>
         </div>
@@ -173,6 +176,7 @@ export default {
       isResize: false,
       isDragged: false,
       isNameFocus: false,
+      textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 }
     }
   },
@@ -239,6 +243,20 @@ export default {
         width: w * 100 + '%',
         height: h * 100 + '%'
       }
+    }
+  },
+  watch: {
+    'field.default_value' () {
+      if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value.length)) {
+        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
+      }
+    }
+  },
+  mounted () {
+    if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
+      this.$nextTick(() => {
+        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
+      })
     }
   },
   methods: {

@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex absolute text-[1.5vw] lg:text-base"
+    class="flex absolute lg:text-base"
     :style="computedStyle"
-    :class="{ 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
+    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable"
@@ -102,6 +102,7 @@
     </div>
     <div
       v-else
+      ref="textContainer"
       class="flex items-center px-0.5"
     >
       <span v-if="Array.isArray(modelValue)">
@@ -173,6 +174,11 @@ export default {
     }
   },
   emits: ['update:model-value'],
+  data () {
+    return {
+      textOverflowChars: 0
+    }
+  },
   computed: {
     fieldNames () {
       return {
@@ -250,6 +256,20 @@ export default {
         width: w * 100 + '%',
         height: h * 100 + '%'
       }
+    }
+  },
+  watch: {
+    modelValue () {
+      if (this.field.type === 'text' && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.modelValue.length)) {
+        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
+      }
+    }
+  },
+  mounted () {
+    if (this.field.type === 'text' && this.$refs.textContainer) {
+      this.$nextTick(() => {
+        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
+      })
     }
   }
 }
