@@ -108,7 +108,8 @@ export default {
         radio: IconCircleDot,
         multiple: IconChecks,
         radio: IconCircleDot,
-        phone: IconPhoneCheck
+        phone: IconPhoneCheck,
+        redact: IconBarrierBlock
       }
     }
   },
