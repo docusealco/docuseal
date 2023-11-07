@@ -265,6 +265,15 @@
             @focus="$refs.areas.scrollIntoField(currentField)"
             @submit="submitStep"
           />
+          <RedactStep
+            v-else-if="currentField.type === 'redact'"
+            ref="currentStep"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            :submitter-slug="submitterSlug"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+            @submit="submitStep"
+          />
         </div>
         <div class="mt-6 md:mt-8">
           <button
@@ -330,6 +339,7 @@ import InitialsStep from './initials_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
+import RedactStep from './redact_step.vue'
 import TextStep from './text_step'
 import DateStep from './date_step'
 import FormCompleted from './completed'
@@ -350,6 +360,7 @@ export default {
     IconArrowsDiagonal,
     TextStep,
     PhoneStep,
+    RedactStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },

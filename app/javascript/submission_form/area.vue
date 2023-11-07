@@ -1,5 +1,44 @@
 <template>
   <div
+    v-if="field.type === 'redact'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'black' }"
+    :class="{ 'cursor-default ': !submittable, 'border ': submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <div
+      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable"
+      class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
+    >
+      <span
+        v-if="field"
+        class="flex justify-center items-center h-full opacity-50"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="max-h-10 text-base-content text-white"
+        />
+      </span>
+    </div>
+    <div
+      v-else
+      class="flex items-center px-0.5"
+    >
+      <span v-if="Array.isArray(modelValue)">
+        {{ modelValue.join(', ') }}
+      </span>
+      <span v-else-if="field.type === 'date'">
+        {{ formattedDate }}
+      </span>
+      <span v-else>
+        {{ modelValue }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    v-else
     class="flex absolute text-[1.5vw] lg:text-base"
     :style="computedStyle"
     :class="{ 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
@@ -119,7 +158,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -187,7 +226,8 @@ export default {
         checkbox: 'Checkbox',
         radio: 'Radio',
         multiple: 'Multiple Select',
-        phone: 'Phone'
+        phone: 'Phone',
+        redact: 'redact'
       }
     },
     fieldIcons () {
@@ -203,7 +243,8 @@ export default {
         radio: IconCircleDot,
         cells: IconColumns3,
         multiple: IconChecks,
-        phone: IconPhoneCheck
+        phone: IconPhoneCheck,
+        redact: IconBarrierBlock
       }
     },
     image () {

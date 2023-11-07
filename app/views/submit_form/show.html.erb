@@ -10,10 +10,10 @@
       </div>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
-        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
-        <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-        <% lazyload_metadata = document.preview_images.last.metadata %>
-        <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
+        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>        
+        <% preview_images_index = document.preview_secured_images.loaded? ? document.preview_secured_images.index_by { |e| e.filename.base.to_i } : {} %>
+        <% lazyload_metadata = document.preview_secured_images.last.metadata %>
+        <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_secured_images.loaded? ? preview_images_index.size : document.preview_secured_images.size)).times do |index| %>
           <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
           <div class="relative my-4 shadow-md">
             <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">

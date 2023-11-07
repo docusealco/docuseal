@@ -75,6 +75,10 @@ button[disabled] .enabled {
   @apply select base-input w-full font-normal;
 }
 
+.bg-redact{
+  background: black;
+}
+
 .tooltip-bottom-end:before {
   transform: translateX(-95%);
   top: var(--tooltip-offset);

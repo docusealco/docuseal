@@ -61,6 +61,15 @@ class Template < ApplicationRecord
   scope :active, -> { where(deleted_at: nil) }
   scope :archived, -> { where.not(deleted_at: nil) }
 
+  after_save :create_secure_images
+
+  def create_secure_images
+      documents.each do |doc|
+        document_data = doc.blob.download
+        Templates::ProcessDocument.generate_pdf_secured_preview_images(self, doc, document_data)
+      end
+  end
+
   private
 
   def maybe_set_default_folder

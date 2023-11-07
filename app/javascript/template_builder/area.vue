@@ -95,6 +95,23 @@
       </button>
     </div>
     <div
+      v-if="field.type === 'redact'"
+      class="opacity-100 flex items-center justify-center h-full w-full bg-redact"
+    >
+      <span
+        v-if="field"
+        class="flex justify-center items-center space-x-1 h-full"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="max-h-10 text-white"
+        />
+      </span>
+    </div>
+    <div
+      v-else
       class="flex items-center h-full w-full"
       :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
     >
