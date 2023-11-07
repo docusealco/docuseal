@@ -4,8 +4,9 @@
   >
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
+      :style="{ backgroundColor: backgroundColor }"
     >
-      <div class="flex items-center justify-between relative">
+      <div class="flex items-center justify-between relative group/contenteditable-container">
         <div
           class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
           @click="scrollToFirstArea"
@@ -13,6 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
+            :editable="editable"
             :button-width="20"
             @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
@@ -20,6 +22,7 @@
           <Contenteditable
             ref="name"
             :model-value="field.name || defaultName"
+            :editable="editable"
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
@@ -31,36 +34,44 @@
           v-if="isNameFocus"
           class="flex items-center relative"
         >
-          <template v-if="field.type !== 'checkbox'">
-            <input
-              :id="`required-checkbox-${field.uuid}`"
-              v-model="field.required"
-              type="checkbox"
-              class="checkbox checkbox-xs no-animation rounded"
-              @mousedown.prevent
-            >
-            <label
-              :for="`required-checkbox-${field.uuid}`"
-              class="label text-xs"
-              @click.prevent="field.required = !field.required"
-              @mousedown.prevent
-            >Required</label>
-          </template>
+          <input
+            :id="`required-checkbox-${field.uuid}`"
+            v-model="field.required"
+            type="checkbox"
+            class="checkbox checkbox-xs no-animation rounded"
+            @mousedown.prevent
+          >
+          <label
+            :for="`required-checkbox-${field.uuid}`"
+            class="label text-xs"
+            @click.prevent="field.required = !field.required"
+            @mousedown.prevent
+          >Required</label>
         </div>
         <div
-          v-else
+          v-else-if="editable"
           class="flex items-center space-x-1"
         >
+          <button
+            v-if="field && !field.areas.length"
+            title="Draw"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            @click="$emit('set-draw', field)"
+          >
+            <IconNewSection
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
           <span
-            v-if="field.areas?.length"
             class="dropdown dropdown-end"
           >
             <label
               tabindex="0"
-              title="Areas"
+              title="Settings"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
-              <IconShape
+              <IconSettings
                 :width="18"
                 :stroke-width="1.6"
               />
@@ -68,8 +79,57 @@
             <ul
               tabindex="0"
               class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
+              draggable="true"
+              @dragstart.prevent.stop
               @click="closeDropdown"
             >
+              <div
+                v-if="field.type === 'text'"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <input
+                  v-model="field.default_value"
+                  type="text"
+                  placeholder="Default value"
+                  class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+                  @blur="save"
+                >
+                <label
+                  v-if="field.default_value"
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  Default value
+                </label>
+              </div>
+              <li @click.stop>
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.required"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="save"
+                  >
+                  <span class="label-text">Required</span>
+                </label>
+              </li>
+              <li
+                v-if="field.type === 'text'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.readonly"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="save"
+                  >
+                  <span class="label-text">Read-only</span>
+                </label>
+              </li>
+              <hr class="pb-0.5 mt-0.5">
               <li
                 v-for="(area, index) in field.areas || []"
                 :key="index"
@@ -99,21 +159,23 @@
                   Draw New Area
                 </a>
               </li>
+              <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2"
+                  @click.prevent="copyToAllPages(field)"
+                >
+                  <IconCopy
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  Copy to All Pages
+                </a>
+              </li>
             </ul>
           </span>
           <button
-            v-else
-            title="Areas"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
-            @click="$emit('set-draw', field)"
-          >
-            <IconShape
-              :width="18"
-              :stroke-width="1.6"
-            />
-          </button>
-          <button
-            class="relative text-transparent group-hover:text-base-content"
+            class="relative text-transparent group-hover:text-base-content pr-1"
             title="Remove"
             @click="$emit('remove', field)"
           >
@@ -122,24 +184,6 @@
               :stroke-width="1.6"
             />
           </button>
-          <div class="flex flex-col pr-1 text-transparent group-hover:text-base-content">
-            <button
-              title="Up"
-              class="relative"
-              style="font-size: 10px; margin-bottom: -2px"
-              @click="$emit('move-up')"
-            >
-              ▲
-            </button>
-            <button
-              title="Down"
-              class="relative"
-              style="font-size: 10px; margin-top: -2px"
-              @click="$emit('move-down')"
-            >
-              ▼
-            </button>
-          </div>
         </div>
       </div>
       <div
@@ -183,25 +227,32 @@
 <script>
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
-import { IconShape, IconNewSection, IconTrashX } from '@tabler/icons-vue'
+import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 
 export default {
   name: 'TemplateField',
   components: {
     Contenteditable,
+    IconSettings,
     IconShape,
     IconNewSection,
     IconTrashX,
+    IconCopy,
     FieldType
   },
-  inject: ['template', 'save'],
+  inject: ['template', 'save', 'backgroundColor'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
-  emits: ['set-draw', 'remove', 'move-up', 'move-down', 'scroll-to'],
+  emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
       isNameFocus: false
@@ -221,6 +272,23 @@ export default {
     }
   },
   methods: {
+    copyToAllPages (field) {
+      const areaString = JSON.stringify(field.areas[0])
+
+      this.template.documents.forEach((attachment) => {
+        attachment.preview_images.forEach((page) => {
+          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === parseInt(page.filename))) {
+            field.areas.push({ ...JSON.parse(areaString), page: parseInt(page.filename) })
+          }
+        })
+      })
+
+      this.$nextTick(() => {
+        this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
+      })
+
+      this.save()
+    },
     onNameFocus (e) {
       this.isNameFocus = true
 
@@ -237,6 +305,8 @@ export default {
       document.activeElement.blur()
     },
     maybeUpdateOptions () {
+      delete this.field.default_value
+
       if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }

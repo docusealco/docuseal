@@ -1,7 +1,8 @@
 <div class="block w-full md:w-52 flex-none">
   <menu-active>
     <ul class="menu px-0">
-      <li class="menu-title py-0"><span>Settings</span></li>
+      <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium">&larr; Back</a></li>
+      <li class="menu-title py-0 !bg-transparent"><span class="!bg-transparent">Settings</span></li>
       <li></li>
       <li>
         <%= link_to 'Profile', settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
@@ -10,7 +11,7 @@
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <% unless Docuseal.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? %>
           <li>
             <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
@@ -41,6 +42,13 @@
           <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <% unless Docuseal.multitenant? %>
+        <% if can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) %>
+          <li>
+            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+      <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
@@ -58,37 +66,49 @@
           <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% unless Docuseal.demo? %>
+      <%= render 'shared/settings_nav_extra' %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-            Console
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+            Plans
             <span class="badge badge-warning">New</span>
+          <% end %>
+        </li>
+      <% end %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
+        <li>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+            Console
           <% end %>
         </li>
       <% end %>
     </ul>
   </menu-active>
-  <div class="mx-4 border-t border-base-300 hidden md:block">
-    <div class="text-sm mt-3">
-      Need help? Ask a question:
+  <% if !can?(:manage, :tenants) %>
+    <div class="mx-4 border-t border-base-300 hidden md:block">
+      <div class="text-sm mt-3">
+        Need help? Ask a question:
+      </div>
+      <div class="flex mt-3 space-x-3">
+        <div class="tooltip" data-tip="GitHub">
+          <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_github', class: 'w-8 h-8') %>
+          </a>
+        </div>
+        <div class="tooltip" data-tip="Discord Community">
+          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+          </a>
+        </div>
+        <div class="tooltip" data-tip="Twitter">
+          <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
+          </a>
+        </div>
+      </div>
+      <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
+        <%= Docuseal::SUPPORT_EMAIL %>
+      </a>
     </div>
-    <div class="flex mt-3 space-x-3">
-      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_github', class: 'w-8 h-8') %>
-      </a>
-      <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-      </a>
-      <a href="<%= Docuseal::TWITTER_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-        <%= svg_icon('brand_twitter', class: 'w-8 h-8') %>
-      </a>
-    </div>
-    <a href="https://twitter.com/intent/tweet?<%= { text: "Open source DocuSign alternative\n#{Docuseal::GITHUB_URL} #{Docuseal::TWITTER_HANDLE}" }.to_query %>" target="_blank" class="btn btn-neutral btn-outline w-full mt-5">
-      <%= svg_icon('send', class: 'h-5 w-5') %>
-      Tell about us
-    </a>
-    <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
-      <%= Docuseal::SUPPORT_EMAIL %>
-    </a>
-  </div>
+  <% end %>
 </div>

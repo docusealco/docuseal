@@ -1,11 +1,28 @@
-<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center mb-8">
-  <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-    <%= template.name %>
-    <% if template.deleted_at? %>
-      <span class="badge badge-outline badge-lg align-middle">Archived</span>
-    <% end %>
-  </h1>
-  <div class="flex md:justify-between space-x-2 flex-none">
+<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-start mb-3">
+  <div>
+    <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+      <%= template.name %>
+      <% if template.deleted_at? %>
+        <span class="badge badge-outline badge-lg align-middle">Archived</span>
+      <% end %>
+    </h1>
+    <div class="flex items-center">
+      <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
+        <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
+        <span class="text-sm">
+          <%= @template.folder.name %>
+        </span>
+      </a>
+      <% if can?(:update, template) %>
+        <span class="pl-1 tooltip tooltip-right opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="Move">
+          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
+            <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
+          </a>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex md:justify-between space-x-2 flex-none pt-1">
     <% if !template.deleted_at? && can?(:destroy, template) %>
       <%= button_to button_title(title: 'Remove', disabled_with: 'Removing', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>

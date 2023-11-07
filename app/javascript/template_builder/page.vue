@@ -1,12 +1,16 @@
 <template>
-  <div class="relative cursor-crosshair select-none">
+  <div
+    class="relative cursor-crosshair select-none"
+    :style="drawField ? 'touch-action: none' : ''"
+  >
     <img
       ref="image"
+      loading="lazy"
       :src="image.url"
       :width="width"
-      class="border rounded mb-4"
       :height="height"
-      loading="lazy"
+      class="border rounded mb-4"
+      @load="onImageLoad"
     >
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
@@ -18,6 +22,7 @@
         :ref="setAreaRefs"
         :area="item.area"
         :field="item.field"
+        :editable="editable"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @start-drag="isMove = true"
@@ -32,12 +37,13 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask"
+      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile)"
       id="mask"
       ref="mask"
-      class="top-0 bottom-0 left-0 right-0 absolute z-10"
+      class="top-0 bottom-0 left-0 right-0 absolute"
       :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
+      @pointerdown="onStartDraw"
       @dragover.prevent
       @drop="onDrop"
       @pointerup="onPointerup"
@@ -72,6 +78,11 @@ export default {
       required: false,
       default: null
     },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     isDrag: {
       type: Boolean,
       required: false,
@@ -93,6 +104,9 @@ export default {
     }
   },
   computed: {
+    isMobile () {
+      return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
     resizeDirectionClasses () {
       return {
         nwse: 'cursor-nwse-resize',
@@ -110,6 +124,10 @@ export default {
     this.areaRefs = []
   },
   methods: {
+    onImageLoad (e) {
+      e.target.setAttribute('width', e.target.naturalWidth)
+      e.target.setAttribute('height', e.target.naturalHeight)
+    },
     setAreaRefs (el) {
       if (el) {
         this.areaRefs.push(el)
@@ -125,6 +143,14 @@ export default {
       })
     },
     onStartDraw (e) {
+      if (this.isMobile && !this.drawField) {
+        return
+      }
+
+      if (!this.editable) {
+        return
+      }
+
       this.showMask = true
 
       this.$nextTick(() => {

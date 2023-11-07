@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_02_171817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,6 +91,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
     t.index ["account_id"], name: "index_encrypted_configs_on_account_id"
   end
 
+  create_table "encrypted_user_configs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "key", null: false
+    t.text "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "key"], name: "index_encrypted_user_configs_on_user_id_and_key", unique: true
+    t.index ["user_id"], name: "index_encrypted_user_configs_on_user_id"
+  end
+
   create_table "submission_events", force: :cascade do |t|
     t.bigint "submission_id", null: false
     t.bigint "submitter_id"
@@ -133,9 +143,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone"
+    t.string "application_key"
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
+  end
+
+  create_table "template_folders", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "author_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_template_folders_on_account_id"
+    t.index ["author_id"], name: "index_template_folders_on_author_id"
   end
 
   create_table "templates", force: :cascade do |t|
@@ -150,9 +172,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "source", null: false
+    t.bigint "folder_id", null: false
+    t.string "application_key"
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
+    t.index ["folder_id"], name: "index_templates_on_folder_id"
     t.index ["slug"], name: "index_templates_on_slug", unique: true
+  end
+
+  create_table "user_configs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "key", null: false
+    t.text "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "key"], name: "index_user_configs_on_user_id_and_key", unique: true
+    t.index ["user_id"], name: "index_user_configs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -193,12 +228,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_200635) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
   add_foreign_key "encrypted_configs", "accounts"
+  add_foreign_key "encrypted_user_configs", "users"
   add_foreign_key "submission_events", "submissions"
   add_foreign_key "submission_events", "submitters"
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitters", "submissions"
+  add_foreign_key "template_folders", "accounts"
+  add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "templates", "accounts"
+  add_foreign_key "templates", "template_folders", column: "folder_id"
   add_foreign_key "templates", "users", column: "author_id"
+  add_foreign_key "user_configs", "users"
   add_foreign_key "users", "accounts"
 end

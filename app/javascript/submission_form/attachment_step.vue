@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="modelValue.length">
+    <div v-if="value.length">
       <div
-        v-for="(val, index) in modelValue"
+        v-for="(val, index) in value"
         :key="index"
         class="flex mb-2"
       >
@@ -26,10 +26,7 @@
             {{ attachmentsIndex[val].filename }}
           </span>
         </a>
-        <button
-          v-if="modelValue"
-          @click.prevent="removeAttachment(val)"
-        >
+        <button @click.prevent="removeAttachment(val)">
           <IconTrashX
             :width="18"
             :heigh="19"
@@ -91,18 +88,28 @@ export default {
     }
   },
   emits: ['attached', 'update:model-value'],
+  computed: {
+    value: {
+      set (value) {
+        this.$emit('update:model-value', this.modelValue || [])
+      },
+      get () {
+        return this.modelValue || []
+      }
+    }
+  },
   methods: {
     removeAttachment (uuid) {
-      this.modelValue.splice(this.modelValue.indexOf(uuid), 1)
+      this.value.splice(this.value.indexOf(uuid), 1)
 
-      this.$emit('update:model-value', this.modelValue)
+      this.$emit('update:model-value', this.value)
     },
     onUpload (attachments) {
       attachments.forEach((attachment) => {
         this.$emit('attached', attachment)
       })
 
-      this.$emit('update:model-value', [...this.modelValue, ...attachments.map(a => a.uuid)])
+      this.$emit('update:model-value', [...this.value, ...attachments.map(a => a.uuid)])
     }
   }
 }

@@ -10,19 +10,18 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     Submissions::EnsureResultGenerated.call(submitter)
 
-    if submitter.account.encrypted_configs.exists?(key: EncryptedConfig::WEBHOOK_URL_KEY)
-      SendFormCompletedWebhookRequestJob.perform_later(submitter)
+    if is_all_completed && submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
+      Submissions::GenerateAuditTrail.call(submitter.submission)
+
+      enqueue_completed_emails(submitter)
     end
 
-    return unless is_all_completed
-    return if submitter.completed_at != submitter.submission.submitters.maximum(:completed_at)
+    return if Accounts.load_webhook_configs(submitter.account).blank?
 
-    Submissions::GenerateAuditTrail.call(submitter.submission)
-
-    enqueue_emails(submitter)
+    SendFormCompletedWebhookRequestJob.perform_later(submitter)
   end
 
-  def enqueue_emails(submitter)
+  def enqueue_completed_emails(submitter)
     user = submitter.submission.created_by_user || submitter.template.author
 
     if submitter.template.account.users.exists?(id: user.id)

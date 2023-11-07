@@ -1,26 +1,24 @@
 <div class="max-w-6xl mb-4 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
   <div class="flex items-center space-x-4">
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
-      <%= render 'shared/logo' %>
-      <span>DocuSeal</span>
+      <%= render 'shared/title' %>
     </a>
-    <% unless Docuseal.demo? %>
-      <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="inline">
-        <img alt="GitHub Repo stars" src="https://www.docuseal.co/github-badge.svg" style="height: 22px">
-      </a>
-    <% end %>
+    <span class="hidden sm:inline">
+      <%= render 'shared/github' %>
+    </span>
   </div>
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
       <% if Docuseal.demo? %>
-        <%= render 'shared/github_button' %>
+        <a href="https://docuseal.co/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
+          Sign Up
+        </a>
+        <span class="hidden sm:inline">
+          <%= render 'shared/github_button' %>
+        </span>
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, class: 'hidden md:inline-flex items-center font-medium text-lg', data: { prefetch: false } do %>
-            Console
-            <span class="badge badge-warning ml-1">New</span>
-          <% end %>
-          <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
+          <%= render 'shared/navbar_buttons' %>
           <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
         </div>
       <% end %>
@@ -35,7 +33,7 @@
               <span class="mr-1">Profile</span>
             <% end %>
           </li>
-          <% unless Docuseal.demo? %>
+          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
             <li>
               <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
                 <%= svg_icon('terminal', class: 'w-5 h-5 stroke-2') %>
@@ -43,12 +41,14 @@
               <% end %>
             </li>
           <% end %>
-          <li>
-            <%= link_to settings_esign_path, class: 'flex items-center' do %>
-              <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
-              <span class="mr-1">Verify PDF</span>
-            <% end %>
-          </li>
+          <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+            <li>
+              <%= link_to settings_esign_path, class: 'flex items-center' do %>
+                <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
+                <span class="mr-1">Verify PDF</span>
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>
               <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 mr-2 inline') %>
@@ -59,18 +59,20 @@
       </div>
     </div>
   <% else %>
-    <div class="flex space-x-6">
-      <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
-        <span class="flex items-center justify-center space-x-1">
-          <%= svg_icon('login', class: 'w-6 h-6') %>
-          <span>Sign in</span>
-        </span>
-      <% end %>
-      <% if Docuseal.multitenant? %>
-        <%= link_to registration_path, class: 'font-medium text-lg hidden md:inline' do %>
+    <div class="flex space-x-2">
+      <% if request.path != new_user_session_path %>
+        <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
           <span class="flex items-center justify-center space-x-1">
-            <%= svg_icon('user_plus', class: 'w-6 h-6') %>
-            <span>Try for Free</span>
+            <%= svg_icon('login', class: 'w-6 h-6') %>
+            <span>Sign in</span>
+          </span>
+        <% end %>
+      <% end %>
+      <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path]) %>
+        <%= link_to registration_path, class: 'btn btn-neutral btn-sm btn-outline' do %>
+          <span class="flex items-center justify-center space-x-1">
+            <span class="hidden sm:block">Create free Account</span>
+            <span class="md:hidden">Sign Up</span>
           </span>
         <% end %>
       <% end %>

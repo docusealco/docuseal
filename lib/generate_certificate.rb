@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module GenerateCertificate
-  NAME = Docuseal::PRODUCT_NAME
   SIZE = 2**11
 
   module_function
 
-  def call(name = NAME)
+  def call(name = Docuseal.product_name)
     root_cert, root_key = generate_root_ca(name)
 
     sub_cert, sub_key = generate_sub_ca(name, root_cert, root_key)

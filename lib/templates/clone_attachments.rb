@@ -13,13 +13,15 @@ module Templates
           record: template
         )
 
-        document.preview_images_attachments.each do |preview_image|
-          ActiveStorage::Attachment.create!(
-            uuid: preview_image.uuid,
-            blob_id: preview_image.blob_id,
-            name: 'preview_images',
-            record: new_document
-          )
+        ApplicationRecord.no_touching do
+          document.preview_images_attachments.each do |preview_image|
+            ActiveStorage::Attachment.create!(
+              uuid: preview_image.uuid,
+              blob_id: preview_image.blob_id,
+              name: 'preview_images',
+              record: new_document
+            )
+          end
         end
       end
     end

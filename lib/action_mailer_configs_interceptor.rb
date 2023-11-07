@@ -40,6 +40,7 @@ module ActionMailerConfigsInterceptor
       address: value['host'],
       port: value['port'],
       domain: value['domain'],
+      openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
       authentication: value.fetch('authentication', 'plain'),
       enable_starttls_auto: true,
       ssl: value['security'] == 'ssl',

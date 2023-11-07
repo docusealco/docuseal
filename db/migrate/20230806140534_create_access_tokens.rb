@@ -5,7 +5,7 @@ class CreateAccessTokens < ActiveRecord::Migration[7.0]
     create_table :access_tokens do |t|
       t.references :user, null: false, foreign_key: true, index: true
       t.text :token, null: false
-      t.text :sha256, null: false, index: { unique: true }
+      t.string :sha256, null: false, index: { unique: true }
 
       t.timestamps
     end

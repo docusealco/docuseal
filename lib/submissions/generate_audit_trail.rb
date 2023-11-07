@@ -4,8 +4,8 @@ module Submissions
   module GenerateAuditTrail
     FONT_SIZE = 9
     TEXT_COLOR = '525252'
-    FONT_PATH = '/LiberationSans-Regular.ttf'
-    FONT_BOLD_PATH = '/LiberationSans-Bold.ttf'
+    FONT_PATH = '/fonts/LiberationSans-Regular.ttf'
+    FONT_BOLD_PATH = '/fonts/LiberationSans-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
@@ -17,13 +17,14 @@ module Submissions
                        'Helvetica'
                      end
 
-    INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
+    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
     VERIFIED_TEXT = if Docuseal.multitenant?
                       'Verified by DocuSeal'
                     else
                       'Verified'
                     end
+    UNVERIFIED_TEXT = 'Unverified'
 
     module_function
 
@@ -62,15 +63,7 @@ module Submissions
       composer.new_page
 
       composer.column(columns: 1) do |column|
-        column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
-
-        column.formatted_text([{ text: 'DocuSeal',
-                                 link: Docuseal::PRODUCT_URL }],
-                              font_size: 20,
-                              font: [FONT_BOLD_NAME, { variant: :bold }],
-                              width: 100,
-                              padding: [12, 0, 0, 8],
-                              position: :float, position_hint: :left)
+        add_logo(column)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -92,7 +85,7 @@ module Submissions
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
         original_documents = submission.template.documents.select { |e| e.uuid == document.uuid }.presence
         original_documents ||= submission.template.documents.select do |e|
-          e.image? && submission.schema.any? do |item|
+          e.image? && submission.template_schema.any? do |item|
             item['attachment_uuid'] == e.uuid
           end
         end
@@ -113,15 +106,18 @@ module Submissions
               document.metadata['sha256'] || document.checksum,
               "\n",
               { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
-              I18n.l(document.created_at, format: :long, locale: account.locale)
+              "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
+              "#{timezone_abbr(account.timezone, document.created_at)}"
             ], line_spacing: 1.8
           )
         ]
       end
 
-      composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
+      if documents_data.present?
+        composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
 
-      composer.draw_box(divider)
+        composer.draw_box(divider)
+      end
 
       submission.template_submitters.filter_map do |item|
         submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
@@ -156,10 +152,10 @@ module Submissions
             composer.document.layout.formatted_text_box(
               [
                 submitter.email && {
-                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : 'Unverififed'}\n"
+                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
                 },
                 submitter.phone && {
-                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : 'Unverififed'}\n"
+                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
@@ -172,57 +168,59 @@ module Submissions
 
         composer.table(info_rows, cell_style: { padding: [0, 0, 0, 0], border: { width: 0 } })
 
-        composer.column(columns: 1, gaps: 0, style: { padding: [0, 200, 0, 0] }) do |column|
-          submission.template_fields.filter_map do |field|
-            next if field['submitter_uuid'] != submitter.uuid
+        submission.template_fields.filter_map do |field|
+          next if field['submitter_uuid'] != submitter.uuid
 
-            submitter_field_counters[field['type']] += 1
+          submitter_field_counters[field['type']] += 1
 
-            value = submitter.values[field['uuid']]
+          value = submitter.values[field['uuid']]
 
-            next if Array.wrap(value).compact_blank.blank?
+          next if Array.wrap(value).compact_blank.blank?
 
-            [
-              column.formatted_text_box(
-                [
-                  {
-                    text: field['name'].to_s.upcase.presence ||
-                          "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
-                    font_size: 6
-                  }
-                ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
-              ),
-              if field['type'].in?(%w[image signature])
-                attachment = submitter.attachments.find { |a| a.uuid == value }
-                image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+          [
+            composer.formatted_text_box(
+              [
+                {
+                  text: field['name'].to_s.upcase.presence ||
+                        "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
+                  font_size: 6
+                }
+              ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
+            ),
+            if field['type'].in?(%w[image signature initials])
+              attachment = submitter.attachments.find { |a| a.uuid == value }
+              image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
-                scale = [300.0 / image.width, 300.0 / image.height].min
+              scale = [600.0 / image.width, 600.0 / image.height].min
 
-                io = StringIO.new(image.resize([scale, 1].min).write_to_buffer('.png'))
+              resized_image = image.resize([scale, 1].min)
+              io = StringIO.new(resized_image.write_to_buffer('.png'))
 
-                column.image(io, padding: [0, 100, 10, 0])
-                column.formatted_text_box([{ text: '' }])
-              elsif field['type'] == 'file'
-                column.formatted_text_box(
-                  Array.wrap(value).map do |uuid|
-                    attachment = submitter.attachments.find { |a| a.uuid == uuid }
-                    link =
-                      Rails.application.routes.url_helpers.rails_blob_url(attachment, **Docuseal.default_url_options)
+              width = field['type'] == 'initials' ? 100 : 200
+              height = resized_image.height * (width.to_f / resized_image.width)
 
-                    { link:, text: "#{attachment.filename}\n", style: :link }
-                  end,
-                  padding: [0, 0, 10, 0]
-                )
-              elsif field['type'] == 'checkbox'
-                column.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
-              else
-                value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
-                value = value.join(', ') if value.is_a?(Array)
+              composer.image(io, width:, height:, margin: [0, 0, 10, 0])
+              composer.formatted_text_box([{ text: '' }])
+            elsif field['type'] == 'file'
+              composer.formatted_text_box(
+                Array.wrap(value).map do |uuid|
+                  attachment = submitter.attachments.find { |a| a.uuid == uuid }
+                  link =
+                    Rails.application.routes.url_helpers.rails_blob_url(attachment, **Docuseal.default_url_options)
 
-                column.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
-              end
-            ]
-          end
+                  { link:, text: "#{attachment.filename}\n", style: :link }
+                end,
+                padding: [0, 0, 10, 0]
+              )
+            elsif field['type'] == 'checkbox'
+              composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
+            else
+              value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
+              value = value.join(', ') if value.is_a?(Array)
+
+              composer.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
+            end
+          ]
         end
 
         composer.draw_box(divider)
@@ -233,16 +231,17 @@ module Submissions
       events_data = submission.submission_events.sort_by(&:event_timestamp).map do |event|
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
         [
-          I18n.l(event.event_timestamp, format: :long, locale: account.locale),
+          "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
+          "#{timezone_abbr(account.timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(
             [
               { text: SubmissionEvents::EVENT_NAMES[event.event_type.to_sym],
                 font: [FONT_BOLD_NAME, { variant: :bold }] },
               event.event_type.include?('send_') ? ' to ' : ' by ',
-              if event.event_type.include?('sms')
+              if event.event_type.include?('sms') || event.event_type.include?('phone')
                 submitter.phone
               else
-                (submitter.email || submitter.name || submitter.phone)
+                (submitter.name || submitter.email || submitter.phone)
               end
             ]
           )
@@ -267,6 +266,26 @@ module Submissions
         name: 'audit_trail',
         record: submission
       )
+    end
+
+    def timezone_abbr(timezone, time = Time.current)
+      tz_info = TZInfo::Timezone.get(
+        ActiveSupport::TimeZone::MAPPING[timezone] || timezone || 'UTC'
+      )
+
+      tz_info.abbreviation(time)
+    end
+
+    def add_logo(column)
+      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
+
+      column.formatted_text([{ text: 'DocuSeal',
+                               link: Docuseal::PRODUCT_URL }],
+                            font_size: 20,
+                            font: [FONT_BOLD_NAME, { variant: :bold }],
+                            width: 100,
+                            padding: [12, 0, 0, 8],
+                            position: :float, position_hint: :left)
     end
     # rubocop:enable Metrics
   end

@@ -1,9 +1,10 @@
 <%= render 'title', template: @template %>
-<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 %>
-  <div class="flex justify-between mb-6 md:items-end flex-col md:flex-row">
+<% is_show_tabs = @pagy.pages > 1 || params[:status].present? %>
+<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 || params[:q].present? %>
+  <div class="flex justify-between md:items-end flex-col md:flex-row <%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <p class="text-3xl font-bold">Submissions</p>
-    <div class="flex space-x-2 mt-3 md:mt-0">
-      <% if params[:q].present? || @pagy.pages > 1 %>
+    <div class="flex md:space-x-2 mt-3 md:mt-0">
+      <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
         <%= render 'shared/search_input' %>
       <% end %>
       <%= link_to new_template_submissions_export_path(@template), class: 'order-3 md:order-1 btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
@@ -22,6 +23,37 @@
         <% end %>
       <% end %>
     </div>
+  </div>
+<% end %>
+<% if is_show_tabs %>
+  <div class="flex items-center md:items-end flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2 mb-4">
+    <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <div class="flex items-center space-x-1">
+        <%= svg_icon('list', class: 'w-5 h-5') %>
+        <span class="font-normal">All</span>
+      </div>
+      <div class="badge badge-neutral badge-outline font-medium">
+        <%= params[:status].blank? ? @pagy.count : @base_submissions.count %>
+      </div>
+    </a>
+    <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <div class="flex items-center space-x-1">
+        <%= svg_icon('clock', class: 'w-5 h-5') %>
+        <span class="font-normal">Pending</span>
+      </div>
+      <div class="badge badge-neutral badge-outline font-medium">
+        <%= params[:status] == 'pending' ? @pagy.count : @base_submissions.pending.count %>
+      </div>
+    </a>
+    <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <div class="flex items-center space-x-1">
+        <%= svg_icon('circle_check', class: 'w-5 h-5') %>
+        <span class="font-normal">Completed</span>
+      </div>
+      <div class="badge badge-neutral badge-outline font-medium">
+        <%= params[:status] == 'completed' ? @pagy.count : @base_submissions.completed.count %>
+      </div>
+    </a>
   </div>
 <% end %>
 <% if @submissions.present? %>

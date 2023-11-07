@@ -44,12 +44,16 @@
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+        <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
         <% (@submission.template_schema || @submission.template.schema).each do |item| %>
           <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
-          <% document.preview_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
+          <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
+          <% lazyload_metadata = document.preview_images.first.metadata %>
+          <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
+            <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>" loading="lazy">
+              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
@@ -66,7 +70,7 @@
       </div>
     </div>
     <div class="hidden md:block relative w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
-      <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600] %>
+      <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% (@submission.template_submitters || @submission.template.submitters).each_with_index do |item, index| %>
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
@@ -136,8 +140,8 @@
                 <%= field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}" %>
               </div>
               <div>
-                <% if field['type'] == 'signature' %>
-                  <div class="w-full bg-base-300">
+                <% if field['type'].in?(%w[signature initials]) %>
+                  <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>
                 <% elsif field['type'] == 'image' %>

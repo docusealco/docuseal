@@ -14,14 +14,14 @@ class StartFormController < ApplicationController
 
   def update
     @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
-                          .find_or_initialize_by(email: submitter_params[:email])
+                          .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
+                          .find_or_initialize_by(**submitter_params.compact_blank)
 
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       @submitter.assign_attributes(
         uuid: @template.submitters.first['uuid'],
-        opened_at: Time.current,
         ip: request.remote_ip,
         ua: request.user_agent
       )
@@ -47,7 +47,7 @@ class StartFormController < ApplicationController
   private
 
   def submitter_params
-    params.require(:submitter).permit(:email).tap do |attrs|
+    params.require(:submitter).permit(:email, :phone, :name).tap do |attrs|
       attrs[:email] = Submissions.normalize_email(attrs[:email])
     end
   end

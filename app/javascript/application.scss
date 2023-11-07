@@ -74,6 +74,58 @@ button[disabled] .enabled {
 .base-select {
   @apply select base-input w-full font-normal;
 }
+
 .bg-redact{
   background: black;
+}
+
+.tooltip-bottom-end:before {
+  transform: translateX(-95%);
+  top: var(--tooltip-offset);
+  left: 100%;
+  right: auto;
+  bottom: auto;
+}
+
+.tooltip-bottom-end:after {
+  transform: translateX(-25%);
+  border-color: transparent transparent var(--tooltip-color) transparent;
+  top: var(--tooltip-tail-offset);
+  left: 50%;
+  right: auto;
+  bottom: auto;
+}
+
+.autocomplete {
+  background: white;
+  z-index: 1000;
+  font: 14px/22px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: auto;
+  box-sizing: border-box;
+  @apply border border-base-300 mt-1 rounded-md;
+}
+
+.autocomplete * {
+  font: inherit;
+}
+
+.autocomplete > div {
+  @apply px-2 py-1 font-normal text-sm;
+}
+
+.autocomplete .group {
+  background: #eee;
+}
+
+.autocomplete > div:hover:not(.group),
+.autocomplete > div.selected {
+  @apply bg-base-300;
+  cursor: pointer;
+}
+
+.input-outlined {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: 3px;
+  outline-color: hsl(var(--bc) / 0.2);
 }

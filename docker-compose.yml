@@ -11,8 +11,8 @@ services:
     volumes:
       - .:/data
     environment:
-      FORCE_SSL: 'true'
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/docuseal
+      - FORCE_SSL=${HOST}
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
 
   postgres:
     image: postgres:15

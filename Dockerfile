@@ -31,7 +31,7 @@ ENV BUNDLE_WITHOUT="development:test"
 
 WORKDIR /app
 
-RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler vips-heif libc6-compat ttf-freefont ttf-liberation && cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf / && apk del ttf-liberation
+RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif libc6-compat ttf-freefont ttf-liberation && mkdir /fonts && cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf /fonts && apk del ttf-liberation && wget -O /fonts/DancingScript.otf "https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf" && wget -O /fonts/DancingScript-License.txt https://github.com/impallari/DancingScript/blob/master/OFL.txt
 
 COPY ./Gemfile ./Gemfile.lock ./
 
@@ -49,6 +49,7 @@ COPY LICENSE README.md Rakefile config.ru ./
 
 COPY --from=webpack /app/public/packs ./public/packs
 
+RUN ln -s /fonts /app/public/fonts
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 WORKDIR /data/docuseal

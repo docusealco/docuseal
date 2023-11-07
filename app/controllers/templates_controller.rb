@@ -10,6 +10,11 @@ class TemplatesController < ApplicationController
     submissions = submissions.active if @template.deleted_at.blank?
     submissions = Submissions.search(submissions, params[:q])
 
+    @base_submissions = submissions
+
+    submissions = submissions.pending if params[:status] == 'pending'
+    submissions = submissions.completed if params[:status] == 'completed'
+
     @pagy, @submissions = pagy(submissions.preload(:submitters).order(id: :desc))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
@@ -25,12 +30,21 @@ class TemplatesController < ApplicationController
       associations: [schema_documents: { preview_images_attachments: :blob }]
     ).call
 
+    @template_data =
+      @template.as_json.merge(
+        documents: @template.schema_documents.as_json(
+          methods: [:metadata],
+          include: { preview_images: { methods: %i[url metadata filename] } }
+        )
+      ).to_json
+
     render :edit, layout: 'plain'
   end
 
   def create
     @template.account = current_account
     @template.author = current_user
+    @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     @template.assign_attributes(@base_template.slice(:fields, :schema, :submitters)) if @base_template
 
     if @template.save
@@ -43,9 +57,18 @@ class TemplatesController < ApplicationController
   end
 
   def destroy
-    @template.update!(deleted_at: Time.current)
+    notice =
+      if !Docuseal.multitenant? && params[:permanently].present?
+        @template.destroy!
 
-    redirect_back(fallback_location: root_path, notice: 'Template has been archived.')
+        'Template has been removed.'
+      else
+        @template.update!(deleted_at: Time.current)
+
+        'Template has been archived.'
+      end
+
+    redirect_back(fallback_location: root_path, notice:)
   end
 
   private

@@ -19,7 +19,11 @@
     <div>
       <% if Accounts.can_send_emails?(@submitter.submission.template.account) && @submitter.email.present? %>
         <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
-        <div class="divider">OR</div>
+        <% if @submitter.submission.template.submitters.size != 1 %>
+          <div class="divider">OR</div>
+        <% else %>
+          <div class="py-2"></div>
+        <% end %>
       <% end %>
       <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
         <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
@@ -32,6 +36,12 @@
         </span>
       </download-button>
     </div>
+    <% if @submitter.submission.template.submitters.size == 1 %>
+      <div class="divider">OR</div>
+      <div>
+        <%= button_to button_title(title: 'Resubmit', disabled_with: 'Resubmit', icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: true }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
+      </div>
+    <% end %>
   </div>
 </div>
-<%= render 'shared/attribution' %>
+<%= render 'shared/attribution', link_path: '/start' %>

@@ -23,7 +23,7 @@ RSpec.describe 'Dashboard Page' do
   context 'when there are templates' do
     let!(:authors) { create_list(:user, 5, account:) }
     let!(:templates) { authors.map { |author| create(:template, account:, author:) } }
-    let!(:other_template) { create(:template) }
+    let!(:other_template) { create(:template, account: create(:user).account) }
 
     before do
       visit root_path

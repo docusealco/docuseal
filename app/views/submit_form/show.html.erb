@@ -1,6 +1,7 @@
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
-<% values = @submitter.submission.submitters.where.not(id: @submitter.id).reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+<% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
@@ -9,24 +10,28 @@
       </div>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
-        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
-        <% document.preview_secured_images.sort_by { |a| a.filename.base.to_i }.each_with_index do |page, index| %>
+        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>        
+        <% preview_images_index = document.preview_secured_images.loaded? ? document.preview_secured_images.index_by { |e| e.filename.base.to_i } : {} %>
+        <% lazyload_metadata = document.preview_secured_images.last.metadata %>
+        <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_secured_images.loaded? ? preview_images_index.size : document.preview_secured_images.size)).times do |index| %>
+          <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
           <div class="relative my-4 shadow-md">
-            <img src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>" loading="lazy">
+            <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
             <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
               <% document_annots_index[index]&.each do |annot| %>
                 <%= render 'submissions/annotation', annot: %>
               <% end %>
               <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                <% value = values[field['uuid']] %>
+                <% value = values[field['uuid']].presence || (field['readonly'] ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                 <% next if value.blank? %>
+                <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
                 <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.submission.template.account.locale %>
               <% end %>
             </div>
           </div>
         <% end %>
       <% end %>
-      <%= render 'shared/attribution' %>
+      <%= render 'shared/attribution', link_path: '/start' %>
     </div>
   </div>
 </div>

@@ -5,26 +5,37 @@
       class="w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
+      :editable="editable"
       @new-submitter="save"
       @remove="removeSubmitter"
       @name-change="save"
       @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
     />
   </div>
-  <div class="mb-1 mt-2">
+  <div
+    class="mb-1 mt-2"
+    @dragover.prevent="onFieldDragover"
+    @drop="save"
+  >
     <Field
       v-for="field in submitterFields"
       :key="field.uuid"
+      :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
+      :editable="editable && !dragField"
+      :draggable="editable"
+      @dragstart="dragField = field"
+      @dragend="dragField = null"
       @remove="removeField"
-      @move-up="move(field, -1)"
-      @move-down="move(field, 1)"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div class="grid grid-cols-3 gap-1 pb-2">
+  <div
+    v-if="editable"
+    class="grid grid-cols-3 gap-1 pb-2"
+  >
     <template
       v-for="(icon, type) in fieldIcons"
       :key="type"
@@ -73,7 +84,7 @@
       </button>
       <div
         v-else
-        class="tooltip flex"
+        class="tooltip tooltip-bottom-end flex"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
         <a
@@ -100,15 +111,12 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4"
+    v-if="fields.length < 4 && editable"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
       <li>
         Draw a text field on the page with a mouse
-      </li>
-      <li>
-        Single click on the page to add a checkbox
       </li>
       <li>
         Drag &amp; drop any other field type on the page
@@ -140,6 +148,11 @@ export default {
       type: Array,
       required: true
     },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     withStickySubmitters: {
       type: Boolean,
       required: false,
@@ -155,6 +168,11 @@ export default {
     }
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  data () {
+    return {
+      dragField: null
+    }
+  },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
@@ -165,6 +183,24 @@ export default {
   methods: {
     onDragstart (fieldType) {
       this.$emit('set-drag', fieldType)
+    },
+    onFieldDragover (e) {
+      const targetFieldUuid = e.target.closest('[data-uuid]')?.dataset?.uuid
+
+      if (this.dragField && targetFieldUuid && this.dragField.uuid !== targetFieldUuid) {
+        const field = this.fields.find((f) => f.uuid === targetFieldUuid)
+
+        const currentIndex = this.fields.indexOf(this.dragField)
+        const targetIndex = this.fields.indexOf(field)
+
+        if (currentIndex < targetIndex) {
+          this.fields.splice(targetIndex + 1, 0, this.dragField)
+          this.fields.splice(currentIndex, 1)
+        } else {
+          this.fields.splice(targetIndex, 0, this.dragField)
+          this.fields.splice(currentIndex + 1, 1)
+        }
+      }
     },
     removeSubmitter (submitter) {
       [...this.fields].forEach((field) => {
@@ -177,26 +213,6 @@ export default {
 
       if (this.selectedSubmitter === submitter) {
         this.$emit('change-submitter', this.submitters[0])
-      }
-
-      this.save()
-    },
-    move (field, direction) {
-      const currentIndex = this.submitterFields.indexOf(field)
-      const fieldsIndex = this.fields.indexOf(field)
-
-      this.fields.splice(fieldsIndex, 1)
-
-      if (currentIndex + direction > this.submitterFields.length) {
-        const firstIndex = this.fields.indexOf(this.submitterFields[0])
-
-        this.fields.splice(firstIndex, 0, field)
-      } else if (currentIndex + direction < 0) {
-        const lastIndex = this.fields.indexOf(this.submitterFields[this.submitterFields.length - 1])
-
-        this.fields.splice(lastIndex + 1, 0, field)
-      } else {
-        this.fields.splice(fieldsIndex + direction, 0, field)
       }
 
       this.save()

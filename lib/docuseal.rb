@@ -3,6 +3,7 @@
 module Docuseal
   PRODUCT_URL = 'https://www.docuseal.co'
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
+  ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'DocuSeal'
   DEFAULT_APP_URL = 'http://localhost:3000'
   GITHUB_URL = 'https://github.com/docusealco/docuseal'
@@ -30,7 +31,7 @@ module Docuseal
 
   DEFAULT_URL_OPTIONS = {
     host: HOST,
-    protocol: ENV['FORCE_SSL'] == 'true' ? 'https' : 'http'
+    protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http'
   }.freeze
 
   module_function
@@ -56,6 +57,10 @@ module Docuseal
       url = Addressable::URI.parse(value)
       { host: url.host, port: url.port, protocol: url.scheme }
     end
+  end
+
+  def product_name
+    PRODUCT_NAME
   end
 
   def refresh_default_url_options!

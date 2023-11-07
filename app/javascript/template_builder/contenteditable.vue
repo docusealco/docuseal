@@ -5,7 +5,7 @@
   >
     <span
       ref="contenteditable"
-      contenteditable
+      :contenteditable="editable"
       style="min-width: 2px"
       :class="iconInline ? 'inline' : 'block'"
       class="peer outline-none focus:block"
@@ -24,13 +24,14 @@
       *
     </span>
     <IconPencil
-      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
+      v-if="editable"
+      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
       title="Edit"
       :class="{ 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
-      @click="focusContenteditable"
+      @click="[focusContenteditable(), selectOnEditClick && selectContent()]"
     />
   </div>
 </template>
@@ -64,6 +65,16 @@ export default {
       required: false,
       default: false
     },
+    selectOnEditClick: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     iconStrokeWidth: {
       type: Number,
       required: false,
@@ -85,6 +96,19 @@ export default {
     }
   },
   methods: {
+    selectContent () {
+      const el = this.$refs.contenteditable
+
+      const range = document.createRange()
+
+      range.selectNodeContents(el)
+
+      const sel = window.getSelection()
+
+      sel.removeAllRanges()
+
+      sel.addRange(range)
+    },
     onBlur (e) {
       setTimeout(() => {
         this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue

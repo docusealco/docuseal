@@ -4,6 +4,7 @@
     :style="positionStyle"
     @pointerdown.stop
     @mousedown.stop="startDrag"
+    @touchstart="startTouchDrag"
   >
     <div
       v-if="isSelected || isDraw"
@@ -22,7 +23,7 @@
         :style="{ left: (cellW / area.w * 100) + '%' }"
       >
         <span
-          v-if="index === 0"
+          v-if="index === 0 && editable"
           class="h-2.5 w-2.5 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-ew-resize z-10"
           style="left: -4px"
           @mousedown.stop="startResizeCell"
@@ -32,7 +33,7 @@
     <div
       v-if="field?.type"
       class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap group-hover:flex group-hover:z-10"
-      :class="{ 'flex z-10': isNameFocus || isSelected, hidden: !isNameFocus && !isSelected }"
+      :class="{ 'flex z-10': isNameFocus || isSelected, invisible: !isNameFocus && !isSelected }"
       style="top: -25px; height: 25px"
       @mousedown.stop
       @pointerdown.stop
@@ -41,6 +42,7 @@
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
+        :editable="editable"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
@@ -49,6 +51,7 @@
       <FieldType
         v-model="field.type"
         :button-width="27"
+        :editable="editable"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
@@ -57,7 +60,7 @@
       <span
         v-if="field.type !== 'checkbox' || field.name"
         ref="name"
-        contenteditable
+        :contenteditable="editable"
         class="pr-1 cursor-text outline-none block"
         style="min-width: 2px"
         @keydown.enter.prevent="onNameEnter"
@@ -83,7 +86,7 @@
         >Required</label>
       </div>
       <button
-        v-else
+        v-else-if="editable"
         class="pr-1"
         title="Remove"
         @click.prevent="$emit('remove')"
@@ -109,28 +112,39 @@
     </div>
     <div
       v-else
-      class="opacity-50 flex items-center justify-center h-full w-full"
-      :class="bgColors[submitterIndex]"
+      class="flex items-center h-full w-full"
+      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
     >
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1 h-full"
       >
+        <div
+          v-if="field?.default_value"
+          class="text-[1.5vw] lg:text-base"
+        >
+          <div class="flex items-center px-0.5">
+            <span class="whitespace-pre-wrap">{{ field.default_value }}</span>
+          </div>
+        </div>
         <component
           :is="fieldIcons[field.type]"
+          v-else
           width="100%"
           height="100%"
-          class="max-h-10"
+          class="max-h-10 opacity-50"
         />
       </span>
     </div>
     <div
+      ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
     <span
-      v-if="field?.type"
-      class="h-2.5 w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
+      v-if="field?.type && editable"
+      class="h-4 w-4 md:h-2.5 md:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
+      @touchstart="startTouchResize"
     />
   </div>
 </template>
@@ -158,6 +172,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     field: {
       type: Object,
@@ -199,20 +218,30 @@ export default {
     },
     borderColors () {
       return [
-        'border-red-500',
-        'border-sky-500',
-        'border-emerald-500',
-        'border-yellow-300',
-        'border-purple-600'
+        'border-red-500/50',
+        'border-sky-500/50',
+        'border-emerald-500/50',
+        'border-yellow-300/50',
+        'border-purple-600/50',
+        'border-pink-500/50',
+        'border-cyan-500/50',
+        'border-orange-500/50',
+        'border-lime-500/50',
+        'border-indigo-500/50'
       ]
     },
     bgColors () {
       return [
-        'bg-red-100',
-        'bg-sky-100',
-        'bg-emerald-100',
-        'bg-yellow-100',
-        'bg-purple-100'
+        'bg-red-100/50',
+        'bg-sky-100/50',
+        'bg-emerald-100/50',
+        'bg-yellow-100/50',
+        'bg-purple-100/50',
+        'bg-pink-100/50',
+        'bg-cyan-100/50',
+        'bg-orange-100/50',
+        'bg-lime-100/50',
+        'bg-indigo-100/50'
       ]
     },
     isSelected () {
@@ -266,6 +295,8 @@ export default {
       }
     },
     maybeUpdateOptions () {
+      delete this.field.default_value
+
       if (!['radio', 'multiple', 'select'].includes(this.field.type)) {
         delete this.field.options
       }
@@ -317,6 +348,10 @@ export default {
     startDrag (e) {
       this.selectedAreaRef.value = this.area
 
+      if (!this.editable) {
+        return
+      }
+
       const rect = e.target.getBoundingClientRect()
 
       this.dragFrom = { x: e.clientX - rect.left, y: e.clientY - rect.top }
@@ -325,6 +360,47 @@ export default {
       this.$el.getRootNode().addEventListener('mouseup', this.stopDrag)
 
       this.$emit('start-drag')
+    },
+    startTouchDrag (e) {
+      if (e.target !== this.$refs.touchTarget) {
+        return
+      }
+
+      this.$refs?.name?.blur()
+
+      e.preventDefault()
+
+      this.isDragged = true
+
+      const rect = e.target.getBoundingClientRect()
+
+      this.selectedAreaRef.value = this.area
+
+      this.dragFrom = { x: rect.left - e.touches[0].clientX, y: rect.top - e.touches[0].clientY }
+
+      this.$el.getRootNode().addEventListener('touchmove', this.touchDrag)
+      this.$el.getRootNode().addEventListener('touchend', this.stopTouchDrag)
+
+      this.$emit('start-drag')
+    },
+    touchDrag (e) {
+      const page = this.$parent.$refs.mask.previousSibling
+      const rect = page.getBoundingClientRect()
+
+      this.area.x = (this.dragFrom.x + e.touches[0].clientX - rect.left) / rect.width
+      this.area.y = (this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height
+    },
+    stopTouchDrag () {
+      this.$el.getRootNode().removeEventListener('touchmove', this.touchDrag)
+      this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
+
+      if (this.isDragged) {
+        this.save()
+      }
+
+      this.isDragged = false
+
+      this.$emit('stop-drag')
     },
     stopDrag () {
       this.$el.getRootNode().removeEventListener('mousemove', this.drag)
@@ -349,6 +425,33 @@ export default {
     stopResize () {
       this.$el.getRootNode().removeEventListener('mousemove', this.resize)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopResize)
+
+      this.$emit('stop-resize')
+
+      this.save()
+    },
+    startTouchResize (e) {
+      this.selectedAreaRef.value = this.area
+
+      this.$refs?.name?.blur()
+
+      e.preventDefault()
+
+      this.$el.getRootNode().addEventListener('touchmove', this.touchResize)
+      this.$el.getRootNode().addEventListener('touchend', this.stopTouchResize)
+
+      this.$emit('start-resize', 'nwse')
+    },
+    touchResize (e) {
+      const page = this.$parent.$refs.mask.previousSibling
+      const rect = page.getBoundingClientRect()
+
+      this.area.w = (e.touches[0].clientX - rect.left) / rect.width - this.area.x
+      this.area.h = (e.touches[0].clientY - rect.top) / rect.height - this.area.y
+    },
+    stopTouchResize () {
+      this.$el.getRootNode().removeEventListener('touchmove', this.touchResize)
+      this.$el.getRootNode().removeEventListener('touchend', this.stopTouchResize)
 
       this.$emit('stop-resize')
 

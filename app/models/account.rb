@@ -16,6 +16,9 @@ class Account < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
   has_many :templates, dependent: :destroy
+  has_many :template_folders, dependent: :destroy
+  has_one :default_template_folder, -> { where(name: TemplateFolder::DEFAULT_NAME) },
+          class_name: 'TemplateFolder', dependent: :destroy, inverse_of: :account
   has_many :submissions, through: :templates
   has_many :submitters, through: :submissions
   has_many :active_users, -> { active }, dependent: :destroy,
@@ -23,4 +26,9 @@ class Account < ApplicationRecord
 
   attribute :timezone, :string, default: 'UTC'
   attribute :locale, :string, default: 'en-US'
+
+  def default_template_folder
+    super || build_default_template_folder(name: TemplateFolder::DEFAULT_NAME,
+                                           author_id: users.minimum(:id)).tap(&:save!)
+  end
 end

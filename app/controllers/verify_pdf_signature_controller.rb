@@ -12,7 +12,7 @@ class VerifyPdfSignatureController < ApplicationController
     cert_data = if Docuseal.multitenant?
                   Docuseal::CERTS
                 else
-                  EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+                  EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
                 end
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data)

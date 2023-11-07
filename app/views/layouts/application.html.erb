@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html data-theme="docuseal" lang="en">
   <head>
-    <title>
-      DocuSeal | Open Source Document Filling and Signing
-    </title>
-    <%= render 'shared/meta' %>
+    <%= render 'layouts/head_tags' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_pack_tag 'application', defer: true %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
+    <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
   </head>
   <body>
     <turbo-frame id="modal"></turbo-frame>

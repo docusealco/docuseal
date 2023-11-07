@@ -16,32 +16,6 @@
         <input type="checkbox">
         <div class="collapse-title text-xl font-medium">
           <div>
-            Request signature, single submitter
-          </div>
-          <div class="mt-1">
-            <div class="badge badge-warning badge-lg">POST</div>
-            <div class="badge badge-primary badge-lg"><%= api_submissions_path %></div>
-          </div>
-        </div>
-        <div class="collapse-content" style="display: inherit">
-          <div class="mockup-code overflow-hidden">
-            <% text = capture do %>curl --location '<%= api_submissions_url %>' \
-       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
-       --data-raw '{
-           "template_id": <%= current_account.templates.last&.id || 1 %>,
-           "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
-       }'<% end.to_str %>
-            <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
-            </span>
-            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="collapse collapse-plus bg-base-200 px-1">
-        <input type="checkbox">
-        <div class="collapse-title text-xl font-medium">
-          <div>
             Request signature, multiple submitters with default values
           </div>
           <div class="mt-1">
@@ -66,10 +40,36 @@
                    "Form Text Field Name": "Default Value"
                  }
                },
-               { "name": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
+               { "role": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
              ]
            }
          ]
+       }'<% end.to_str %>
+            <span class="top-0 right-0 absolute">
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+            </span>
+            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-200 px-1">
+        <input type="checkbox">
+        <div class="collapse-title text-xl font-medium">
+          <div>
+            Request signature, single submitter
+          </div>
+          <div class="mt-1">
+            <div class="badge badge-warning badge-lg">POST</div>
+            <div class="badge badge-primary badge-lg"><%= api_submissions_emails_path %></div>
+          </div>
+        </div>
+        <div class="collapse-content" style="display: inherit">
+          <div class="mockup-code overflow-hidden">
+            <% text = capture do %>curl --location '<%= api_submissions_emails_url %>' \
+       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
+       --data-raw '{
+           "template_id": <%= current_account.templates.last&.id || 1 %>,
+           "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
@@ -100,6 +100,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="text-center">
+      <%= link_to 'Open Full API Reference', "#{Docuseal::PRODUCT_URL}/docs/api", class: 'btn btn-warning text-base mt-4 px-8', target: '_blank', rel: 'noopener' %>
     </div>
   </div>
 </div>

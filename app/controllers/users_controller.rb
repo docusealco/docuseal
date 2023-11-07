@@ -27,7 +27,10 @@ class UsersController < ApplicationController
   def update
     return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
 
-    if @user.update(user_params.compact_blank.except(current_user == @user ? :role : nil))
+    attrs = user_params.compact_blank
+    attrs.delete(:role) if User::ROLES.exclude?(attrs[:role])
+
+    if @user.update(attrs.except(current_user == @user ? :role : nil))
       redirect_to settings_users_path, notice: 'User has been updated'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity

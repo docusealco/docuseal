@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users,
              path: '/', only: %i[sessions passwords omniauth_callbacks],
              controllers: begin
-               options = { sessions: 'sessions' }
+               options = { sessions: 'sessions', passwords: 'passwords' }
                options[:omniauth_callbacks] = 'omniauth_callbacks' if Docuseal.multitenant?
                options
              end
@@ -31,11 +31,18 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
+    resources :submitters_autocomplete, only: %i[index]
+    resources :template_folders_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
-    resources :submissions, only: %i[create]
-    resources :templates, only: %i[update show index] do
-      resources :submissions, only: %i[create]
+    resources :submitters, only: %i[index show]
+    resources :submissions, only: %i[index show create destroy] do
+      collection do
+        resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails
+      end
+    end
+    resources :templates, only: %i[update show index destroy] do
+      resources :submissions, only: %i[index create]
       resources :documents, only: %i[create], controller: 'templates_documents'
     end
   end
@@ -45,17 +52,25 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
+  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy]
+  resource :user_signature, only: %i[edit update]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
   resource :templates_upload, only: %i[create]
+  authenticated do
+    resource :templates_upload, only: %i[show], path: 'new'
+  end
   resources :templates_archived, only: %i[index], path: 'archived'
+  resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :templates, only: %i[new create edit show destroy] do
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
+    resource :folder, only: %i[edit update], controller: 'templates_folders'
     resources :submissions_export, only: %i[index new]
   end
+  resources :preview_document_page, only: %i[show], path: '/preview/:attachment_uuid'
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
@@ -80,6 +95,7 @@ Rails.application.routes.draw do
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :email, only: %i[index create], controller: 'email_smtp_settings'
       resources :sms, only: %i[index], controller: 'sms_settings'
+      resources :sso, only: %i[index], controller: 'sso_settings'
     end
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'

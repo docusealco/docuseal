@@ -10,7 +10,7 @@ class MfaSetupController < ApplicationController
 
     current_user.save!
 
-    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal::PRODUCT_NAME)
+    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
   end
 
   def edit; end
@@ -22,7 +22,7 @@ class MfaSetupController < ApplicationController
 
       redirect_to settings_profile_index_path, notice: '2FA has been configured'
     else
-      @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal::PRODUCT_NAME)
+      @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
 
       @error_message = 'Code is invalid'
 

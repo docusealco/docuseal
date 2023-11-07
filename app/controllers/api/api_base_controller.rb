@@ -3,6 +3,12 @@
 module Api
   class ApiBaseController < ActionController::API
     include ActiveStorage::SetCurrent
+    include Pagy::Backend
+
+    DEFAULT_LIMIT = 10
+    MAX_LIMIT = 100
+
+    wrap_parameters false
 
     before_action :authenticate_user!
     check_authorization
@@ -16,6 +22,16 @@ module Api
     end
 
     private
+
+    def paginate(relation)
+      result = relation.order(id: :desc)
+                       .limit([params.fetch(:limit, DEFAULT_LIMIT).to_i, MAX_LIMIT].min)
+
+      result = result.where('id < ?', params[:after]) if params[:after].present?
+      result = result.where('id > ?', params[:before]) if params[:before].present?
+
+      result
+    end
 
     def current_account
       current_user&.account

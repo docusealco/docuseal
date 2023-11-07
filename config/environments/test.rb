@@ -66,4 +66,16 @@ Rails.application.configure do
     deterministic_key: 'test deterministic key',
     key_derivation_salt: 'test key derivation salt'
   }
+
+  config.middleware.use(Class.new do
+    def initialize(app)
+      @app = app
+    end
+
+    def call(env)
+      return [200, {}, []] if env['PATH_INFO'].starts_with?('/fonts')
+
+      @app.call(env)
+    end
+  end)
 end

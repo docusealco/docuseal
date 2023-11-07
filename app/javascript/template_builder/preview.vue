@@ -12,7 +12,10 @@
         class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1"
         @click="$emit('scroll-to', item)"
       >
-        <div class="flex justify-between w-full">
+        <div
+          v-if="editable"
+          class="flex justify-between w-full"
+        >
           <div style="width: 26px" />
           <div class="">
             <ReplaceButton
@@ -95,6 +98,11 @@ export default {
       type: Object,
       required: true
     },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     acceptFileTypes: {
       type: String,
       required: false,
@@ -114,7 +122,7 @@ export default {
   emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace'],
   computed: {
     previewImage () {
-      return this.document.preview_images[0]
+      return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]
     }
   },
   mounted () {

@@ -21,7 +21,7 @@
             :name="`values[${field.uuid}][]`"
             :value="option"
             class="base-checkbox !h-7 !w-7"
-            :checked="modelValue.includes(option)"
+            :checked="(modelValue || []).includes(option)"
             @change="onChange"
           >
           <span class="text-xl">

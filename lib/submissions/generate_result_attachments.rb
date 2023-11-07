@@ -3,14 +3,14 @@
 module Submissions
   module GenerateResultAttachments
     FONT_SIZE = 11
-    FONT_PATH = '/LiberationSans-Regular.ttf'
+    FONT_PATH = '/fonts/LiberationSans-Regular.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
                   'Helvetica'
                 end
 
-    INFO_CREATOR = "#{Docuseal::PRODUCT_NAME} (#{Docuseal::PRODUCT_URL})".freeze
+    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed by %<email>s with DocuSeal.co'
 
     TEXT_LEFT_MARGIN = 1
@@ -23,7 +23,6 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submitter)
-      layouter = HexaPDF::Layout::TextLayouter.new(valign: :center)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, align: :center)
 
       template = submitter.submission.template
@@ -38,7 +37,6 @@ module Submissions
 
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
-          pdf.fonts.add(FONT_NAME)
 
           page = pdf.pages[area['page']]
           page.rotate(0, flatten: true) if page[:Rotate] != 0
@@ -50,6 +48,8 @@ module Submissions
           height = page.box.height
           font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
+          layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
+
           value = submitter.values[field['uuid']]
 
           if !field['type']=='redact'
@@ -60,7 +60,7 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           case field['type']
-          when 'image', 'signature'
+          when 'image', 'signature', 'initials'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             image = Vips::Image.new_from_buffer(attachment.download, '').autorot
@@ -214,9 +214,9 @@ module Submissions
     def save_signed_pdf(pdf:, submitter:, pkcs:, uuid:, name:)
       io = StringIO.new
 
-      pdf.trailer.info[:Creator] = INFO_CREATOR
+      pdf.trailer.info[:Creator] = info_creator
 
-      pdf.sign(io, reason: format(SIGN_REASON, email: submitter.email),
+      pdf.sign(io, reason: sign_reason(submitter.email),
                    certificate: pkcs.certificate,
                    key: pkcs.key,
                    certificate_chain: pkcs.ca_certs || [])
@@ -278,6 +278,14 @@ module Submissions
       )
 
       pdf
+    end
+
+    def sign_reason(email)
+      format(SIGN_REASON, email:)
+    end
+
+    def info_creator
+      INFO_CREATOR
     end
 
     def h

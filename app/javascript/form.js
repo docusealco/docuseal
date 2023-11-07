@@ -13,10 +13,12 @@ window.customElements.define('submission-form', class extends HTMLElement {
       authenticityToken: this.dataset.authenticityToken,
       canSendEmail: this.dataset.canSendEmail === 'true',
       isDirectUpload: this.dataset.isDirectUpload === 'true',
+      goToLast: this.dataset.goToLast === 'true',
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
       withConfetti: true,
       values: reactive(JSON.parse(this.dataset.values)),
+      completedButton: JSON.parse(this.dataset.completedButton),
       attachments: reactive(JSON.parse(this.dataset.attachments)),
       fields: JSON.parse(this.dataset.fields)
     })

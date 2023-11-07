@@ -11,6 +11,15 @@
       </span>
     </p>
     <div class="space-y-3 mt-5">
+      <a
+        v-if="completedButton.url"
+        :href="completedButton.url"
+        class="white-button flex items-center w-full"
+      >
+        <span>
+          {{ completedButton.title || 'Back to Website' }}
+        </span>
+      </a>
       <button
         v-if="canSendEmail && !isDemo"
         class="white-button !h-auto flex items-center space-x-1 w-full"
@@ -27,6 +36,7 @@
         </span>
       </button>
       <button
+        v-if="!isWebView"
         class="base-button flex items-center space-x-1 w-full"
         :disabled="isDownloading"
         @click.prevent="download"
@@ -68,7 +78,7 @@
     >
       {{ t('signed_with') }}
       <a
-        href="https://www.docuseal.co"
+        href="https://www.docuseal.co/start"
         target="_blank"
         class="underline"
       >DocuSeal</a> - {{ t('open_source_documents_software') }}
@@ -114,12 +124,22 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    completedButton: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   data () {
     return {
       isSendingCopy: false,
       isDownloading: false
+    }
+  },
+  computed: {
+    isWebView () {
+      return /webview|wv|ip((?!.*Safari)|(?=.*like Safari))/i.test(window.navigator.userAgent)
     }
   },
   async mounted () {

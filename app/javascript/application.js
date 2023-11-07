@@ -15,6 +15,10 @@ import DownloadButton from './elements/download_button'
 import SetOriginUrl from './elements/set_origin_url'
 import SetTimezone from './elements/set_timezone'
 import AutoresizeTextarea from './elements/autoresize_textarea'
+import SubmittersAutocomplete from './elements/submitter_autocomplete'
+import FolderAutocomplete from './elements/folder_autocomplete'
+import SignatureForm from './elements/signature_form'
+import SubmitForm from './elements/submit_form'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -43,6 +47,10 @@ window.customElements.define('download-button', DownloadButton)
 window.customElements.define('set-origin-url', SetOriginUrl)
 window.customElements.define('set-timezone', SetTimezone)
 window.customElements.define('autoresize-textarea', AutoresizeTextarea)
+window.customElements.define('submitters-autocomplete', SubmittersAutocomplete)
+window.customElements.define('folder-autocomplete', FolderAutocomplete)
+window.customElements.define('signature-form', SignatureForm)
+window.customElements.define('submit-form', SubmitForm)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {
@@ -70,12 +78,12 @@ document.addEventListener('turbo:submit-end', async (event) => {
 window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
-    this.appElem.classList.add('max-h-screen')
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
       backgroundColor: '#faf7f5',
       withPhone: this.dataset.withPhone === 'true',
+      withLogo: this.dataset.withLogo !== 'false',
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'
     })

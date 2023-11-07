@@ -86,6 +86,11 @@
       class="object-contain mx-auto"
       :src="signature.url"
     >
+    <img
+      v-else-if="field.type === 'initials' && initials"
+      class="object-contain mx-auto"
+      :src="initials.url"
+    >
     <div
       v-else-if="field.type === 'file'"
       class="px-0.5 flex flex-col justify-center"
@@ -144,15 +149,16 @@
       <span v-else-if="field.type === 'date'">
         {{ formattedDate }}
       </span>
-      <span v-else>
-        {{ modelValue }}
-      </span>
+      <span
+        v-else
+        class="whitespace-pre-wrap"
+      >{{ modelValue }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconBarrierBlock } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -214,6 +220,7 @@ export default {
         signature: 'Signature',
         date: 'Date',
         image: 'Image',
+        initials: 'Initials',
         file: 'File',
         select: 'Select',
         checkbox: 'Checkbox',
@@ -229,6 +236,7 @@ export default {
         signature: IconWritingSign,
         date: IconCalendarEvent,
         image: IconPhoto,
+        initials: IconLetterCaseUpper,
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
@@ -248,6 +256,13 @@ export default {
     },
     signature () {
       if (this.field.type === 'signature') {
+        return this.attachmentsIndex[this.modelValue]
+      } else {
+        return null
+      }
+    },
+    initials () {
+      if (this.field.type === 'initials') {
         return this.attachmentsIndex[this.modelValue]
       } else {
         return null

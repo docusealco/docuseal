@@ -1,20 +1,23 @@
 <template>
   <span class="dropdown">
-    <label
-      tabindex="0"
-      :title="fieldNames[modelValue]"
-      class="cursor-pointer"
-    >
-      <component
-        :is="fieldIcons[modelValue]"
-        :width="buttonWidth"
-        :class="buttonClasses"
-        :stroke-width="1.6"
-      />
-    </label>
+    <slot>
+      <label
+        tabindex="0"
+        :title="fieldNames[modelValue]"
+        class="cursor-pointer"
+      >
+        <component
+          :is="fieldIcons[modelValue]"
+          :width="buttonWidth"
+          :class="buttonClasses"
+          :stroke-width="1.6"
+        />
+      </label>
+    </slot>
     <ul
+      v-if="editable"
       tabindex="0"
-      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
+      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :class="menuClasses"
       @click="closeDropdown"
     >
@@ -43,7 +46,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper } from '@tabler/icons-vue'
 export default {
   name: 'FiledTypeDropdown',
   inject: ['withPhone'],
@@ -62,6 +65,11 @@ export default {
       required: false,
       default: ''
     },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     buttonWidth: {
       type: Number,
       required: false,
@@ -74,6 +82,7 @@ export default {
       return {
         text: 'Text',
         signature: 'Signature',
+        initials: 'Initials',
         date: 'Date',
         image: 'Image',
         file: 'File',
@@ -90,16 +99,16 @@ export default {
       return {
         text: IconTextSize,
         signature: IconWritingSign,
+        initials: IconLetterCaseUpper,
         date: IconCalendarEvent,
         image: IconPhoto,
         file: IconPaperclip,
         select: IconSelect,
         checkbox: IconCheckbox,
-        cells: IconColumns3,
+        radio: IconCircleDot,
         multiple: IconChecks,
         radio: IconCircleDot,
-        phone: IconPhoneCheck,
-        redact: IconBarrierBlock
+        phone: IconPhoneCheck
       }
     }
   },

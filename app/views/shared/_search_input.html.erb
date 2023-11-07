@@ -1,5 +1,15 @@
-<form action="<%= request.path %>" method="get" class="items-center hidden md:flex">
-  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12">
+<form action="<%= url_for %>" method="get" class="items-center hidden md:flex">
+  <% if params[:status].present? %>
+    <input name="status" value="<%= params[:status] %>" class="hidden">
+  <% end %>
+  <% if params[:q].present? %>
+    <div class="relative">
+      <a href="<%= url_for(params.to_unsafe_h.except(:q)) %>" title="Clear" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
+        &times;
+      </a>
+    </div>
+  <% end %>
+  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12 <%= 'pl-8 input-outlined' if params[:q].present? %>">
   <button type="submit" title="Search" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
     <span class="enabled">
       <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>

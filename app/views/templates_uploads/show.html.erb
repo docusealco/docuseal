@@ -1,0 +1,18 @@
+<div class="h-screen">
+  <div
+    class="text-center p-8 h-full flex items-center justify-center">
+    <div>
+      <%= render 'shared/logo', width: 50, height: 50, class: 'mx-auto animate-bounce' %>
+      <span>
+        Processing...
+      </span>
+    </div>
+  </div>
+</div>
+<submit-form>
+  <%= form_for '', url: templates_upload_path, method: :post, class: 'hidden' do %>
+    <button type="submit"></button>
+    <input name="url" value="<%= params[:url] %>">
+    <input name="filename" value="<%= params[:filename] %>">
+  <% end %>
+</submit-form>

@@ -48,6 +48,8 @@ class Submission < ApplicationRecord
            through: :template, source: :documents_attachments
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).distinct }
+  scope :completed, -> { where.not(id: pending.select(:submission_id)) }
 
   enum :source, {
     invite: 'invite',
@@ -60,4 +62,9 @@ class Submission < ApplicationRecord
     random: 'random',
     preserved: 'preserved'
   }, scope: false, prefix: true
+
+  def audit_trail_url
+    audit_trail&.url
+  end
+  alias audit_log_url audit_trail_url
 end

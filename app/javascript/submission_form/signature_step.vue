@@ -3,20 +3,21 @@
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
-      >{{ field.name || 'Signature' }}</label>
+      >{{ field.name || t('signature') }}</label>
       <div class="space-x-2 flex">
         <span
           class="tooltip"
           data-tip="Type text"
         >
-          <button
+          <a
             id="type_text_button"
+            href="#"
             class="btn btn-sm btn-circle"
             :class="{ 'btn-neutral': isTextSignature, 'btn-outline': !isTextSignature }"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
-          </button>
+          </a>
         </span>
         <span
           class="tooltip"
@@ -34,23 +35,26 @@
             >
           </label>
         </span>
-        <button
-          v-if="modelValue"
+        <a
+          v-if="modelValue || computedPreviousValue"
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
-          Redraw
-        </button>
-        <button
+          {{ t('redraw') }}
+        </a>
+        <a
           v-else
+          href="#"
           class="btn btn-outline btn-sm"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
-          Clear
-        </button>
-        <button
+          {{ t('clear') }}
+        </a>
+        <a
+          href="#"
           title="Minimize"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
@@ -59,21 +63,21 @@
             :width="20"
             :height="20"
           />
-        </button>
+        </a>
       </div>
     </div>
     <input
-      :value="modelValue"
+      :value="modelValue || computedPreviousValue"
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
     <img
-      v-if="modelValue"
-      :src="attachmentsIndex[modelValue].url"
+      v-if="modelValue || computedPreviousValue"
+      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72"
     >
     <canvas
-      v-show="!modelValue"
+      v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
       class="bg-white border border-base-300 rounded"
     />
@@ -83,7 +87,7 @@
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
       :required="field.required"
-      :placeholder="`Type signature here...`"
+      :placeholder="`${t('type_signature_here')}...`"
       type="text"
       @input="updateWrittenSignature"
     >
@@ -92,6 +96,10 @@
 
 <script>
 import { IconReload, IconCamera, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { cropCanvasAndExportToPNG } from './crop_canvas'
+import SignaturePad from 'signature_pad'
+
+let isFontLoaded = false
 
 export default {
   name: 'SignatureStep',
@@ -101,7 +109,7 @@ export default {
     IconTextSize,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl'],
+  inject: ['baseUrl', 't'],
   props: {
     field: {
       type: Object,
@@ -121,6 +129,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    previousValue: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
@@ -130,33 +143,61 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize'],
   data () {
     return {
-      isSignatureStarted: false,
+      isSignatureStarted: !!this.previousValue,
+      isUsePreviousValue: true,
       isTextSignature: false
+    }
+  },
+  computed: {
+    computedPreviousValue () {
+      if (this.isUsePreviousValue) {
+        return this.previousValue
+      } else {
+        return null
+      }
     }
   },
   async mounted () {
     this.$nextTick(() => {
-      this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-      this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+      if (this.$refs.canvas) {
+        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
+        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+      }
     })
 
     if (this.isDirectUpload) {
       import('@rails/activestorage')
     }
 
-    const { default: SignaturePad } = await import('signature_pad')
+    if (this.$refs.canvas) {
+      this.pad = new SignaturePad(this.$refs.canvas)
 
-    this.pad = new SignaturePad(this.$refs.canvas)
+      this.pad.addEventListener('beginStroke', () => {
+        this.isSignatureStarted = true
 
-    this.pad.addEventListener('beginStroke', () => {
-      this.isSignatureStarted = true
-
-      this.$emit('start')
-    })
+        this.$emit('start')
+      })
+    }
   },
   methods: {
     remove () {
       this.$emit('update:model-value', '')
+
+      this.isUsePreviousValue = false
+      this.isSignatureStarted = false
+    },
+    loadFont () {
+      if (!isFontLoaded) {
+        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript.otf) format("opentype")`)
+
+        font.load().then((loadedFont) => {
+          document.fonts.add(loadedFont)
+
+          isFontLoaded = true
+        }).catch((error) => {
+          console.error('Font loading failed:', error)
+        })
+      }
     },
     clear () {
       this.pad.clear()
@@ -173,8 +214,8 @@ export default {
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')
 
-      const fontFamily = 'Arial'
-      const fontSize = '44px'
+      const fontFamily = 'Dancing Script'
+      const fontSize = '38px'
       const fontStyle = 'italic'
       const fontWeight = ''
 
@@ -191,6 +232,8 @@ export default {
       if (this.isTextSignature) {
         this.$nextTick(() => {
           this.$refs.textInput.focus()
+
+          this.loadFont()
 
           this.$emit('start')
         })
@@ -244,60 +287,17 @@ export default {
         reader.readAsDataURL(file)
       }
     },
-    cropCanvasAndExportToPNG (canvas) {
-      const ctx = canvas.getContext('2d')
-
-      const width = canvas.width
-      const height = canvas.height
-
-      let topmost = height
-      let bottommost = 0
-      let leftmost = width
-      let rightmost = 0
-
-      const imageData = ctx.getImageData(0, 0, width, height)
-      const pixels = imageData.data
-
-      for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-          const pixelIndex = (y * width + x) * 4
-          const alpha = pixels[pixelIndex + 3]
-          if (alpha !== 0) {
-            topmost = Math.min(topmost, y)
-            bottommost = Math.max(bottommost, y)
-            leftmost = Math.min(leftmost, x)
-            rightmost = Math.max(rightmost, x)
-          }
-        }
-      }
-
-      const croppedWidth = rightmost - leftmost + 1
-      const croppedHeight = bottommost - topmost + 1
-
-      const croppedCanvas = document.createElement('canvas')
-      croppedCanvas.width = croppedWidth
-      croppedCanvas.height = croppedHeight
-      const croppedCtx = croppedCanvas.getContext('2d')
-
-      croppedCtx.drawImage(canvas, leftmost, topmost, croppedWidth, croppedHeight, 0, 0, croppedWidth, croppedHeight)
-
-      return new Promise((resolve, reject) => {
-        croppedCanvas.toBlob((blob) => {
-          if (blob) {
-            resolve(blob)
-          } else {
-            reject(new Error('Failed to create a PNG blob.'))
-          }
-        }, 'image/png')
-      })
-    },
     async submit () {
-      if (this.modelValue) {
+      if (this.modelValue || this.computedPreviousValue) {
+        if (this.computedPreviousValue) {
+          this.$emit('update:model-value', this.computedPreviousValue)
+        }
+
         return Promise.resolve({})
       }
 
       return new Promise((resolve) => {
-        this.cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
           if (this.isDirectUpload) {

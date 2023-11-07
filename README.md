@@ -52,8 +52,8 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 | [<img alt="Deploy on Heroku" src="https://www.herokucdn.com/deploy/button.svg" height="40">](https://heroku.com/deploy?template=https://github.com/docusealco/docuseal-heroku) | [<img alt="Deploy on Railway" src="https://railway.app/button.svg" height="40">](https://railway.app/template/IGoDnc?referralCode=ruU7JR)|
 |**DigitalOcean**|**Render**|
 | [<img alt="Deploy on DigitalOcean" src="https://www.deploytodo.com/do-btn-blue.svg" height="40">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/docusealco/docuseal-digitalocean/tree/master&refcode=421d50f53990) | [<img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg" height="40">](https://render.com/deploy?repo=https://github.com/docusealco/docuseal-render)
-|**Koyeb**|  |
-| [<img alt="Deploy on Koyeb" src="https://www.koyeb.com/static/images/deploy/button.svg" height="40">](https://app.koyeb.com/deploy?name=docuseal&type=docker&image=docker.io/docuseal/docuseal&env[PORT]=8000&env[DATABASE_URL]=CHANGE_ME&env[SECRET_KEY_BASE]=CHANGE_ME&ports=8000;http;/) |  |
+|**Koyeb**|**Elestio**|
+| [<img alt="Deploy on Koyeb" src="https://www.koyeb.com/static/images/deploy/button.svg" height="40">](https://app.koyeb.com/deploy?name=docuseal&type=docker&image=docker.io/docuseal/docuseal&env[PORT]=8000&env[DATABASE_URL]=CHANGE_ME&env[SECRET_KEY_BASE]=CHANGE_ME&ports=8000;http;/) | [<img alt="Deploy on Elestio" src="https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png">](https://dash.elest.io/deploy?soft=DocuSeal&id=339) |
 
 
 #### Docker
@@ -81,9 +81,9 @@ HOST=your-domain-name.com docker-compose up
 
 At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
 
-[![Book an Integration Demo](https://cal.com/book-with-cal-dark.svg)](https://cal.com/docuseal)
+[Book a Meeting](https://calendly.com/kriti-docuseal/30min)
 
 ## License
 
 Distributed under the AGPLv3 License. See [LICENSE](https://github.com/docusealco/docuseal/blob/master/LICENSE) for more information.
-Unless otherwise noted, all files © 2023 Oleksandr Turchyn.
+Unless otherwise noted, all files © 2023 DocuSeal LLC.

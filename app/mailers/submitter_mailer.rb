@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmitterMailer < ApplicationMailer
+  MAX_ATTACHMENTS_SIZE = 10.megabytes
+
   def invitation_email(submitter, body: nil, subject: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
@@ -12,7 +14,7 @@ class SubmitterMailer < ApplicationMailer
       if @email_config || subject.present?
         ReplaceEmailVariables.call(subject.presence || @email_config.value['subject'], submitter:)
       else
-        'You have been invited to submit a form'
+        'You are invited to submit a form'
       end
 
     mail(to: @submitter.friendly_name,
@@ -62,7 +64,7 @@ class SubmitterMailer < ApplicationMailer
       if @email_config
         ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
       else
-        'Your copy of documents'
+        'Your document copy'
       end
 
     mail(from: from_address_for_submitter(submitter),
@@ -75,13 +77,24 @@ class SubmitterMailer < ApplicationMailer
   def add_completed_email_attachments!(submitter)
     documents = Submitters.select_attachments_for_download(submitter)
 
+    total_size = 0
+    audit_trail_data = nil
+
+    if submitter.submission.audit_trail.present?
+      audit_trail_data = submitter.submission.audit_trail.download
+
+      total_size = audit_trail_data.size
+    end
+
     documents.each do |attachment|
+      total_size += attachment.byte_size
+
+      break if total_size >= MAX_ATTACHMENTS_SIZE
+
       attachments[attachment.filename.to_s] = attachment.download
     end
 
-    if submitter.submission.audit_trail.present?
-      attachments[submitter.submission.audit_trail.filename.to_s] = submitter.submission.audit_trail.download
-    end
+    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
 
     documents
   end
