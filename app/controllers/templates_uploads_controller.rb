@@ -35,7 +35,7 @@ class TemplatesUploadsController < ApplicationController
   def create_file_params_from_url
     tempfile = Tempfile.new
     tempfile.binmode
-    tempfile.write(conn.get(params[:url]).body)
+    tempfile.write(conn.get(Addressable::URI.parse(params[:url]).display_uri.to_s).body)
     tempfile.rewind
 
     file = ActionDispatch::Http::UploadedFile.new(

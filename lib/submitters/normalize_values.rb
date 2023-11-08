@@ -71,7 +71,7 @@ module Submitters
 
       return blob if blob
 
-      data = conn.get(url).body
+      data = conn.get(Addressable::URI.parse(url).display_uri.to_s).body
 
       checksum = Digest::MD5.base64digest(data)
 
