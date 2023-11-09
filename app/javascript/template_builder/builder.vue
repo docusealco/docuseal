@@ -77,6 +77,7 @@
           :item="item"
           :document="sortedDocuments[index]"
           :accept-file-types="acceptFileTypes"
+          :with-replace-button="withUploadButton"
           :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
@@ -92,7 +93,7 @@
           :class="{ 'bg-base-100': withStickySubmitters }"
         >
           <Upload
-            v-if="sortedDocuments.length && editable"
+            v-if="sortedDocuments.length && editable && withUploadButton"
             :accept-file-types="acceptFileTypes"
             :template-id="template.id"
             :is-direct-upload="isDirectUpload"
@@ -106,7 +107,7 @@
           class="pr-3.5 pl-0.5"
         >
           <Dropzone
-            v-if="!sortedDocuments.length"
+            v-if="!sortedDocuments.length && withUploadButton"
             :template-id="template.id"
             :accept-file-types="acceptFileTypes"
             :is-direct-upload="isDirectUpload"
@@ -133,6 +134,7 @@
                 v-if="isBreakpointLg && editable"
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
+                :with-replace-button="withUploadButton"
                 :document="document"
                 :template="template"
                 :is-direct-upload="isDirectUpload"
@@ -149,6 +151,7 @@
               class="pb-4"
             >
               <Upload
+                v-if="withUploadButton"
                 :template-id="template.id"
                 :is-direct-upload="isDirectUpload"
                 @success="updateFromUpload"
@@ -312,6 +315,11 @@ export default {
       default: true
     },
     withStickySubmitters: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withUploadButton: {
       type: Boolean,
       required: false,
       default: true

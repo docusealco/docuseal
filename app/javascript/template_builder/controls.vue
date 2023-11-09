@@ -7,6 +7,7 @@
       @update:model-value="onUpdateName"
     />
     <ReplaceButton
+      v-if="withReplaceButton"
       :is-direct-upload="isDirectUpload"
       :template-id="template.id"
       @click.stop
@@ -66,6 +67,11 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    withReplaceButton: {
+      type: Boolean,
+      required: true,
+      default: true
     },
     withArrows: {
       type: Boolean,

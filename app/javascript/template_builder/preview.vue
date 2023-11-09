@@ -19,6 +19,7 @@
           <div style="width: 26px" />
           <div class="">
             <ReplaceButton
+              v-if="withReplaceButton"
               :is-direct-upload="isDirectUpload"
               :template-id="template.id"
               :accept-file-types="acceptFileTypes"
@@ -107,6 +108,11 @@ export default {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
+    },
+    withReplaceButton: {
+      type: Boolean,
+      required: true,
+      default: true
     },
     isDirectUpload: {
       type: Boolean,
