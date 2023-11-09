@@ -1,9 +1,0 @@
-<script defer data-domain="<%= ENV.fetch('PLAUSIBLE_DOMAIN', nil) %>" src="https://plausible.io/js/script.manual.js"></script>
-<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
-<script>
-document.addEventListener("turbo:load", function (e) {
-  if (e.detail.url.match(/sign_in|sign_up|password/)) {
-    plausible('pageview')
-  }
-})
-</script>
