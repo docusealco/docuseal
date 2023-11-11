@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
   LOCALE_OPTIONS = {
     'en-US' => 'English (United States)',
     'en-GB' => 'English (United Kingdom)',
+    'fr-FR' => 'French (France)',
     'es-ES' => 'Spanish (Spain)',
     'pt-PT' => 'Portuguese (Portugal)',
     'de-DE' => 'German (Germany)'
