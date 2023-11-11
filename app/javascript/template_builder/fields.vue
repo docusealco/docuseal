@@ -32,6 +32,35 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
+  <div v-if="submitterDefaultFields.length">
+    <hr class="mb-2">
+    <template
+      v-for="field in submitterDefaultFields"
+      :key="field.name"
+    >
+      <div
+        :style="{ backgroundColor: backgroundColor }"
+        draggable="true"
+        class="border border-base-300 rounded rounded-tr-none relative group mb-2"
+        @dragstart="onDragstart({ type: 'text', ...field })"
+        @dragend="$emit('drag-end')"
+      >
+        <div class="flex items-center justify-between relative cursor-grab">
+          <div class="flex items-center p-1 space-x-1">
+            <IconDrag />
+            <FieldType
+              :model-value="field.type || 'text'"
+              :editable="false"
+              :button-width="20"
+            />
+            <span class="block pl-0.5">
+              {{ field.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
   <div
     v-if="editable"
     class="grid grid-cols-3 gap-1 pb-2"
@@ -45,35 +74,12 @@
         draggable="true"
         class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
-        @dragstart="onDragstart(type)"
+        @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"
         @click="addField(type)"
       >
         <div class="w-0 absolute left-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="cursor-grab"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            <path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            <path d="M9 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            <path d="M15 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            <path d="M15 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-            <path d="M15 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          </svg>
+          <IconDrag class="cursor-grab" />
         </div>
         <div class="flex items-center flex-col px-2 py-2">
           <component :is="icon" />
@@ -134,12 +140,15 @@ import { v4 } from 'uuid'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
 import { IconLock } from '@tabler/icons-vue'
+import IconDrag from './icon_drag'
 
 export default {
   name: 'TemplateFields',
   components: {
     Field,
+    FieldType,
     FieldSubmitter,
+    IconDrag,
     IconLock
   },
   inject: ['save', 'backgroundColor', 'withPhone'],
@@ -152,6 +161,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withStickySubmitters: {
       type: Boolean,
@@ -178,11 +192,16 @@ export default {
     fieldIcons: FieldType.computed.fieldIcons,
     submitterFields () {
       return this.fields.filter((f) => f.submitter_uuid === this.selectedSubmitter.uuid)
+    },
+    submitterDefaultFields () {
+      return this.defaultFields.filter((f) => {
+        return !this.fields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+      })
     }
   },
   methods: {
-    onDragstart (fieldType) {
-      this.$emit('set-drag', fieldType)
+    onDragstart (field) {
+      this.$emit('set-drag', field)
     },
     onFieldDragover (e) {
       const targetFieldUuid = e.target.closest('[data-uuid]')?.dataset?.uuid

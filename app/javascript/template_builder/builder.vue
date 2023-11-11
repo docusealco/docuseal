@@ -123,7 +123,7 @@
                 :areas-index="fieldAreasIndex[document.uuid]"
                 :selected-submitter="selectedSubmitter"
                 :document="document"
-                :is-drag="!!dragFieldType"
+                :is-drag="!!dragField"
                 :draw-field="drawField"
                 :editable="editable"
                 :base-url="baseUrl"
@@ -222,12 +222,13 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
             :editable="editable"
             @set-draw="drawField = $event"
-            @set-drag="dragFieldType = $event"
+            @set-drag="dragField = $event"
             @change-submitter="selectedSubmitter = $event"
-            @drag-end="dragFieldType = null"
+            @drag-end="dragField = null"
             @scroll-to-area="scrollToArea"
           />
         </div>
@@ -300,6 +301,16 @@ export default {
       required: false,
       default: true
     },
+    defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     acceptFileTypes: {
       type: String,
       required: false,
@@ -343,7 +354,7 @@ export default {
       isSaving: false,
       selectedSubmitter: null,
       drawField: null,
-      dragFieldType: null
+      dragField: null
     }
   },
   computed: {
@@ -375,6 +386,13 @@ export default {
     }
   },
   created () {
+    this.defaultSubmitters.forEach((name, index) => {
+      const submitter = (this.template.submitters[index] ||= {})
+
+      submitter.name = name
+      submitter.uuid ||= v4()
+    })
+
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
@@ -567,13 +585,13 @@ export default {
     onDropfield (area) {
       const field = {
         name: '',
-        type: this.dragFieldType,
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
-        required: this.dragFieldType !== 'checkbox'
+        required: this.dragField.type !== 'checkbox',
+        ...this.dragField
       }
 
-      if (['select', 'multiple', 'radio'].includes(this.dragFieldType)) {
+      if (['select', 'multiple', 'radio'].includes(field.type)) {
         field.options = ['']
       }
 
@@ -588,27 +606,27 @@ export default {
 
       let baseArea
 
-      if (this.selectedField?.type === this.dragFieldType) {
+      if (this.selectedField?.type === field.type) {
         baseArea = this.selectedAreaRef.value
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox'].includes(this.dragFieldType)) {
+        if (['checkbox'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
           }
-        } else if (this.dragFieldType === 'image') {
+        } else if (field.type === 'image') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (this.dragFieldType === 'signature') {
+        } else if (field.type === 'signature') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
           }
-        } else if (this.dragFieldType === 'initials') {
+        } else if (field.type === 'initials') {
           baseArea = {
             w: area.maskW / 10 / area.maskW,
             h: area.maskW / 35 / area.maskW
@@ -625,7 +643,7 @@ export default {
       fieldArea.h = baseArea.h
       fieldArea.y = fieldArea.y - baseArea.h / 2
 
-      if (this.dragFieldType === 'cells') {
+      if (field.type === 'cells') {
         fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
       }
 
