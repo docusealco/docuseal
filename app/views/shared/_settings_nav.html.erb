@@ -81,6 +81,13 @@
             <% if Docuseal.multitenant? %> API <% else %> Console <% end %>
           <% end %>
         </li>
+        <% if Docuseal.multitenant? %>
+          <li>
+            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+              Embedding
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </menu-active>
