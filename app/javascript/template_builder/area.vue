@@ -68,7 +68,7 @@
         @blur="onNameBlur"
       >{{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && field.type !== 'checkbox'"
+        v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
