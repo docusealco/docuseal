@@ -15,6 +15,7 @@
       v-if="!isTextArea"
       :id="field.uuid"
       v-model="text"
+      :maxlength="cellsMaxLegth"
       class="base-input !text-2xl w-full !pr-11 -mr-10"
       :required="field.required"
       :pattern="field.validation?.pattern"
@@ -38,7 +39,7 @@
       @focus="$emit('focus')"
     />
     <div
-      v-if="!isTextArea"
+      v-if="!isTextArea && field.type !== 'cells'"
       class="tooltip"
       :data-tip="t('toggle_multiline_text')"
     >
@@ -80,6 +81,19 @@ export default {
     }
   },
   computed: {
+    cellsMaxLegth () {
+      if (this.field.type === 'cells') {
+        const area = this.field.areas?.[0]
+
+        if (area) {
+          return parseInt(area.w / area.cell_w)
+        } else {
+          return null
+        }
+      } else {
+        return null
+      }
+    },
     text: {
       set (value) {
         this.$emit('update:model-value', value)
