@@ -23,7 +23,7 @@ class PreviewDocumentPageController < ActionController::API
 
     io = Templates::ProcessDocument.generate_pdf_preview_from_file(attachment, file_path, params[:id].to_i)
 
-    render plain: io.tap(&:rewind).read
+    render plain: io.tap(&:rewind).read, content_type: 'image/jpeg'
   end
 
   def find_or_create_document_tempfile_path(attachment)

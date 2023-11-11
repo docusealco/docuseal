@@ -49,6 +49,11 @@ export default {
       required: false,
       default: null
     },
+    baseUrl: {
+      type: String,
+      required: false,
+      default: ''
+    },
     isDrag: {
       type: Boolean,
       required: false,
@@ -62,6 +67,13 @@ export default {
     }
   },
   computed: {
+    basePreviewUrl () {
+      if (this.baseUrl) {
+        return new URL(this.baseUrl).origin
+      } else {
+        return ''
+      }
+    },
     numberOfPages () {
       return this.document.metadata?.pdf?.number_of_pages || this.document.preview_images.length
     },
@@ -72,7 +84,7 @@ export default {
         return this.previewImagesIndex[i] || {
           metadata: lazyloadMetadata,
           id: Math.random().toString(),
-          url: `/preview/${this.document.uuid}/${i}.jpg`
+          url: this.basePreviewUrl + `/preview/${this.document.uuid}/${i}.jpg`
         }
       })
     },

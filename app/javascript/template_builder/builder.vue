@@ -126,6 +126,7 @@
                 :is-drag="!!dragFieldType"
                 :draw-field="drawField"
                 :editable="editable"
+                :base-url="baseUrl"
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
