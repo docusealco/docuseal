@@ -41,7 +41,7 @@
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      :class="{ 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
+      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
       @dragover.prevent
