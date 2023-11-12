@@ -15,7 +15,5 @@ class AuthWithTokenStrategy < Devise::Strategies::Base
     else
       fail!('Invalid token')
     end
-  rescue JWT::VerificationError
-    fail!('Invalid token')
   end
 end
