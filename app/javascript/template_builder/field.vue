@@ -194,17 +194,19 @@
       <div
         v-if="field.options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
+        draggable="true"
+        @dragstart.prevent.stop
       >
         <div
           v-for="(option, index) in field.options"
-          :key="index"
+          :key="option.uuid"
           class="flex space-x-1.5 items-center"
         >
           <span class="text-sm w-3.5">
             {{ index + 1 }}.
           </span>
           <input
-            v-model="field.options[index]"
+            v-model="option.value"
             class="w-full input input-primary input-xs text-sm bg-transparent"
             type="text"
             required
@@ -220,7 +222,7 @@
         <button
           v-if="field.options"
           class="text-center text-sm w-full pb-1"
-          @click="[field.options.push(''), save()]"
+          @click="addOption"
         >
           + Add option
         </button>
@@ -233,6 +235,7 @@
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateField',
@@ -309,6 +312,11 @@ export default {
     closeDropdown () {
       document.activeElement.blur()
     },
+    addOption () {
+      this.field.options.push({ value: '', uuid: v4() })
+
+      this.save()
+    },
     maybeUpdateOptions () {
       delete this.field.default_value
 
@@ -317,7 +325,7 @@ export default {
       }
 
       if (['radio', 'multiple', 'select'].includes(this.field.type)) {
-        this.field.options ||= ['']
+        this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
       (this.field.areas || []).forEach((area) => {

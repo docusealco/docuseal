@@ -252,7 +252,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = ['']
+        field.options = [{ value: '', uuid: v4() }]
       }
 
       this.fields.push(field)

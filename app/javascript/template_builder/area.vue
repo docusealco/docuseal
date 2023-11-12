@@ -140,6 +140,7 @@ import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
 import { IconX } from '@tabler/icons-vue'
+import { v4 } from 'uuid'
 
 export default {
   name: 'FieldArea',
@@ -303,7 +304,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(this.field.type)) {
-        this.field.options ||= ['']
+        this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
       (this.field.areas || []).forEach((area) => {

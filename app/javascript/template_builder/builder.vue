@@ -429,7 +429,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = ['']
+        field.options = [{ value: '', uuid: v4() }]
       }
 
       this.drawField = field
@@ -592,7 +592,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(field.type)) {
-        field.options = ['']
+        field.options = [{ value: '', uuid: v4() }]
       }
 
       const fieldArea = {
