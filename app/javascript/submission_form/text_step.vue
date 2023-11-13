@@ -86,7 +86,7 @@ export default {
         const area = this.field.areas?.[0]
 
         if (area) {
-          return parseInt(area.w / area.cell_w)
+          return parseInt(area.w / area.cell_w) + 1
         } else {
           return null
         }
