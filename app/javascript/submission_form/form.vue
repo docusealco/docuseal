@@ -641,12 +641,20 @@ export default {
       })
     },
     saveStep (formData) {
+      const currentFieldUuid = this.currentField.uuid
+
       if (this.isCompleted) {
         return Promise.resolve({})
       } else {
         return fetch(this.baseUrl + this.submitPath, {
           method: 'POST',
           body: formData || new FormData(this.$refs.form)
+        }).then((response) => {
+          if (response.status === 200) {
+            this.submittedValues[currentFieldUuid] = this.values[currentFieldUuid]
+          }
+
+          return response
         })
       }
     },
@@ -677,8 +685,6 @@ export default {
 
             return Promise.reject(new Error(data.error))
           }
-
-          this.submittedValues[this.currentField.uuid] = this.values[this.currentField.uuid]
 
           if (isLastStep) {
             this.isSecondWalkthrough = true
