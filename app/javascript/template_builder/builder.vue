@@ -168,7 +168,7 @@
           :selected-submitter="selectedSubmitter"
           class="md:hidden"
           :editable="editable"
-          @cancel="drawField = null"
+          @cancel="[drawField = null, drawOption = null]"
           @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
         />
         <FieldType
@@ -209,7 +209,7 @@
             <p>
               <button
                 class="base-button"
-                @click="drawField = null"
+                @click="[drawField = null, drawOption = null]"
               >
                 Cancel
               </button>
@@ -225,7 +225,7 @@
             :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
             :editable="editable"
-            @set-draw="drawField = $event"
+            @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @set-drag="dragField = $event"
             @change-submitter="selectedSubmitter = $event"
             @drag-end="dragField = null"
@@ -354,6 +354,7 @@ export default {
       isSaving: false,
       selectedSubmitter: null,
       drawField: null,
+      drawOption: null,
       dragField: null
     }
   },
@@ -433,6 +434,7 @@ export default {
       }
 
       this.drawField = field
+      this.drawOption = null
     },
     undo () {
       if (this.undoStack.length > 1) {
@@ -482,6 +484,7 @@ export default {
     onKeyUp (e) {
       if (e.code === 'Escape') {
         this.drawField = null
+        this.drawOption = null
         this.selectedAreaRef.value = null
       }
 
@@ -528,6 +531,16 @@ export default {
     },
     onDraw (area) {
       if (this.drawField) {
+        if (this.drawOption) {
+          const areaWithoutOption = this.drawField.areas?.find((a) => !a.option_uuid)
+
+          if (areaWithoutOption && !this.drawField.areas.find((a) => a.option_uuid === this.drawField.options[0].uuid)) {
+            areaWithoutOption.option_uuid = this.drawField.options[0].uuid
+          }
+
+          area.option_uuid = this.drawOption.uuid
+        }
+
         this.drawField.areas ||= []
         this.drawField.areas.push(area)
 
@@ -536,6 +549,7 @@ export default {
         }
 
         this.drawField = null
+        this.drawOption = null
 
         this.selectedAreaRef.value = area
 

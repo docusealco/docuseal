@@ -66,7 +66,7 @@
         @keydown.enter.prevent="onNameEnter"
         @focus="onNameFocus"
         @blur="onNameBlur"
-      >{{ field.name || defaultName }}</span>
+      >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
         v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
         class="flex items-center ml-1.5"
@@ -185,6 +185,13 @@ export default {
     defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    optionIndexText () {
+      if (this.area.option_uuid && this.field.options) {
+        return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
+      } else {
+        return ''
+      }
+    },
     cells () {
       const cells = []
 

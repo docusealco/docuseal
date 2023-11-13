@@ -58,7 +58,7 @@
             v-if="field && !field.areas.length"
             title="Draw"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
-            @click="$emit('set-draw', field)"
+            @click="$emit('set-draw', { field })"
           >
             <IconNewSection
               :width="18"
@@ -151,11 +151,11 @@
                   Page {{ area.page + 1 }}
                 </a>
               </li>
-              <li>
+              <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
                 <a
                   href="#"
                   class="text-sm py-1 px-2"
-                  @click.prevent="$emit('set-draw', field)"
+                  @click.prevent="$emit('set-draw', { field })"
                 >
                   <IconNewSection
                     :width="20"
@@ -205,16 +205,39 @@
           <span class="text-sm w-3.5">
             {{ index + 1 }}.
           </span>
+          <div
+            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid)) && !field.areas.find((a) => a.option_uuid === option.uuid)"
+            class="items-center flex w-full"
+          >
+            <input
+              v-model="option.value"
+              class="w-full input input-primary input-xs text-sm bg-transparent !pr-7 -mr-6"
+              type="text"
+              required
+              @blur="save"
+            >
+            <button
+              title="Draw"
+              @click.prevent="$emit('set-draw', { field, option })"
+            >
+              <IconNewSection
+                :width="18"
+                :stroke-width="1.6"
+              />
+            </button>
+          </div>
           <input
+            v-else
             v-model="option.value"
             class="w-full input input-primary input-xs text-sm bg-transparent"
             type="text"
             required
+            @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
           <button
             class="text-sm w-3.5"
-            @click="[field.options.splice(index, 1), save()]"
+            @click="removeOption(option)"
           >
             &times;
           </button>
@@ -248,7 +271,7 @@ export default {
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef'],
   props: {
     field: {
       type: Object,
@@ -306,6 +329,13 @@ export default {
         }, 1)
       }
     },
+    maybeFocusOnOptionArea (option) {
+      const area = this.field.areas.find((a) => a.option_uuid === option.uuid)
+
+      if (area) {
+        this.selectedAreaRef.value = area
+      }
+    },
     scrollToFirstArea () {
       return this.field.areas?.[0] && this.$emit('scroll-to', this.field.areas[0])
     },
@@ -314,6 +344,12 @@ export default {
     },
     addOption () {
       this.field.options.push({ value: '', uuid: v4() })
+
+      this.save()
+    },
+    removeOption (option) {
+      this.field.options.splice(this.field.options.indexOf(option), 1)
+      this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
 
       this.save()
     },

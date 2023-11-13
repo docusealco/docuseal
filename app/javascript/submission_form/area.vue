@@ -5,7 +5,7 @@
     :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
   >
     <div
-      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable"
+      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
       class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
     >
       <span
@@ -21,7 +21,7 @@
       </span>
     </div>
     <div
-      v-if="isActive && withLabel"
+      v-if="isActive && withLabel && !area.option_uuid"
       class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap"
     >
       {{ field.name || fieldNames[field.type] }}
@@ -83,6 +83,44 @@
       >
       <IconCheck
         v-else-if="modelValue"
+        class="aspect-square"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+      />
+    </div>
+    <div
+      v-else-if="field.type === 'radio' && area.option_uuid"
+      class="w-full p-[0.2vw] flex items-center justify-center"
+    >
+      <input
+        v-if="submittable"
+        type="radio"
+        :value="false"
+        class="aspect-square base-radio"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+        :checked="modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
+        @click="$emit('update:model-value', field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+      >
+      <IconCheck
+        v-else-if="modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
+        class="aspect-square"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+      />
+    </div>
+    <div
+      v-else-if="field.type === 'multiple' && area.option_uuid"
+      class="w-full p-[0.2vw] flex items-center justify-center"
+    >
+      <input
+        v-if="submittable"
+        type="checkbox"
+        :value="false"
+        class="aspect-square base-checkbox"
+        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+        :checked="modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        @change="updateMultipleSelectValue(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+      >
+      <IconCheck
+        v-else-if="modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />
@@ -270,6 +308,23 @@ export default {
       this.$nextTick(() => {
         this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
       })
+    }
+  },
+  methods: {
+    updateMultipleSelectValue (value) {
+      if (this.modelValue?.includes(value)) {
+        const newValue = [...this.modelValue]
+
+        newValue.splice(newValue.indexOf(value), 1)
+
+        this.$emit('update:model-value', newValue)
+      } else {
+        const newValue = this.modelValue ? [...this.modelValue] : []
+
+        newValue.push(value)
+
+        this.$emit('update:model-value', newValue)
+      }
     }
   }
 }
