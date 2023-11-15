@@ -75,7 +75,7 @@ button[disabled] .enabled {
   @apply select base-input w-full font-normal;
 }
 
-.bg-redact{
+.bg-redact {
   background: black;
 }
 
@@ -109,7 +109,7 @@ button[disabled] .enabled {
   font: inherit;
 }
 
-.autocomplete > div {
+.autocomplete>div {
   @apply px-2 py-1 font-normal text-sm;
 }
 
@@ -117,8 +117,8 @@ button[disabled] .enabled {
   background: #eee;
 }
 
-.autocomplete > div:hover:not(.group),
-.autocomplete > div.selected {
+.autocomplete>div:hover:not(.group),
+.autocomplete>div.selected {
   @apply bg-base-300;
   cursor: pointer;
 }
@@ -128,4 +128,45 @@ button[disabled] .enabled {
   outline-width: 1px;
   outline-offset: 3px;
   outline-color: hsl(var(--bc) / 0.2);
+}
+
+.my-display {
+  display: none;
+}
+
+#loader {
+  background: rgba(0, 7, 14, 0.7);
+  text-align: center;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  padding: 20% 0px;
+  height: 100vh;
+  width: 100vw;
+  text-align: -webkit-center;
+}
+
+.loader-animation {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #fff;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.text-load {
+  color: #fff;
+  font-size: large;
 }

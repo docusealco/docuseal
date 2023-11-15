@@ -3,6 +3,7 @@ import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascrip
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
+import './pdf_loader'
 
 import ToggleVisible from './elements/toggle_visible'
 import DisableHidden from './elements/disable_hidden'

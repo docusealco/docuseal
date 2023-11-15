@@ -33,7 +33,7 @@
       <% end %>
     <% end %>
     <% if !template.deleted_at? && can?(:update, template) %>
-      <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm', id: 'edit-template-link' do %>
+      <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm', id: 'edit-template-link', data: {template: edit_template_path(@template)} do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('pencil', class: 'w-6 h-6') %>
           <span>Edit</span>
@@ -41,26 +41,9 @@
       <% end %>
     <% end %>
 
-    <div id="loading-spinner" style="display: none;">
-    Loading...
-  </div>
 
     <% if template.deleted_at? && can?(:create, template) %>
       <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm' %>
     <% end %>
   </div>
 </div>
-
-<script>
-    function showLoading() {
-      document.getElementById('edit-template-link').style.display = 'none';
-      document.getElementById('loading-spinner').style.display = 'block';
-    }
-    document.getElementById('edit-template-link').addEventListener('click', function(event) {
-      event.preventDefault();
-      showLoading();
-      setTimeout(function() {
-        window.location.href = '<%= edit_template_path(template) %>';
-      }, 5000); 
-    });
-</script>
