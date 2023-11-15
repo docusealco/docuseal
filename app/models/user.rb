@@ -94,7 +94,7 @@ class User < ApplicationRecord
 
   def friendly_name
     if full_name.present?
-      "#{full_name} <#{email}>"
+      %("#{full_name.delete('"')}" <#{email}>)
     else
       email
     end
