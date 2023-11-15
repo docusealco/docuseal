@@ -97,11 +97,11 @@
         :value="false"
         class="aspect-square base-radio"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
-        :checked="modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
+        :checked="!!modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
         @click="$emit('update:model-value', field.options.find((o) => o.uuid === area.option_uuid)?.value)"
       >
       <IconCheck
-        v-else-if="modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
+        v-else-if="!!modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />
@@ -116,11 +116,11 @@
         :value="false"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
-        :checked="modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        :checked="!!modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
         @change="updateMultipleSelectValue(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
       >
       <IconCheck
-        v-else-if="modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        v-else-if="!!modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />

@@ -193,6 +193,7 @@
       </div>
       <div
         v-if="field.options"
+        ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
         draggable="true"
         @dragstart.prevent.stop
@@ -206,7 +207,7 @@
             {{ index + 1 }}.
           </span>
           <div
-            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid)) && !field.areas.find((a) => a.option_uuid === option.uuid)"
+            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
             class="items-center flex w-full"
           >
             <input
@@ -218,6 +219,7 @@
             >
             <button
               title="Draw"
+              tabindex="-1"
               @click.prevent="$emit('set-draw', { field, option })"
             >
               <IconNewSection
@@ -237,6 +239,7 @@
           >
           <button
             class="text-sm w-3.5"
+            tabindex="-1"
             @click="removeOption(option)"
           >
             &times;
@@ -344,6 +347,12 @@ export default {
     },
     addOption () {
       this.field.options.push({ value: '', uuid: v4() })
+
+      this.$nextTick(() => {
+        const inputs = this.$refs.options.querySelectorAll('input')
+
+        inputs[inputs.length - 1]?.focus()
+      })
 
       this.save()
     },
