@@ -86,6 +86,7 @@
           @up="moveDocument(item, -1)"
           @down="moveDocument(item, 1)"
           @change="save"
+          @remove-image="removeImage"
         />
         <div
           class="sticky bottom-0 py-2"
@@ -739,6 +740,26 @@ export default {
           }
         }),
         headers: { 'Content-Type': 'application/json' }
+      })
+    },
+    removeImage (imageId) {
+      console.log(this.template.documents[0].preview_secured_images)
+      // output: 0: {id: 26, name: 'preview_images', uuid: 'db2de68e-c52f-41e0-a743-550a5ba26ec0', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 1 : {id: 27, name: 'preview_images', uuid: '4f2cd882-95fb-4344-8571-78c9bb5a20aa', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 2: {id: 28, name: 'preview_images', uuid: '28bb656a-0799-4a73-b665-692aab2c690b', record_type: 'ActiveStorage::Attachment', record_id: 25, …} length: 3, imageId: 27
+      // const indexToRemove = this.template.documents.findIndex(item => item.id === imageId)
+      this.template.documents.forEach((document) => {
+        // Check if the document has a preview_images array
+        if (Array.isArray(document.preview_images)) {
+          // Find the index of the preview image with the matching id
+          console.log('simple preview', document.preview_images, ': secured', document.preview_secured_images)
+          const indexToRemove = document.preview_images.findIndex(
+            (previewImage) => previewImage.id === imageId
+          )
+          if (indexToRemove !== -1) {
+            document.preview_images.splice(indexToRemove, 1)
+            // Optionally, emit a 'change' event if needed
+            // this.$emit('change');
+          }
+        }
       })
     }
   }
