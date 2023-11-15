@@ -23,7 +23,7 @@ module ActionMailerConfigsInterceptor
     if email_configs
       message.delivery_method(:smtp, build_smtp_configs_hash(email_configs))
 
-      message.from = "#{email_configs.account.name} <#{email_configs.value['from_email']}>"
+      message.from = email_configs.value['from_email']
     else
       message.delivery_method(:test)
     end
