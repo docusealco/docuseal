@@ -80,7 +80,7 @@
           :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
-          @scroll-to="scrollIntoDocument(item)"
+          @scroll-to="scrollIntoDocument"
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
@@ -448,10 +448,10 @@ export default {
         this.documentRefs.push(el)
       }
     },
-    scrollIntoDocument (item) {
-      const ref = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
-
-      ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollIntoDocument (item, page) {
+      const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
+      documentRef.scrollIntoDocument(page)
+      // pageRef.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     onKeyUp (e) {
       if (e.code === 'Escape') {

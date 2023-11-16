@@ -13,7 +13,7 @@
       </div>
       <div
         class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1"
-        @click="$emit('scroll-to', item)"
+        @click="$emit('scroll-to', item, previewImage)"
       >
         <div
           v-if="editable && index==0"
