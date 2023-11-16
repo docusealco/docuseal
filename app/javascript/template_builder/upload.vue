@@ -10,15 +10,24 @@
         width="20"
         class="animate-spin"
       />
-      <IconUpload v-else width="20" />
-      <span v-if="isLoading"> Uploading... </span>
-      <span v-else-if="isProcessing"> Processing... </span>
-      <span v-else> Add Document </span>
+      <IconUpload
+        v-else
+        width="20"
+      />
+      <span v-if="isLoading">
+        Uploading...
+      </span>
+      <span v-else-if="isProcessing">
+        Processing...
+      </span>
+      <span v-else>
+        Add Document
+      </span>
     </label>
-    <label class="btn btn-outline w-full mt-2" @click="addBlankPage">
-      <span> Add blank page </span>
-    </label>
-    <form ref="form" class="hidden">
+    <form
+      ref="form"
+      class="hidden"
+    >
       <input
         :id="inputId"
         ref="input"
@@ -27,118 +36,111 @@
         :accept="acceptFileTypes"
         multiple
         @change="upload"
-      />
+      >
     </form>
   </div>
 </template>
 
 <script>
-import { IconUpload, IconInnerShadowTop } from "@tabler/icons-vue";
-import { PDFDocument, rgb } from "pdf-lib";
+import { IconUpload, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
-  name: "DocumentsUpload",
+  name: 'DocumentsUpload',
   components: {
     IconUpload,
-    IconInnerShadowTop,
+    IconInnerShadowTop
   },
-  inject: ["baseFetch"],
+  inject: ['baseFetch'],
   props: {
     templateId: {
       type: [Number, String],
-      required: true,
+      required: true
     },
     acceptFileTypes: {
       type: String,
       required: false,
-      default: "image/*, application/pdf",
+      default: 'image/*, application/pdf'
     },
     isDirectUpload: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["success"],
-  data() {
+  emits: ['success'],
+  data () {
     return {
       isLoading: false,
-      isProcessing: false,
-    };
+      isProcessing: false
+    }
   },
   computed: {
-    inputId() {
-      return "el" + Math.random().toString(32).split(".")[1];
-    },
+    inputId () {
+      return 'el' + Math.random().toString(32).split('.')[1]
+    }
   },
-  mounted() {
+  mounted () {
     if (this.isDirectUpload) {
-      import("@rails/activestorage");
+      import('@rails/activestorage')
     }
   },
   methods: {
-    async upload() {
-      this.isLoading = true;
+    async upload () {
+      this.isLoading = true
 
       if (this.isDirectUpload) {
-        const { DirectUpload } = await import("@rails/activestorage");
+        const { DirectUpload } = await import('@rails/activestorage')
 
         const blobs = await Promise.all(
           Array.from(this.$refs.input.files).map(async (file) => {
             const upload = new DirectUpload(
               file,
-              "/direct_uploads",
+              '/direct_uploads',
               this.$refs.input
-            );
+            )
 
             return new Promise((resolve, reject) => {
               upload.create((error, blob) => {
                 if (error) {
-                  console.error(error);
+                  console.error(error)
 
-                  return reject(error);
+                  return reject(error)
                 } else {
-                  return resolve(blob);
+                  return resolve(blob)
                 }
-              });
+              })
             }).catch((error) => {
-              console.error(error);
-            });
+              console.error(error)
+            })
           })
         ).finally(() => {
-          this.isLoading = false;
-        });
+          this.isLoading = false
+        })
 
-        this.isProcessing = true;
+        this.isProcessing = true
 
         this.baseFetch(`/api/templates/${this.templateId}/documents`, {
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify({ blobs }),
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.json()).then((data) => {
+          this.$emit('success', data)
+          this.$refs.input.value = ''
+        }).finally(() => {
+          this.isProcessing = false
         })
-          .then((resp) => resp.json())
-          .then((data) => {
-            this.$emit("success", data);
-            this.$refs.input.value = "";
-          })
-          .finally(() => {
-            this.isProcessing = false;
-          });
       } else {
         this.baseFetch(`/api/templates/${this.templateId}/documents`, {
-          method: "POST",
-          body: new FormData(this.$refs.form),
+          method: 'POST',
+          body: new FormData(this.$refs.form)
+        }).then(resp => resp.json()).then((data) => {
+          this.$emit('success', data)
+          this.$refs.input.value = ''
+        }).finally(() => {
+          this.isLoading = false
         })
-          .then((resp) => resp.json())
-          .then((data) => {
-            this.$emit("success", data);
-            this.$refs.input.value = "";
-          })
-          .finally(() => {
-            this.isLoading = false;
-          });
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

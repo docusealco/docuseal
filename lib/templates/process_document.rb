@@ -105,11 +105,14 @@ module Templates
 
     def generate_pdf_secured_preview_images(template, attachment, data)
       ActiveStorage::Attachment.where(name: SECURED_ATTACHMENT_NAME, record: attachment).destroy_all
+      # delete field image from pdf document throught hexapdf
       number_of_pages = PDF::Reader.new(StringIO.new(data)).pages.size - 1
       (0..number_of_pages).each do |page_number|
         pdf = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         pdf = pdf.resize(MAX_WIDTH / pdf.width.to_f)
         redacted_boxes = template.fields.select { |field| field['type'] == 'redact' && field['areas'][0]['page'] == page_number }
+        # deleted_page_field = template.fields.select { |field| field['type'] == 'deleted_page' && field['areas'][0]['page'] == page_number }
+        # break if !deleted_page_field.empty?
         if !redacted_boxes.empty?
           redacted_boxes.each do |box|
             x = (box['areas'][0]['x'] * pdf.width).to_i
@@ -132,6 +135,51 @@ module Templates
           record: attachment
         )
       end
+    end
+
+    def delete_picture(template, attachment_id, page_number)
+      attachment = ActiveStorage::Attachment.find_by(id: attachment_id)
+      byebug
+      return unless attachment
+      attachment.purge
+      deleted_page_field = {
+        'type' => 'deleted_page',
+        'areas' => [{
+          'page' => page_number,
+          'x' => 0,
+          'y' => 0,
+          'w' => 1,
+          'h' => 1
+        }]
+      }
+      template.fields << deleted_page_field
+      template.save!
+    end
+
+    def upload_new_blank_image(template)
+      existing_document = template.documents.first
+      blank_image = generate_blank_image
+      blank_blob = create_blob_from_image(blank_image)
+      upload_new_attachment(template, blank_blob, ATTACHMENT_NAME)
+      # puts '-----New blank image uploaded successfully!-----'
+      Rails.logger.info('New blank image uploaded successfully!')
+    rescue StandardError => e
+      Rails.logger.error("Error uploading new blank image: #{e.message}")
+    end
+    def generate_blank_image
+      height = 2000
+      Vips::Image.black(MAX_WIDTH, height)
+    end
+    def create_blob_from_image(image)
+      ActiveStorage::Blob.create_and_upload!(
+        io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
+        filename: "#{SecureRandom.uuid}#{FORMAT}",
+        metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
+      )
+    end
+    def upload_new_attachment(template, blob, attachment_name)
+      template.documents.attach(blob)
+      template.documents.last.update!(name: attachment_name)
     end
 
   end

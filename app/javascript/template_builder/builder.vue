@@ -742,7 +742,7 @@ export default {
         headers: { 'Content-Type': 'application/json' }
       })
     },
-    removeImage (imageId) {
+    removeImage ({ item, imageId }) {
       console.log(this.template.documents[0].preview_secured_images)
       // output: 0: {id: 26, name: 'preview_images', uuid: 'db2de68e-c52f-41e0-a743-550a5ba26ec0', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 1 : {id: 27, name: 'preview_images', uuid: '4f2cd882-95fb-4344-8571-78c9bb5a20aa', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 2: {id: 28, name: 'preview_images', uuid: '28bb656a-0799-4a73-b665-692aab2c690b', record_type: 'ActiveStorage::Attachment', record_id: 25, …} length: 3, imageId: 27
       // const indexToRemove = this.template.documents.findIndex(item => item.id === imageId)
@@ -750,17 +750,78 @@ export default {
         // Check if the document has a preview_images array
         if (Array.isArray(document.preview_images)) {
           // Find the index of the preview image with the matching id
-          console.log('simple preview', document.preview_images, ': secured', document.preview_secured_images)
           const indexToRemove = document.preview_images.findIndex(
             (previewImage) => previewImage.id === imageId
           )
+          // console.log('simple preview', document.preview_images, ': secured', document.preview_secured_images)
+          console.log(indexToRemove)
           if (indexToRemove !== -1) {
-            document.preview_images.splice(indexToRemove, 1)
-            // Optionally, emit a 'change' event if needed
-            // this.$emit('change');
+            // here I want to send call to a controller named template_document
+            const documentId = document.id
+            const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/del_image`
+            fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                template: this.template.id,
+                attachment_id: imageId,
+                documentId
+                // page_number: document.preview_images.find(x => x.id === imageId).name
+              })
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`)
+                }
+                return response.json()
+              })
+              .then((data) => {
+                // remove from frontend
+                document.preview_images.splice(indexToRemove, 1)
+                console.log('Success:', data)
+              })
+              .catch((error) => {
+                console.error('Error:', error)
+              })
           }
         }
       })
+    },
+    addBlankPage (item) {
+      console.log(this.sortedDocuments)
+      // console.log(this.template)
+      const documentId = item.id
+      console.log(documentId)
+      const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          template: this.template.id,
+          document: item
+        })
+      })
+      // this.baseFetch(`/api/templates/${this.templateId}/documents/add_new_image`, {
+      //   method: 'POST',
+      //   body: JSON.stringify({ template: this.template }),
+      //   headers: { 'Content-Type': 'application/json' }
+      // })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+          }
+          return response.json()
+        })
+        .then((data) => {
+          console.log('Success:', data)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     }
   }
 }
