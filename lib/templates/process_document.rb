@@ -51,6 +51,7 @@ module Templates
       attachment.save!
 
       (0..[number_of_pages - 1, MAX_NUMBER_OF_PAGES_PROCESSED].min).each do |page_number|
+
         page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
@@ -103,16 +104,37 @@ module Templates
       io
     end
 
+    def modify_pdf_data(original_pdf_data, excluded_page_number)
+      pdf = HexaPDF::Document.new(io: StringIO.new(original_pdf_data))
+      pdf.pages.delete_at(excluded_page_number)
+      modified_pdf_data = StringIO.new
+      pdf.write(modified_pdf_data)
+      modified_pdf_data.string
+    end
+    
+    def create_blob_from_data(data, original_blob)
+      original_blob.tap do |blob|
+        blob.io = StringIO.new(data)
+        blob.filename = original_blob.filename
+        blob.save!
+      end
+    end
+
     def generate_pdf_secured_preview_images(template, attachment, data)
       ActiveStorage::Attachment.where(name: SECURED_ATTACHMENT_NAME, record: attachment).destroy_all
-      # delete field image from pdf document throught hexapdf
       number_of_pages = PDF::Reader.new(StringIO.new(data)).pages.size - 1
       (0..number_of_pages).each do |page_number|
         pdf = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         pdf = pdf.resize(MAX_WIDTH / pdf.width.to_f)
         redacted_boxes = template.fields.select { |field| field['type'] == 'redact' && field['areas'][0]['page'] == page_number }
-        # deleted_page_field = template.fields.select { |field| field['type'] == 'deleted_page' && field['areas'][0]['page'] == page_number }
-        # break if !deleted_page_field.empty?
+        deleted_page_field = template.fields.select { |field| field['type'] == 'deleted_page' && field['areas'][0]['page'] == page_number }
+        if !deleted_page_field.empty?
+          modified_pdf_data = modify_pdf_data(data, page_number)
+          attachment.blob = create_blob_from_data(modified_pdf_data, attachment.blob)
+          template.fields.delete(deleted_page_field)
+          template.save!
+          next 
+        end
         if !redacted_boxes.empty?
           redacted_boxes.each do |box|
             x = (box['areas'][0]['x'] * pdf.width).to_i
@@ -139,17 +161,17 @@ module Templates
 
     def delete_picture(template, attachment_id, page_number)
       attachment = ActiveStorage::Attachment.find_by(id: attachment_id)
-      byebug
       return unless attachment
       attachment.purge
       deleted_page_field = {
         'type' => 'deleted_page',
         'areas' => [{
-          'page' => page_number,
           'x' => 0,
           'y' => 0,
           'w' => 1,
           'h' => 1
+          'attachment_uuid' => SecureRandom.uuid,
+          'page' => page_number,
         }]
       }
       template.fields << deleted_page_field

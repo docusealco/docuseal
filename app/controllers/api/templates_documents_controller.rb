@@ -31,7 +31,7 @@ module Api
       page_number = template.documents.find(document_id).preview_images.find_index { |pic| pic.id == attachment_id }
       if page_number
         Templates::ProcessDocument.delete_picture(template, attachment_id, page_number)
-        render json: { success: true, message: 'New blank image added successfully' }
+        render json: { success: true, message: 'image deleted successfully' }
       else
         page_number = "No image found for deletion"
         render json: { success: false, message: "Error: #{page_number}" }, status: :unprocessable_entity
