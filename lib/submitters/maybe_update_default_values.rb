@@ -19,7 +19,9 @@ module Submitters
       fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
-        submitter.values[field['uuid']] ||= get_default_value_for_field(field, user, submitter)
+        default_value = get_default_value_for_field(field, user, submitter)
+
+        submitter.values[field['uuid']] ||= value if default_value.present?
       end
 
       submitter.save!
