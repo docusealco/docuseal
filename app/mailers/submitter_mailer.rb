@@ -8,7 +8,7 @@ class SubmitterMailer < ApplicationMailer
     @submitter = submitter
     @body = body.presence
 
-    @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
     subject =
       if @email_config || subject.present?
@@ -31,7 +31,7 @@ class SubmitterMailer < ApplicationMailer
 
     Submissions::EnsureResultGenerated.call(submitter)
 
-    @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
     add_completed_email_attachments!(submitter)
 
@@ -58,7 +58,7 @@ class SubmitterMailer < ApplicationMailer
 
     @documents = add_completed_email_attachments!(submitter)
 
-    @email_config = @current_account.account_configs.find_by(key: AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
     subject =
       if @email_config
