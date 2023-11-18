@@ -21,7 +21,7 @@ module Submitters
 
         default_value = get_default_value_for_field(field, user, submitter)
 
-        submitter.values[field['uuid']] ||= value if default_value.present?
+        submitter.values[field['uuid']] ||= default_value if default_value.present?
       end
 
       submitter.save!
