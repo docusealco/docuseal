@@ -163,46 +163,71 @@ module Templates
       attachment = ActiveStorage::Attachment.find_by(id: attachment_id)
       return unless attachment
       attachment.purge
-      deleted_page_field = {
-        'type' => 'deleted_page',
-        'areas' => [{
-          'x' => 0,
-          'y' => 0,
-          'w' => 1,
-          'h' => 1
-          'attachment_uuid' => SecureRandom.uuid,
-          'page' => page_number,
-        }]
-      }
+      # deleted_page_field = {
+      #   'type' => 'deleted_page',
+      #   'areas' => [{
+      #     'x' => 0,
+      #     'y' => 0,
+      #     'w' => 1,
+      #     'h' => 1
+      #     'attachment_uuid' => SecureRandom.uuid,
+      #     'page' => page_number,
+      #   }]
+      # }
       template.fields << deleted_page_field
       template.save!
     end
 
-    def upload_new_blank_image(template)
-      existing_document = template.documents.first
+    def upload_new_blank_image(template, document)
+     
       blank_image = generate_blank_image
-      blank_blob = create_blob_from_image(blank_image)
-      upload_new_attachment(template, blank_blob, ATTACHMENT_NAME)
+      blank_blob = create_blob_from_image(blank_image, document )
+      # upload_new_attachment(template, blank_blob, ATTACHMENT_NAME)
       # puts '-----New blank image uploaded successfully!-----'
-      Rails.logger.info('New blank image uploaded successfully!')
-    rescue StandardError => e
-      Rails.logger.error("Error uploading new blank image: #{e.message}")
+      if blank_blob
+       Rails.logger.info('New blank image uploaded successfully!')
+      else
+        Rails.logger.info('Blank image not uploaded')
+      end
     end
-    def generate_blank_image
+
+   
+    def generate_blank_image #gives images when debug
       height = 2000
-      Vips::Image.black(MAX_WIDTH, height)
+      Vips::Image.new_from_array([[255]* MAX_WIDTH] * height, 255)
     end
-    def create_blob_from_image(image)
-      ActiveStorage::Blob.create_and_upload!(
-        io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
+
+
+    def create_blob_from_image(image, attachment)
+     
+      begin
+      previews_count = attachment.preview_images.count
+      # base_filename = "#{SecureRandom.uuid}_#{previews_count + 1}"
+      ActiveStorage::Attachment.create!(
+        blob: ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
         filename: "#{SecureRandom.uuid}#{FORMAT}",
         metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
+        ),
+        name: ATTACHMENT_NAME,
+        record: attachment
       )
+      rescue => e
+      Rails.logger.error("Error creating blob from image: #{e.message}")
+      end
     end
-    def upload_new_attachment(template, blob, attachment_name)
-      template.documents.attach(blob)
-      template.documents.last.update!(name: attachment_name)
-    end
+
+
+    #   ActiveStorage::Blob.create_and_upload!(
+    #     io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
+    #     filename: "#{SecureRandom.uuid}#{FORMAT}",
+    #     metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
+    #   )
+    # end
+    # def upload_new_attachment(template, blob, attachment_name)
+    #   template.documents.attach(blob)
+    #   template.documents.last.update!(name: attachment_name)
+    # end
 
   end
 end

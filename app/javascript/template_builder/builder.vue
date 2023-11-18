@@ -81,6 +81,7 @@
           :template="template"
           :is-direct-upload="isDirectUpload"
           @scroll-to="scrollIntoDocument"
+          @add-blank-page="addBlankPage"
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
@@ -791,27 +792,24 @@ export default {
         }
       })
     },
-    addBlankPage (item) {
-      console.log(this.sortedDocuments)
-      // console.log(this.template)
-      const documentId = item.id
-      console.log(documentId)
-      const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`
+    addBlankPage(item) {
+      const documentRef = this.documentRefs.find(
+        (e) => e.document.uuid === item.attachment_uuid
+      );
+      console.log(documentRef.document);
+
+      const documentId = documentRef.document.id;
+      const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`;
       fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          template: this.template.id,
-          document: item
-        })
+          template_id: this.template.id,
+          document: documentRef.document,
+        }),
       })
-      // this.baseFetch(`/api/templates/${this.templateId}/documents/add_new_image`, {
-      //   method: 'POST',
-      //   body: JSON.stringify({ template: this.template }),
-      //   headers: { 'Content-Type': 'application/json' }
-      // })
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)

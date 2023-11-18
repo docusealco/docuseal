@@ -81,6 +81,13 @@
         </div>
       </div>
     </div>
+    <button
+      class="btn btn-outline w-full mt-2"
+      @click="$emit('add-blank-page', item)"
+    >
+      <span> Add blank page </span>
+    </button>
+
     <div class="flex pb-2 pt-1.5">
       <Contenteditable
         :model-value="item.name"
@@ -138,7 +145,7 @@ export default {
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'remove-image'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'remove-image','add-blank-page'],
   computed: {
     previewImage () {
       return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]

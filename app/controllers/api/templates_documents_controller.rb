@@ -39,10 +39,11 @@ module Api
     end
     
     def add_new_image
-      byebug
       template = Template.find(params[:template_id])
+      raw_document = params[:document]
+      document = template.documents.find_by(id: raw_document[:id])
       begin
-        Templates::ProcessDocument.upload_new_blank_image(template)
+        Templates::ProcessDocument.upload_new_blank_image(template, document)
         render json: { success: true, message: 'New blank image added successfully' }
       rescue StandardError => e
         render json: { success: false, message: "Error adding new blank image: #{e.message}" }, status: :unprocessable_entity
