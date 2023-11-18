@@ -6,17 +6,37 @@
       >{{ field.name || t('signature') }}</label>
       <div class="space-x-2 flex">
         <span
+          v-if="isTextSignature"
           class="tooltip"
-          data-tip="Type text"
+          :data-tip="t('draw_signature')"
         >
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-sm btn-circle"
-            :class="{ 'btn-neutral': isTextSignature, 'btn-outline': !isTextSignature }"
+            class="btn btn-outline btn-sm font-medium"
+            @click.prevent="toggleTextInput"
+          >
+            <IconSignature :width="16" />
+            <span class="hidden sm:inline">
+              {{ t('draw') }}
+            </span>
+          </a>
+        </span>
+        <span
+          v-else
+          class="tooltip"
+          :data-tip="t('type_text')"
+        >
+          <a
+            id="type_text_button"
+            href="#"
+            class="btn btn-outline btn-sm font-medium"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
+            <span class="hidden sm:inline">
+              {{ t('type') }}
+            </span>
           </a>
         </span>
         <span
@@ -24,7 +44,7 @@
           data-tip="Take photo"
         >
           <label
-            class="btn btn-outline btn-sm btn-circle"
+            class="btn btn-outline btn-sm font-medium"
           >
             <IconCamera :width="16" />
             <input
@@ -33,12 +53,15 @@
               accept="image/*"
               @change="drawImage"
             >
+            <span class="hidden sm:inline">
+              {{ t('upload') }}
+            </span>
           </label>
         </span>
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm"
+          class="btn btn-outline btn-sm font-medium"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
@@ -47,7 +70,7 @@
         <a
           v-else
           href="#"
-          class="btn btn-outline btn-sm"
+          class="btn btn-outline btn-sm font-medium"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -79,7 +102,8 @@
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
-      class="bg-white border border-base-300 rounded"
+      style="padding: 1px; 0"
+      class="bg-white border border-base-300 rounded-2xl"
     />
     <input
       v-if="isTextSignature"
@@ -95,7 +119,7 @@
 </template>
 
 <script>
-import { IconReload, IconCamera, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
 
@@ -107,6 +131,7 @@ export default {
     IconReload,
     IconCamera,
     IconTextSize,
+    IconSignature,
     IconArrowsDiagonalMinimize2
   },
   inject: ['baseUrl', 't'],

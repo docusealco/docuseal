@@ -6,23 +6,43 @@
       >{{ field.name || t('initials') }}</label>
       <div class="space-x-2 flex">
         <span
+          v-if="isDrawInitials"
+          class="tooltip"
+          :data-tip="t('type_initials')"
+        >
+          <a
+            id="type_text_button"
+            href="#"
+            class="btn btn-outline font-medium btn-sm"
+            @click.prevent="toggleTextInput"
+          >
+            <IconTextSize :width="16" />
+            <span class="hidden sm:inline">
+              {{ t('type') }}
+            </span>
+          </a>
+        </span>
+        <span
+          v-else
           class="tooltip"
           :data-tip="t('draw_initials')"
         >
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-sm btn-circle"
-            :class="{ 'btn-neutral': isDrawInitials, 'btn-outline': !isDrawInitials }"
+            class="btn btn-outline font-medium btn-sm"
             @click.prevent="toggleTextInput"
           >
             <IconSignature :width="16" />
+            <span class="hidden sm:inline">
+              {{ t('draw') }}
+            </span>
           </a>
         </span>
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
@@ -31,7 +51,7 @@
         <a
           v-else
           href="#"
-          class="btn btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -63,7 +83,7 @@
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
-      class="bg-white border border-base-300 rounded"
+      class="bg-white border border-base-300 rounded-2xl"
     />
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
@@ -81,13 +101,14 @@
 
 <script>
 import { cropCanvasAndExportToPNG } from './crop_canvas'
-import { IconReload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconReload, IconTextSize, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 
 export default {
   name: 'InitialsStep',
   components: {
     IconReload,
+    IconTextSize,
     IconSignature,
     IconArrowsDiagonalMinimize2
   },
