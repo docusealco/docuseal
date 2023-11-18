@@ -5,9 +5,8 @@
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
-      <div class="mt-4 flex">
-        <%= render 'banner' %>
-      </div>
+      <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 %>
+      <%= render 'banner' %>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
