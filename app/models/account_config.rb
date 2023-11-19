@@ -49,7 +49,7 @@ class AccountConfig < ApplicationRecord
       'body' => "Hi there,\n\n" \
                 "Please check the copy of your \"{{template.name}}\" submission in the email attachments.\n" \
                 "Alternatively, you can download your copy using:\n\n" \
-                "{{documents.links}}\n\n" \
+                "{{documents.link}}\n\n" \
                 "Thanks,\n" \
                 '{{account.name}}'
     }
