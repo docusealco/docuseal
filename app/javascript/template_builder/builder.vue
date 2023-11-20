@@ -792,129 +792,38 @@ export default {
         }
       })
     },
-    addBlankPage(item) {
+    addBlankPage (item) {
       const documentRef = this.documentRefs.find(
         (e) => e.document.uuid === item.attachment_uuid
-      );
-      console.log(documentRef.document);
-
-      const documentId = documentRef.document.id;
-      const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`;
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          template_id: this.template.id,
-          document: documentRef.document,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
-          }
-          return response.json()
+      )
+      const confirmed = window.confirm('Are you sure you want to create new image?')
+      if (confirmed) {
+        const documentId = documentRef.document.id
+        const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            template_id: this.template.id,
+            document: documentRef.document
+          })
         })
-        .then((data) => {
-          console.log('Success:', data)
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json()
+          })
+          .then((data) => {
+            console.log('Success: ---', data)
+          })
+          .catch((error) => {
+            console.error('Error: ---', error)
+          })
+      }
     }
-    // addBlankPage () {
-    //   console.log(this.sortedDocuments)
-    //   console.log(this.template)
-    //   // here I need to send call to api controller action named add_new_image passing this.template as an argument on success response log success message.
-    // }
-    // addBlankPage () {
-    //   console.log(this.sortedDocuments)
-    //   console.log(this.template)
-    //   // if (!document) {
-    //   //   console.error('No document available for adding a blank page.')
-    //   // }
-    //   // const selectedDocument = this.sortedDocuments.find(/* your condition to identify the selected document */)
-
-    //   // if (selectedDocument) {
-    //   //   // Add a new blank page to the selected document
-    //   //   const newBlankPage = {
-    //   //     // Set properties for the new blank page
-    //   //     // Ensure that you generate unique values for id, uuid, etc.
-    //   //     id: /* unique id for the new page */,
-    //   //     uuid: /* unique uuid for the new page */,
-    //   //     // ... other properties ...
-    //   //   }
-
-    //   //   // Add the new page to the document's pages array
-    //   //   selectedDocument.pages.push(newBlankPage)
-
-    //   //   // Create a new preview image for the blank page
-    //   //   const newPreviewImage = {
-    //   //     id: /* unique id for the new preview image */,
-    //   //     url: /* url for the blank page image */,
-    //   //     metadata: {
-    //   //       width: /* width of the blank page */,
-    //   //       height: /* height of the blank page */,
-    //   //     },
-    //   //     // ... other properties ...
-    //   //   }
-
-    //   //   // Add the new preview image to the document's preview_images array
-    //   //   selectedDocument.preview_images.push(newPreviewImage)
-
-    //   //   // Save the changes
-    //   //   this.save()
-    //   // }
-    // }
-    // async addBlankPage () {
-    //   try {
-    //     // Assuming 'this.document' refers to the current document or template
-    //     const document = this.document
-
-    //     // Check if the document is available
-    //     if (!document) {
-    //       console.error('No document available for adding a blank page.')
-    //       return
-    //     }
-
-    //     // Generate a blank page image using Vips
-    //     const blankPage = await this.generateBlankPage()
-
-    //     // Assuming 'Templates::ProcessDocument' is accessible in this component
-    //     // Add the blank page to the document using the processing module
-    //     Templates::ProcessDocument.generate_preview_image(document, blankPage)
-
-    //     // Assuming there's a method to save or update the document after adding the blank page
-    //     await this.saveDocument(document);
-
-    //     console.log('Blank page added successfully!');
-    //   } catch (error) {
-    //     console.error('Error adding blank page:', error);
-    //   }
-    // },
-
-    // Function to generate a blank page using Vips
-    // generateBlankPage () {
-    //   // Assuming you have a utility function or method to create a blank image
-    //   // This could be a simple white image with the desired dimensions
-    //   const blankPage = createBlankImage(); // You should implement this function
-
-    //   return blankPage;
-    // },
-
-    // Assuming there's a method to save or update the document after modification
-    // async saveDocument (document) {
-    //   try {
-    //     // Perform the necessary steps to save or update the document
-    //     // For example, you might use an API call or other methods to persist changes
-    //     await document.save(); // You should implement this method
-
-    //     console.log('Document saved successfully!');
-    //   } catch (error) {
-    //     console.error('Error saving document:', error);
-    //   }
-    // }
   }
 }
 </script>

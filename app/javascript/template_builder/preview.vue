@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(previewImage, index) in document.preview_images" :key="previewImage.id" class="relative">
+    <div v-for="(previewImage, index) in sortedPreviewImages" :key="previewImage.id" class="relative">
       <img
         :src="previewImage.url"
         :width="previewImage.metadata.width"
@@ -145,10 +145,10 @@ export default {
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'remove-image','add-blank-page'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'remove-image', 'add-blank-page'],
   computed: {
-    previewImage () {
-      return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]
+    sortedPreviewImages () {
+      return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))
     }
   },
   mounted () {

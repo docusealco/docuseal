@@ -162,18 +162,18 @@ module Templates
     def delete_picture(template, attachment_id, page_number)
       attachment = ActiveStorage::Attachment.find_by(id: attachment_id)
       return unless attachment
-      attachment.purge
-      # deleted_page_field = {
-      #   'type' => 'deleted_page',
-      #   'areas' => [{
-      #     'x' => 0,
-      #     'y' => 0,
-      #     'w' => 1,
-      #     'h' => 1
-      #     'attachment_uuid' => SecureRandom.uuid,
-      #     'page' => page_number,
-      #   }]
-      # }
+      # attachment.purge
+      deleted_page_field = {
+        'type' => 'deleted_page',
+        'areas' => [{
+          'x' => 0,
+          'y' => 0,
+          'w' => 1,
+          'h' => 1,
+          'attachment_uuid' => SecureRandom.uuid,
+          'page' => page_number,
+        }]
+      }
       template.fields << deleted_page_field
       template.save!
     end
@@ -192,7 +192,7 @@ module Templates
     end
 
    
-    def generate_blank_image #gives images when debug
+    def generate_blank_image
       height = 2000
       Vips::Image.new_from_array([[255]* MAX_WIDTH] * height, 255)
     end
@@ -202,11 +202,10 @@ module Templates
      
       begin
       previews_count = attachment.preview_images.count
-      # base_filename = "#{SecureRandom.uuid}_#{previews_count + 1}"
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
           io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
-        filename: "#{SecureRandom.uuid}#{FORMAT}",
+        filename: "#{previews_count}#{FORMAT}",
         metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
         ),
         name: ATTACHMENT_NAME,
@@ -216,18 +215,6 @@ module Templates
       Rails.logger.error("Error creating blob from image: #{e.message}")
       end
     end
-
-
-    #   ActiveStorage::Blob.create_and_upload!(
-    #     io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
-    #     filename: "#{SecureRandom.uuid}#{FORMAT}",
-    #     metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
-    #   )
-    # end
-    # def upload_new_attachment(template, blob, attachment_name)
-    #   template.documents.attach(blob)
-    #   template.documents.last.update!(name: attachment_name)
-    # end
 
   end
 end
