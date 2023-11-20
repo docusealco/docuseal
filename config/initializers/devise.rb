@@ -14,6 +14,7 @@ Devise.otp_allowed_drift = 60.seconds
 #
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+# rubocop:disable Metrics/BlockLength
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift(:two_factor_authenticatable)
@@ -277,6 +278,12 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :google_oauth2, ENV.fetch('GOOGLE_CLIENT_ID', nil), ENV.fetch('GOOGLE_CLIENT_SECRET', nil), {}
+  config.omniauth :microsoft_office365, ENV.fetch('OFFICE365_CLIENT_ID', nil),
+                  ENV.fetch('OFFICE365_CLIENT_SECRET', nil), {}
+
+  if ENV['GITHUB_CLIENT_ID']
+    config.omniauth :github, ENV.fetch('GITHUB_CLIENT_ID', nil), ENV.fetch('GITHUB_CLIENT_SECRET', nil), {}
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -316,3 +323,4 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 end
+# rubocop:enable Metrics/BlockLength
