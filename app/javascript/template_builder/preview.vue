@@ -19,7 +19,18 @@
           v-if="editable && index==0"
           class="flex justify-between w-full"
         >
-          <div style="width: 26px" />
+          <div
+            v-if="sortedPreviewImages.length != 1"
+            class="flex flex-col justify-between opacity-0 group-hover:opacity-100"
+          >
+            <button
+              class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+              style="width: 24px; height: 24px"
+              @click.stop="$emit('remove-image', item, previewImage.id)"
+            >
+              &times;
+            </button>
+          </div>
           <div class="">
             <ReplaceButton
               :is-direct-upload="isDirectUpload"

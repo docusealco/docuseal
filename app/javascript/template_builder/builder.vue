@@ -452,7 +452,6 @@ export default {
     scrollIntoDocument (item, page) {
       const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
       documentRef.scrollIntoDocument(page)
-      // pageRef.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     onKeyUp (e) {
       if (e.code === 'Escape') {
@@ -648,7 +647,7 @@ export default {
       this.save()
     },
     onDocumentRemove (item) {
-      if (window.confirm('Are you sure?')) {
+      if (window.confirm('Are you sure you want to delete the document?')) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 
@@ -744,58 +743,46 @@ export default {
       })
     },
     removeImage (item, imageId) {
-      // console.log(this.template.documents[0].preview_secured_images)
-      // output: 0: {id: 26, name: 'preview_images', uuid: 'db2de68e-c52f-41e0-a743-550a5ba26ec0', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 1 : {id: 27, name: 'preview_images', uuid: '4f2cd882-95fb-4344-8571-78c9bb5a20aa', record_type: 'ActiveStorage::Attachment', record_id: 25, …} 2: {id: 28, name: 'preview_images', uuid: '28bb656a-0799-4a73-b665-692aab2c690b', record_type: 'ActiveStorage::Attachment', record_id: 25, …} length: 3, imageId: 27
-      // const indexToRemove = this.template.documents.findIndex(item => item.id === imageId)
-      this.template.documents.forEach((document) => {
-        // Check if the document has a preview_images array
-        if (Array.isArray(document.preview_images)) {
-          // Find the index of the preview image with the matching id
-          const indexToRemove = document.preview_images.findIndex(
-            (previewImage) => previewImage.id === imageId
-          )
-          // console.log('simple preview', document.preview_images, ': secured', document.preview_secured_images)
-          console.log(indexToRemove)
-          if (indexToRemove !== -1) {
-            const confirmed = window.confirm('Are you sure you want to delete this image?')
-            if (confirmed) {
-              const documentId = document.id
-              const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/del_image`
-              fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  template: this.template.id,
-                  attachment_id: imageId,
-                  documentId
-                  // page_number: document.preview_images.find(x => x.id === imageId).name
-                })
+      const document = this.template.documents.find((e) => e.uuid === item.attachment_uuid)
+      if (Array.isArray(document.preview_images)) {
+        const indexToRemove = document.preview_images.findIndex((previewImage) => previewImage.id === imageId)
+        console.log(indexToRemove)
+        if (indexToRemove !== -1) {
+          const confirmed = window.confirm('Are you sure you want to delete this image?')
+          if (confirmed) {
+            const documentId = document.id
+            const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/del_image`
+            fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                template: this.template.id,
+                attachment_id: imageId,
+                documentId
               })
-                .then((response) => {
-                  if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`)
-                  }
-                  return response.json()
-                })
-                .then((data) => {
-                  // remove from frontend
-                  document.preview_images.splice(indexToRemove, 1)
-                  console.log('Success:', data)
-                })
-                .catch((error) => {
-                  console.error('Error:', error)
-                })
-            }
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`)
+                }
+                return response.json()
+              })
+              .then((data) => {
+                document.preview_images.splice(indexToRemove, 1)
+                window.location.reload()
+                console.log('Success:', data)
+              })
+              .catch((error) => {
+                console.error('Error:', error)
+              })
           }
         }
-      })
+      }
     },
     addBlankPage (item) {
-      const documentRef = this.documentRefs.find(
-        (e) => e.document.uuid === item.attachment_uuid
-      )
+      const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
       const confirmed = window.confirm('Are you sure you want to create new image?')
       if (confirmed) {
         const documentId = documentRef.document.id
@@ -817,6 +804,7 @@ export default {
             return response.json()
           })
           .then((data) => {
+            window.location.reload()
             console.log('Success: ---', data)
           })
           .catch((error) => {

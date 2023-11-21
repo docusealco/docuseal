@@ -26,11 +26,11 @@ module Api
 
     def del_image
       template = Template.find(params[:template_id])
-      attachment_id = params[:attachment_id]
-      document_id = params[:documentId]
-      page_number = template.documents.find(document_id).preview_images.find_index { |pic| pic.id == attachment_id }
+      document = template.documents.find(params[:documentId])
+      img_attachment_id = params[:attachment_id]
+      page_number = document.preview_images.find_index { |pic| pic.id == img_attachment_id }
       if page_number
-        Templates::ProcessDocument.delete_picture(template, attachment_id, page_number)
+        Templates::ProcessDocument.delete_picture(template, document, img_attachment_id, page_number)
         render json: { success: true, message: 'image deleted successfully' }
       else
         page_number = "No image found for deletion"

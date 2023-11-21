@@ -104,22 +104,6 @@ module Templates
       io
     end
 
-    def modify_pdf_data(original_pdf_data, excluded_page_number)
-      pdf = HexaPDF::Document.new(io: StringIO.new(original_pdf_data))
-      pdf.pages.delete_at(excluded_page_number)
-      modified_pdf_data = StringIO.new
-      pdf.write(modified_pdf_data)
-      modified_pdf_data.string
-    end
-    
-    def create_blob_from_data(data, original_blob)
-      original_blob.tap do |blob|
-        blob.io = StringIO.new(data)
-        blob.filename = original_blob.filename
-        blob.save!
-      end
-    end
-
     def generate_pdf_secured_preview_images(template, attachment, data)
       ActiveStorage::Attachment.where(name: SECURED_ATTACHMENT_NAME, record: attachment).destroy_all
       number_of_pages = PDF::Reader.new(StringIO.new(data)).pages.size - 1
@@ -127,14 +111,6 @@ module Templates
         pdf = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         pdf = pdf.resize(MAX_WIDTH / pdf.width.to_f)
         redacted_boxes = template.fields.select { |field| field['type'] == 'redact' && field['areas'][0]['page'] == page_number }
-        deleted_page_field = template.fields.select { |field| field['type'] == 'deleted_page' && field['areas'][0]['page'] == page_number }
-        if !deleted_page_field.empty?
-          modified_pdf_data = modify_pdf_data(data, page_number)
-          attachment.blob = create_blob_from_data(modified_pdf_data, attachment.blob)
-          template.fields.delete(deleted_page_field)
-          template.save!
-          next 
-        end
         if !redacted_boxes.empty?
           redacted_boxes.each do |box|
             x = (box['areas'][0]['x'] * pdf.width).to_i
@@ -159,62 +135,115 @@ module Templates
       end
     end
 
-    def delete_picture(template, attachment_id, page_number)
-      attachment = ActiveStorage::Attachment.find_by(id: attachment_id)
-      return unless attachment
-      # attachment.purge
-      deleted_page_field = {
-        'type' => 'deleted_page',
-        'areas' => [{
-          'x' => 0,
-          'y' => 0,
-          'w' => 1,
-          'h' => 1,
-          'attachment_uuid' => SecureRandom.uuid,
-          'page' => page_number,
-        }]
-      }
-      template.fields << deleted_page_field
-      template.save!
+    def delete_picture(template, document, image_attachment_id, page_number)
+      image_attachment = ActiveStorage::Attachment.find_by(id: image_attachment_id)
+      return unless image_attachment
+      file_path =
+      if document.service.name == :disk
+        ActiveStorage::Blob.service.path_for(document.key)
+      end
+      temp_dir = "#{Rails.root}/tmp/"
+      FileUtils.mkdir_p(temp_dir)
+      temp_file_path = "#{temp_dir}#{SecureRandom.uuid}.pdf"
+      File.open(temp_file_path, 'wb') do |file|
+        document.download { |chunk| file.write(chunk) }
+      end
+      pdf = HexaPDF::Document.open(temp_file_path)
+      pdf.pages.delete_at(page_number)
+      pdf.write(temp_file_path)
+      document.reload
+      document.metadata[:pdf]['number_of_pages'] -= 1
+      temp_doc = document.metadata
+      new_attachment = document.attachments.update!(
+        name: document.name, 
+        uuid: document.uuid,
+        blob: ActiveStorage::Blob.create_and_upload!(
+          io: File.open(temp_file_path),
+          filename: document.blob.filename,
+          content_type: document.blob.content_type,
+          metadata: temp_doc
+        )
+      )
+      document.blob.purge
+      image_attachment.purge
+      document.reload
+      File.delete(temp_file_path)
+
+      remaining_images = document.preview_images
+      remaining_images.each_with_index do |image, index|
+        new_filename = "#{index}.jpeg"
+        image.blob.update!(filename: new_filename)
+      end
+    rescue StandardError => e
+      Rails.logger.error("Error uploading new blank image: #{e.message}")
+    ensure
+      File.delete(temp_file_path) if File.exist?(temp_file_path)
     end
 
     def upload_new_blank_image(template, document)
-     
-      blank_image = generate_blank_image
-      blank_blob = create_blob_from_image(blank_image, document )
-      # upload_new_attachment(template, blank_blob, ATTACHMENT_NAME)
-      # puts '-----New blank image uploaded successfully!-----'
-      if blank_blob
-       Rails.logger.info('New blank image uploaded successfully!')
-      else
-        Rails.logger.info('Blank image not uploaded')
+      file_path =
+        if document.service.name == :disk
+          ActiveStorage::Blob.service.path_for(document.key)
+        end
+      temp_dir = "#{Rails.root}/tmp/"
+      FileUtils.mkdir_p(temp_dir)
+      temp_file_path = "#{temp_dir}#{SecureRandom.uuid}.pdf"
+      File.open(temp_file_path, 'wb') do |file|
+        document.download { |chunk| file.write(chunk) }
       end
-    end
-
-   
-    def generate_blank_image
-      height = 2000
-      Vips::Image.new_from_array([[255]* MAX_WIDTH] * height, 255)
-    end
-
-
-    def create_blob_from_image(image, attachment)
-     
-      begin
-      previews_count = attachment.preview_images.count
-      ActiveStorage::Attachment.create!(
+      pdf = HexaPDF::Document.open(temp_file_path)
+      pdf.pages.add
+      pdf.write(temp_file_path)
+      document.reload
+      document.metadata[:pdf]['number_of_pages'] += 1
+      temp_doc = document.metadata
+      new_attachment = document.attachments.update!(
+        name: document.name, 
+        uuid: document.uuid,
         blob: ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
-        filename: "#{previews_count}#{FORMAT}",
-        metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
-        ),
-        name: ATTACHMENT_NAME,
-        record: attachment
+          io: File.open(temp_file_path),
+          filename: document.blob.filename,
+          content_type: document.blob.content_type,
+          metadata: temp_doc
+        )
       )
-      rescue => e
-      Rails.logger.error("Error creating blob from image: #{e.message}")
-      end
+      document.blob.purge
+      document.reload
+
+      # to update pdf images in storage blob
+      self.generate_pdf_preview_images(document, document.blob.download)
+
+      File.delete(temp_file_path)
+    rescue StandardError => e
+      Rails.logger.error("Error uploading new blank image: #{e.message}")
+    ensure
+      File.delete(temp_file_path) if File.exist?(temp_file_path)
     end
+   
+    # def generate_blank_image
+    #   # here height and width should be equal to height and width from existing pdf pages
+    #   height = 2000
+    #   width = MAX_WIDTH
+    #   Vips::Image.new_from_array([[255]* width] * height, 255)
+    # end
+
+    # # def create_blob_from_image(image, attachment)
+    # def create_image_blob(image, attachment)
+    #   begin
+    #   previews_count = attachment.preview_images.count
+    #   ActiveStorage::Attachment.create!(
+    #     blob: ActiveStorage::Blob.create_and_upload!(
+    #       io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
+    #     filename: "#{previews_count}#{FORMAT}",
+    #     metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
+    #     ),
+    #     name: ATTACHMENT_NAME,
+    #     record: attachment
+    #   )
+    #   rescue => e
+    #   Rails.logger.error("Error creating blob from image: #{e.message}")
+    #   end
+    # end
 
   end
 end
