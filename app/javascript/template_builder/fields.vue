@@ -72,14 +72,14 @@
       <button
         v-if="withPhone || type != 'phone'"
         draggable="true"
-        class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+        class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
         @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"
         @click="addField(type)"
       >
-        <div class="w-0 absolute left-0">
-          <IconDrag class="cursor-grab" />
+        <div class="flex items-console group-hover:bg-base-200/50 transition-all cursor-grab h-full absolute left-0">
+          <IconDrag class=" my-auto" />
         </div>
         <div class="flex items-center flex-col px-2 py-2">
           <component :is="icon" />
@@ -256,6 +256,10 @@ export default {
       }
 
       this.fields.push(field)
+
+      if (['signature', 'initials', 'cells'].includes(type)) {
+        this.$emit('set-draw', { field })
+      }
 
       this.save()
     }

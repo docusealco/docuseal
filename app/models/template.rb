@@ -33,7 +33,7 @@
 #  fk_rails_...  (folder_id => template_folders.id)
 #
 class Template < ApplicationRecord
-  DEFAULT_SUBMITTER_NAME = 'First Submitter'
+  DEFAULT_SUBMITTER_NAME = 'First Party'
 
   belongs_to :author, class_name: 'User'
   belongs_to :account
