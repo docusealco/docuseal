@@ -63,7 +63,7 @@ module Submissions
       composer.new_page
 
       composer.column(columns: 1) do |column|
-        add_logo(column)
+        add_logo(column, account)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -268,7 +268,7 @@ module Submissions
       )
     end
 
-    def add_logo(column)
+    def add_logo(column, _account = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
       column.formatted_text([{ text: 'DocuSeal',

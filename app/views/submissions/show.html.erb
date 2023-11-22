@@ -1,7 +1,7 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= template_path(@submission.template) %>" class="flex space-x-3 py-1">
-      <span><%= render 'shared/logo', width: 40, height: 40 %></span>
+    <a href="<%= signed_in? ? template_path(@submission.template) : '/' %>" class="flex space-x-3 py-1">
+      <span><%= render 'submissions/logo' %></span>
       <span class="text-3xl font-semibold focus:text-clip"><%= @submission.template.name %></span>
     </a>
     <div class="space-x-3 flex items-center">
