@@ -31,7 +31,8 @@ module Api
       page_number = document.preview_images.find_index { |pic| pic.id == img_attachment_id }
       if page_number
         Templates::ProcessDocument.delete_picture(template, document, img_attachment_id, page_number)
-        render json: { success: true, message: 'image deleted successfully' }
+        updated_images = updated_preview_images(document)
+        render json: { success: true, message: 'image deleted successfully', updated_preview_images: updated_images }
       else
         page_number = "No image found for deletion"
         render json: { success: false, message: "Error: #{page_number}" }, status: :unprocessable_entity
@@ -44,10 +45,28 @@ module Api
       document = template.documents.find_by(id: raw_document[:id])
       begin
         Templates::ProcessDocument.upload_new_blank_image(template, document)
-        render json: { success: true, message: 'New blank image added successfully' }
+        updated_images = updated_preview_images(document)
+        render json: { success: true, message: 'New blank image added successfully', updated_preview_images: updated_images }
       rescue StandardError => e
         render json: { success: false, message: "Error adding new blank image: #{e.message}" }, status: :unprocessable_entity
       end
+    end
+
+    def updated_preview_images(document)
+      updated_images = document.preview_images.map do |image|
+          {
+            "id": image.id,
+            "name": image.name,
+            "uuid": image.uuid,
+            "record_type": image.record_type,
+            "record_id": image.record_id,
+            "blob_id": image.blob_id,
+            "filename": image.filename.as_json,
+            "metadata": image.metadata,
+            "url": image.url,
+            "created_at": image.created_at
+          }
+        end
     end
 
   end

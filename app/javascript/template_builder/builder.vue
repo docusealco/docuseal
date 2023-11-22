@@ -770,9 +770,9 @@ export default {
                 return response.json()
               })
               .then((data) => {
-                document.preview_images.splice(indexToRemove, 1)
-                window.location.reload()
                 console.log('Success:', data)
+                document.preview_images = data.updated_preview_images
+                window.location.reload()
               })
               .catch((error) => {
                 console.error('Error:', error)
@@ -804,8 +804,10 @@ export default {
             return response.json()
           })
           .then((data) => {
-            window.location.reload()
             console.log('Success: ---', data)
+            this.template.documents.find((e) => e.uuid === item.attachment_uuid).preview_images = data.updated_preview_images
+            documentRef.$emit('imageRemoved', data.updated_preview_images)
+            window.location.reload()
           })
           .catch((error) => {
             console.error('Error: ---', error)
