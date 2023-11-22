@@ -32,7 +32,8 @@ module Api
       if page_number
         Templates::ProcessDocument.delete_picture(template, document, img_attachment_id, page_number)
         updated_images = updated_preview_images(document)
-        render json: { success: true, message: 'image deleted successfully', updated_preview_images: updated_images }
+        new_metadata = document.metadata
+        render json: { success: true, message: 'image deleted successfully', updated_preview_images: updated_images, updated_metadata: new_metadata }
       else
         page_number = "No image found for deletion"
         render json: { success: false, message: "Error: #{page_number}" }, status: :unprocessable_entity
@@ -46,7 +47,8 @@ module Api
       begin
         Templates::ProcessDocument.upload_new_blank_image(template, document)
         updated_images = updated_preview_images(document)
-        render json: { success: true, message: 'New blank image added successfully', updated_preview_images: updated_images }
+        new_metadata = document.metadata
+        render json: { success: true, message: 'New blank image added successfully', updated_preview_images: updated_images, updated_metadata: new_metadata }
       rescue StandardError => e
         render json: { success: false, message: "Error adding new blank image: #{e.message}" }, status: :unprocessable_entity
       end

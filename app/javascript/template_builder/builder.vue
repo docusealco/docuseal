@@ -746,7 +746,7 @@ export default {
       const document = this.template.documents.find((e) => e.uuid === item.attachment_uuid)
       if (Array.isArray(document.preview_images)) {
         const indexToRemove = document.preview_images.findIndex((previewImage) => previewImage.id === imageId)
-        console.log(indexToRemove)
+        // console.log(indexToRemove)
         if (indexToRemove !== -1) {
           const confirmed = window.confirm('Are you sure you want to delete this image?')
           if (confirmed) {
@@ -772,7 +772,7 @@ export default {
               .then((data) => {
                 console.log('Success:', data)
                 document.preview_images = data.updated_preview_images
-                window.location.reload()
+                document.metadata = data.updated_metadata
               })
               .catch((error) => {
                 console.error('Error:', error)
@@ -805,9 +805,8 @@ export default {
           })
           .then((data) => {
             console.log('Success: ---', data)
-            this.template.documents.find((e) => e.uuid === item.attachment_uuid).preview_images = data.updated_preview_images
-            documentRef.$emit('imageRemoved', data.updated_preview_images)
-            window.location.reload()
+            documentRef.document.preview_images = data.updated_preview_images
+            documentRef.document.metadata = data.updated_metadata
           })
           .catch((error) => {
             console.error('Error: ---', error)
