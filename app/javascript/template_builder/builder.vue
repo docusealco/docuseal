@@ -80,6 +80,8 @@
           :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
+          :is-loading="isLoading"
+          :is-deleting="isDeleting"
           @scroll-to="scrollIntoDocument"
           @add-blank-page="addBlankPage"
           @remove="onDocumentRemove"
@@ -336,7 +338,9 @@ export default {
       isSaving: false,
       selectedSubmitter: null,
       drawField: null,
-      dragFieldType: null
+      dragFieldType: null,
+      isLoading: false,
+      isDeleting: false
     }
   },
   computed: {
@@ -750,6 +754,7 @@ export default {
         if (indexToRemove !== -1) {
           const confirmed = window.confirm('Are you sure you want to delete this image?')
           if (confirmed) {
+            this.isDeleting = true
             const documentId = document.id
             const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/del_image`
             fetch(apiUrl, {
@@ -777,6 +782,9 @@ export default {
               .catch((error) => {
                 console.error('Error:', error)
               })
+              .finally(() => {
+                this.isDeleting = false
+              })
           }
         }
       }
@@ -785,6 +793,7 @@ export default {
       const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
       const confirmed = window.confirm('Are you sure you want to create new image?')
       if (confirmed) {
+        this.isLoading = true
         const documentId = documentRef.document.id
         const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`
         fetch(apiUrl, {
@@ -810,6 +819,9 @@ export default {
           })
           .catch((error) => {
             console.error('Error: ---', error)
+          })
+          .finally(() => {
+            this.isLoading = false
           })
       }
     }

@@ -84,8 +84,15 @@
             <button
               class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
               style="width: 24px; height: 24px"
+              :class="{ disabled: isDeleting }"
+              :disabled="isDeleting"
               @click.stop="$emit('remove-image', item, previewImage.id)"
             >
+              <IconInnerShadowTop
+                v-if="isDeleting"
+                width="22"
+                class="animate-spin"
+              />
               &times;
             </button>
           </div>
@@ -94,9 +101,17 @@
     </div>
     <button
       class="btn btn-outline w-full mt-2"
+      :class="{ disabled: isLoading }"
+      :disabled="isLoading"
       @click="$emit('add-blank-page', item)"
     >
-      <span> Add blank page </span>
+      <IconInnerShadowTop
+        v-if="isLoading"
+        width="22"
+        class="animate-spin"
+      />
+      <span v-if="isLoading"> Add blank page </span>
+      <span v-else>Add blank page</span>
     </button>
 
     <div class="flex pb-2 pt-1.5">
@@ -115,12 +130,14 @@
 import Contenteditable from './contenteditable'
 import Upload from './upload'
 import ReplaceButton from './replace'
+import { IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'DocumentPreview',
   components: {
     Contenteditable,
-    ReplaceButton
+    ReplaceButton,
+    IconInnerShadowTop
   },
   props: {
     item: {
@@ -154,6 +171,16 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    isLoading: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    isDeleting: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'remove-image', 'add-blank-page'],
