@@ -31,6 +31,15 @@ module Api
       page_number = document.preview_images.find_index { |pic| pic.id == img_attachment_id }
       if page_number
         Templates::ProcessDocument.delete_picture(template, document, img_attachment_id, page_number)
+        template.fields.each do |field|
+          field['areas'] = (field['areas'] || []).reject do |area|
+            area['attachment_uuid'] == document[:uuid] && area['page'] == page_number
+          end
+        end
+        template.fields = (template.fields || []).reject do |field|
+          field['areas'].empty?
+        end
+        template.save
         updated_images = updated_preview_images(document)
         new_metadata = document.metadata
         render json: { success: true, message: 'image deleted successfully', updated_preview_images: updated_images, updated_metadata: new_metadata }

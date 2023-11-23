@@ -778,6 +778,14 @@ export default {
                 console.log('Success:', data)
                 document.preview_images = data.updated_preview_images
                 document.metadata = data.updated_metadata
+                const pageNumber = document.preview_images.findIndex(pic => pic.id === imageId)
+                this.template.fields.forEach((field) => {
+                  [...(field.areas || [])].forEach((area) => {
+                    if (area.attachment_uuid === document.uuid && area.page === pageNumber) {
+                      field.areas.splice(field.areas.indexOf(area), 1)
+                    }
+                  })
+                })
               })
               .catch((error) => {
                 console.error('Error:', error)
