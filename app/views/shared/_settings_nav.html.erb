@@ -77,10 +77,17 @@
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-            Console
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/api") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+            <% if Docuseal.multitenant? %> API <% else %> Console <% end %>
           <% end %>
         </li>
+        <% if Docuseal.multitenant? %>
+          <li>
+            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+              Embedding
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </menu-active>

@@ -52,6 +52,7 @@ class User < ApplicationRecord
   belongs_to :account
   has_one :access_token, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
+  has_many :template_folders, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
   has_many :user_configs, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
 
@@ -94,7 +95,7 @@ class User < ApplicationRecord
 
   def friendly_name
     if full_name.present?
-      "#{full_name} <#{email}>"
+      %("#{full_name.delete('"')}" <#{email}>)
     else
       email
     end

@@ -17,7 +17,15 @@ module AccountConfigs
   module_function
 
   def find_or_initialize_for_key(account, key)
-    account.account_configs.find_by(key:) ||
+    find_for_account(account, key) ||
       account.account_configs.new(key:, value: AccountConfig::DEFAULT_VALUES[key])
+  end
+
+  def find_for_account(account, key)
+    configs = account.account_configs.find_by(key:)
+
+    configs ||= Account.order(:id).first.account_configs.find_by(key:) unless Docuseal.multitenant?
+
+    configs
   end
 end

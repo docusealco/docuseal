@@ -34,19 +34,21 @@
           v-if="isNameFocus"
           class="flex items-center relative"
         >
-          <input
-            :id="`required-checkbox-${field.uuid}`"
-            v-model="field.required"
-            type="checkbox"
-            class="checkbox checkbox-xs no-animation rounded"
-            @mousedown.prevent
-          >
-          <label
-            :for="`required-checkbox-${field.uuid}`"
-            class="label text-xs"
-            @click.prevent="field.required = !field.required"
-            @mousedown.prevent
-          >Required</label>
+          <template v-if="field.type != 'phone'">
+            <input
+              :id="`required-checkbox-${field.uuid}`"
+              v-model="field.required"
+              type="checkbox"
+              class="checkbox checkbox-xs no-animation rounded"
+              @mousedown.prevent
+            >
+            <label
+              :for="`required-checkbox-${field.uuid}`"
+              class="label text-xs"
+              @click.prevent="field.required = !field.required"
+              @mousedown.prevent
+            >Required</label>
+          </template>
         </div>
         <div
           v-else-if="editable"
@@ -56,7 +58,7 @@
             v-if="field && !field.areas.length"
             title="Draw"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
-            @click="$emit('set-draw', field)"
+            @click="$emit('set-draw', { field })"
           >
             <IconNewSection
               :width="18"
@@ -104,7 +106,10 @@
                   Default value
                 </label>
               </div>
-              <li @click.stop>
+              <li
+                v-if="field.type != 'phone'"
+                @click.stop
+              >
                 <label class="cursor-pointer py-1.5">
                   <input
                     v-model="field.required"
@@ -146,11 +151,11 @@
                   Page {{ area.page + 1 }}
                 </a>
               </li>
-              <li>
+              <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
                 <a
                   href="#"
                   class="text-sm py-1 px-2"
-                  @click.prevent="$emit('set-draw', field)"
+                  @click.prevent="$emit('set-draw', { field })"
                 >
                   <IconNewSection
                     :width="20"
@@ -188,26 +193,54 @@
       </div>
       <div
         v-if="field.options"
+        ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
+        draggable="true"
+        @dragstart.prevent.stop
       >
         <div
           v-for="(option, index) in field.options"
-          :key="index"
+          :key="option.uuid"
           class="flex space-x-1.5 items-center"
         >
           <span class="text-sm w-3.5">
             {{ index + 1 }}.
           </span>
+          <div
+            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
+            class="items-center flex w-full"
+          >
+            <input
+              v-model="option.value"
+              class="w-full input input-primary input-xs text-sm bg-transparent !pr-7 -mr-6"
+              type="text"
+              required
+              @blur="save"
+            >
+            <button
+              title="Draw"
+              tabindex="-1"
+              @click.prevent="$emit('set-draw', { field, option })"
+            >
+              <IconNewSection
+                :width="18"
+                :stroke-width="1.6"
+              />
+            </button>
+          </div>
           <input
-            v-model="field.options[index]"
+            v-else
+            v-model="option.value"
             class="w-full input input-primary input-xs text-sm bg-transparent"
             type="text"
             required
+            @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
           <button
             class="text-sm w-3.5"
-            @click="[field.options.splice(index, 1), save()]"
+            tabindex="-1"
+            @click="removeOption(option)"
           >
             &times;
           </button>
@@ -215,7 +248,7 @@
         <button
           v-if="field.options"
           class="text-center text-sm w-full pb-1"
-          @click="[field.options.push(''), save()]"
+          @click="addOption"
         >
           + Add option
         </button>
@@ -228,6 +261,7 @@
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateField',
@@ -240,7 +274,7 @@ export default {
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef'],
   props: {
     field: {
       type: Object,
@@ -298,11 +332,35 @@ export default {
         }, 1)
       }
     },
+    maybeFocusOnOptionArea (option) {
+      const area = this.field.areas.find((a) => a.option_uuid === option.uuid)
+
+      if (area) {
+        this.selectedAreaRef.value = area
+      }
+    },
     scrollToFirstArea () {
       return this.field.areas?.[0] && this.$emit('scroll-to', this.field.areas[0])
     },
     closeDropdown () {
       document.activeElement.blur()
+    },
+    addOption () {
+      this.field.options.push({ value: '', uuid: v4() })
+
+      this.$nextTick(() => {
+        const inputs = this.$refs.options.querySelectorAll('input')
+
+        inputs[inputs.length - 1]?.focus()
+      })
+
+      this.save()
+    },
+    removeOption (option) {
+      this.field.options.splice(this.field.options.indexOf(option), 1)
+      this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
+
+      this.save()
     },
     maybeUpdateOptions () {
       delete this.field.default_value
@@ -312,7 +370,7 @@ export default {
       }
 
       if (['radio', 'multiple', 'select'].includes(this.field.type)) {
-        this.field.options ||= ['']
+        this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
       (this.field.areas || []).forEach((area) => {

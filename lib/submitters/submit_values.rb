@@ -88,6 +88,7 @@ module Submitters
 
     def template_default_value_for_submitter(value, submitter, with_time: false)
       return if value.blank?
+      return if submitter.blank?
 
       role = submitter.submission.template_submitters.find { |e| e['uuid'] == submitter.uuid }['name']
 

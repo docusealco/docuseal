@@ -77,6 +77,7 @@
           :item="item"
           :document="sortedDocuments[index]"
           :accept-file-types="acceptFileTypes"
+          :with-replace-button="withUploadButton"
           :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
@@ -96,7 +97,7 @@
           :class="{ 'bg-base-100': withStickySubmitters }"
         >
           <Upload
-            v-if="sortedDocuments.length && editable"
+            v-if="sortedDocuments.length && editable && withUploadButton"
             :accept-file-types="acceptFileTypes"
             :template-id="template.id"
             :is-direct-upload="isDirectUpload"
@@ -110,7 +111,7 @@
           class="pr-3.5 pl-0.5"
         >
           <Dropzone
-            v-if="!sortedDocuments.length"
+            v-if="!sortedDocuments.length && withUploadButton"
             :template-id="template.id"
             :accept-file-types="acceptFileTypes"
             :is-direct-upload="isDirectUpload"
@@ -126,9 +127,10 @@
                 :areas-index="fieldAreasIndex[document.uuid]"
                 :selected-submitter="selectedSubmitter"
                 :document="document"
-                :is-drag="!!dragFieldType"
+                :is-drag="!!dragField"
                 :draw-field="drawField"
                 :editable="editable"
+                :base-url="baseUrl"
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
@@ -137,6 +139,7 @@
                 v-if="isBreakpointLg && editable"
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
+                :with-replace-button="withUploadButton"
                 :document="document"
                 :template="template"
                 :is-direct-upload="isDirectUpload"
@@ -153,6 +156,7 @@
               class="pb-4"
             >
               <Upload
+                v-if="withUploadButton"
                 :template-id="template.id"
                 :is-direct-upload="isDirectUpload"
                 @success="updateFromUpload"
@@ -168,7 +172,7 @@
           :selected-submitter="selectedSubmitter"
           class="md:hidden"
           :editable="editable"
-          @cancel="drawField = null"
+          @cancel="[drawField = null, drawOption = null]"
           @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
         />
         <FieldType
@@ -209,7 +213,7 @@
             <p>
               <button
                 class="base-button"
-                @click="drawField = null"
+                @click="[drawField = null, drawOption = null]"
               >
                 Cancel
               </button>
@@ -222,12 +226,13 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
             :editable="editable"
-            @set-draw="drawField = $event"
-            @set-drag="dragFieldType = $event"
+            @set-draw="[drawField = $event.field, drawOption = $event.option]"
+            @set-drag="dragField = $event"
             @change-submitter="selectedSubmitter = $event"
-            @drag-end="dragFieldType = null"
+            @drag-end="dragField = null"
             @scroll-to-area="scrollToArea"
           />
         </div>
@@ -300,6 +305,16 @@ export default {
       required: false,
       default: true
     },
+    defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     acceptFileTypes: {
       type: String,
       required: false,
@@ -316,6 +331,11 @@ export default {
       default: true
     },
     withStickySubmitters: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withUploadButton: {
       type: Boolean,
       required: false,
       default: true
@@ -340,7 +360,9 @@ export default {
       drawField: null,
       dragFieldType: null,
       isLoading: false,
-      isDeleting: false
+      isDeleting: false,
+      drawOption: null,
+      dragField: null
     }
   },
   computed: {
@@ -372,6 +394,13 @@ export default {
     }
   },
   created () {
+    this.defaultSubmitters.forEach((name, index) => {
+      const submitter = (this.template.submitters[index] ||= {})
+
+      submitter.name = name
+      submitter.uuid ||= v4()
+    })
+
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
@@ -408,10 +437,11 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = ['']
+        field.options = [{ value: '', uuid: v4() }]
       }
 
       this.drawField = field
+      this.drawOption = null
     },
     undo () {
       if (this.undoStack.length > 1) {
@@ -460,6 +490,7 @@ export default {
     onKeyUp (e) {
       if (e.code === 'Escape') {
         this.drawField = null
+        this.drawOption = null
         this.selectedAreaRef.value = null
       }
 
@@ -506,6 +537,16 @@ export default {
     },
     onDraw (area) {
       if (this.drawField) {
+        if (this.drawOption) {
+          const areaWithoutOption = this.drawField.areas?.find((a) => !a.option_uuid)
+
+          if (areaWithoutOption && !this.drawField.areas.find((a) => a.option_uuid === this.drawField.options[0].uuid)) {
+            areaWithoutOption.option_uuid = this.drawField.options[0].uuid
+          }
+
+          area.option_uuid = this.drawOption.uuid
+        }
+
         this.drawField.areas ||= []
         this.drawField.areas.push(area)
 
@@ -514,6 +555,7 @@ export default {
         }
 
         this.drawField = null
+        this.drawOption = null
 
         this.selectedAreaRef.value = area
 
@@ -563,14 +605,14 @@ export default {
     onDropfield (area) {
       const field = {
         name: '',
-        type: this.dragFieldType,
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
-        required: this.dragFieldType !== 'checkbox'
+        required: this.dragField.type !== 'checkbox',
+        ...this.dragField
       }
 
-      if (['select', 'multiple', 'radio'].includes(this.dragFieldType)) {
-        field.options = ['']
+      if (['select', 'multiple', 'radio'].includes(field.type)) {
+        field.options = [{ value: '', uuid: v4() }]
       }
 
       const fieldArea = {
@@ -584,27 +626,27 @@ export default {
 
       let baseArea
 
-      if (this.selectedField?.type === this.dragFieldType) {
+      if (this.selectedField?.type === field.type) {
         baseArea = this.selectedAreaRef.value
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox'].includes(this.dragFieldType)) {
+        if (['checkbox'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
           }
-        } else if (this.dragFieldType === 'image') {
+        } else if (field.type === 'image') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (this.dragFieldType === 'signature') {
+        } else if (field.type === 'signature') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
           }
-        } else if (this.dragFieldType === 'initials') {
+        } else if (field.type === 'initials') {
           baseArea = {
             w: area.maskW / 10 / area.maskW,
             h: area.maskW / 35 / area.maskW
@@ -621,7 +663,7 @@ export default {
       fieldArea.h = baseArea.h
       fieldArea.y = fieldArea.y - baseArea.h / 2
 
-      if (this.dragFieldType === 'cells') {
+      if (field.type === 'cells') {
         fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
       }
 

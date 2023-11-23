@@ -3,7 +3,7 @@
 module Api
   class SubmissionsController < ApiBaseController
     load_and_authorize_resource :template, only: :create
-    load_and_authorize_resource :submission, only: %i[show index]
+    load_and_authorize_resource :submission, only: %i[show index destroy]
 
     before_action only: :create do
       authorize!(:create, Submission)

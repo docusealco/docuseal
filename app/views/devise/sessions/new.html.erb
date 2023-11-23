@@ -20,7 +20,11 @@
     </div>
   <% end %>
   <% if devise_mapping.omniauthable? %>
-    <%= button_to button_title(title: 'Sign in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), omniauth_authorize_path(resource_name, :google_oauth2), class: 'white-button w-full mt-4', data: { turbo: false }, method: :post %>
+    <%= form_for '', url: omniauth_authorize_path(resource_name, :google_oauth2), data: { turbo: false }, method: :post do |f| %>
+      <set-timezone data-input-id="state" data-params="true"></set-timezone>
+      <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query %>
+      <%= f.button button_title(title: 'Sign in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), class: 'white-button w-full mt-4' %>
+    <% end %>
   <% end %>
   <%= render 'devise/shared/links' %>
 </div>

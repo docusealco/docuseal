@@ -9,6 +9,7 @@ module ReplaceEmailVariables
   SUBMISSION_LINK = '{{submission.link}}'
   SUBMISSION_SUBMITTERS = '{{submission.submitters}}'
   DOCUMENTS_LINKS = '{{documents.links}}'
+  DOCUMENTS_LINK = '{{documents.link}}'
 
   module_function
 
@@ -26,6 +27,7 @@ module ReplaceEmailVariables
       text = text.gsub(SUBMISSION_SUBMITTERS, build_submission_submitters(submitter.submission))
     end
     text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter))
+    text = text.gsub(DOCUMENTS_LINK, build_documents_links_text(submitter))
 
     text = text.gsub(ACCOUNT_NAME, submitter.template.account.name) if submitter.template
 
@@ -33,14 +35,9 @@ module ReplaceEmailVariables
   end
 
   def build_documents_links_text(submitter)
-    Submitters.select_attachments_for_download(submitter).map do |document|
-      link =
-        Rails.application.routes.url_helpers.rails_blob_url(
-          document, **Docuseal.default_url_options
-        )
-
-      "#{link}\n"
-    end.join
+    Rails.application.routes.url_helpers.submissions_preview_url(
+      submitter.submission.slug, **Docuseal.default_url_options
+    )
   end
 
   def build_submitter_link(submitter, tracking_event_type)

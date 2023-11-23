@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  deleted_at          :datetime
+#  slug                :string           not null
 #  source              :text             not null
 #  submitters_order    :string           not null
 #  template_fields     :text
@@ -19,6 +20,7 @@
 # Indexes
 #
 #  index_submissions_on_created_by_user_id  (created_by_user_id)
+#  index_submissions_on_slug                (slug) UNIQUE
 #  index_submissions_on_template_id         (template_id)
 #
 # Foreign Keys
@@ -40,6 +42,8 @@ class Submission < ApplicationRecord
 
   attribute :source, :string, default: 'link'
   attribute :submitters_order, :string, default: 'random'
+
+  attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   has_one_attached :audit_trail
 

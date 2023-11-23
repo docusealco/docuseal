@@ -66,9 +66,9 @@
         @keydown.enter.prevent="onNameEnter"
         @focus="onNameFocus"
         @blur="onNameBlur"
-      >{{ field.name || defaultName }}</span>
+      >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && field.type !== 'checkbox'"
+        v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
@@ -121,9 +121,12 @@
       >
         <div
           v-if="field?.default_value"
-          class="text-[1.5vw] lg:text-base"
+          :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
-          <div class="flex items-center px-0.5">
+          <div
+            ref="textContainer"
+            class="flex items-center px-0.5"
+          >
             <span class="whitespace-pre-wrap">{{ field.default_value }}</span>
           </div>
         </div>
@@ -154,6 +157,7 @@ import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
 import { IconX } from '@tabler/icons-vue'
+import { v4 } from 'uuid'
 
 export default {
   name: 'FieldArea',
@@ -190,6 +194,7 @@ export default {
       isResize: false,
       isDragged: false,
       isNameFocus: false,
+      textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 }
     }
   },
@@ -197,6 +202,13 @@ export default {
     defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    optionIndexText () {
+      if (this.area.option_uuid && this.field.options) {
+        return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
+      } else {
+        return ''
+      }
+    },
     cells () {
       const cells = []
 
@@ -258,6 +270,20 @@ export default {
       }
     }
   },
+  watch: {
+    'field.default_value' () {
+      if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value.length)) {
+        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
+      }
+    }
+  },
+  mounted () {
+    if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
+      this.$nextTick(() => {
+        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
+      })
+    }
+  },
   methods: {
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
@@ -302,7 +328,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(this.field.type)) {
-        this.field.options ||= ['']
+        this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
       (this.field.areas || []).forEach((area) => {

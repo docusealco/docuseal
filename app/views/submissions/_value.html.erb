@@ -1,4 +1,4 @@
-<div class="flex absolute text-[1.5vw] lg:text-base" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
+<div class="flex absolute <%= field['readonly'] ? 'text-[1.5vw] lg:text-xs' : 'text-[1.5vw] lg:text-base' %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
   <% if field['type'].in?(['signature', 'image', 'initials']) %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
   <% elsif field['type'] == 'file' %>
@@ -11,9 +11,16 @@
       <% end %>
     </div>
   <% elsif field['type'] == 'checkbox' %>
-    <div class="w-full p-[0.2vw] flex items-center justify-center">
+    <div class="w-full flex items-center justify-center">
       <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
     </div>
+  <% elsif field['type'].in?(%w[multiple radio]) && area['option_uuid'] %>
+    <% option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] } %>
+    <% if option && Array.wrap(value).include?(option['value']) %>
+      <div class="w-full flex items-center justify-center">
+        <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
+      </div>
+    <% end %>
   <% elsif field['type'] == 'cells' %>
     <% cell_width = area['cell_w'] / area['w'] * 100 %>
     <div class="w-full flex items-center">

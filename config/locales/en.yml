@@ -1,2 +1,9 @@
-en:
-  hello: "Hello world"
+en-US:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+en-GB:
+  date:
+    formats:
+      default: "%d/%m/%Y"

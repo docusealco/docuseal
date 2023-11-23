@@ -99,12 +99,12 @@
                 {{ t('select_your_option') }}
               </option>
               <option
-                v-for="(option, index) in currentField.options"
-                :key="index"
-                :selected="values[currentField.uuid] == option"
-                :value="option"
+                v-for="option in currentField.options"
+                :key="option.uuid"
+                :selected="values[currentField.uuid] == option.value"
+                :value="option.value"
               >
-                {{ option }}
+                {{ option.value }}
               </option>
             </select>
           </div>
@@ -119,24 +119,24 @@
             <div class="flex w-full">
               <div class="space-y-3.5 mx-auto">
                 <div
-                  v-for="(option, index) in currentField.options"
-                  :key="index"
+                  v-for="option in currentField.options"
+                  :key="option.uuid"
                 >
                   <label
-                    :for="currentField.uuid + option"
+                    :for="option.uuid"
                     class="flex items-center space-x-3"
                   >
                     <input
-                      :id="currentField.uuid + option"
+                      :id="option.uuid"
                       v-model="values[currentField.uuid]"
                       type="radio"
                       class="base-radio !h-7 !w-7"
                       :name="`values[${currentField.uuid}]`"
-                      :value="option"
+                      :value="option.value"
                       :required="currentField.required"
                     >
                     <span class="text-xl">
-                      {{ option }}
+                      {{ option.value }}
                     </span>
                   </label>
                 </div>
@@ -652,12 +652,20 @@ export default {
       })
     },
     saveStep (formData) {
+      const currentFieldUuid = this.currentField.uuid
+
       if (this.isCompleted) {
         return Promise.resolve({})
       } else {
         return fetch(this.baseUrl + this.submitPath, {
           method: 'POST',
           body: formData || new FormData(this.$refs.form)
+        }).then((response) => {
+          if (response.status === 200) {
+            this.submittedValues[currentFieldUuid] = this.values[currentFieldUuid]
+          }
+
+          return response
         })
       }
     },
@@ -688,8 +696,6 @@ export default {
 
             return Promise.reject(new Error(data.error))
           }
-
-          this.submittedValues[this.currentField.uuid] = this.values[this.currentField.uuid]
 
           if (isLastStep) {
             this.isSecondWalkthrough = true
