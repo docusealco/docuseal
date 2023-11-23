@@ -3,18 +3,26 @@
 class SubmitterMailer < ApplicationMailer
   MAX_ATTACHMENTS_SIZE = 10.megabytes
 
-  def invitation_email(submitter, body: nil, subject: nil)
+  DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
+
+  def invitation_email(submitter)
     @current_account = submitter.submission.template.account
     @submitter = submitter
-    @body = body.presence
+
+    if submitter.preferences['email_message_uuid']
+      @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
+    end
+
+    @body = @email_message&.body.presence
+    @subject = @email_message&.subject.presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
     subject =
-      if @email_config || subject.present?
-        ReplaceEmailVariables.call(subject.presence || @email_config.value['subject'], submitter:)
+      if @email_config || @subject
+        ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
       else
-        'You are invited to submit a form'
+        DEFAULT_INVITATION_SUBJECT
       end
 
     mail(to: @submitter.friendly_name,

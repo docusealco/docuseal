@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_19_222105) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_22_212612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_222105) do
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
   end
 
+  create_table "email_messages", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.bigint "author_id", null: false
+    t.bigint "account_id", null: false
+    t.text "subject", null: false
+    t.text "body", null: false
+    t.string "sha1", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_email_messages_on_account_id"
+    t.index ["sha1"], name: "index_email_messages_on_sha1"
+    t.index ["uuid"], name: "index_email_messages_on_uuid"
+  end
+
   create_table "encrypted_configs", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "key", null: false
@@ -125,6 +139,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_222105) do
     t.text "source", null: false
     t.string "submitters_order", null: false
     t.string "slug", null: false
+    t.text "preferences", null: false
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
     t.index ["template_id"], name: "index_submissions_on_template_id"
@@ -146,6 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_222105) do
     t.string "name"
     t.string "phone"
     t.string "application_key"
+    t.text "preferences", null: false
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
@@ -229,6 +245,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_222105) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "email_messages", "accounts"
+  add_foreign_key "email_messages", "users", column: "author_id"
   add_foreign_key "encrypted_configs", "accounts"
   add_foreign_key "encrypted_user_configs", "users"
   add_foreign_key "submission_events", "submissions"

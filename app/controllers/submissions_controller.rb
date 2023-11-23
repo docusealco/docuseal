@@ -34,23 +34,30 @@ class SubmissionsController < ApplicationController
   def create
     authorize!(:create, Submission)
 
+    if params[:is_custom_message] != '1'
+      params.delete(:subject)
+      params.delete(:body)
+    end
+
     submissions =
       if params[:emails].present?
         Submissions.create_from_emails(template: @template,
                                        user: current_user,
                                        source: :invite,
                                        mark_as_sent: params[:send_email] == '1',
-                                       emails: params[:emails])
+                                       emails: params[:emails],
+                                       params:)
       else
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
                                            submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
                                            mark_as_sent: params[:send_email] == '1',
-                                           submissions_attrs: submissions_params[:submission].to_h.values)
+                                           submissions_attrs: submissions_params[:submission].to_h.values,
+                                           params:)
       end
 
-    Submissions.send_signature_requests(submissions, params)
+    Submissions.send_signature_requests(submissions)
 
     redirect_to template_path(@template), notice: 'New recipients have been added'
   end

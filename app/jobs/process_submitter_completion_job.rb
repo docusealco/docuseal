@@ -31,7 +31,8 @@ class ProcessSubmitterCompletionJob < ApplicationJob
       SubmitterMailer.completed_email(submitter, user, bcc:).deliver_later!
     end
 
-    to = submitter.submission.submitters.sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
+    to = submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
+                  .sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
 
     SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! if to.present?
   end
@@ -48,6 +49,6 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     next_submitter = submitter.submission.submitters.find { |s| s.uuid == next_submitter_item['uuid'] }
 
-    Submitters.send_signature_requests([next_submitter], send_email: true)
+    Submitters.send_signature_requests([next_submitter])
   end
 end

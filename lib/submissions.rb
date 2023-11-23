@@ -27,11 +27,17 @@ module Submissions
     submission.save!
   end
 
-  def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false)
+  def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false, params: {})
+    preferences = Submitters.normalize_preferences(template.account, user, params)
+
     parse_emails(emails).uniq.map do |email|
-      submission = template.submissions.new(created_by_user: user, source:, template_submitters: template.submitters)
+      submission = template.submissions.new(created_by_user: user,
+                                            source:,
+                                            template_submitters: template.submitters)
+
       submission.submitters.new(email: normalize_email(email),
                                 uuid: template.submitters.first['uuid'],
+                                preferences:,
                                 sent_at: mark_as_sent ? Time.current : nil)
 
       submission.tap(&:save!)
@@ -45,13 +51,13 @@ module Submissions
   end
 
   def create_from_submitters(template:, user:, submissions_attrs:, source:, mark_as_sent: false,
-                             submitters_order: DEFAULT_SUBMITTERS_ORDER)
+                             submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {})
     Submissions::CreateFromSubmitters.call(
-      template:, user:, submissions_attrs:, source:, mark_as_sent:, submitters_order:
+      template:, user:, submissions_attrs:, source:, mark_as_sent:, submitters_order:, params:
     )
   end
 
-  def send_signature_requests(submissions, params)
+  def send_signature_requests(submissions)
     submissions.each do |submission|
       submitters = submission.submitters.reject(&:completed_at?)
 
@@ -59,9 +65,9 @@ module Submissions
         first_submitter =
           submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
 
-        Submitters.send_signature_requests([first_submitter], params)
+        Submitters.send_signature_requests([first_submitter])
       else
-        Submitters.send_signature_requests(submitters, params)
+        Submitters.send_signature_requests(submitters)
       end
     end
   end

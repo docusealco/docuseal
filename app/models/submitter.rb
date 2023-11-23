@@ -12,6 +12,7 @@
 #  name            :string
 #  opened_at       :datetime
 #  phone           :string
+#  preferences     :text             not null
 #  sent_at         :datetime
 #  slug            :string           not null
 #  ua              :string
@@ -37,9 +38,11 @@ class Submitter < ApplicationRecord
   has_one :account, through: :template
 
   attribute :values, :string, default: -> { {} }
+  attribute :preferences, :string, default: -> { {} }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   serialize :values, JSON
+  serialize :preferences, JSON
 
   has_many_attached :documents
   has_many_attached :attachments

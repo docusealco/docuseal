@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  deleted_at          :datetime
+#  preferences         :text             not null
 #  slug                :string           not null
 #  source              :text             not null
 #  submitters_order    :string           not null
@@ -36,9 +37,12 @@ class Submission < ApplicationRecord
   has_many :submitters, dependent: :destroy
   has_many :submission_events, dependent: :destroy
 
+  attribute :preferences, :string, default: -> { {} }
+
   serialize :template_fields, JSON
   serialize :template_schema, JSON
   serialize :template_submitters, JSON
+  serialize :preferences, JSON
 
   attribute :source, :string, default: 'link'
   attribute :submitters_order, :string, default: 'random'

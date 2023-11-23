@@ -4,7 +4,9 @@ module Submissions
   module CreateFromSubmitters
     module_function
 
-    def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false)
+    def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false, params: {})
+      preferences = Submitters.normalize_preferences(template.account, user, params)
+
       Array.wrap(submissions_attrs).map do |attrs|
         submission = template.submissions.new(created_by_user: user, source:,
                                               template_submitters: template.submitters, submitters_order:)
@@ -18,7 +20,11 @@ module Submissions
 
           is_order_sent = submitters_order == 'random' || index.zero?
 
-          build_submitter(submission:, attrs: submitter_attrs, uuid:, is_order_sent:, mark_as_sent:)
+          submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
+
+          build_submitter(submission:, attrs: submitter_attrs, uuid:,
+                          is_order_sent:, mark_as_sent:, user:,
+                          preferences: preferences.merge(submission_preferences))
         end
 
         submission.tap(&:save!)
@@ -85,8 +91,9 @@ module Submissions
         template.submitters[index]&.dig('uuid')
     end
 
-    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:)
+    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:, user:, preferences:)
       email = Submissions.normalize_email(attrs[:email])
+      submitter_preferences = Submitters.normalize_preferences(submission.account, user, attrs)
 
       submission.submitters.new(
         email:,
@@ -96,6 +103,7 @@ module Submissions
         completed_at: attrs[:completed] ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
+        preferences: preferences.merge(submitter_preferences),
         uuid:
       )
     end

@@ -23,7 +23,8 @@ class StartFormController < ApplicationController
       @submitter.assign_attributes(
         uuid: @template.submitters.first['uuid'],
         ip: request.remote_ip,
-        ua: request.user_agent
+        ua: request.user_agent,
+        preferences: { 'send_email' => true }
       )
 
       @submitter.submission ||= Submission.new(template: @template,
