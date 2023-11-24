@@ -818,8 +818,6 @@ export default {
               })
               .then((data) => {
                 console.log('Success:', data)
-                document.preview_images = data.updated_preview_images
-                document.metadata = data.updated_metadata
                 const pageNumber = document.preview_images.findIndex(pic => pic.id === imageId)
                 this.template.fields.forEach((field) => {
                   [...(field.areas || [])].forEach((area) => {
@@ -828,6 +826,8 @@ export default {
                     }
                   })
                 })
+                document.preview_images = data.updated_preview_images
+                document.metadata = data.updated_metadata
               })
               .catch((error) => {
                 console.error('Error:', error)
