@@ -195,7 +195,7 @@ export default {
     },
     submitterDefaultFields () {
       return this.defaultFields.filter((f) => {
-        return !this.fields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+        return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
       })
     }
   },
