@@ -12,7 +12,14 @@ test:
   database: docuseal_test
 
 production:
-<% if ENV['DATABASE_URL'].to_s.empty? %>
+<% if !ENV['DATABASE_HOST'].to_s.empty? %>
+  <<: *default
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+<% elsif ENV['DATABASE_URL'].to_s.empty? %>
   adapter: sqlite3
   database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3
 <% elsif ENV['DATABASE_URL'].match?(/\Apostgres/) %>
