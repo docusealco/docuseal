@@ -79,6 +79,8 @@ window.customElements.define('template-builder', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
 
+    this.appElem.classList.add('md:h-screen')
+
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
       backgroundColor: '#faf7f5',

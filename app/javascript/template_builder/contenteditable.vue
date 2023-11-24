@@ -24,11 +24,10 @@
       *
     </span>
     <IconPencil
-      v-if="editable"
       class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
       title="Edit"
-      :class="{ 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
+      :class="{ invisible: !editable, 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
       @click="[focusContenteditable(), selectOnEditClick && selectContent()]"

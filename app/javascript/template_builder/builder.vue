@@ -4,6 +4,7 @@
     class="mx-auto pl-3 md:pl-4 h-full"
   >
     <div
+      v-if="$slots.buttons || withTitle"
       class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10"
       :style="{ backgroundColor }"
     >
@@ -15,6 +16,7 @@
           <Logo />
         </a>
         <Contenteditable
+          v-if="withTitle"
           :model-value="template.name"
           :editable="editable"
           class="text-3xl font-semibold focus:text-clip"
@@ -64,7 +66,10 @@
         </template>
       </div>
     </div>
-    <div class="flex md:max-h-[calc(100vh-60px)]">
+    <div
+      class="flex"
+      :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
+    >
       <div
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
@@ -90,7 +95,7 @@
         />
         <div
           class="sticky bottom-0 py-2"
-          :class="{ 'bg-base-100': withStickySubmitters }"
+          :style="withStickySubmitters ? { backgroundColor } : {}"
         >
           <Upload
             v-if="sortedDocuments.length && editable && withUploadButton"
@@ -200,7 +205,8 @@
       >
         <div
           v-if="drawField"
-          class="sticky inset-0 bg-base-100 h-full"
+          class="sticky inset-0 h-full"
+          :style="{ backgroundColor }"
         >
           <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
             <p>
@@ -332,6 +338,11 @@ export default {
       default: true
     },
     withUploadButton: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withTitle: {
       type: Boolean,
       required: false,
       default: true
