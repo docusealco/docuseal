@@ -1,25 +1,27 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= signed_in? ? template_path(@submission.template) : '/' %>" class="flex space-x-3 py-1">
+    <a href="<%= signed_in? ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
-      <span class="text-3xl font-semibold focus:text-clip"><%= @submission.template.name %></span>
+      <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><%= @submission.template.name %></span>
     </a>
     <div class="space-x-3 flex items-center">
       <% if @submission.audit_trail.present? %>
         <a href="<%= rails_blob_path(@submission.audit_trail) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
-          Audit Log
+          <span class="hidden md:inline">
+            Audit Log
+          </span>
         </a>
       <% end %>
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
         <download-button data-src="<%= submitter_download_index_path(last_submitter.slug) %>" class="base-button">
           <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
             <%= svg_icon('download', class: 'w-6 h-6') %>
-            <span>Download</span>
+            <span class="hidden md:inline">Download</span>
           </span>
           <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
             <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-            <span>Downloading</span>
+            <span class="hidden md:inline">Downloading</span>
           </span>
         </download-button>
       <% elsif @submission.submitters.to_a.size == 1 %>
@@ -172,3 +174,4 @@
     </div>
   </div>
 </div>
+<%= render 'scripts/autosize_field' %>
