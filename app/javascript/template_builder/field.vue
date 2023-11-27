@@ -14,7 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
-            :editable="editable"
+            :editable="editable && !defaultField"
             :button-width="20"
             @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
@@ -22,7 +22,7 @@
           <Contenteditable
             ref="name"
             :model-value="field.name || defaultName"
-            :editable="editable"
+            :editable="editable && !defaultField"
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
@@ -66,6 +66,7 @@
             />
           </button>
           <span
+            v-if="!defaultField"
             class="dropdown dropdown-end"
           >
             <label
@@ -279,6 +280,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     editable: {
       type: Boolean,

@@ -24,6 +24,7 @@
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
       :editable="editable && !dragField"
+      :default-field="defaultFields.find((f) => f.name === field.name)"
       :draggable="editable"
       @dragstart="dragField = field"
       @dragend="dragField = null"

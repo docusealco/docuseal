@@ -42,7 +42,7 @@
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
-        :editable="editable"
+        :editable="editable && !defaultField"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
@@ -51,7 +51,7 @@
       <FieldType
         v-model="field.type"
         :button-width="27"
-        :editable="editable"
+        :editable="editable && !defaultField"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
@@ -60,7 +60,7 @@
       <span
         v-if="field.type !== 'checkbox' || field.name"
         ref="name"
-        :contenteditable="editable"
+        :contenteditable="editable && !defaultField"
         class="pr-1 cursor-text outline-none block"
         style="min-width: 2px"
         @keydown.enter.prevent="onNameEnter"
@@ -159,6 +159,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     editable: {
       type: Boolean,

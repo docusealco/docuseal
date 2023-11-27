@@ -8,6 +8,7 @@
       :editable="editable"
       :areas="areasIndex[index]"
       :is-drag="isDrag"
+      :default-fields="defaultFields"
       :draw-field="drawField"
       :selected-submitter="selectedSubmitter"
       :image="image"
@@ -34,6 +35,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     selectedSubmitter: {
       type: Object,

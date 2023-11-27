@@ -129,6 +129,7 @@
                 :selected-submitter="selectedSubmitter"
                 :document="document"
                 :is-drag="!!dragField"
+                :default-fields="defaultFields"
                 :draw-field="drawField"
                 :editable="editable"
                 :base-url="baseUrl"
