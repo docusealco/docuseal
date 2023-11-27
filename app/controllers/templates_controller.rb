@@ -58,8 +58,10 @@ class TemplatesController < ApplicationController
 
   def destroy
     notice =
-      if !Docuseal.multitenant? && params[:permanently].present?
+      if params[:permanently].present?
         @template.destroy!
+
+        Rollbar.info("Remove template: #{@template.id}") if defined?(Rollbar)
 
         'Template has been removed.'
       else

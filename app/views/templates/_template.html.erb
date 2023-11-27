@@ -52,9 +52,9 @@
           </a>
         </span>
       <% end %>
-      <% if (!template.deleted_at? || !Docuseal.multitenant?) && can?(:destroy, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= template.deleted_at? ? 'Remove' : 'Archive' %>">
-          <%= button_to template_path(template), data: { turbo_confirm: 'Are you sure?' }, params: { permanently: template.deleted_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+      <% if can?(:destroy, template) %>
+        <span class="tooltip tooltip-left" data-tip="<%= template.deleted_at? ? 'Delete' : 'Archive' %>">
+          <%= button_to template_path(template), data: { turbo_confirm: template.deleted_at? ? 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' : 'Are you sure?' }, params: { permanently: template.deleted_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
             <%= svg_icon('trash', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
