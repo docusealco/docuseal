@@ -68,7 +68,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input

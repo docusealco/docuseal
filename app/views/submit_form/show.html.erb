@@ -9,7 +9,8 @@
       <%= render 'banner' %>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
-        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>        
+        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %> 
+        <% document.preview_secured_images.load %>
         <% preview_images_index = document.preview_secured_images.loaded? ? document.preview_secured_images.index_by { |e| e.filename.base.to_i } : {} %>
         <% lazyload_metadata = document.preview_secured_images.last.metadata %>
         <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_secured_images.loaded? ? preview_images_index.size : document.preview_secured_images.size)).times do |index| %>

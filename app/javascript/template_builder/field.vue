@@ -31,7 +31,7 @@
           />
         </div>
         <div
-          v-if="isNameFocus"
+          v-if="isNameFocus && !['redact'].includes(field.type)"
           class="flex items-center relative"
         >
           <template v-if="field.type != 'phone'">

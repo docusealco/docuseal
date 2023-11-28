@@ -250,7 +250,9 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-
+      if (['redact'].includes(type)) {
+        field.required = 'false'
+      }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]
       }

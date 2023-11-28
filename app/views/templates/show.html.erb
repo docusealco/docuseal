@@ -117,6 +117,7 @@
       const template = this.getAttribute('data-template')
       setTimeout(function () {
         window.location.href = template
+        document.getElementById('loader').style.display = 'none'
       }, 3000)
     })
   }

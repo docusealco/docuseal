@@ -611,6 +611,9 @@ export default {
         ...this.dragField
       }
 
+      if (['redact'].includes(field.type)) {
+        field.required = 'false'
+      }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
         field.options = [{ value: '', uuid: v4() }]
       }
