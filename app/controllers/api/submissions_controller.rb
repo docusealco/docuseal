@@ -13,6 +13,10 @@ module Api
       submissions = Submissions.search(@submissions, params[:q])
       submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
 
+      if params[:template_folder].present?
+        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
+      end
+
       submissions = paginate(submissions.preload(:created_by_user, :template, :submitters,
                                                  audit_trail_attachment: :blob))
 
