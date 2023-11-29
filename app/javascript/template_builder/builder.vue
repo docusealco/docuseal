@@ -500,7 +500,7 @@ export default {
         this.selectedAreaRef.value = null
       }
 
-      if (['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
+      if (this.editable && ['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
         this.removeArea(this.selectedAreaRef.value)
 
         this.selectedAreaRef.value = null
