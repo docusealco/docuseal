@@ -8,7 +8,7 @@
       class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10"
       :style="{ backgroundColor }"
     >
-      <div class="flex space-x-3">
+      <div class="flex items-center space-x-3">
         <a
           v-if="withLogo"
           href="/"
@@ -19,7 +19,7 @@
           v-if="withTitle"
           :model-value="template.name"
           :editable="editable"
-          class="text-3xl font-semibold focus:text-clip"
+          class="text-xl md:text-3xl font-semibold focus:text-clip"
           :icon-stroke-width="2.3"
           @update:model-value="updateName"
         />
@@ -31,9 +31,24 @@
         />
         <template v-else>
           <a
+            :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
+            class="btn btn-primary btn-ghost text-base hidden md:flex"
+            :target="template.submitters.length > 1 ? '' : '_blank'"
+            :data-turbo-frame="template.submitters.length > 1 ? 'modal' : ''"
+            @click="maybeShowEmptyTemplateAlert"
+          >
+            <IconWritingSign
+              width="20"
+              class="inline"
+            />
+            <span class="hidden md:inline">
+              Sign Yourself
+            </span>
+          </a>
+          <a
             :href="`/templates/${template.id}/submissions/new`"
             data-turbo-frame="modal"
-            class="btn btn-primary text-base"
+            class="white-button md:!px-6"
             @click="maybeShowEmptyTemplateAlert"
           >
             <IconUsersPlus
@@ -41,7 +56,7 @@
               class="inline"
             />
             <span class="hidden md:inline">
-              Recipients
+              Send
             </span>
           </a>
           <button
@@ -255,7 +270,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import FieldType from './field_type'
-import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
+import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 
@@ -269,6 +284,7 @@ export default {
     IconPlus,
     FieldType,
     IconX,
+    IconWritingSign,
     Logo,
     Dropzone,
     DocumentPreview,

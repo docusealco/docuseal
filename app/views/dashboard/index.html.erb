@@ -8,7 +8,7 @@
       <% end %>
       <% if can?(:create, ::Template) %>
         <%= render 'templates/upload_button' %>
-        <%= link_to new_template_path, class: 'btn btn-primary text-base btn-md gap-2', data: { turbo_frame: :modal } do %>
+        <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span class="hidden md:block">Create</span>
         <% end %>

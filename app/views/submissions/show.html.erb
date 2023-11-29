@@ -55,7 +55,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>">
+              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
