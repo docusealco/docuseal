@@ -9,7 +9,7 @@ module Submissions
 
       Array.wrap(submissions_attrs).map do |attrs|
         submission = template.submissions.new(created_by_user: user, source:,
-                                              template_submitters: template.submitters, submitters_order:)
+                                              template_submitters: [], submitters_order:)
 
         maybe_set_template_fields(submission, attrs[:submitters])
 
@@ -17,6 +17,8 @@ module Submissions
           uuid = find_submitter_uuid(template, submitter_attrs, index)
 
           next if uuid.blank?
+
+          submission.template_submitters << template.submitters.find { |e| e['uuid'] == uuid }
 
           is_order_sent = submitters_order == 'random' || index.zero?
 
