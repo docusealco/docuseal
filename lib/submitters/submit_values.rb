@@ -21,9 +21,7 @@ module Submitters
 
       submitter.submission.save!
 
-      return submitter unless submitter.completed_at?
-
-      ProcessSubmitterCompletionJob.perform_later(submitter)
+      ProcessSubmitterCompletionJob.perform_later(submitter) if submitter.completed_at?
 
       submitter
     end
