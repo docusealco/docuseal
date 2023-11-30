@@ -9,6 +9,7 @@ module Submissions
 
       Array.wrap(submissions_attrs).map do |attrs|
         submission = template.submissions.new(created_by_user: user, source:,
+                                              preferences: preferences.slice('send_email'),
                                               template_submitters: [], submitters_order:)
 
         maybe_set_template_fields(submission, attrs[:submitters])

@@ -24,7 +24,8 @@ class ProcessSubmitterCompletionJob < ApplicationJob
   def enqueue_completed_emails(submitter)
     user = submitter.submission.created_by_user || submitter.template.author
 
-    if submitter.template.account.users.exists?(id: user.id)
+    if submitter.template.account.users.exists?(id: user.id) &&
+       submitter.submission.preferences['send_email'] != false
       bcc = submitter.submission.template.account.account_configs
                      .find_by(key: AccountConfig::BCC_EMAILS)&.value
 
