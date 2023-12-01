@@ -21,20 +21,19 @@
         />
       </span>
     </div>
-    <div
-      v-else
-      class="flex items-center px-0.5"
-    >
-      <span v-if="Array.isArray(modelValue)">
-        {{ modelValue.join(', ') }}
-      </span>
-      <span v-else-if="field.type === 'date'">
-        {{ formattedDate }}
-      </span>
-      <span v-else>
-        {{ modelValue }}
-      </span>
-    </div>
+  </div>
+  <!-- show myText prefill with stored value -->
+  <div
+    v-else-if="field.type === 'my_text'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'white' }"
+    :class="{ 'cursor-default ': !submittable, 'border ': submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <span
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2;"
+      class="!text-2xl w-full h-full"
+      v-text="showLocalText"
+    />
   </div>
 
   <div
@@ -248,12 +247,20 @@ export default {
     area: {
       type: Object,
       required: true
+    },
+    templateValues: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
     }
   },
   emits: ['update:model-value'],
   data () {
     return {
-      textOverflowChars: 0
+      textOverflowChars: 0,
+      showLocalText: ''
     }
   },
   computed: {
@@ -271,7 +278,8 @@ export default {
         radio: 'Radio',
         multiple: 'Multiple Select',
         phone: 'Phone',
-        redact: 'redact'
+        redact: 'Redact',
+        my_text: 'My Text'
       }
     },
     fieldIcons () {
@@ -345,6 +353,15 @@ export default {
     }
   },
   mounted () {
+    if (this.field.type === 'my_text') {
+      const fieldUuid = this.field.uuid
+      if (this.templateValues && this.templateValues[fieldUuid]) {
+        this.showLocalText = this.templateValues[fieldUuid]
+      } else {
+        this.showLocalText = ''
+      }
+    }
+
     if (this.field.type === 'text' && this.$refs.textContainer) {
       this.$nextTick(() => {
         this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0

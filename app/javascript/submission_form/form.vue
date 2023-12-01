@@ -6,6 +6,7 @@
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes"
     :current-step="currentStepFields"
+    :template-values="templateValues"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
   <button
@@ -64,6 +65,9 @@
               :field="currentField"
               @focus="$refs.areas.scrollIntoField(currentField)"
             />
+          </div>
+          <div v-if="['my_text'].includes(currentField.type)">
+            <!-- do nothing on this side just chill for now -->
           </div>
           <DateStep
             v-else-if="currentField.type === 'date'"
@@ -372,6 +376,10 @@ export default {
   },
   props: {
     submitter: {
+      type: Object,
+      required: true
+    },
+    templateValues: {
       type: Object,
       required: true
     },

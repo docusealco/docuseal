@@ -25,6 +25,7 @@
             :with-label="withLabel"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
+            :template-values="templateValues"
             @click="$emit('focus-step', step)"
           />
         </Teleport>
@@ -66,6 +67,13 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    templateValues: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
     }
   },
   emits: ['focus-step'],

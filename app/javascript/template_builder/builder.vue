@@ -134,6 +134,7 @@
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
+                @update:my-text="updateMyText"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -426,6 +427,11 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    updateMyText (values) {
+      const existingValues = this.template.values || {}
+      const updatedValues = { ...existingValues, ...values }
+      this.template.values = updatedValues
+    },
     startFieldDraw (type) {
       const field = {
         name: '',
@@ -435,7 +441,9 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-
+      if (['redact', 'my_text'].includes(type)) {
+        field.required = 'false'
+      }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]
       }
@@ -611,7 +619,7 @@ export default {
         ...this.dragField
       }
 
-      if (['redact'].includes(field.type)) {
+      if (['redact', 'my_text'].includes(field.type)) {
         field.required = 'false'
       }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
@@ -785,7 +793,8 @@ export default {
             name: this.template.name,
             schema: this.template.schema,
             submitters: this.template.submitters,
-            fields: this.template.fields
+            fields: this.template.fields,
+            values: this.template.values
           }
         }),
         headers: { 'Content-Type': 'application/json' }

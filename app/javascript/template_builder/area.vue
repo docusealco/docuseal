@@ -39,6 +39,7 @@
       @pointerdown.stop
     >
       <FieldSubmitter
+        v-if="(field.type !== 'my_text')"
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
@@ -49,6 +50,7 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
+        v-if="(field.type !== 'my_text')"
         v-model="field.type"
         :button-width="27"
         :editable="editable"
@@ -68,7 +70,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone', 'redact'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
@@ -110,6 +112,23 @@
         />
       </span>
     </div>
+    <!-- adding editable textarea for prefills -->
+    <div
+      v-else-if="field.type === 'my_text'"
+      class="flex items-center justify-center h-full w-full"
+      style="background-color: rgb(185, 185, 185);"
+    >
+      <textarea
+        :id="field.uuid"
+        ref="textarea"
+        :value="myLocalText"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2;"
+        class="!text-2xl w-full h-full"
+        :placeholder="`type here`"
+        :name="`values[${field.uuid}]`"
+        @input="makeMyText"
+      />
+    </div>
     <div
       v-else
       class="flex items-center h-full w-full"
@@ -140,6 +159,7 @@
       </span>
     </div>
     <div
+      v-if="field.type !== 'my_text'"
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
@@ -156,7 +176,7 @@
 import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
-import { IconX } from '@tabler/icons-vue'
+import { IconX, IconWriting } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -164,7 +184,8 @@ export default {
   components: {
     FieldType,
     FieldSubmitter,
-    IconX
+    IconX,
+    IconWriting
   },
   inject: ['template', 'selectedAreaRef', 'save'],
   props: {
@@ -188,12 +209,13 @@ export default {
       default: null
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'update:myText'],
   data () {
     return {
       isResize: false,
       isDragged: false,
       isNameFocus: false,
+      myLocalText: '',
       textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 }
     }
@@ -278,6 +300,15 @@ export default {
     }
   },
   mounted () {
+    if (this.field.type === 'my_text') {
+      const fieldUuid = this.field.uuid
+      if (this.template.values && this.template.values[fieldUuid]) {
+        this.myLocalText = this.template.values[fieldUuid]
+      } else {
+        this.myLocalText = ''
+      }
+    }
+
     if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
       this.$nextTick(() => {
         this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
@@ -285,6 +316,15 @@ export default {
     }
   },
   methods: {
+    makeMyText (e) {
+      this.myLocalText = e.target.value ? e.target.value : this.myLocalText
+      this.sendSaveText(
+        { [this.field.uuid]: e.target.value }
+      )
+    },
+    sendSaveText (event) {
+      this.$emit('update:myText', event)
+    },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
 

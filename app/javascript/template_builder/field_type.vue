@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper, IconTextResize } from '@tabler/icons-vue'
 export default {
   name: 'FiledTypeDropdown',
   inject: ['withPhone'],
@@ -92,7 +92,8 @@ export default {
         radio: 'Radio',
         cells: 'Cells',
         phone: 'Phone',
-        redact: 'redact'
+        redact: 'Redact',
+        my_text: 'My_Text'
       }
     },
     fieldIcons () {
@@ -109,7 +110,8 @@ export default {
         multiple: IconChecks,
         radio: IconCircleDot,
         phone: IconPhoneCheck,
-        redact: IconBarrierBlock
+        redact: IconBarrierBlock,
+        my_text: IconTextResize
       }
     }
   },

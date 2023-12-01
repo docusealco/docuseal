@@ -97,33 +97,64 @@
         :class="colors[submitters.indexOf(selectedSubmitter)]"
       />
     </label>
-    <label
+    <!-- adding button to show and hide prefills -->
+    <div
       v-else
-      tabindex="0"
-      class="cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 w-full flex justify-between"
     >
-      <div class="flex items-center space-x-2">
-        <span
-          class="w-3 h-3 rounded-full"
-          :class="colors[submitters.indexOf(selectedSubmitter)]"
-        />
-        <Contenteditable
-          v-model="selectedSubmitter.name"
-          class="cursor-text"
-          :icon-inline="true"
-          :editable="editable"
-          :select-on-edit-click="true"
-          :icon-width="18"
-          @update:model-value="$emit('name-change', selectedSubmitter)"
-        />
-      </div>
-      <span class="flex items-center">
-        <IconPlus
-          width="18"
-          height="18"
-        />
-      </span>
-    </label>
+      <label
+        v-if="!showNewFields"
+        class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
+        @click="$emit('add-prefills')"
+      >
+        <div class="flex items-center space-x-2">
+          <span
+            style="background-color: grey;"
+            class="w-3 h-3 rounded-full"
+          />
+          <div class="items-center space-x-2">Show Prefills</div>
+        </div>
+      </label>
+
+      <label
+        v-else
+        class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
+        @click="$emit('add-prefills')"
+      >
+        <div class="flex items-center space-x-2">
+          <span
+            style="background-color: grey;"
+            class="w-3 h-3 rounded-full"
+          />
+          <div class="items-center space-x-2">Hide Prefills</div>
+        </div>
+      </label>
+      <label
+        tabindex="0"
+        class="cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 w-full flex justify-between"
+      >
+        <div class="flex items-center space-x-2">
+          <span
+            class="w-3 h-3 rounded-full"
+            :class="colors[submitters.indexOf(selectedSubmitter)]"
+          />
+          <Contenteditable
+            v-model="selectedSubmitter.name"
+            class="cursor-text"
+            :icon-inline="true"
+            :editable="editable"
+            :select-on-edit-click="true"
+            :icon-width="18"
+            @update:model-value="$emit('name-change', selectedSubmitter)"
+          />
+        </div>
+        <span class="flex items-center">
+          <IconPlus
+            width="18"
+            height="18"
+          />
+        </span>
+      </label>
+    </div>
     <ul
       v-if="editable || !compact"
       tabindex="0"
@@ -192,6 +223,11 @@ export default {
     IconChevronUp
   },
   props: {
+    showNewFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     submitters: {
       type: Array,
       required: true
@@ -221,7 +257,7 @@ export default {
       default: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full z-10'
     }
   },
-  emits: ['update:model-value', 'remove', 'new-submitter', 'name-change'],
+  emits: ['update:model-value', 'remove', 'new-submitter', 'name-change', 'add-prefills'],
   computed: {
     colors () {
       return [

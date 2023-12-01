@@ -13,6 +13,7 @@
 #  slug            :string           not null
 #  source          :text             not null
 #  submitters      :text             not null
+#  values          :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  account_id      :bigint           not null
@@ -50,6 +51,7 @@ class Template < ApplicationRecord
   serialize :fields, JSON
   serialize :schema, JSON
   serialize :submitters, JSON
+  serialize :values, JSON
 
   has_many_attached :documents
 

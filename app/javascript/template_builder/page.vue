@@ -28,12 +28,14 @@
         @start-drag="isMove = true"
         @stop-drag="isMove = false"
         @remove="$emit('remove-area', item.area)"
+        @update:my-text="$emit('update:myText', $event)"
       />
       <FieldArea
         v-if="newArea"
         :is-draw="true"
         :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || 'text' }"
         :area="newArea"
+        @update:my-text="$emit('update:myText', $event)"
       />
     </div>
     <div
@@ -93,7 +95,7 @@ export default {
       required: true
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area'],
+  emits: ['draw', 'drop-field', 'remove-area', 'update:myText'],
   data () {
     return {
       areaRefs: [],

@@ -6,10 +6,12 @@
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
       :editable="editable"
+      :show-new-fields="showNewFields"
       @new-submitter="save"
       @remove="removeSubmitter"
       @name-change="save"
       @update:model-value="$emit('change-submitter', submitters.find((s) => s.uuid === $event))"
+      @add-prefills="toggleNewFields"
     />
   </div>
   <div
@@ -62,49 +64,27 @@
     </template>
   </div>
   <div
-    v-if="editable"
+    v-if="editable && !showNewFields"
     class="grid grid-cols-3 gap-1 pb-2"
   >
     <template
       v-for="(icon, type) in fieldIcons"
       :key="type"
     >
-      <button
-        v-if="withPhone || type != 'phone'"
-        draggable="true"
-        class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-        :style="{ backgroundColor: backgroundColor }"
-        @dragstart="onDragstart({ type: type })"
-        @dragend="$emit('drag-end')"
-        @click="addField(type)"
-      >
-        <div class="w-0 absolute left-0">
-          <IconDrag class="cursor-grab" />
-        </div>
-        <div class="flex items-center flex-col px-2 py-2">
-          <component :is="icon" />
-          <span class="text-xs mt-1">
-            {{ fieldNames[type] }}
-          </span>
-        </div>
-      </button>
       <div
-        v-else
-        class="tooltip tooltip-bottom-end flex"
-        data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
+        v-if="!['redact', 'my_text'].includes(type)"
       >
-        <a
-          href="https://www.docuseal.co/pricing"
-          target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-          :style="{ backgroundColor: backgroundColor }"
+        <button
+          v-if="withPhone || type != 'phone'"
+          draggable="true"
+          class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          :style="{ backgroundColor }"
+          @dragstart="onDragstart({ type: type })"
+          @dragend="$emit('drag-end')"
+          @click="addField(type)"
         >
           <div class="w-0 absolute left-0">
-            <IconLock
-              width="18"
-              height="18"
-              stroke-width="1.5"
-            />
+            <IconDrag class="cursor-grab" />
           </div>
           <div class="flex items-center flex-col px-2 py-2">
             <component :is="icon" />
@@ -112,7 +92,65 @@
               {{ fieldNames[type] }}
             </span>
           </div>
-        </a>
+        </button>
+        <div
+          v-else
+          class="tooltip tooltip-bottom-end flex"
+          data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
+        >
+          <a
+            href="https://www.docuseal.co/pricing"
+            target="_blank"
+            class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+            :style="{ backgroundColor: backgroundColor }"
+          >
+            <div class="w-0 absolute left-0">
+              <IconLock
+                width="18"
+                height="18"
+                stroke-width="1.5"
+              />
+            </div>
+            <div class="flex items-center flex-col px-2 py-2">
+              <component :is="icon" />
+              <span class="text-xs mt-1">
+                {{ fieldNames[type] }}
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </template>
+  </div>
+  <div
+    v-else-if="editable && showNewFields"
+    class="grid grid-cols-3 gap-1 pb-2"
+  >
+    <template
+      v-for="(icon, type) in fieldIcons"
+      :key="type"
+    >
+      <div
+        v-if="['redact', 'my_text'].includes(type)"
+      >
+        <button
+          draggable="true"
+          class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          :style="{ backgroundColor }"
+          @dragstart="onDragstart({ type: type })"
+          @dragend="$emit('drag-end')"
+          @click="addField(type)"
+        >
+          <div class="w-0 absolute left-0">
+            <IconDrag class="cursor-grab" />
+          </div>
+          <div class="flex items-center flex-col px-2 py-2">
+            <component :is="icon" />
+            <span class="text-xs mt-1">
+              {{ fieldNames[type] }}
+            </span>
+          </div>
+        </button>
       </div>
     </template>
   </div>
@@ -184,7 +222,8 @@ export default {
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
   data () {
     return {
-      dragField: null
+      dragField: null,
+      showNewFields: false
     }
   },
   computed: {
@@ -200,6 +239,9 @@ export default {
     }
   },
   methods: {
+    toggleNewFields () {
+      this.showNewFields = !this.showNewFields
+    },
     onDragstart (field) {
       this.$emit('set-drag', field)
     },
@@ -250,7 +292,7 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-      if (['redact'].includes(type)) {
+      if (['redact', 'my_text'].includes(type)) {
         field.required = 'false'
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
