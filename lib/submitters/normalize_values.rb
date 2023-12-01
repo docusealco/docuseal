@@ -9,7 +9,7 @@ module Submitters
 
     module_function
 
-    def call(template, values, submitter_name)
+    def call(template, values, submitter_name, throw_errors: false)
       submitter =
         template.submitters.find { |e| e['name'] == submitter_name } ||
         raise(UnknownSubmitterName, "Unknown submitter: #{submitter_name}")
@@ -21,10 +21,14 @@ module Submitters
 
       attachments = []
 
-      normalized_values = values.to_h.to_h do |key, value|
+      normalized_values = values.to_h.filter_map do |key, value|
         if fields_uuid_index[key].blank?
-          key = fields_name_index[key]&.dig('uuid') || raise(UnknownFieldName, "Unknown field: #{key}")
+          key = fields_name_index[key]&.dig('uuid')
+
+          raise(UnknownFieldName, "Unknown field: #{key}") if key.blank? && throw_errors
         end
+
+        next if key.blank?
 
         if fields_uuid_index[key]['type'].in?(%w[initials signature image file])
           new_value, new_attachments = normalize_attachment_value(value, template.account)
@@ -35,7 +39,7 @@ module Submitters
         end
 
         [key, value]
-      end
+      end.to_h
 
       [normalized_values, attachments]
     end

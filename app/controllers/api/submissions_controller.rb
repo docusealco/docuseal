@@ -148,7 +148,8 @@ module Api
           values, new_attachments =
             Submitters::NormalizeValues.call(template,
                                              default_values,
-                                             submitter[:role] || template.submitters[index]['name'])
+                                             submitter[:role] || template.submitters[index]['name'],
+                                             throw_errors: true)
 
           attachments.push(*new_attachments)
 
