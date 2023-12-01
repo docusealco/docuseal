@@ -5,13 +5,11 @@ class MfaSetupController < ApplicationController
     authorize!(:update, current_user)
   end
 
-  def new
-    current_user.otp_secret ||= User.generate_otp_secret
+  before_action :set_provision_url, only: %i[show new]
 
-    current_user.save!
+  def show; end
 
-    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
-  end
+  def new; end
 
   def edit; end
 
@@ -26,7 +24,7 @@ class MfaSetupController < ApplicationController
 
       @error_message = 'Code is invalid'
 
-      render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/new'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:mfa_form, partial: 'mfa_setup/form'), status: :unprocessable_entity
     end
   end
 
@@ -40,5 +38,17 @@ class MfaSetupController < ApplicationController
 
       render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/edit'), status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def set_provision_url
+    return redirect_to root_path, alert: '2FA has been set up already' if current_user.otp_required_for_login
+
+    current_user.otp_secret ||= User.generate_otp_secret
+
+    current_user.save!
+
+    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
   end
 end
