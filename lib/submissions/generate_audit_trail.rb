@@ -63,7 +63,7 @@ module Submissions
       composer.new_page
 
       composer.column(columns: 1) do |column|
-        add_logo(column, account)
+        add_logo(column, submission)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -151,11 +151,11 @@ module Submissions
           [
             composer.document.layout.formatted_text_box(
               [
-                submitter.email && {
-                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
+                submitter.email && click_email_event && {
+                  text: "Email verification: #{VERIFIED_TEXT}\n"
                 },
-                submitter.phone && {
-                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
+                submitter.phone && is_phone_verified && {
+                  text: "Phone verification: #{VERIFIED_TEXT}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
@@ -268,7 +268,7 @@ module Submissions
       )
     end
 
-    def add_logo(column, _account = nil)
+    def add_logo(column, _submission = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
       column.formatted_text([{ text: 'DocuSeal',
