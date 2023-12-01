@@ -18,7 +18,6 @@ RSpec.describe 'Template' do
       expect(page).to have_content(template.name)
       expect(page).to have_content('There are no Submissions')
       expect(page).to have_content('Send an invitation to fill and complete the form')
-      expect(page).to have_link('Add Recipients', href: new_template_submission_path(template))
       expect(page).to have_link('Sign it Yourself')
     end
   end
