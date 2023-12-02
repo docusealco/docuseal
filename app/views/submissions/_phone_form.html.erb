@@ -19,7 +19,7 @@
                   <% end %>
                   <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
                   <submitters-autocomplete data-field="phone">
-                    <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="input input-sm input-bordered w-full" placeholder="Phone" required>
+                    <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', oninvalid: "this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''", oninput: "this.setCustomValidity('')", name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'input input-sm input-bordered w-full', placeholder: 'Phone', required: index.zero? %>
                   </submitters-autocomplete>
                   <% if template.submitters.size > 1 %>
                     <submitters-autocomplete data-field="name">

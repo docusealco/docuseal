@@ -24,6 +24,7 @@ module Submissions
           uuid = find_submitter_uuid(template, submitter_attrs, index)
 
           next if uuid.blank?
+          next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
 
           submission.template_submitters << template.submitters.find { |e| e['uuid'] == uuid }
 
