@@ -25,6 +25,7 @@ class EncryptedConfig < ApplicationRecord
     FILES_STORAGE_KEY = 'active_storage',
     EMAIL_SMTP_KEY = 'action_mailer_smtp',
     ESIGN_CERTS_KEY = 'esign_certs',
+    TIMESTAMP_SERVER_URL_KEY = 'timestamp_server_url',
     APP_URL_KEY = 'app_url',
     WEBHOOK_URL_KEY = 'webhook_url'
   ].freeze

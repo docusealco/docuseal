@@ -32,6 +32,7 @@ module Submissions
     def call(submission)
       account = submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
+      tsa_url = Accounts.load_timeserver_url(account)
       verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
@@ -254,10 +255,16 @@ module Submissions
 
       composer.document.trailer.info[:Creator] = INFO_CREATOR
 
-      composer.document.sign(io, reason: SIGN_REASON,
-                                 certificate: pkcs.certificate,
-                                 key: pkcs.key,
-                                 certificate_chain: pkcs.ca_certs || [])
+      sign_params = {
+        reason: SIGN_REASON,
+        certificate: pkcs.certificate,
+        key: pkcs.key,
+        certificate_chain: pkcs.ca_certs || []
+      }
+
+      sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:) if tsa_url
+
+      composer.document.sign(io, **sign_params)
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(

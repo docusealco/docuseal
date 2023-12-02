@@ -29,6 +29,7 @@ module Submissions
 
       account = submitter.submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
+      tsa_url = Accounts.load_timeserver_url(account)
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -190,7 +191,9 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, uuid: item['attachment_uuid'], name: item['name'])
+          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:,
+                                       uuid: item['attachment_uuid'],
+                                       name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
@@ -217,15 +220,21 @@ module Submissions
     end
     # rubocop:enable Metrics
 
-    def save_signed_pdf(pdf:, submitter:, pkcs:, uuid:, name:)
+    def save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
 
-      pdf.sign(io, reason: sign_reason(submitter.email),
-                   certificate: pkcs.certificate,
-                   key: pkcs.key,
-                   certificate_chain: pkcs.ca_certs || [])
+      sign_params = {
+        reason: sign_reason(submitter.email),
+        certificate: pkcs.certificate,
+        key: pkcs.key,
+        certificate_chain: pkcs.ca_certs || []
+      }
+
+      sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:) if tsa_url
+
+      pdf.sign(io, **sign_params)
 
       ActiveStorage::Attachment.create!(
         uuid:,

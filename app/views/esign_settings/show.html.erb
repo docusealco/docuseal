@@ -97,5 +97,31 @@
         </tbody>
       </table>
     </div>
+    <% encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY) %>
+    <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
+      <div class="flex-grow max-w-xl">
+        <div class="flex justify-between items-end mb-4 mt-8">
+          <h2 class="text-3xl font-bold">Timestamp Server</h2>
+        </div>
+        <%= form_for encrypted_config, url: timestamp_server_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+          <div class="form-control">
+            <%= f.label :value, class: 'label' do %>
+              <span class="flex items-center space-x-1">
+                <span>
+                  Timeserver URL
+                </span>
+                <span class="tooltip" data-tip="URL of the trusted timeserver to be used to generate timestamp signatures.">
+                  <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                </span>
+              </span>
+            <% end %>
+            <%= f.url_field :value, autocomplete: 'off', class: 'base-input', placeholder: 'URL (optional)' %>
+          </div>
+          <div class="form-control pt-2">
+            <%= f.button button_title(title: 'Save', disabled_with: 'Updating'), class: 'base-button' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
