@@ -8,8 +8,14 @@ module Submissions
       preferences = Submitters.normalize_preferences(template.account, user, params)
 
       Array.wrap(submissions_attrs).map do |attrs|
+        submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
+        submission_preferences = preferences.merge(submission_preferences)
+
+        set_submission_preferences = submission_preferences.slice('send_email')
+        set_submission_preferences['send_email'] = true if params['send_completed_email']
+
         submission = template.submissions.new(created_by_user: user, source:,
-                                              preferences: preferences.slice('send_email'),
+                                              preferences: set_submission_preferences,
                                               template_submitters: [], submitters_order:)
 
         maybe_set_template_fields(submission, attrs[:submitters])
@@ -22,8 +28,6 @@ module Submissions
           submission.template_submitters << template.submitters.find { |e| e['uuid'] == uuid }
 
           is_order_sent = submitters_order == 'random' || index.zero?
-
-          submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
 
           build_submitter(submission:, attrs: submitter_attrs, uuid:,
                           is_order_sent:, mark_as_sent:, user:,

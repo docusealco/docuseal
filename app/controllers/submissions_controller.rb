@@ -46,7 +46,7 @@ class SubmissionsController < ApplicationController
                                        source: :invite,
                                        mark_as_sent: params[:send_email] == '1',
                                        emails: params[:emails],
-                                       params:)
+                                       params: params.merge('send_completed_email' => true))
       else
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
@@ -54,7 +54,7 @@ class SubmissionsController < ApplicationController
                                            submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
                                            mark_as_sent: params[:send_email] == '1',
                                            submissions_attrs: submissions_params[:submission].to_h.values,
-                                           params:)
+                                           params: params.merge('send_completed_email' => true))
       end
 
     Submissions.send_signature_requests(submissions)
