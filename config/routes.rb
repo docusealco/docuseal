@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :verify_pdf_signature, only: %i[create]
   resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
-  resource :mfa_force, only: %i[create], controller: 'mfa_force'
+  resources :account_configs, only: %i[create]
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]

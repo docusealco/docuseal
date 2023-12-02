@@ -223,6 +223,7 @@
             :field="currentField"
             :previous-value="previousSignatureValue"
             :is-direct-upload="isDirectUpload"
+            :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
             @attached="attachments.push($event)"
@@ -385,6 +386,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withTypedSignature: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     baseUrl: {
       type: String,
