@@ -7,7 +7,7 @@
         <%= form_for @encrypted_config, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' } do |f| %>
           <%= f.label :value, 'Webhook URL', class: 'text-sm font-semibold' %>
           <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-4 mt-2">
-            <%= f.text_field :value, required: true, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
+            <%= f.url_field :value, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
             <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button w-full md:w-32' %>
           </div>
         <% end %>
