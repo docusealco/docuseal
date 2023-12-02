@@ -94,7 +94,26 @@ class SubmitterMailer < ApplicationMailer
       total_size = audit_trail_data.size
     end
 
-    documents.each do |attachment|
+    total_size = add_attachments_with_size_limit(documents, total_size)
+
+    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
+
+    file_fields = submitter.submission.template_fields.select { |e| e['type'] == 'file' }
+
+    if file_fields.pluck('submitter_uuid').uniq.size == 1
+      storage_attachments =
+        submitter.attachments.where(uuid: submitter.values.values_at(*file_fields.pluck('uuid')).flatten)
+
+      add_attachments_with_size_limit(storage_attachments, total_size)
+    end
+
+    documents
+  end
+
+  def add_attachments_with_size_limit(storage_attachments, current_size)
+    total_size = current_size
+
+    storage_attachments.each do |attachment|
       total_size += attachment.byte_size
 
       break if total_size >= MAX_ATTACHMENTS_SIZE
@@ -102,9 +121,7 @@ class SubmitterMailer < ApplicationMailer
       attachments[attachment.filename.to_s] = attachment.download
     end
 
-    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
-
-    documents
+    total_size
   end
 
   def from_address_for_submitter(submitter)
