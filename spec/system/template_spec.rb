@@ -42,10 +42,10 @@ RSpec.describe 'Template' do
       visit template_path(template)
     end
 
-    it 'removes a template' do
+    it 'archives a template' do
       expect do
         accept_confirm('Are you sure?') do
-          click_button 'Remove'
+          click_button 'Archive'
         end
       end.to change { Template.active.count }.by(-1)
 
