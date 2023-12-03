@@ -19,11 +19,7 @@ module Submissions
 
     INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
-    VERIFIED_TEXT = if Docuseal.multitenant?
-                      'Verified by DocuSeal'
-                    else
-                      'Verified'
-                    end
+    VERIFIED_TEXT = 'Verified'
     UNVERIFIED_TEXT = 'Unverified'
 
     module_function
