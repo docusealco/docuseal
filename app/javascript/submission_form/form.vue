@@ -686,7 +686,12 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
+          if (['redact', 'my_text'].includes(fields[0].type)) {
+            fields[0].required = 'false'
+            return false
+          } else {
+            return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
+          }
         })
 
         const formData = new FormData(this.$refs.form)
