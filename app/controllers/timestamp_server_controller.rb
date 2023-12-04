@@ -14,7 +14,7 @@ class TimestampServerController < ApplicationController
     else
       redirect_back fallback_location: settings_notifications_path, alert: 'Unable to save'
     end
-  rescue HexaPDF::Error, SocketError, Submissions::TimestampHandler::TimestampError
+  rescue HexaPDF::Error, SocketError, Submissions::TimestampHandler::TimestampError, OpenSSL::Timestamp::TimestampError
     redirect_back fallback_location: settings_notifications_path, alert: 'Invalid Timeserver'
   end
 
