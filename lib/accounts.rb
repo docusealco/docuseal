@@ -75,7 +75,14 @@ module Accounts
     if Docuseal.multitenant?
       Docuseal::TIMESERVER_URL
     else
-      EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+      url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+
+      unless Docuseal.multitenant?
+        url ||=
+          Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+      end
+
+      url
     end.presence
   end
 
