@@ -38,6 +38,10 @@ class SubmitFormController < ApplicationController
   def update
     submitter = Submitter.find_by!(slug: params[:slug])
 
+    if submitter.completed_at?
+      return render json: { error: 'Form has been completed already.' }, status: :unprocessable_entity
+    end
+
     Submitters::SubmitValues.call(submitter, params, request)
 
     head :ok
