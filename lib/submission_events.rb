@@ -7,6 +7,7 @@ module SubmissionEvents
     send_email: 'Email sent',
     send_reminder_email: 'Reminder email sent',
     send_sms: 'SMS sent',
+    send_2fa_sms: 'Verification SMS sent',
     open_email: 'Email opened',
     click_email: 'Email link clicked',
     click_sms: 'SMS link clicked',
