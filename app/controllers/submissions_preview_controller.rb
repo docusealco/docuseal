@@ -20,7 +20,7 @@ class SubmissionsPreviewController < ApplicationController
     if total_pages < PRELOAD_ALL_PAGES_AMOUNT
       ActiveRecord::Associations::Preloader.new(
         records: @submission.template_schema_documents,
-        associations: [:blob, { preview_images_attachments: :blob }]
+        associations: [:blob, { preview_secured_images_attachments: :blob }]
       ).call
     end
 

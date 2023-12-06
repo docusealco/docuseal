@@ -33,8 +33,9 @@ module Submissions
       pdfs_index = build_pdfs_index(submitter)
 
       submitter.submission.template_fields.each do |field|
-        next if field['submitter_uuid'] != submitter.uuid
-
+        unless ['my_text'].include?(field['type'])
+          next if field['submitter_uuid'] != submitter.uuid
+        end
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
@@ -50,7 +51,7 @@ module Submissions
 
           layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
 
-          value = submitter.values[field['uuid']]
+          value = submitter.values[field['uuid']] || template.values[field['uuid']]
 
           if !field['type']=='redact'
             next if Array.wrap(value).compact_blank.blank?
@@ -166,6 +167,24 @@ module Submissions
             canvas.fill_color(0, 0, 0) # Set fill color to black
             canvas.rectangle(x, y, w, h)
             canvas.fill
+          when 'my_text'
+            x = area['x'] * width
+            y = height - (area['y'] * height) - (area['h'] * height)
+            w = area['w'] * width * 1.01
+            h = area['h'] * height
+
+            font_size_my_text = (font_size / 0.75).to_i
+            layouter_my_text = HexaPDF::Layout::TextLayouter.new(valign: :top, font: pdf.fonts.add(FONT_NAME), font_size: font_size_my_text)
+        
+            value_my_text = submitter.values[field['uuid']] || template.values[field['uuid']]
+        
+            text_my_text = HexaPDF::Layout::TextFragment.create(Array.wrap(value_my_text).join(', '), font: pdf.fonts.add(FONT_NAME), font_size: font_size_my_text)
+        
+            lines_my_text = layouter_my_text.fit([text_my_text], w, h).lines
+            box_height_my_text = lines_my_text.sum(&:height)
+            height_diff_my_text = [0, box_height_my_text - h].max
+            layouter_my_text.fit([text_my_text], w, height_diff_my_text.positive? ? box_height_my_text : h)
+                          .draw(canvas, x + TEXT_LEFT_MARGIN, y - height_diff_my_text + 17)
           else
             value = I18n.l(Date.parse(value), format: :default, locale: account.locale) if field['type'] == 'date'
 

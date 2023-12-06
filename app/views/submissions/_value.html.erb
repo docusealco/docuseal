@@ -34,7 +34,11 @@
     <div class="flex items-center px-0.5">
       <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
     </div>
+  <% elsif field['type'] == 'redact' %>
+    <div class="flex absolute" style="width: 100%; height: 100%;" :style="{ backgroundColor: 'black' }"></div>
+  <% elsif field['type'] == 'my_text' %>
+    <div style="letter-spacing: 1.1px; padding-bottom: 1.1px; font-size: 1.4rem;" class="flex items-center px-0.5 whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
   <% else %>
-    <div class="flex items-center px-0.5 whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
+    <div style="letter-spacing: 1.1px; padding-bottom: 1.1px;" class="flex items-center px-0.5 whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
   <% end %>
 </div>

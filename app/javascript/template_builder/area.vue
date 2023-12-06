@@ -116,13 +116,13 @@
     <div
       v-else-if="field.type === 'my_text'"
       class="flex items-center justify-center h-full w-full"
-      style="background-color: rgb(185, 185, 185);"
+      style="background-color: transparent;"
     >
       <textarea
         :id="field.uuid"
         ref="textarea"
         :value="myLocalText"
-        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2;"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
         class="!text-2xl w-full h-full"
         :placeholder="`type here`"
         :name="`values[${field.uuid}]`"

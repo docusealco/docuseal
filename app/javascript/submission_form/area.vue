@@ -26,11 +26,11 @@
   <div
     v-else-if="field.type === 'my_text'"
     class="flex absolute"
-    :style="{ ...computedStyle, backgroundColor: 'white' }"
-    :class="{ 'cursor-default ': !submittable, 'border ': submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{ 'cursor-default ': !submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
   >
     <span
-      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2;"
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
       class="!text-2xl w-full h-full"
       v-text="showLocalText"
     />

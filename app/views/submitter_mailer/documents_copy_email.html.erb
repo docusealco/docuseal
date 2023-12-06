@@ -6,6 +6,7 @@
   <p>Alternatively, you can review and download your copy using:</p>
   <p>
     <%= link_to @submitter.template.name, submissions_preview_url(@submitter.submission.slug) %>
+    <%# link_to @submitter.template.name, submitter_download_index_path(@submitter.submission.slug), download: true %>
   </p>
   <p>
     Thanks,<br><%= @current_account.name %>

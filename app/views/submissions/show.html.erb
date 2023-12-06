@@ -59,7 +59,11 @@
                   <%= render 'submissions/annotation', annot: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                  <% value = values[field['uuid']] %>
+                  <% if ['my_text'].include?(field['type']) %>
+                    <% value = @submission.template.values[field['uuid']] %>
+                  <% else %>
+                    <% value = values[field['uuid']] %>
+                  <% end %>
                   <% next if value.blank? %>
                   <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.template.account.locale %>
                 <% end %>
