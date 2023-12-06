@@ -43,7 +43,9 @@ module Submissions
           page.rotate(0, flatten: true) if page[:Rotate] != 0
 
           page[:Annots] ||= []
-          page[:Annots] = page[:Annots].reject { |e| e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field') }
+          page[:Annots] = page[:Annots].reject do |e|
+            e.present? && e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field')
+          end
 
           width = page.box.width
           height = page.box.height
