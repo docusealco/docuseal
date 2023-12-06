@@ -12,7 +12,7 @@ class ErrorsController < ActionController::Base
   ].freeze
 
   def show
-    if request.original_fullpath.in?(ENTERPRISE_PATHS)
+    if request.original_fullpath.in?(ENTERPRISE_PATHS) && error_status_code == 404
       return render json: { status: 404, message: ENTERPRISE_FEATURE_MESSAGE }, status: :not_found
     end
 
