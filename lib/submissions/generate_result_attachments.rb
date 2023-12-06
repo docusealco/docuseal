@@ -69,7 +69,7 @@ module Submissions
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.resize([scale * 4, 1].min).write_to_buffer('.png'))
+            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
 
             canvas.image(
               io,
