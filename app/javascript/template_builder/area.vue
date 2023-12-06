@@ -50,7 +50,7 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
-        v-if="(field.type !== 'my_text')"
+        v-if="!['my_text', 'my_signature'].includes(field.type)"
         v-model="field.type"
         :button-width="27"
         :editable="editable"
@@ -130,6 +130,20 @@
       />
     </div>
     <div
+      v-else-if="field.type === 'my_signature'"
+      class="flex items-center justify-center h-full w-full"
+      style="background-color: white;"
+    >
+      <img
+        :id="field.uuid"
+        :src="field.url"
+        alt="please sign ..."
+        class="d-flex justify-center w-full h-full"
+        style="z-index: 50;"
+        @click="handleMySignatureClick"
+      >
+    </div>
+    <div
       v-else
       class="flex items-center h-full w-full"
       :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
@@ -170,6 +184,29 @@
       @touchstart="startTouchResize"
     />
   </div>
+  <div
+    v-if="showMySignature"
+  >
+    <!--
+    <MySignature
+      :key="field.uuid"
+      v-model="values[field.uuid]"
+      :style="mySignatureStyle"
+      :field="field"
+      :previous-value="previousSignatureValue"
+      :is-direct-upload="isDirectUpload"
+      :attachments-index="attachmentsIndex"
+      @attached="attachments.push($event)"
+      @remove="showMySignature = false"
+    />
+     -->
+    <MySignature
+      :key="field.uuid"
+      :style="mySignatureStyle"
+      :field="field"
+      :template="template"
+    />
+  </div>
 </template>
 
 <script>
@@ -178,6 +215,7 @@ import FieldType from './field_type'
 import Field from './field'
 import { IconX, IconWriting } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
+import MySignature from './my_signature'
 
 export default {
   name: 'FieldArea',
@@ -185,7 +223,8 @@ export default {
     FieldType,
     FieldSubmitter,
     IconX,
-    IconWriting
+    IconWriting,
+    MySignature
   },
   inject: ['template', 'selectedAreaRef', 'save'],
   props: {
@@ -198,6 +237,16 @@ export default {
       required: false,
       default: false
     },
+    // modelValue: {
+    //   type: [Array, String, Number, Object, Boolean],
+    //   required: false,
+    //   default: ''
+    // },
+    // attachmentsIndex: {
+    //   type: Object,
+    //   required: false,
+    //   default: () => ({})
+    // },
     editable: {
       type: Boolean,
       required: false,
@@ -217,7 +266,8 @@ export default {
       isNameFocus: false,
       myLocalText: '',
       textOverflowChars: 0,
-      dragFrom: { x: 0, y: 0 }
+      dragFrom: { x: 0, y: 0 },
+      showMySignature: false
     }
   },
   computed: {
@@ -231,6 +281,23 @@ export default {
         return ''
       }
     },
+    mySignatureStyle () {
+      const { x, y, w, h } = this.area
+
+      return {
+        top: (y * 100) + 7 + '%',
+        left: (x * 100) - 10 + '%',
+        width: w * 100 + '%',
+        height: h * 100 + '%'
+      }
+    },
+    // my_signature () {
+    //   if (this.field.type === 'my_signature') {
+    //     return this.attachmentsIndex[this.modelValue]
+    //   } else {
+    //     return null
+    //   }
+    // },
     cells () {
       const cells = []
 
@@ -320,6 +387,11 @@ export default {
       this.myLocalText = e.target.value ? e.target.value : this.myLocalText
       this.sendSaveText(
         { [this.field.uuid]: e.target.value }
+      )
+    },
+    makeMySignature (e) {
+      this.sendSaveText(
+        { [this.field.uuid]: e.attachment.uuid }
       )
     },
     sendSaveText (event) {
@@ -522,6 +594,10 @@ export default {
       this.$emit('stop-resize')
 
       this.save()
+    },
+    handleMySignatureClick () {
+      console.log('my-signature event triggered with field:')
+      this.showMySignature = !this.showMySignature
     }
   }
 }

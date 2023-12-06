@@ -93,7 +93,8 @@ export default {
         cells: 'Cells',
         phone: 'Phone',
         redact: 'Redact',
-        my_text: 'My_Text'
+        my_text: 'My_Text',
+        my_signature: 'My Signature'
       }
     },
     fieldIcons () {
@@ -111,7 +112,8 @@ export default {
         radio: IconCircleDot,
         phone: IconPhoneCheck,
         redact: IconBarrierBlock,
-        my_text: IconTextResize
+        my_text: IconTextResize,
+        my_signature: IconWritingSign
       }
     }
   },

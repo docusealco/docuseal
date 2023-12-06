@@ -72,7 +72,7 @@
       :key="type"
     >
       <div
-        v-if="!['redact', 'my_text'].includes(type)"
+        v-if="!['redact', 'my_text', 'my_signature'].includes(type)"
       >
         <button
           v-if="withPhone || type != 'phone'"
@@ -131,7 +131,7 @@
       :key="type"
     >
       <div
-        v-if="['redact', 'my_text'].includes(type)"
+        v-if="['redact', 'my_text', 'my_signature'].includes(type)"
       >
         <button
           draggable="true"

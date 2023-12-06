@@ -253,6 +253,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import FieldType from './field_type'
+import { t } from './i18n'
 import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
@@ -283,7 +284,9 @@ export default {
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
-      selectedAreaRef: computed(() => this.selectedAreaRef)
+      selectedAreaRef: computed(() => this.selectedAreaRef),
+      baseUrl: this.baseUrl,
+      t: this.t
     }
   },
   props: {
@@ -427,6 +430,7 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    t,
     updateMyText (values) {
       const existingValues = this.template.values || {}
       const updatedValues = { ...existingValues, ...values }
