@@ -442,7 +442,7 @@ export default {
       const existingValues = this.template.values || {}
       const updatedValues = { ...existingValues, ...values }
       this.template.values = updatedValues
-      this.save()
+      // this.save()
     },
     startFieldDraw (type) {
       const field = {
