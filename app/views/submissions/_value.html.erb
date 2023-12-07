@@ -1,5 +1,5 @@
 <div class="flex absolute <%= field['readonly'] ? 'text-[1.5vw] lg:text-xs' : 'text-[1.5vw] lg:text-base' %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
-  <% if field['type'].in?(['signature', 'image', 'initials']) %>
+  <% if field['type'].in?(['signature', 'image', 'initials', 'my_signature', 'my_initials']) %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
   <% elsif field['type'] == 'file' %>
     <div class="px-0.5 flex flex-col justify-center">

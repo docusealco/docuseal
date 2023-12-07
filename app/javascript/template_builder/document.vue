@@ -14,7 +14,7 @@
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
       @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
-      @update:my-text="$emit('update:myText', $event)"
+      @update:my-field="$emit('update:myField', $event)"
     />
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'update:myText'],
+  emits: ['draw', 'drop-field', 'remove-area', 'update:myField'],
   data () {
     return {
       pageRefs: []

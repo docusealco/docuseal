@@ -59,7 +59,7 @@
                   <%= render 'submissions/annotation', annot: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                  <% if ['my_text'].include?(field['type']) %>
+                  <% if ['my_text', 'my_signature', 'my_initials'].include?(field['type']) %>
                     <% value = @submission.template.values[field['uuid']] %>
                   <% else %>
                     <% value = values[field['uuid']] %>
@@ -144,7 +144,7 @@
                 <%= field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}" %>
               </div>
               <div>
-                <% if field['type'].in?(%w[signature initials]) %>
+                <% if field['type'].in?(%w[signature initials my_signature my_initials]) %>
                   <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>

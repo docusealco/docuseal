@@ -1,1 +1,3 @@
-<template-builder class="grid" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-template="<%= @template_data %>"></template-builder>
+<% attachments_index = ActiveStorage::Attachment.where(record: @template, name: :attachments).preload(:blob).index_by(&:uuid) %>
+<% template_attachments_index = attachments_index.values.select { |e| e.record_id == @template.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>
+<template-builder class="grid" data-is-direct-upload="<%= Docuseal.active_storage_public? %>" data-template="<%= @template_data %>" data-template-attachments-index="<%= template_attachments_index %>"></template-builder>

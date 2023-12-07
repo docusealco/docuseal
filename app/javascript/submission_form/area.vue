@@ -36,6 +36,30 @@
     />
   </div>
 
+  <!-- show mySignature prefill with stored value -->
+  <div
+    v-else-if="['my_signature', 'my_initials'].includes(field.type)"
+    class="flex absolute"
+    :style="computedStyle"
+    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
+  >
+    <img
+      v-if="field.type === 'my_signature' && mySignatureUrl"
+      class="mx-auto"
+      :src="mySignatureUrl.url"
+    >
+    <img
+      v-else-if="field.type === 'my_initials' && myInitialsUrl"
+      class="mx-auto"
+      :src="myInitialsUrl.url"
+    >
+    <img
+      v-else
+      class="mx-auto"
+      :src="'#'"
+    >
+  </div>
+
   <div
     v-else
     class="flex absolute lg:text-base"
@@ -204,6 +228,7 @@ export default {
     IconPaperclip,
     IconCheck
   },
+  inject: ['templateAttachments'],
   props: {
     field: {
       type: Object,
@@ -279,7 +304,9 @@ export default {
         multiple: 'Multiple Select',
         phone: 'Phone',
         redact: 'Redact',
-        my_text: 'My Text'
+        my_text: 'Text',
+        my_signature: 'My Signature',
+        my_initials: 'My Initials'
       }
     },
     fieldIcons () {
@@ -316,6 +343,27 @@ export default {
     initials () {
       if (this.field.type === 'initials') {
         return this.attachmentsIndex[this.modelValue]
+      } else {
+        return null
+      }
+    },
+    myAttachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
+    },
+    mySignatureUrl () {
+      if (this.field.type === 'my_signature') {
+        return this.myAttachmentsIndex[this.templateValues[this.field.uuid]]
+      } else {
+        return null
+      }
+    },
+    myInitialsUrl () {
+      if (this.field.type === 'my_initials') {
+        return this.myAttachmentsIndex[this.templateValues[this.field.uuid]]
       } else {
         return null
       }

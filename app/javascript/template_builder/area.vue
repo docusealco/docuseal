@@ -39,7 +39,7 @@
       @pointerdown.stop
     >
       <FieldSubmitter
-        v-if="(field.type !== 'my_text')"
+        v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
@@ -50,7 +50,7 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
-        v-if="!['my_text', 'my_signature'].includes(field.type)"
+        v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
         v-model="field.type"
         :button-width="27"
         :editable="editable"
@@ -70,7 +70,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
@@ -129,18 +129,54 @@
         @input="makeMyText"
       />
     </div>
+    <!-- adding my_signature for prefills -->
     <div
-      v-else-if="field.type === 'my_signature'"
+      v-else-if="['my_signature'].includes(field.type)"
       class="flex items-center justify-center h-full w-full"
       style="background-color: white;"
     >
       <img
+        v-if="field.type === 'my_signature' && mySignatureUrl"
         :id="field.uuid"
-        :src="field.url"
+        :src="mySignatureUrl.url"
         alt="please sign ..."
         class="d-flex justify-center w-full h-full"
         style="z-index: 50;"
         @click="handleMySignatureClick"
+      >
+      <img
+        v-else
+        :id="field.uuid"
+        :src="'#'"
+        alt="please sign ..."
+        class="d-flex justify-center w-full h-full"
+        style="z-index: 50;"
+        @click="handleMySignatureClick"
+      >
+    </div>
+    <!-- adding my_initials for prefills -->
+    <div
+      v-else-if="['my_initials'].includes(field.type)"
+      class="flex items-center justify-center h-full w-full"
+      style="background-color: white;"
+    >
+      <img
+        v-if="field.type === 'my_initials' && myInitialsUrl"
+        :id="field.uuid"
+        :src="myInitialsUrl.url"
+        alt="please sign ..."
+        class="d-flex justify-center w-full h-full"
+        style="z-index: 50;"
+        @click="handleMyInitialClick"
+      >
+      <img
+        v-else
+        :id="field.uuid"
+        :src="'#'"
+        alt="please sign ..."
+        class="d-flex justify-center w-full h-full"
+        style="z-index: 50;"
+        @click="handleMyInitialClick"
       >
     </div>
     <div
@@ -173,7 +209,7 @@
       </span>
     </div>
     <div
-      v-if="field.type !== 'my_text'"
+      v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
@@ -187,24 +223,35 @@
   <div
     v-if="showMySignature"
   >
-    <!--
     <MySignature
       :key="field.uuid"
-      v-model="values[field.uuid]"
-      :style="mySignatureStyle"
+      v-model="setSignatureValue"
+      :my-signature-style="mySignatureStyle"
+      :is-direct-upload="isDirectUpload"
       :field="field"
       :previous-value="previousSignatureValue"
-      :is-direct-upload="isDirectUpload"
-      :attachments-index="attachmentsIndex"
-      @attached="attachments.push($event)"
-      @remove="showMySignature = false"
-    />
-     -->
-    <MySignature
-      :key="field.uuid"
-      :style="mySignatureStyle"
-      :field="field"
       :template="template"
+      :attachments-index="attachmentsIndex"
+      @attached="handleMySignatureAttachment"
+      @hide="showMySignature = false"
+      @start="$refs.areas.scrollIntoField(field)"
+    />
+  </div>
+  <div
+    v-if="showMyInitials"
+  >
+    <MyInitials
+      :key="field.uuid"
+      v-model="setInitialsValue"
+      :my-signature-style="mySignatureStyle"
+      :is-direct-upload="isDirectUpload"
+      :field="field"
+      :previous-value="previousInitialsValue"
+      :template="template"
+      :attachments-index="attachmentsIndex"
+      @attached="handleMyInitialsAttachment"
+      @hide="showMySignature = false"
+      @start="$refs.areas.scrollIntoField(field)"
     />
   </div>
 </template>
@@ -216,6 +263,7 @@ import Field from './field'
 import { IconX, IconWriting } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import MySignature from './my_signature'
+import MyInitials from './my_initials'
 
 export default {
   name: 'FieldArea',
@@ -224,9 +272,10 @@ export default {
     FieldSubmitter,
     IconX,
     IconWriting,
-    MySignature
+    MySignature,
+    MyInitials
   },
-  inject: ['template', 'selectedAreaRef', 'save'],
+  inject: ['template', 'selectedAreaRef', 'save', 'templateAttachments', 'isDirectUpload'],
   props: {
     area: {
       type: Object,
@@ -237,16 +286,6 @@ export default {
       required: false,
       default: false
     },
-    // modelValue: {
-    //   type: [Array, String, Number, Object, Boolean],
-    //   required: false,
-    //   default: ''
-    // },
-    // attachmentsIndex: {
-    //   type: Object,
-    //   required: false,
-    //   default: () => ({})
-    // },
     editable: {
       type: Boolean,
       required: false,
@@ -258,7 +297,7 @@ export default {
       default: null
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'update:myText'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'update:myField'],
   data () {
     return {
       isResize: false,
@@ -267,13 +306,32 @@ export default {
       myLocalText: '',
       textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 },
-      showMySignature: false
+      showMySignature: false,
+      showMyInitials: false,
+      myLocalSignatureValue: '',
+      myLocalInitialsValue: ''
     }
   },
   computed: {
     defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    setSignatureValue: {
+      get () {
+        return this.myLocalSignatureValue
+      },
+      set (value) {
+        this.makeMySignature(value)
+      }
+    },
+    setInitialsValue: {
+      get () {
+        return this.myLocalInitialsValue
+      },
+      set (value) {
+        this.makeMyInitials(value)
+      }
+    },
     optionIndexText () {
       if (this.area.option_uuid && this.field.options) {
         return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
@@ -281,23 +339,47 @@ export default {
         return ''
       }
     },
+    attachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
+    },
+    previousSignatureValue () {
+      const mySignatureField = (this.field.type === 'my_signature' && !!this.template.values[this.field.uuid])
+
+      return this.template.values[mySignatureField?.uuid]
+    },
+    previousInitialsValue () {
+      const initialsField = (this.field.type === 'my_initials' && !!this.template.values[this.field.uuid])
+
+      return this.template.values[initialsField?.uuid]
+    },
     mySignatureStyle () {
       const { x, y, w, h } = this.area
 
       return {
         top: (y * 100) + 7 + '%',
-        left: (x * 100) - 10 + '%',
+        left: (x * 100) + '%',
         width: w * 100 + '%',
         height: h * 100 + '%'
       }
     },
-    // my_signature () {
-    //   if (this.field.type === 'my_signature') {
-    //     return this.attachmentsIndex[this.modelValue]
-    //   } else {
-    //     return null
-    //   }
-    // },
+    mySignatureUrl () {
+      if (this.field.type === 'my_signature') {
+        return this.attachmentsIndex[this.myLocalSignatureValue]
+      } else {
+        return null
+      }
+    },
+    myInitialsUrl () {
+      if (this.field.type === 'my_initials') {
+        return this.attachmentsIndex[this.myLocalInitialsValue]
+      } else {
+        return null
+      }
+    },
     cells () {
       const cells = []
 
@@ -367,6 +449,26 @@ export default {
     }
   },
   mounted () {
+    if (this.field.type === 'my_signature') {
+      const fieldUuid = this.field.uuid
+      if (this.template.values && this.template.values[fieldUuid]) {
+        this.myLocalSignatureValue = this.template.values[fieldUuid]
+      } else {
+        this.myLocalSignatureValue = ''
+      }
+      this.saveFieldValue({ [this.field.uuid]: this.myLocalSignatureValue })
+    }
+
+    if (this.field.type === 'my_initials') {
+      const fieldUuid = this.field.uuid
+      if (this.template.values && this.template.values[fieldUuid]) {
+        this.myLocalInitialsValue = this.template.values[fieldUuid]
+      } else {
+        this.myLocalInitialsValue = ''
+      }
+      this.saveFieldValue({ [this.field.uuid]: this.myLocalInitialsValue })
+    }
+
     if (this.field.type === 'my_text') {
       const fieldUuid = this.field.uuid
       if (this.template.values && this.template.values[fieldUuid]) {
@@ -385,17 +487,38 @@ export default {
   methods: {
     makeMyText (e) {
       this.myLocalText = e.target.value ? e.target.value : this.myLocalText
-      this.sendSaveText(
+      this.saveFieldValue(
         { [this.field.uuid]: e.target.value }
       )
     },
-    makeMySignature (e) {
-      this.sendSaveText(
-        { [this.field.uuid]: e.attachment.uuid }
-      )
+    makeMySignature (value) {
+      if (value !== null) {
+        this.myLocalSignatureValue = value
+        this.saveFieldValue({ [this.field.uuid]: value })
+      } else {
+        console.log('My signature field value was empty')
+        this.saveFieldValue({ [this.field.uuid]: '' })
+      }
     },
-    sendSaveText (event) {
-      this.$emit('update:myText', event)
+    makeMyInitials (value) {
+      if (value !== null) {
+        this.myLocalInitialsValue = value
+        this.saveFieldValue({ [this.field.uuid]: value })
+      } else {
+        console.log('My initial field value was empty')
+        this.saveFieldValue({ [this.field.uuid]: '' })
+      }
+    },
+    saveFieldValue (event) {
+      this.$emit('update:myField', event)
+    },
+    handleMyInitialsAttachment (attachment) {
+      this.templateAttachments.push(attachment)
+      this.makeMyInitials(attachment.uuid)
+    },
+    handleMySignatureAttachment (attachment) {
+      this.templateAttachments.push(attachment)
+      this.makeMySignature(attachment.uuid)
     },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
@@ -596,8 +719,10 @@ export default {
       this.save()
     },
     handleMySignatureClick () {
-      console.log('my-signature event triggered with field:')
       this.showMySignature = !this.showMySignature
+    },
+    handleMyInitialClick () {
+      this.showMyInitials = !this.showMyInitials
     }
   }
 }

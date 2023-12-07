@@ -33,7 +33,7 @@ module Submissions
       pdfs_index = build_pdfs_index(submitter)
 
       submitter.submission.template_fields.each do |field|
-        unless ['my_text'].include?(field['type'])
+        unless ['my_text', 'my_signature', 'my_initials'].include?(field['type'])
           next if field['submitter_uuid'] != submitter.uuid
         end
         field.fetch('areas', []).each do |area|
@@ -63,6 +63,25 @@ module Submissions
           case field['type']
           when 'image', 'signature', 'initials'
             attachment = submitter.attachments.find { |a| a.uuid == value }
+
+            image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+
+            scale = [(area['w'] * width) / image.width,
+                     (area['h'] * height) / image.height].min
+
+            io = StringIO.new(image.resize([scale * 4, 1].min).write_to_buffer('.png'))
+
+            canvas.image(
+              io,
+              at: [
+                (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
+                height - (area['y'] * height) - (image.height * scale / 2) - (area['h'] * height / 2)
+              ],
+              width: image.width * scale,
+              height: image.height * scale
+            )
+          when 'my_signature', 'my_initials'
+            attachment = ActiveStorage::Attachment.where(record: template, name: :attachments).preload(:blob).index_by(&:uuid).values.find{ |a| a.uuid == value }
 
             image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 

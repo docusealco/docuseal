@@ -134,7 +134,7 @@
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
-                @update:my-text="updateMyText"
+                @update:my-field="updateMyValues"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -281,6 +281,8 @@ export default {
     return {
       template: this.template,
       save: this.save,
+      templateAttachments: this.templateAttachments,
+      isDirectUpload: this.isDirectUpload,
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
@@ -293,6 +295,11 @@ export default {
     template: {
       type: Object,
       required: true
+    },
+    templateAttachments: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     isDirectUpload: {
       type: Boolean,
@@ -431,10 +438,11 @@ export default {
   },
   methods: {
     t,
-    updateMyText (values) {
+    updateMyValues (values) {
       const existingValues = this.template.values || {}
       const updatedValues = { ...existingValues, ...values }
       this.template.values = updatedValues
+      this.save()
     },
     startFieldDraw (type) {
       const field = {
@@ -445,7 +453,7 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-      if (['redact', 'my_text'].includes(type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials'].includes(type)) {
         field.required = 'false'
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
@@ -623,7 +631,7 @@ export default {
         ...this.dragField
       }
 
-      if (['redact', 'my_text'].includes(field.type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials'].includes(field.type)) {
         field.required = 'false'
       }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
@@ -656,12 +664,12 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (field.type === 'signature') {
+        } else if (['signature', 'my_signature'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
           }
-        } else if (field.type === 'initials') {
+        } else if (['initials', 'my_initials'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 10 / area.maskW,
             h: area.maskW / 35 / area.maskW

@@ -93,8 +93,9 @@ export default {
         cells: 'Cells',
         phone: 'Phone',
         redact: 'Redact',
-        my_text: 'My_Text',
-        my_signature: 'My Signature'
+        my_text: 'Text',
+        my_signature: 'My Signature',
+        my_initials: 'My Initials'
       }
     },
     fieldIcons () {
@@ -113,7 +114,8 @@ export default {
         phone: IconPhoneCheck,
         redact: IconBarrierBlock,
         my_text: IconTextResize,
-        my_signature: IconWritingSign
+        my_signature: IconWritingSign,
+        my_initials: IconLetterCaseUpper
       }
     }
   },

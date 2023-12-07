@@ -7,65 +7,48 @@
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
-      >{{ field.name || t('signature') }}</label>
+      >{{ field.name || t('initials') }}</label>
       <div class="space-x-2 flex">
         <span
-          v-if="isTextSignature"
+          v-if="isDrawInitials"
           class="tooltip"
-          :data-tip="t('draw_signature')"
+          :data-tip="t('type_initials')"
         >
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium"
-            @click.prevent="toggleTextInput"
-          >
-            <IconSignature :width="16" />
-          </a>
-        </span>
-        <span
-          v-else
-          class="tooltip"
-          :data-tip="t('type_text')"
-        >
-          <a
-            id="type_text_button"
-            href="#"
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline font-medium btn-sm"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
           </a>
         </span>
         <span
+          v-else
           class="tooltip"
-          data-tip="Take photo"
+          :data-tip="t('draw_initials')"
         >
-          <label
-            class="btn btn-outline btn-sm font-medium"
+          <a
+            id="type_text_button"
+            href="#"
+            class="btn btn-outline font-medium btn-sm"
+            @click.prevent="toggleTextInput"
           >
-            <IconCamera :width="16" />
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              @change="drawImage"
-            >
-          </label>
+            <IconSignature :width="16" />
+          </a>
         </span>
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="btn font-medium btn-outline btn-sm"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
-          {{ t('redraw') }}
         </a>
         <a
           v-else
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="btn font-medium btn-outline btn-sm"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -82,6 +65,7 @@
     <input
       :value="modelValue || computedPreviousValue"
       type="hidden"
+      :name="`values[${field.uuid}]`"
     >
     <img
       v-if="modelValue || computedPreviousValue"
@@ -91,17 +75,18 @@
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
-      style="padding: 1px; 0"
       class="bg-white border border-base-300 rounded-2xl"
     />
     <input
-      v-if="isTextSignature"
-      id="signature_text_input"
+      v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
+      id="initials_text_input"
       ref="textInput"
-      class="base-input !text-2xl w-full mt-6"
-      :placeholder="`${t('type_signature_here')}...`"
+      class="base-input !text-2xl w-full mt-6 text-center"
+      :required="field.required && !isInitialsStarted"
+      :placeholder="`${t('type_initial_here')}...`"
       type="text"
-      @input="updateWrittenSignature"
+      @focus="$emit('focus')"
+      @input="updateWrittenInitials"
     >
     <button
       class="btn btn-outline w-full mt-2"
@@ -113,17 +98,14 @@
 </template>
 
 <script>
-import { IconReload, IconCamera, IconSignature, IconTextSize, IconTrashX } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
+import { IconReload, IconTextSize, IconSignature, IconTrashX } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 
-let isFontLoaded = false
-
 export default {
-  name: 'MySignature',
+  name: 'MyInitials',
   components: {
     IconReload,
-    IconCamera,
     IconTextSize,
     IconSignature,
     IconTrashX
@@ -163,12 +145,12 @@ export default {
       required: true
     }
   },
-  emits: ['attached', 'update:model-value', 'start', 'hide'],
+  emits: ['attached', 'update:model-value', 'start', 'hide', 'focus'],
   data () {
     return {
-      isSignatureStarted: !!this.previousValue,
+      isInitialsStarted: !!this.previousValue,
       isUsePreviousValue: true,
-      isTextSignature: false
+      isDrawInitials: false
     }
   },
   computed: {
@@ -184,8 +166,10 @@ export default {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
         this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 5
       }
+
+      this.$refs.textInput?.focus()
     })
 
     if (this.isDirectUpload) {
@@ -196,7 +180,7 @@ export default {
       this.pad = new SignaturePad(this.$refs.canvas)
 
       this.pad.addEventListener('beginStroke', () => {
-        this.isSignatureStarted = true
+        this.isInitialsStarted = true
 
         this.$emit('start')
       })
@@ -207,38 +191,25 @@ export default {
       this.$emit('update:model-value', '')
 
       this.isUsePreviousValue = false
-      this.isSignatureStarted = false
-    },
-    loadFont () {
-      if (!isFontLoaded) {
-        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript.otf) format("opentype")`)
-
-        font.load().then((loadedFont) => {
-          document.fonts.add(loadedFont)
-
-          isFontLoaded = true
-        }).catch((error) => {
-          console.error('Font loading failed:', error)
-        })
-      }
+      this.isInitialsStarted = false
     },
     clear () {
       this.pad.clear()
 
-      this.isSignatureStarted = false
+      this.isInitialsStarted = false
 
       if (this.$refs.textInput) {
         this.$refs.textInput.value = ''
       }
     },
-    updateWrittenSignature (e) {
-      this.isSignatureStarted = true
+    updateWrittenInitials (e) {
+      this.isInitialsStarted = true
 
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')
 
-      const fontFamily = 'Dancing Script'
-      const fontSize = '38px'
+      const fontFamily = 'Arial'
+      const fontSize = '44px'
       const fontStyle = 'italic'
       const fontWeight = ''
 
@@ -250,64 +221,15 @@ export default {
     },
     toggleTextInput () {
       this.remove()
-      this.isTextSignature = !this.isTextSignature
+      this.clear()
+      this.isDrawInitials = !this.isDrawInitials
 
-      if (this.isTextSignature) {
+      if (!this.isDrawInitials) {
         this.$nextTick(() => {
           this.$refs.textInput.focus()
 
-          this.loadFont()
-
           this.$emit('start')
         })
-      }
-    },
-    drawImage (event) {
-      this.remove()
-      this.isSignatureStarted = true
-
-      const file = event.target.files[0]
-
-      if (file && file.type.match('image.*')) {
-        const reader = new FileReader()
-
-        reader.onload = (event) => {
-          const img = new Image()
-
-          img.src = event.target.result
-
-          img.onload = () => {
-            const canvas = this.$refs.canvas
-            const context = canvas.getContext('2d')
-
-            const aspectRatio = img.width / img.height
-
-            let targetWidth = canvas.width
-            let targetHeight = canvas.height
-
-            if (canvas.width / canvas.height > aspectRatio) {
-              targetWidth = canvas.height * aspectRatio
-            } else {
-              targetHeight = canvas.width / aspectRatio
-            }
-
-            if (targetHeight > targetWidth) {
-              const scale = targetHeight / targetWidth
-              targetWidth = targetWidth * scale
-              targetHeight = targetHeight * scale
-            }
-
-            const x = (canvas.width - targetWidth) / 2
-            const y = (canvas.height - targetHeight) / 2
-
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(img, x, y, targetWidth, targetHeight)
-
-            this.$emit('start')
-          }
-        }
-
-        reader.readAsDataURL(file)
       }
     },
     async submit () {
@@ -321,7 +243,7 @@ export default {
 
       return new Promise((resolve) => {
         cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
-          const file = new File([blob], 'my_signature.png', { type: 'image/png' })
+          const file = new File([blob], 'my_initials.png', { type: 'image/png' })
 
           if (this.isDirectUpload) {
             const { DirectUpload } = await import('@rails/activestorage')
