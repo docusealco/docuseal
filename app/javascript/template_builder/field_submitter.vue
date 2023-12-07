@@ -111,7 +111,7 @@
             style="background-color: grey;"
             class="w-3 h-3 rounded-full"
           />
-          <div class="items-center space-x-2">Show Prefills</div>
+          <div class="items-center space-x-2">Me (Fill Out Now)</div>
         </div>
       </label>
 
@@ -125,7 +125,7 @@
             style="background-color: grey;"
             class="w-3 h-3 rounded-full"
           />
-          <div class="items-center space-x-2">Hide Prefills</div>
+          <div class="items-center space-x-2">Submitters</div>
         </div>
       </label>
       <label

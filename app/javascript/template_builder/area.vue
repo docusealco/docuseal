@@ -139,7 +139,6 @@
         v-if="field.type === 'my_signature' && mySignatureUrl"
         :id="field.uuid"
         :src="mySignatureUrl.url"
-        alt="please sign ..."
         class="d-flex justify-center w-full h-full"
         style="z-index: 50;"
         @click="handleMySignatureClick"
@@ -147,8 +146,6 @@
       <img
         v-else
         :id="field.uuid"
-        :src="'#'"
-        alt="please sign ..."
         class="d-flex justify-center w-full h-full"
         style="z-index: 50;"
         @click="handleMySignatureClick"
@@ -164,7 +161,6 @@
         v-if="field.type === 'my_initials' && myInitialsUrl"
         :id="field.uuid"
         :src="myInitialsUrl.url"
-        alt="please sign ..."
         class="d-flex justify-center w-full h-full"
         style="z-index: 50;"
         @click="handleMyInitialClick"
@@ -172,8 +168,6 @@
       <img
         v-else
         :id="field.uuid"
-        :src="'#'"
-        alt="please sign ..."
         class="d-flex justify-center w-full h-full"
         style="z-index: 50;"
         @click="handleMyInitialClick"
