@@ -117,6 +117,7 @@
 
       <label
         v-else
+        :style="{ 'border-color': showNewFields ? 'black' : '' }"
         class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
         @click="$emit('add-prefills')"
       >
@@ -125,7 +126,7 @@
             style="background-color: grey;"
             class="w-3 h-3 rounded-full"
           />
-          <div class="items-center space-x-2">Submitters</div>
+          <div class="items-center space-x-2">show submitters fields</div>
         </div>
       </label>
       <label
