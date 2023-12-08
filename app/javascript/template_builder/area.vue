@@ -96,6 +96,7 @@
         <IconX width="14" />
       </button>
     </div>
+    <!-- adding redacting box -->
     <div
       v-if="field.type === 'redact'"
       class="opacity-100 flex items-center justify-center h-full w-full bg-redact"
@@ -129,9 +130,9 @@
         @input="makeMyText"
       />
     </div>
-    <!-- adding my_signature for prefills -->
+    <!-- adding my_signature and my_initials for prefills -->
     <div
-      v-else-if="['my_signature'].includes(field.type)"
+      v-else-if="['my_signature', 'my_initials'].includes(field.type)"
       class="flex items-center justify-center h-full w-full"
       style="background-color: white;"
     >
@@ -140,37 +141,20 @@
         :id="field.uuid"
         :src="mySignatureUrl.url"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
-        @click="handleMySignatureClick"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
       >
       <img
-        v-else
-        :id="field.uuid"
-        class="d-flex justify-center w-full h-full"
-        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
-        @click="handleMySignatureClick"
-      >
-    </div>
-    <!-- adding my_initials for prefills -->
-    <div
-      v-else-if="['my_initials'].includes(field.type)"
-      class="flex items-center justify-center h-full w-full"
-      style="background-color: white;"
-    >
-      <img
-        v-if="field.type === 'my_initials' && myInitialsUrl"
+        v-else-if="field.type === 'my_initials' && myInitialsUrl"
         :id="field.uuid"
         :src="myInitialsUrl.url"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
-        @click="handleMyInitialClick"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
       >
       <img
         v-else
         :id="field.uuid"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
-        @click="handleMyInitialClick"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
       >
     </div>
     <div
@@ -215,44 +199,43 @@
     />
   </div>
   <div
-    v-if="showMySignature"
     @pointerdown.stop
-    @mousedown.stop="startDrag"
     @touchstart="startTouchDrag"
   >
-    <MySignature
-      :key="field.uuid"
-      v-model="setSignatureValue"
-      :my-signature-style="mySignatureStyle"
-      :is-direct-upload="isDirectUpload"
-      :field="field"
-      :previous-value="previousSignatureValue"
-      :template="template"
-      :attachments-index="attachmentsIndex"
-      @attached="handleMySignatureAttachment"
-      @hide="showMySignature = false"
-      @start="$refs.areas.scrollIntoField(field)"
-    />
-  </div>
-  <div
-    v-if="showMyInitials"
-    @pointerdown.stop
-    @mousedown.stop="startDrag"
-    @touchstart="startTouchDrag"
-  >
-    <MyInitials
-      :key="field.uuid"
-      v-model="setInitialsValue"
-      :my-signature-style="mySignatureStyle"
-      :is-direct-upload="isDirectUpload"
-      :field="field"
-      :previous-value="previousInitialsValue"
-      :template="template"
-      :attachments-index="attachmentsIndex"
-      @attached="handleMyInitialsAttachment"
-      @hide="showMyInitials = false"
-      @start="$refs.areas.scrollIntoField(field)"
-    />
+    <div
+      v-if="showMySignature"
+    >
+      <MySignature
+        :key="field.uuid"
+        v-model="setSignatureValue"
+        :my-signature-style="mySignatureStyle"
+        :is-direct-upload="isDirectUpload"
+        :field="field"
+        :previous-value="previousSignatureValue"
+        :template="template"
+        :attachments-index="attachmentsIndex"
+        @attached="handleMySignatureAttachment"
+        @hide="showMySignature = false"
+        @start="$refs.areas.scrollIntoField(field)"
+      />
+    </div>
+    <div
+      v-if="showMyInitials"
+    >
+      <MyInitials
+        :key="field.uuid"
+        v-model="setInitialsValue"
+        :my-signature-style="mySignatureStyle"
+        :is-direct-upload="isDirectUpload"
+        :field="field"
+        :previous-value="previousInitialsValue"
+        :template="template"
+        :attachments-index="attachmentsIndex"
+        @attached="handleMyInitialsAttachment"
+        @hide="showMyInitials = false"
+        @start="$refs.areas.scrollIntoField(field)"
+      />
+    </div>
   </div>
 </template>
 
@@ -609,6 +592,11 @@ export default {
       }
     },
     startDrag (e) {
+      if (this.field.type === 'my_signature') {
+        this.handleMySignatureClick()
+      } else if (this.field.type === 'my_initials') {
+        this.handleMyInitialClick()
+      }
       this.selectedAreaRef.value = this.area
 
       if (!this.editable) {
