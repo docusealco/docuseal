@@ -140,14 +140,14 @@
         :id="field.uuid"
         :src="mySignatureUrl.url"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50;"
+        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
         @click="handleMySignatureClick"
       >
       <img
         v-else
         :id="field.uuid"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50;"
+        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
         @click="handleMySignatureClick"
       >
     </div>
@@ -162,14 +162,14 @@
         :id="field.uuid"
         :src="myInitialsUrl.url"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50;"
+        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
         @click="handleMyInitialClick"
       >
       <img
         v-else
         :id="field.uuid"
         class="d-flex justify-center w-full h-full"
-        style="z-index: 50;"
+        style="z-index: 50; border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
         @click="handleMyInitialClick"
       >
     </div>
@@ -216,6 +216,9 @@
   </div>
   <div
     v-if="showMySignature"
+    @pointerdown.stop
+    @mousedown.stop="startDrag"
+    @touchstart="startTouchDrag"
   >
     <MySignature
       :key="field.uuid"
@@ -233,6 +236,9 @@
   </div>
   <div
     v-if="showMyInitials"
+    @pointerdown.stop
+    @mousedown.stop="startDrag"
+    @touchstart="startTouchDrag"
   >
     <MyInitials
       :key="field.uuid"
@@ -244,7 +250,7 @@
       :template="template"
       :attachments-index="attachmentsIndex"
       @attached="handleMyInitialsAttachment"
-      @hide="showMySignature = false"
+      @hide="showMyInitials = false"
       @start="$refs.areas.scrollIntoField(field)"
     />
   </div>
@@ -509,10 +515,12 @@ export default {
     handleMyInitialsAttachment (attachment) {
       this.templateAttachments.push(attachment)
       this.makeMyInitials(attachment.uuid)
+      this.save()
     },
     handleMySignatureAttachment (attachment) {
       this.templateAttachments.push(attachment)
       this.makeMySignature(attachment.uuid)
+      this.save()
     },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area

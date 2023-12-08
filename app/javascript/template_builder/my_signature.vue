@@ -56,16 +56,17 @@
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="tooltip btn btn-outline btn-sm font-medium"
+          :data-tip="'redraw'"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
-          {{ t('redraw') }}
         </a>
         <a
           v-else
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="tooltip btn btn-outline btn-sm font-medium"
+          :data-tip="'clear'"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -86,13 +87,13 @@
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
-      class="mx-auto bg-white border border-base-300 rounded max-h-72"
+      class="mx-auto bg-white border border-base-300 rounded max-h-72 w-full"
     >
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
       style="padding: 1px; 0"
-      class="bg-white border border-base-300 rounded-2xl"
+      class="bg-white border border-base-300 rounded-2xl w-full"
     />
     <input
       v-if="isTextSignature"

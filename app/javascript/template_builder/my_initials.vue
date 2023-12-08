@@ -4,96 +4,102 @@
     style="z-index: 50;"
     :style="{ ...mySignatureStyle }"
   >
-    <div class="flex justify-between items-center w-full mb-2">
-      <label
-        class="label text-2xl"
-      >{{ field.name || t('initials') }}</label>
-      <div class="space-x-2 flex">
-        <span
-          v-if="isDrawInitials"
-          class="tooltip"
-          :data-tip="t('type_initials')"
-        >
-          <a
-            id="type_text_button"
-            href="#"
-            class="btn btn-outline font-medium btn-sm"
-            @click.prevent="toggleTextInput"
+    <div
+      style="min-height: 250px; min-width: 250px;"
+    >
+      <div class="flex justify-between items-center w-full mb-2">
+        <label
+          class="label text-2xl"
+        >{{ field.name || t('initials') }}</label>
+        <div class="space-x-2 flex">
+          <span
+            v-if="isDrawInitials"
+            class="tooltip"
+            :data-tip="t('type_initials')"
           >
-            <IconTextSize :width="16" />
-          </a>
-        </span>
-        <span
-          v-else
-          class="tooltip"
-          :data-tip="t('draw_initials')"
-        >
-          <a
-            id="type_text_button"
-            href="#"
-            class="btn btn-outline font-medium btn-sm"
-            @click.prevent="toggleTextInput"
+            <a
+              id="type_text_button"
+              href="#"
+              class="btn btn-outline font-medium btn-sm"
+              @click.prevent="toggleTextInput"
+            >
+              <IconTextSize :width="16" />
+            </a>
+          </span>
+          <span
+            v-else
+            class="tooltip"
+            :data-tip="t('draw_initials')"
           >
-            <IconSignature :width="16" />
+            <a
+              id="type_text_button"
+              href="#"
+              class="btn btn-outline font-medium btn-sm"
+              @click.prevent="toggleTextInput"
+            >
+              <IconSignature :width="16" />
+            </a>
+          </span>
+          <a
+            v-if="modelValue || computedPreviousValue"
+            href="#"
+            class="tooltip btn font-medium btn-outline btn-sm"
+            :data-tip="'redraw'"
+            @click.prevent="remove"
+          >
+            <IconReload :width="16" />
           </a>
-        </span>
-        <a
-          v-if="modelValue || computedPreviousValue"
-          href="#"
-          class="btn font-medium btn-outline btn-sm"
-          @click.prevent="remove"
-        >
-          <IconReload :width="16" />
-        </a>
-        <a
-          v-else
-          href="#"
-          class="btn font-medium btn-outline btn-sm"
-          @click.prevent="clear"
-        >
-          <IconReload :width="16" />
-        </a>
-        <div
-          class="tooltip btn btn-outline btn-sm font-medium"
-          :data-tip="'close'"
-          @click="$emit('hide')"
-        >
-          <IconTrashX :width="16" />
+          <a
+            v-else
+            href="#"
+            class="tooltip btn font-medium btn-outline btn-sm"
+            :data-tip="'clear'"
+            @click.prevent="clear"
+          >
+            <IconReload :width="16" />
+          </a>
+          <div
+            class="tooltip btn btn-outline btn-sm font-medium"
+            :data-tip="'close'"
+            @click="$emit('hide')"
+          >
+            <IconTrashX :width="16" />
+          </div>
         </div>
       </div>
+      <input
+        :value="modelValue || computedPreviousValue"
+        type="hidden"
+        :name="`values[${field.uuid}]`"
+      >
+      <img
+        v-if="modelValue || computedPreviousValue"
+        :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+        class="mx-auto bg-white border border-base-300 rounded max-h-72 w-full"
+      >
+      <canvas
+        v-show="!modelValue && !computedPreviousValue"
+        ref="canvas"
+        class="bg-white border border-base-300 rounded-2xl max-h-72 w-full"
+      />
+      <input
+        v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
+        id="initials_text_input"
+        ref="textInput"
+        class="base-input !text-2xl w-full mt-6 text-center"
+        :required="field.required && !isInitialsStarted"
+        :placeholder="`${t('type_initial_here')}...`"
+        type="text"
+        @focus="$emit('focus')"
+        @input="updateWrittenInitials"
+      >
+      <button
+        class="btn btn-outline w-full mt-2"
+        @click="submit"
+      >
+        <span> Submit </span>
+      </button>
     </div>
-    <input
-      :value="modelValue || computedPreviousValue"
-      type="hidden"
-      :name="`values[${field.uuid}]`"
-    >
-    <img
-      v-if="modelValue || computedPreviousValue"
-      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
-      class="mx-auto bg-white border border-base-300 rounded max-h-72"
-    >
-    <canvas
-      v-show="!modelValue && !computedPreviousValue"
-      ref="canvas"
-      class="bg-white border border-base-300 rounded-2xl"
-    />
-    <input
-      v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
-      id="initials_text_input"
-      ref="textInput"
-      class="base-input !text-2xl w-full mt-6 text-center"
-      :required="field.required && !isInitialsStarted"
-      :placeholder="`${t('type_initial_here')}...`"
-      type="text"
-      @focus="$emit('focus')"
-      @input="updateWrittenInitials"
-    >
-    <button
-      class="btn btn-outline w-full mt-2"
-      @click="submit"
-    >
-      <span> Submit </span>
-    </button>
   </div>
 </template>
 
