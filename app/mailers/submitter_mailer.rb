@@ -25,10 +25,12 @@ class SubmitterMailer < ApplicationMailer
         DEFAULT_INVITATION_SUBJECT
       end
 
-    mail(to: @submitter.friendly_name,
-         from: from_address_for_submitter(submitter),
-         subject:,
-         reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name)
+    mail(
+      to: @submitter.friendly_name,
+      from: from_address_for_submitter(submitter),
+      subject:,
+      reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+    )
   end
 
   def completed_email(submitter, user, bcc: nil)
@@ -53,7 +55,7 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(from: from_address_for_submitter(submitter),
-         to: user.friendly_name,
+         to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
          bcc:,
          subject:)
   end
@@ -125,6 +127,11 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def from_address_for_submitter(submitter)
-    submitter.submission.created_by_user&.friendly_name || submitter.submission.template.author.friendly_name
+    if submitter.submission.created_by_user&.role == 'integration' &&
+       (from_email = AccountConfig.find_by(account: submitter.account, key: 'integration_from_email')&.value.presence)
+      from_email
+    else
+      (submitter.submission.created_by_user || submitter.submission.template.author).friendly_name
+    end
   end
 end
