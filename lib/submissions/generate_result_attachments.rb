@@ -39,7 +39,12 @@ module Submissions
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
+          next if pdf.nil?
+
           page = pdf.pages[area['page']]
+
+          next if page.nil?
+
           page.rotate(0, flatten: true) if page[:Rotate] != 0
 
           page[:Annots] ||= []
