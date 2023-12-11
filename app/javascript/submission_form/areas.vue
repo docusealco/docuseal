@@ -12,6 +12,7 @@
         :key="areaIndex"
       >
         <Teleport
+          v-if="findPageElementForArea(area)"
           :to="findPageElementForArea(area)"
         >
           <FieldArea
