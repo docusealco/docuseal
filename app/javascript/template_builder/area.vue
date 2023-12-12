@@ -130,6 +130,19 @@
         @input="makeMyText"
       />
     </div>
+    <!-- adding my_date  prefills -->
+    <div
+      v-else-if="field.type === 'my_date'"
+      class="flex items-center justify-center h-full w-full"
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+    >
+      <span
+        :id="field.uuid"
+        ref="my_date"
+      >
+        {{ getFormattedDate }}
+      </span>
+    </div>
     <!-- adding my_signature and my_initials for prefills -->
     <div
       v-else-if="['my_signature', 'my_initials'].includes(field.type)"
@@ -187,7 +200,7 @@
       </span>
     </div>
     <div
-      v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
+      v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
@@ -236,6 +249,19 @@
         @start="$refs.areas.scrollIntoField(field)"
       />
     </div>
+    <div
+      v-if="showMyDate"
+      class="absolute"
+      style="z-index: 50;"
+      :style="{ ...mySignatureStyle }"
+    >
+      <MyDate
+        :key="field.uuid"
+        v-model="setMyDateValue"
+        :my-signature-style="mySignatureStyle"
+        :field="field"
+      />
+    </div>
   </div>
 </template>
 
@@ -247,6 +273,7 @@ import { IconX, IconWriting } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import MySignature from './my_signature'
 import MyInitials from './my_initials'
+import MyDate from './my_date'
 
 export default {
   name: 'FieldArea',
@@ -256,7 +283,8 @@ export default {
     IconX,
     IconWriting,
     MySignature,
-    MyInitials
+    MyInitials,
+    MyDate
   },
   inject: ['template', 'selectedAreaRef', 'save', 'templateAttachments', 'isDirectUpload'],
   props: {
@@ -291,8 +319,10 @@ export default {
       dragFrom: { x: 0, y: 0 },
       showMySignature: false,
       showMyInitials: false,
+      showMyDate: false,
       myLocalSignatureValue: '',
-      myLocalInitialsValue: ''
+      myLocalInitialsValue: '',
+      myLocalDateValue: ''
     }
   },
   computed: {
@@ -313,6 +343,15 @@ export default {
       },
       set (value) {
         this.makeMyInitials(value)
+      }
+    },
+    setMyDateValue: {
+      get () {
+        return this.myLocalDateValue
+      },
+      set (value) {
+        this.myLocalDateValue = value
+        this.makeMyDate(value)
       }
     },
     optionIndexText () {
@@ -361,6 +400,13 @@ export default {
         return this.attachmentsIndex[this.myLocalInitialsValue]
       } else {
         return null
+      }
+    },
+    getFormattedDate () {
+      if (this.field.type === 'my_date' && this.myLocalDateValue) {
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.myLocalDateValue))
+      } else {
+        return ''
       }
     },
     cells () {
@@ -461,6 +507,15 @@ export default {
       }
     }
 
+    if (this.field.type === 'my_date') {
+      const fieldUuid = this.field.uuid
+      if (this.template.values && this.template.values[fieldUuid]) {
+        this.myLocalDateValue = this.template.values[fieldUuid]
+      } else {
+        this.myLocalDateValue = ''
+      }
+    }
+
     if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
       this.$nextTick(() => {
         this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
@@ -479,7 +534,6 @@ export default {
         this.myLocalSignatureValue = value
         this.saveFieldValue({ [this.field.uuid]: value })
       } else {
-        console.log('My signature field value was empty')
         this.saveFieldValue({ [this.field.uuid]: '' })
       }
     },
@@ -488,9 +542,14 @@ export default {
         this.myLocalInitialsValue = value
         this.saveFieldValue({ [this.field.uuid]: value })
       } else {
-        console.log('My initial field value was empty')
         this.saveFieldValue({ [this.field.uuid]: '' })
       }
+    },
+    makeMyDate (value) {
+      this.saveFieldValue(
+        { [this.field.uuid]: value }
+      )
+      this.save()
     },
     saveFieldValue (event) {
       this.$emit('update:myField', event)
@@ -596,6 +655,8 @@ export default {
         this.handleMySignatureClick()
       } else if (this.field.type === 'my_initials') {
         this.handleMyInitialClick()
+      } else if (this.field.type === 'my_date') {
+        this.handleMyDateClick()
       }
       this.selectedAreaRef.value = this.area
 
@@ -713,6 +774,9 @@ export default {
     },
     handleMyInitialClick () {
       this.showMyInitials = !this.showMyInitials
+    },
+    handleMyDateClick () {
+      this.showMyDate = !this.showMyDate
     }
   }
 }

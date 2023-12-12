@@ -95,7 +95,8 @@ export default {
         redact: 'Redact',
         my_text: 'Text',
         my_signature: 'My Signature',
-        my_initials: 'My Initials'
+        my_initials: 'My Initials',
+        my_date: 'Date'
       }
     },
     fieldIcons () {
@@ -115,7 +116,8 @@ export default {
         redact: IconBarrierBlock,
         my_text: IconTextResize,
         my_signature: IconWritingSign,
-        my_initials: IconLetterCaseUpper
+        my_initials: IconLetterCaseUpper,
+        my_date: IconCalendarEvent
       }
     }
   },

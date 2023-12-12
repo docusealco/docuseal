@@ -36,6 +36,21 @@
     />
   </div>
 
+  <!-- show myDate prefill with stored value -->
+  <div
+    v-else-if="field.type === 'my_date'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{ 'cursor-default ': !submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <span
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+      class="!text-2xl w-full h-full"
+    >
+      {{ getFormattedDate }}
+</span>
+  </div>
+
   <!-- show mySignature prefill with stored value -->
   <div
     v-else-if="['my_signature', 'my_initials'].includes(field.type)"
@@ -285,7 +300,8 @@ export default {
   data () {
     return {
       textOverflowChars: 0,
-      showLocalText: ''
+      showLocalText: '',
+      showLocalDate: ''
     }
   },
   computed: {
@@ -306,7 +322,8 @@ export default {
         redact: 'Redact',
         my_text: 'Text',
         my_signature: 'My Signature',
-        my_initials: 'My Initials'
+        my_initials: 'My Initials',
+        my_date: 'Date'
       }
     },
     fieldIcons () {
@@ -375,6 +392,14 @@ export default {
         return ''
       }
     },
+    getFormattedDate () {
+      if (this.field.type === 'my_date' && this.showLocalDate) {
+        console.log('date returned ___-----', new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.showLocalDate)))
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.showLocalDate))
+      } else {
+        return ''
+      }
+    },
     attachments () {
       if (this.field.type === 'file') {
         return (this.modelValue || []).map((uuid) => this.attachmentsIndex[uuid])
@@ -407,6 +432,15 @@ export default {
         this.showLocalText = this.templateValues[fieldUuid]
       } else {
         this.showLocalText = ''
+      }
+    }
+
+    if (this.field.type === 'my_date') {
+      const fieldUuid = this.field.uuid
+      if (this.templateValues && this.templateValues[fieldUuid]) {
+        this.showLocalDate = this.templateValues[fieldUuid]
+      } else {
+        this.showLocalDate = ''
       }
     }
 

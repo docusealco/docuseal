@@ -126,7 +126,7 @@
             style="background-color: grey;"
             class="w-3 h-3 rounded-full"
           />
-          <div class="items-center space-x-2">show submitters fields</div>
+          <div class="items-center space-x-2">show submitter fields</div>
         </div>
       </label>
       <label
