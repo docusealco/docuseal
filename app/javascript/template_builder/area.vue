@@ -218,30 +218,30 @@ export default {
     },
     borderColors () {
       return [
-        'border-red-500/50',
-        'border-sky-500/50',
-        'border-emerald-500/50',
-        'border-yellow-300/50',
-        'border-purple-600/50',
-        'border-pink-500/50',
-        'border-cyan-500/50',
-        'border-orange-500/50',
-        'border-lime-500/50',
-        'border-indigo-500/50'
+        'border-red-500/80',
+        'border-sky-500/80',
+        'border-emerald-500/80',
+        'border-yellow-300/80',
+        'border-purple-600/80',
+        'border-pink-500/80',
+        'border-cyan-500/80',
+        'border-orange-500/80',
+        'border-lime-500/80',
+        'border-indigo-500/80'
       ]
     },
     bgColors () {
       return [
-        'bg-red-100/50',
-        'bg-sky-100/50',
-        'bg-emerald-100/50',
-        'bg-yellow-100/50',
-        'bg-purple-100/50',
-        'bg-pink-100/50',
-        'bg-cyan-100/50',
-        'bg-orange-100/50',
-        'bg-lime-100/50',
-        'bg-indigo-100/50'
+        'bg-red-100/80',
+        'bg-sky-100/80',
+        'bg-emerald-100/80',
+        'bg-yellow-100/80',
+        'bg-purple-100/80',
+        'bg-pink-100/80',
+        'bg-cyan-100/80',
+        'bg-orange-100/80',
+        'bg-lime-100/80',
+        'bg-indigo-100/80'
       ]
     },
     isSelected () {
