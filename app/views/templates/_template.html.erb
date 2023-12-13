@@ -6,7 +6,7 @@
     <div class="pb-6 pt-1 space-y-1">
       <p class="flex items-center space-x-1 text-xs text-base-content/60">
         <%= svg_icon('user', class: 'w-4 h-4') %>
-        <span><%= template.author.full_name.presence || template.author.email %></span>
+        <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
       </p>
       <p class="flex text-xs text-base-content/60">
         <span class="flex items-center space-x-1 w-1/2">
