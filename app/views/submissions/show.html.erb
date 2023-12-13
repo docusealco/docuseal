@@ -59,7 +59,7 @@
                   <%= render 'submissions/annotation', annot: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                  <% if ['my_text', 'my_signature', 'my_initials'].include?(field['type']) %>
+                  <% if ['my_text', 'my_signature', 'my_initials', 'my_date'].include?(field['type']) %>
                     <% value = @submission.template.values[field['uuid']] %>
                   <% else %>
                     <% value = values[field['uuid']] %>

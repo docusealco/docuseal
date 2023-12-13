@@ -48,7 +48,7 @@
       class="!text-2xl w-full h-full"
     >
       {{ getFormattedDate }}
-</span>
+    </span>
   </div>
 
   <!-- show mySignature prefill with stored value -->
@@ -300,8 +300,7 @@ export default {
   data () {
     return {
       textOverflowChars: 0,
-      showLocalText: '',
-      showLocalDate: ''
+      showLocalText: ''
     }
   },
   computed: {
@@ -393,9 +392,8 @@ export default {
       }
     },
     getFormattedDate () {
-      if (this.field.type === 'my_date' && this.showLocalDate) {
-        console.log('date returned ___-----', new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.showLocalDate)))
-        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.showLocalDate))
+      if (this.field.type === 'my_date' && this.templateValues[this.field.uuid]) {
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.templateValues[this.field.uuid]))
       } else {
         return ''
       }
@@ -432,15 +430,6 @@ export default {
         this.showLocalText = this.templateValues[fieldUuid]
       } else {
         this.showLocalText = ''
-      }
-    }
-
-    if (this.field.type === 'my_date') {
-      const fieldUuid = this.field.uuid
-      if (this.templateValues && this.templateValues[fieldUuid]) {
-        this.showLocalDate = this.templateValues[fieldUuid]
-      } else {
-        this.showLocalDate = ''
       }
     }
 

@@ -33,7 +33,7 @@ module Submissions
       pdfs_index = build_pdfs_index(submitter)
 
       submitter.submission.template_fields.each do |field|
-        unless ['my_text', 'my_signature', 'my_initials'].include?(field['type'])
+        unless ['my_text', 'my_signature', 'my_initials', 'my_date'].include?(field['type'])
           next if field['submitter_uuid'] != submitter.uuid
         end
         field.fetch('areas', []).each do |area|
@@ -205,7 +205,7 @@ module Submissions
             layouter_my_text.fit([text_my_text], w, height_diff_my_text.positive? ? box_height_my_text : h)
                           .draw(canvas, x + TEXT_LEFT_MARGIN, y - height_diff_my_text + 17)
           else
-            value = I18n.l(Date.parse(value), format: :default, locale: account.locale) if field['type'] == 'date'
+            value = I18n.l(Date.parse(value), format: :default, locale: account.locale) if field['type'] == 'date'|| field['type'] == 'my_date'
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
                                                                                       font_size:)

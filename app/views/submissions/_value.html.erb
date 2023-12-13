@@ -34,6 +34,10 @@
     <div class="flex items-center px-0.5">
       <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
     </div>
+  <% elsif field['type'] == 'my_date' %>
+    <div class="flex items-center px-0.5">
+      <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
+    </div>
   <% elsif field['type'] == 'redact' %>
     <div class="flex absolute" style="width: 100%; height: 100%;" :style="{ backgroundColor: 'black' }"></div>
   <% elsif field['type'] == 'my_text' %>

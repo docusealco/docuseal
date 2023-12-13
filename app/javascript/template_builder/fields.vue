@@ -292,7 +292,7 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-      if (['redact', 'my_text', 'my_signature', 'my_initials'].includes(type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)) {
         field.required = 'false'
       }
       if (['select', 'multiple', 'radio'].includes(type)) {

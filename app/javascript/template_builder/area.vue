@@ -39,7 +39,7 @@
       @pointerdown.stop
     >
       <FieldSubmitter
-        v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
+        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
@@ -50,7 +50,7 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
-        v-if="!['my_text', 'my_signature', 'my_initials'].includes(field.type)"
+        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
         v-model="field.type"
         :button-width="27"
         :editable="editable"
@@ -70,7 +70,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
