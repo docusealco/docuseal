@@ -43,6 +43,7 @@
         v-model="field.submitter_uuid"
         class="border-r"
         :me-fields="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
+        :hide-select-me="true"
         :compact="true"
         :editable="editable"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"

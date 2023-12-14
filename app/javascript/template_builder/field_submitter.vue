@@ -40,6 +40,7 @@
             :key="submitter.uuid"
           >
             <a
+              v-if="!hideSelectMe || submitter.name!=='Me'"
               href="#"
               class="flex px-2 group justify-between items-center"
               :class="{ 'active': submitter === selectedSubmitter }"
@@ -141,6 +142,7 @@
         :key="submitter.uuid"
       >
         <a
+          v-if="!hideSelectMe || submitter.name!=='Me'"
           href="#"
           class="flex px-2 group justify-between items-center"
           :class="{ 'active': submitter === selectedSubmitter }"
@@ -210,8 +212,12 @@ export default {
     },
     meFields: {
       type: Boolean,
+      required: true
+    },
+    hideSelectMe: {
+      type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     editable: {
       type: Boolean,

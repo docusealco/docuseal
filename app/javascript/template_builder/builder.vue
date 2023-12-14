@@ -585,24 +585,6 @@ export default {
 
         const type = (pageMask.clientWidth * area.w) < 35 ? 'my_check' : 'my_text'
 
-        if (type === 'checkbox') {
-          const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
-          const previousArea = previousField?.areas?.[previousField.areas.length - 1]
-
-          if (previousArea || area.w) {
-            const areaW = previousArea?.w || (30 / pageMask.clientWidth)
-            const areaH = previousArea?.h || (30 / pageMask.clientHeight)
-
-            if ((pageMask.clientWidth * area.w) < 5) {
-              area.x = area.x - (areaW / 2)
-              area.y = area.y - (areaH / 2)
-            }
-
-            area.w = areaW
-            area.h = areaH
-          }
-        }
-
         if (area.w) {
           const field = {
             name: '',
