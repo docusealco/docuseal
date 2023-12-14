@@ -171,7 +171,7 @@ module Templates
 
       remaining_images = document.preview_images
       remaining_images.each_with_index do |image, index|
-        new_filename = "#{index}.jpeg"
+        new_filename = "#{index}.jpg"
         image.blob.update!(filename: new_filename)
       end
     rescue StandardError => e
