@@ -223,7 +223,7 @@ export default {
   data () {
     return {
       dragField: null,
-      showNewFields: false
+      showNewFields: true
     }
   },
   computed: {
@@ -238,9 +238,20 @@ export default {
       })
     }
   },
+  mounted () {
+    if (this.selectedSubmitter.name === 'Me') {
+      this.showNewFields = true
+    } else {
+      this.showNewFields = false
+    }
+  },
   methods: {
-    toggleNewFields () {
-      this.showNewFields = !this.showNewFields
+    toggleNewFields (sName) {
+      if (sName === 'Me') {
+        this.showNewFields = true
+      } else {
+        this.showNewFields = false
+      }
     },
     onDragstart (field) {
       this.$emit('set-drag', field)
@@ -293,7 +304,7 @@ export default {
         type
       }
       if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)) {
-        field.required = 'false'
+        field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]

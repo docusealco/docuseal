@@ -9,7 +9,8 @@
     <div
       v-if="isSelected || isDraw"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
-      :class="borderColors[submitterIndex]"
+      :class="submitterIndex != 0 ? borderColors[submitterIndex] : ''"
+      :style="{ backgroundColor: submitterIndex == 0 ? bgColors[submitterIndex] : '' }"
     />
     <div
       v-if="field.type === 'cells' && (isSelected || isDraw)"
@@ -19,8 +20,8 @@
         v-for="(cellW, index) in cells"
         :key="index"
         class="absolute top-0 bottom-0 border-r"
-        :class="borderColors[submitterIndex]"
-        :style="{ left: (cellW / area.w * 100) + '%' }"
+        :class="submitterIndex != 0 ? borderColors[submitterIndex] : ''"
+        :style="{ left: (cellW / area.w * 100) + '%', backgroundColor: submitterIndex == 0 ? borderColors[submitterIndex] : '' }"
       >
         <span
           v-if="index === 0 && editable"
@@ -173,7 +174,8 @@
     <div
       v-else
       class="flex items-center h-full w-full"
-      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
+      :class="[submitterIndex != 0 ? bgColors[submitterIndex] : '', field?.default_value ? '' : 'justify-center']"
+      :style="[submitterIndex == 0 ? bgColors[submitterIndex] : '']"
     >
       <span
         v-if="field"
@@ -430,6 +432,7 @@ export default {
     },
     borderColors () {
       return [
+        'rgb(205 205 205 / 0.5)',
         'border-red-500/50',
         'border-sky-500/50',
         'border-emerald-500/50',
@@ -444,6 +447,7 @@ export default {
     },
     bgColors () {
       return [
+        'transparent',
         'bg-red-100/50',
         'bg-sky-100/50',
         'bg-emerald-100/50',

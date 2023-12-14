@@ -9,7 +9,7 @@ class StartFormController < ApplicationController
   before_action :load_template
 
   def show
-    @submitter = @template.submissions.new.submitters.new(uuid: @template.submitters.first['uuid'])
+    @submitter = @template.submissions.new.submitters.new(uuid: @template.submitters.second['uuid'])
   end
 
   def update
@@ -21,7 +21,7 @@ class StartFormController < ApplicationController
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       @submitter.assign_attributes(
-        uuid: @template.submitters.first['uuid'],
+        uuid: @template.submitters.second['uuid'],
         ip: request.remote_ip,
         ua: request.user_agent
       )

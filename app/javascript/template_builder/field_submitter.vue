@@ -55,7 +55,7 @@
                 </span>
               </span>
               <button
-                v-if="submitters.length > 1 && editable"
+                v-if="submitters.length > 1 && editable && submitter.name !== 'Me'"
                 class="px-2"
                 @click.stop="remove(submitter)"
               >
@@ -63,7 +63,7 @@
               </button>
             </a>
           </li>
-          <li v-if="submitters.length < 10 && editable">
+          <li v-if="submitters.length < 11 && editable">
             <a
               href="#"
               class="flex px-2"
@@ -97,38 +97,9 @@
         :class="colors[submitters.indexOf(selectedSubmitter)]"
       />
     </label>
-    <!-- adding button to show and hide prefills -->
     <div
       v-else
     >
-      <label
-        v-if="!showNewFields"
-        class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
-        @click="$emit('add-prefills')"
-      >
-        <div class="flex items-center space-x-2">
-          <span
-            style="background-color: grey;"
-            class="w-3 h-3 rounded-full"
-          />
-          <div class="items-center space-x-2">Me (Fill Out Now)</div>
-        </div>
-      </label>
-
-      <label
-        v-else
-        :style="{ 'border-color': showNewFields ? 'black' : '' }"
-        class="cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-between"
-        @click="$emit('add-prefills')"
-      >
-        <div class="flex items-center space-x-2">
-          <span
-            style="background-color: grey;"
-            class="w-3 h-3 rounded-full"
-          />
-          <div class="items-center space-x-2">show submitter fields</div>
-        </div>
-      </label>
       <label
         tabindex="0"
         class="cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 w-full flex justify-between"
@@ -136,13 +107,14 @@
         <div class="flex items-center space-x-2">
           <span
             class="w-3 h-3 rounded-full"
-            :class="colors[submitters.indexOf(selectedSubmitter)]"
+            :class="selectedSubmitter.name !== 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : ''"
+            :style="{ backgroundColor: selectedSubmitter.name === 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : '' }"
           />
           <Contenteditable
             v-model="selectedSubmitter.name"
             class="cursor-text"
             :icon-inline="true"
-            :editable="editable"
+            :editable="selectedSubmitter.name==='Me'? false : editable"
             :select-on-edit-click="true"
             :icon-width="18"
             @update:model-value="$emit('name-change', selectedSubmitter)"
@@ -182,7 +154,7 @@
             </span>
           </span>
           <button
-            v-if="!compact && submitters.length > 1 && editable"
+            v-if="!compact && submitters.length > 1 && editable && submitter.name !== 'Me'"
             class="hidden group-hover:block px-2"
             @click.stop="remove(submitter)"
           >
@@ -190,7 +162,7 @@
           </button>
         </a>
       </li>
-      <li v-if="submitters.length < 10 && editable">
+      <li v-if="submitters.length < 11 && editable">
         <a
           href="#"
           class="flex px-2"
@@ -262,6 +234,7 @@ export default {
   computed: {
     colors () {
       return [
+        'gray',
         'bg-red-500',
         'bg-sky-500',
         'bg-emerald-500',
@@ -276,6 +249,7 @@ export default {
     },
     names () {
       return [
+        'Me',
         'First Submitter',
         'Second Submitter',
         'Third Submitter',
@@ -295,10 +269,14 @@ export default {
   methods: {
     selectSubmitter (submitter) {
       this.$emit('update:model-value', submitter.uuid)
+      this.$emit('add-prefills', submitter.name)
     },
     remove (submitter) {
       if (window.confirm('Are you sure?')) {
         this.$emit('remove', submitter)
+      }
+      if (this.submitters.length === 1) {
+        this.$emit('add-prefills', this.submitters[0].name)
       }
     },
     addSubmitter () {
@@ -311,6 +289,7 @@ export default {
 
       this.$emit('update:model-value', newSubmitter.uuid)
       this.$emit('new-submitter', newSubmitter)
+      this.$emit('add-prefills', newSubmitter.name)
     },
     closeDropdown () {
       document.activeElement.blur()

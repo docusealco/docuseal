@@ -64,6 +64,11 @@
                   <% else %>
                     <% value = values[field['uuid']] %>
                   <% end %>
+                  <% if ['my_signature', 'my_initials'].include?(field['type']) %>
+                    <% attachments_index = ActiveStorage::Attachment.where(record: @submission.template, name: :attachments).preload(:blob).index_by(&:uuid) %>
+                  <% else %>
+                    <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+                  <% end %>
                   <% next if value.blank? %>
                   <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.template.account.locale %>
                 <% end %>

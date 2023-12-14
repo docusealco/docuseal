@@ -442,7 +442,6 @@ export default {
       const existingValues = this.template.values || {}
       const updatedValues = { ...existingValues, ...values }
       this.template.values = updatedValues
-      // this.save()
     },
     startFieldDraw (type) {
       const field = {
@@ -454,7 +453,7 @@ export default {
         type
       }
       if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)) {
-        field.required = 'false'
+        field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]
@@ -613,7 +612,9 @@ export default {
             submitter_uuid: this.selectedSubmitter.uuid,
             areas: [area]
           }
-
+          if (['redact', 'my_text', 'my_signature', 'my_initials'].includes(field.type)) {
+            field.required = false
+          }
           this.template.fields.push(field)
 
           this.selectedAreaRef.value = area
@@ -632,7 +633,7 @@ export default {
       }
 
       if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
-        field.required = 'false'
+        field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
         field.options = [{ value: '', uuid: v4() }]

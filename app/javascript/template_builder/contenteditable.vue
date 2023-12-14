@@ -13,7 +13,7 @@
       @focus="$emit('focus', $event)"
       @blur="onBlur"
     >
-      {{ value }}
+      {{ editable ? value : value+' (Fill Out Now)' }}
     </span>
     <span
       v-if="withRequired"

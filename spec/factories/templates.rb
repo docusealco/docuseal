@@ -24,7 +24,7 @@ FactoryBot.define do
       template.schema = [{ attachment_uuid: attachment.uuid, name: 'sample-document' }]
       template.submitters = [
         {
-          'name' => 'First Submitter',
+          'name' => 'Me',
           'uuid' => '513848eb-1096-4abc-a743-68596b5aaa4c'
         }
       ]
