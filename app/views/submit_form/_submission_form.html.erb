@@ -1,5 +1,5 @@
 <% data_attachments = attachments_index.values.select { |e| e.record_id == submitter.id }.to_json(only: %i[uuid], methods: %i[url filename content_type]) %>
-<% data_fields = (submitter.submission.template_fields || submitter.submission.template.fields).select { |f| ['my_text', 'my_signature', 'my_initials', 'my_data', 'my_check'].include?(f['type']) || f['submitter_uuid'] == submitter.uuid }.to_json %>
+<% data_fields = (submitter.submission.template_fields || submitter.submission.template.fields).select { |f| ['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].include?(f['type']) || f['submitter_uuid'] == submitter.uuid }.to_json %>
 <% completed_button_params = submitter.submission.template.account.account_configs.find_by(key: AccountConfig::FORM_COMPLETED_BUTTON_KEY)&.value || {} %>
 <% templateValues = submitter.submission.template.values %>
 <% template_attachments = ActiveStorage::Attachment.where(record: submitter.submission.template, name: :attachments).preload(:blob).index_by(&:uuid) %>

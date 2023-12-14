@@ -51,7 +51,7 @@
     </span>
   </div>
 
-  <!-- show mySignature prefill with stored value -->
+  <!-- show mySignature and myInitial prefill with stored value -->
   <div
     v-else-if="['my_signature', 'my_initials'].includes(field.type)"
     class="flex absolute"
