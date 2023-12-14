@@ -29,7 +29,7 @@
           />
         </label>
         <ul
-          v-if="editable"
+          v-if="editable && !meFields"
           tabindex="0"
           class="rounded-md min-w-max mb-2"
           :class="menuClasses"
@@ -48,7 +48,8 @@
               <span class="py-1 flex items-center">
                 <span
                   class="rounded-full w-3 h-3 ml-1 mr-3"
-                  :class="colors[index]"
+                  :class="submitter.name !== 'Me'? colors[index] : ''"
+                  :style="{backgroundColor: submitter.name === 'Me'? colors[index] : ''}"
                 />
                 <span>
                   {{ submitter.name }}
@@ -94,7 +95,8 @@
     >
       <button
         class="mx-1 w-3 h-3 rounded-full"
-        :class="colors[submitters.indexOf(selectedSubmitter)]"
+        :class="selectedSubmitter.name !== 'Me'? colors[submitters.indexOf(selectedSubmitter)] : ''"
+        :style="{backgroundColor: selectedSubmitter.name === 'Me'? colors[submitters.indexOf(selectedSubmitter)] : ''}"
       />
     </label>
     <div
@@ -129,7 +131,7 @@
       </label>
     </div>
     <ul
-      v-if="editable || !compact"
+      v-if="(editable && !meFields) || !compact"
       tabindex="0"
       :class="menuClasses"
       @click="closeDropdown"
@@ -147,7 +149,8 @@
           <span class="py-1 flex items-center">
             <span
               class="rounded-full w-3 h-3 ml-1 mr-3"
-              :class="colors[index]"
+              :class="submitter.name !== 'Me'? colors[index] : ''"
+              :style="{backgroundColor: submitter.name === 'Me'? colors[index] : ''}"
             />
             <span>
               {{ submitter.name }}
@@ -204,6 +207,11 @@ export default {
     submitters: {
       type: Array,
       required: true
+    },
+    meFields: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     editable: {
       type: Boolean,

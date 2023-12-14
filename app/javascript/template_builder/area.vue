@@ -40,9 +40,9 @@
       @pointerdown.stop
     >
       <FieldSubmitter
-        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         v-model="field.submitter_uuid"
         class="border-r"
+        :me-fields="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         :compact="true"
         :editable="editable"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
@@ -195,7 +195,7 @@
       v-else
       class="flex items-center h-full w-full"
       :class="[submitterIndex != 0 ? bgColors[submitterIndex] : '', field?.default_value ? '' : 'justify-center']"
-      :style="[submitterIndex == 0 ? bgColors[submitterIndex] : '']"
+      :style="{backgroundColor: submitterIndex == 0 ? bgColors[submitterIndex] : ''}"
     >
       <span
         v-if="field"
