@@ -579,6 +579,48 @@ export default {
         this.selectedAreaRef.value = area
 
         this.save()
+      } else if (this.selectedSubmitter.name === 'Me') {
+        const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+        const pageMask = documentRef.pageRefs[area.page].$refs.mask
+
+        const type = (pageMask.clientWidth * area.w) < 35 ? 'my_check' : 'my_text'
+
+        if (type === 'checkbox') {
+          const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
+          const previousArea = previousField?.areas?.[previousField.areas.length - 1]
+
+          if (previousArea || area.w) {
+            const areaW = previousArea?.w || (30 / pageMask.clientWidth)
+            const areaH = previousArea?.h || (30 / pageMask.clientHeight)
+
+            if ((pageMask.clientWidth * area.w) < 5) {
+              area.x = area.x - (areaW / 2)
+              area.y = area.y - (areaH / 2)
+            }
+
+            area.w = areaW
+            area.h = areaH
+          }
+        }
+
+        if (area.w) {
+          const field = {
+            name: '',
+            uuid: v4(),
+            required: type !== 'checkbox',
+            type,
+            submitter_uuid: this.selectedSubmitter.uuid,
+            areas: [area]
+          }
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
+            field.required = false
+          }
+          this.template.fields.push(field)
+
+          this.selectedAreaRef.value = area
+
+          this.save()
+        }
       } else {
         const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
         const pageMask = documentRef.pageRefs[area.page].$refs.mask

@@ -45,7 +45,7 @@
   >
     <span
       style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
-      class="!text-2xl w-full h-full"
+      class="flex items-center px-0.5 w-full h-full"
     >
       {{ getFormattedDate }}
     </span>
@@ -71,7 +71,6 @@
     <img
       v-else
       class="mx-auto"
-      :src="'#'"
     >
   </div>
 
