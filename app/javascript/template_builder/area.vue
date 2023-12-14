@@ -40,7 +40,7 @@
       @pointerdown.stop
     >
       <FieldSubmitter
-        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
+        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
@@ -51,7 +51,7 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
-        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
+        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         v-model="field.type"
         :button-width="27"
         :editable="editable"
@@ -71,7 +71,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
@@ -171,6 +171,26 @@
         style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
       >
     </div>
+    <!-- show my_check prefill -->
+    <div
+      v-else-if="field.type === 'my_check'"
+      class="flex items-center h-full w-full justify-center"
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+      :class="{'cursor-default ': !submittable}"
+    >
+      <span
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+        class="w-full h-full"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="h-full"
+        />
+      </span>
+    </div>
+
     <div
       v-else
       class="flex items-center h-full w-full"

@@ -66,7 +66,7 @@
               @focus="$refs.areas.scrollIntoField(currentField)"
             />
           </div>
-          <div v-if="['my_text', 'my_signature', 'my_initials', 'my_date'].includes(currentField.type)">
+          <div v-if="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(currentField.type)">
             <!-- do nothing on this side just chill for now -->
           </div>
           <DateStep
@@ -692,7 +692,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(fields[0].type)) {
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(fields[0].type)) {
             fields[0].required = 'false'
             return false
           } else {

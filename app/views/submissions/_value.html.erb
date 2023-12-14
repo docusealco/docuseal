@@ -10,7 +10,7 @@
         </a>
       <% end %>
     </div>
-  <% elsif field['type'] == 'checkbox' %>
+  <% elsif field['type'].in?(%w[checkbox my_check]) %>
     <div class="w-full flex items-center justify-center">
       <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
     </div>
@@ -31,10 +31,7 @@
       <% end %>
     </div>
   <% elsif field['type'] == 'date' %>
-    <div class="flex items-center px-0.5">
-      <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
-    </div>
-  <% elsif field['type'] == 'my_date' %>
+  <% elsif ['data', 'my_date'].include?(field['type']) %>
     <div class="flex items-center px-0.5">
       <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
     </div>

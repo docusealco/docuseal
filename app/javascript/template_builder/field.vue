@@ -31,7 +31,7 @@
           />
         </div>
         <div
-          v-if="isNameFocus && !['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
+          v-if="isNameFocus && !['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
           class="flex items-center relative"
         >
           <template v-if="field.type != 'phone'">
@@ -164,7 +164,7 @@
                   Draw New Area
                 </a>
               </li>
-              <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'my_text', 'redact', 'my_signature', 'my_initials', 'my_date'].includes(field.type)">
+              <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'my_text', 'redact', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)">
                 <a
                   href="#"
                   class="text-sm py-1 px-2"

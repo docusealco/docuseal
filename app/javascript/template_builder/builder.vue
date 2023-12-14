@@ -452,7 +452,7 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)) {
         field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
@@ -612,7 +612,7 @@ export default {
             submitter_uuid: this.selectedSubmitter.uuid,
             areas: [area]
           }
-          if (['redact', 'my_text', 'my_signature', 'my_initials'].includes(field.type)) {
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
             field.required = false
           }
           this.template.fields.push(field)
@@ -632,7 +632,7 @@ export default {
         ...this.dragField
       }
 
-      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
         field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
@@ -655,7 +655,7 @@ export default {
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox'].includes(field.type)) {
+        if (['checkbox', 'my_check'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)

@@ -75,6 +75,26 @@
     >
   </div>
 
+  <!-- show my_check prefill -->
+  <div
+    v-else-if="field.type === 'my_check'"
+    class="flex absolute items-center h-full w-full justify-center"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{'cursor-default ': !submittable}"
+  >
+    <span
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+      class="w-full h-full"
+    >
+      <component
+        :is="fieldIcons[field.type]"
+        width="100%"
+        height="100%"
+        class="h-full"
+      />
+    </span>
+  </div>
+
   <div
     v-else
     class="flex absolute lg:text-base"
@@ -322,7 +342,8 @@ export default {
         my_text: 'Text',
         my_signature: 'My Signature',
         my_initials: 'My Initials',
-        my_date: 'Date'
+        my_date: 'Date',
+        my_check: 'Check'
       }
     },
     fieldIcons () {
@@ -339,7 +360,8 @@ export default {
         cells: IconColumns3,
         multiple: IconChecks,
         phone: IconPhoneCheck,
-        redact: IconBarrierBlock
+        redact: IconBarrierBlock,
+        my_check: IconCheck
       }
     },
     image () {

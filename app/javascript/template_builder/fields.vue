@@ -72,7 +72,7 @@
       :key="type"
     >
       <div
-        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)"
+        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)"
       >
         <button
           v-if="withPhone || type != 'phone'"
@@ -131,7 +131,7 @@
       :key="type"
     >
       <div
-        v-if="['my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)"
+        v-if="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)"
       >
         <button
           draggable="true"
@@ -303,7 +303,7 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date'].includes(type)) {
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)) {
         field.required = false
       }
       if (['select', 'multiple', 'radio'].includes(type)) {

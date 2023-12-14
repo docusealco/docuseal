@@ -33,7 +33,7 @@ module Submissions
       pdfs_index = build_pdfs_index(submitter)
 
       submitter.submission.template_fields.each do |field|
-        unless ['my_text', 'my_signature', 'my_initials', 'my_date'].include?(field['type'])
+        unless ['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].include?(field['type'])
           next if field['submitter_uuid'] != submitter.uuid
         end
         field.fetch('areas', []).each do |area|
@@ -146,7 +146,8 @@ module Submissions
             layouter.fit(items, area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
                     .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
                           height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
-          when ->(type) { type == 'checkbox' || (type.in?(%w[multiple radio]) && area['option_uuid'].present?) }
+          when ->(type) { type == 'checkbox' || type == 'my_check' || (type.in?(%w[multiple radio]) && area['option_uuid'].present?) }
+            value=true if field['type'] == 'my_check'
             if field['type'].in?(%w[multiple radio])
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
