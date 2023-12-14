@@ -10,7 +10,7 @@ Rails.application.routes.draw do
              path: '/', only: %i[sessions passwords omniauth_callbacks],
              controllers: begin
                options = { sessions: 'sessions', passwords: 'passwords' }
-               options[:omniauth_callbacks] = 'omniauth_callbacks' if Docuseal.multitenant?
+               options[:omniauth_callbacks] = 'omniauth_callbacks' if User.devise_modules.include?(:omniauthable)
                options
              end
 

@@ -85,7 +85,7 @@ module Submissions
               width: image.width * scale,
               height: image.height * scale
             )
-          when 'file'
+          when 'file', 'payment'
             items = Array.wrap(value).each_with_object([]) do |uuid, acc|
               attachment = submitter.attachments.find { |a| a.uuid == uuid }
 

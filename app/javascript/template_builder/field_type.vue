@@ -25,7 +25,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="withPhone || type !== 'phone'">
+        <li v-if="withPhone || withPayment || !['phone', 'payment'].includes(type)">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone'],
+  inject: ['withPhone', 'withPayment'],
   props: {
     modelValue: {
       type: String,
@@ -92,7 +92,8 @@ export default {
         multiple: 'Multiple',
         radio: 'Radio',
         cells: 'Cells',
-        phone: 'Phone'
+        phone: 'Phone',
+        payment: 'Payment'
       }
     },
     fieldIcons () {
@@ -108,7 +109,8 @@ export default {
         radio: IconCircleDot,
         multiple: IconChecks,
         cells: IconColumns3,
-        phone: IconPhoneCheck
+        phone: IconPhoneCheck,
+        payment: IconCreditCard
       }
     }
   },

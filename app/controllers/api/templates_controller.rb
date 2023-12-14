@@ -58,7 +58,9 @@ module Api
         schema: [%i[attachment_uuid name]],
         submitters: [%i[name uuid]],
         fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,
-                  { options: [%i[value uuid]], areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
+                  { preferences: {},
+                    options: [%i[value uuid]],
+                    areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
       )
     end
   end

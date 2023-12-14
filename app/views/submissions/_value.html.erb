@@ -1,7 +1,7 @@
 <field-value class="flex absolute text-[1.5vw] lg:text-base" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%">
   <% if field['type'].in?(['signature', 'image', 'initials']) %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
-  <% elsif field['type'] == 'file' %>
+  <% elsif field['type'].in?(['file', 'payment']) %>
     <autosize-field></autosize-field>
     <div class="px-0.5 flex flex-col justify-center">
       <% Array.wrap(value).each do |val| %>

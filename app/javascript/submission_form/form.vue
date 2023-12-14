@@ -266,8 +266,22 @@
             @focus="$refs.areas.scrollIntoField(currentField)"
             @submit="submitStep"
           />
+          <PaymentStep
+            v-else-if="currentField.type === 'payment'"
+            ref="currentStep"
+            :key="currentField.uuid"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            :submitter-slug="submitterSlug"
+            @attached="attachments.push($event)"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+            @submit="submitStep"
+          />
         </div>
-        <div class="mt-6 md:mt-8">
+        <div
+          v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
+          class="mt-6 md:mt-8"
+        >
           <button
             ref="submitButton"
             type="submit"
@@ -331,6 +345,7 @@ import InitialsStep from './initials_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
+import PaymentStep from './payment_step'
 import TextStep from './text_step'
 import DateStep from './date_step'
 import FormCompleted from './completed'
@@ -351,6 +366,7 @@ export default {
     IconArrowsDiagonal,
     TextStep,
     PhoneStep,
+    PaymentStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
   },
@@ -401,11 +417,6 @@ export default {
       type: Array,
       required: false,
       default: () => []
-    },
-    authenticityToken: {
-      type: String,
-      required: false,
-      default: ''
     },
     backgroundColor: {
       type: String,
@@ -462,6 +473,12 @@ export default {
   computed: {
     currentStepFields () {
       return this.stepFields[this.currentStep]
+    },
+    queryParams () {
+      return new URLSearchParams(window.location.search)
+    },
+    authenticityToken () {
+      return document.querySelector('meta[name="csrf-token"]')?.content
     },
     submitterSlug () {
       return this.submitter.slug
@@ -525,7 +542,13 @@ export default {
       }
     })
 
-    if (this.goToLast) {
+    if (this.queryParams.get('field_uuid')) {
+      const stepIndex = this.stepFields.findIndex((fields) => {
+        return fields.some((f) => f.uuid === this.queryParams.get('field_uuid'))
+      })
+
+      this.currentStep = Math.max(stepIndex, 0)
+    } else if (this.goToLast) {
       const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.submittedValues[f.uuid])))
       const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
 
@@ -570,7 +593,7 @@ export default {
   methods: {
     t,
     maybeTrackEmailClick () {
-      const queryParams = new URLSearchParams(window.location.search)
+      const { queryParams } = this
 
       if (queryParams.has('t')) {
         const t = queryParams.get('t')
@@ -594,7 +617,7 @@ export default {
       }
     },
     maybeTrackSmsClick () {
-      const queryParams = new URLSearchParams(window.location.search)
+      const { queryParams } = this
 
       if (queryParams.has('c')) {
         const c = queryParams.get('c')
@@ -667,7 +690,7 @@ export default {
     async submitStep () {
       this.isSubmitting = true
 
-      const stepPromise = ['signature', 'phone', 'initials'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials', 'payment'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 
@@ -684,7 +707,7 @@ export default {
         }
 
         await this.saveStep(formData).then(async (response) => {
-          if (response.status === 422) {
+          if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
             alert(data.error || 'Value is invalid')
@@ -714,7 +737,7 @@ export default {
             }
           }
         }).catch(error => {
-          console.error('Error submitting form:', error)
+          alert(error)
         }).finally(() => {
           this.isSubmitting = false
         })

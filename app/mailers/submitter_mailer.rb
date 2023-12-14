@@ -100,7 +100,7 @@ class SubmitterMailer < ApplicationMailer
 
     attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
 
-    file_fields = submitter.submission.template_fields.select { |e| e['type'] == 'file' }
+    file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
 
     if file_fields.pluck('submitter_uuid').uniq.size == 1
       storage_attachments =

@@ -301,6 +301,7 @@ export default {
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
+      withPayment: this.withPayment,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -365,6 +366,11 @@ export default {
       default: true
     },
     withPhone: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withPayment: {
       type: Boolean,
       required: false,
       default: false
@@ -436,6 +442,12 @@ export default {
     window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
+
+    this.$nextTick(() => {
+      if (document.location.search?.includes('stripe_connect_success')) {
+        document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
+      }
+    })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)

@@ -65,8 +65,12 @@
               :stroke-width="1.6"
             />
           </button>
+          <PaymentSettings
+            v-if="field.type === 'payment'"
+            :field="field"
+          />
           <span
-            v-if="!defaultField"
+            v-else-if="!defaultField"
             class="dropdown dropdown-end"
           >
             <label
@@ -261,6 +265,7 @@
 <script>
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
+import PaymentSettings from './payment_settings'
 import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
@@ -270,6 +275,7 @@ export default {
     Contenteditable,
     IconSettings,
     IconShape,
+    PaymentSettings,
     IconNewSection,
     IconTrashX,
     IconCopy,
@@ -295,17 +301,29 @@ export default {
   emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
-      isNameFocus: false
+      isNameFocus: false,
+      showPaymentModal: false
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     defaultName () {
-      const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
+      if (this.field.type === 'payment' && this.field.preferences?.price) {
+        const { price, currency } = this.field.preferences || {}
 
-      const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+        const formattedPrice = new Intl.NumberFormat([], {
+          style: 'currency',
+          currency
+        }).format(price)
 
-      return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
+        return `${this.fieldNames[this.field.type]} ${formattedPrice}`
+      } else {
+        const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
+
+        const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+
+        return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
+      }
     },
     areas () {
       return this.field.areas || []

@@ -10,7 +10,6 @@ window.customElements.define('submission-form', class extends HTMLElement {
 
     this.app = createApp(Form, {
       submitter: JSON.parse(this.dataset.submitter),
-      authenticityToken: this.dataset.authenticityToken,
       canSendEmail: this.dataset.canSendEmail === 'true',
       isDirectUpload: this.dataset.isDirectUpload === 'true',
       goToLast: this.dataset.goToLast === 'true',

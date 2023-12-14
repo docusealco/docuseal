@@ -59,10 +59,6 @@ class User < ApplicationRecord
 
   devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable
 
-  if Docuseal.multitenant?
-    devise :registerable, :omniauthable, omniauth_providers: %i[google_oauth2 microsoft_office365 github]
-  end
-
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 

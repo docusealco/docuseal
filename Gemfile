@@ -21,10 +21,6 @@ gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
 gem 'oj'
-gem 'omniauth-github'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-microsoft-office365'
-gem 'omniauth-rails_csrf_protection'
 gem 'pagy'
 gem 'pdf-reader'
 gem 'pg', require: false

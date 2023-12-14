@@ -53,7 +53,7 @@
       :src="initials.url"
     >
     <div
-      v-else-if="field.type === 'file'"
+      v-else-if="field.type === 'file' || field.type === 'payment'"
       class="px-0.5 flex flex-col justify-center"
     >
       <a
@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -231,7 +231,8 @@ export default {
         checkbox: 'Checkbox',
         radio: 'Radio',
         multiple: 'Multiple Select',
-        phone: 'Phone'
+        phone: 'Phone',
+        payment: 'Payment'
       }
     },
     fieldIcons () {
@@ -247,7 +248,8 @@ export default {
         radio: IconCircleDot,
         cells: IconColumns3,
         multiple: IconChecks,
-        phone: IconPhoneCheck
+        phone: IconPhoneCheck,
+        payment: IconCreditCard
       }
     },
     image () {
@@ -281,6 +283,8 @@ export default {
     attachments () {
       if (this.field.type === 'file') {
         return (this.modelValue || []).map((uuid) => this.attachmentsIndex[uuid])
+      } else if (this.field.type === 'payment') {
+        return [this.attachmentsIndex[this.modelValue]].filter(Boolean)
       } else {
         return []
       }

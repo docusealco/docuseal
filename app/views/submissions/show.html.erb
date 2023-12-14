@@ -148,7 +148,7 @@
                   </div>
                 <% elsif field['type'] == 'image' %>
                   <img class="object-contain mx-auto max-h-28" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
-                <% elsif field['type'] == 'file' %>
+                <% elsif field['type'] == 'file' || field['type'] == 'payment' %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
                       <a target="_blank" class="flex items-center space-x-1" href="<%= attachments_index[val].url %>">

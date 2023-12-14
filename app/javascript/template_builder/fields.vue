@@ -71,7 +71,7 @@
       :key="type"
     >
       <button
-        v-if="withPhone || type != 'phone'"
+        v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
         class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
@@ -90,7 +90,7 @@
         </div>
       </button>
       <div
-        v-else
+        v-else-if="type == 'phone'"
         class="tooltip tooltip-bottom-end flex"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
@@ -152,7 +152,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment'],
   props: {
     fields: {
       type: Array,

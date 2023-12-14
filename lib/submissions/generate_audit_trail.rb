@@ -22,6 +22,12 @@ module Submissions
     VERIFIED_TEXT = 'Verified'
     UNVERIFIED_TEXT = 'Unverified'
 
+    CURRENCY_SYMBOLS = {
+      'USD' => '$',
+      'EUR' => '€',
+      'GBP' => '£'
+    }.freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -200,7 +206,15 @@ module Submissions
 
               composer.image(io, width:, height:, margin: [0, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
-            elsif field['type'] == 'file'
+            elsif field['type'].in?(%w[file payment])
+              if field['type'] == 'payment'
+                unit = CURRENCY_SYMBOLS[field['preferences']['currency']]
+
+                price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
+
+                composer.formatted_text_box([{ text: "Paid #{price}\n" }], padding: [0, 0, 10, 0])
+              end
+
               composer.formatted_text_box(
                 Array.wrap(value).map do |uuid|
                   attachment = submitter.attachments.find { |a| a.uuid == uuid }

@@ -86,6 +86,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       backgroundColor: '#faf7f5',
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
+      withPayment: this.dataset.withPayment !== 'false',
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'
     })
