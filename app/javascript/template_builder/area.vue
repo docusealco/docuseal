@@ -593,24 +593,24 @@ export default {
       const templateValue = this.template.values[this.field.uuid]
       switch (this.field.type) {
         case 'my_signature':
+          this.showMySignature = false
           if (this.myLocalSignatureValue === templateValue) {
-            this.showMySignature = false
             this.myLocalSignatureValue = ''
           }
           console.log('switch signature portion')
           break
 
         case 'my_initials':
+          this.showMyInitials = false
           if (this.myLocalInitialsValue === templateValue) {
-            this.showMyInitials = false
             this.myLocalInitialsValue = ''
           }
           console.log('switch initials portion')
           break
 
         case 'my_date':
+          this.showMyDate = false
           if (this.myLocalDateValue === templateValue) {
-            this.showMyDate = false
             this.myLocalDateValue = ''
           }
           console.log('switch my_date portion')
