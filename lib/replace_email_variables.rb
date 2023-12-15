@@ -2,23 +2,30 @@
 
 module ReplaceEmailVariables
   TEMAPLTE_NAME = '{{template.name}}'
+  TEMAPLTE_ID = '{{template.id}}'
   SUBMITTER_LINK = '{{submitter.link}}'
   ACCOUNT_NAME = '{{account.name}}'
   SUBMITTER_EMAIL = '{{submitter.email}}'
   SUBMITTER_NAME = '{{submitter.name}}'
+  SUBMITTER_ID = '{{submitter.id}}'
   SUBMISSION_LINK = '{{submission.link}}'
+  SUBMISSION_ID = '{{submission.id}}'
   SUBMISSION_SUBMITTERS = '{{submission.submitters}}'
   DOCUMENTS_LINKS = '{{documents.links}}'
   DOCUMENTS_LINK = '{{documents.link}}'
 
   module_function
 
+  # rubocop:disable Metrics
   def call(text, submitter:, tracking_event_type: 'click_email')
     submitter_link = build_submitter_link(submitter, tracking_event_type)
 
     submission_link = build_submission_link(submitter.submission) if submitter.submission
 
     text = text.gsub(TEMAPLTE_NAME, submitter.template.name) if submitter.template
+    text = text.gsub(TEMAPLTE_ID, submitter.template.id.to_s) if submitter.template
+    text = text.gsub(SUBMITTER_ID, submitter.id.to_s)
+    text = text.gsub(SUBMISSION_ID, submitter.submission.id.to_s) if submitter.submission
     text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
     text = text.gsub(SUBMITTER_NAME, submitter.name || submitter.email || submitter.phone)
     text = text.gsub(SUBMITTER_LINK, submitter_link)
@@ -33,6 +40,7 @@ module ReplaceEmailVariables
 
     text
   end
+  # rubocop:enable Metrics
 
   def build_documents_links_text(submitter)
     Rails.application.routes.url_helpers.submissions_preview_url(
