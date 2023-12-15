@@ -541,13 +541,16 @@ export default {
     },
     removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
-
       if (['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
-        const myAttachmentsIndex = this.myAttachmentsIndex[this.template.values[field.uuid]]
+        const valuesArray = Object.values(this.template.values)
+        const valueIndex = valuesArray.findIndex((value) => value === this.template.values[field.uuid])
+        valuesArray.splice(valueIndex, 1)
+        const valueKey = Object.keys(this.template.values)[valueIndex]
         if (['my_signature', 'my_initials'].includes(field.type)) {
+          const myAttachmentsIndex = this.myAttachmentsIndex[this.template.values[field.uuid]]
           this.templateAttachments.splice(this.templateAttachments.indexOf(myAttachmentsIndex), 1)
         }
-        this.template.values.splice(this.template.values.indexOf(field.uuid), 1)
+        delete this.template.values[valueKey]
       }
 
       field.areas.splice(field.areas.indexOf(area), 1)

@@ -212,7 +212,8 @@ export default {
     },
     meFields: {
       type: Boolean,
-      required: true
+      required: false,
+      default: false
     },
     hideSelectMe: {
       type: Boolean,
