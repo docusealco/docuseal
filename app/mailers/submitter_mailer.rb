@@ -127,7 +127,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def from_address_for_submitter(submitter)
-    if submitter.submission.created_by_user&.role == 'integration' &&
+    if submitter.submission.source.in?(%w[api embed]) &&
        (from_email = AccountConfig.find_by(account: submitter.account, key: 'integration_from_email')&.value.presence)
       from_email
     else

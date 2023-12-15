@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ReplaceEmailVariables
-  TEMAPLTE_NAME = '{{template.name}}'
-  TEMAPLTE_ID = '{{template.id}}'
+  TEMPLATE_NAME = '{{template.name}}'
+  TEMPLATE_ID = '{{template.id}}'
   SUBMITTER_LINK = '{{submitter.link}}'
   ACCOUNT_NAME = '{{account.name}}'
   SUBMITTER_EMAIL = '{{submitter.email}}'
@@ -22,8 +22,8 @@ module ReplaceEmailVariables
 
     submission_link = build_submission_link(submitter.submission) if submitter.submission
 
-    text = text.gsub(TEMAPLTE_NAME, submitter.template.name) if submitter.template
-    text = text.gsub(TEMAPLTE_ID, submitter.template.id.to_s) if submitter.template
+    text = text.gsub(TEMPLATE_NAME, submitter.template.name) if submitter.template
+    text = text.gsub(TEMPLATE_ID, submitter.template.id.to_s) if submitter.template
     text = text.gsub(SUBMITTER_ID, submitter.id.to_s)
     text = text.gsub(SUBMISSION_ID, submitter.submission.id.to_s) if submitter.submission
     text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
