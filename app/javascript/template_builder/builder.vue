@@ -402,6 +402,13 @@ export default {
       return this.template.schema.map((item) => {
         return this.template.documents.find(doc => doc.uuid === item.attachment_uuid)
       })
+    },
+    myAttachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
     }
   },
   created () {
@@ -534,6 +541,14 @@ export default {
     },
     removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
+
+      if (['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
+        const myAttachmentsIndex = this.myAttachmentsIndex[this.template.values[field.uuid]]
+        if (['my_signature', 'my_initials'].includes(field.type)) {
+          this.templateAttachments.splice(this.templateAttachments.indexOf(myAttachmentsIndex), 1)
+        }
+        this.template.values.splice(this.template.values.indexOf(field.uuid), 1)
+      }
 
       field.areas.splice(field.areas.indexOf(area), 1)
 

@@ -30,7 +30,6 @@
         <% end %>
       <% end %>
     </div>
-  <% elsif field['type'] == 'date' %>
   <% elsif ['data', 'my_date'].include?(field['type']) %>
     <div class="flex items-center px-0.5">
       <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>

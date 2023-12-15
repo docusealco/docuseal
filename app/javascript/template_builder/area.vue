@@ -93,7 +93,7 @@
         v-else-if="editable"
         class="pr-1"
         title="Remove"
-        @click.prevent="$emit('remove')"
+        @click.prevent="removeField"
       >
         <IconX width="14" />
       </button>
@@ -588,6 +588,34 @@ export default {
       this.templateAttachments.push(attachment)
       this.makeMySignature(attachment.uuid)
       this.save()
+    },
+    removeField () {
+      switch (this.field.type) {
+        case 'my_signature':
+          this.showMySignature = false
+          this.myLocalSignatureValue = ''
+          console.log('switch signature portion')
+          break
+
+        case 'my_initials':
+          this.showMyInitials = false
+          this.myLocalInitialsValue = ''
+          console.log('switch initials portion')
+          break
+
+        case 'my_date':
+          this.showMyDate = false
+          this.myLocalDateValue = ''
+          console.log('switch my_date portion')
+          break
+
+        case 'my_text':
+          this.myLocalText = ''
+          break
+        default:
+          console.log('switch default portion')
+      }
+      this.$emit('remove')
     },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
