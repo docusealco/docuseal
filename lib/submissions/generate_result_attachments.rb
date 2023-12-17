@@ -268,7 +268,7 @@ module Submissions
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submitter.submission.template.documents.preload(:blob)
+      documents ||= submitter.submission.template.schema_documents.preload(:blob)
 
       documents.to_h do |attachment|
         pdf =

@@ -85,7 +85,8 @@ module Api
                                        emails:,
                                        params:)
       else
-        submissions_attrs, attachments = normalize_submissions_params!(submissions_params, template)
+        submissions_attrs, attachments =
+          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_params, template)
 
         submissions = Submissions.create_from_submitters(
           template:,
@@ -97,7 +98,8 @@ module Api
           params:
         )
 
-        save_default_value_attachments!(attachments, submissions.flat_map(&:submitters))
+        Submissions::NormalizeParamUtils.save_default_value_attachments!(attachments,
+                                                                         submissions.flat_map(&:submitters))
 
         submissions
       end
@@ -132,50 +134,6 @@ module Api
           }]
         ]
       ).fetch(key, [])
-    end
-
-    def normalize_submissions_params!(submissions_params, template)
-      attachments = []
-
-      Array.wrap(submissions_params).each do |submission|
-        submission[:submitters].each_with_index do |submitter, index|
-          default_values = submitter[:values] || {}
-
-          submitter[:fields]&.each { |f| default_values[f[:name]] = f[:default_value] if f[:default_value].present? }
-
-          next if default_values.blank?
-
-          values, new_attachments =
-            Submitters::NormalizeValues.call(template,
-                                             default_values,
-                                             submitter[:role] || template.submitters[index]['name'],
-                                             throw_errors: true)
-
-          attachments.push(*new_attachments)
-
-          submitter[:values] = values
-        end
-      end
-
-      [submissions_params, attachments]
-    end
-
-    def save_default_value_attachments!(attachments, submitters)
-      return if attachments.blank?
-
-      attachments_index = attachments.index_by(&:uuid)
-
-      submitters.each do |submitter|
-        submitter.values.to_a.each do |_, value|
-          attachment = attachments_index[value]
-
-          next unless attachment
-
-          attachment.record = submitter
-
-          attachment.save!
-        end
-      end
     end
   end
 end
