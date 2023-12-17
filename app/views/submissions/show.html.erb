@@ -162,7 +162,7 @@
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
                 <% elsif field['type'] == 'date' %>
-                  <%= l(Date.parse(value), locale: @submission.template.account.locale, format: :long) %>
+                  <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.template.account.locale) %>
                 <% else %>
                   <%= Array.wrap(value).join(', ') %>
                 <% end %>

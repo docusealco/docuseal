@@ -34,7 +34,7 @@
   <% elsif field['type'] == 'date' %>
     <autosize-field></autosize-field>
     <div class="flex items-center px-0.5">
-      <%= l(Date.parse(value), format: :long, locale: local_assigns[:locale]) %>
+      <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), local_assigns[:locale]) %>
     </div>
   <% else %>
     <autosize-field></autosize-field>

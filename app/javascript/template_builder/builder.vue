@@ -474,6 +474,12 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
+      }
+
       this.drawField = field
       this.drawOption = null
     },
@@ -648,6 +654,12 @@ export default {
 
       if (['select', 'multiple', 'radio'].includes(field.type)) {
         field.options = [{ value: '', uuid: v4() }]
+      }
+
+      if (field.type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
       }
 
       const fieldArea = {

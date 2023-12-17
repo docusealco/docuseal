@@ -261,6 +261,12 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
+      }
+
       this.fields.push(field)
 
       if (['signature', 'initials', 'cells'].includes(type)) {

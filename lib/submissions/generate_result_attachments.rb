@@ -164,7 +164,9 @@ module Submissions
                                  height - (area['y'] * height))
             end
           else
-            value = I18n.l(Date.parse(value), format: :default, locale: account.locale) if field['type'] == 'date'
+            if field['type'] == 'date'
+              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+            end
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
                                                                                       font_size:)
@@ -268,7 +270,7 @@ module Submissions
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submitter.submission.template.schema_documents.preload(:blob)
+      documents ||= submitter.submission.template_schema_documents.preload(:blob)
 
       documents.to_h do |attachment|
         pdf =

@@ -273,9 +273,15 @@ export default {
         return null
       }
     },
+    locale () {
+      return Intl.DateTimeFormat().resolvedOptions()?.locale
+    },
     formattedDate () {
       if (this.field.type === 'date' && this.modelValue) {
-        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.modelValue))
+        return this.formatDate(
+          new Date(this.modelValue),
+          this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+        )
       } else {
         return ''
       }
@@ -315,6 +321,36 @@ export default {
     }
   },
   methods: {
+    formatDate (date, format) {
+      const monthFormats = {
+        M: 'numeric',
+        MM: '2-digit',
+        MMM: 'short',
+        MMMM: 'long'
+      }
+
+      const dayFormats = {
+        D: 'numeric',
+        DD: '2-digit'
+      }
+
+      const yearFormats = {
+        YYYY: 'numeric',
+        YY: '2-digit'
+      }
+
+      const parts = new Intl.DateTimeFormat([], {
+        day: dayFormats[format.match(/D+/)],
+        month: monthFormats[format.match(/M+/)],
+        year: yearFormats[format.match(/Y+/)],
+        timeZone: 'UTC'
+      }).formatToParts(date)
+
+      return format
+        .replace(/D+/, parts.find((p) => p.type === 'day').value)
+        .replace(/M+/, parts.find((p) => p.type === 'month').value)
+        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+    },
     updateMultipleSelectValue (value) {
       if (this.modelValue?.includes(value)) {
         const newValue = [...this.modelValue]

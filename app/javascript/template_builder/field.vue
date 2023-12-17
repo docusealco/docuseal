@@ -111,6 +111,33 @@
                   Default value
                 </label>
               </div>
+              <div
+                v-if="field.type === 'date'"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <select
+                  v-model="field.preferences.format"
+                  placeholder="Format"
+                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+                  @change="save"
+                >
+                  <option
+                    v-for="format in dateFormats"
+                    :key="format"
+                    :value="format"
+                  >
+                    {{ formatDate(new Date(), format) }}
+                  </option>
+                </select>
+                <label
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  Format
+                </label>
+              </div>
               <li
                 v-if="field.type != 'phone'"
                 @click.stop
@@ -307,6 +334,19 @@ export default {
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    dateFormats () {
+      return [
+        'MM/DD/YYYY',
+        'DD/MM/YYYY',
+        'YYYY-MM-DD',
+        'DD-MM-YYYY',
+        'DD.MM.YYYY',
+        'MMM D, YYYY',
+        'MMMM D, YYYY',
+        'D MMM YYYY',
+        'D MMMM YYYY'
+      ]
+    },
     defaultName () {
       if (this.field.type === 'payment' && this.field.preferences?.price) {
         const { price, currency } = this.field.preferences || {}
@@ -329,7 +369,44 @@ export default {
       return this.field.areas || []
     }
   },
+  created () {
+    this.field.preferences ||= {}
+
+    if (this.field.type === 'date') {
+      this.field.preferences.format ||=
+        (Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+    }
+  },
   methods: {
+    formatDate (date, format) {
+      const monthFormats = {
+        M: 'numeric',
+        MM: '2-digit',
+        MMM: 'short',
+        MMMM: 'long'
+      }
+
+      const dayFormats = {
+        D: 'numeric',
+        DD: '2-digit'
+      }
+
+      const yearFormats = {
+        YYYY: 'numeric',
+        YY: '2-digit'
+      }
+
+      const parts = new Intl.DateTimeFormat([], {
+        day: dayFormats[format.match(/D+/)],
+        month: monthFormats[format.match(/M+/)],
+        year: yearFormats[format.match(/Y+/)]
+      }).formatToParts(date)
+
+      return format
+        .replace(/D+/, parts.find((p) => p.type === 'day').value)
+        .replace(/M+/, parts.find((p) => p.type === 'month').value)
+        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+    },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
 

@@ -228,7 +228,10 @@ module Submissions
             elsif field['type'] == 'checkbox'
               composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
             else
-              value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
+              if field['type'] == 'date'
+                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+              end
+
               value = value.join(', ') if value.is_a?(Array)
 
               composer.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
