@@ -317,6 +317,8 @@
         :is-demo="isDemo"
         :attribution="attribution"
         :completed-button="completedButton"
+        :with-send-copy-button="withSendCopyButton"
+        :with-download-button="withDownloadButton"
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
@@ -452,6 +454,16 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    withSendCopyButton: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withDownloadButton: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     completedButton: {
       type: Object,

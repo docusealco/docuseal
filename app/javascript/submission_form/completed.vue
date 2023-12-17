@@ -21,7 +21,7 @@
         </span>
       </a>
       <button
-        v-if="canSendEmail && !isDemo"
+        v-if="canSendEmail && !isDemo && withSendCopyButton"
         class="white-button !h-auto flex items-center space-x-1 w-full"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"
@@ -36,7 +36,7 @@
         </span>
       </button>
       <button
-        v-if="!isWebView"
+        v-if="!isWebView && withDownloadButton"
         class="base-button flex items-center space-x-1 w-full"
         :disabled="isDownloading"
         @click.prevent="download"
@@ -111,6 +111,16 @@ export default {
       default: false
     },
     attribution: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withDownloadButton: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withSendCopyButton: {
       type: Boolean,
       required: false,
       default: true

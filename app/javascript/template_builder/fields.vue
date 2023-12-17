@@ -5,7 +5,7 @@
       class="w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
-      :editable="editable"
+      :editable="editable && !defaultSubmitters.length"
       @new-submitter="save"
       @remove="removeSubmitter"
       @name-change="save"
@@ -164,6 +164,11 @@ export default {
       default: true
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultSubmitters: {
       type: Array,
       required: false,
       default: () => []

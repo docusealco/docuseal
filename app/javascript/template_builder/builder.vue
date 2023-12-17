@@ -244,6 +244,7 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :default-submitters="defaultSubmitters"
             :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
             :editable="editable"
