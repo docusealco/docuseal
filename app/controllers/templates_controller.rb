@@ -42,10 +42,15 @@ class TemplatesController < ApplicationController
   end
 
   def create
-    @template.account = current_account
-    @template.author = current_user
-    @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
-    @template.assign_attributes(@base_template.slice(:fields, :schema, :submitters)) if @base_template
+    if @base_template
+      @template = Templates::Clone.call(@base_template, author: current_user,
+                                                        name: params.dig(:template, :name),
+                                                        folder_name: params[:folder_name])
+    else
+      @template.account = current_account
+      @template.author = current_user
+      @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
+    end
 
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template

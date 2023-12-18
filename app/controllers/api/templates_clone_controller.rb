@@ -7,23 +7,18 @@ module Api
     def create
       authorize!(:manage, @template)
 
-      template = current_account.templates.new(source: :api)
+      cloned_template = Templates::Clone.call(@template,
+                                              author: current_user,
+                                              name: params[:name],
+                                              application_key: params[:application_key],
+                                              folder_name: params[:folder_name])
 
-      template.application_key = params[:application_key]
-      template.name = params[:name] || "#{@template.name} (Clone)"
-      template.account = @template.account
-      template.author = current_user
-      template.assign_attributes(@template.slice(:folder_id, :fields, :schema, :submitters))
+      cloned_template.source = :api
+      cloned_template.save!
 
-      if params[:folder_name].present?
-        template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
-      end
+      Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
 
-      template.save!
-
-      Templates::CloneAttachments.call(template:, original_template: @template)
-
-      render json: template.as_json(serialize_params)
+      render json: cloned_template.as_json(serialize_params)
     end
 
     private
