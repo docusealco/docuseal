@@ -503,41 +503,31 @@ export default {
     }
   },
   mounted () {
-    if (this.field.type === 'my_signature') {
+    if (['my_signature', 'my_initials', 'my_text', 'my_date'].includes(this.field.type)) {
       const fieldUuid = this.field.uuid
+      let myValue = ''
       if (this.template.values && this.template.values[fieldUuid]) {
-        this.myLocalSignatureValue = this.template.values[fieldUuid]
-      } else {
-        this.myLocalSignatureValue = ''
+        myValue = this.template.values[fieldUuid]
       }
-      this.saveFieldValue({ [this.field.uuid]: this.myLocalSignatureValue })
-    }
+      switch (this.field.type) {
+        case 'my_signature':
+          this.myLocalSignatureValue = myValue
+          break
 
-    if (this.field.type === 'my_initials') {
-      const fieldUuid = this.field.uuid
-      if (this.template.values && this.template.values[fieldUuid]) {
-        this.myLocalInitialsValue = this.template.values[fieldUuid]
-      } else {
-        this.myLocalInitialsValue = ''
-      }
-      this.saveFieldValue({ [this.field.uuid]: this.myLocalInitialsValue })
-    }
+        case 'my_initials':
+          this.myLocalInitialsValue = myValue
+          break
 
-    if (this.field.type === 'my_text') {
-      const fieldUuid = this.field.uuid
-      if (this.template.values && this.template.values[fieldUuid]) {
-        this.myLocalText = this.template.values[fieldUuid]
-      } else {
-        this.myLocalText = ''
-      }
-    }
+        case 'my_text':
+          this.myLocalText = myValue
+          break
 
-    if (this.field.type === 'my_date') {
-      const fieldUuid = this.field.uuid
-      if (this.template.values && this.template.values[fieldUuid]) {
-        this.myLocalDateValue = this.template.values[fieldUuid]
-      } else {
-        this.myLocalDateValue = ''
+        case 'my_date':
+          this.myLocalDateValue = myValue
+          break
+
+        default:
+          break
       }
     }
 
@@ -545,6 +535,35 @@ export default {
       this.$nextTick(() => {
         this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
       })
+    }
+  },
+  updated () {
+    if (['my_signature', 'my_initials', 'my_text', 'my_date'].includes(this.field.type)) {
+      const fieldUuid = this.field.uuid
+      let myValue = ''
+      if (this.template.values && this.template.values[fieldUuid]) {
+        myValue = this.template.values[fieldUuid]
+      }
+      switch (this.field.type) {
+        case 'my_signature':
+          this.myLocalSignatureValue = myValue
+          break
+
+        case 'my_initials':
+          this.myLocalInitialsValue = myValue
+          break
+
+        case 'my_text':
+          this.myLocalText = myValue
+          break
+
+        case 'my_date':
+          this.myLocalDateValue = myValue
+          break
+
+        default:
+          break
+      }
     }
   },
   methods: {
