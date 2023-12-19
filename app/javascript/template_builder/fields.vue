@@ -27,6 +27,7 @@
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
       :editable="editable && !dragField"
       :draggable="editable"
+      :me-active="selectedSubmitter.name === 'Me'"
       @dragstart="dragField = field"
       @dragend="dragField = null"
       @remove="removeField"

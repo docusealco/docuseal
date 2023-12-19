@@ -16,6 +16,7 @@
             v-model="field.type"
             :editable="editable"
             :button-width="20"
+            :me-active="meActive"
             @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
           />
@@ -281,6 +282,11 @@ export default {
       required: true
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    meActive: {
       type: Boolean,
       required: false,
       default: true

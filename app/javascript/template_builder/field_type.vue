@@ -15,7 +15,7 @@
       </label>
     </slot>
     <ul
-      v-if="editable"
+      v-if="editable && !meActive"
       tabindex="0"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :class="menuClasses"
@@ -74,6 +74,11 @@ export default {
       type: Number,
       required: false,
       default: 18
+    },
+    meActive: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   emits: ['update:model-value'],
