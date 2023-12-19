@@ -351,6 +351,13 @@ export default {
       required: false,
       default: true
     },
+    onUpload: {
+      type: Function,
+      required: false,
+      default () {
+        return () => {}
+      }
+    },
     withStickySubmitters: {
       type: Boolean,
       required: false,
@@ -732,6 +739,10 @@ export default {
         this.scrollIntoDocument(schema[0])
       })
 
+      if (this.onUpload) {
+        this.onUpload(this.template)
+      }
+
       this.save()
     },
     updateName (value) {
@@ -764,6 +775,10 @@ export default {
           }
         })
       })
+
+      if (this.onUpload) {
+        this.onUpload(this.template)
+      }
 
       this.save()
     },
