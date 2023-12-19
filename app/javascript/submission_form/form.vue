@@ -749,7 +749,7 @@ export default {
             }
           }
         }).catch(error => {
-          alert(error)
+          console.error(error)
         }).finally(() => {
           this.isSubmitting = false
         })
