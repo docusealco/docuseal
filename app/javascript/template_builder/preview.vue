@@ -67,6 +67,7 @@
       <Contenteditable
         :model-value="item.name"
         :icon-width="16"
+        :editable="editable"
         style="max-width: 95%"
         class="mx-auto"
         @update:model-value="onUpdateName"
