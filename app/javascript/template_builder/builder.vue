@@ -86,6 +86,7 @@
       :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
     >
       <div
+        v-if="withDocumentsList"
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
         class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
@@ -216,6 +217,7 @@
         </FieldType>
       </div>
       <div
+        v-if="withFieldsList"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
       >
@@ -369,6 +371,16 @@ export default {
       default: true
     },
     withTitle: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withFieldsList: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withDocumentsList: {
       type: Boolean,
       required: false,
       default: true
