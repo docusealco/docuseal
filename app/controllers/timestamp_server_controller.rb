@@ -30,6 +30,7 @@ class TimestampServerController < ApplicationController
              reason: 'Test',
              certificate: pkcs.certificate,
              key: pkcs.key,
+             signature_size: 10_000,
              certificate_chain: pkcs.ca_certs || [],
              timestamp_handler: Submissions::TimestampHandler.new(tsa_url: url))
   end

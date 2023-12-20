@@ -277,7 +277,10 @@ module Submissions
         certificate_chain: pkcs.ca_certs || []
       }
 
-      sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:) if tsa_url
+      if tsa_url
+        sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
+        sign_params[:signature_size] = 10_000
+      end
 
       composer.document.sign(io, **sign_params)
 
