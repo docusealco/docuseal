@@ -59,9 +59,8 @@ module Submissions
 
           layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
 
-          value = submitter.values[field['uuid']] || template.values[field['uuid']]
-
-          if !field['type']=='redact'
+          if !field['type'].in?(%w[redact my_check])
+            value = submitter.values[field['uuid']] || template.values[field['uuid']]
             next if Array.wrap(value).compact_blank.blank?
           end
 

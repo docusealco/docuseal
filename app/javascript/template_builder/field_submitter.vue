@@ -57,7 +57,7 @@
                 </span>
               </span>
               <button
-                v-if="submitters.length > 1 && editable && submitter.name !== 'Me'"
+                v-if="submitters?.length > 1 && editable && submitter.name !== 'Me'"
                 class="px-2"
                 @click.stop="remove(submitter)"
               >
@@ -65,7 +65,7 @@
               </button>
             </a>
           </li>
-          <li v-if="submitters.length < 11 && editable">
+          <li v-if="submitters?.length < 11 && editable">
             <a
               href="#"
               class="flex px-2"
@@ -76,7 +76,7 @@
                 :stroke-width="1.6"
               />
               <span class="py-1">
-                Add {{ names[submitters.length] }}
+                Add {{ names[submitters?.length] }}
               </span>
             </a>
           </li>
@@ -157,7 +157,7 @@
             </span>
           </span>
           <button
-            v-if="!compact && submitters.length > 1 && editable && submitter.name !== 'Me'"
+            v-if="!compact && submitters?.length > 1 && editable && submitter.name !== 'Me'"
             class="hidden group-hover:block px-2"
             @click.stop="remove(submitter)"
           >
@@ -165,7 +165,7 @@
           </button>
         </a>
       </li>
-      <li v-if="submitters.length < 11 && editable">
+      <li v-if="submitters?.length < 11 && editable">
         <a
           href="#"
           class="flex px-2"
@@ -176,7 +176,7 @@
             :stroke-width="1.6"
           />
           <span class="py-1">
-            Add {{ names[submitters.length] }}
+            Add {{ names[submitters?.length] }}
           </span>
         </a>
       </li>
@@ -288,13 +288,13 @@ export default {
       if (window.confirm('Are you sure?')) {
         this.$emit('remove', submitter)
       }
-      if (this.submitters.length === 1) {
+      if (this.submitters?.length === 1) {
         this.$emit('add-prefills', this.submitters[0].name)
       }
     },
     addSubmitter () {
       const newSubmitter = {
-        name: this.names[this.submitters.length],
+        name: this.names[this.submitters?.length],
         uuid: v4()
       }
 

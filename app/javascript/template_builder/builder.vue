@@ -564,7 +564,7 @@ export default {
       }
     },
     scrollIntoDocument (item, page) {
-      const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
+      const documentRef = this.documentRefs.find((e) => e.document?.uuid === item.attachment_uuid)
       documentRef.scrollIntoDocument(page)
     },
     onKeyUp (e) {
@@ -942,7 +942,7 @@ export default {
               body: JSON.stringify({
                 template: this.template.id,
                 attachment_id: imageId,
-                documentId
+                document_id: documentId
               })
             })
               .then((response) => {

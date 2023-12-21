@@ -7,7 +7,7 @@ module Api
 
     def create
       record = if params[:template_slug].present?
-        Template.find_by(slug: params[:template_slug])
+        Template.find_by!(slug: params[:template_slug])
       else
         Submitter.find_by!(slug: params[:submitter_slug])
       end

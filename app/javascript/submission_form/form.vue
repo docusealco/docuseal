@@ -733,7 +733,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(fields[0].type)) {
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(fields[0]?.type)) {
             fields[0].required = 'false'
             return false
           } else {

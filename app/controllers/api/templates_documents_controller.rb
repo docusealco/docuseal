@@ -26,7 +26,7 @@ module Api
 
     def del_image
       template = Template.find(params[:template_id])
-      document = template.documents.find(params[:documentId])
+      document = template.documents.find(params[:document_id])
       img_attachment_id = params[:attachment_id]
       page_number = document.preview_images.find_index { |pic| pic.id == img_attachment_id }
       if page_number

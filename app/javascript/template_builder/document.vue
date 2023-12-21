@@ -111,7 +111,7 @@ export default {
       this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
     },
     scrollIntoDocument (page) {
-      const ref = this.pageRefs.find((e) => e.image.uuid === page.uuid)
+      const ref = this.pageRefs.find((e) => e.image?.uuid === page.uuid)
       ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     setPageRefs (el) {

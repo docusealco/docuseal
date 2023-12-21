@@ -86,7 +86,7 @@
     >
     <img
       v-if="modelValue || computedPreviousValue"
-      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      :src="attachmentsIndex[modelValue || computedPreviousValue]?.url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72 w-full"
     >
     <canvas
@@ -184,8 +184,8 @@ export default {
   async mounted () {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
-        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+        this.$refs.canvas.width = this.$refs.canvas?.parentNode?.clientWidth
+        this.$refs.canvas.height = this.$refs.canvas?.parentNode?.clientWidth / 3
       }
     })
 

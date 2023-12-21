@@ -219,31 +219,6 @@ module Templates
     ensure
       File.delete(temp_file_path) if File.exist?(temp_file_path)
     end
-   
-    # def generate_blank_image
-    #   # here height and width should be equal to height and width from existing pdf pages
-    #   height = 2000
-    #   width = MAX_WIDTH
-    #   Vips::Image.new_from_array([[255]* width] * height, 255)
-    # end
-
-    # # def create_blob_from_image(image, attachment)
-    # def create_image_blob(image, attachment)
-    #   begin
-    #   previews_count = attachment.preview_images.count
-    #   ActiveStorage::Attachment.create!(
-    #     blob: ActiveStorage::Blob.create_and_upload!(
-    #       io: StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true)),
-    #     filename: "#{previews_count}#{FORMAT}",
-    #     metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
-    #     ),
-    #     name: ATTACHMENT_NAME,
-    #     record: attachment
-    #   )
-    #   rescue => e
-    #   Rails.logger.error("Error creating blob from image: #{e.message}")
-    #   end
-    # end
 
   end
 end
