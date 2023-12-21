@@ -122,7 +122,7 @@
         />
       </div>
       <span class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 flex justify-center items-center rounded">
-        <IconPlus
+        <IconChevronDown
           width="18"
           height="18"
         />
@@ -185,7 +185,7 @@
 </template>
 
 <script>
-import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp } from '@tabler/icons-vue'
+import { IconUserPlus, IconTrashX, IconChevronDown, IconChevronUp } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
 
@@ -194,9 +194,9 @@ export default {
   components: {
     IconUserPlus,
     Contenteditable,
-    IconPlus,
     IconTrashX,
-    IconChevronUp
+    IconChevronUp,
+    IconChevronDown
   },
   props: {
     showNewFields: {

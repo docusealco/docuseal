@@ -8,9 +8,6 @@
         class="rounded border"
         loading="lazy"
       >
-      <div class="absolute bottom-0 left-0 bg-white text-gray-700 p-1">
-        {{ index + 1 }}
-      </div>
       <div
         class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1"
         @click="$emit('scroll-to', item, previewImage)"
@@ -45,15 +42,6 @@
           <div
             class="flex flex-col justify-between opacity-0 group-hover:opacity-100"
           >
-            <div>
-              <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-red-500 hover:border-base-content w-full transition-colors"
-                style="width: 24px; height: 24px"
-                @click.stop="$emit('remove', item)"
-              >
-                &times;
-              </button>
-            </div>
             <div
               v-if="withArrows"
               class="flex flex-col space-y-1"
@@ -111,9 +99,21 @@
         width="22"
         class="animate-spin"
       />
-      <span v-if="isLoading"> Add blank page </span>
+      <span v-if="isLoading"> Adding blank page </span>
       <span v-else>Add blank page</span>
     </button>
+
+    <label
+      class="btn btn-outline w-full mt-2"
+      @click.stop="$emit('remove', item)"
+    >
+      <span class="flex items-center">
+        <IconFileOff
+          width="22"
+        />
+        &nbsp;
+        del document </span>
+    </label>
 
     <div class="flex pb-2 pt-1.5">
       <Contenteditable
@@ -131,14 +131,15 @@
 import Contenteditable from './contenteditable'
 import Upload from './upload'
 import ReplaceButton from './replace'
-import { IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconFileOff } from '@tabler/icons-vue'
 
 export default {
   name: 'DocumentPreview',
   components: {
     Contenteditable,
     ReplaceButton,
-    IconInnerShadowTop
+    IconInnerShadowTop,
+    IconFileOff
   },
   props: {
     item: {
