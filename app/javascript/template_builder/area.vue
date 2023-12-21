@@ -52,10 +52,10 @@
         @click="selectedAreaRef.value = area"
       />
       <FieldType
-        v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         v-model="field.type"
         :button-width="27"
         :editable="editable && !defaultField"
+        :me-active="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"

@@ -25,7 +25,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="withPhone || withPayment || !['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check', 'phone', 'payment'].includes(type)">
+        <li v-if="withPhone || withPayment && !['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)">
           <a
             href="#"
             class="text-sm py-1 px-2"
