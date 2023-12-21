@@ -220,6 +220,7 @@ module Submissions
         save_signed_pdf(
           pdf: images_pdf,
           submitter:,
+          tsa_url:,
           pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
           name: template.name
