@@ -35,7 +35,18 @@
           </button>
         </form>
       <% else %>
-        <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
+        <% if current_user.email == submitter.email %>
+          <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>">
+            <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white md:w-36 flex">
+              <span class="flex items-center justify-center space-x-2">
+                <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
+                <span class="hidden md:inline">Sign now</span>
+              </span>
+            </button>
+          </form>
+        <% else %>
+          <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
+        <% end %>
       <% end %>
       <span class="btn btn-outline btn-sm w-20 md:w-24">View</span>
       <% if !submission.deleted_at? && can?(:destroy, submission) %>
@@ -85,7 +96,18 @@
                 </form>
               <% elsif !is_submission_completed %>
                 <div class="flex items-center space-x-3">
-                  <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-xs text-xs btn-neutral text-white md:w-36 flex', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link' %>
+                  <% if current_user.email == submitter.email %>
+                    <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>">
+                      <button onclick="event.stopPropagation()" class="btn btn-xs btn-outline btn-neutral bg-white md:w-36">
+                        <span class="flex items-center justify-center space-x-2">
+                          <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
+                          <span class="hidden md:inline">Sign now</span>
+                        </span>
+                      </button>
+                    </form>
+                  <% else %>
+                    <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-xs text-xs btn-neutral text-white md:w-36 flex', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link' %>
+                  <% end %>
                 </div>
               <% end %>
             </div>

@@ -76,7 +76,7 @@
                 :stroke-width="1.6"
               />
               <span class="py-1">
-                Add Submitter
+                Add {{ names[submitters.length] }}
               </span>
             </a>
           </li>
@@ -100,37 +100,35 @@
         :style="{backgroundColor: selectedSubmitter.name === 'Me'? colors[submitters.indexOf(selectedSubmitter)] : ''}"
       />
     </label>
-    <div
+    <label
       v-else
+      tabindex="0"
+      class="group cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 hover:border-content w-full flex justify-between"
     >
-      <label
-        tabindex="0"
-        class="cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 w-full flex justify-between"
-      >
-        <div class="flex items-center space-x-2">
-          <span
-            class="w-3 h-3 rounded-full"
-            :class="selectedSubmitter.name !== 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : ''"
-            :style="{ backgroundColor: selectedSubmitter.name === 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : '' }"
-          />
-          <Contenteditable
-            v-model="selectedSubmitter.name"
-            class="cursor-text"
-            :icon-inline="true"
-            :editable="selectedSubmitter.name==='Me'? false : editable"
-            :select-on-edit-click="true"
-            :icon-width="18"
-            @update:model-value="$emit('name-change', selectedSubmitter)"
-          />
-        </div>
-        <span class="flex items-center">
-          <IconPlus
-            width="18"
-            height="18"
-          />
-        </span>
-      </label>
-    </div>
+      <div class="flex items-center space-x-2">
+        <span
+          class="w-3 h-3 rounded-full"
+          :class="selectedSubmitter.name !== 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : ''"
+          :style="{ backgroundColor: selectedSubmitter.name === 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : '' }"
+        />
+        <Contenteditable
+          v-model="selectedSubmitter.name"
+          class="cursor-text"
+          :icon-inline="true"
+          :editable="selectedSubmitter.name==='Me'? false : editable"
+          :select-on-edit-click="true"
+          :icon-width="18"
+          @update:model-value="$emit('name-change', selectedSubmitter)"
+        />
+      </div>
+      <span class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 flex justify-center items-center rounded">
+        <IconPlus
+          width="18"
+          height="18"
+        />
+      </span>
+    </label>
+
     <ul
       v-if="(editable && !meFields) || !compact"
       tabindex="0"
@@ -178,7 +176,7 @@
             :stroke-width="1.6"
           />
           <span class="py-1">
-            Add Submitter
+            Add {{ names[submitters.length] }}
           </span>
         </a>
       </li>
@@ -265,16 +263,16 @@ export default {
     names () {
       return [
         'Me',
-        'First Submitter',
-        'Second Submitter',
-        'Third Submitter',
-        'Fourth Submitter',
-        'Fifth Submitter',
-        'Sixth Submitter',
-        'Seventh Submitter',
-        'Eighth Submitter',
-        'Ninth Submitter',
-        'Tenth Submitter'
+        'First Party',
+        'Second Party',
+        'Third Party',
+        'Fourth Party',
+        'Fifth Party',
+        'Sixth Party',
+        'Seventh Party',
+        'Eighth Party',
+        'Ninth Party',
+        'Tenth Party'
       ]
     },
     selectedSubmitter () {

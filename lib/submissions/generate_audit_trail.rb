@@ -19,12 +19,14 @@ module Submissions
 
     INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
-    VERIFIED_TEXT = if Docuseal.multitenant?
-                      'Verified by DocuSeal'
-                    else
-                      'Verified'
-                    end
+    VERIFIED_TEXT = 'Verified'
     UNVERIFIED_TEXT = 'Unverified'
+
+    CURRENCY_SYMBOLS = {
+      'USD' => '$',
+      'EUR' => '€',
+      'GBP' => '£'
+    }.freeze
 
     module_function
 
@@ -32,6 +34,7 @@ module Submissions
     def call(submission)
       account = submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
+      tsa_url = Accounts.load_timeserver_url(account)
       verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
@@ -63,7 +66,7 @@ module Submissions
       composer.new_page
 
       composer.column(columns: 1) do |column|
-        add_logo(column)
+        add_logo(column, submission)
 
         column.text('Audit Log',
                     font_size: 16,
@@ -73,9 +76,11 @@ module Submissions
 
       composer.column(columns: 1) do |column|
         column.text("Envelope ID: #{submission.id}", font_size: 12, padding: [20, 0, 10, 0], position: :float)
-        column.formatted_text([
-                                { link: verify_url, text: 'Verify', style: :link }
-                              ], font_size: 9, padding: [22, 0, 10, 0], position: :float, align: :right)
+
+        unless submission.source_embed?
+          column.formatted_text([{ link: verify_url, text: 'Verify', style: :link }],
+                                font_size: 9, padding: [22, 0, 10, 0], position: :float, align: :right)
+        end
       end
 
       composer.draw_box(divider)
@@ -151,11 +156,11 @@ module Submissions
           [
             composer.document.layout.formatted_text_box(
               [
-                submitter.email && {
-                  text: "Email verification: #{click_email_event ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
+                submitter.email && click_email_event && {
+                  text: "Email verification: #{VERIFIED_TEXT}\n"
                 },
-                submitter.phone && {
-                  text: "Phone verification: #{is_phone_verified ? VERIFIED_TEXT : UNVERIFIED_TEXT}\n"
+                submitter.phone && is_phone_verified && {
+                  text: "Phone verification: #{VERIFIED_TEXT}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
@@ -201,7 +206,15 @@ module Submissions
 
               composer.image(io, width:, height:, margin: [0, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
-            elsif field['type'] == 'file'
+            elsif field['type'].in?(%w[file payment])
+              if field['type'] == 'payment'
+                unit = CURRENCY_SYMBOLS[field['preferences']['currency']]
+
+                price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
+
+                composer.formatted_text_box([{ text: "Paid #{price}\n" }], padding: [0, 0, 10, 0])
+              end
+
               composer.formatted_text_box(
                 Array.wrap(value).map do |uuid|
                   attachment = submitter.attachments.find { |a| a.uuid == uuid }
@@ -215,7 +228,10 @@ module Submissions
             elsif field['type'] == 'checkbox'
               composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
             else
-              value = I18n.l(Date.parse(value), format: :long, locale: account.locale) if field['type'] == 'date'
+              if field['type'] == 'date'
+                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+              end
+
               value = value.join(', ') if value.is_a?(Array)
 
               composer.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
@@ -254,10 +270,16 @@ module Submissions
 
       composer.document.trailer.info[:Creator] = INFO_CREATOR
 
-      composer.document.sign(io, reason: SIGN_REASON,
-                                 certificate: pkcs.certificate,
-                                 key: pkcs.key,
-                                 certificate_chain: pkcs.ca_certs || [])
+      sign_params = {
+        reason: SIGN_REASON,
+        certificate: pkcs.certificate,
+        key: pkcs.key,
+        certificate_chain: pkcs.ca_certs || []
+      }
+
+      sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:) if tsa_url
+
+      composer.document.sign(io, **sign_params)
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -268,7 +290,7 @@ module Submissions
       )
     end
 
-    def add_logo(column)
+    def add_logo(column, _submission = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
       column.formatted_text([{ text: 'DocuSeal',

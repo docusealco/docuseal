@@ -9,6 +9,7 @@ module Api
 
       templates = params[:archived] ? templates.archived : templates.active
       templates = templates.where(application_key: params[:application_key]) if params[:application_key].present?
+      templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
 
       templates = paginate(templates.preload(:author, documents_attachments: :blob))
 
@@ -57,7 +58,9 @@ module Api
         schema: [%i[attachment_uuid name]],
         submitters: [%i[name uuid]],
         fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,
-                  { options: [%i[value uuid]], areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
+                  { preferences: {},
+                    options: [%i[value uuid]],
+                    areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
       )
     end
   end

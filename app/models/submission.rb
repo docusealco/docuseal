@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  deleted_at          :datetime
+#  preferences         :text             not null
 #  slug                :string           not null
 #  source              :text             not null
 #  submitters_order    :string           not null
@@ -36,9 +37,12 @@ class Submission < ApplicationRecord
   has_many :submitters, dependent: :destroy
   has_many :submission_events, dependent: :destroy
 
+  attribute :preferences, :string, default: -> { {} }
+
   serialize :template_fields, JSON
   serialize :template_schema, JSON
   serialize :template_submitters, JSON
+  serialize :preferences, JSON
 
   attribute :source, :string, default: 'link'
   attribute :submitters_order, :string, default: 'random'
@@ -68,7 +72,9 @@ class Submission < ApplicationRecord
   }, scope: false, prefix: true
 
   def audit_trail_url
-    audit_trail&.url
+    return if audit_trail.blank?
+
+    Rails.application.routes.url_helpers.rails_storage_proxy_url(audit_trail, **Docuseal.default_url_options)
   end
   alias audit_log_url audit_trail_url
 end

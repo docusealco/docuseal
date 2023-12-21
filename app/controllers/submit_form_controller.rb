@@ -38,6 +38,16 @@ class SubmitFormController < ApplicationController
   def update
     submitter = Submitter.find_by!(slug: params[:slug])
 
+    if submitter.completed_at?
+      return render json: { error: 'Form has been completed already.' }, status: :unprocessable_entity
+    end
+
+    if submitter.template.deleted_at? || submitter.submission.deleted_at?
+      Rollbar.info("Archived template: #{submitter.template.id}") if defined?(Rollbar)
+
+      return render json: { error: 'Form has been archived.' }, status: :unprocessable_entity
+    end
+
     Submitters::SubmitValues.call(submitter, params, request)
 
     head :ok

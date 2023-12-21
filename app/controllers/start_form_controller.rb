@@ -14,21 +14,20 @@ class StartFormController < ApplicationController
 
   def update
     @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
+                          .order(id: :desc)
                           .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
                           .find_or_initialize_by(**submitter_params.compact_blank)
 
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
-      @submitter.assign_attributes(
-        uuid: @template.submitters.second.nil? ? @template.submitters.first['uuid'] : @template.submitters.second['uuid'],
-        ip: request.remote_ip,
-        ua: request.user_agent
-      )
+      if @template.submitters.to_a.size > 1 && @submitter.new_record?
+        @error_message = 'Not found'
 
-      @submitter.submission ||= Submission.new(template: @template,
-                                               template_submitters: @template.submitters,
-                                               source: :link)
+        return render :show
+      end
+
+      assign_submission_attributes(@submitter, @template) if @submitter.new_record?
 
       if @submitter.save
         redirect_to submit_form_path(@submitter.slug)
@@ -45,6 +44,21 @@ class StartFormController < ApplicationController
   end
 
   private
+
+  def assign_submission_attributes(submitter, template)
+    submitter.assign_attributes(
+      uuid: template.submitters.first['uuid'],
+      ip: request.remote_ip,
+      ua: request.user_agent,
+      preferences: { 'send_email' => true }
+    )
+
+    submitter.submission ||= Submission.new(template:,
+                                            template_submitters: template.submitters,
+                                            source: :link)
+
+    submitter
+  end
 
   def submitter_params
     params.require(:submitter).permit(:email, :phone, :name).tap do |attrs|

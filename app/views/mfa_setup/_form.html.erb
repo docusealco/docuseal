@@ -1,0 +1,17 @@
+<%= form_for '', url: mfa_setup_path, data: { turbo_frame: :_top }, html: { id: 'mfa_form' } do |f| %>
+  <p class="text-center">
+    Use an authenticator mobile app like Google Authenticator or 1Password to scan the QR code below.
+  </p>
+  <div>
+    <%== RQRCode::QRCode.new(@provision_url).as_svg(viewbox: true, svg_attributes: { class: 'w-80 h-80 my-4 mx-auto' }) %>
+  </div>
+  <div class="form-control my-6 space-y-2">
+    <%= f.text_field :otp_attempt, required: true, placeholder: 'XXX-XXX', class: 'base-input text-center' %>
+    <span>
+      <%= @error_message %>
+    </span>
+  </div>
+  <div class="form-control mt-4">
+    <%= f.button button_title(title: 'Save'), class: 'base-button' %>
+  </div>
+<% end %>

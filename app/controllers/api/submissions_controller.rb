@@ -13,6 +13,10 @@ module Api
       submissions = Submissions.search(@submissions, params[:q])
       submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
 
+      if params[:template_folder].present?
+        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
+      end
+
       submissions = paginate(submissions.preload(:created_by_user, :template, :submitters,
                                                  audit_trail_attachment: :blob))
 
@@ -50,35 +54,14 @@ module Api
     end
 
     def create
-      is_send_email = !params[:send_email].in?(['false', false])
+      params[:send_email] = true unless params.key?(:send_email)
+      params[:send_sms] = false unless params.key?(:send_sms)
 
-      submissions =
-        if (emails = (params[:emails] || params[:email]).presence) && params[:submission].blank?
-          Submissions.create_from_emails(template: @template,
-                                         user: current_user,
-                                         source: :api,
-                                         mark_as_sent: is_send_email,
-                                         emails:)
-        else
-          submissions_attrs, attachments = normalize_submissions_params!(submissions_params[:submission], @template)
+      submissions = create_submissions(@template, params)
 
-          Submissions.create_from_submitters(
-            template: @template,
-            user: current_user,
-            source: :api,
-            mark_as_sent: is_send_email,
-            submitters_order: params[:submitters_order] || 'preserved',
-            submissions_attrs:
-          )
-        end
+      Submissions.send_signature_requests(submissions)
 
-      Submissions.send_signature_requests(submissions, send_email: is_send_email)
-
-      submitters = submissions.flat_map(&:submitters)
-
-      save_default_value_attachments!(attachments, submitters)
-
-      render json: submitters
+      render json: submissions.flat_map(&:submitters)
     rescue Submitters::NormalizeValues::UnknownFieldName, Submitters::NormalizeValues::UnknownSubmitterName => e
       render json: { error: e.message }, status: :unprocessable_entity
     end
@@ -90,6 +73,37 @@ module Api
     end
 
     private
+
+    def create_submissions(template, params)
+      is_send_email = !params[:send_email].in?(['false', false])
+
+      if (emails = (params[:emails] || params[:email]).presence) && params[:submission].blank?
+        Submissions.create_from_emails(template:,
+                                       user: current_user,
+                                       source: :api,
+                                       mark_as_sent: is_send_email,
+                                       emails:,
+                                       params:)
+      else
+        submissions_attrs, attachments =
+          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_params, template)
+
+        submissions = Submissions.create_from_submitters(
+          template:,
+          user: current_user,
+          source: :api,
+          mark_as_sent: is_send_email,
+          submitters_order: params[:submitters_order] || params[:order] || 'preserved',
+          submissions_attrs:,
+          params:
+        )
+
+        Submissions::NormalizeParamUtils.save_default_value_attachments!(attachments,
+                                                                         submissions.flat_map(&:submitters))
+
+        submissions
+      end
+    end
 
     def serialize_params
       {
@@ -107,54 +121,19 @@ module Api
     end
 
     def submissions_params
-      params.permit(submission: [{
-                      submitters: [[:uuid, :name, :email, :role, :completed, :phone, :application_key,
-                                    { values: {}, readonly_fields: [],
-                                      fields: [%i[name default_value readonly validation_pattern invalid_message]] }]]
-                    }])
-    end
+      key = params.key?(:submission) ? :submission : :submissions
 
-    def normalize_submissions_params!(submissions_params, template)
-      attachments = []
-
-      Array.wrap(submissions_params).each do |submission|
-        submission[:submitters].each_with_index do |submitter, index|
-          default_values = submitter[:values] || {}
-
-          submitter[:fields]&.each { |f| default_values[f[:name]] = f[:default_value] if f[:default_value].present? }
-
-          next if default_values.blank?
-
-          values, new_attachments =
-            Submitters::NormalizeValues.call(template,
-                                             default_values,
-                                             submitter[:role] || template.submitters[index]['name'])
-
-          attachments.push(*new_attachments)
-
-          submitter[:values] = values
-        end
-      end
-
-      [submissions_params, attachments]
-    end
-
-    def save_default_value_attachments!(attachments, submitters)
-      return if attachments.blank?
-
-      attachments_index = attachments.index_by(&:uuid)
-
-      submitters.each do |submitter|
-        submitter.values.to_a.each do |_, value|
-          attachment = attachments_index[value]
-
-          next unless attachment
-
-          attachment.record = submitter
-
-          attachment.save!
-        end
-      end
+      params.permit(
+        key => [
+          [:send_email, :send_sms, {
+            message: %i[subject body],
+            submitters: [[:send_email, :send_sms, :uuid, :name, :email, :role,
+                          :completed, :phone, :application_key,
+                          { values: {}, readonly_fields: [], message: %i[subject body],
+                            fields: [%i[name default_value readonly validation_pattern invalid_message]] }]]
+          }]
+        ]
+      ).fetch(key, [])
     end
   end
 end

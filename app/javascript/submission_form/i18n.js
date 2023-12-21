@@ -39,7 +39,9 @@ const en = {
   type: 'Type',
   type_text: 'Type text',
   date: 'Date',
-  email_has_been_sent: 'Email has been sent'
+  email_has_been_sent: 'Email has been sent',
+  processing: 'Processing',
+  pay_with_strip: 'Pay with Stripe'
 }
 
 const es = {
@@ -83,7 +85,9 @@ const es = {
   draw: 'Dibujar',
   type: 'Escribir',
   type_text: 'Escribir texto',
-  email_has_been_sent: 'El correo electrónico ha sido enviado'
+  email_has_been_sent: 'El correo electrónico ha sido enviado',
+  processing: 'Procesando',
+  pay_with_strip: 'Pagar con Stripe'
 }
 
 const it = {
@@ -127,7 +131,9 @@ const it = {
   type: 'Inserisci',
   type_text: 'Inserisci testo',
   toggle_multiline_text: 'Attiva Testo Multilinea',
-  email_has_been_sent: "L'email è stata inviata"
+  email_has_been_sent: "L'email è stata inviata",
+  processing: 'Elaborazione',
+  pay_with_strip: 'Paga con Stripe'
 }
 
 const de = {
@@ -171,7 +177,9 @@ const de = {
   type: 'Eingeben',
   type_text: 'Text eingeben',
   toggle_multiline_text: 'Mehrzeiligen Text umschalten',
-  email_has_been_sent: 'Die E-Mail wurde gesendet'
+  email_has_been_sent: 'Die E-Mail wurde gesendet',
+  processing: 'Verarbeitung',
+  pay_with_strip: 'Mit Stripe bezahlen'
 }
 
 const fr = {
@@ -215,7 +223,9 @@ const fr = {
   type: 'Saisir',
   type_text: 'Saisir du texte',
   toggle_multiline_text: 'Basculer le Texte Multiligne',
-  email_has_been_sent: "L'email a été envoyé"
+  email_has_been_sent: "L'email a été envoyé",
+  processing: 'Traitement',
+  pay_with_strip: 'Paiement avec Stripe'
 }
 
 const pl = {
@@ -259,7 +269,9 @@ const pl = {
   type: 'Wprowadź',
   type_text: 'Wprowadź tekst',
   toggle_multiline_text: 'Przełącz Tekst Wielolinijkowy',
-  email_has_been_sent: 'E-mail został wysłany'
+  email_has_been_sent: 'E-mail został wysłany',
+  processing: 'Przetwarzanie',
+  pay_with_strip: 'Płatność za pomocą Stripe'
 }
 
 const uk = {
@@ -303,7 +315,9 @@ const uk = {
   type: 'Текст',
   type_text: 'Введіть текст',
   toggle_multiline_text: 'Перемкнути Багаторядковий Текст',
-  email_has_been_sent: 'Електронний лист був відправлений'
+  email_has_been_sent: 'Електронний лист був відправлений',
+  processing: 'Обробка',
+  pay_with_strip: 'Сплатити за допомогою Stripe'
 }
 
 const cs = {
@@ -347,7 +361,9 @@ const cs = {
   type: 'Zadat',
   type_text: 'Zadat text',
   toggle_multiline_text: 'Přepnout Víceřádkový Text',
-  email_has_been_sent: 'E-mail byl odeslán'
+  email_has_been_sent: 'E-mail byl odeslán',
+  processing: 'Zpracování',
+  pay_with_strip: 'Zaplacení přes Stripe'
 }
 
 const pt = {
@@ -391,7 +407,9 @@ const pt = {
   type: 'Inserir',
   type_text: 'Inserir texto',
   toggle_multiline_text: 'Alternar Texto Multilinha',
-  email_has_been_sent: 'Email enviado'
+  email_has_been_sent: 'Email enviado',
+  processing: 'Processamento',
+  pay_with_strip: 'Pagar com Stripe'
 }
 
 const i18n = { en, es, it, de, fr, pl, uk, cs, pt }

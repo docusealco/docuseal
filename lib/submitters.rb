@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Submitters
+  TRUE_VALUES = ['1', 'true', true].freeze
+
   module_function
 
   def search(submitters, keyword)
@@ -43,21 +45,30 @@ module Submitters
     )
   end
 
-  def send_signature_requests(submitters, params)
-    return if params[:send_email] != true && params[:send_email] != '1'
+  def normalize_preferences(account, user, params)
+    preferences = {}
 
-    submitters.each do |submitter|
-      next if submitter.email.blank?
+    message_params = params['message'].presence || params.slice('subject', 'body').presence
 
-      enqueue_invitation_email(submitter, params)
+    if message_params.present?
+      email_message = EmailMessages.find_or_create_for_account_user(account, user,
+                                                                    message_params['subject'],
+                                                                    message_params['body'])
     end
+
+    preferences['email_message_uuid'] = email_message.uuid if email_message
+    preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
+    preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
+
+    preferences
   end
 
-  def enqueue_invitation_email(submitter, params)
-    subject, body = params.values_at(:subject, :body) if params[:is_custom_message] == '1'
+  def send_signature_requests(submitters)
+    submitters.each do |submitter|
+      next if submitter.email.blank?
+      next if submitter.preferences['send_email'] == false
 
-    SendSubmitterInvitationEmailJob.perform_later('submitter_id' => submitter.id,
-                                                  'body' => body,
-                                                  'subject' => subject)
+      SendSubmitterInvitationEmailJob.perform_later('submitter_id' => submitter.id)
+    end
   end
 end

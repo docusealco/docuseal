@@ -25,6 +25,8 @@ module DocuSeal
     config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE]
     config.i18n.fallbacks = [:en]
 
+    config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
+
     config.action_view.frozen_string_literal = true
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater

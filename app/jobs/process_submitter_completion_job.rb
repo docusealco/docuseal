@@ -24,14 +24,16 @@ class ProcessSubmitterCompletionJob < ApplicationJob
   def enqueue_completed_emails(submitter)
     user = submitter.submission.created_by_user || submitter.template.author
 
-    if submitter.template.account.users.exists?(id: user.id)
+    if submitter.template.account.users.exists?(id: user.id) &&
+       submitter.submission.preferences['send_email'] != false
       bcc = submitter.submission.template.account.account_configs
                      .find_by(key: AccountConfig::BCC_EMAILS)&.value
 
       SubmitterMailer.completed_email(submitter, user, bcc:).deliver_later!
     end
 
-    to = submitter.submission.submitters.sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
+    to = submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
+                  .sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
 
     SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! if to.present?
   end
@@ -48,6 +50,6 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     next_submitter = submitter.submission.submitters.find { |s| s.uuid == next_submitter_item['uuid'] }
 
-    Submitters.send_signature_requests([next_submitter], send_email: true)
+    Submitters.send_signature_requests([next_submitter])
   end
 end

@@ -98,7 +98,7 @@
     v-else
     class="flex absolute lg:text-base"
     :style="computedStyle"
-    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
+    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -149,7 +149,7 @@
       :src="initials.url"
     >
     <div
-      v-else-if="field.type === 'file'"
+      v-else-if="field.type === 'file' || field.type === 'payment'"
       class="px-0.5 flex flex-col justify-center"
     >
       <a
@@ -254,7 +254,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconBarrierBlock, IconCreditCard } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -342,7 +342,8 @@ export default {
         my_signature: 'My Signature',
         my_initials: 'My Initials',
         my_date: 'Date',
-        my_check: 'Check'
+        my_check: 'Check',
+        payment: 'Payment'
       }
     },
     fieldIcons () {
@@ -360,7 +361,8 @@ export default {
         multiple: IconChecks,
         phone: IconPhoneCheck,
         redact: IconBarrierBlock,
-        my_check: IconCheck
+        my_check: IconCheck,
+        payment: IconCreditCard
       }
     },
     image () {
@@ -405,9 +407,15 @@ export default {
         return null
       }
     },
+    locale () {
+      return Intl.DateTimeFormat().resolvedOptions()?.locale
+    },
     formattedDate () {
       if (this.field.type === 'date' && this.modelValue) {
-        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.modelValue))
+        return this.formatDate(
+          new Date(this.modelValue),
+          this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+        )
       } else {
         return ''
       }
@@ -422,6 +430,8 @@ export default {
     attachments () {
       if (this.field.type === 'file') {
         return (this.modelValue || []).map((uuid) => this.attachmentsIndex[uuid])
+      } else if (this.field.type === 'payment') {
+        return [this.attachmentsIndex[this.modelValue]].filter(Boolean)
       } else {
         return []
       }
@@ -461,6 +471,36 @@ export default {
     }
   },
   methods: {
+    formatDate (date, format) {
+      const monthFormats = {
+        M: 'numeric',
+        MM: '2-digit',
+        MMM: 'short',
+        MMMM: 'long'
+      }
+
+      const dayFormats = {
+        D: 'numeric',
+        DD: '2-digit'
+      }
+
+      const yearFormats = {
+        YYYY: 'numeric',
+        YY: '2-digit'
+      }
+
+      const parts = new Intl.DateTimeFormat([], {
+        day: dayFormats[format.match(/D+/)],
+        month: monthFormats[format.match(/M+/)],
+        year: yearFormats[format.match(/Y+/)],
+        timeZone: 'UTC'
+      }).formatToParts(date)
+
+      return format
+        .replace(/D+/, parts.find((p) => p.type === 'day').value)
+        .replace(/M+/, parts.find((p) => p.type === 'month').value)
+        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+    },
     updateMultipleSelectValue (value) {
       if (this.modelValue?.includes(value)) {
         const newValue = [...this.modelValue]

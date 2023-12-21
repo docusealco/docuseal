@@ -4,10 +4,19 @@ module Submissions
   module CreateFromSubmitters
     module_function
 
-    def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false)
+    def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false, params: {})
+      preferences = Submitters.normalize_preferences(template.account, user, params)
+
       Array.wrap(submissions_attrs).map do |attrs|
+        submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
+        submission_preferences = preferences.merge(submission_preferences)
+
+        set_submission_preferences = submission_preferences.slice('send_email')
+        set_submission_preferences['send_email'] = true if params['send_completed_email']
+
         submission = template.submissions.new(created_by_user: user, source:,
-                                              template_submitters: template.submitters, submitters_order:)
+                                              preferences: set_submission_preferences,
+                                              template_submitters: [], submitters_order:)
 
         maybe_set_template_fields(submission, attrs[:submitters])
 
@@ -15,21 +24,26 @@ module Submissions
           uuid = find_submitter_uuid(template, submitter_attrs, index)
 
           next if uuid.blank?
+          next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
+
+          submission.template_submitters << template.submitters.find { |e| e['uuid'] == uuid }
 
           is_order_sent = submitters_order == 'random' || index.zero?
 
-          build_submitter(submission:, attrs: submitter_attrs, uuid:, is_order_sent:, mark_as_sent:)
+          build_submitter(submission:, attrs: submitter_attrs, uuid:,
+                          is_order_sent:, mark_as_sent:, user:,
+                          preferences: preferences.merge(submission_preferences))
         end
 
         submission.tap(&:save!)
       end
     end
 
-    def maybe_set_template_fields(submission, submitters_attrs)
-      template_fields = submission.template.fields.deep_dup
+    def maybe_set_template_fields(submission, submitters_attrs, submitter_uuid: nil)
+      template_fields = (submission.template_fields || submission.template.fields).deep_dup
 
       submitters_attrs.each_with_index do |submitter_attrs, index|
-        submitter_uuid = find_submitter_uuid(submission.template, submitter_attrs, index)
+        submitter_uuid ||= find_submitter_uuid(submission.template, submitter_attrs, index)
 
         process_readonly_fields_param(submitter_attrs[:readonly_fields], template_fields, submitter_uuid)
 
@@ -85,8 +99,9 @@ module Submissions
         template.submitters[index]&.dig('uuid')
     end
 
-    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:)
+    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:, user:, preferences:)
       email = Submissions.normalize_email(attrs[:email])
+      submitter_preferences = Submitters.normalize_preferences(submission.account, user, attrs)
 
       submission.submitters.new(
         email:,
@@ -96,6 +111,7 @@ module Submissions
         completed_at: attrs[:completed] ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
+        preferences: preferences.merge(submitter_preferences),
         uuid:
       )
     end

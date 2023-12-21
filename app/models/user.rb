@@ -55,9 +55,9 @@ class User < ApplicationRecord
   has_many :template_folders, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
   has_many :user_configs, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
+  has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
   devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable
-  devise :registerable, :omniauthable, omniauth_providers: [:google_oauth2] if Docuseal.multitenant?
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
              path: '/', only: %i[sessions passwords omniauth_callbacks],
              controllers: begin
                options = { sessions: 'sessions', passwords: 'passwords' }
-               options[:omniauth_callbacks] = 'omniauth_callbacks' if Docuseal.multitenant?
+               options[:omniauth_callbacks] = 'omniauth_callbacks' if User.devise_modules.include?(:omniauthable)
                options
              end
 
@@ -35,13 +35,14 @@ Rails.application.routes.draw do
     resources :template_folders_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
-    resources :submitters, only: %i[index show]
+    resources :submitters, only: %i[index show update]
     resources :submissions, only: %i[index show create destroy] do
       collection do
         resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails
       end
     end
     resources :templates, only: %i[update show index destroy] do
+      resources :clone, only: %i[create], controller: 'templates_clone'
       resources :submissions, only: %i[index create]
       resources :documents, only: %i[create], controller: 'templates_documents'do
         post 'add_new_image', on: :member
@@ -51,7 +52,9 @@ Rails.application.routes.draw do
   end
 
   resources :verify_pdf_signature, only: %i[create]
-  resource :mfa_setup, only: %i[new edit create destroy], controller: 'mfa_setup'
+  resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
+  resources :account_configs, only: %i[create]
+  resources :timestamp_server, only: %i[create]
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]

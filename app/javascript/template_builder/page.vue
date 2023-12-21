@@ -23,6 +23,7 @@
         :area="item.area"
         :field="item.field"
         :editable="editable"
+        :default-field="defaultFields.find((f) => f.name === item.field.name)"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @start-drag="isMove = true"
@@ -67,6 +68,11 @@ export default {
       required: true
     },
     areas: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultFields: {
       type: Array,
       required: false,
       default: () => []

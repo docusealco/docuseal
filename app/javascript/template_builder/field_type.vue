@@ -25,7 +25,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check', 'phone'].includes(type) || withPhone">
+        <li v-if="withPhone || withPayment || !['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check', 'phone', 'payment'].includes(type)">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper, IconTextResize, IconCheck } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper, IconTextResize, IconCheck, IconCreditCard } from '@tabler/icons-vue'
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone'],
+  inject: ['withPhone', 'withPayment'],
   props: {
     modelValue: {
       type: String,
@@ -102,7 +102,8 @@ export default {
         my_signature: 'My Signature',
         my_initials: 'My Initials',
         my_date: 'Date',
-        my_check: 'check'
+        my_check: 'check',
+        payment: 'Payment'
       }
     },
     fieldIcons () {
@@ -118,13 +119,15 @@ export default {
         radio: IconCircleDot,
         multiple: IconChecks,
         radio: IconCircleDot,
-        phone: IconPhoneCheck,
         redact: IconBarrierBlock,
         my_text: IconTextResize,
         my_signature: IconWritingSign,
         my_initials: IconLetterCaseUpper,
         my_date: IconCalendarEvent,
-        my_check: IconCheck
+        my_check: IconCheck,
+        cells: IconColumns3,
+        phone: IconPhoneCheck,
+        payment: IconCreditCard
       }
     }
   },

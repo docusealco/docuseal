@@ -9,25 +9,25 @@ module Submitters
 
     module_function
 
-    def call(template, values, submitter_name)
-      submitter =
-        template.submitters.find { |e| e['name'] == submitter_name } ||
-        raise(UnknownSubmitterName, "Unknown submitter: #{submitter_name}")
-
-      fields = template.fields.select { |e| e['submitter_uuid'] == submitter['uuid'] }
+    def call(template, values, submitter_name: nil, for_submitter: nil, throw_errors: false)
+      fields = fetch_fields(template, submitter_name:, for_submitter:)
 
       fields_uuid_index = fields.index_by { |e| e['uuid'] }
       fields_name_index = build_fields_index(fields)
 
       attachments = []
 
-      normalized_values = values.to_h.to_h do |key, value|
+      normalized_values = values.to_h.filter_map do |key, value|
         if fields_uuid_index[key].blank?
-          key = fields_name_index[key]&.dig('uuid') || raise(UnknownFieldName, "Unknown field: #{key}")
+          key = fields_name_index[key]&.dig('uuid')
+
+          raise(UnknownFieldName, "Unknown field: #{key}") if key.blank? && throw_errors
         end
 
+        next if key.blank?
+
         if fields_uuid_index[key]['type'].in?(%w[initials signature image file])
-          new_value, new_attachments = normalize_attachment_value(value, template.account)
+          new_value, new_attachments = normalize_attachment_value(value, template.account, for_submitter)
 
           attachments.push(*new_attachments)
 
@@ -35,32 +35,50 @@ module Submitters
         end
 
         [key, value]
-      end
+      end.to_h
 
       [normalized_values, attachments]
+    end
+
+    def fetch_fields(template, submitter_name: nil, for_submitter: nil)
+      if submitter_name
+        submitter =
+          template.submitters.find { |e| e['name'] == submitter_name } ||
+          raise(UnknownSubmitterName, "Unknown submitter: #{submitter_name}")
+      end
+
+      fields = for_submitter&.submission&.template_fields || template.fields
+
+      fields.select { |e| e['submitter_uuid'] == (for_submitter&.uuid || submitter['uuid']) }
     end
 
     def build_fields_index(fields)
       fields.index_by { |e| e['name'] }.merge(fields.index_by { |e| e['name'].to_s.parameterize.underscore })
     end
 
-    def normalize_attachment_value(value, account)
+    def normalize_attachment_value(value, account, for_submitter = nil)
       if value.is_a?(Array)
-        new_attachments = value.map { |v| build_attachment(v, account) }
+        new_attachments = value.map { |v| find_or_build_attachment(v, account, for_submitter) }
 
         [new_attachments.map(&:uuid), new_attachments]
       else
-        new_attachment = build_attachment(value, account)
+        new_attachment = find_or_build_attachment(value, account, for_submitter)
 
         [new_attachment.uuid, new_attachment]
       end
     end
 
-    def build_attachment(value, account)
-      ActiveStorage::Attachment.new(
-        blob: find_or_create_blobs(account, value),
+    def find_or_build_attachment(value, account, for_submitter = nil)
+      blob = find_or_create_blobs(account, value)
+
+      attachment = for_submitter.attachments.find_by(blob_id: blob.id) if for_submitter
+
+      attachment ||= ActiveStorage::Attachment.new(
+        blob:,
         name: 'attachments'
       )
+
+      attachment
     end
 
     def find_or_create_blobs(account, url)

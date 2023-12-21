@@ -36,6 +36,35 @@
         </div>
       <% end %>
     <% end %>
+    <% if can?(:manage, AccountConfig) %>
+      <div class="px-1 mt-8">
+        <h2 class="text-2xl font-bold mb-2">Preferences</h2>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORCE_MFA) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between py-2.5">
+              <span>
+                Force 2FA with Authenticator App
+              </span>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
+            </div>
+          <% end %>
+        <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TYPED_SIGNATURE) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between py-2.5">
+              <span>
+                Allow typed text signatures
+              </span>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

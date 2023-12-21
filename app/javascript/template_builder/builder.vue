@@ -4,10 +4,11 @@
     class="mx-auto pl-3 md:pl-4 h-full"
   >
     <div
+      v-if="$slots.buttons || withTitle"
       class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10"
       :style="{ backgroundColor }"
     >
-      <div class="flex space-x-3">
+      <div class="flex items-center space-x-3">
         <a
           v-if="withLogo"
           href="/"
@@ -15,9 +16,10 @@
           <Logo />
         </a>
         <Contenteditable
+          v-if="withTitle"
           :model-value="template.name"
           :editable="editable"
-          class="text-3xl font-semibold focus:text-clip"
+          class="text-xl md:text-3xl font-semibold focus:text-clip"
           :icon-stroke-width="2.3"
           @update:model-value="updateName"
         />
@@ -29,9 +31,24 @@
         />
         <template v-else>
           <a
+            :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
+            class="btn btn-primary btn-ghost text-base hidden md:flex"
+            :target="template.submitters.length > 1 ? '' : '_blank'"
+            :data-turbo-frame="template.submitters.length > 1 ? 'modal' : ''"
+            @click="maybeShowEmptyTemplateAlert"
+          >
+            <IconWritingSign
+              width="20"
+              class="inline"
+            />
+            <span class="hidden md:inline">
+              Sign Yourself
+            </span>
+          </a>
+          <a
             :href="`/templates/${template.id}/submissions/new`"
             data-turbo-frame="modal"
-            class="btn btn-primary text-base"
+            class="white-button md:!px-6"
             @click="maybeShowEmptyTemplateAlert"
           >
             <IconUsersPlus
@@ -39,7 +56,7 @@
               class="inline"
             />
             <span class="hidden md:inline">
-              Recipients
+              Send
             </span>
           </a>
           <button
@@ -64,7 +81,10 @@
         </template>
       </div>
     </div>
-    <div class="flex md:max-h-[calc(100vh-60px)]">
+    <div
+      class="flex"
+      :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
+    >
       <div
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
@@ -94,7 +114,7 @@
         />
         <div
           class="sticky bottom-0 py-2"
-          :class="{ 'bg-base-100': withStickySubmitters }"
+          :style="withStickySubmitters ? { backgroundColor } : {}"
         >
           <Upload
             v-if="sortedDocuments.length && editable && withUploadButton"
@@ -128,6 +148,7 @@
                 :selected-submitter="selectedSubmitter"
                 :document="document"
                 :is-drag="!!dragField"
+                :default-fields="defaultFields"
                 :draw-field="drawField"
                 :editable="editable"
                 :base-url="baseUrl"
@@ -205,7 +226,8 @@
       >
         <div
           v-if="drawField"
-          class="sticky inset-0 bg-base-100 h-full"
+          class="sticky inset-0 h-full"
+          :style="{ backgroundColor }"
         >
           <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
             <p>
@@ -227,6 +249,7 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :default-submitters="defaultSubmitters"
             :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
             :editable="editable"
@@ -254,7 +277,7 @@ import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import FieldType from './field_type'
 import { t } from './i18n'
-import { IconUsersPlus, IconDeviceFloppy, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
+import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 
@@ -268,6 +291,7 @@ export default {
     IconPlus,
     FieldType,
     IconX,
+    IconWritingSign,
     Logo,
     Dropzone,
     DocumentPreview,
@@ -286,6 +310,7 @@ export default {
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
+      withPayment: this.withPayment,
       selectedAreaRef: computed(() => this.selectedAreaRef),
       baseUrl: this.baseUrl,
       t: this.t
@@ -341,6 +366,13 @@ export default {
       required: false,
       default: true
     },
+    onUpload: {
+      type: Function,
+      required: false,
+      default () {
+        return () => {}
+      }
+    },
     withStickySubmitters: {
       type: Boolean,
       required: false,
@@ -351,7 +383,17 @@ export default {
       required: false,
       default: true
     },
+    withTitle: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     withPhone: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withPayment: {
       type: Boolean,
       required: false,
       default: false
@@ -433,6 +475,12 @@ export default {
     window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
+
+    this.$nextTick(() => {
+      if (document.location.search?.includes('stripe_connect_success')) {
+        document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
+      }
+    })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
@@ -464,6 +512,12 @@ export default {
       }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]
+      }
+
+      if (type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
       }
 
       this.drawField = field
@@ -520,7 +574,7 @@ export default {
         this.selectedAreaRef.value = null
       }
 
-      if (['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
+      if (this.editable && ['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
         this.removeArea(this.selectedAreaRef.value)
 
         this.selectedAreaRef.value = null
@@ -681,6 +735,12 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (field.type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
+      }
+
       const fieldArea = {
         x: (area.x - 6) / area.maskW,
         y: area.y / area.maskH,
@@ -751,6 +811,10 @@ export default {
         this.scrollIntoDocument(schema[0])
       })
 
+      if (this.onUpload) {
+        this.onUpload(this.template)
+      }
+
       this.save()
     },
     updateName (value) {
@@ -783,6 +847,10 @@ export default {
           }
         })
       })
+
+      if (this.onUpload) {
+        this.onUpload(this.template)
+      }
 
       this.save()
     },

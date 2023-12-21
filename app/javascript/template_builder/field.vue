@@ -14,7 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
-            :editable="editable"
+            :editable="editable && !defaultField"
             :button-width="20"
             :me-active="meActive"
             @update:model-value="[maybeUpdateOptions(), save()]"
@@ -23,7 +23,7 @@
           <Contenteditable
             ref="name"
             :model-value="field.name || defaultName"
-            :editable="editable"
+            :editable="editable && !defaultField"
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
@@ -66,7 +66,12 @@
               :stroke-width="1.6"
             />
           </button>
+          <PaymentSettings
+            v-if="field.type === 'payment'"
+            :field="field"
+          />
           <span
+            v-else-if="!defaultField"
             class="dropdown dropdown-end"
           >
             <label
@@ -105,6 +110,33 @@
                   style="font-size: 8px"
                 >
                   Default value
+                </label>
+              </div>
+              <div
+                v-if="field.type === 'date'"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <select
+                  v-model="field.preferences.format"
+                  placeholder="Format"
+                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+                  @change="save"
+                >
+                  <option
+                    v-for="format in dateFormats"
+                    :key="format"
+                    :value="format"
+                  >
+                    {{ formatDate(new Date(), format) }}
+                  </option>
+                </select>
+                <label
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  Format
                 </label>
               </div>
               <li
@@ -261,6 +293,7 @@
 <script>
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
+import PaymentSettings from './payment_settings'
 import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
@@ -270,6 +303,7 @@ export default {
     Contenteditable,
     IconSettings,
     IconShape,
+    PaymentSettings,
     IconNewSection,
     IconTrashX,
     IconCopy,
@@ -280,6 +314,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     editable: {
       type: Boolean,
@@ -295,23 +334,85 @@ export default {
   emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
-      isNameFocus: false
+      isNameFocus: false,
+      showPaymentModal: false
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    dateFormats () {
+      return [
+        'MM/DD/YYYY',
+        'DD/MM/YYYY',
+        'YYYY-MM-DD',
+        'DD-MM-YYYY',
+        'DD.MM.YYYY',
+        'MMM D, YYYY',
+        'MMMM D, YYYY',
+        'D MMM YYYY',
+        'D MMMM YYYY'
+      ]
+    },
     defaultName () {
-      const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
+      if (this.field.type === 'payment' && this.field.preferences?.price) {
+        const { price, currency } = this.field.preferences || {}
 
-      const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+        const formattedPrice = new Intl.NumberFormat([], {
+          style: 'currency',
+          currency
+        }).format(price)
 
-      return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
+        return `${this.fieldNames[this.field.type]} ${formattedPrice}`
+      } else {
+        const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
+
+        const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+
+        return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
+      }
     },
     areas () {
       return this.field.areas || []
     }
   },
+  created () {
+    this.field.preferences ||= {}
+
+    if (this.field.type === 'date') {
+      this.field.preferences.format ||=
+        (Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+    }
+  },
   methods: {
+    formatDate (date, format) {
+      const monthFormats = {
+        M: 'numeric',
+        MM: '2-digit',
+        MMM: 'short',
+        MMMM: 'long'
+      }
+
+      const dayFormats = {
+        D: 'numeric',
+        DD: '2-digit'
+      }
+
+      const yearFormats = {
+        YYYY: 'numeric',
+        YY: '2-digit'
+      }
+
+      const parts = new Intl.DateTimeFormat([], {
+        day: dayFormats[format.match(/D+/)],
+        month: monthFormats[format.match(/M+/)],
+        year: yearFormats[format.match(/Y+/)]
+      }).formatToParts(date)
+
+      return format
+        .replace(/D+/, parts.find((p) => p.type === 'day').value)
+        .replace(/M+/, parts.find((p) => p.type === 'month').value)
+        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+    },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
 

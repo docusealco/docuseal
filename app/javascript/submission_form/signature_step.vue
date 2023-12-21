@@ -23,7 +23,7 @@
           </a>
         </span>
         <span
-          v-else
+          v-else-if="withTypedSignature"
           class="tooltip"
           :data-tip="t('type_text')"
         >
@@ -148,6 +148,11 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    withTypedSignature: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     attachmentsIndex: {
       type: Object,

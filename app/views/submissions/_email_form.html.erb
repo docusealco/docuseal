@@ -18,7 +18,7 @@
               </a>
             </div>
             <div class="grid md:grid-cols-2 gap-4">
-              <% template.submitters.each do |item| %>
+              <% template.submitters.each_with_index do |item, index| %>
                 <% if item["name"] == 'Me' %>
                   <% next %>
                 <% end %>
@@ -28,7 +28,7 @@
                   </label>
                   <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
                   <submitters-autocomplete data-field="email">
-                    <input type="email" multiple name="submission[1][submitters][][email]" autocomplete="off" class="input input-sm input-bordered w-full" placeholder="Email" value="<%= item['name']=='Me'? template.author.email : '' %>" required>
+                    <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'input input-sm input-bordered w-full', placeholder: 'Email', required: index.zero?, value: params[:selfsign] && index.zero? ? current_user.email : '' %>
                   </submitters-autocomplete>
                 </submitter-item>
               <% end %>
@@ -36,10 +36,12 @@
           </div>
         </div>
       </div>
-      <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
-        <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
-        <span>Add New</span>
-      </a>
+      <% if params[:selfsign].blank? %>
+        <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
+          <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
+          <span>Add New</span>
+        </a>
+      <% end %>
     </dynamic-list>
   <% end %>
   <div>

@@ -28,6 +28,7 @@ module Docuseal
             end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
+  TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
 
   DEFAULT_URL_OPTIONS = {
     host: HOST,

@@ -1,23 +1,18 @@
 <%= render 'title', template: @template %>
 <% is_show_tabs = @pagy.pages > 1 || params[:status].present? %>
-<% if !@pagy.count.zero? || @template.submitters.to_a.size == 1 || params[:q].present? %>
+<% if !@pagy.count.zero? || params[:q].present? %>
   <div class="flex justify-between md:items-end flex-col md:flex-row <%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <p class="text-3xl font-bold">Submissions</p>
-    <div class="flex md:space-x-2 mt-3 md:mt-0">
+    <div class="flex justify-end space-x-2 mt-3 md:mt-0">
       <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <%= link_to new_template_submissions_export_path(@template), class: 'order-3 md:order-1 btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+      <%= link_to new_template_submissions_export_path(@template), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span>Export</span>
       <% end %>
-      <% if @template.submitters.to_a.size == 1 && !@template.deleted_at? %>
-        <span class="order-1">
-          <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
-        </span>
-      <% end %>
       <% if !@template.deleted_at? && can?(:create, Submission) %>
-        <%= link_to new_template_submission_path(@template), class: 'order-1 btn btn-primary text-base', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span>Add <span class="hidden md:inline">Recipients</span></span>
         <% end %>
@@ -85,12 +80,19 @@
             <% if can?(:create, Submission) %>
               <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-                <span class="mr-1">Add Recipients</span>
+                <span class="mr-1">Send to Recipients</span>
               <% end %>
             <% end %>
-            <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
-              <%= svg_icon('writing', class: 'w-6 h-6') %>
-              <span class="mr-1">Sign it Yourself</span>
+            <% if @template.submitters.size == 1 %>
+              <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
+                <%= svg_icon('writing', class: 'w-6 h-6') %>
+                <span class="mr-1">Sign it Yourself</span>
+              <% end %>
+            <% else %>
+              <%= link_to new_template_submission_path(@template, selfsign: true), class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
+                <%= svg_icon('writing', class: 'w-6 h-6') %>
+                <span class="mr-1">Sign it Yourself</span>
+              <% end %>
             <% end %>
           <% end %>
         </div>

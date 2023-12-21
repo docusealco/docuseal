@@ -21,9 +21,7 @@ module Submitters
 
       submitter.submission.save!
 
-      return submitter unless submitter.completed_at?
-
-      ProcessSubmitterCompletionJob.perform_later(submitter)
+      ProcessSubmitterCompletionJob.perform_later(submitter) if submitter.completed_at?
 
       submitter
     end
@@ -101,7 +99,7 @@ module Submitters
     def replace_default_variables(value, attrs, template, with_time: false)
       return if value.blank?
 
-      value.gsub(VARIABLE_REGEXP) do |e|
+      value.to_s.gsub(VARIABLE_REGEXP) do |e|
         case key = ::Regexp.last_match(1)
         when 'time'
           if with_time

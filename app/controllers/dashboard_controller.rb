@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
 
   before_action :maybe_redirect_product_url
   before_action :maybe_render_landing
+  before_action :maybe_redirect_mfa_setup
 
   load_and_authorize_resource :template_folder, parent: false
   load_and_authorize_resource :template, parent: false
@@ -60,6 +61,17 @@ class DashboardController < ApplicationController
     return if !Docuseal.multitenant? || signed_in?
 
     redirect_to Docuseal::PRODUCT_URL, allow_other_host: true
+  end
+
+  def maybe_redirect_mfa_setup
+    return unless signed_in?
+    return if current_user.otp_required_for_login
+
+    return if !current_user.otp_required_for_login && !AccountConfig.exists?(value: true,
+                                                                             account_id: current_user.account_id,
+                                                                             key: AccountConfig::FORCE_MFA)
+
+    redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
   end
 
   def maybe_render_landing

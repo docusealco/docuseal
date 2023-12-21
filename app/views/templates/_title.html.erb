@@ -14,7 +14,7 @@
         </span>
       </a>
       <% if can?(:update, template) %>
-        <span class="pl-1 tooltip tooltip-right opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="Move">
+        <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="Move">
           <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
             <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
           </a>
@@ -23,13 +23,16 @@
     </div>
   </div>
   <div class="flex md:justify-between space-x-2 flex-none pt-1">
+    <% if !template.deleted_at? %>
+      <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'btn btn-sm btn-neutral text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copied_title: 'Copied', copy_title_md: 'Link', copied_title_md: 'Copied' %>
+    <% end %>
     <% if !template.deleted_at? && can?(:destroy, template) %>
-      <%= button_to button_title(title: 'Remove', disabled_with: 'Removing', icon: svg_icon('trash', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      <%= button_to button_title(title: 'Archive', disabled_with: 'Archiving', title_class: 'hidden md:inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>
     <% if can?(:create, template) %>
       <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
         <%= svg_icon('copy', class: 'w-6 h-6') %>
-        <span>Clone</span>
+        <span class="hidden md:inline">Clone</span>
       <% end %>
     <% end %>
     <% if !template.deleted_at? && can?(:update, template) %>

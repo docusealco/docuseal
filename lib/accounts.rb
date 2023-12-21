@@ -71,6 +71,21 @@ module Accounts
     end
   end
 
+  def load_timeserver_url(account)
+    if Docuseal.multitenant?
+      Docuseal::TIMESERVER_URL
+    else
+      url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+
+      unless Docuseal.multitenant?
+        url ||=
+          Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+      end
+
+      url
+    end.presence
+  end
+
   def can_send_emails?(_account)
     return true if Docuseal.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?

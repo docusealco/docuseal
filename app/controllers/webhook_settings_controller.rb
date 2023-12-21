@@ -7,7 +7,9 @@ class WebhookSettingsController < ApplicationController
   def show; end
 
   def create
-    @encrypted_config.update!(encrypted_config_params)
+    @encrypted_config.assign_attributes(encrypted_config_params)
+
+    @encrypted_config.value.present? ? @encrypted_config.save! : @encrypted_config.delete
 
     redirect_back(fallback_location: settings_webhooks_path, notice: 'Webhook URL has been saved.')
   end

@@ -3,24 +3,34 @@
 class SubmitterMailer < ApplicationMailer
   MAX_ATTACHMENTS_SIZE = 10.megabytes
 
-  def invitation_email(submitter, body: nil, subject: nil)
+  DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
+
+  def invitation_email(submitter)
     @current_account = submitter.submission.template.account
     @submitter = submitter
-    @body = body.presence
+
+    if submitter.preferences['email_message_uuid']
+      @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
+    end
+
+    @body = @email_message&.body.presence
+    @subject = @email_message&.subject.presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
     subject =
-      if @email_config || subject.present?
-        ReplaceEmailVariables.call(subject.presence || @email_config.value['subject'], submitter:)
+      if @email_config || @subject
+        ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
       else
-        'You are invited to submit a form'
+        DEFAULT_INVITATION_SUBJECT
       end
 
-    mail(to: @submitter.friendly_name,
-         from: from_address_for_submitter(submitter),
-         subject:,
-         reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name)
+    mail(
+      to: @submitter.friendly_name,
+      from: from_address_for_submitter(submitter),
+      subject:,
+      reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+    )
   end
 
   def completed_email(submitter, user, bcc: nil)
@@ -45,7 +55,7 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(from: from_address_for_submitter(submitter),
-         to: user.friendly_name,
+         to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
          bcc:,
          subject:)
   end
@@ -86,7 +96,26 @@ class SubmitterMailer < ApplicationMailer
       total_size = audit_trail_data.size
     end
 
-    documents.each do |attachment|
+    total_size = add_attachments_with_size_limit(documents, total_size)
+
+    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
+
+    file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
+
+    if file_fields.pluck('submitter_uuid').uniq.size == 1
+      storage_attachments =
+        submitter.attachments.where(uuid: submitter.values.values_at(*file_fields.pluck('uuid')).flatten)
+
+      add_attachments_with_size_limit(storage_attachments, total_size)
+    end
+
+    documents
+  end
+
+  def add_attachments_with_size_limit(storage_attachments, current_size)
+    total_size = current_size
+
+    storage_attachments.each do |attachment|
       total_size += attachment.byte_size
 
       break if total_size >= MAX_ATTACHMENTS_SIZE
@@ -94,12 +123,15 @@ class SubmitterMailer < ApplicationMailer
       attachments[attachment.filename.to_s] = attachment.download
     end
 
-    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
-
-    documents
+    total_size
   end
 
   def from_address_for_submitter(submitter)
-    submitter.submission.created_by_user&.friendly_name || submitter.submission.template.author.friendly_name
+    if submitter.submission.source.in?(%w[api embed]) &&
+       (from_email = AccountConfig.find_by(account: submitter.account, key: 'integration_from_email')&.value.presence)
+      from_email
+    else
+      (submitter.submission.created_by_user || submitter.submission.template.author).friendly_name
+    end
   end
 end

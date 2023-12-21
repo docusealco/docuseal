@@ -29,6 +29,7 @@ module Submissions
 
       account = submitter.submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
+      tsa_url = Accounts.load_timeserver_url(account)
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -39,11 +40,18 @@ module Submissions
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
+          next if pdf.nil?
+
           page = pdf.pages[area['page']]
+
+          next if page.nil?
+
           page.rotate(0, flatten: true) if page[:Rotate] != 0
 
           page[:Annots] ||= []
-          page[:Annots] = page[:Annots].reject { |e| e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field') }
+          page[:Annots] = page[:Annots].reject do |e|
+            e.present? && e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field')
+          end
 
           width = page.box.width
           height = page.box.height
@@ -69,7 +77,7 @@ module Submissions
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.resize([scale * 4, 1].min).write_to_buffer('.png'))
+            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
 
             canvas.image(
               io,
@@ -99,7 +107,7 @@ module Submissions
               width: image.width * scale,
               height: image.height * scale
             )
-          when 'file'
+          when 'file', 'payment'
             items = Array.wrap(value).each_with_object([]) do |uuid, acc|
               attachment = submitter.attachments.find { |a| a.uuid == uuid }
 
@@ -206,7 +214,9 @@ module Submissions
             layouter_my_text.fit([text_my_text], w, height_diff_my_text.positive? ? box_height_my_text : h)
                           .draw(canvas, x + TEXT_LEFT_MARGIN, y - height_diff_my_text + 17)
           else
-            value = I18n.l(Date.parse(value), format: :default, locale: account.locale) if field['type'] == 'date'|| field['type'] == 'my_date'
+            if field['type'].in?(%w[date my_date])
+              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+            end
 
             text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
                                                                                       font_size:)
@@ -240,7 +250,9 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, uuid: item['attachment_uuid'], name: item['name'])
+          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:,
+                                       uuid: item['attachment_uuid'],
+                                       name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
@@ -267,15 +279,21 @@ module Submissions
     end
     # rubocop:enable Metrics
 
-    def save_signed_pdf(pdf:, submitter:, pkcs:, uuid:, name:)
+    def save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
 
-      pdf.sign(io, reason: sign_reason(submitter.email),
-                   certificate: pkcs.certificate,
-                   key: pkcs.key,
-                   certificate_chain: pkcs.ca_certs || [])
+      sign_params = {
+        reason: sign_reason(submitter.email),
+        certificate: pkcs.certificate,
+        key: pkcs.key,
+        certificate_chain: pkcs.ca_certs || []
+      }
+
+      sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:) if tsa_url
+
+      pdf.sign(io, **sign_params)
 
       ActiveStorage::Attachment.create!(
         uuid:,
@@ -302,7 +320,7 @@ module Submissions
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submitter.submission.template.documents.preload(:blob)
+      documents ||= submitter.submission.template_schema_documents.preload(:blob)
 
       documents.to_h do |attachment|
         pdf =

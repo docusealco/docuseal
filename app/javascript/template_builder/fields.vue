@@ -5,7 +5,7 @@
       class="w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
-      :editable="editable"
+      :editable="editable && !defaultSubmitters.length"
       :show-new-fields="showNewFields"
       @new-submitter="save"
       @remove="removeSubmitter"
@@ -26,6 +26,7 @@
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
       :editable="editable && !dragField"
+      :default-field="defaultFields.find((f) => f.name === field.name)"
       :draggable="editable"
       :me-active="selectedSubmitter.name === 'Me'"
       @dragstart="dragField = field"
@@ -76,16 +77,16 @@
         v-if="!['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)"
       >
         <button
-          v-if="withPhone || type != 'phone'"
+          v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')"
           draggable="true"
-          class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-          :style="{ backgroundColor }"
+          class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
+          :style="{ backgroundColor: backgroundColor }"
           @dragstart="onDragstart({ type: type })"
           @dragend="$emit('drag-end')"
           @click="addField(type)"
         >
-          <div class="w-0 absolute left-0">
-            <IconDrag class="cursor-grab" />
+          <div class="flex items-console group-hover:bg-base-200/50 transition-all cursor-grab h-full absolute left-0">
+            <IconDrag class=" my-auto" />
           </div>
           <div class="flex items-center flex-col px-2 py-2">
             <component :is="icon" />
@@ -95,7 +96,7 @@
           </div>
         </button>
         <div
-          v-else
+          v-else-if="type == 'phone'"
           class="tooltip tooltip-bottom-end flex"
           data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
         >
@@ -136,14 +137,14 @@
       >
         <button
           draggable="true"
-          class="flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-          :style="{ backgroundColor }"
+          class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
+          :style="{ backgroundColor: backgroundColor }"
           @dragstart="onDragstart({ type: type })"
           @dragend="$emit('drag-end')"
           @click="addField(type)"
         >
-          <div class="w-0 absolute left-0">
-            <IconDrag class="cursor-grab" />
+          <div class="flex items-console group-hover:bg-base-200/50 transition-all cursor-grab h-full absolute left-0">
+            <IconDrag class=" my-auto" />
           </div>
           <div class="flex items-center flex-col px-2 py-2">
             <component :is="icon" />
@@ -190,7 +191,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment'],
   props: {
     fields: {
       type: Array,
@@ -202,6 +203,11 @@ export default {
       default: true
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultSubmitters: {
       type: Array,
       required: false,
       default: () => []
@@ -235,7 +241,7 @@ export default {
     },
     submitterDefaultFields () {
       return this.defaultFields.filter((f) => {
-        return !this.fields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+        return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
       })
     }
   },
@@ -311,7 +317,17 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
+      }
+
       this.fields.push(field)
+
+      if (['signature', 'initials', 'cells'].includes(type)) {
+        this.$emit('set-draw', { field })
+      }
 
       this.save()
     }

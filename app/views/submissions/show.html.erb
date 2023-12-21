@@ -1,25 +1,27 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= template_path(@submission.template) %>" class="flex space-x-3 py-1">
-      <span><%= render 'shared/logo', width: 40, height: 40 %></span>
-      <span class="text-3xl font-semibold focus:text-clip"><%= @submission.template.name %></span>
+    <a href="<%= signed_in? && @submission.template.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
+      <span><%= render 'submissions/logo' %></span>
+      <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><%= @submission.template.name %></span>
     </a>
     <div class="space-x-3 flex items-center">
       <% if @submission.audit_trail.present? %>
         <a href="<%= rails_blob_path(@submission.audit_trail) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
-          Audit Log
+          <span class="hidden md:inline">
+            Audit Log
+          </span>
         </a>
       <% end %>
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
         <download-button data-src="<%= submitter_download_index_path(last_submitter.slug) %>" class="base-button">
           <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
             <%= svg_icon('download', class: 'w-6 h-6') %>
-            <span>Download</span>
+            <span class="hidden md:inline">Download</span>
           </span>
           <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
             <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-            <span>Downloading</span>
+            <span class="hidden md:inline">Downloading</span>
           </span>
         </download-button>
       <% elsif @submission.submitters.to_a.size == 1 %>
@@ -53,7 +55,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="shadow-md mb-4" height="<%= page.metadata['height'] %>">
+              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
@@ -156,7 +158,7 @@
                   </div>
                 <% elsif field['type'] == 'image' %>
                   <img class="object-contain mx-auto max-h-28" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
-                <% elsif field['type'] == 'file' %>
+                <% elsif field['type'] == 'file' || field['type'] == 'payment' %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
                       <a target="_blank" class="flex items-center space-x-1" href="<%= attachments_index[val].url %>">
@@ -170,7 +172,7 @@
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
                 <% elsif field['type'] == 'date' %>
-                  <%= l(Date.parse(value), locale: @submission.template.account.locale, format: :long) %>
+                  <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.template.account.locale) %>
                 <% else %>
                   <%= Array.wrap(value).join(', ') %>
                 <% end %>
@@ -182,3 +184,4 @@
     </div>
   </div>
 </div>
+<%= render 'scripts/autosize_field' %>

@@ -44,8 +44,9 @@ class ApplicationController < ActionController::Base
     redirect_to setup_index_path unless User.exists?
   end
 
-  def button_title(title: 'Submit', disabled_with: 'Submitting', icon: nil, icon_disabled: nil)
-    render_to_string(partial: 'shared/button_title', locals: { title:, disabled_with:, icon:, icon_disabled: })
+  def button_title(title: 'Submit', disabled_with: 'Submitting', title_class: '', icon: nil, icon_disabled: nil)
+    render_to_string(partial: 'shared/button_title',
+                     locals: { title:, disabled_with:, title_class:, icon:, icon_disabled: })
   end
 
   def svg_icon(icon_name, class: '')

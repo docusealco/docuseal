@@ -15,7 +15,7 @@ aws_s3:
 
 google:
   service: GCS
-  credentials: <%= JSON.parse(ENV['GCS_CREDENTIALS'] || '{}') %>
+  credentials: <%= ENV['GCS_CREDENTIALS'] || '{}' %>
   project: <%= ENV['GCS_PROJECT'] %>
   bucket: <%= ENV['GCS_BUCKET'] %>
   public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
