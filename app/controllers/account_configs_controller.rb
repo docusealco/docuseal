@@ -6,7 +6,8 @@ class AccountConfigsController < ApplicationController
 
   ALLOWED_KEYS = [
     AccountConfig::ALLOW_TYPED_SIGNATURE,
-    AccountConfig::FORCE_MFA
+    AccountConfig::FORCE_MFA,
+    AccountConfig::ESIGNING_PREFERENCE_KEY
   ].freeze
 
   def create

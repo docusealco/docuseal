@@ -11,7 +11,8 @@ module Submissions
                 end
 
     INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
-    SIGN_REASON = 'Signed by %<email>s with DocuSeal.co'
+    SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
+    SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
@@ -200,9 +201,9 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:,
-                                       uuid: item['attachment_uuid'],
-                                       name: item['name'])
+          attachment = save_pdf(pdf:, submitter:, pkcs:, tsa_url:,
+                                uuid: item['attachment_uuid'],
+                                name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
@@ -217,7 +218,7 @@ module Submissions
         end
 
       images_pdf_result =
-        save_signed_pdf(
+        save_pdf(
           pdf: images_pdf,
           submitter:,
           tsa_url:,
@@ -230,30 +231,34 @@ module Submissions
     end
     # rubocop:enable Metrics
 
-    def save_signed_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
+    def save_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
 
-      sign_params = {
-        reason: sign_reason(submitter.email),
-        certificate: pkcs.certificate,
-        key: pkcs.key,
-        certificate_chain: pkcs.ca_certs || []
-      }
+      sign_reason = fetch_sign_reason(submitter)
 
-      if tsa_url
-        sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
-        sign_params[:signature_size] = 10_000
+      if sign_reason
+        sign_params = {
+          reason: sign_reason,
+          certificate: pkcs.certificate,
+          key: pkcs.key,
+          certificate_chain: pkcs.ca_certs || []
+        }
+
+        if tsa_url
+          sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
+          sign_params[:signature_size] = 10_000
+        end
+
+        pdf.sign(io, **sign_params)
+      else
+        pdf.write(io, incremental: true)
       end
-
-      pdf.sign(io, **sign_params)
 
       ActiveStorage::Attachment.create!(
         uuid:,
-        blob: ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(io.string), filename: "#{name}.pdf"
-        ),
+        blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
         metadata: { sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
         name: 'documents',
         record: submitter
@@ -308,8 +313,27 @@ module Submissions
       pdf
     end
 
-    def sign_reason(email)
-      format(SIGN_REASON, email:)
+    def sign_reason(name)
+      format(SIGN_REASON, name:)
+    end
+
+    def single_sign_reason
+      SIGN_SIGNLE_REASON
+    end
+
+    def fetch_sign_reason(submitter)
+      reason_name = submitter.email || submitter.name || submitter.phone
+
+      return sign_reason(reason_name) if Docuseal.multitenant?
+
+      return sign_reason(reason_name) if AccountConfig.where(account: submitter.account,
+                                                             key: AccountConfig::ESIGNING_PREFERENCE_KEY)
+                                                      .first_or_initialize(value: 'multiple').value == 'multiple'
+
+      return single_sign_reason if !submitter.submission.submitters.exists?(completed_at: nil) &&
+                                   submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
+
+      nil
     end
 
     def info_creator

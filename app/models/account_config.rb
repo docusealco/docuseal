@@ -29,6 +29,7 @@ class AccountConfig < ApplicationRecord
   ALLOW_TYPED_SIGNATURE = 'allow_typed_signature'
   SUBMITTER_REMAILERS = 'submitter_reminders'
   FORM_COMPLETED_BUTTON_KEY = 'form_completed_button'
+  ESIGNING_PREFERENCE_KEY = 'esigning_preference'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {

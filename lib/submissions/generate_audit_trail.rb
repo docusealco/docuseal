@@ -257,7 +257,7 @@ module Submissions
               if event.event_type.include?('sms') || event.event_type.include?('phone')
                 submitter.phone
               else
-                (submitter.name || submitter.email || submitter.phone)
+                submitter.name || submitter.email || submitter.phone
               end
             ]
           )
