@@ -32,7 +32,7 @@ module TimeUtils
   end
 
   def format_date_string(string, format, locale)
-    date = Date.parse(string)
+    date = Date.parse(string.to_s)
 
     format ||= locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT
 
