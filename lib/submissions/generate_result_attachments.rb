@@ -35,8 +35,9 @@ module Submissions
       pdfs_index = build_pdfs_index(submitter)
 
       submitter.submission.template_fields.each do |field|
-        next if field['submitter_uuid'] != submitter.uuid
-
+        unless ['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].include?(field['type'])
+          next if field['submitter_uuid'] != submitter.uuid
+        end
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
 
@@ -59,9 +60,10 @@ module Submissions
 
           layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
 
-          value = submitter.values[field['uuid']]
-
-          next if Array.wrap(value).compact_blank.blank?
+          if !field['type'].in?(%w[redact my_check])
+            value = submitter.values[field['uuid']] || template.values[field['uuid']]
+            next if Array.wrap(value).compact_blank.blank?
+          end
 
           canvas = page.canvas(type: :overlay)
           canvas.font(FONT_NAME, size: font_size)
@@ -76,6 +78,25 @@ module Submissions
                      (area['h'] * height) / image.height].min
 
             io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+
+            canvas.image(
+              io,
+              at: [
+                (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
+                height - (area['y'] * height) - (image.height * scale / 2) - (area['h'] * height / 2)
+              ],
+              width: image.width * scale,
+              height: image.height * scale
+            )
+          when 'my_signature', 'my_initials'
+            attachment = ActiveStorage::Attachment.where(record: template, name: :attachments).preload(:blob).index_by(&:uuid).values.find{ |a| a.uuid == value }
+
+            image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+
+            scale = [(area['w'] * width) / image.width,
+                     (area['h'] * height) / image.height].min
+
+            io = StringIO.new(image.resize([scale * 4, 1].min).write_to_buffer('.png'))
 
             canvas.image(
               io,
@@ -133,7 +154,8 @@ module Submissions
             layouter.fit(items, area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
                     .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
                           height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
-          when ->(type) { type == 'checkbox' || (type.in?(%w[multiple radio]) && area['option_uuid'].present?) }
+          when ->(type) { type == 'checkbox' || type == 'my_check' || (type.in?(%w[multiple radio]) && area['option_uuid'].present?) }
+            value=true if field['type'] == 'my_check'
             if field['type'].in?(%w[multiple radio])
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
@@ -164,8 +186,35 @@ module Submissions
                            .draw(canvas, ((area['x'] * width) + (cell_width * index)),
                                  height - (area['y'] * height))
             end
+          when 'redact'
+            x = area['x'] * width
+            y = height - (area['y'] * height) - (area['h'] * height)
+            w = area['w'] * width
+            h = area['h'] * height
+          
+            canvas.fill_color(0, 0, 0) # Set fill color to black
+            canvas.rectangle(x, y, w, h)
+            canvas.fill
+          when 'my_text'
+            x = area['x'] * width
+            y = height - (area['y'] * height) - (area['h'] * height)
+            w = area['w'] * width * 1.01
+            h = area['h'] * height
+
+            font_size_my_text = (font_size / 0.75).to_i
+            layouter_my_text = HexaPDF::Layout::TextLayouter.new(valign: :top, font: pdf.fonts.add(FONT_NAME), font_size: font_size_my_text)
+        
+            value_my_text = submitter.values[field['uuid']] || template.values[field['uuid']]
+        
+            text_my_text = HexaPDF::Layout::TextFragment.create(Array.wrap(value_my_text).join(', '), font: pdf.fonts.add(FONT_NAME), font_size: font_size_my_text)
+        
+            lines_my_text = layouter_my_text.fit([text_my_text], w, h).lines
+            box_height_my_text = lines_my_text.sum(&:height)
+            height_diff_my_text = [0, box_height_my_text - h].max
+            layouter_my_text.fit([text_my_text], w, height_diff_my_text.positive? ? box_height_my_text : h)
+                          .draw(canvas, x + TEXT_LEFT_MARGIN, y - height_diff_my_text + 17)
           else
-            if field['type'] == 'date'
+            if field['type'].in?(%w[date my_date])
               value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
             end
 
@@ -304,7 +353,7 @@ module Submissions
       page.box.height = attachment.metadata['height'] * scale
 
       page.canvas.image(
-        StringIO.new(attachment.preview_images.first.download),
+        StringIO.new(attachment.preview_secured_images.first.download),
         at: [0, 0],
         width: page.box.width,
         height: page.box.height

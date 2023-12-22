@@ -6,6 +6,7 @@
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes"
     :current-step="currentStepFields"
+    :template-values="templateValues"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
   <button
@@ -64,6 +65,9 @@
               :field="currentField"
               @focus="$refs.areas.scrollIntoField(currentField)"
             />
+          </div>
+          <div v-if="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(currentField.type)">
+            <!-- do nothing on this side just chill for now -->
           </div>
           <DateStep
             v-else-if="currentField.type === 'date'"
@@ -266,6 +270,15 @@
             @focus="$refs.areas.scrollIntoField(currentField)"
             @submit="submitStep"
           />
+          <RedactStep
+            v-else-if="currentField.type === 'redact'"
+            ref="currentStep"
+            v-model="values[currentField.uuid]"
+            :field="currentField"
+            :submitter-slug="submitterSlug"
+            @focus="$refs.areas.scrollIntoField(currentField)"
+            @submit="submitStep"
+          />
           <PaymentStep
             v-else-if="currentField.type === 'payment'"
             ref="currentStep"
@@ -347,6 +360,7 @@ import InitialsStep from './initials_step'
 import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
+import RedactStep from './redact_step.vue'
 import PaymentStep from './payment_step'
 import TextStep from './text_step'
 import DateStep from './date_step'
@@ -368,6 +382,7 @@ export default {
     IconArrowsDiagonal,
     TextStep,
     PhoneStep,
+    RedactStep,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
@@ -375,13 +390,23 @@ export default {
   provide () {
     return {
       baseUrl: this.baseUrl,
-      t: this.t
+      t: this.t,
+      templateAttachments: this.templateAttachments
     }
   },
   props: {
     submitter: {
       type: Object,
       required: true
+    },
+    templateValues: {
+      type: Object,
+      required: true
+    },
+    templateAttachments: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     canSendEmail: {
       type: Boolean,
@@ -708,7 +733,12 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(fields[0]?.type)) {
+            fields[0].required = 'false'
+            return false
+          } else {
+            return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]
+          }
         })
 
         const formData = new FormData(this.$refs.form)

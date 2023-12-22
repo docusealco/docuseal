@@ -102,12 +102,16 @@
           :editable="editable"
           :template="template"
           :is-direct-upload="isDirectUpload"
-          @scroll-to="scrollIntoDocument(item)"
+          :is-loading="isLoading"
+          :is-deleting="isDeleting"
+          @scroll-to="scrollIntoDocument"
+          @add-blank-page="addBlankPage"
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @down="moveDocument(item, 1)"
           @change="save"
+          @remove-image="removeImage"
         />
         <div
           class="sticky bottom-0 py-2"
@@ -152,6 +156,7 @@
                 @draw="onDraw"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
+                @update:my-field="updateMyValues"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -273,6 +278,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import FieldType from './field_type'
+import { t } from './i18n'
 import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
@@ -301,17 +307,26 @@ export default {
     return {
       template: this.template,
       save: this.save,
+      templateAttachments: this.templateAttachments,
+      isDirectUpload: this.isDirectUpload,
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
-      selectedAreaRef: computed(() => this.selectedAreaRef)
+      selectedAreaRef: computed(() => this.selectedAreaRef),
+      baseUrl: this.baseUrl,
+      t: this.t
     }
   },
   props: {
     template: {
       type: Object,
       required: true
+    },
+    templateAttachments: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     isDirectUpload: {
       type: Boolean,
@@ -408,6 +423,9 @@ export default {
       isSaving: false,
       selectedSubmitter: null,
       drawField: null,
+      dragFieldType: null,
+      isLoading: false,
+      isDeleting: false,
       drawOption: null,
       dragField: null
     }
@@ -438,6 +456,13 @@ export default {
       return this.template.schema.map((item) => {
         return this.template.documents.find(doc => doc.uuid === item.attachment_uuid)
       })
+    },
+    myAttachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
     }
   },
   created () {
@@ -479,6 +504,12 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    t,
+    updateMyValues (values) {
+      const existingValues = this.template.values || {}
+      const updatedValues = { ...existingValues, ...values }
+      this.template.values = updatedValues
+    },
     startFieldDraw (type) {
       const field = {
         name: '',
@@ -488,7 +519,9 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         type
       }
-
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)) {
+        field.required = false
+      }
       if (['select', 'multiple', 'radio'].includes(type)) {
         field.options = [{ value: '', uuid: v4() }]
       }
@@ -542,10 +575,9 @@ export default {
         this.documentRefs.push(el)
       }
     },
-    scrollIntoDocument (item) {
-      const ref = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
-
-      ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollIntoDocument (item, page) {
+      const documentRef = this.documentRefs.find((e) => e.document?.uuid === item.attachment_uuid)
+      documentRef.scrollIntoDocument(page)
     },
     onKeyUp (e) {
       if (e.code === 'Escape') {
@@ -575,6 +607,17 @@ export default {
     },
     removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
+      if (['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
+        const valuesArray = Object.values(this.template.values)
+        const valueIndex = valuesArray.findIndex((value) => value === this.template.values[field.uuid])
+        valuesArray.splice(valueIndex, 1)
+        const valueKey = Object.keys(this.template.values)[valueIndex]
+        if (['my_signature', 'my_initials'].includes(field.type)) {
+          const myAttachmentsIndex = this.myAttachmentsIndex[this.template.values[field.uuid]]
+          this.templateAttachments.splice(this.templateAttachments.indexOf(myAttachmentsIndex), 1)
+        }
+        delete this.template.values[valueKey]
+      }
 
       field.areas.splice(field.areas.indexOf(area), 1)
 
@@ -620,6 +663,30 @@ export default {
         this.selectedAreaRef.value = area
 
         this.save()
+      } else if (this.selectedSubmitter.name === 'Me') {
+        const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+        const pageMask = documentRef.pageRefs[area.page].$refs.mask
+
+        const type = (pageMask.clientWidth * area.w) < 35 ? 'my_check' : 'my_text'
+
+        if (area.w) {
+          const field = {
+            name: '',
+            uuid: v4(),
+            required: type !== 'checkbox',
+            type,
+            submitter_uuid: this.selectedSubmitter.uuid,
+            areas: [area]
+          }
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
+            field.required = false
+          }
+          this.template.fields.push(field)
+
+          this.selectedAreaRef.value = area
+
+          this.save()
+        }
       } else {
         const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
         const pageMask = documentRef.pageRefs[area.page].$refs.mask
@@ -653,7 +720,9 @@ export default {
             submitter_uuid: this.selectedSubmitter.uuid,
             areas: [area]
           }
-
+          if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
+            field.required = false
+          }
           this.template.fields.push(field)
 
           this.selectedAreaRef.value = area
@@ -671,6 +740,9 @@ export default {
         ...this.dragField
       }
 
+      if (['redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)) {
+        field.required = false
+      }
       if (['select', 'multiple', 'radio'].includes(field.type)) {
         field.options = [{ value: '', uuid: v4() }]
       }
@@ -697,7 +769,7 @@ export default {
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox'].includes(field.type)) {
+        if (['checkbox', 'my_check'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
@@ -707,12 +779,12 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (field.type === 'signature') {
+        } else if (['signature', 'my_signature'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
           }
-        } else if (field.type === 'initials') {
+        } else if (['initials', 'my_initials'].includes(field.type)) {
           baseArea = {
             w: area.maskW / 10 / area.maskW,
             h: area.maskW / 35 / area.maskW
@@ -763,7 +835,7 @@ export default {
       this.save()
     },
     onDocumentRemove (item) {
-      if (window.confirm('Are you sure?')) {
+      if (window.confirm('Are you sure you want to delete the document?')) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 
@@ -856,11 +928,99 @@ export default {
             name: this.template.name,
             schema: this.template.schema,
             submitters: this.template.submitters,
-            fields: this.template.fields
+            fields: this.template.fields,
+            values: this.template.values
           }
         }),
         headers: { 'Content-Type': 'application/json' }
       })
+    },
+    removeImage (item, imageId) {
+      const document = this.template.documents.find((e) => e.uuid === item.attachment_uuid)
+      if (Array.isArray(document.preview_images)) {
+        const indexToRemove = document.preview_images.findIndex((previewImage) => previewImage.id === imageId)
+        // console.log(indexToRemove)
+        if (indexToRemove !== -1) {
+          const confirmed = window.confirm('Are you sure you want to delete this image?')
+          if (confirmed) {
+            this.isDeleting = true
+            const documentId = document.id
+            const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/del_image`
+            fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                template: this.template.id,
+                attachment_id: imageId,
+                document_id: documentId
+              })
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`)
+                }
+                return response.json()
+              })
+              .then((data) => {
+                console.log('Success:', data)
+                const pageNumber = document.preview_images.findIndex(pic => pic.id === imageId)
+                this.template.fields.forEach((field) => {
+                  [...(field.areas || [])].forEach((area) => {
+                    if (area.attachment_uuid === document.uuid && area.page === pageNumber) {
+                      field.areas.splice(field.areas.indexOf(area), 1)
+                    }
+                  })
+                })
+                document.preview_images = data.updated_preview_images
+                document.metadata = data.updated_metadata
+              })
+              .catch((error) => {
+                console.error('Error:', error)
+              })
+              .finally(() => {
+                this.isDeleting = false
+              })
+          }
+        }
+      }
+    },
+    addBlankPage (item) {
+      const documentRef = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
+      const confirmed = window.confirm('Are you sure you want to create new image?')
+      if (confirmed) {
+        this.isLoading = true
+        const documentId = documentRef.document.id
+        const apiUrl = `/api/templates/${this.template.id}/documents/${documentId}/add_new_image`
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            template_id: this.template.id,
+            document: documentRef.document
+          })
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json()
+          })
+          .then((data) => {
+            console.log('Success: ---', data)
+            documentRef.document.preview_images = data.updated_preview_images
+            documentRef.document.metadata = data.updated_metadata
+          })
+          .catch((error) => {
+            console.error('Error: ---', error)
+          })
+          .finally(() => {
+            this.isLoading = false
+          })
+      }
     }
   }
 }

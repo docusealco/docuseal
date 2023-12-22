@@ -29,7 +29,7 @@
           />
         </label>
         <ul
-          v-if="editable"
+          v-if="editable && !meFields"
           tabindex="0"
           class="rounded-md min-w-max mb-2"
           :class="menuClasses"
@@ -40,6 +40,7 @@
             :key="submitter.uuid"
           >
             <a
+              v-if="!hideSelectMe || submitter.name!=='Me'"
               href="#"
               class="flex px-2 group justify-between items-center"
               :class="{ 'active': submitter === selectedSubmitter }"
@@ -48,14 +49,15 @@
               <span class="py-1 flex items-center">
                 <span
                   class="rounded-full w-3 h-3 ml-1 mr-3"
-                  :class="colors[index]"
+                  :class="submitter.name !== 'Me'? colors[index] : ''"
+                  :style="{backgroundColor: submitter.name === 'Me'? colors[index] : ''}"
                 />
                 <span>
                   {{ submitter.name }}
                 </span>
               </span>
               <button
-                v-if="submitters.length > 1 && editable"
+                v-if="submitters?.length > 1 && editable && submitter.name !== 'Me'"
                 class="px-2"
                 @click.stop="remove(submitter)"
               >
@@ -63,7 +65,7 @@
               </button>
             </a>
           </li>
-          <li v-if="submitters.length < 10 && editable">
+          <li v-if="submitters?.length < 11 && editable">
             <a
               href="#"
               class="flex px-2"
@@ -74,7 +76,7 @@
                 :stroke-width="1.6"
               />
               <span class="py-1">
-                Add {{ names[submitters.length] }}
+                Add {{ names[submitters?.length] }}
               </span>
             </a>
           </li>
@@ -94,7 +96,8 @@
     >
       <button
         class="mx-1 w-3 h-3 rounded-full"
-        :class="colors[submitters.indexOf(selectedSubmitter)]"
+        :class="selectedSubmitter.name !== 'Me'? colors[submitters.indexOf(selectedSubmitter)] : ''"
+        :style="{backgroundColor: selectedSubmitter.name === 'Me'? colors[submitters.indexOf(selectedSubmitter)] : ''}"
       />
     </label>
     <label
@@ -105,27 +108,29 @@
       <div class="flex items-center space-x-2">
         <span
           class="w-3 h-3 rounded-full"
-          :class="colors[submitters.indexOf(selectedSubmitter)]"
+          :class="selectedSubmitter.name !== 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : ''"
+          :style="{ backgroundColor: selectedSubmitter.name === 'Me' ? colors[submitters.indexOf(selectedSubmitter)] : '' }"
         />
         <Contenteditable
           v-model="selectedSubmitter.name"
           class="cursor-text"
           :icon-inline="true"
-          :editable="editable"
+          :editable="selectedSubmitter.name==='Me'? false : editable"
           :select-on-edit-click="true"
           :icon-width="18"
           @update:model-value="$emit('name-change', selectedSubmitter)"
         />
       </div>
       <span class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 flex justify-center items-center rounded">
-        <IconPlus
+        <IconChevronDown
           width="18"
           height="18"
         />
       </span>
     </label>
+
     <ul
-      v-if="editable || !compact"
+      v-if="(editable && !meFields) || !compact"
       tabindex="0"
       :class="menuClasses"
       @click="closeDropdown"
@@ -135,6 +140,7 @@
         :key="submitter.uuid"
       >
         <a
+          v-if="!hideSelectMe || submitter.name!=='Me'"
           href="#"
           class="flex px-2 group justify-between items-center"
           :class="{ 'active': submitter === selectedSubmitter }"
@@ -143,14 +149,15 @@
           <span class="py-1 flex items-center">
             <span
               class="rounded-full w-3 h-3 ml-1 mr-3"
-              :class="colors[index]"
+              :class="submitter.name !== 'Me'? colors[index] : ''"
+              :style="{backgroundColor: submitter.name === 'Me'? colors[index] : ''}"
             />
             <span>
               {{ submitter.name }}
             </span>
           </span>
           <button
-            v-if="!compact && submitters.length > 1 && editable"
+            v-if="!compact && submitters?.length > 1 && editable && submitter.name !== 'Me'"
             class="hidden group-hover:block px-2"
             @click.stop="remove(submitter)"
           >
@@ -158,7 +165,7 @@
           </button>
         </a>
       </li>
-      <li v-if="submitters.length < 10 && editable">
+      <li v-if="submitters?.length < 11 && editable">
         <a
           href="#"
           class="flex px-2"
@@ -169,7 +176,7 @@
             :stroke-width="1.6"
           />
           <span class="py-1">
-            Add {{ names[submitters.length] }}
+            Add {{ names[submitters?.length] }}
           </span>
         </a>
       </li>
@@ -178,7 +185,7 @@
 </template>
 
 <script>
-import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp } from '@tabler/icons-vue'
+import { IconUserPlus, IconTrashX, IconChevronDown, IconChevronUp } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
 
@@ -187,14 +194,29 @@ export default {
   components: {
     IconUserPlus,
     Contenteditable,
-    IconPlus,
     IconTrashX,
-    IconChevronUp
+    IconChevronUp,
+    IconChevronDown
   },
   props: {
+    showNewFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     submitters: {
       type: Array,
       required: true
+    },
+    meFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    hideSelectMe: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     editable: {
       type: Boolean,
@@ -221,10 +243,11 @@ export default {
       default: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full z-10'
     }
   },
-  emits: ['update:model-value', 'remove', 'new-submitter', 'name-change'],
+  emits: ['update:model-value', 'remove', 'new-submitter', 'name-change', 'add-prefills'],
   computed: {
     colors () {
       return [
+        'gray',
         'bg-red-500',
         'bg-sky-500',
         'bg-emerald-500',
@@ -239,6 +262,7 @@ export default {
     },
     names () {
       return [
+        'Me',
         'First Party',
         'Second Party',
         'Third Party',
@@ -258,15 +282,19 @@ export default {
   methods: {
     selectSubmitter (submitter) {
       this.$emit('update:model-value', submitter.uuid)
+      this.$emit('add-prefills', submitter.name)
     },
     remove (submitter) {
       if (window.confirm('Are you sure?')) {
         this.$emit('remove', submitter)
       }
+      if (this.submitters?.length === 1) {
+        this.$emit('add-prefills', this.submitters[0].name)
+      }
     },
     addSubmitter () {
       const newSubmitter = {
-        name: this.names[this.submitters.length],
+        name: this.names[this.submitters?.length],
         uuid: v4()
       }
 
@@ -274,6 +302,7 @@ export default {
 
       this.$emit('update:model-value', newSubmitter.uuid)
       this.$emit('new-submitter', newSubmitter)
+      this.$emit('add-prefills', newSubmitter.name)
     },
     closeDropdown () {
       document.activeElement.blur()

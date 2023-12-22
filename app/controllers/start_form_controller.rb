@@ -9,7 +9,7 @@ class StartFormController < ApplicationController
   before_action :load_template
 
   def show
-    @submitter = @template.submissions.new.submitters.new(uuid: @template.submitters.first['uuid'])
+    @submitter = @template.submitters.second.nil? ? @template.submissions.new.submitters.new(uuid: @template.submitters.first['uuid']) : @template.submissions.new.submitters.new(uuid: @template.submitters.second['uuid'])
   end
 
   def update

@@ -54,7 +54,7 @@ module Api
 
     def template_params
       params.require(:template).permit(
-        :name,
+        :name, values: {},
         schema: [%i[attachment_uuid name]],
         submitters: [%i[name uuid]],
         fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,

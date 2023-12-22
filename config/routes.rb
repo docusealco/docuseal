@@ -44,7 +44,10 @@ Rails.application.routes.draw do
     resources :templates, only: %i[update show index destroy] do
       resources :clone, only: %i[create], controller: 'templates_clone'
       resources :submissions, only: %i[index create]
-      resources :documents, only: %i[create], controller: 'templates_documents'
+      resources :documents, only: %i[create], controller: 'templates_documents'do
+        post 'add_new_image', on: :member
+        post 'del_image', on: :member
+      end
     end
   end
 

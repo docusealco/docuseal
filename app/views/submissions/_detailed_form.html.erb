@@ -10,6 +10,9 @@
           </div>
           <div class="grid <%= 'md:grid-cols-2' if template.submitters.size > 1 %> gap-4">
             <% template.submitters.each_with_index do |item, index| %>
+              <% if item["name"] == 'Me' %>
+                <% next %>
+              <% end %>
               <submitter-item class="form-control">
                 <% if template.submitters.size > 1 %>
                   <label class="label pt-0 pb-1 text-xs">

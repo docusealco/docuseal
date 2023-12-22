@@ -15,7 +15,7 @@
       </label>
     </slot>
     <ul
-      v-if="editable"
+      v-if="editable && !meActive"
       tabindex="0"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :class="menuClasses"
@@ -25,7 +25,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="withPhone || withPayment || !['phone', 'payment'].includes(type)">
+        <li v-if="withPhone || withPayment && !['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -46,8 +46,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard } from '@tabler/icons-vue'
-
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconBarrierBlock, IconLetterCaseUpper, IconTextResize, IconCheck, IconCreditCard } from '@tabler/icons-vue'
 export default {
   name: 'FiledTypeDropdown',
   inject: ['withPhone', 'withPayment'],
@@ -75,6 +74,11 @@ export default {
       type: Number,
       required: false,
       default: 18
+    },
+    meActive: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   emits: ['update:model-value'],
@@ -93,6 +97,12 @@ export default {
         radio: 'Radio',
         cells: 'Cells',
         phone: 'Phone',
+        redact: 'Redact',
+        my_text: 'Text',
+        my_signature: 'My Signature',
+        my_initials: 'My Initials',
+        my_date: 'Date',
+        my_check: 'check',
         payment: 'Payment'
       }
     },
@@ -108,6 +118,13 @@ export default {
         checkbox: IconCheckbox,
         radio: IconCircleDot,
         multiple: IconChecks,
+        radio: IconCircleDot,
+        redact: IconBarrierBlock,
+        my_text: IconTextResize,
+        my_signature: IconWritingSign,
+        my_initials: IconLetterCaseUpper,
+        my_date: IconCalendarEvent,
+        my_check: IconCheck,
         cells: IconColumns3,
         phone: IconPhoneCheck,
         payment: IconCreditCard

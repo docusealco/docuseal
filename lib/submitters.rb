@@ -28,7 +28,7 @@ module Submitters
     end
   end
 
-  def create_attachment!(submitter, params)
+  def create_attachment!(record, params)
     blob =
       if (file = params[:file])
         ActiveStorage::Blob.create_and_upload!(io: file.open,
@@ -41,7 +41,7 @@ module Submitters
     ActiveStorage::Attachment.create!(
       blob:,
       name: params[:name],
-      record: submitter
+      record: record
     )
   end
 

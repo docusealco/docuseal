@@ -34,7 +34,7 @@
              "submitters": [
                {
                  "name": "John Doe",
-                 "role": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'First Party' %>",
+                 "role": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'Me' %>",
                  "email": "<%= current_user.email.sub('@', '+test@') %>",
                  "values": {
                    "Form Text Field Name": "Default Value"

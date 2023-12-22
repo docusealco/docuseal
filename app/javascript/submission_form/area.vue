@@ -1,5 +1,101 @@
 <template>
   <div
+    v-if="field.type === 'redact'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'black' }"
+    :class="{ 'cursor-default ': !submittable, 'border ': submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <div
+      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable"
+      class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
+    >
+      <span
+        v-if="field"
+        class="flex justify-center items-center h-full opacity-50"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="max-h-10 text-base-content text-white"
+        />
+      </span>
+    </div>
+  </div>
+  <!-- show myText prefill with stored value -->
+  <div
+    v-else-if="field.type === 'my_text'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{ 'cursor-default ': !submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <span
+      style="--tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+      class="!text-2xl w-full h-full"
+      v-text="showLocalText"
+    />
+  </div>
+
+  <!-- show myDate prefill with stored value -->
+  <div
+    v-else-if="field.type === 'my_date'"
+    class="flex absolute"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{ 'cursor-default ': !submittable, 'z-0 ': isActive && submittable, 'bg-opacity-100 ': (isActive || isValueSet) && submittable }"
+  >
+    <span
+      style="--tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+      class="flex items-center px-0.5 w-full h-full"
+    >
+      {{ getFormattedDate }}
+    </span>
+  </div>
+
+  <!-- show mySignature and myInitial prefill with stored value -->
+  <div
+    v-else-if="['my_signature', 'my_initials'].includes(field.type)"
+    class="flex absolute"
+    :style="computedStyle"
+    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-70': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-30': (isActive || isValueSet) && submittable }"
+  >
+    <img
+      v-if="field.type === 'my_signature' && mySignatureUrl"
+      class="mx-auto"
+      :src="mySignatureUrl.url"
+    >
+    <img
+      v-else-if="field.type === 'my_initials' && myInitialsUrl"
+      class="mx-auto"
+      :src="myInitialsUrl.url"
+    >
+    <img
+      v-else
+      class="mx-auto"
+    >
+  </div>
+
+  <!-- show my_check prefill -->
+  <div
+    v-else-if="field.type === 'my_check'"
+    class="flex absolute items-center h-full w-full justify-center"
+    :style="{ ...computedStyle, backgroundColor: 'transparent' }"
+    :class="{'cursor-default ': !submittable}"
+  >
+    <span
+      style="--tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+      class="w-full h-full"
+    >
+      <component
+        :is="fieldIcons[field.type]"
+        width="100%"
+        height="100%"
+        class="h-full"
+      />
+    </span>
+  </div>
+
+  <div
+    v-else
     class="flex absolute lg:text-base"
     :style="computedStyle"
     :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
@@ -158,7 +254,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconBarrierBlock, IconCreditCard } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -166,6 +262,7 @@ export default {
     IconPaperclip,
     IconCheck
   },
+  inject: ['templateAttachments'],
   props: {
     field: {
       type: Object,
@@ -209,12 +306,20 @@ export default {
     area: {
       type: Object,
       required: true
+    },
+    templateValues: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
     }
   },
   emits: ['update:model-value'],
   data () {
     return {
-      textOverflowChars: 0
+      textOverflowChars: 0,
+      showLocalText: ''
     }
   },
   computed: {
@@ -232,6 +337,12 @@ export default {
         radio: 'Radio',
         multiple: 'Multiple Select',
         phone: 'Phone',
+        redact: 'Redact',
+        my_text: 'Text',
+        my_signature: 'My Signature',
+        my_initials: 'My Initials',
+        my_date: 'Date',
+        my_check: 'Check',
         payment: 'Payment'
       }
     },
@@ -249,6 +360,8 @@ export default {
         cells: IconColumns3,
         multiple: IconChecks,
         phone: IconPhoneCheck,
+        redact: IconBarrierBlock,
+        my_check: IconCheck,
         payment: IconCreditCard
       }
     },
@@ -273,6 +386,27 @@ export default {
         return null
       }
     },
+    myAttachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
+    },
+    mySignatureUrl () {
+      if (this.field.type === 'my_signature') {
+        return this.myAttachmentsIndex[this.templateValues[this.field.uuid]]
+      } else {
+        return null
+      }
+    },
+    myInitialsUrl () {
+      if (this.field.type === 'my_initials') {
+        return this.myAttachmentsIndex[this.templateValues[this.field.uuid]]
+      } else {
+        return null
+      }
+    },
     locale () {
       return Intl.DateTimeFormat().resolvedOptions()?.locale
     },
@@ -282,6 +416,13 @@ export default {
           new Date(this.modelValue),
           this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
         )
+      } else {
+        return ''
+      }
+    },
+    getFormattedDate () {
+      if (this.field.type === 'my_date' && this.templateValues[this.field.uuid]) {
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.templateValues[this.field.uuid]))
       } else {
         return ''
       }
@@ -314,6 +455,15 @@ export default {
     }
   },
   mounted () {
+    if (this.field.type === 'my_text') {
+      const fieldUuid = this.field.uuid
+      if (this.templateValues && this.templateValues[fieldUuid]) {
+        this.showLocalText = this.templateValues[fieldUuid]
+      } else {
+        this.showLocalText = ''
+      }
+    }
+
     if (this.field.type === 'text' && this.$refs.textContainer) {
       this.$nextTick(() => {
         this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0

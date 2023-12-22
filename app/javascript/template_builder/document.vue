@@ -15,6 +15,7 @@
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
       @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
+      @update:my-field="$emit('update:myField', $event)"
     />
   </div>
 </template>
@@ -66,7 +67,7 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area'],
+  emits: ['draw', 'drop-field', 'remove-area', 'update:myField'],
   data () {
     return {
       pageRefs: []
@@ -108,6 +109,10 @@ export default {
   methods: {
     scrollToArea (area) {
       this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    },
+    scrollIntoDocument (page) {
+      const ref = this.pageRefs.find((e) => e.image?.uuid === page.uuid)
+      ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     setPageRefs (el) {
       if (el) {

@@ -9,7 +9,8 @@
     <div
       v-if="isSelected || isDraw"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
-      :class="borderColors[submitterIndex]"
+      :class="submitterIndex != 0 ? borderColors[submitterIndex] : ''"
+      :style="{ backgroundColor: submitterIndex == 0 ? bgColors[submitterIndex] : '' }"
     />
     <div
       v-if="field.type === 'cells' && (isSelected || isDraw)"
@@ -19,8 +20,8 @@
         v-for="(cellW, index) in cells"
         :key="index"
         class="absolute top-0 bottom-0 border-r"
-        :class="borderColors[submitterIndex]"
-        :style="{ left: (cellW / area.w * 100) + '%' }"
+        :class="submitterIndex != 0 ? borderColors[submitterIndex] : ''"
+        :style="{ left: (cellW / area.w * 100) + '%', backgroundColor: submitterIndex == 0 ? borderColors[submitterIndex] : '' }"
       >
         <span
           v-if="index === 0 && editable"
@@ -41,6 +42,8 @@
       <FieldSubmitter
         v-model="field.submitter_uuid"
         class="border-r"
+        :me-fields="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
+        :hide-select-me="true"
         :compact="true"
         :editable="editable && !defaultField"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
@@ -52,6 +55,7 @@
         v-model="field.type"
         :button-width="27"
         :editable="editable && !defaultField"
+        :me-active="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
@@ -68,7 +72,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ field.name || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
+        v-if="isNameFocus && !['checkbox', 'phone', 'redact', 'my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(field.type)"
         class="flex items-center ml-1.5"
       >
         <input
@@ -89,14 +93,110 @@
         v-else-if="editable"
         class="pr-1"
         title="Remove"
-        @click.prevent="$emit('remove')"
+        @click.prevent="removeField"
       >
         <IconX width="14" />
       </button>
     </div>
+    <!-- adding redacting box -->
     <div
+      v-if="field.type === 'redact'"
+      class="opacity-100 flex items-center justify-center h-full w-full bg-redact"
+    >
+      <span
+        v-if="field"
+        class="flex justify-center items-center space-x-1 h-full"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="max-h-10 text-white"
+        />
+      </span>
+    </div>
+    <!-- adding editable textarea for prefills -->
+    <div
+      v-else-if="field.type === 'my_text'"
+      class="flex items-center justify-center h-full w-full"
+      style="background-color: transparent;"
+    >
+      <textarea
+        :id="field.uuid"
+        ref="textarea"
+        :value="myLocalText"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+        class="!text-2xl w-full h-full"
+        :placeholder="`type here`"
+        :name="`values[${field.uuid}]`"
+        @input="makeMyText"
+      />
+    </div>
+    <!-- adding my_date  prefills -->
+    <div
+      v-else-if="field.type === 'my_date'"
+      class="flex items-center justify-center h-full w-full"
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+    >
+      <span
+        :id="field.uuid"
+        ref="my_date"
+      >
+        {{ getFormattedDate }}
+      </span>
+    </div>
+    <!-- adding my_signature and my_initials for prefills -->
+    <div
+      v-else-if="['my_signature', 'my_initials'].includes(field.type)"
+      class="flex items-center justify-center h-full w-full"
+      style="background-color: white;"
+    >
+      <img
+        v-if="field.type === 'my_signature' && mySignatureUrl"
+        :id="field.uuid"
+        :src="mySignatureUrl.url"
+        class="d-flex justify-center w-full h-full"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+      >
+      <img
+        v-else-if="field.type === 'my_initials' && myInitialsUrl"
+        :id="field.uuid"
+        :src="myInitialsUrl.url"
+        class="d-flex justify-center w-full h-full"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+      >
+      <img
+        v-else
+        :id="field.uuid"
+        class="d-flex justify-center w-full h-full"
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+      >
+    </div>
+    <!-- show my_check prefill -->
+    <div
+      v-else-if="field.type === 'my_check'"
+      class="flex items-center h-full w-full justify-center"
+      style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; background-color: transparent;"
+      :class="{'cursor-default ': !submittable}"
+    >
+      <span
+        style="border-width: 2px; --tw-bg-opacity: 1; --tw-border-opacity: 0.2; font-size: 1.4rem"
+        class="w-full h-full"
+      >
+        <component
+          :is="fieldIcons[field.type]"
+          width="100%"
+          height="100%"
+          class="h-full"
+        />
+      </span>
+    </div>
+
+    <div
+      v-else
       class="flex items-center h-full w-full"
-      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
+      :class="[submitterIndex != 0 ? bgColors[submitterIndex] : '', field?.default_value ? '' : 'justify-center']"
+      :style="{backgroundColor: submitterIndex == 0 ? bgColors[submitterIndex] : ''}"
     >
       <span
         v-if="field"
@@ -123,6 +223,7 @@
       </span>
     </div>
     <div
+      v-if="!['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)"
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
     />
@@ -133,23 +234,82 @@
       @touchstart="startTouchResize"
     />
   </div>
+  <div
+    @pointerdown.stop
+    @touchstart="startTouchDrag"
+  >
+    <div
+      v-if="showMySignature"
+    >
+      <MySignature
+        :key="field.uuid"
+        v-model="setSignatureValue"
+        :my-signature-style="mySignatureStyle"
+        :is-direct-upload="isDirectUpload"
+        :field="field"
+        :previous-value="previousSignatureValue"
+        :template="template"
+        :attachments-index="attachmentsIndex"
+        @attached="handleMySignatureAttachment"
+        @hide="showMySignature = false"
+        @start="$refs.areas.scrollIntoField(field)"
+      />
+    </div>
+    <div
+      v-if="showMyInitials"
+    >
+      <MyInitials
+        :key="field.uuid"
+        v-model="setInitialsValue"
+        :my-signature-style="mySignatureStyle"
+        :is-direct-upload="isDirectUpload"
+        :field="field"
+        :previous-value="previousInitialsValue"
+        :template="template"
+        :attachments-index="attachmentsIndex"
+        @attached="handleMyInitialsAttachment"
+        @hide="showMyInitials = false"
+        @start="$refs.areas.scrollIntoField(field)"
+      />
+    </div>
+    <div
+      v-if="showMyDate"
+      class="absolute"
+      style="z-index: 50;"
+      :style="{ ...mySignatureStyle }"
+    >
+      <MyDate
+        :key="field.uuid"
+        v-model="setMyDateValue"
+        :my-signature-style="mySignatureStyle"
+        :field="field"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
-import { IconX } from '@tabler/icons-vue'
+import { IconX, IconWriting } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
+import MySignature from './my_signature'
+import MyInitials from './my_initials'
+import MyDate from './my_date'
 
 export default {
   name: 'FieldArea',
   components: {
     FieldType,
     FieldSubmitter,
-    IconX
+    IconX,
+    IconWriting,
+    MySignature,
+    MyInitials,
+    MyDate
   },
-  inject: ['template', 'selectedAreaRef', 'save'],
+  inject: ['template', 'selectedAreaRef', 'save', 'templateAttachments', 'isDirectUpload'],
   props: {
     area: {
       type: Object,
@@ -176,23 +336,103 @@ export default {
       default: null
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'update:myField'],
   data () {
     return {
       isResize: false,
       isDragged: false,
       isNameFocus: false,
+      myLocalText: '',
       textOverflowChars: 0,
-      dragFrom: { x: 0, y: 0 }
+      dragFrom: { x: 0, y: 0 },
+      showMySignature: false,
+      showMyInitials: false,
+      showMyDate: false,
+      myLocalSignatureValue: '',
+      myLocalInitialsValue: '',
+      myLocalDateValue: ''
     }
   },
   computed: {
     defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    setSignatureValue: {
+      get () {
+        return this.myLocalSignatureValue
+      },
+      set (value) {
+        this.makeMySignature(value)
+      }
+    },
+    setInitialsValue: {
+      get () {
+        return this.myLocalInitialsValue
+      },
+      set (value) {
+        this.makeMyInitials(value)
+      }
+    },
+    setMyDateValue: {
+      get () {
+        return this.myLocalDateValue
+      },
+      set (value) {
+        this.myLocalDateValue = value
+        this.makeMyDate(value)
+      }
+    },
     optionIndexText () {
       if (this.area.option_uuid && this.field.options) {
         return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
+      } else {
+        return ''
+      }
+    },
+    attachmentsIndex () {
+      return this.templateAttachments.reduce((acc, a) => {
+        acc[a.uuid] = a
+
+        return acc
+      }, {})
+    },
+    previousSignatureValue () {
+      const mySignatureField = (this.field.type === 'my_signature' && !!this.template.values[this.field.uuid])
+
+      return this.template.values[mySignatureField?.uuid]
+    },
+    previousInitialsValue () {
+      const initialsField = (this.field.type === 'my_initials' && !!this.template.values[this.field.uuid])
+
+      return this.template.values[initialsField?.uuid]
+    },
+    mySignatureStyle () {
+      const { x, y, w, h } = this.area
+
+      return {
+        top: (y * 100) + 7 + '%',
+        left: (x * 100) + '%',
+        width: w * 100 + '%',
+        height: h * 100 + '%'
+      }
+    },
+    mySignatureUrl () {
+      if (this.field.type === 'my_signature') {
+        return this.attachmentsIndex[this.myLocalSignatureValue]
+      } else {
+        return null
+      }
+    },
+    myInitialsUrl () {
+      if (this.field.type === 'my_initials') {
+        return this.attachmentsIndex[this.myLocalInitialsValue]
+      } else {
+        return null
+      }
+    },
+    getFormattedDate () {
+      if (this.field.type === 'my_date' && this.myLocalDateValue) {
+        return new Intl.DateTimeFormat([], { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(this.myLocalDateValue))
       } else {
         return ''
       }
@@ -218,30 +458,32 @@ export default {
     },
     borderColors () {
       return [
-        'border-red-500/80',
-        'border-sky-500/80',
-        'border-emerald-500/80',
-        'border-yellow-300/80',
-        'border-purple-600/80',
-        'border-pink-500/80',
-        'border-cyan-500/80',
-        'border-orange-500/80',
-        'border-lime-500/80',
-        'border-indigo-500/80'
+        'rgb(205 205 205 / 0.5)',
+        'border-red-500/50',
+        'border-sky-500/50',
+        'border-emerald-500/50',
+        'border-yellow-300/50',
+        'border-purple-600/50',
+        'border-pink-500/50',
+        'border-cyan-500/50',
+        'border-orange-500/50',
+        'border-lime-500/50',
+        'border-indigo-500/50'
       ]
     },
     bgColors () {
       return [
-        'bg-red-100/80',
-        'bg-sky-100/80',
-        'bg-emerald-100/80',
-        'bg-yellow-100/80',
-        'bg-purple-100/80',
-        'bg-pink-100/80',
-        'bg-cyan-100/80',
-        'bg-orange-100/80',
-        'bg-lime-100/80',
-        'bg-indigo-100/80'
+        'transparent',
+        'bg-red-100/50',
+        'bg-sky-100/50',
+        'bg-emerald-100/50',
+        'bg-yellow-100/50',
+        'bg-purple-100/50',
+        'bg-pink-100/50',
+        'bg-cyan-100/50',
+        'bg-orange-100/50',
+        'bg-lime-100/50',
+        'bg-indigo-100/50'
       ]
     },
     isSelected () {
@@ -266,13 +508,148 @@ export default {
     }
   },
   mounted () {
+    if (['my_signature', 'my_initials', 'my_text', 'my_date'].includes(this.field.type)) {
+      const fieldUuid = this.field.uuid
+      let myValue = ''
+      if (this.template.values && this.template.values[fieldUuid]) {
+        myValue = this.template.values[fieldUuid]
+      }
+      switch (this.field.type) {
+        case 'my_signature':
+          this.myLocalSignatureValue = myValue
+          break
+
+        case 'my_initials':
+          this.myLocalInitialsValue = myValue
+          break
+
+        case 'my_text':
+          this.myLocalText = myValue
+          break
+
+        case 'my_date':
+          this.myLocalDateValue = myValue
+          break
+
+        default:
+          break
+      }
+    }
+
     if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
       this.$nextTick(() => {
         this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
       })
     }
   },
+  updated () {
+    if (['my_signature', 'my_initials', 'my_text', 'my_date'].includes(this.field.type)) {
+      const fieldUuid = this.field.uuid
+      let myValue = ''
+      if (this.template.values && this.template.values[fieldUuid]) {
+        myValue = this.template.values[fieldUuid]
+      }
+      switch (this.field.type) {
+        case 'my_signature':
+          this.myLocalSignatureValue = myValue
+          break
+
+        case 'my_initials':
+          this.myLocalInitialsValue = myValue
+          break
+
+        case 'my_text':
+          this.myLocalText = myValue
+          break
+
+        case 'my_date':
+          this.myLocalDateValue = myValue
+          break
+
+        default:
+          break
+      }
+    }
+  },
   methods: {
+    makeMyText (e) {
+      this.myLocalText = e.target.value ? e.target.value : this.myLocalText
+      this.saveFieldValue(
+        { [this.field.uuid]: e.target.value }
+      )
+    },
+    makeMySignature (value) {
+      if (value !== null) {
+        this.myLocalSignatureValue = value
+        this.saveFieldValue({ [this.field.uuid]: value })
+      } else {
+        this.saveFieldValue({ [this.field.uuid]: '' })
+      }
+    },
+    makeMyInitials (value) {
+      if (value !== null) {
+        this.myLocalInitialsValue = value
+        this.saveFieldValue({ [this.field.uuid]: value })
+      } else {
+        this.saveFieldValue({ [this.field.uuid]: '' })
+      }
+    },
+    makeMyDate (value) {
+      this.saveFieldValue(
+        { [this.field.uuid]: value }
+      )
+      this.save()
+    },
+    saveFieldValue (event) {
+      this.$emit('update:myField', event)
+    },
+    handleMyInitialsAttachment (attachment) {
+      this.templateAttachments.push(attachment)
+      this.makeMyInitials(attachment.uuid)
+      this.save()
+    },
+    handleMySignatureAttachment (attachment) {
+      this.templateAttachments.push(attachment)
+      this.makeMySignature(attachment.uuid)
+      this.save()
+    },
+    removeField () {
+      const templateValue = this.template.values[this.field.uuid]
+      switch (this.field.type) {
+        case 'my_signature':
+          this.showMySignature = false
+          if (this.myLocalSignatureValue === templateValue) {
+            this.myLocalSignatureValue = ''
+          }
+          console.log('switch signature portion')
+          break
+
+        case 'my_initials':
+          this.showMyInitials = false
+          if (this.myLocalInitialsValue === templateValue) {
+            this.myLocalInitialsValue = ''
+          }
+          console.log('switch initials portion')
+          break
+
+        case 'my_date':
+          this.showMyDate = false
+          if (this.myLocalDateValue === templateValue) {
+            this.myLocalDateValue = ''
+          }
+          console.log('switch my_date portion')
+          break
+
+        case 'my_text':
+          if (this.myLocalText === templateValue) {
+            this.myLocalText = ''
+          }
+          break
+        default:
+          console.log('switch default portion')
+      }
+      this.$emit('remove')
+    },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
 
@@ -360,6 +737,13 @@ export default {
       }
     },
     startDrag (e) {
+      if (this.field.type === 'my_signature') {
+        this.handleMySignatureClick()
+      } else if (this.field.type === 'my_initials') {
+        this.handleMyInitialClick()
+      } else if (this.field.type === 'my_date') {
+        this.handleMyDateClick()
+      }
       this.selectedAreaRef.value = this.area
 
       if (!this.editable) {
@@ -470,6 +854,15 @@ export default {
       this.$emit('stop-resize')
 
       this.save()
+    },
+    handleMySignatureClick () {
+      this.showMySignature = !this.showMySignature
+    },
+    handleMyInitialClick () {
+      this.showMyInitials = !this.showMyInitials
+    },
+    handleMyDateClick () {
+      this.showMyDate = !this.showMyDate
     }
   }
 }

@@ -13,6 +13,7 @@
 #  slug            :string           not null
 #  source          :text             not null
 #  submitters      :text             not null
+#  values          :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  account_id      :bigint           not null
@@ -33,7 +34,7 @@
 #  fk_rails_...  (folder_id => template_folders.id)
 #
 class Template < ApplicationRecord
-  DEFAULT_SUBMITTER_NAME = 'First Party'
+  DEFAULT_SUBMITTER_NAME = 'Me'
 
   belongs_to :author, class_name: 'User'
   belongs_to :account
@@ -50,6 +51,7 @@ class Template < ApplicationRecord
   serialize :fields, JSON
   serialize :schema, JSON
   serialize :submitters, JSON
+  serialize :values, JSON
 
   has_many_attached :documents
 
@@ -60,6 +62,15 @@ class Template < ApplicationRecord
 
   scope :active, -> { where(deleted_at: nil) }
   scope :archived, -> { where.not(deleted_at: nil) }
+
+  after_save :create_secure_images
+
+  def create_secure_images
+      documents.each do |doc|
+        document_data = doc.blob.download
+        Templates::ProcessDocument.generate_pdf_secured_preview_images(self, doc, document_data)
+      end
+  end
 
   private
 

@@ -100,3 +100,27 @@
     </div>
   </div>
 <% end %>
+
+<div class="my-display" id="loader">
+  <div class="loader-animation"></div>
+  <div class="text-load">Loading...</div>
+</div>
+
+<script>
+  function showLoading () {
+    document.getElementById('loader').style.display = 'block'
+  }
+  const editTemplateLink = document.getElementById('edit-template-link')
+  if (editTemplateLink) {
+    editTemplateLink.addEventListener('click', function (event) {
+      event.preventDefault()
+      showLoading()
+
+      const template = this.getAttribute('data-template')
+      setTimeout(function () {
+        window.location.href = template
+        document.getElementById('loader').style.display = 'none'
+      }, 3000)
+    })
+  }
+</script>
