@@ -759,6 +759,10 @@ export default {
         this.scrollIntoDocument(schema[0])
       })
 
+      if (this.template.name === 'New Document') {
+        this.template.name = this.template.schema[0].name
+      }
+
       if (this.onUpload) {
         this.onUpload(this.template)
       }
