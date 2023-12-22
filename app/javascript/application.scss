@@ -75,23 +75,6 @@ button[disabled] .enabled {
   @apply select base-input w-full font-normal;
 }
 
-.tooltip-bottom-end:before {
-  transform: translateX(-95%);
-  top: var(--tooltip-offset);
-  left: 100%;
-  right: auto;
-  bottom: auto;
-}
-
-.tooltip-bottom-end:after {
-  transform: translateX(-25%);
-  border-color: transparent transparent var(--tooltip-color) transparent;
-  top: var(--tooltip-tail-offset);
-  left: 50%;
-  right: auto;
-  bottom: auto;
-}
-
 .autocomplete {
   background: white;
   z-index: 1000;

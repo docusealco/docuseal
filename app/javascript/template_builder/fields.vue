@@ -91,7 +91,7 @@
       </button>
       <div
         v-else-if="type == 'phone'"
-        class="tooltip tooltip-bottom-end flex"
+        class="tooltip tooltip-bottom flex"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
         <a
