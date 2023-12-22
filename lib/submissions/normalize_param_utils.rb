@@ -46,7 +46,7 @@ module Submissions
       attachments_index = attachments.index_by(&:uuid)
 
       submitters.each do |submitter|
-        submitter.values.to_a.each do |_, value|
+        submitter.values.each_value do |value|
           attachment = attachments_index[value]
 
           next unless attachment

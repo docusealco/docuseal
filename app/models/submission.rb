@@ -71,6 +71,10 @@ class Submission < ApplicationRecord
     preserved: 'preserved'
   }, scope: false, prefix: true
 
+  def archived_at
+    deleted_at
+  end
+
   def audit_trail_url
     return if audit_trail.blank?
 

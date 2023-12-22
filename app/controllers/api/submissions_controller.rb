@@ -69,7 +69,7 @@ module Api
     def destroy
       @submission.update!(deleted_at: Time.current)
 
-      render json: @submission.as_json(only: %i[id deleted_at])
+      render json: @submission.as_json(only: %i[id archived_at])
     end
 
     private
@@ -108,7 +108,7 @@ module Api
     def serialize_params
       {
         only: %i[id source submitters_order created_at updated_at],
-        methods: %i[audit_log_url],
+        methods: %i[audit_log_url archived_at],
         include: {
           submitters: { only: %i[id slug uuid name email phone
                                  completed_at opened_at sent_at
