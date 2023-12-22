@@ -8,7 +8,11 @@ class ErrorsController < ActionController::Base
     '/templates/html',
     '/api/templates/html',
     '/templates/pdf',
-    '/api/templates/pdf'
+    '/api/templates/pdf',
+    '/templates/doc',
+    '/api/templates/doc',
+    '/templates/docx',
+    '/api/templates/docx'
   ].freeze
 
   def show
