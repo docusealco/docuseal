@@ -273,7 +273,7 @@ export default {
 
       this.fields.push(field)
 
-      if (['signature', 'initials', 'cells'].includes(type)) {
+      if (['signature', 'initials', 'cells', 'stamp'].includes(type)) {
         this.$emit('set-draw', { field })
       }
 
