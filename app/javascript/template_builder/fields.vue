@@ -261,6 +261,10 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (type === 'stamp') {
+        field.readonly = true
+      }
+
       if (type === 'date') {
         field.preferences = {
           format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'

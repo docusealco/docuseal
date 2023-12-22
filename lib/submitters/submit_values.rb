@@ -74,6 +74,12 @@ module Submitters
       default_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
 
+        if field['type'] == 'stamp'
+          acc[field['uuid']] ||= Submitters::CreateStampAttachment.call(submitter).uuid
+
+          next
+        end
+
         value = field['default_value']
 
         next if value.blank?

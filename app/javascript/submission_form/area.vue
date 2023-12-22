@@ -43,6 +43,11 @@
       :src="image.url"
     >
     <img
+      v-else-if="field.type === 'stamp' && stamp"
+      class="object-contain mx-auto"
+      :src="stamp.url"
+    >
+    <img
       v-else-if="field.type === 'signature' && signature"
       class="object-contain mx-auto"
       :src="signature.url"
@@ -158,7 +163,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -225,6 +230,7 @@ export default {
         signature: 'Signature',
         date: 'Date',
         image: 'Image',
+        stamp: 'Stamp',
         initials: 'Initials',
         file: 'File',
         select: 'Select',
@@ -246,6 +252,7 @@ export default {
         select: IconSelect,
         checkbox: IconCheckbox,
         radio: IconCircleDot,
+        stamp: IconRubberStamp,
         cells: IconColumns3,
         multiple: IconChecks,
         phone: IconPhoneCheck,
@@ -254,6 +261,13 @@ export default {
     },
     image () {
       if (this.field.type === 'image') {
+        return this.attachmentsIndex[this.modelValue]
+      } else {
+        return null
+      }
+    },
+    stamp () {
+      if (this.field.type === 'stamp') {
         return this.attachmentsIndex[this.modelValue]
       } else {
         return null

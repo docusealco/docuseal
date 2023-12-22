@@ -493,6 +493,10 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (type === 'stamp') {
+        field.readonly = true
+      }
+
       if (type === 'date') {
         field.preferences = {
           format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
@@ -675,6 +679,10 @@ export default {
         field.options = [{ value: '', uuid: v4() }]
       }
 
+      if (field.type === 'stamp') {
+        field.readonly = true
+      }
+
       if (field.type === 'date') {
         field.preferences = {
           format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
@@ -707,7 +715,7 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (field.type === 'signature') {
+        } else if (field.type === 'signature' || field.type === 'stamp') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2

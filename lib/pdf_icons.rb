@@ -9,14 +9,26 @@ module PdfIcons
   module_function
 
   def check_io
-    @check_io ||= StringIO.new(PATH.join('check.png').read)
+    StringIO.new(check_data)
   end
 
   def paperclip_io
-    @paperclip_io ||= StringIO.new(PATH.join('paperclip.png').read)
+    StringIO.new(paperclip_data)
   end
 
   def logo_io
-    @logo_io ||= StringIO.new(PATH.join('logo.png').read)
+    StringIO.new(logo_data)
+  end
+
+  def check_data
+    @check_data ||= PATH.join('check.png').read
+  end
+
+  def paperclip_data
+    @paperclip_data ||= PATH.join('paperclip.png').read
+  end
+
+  def logo_data
+    @logo_data ||= PATH.join('logo.png').read
   end
 end

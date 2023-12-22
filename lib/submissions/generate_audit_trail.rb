@@ -192,7 +192,7 @@ module Submissions
                 }
               ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
             ),
-            if field['type'].in?(%w[image signature initials])
+            if field['type'].in?(%w[image signature initials stamp])
               attachment = submitter.attachments.find { |a| a.uuid == value }
               image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
