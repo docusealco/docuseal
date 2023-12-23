@@ -69,7 +69,7 @@ module Api
     def destroy
       @submission.update!(deleted_at: Time.current)
 
-      render json: @submission.as_json(only: %i[id archived_at])
+      render json: @submission.as_json(only: %i[id], methods: %i[archived_at])
     end
 
     private
