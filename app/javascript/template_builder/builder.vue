@@ -612,6 +612,41 @@ export default {
           area.option_uuid = this.drawOption.uuid
         }
 
+        if (area.w === 0 || area.h === 0) {
+          const previousField = [...this.template.fields].reverse().find((f) => f.type === this.drawField.type && f !== this.drawField)
+
+          if (this.selectedField?.type === this.drawField.type) {
+            area.w = this.selectedAreaRef.value.w
+            area.h = this.selectedAreaRef.value.h
+          } else if (previousField?.areas?.length) {
+            area.w = previousField.areas[0].w
+            area.h = previousField.areas[0].h
+          } else {
+            const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+            const pageMask = documentRef.pageRefs[area.page].$refs.mask
+
+            if (this.drawField.type === 'checkbox' || this.drawOption) {
+              area.w = pageMask.clientWidth / 30 / pageMask.clientWidth
+              area.h = (pageMask.clientWidth / 30 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
+            } else if (this.drawField.type === 'image') {
+              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+              area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
+            } else if (this.drawField.type === 'signature' || this.drawField.type === 'stamp') {
+              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+              area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight) / 2
+            } else if (this.drawField.type === 'initials') {
+              area.w = pageMask.clientWidth / 10 / pageMask.clientWidth
+              area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
+            } else {
+              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+              area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
+            }
+          }
+
+          area.x -= area.w / 2
+          area.y -= area.h / 2
+        }
+
         this.drawField.areas ||= []
         this.drawField.areas.push(area)
 

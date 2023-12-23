@@ -247,6 +247,7 @@
               class="w-full input input-primary input-xs text-sm bg-transparent !pr-7 -mr-6"
               type="text"
               required
+              :placeholder="`Option ${index + 1}`"
               @blur="save"
             >
             <button
@@ -264,6 +265,7 @@
             v-else
             v-model="option.value"
             class="w-full input input-primary input-xs text-sm bg-transparent"
+            :placeholder="`Option ${index + 1}`"
             type="text"
             required
             @focus="maybeFocusOnOptionArea(option)"
