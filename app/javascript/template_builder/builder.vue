@@ -5,7 +5,8 @@
   >
     <div
       v-if="$slots.buttons || withTitle"
-      class="flex justify-between py-1.5 items-center pr-4 sticky top-0 z-10"
+      class="flex justify-between py-1.5 items-center pr-4 top-0 z-10"
+      :class="{ sticky: withStickySubmitters }"
       :style="{ backgroundColor }"
     >
       <div class="flex items-center space-x-3">
