@@ -31,24 +31,33 @@ module Api
     end
 
     def show
-      serialized_subbmitters =
-        @submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob).map do |submitter|
-          Submissions::EnsureResultGenerated.call(submitter) if submitter.completed_at?
+      submitters = @submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
 
-          Submitters::SerializeForApi.call(submitter)
-        end
+      serialized_submitters = submitters.map do |submitter|
+        Submissions::EnsureResultGenerated.call(submitter) if submitter.completed_at?
+
+        Submitters::SerializeForApi.call(submitter)
+      end
 
       json = @submission.as_json(
         serialize_params.deep_merge(
-          include: {
-            submission_events: {
-              only: %i[id submitter_id event_type event_timestamp]
-            }
-          }
+          include: { submission_events: { only: %i[id submitter_id event_type event_timestamp] } }
         )
       )
 
-      json[:submitters] = serialized_subbmitters
+      if submitters.all?(&:completed_at?)
+        last_submitter = submitters.max_by(&:completed_at)
+
+        json[:documents] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
+        json[:status] = 'completed'
+        json[:completed_at] = last_submitter.completed_at
+      else
+        json[:documents] = []
+        json[:status] = 'pending'
+        json[:completed_at] = nil
+      end
+
+      json[:submitters] = serialized_submitters
 
       render json:
     end
