@@ -27,7 +27,7 @@ module Templates
 
       template.update!(schema: cloned_schema, fields: cloned_fields)
 
-      original_template.documents.preload(:preview_images_attachments).each do |document|
+      original_template.schema_documents.preload(:preview_images_attachments).each do |document|
         new_document = ActiveStorage::Attachment.create!(
           uuid: schema_uuids_replacements[document.uuid],
           blob_id: document.blob_id,
