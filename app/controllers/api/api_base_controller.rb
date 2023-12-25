@@ -33,6 +33,17 @@ module Api
       result
     end
 
+    def authenticate_user!
+      @current_user ||=
+        if request.headers['X-Auth-Token'].present?
+          sha256 = Digest::SHA256.hexdigest(request.headers['X-Auth-Token'])
+
+          User.joins(:access_token).find_by(access_token: { sha256: })
+        end
+
+      render json: { error: 'Not authenticated' }, status: :unauthorized unless current_user
+    end
+
     def current_account
       current_user&.account
     end

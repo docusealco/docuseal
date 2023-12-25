@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/auth_with_token_strategy'
-
-Warden::Strategies.add(:auth_token, AuthWithTokenStrategy)
-
 Devise.otp_allowed_drift = 60.seconds
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -279,7 +275,7 @@ Devise.setup do |config|
   #
   config.warden do |manager|
     # manager.intercept_401 = false
-    manager.default_strategies(scope: :user).unshift(:auth_token)
+    # manager.default_strategies(scope: :user).unshift(:auth_token)
   end
 
   # ==> Mountable engine configurations
