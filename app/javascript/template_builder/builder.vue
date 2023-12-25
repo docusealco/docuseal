@@ -442,11 +442,20 @@ export default {
     }
   },
   created () {
+    const existingSubmittersUuids = this.defaultSubmitters.map((name) => {
+      return this.template.submitters.find(e => e.name === name)?.uuid
+    })
+
     this.defaultSubmitters.forEach((name, index) => {
       const submitter = (this.template.submitters[index] ||= {})
 
       submitter.name = name
-      submitter.uuid ||= v4()
+
+      if (existingSubmittersUuids.filter(Boolean).length) {
+        submitter.uuid = existingSubmittersUuids[index] || v4()
+      } else {
+        submitter.uuid ||= v4()
+      }
     })
 
     this.selectedSubmitter = this.template.submitters[0]
