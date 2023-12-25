@@ -326,9 +326,16 @@ module Submissions
 
       return sign_reason(reason_name) if Docuseal.multitenant?
 
-      return sign_reason(reason_name) if AccountConfig.where(account: submitter.account,
-                                                             key: AccountConfig::ESIGNING_PREFERENCE_KEY)
-                                                      .first_or_initialize(value: 'multiple').value == 'multiple'
+      config =
+        if Docuseal.multitenant?
+          AccountConfig.where(account: submitter.account, key: AccountConfig::ESIGNING_PREFERENCE_KEY)
+                       .first_or_initialize(value: 'multiple')
+        else
+          AccountConfig.where(key: AccountConfig::ESIGNING_PREFERENCE_KEY)
+                       .first_or_initialize(value: 'multiple')
+        end
+
+      return sign_reason(reason_name) if config.value == 'multiple'
 
       return single_sign_reason if !submitter.submission.submitters.exists?(completed_at: nil) &&
                                    submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
