@@ -99,7 +99,7 @@
         width="22"
         class="animate-spin"
       />
-      <span v-if="isLoading"> Adding blank page </span>
+      <span v-if="isLoading"> Add blank page </span>
       <span v-else>Add blank page</span>
     </button>
 
@@ -112,7 +112,7 @@
           width="22"
         />
         &nbsp;
-        del document </span>
+        DELETE </span>
     </label>
 
     <div class="flex pb-2 pt-1.5">
