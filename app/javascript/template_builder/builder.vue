@@ -6,7 +6,7 @@
     <div
       v-if="$slots.buttons || withTitle"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10"
-      :class="{ sticky: withStickySubmitters }"
+      :class="{ sticky: withStickySubmitters || isBreakpointLg }"
       :style="{ backgroundColor }"
     >
       <div class="flex items-center space-x-3">
@@ -194,28 +194,13 @@
           @cancel="[drawField = null, drawOption = null]"
           @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
         />
-        <FieldType
+        <MobileFields
           v-if="sortedDocuments.length && !drawField && editable"
-          class="dropdown-top dropdown-end fixed bottom-4 right-4 z-10 md:hidden"
-          :model-value="''"
-          @update:model-value="startFieldDraw($event)"
-        >
-          <label
-            class="btn btn-neutral text-white btn-circle btn-lg group"
-            tabindex="0"
-          >
-            <IconPlus
-              class="group-focus:hidden"
-              width="28"
-              height="28"
-            />
-            <IconX
-              class="hidden group-focus:inline"
-              width="28"
-              height="28"
-            />
-          </label>
-        </FieldType>
+          :fields="template.fields"
+          :default-fields="defaultFields"
+          :selected-submitter="selectedSubmitter"
+          @select="startFieldDraw($event)"
+        />
       </div>
       <div
         v-if="withFieldsList"
@@ -273,8 +258,8 @@ import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
-import FieldType from './field_type'
-import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconPlus, IconX } from '@tabler/icons-vue'
+import MobileFields from './mobile_fields'
+import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 
@@ -285,10 +270,8 @@ export default {
     Document,
     Fields,
     MobileDrawField,
-    IconPlus,
-    FieldType,
-    IconX,
     IconWritingSign,
+    MobileFields,
     Logo,
     Dropzone,
     DocumentPreview,
@@ -414,8 +397,6 @@ export default {
     }
   },
   computed: {
-    fieldIcons: FieldType.computed.fieldIcons,
-    fieldNames: FieldType.computed.fieldNames,
     selectedAreaRef: () => ref(),
     fieldAreasIndex () {
       const areas = {}
@@ -489,31 +470,38 @@ export default {
     this.documentRefs = []
   },
   methods: {
-    startFieldDraw (type) {
-      const field = {
-        name: '',
-        uuid: v4(),
-        required: type !== 'checkbox',
-        areas: [],
-        submitter_uuid: this.selectedSubmitter.uuid,
-        type
-      }
+    startFieldDraw ({ name, type }) {
+      const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)
 
-      if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = [{ value: '', uuid: v4() }]
-      }
-
-      if (type === 'stamp') {
-        field.readonly = true
-      }
-
-      if (type === 'date') {
-        field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+      if (existingField) {
+        this.drawField = existingField
+      } else {
+        const field = {
+          name: name || '',
+          uuid: v4(),
+          required: type !== 'checkbox',
+          areas: [],
+          submitter_uuid: this.selectedSubmitter.uuid,
+          type
         }
+
+        if (['select', 'multiple', 'radio'].includes(type)) {
+          field.options = [{ value: '', uuid: v4() }]
+        }
+
+        if (type === 'stamp') {
+          field.readonly = true
+        }
+
+        if (type === 'date') {
+          field.preferences = {
+            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+          }
+        }
+
+        this.drawField = field
       }
 
-      this.drawField = field
       this.drawOption = null
     },
     undo () {

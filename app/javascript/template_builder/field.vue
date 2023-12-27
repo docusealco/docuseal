@@ -70,7 +70,7 @@
             :field="field"
           />
           <span
-            v-else-if="!defaultField"
+            v-else
             class="dropdown dropdown-end"
           >
             <label
@@ -91,7 +91,7 @@
               @click="closeDropdown"
             >
               <div
-                v-if="field.type === 'text'"
+                v-if="field.type === 'text' && !defaultField"
                 class="py-1.5 px-1 relative"
                 @click.stop
               >
@@ -153,7 +153,7 @@
                 </label>
               </li>
               <li
-                v-if="field.type === 'text'"
+                v-if="field.type === 'text' && !defaultField"
                 @click.stop
               >
                 <label class="cursor-pointer py-1.5">
