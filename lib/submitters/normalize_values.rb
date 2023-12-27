@@ -44,12 +44,18 @@ module Submitters
       if submitter_name
         submitter =
           template.submitters.find { |e| e['name'] == submitter_name } ||
-          raise(UnknownSubmitterName, "Unknown submitter: #{submitter_name}")
+          raise(UnknownSubmitterName, "Unknown submitter role: #{submitter_name}")
       end
 
       fields = for_submitter&.submission&.template_fields || template.fields
 
-      fields.select { |e| e['submitter_uuid'] == (for_submitter&.uuid || submitter['uuid']) }
+      fields.select do |e|
+        submitter_uuid =
+          for_submitter&.uuid || submitter&.dig('uuid') ||
+          raise(UnknownSubmitterName, "Unknown submitter role: template defines #{template.submitters.pluck('name')}")
+
+        e['submitter_uuid'] == submitter_uuid
+      end
     end
 
     def build_fields_index(fields)
