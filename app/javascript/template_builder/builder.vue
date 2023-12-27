@@ -610,14 +610,14 @@ export default {
         }
 
         if (area.w === 0 || area.h === 0) {
-          const previousField = [...this.template.fields].reverse().find((f) => f.type === this.drawField.type && f !== this.drawField)
+          const previousArea = this.drawField.areas?.[this.drawField.areas.length - 1]
 
           if (this.selectedField?.type === this.drawField.type) {
             area.w = this.selectedAreaRef.value.w
             area.h = this.selectedAreaRef.value.h
-          } else if (previousField?.areas?.length) {
-            area.w = previousField.areas[0].w
-            area.h = previousField.areas[0].h
+          } else if (previousArea) {
+            area.w = previousArea.w
+            area.h = previousArea.h
           } else {
             const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
             const pageMask = documentRef.pageRefs[area.page].$refs.mask
