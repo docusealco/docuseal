@@ -33,8 +33,8 @@ module Api
       result = relation.order(id: :desc)
                        .limit([params.fetch(:limit, DEFAULT_LIMIT).to_i, MAX_LIMIT].min)
 
-      result = result.where('id < ?', params[:after]) if params[:after].present?
-      result = result.where('id > ?', params[:before]) if params[:before].present?
+      result = result.where(relation.arel_table[:id].lt(params[:after])) if params[:after].present?
+      result = result.where(relation.arel_table[:id].gt(params[:before])) if params[:before].present?
 
       result
     end
