@@ -10,6 +10,7 @@
   />
   <button
     v-if="!isFormVisible"
+    id="expand_form_button"
     class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
     @click.prevent="isFormVisible = true"
   >
@@ -28,6 +29,7 @@
   >
     <button
       v-if="!isCompleted"
+      id="minimize_form_button"
       class="absolute right-0 mr-2 mt-2 top-0 hidden md:block"
       title="Minimize"
       @click.prevent="isFormVisible = false"
@@ -283,6 +285,7 @@
           class="mt-6 md:mt-8"
         >
           <button
+            id="submit_form_button"
             ref="submitButton"
             type="submit"
             class="base-button w-full flex justify-center"
