@@ -55,7 +55,6 @@ module Submitters
                            x: (WIDTH - text_layer.width) / 2,
                            y: (HEIGHT - text_layer.height) / 2)
     end
-    # rubocop:enable Metrics
 
     def build_text_image(submitter)
       time = I18n.l(submitter.completed_at.in_time_zone(submitter.account.timezone), format: :long,
@@ -72,15 +71,18 @@ module Submitters
       role = if submitter.submission.template_submitters.size > 1
                item = submitter.submission.template_submitters.find { |e| e['uuid'] == submitter.uuid }
 
-               "Role: #{item['name']}\n"
+               "#{I18n.t(:role, locale: submitter.account.locale)}: #{item['name']}\n"
              else
                ''
              end
 
-      text = %(<span size="90">Digitally signed by: <b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
+      digitally_signed_by = I18n.t(:digitally_signed_by, locale: submitter.account.locale)
+
+      text = %(<span size="90">#{digitally_signed_by}: <b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
 
       Vips::Image.text(text, width: WIDTH, height: HEIGHT)
     end
+    # rubocop:enable Metrics
 
     def load_logo(_submitter)
       PdfIcons.logo_io

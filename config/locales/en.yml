@@ -1,9 +1,29 @@
 en-US:
+  digitally_signed_by: Digitally signed by
+  role: Role
   date:
     formats:
       default: "%m/%d/%Y"
 
 en-GB:
+  digitally_signed_by: Digitally signed by
+  role: Role
   date:
     formats:
       default: "%d/%m/%Y"
+
+es-ES:
+  digitally_signed_by: Firmado digitalmente por
+  role: Rol
+
+fr-FR:
+  digitally_signed_by: Signé numériquement par
+  role: Rôle
+
+pt-PT:
+  digitally_signed_by: Assinado digitalmente por
+  role: Função
+
+de-DE:
+  digitally_signed_by: Digital signiert von
+  role: Rolle
