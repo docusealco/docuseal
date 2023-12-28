@@ -63,6 +63,8 @@ module Api
     end
 
     def create
+      return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
+
       params[:send_email] = true unless params.key?(:send_email)
       params[:send_sms] = false unless params.key?(:send_sms)
 
