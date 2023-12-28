@@ -84,9 +84,15 @@ module Api
       submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
       submitter.application_key = attrs[:application_key] if attrs.key?(:application_key)
 
+      assign_submission_fields(submitter.submission)
       assign_preferences(submitter, attrs)
 
       submitter
+    end
+
+    def assign_submission_fields(submission)
+      submission.template_fields ||= submission.template.fields
+      submission.template_schema ||= submission.template.schema
     end
 
     def assign_preferences(submitter, attrs)
