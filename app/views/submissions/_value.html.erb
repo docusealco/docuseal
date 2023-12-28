@@ -22,7 +22,7 @@
         <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
       </div>
     <% end %>
-  <% elsif field['type'] == 'cells' %>
+  <% elsif field['type'] == 'cells' && area['cell_w'] %>
     <% cell_width = area['cell_w'] / area['w'] * 100 %>
     <div class="w-full flex items-center">
       <% (0..(area['w'] / area['cell_w']).ceil).each do |index| %>
