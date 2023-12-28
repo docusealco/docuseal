@@ -42,6 +42,34 @@
         </li>
       </template>
     </ul>
+    <ul
+      v-else-if="editable && meActive"
+      tabindex="0"
+      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
+      :class="menuClasses"
+      @click="closeDropdown"
+    >
+      <template
+        v-for="(icon, type) in fieldIcons"
+        :key="type"
+      >
+        <li v-if="['my_text', 'my_signature', 'my_initials', 'my_date', 'my_check'].includes(type)">
+          <a
+            href="#"
+            class="text-sm py-1 px-2"
+            :class="{ 'active': type === modelValue }"
+            @click.prevent="$emit('update:model-value', type)"
+          >
+            <component
+              :is="icon"
+              :stroke-width="1.6"
+              :width="20"
+            />
+            {{ fieldNames[type] }}
+          </a>
+        </li>
+      </template>
+    </ul>
   </span>
 </template>
 
