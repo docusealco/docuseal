@@ -34,5 +34,5 @@ class EncryptedConfig < ApplicationRecord
 
   encrypts :value
 
-  serialize :value, JSON
+  serialize :value, coder: JSON
 end

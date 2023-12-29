@@ -41,8 +41,8 @@ class Submitter < ApplicationRecord
   attribute :preferences, :string, default: -> { {} }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
-  serialize :values, JSON
-  serialize :preferences, JSON
+  serialize :values, coder: JSON
+  serialize :preferences, coder: JSON
 
   has_many_attached :documents
   has_many_attached :attachments

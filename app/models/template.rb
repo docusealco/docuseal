@@ -47,9 +47,9 @@ class Template < ApplicationRecord
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
   attribute :source, :string, default: 'native'
 
-  serialize :fields, JSON
-  serialize :schema, JSON
-  serialize :submitters, JSON
+  serialize :fields, coder: JSON
+  serialize :schema, coder: JSON
+  serialize :submitters, coder: JSON
 
   has_many_attached :documents
 

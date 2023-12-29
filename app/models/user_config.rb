@@ -25,5 +25,5 @@ class UserConfig < ApplicationRecord
 
   belongs_to :user
 
-  serialize :value, JSON
+  serialize :value, coder: JSON
 end

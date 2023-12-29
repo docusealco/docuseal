@@ -15,10 +15,9 @@ Bundler.require(*Rails.groups)
 
 module DocuSeal
   class Application < Rails::Application
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
-    config.autoload_paths << Rails.root.join('lib')
-    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_lib(ignore: %w[assets tasks])
 
     config.active_storage.routes_prefix = ''
 
@@ -31,6 +30,10 @@ module DocuSeal
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
     config.middleware.insert_before ActionDispatch::Static, ApiPathConsiderJsonMiddleware
+
+    config.generators.system_tests = nil
+
+    autoloaders.once.do_not_eager_load("#{Turbo::Engine.root}/app/channels") # https://github.com/hotwired/turbo-rails/issues/512
 
     ActiveSupport.run_load_hooks(:application_config, self)
   end

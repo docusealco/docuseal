@@ -39,10 +39,10 @@ class Submission < ApplicationRecord
 
   attribute :preferences, :string, default: -> { {} }
 
-  serialize :template_fields, JSON
-  serialize :template_schema, JSON
-  serialize :template_submitters, JSON
-  serialize :preferences, JSON
+  serialize :template_fields, coder: JSON
+  serialize :template_schema, coder: JSON
+  serialize :template_submitters, coder: JSON
+  serialize :preferences, coder: JSON
 
   attribute :source, :string, default: 'link'
   attribute :submitters_order, :string, default: 'random'

@@ -60,5 +60,5 @@ class AccountConfig < ApplicationRecord
 
   belongs_to :account
 
-  serialize :value, JSON
+  serialize :value, coder: JSON
 end

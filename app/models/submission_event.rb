@@ -31,7 +31,7 @@ class SubmissionEvent < ApplicationRecord
   attribute :data, :string, default: -> { {} }
   attribute :event_timestamp, :datetime, default: -> { Time.current }
 
-  serialize :data, JSON
+  serialize :data, coder: JSON
 
   before_validation :set_submission_id, on: :create
 

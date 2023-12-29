@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.3.0'
 
 gem 'aws-sdk-s3', require: false
 gem 'azure-storage-blob', require: false
@@ -26,6 +26,7 @@ gem 'pdf-reader'
 gem 'pg', require: false
 gem 'premailer-rails'
 gem 'puma'
+gem 'rack'
 gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
