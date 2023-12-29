@@ -115,6 +115,8 @@ Rails.application.configure do
     key_derivation_salt: Digest::SHA256.hexdigest(encryption_secret)
   }
 
+  ActiveRecord::Encryption.configure(**config.active_record.encryption)
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 

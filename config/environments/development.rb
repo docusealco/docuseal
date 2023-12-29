@@ -79,6 +79,8 @@ Rails.application.configure do
     key_derivation_salt: 'dev key derivation salt'
   }
 
+  ActiveRecord::Encryption.configure(**config.active_record.encryption)
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

@@ -67,6 +67,8 @@ Rails.application.configure do
     key_derivation_salt: 'test key derivation salt'
   }
 
+  ActiveRecord::Encryption.configure(**config.active_record.encryption)
+
   config.middleware.use(Class.new do
     def initialize(app)
       @app = app
