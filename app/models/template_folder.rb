@@ -4,13 +4,13 @@
 #
 # Table name: template_folders
 #
-#  id         :bigint           not null, primary key
-#  deleted_at :datetime
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :bigint           not null
-#  author_id  :bigint           not null
+#  id          :bigint           not null, primary key
+#  archived_at :datetime
+#  name        :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  account_id  :bigint           not null
+#  author_id   :bigint           not null
 #
 # Indexes
 #
@@ -29,10 +29,10 @@ class TemplateFolder < ApplicationRecord
   belongs_to :account
 
   has_many :templates, dependent: :destroy, foreign_key: :folder_id, inverse_of: :folder
-  has_many :active_templates, -> { where(deleted_at: nil) },
+  has_many :active_templates, -> { where(archived_at: nil) },
            class_name: 'Template', dependent: :destroy, foreign_key: :folder_id, inverse_of: :folder
 
-  scope :active, -> { where(deleted_at: nil) }
+  scope :active, -> { where(archived_at: nil) }
 
   def default?
     name == DEFAULT_NAME

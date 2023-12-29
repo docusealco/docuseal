@@ -13,7 +13,7 @@ class StartFormController < ApplicationController
   end
 
   def update
-    @submitter = Submitter.where(submission: @template.submissions.where(deleted_at: nil))
+    @submitter = Submitter.where(submission: @template.submissions.where(archived_at: nil))
                           .order(id: :desc)
                           .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
                           .find_or_initialize_by(**submitter_params.compact_blank)

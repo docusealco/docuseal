@@ -5,7 +5,7 @@
 # Table name: submissions
 #
 #  id                  :bigint           not null, primary key
-#  deleted_at          :datetime
+#  archived_at         :datetime
 #  preferences         :text             not null
 #  slug                :string           not null
 #  source              :text             not null
@@ -55,7 +55,7 @@ class Submission < ApplicationRecord
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
            through: :template, source: :documents_attachments
 
-  scope :active, -> { where(deleted_at: nil) }
+  scope :active, -> { where(archived_at: nil) }
   scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).distinct }
   scope :completed, -> { where.not(id: pending.select(:submission_id)) }
 
@@ -70,10 +70,6 @@ class Submission < ApplicationRecord
     random: 'random',
     preserved: 'preserved'
   }, scope: false, prefix: true
-
-  def archived_at
-    deleted_at
-  end
 
   def audit_trail_url
     return if audit_trail.blank?

@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
       <%= template.name %>
-      <% if template.deleted_at? %>
+      <% if template.archived_at? %>
         <span class="badge badge-outline badge-lg align-middle">Archived</span>
       <% end %>
     </h1>
@@ -23,10 +23,10 @@
     </div>
   </div>
   <div class="flex md:justify-between space-x-2 flex-none pt-1">
-    <% if !template.deleted_at? %>
+    <% if !template.archived_at? %>
       <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'btn btn-sm btn-neutral text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copied_title: 'Copied', copy_title_md: 'Link', copied_title_md: 'Copied' %>
     <% end %>
-    <% if !template.deleted_at? && can?(:destroy, template) %>
+    <% if !template.archived_at? && can?(:destroy, template) %>
       <%= button_to button_title(title: 'Archive', disabled_with: 'Archiving', title_class: 'hidden md:inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>
     <% if can?(:create, template) %>
@@ -35,7 +35,7 @@
         <span class="hidden md:inline">Clone</span>
       <% end %>
     <% end %>
-    <% if !template.deleted_at? && can?(:update, template) %>
+    <% if !template.archived_at? && can?(:update, template) %>
       <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm' do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('pencil', class: 'w-6 h-6') %>
@@ -43,7 +43,7 @@
         </span>
       <% end %>
     <% end %>
-    <% if template.deleted_at? && can?(:create, template) %>
+    <% if template.archived_at? && can?(:create, template) %>
       <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm' %>
     <% end %>
   </div>

@@ -5,7 +5,7 @@ class TemplatesArchivedSubmissionsController < ApplicationController
   load_and_authorize_resource :submission, through: :template, parent: false
 
   def index
-    @submissions = @submissions.where.not(deleted_at: nil)
+    @submissions = @submissions.where.not(archived_at: nil)
     @submissions = Submissions.search(@submissions, params[:q])
 
     @pagy, @submissions = pagy(@submissions.preload(:submitters).order(id: :desc))

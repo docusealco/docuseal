@@ -7,7 +7,7 @@ class TemplatesController < ApplicationController
 
   def show
     submissions = @template.submissions
-    submissions = submissions.active if @template.deleted_at.blank?
+    submissions = submissions.active if @template.archived_at.blank?
     submissions = Submissions.search(submissions, params[:q])
 
     @base_submissions = submissions
@@ -70,7 +70,7 @@ class TemplatesController < ApplicationController
 
         'Template has been removed.'
       else
-        @template.update!(deleted_at: Time.current)
+        @template.update!(archived_at: Time.current)
 
         'Template has been archived.'
       end

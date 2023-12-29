@@ -49,7 +49,7 @@
         <% end %>
       <% end %>
       <span class="btn btn-outline btn-sm w-20 md:w-24">View</span>
-      <% if !submission.deleted_at? && can?(:destroy, submission) %>
+      <% if !submission.archived_at? && can?(:destroy, submission) %>
         <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', form: { class: 'flex' }, title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
       <% end %>
     </div>
@@ -134,7 +134,7 @@
         </form>
       <% end %>
       <span class="btn btn-outline btn-sm w-20 md:w-24">View</span>
-      <% unless submission.deleted_at? %>
+      <% unless submission.archived_at? %>
         <%= button_to button_title(title: nil, disabled_with: 'Remov', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm', form: { class: 'flex' }, title: 'Delete', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
       <% end %>
     </div>

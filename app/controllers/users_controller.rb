@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       return redirect_to settings_users_path, notice: 'Unable to remove user'
     end
 
-    @user.update!(deleted_at: Time.current)
+    @user.update!(archived_at: Time.current)
 
     redirect_to settings_users_path, notice: 'User has been removed'
   end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def build_user
     @user = current_account.users.find_by(email: user_params[:email])&.tap do |user|
       user.assign_attributes(user_params)
-      user.deleted_at = nil
+      user.archived_at = nil
     end
 
     @user ||= current_account.users.new(user_params)

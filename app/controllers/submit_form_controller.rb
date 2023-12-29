@@ -32,7 +32,7 @@ class SubmitFormController < ApplicationController
 
     cookies[:submitter_sid] = @submitter.signed_id
 
-    render @submitter.submission.template.deleted_at? ? :archived : :show
+    render @submitter.submission.template.archived_at? ? :archived : :show
   end
 
   def update
@@ -42,7 +42,7 @@ class SubmitFormController < ApplicationController
       return render json: { error: 'Form has been completed already.' }, status: :unprocessable_entity
     end
 
-    if submitter.template.deleted_at? || submitter.submission.deleted_at?
+    if submitter.template.archived_at? || submitter.submission.archived_at?
       Rollbar.info("Archived template: #{submitter.template.id}") if defined?(Rollbar)
 
       return render json: { error: 'Form has been archived.' }, status: :unprocessable_entity

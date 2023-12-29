@@ -13,7 +13,7 @@
           <%= svg_icon('calendar', class: 'w-4 h-4') %>
           <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
         </span>
-        <% if template.deleted_at? %>
+        <% if template.archived_at? %>
           <span class="flex items-center space-x-1 w-1/2">
             <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
             <span class="truncate"><%= template.folder.name %></span>
@@ -24,14 +24,14 @@
   </a>
   <div class="absolute top-0 bottom-0 w-0 flex items-center hidden md:group-hover:flex" style="right: 37px">
     <div class="space-y-1">
-      <% if can?(:update, template) && !template.deleted_at? %>
+      <% if can?(:update, template) && !template.archived_at? %>
         <span class="tooltip tooltip-left" data-tip="Move">
           <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('folder_share', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
-      <% if template.deleted_at? && can?(:update, template) %>
+      <% if template.archived_at? && can?(:update, template) %>
         <span class="tooltip tooltip-left" data-tip="Restore">
           <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
             <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
@@ -53,9 +53,9 @@
         </span>
       <% end %>
       <% if can?(:destroy, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= template.deleted_at? ? 'Delete' : 'Archive' %>">
-          <%= button_to template_path(template), data: { turbo_confirm: template.deleted_at? ? 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' : 'Are you sure?' }, params: { permanently: template.deleted_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
-            <%= svg_icon(template.deleted_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
+        <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? 'Delete' : 'Archive' %>">
+          <%= button_to template_path(template), data: { turbo_confirm: template.archived_at? ? 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' : 'Are you sure?' }, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+            <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
         </span>

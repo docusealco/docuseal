@@ -16,7 +16,7 @@
     </div>
   </div>
   <% view_archived_html = capture do %>
-    <% if current_account.templates.where.not(deleted_at: nil).exists? %>
+    <% if current_account.templates.where.not(archived_at: nil).exists? %>
       <div>
         <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
       </div>

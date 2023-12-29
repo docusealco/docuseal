@@ -38,9 +38,9 @@ module Api
     end
 
     def destroy
-      @template.update!(deleted_at: Time.current)
+      @template.update!(archived_at: Time.current)
 
-      render json: @template.as_json(only: %i[id deleted_at])
+      render json: @template.as_json(only: %i[id archived_at])
     end
 
     private

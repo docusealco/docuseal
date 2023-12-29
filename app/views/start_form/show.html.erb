@@ -3,7 +3,7 @@
     <div class="space-y-6">
       <div class="text-center w-full space-y-6">
         <%= render 'banner' %>
-        <% unless @template.deleted_at? %>
+        <% unless @template.archived_at? %>
           <p class="text-xl font-semibold text-center">You have been invited to submit a form</p>
         <% end %>
       </div>
@@ -14,7 +14,7 @@
           </div>
           <div>
             <p class="text-lg font-bold mb-1"><%= @template.name %></p>
-            <% if @template.deleted_at? %>
+            <% if @template.archived_at? %>
               <p class="text-sm">Form has been deleted by <span class="font-semibold"><%= @template.account.name %></span>.</p>
             <% else %>
               <p class="text-sm">Invited by <span class="font-semibold"><%= @template.account.name %></span></p>
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <% unless @template.deleted_at? %>
+    <% unless @template.archived_at? %>
       <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
         <div class="form-control !mt-0">
           <%= f.label :email, class: 'label' %>

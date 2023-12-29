@@ -19,7 +19,7 @@ module Accounts
       new_template.account = new_account
       new_template.slug = SecureRandom.base58(14)
 
-      new_template.deleted_at = nil
+      new_template.archived_at = nil
       new_template.save!
 
       Templates::CloneAttachments.call(template: new_template, original_template: template)

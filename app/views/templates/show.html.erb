@@ -11,7 +11,7 @@
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span>Export</span>
       <% end %>
-      <% if !@template.deleted_at? && can?(:create, Submission) %>
+      <% if !@template.archived_at? && can?(:create, Submission) %>
         <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span>Add <span class="hidden md:inline">Recipients</span></span>
@@ -56,7 +56,7 @@
     <%= render partial: 'submission', collection: @submissions %>
   </div>
   <% view_archived_html = capture do %>
-    <% if @template.submissions.where.not(deleted_at: nil).exists? && !@template.deleted_at? %>
+    <% if @template.submissions.where.not(archived_at: nil).exists? && !@template.archived_at? %>
       <div>
         <a href="<%= template_archived_index_path(@template) %>" class="link text-sm">View Archived</a>
       </div>
@@ -74,7 +74,7 @@
     <div class="card-body text-center py-16">
       <div class="max-w-lg mx-auto">
         <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions</p>
-        <% if @template.deleted_at.blank? && params[:q].blank? %>
+        <% if @template.archived_at.blank? && params[:q].blank? %>
           <p>Send an invitation to fill and complete the form</p>
           <div class="space-y-2 flex flex-col">
             <% if can?(:create, Submission) %>

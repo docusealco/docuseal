@@ -63,7 +63,7 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    @submission.update!(deleted_at: Time.current)
+    @submission.update!(archived_at: Time.current)
 
     redirect_back(fallback_location: template_path(@submission.template), notice: 'Submission has been archived')
   end

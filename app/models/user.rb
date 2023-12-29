@@ -5,10 +5,10 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  archived_at            :datetime
 #  consumed_timestep      :integer
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
-#  deleted_at             :datetime
 #  email                  :string           not null
 #  encrypted_password     :string           not null
 #  failed_attempts        :integer          default(0), not null
@@ -62,7 +62,7 @@ class User < ApplicationRecord
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
-  scope :active, -> { where(deleted_at: nil) }
+  scope :active, -> { where(archived_at: nil) }
   scope :admins, -> { where(role: ADMIN_ROLE) }
 
   def access_token
@@ -70,7 +70,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    !deleted_at?
+    !archived_at?
   end
 
   def remember_me
