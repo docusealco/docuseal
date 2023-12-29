@@ -17,7 +17,6 @@ module Submissions
                        'Helvetica'
                      end
 
-    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed with DocuSeal.co'
     VERIFIED_TEXT = 'Verified'
     UNVERIFIED_TEXT = 'Unverified'
@@ -268,7 +267,7 @@ module Submissions
 
       io = StringIO.new
 
-      composer.document.trailer.info[:Creator] = INFO_CREATOR
+      composer.document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
       sign_params = {
         reason: SIGN_REASON,

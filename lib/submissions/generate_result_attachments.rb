@@ -10,7 +10,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    INFO_CREATOR = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})".freeze
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
     SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
@@ -344,7 +343,7 @@ module Submissions
     end
 
     def info_creator
-      INFO_CREATOR
+      "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
     end
 
     def h
