@@ -8,6 +8,7 @@ require 'action_controller/railtie'
 require 'action_view/railtie'
 require 'action_mailer/railtie'
 require 'active_job/railtie'
+require 'rails/health_controller'
 
 require_relative '../lib/api_path_consider_json_middleware'
 
