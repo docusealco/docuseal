@@ -1,4 +1,4 @@
-FROM ruby:3.3.0-alpine as webpack
+FROM ruby:3.2.2-alpine3.18 as webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -24,7 +24,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:3.3.0-alpine3.18 as app
+FROM ruby:3.2.2-alpine3.18 as app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
