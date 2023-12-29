@@ -80,7 +80,7 @@ module Api
     def assign_submitter_attrs(submitter, attrs)
       submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)
       submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '') if attrs.key?(:phone)
-      submitter.values = submitter.values.merge(attrs[:values].to_unsafe_h) if attrs[:values]
+      submitter.values = submitter.values.merge(attrs[:values].to_unsafe_h) if attrs[:values].present?
       submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
       submitter.application_key = attrs[:application_key] if attrs.key?(:application_key)
 
@@ -97,6 +97,8 @@ module Api
 
     def assign_preferences(submitter, attrs)
       submitter_preferences = Submitters.normalize_preferences(submitter.account, current_user, attrs)
+
+      submitter.preferences['default_values'] = attrs[:values].to_unsafe_h if attrs[:values].present?
 
       if submitter_preferences.key?('send_email')
         submitter.preferences['send_email'] = submitter_preferences['send_email']

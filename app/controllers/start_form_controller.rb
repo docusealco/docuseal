@@ -46,12 +46,24 @@ class StartFormController < ApplicationController
   private
 
   def assign_submission_attributes(submitter, template)
+    resubmit_submitter =
+      if params[:resubmit].present?
+        Submitter.where(submission: @template.submissions).find_by(slug: params[:resubmit])
+      end
+
     submitter.assign_attributes(
       uuid: template.submitters.first['uuid'],
       ip: request.remote_ip,
       ua: request.user_agent,
-      preferences: { 'send_email' => true }
+      values: resubmit_submitter&.preferences&.fetch('default_values', nil) || {},
+      preferences: resubmit_submitter&.preferences.presence || { 'send_email' => true }
     )
+
+    if submitter.values.present?
+      resubmit_submitter.attachments.each do |attachment|
+        submitter.attachments << attachment.dup if submitter.values.value?(attachment.uuid)
+      end
+    end
 
     submitter.submission ||= Submission.new(template:,
                                             template_submitters: template.submitters,

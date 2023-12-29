@@ -46,6 +46,7 @@ module Submissions
         submitter_uuid ||= find_submitter_uuid(submission.template, submitter_attrs, index)
 
         process_readonly_fields_param(submitter_attrs[:readonly_fields], template_fields, submitter_uuid)
+        process_field_values_param(submitter_attrs[:values], template_fields, submitter_uuid)
 
         process_fields_param(submitter_attrs[:fields], template_fields, submitter_uuid)
       end
@@ -70,6 +71,21 @@ module Submissions
       end
     end
 
+    def process_field_values_param(values, template_fields, submitter_uuid)
+      return if values.blank?
+
+      template_fields.each do |f|
+        next if f['type'].in?(%w[signature image initials file])
+        next if f['submitter_uuid'] != submitter_uuid
+
+        value = values[f['uuid']]
+
+        next if value.blank?
+
+        f['default_value'] = value
+      end
+    end
+
     def process_fields_param(fields, template_fields, submitter_uuid)
       return if fields.blank?
 
@@ -83,6 +99,8 @@ module Submissions
         next if field_configs.blank?
 
         f['readonly'] = field_configs['readonly'] if field_configs['readonly'].present?
+        f['default_value'] = field_configs['default_value'] if field_configs['default_value'].present? &&
+                                                               !f['type'].in?(%w[signature image initials file])
 
         next if field_configs['validation_pattern'].blank?
 
@@ -111,7 +129,8 @@ module Submissions
         completed_at: attrs[:completed] ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
-        preferences: preferences.merge(submitter_preferences),
+        preferences: preferences.merge(submitter_preferences)
+                                .merge({ default_values: attrs[:values] }.compact_blank),
         uuid:
       )
     end

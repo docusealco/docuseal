@@ -39,7 +39,7 @@
     <% if @submitter.submission.template.submitters.size == 1 %>
       <div class="divider">OR</div>
       <div>
-        <%= button_to button_title(title: 'Resubmit', disabled_with: 'Resubmit', icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: true }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
+        <%= button_to button_title(title: 'Resubmit', disabled_with: 'Resubmit', icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: @submitter.slug }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
       </div>
     <% end %>
   </div>
