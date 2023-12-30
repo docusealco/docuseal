@@ -49,6 +49,8 @@ class User < ApplicationRecord
 
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
+  has_one_attached :signature
+
   belongs_to :account
   has_one :access_token, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
