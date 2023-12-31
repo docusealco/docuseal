@@ -13,9 +13,10 @@
     />
   </div>
   <div
+    ref="fields"
     class="mb-1 mt-2"
     @dragover.prevent="onFieldDragover"
-    @drop="save"
+    @drop="reorderFields"
   >
     <Field
       v-for="field in submitterFields"
@@ -23,7 +24,7 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && !dragField"
+      :editable="editable && (!dragField || dragField !== field)"
       :default-field="defaultFields.find((f) => f.name === field.name)"
       :draggable="editable"
       @dragstart="dragField = field"
@@ -211,22 +212,32 @@ export default {
       this.$emit('set-drag', field)
     },
     onFieldDragover (e) {
-      const targetFieldUuid = e.target.closest('[data-uuid]')?.dataset?.uuid
+      const targetField = e.target.closest('[data-uuid]')
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.dragField.uuid}"]`)
 
-      if (this.dragField && targetFieldUuid && this.dragField.uuid !== targetFieldUuid) {
-        const field = this.fields.find((f) => f.uuid === targetFieldUuid)
-
-        const currentIndex = this.fields.indexOf(this.dragField)
-        const targetIndex = this.fields.indexOf(field)
+      if (dragField && targetField && targetField !== dragField) {
+        const fields = Array.from(this.$refs.fields.children)
+        const currentIndex = fields.indexOf(dragField)
+        const targetIndex = fields.indexOf(targetField)
 
         if (currentIndex < targetIndex) {
-          this.fields.splice(targetIndex + 1, 0, this.dragField)
-          this.fields.splice(currentIndex, 1)
+          targetField.after(dragField)
         } else {
-          this.fields.splice(targetIndex, 0, this.dragField)
-          this.fields.splice(currentIndex + 1, 1)
+          targetField.before(dragField)
         }
       }
+    },
+    reorderFields () {
+      Array.from(this.$refs.fields.children).forEach((el, index) => {
+        if (el.dataset.uuid !== this.fields[index].uuid) {
+          const field = this.fields.find((f) => f.uuid === el.dataset.uuid)
+
+          this.fields.splice(this.fields.indexOf(field), 1)
+          this.fields.splice(index, 0, field)
+        }
+      })
+
+      this.save()
     },
     removeSubmitter (submitter) {
       [...this.fields].forEach((field) => {
