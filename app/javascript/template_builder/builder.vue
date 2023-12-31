@@ -205,7 +205,7 @@
       <div
         v-if="withFieldsList"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
-        :class="drawField ? 'overflow-hidden' : 'overflow-auto'"
+        :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
           v-if="drawField"
@@ -888,9 +888,11 @@ export default {
       })
     },
     save () {
-      if (this.$el.closest('template-builder')) {
-        this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
-      }
+      this.$nextTick(() => {
+        if (this.$el.closest('template-builder')) {
+          this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
+        }
+      })
 
       this.pushUndo()
 

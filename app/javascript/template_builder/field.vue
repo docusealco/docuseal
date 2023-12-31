@@ -72,6 +72,8 @@
           <span
             v-else
             class="dropdown dropdown-end"
+            @mouseenter="renderDropdown = true"
+            @touchstart="renderDropdown = true"
           >
             <label
               tabindex="0"
@@ -84,6 +86,7 @@
               />
             </label>
             <ul
+              v-if="renderDropdown"
               tabindex="0"
               class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
               draggable="true"
@@ -331,7 +334,8 @@ export default {
   data () {
     return {
       isNameFocus: false,
-      showPaymentModal: false
+      showPaymentModal: false,
+      renderDropdown: false
     }
   },
   computed: {

@@ -1,5 +1,9 @@
 <template>
-  <div v-if="mobileView">
+  <div
+    v-if="mobileView"
+    @mouseenter="renderDropdown = true"
+    @touchstart="renderDropdown = true"
+  >
     <div class="flex space-x-2 items-end">
       <div class="group/contenteditable-container bg-base-100 rounded-md p-2 border border-base-300 w-full flex justify-between items-end">
         <div class="flex items-center space-x-2">
@@ -29,7 +33,7 @@
           />
         </label>
         <ul
-          v-if="editable"
+          v-if="editable && renderDropdown"
           tabindex="0"
           class="rounded-md min-w-max mb-2"
           :class="menuClasses"
@@ -85,6 +89,8 @@
   <div
     v-else
     class="dropdown"
+    @mouseenter="renderDropdown = true"
+    @touchstart="renderDropdown = true"
   >
     <label
       v-if="compact"
@@ -125,7 +131,7 @@
       </span>
     </label>
     <ul
-      v-if="editable || !compact"
+      v-if="(editable || !compact) && renderDropdown"
       tabindex="0"
       :class="menuClasses"
       @click="closeDropdown"
@@ -222,6 +228,11 @@ export default {
     }
   },
   emits: ['update:model-value', 'remove', 'new-submitter', 'name-change'],
+  data () {
+    return {
+      renderDropdown: false
+    }
+  },
   computed: {
     colors () {
       return [

@@ -326,18 +326,25 @@
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
       />
-      <div class="flex justify-center">
-        <div class="flex items-center mt-5 mb-1">
+      <div
+        v-if="stepFields.length < 80"
+        class="flex justify-center"
+      >
+        <div class="flex items-center mt-4 mb-1 flex-wrap">
           <a
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
             href="#"
-            class="inline border border-base-300 h-3 w-3 rounded-full mx-1"
+            class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
             :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
             @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
           />
         </div>
       </div>
+      <div
+        v-else
+        class="mt-5"
+      />
     </div>
   </div>
 </template>

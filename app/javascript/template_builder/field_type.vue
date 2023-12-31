@@ -1,5 +1,9 @@
 <template>
-  <span class="dropdown">
+  <span
+    class="dropdown"
+    @mouseenter="renderDropdown = true"
+    @touchstart="renderDropdown = true"
+  >
     <slot>
       <label
         tabindex="0"
@@ -15,7 +19,7 @@
       </label>
     </slot>
     <ul
-      v-if="editable"
+      v-if="editable && renderDropdown"
       tabindex="0"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :class="menuClasses"
@@ -78,6 +82,11 @@ export default {
     }
   },
   emits: ['update:model-value'],
+  data () {
+    return {
+      renderDropdown: false
+    }
+  },
   computed: {
     fieldNames () {
       return {
