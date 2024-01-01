@@ -179,27 +179,62 @@ export default {
       this.isDownloading = true
 
       fetch(this.baseUrl + `/submitters/${this.submitterSlug}/download`).then((response) => response.json()).then((urls) => {
-        const fileRequests = urls.map((url) => {
-          return () => {
-            return fetch(url).then(async (resp) => {
-              const blobUrl = URL.createObjectURL(await resp.blob())
-              const link = document.createElement('a')
+        const isSafariIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
-              link.href = blobUrl
-              link.setAttribute('download', decodeURI(url.split('/').pop()))
+        if (isSafariIos && urls.length > 1) {
+          this.downloadSafariIos(urls)
+        } else {
+          this.downloadUrls(urls)
+        }
+      })
+    },
+    downloadUrls (urls) {
+      const fileRequests = urls.map((url) => {
+        return () => {
+          return fetch(url).then(async (resp) => {
+            const blobUrl = URL.createObjectURL(await resp.blob())
+            const link = document.createElement('a')
 
-              link.click()
+            link.href = blobUrl
+            link.setAttribute('download', decodeURI(url.split('/').pop()))
 
-              URL.revokeObjectURL(url)
-            })
-          }
+            link.click()
+
+            URL.revokeObjectURL(blobUrl)
+          })
+        }
+      })
+
+      fileRequests.reduce(
+        (prevPromise, request) => prevPromise.then(() => request()),
+        Promise.resolve()
+      )
+
+      this.isDownloading = false
+    },
+    downloadSafariIos (urls) {
+      const fileRequests = urls.map((url) => {
+        return fetch(url).then(async (resp) => {
+          const blob = await resp.blob()
+          const blobUrl = URL.createObjectURL(blob.slice(0, blob.size, 'application/octet-stream'))
+          const link = document.createElement('a')
+
+          link.href = blobUrl
+          link.setAttribute('download', decodeURI(url.split('/').pop()))
+
+          return link
         })
+      })
 
-        fileRequests.reduce(
-          (prevPromise, request) => prevPromise.then(() => request()),
-          Promise.resolve()
-        )
+      Promise.all(fileRequests).then((links) => {
+        links.forEach((link, index) => {
+          setTimeout(() => {
+            link.click()
 
+            URL.revokeObjectURL(link.href)
+          }, index * 50)
+        })
+      }).finally(() => {
         this.isDownloading = false
       })
     }
