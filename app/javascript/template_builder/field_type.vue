@@ -29,7 +29,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="withPhone || withPayment || !['phone', 'payment'].includes(type)">
+        <li v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')">
           <a
             href="#"
             class="text-sm py-1 px-2"
