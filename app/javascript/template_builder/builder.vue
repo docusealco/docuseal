@@ -209,7 +209,7 @@
       >
         <div
           v-if="drawField"
-          class="sticky inset-0 h-full"
+          class="sticky inset-0 h-full z-20"
           :style="{ backgroundColor }"
         >
           <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
