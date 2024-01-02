@@ -250,9 +250,9 @@ module Submissions
           sign_params[:signature_size] = 10_000
         end
 
-        pdf.sign(io, **sign_params)
+        pdf.sign(io, write_options: { validate: false }, **sign_params)
       else
-        pdf.write(io, incremental: true)
+        pdf.write(io, incremental: true, validate: false)
       end
 
       ActiveStorage::Attachment.create!(

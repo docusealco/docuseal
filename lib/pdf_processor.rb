@@ -40,7 +40,7 @@ class PdfProcessor < HexaPDF::Content::Processor
 
     new_io = StringIO.new
 
-    doc.write(new_io)
+    doc.write(new_io, validate: false)
 
     [new_io.tap(&:rewind).read, acc]
   end
