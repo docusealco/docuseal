@@ -33,7 +33,7 @@ class SubmitterMailer < ApplicationMailer
     )
   end
 
-  def completed_email(submitter, user, bcc: nil)
+  def completed_email(submitter, user, to: nil)
     @current_account = submitter.submission.template.account
     @submitter = submitter
     @submission = submitter.submission
@@ -55,8 +55,7 @@ class SubmitterMailer < ApplicationMailer
       end
 
     mail(from: from_address_for_submitter(submitter),
-         to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
-         bcc:,
+         to: to || (user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name),
          subject:)
   end
 

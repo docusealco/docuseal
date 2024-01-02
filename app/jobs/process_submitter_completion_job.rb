@@ -26,16 +26,22 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     if submitter.template.account.users.exists?(id: user.id) &&
        submitter.submission.preferences['send_email'] != false
-      bcc = submitter.submission.template.account.account_configs
-                     .find_by(key: AccountConfig::BCC_EMAILS)&.value
+      SubmitterMailer.completed_email(submitter, user).deliver_later!
 
-      SubmitterMailer.completed_email(submitter, user, bcc:).deliver_later!
+      bcc = submitter.submission.template.account.account_configs
+                     .find_by(key: AccountConfig::BCC_EMAILS)&.value.presence
+
+      SubmitterMailer.completed_email(submitter, user, to: bcc).deliver_later! if bcc
     end
 
-    to = submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
-                  .sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
+    to = build_to_addresses(submitter)
 
     SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! if to.present?
+  end
+
+  def build_to_addresses(submitter)
+    submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
+             .sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
   end
 
   def enqueue_next_submitter_request_notification(submitter)
