@@ -24,7 +24,8 @@
   <div
     v-show="isFormVisible"
     id="form_container"
-    class="shadow-md bg-base-100 absolute bottom-0 md:bottom-4 w-full border-base-200 border p-4 rounded"
+    class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded"
+    :class="{ 'md:bottom-4': isBreakpointMd }"
     :style="{ backgroundColor: backgroundColor }"
   >
     <button
@@ -45,7 +46,7 @@
         ref="form"
         :action="submitPath"
         method="post"
-        class="md:mx-16"
+        :class="{ 'md:mx-16': isBreakpointMd }"
         @submit.prevent="submitStep"
       >
         <input
@@ -416,6 +417,11 @@ export default {
       default: false
     },
     withTypedSignature: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    isBreakpointMd: {
       type: Boolean,
       required: false,
       default: true
