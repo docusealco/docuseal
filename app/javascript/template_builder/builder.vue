@@ -312,6 +312,11 @@ export default {
       required: false,
       default: true
     },
+    autosave: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     defaultFields: {
       type: Array,
       required: false,
@@ -887,7 +892,11 @@ export default {
         headers: { ...this.fetchOptions.headers, ...options.headers }
       })
     },
-    save () {
+    save ({ force } = { force: false }) {
+      if (!this.autosave && !force) {
+        return Promise.resolve({})
+      }
+
       this.$nextTick(() => {
         if (this.$el.closest('template-builder')) {
           this.$el.closest('template-builder').dataset.template = JSON.stringify(this.template)
