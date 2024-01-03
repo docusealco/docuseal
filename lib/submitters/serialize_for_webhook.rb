@@ -25,19 +25,21 @@ module Submitters
     end
 
     def build_values_array(submitter)
-      fields_index = (submitter.submission.template.fields +
-                      submitter.submission.template_fields.to_a).index_by { |e| e['uuid'] }
+      fields = submitter.submission.template_fields.presence || submitter.submission.template.fields
       attachments_index = submitter.attachments.index_by(&:uuid)
       submitter_field_counters = Hash.new { 0 }
 
-      submitter.values.map do |uuid, value|
-        field = fields_index[uuid]
+      fields.filter_map do |field|
         submitter_field_counters[field['type']] += 1
+
+        next if field['submitter_uuid'] != submitter.uuid
 
         field_name =
           field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}"
 
-        value = fetch_field_value(field, value, attachments_index)
+        next if !submitter.values.key?(field['uuid']) && !submitter.completed_at?
+
+        value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
 
         { field: field_name, value: }
       end

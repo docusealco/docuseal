@@ -74,6 +74,7 @@
     <div class="hidden md:block relative w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
+      <% submitter_field_counters = Hash.new { 0 } %>
       <% (@submission.template_submitters || @submission.template.submitters).each_with_index do |item, index| %>
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
         <div class="sticky -top-1 bg-base-100 pt-1 -mt-1 z-10">
@@ -132,7 +133,6 @@
           </div>
         </div>
         <div class="px-1.5 mb-4">
-          <% submitter_field_counters = Hash.new { 0 } %>
           <% submitter_fields_index[item['uuid']].to_a.each_with_index do |field, index| %>
             <% submitter_field_counters[field['type']] += 1 %>
             <% value = values[field['uuid']] %>
