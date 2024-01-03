@@ -149,7 +149,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'selectedAreaRef', 'save'],
+  inject: ['template', 'selectedAreaRef', 'save', 't'],
   props: {
     area: {
       type: Object,

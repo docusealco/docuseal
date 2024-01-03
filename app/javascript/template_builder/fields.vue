@@ -120,7 +120,7 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4 && editable"
+    v-if="fields.length < 4 && editable && withHelp"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
@@ -154,11 +154,16 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment', 't'],
   props: {
     fields: {
       type: Array,
       required: true
+    },
+    withHelp: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     editable: {
       type: Boolean,

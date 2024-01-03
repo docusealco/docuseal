@@ -47,7 +47,7 @@
               class="label text-xs"
               @click.prevent="field.required = !field.required"
               @mousedown.prevent
-            >Required</label>
+            >{{ t('required') }}</label>
           </template>
         </div>
         <div
@@ -101,7 +101,7 @@
                 <input
                   v-model="field.default_value"
                   type="text"
-                  placeholder="Default value"
+                  :placeholder="t('default_value')"
                   class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
                   @blur="save"
                 >
@@ -111,7 +111,7 @@
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
-                  Default value
+                  {{ t('default_value') }}
                 </label>
               </div>
               <div
@@ -121,7 +121,7 @@
               >
                 <select
                   v-model="field.preferences.format"
-                  placeholder="Format"
+                  :placeholder="t('format')"
                   class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
                   @change="save"
                 >
@@ -138,7 +138,7 @@
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
-                  Format
+                  {{ t('format') }}
                 </label>
               </div>
               <li
@@ -152,7 +152,7 @@
                     class="toggle toggle-xs"
                     @update:model-value="save"
                   >
-                  <span class="label-text">Required</span>
+                  <span class="label-text">{{ t('required') }}</span>
                 </label>
               </li>
               <li
@@ -166,7 +166,7 @@
                     class="toggle toggle-xs"
                     @update:model-value="save"
                   >
-                  <span class="label-text">Read-only</span>
+                  <span class="label-text">{{ t('read_only') }}</span>
                 </label>
               </li>
               <hr class="pb-0.5 mt-0.5">
@@ -183,7 +183,7 @@
                     :width="20"
                     :stroke-width="1.6"
                   />
-                  Page {{ area.page + 1 }}
+                  {{ t('page') }} {{ area.page + 1 }}
                 </a>
               </li>
               <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
@@ -196,7 +196,7 @@
                     :width="20"
                     :stroke-width="1.6"
                   />
-                  Draw New Area
+                  {{ t('draw_new_area') }}
                 </a>
               </li>
               <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
@@ -209,7 +209,7 @@
                     :width="20"
                     :stroke-width="1.6"
                   />
-                  Copy to All Pages
+                  {{ t('copy_to_all_pages') }}
                 </a>
               </li>
             </ul>
@@ -250,7 +250,7 @@
               class="w-full input input-primary input-xs text-sm bg-transparent !pr-7 -mr-6"
               type="text"
               required
-              :placeholder="`Option ${index + 1}`"
+              :placeholder="`${t('option')} ${index + 1}`"
               @blur="save"
             >
             <button
@@ -268,7 +268,7 @@
             v-else
             v-model="option.value"
             class="w-full input input-primary input-xs text-sm bg-transparent"
-            :placeholder="`Option ${index + 1}`"
+            :placeholder="`${t('option')} ${index + 1}`"
             type="text"
             required
             @focus="maybeFocusOnOptionArea(option)"
@@ -287,7 +287,7 @@
           class="text-center text-sm w-full pb-1"
           @click="addOption"
         >
-          + Add option
+          + {{ t('add_option') }}
         </button>
       </div>
     </div>
@@ -313,7 +313,7 @@ export default {
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't'],
   props: {
     field: {
       type: Object,
@@ -366,7 +366,7 @@ export default {
       } else {
         const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
 
-        const suffix = { multiple: 'Select', radio: 'Group' }[this.field.type] || 'Field'
+        const suffix = { multiple: this.t('select'), radio: this.t('group') }[this.field.type] || this.t('field')
 
         return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
       }

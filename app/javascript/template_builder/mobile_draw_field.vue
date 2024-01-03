@@ -9,14 +9,14 @@
           class="inline"
           :stroke-width="1.6"
         />
-        <span> Draw {{ fieldNames[drawField.type] }} Field </span>
+        <span>{{ t('draw_field').replace('{field}', fieldNames[drawField.type]) }}</span>
       </div>
       <a
         href="#"
         class="link block text-center"
         @click.prevent="$emit('cancel')"
       >
-        Cancel
+        {{ t('cancel') }}
       </a>
     </span>
     <FieldSubmitter
@@ -43,7 +43,7 @@ export default {
     Field,
     FieldSubmitter
   },
-  inject: ['save'],
+  inject: ['save', 't'],
   props: {
     drawField: {
       type: Object,

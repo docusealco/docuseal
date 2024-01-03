@@ -26,7 +26,7 @@ import Upload from './upload'
 
 export default {
   name: 'ReplaceDocument',
-  inject: ['baseFetch'],
+  inject: ['baseFetch', 't'],
   props: {
     templateId: {
       type: [Number, String],
@@ -56,11 +56,11 @@ export default {
     },
     message () {
       if (this.isLoading) {
-        return 'Uploading...'
+        return this.t('uploading_')
       } else if (this.isProcessing) {
-        return 'Processing...'
+        return this.t('processing_')
       } else {
-        return 'Replace'
+        return this.t('replace')
       }
     }
   },

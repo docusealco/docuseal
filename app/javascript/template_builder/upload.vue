@@ -15,13 +15,13 @@
         width="20"
       />
       <span v-if="isLoading">
-        Uploading...
+        {{ t('uploading_') }}
       </span>
       <span v-else-if="isProcessing">
-        Processing...
+        {{ t('processing_') }}
       </span>
       <span v-else>
-        Add Document
+        {{ t('add_document') }}
       </span>
     </label>
     <form
@@ -50,7 +50,7 @@ export default {
     IconUpload,
     IconInnerShadowTop
   },
-  inject: ['baseFetch'],
+  inject: ['baseFetch', 't'],
   props: {
     templateId: {
       type: [Number, String],

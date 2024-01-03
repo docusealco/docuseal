@@ -78,7 +78,7 @@
                 :stroke-width="1.6"
               />
               <span class="py-1">
-                Add {{ names[submitters.length] }}
+                {{ t('add') }} {{ names[submitters.length] }}
               </span>
             </a>
           </li>
@@ -175,7 +175,7 @@
             :stroke-width="1.6"
           />
           <span class="py-1">
-            Add {{ names[submitters.length] }}
+            {{ t('add') }} {{ names[submitters.length] }}
           </span>
         </a>
       </li>
@@ -197,6 +197,7 @@ export default {
     IconTrashX,
     IconChevronUp
   },
+  inject: ['t'],
   props: {
     submitters: {
       type: Array,
@@ -250,16 +251,16 @@ export default {
     },
     names () {
       return [
-        'First Party',
-        'Second Party',
-        'Third Party',
-        'Fourth Party',
-        'Fifth Party',
-        'Sixth Party',
-        'Seventh Party',
-        'Eighth Party',
-        'Ninth Party',
-        'Tenth Party'
+        this.t('first_party'),
+        this.t('second_party'),
+        this.t('third_party'),
+        this.t('fourth_party'),
+        this.t('fifth_party'),
+        this.t('sixth_party'),
+        this.t('seventh_party'),
+        this.t('eighth_party'),
+        this.t('ninth_party'),
+        this.t('tenth_party')
       ]
     },
     selectedSubmitter () {

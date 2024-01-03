@@ -43,7 +43,7 @@
               class="inline"
             />
             <span class="hidden md:inline">
-              Sign Yourself
+              {{ t('sign_yourself') }}
             </span>
           </a>
           <a
@@ -57,7 +57,7 @@
               class="inline"
             />
             <span class="hidden md:inline">
-              Send
+              {{ t('send') }}
             </span>
           </a>
           <button
@@ -76,7 +76,7 @@
               width="22"
             />
             <span class="hidden md:inline">
-              Save
+              {{ t('save') }}
             </span>
           </button>
         </template>
@@ -214,14 +214,14 @@
         >
           <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
             <p>
-              Draw {{ drawField.name }} field on the document
+              {{ t('draw_field_on_the_document').replace('{field}', drawField.name) }}
             </p>
             <p>
               <button
                 class="base-button"
                 @click="[drawField = null, drawOption = null]"
               >
-                Cancel
+                {{ t('cancel') }}
               </button>
             </p>
           </div>
@@ -232,6 +232,7 @@
             :fields="template.fields"
             :submitters="template.submitters"
             :selected-submitter="selectedSubmitter"
+            :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
@@ -262,6 +263,7 @@ import MobileFields from './mobile_fields'
 import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
+import { en as i18nEn } from './i18n'
 
 export default {
   name: 'TemplateBuilder',
@@ -285,6 +287,7 @@ export default {
     return {
       template: this.template,
       save: this.save,
+      t: this.t,
       baseFetch: this.baseFetch,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
@@ -302,12 +305,22 @@ export default {
       required: false,
       default: false
     },
+    i18n: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     backgroundColor: {
       type: String,
       required: false,
       default: ''
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withHelp: {
       type: Boolean,
       required: false,
       default: true
@@ -475,6 +488,9 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    t (key) {
+      return this.i18n[key] || i18nEn[key] || key
+    },
     startFieldDraw ({ name, type }) {
       const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)
 

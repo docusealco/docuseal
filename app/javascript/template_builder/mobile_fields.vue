@@ -78,7 +78,7 @@ export default {
     IconPlus,
     IconX
   },
-  inject: ['withPhone', 'withPayment', 'backgroundColor'],
+  inject: ['withPhone', 'withPayment', 'backgroundColor', 't'],
   props: {
     modelValue: {
       type: String,

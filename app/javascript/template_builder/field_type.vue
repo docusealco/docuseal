@@ -54,7 +54,7 @@ import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckb
 
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone', 'withPayment'],
+  inject: ['withPhone', 'withPayment', 't'],
   props: {
     modelValue: {
       type: String,
@@ -90,20 +90,20 @@ export default {
   computed: {
     fieldNames () {
       return {
-        text: 'Text',
-        signature: 'Signature',
-        initials: 'Initials',
-        date: 'Date',
-        image: 'Image',
-        file: 'File',
-        select: 'Select',
-        checkbox: 'Checkbox',
-        multiple: 'Multiple',
-        radio: 'Radio',
-        cells: 'Cells',
-        stamp: 'Stamp',
-        payment: 'Payment',
-        phone: 'Phone'
+        text: this.t('text'),
+        signature: this.t('signature'),
+        initials: this.t('initials'),
+        date: this.t('date'),
+        image: this.t('image'),
+        file: this.t('file'),
+        select: this.t('select'),
+        checkbox: this.t('checkbox'),
+        multiple: this.t('multiple'),
+        radio: this.t('radio'),
+        cells: this.t('cells'),
+        stamp: this.t('stamp'),
+        payment: this.t('payment'),
+        phone: this.t('phone')
       }
     },
     fieldIcons () {
