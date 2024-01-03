@@ -192,7 +192,9 @@ module Templates
         document.download { |chunk| file.write(chunk) }
       end
       pdf = HexaPDF::Document.open(temp_file_path)
-      pdf.pages.add
+      existing_page_width = pdf.pages[0][:MediaBox][2]
+      new_blank_page = pdf.pages.add
+      new_blank_page[:MediaBox][2] = existing_page_width
       pdf.write(temp_file_path)
       document.reload
       document.metadata[:pdf]['number_of_pages'] += 1
