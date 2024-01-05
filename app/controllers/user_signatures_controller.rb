@@ -28,6 +28,12 @@ class UserSignaturesController < ApplicationController
     end
   end
 
+  def destroy
+    @user_config.destroy
+
+    redirect_to settings_profile_index_path, notice: 'Signature has been removed'
+  end
+
   private
 
   def load_user_config

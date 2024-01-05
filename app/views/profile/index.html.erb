@@ -25,7 +25,8 @@
     <p class="text-2xl font-bold mt-8 mb-4">Signature</p>
     <% signature = UserConfigs.load_signature(current_user) %>
     <% if signature %>
-      <div class="flex justify-center mb-4">
+      <div class="flex justify-center mb-4 relative">
+        <%= button_to button_title(title: 'Remove', disabled_with: 'Removing'), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
         <img src="<%= signature.url %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
       </div>
     <% end %>

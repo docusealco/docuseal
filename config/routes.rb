@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   resource :newsletter, only: %i[show update]
   resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy]
-  resource :user_signature, only: %i[edit update]
+  resource :user_signature, only: %i[edit update destroy]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
   resource :templates_upload, only: %i[create]
