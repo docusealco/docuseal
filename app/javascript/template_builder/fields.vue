@@ -64,7 +64,7 @@
     </template>
   </div>
   <div
-    v-if="editable"
+    v-if="editable && !onlyDefinedFields"
     class="grid grid-cols-3 gap-1 pb-2"
   >
     <template
@@ -174,6 +174,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    onlyDefinedFields: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     defaultSubmitters: {
       type: Array,

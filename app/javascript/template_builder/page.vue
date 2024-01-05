@@ -75,6 +75,11 @@ export default {
       required: false,
       default: () => []
     },
+    allowDraw: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     selectedSubmitter: {
       type: Object,
       required: true
@@ -149,6 +154,10 @@ export default {
       })
     },
     onStartDraw (e) {
+      if (!this.allowDraw) {
+        return
+      }
+
       if (this.isMobile && !this.drawField) {
         return
       }

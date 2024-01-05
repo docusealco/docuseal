@@ -147,6 +147,7 @@
                 :document="document"
                 :is-drag="!!dragField"
                 :default-fields="defaultFields"
+                :allow-draw="!onlyDefinedFields"
                 :draw-field="drawField"
                 :editable="editable"
                 :base-url="baseUrl"
@@ -236,6 +237,7 @@
             :default-submitters="defaultSubmitters"
             :default-fields="defaultFields"
             :with-sticky-submitters="withStickySubmitters"
+            :only-defined-fields="onlyDefinedFields"
             :editable="editable"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @set-drag="dragField = $event"
@@ -393,6 +395,11 @@ export default {
       default: false
     },
     withPayment: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    onlyDefinedFields: {
       type: Boolean,
       required: false,
       default: false

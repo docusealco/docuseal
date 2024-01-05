@@ -7,6 +7,7 @@
       :number="index"
       :editable="editable"
       :areas="areasIndex[index]"
+      :allow-draw="allowDraw"
       :is-drag="isDrag"
       :default-fields="defaultFields"
       :draw-field="drawField"
@@ -40,6 +41,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    allowDraw: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     selectedSubmitter: {
       type: Object,
