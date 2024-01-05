@@ -21,6 +21,8 @@ module Submitters
                .merge('values' => values,
                       'documents' => documents,
                       'audit_log_url' => submitter.submission.audit_log_url,
+                      'submission_url' => r.submissions_preview_url(submitter.submission.slug,
+                                                                    **Docuseal.default_url_options),
                       'role' => submitter_name)
     end
 
@@ -52,7 +54,7 @@ module Submitters
     end
 
     def fetch_field_value(field, value, attachments_index)
-      if field['type'].in?(%w[image signature])
+      if field['type'].in?(%w[image signature initials stamp])
         rails_storage_proxy_url(attachments_index[value])
       elsif field['type'] == 'file'
         Array.wrap(value).compact_blank.filter_map { |e| rails_storage_proxy_url(attachments_index[e]) }
@@ -64,7 +66,11 @@ module Submitters
     def rails_storage_proxy_url(attachment)
       return if attachment.blank?
 
-      Rails.application.routes.url_helpers.rails_storage_proxy_url(attachment, **Docuseal.default_url_options)
+      r.rails_storage_proxy_url(attachment, **Docuseal.default_url_options)
+    end
+
+    def r
+      Rails.application.routes.url_helpers
     end
   end
 end
