@@ -217,14 +217,22 @@
             <p>
               {{ t('draw_field_on_the_document').replace('{field}', drawField.name) }}
             </p>
-            <p>
+            <div>
               <button
                 class="base-button"
-                @click="[drawField = null, drawOption = null]"
+                @click="clearDrawField"
               >
                 {{ t('cancel') }}
               </button>
-            </p>
+              <a
+                v-if="!drawOption && !drawField.areas.length && !['stamp', 'signature', 'initials'].includes(drawField.type)"
+                href="#"
+                class="link block mt-3 text-sm"
+                @click.prevent="[drawField = null, drawOption = null]"
+              >
+                {{ t('or_add_field_without_drawing') }}
+              </a>
+            </div>
           </div>
         </div>
         <div>
@@ -577,10 +585,21 @@ export default {
 
       ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
+    clearDrawField () {
+      if (this.drawField && !this.drawOption && this.drawField.areas.length === 0) {
+        const fieldIndex = this.template.fields.indexOf(this.drawField)
+
+        if (fieldIndex !== -1) {
+          this.template.fields.splice(fieldIndex, 1)
+        }
+      }
+      this.drawField = null
+      this.drawOption = null
+    },
     onKeyUp (e) {
       if (e.code === 'Escape') {
-        this.drawField = null
-        this.drawOption = null
+        this.clearDrawField()
+
         this.selectedAreaRef.value = null
       }
 

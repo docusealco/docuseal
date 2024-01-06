@@ -30,6 +30,7 @@ const en = {
   ninth_party: 'Ninth Party',
   tenth_party: 'Tenth Party',
   add: 'Add',
+  or_add_field_without_drawing: 'Or add field without drawing',
   text: 'Text',
   signature: 'Signature',
   initials: 'Initials',

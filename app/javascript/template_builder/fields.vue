@@ -131,7 +131,7 @@
         Drag &amp; drop any other field type on the page
       </li>
       <li>
-        Click on the field type above to add it to the form without drawing it on the document
+        Click on the field type above to start drawing it
       </li>
     </ul>
   </div>
@@ -295,7 +295,7 @@ export default {
 
       this.fields.push(field)
 
-      if (['signature', 'initials', 'cells', 'stamp'].includes(type)) {
+      if (!['payment', 'file'].includes(type)) {
         this.$emit('set-draw', { field })
       }
 
