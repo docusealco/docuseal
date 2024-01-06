@@ -65,7 +65,7 @@
               :key="currentField.uuid"
               v-model="values[currentField.uuid]"
               :field="currentField"
-              @focus="$refs.areas.scrollIntoField(currentField)"
+              @focus="scrollIntoField(currentField)"
             />
           </div>
           <DateStep
@@ -73,7 +73,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
-            @focus="$refs.areas.scrollIntoField(currentField)"
+            @focus="scrollIntoField(currentField)"
           />
           <div v-else-if="currentField.type === 'select'">
             <label
@@ -87,13 +87,14 @@
               v-else
               class="py-1"
             />
+            <AppearsOn :field="currentField" />
             <select
               :id="currentField.uuid"
               :required="currentField.required"
               class="select base-input !text-2xl w-full text-center font-normal"
               :name="`values[${currentField.uuid}]`"
               @change="values[currentField.uuid] = $event.target.value"
-              @focus="$refs.areas.scrollIntoField(currentField)"
+              @focus="scrollIntoField(currentField)"
             >
               <option
                 value=""
@@ -198,7 +199,7 @@
                       :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
                       :required="field.required"
                       :checked="!!values[field.uuid]"
-                      @click="[$refs.areas.scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
+                      @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                     >
                     <span class="text-xl">
                       {{ field.name || field.type + ' ' + (index + 1) }}
@@ -216,7 +217,7 @@
             :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
-            @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
+            @attached="[attachments.push($event), scrollIntoField(currentField)]"
           />
           <SignatureStep
             v-else-if="currentField.type === 'signature'"
@@ -230,7 +231,7 @@
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
             @attached="attachments.push($event)"
-            @start="$refs.areas.scrollIntoField(currentField)"
+            @start="scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
           />
           <InitialsStep
@@ -244,8 +245,8 @@
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
             @attached="attachments.push($event)"
-            @start="$refs.areas.scrollIntoField(currentField)"
-            @focus="$refs.areas.scrollIntoField(currentField)"
+            @start="scrollIntoField(currentField)"
+            @focus="scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
           />
           <AttachmentStep
@@ -256,7 +257,7 @@
             :field="currentField"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
-            @attached="[attachments.push($event), $refs.areas.scrollIntoField(currentField)]"
+            @attached="[attachments.push($event), scrollIntoField(currentField)]"
           />
           <PhoneStep
             v-else-if="currentField.type === 'phone'"
@@ -266,7 +267,7 @@
             :field="currentField"
             :default-value="submitter.phone"
             :submitter-slug="submitterSlug"
-            @focus="$refs.areas.scrollIntoField(currentField)"
+            @focus="scrollIntoField(currentField)"
             @submit="submitStep"
           />
           <PaymentStep
@@ -277,7 +278,7 @@
             :field="currentField"
             :submitter-slug="submitterSlug"
             @attached="attachments.push($event)"
-            @focus="$refs.areas.scrollIntoField(currentField)"
+            @focus="scrollIntoField(currentField)"
             @submit="submitStep"
           />
         </div>
@@ -363,6 +364,7 @@ import TextStep from './text_step'
 import DateStep from './date_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import AppearsOn from './appears_on'
 import { t } from './i18n'
 
 export default {
@@ -371,6 +373,7 @@ export default {
     FieldAreas,
     ImageStep,
     SignatureStep,
+    AppearsOn,
     AttachmentStep,
     InitialsStep,
     MultiSelectStep,
@@ -386,6 +389,7 @@ export default {
   provide () {
     return {
       baseUrl: this.baseUrl,
+      scrollIntoArea: this.scrollIntoArea,
       t: this.t
     }
   },
@@ -687,7 +691,7 @@ export default {
         this.recalculateButtonDisabledKey = Math.random()
 
         if (scrollToArea) {
-          this.$refs.areas.scrollIntoField(step[0])
+          this.scrollIntoField(step[0])
         }
 
         this.$refs.form.querySelector('input[type="date"], input[type="text"], select')?.focus()
@@ -714,6 +718,12 @@ export default {
           return response
         })
       }
+    },
+    scrollIntoField (field) {
+      return this.$refs.areas.scrollIntoField(field)
+    },
+    scrollIntoArea (area) {
+      return this.$refs.areas.scrollIntoArea(area)
     },
     async submitStep () {
       this.isSubmitting = true

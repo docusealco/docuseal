@@ -10,6 +10,7 @@
     v-else
     class="py-1"
   />
+  <AppearsOn :field="field" />
   <div class="items-center flex">
     <input
       v-if="!isTextArea"
@@ -56,11 +57,13 @@
 
 <script>
 import { IconAlignBoxLeftTop } from '@tabler/icons-vue'
+import AppearsOn from './appears_on'
 
 export default {
   name: 'TextStep',
   components: {
-    IconAlignBoxLeftTop
+    IconAlignBoxLeftTop,
+    AppearsOn
   },
   inject: ['t'],
   props: {

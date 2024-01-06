@@ -89,6 +89,7 @@
         </a>
       </div>
     </div>
+    <AppearsOn :field="field" />
     <input
       :value="modelValue || computedPreviousValue"
       type="hidden"
@@ -122,12 +123,14 @@
 import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
+import AppearsOn from './appears_on'
 
 let isFontLoaded = false
 
 export default {
   name: 'SignatureStep',
   components: {
+    AppearsOn,
     IconReload,
     IconCamera,
     IconTextSize,

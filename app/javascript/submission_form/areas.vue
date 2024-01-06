@@ -83,22 +83,25 @@ export default {
       return (this.$root.$el?.parentNode?.getRootNode() || document).getElementById(`page-${area.attachment_uuid}-${area.page}`)
     },
     scrollIntoField (field) {
-      this.areaRefs.find((area) => {
-        if (area.field === field) {
-          const root = this.$root.$el.parentNode.getRootNode()
-          const container = root.body || root.querySelector('div')
+      if (field?.areas) {
+        this.scrollIntoArea(field.areas[0])
+      }
+    },
+    scrollIntoArea (area) {
+      const areaRef = this.areaRefs.find((a) => a.area === area)
 
-          if (container.style.overflow === 'hidden') {
-            this.scrollInContainer(area.$el)
-          } else {
-            area.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
+      if (areaRef) {
+        const root = this.$root.$el.parentNode.getRootNode()
+        const container = root.body || root.querySelector('div')
 
-          return true
+        if (container.style.overflow === 'hidden') {
+          this.scrollInContainer(areaRef.$el)
         } else {
-          return null
+          areaRef.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
-      })
+
+        return true
+      }
     },
     scrollInContainer (target) {
       const root = this.$root.$el.parentNode.getRootNode()

@@ -15,6 +15,7 @@
         {{ t('set_today') }}
       </button>
     </div>
+    <AppearsOn :field="field" />
     <div class="text-center">
       <input
         ref="input"
@@ -31,11 +32,13 @@
 
 <script>
 import { IconCalendarCheck } from '@tabler/icons-vue'
+import AppearsOn from './appears_on'
 
 export default {
   name: 'DateStep',
   components: {
-    IconCalendarCheck
+    IconCalendarCheck,
+    AppearsOn
   },
   inject: ['t'],
   props: {

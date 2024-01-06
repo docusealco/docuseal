@@ -70,6 +70,7 @@
         </a>
       </div>
     </div>
+    <AppearsOn :field="field" />
     <input
       :value="modelValue || computedPreviousValue"
       type="hidden"
@@ -103,10 +104,12 @@
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import { IconReload, IconTextSize, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
+import AppearsOn from './appears_on'
 
 export default {
   name: 'InitialsStep',
   components: {
+    AppearsOn,
     IconReload,
     IconTextSize,
     IconSignature,
