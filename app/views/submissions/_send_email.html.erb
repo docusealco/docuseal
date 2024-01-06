@@ -36,7 +36,12 @@
         <%= f.text_field :subject, value: config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
-        <%= f.label :message, 'Body', class: 'label' %>
+        <div class="flex items-center">
+          <%= f.label :message, 'Body', class: 'label' %>
+          <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+            <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+          </span>
+        </div>
         <autoresize-textarea>
           <%= f.text_area :body, value: config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
         </autoresize-textarea>

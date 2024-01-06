@@ -1,4 +1,4 @@
-<div class="collapse collapse-plus bg-base-200">
+<div class="collapse collapse-plus bg-base-200 overflow-visible">
   <input type="checkbox">
   <div class="collapse-title text-xl font-medium">
     <div>
@@ -14,7 +14,12 @@
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
-          <%= ff.label :body, class: 'label' %>
+          <div class="flex items-center">
+            <%= ff.label :body, class: 'label' %>
+            <span class="tooltip" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+            </span>
+          </div>
           <autoresize-textarea>
             <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
