@@ -673,7 +673,16 @@ export default {
         }
 
         this.drawField.areas ||= []
-        this.drawField.areas.push(area)
+
+        const insertBeforeAreaIndex = this.drawField.areas.findIndex((a) => {
+          return a.attachment_uuid === area.attachment_uuid && a.page > area.page
+        })
+
+        if (insertBeforeAreaIndex !== -1) {
+          this.drawField.areas.splice(insertBeforeAreaIndex, 0, area)
+        } else {
+          this.drawField.areas.push(area)
+        }
 
         if (this.template.fields.indexOf(this.drawField) === -1) {
           this.template.fields.push(this.drawField)
