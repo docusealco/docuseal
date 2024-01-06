@@ -4,11 +4,16 @@
       <div class="text-center">
         <div class="relative flex flex-col items-center">
           <%= render 'shared/logo', width: '100', height: '100' %>
-          <h1 class="text-6xl font-bold mt-4 mb-8">
+          <h1 class="text-6xl font-bold mt-4 mb-4">
             DocuSeal
           </h1>
+          <% if Docuseal.version.present? %>
+            <a href="https://github.com/docusealco/docuseal/releases/tag/<%= Docuseal.version %>" target="_blank" class="badge badge-outline badge-lg block mx-auto">
+              v<%= Docuseal.version %>
+            </a>
+          <% end %>
         </div>
-        <h2 class="mb-16 text-lg text-center text-gray-600">
+        <h2 class="mt-4 mb-16 text-lg text-center text-gray-600">
           A self-hosted and open-source web platform that provides secure and efficient digital document signing and processing.
         </h2>
       </div>
@@ -62,7 +67,8 @@
             </div>
             <h3 class="mb-4 text-2xl font-semibold">Open Source</h3>
             <p class="text-base text-gray-500">
-              Source code is available under <a href="<%= Docuseal::GITHUB_URL %>" class="link link-neutral font-bold" target="_blank">github.com/docusealco</a>.<br>Open-source contributors are always ready to help!
+              Source code is available under <a href="<%= Docuseal::GITHUB_URL %>" class="link link-neutral font-bold" target="_blank">github.com/docusealco</a>.<br>
+              Open-source contributors are always ready to help!
             </p>
           </div>
         </div>

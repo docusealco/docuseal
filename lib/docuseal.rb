@@ -29,6 +29,7 @@ module Docuseal
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
+  VERSION_FILE_PATH = Rails.root.join('.version')
 
   DEFAULT_URL_OPTIONS = {
     host: HOST,
@@ -36,6 +37,10 @@ module Docuseal
   }.freeze
 
   module_function
+
+  def version
+    @version ||= VERSION_FILE_PATH.read.strip if VERSION_FILE_PATH.exist?
+  end
 
   def multitenant?
     ENV['MULTITENANT'] == 'true'

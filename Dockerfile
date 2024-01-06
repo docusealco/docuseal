@@ -53,7 +53,7 @@ COPY ./log ./log
 COPY ./lib ./lib
 COPY ./public ./public
 COPY ./tmp ./tmp
-COPY LICENSE README.md Rakefile config.ru ./
+COPY LICENSE README.md Rakefile config.ru .version ./
 
 COPY --from=fonts /fonts/LiberationSans-Regular.ttf /fonts/LiberationSans-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
 COPY --from=webpack /app/public/packs ./public/packs
