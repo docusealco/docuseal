@@ -21,15 +21,20 @@
       </span>
     </div>
     <div
-      v-if="isActive && withLabel && !area.option_uuid"
-      class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap"
+      v-if="isActive && withLabel && (!area.option_uuid || !option.value)"
+      class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap pointer-events-none"
     >
-      {{ field.name || fieldNames[field.type] }}
-      <template v-if="field.type === 'checkbox' && !field.name">
-        {{ fieldIndex + 1 }}
+      <template v-if="area.option_uuid && !option.value">
+        {{ optionValue(option) }}
       </template>
-      <template v-else-if="!field.required && field.type !== 'checkbox'">
-        (optional)
+      <template v-else>
+        {{ field.name || fieldNames[field.type] }}
+        <template v-if="field.type === 'checkbox' && !field.name">
+          {{ fieldIndex + 1 }}
+        </template>
+        <template v-else-if="!field.required && field.type !== 'checkbox'">
+          (optional)
+        </template>
       </template>
     </div>
     <div
@@ -102,11 +107,11 @@
         :value="false"
         class="aspect-square base-radio"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
-        :checked="!!modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
-        @click="$emit('update:model-value', field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        :checked="!!modelValue && modelValue === optionValue(option)"
+        @click="$emit('update:model-value', optionValue(option))"
       >
       <IconCheck
-        v-else-if="!!modelValue && modelValue === field.options.find((o) => o.uuid === area.option_uuid)?.value"
+        v-else-if="!!modelValue && modelValue === optionValue(option)"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />
@@ -121,11 +126,11 @@
         :value="false"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
-        :checked="!!modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
-        @change="updateMultipleSelectValue(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        :checked="!!modelValue && modelValue.includes(optionValue(option))"
+        @change="updateMultipleSelectValue(optionValue(option))"
       >
       <IconCheck
-        v-else-if="!!modelValue && modelValue.includes(field.options.find((o) => o.uuid === area.option_uuid)?.value)"
+        v-else-if="!!modelValue && modelValue.includes(optionValue(option))"
         class="aspect-square"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
       />
@@ -171,6 +176,7 @@ export default {
     IconPaperclip,
     IconCheck
   },
+  inject: ['t'],
   props: {
     field: {
       type: Object,
@@ -240,6 +246,9 @@ export default {
         phone: 'Phone',
         payment: 'Payment'
       }
+    },
+    option () {
+      return this.field.options.find((o) => o.uuid === this.area.option_uuid)
     },
     fieldIcons () {
       return {
@@ -335,6 +344,17 @@ export default {
     }
   },
   methods: {
+    optionValue (option) {
+      if (option) {
+        if (option.value) {
+          return option.value
+        } else {
+          const index = this.field.options.indexOf(option)
+
+          return `${this.t('option')} ${index + 1}`
+        }
+      }
+    },
     formatDate (date, format) {
       const monthFormats = {
         M: 'numeric',

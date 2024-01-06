@@ -122,7 +122,7 @@
             <div class="flex w-full">
               <div class="space-y-3.5 mx-auto">
                 <div
-                  v-for="option in currentField.options"
+                  v-for="(option, index) in currentField.options"
                   :key="option.uuid"
                 >
                   <label
@@ -135,11 +135,11 @@
                       type="radio"
                       class="base-radio !h-7 !w-7"
                       :name="`values[${currentField.uuid}]`"
-                      :value="option.value"
+                      :value="option.value || `${t('option')} ${index + 1}`"
                       :required="currentField.required"
                     >
                     <span class="text-xl">
-                      {{ option.value }}
+                      {{ option.value || `${t('option')} ${index + 1}` }}
                     </span>
                   </label>
                 </div>

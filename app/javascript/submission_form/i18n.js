@@ -2,6 +2,7 @@ const en = {
   submit_form: 'Submit Form',
   type_here: 'Type here',
   optional: 'optional',
+  option: 'Option',
   select_your_option: 'Select your option',
   complete_hightlighted_checkboxes_and_click: 'Complete hightlighted checkboxes and click',
   submit: 'submit',
