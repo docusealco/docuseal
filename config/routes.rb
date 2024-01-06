@@ -109,7 +109,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[index]
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     if !Docuseal.multitenant? || Docuseal.demo?
-      resources :api, only: %i[index], controller: 'api_settings'
+      resources :api, only: %i[index create], controller: 'api_settings'
       resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
     end
     resource :account, only: %i[show update]
