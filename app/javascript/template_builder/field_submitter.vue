@@ -105,6 +105,7 @@
     </label>
     <label
       v-else
+      ref="label"
       tabindex="0"
       class="group cursor-pointer group/contenteditable-container rounded-md p-2 border border-base-300 hover:border-content w-full flex justify-between"
     >
@@ -155,13 +156,36 @@
               {{ submitter.name }}
             </span>
           </span>
-          <button
+          <div
             v-if="!compact && submitters.length > 1 && editable"
-            class="hidden group-hover:block px-2"
-            @click.stop="remove(submitter)"
+            class="flex"
           >
-            <IconTrashX :width="18" />
-          </button>
+            <div class="flex-col pr-1 hidden group-hover:flex -mt-1 h-0">
+              <button
+                title="Up"
+                class="relative w-2"
+                style="font-size: 10px; margin-bottom: -4px"
+                @click.stop="[move(submitter, -1), $refs.label.focus()] "
+              >
+                ▲
+              </button>
+              <button
+                title="Down"
+                class="relative w-2"
+                style="font-size: 10px; margin-top: -4px"
+                @click.stop="[move(submitter, 1), $refs.label.focus()] "
+              >
+                ▼
+              </button>
+            </div>
+            <button
+              v-if="!compact && submitters.length > 1 && editable"
+              class="hidden group-hover:block px-2"
+              @click.stop="remove(submitter)"
+            >
+              <IconTrashX :width="18" />
+            </button>
+          </div>
         </a>
       </li>
       <li v-if="submitters.length < 10 && editable">
@@ -197,7 +221,7 @@ export default {
     IconTrashX,
     IconChevronUp
   },
-  inject: ['t'],
+  inject: ['t', 'save'],
   props: {
     submitters: {
       type: Array,
@@ -275,6 +299,23 @@ export default {
       if (window.confirm('Are you sure?')) {
         this.$emit('remove', submitter)
       }
+    },
+    move (submitter, direction) {
+      const currentIndex = this.submitters.indexOf(submitter)
+
+      this.submitters.splice(currentIndex, 1)
+
+      if (currentIndex + direction > this.submitters.length) {
+        this.submitters.unshift(submitter)
+      } else if (currentIndex + direction < 0) {
+        this.submitters.push(submitter)
+      } else {
+        this.submitters.splice(currentIndex + direction, 0, submitter)
+      }
+
+      this.selectSubmitter(submitter)
+
+      this.save()
     },
     addSubmitter () {
       const newSubmitter = {
