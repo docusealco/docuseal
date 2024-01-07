@@ -13,7 +13,7 @@ module Submissions
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
     SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
-    RTL_REGEXP = /\A[\p{Hebrew}\p{Arabic}\s;.,-]+\z/
+    RTL_REGEXP = /\A[\p{Hebrew}\p{Arabic}].*[\p{Hebrew}\p{Arabic}]\z/
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
