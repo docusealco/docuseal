@@ -61,6 +61,7 @@
         v-if="field.type !== 'checkbox' || field.name"
         ref="name"
         :contenteditable="editable && !defaultField"
+        dir="auto"
         class="pr-1 cursor-text outline-none block"
         style="min-width: 2px"
         @keydown.enter.prevent="onNameEnter"
@@ -83,7 +84,7 @@
           class="label text-xs"
           @click.prevent="field.required = !field.required"
           @mousedown.prevent
-        >Required</label>
+        >{{ t('required') }}</label>
       </div>
       <button
         v-else-if="editable"

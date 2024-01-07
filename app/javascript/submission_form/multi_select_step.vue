@@ -2,6 +2,7 @@
   <label
     v-if="field.name"
     :for="field.uuid"
+    dir="auto"
     class="label text-2xl mb-2"
   >{{ field.name }}</label>
   <div class="flex w-full">

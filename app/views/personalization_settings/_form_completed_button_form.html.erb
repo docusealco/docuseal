@@ -11,7 +11,7 @@
       <%= f.fields_for :value, Struct.new(:title, :url).new(*(f.object.value || {}).values_at('title', 'url')) do |ff| %>
         <div class="form-control">
           <%= ff.label :title, 'Button title', class: 'label' %>
-          <%= ff.text_field :title, class: 'base-input' %>
+          <%= ff.text_field :title, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
           <%= ff.label :url, 'Button URL', class: 'label' %>

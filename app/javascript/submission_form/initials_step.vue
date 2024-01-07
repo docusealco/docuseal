@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div dir="auto">
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
@@ -24,7 +24,7 @@
         </span>
         <span
           v-else
-          class="tooltip"
+          class="tooltip ml-2"
           :data-tip="t('draw_initials')"
         >
           <a

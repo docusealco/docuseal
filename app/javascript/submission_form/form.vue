@@ -79,6 +79,7 @@
             <label
               v-if="currentField.name"
               :for="currentField.uuid"
+              dir="auto"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
               <template v-if="!currentField.required">({{ t('optional') }})</template>
@@ -90,6 +91,7 @@
             <AppearsOn :field="currentField" />
             <select
               :id="currentField.uuid"
+              dir="auto"
               :required="currentField.required"
               class="select base-input !text-2xl w-full text-center font-normal"
               :name="`values[${currentField.uuid}]`"
@@ -116,6 +118,7 @@
             <label
               v-if="currentField.name"
               :for="currentField.uuid"
+              dir="auto"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
               <template v-if="!currentField.required">({{ t('optional') }})</template>

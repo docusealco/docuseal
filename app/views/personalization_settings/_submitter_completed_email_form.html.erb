@@ -11,12 +11,12 @@
       <%= f.fields_for :value, Struct.new(:subject, :body).new(*f.object.value.values_at('subject', 'body')) do |ff| %>
         <div class="form-control">
           <%= ff.label :subject, class: 'label' %>
-          <%= ff.text_field :subject, required: true, class: 'base-input' %>
+          <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
           <%= ff.label :body, class: 'label' %>
           <autoresize-textarea>
-            <%= ff.text_area :body, required: true, class: 'base-input w-full py-2' %>
+            <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
         </div>
       <% end %>

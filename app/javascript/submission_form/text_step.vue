@@ -2,6 +2,7 @@
   <label
     v-if="field.name"
     :for="field.uuid"
+    dir="auto"
     class="label text-2xl mb-2"
   >{{ field.name }}
     <template v-if="!field.required">({{ t('optional') }})</template>
@@ -17,6 +18,7 @@
       :id="field.uuid"
       v-model="text"
       :maxlength="cellsMaxLegth"
+      dir="auto"
       class="base-input !text-2xl w-full !pr-11 -mr-10"
       :required="field.required"
       :pattern="field.validation?.pattern"

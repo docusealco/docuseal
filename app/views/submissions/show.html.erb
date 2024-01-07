@@ -35,7 +35,7 @@
         <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
           <img src="<%= document.preview_images.first.url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
-          <div class="pb-2 pt-1.5 text-center">
+          <div class="pb-2 pt-1.5 text-center" dir="auto">
             <%= item['name'].presence || document.filename.base %>
           </div>
         </a>
@@ -81,7 +81,7 @@
           <div class="border border-base-300 rounded-md px-2 py-1 mb-1">
             <div class="flex items-center space-x-1">
               <span class="mx-1 w-3 h-3 rounded-full <%= colors[index] %>"></span>
-              <span class="text-lg">
+              <span class="text-lg" dir="auto">
                 <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
               </span>
             </div>
@@ -138,10 +138,10 @@
             <% value = values[field['uuid']] %>
             <% next if value.blank? %>
             <div class="pt-2.5 border-b border-base-300">
-              <div class="text-xs font-medium uppercase mb-0.5">
+              <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                 <%= field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}" %>
               </div>
-              <div>
+              <div dir="auto">
                 <% if field['type'].in?(%w[signature initials]) %>
                   <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">

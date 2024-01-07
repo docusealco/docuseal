@@ -102,6 +102,7 @@
                   v-model="field.default_value"
                   type="text"
                   :placeholder="t('default_value')"
+                  dir="auto"
                   class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
                   @blur="save"
                 >
@@ -249,6 +250,7 @@
               v-model="option.value"
               class="w-full input input-primary input-xs text-sm bg-transparent !pr-7 -mr-6"
               type="text"
+              dir="auto"
               required
               :placeholder="`${t('option')} ${index + 1}`"
               @blur="save"
@@ -271,6 +273,7 @@
             :placeholder="`${t('option')} ${index + 1}`"
             type="text"
             required
+            dir="auto"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >

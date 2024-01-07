@@ -5,6 +5,7 @@
   >
     <span
       ref="contenteditable"
+      dir="auto"
       :contenteditable="editable"
       style="min-width: 2px"
       :class="iconInline ? 'inline' : 'block'"

@@ -4,7 +4,7 @@
       <%= hidden_field_tag :base_template_id, @base_template.id %>
     <% end %>
     <div class="form-control mt-6">
-      <%= f.text_field :name, required: true, placeholder: 'Document Name', class: 'base-input' %>
+      <%= f.text_field :name, required: true, placeholder: 'Document Name', class: 'base-input', dir: 'auto' %>
     </div>
     <div class="mt-3 mb-4 flex items-center justify-between">
       <a href="#" onclick="[event.preventDefault(), window.folder_name.focus()]">

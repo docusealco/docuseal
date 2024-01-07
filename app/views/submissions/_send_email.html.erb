@@ -33,12 +33,12 @@
     <div class="form-control space-y-2">
       <div class="form-control">
         <%= f.label :subject, class: 'label' %>
-        <%= f.text_field :subject, value: config.value['subject'], required: true, class: '!text-sm base-input w-full' %>
+        <%= f.text_field :subject, value: config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
         <%= f.label :message, 'Body', class: 'label' %>
         <autoresize-textarea>
-          <%= f.text_area :body, value: config.value['body'], required: true, class: 'base-textarea w-full', rows: 10 %>
+          <%= f.text_area :body, value: config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
         </autoresize-textarea>
       </div>
       <%= render 'message_fields' %>

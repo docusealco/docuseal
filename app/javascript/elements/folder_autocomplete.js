@@ -32,6 +32,8 @@ export default class extends HTMLElement {
   render = (item) => {
     const div = document.createElement('div')
 
+    div.setAttribute('dir', 'auto')
+
     div.textContent = item.name
 
     return div

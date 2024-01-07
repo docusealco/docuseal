@@ -6,7 +6,7 @@
       <%= f.fields_for current_account do |ff| %>
         <div class="form-control">
           <%= ff.label :name, 'Company Name', class: 'label' %>
-          <%= ff.text_field :name, required: true, class: 'base-input' %>
+          <%= ff.text_field :name, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">

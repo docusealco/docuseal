@@ -1,7 +1,7 @@
 <%= render 'shared/turbo_modal', title: 'Rename Folder' do %>
   <%= form_for @template_folder, url: folder_path(@template_folder), data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
     <div class="form-control my-6">
-      <%= f.text_field :name, required: true, placeholder: 'Folder Name...', class: 'base-input w-full', autofocus: true %>
+      <%= f.text_field :name, required: true, placeholder: 'Folder Name...', class: 'base-input w-full', autofocus: true, dir: 'auto' %>
     </div>
     <div class="form-control">
       <%= f.button button_title(title: 'Rename', disabled_with: 'Saving'), class: 'base-button' %>

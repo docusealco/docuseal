@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div dir="auto">
     <div class="flex justify-between items-center w-full mb-2">
       <label
         :for="field.uuid"

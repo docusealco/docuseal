@@ -13,6 +13,8 @@ module Submissions
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
     SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
+    RTL_REGEXP = /\A[\p{Hebrew}\p{Arabic}\s;.,-]+\z/
+
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
 
@@ -56,9 +58,11 @@ module Submissions
           height = page.box.height
           font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
-          layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, font: pdf.fonts.add(FONT_NAME), font_size:)
-
           value = submitter.values[field['uuid']]
+
+          layouter = HexaPDF::Layout::TextLayouter.new(valign: :center,
+                                                       align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+                                                       font: pdf.fonts.add(FONT_NAME), font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
 
@@ -155,7 +159,7 @@ module Submissions
           when 'cells'
             cell_width = area['cell_w'] * width
 
-            value.chars.each_with_index do |char, index|
+            maybe_rtl_reverse(value).chars.each_with_index do |char, index|
               text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
                                                                 font_size:)
 
@@ -168,14 +172,16 @@ module Submissions
               value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
             end
 
-            text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '), font: pdf.fonts.add(FONT_NAME),
-                                                                                      font_size:)
+            value = maybe_rtl_reverse(Array.wrap(value).join(', '))
+
+            text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
+                                                               font_size:)
 
             lines = layouter.fit([text], area['w'] * width, height).lines
             box_height = lines.sum(&:height)
 
             if box_height > (area['h'] * height) + 1
-              text = HexaPDF::Layout::TextFragment.create(Array.wrap(value).join(', '),
+              text = HexaPDF::Layout::TextFragment.create(value,
                                                           font: pdf.fonts.add(FONT_NAME),
                                                           font_size: (font_size / 1.4).to_i)
 
@@ -310,6 +316,14 @@ module Submissions
       )
 
       pdf
+    end
+
+    def maybe_rtl_reverse(text)
+      if text.match?(RTL_REGEXP)
+        text.reverse
+      else
+        text
+      end
     end
 
     def sign_reason(name)

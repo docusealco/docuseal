@@ -27,6 +27,8 @@ module Submissions
       'GBP' => '£'
     }.freeze
 
+    RTL_REGEXP = Submissions::GenerateResultAttachments::RTL_REGEXP
+
     module_function
 
     # rubocop:disable Metrics
@@ -147,7 +149,7 @@ module Submissions
               [
                 submission.template_submitters.size > 1 && { text: "#{item['name']}\n" },
                 submitter.email && { text: "#{submitter.email}\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
-                submitter.name && { text: "#{submitter.name}\n" },
+                submitter.name && { text: "#{maybe_rtl_reverse(submitter.name)}\n" },
                 submitter.phone && { text: "#{submitter.phone}\n" }
               ].compact_blank, line_spacing: 1.8, padding: [0, 20, 0, 0]
             )
@@ -185,11 +187,13 @@ module Submissions
             composer.formatted_text_box(
               [
                 {
-                  text: field['name'].to_s.upcase.presence ||
+                  text: maybe_rtl_reverse(field['name'].to_s).upcase.presence ||
                         "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
                   font_size: 6
                 }
-              ].compact_blank, line_spacing: 1.8, padding: [0, 0, 5, 0]
+              ].compact_blank,
+              align: field['name'].to_s.match?(RTL_REGEXP) ? :right : :left,
+              line_spacing: 1.8, padding: [0, 0, 5, 0]
             ),
             if field['type'].in?(%w[image signature initials stamp])
               attachment = submitter.attachments.find { |a| a.uuid == value }
@@ -233,7 +237,9 @@ module Submissions
 
               value = value.join(', ') if value.is_a?(Array)
 
-              composer.formatted_text_box([{ text: value.to_s.presence || 'n/a' }], padding: [0, 0, 10, 0])
+              composer.formatted_text_box([{ text: maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
+                                          align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+                                          padding: [0, 0, 10, 0])
             end
           ]
         end
@@ -290,6 +296,14 @@ module Submissions
         name: 'audit_trail',
         record: submission
       )
+    end
+
+    def maybe_rtl_reverse(text)
+      if text.match?(RTL_REGEXP)
+        text.reverse
+      else
+        text
+      end
     end
 
     def add_logo(column, _submission = nil)
