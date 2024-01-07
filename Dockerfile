@@ -2,7 +2,7 @@ FROM ruby:3.2.2-alpine3.18 as fonts
 
 WORKDIR /fonts
 
-RUN apk --no-cache add fontforge wget ttf-liberation &&  cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf . && wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansArabic/hinted/ttf/NotoSansArabic-Regular.ttf && wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && wget https://github.com/impallari/DancingScript/blob/master/OFL.txt
+RUN apk --no-cache add fontforge wget ttf-liberation &&  cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf . && wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansArabic/hinted/ttf/NotoSansArabic-Regular.ttf && wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && wget https://github.com/impallari/DancingScript/raw/master/OFL.txt
 
 RUN fontforge -lang=py -c 'font1 = fontforge.open("LiberationSans-Regular.ttf"); font2 = fontforge.open("NotoSansArabic-Regular.ttf"); font1.mergeFonts(font2); font1.generate("LiberationSans-Regular.ttf")'
 
@@ -39,7 +39,7 @@ ENV BUNDLE_WITHOUT="development:test"
 
 WORKDIR /app
 
-RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif libc6-compat ttf-freefont && mkdir /fonts && touch .version
+RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif libc6-compat ttf-freefont && mkdir /fonts
 
 COPY ./Gemfile ./Gemfile.lock ./
 

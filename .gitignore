@@ -31,7 +31,6 @@ yarn-debug.log*
 
 .env
 .DS_Store
-.version
 
 /coverage
 /attachments
