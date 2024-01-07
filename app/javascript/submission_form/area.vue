@@ -152,7 +152,8 @@
     <div
       v-else
       ref="textContainer"
-      class="flex items-center px-0.5"
+      dir="auto"
+      class="flex items-center px-0.5 w-full"
     >
       <span v-if="Array.isArray(modelValue)">
         {{ modelValue.join(', ') }}
