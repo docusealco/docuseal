@@ -320,7 +320,7 @@ module Submissions
 
     def maybe_rtl_reverse(text)
       if text.match?(RTL_REGEXP)
-        text.reverse
+        ArabicLetterConnector.transform(text).reverse
       else
         text
       end
