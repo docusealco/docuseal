@@ -4,7 +4,7 @@
       <div class="text-center w-full space-y-6">
         <%= render 'banner' %>
         <% unless @template.archived_at? %>
-          <p class="text-xl font-semibold text-center">You have been invited to submit a form</p>
+          <p class="text-xl font-semibold text-center"><%= t('you_have_been_invited_to_submit_a_form') %></p>
         <% end %>
       </div>
       <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
@@ -15,9 +15,9 @@
           <div>
             <p class="text-lg font-bold mb-1"><%= @template.name %></p>
             <% if @template.archived_at? %>
-              <p class="text-sm">Form has been deleted by <span class="font-semibold"><%= @template.account.name %></span>.</p>
+              <p dir="auto" class="text-sm"><%= t('form_has_been_deleted_by_html', name: @template.account.name) %></p>
             <% else %>
-              <p class="text-sm">Invited by <span class="font-semibold"><%= @template.account.name %></span></p>
+              <p dir="auto" class="text-sm"><%= t('invited_by_html', name: @template.account.name) %></p>
             <% end %>
           </div>
         </div>
@@ -25,13 +25,13 @@
     </div>
     <% unless @template.archived_at? %>
       <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
-        <div class="form-control !mt-0">
-          <%= f.label :email, class: 'label' %>
-          <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: 'Provide your email to start' %>
+        <div dir="auto" class="form-control !mt-0">
+          <%= f.label :email, t('email'), class: 'label' %>
+          <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: t('provide_your_email_to_start') %>
           <%= @error_message %>
         </div>
-        <div class="form-control">
-          <%= f.button button_title(title: 'Start', disabled_with: 'Starting'), class: 'base-button' %>
+        <div dir="auto" class="form-control">
+          <%= f.button button_title(title: t('start'), disabled_with: t('starting')), class: 'base-button' %>
         </div>
       <% end %>
     <% end %>

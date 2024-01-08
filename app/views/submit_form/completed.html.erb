@@ -10,17 +10,17 @@
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
           </div>
           <div>
-            <p class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
-            <p class="text-sm">Signed on <%= l(@submitter.completed_at.to_date, format: :long, locale: @submitter.submission.template.account.locale) %></p>
+            <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
+            <p dir="auto" class="text-sm"><%= t('signed_on_time', time: l(@submitter.completed_at.to_date, format: :long)) %></p>
           </div>
         </div>
       </div>
     </div>
     <div>
       <% if Accounts.can_send_emails?(@submitter.submission.template.account) && @submitter.email.present? %>
-        <%= button_to button_title(title: 'Send copy to Email', disabled_with: 'Sending', icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
+        <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
         <% if @submitter.submission.template.submitters.size != 1 %>
-          <div class="divider">OR</div>
+          <div class="divider uppercase"><%= t('or') %></div>
         <% else %>
           <div class="py-2"></div>
         <% end %>
@@ -28,18 +28,18 @@
       <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
         <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
           <%= svg_icon('download', class: 'w-6 h-6') %>
-          <span>Download documents</span>
+          <span><%= t('download_documents') %></span>
         </span>
         <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
           <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-          <span>Downloading</span>
+          <span><%= t('downloading') %></span>
         </span>
       </download-button>
     </div>
     <% if @submitter.submission.template.submitters.size == 1 %>
-      <div class="divider">OR</div>
+      <div class="divider uppercase"><%= t('or') %></div>
       <div>
-        <%= button_to button_title(title: 'Resubmit', disabled_with: 'Resubmit', icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: @submitter.slug }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
+        <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: @submitter.slug }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>
       </div>
     <% end %>
   </div>

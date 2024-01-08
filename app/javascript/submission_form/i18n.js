@@ -453,7 +453,7 @@ const he = {
   use_international_format: 'השתמש בפורמט בינלאומי: +1xxx',
   six_digits_code: 'קוד משתמש שש ספרות',
   change_phone_number: 'שינוי מספר טלפון',
-  sending: 'שולח...',
+  sending: 'שולח',
   resend_code: 'שלח מחדש קוד',
   verification_code_has_been_resent: 'קוד האימות נשלח מחדש בSMS',
   please_fill_all_required_fields: 'אנא מלא את כל השדות הדרושים',

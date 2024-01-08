@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  BROWSER_LOCALE_REGEXP = /\A\w{2}(?:-\w{2})?/
+
   include ActiveStorage::SetCurrent
   include Pagy::Backend
 
@@ -31,6 +33,21 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def with_browser_locale(&)
+    locale = request.env['HTTP_ACCEPT_LANGUAGE'].to_s[BROWSER_LOCALE_REGEXP].to_s
+
+    locale =
+      if locale.starts_with?('en-') && locale != 'en-US'
+        'en-GB'
+      else
+        locale.split('-').first.presence || 'en-GB'
+      end
+
+    locale = 'en-GB' unless I18n.locale_available?(locale)
+
+    I18n.with_locale(locale, &)
+  end
 
   def sign_in_for_demo
     sign_in(User.active.order('random()').take) unless signed_in?

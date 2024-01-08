@@ -1,29 +1,222 @@
-en-US:
+en: &en
+  email: Email
   digitally_signed_by: Digitally signed by
   role: Role
+  provide_your_email_to_start: Provide your email to start
+  start: Start
+  starting: Starting
+  form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invited by <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: You have been invited to submit a form
+  signed_on_time: 'Signed on %{time}'
+  form_has_been_submitted_already: Form has been submitted already
+  send_copy_to_email: Send copy to Email
+  sending: Sending
+  resubmit: Resubmit
+  form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
+  or: or
+  download_documents: Download documents
+  downloading: Downloading
+
+es: &es
+  digitally_signed_by: Firmado digitalmente por
+  role: Rol
+  email: Correo electrónico
+  digitally_signed_by: Firmado digitalmente por
+  role: Rol
+  provide_your_email_to_start: Proporciona tu correo electrónico para comenzar
+  start: Comenzar
+  starting: Comenzando
+  form_has_been_deleted_by_html: 'El formulario ha sido eliminado por <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invitado por <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Has sido invitado/a a enviar un formulario
+  signed_on_time: 'Firmado en %{time}'
+  form_has_been_submitted_already: El formulario ya ha sido enviado
+  send_copy_to_email: Enviar copia a Correo electrónico
+  sending: Enviando
+  resubmit: Reenviar
+  or: o
+  download_documents: Descargar documentos
+  downloading: Descargando
+
+it:
+  digitally_signed_by: Signé numériquement par
+  role: Rôle
+  email: Email
+  digitally_signed_by: Firmato digitalmente da
+  role: Ruolo
+  provide_your_email_to_start: Fornisci la tua email per iniziare
+  start: Inizia
+  starting: Iniziando
+  form_has_been_deleted_by_html: 'Il modulo è stato eliminato da <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invitato da <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Sei stato invitato a inviare un modulo
+  signed_on_time: 'Firmato alle %{time}'
+  form_has_been_submitted_already: Il modulo è già stato inviato
+  send_copy_to_email: Invia copia via email
+  sending: Inviando
+  resubmit: Reinvia
+  or: o
+  download_documents: Scarica documenti
+  downloading: Scaricamento
+
+fr: &fr
+  email: Email
+  digitally_signed_by: Signé numériquement par
+  role: Rôle
+  provide_your_email_to_start: Entrez votre email pour commencer
+  start: Démarrer
+  starting: Démarrage
+  form_has_been_deleted_by_html: 'Le formulaire a été supprimé par <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invité par <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Vous avez été invité à soumettre un formulaire
+  signed_on_time: 'Signé à %{time}'
+  form_has_been_submitted_already: Le formulaire a déjà été soumis
+  send_copy_to_email: Envoyer une copie par email
+  sending: Envoi
+  resubmit: Soumettre à nouveau
+  or: ou
+  download_documents: Télécharger des documents
+  downloading: Téléchargement
+
+pt: &pt
+  digitally_signed_by: Assinado digitalmente por
+  role: Função
+  email: Email
+  digitally_signed_by: Assinado digitalmente por
+  role: Função
+  provide_your_email_to_start: Forneça o seu email para começar
+  start: Iniciar
+  starting: Iniciando
+  form_has_been_deleted_by_html: 'O formulário foi eliminado por <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Convidado por <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Foi convidado a submeter um formulário
+  signed_on_time: 'Assinado em %{time}'
+  form_has_been_submitted_already: O formulário já foi submetido
+  send_copy_to_email: Enviar cópia para Email
+  sending: Enviando
+  resubmit: Reenviar
+  or: ou
+  download_documents: Baixar documentos
+  downloading: Baixando
+
+de: &de
+  digitally_signed_by: Digital signiert von
+  role: Rolle
+  email: E-Mail
+  digitally_signed_by: Digital unterzeichnet von
+  role: Rolle
+  provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
+  start: Starten
+  starting: Starten
+  form_has_been_deleted_by_html: 'Das Formular wurde von <span class="font-semibold">%{name}</span> gelöscht.'
+  invited_by_html: 'Eingeladen von <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Du wurdest eingeladen, ein Formular einzureichen
+  signed_on_time: 'Unterzeichnet um %{time}'
+  form_has_been_submitted_already: Formular wurde bereits eingereicht
+  send_copy_to_email: Kopie per E-Mail senden
+  sending: Senden
+  resubmit: Erneut einreichen
+  or: oder
+  download_documents: Dokumente herunterladen
+  downloading: Herunterladen
+
+pl:
+  email: Email
+  digitally_signed_by: Podpis cyfrowy przez
+  role: Rola
+  provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
+  start: Rozpocznij
+  starting: Rozpoczynanie
+  form_has_been_deleted_by_html: 'Formularz został usunięty przez <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Zaproszony przez <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Zostałeś zaproszony do przesłania formularza
+  signed_on_time: 'Podpisano %{time}'
+  form_has_been_submitted_already: Formularz został już przesłany
+  send_copy_to_email: Wyślij kopię na Email
+  sending: Wysyłanie
+  resubmit: Prześlij ponownie
+  or: lub
+  download_documents: Pobierz dokumenty
+  downloading: Pobieranie
+
+uk:
+  email: Email
+  digitally_signed_by: Цифровий підпис від
+  role: Роль
+  provide_your_email_to_start: Введіть свій email, щоб почати
+  start: Почати
+  starting: Початок
+  form_has_been_deleted_by_html: 'Форму було видалено користувачем <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Запрошений користувачем <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Вас запросили подати форму
+  signed_on_time: 'Підписаний %{time}'
+  form_has_been_submitted_already: Форма вже була подана
+  send_copy_to_email: Надіслати копію на Email
+  sending: Надсилання
+  resubmit: Подати знову
+  or: або
+  download_documents: Завантажити документи
+  downloading: Завантаження
+
+cs:
+  email: Email
+  digitally_signed_by: Digitálně podepsáno uživatelem
+  role: Role
+  provide_your_email_to_start: Zadejte svůj email pro zahájení
+  start: Zahájit
+  starting: Zahajování
+  form_has_been_deleted_by_html: 'Formulář byl smazán uživatelem <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Pozván uživatelem <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Byli jste pozváni k odeslání formuláře
+  signed_on_time: 'Podepsáno %{time}'
+  form_has_been_submitted_already: Formulář již byl odeslán
+  send_copy_to_email: Odeslat kopii na Email
+  sending: Odesílání
+  resubmit: Odeslat znovu
+  or: nebo
+  download_documents: Stáhnout dokumenty
+  downloading: Stahování
+
+he:
+  email: דוא"ל
+  digitally_signed_by: חתום דיגיטלית על ידי
+  role: תפקיד
+  provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
+  start: התחל
+  starting: מתחיל
+  form_has_been_deleted_by_html: 'הטופס נמחק על ידי <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'הוזמן על ידי <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: הוזמנת להגיש טופס
+  signed_on_time: 'חתום ב-%{time}'
+  form_has_been_submitted_already: הטופס כבר נשלח
+  send_copy_to_email: שלח עותק לדוא"ל
+  sending: שולח
+  resubmit: שלח מחדש
+  or: או
+  download_documents: הורד מסמכים
+  downloading: מוריד
+
+en-US:
+  <<: *en
   date:
     formats:
       default: "%m/%d/%Y"
 
 en-GB:
-  digitally_signed_by: Digitally signed by
-  role: Role
+  <<: *en
   date:
     formats:
       default: "%d/%m/%Y"
 
 es-ES:
-  digitally_signed_by: Firmado digitalmente por
-  role: Rol
+  <<: *es
 
 fr-FR:
-  digitally_signed_by: Signé numériquement par
-  role: Rôle
+  <<: *fr
 
 pt-PT:
-  digitally_signed_by: Assinado digitalmente por
-  role: Função
+  <<: *pt
 
 de-DE:
-  digitally_signed_by: Digital signiert von
-  role: Rolle
+  <<: *de
