@@ -1,6 +1,6 @@
 const en = {
   submit_form: 'Submit Form',
-  type_here: 'Type here',
+  type_here_: 'Type here...',
   optional: 'optional',
   option: 'Option',
   appears_on: 'Appears on',
@@ -48,7 +48,7 @@ const en = {
 
 const es = {
   submit_form: 'Enviar Formulario',
-  type_here: 'Escribe aquí',
+  type_here_: 'Escribe aquí...',
   optional: 'opcional',
   appears_on: 'Aparece en',
   page: 'Página',
@@ -95,7 +95,7 @@ const es = {
 
 const it = {
   submit_form: 'Invia Modulo',
-  type_here: 'Digita qui',
+  type_here_: 'Digita qui...',
   optional: 'opzionale',
   appears_on: 'Compare su',
   page: 'Pagina',
@@ -142,7 +142,7 @@ const it = {
 
 const de = {
   submit_form: 'Formular absenden',
-  type_here: 'Hier eingeben',
+  type_here_: 'Hier eingeben...',
   optional: 'optional',
   appears_on: 'Erscheint auf',
   page: 'Seite',
@@ -189,7 +189,7 @@ const de = {
 
 const fr = {
   submit_form: 'Envoyer le Formulaire',
-  type_here: 'Tapez ici',
+  type_here_: 'Tapez ici...',
   optional: 'facultatif',
   appears_on: 'Apparaît sur',
   page: 'Page',
@@ -236,7 +236,7 @@ const fr = {
 
 const pl = {
   submit_form: 'Wyślij Formularz',
-  type_here: 'Wpisz tutaj',
+  type_here_: 'Wpisz tutaj...',
   optional: 'opcjonalny',
   appears_on: 'Pojawia się na',
   page: 'Strona',
@@ -283,7 +283,7 @@ const pl = {
 
 const uk = {
   submit_form: 'Надіслати Форму',
-  type_here: 'Введіть тут',
+  type_here_: 'Введіть тут',
   optional: 'необов’язково',
   appears_on: "З'являється на",
   page: 'Сторінка',
@@ -330,7 +330,7 @@ const uk = {
 
 const cs = {
   submit_form: 'Odeslat formulář',
-  type_here: 'Zadejte zde',
+  type_here_: 'Zadejte zde',
   optional: 'volitelné',
   appears_on: 'Zobrazuje se na',
   page: 'Stránka',
@@ -377,7 +377,7 @@ const cs = {
 
 const pt = {
   submit_form: 'Enviar Formulário',
-  type_here: 'Digite aqui',
+  type_here_: 'Digite aqui',
   optional: 'opcional',
   appears_on: 'Aparece em',
   page: 'Página',
@@ -422,7 +422,55 @@ const pt = {
   pay_with_strip: 'Pagar com Stripe'
 }
 
-const i18n = { en, es, it, de, fr, pl, uk, cs, pt }
+const he = {
+  submit_form: 'שלח טופס',
+  type_here_: 'הקלד כאן',
+  optional: 'אופציונלי',
+  option: 'אפשרות',
+  appears_on: 'מופיע ב',
+  page: 'עמוד',
+  select_your_option: 'בחר את האפשרות שלך',
+  complete_hightlighted_checkboxes_and_click: 'השלם את תיבות הסימון המודגשות ולחץ',
+  submit: 'שליחה',
+  next: 'הבא',
+  click_to_upload: 'לחץ להעלאה',
+  or_drag_and_drop_files: 'או גרור ושחרר קבצים',
+  send_copy_via_email: 'שלח עותק באמצעות אימייל',
+  download: 'הורדה',
+  signature: 'חתימה',
+  initials: 'ציוני ראשי תיבות',
+  clear: 'נקה',
+  redraw: 'צייר מחדש',
+  draw_initials: 'צייר ציוני ראשי תיבות',
+  type_signature_here: 'הקלד חתימה כאן',
+  type_initial_here: 'הקלד ציוני ראשי תיבות כאן',
+  form_has_been_completed: 'הטופס הושלם',
+  create_a_free_account: 'צור חשבון חינם',
+  signed_with: 'חתום באמצעות',
+  please_check_the_box_to_continue: 'אנא סמן את התיבה כדי להמשיך',
+  open_source_documents_software: 'תוכנה פתוחה למסמכים',
+  verified_phone_number: 'אימות מספר טלפון',
+  use_international_format: 'השתמש בפורמט בינלאומי: +1xxx',
+  six_digits_code: 'קוד משתמש שש ספרות',
+  change_phone_number: 'שינוי מספר טלפון',
+  sending: 'שולח...',
+  resend_code: 'שלח מחדש קוד',
+  verification_code_has_been_resent: 'קוד האימות נשלח מחדש בSMS',
+  please_fill_all_required_fields: 'אנא מלא את כל השדות הדרושים',
+  set_today: 'קבע היום',
+  toggle_multiline_text: 'שנה בין טקסט במספר שורות לטקסט בשורה אחת',
+  draw_signature: 'צייר חתימה',
+  type_initial: 'הקלד ציוני ראשי תיבות',
+  draw: 'צייר',
+  type: 'הקלד',
+  type_text: 'הקלד טקסט',
+  date: 'תאריך',
+  email_has_been_sent: 'האימייל נשלח',
+  processing: 'מעבד',
+  pay_with_strip: 'שלם עם סטרייפ'
+}
+
+const i18n = { en, es, it, de, fr, pl, uk, cs, pt, he }
 
 const browserLanguage = (navigator.language || navigator.userLanguage || 'en').split('-')[0]
 

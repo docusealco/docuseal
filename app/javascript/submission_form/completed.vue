@@ -1,5 +1,8 @@
 <template>
-  <div class="mx-auto max-w-md flex flex-col">
+  <div
+    class="mx-auto max-w-md flex flex-col"
+    dir="auto"
+  >
     <p class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
       <IconCircleCheck
         class="inline text-green-600"

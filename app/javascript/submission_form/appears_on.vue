@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="uniqueAreas.length > 1"
+    dir="auto"
     class="mb-2"
   >
     <div class="flex space-x-1 text-sm ml-1 -mt-3">
