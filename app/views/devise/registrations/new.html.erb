@@ -41,13 +41,6 @@
     </div>
     <div class="form-control">
       <%= f.button button_title(title: 'Sign up', disabled_with: 'Signing up'), class: 'base-button' %>
-      <% if Docuseal.multitenant? %>
-        <button id="talk_to_sales_button" class="hidden" type="submit" formaction="<%= enquiries_path %>" formnovalidate="true" formmethod="post"></button>
-        <label class="flex items-center cursor-pointer">
-          <input type="checkbox" name="talk_to_sales" class="base-checkbox" onchange="window.talk_to_sales_button.click()">
-          <span class="label">I would like to talk to sales</span>
-        </label>
-      <% end %>
     </div>
   <% end %>
   <%= render 'devise/shared/links' %>
