@@ -300,7 +300,9 @@ module Submissions
 
     def maybe_rtl_reverse(text)
       if text.match?(RTL_REGEXP)
-        ArabicLetterConnector.transform(text).reverse
+        TwitterCldr::Shared::Bidi
+          .from_string(ArabicLetterConnector.transform(text), direction: :RTL)
+          .reorder_visually!.to_s
       else
         text
       end

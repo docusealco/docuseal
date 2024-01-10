@@ -13,7 +13,7 @@ module Submissions
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
     SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
-    RTL_REGEXP = /\A[\p{Hebrew}\p{Arabic}].*[\p{Hebrew}\p{Arabic}]\z/
+    RTL_REGEXP = /[\p{Hebrew}\p{Arabic}]/
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
@@ -320,7 +320,9 @@ module Submissions
 
     def maybe_rtl_reverse(text)
       if text.match?(RTL_REGEXP)
-        ArabicLetterConnector.transform(text).reverse
+        TwitterCldr::Shared::Bidi
+          .from_string(ArabicLetterConnector.transform(text), direction: :RTL)
+          .reorder_visually!.to_s
       else
         text
       end

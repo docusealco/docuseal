@@ -41,6 +41,7 @@ gem 'sidekiq', require: ENV.key?('REDIS_URL')
 gem 'sqlite3', require: false
 gem 'strip_attributes'
 gem 'turbo-rails'
+gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
 
 group :development, :test do
