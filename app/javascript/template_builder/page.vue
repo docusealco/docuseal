@@ -33,7 +33,7 @@
       <FieldArea
         v-if="newArea"
         :is-draw="true"
-        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || 'text' }"
+        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || defaultFieldType }"
         :area="newArea"
       />
     </div>
@@ -60,6 +60,7 @@ export default {
   components: {
     FieldArea
   },
+  inject: ['fieldTypes'],
   props: {
     image: {
       type: Object,
@@ -115,6 +116,13 @@ export default {
     }
   },
   computed: {
+    defaultFieldType () {
+      if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes('text')) {
+        return this.fieldTypes[0]
+      } else {
+        return 'text'
+      }
+    },
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
     },

@@ -199,6 +199,7 @@
           v-if="sortedDocuments.length && !drawField && editable"
           :fields="template.fields"
           :default-fields="defaultFields"
+          :field-types="fieldTypes"
           :selected-submitter="selectedSubmitter"
           @select="startFieldDraw($event)"
         />
@@ -244,6 +245,7 @@
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :default-fields="defaultFields"
+            :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
@@ -299,6 +301,7 @@ export default {
       save: this.save,
       t: this.t,
       baseFetch: this.baseFetch,
+      fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
@@ -341,6 +344,11 @@ export default {
       default: true
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    fieldTypes: {
       type: Array,
       required: false,
       default: () => []
@@ -724,7 +732,11 @@ export default {
         const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
         const pageMask = documentRef.pageRefs[area.page].$refs.mask
 
-        const type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
+        let type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
+
+        if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes(type)) {
+          type = this.fieldTypes[0]
+        }
 
         if (type === 'checkbox') {
           const previousField = [...this.template.fields].reverse().find((f) => f.type === type)

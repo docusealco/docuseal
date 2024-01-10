@@ -29,7 +29,7 @@
         v-for="(icon, type) in fieldIcons"
         :key="type"
       >
-        <li v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')">
+        <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -54,7 +54,7 @@ import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckb
 
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone', 'withPayment', 't'],
+  inject: ['withPhone', 'withPayment', 't', 'fieldTypes'],
   props: {
     modelValue: {
       type: String,

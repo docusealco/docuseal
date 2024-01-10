@@ -72,7 +72,7 @@
       :key="type"
     >
       <button
-        v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')"
+        v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
         class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
@@ -91,7 +91,7 @@
         </div>
       </button>
       <div
-        v-else-if="type == 'phone'"
+        v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex"
         :class="{'tooltip-bottom-start': !withPayment, 'tooltip-bottom': withPayment }"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
@@ -189,6 +189,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    fieldTypes: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     submitters: {
       type: Array,

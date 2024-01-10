@@ -48,7 +48,7 @@
           v-for="(icon, type) in fieldIcons"
           :key="type"
         >
-          <li v-if="(withPhone || type != 'phone') && (withPayment || type != 'payment')">
+          <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
             <a
               href="#"
               class="text-sm py-1 px-2"
@@ -93,6 +93,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    fieldTypes: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     defaultFields: {
       type: Array,
