@@ -28,7 +28,8 @@ class ProcessSubmitterCompletionJob < ApplicationJob
        submitter.submission.preferences['send_email'] != false
       SubmitterMailer.completed_email(submitter, user).deliver_later!
 
-      bcc = submitter.submission.template.account.account_configs
+      bcc = submitter.submission.preferences['bcc_completed'].presence ||
+            submitter.submission.template.account.account_configs
                      .find_by(key: AccountConfig::BCC_EMAILS)&.value.presence
 
       SubmitterMailer.completed_email(submitter, user, to: bcc).deliver_later! if bcc

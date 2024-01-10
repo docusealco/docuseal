@@ -59,6 +59,7 @@ module Submitters
     preferences['email_message_uuid'] = email_message.uuid if email_message
     preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
     preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
+    preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
 
     preferences
   end

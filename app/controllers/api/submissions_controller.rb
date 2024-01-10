@@ -136,7 +136,7 @@ module Api
 
       params.permit(
         key => [
-          [:send_email, :send_sms, {
+          [:send_email, :send_sms, :bcc_completed, {
             message: %i[subject body],
             submitters: [[:send_email, :send_sms, :uuid, :name, :email, :role,
                           :completed, :phone, :application_key,

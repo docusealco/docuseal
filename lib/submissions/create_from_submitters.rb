@@ -11,7 +11,7 @@ module Submissions
         submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
         submission_preferences = preferences.merge(submission_preferences)
 
-        set_submission_preferences = submission_preferences.slice('send_email')
+        set_submission_preferences = submission_preferences.slice('send_email', 'bcc_completed')
         set_submission_preferences['send_email'] = true if params['send_completed_email']
 
         submission = template.submissions.new(created_by_user: user, source:,
@@ -130,7 +130,8 @@ module Submissions
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
         preferences: preferences.merge(submitter_preferences)
-                                .merge({ default_values: attrs[:values] }.compact_blank),
+                                .merge({ default_values: attrs[:values] }.compact_blank)
+                                .except('bcc_completed'),
         uuid:
       )
     end
