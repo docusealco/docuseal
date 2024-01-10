@@ -372,6 +372,13 @@ export default {
         return () => {}
       }
     },
+    onSave: {
+      type: Function,
+      required: false,
+      default () {
+        return () => {}
+      }
+    },
     withStickySubmitters: {
       type: Boolean,
       required: false,
@@ -967,6 +974,10 @@ export default {
           }
         }),
         headers: { 'Content-Type': 'application/json' }
+      }).then(() => {
+        if (this.onSave) {
+          this.onSave(this.template)
+        }
       })
     }
   }
