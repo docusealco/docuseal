@@ -22,17 +22,21 @@ class ProcessSubmitterCompletionJob < ApplicationJob
   end
 
   def enqueue_completed_emails(submitter)
-    user = submitter.submission.created_by_user || submitter.template.author
+    submission = submitter.submission
+
+    user = submission.created_by_user || submitter.template.author
 
     if submitter.template.account.users.exists?(id: user.id) &&
-       submitter.submission.preferences['send_email'] != false
+       submission.preferences['send_email'] != false
       SubmitterMailer.completed_email(submitter, user).deliver_later!
 
-      bcc = submitter.submission.preferences['bcc_completed'].presence ||
-            submitter.submission.template.account.account_configs
-                     .find_by(key: AccountConfig::BCC_EMAILS)&.value.presence
+      bcc = submission.preferences['bcc_completed'].presence ||
+            submission.template.account.account_configs
+                      .find_by(key: AccountConfig::BCC_EMAILS)&.value.presence
 
-      SubmitterMailer.completed_email(submitter, user, to: bcc).deliver_later! if bcc
+      bcc.to_s.scan(User::EMAIL_REGEXP).each do |to|
+        SubmitterMailer.completed_email(submitter, user, to:).deliver_later!
+      end
     end
 
     to = build_to_addresses(submitter)
