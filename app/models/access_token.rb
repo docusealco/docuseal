@@ -25,7 +25,7 @@ class AccessToken < ApplicationRecord
 
   belongs_to :user
 
-  before_validation :set_sha256, on: :create
+  before_validation :set_sha256
 
   attribute :token, :string, default: -> { SecureRandom.base58(TOKEN_LENGTH) }
 
