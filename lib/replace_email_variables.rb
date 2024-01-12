@@ -8,6 +8,7 @@ module ReplaceEmailVariables
   SUBMITTER_EMAIL = '{{submitter.email}}'
   SUBMITTER_NAME = '{{submitter.name}}'
   SUBMITTER_ID = '{{submitter.id}}'
+  SUBMITTER_SLUG = '{{submitter.slug}}'
   SUBMISSION_LINK = '{{submission.link}}'
   SUBMISSION_ID = '{{submission.id}}'
   SUBMISSION_SUBMITTERS = '{{submission.submitters}}'
@@ -25,6 +26,7 @@ module ReplaceEmailVariables
     text = text.gsub(TEMPLATE_NAME, submitter.template.name) if submitter.template
     text = text.gsub(TEMPLATE_ID, submitter.template.id.to_s) if submitter.template
     text = text.gsub(SUBMITTER_ID, submitter.id.to_s)
+    text = text.gsub(SUBMITTER_SLUG, submitter.slug.to_s)
     text = text.gsub(SUBMISSION_ID, submitter.submission.id.to_s) if submitter.submission
     text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
     text = text.gsub(SUBMITTER_NAME, submitter.name || submitter.email || submitter.phone)
