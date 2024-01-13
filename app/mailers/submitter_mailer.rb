@@ -43,7 +43,9 @@ class SubmitterMailer < ApplicationMailer
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
-    add_completed_email_attachments!(submitter)
+    add_completed_email_attachments!(
+      submitter, with_audit_log: @email_config.nil? || @email_config.value['attach_audit_log'] != false
+    )
 
     subject =
       if @email_config
@@ -83,13 +85,13 @@ class SubmitterMailer < ApplicationMailer
 
   private
 
-  def add_completed_email_attachments!(submitter)
+  def add_completed_email_attachments!(submitter, with_audit_log: true)
     documents = Submitters.select_attachments_for_download(submitter)
 
     total_size = 0
     audit_trail_data = nil
 
-    if submitter.submission.audit_trail.present?
+    if with_audit_log && submitter.submission.audit_trail.present?
       audit_trail_data = submitter.submission.audit_trail.download
 
       total_size = audit_trail_data.size
