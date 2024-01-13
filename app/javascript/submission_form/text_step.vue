@@ -3,13 +3,20 @@
     v-if="field.name"
     :for="field.uuid"
     dir="auto"
-    class="label text-2xl mb-2"
-  >{{ field.name }}
+    class="label text-2xl"
+    :class="{ 'mb-2': !field.description }"
+  ><template v-if="field.title"><span v-html="field.title" /></template>
+    <template v-else>{{ field.name }}</template>
     <template v-if="!field.required">({{ t('optional') }})</template>
   </label>
   <div
     v-else
     class="py-1"
+  />
+  <div
+    v-if="field.description"
+    class="mb-3 px-1 text-lg"
+    v-html="field.description"
   />
   <AppearsOn :field="field" />
   <div class="items-center flex">

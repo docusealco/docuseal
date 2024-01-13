@@ -41,7 +41,7 @@ export default {
     uniqueAreas () {
       const areas = {}
 
-      this.field.areas.forEach((area) => {
+      this.field.areas?.forEach((area) => {
         areas[area.attachment_uuid + area.page] ||= area
       })
 

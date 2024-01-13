@@ -204,7 +204,15 @@
                       :checked="!!values[field.uuid]"
                       @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                     >
-                    <span class="text-xl">
+                    <span
+                      v-if="field.title"
+                      class="text-xl"
+                      v-html="field.title"
+                    />
+                    <span
+                      v-else
+                      class="text-xl"
+                    >
                       {{ field.name || field.type + ' ' + (index + 1) }}
                     </span>
                   </label>
@@ -737,7 +745,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && !this.submittedValues[fields[0].uuid]?.length
+          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && (this.submittedValues[fields[0].uuid] === true ? false : !this.submittedValues[fields[0].uuid]?.length)
         })
 
         const formData = new FormData(this.$refs.form)

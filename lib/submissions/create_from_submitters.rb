@@ -98,17 +98,26 @@ module Submissions
 
         next if field_configs.blank?
 
-        f['readonly'] = field_configs['readonly'] if field_configs['readonly'].present?
-        f['default_value'] = field_configs['default_value'] if field_configs['default_value'].present? &&
-                                                               !f['type'].in?(%w[signature image initials file])
-
-        next if field_configs['validation_pattern'].blank?
-
-        f['validation'] = {
-          'pattern' => field_configs['validation_pattern'],
-          'message' => field_configs['invalid_message']
-        }.compact_blank
+        assign_field_attrs(f, field_configs)
       end
+    end
+
+    def assign_field_attrs(field, attrs)
+      field['title'] = attrs['title'] if attrs['title'].present?
+      field['description'] = attrs['description'] if attrs['description'].present?
+      field['readonly'] = attrs['readonly'] if attrs.key?('readonly')
+      field['required'] = attrs['required'] if attrs.key?('required')
+      field['default_value'] = attrs['default_value'] if attrs['default_value'].present? &&
+                                                         !field['type'].in?(%w[signature image initials file])
+
+      return field if attrs['validation_pattern'].blank?
+
+      field['validation'] = {
+        'pattern' => attrs['validation_pattern'],
+        'message' => attrs['invalid_message']
+      }.compact_blank
+
+      field
     end
 
     def find_submitter_uuid(template, attrs, index)
