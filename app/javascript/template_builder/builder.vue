@@ -179,6 +179,7 @@
                 v-if="withUploadButton"
                 :template-id="template.id"
                 :is-direct-upload="isDirectUpload"
+                :accept-file-types="acceptFileTypes"
                 @success="updateFromUpload"
               />
             </div>
