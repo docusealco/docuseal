@@ -73,7 +73,7 @@ curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose
 
 Run the app under a custom domain over https using docker compose (make sure your DNS points to the server to automatically issue ssl certs with Caddy):
 ```sh
-HOST=your-domain-name.com docker-compose up
+sudo HOST=your-domain-name.com docker compose up
 ```
 
 ## For Businesses
