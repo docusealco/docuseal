@@ -78,7 +78,7 @@
           <p>Send an invitation to fill and complete the form</p>
           <div class="space-y-2 flex flex-col">
             <% if can?(:create, Submission) %>
-              <%= link_to new_template_submission_path(@template), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+              <%= link_to new_template_submission_path(@template, with_link: true), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
                 <span class="mr-1">Send to Recipients</span>
               <% end %>

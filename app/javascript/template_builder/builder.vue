@@ -47,7 +47,7 @@
             </span>
           </a>
           <a
-            :href="`/templates/${template.id}/submissions/new`"
+            :href="`/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
             @click="maybeShowEmptyTemplateAlert"

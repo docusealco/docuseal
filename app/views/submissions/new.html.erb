@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal', title: params[:selfsign] ? 'Add Recipients' : 'Add New Recipients' do %>
-  <% options = [['via Email', 'email'], ['via Phone', 'phone'], ['Detailed', 'detailed']] %>
+  <% options = [['via Email', 'email'], ['via Phone', 'phone'], %w[Detailed detailed], (Docuseal.multitenant? && params[:with_link] && @template.submitters.to_a.size != 0 ? ['via Link', 'link'] : nil)].compact %>
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
@@ -22,6 +22,11 @@
     <div id="detailed" class="hidden">
       <%= render 'detailed_form', template: @template %>
     </div>
+    <% if Docuseal.multitenant? && params[:with_link] && @template.submitters.to_a.size != 0 %>
+      <div id="link" class="hidden">
+        <%= render 'link_form', template: @template %>
+      </div>
+    <% end %>
   </div>
   <%= content_for(:modal_extra) %>
 <% end %>
