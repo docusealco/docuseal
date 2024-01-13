@@ -65,6 +65,12 @@ module Api
     def create
       return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
 
+      if @template.fields.blank?
+        Rollbar.error("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
+
+        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_entity
+      end
+
       params[:send_email] = true unless params.key?(:send_email)
       params[:send_sms] = false unless params.key?(:send_sms)
 
