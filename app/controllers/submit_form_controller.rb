@@ -33,7 +33,7 @@ class SubmitFormController < ApplicationController
 
     cookies[:submitter_sid] = @submitter.signed_id
 
-    render @submitter.submission.template.archived_at? ? :archived : :show
+    render(@submitter.submission.template.archived_at? || @submitter.submission.archived_at? ? :archived : :show)
   end
 
   def update
