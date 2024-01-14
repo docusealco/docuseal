@@ -22,6 +22,8 @@ module Api
           }
         )
       }
+    rescue Templates::CreateAttachments::PdfEncrypted
+      render json: { error: 'PDF encrypted' }, status: :unprocessable_entity
     end
   end
 end

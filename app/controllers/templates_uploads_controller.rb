@@ -10,12 +10,7 @@ class TemplatesUploadsController < ApplicationController
   def create
     url_params = create_file_params_from_url if params[:url].present?
 
-    @template.account = current_account
-    @template.author = current_user
-    @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
-    @template.name = File.basename((url_params || params)[:files].first.original_filename, '.*')
-
-    @template.save!
+    save_template!(@template, url_params)
 
     documents = Templates::CreateAttachments.call(@template, url_params || params)
 
@@ -24,6 +19,8 @@ class TemplatesUploadsController < ApplicationController
     @template.update!(schema:)
 
     redirect_to edit_template_path(@template)
+  rescue Templates::CreateAttachments::PdfEncrypted
+    render turbo_stream: turbo_stream.append(params[:form_id], html: helpers.tag.prompt_password)
   rescue StandardError => e
     Rollbar.error(e) if defined?(Rollbar)
 
@@ -31,6 +28,17 @@ class TemplatesUploadsController < ApplicationController
   end
 
   private
+
+  def save_template!(template, url_params)
+    template.account = current_account
+    template.author = current_user
+    template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
+    template.name = File.basename((url_params || params)[:files].first.original_filename, '.*')
+
+    template.save!
+
+    template
+  end
 
   def create_file_params_from_url
     tempfile = Tempfile.new

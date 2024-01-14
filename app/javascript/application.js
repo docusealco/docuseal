@@ -19,6 +19,7 @@ import SubmittersAutocomplete from './elements/submitter_autocomplete'
 import FolderAutocomplete from './elements/folder_autocomplete'
 import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
+import PromptPassword from './elements/prompt_password'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -51,6 +52,7 @@ window.customElements.define('submitters-autocomplete', SubmittersAutocomplete)
 window.customElements.define('folder-autocomplete', FolderAutocomplete)
 window.customElements.define('signature-form', SignatureForm)
 window.customElements.define('submit-form', SubmitForm)
+window.customElements.define('prompt-password', PromptPassword)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {

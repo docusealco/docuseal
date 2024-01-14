@@ -33,7 +33,8 @@
     </div>
   <% end %>
   <% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
-    <%= form_for '', url: templates_upload_path, method: :post, class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
+    <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
+      <input type="hidden" name="form_id" value="<%= form_id %>">
       <button type="submit" class="hidden"></button>
       <file-dropzone data-submit-on-upload="true" class="w-full">
         <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border border-2 border-base-300 border-dashed">
