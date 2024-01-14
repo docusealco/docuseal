@@ -67,9 +67,11 @@ class SubmitterMailer < ApplicationMailer
 
     Submissions::EnsureResultGenerated.call(@submitter)
 
-    @documents = add_completed_email_attachments!(submitter)
-
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
+
+    @documents = add_completed_email_attachments!(
+      submitter, with_audit_log: @email_config.nil? || @email_config.value['attach_audit_log'] != false
+    )
 
     subject =
       if @email_config
