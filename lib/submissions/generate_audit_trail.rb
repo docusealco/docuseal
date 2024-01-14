@@ -27,7 +27,7 @@ module Submissions
       'GBP' => '£'
     }.freeze
 
-    RTL_REGEXP = Submissions::GenerateResultAttachments::RTL_REGEXP
+    RTL_REGEXP = TextUtils::RTL_REGEXP
 
     module_function
 
@@ -149,7 +149,7 @@ module Submissions
               [
                 submission.template_submitters.size > 1 && { text: "#{item['name']}\n" },
                 submitter.email && { text: "#{submitter.email}\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
-                submitter.name && { text: "#{maybe_rtl_reverse(submitter.name)}\n" },
+                submitter.name && { text: "#{TextUtils.maybe_rtl_reverse(submitter.name)}\n" },
                 submitter.phone && { text: "#{submitter.phone}\n" }
               ].compact_blank, line_spacing: 1.8, padding: [0, 20, 0, 0]
             )
@@ -187,7 +187,7 @@ module Submissions
             composer.formatted_text_box(
               [
                 {
-                  text: maybe_rtl_reverse(field['name'].to_s).upcase.presence ||
+                  text: TextUtils.maybe_rtl_reverse(field['name'].to_s).upcase.presence ||
                         "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
                   font_size: 6
                 }
@@ -237,7 +237,7 @@ module Submissions
 
               value = value.join(', ') if value.is_a?(Array)
 
-              composer.formatted_text_box([{ text: maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
+              composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
                                           align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
                                           padding: [0, 0, 10, 0])
             end
@@ -296,16 +296,6 @@ module Submissions
         name: 'audit_trail',
         record: submission
       )
-    end
-
-    def maybe_rtl_reverse(text)
-      if text.match?(RTL_REGEXP)
-        TwitterCldr::Shared::Bidi
-          .from_string(ArabicLetterConnector.transform(text), direction: :RTL)
-          .reorder_visually!.to_s
-      else
-        text
-      end
     end
 
     def add_logo(column, _submission = nil)

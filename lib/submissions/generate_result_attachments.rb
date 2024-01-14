@@ -13,7 +13,7 @@ module Submissions
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
     SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
-    RTL_REGEXP = /[\p{Hebrew}\p{Arabic}]/
+    RTL_REGEXP = TextUtils::RTL_REGEXP
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
@@ -159,7 +159,7 @@ module Submissions
           when 'cells'
             cell_width = area['cell_w'] * width
 
-            maybe_rtl_reverse(value).chars.each_with_index do |char, index|
+            TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
               text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
                                                                 font_size:)
 
@@ -172,7 +172,7 @@ module Submissions
               value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
             end
 
-            value = maybe_rtl_reverse(Array.wrap(value).join(', '))
+            value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
 
             text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
                                                                font_size:)
@@ -316,16 +316,6 @@ module Submissions
       )
 
       pdf
-    end
-
-    def maybe_rtl_reverse(text)
-      if text.match?(RTL_REGEXP)
-        TwitterCldr::Shared::Bidi
-          .from_string(ArabicLetterConnector.transform(text), direction: :RTL)
-          .reorder_visually!.to_s
-      else
-        text
-      end
     end
 
     def sign_reason(name)

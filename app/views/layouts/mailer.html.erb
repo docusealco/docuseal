@@ -6,7 +6,7 @@
     <style>
     </style>
   </head>
-  <body dir="<%= yield&.match?(/[\p{Hebrew}\p{Arabic}]/) ? 'rtl' : 'auto' %>">
+  <body dir="<%= yield&.match?(TextUtils::RTL_REGEXP) ? 'rtl' : 'auto' %>">
     <%= yield %>
     <%= render partial: 'shared/mailer_attribution' %>
   </body>
