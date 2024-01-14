@@ -142,9 +142,9 @@ module Api
 
       params.permit(
         key => [
-          [:send_email, :send_sms, :bcc_completed, {
+          [:send_email, :send_sms, :bcc_completed, :completed_redirect_url, {
             message: %i[subject body],
-            submitters: [[:send_email, :send_sms, :uuid, :name, :email, :role,
+            submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
                           :completed, :phone, :application_key,
                           { values: {}, readonly_fields: [], message: %i[subject body],
                             fields: [%i[name default_value title description

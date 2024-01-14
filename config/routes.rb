@@ -81,6 +81,10 @@ Rails.application.routes.draw do
     get :completed
   end
 
+  resources :submit_form, only: %i[], path: '' do
+    get :success, on: :collection
+  end
+
   resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
     get :completed
   end

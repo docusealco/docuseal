@@ -17,6 +17,7 @@ en: &en
   or: or
   download_documents: Download documents
   downloading: Downloading
+  completed_successfully: Completed Successfully
 
 es: &es
   digitally_signed_by: Firmado digitalmente por
@@ -38,6 +39,7 @@ es: &es
   or: o
   download_documents: Descargar documentos
   downloading: Descargando
+  completed_successfully: Completado exitosamente
 
 it:
   digitally_signed_by: Signé numériquement par
@@ -59,6 +61,7 @@ it:
   or: o
   download_documents: Scarica documenti
   downloading: Scaricamento
+  completed_successfully: Completato con successo
 
 fr: &fr
   email: Email
@@ -78,6 +81,7 @@ fr: &fr
   or: ou
   download_documents: Télécharger des documents
   downloading: Téléchargement
+  completed_successfully: Terminé avec succès
 
 pt: &pt
   digitally_signed_by: Assinado digitalmente por
@@ -99,6 +103,7 @@ pt: &pt
   or: ou
   download_documents: Baixar documentos
   downloading: Baixando
+  completed_successfully: Concluído com sucesso
 
 de: &de
   digitally_signed_by: Digital signiert von
@@ -120,6 +125,7 @@ de: &de
   or: oder
   download_documents: Dokumente herunterladen
   downloading: Herunterladen
+  completed_successfully: Erfolgreich abgeschlossen
 
 pl:
   email: Email
@@ -139,6 +145,7 @@ pl:
   or: lub
   download_documents: Pobierz dokumenty
   downloading: Pobieranie
+  completed_successfully: Zakończono pomyślnie
 
 uk:
   email: Email
@@ -158,6 +165,7 @@ uk:
   or: або
   download_documents: Завантажити документи
   downloading: Завантаження
+  completed_successfully: Успішно завершено
 
 cs:
   email: Email
@@ -177,6 +185,7 @@ cs:
   or: nebo
   download_documents: Stáhnout dokumenty
   downloading: Stahování
+  completed_successfully: Úspěšně dokončeno
 
 he:
   email: דוא"ל
@@ -196,6 +205,7 @@ he:
   or: או
   download_documents: הורד מסמכים
   downloading: מוריד
+  completed_successfully: הושלם בהצלחה
 
 en-US:
   <<: *en

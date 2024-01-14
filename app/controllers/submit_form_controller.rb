@@ -3,7 +3,7 @@
 class SubmitFormController < ApplicationController
   layout 'form'
 
-  around_action :with_browser_locale, only: %i[show completed]
+  around_action :with_browser_locale, only: %i[show completed success]
   skip_before_action :authenticate_user!
   skip_authorization_check
 
@@ -59,4 +59,6 @@ class SubmitFormController < ApplicationController
   def completed
     @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
   end
+
+  def success; end
 end

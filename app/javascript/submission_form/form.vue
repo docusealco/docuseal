@@ -332,9 +332,9 @@
         v-else
         :is-demo="isDemo"
         :attribution="attribution"
-        :completed-button="completedButton"
-        :with-send-copy-button="withSendCopyButton"
-        :with-download-button="withDownloadButton"
+        :completed-button="completedRedirectUrl ? {} : completedButton"
+        :with-send-copy-button="withSendCopyButton && !completedRedirectUrl"
+        :with-download-button="withDownloadButton && !completedRedirectUrl"
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
@@ -495,6 +495,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    completedRedirectUrl: {
+      type: String,
+      required: false,
+      default: ''
     },
     completedButton: {
       type: Object,
@@ -783,6 +788,10 @@ export default {
 
             if (respData) {
               this.onComplete(JSON.parse(respData))
+            }
+
+            if (this.completedRedirectUrl) {
+              window.location.href = this.completedRedirectUrl
             }
           }
         }).catch(error => {
