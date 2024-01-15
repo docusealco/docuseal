@@ -59,7 +59,7 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -72,7 +72,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    !archived_at?
+    super && !archived_at?
   end
 
   def remember_me
