@@ -41,7 +41,7 @@
         </a>
       <% end %>
     </div>
-    <div class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+    <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
@@ -71,7 +71,7 @@
         <% end %>
       </div>
     </div>
-    <div class="hidden md:block relative w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
+    <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% submitter_field_counters = Hash.new { 0 } %>
@@ -173,5 +173,16 @@
       <% end %>
     </div>
   </div>
+  <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
+    <input type="checkbox" class="peer hidden" onclick="[document_view.classList.toggle('hidden'), parties_view.classList.toggle('hidden')]">
+    <span class="peer-checked:hidden flex items-center space-x-2">
+      <%= svg_icon('users', class: 'w-8 h-8') %>
+      <span>Signers</span>
+    </span>
+    <span class="hidden peer-checked:flex items-center">
+      <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
+      <span>Back</span>
+    </span>
+  </label>
 </div>
 <%= render 'scripts/autosize_field' %>
