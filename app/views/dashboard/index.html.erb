@@ -1,101 +1,80 @@
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<% if @pagy.count > 0 || params[:q].present? || @template_folders.present? %>
-  <div class="flex justify-between mb-4 items-center">
-    <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
-    <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
-        <%= render 'shared/search_input' %>
+<div class="flex justify-between mb-4 items-center">
+  <h1 class="text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
+  <div class="flex space-x-2">
+    <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <%= render 'shared/search_input' %>
+    <% end %>
+    <% if can?(:create, ::Template) %>
+      <%= render 'templates/upload_button' %>
+      <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+        <span class="hidden md:block">Create</span>
       <% end %>
-      <% if can?(:create, ::Template) %>
-        <%= render 'templates/upload_button' %>
-        <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
-          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-          <span class="hidden md:block">Create</span>
-        <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
-  <% view_archived_html = capture do %>
-    <% if current_account.templates.where.not(archived_at: nil).exists? %>
-      <div>
-        <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
-      </div>
-    <% end %>
-  <% end %>
-  <% if @template_folders.present? %>
-    <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
-      <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+</div>
+<% view_archived_html = capture do %>
+  <% if current_account.templates.where.not(archived_at: nil).exists? %>
+    <div>
+      <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
     </div>
   <% end %>
-  <% if @templates.present? %>
-    <div class="grid gap-4 md:grid-cols-3">
-      <%= render partial: 'templates/template', collection: @templates %>
-    </div>
-  <% end %>
-  <% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
-    <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
-      <input type="hidden" name="form_id" value="<%= form_id %>">
-      <button type="submit" class="hidden"></button>
-      <file-dropzone data-submit-on-upload="true" class="w-full">
-        <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border border-2 border-base-300 border-dashed">
-          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
-            <div class="flex flex-col items-center">
-              <span data-target="file-dropzone.icon" class="flex flex-col items-center">
-                <span>
-                  <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
-                </span>
-                <div class="font-medium mb-1">
-                  Upload New Document
-                </div>
-                <div class="text-xs">
-                  <span class="font-medium">Click to upload</span> or drag and drop
-                </div>
+<% end %>
+<% if @template_folders.present? %>
+  <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
+    <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+  </div>
+<% end %>
+<% if @templates.present? %>
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render partial: 'templates/template', collection: @templates %>
+  </div>
+<% end %>
+<% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
+  <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
+    <input type="hidden" name="form_id" value="<%= form_id %>">
+    <button type="submit" class="hidden"></button>
+    <file-dropzone data-submit-on-upload="true" class="w-full">
+      <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border border-2 border-base-300 border-dashed">
+        <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+          <div class="flex flex-col items-center">
+            <span data-target="file-dropzone.icon" class="flex flex-col items-center">
+              <span>
+                <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
               </span>
-              <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
-                <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
-                <div class="font-medium mb-1">
-                  Uploading...
-                </div>
-              </span>
-            </div>
-            <input id="file_dropzone_input" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls' if Docuseal.multitenant? %>" multiple>
+              <div class="font-medium mb-1">
+                Upload New Document
+              </div>
+              <div class="text-xs">
+                <span class="font-medium">Click to upload</span> or drag and drop
+              </div>
+            </span>
+            <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
+              <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+              <div class="font-medium mb-1">
+                Uploading...
+              </div>
+            </span>
           </div>
-        </label>
-      </file-dropzone>
-    <% end %>
-  <% end %>
-  <% if @templates.present? || params[:q].blank? %>
-    <% if @pagy.pages > 1 %>
-      <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
-    <% else %>
-      <div class="mt-2">
-        <%= view_archived_html %>
-      </div>
-    <% end %>
-  <% elsif params[:q].present? %>
-    <div class="text-center">
-      <div class="mt-16 text-3xl font-semibold">
-        Templates not Found
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class="card bg-base-200 h-96 mb-2">
-    <div class="card-body text-center">
-      <div class="flex items-center h-full">
-        <div class="mx-auto">
-          <div class="max-w-xl mx-auto">
-            <h1 class="text-5xl font-bold text-base-content">👋 Welcome to <%= Docuseal.product_name %></h1>
-          </div>
-          <div class="max-w-lg mx-auto">
-            <p class="py-6 text-gray-600">Streamline document workflows, from creating customizable templates to filling and signing document forms</p>
-            <%= link_to new_template_path, class: 'base-button', data: { turbo_frame: :modal } do %>
-              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-              <span class="mr-1">Create Template</span>
-            <% end %>
-          </div>
+          <input id="file_dropzone_input" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls' if Docuseal.multitenant? %>" multiple>
         </div>
-      </div>
+      </label>
+    </file-dropzone>
+  <% end %>
+<% end %>
+<% if @templates.present? || params[:q].blank? %>
+  <% if @pagy.pages > 1 %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
+  <% else %>
+    <div class="mt-2">
+      <%= view_archived_html %>
+    </div>
+  <% end %>
+<% elsif params[:q].present? %>
+  <div class="text-center">
+    <div class="mt-16 text-3xl font-semibold">
+      Templates not Found
     </div>
   </div>
 <% end %>
