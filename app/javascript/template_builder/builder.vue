@@ -594,9 +594,9 @@ export default {
       }
     },
     removeArea (area) {
-      const field = this.template.fields.find((f) => f.areas?.includes(area))
-      if (['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type)) {
-        const valuesArray = Object.values(this.template.values)
+      const field = this.template.fields?.find((f) => f.areas?.includes(area))
+      if (['my_text', 'my_signature', 'my_initials', 'my_date'].includes(field.type) && this.template?.values) {
+        const valuesArray = Object.values(this.template?.values)
         const valueIndex = valuesArray.findIndex((value) => value === this.template.values[field.uuid])
         valuesArray.splice(valueIndex, 1)
         const valueKey = Object.keys(this.template.values)[valueIndex]

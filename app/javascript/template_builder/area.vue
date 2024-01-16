@@ -614,7 +614,7 @@ export default {
       this.save()
     },
     removeField () {
-      const templateValue = this.template.values[this.field.uuid]
+      const templateValue = this.template?.values?.[this.field.uuid]
       switch (this.field.type) {
         case 'my_signature':
           this.showMySignature = false
