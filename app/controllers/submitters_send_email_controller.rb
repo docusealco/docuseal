@@ -11,7 +11,11 @@ class SubmittersSendEmailController < ApplicationController
                            alert: 'Email has been sent already.')
     end
 
-    SubmitterMailer.invitation_email(@submitter).deliver_later!
+    mail = SubmitterMailer.invitation_email(@submitter)
+
+    Submitters::ValidateSending.call(@submitter, mail)
+
+    mail.deliver_later!
 
     SubmissionEvent.create!(submitter: @submitter, event_type: 'send_email')
 

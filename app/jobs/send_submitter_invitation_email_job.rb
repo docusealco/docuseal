@@ -4,7 +4,11 @@ class SendSubmitterInvitationEmailJob < ApplicationJob
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 
-    SubmitterMailer.invitation_email(submitter).deliver_now!
+    mail = SubmitterMailer.invitation_email(submitter)
+
+    Submitters::ValidateSending.call(submitter, mail)
+
+    mail.deliver_now!
 
     SubmissionEvent.create!(submitter:, event_type: 'send_email')
 
