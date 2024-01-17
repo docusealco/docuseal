@@ -43,7 +43,7 @@ RUN apk add --no-cache build-base sqlite-dev libpq-dev mariadb-dev vips-dev vips
 
 COPY ./Gemfile ./Gemfile.lock ./
 
-RUN bundle update --bundler && bundle install && rm -rf ~/.bundle /usr/local/bundle/cache && find /usr/local/bundle -type d \( -name "rdoc" -o -name "spec" \) -exec rm -rf {} +
+RUN bundle update --bundler && bundle install && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
 
 COPY ./bin ./bin
 COPY ./app ./app
