@@ -29,10 +29,10 @@ module Templates
       {
         'type' => 'external_link',
         'value' => annot[:A][:URI],
-        'x' => left / page.width,
-        'y' => (page.height - top) / page.height,
-        'w' => (right - left) / page.width,
-        'h' => (top - bottom) / page.height
+        'x' => left / page.width.to_f,
+        'y' => (page.height - top) / page.height.to_f,
+        'w' => (right - left) / page.width.to_f,
+        'h' => (top - bottom) / page.height.to_f
       }
     end
   end
