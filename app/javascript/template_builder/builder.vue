@@ -112,7 +112,7 @@
         />
         <div
           class="sticky bottom-0 py-2"
-          :style="withStickySubmitters ? { backgroundColor } : {}"
+          :style="{ backgroundColor }"
         >
           <Upload
             v-if="sortedDocuments.length && editable && withUploadButton"
@@ -884,7 +884,7 @@ export default {
       this.save()
     },
     onDocumentRemove (item) {
-      if (window.confirm('Are you sure?')) {
+      if (window.confirm(this.t('are_you_sure'))) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 
