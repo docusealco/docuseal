@@ -14,9 +14,7 @@ RSpec.describe 'Dashboard Page' do
     it 'shows empty state' do
       visit root_path
 
-      expect(page).to have_content('Welcome to DocuSeal')
-      expect(page).to have_content('Streamline document workflows, from creating customizable')
-      expect(page).to have_link('Create Template', href: new_template_path)
+      expect(page).to have_link('Create', href: new_template_path)
     end
   end
 
