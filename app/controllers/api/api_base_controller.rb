@@ -15,6 +15,10 @@ module Api
     before_action :authenticate_user!
     check_authorization
 
+    rescue_from Params::BaseValidator::InvalidParameterError do |e|
+      render json: { error: e.message }, status: :unprocessable_entity
+    end
+
     if Rails.env.production?
       rescue_from CanCan::AccessDenied do |e|
         Rollbar.error(e) if defined?(Rollbar)

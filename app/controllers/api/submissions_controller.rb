@@ -63,6 +63,8 @@ module Api
     end
 
     def create
+      Params::SubmissionCreateValidator.call(params, dry_run: true)
+
       return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
 
       if @template.fields.blank?
