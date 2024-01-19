@@ -7,7 +7,7 @@ class ApiPathConsiderJsonMiddleware
 
   def call(env)
     if env['PATH_INFO'].starts_with?('/api') &&
-       !env['PATH_INFO'].ends_with?('/documents') &&
+       (!env['PATH_INFO'].ends_with?('/documents') || env['REQUEST_METHOD'] != 'POST') &&
        !env['PATH_INFO'].ends_with?('/attachments')
       env['CONTENT_TYPE'] = 'application/json'
     end
