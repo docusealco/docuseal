@@ -61,7 +61,7 @@
               <button
                 v-if="submitters.length > 1 && editable"
                 class="px-2"
-                @click.stop="remove(submitter)"
+                @click.prevent.stop="remove(submitter)"
               >
                 <IconTrashX :width="18" />
               </button>
@@ -165,7 +165,7 @@
                 title="Up"
                 class="relative w-2"
                 style="font-size: 10px; margin-bottom: -4px"
-                @click.stop="[move(submitter, -1), $refs.label.focus()] "
+                @click.prevent.stop="[move(submitter, -1), $refs.label.focus()] "
               >
                 ▲
               </button>
@@ -173,7 +173,7 @@
                 title="Down"
                 class="relative w-2"
                 style="font-size: 10px; margin-top: -4px"
-                @click.stop="[move(submitter, 1), $refs.label.focus()] "
+                @click.prevent.stop="[move(submitter, 1), $refs.label.focus()] "
               >
                 ▼
               </button>
@@ -181,7 +181,7 @@
             <button
               v-if="!compact && submitters.length > 1 && editable"
               class="hidden group-hover:block px-2"
-              @click.stop="remove(submitter)"
+              @click.prevent.stop="remove(submitter)"
             >
               <IconTrashX :width="18" />
             </button>
