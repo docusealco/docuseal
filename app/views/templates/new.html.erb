@@ -11,8 +11,8 @@
         <%= svg_icon('folder', class: 'w-6 h-6') %>
       </a>
       <folder-autocomplete class="flex justify-between w-full">
-        <input id="folder_name" placeholder="Folder Name" type="text" class="w-64 outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.name || TemplateFolder::DEFAULT_NAME %>" onblur="window.folder_name.value = window.folder_name.value || 'Default'" autocomplete="off">
-        <a href="#" onclick="[event.preventDefault(), window.folder_name.value = '', window.folder_name.focus()]" class="link peer-focus:hidden mr-1.5">
+        <input id="folder_name" placeholder="Folder Name" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.name || TemplateFolder::DEFAULT_NAME %>" onblur="window.folder_name.value = window.folder_name.value || 'Default'" autocomplete="off">
+        <a href="#" onclick="[event.preventDefault(), window.folder_name.value = '', window.folder_name.focus()]" class="shrink-0	link peer-focus:hidden mr-1.5">
           Change Folder
         </a>
       </folder-autocomplete>

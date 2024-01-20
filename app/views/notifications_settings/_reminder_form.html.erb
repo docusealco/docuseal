@@ -2,7 +2,7 @@
   <%= f.hidden_field :key %>
   <div class="form-control">
     <% record = Struct.new(:first_duration, :second_duration, :third_duration).new(*(f.object.value || {}).values_at('first_duration', 'second_duration', 'third_duration')) %>
-    <div class="flex space-x-4">
+    <div class="flex flex-col md:flex-row gap-4">
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
           <%= ff.label :first_duration, 'First reminder in', class: 'label' %>

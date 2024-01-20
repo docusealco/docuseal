@@ -8,10 +8,12 @@
     <div class="card bg-base-200">
       <div class="card-body p-6">
         <label for="api_key" class="text-sm font-semibold">X-Auth-Token</label>
-        <div class="flex flex-row space-x-4">
-          <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-          <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
-          <%= button_to button_title(title: 'Rotate', disabled_with: 'Rotate', icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button', data: { turbo_confirm: 'Remove existing API token and generated a new one. Are you sure?' } %>
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex w-full space-x-4">
+            <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+            <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+          </div>
+          <%= button_to button_title(title: 'Rotate', disabled_with: 'Rotate', icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button w-full', data: { turbo_confirm: 'Remove existing API token and generated a new one. Are you sure?' } %>
         </div>
       </div>
     </div>
