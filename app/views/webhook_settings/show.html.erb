@@ -1,7 +1,10 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow">
-    <h1 class="text-4xl font-bold mb-4">Webhooks</h1>
+    <div class="flex justify-between">
+      <h1 class="text-4xl font-bold mb-4">Webhooks</h1>
+      <%= render 'shared/test_mode_toggle' %>
+    </div>
     <div class="card bg-base-200">
       <div class="card-body p-6">
         <%= form_for @encrypted_config, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' } do |f| %>

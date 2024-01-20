@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_29_220819) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_20_192055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_220819) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "key"], name: "index_account_configs_on_account_id_and_key", unique: true
     t.index ["account_id"], name: "index_account_configs_on_account_id"
+  end
+
+  create_table "account_linked_accounts", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "linked_account_id", null: false
+    t.text "account_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "linked_account_id"], name: "idx_on_account_id_linked_account_id_48ab9f79d2", unique: true
+    t.index ["account_id"], name: "index_account_linked_accounts_on_account_id"
+    t.index ["linked_account_id"], name: "index_account_linked_accounts_on_linked_account_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -242,6 +253,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_220819) do
 
   add_foreign_key "access_tokens", "users"
   add_foreign_key "account_configs", "accounts"
+  add_foreign_key "account_linked_accounts", "accounts"
+  add_foreign_key "account_linked_accounts", "accounts", column: "linked_account_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"

@@ -22,7 +22,7 @@
         </div>
       <% end %>
       <% encrypted_config = @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) %>
-      <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
+      <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? %>
         <%= f.fields_for encrypted_config do |ff| %>
           <div class="form-control">
             <%= ff.label :value, 'App URL', class: 'label' %>

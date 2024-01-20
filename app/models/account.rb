@@ -22,11 +22,25 @@ class Account < ApplicationRecord
           class_name: 'TemplateFolder', dependent: :destroy, inverse_of: :account
   has_many :submissions, through: :templates
   has_many :submitters, through: :submissions
+  has_many :account_linked_accounts, dependent: :destroy
+  has_many :account_testing_accounts, -> { testing }, dependent: :destroy,
+                                                      class_name: 'AccountLinkedAccount',
+                                                      inverse_of: :account
+  has_one :linked_account_account, dependent: :destroy,
+                                   foreign_key: :linked_account_id,
+                                   class_name: 'AccountLinkedAccount',
+                                   inverse_of: :linked_account
+  has_many :linked_accounts, through: :account_linked_accounts
+  has_many :testing_accounts, through: :account_testing_accounts, source: :linked_account
   has_many :active_users, -> { active }, dependent: :destroy,
                                          inverse_of: :account, class_name: 'User'
 
   attribute :timezone, :string, default: 'UTC'
   attribute :locale, :string, default: 'en-US'
+
+  def testing?
+    linked_account_account&.testing?
+  end
 
   def default_template_folder
     super || build_default_template_folder(name: TemplateFolder::DEFAULT_NAME,

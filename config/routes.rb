@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   resource :user_signature, only: %i[edit update destroy]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
+  resource :testing_account, only: %i[show destroy]
+  resources :testing_api_settings, only: %i[index]
   resource :templates_upload, only: %i[create]
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'
@@ -112,10 +114,8 @@ Rails.application.routes.draw do
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
-    if !Docuseal.multitenant? || Docuseal.demo?
-      resources :api, only: %i[index create], controller: 'api_settings'
-      resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
-    end
+    resources :api, only: %i[index create], controller: 'api_settings'
+    resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
     resource :account, only: %i[show update]
     resources :profile, only: %i[index] do
       collection do

@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
                 :current_account,
                 :svg_icon
 
+  impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
+
   rescue_from Pagy::OverflowError do
     redirect_to request.path
   end
@@ -24,12 +26,21 @@ class ApplicationController < ActionController::Base
     rescue_from CanCan::AccessDenied do |e|
       Rollbar.error(e) if defined?(Rollbar)
 
-      redirect_back(fallback_location: root_path, alert: e.message)
+      redirect_to root_path, alert: e.message
     end
   end
 
   def default_url_options
     Docuseal.default_url_options
+  end
+
+  def impersonate_user(user)
+    raise ArgumentError unless user
+    raise Pretender::Error unless true_user
+
+    @impersonated_user = user
+
+    request.session[:impersonated_user_id] = user.uuid
   end
 
   private

@@ -31,6 +31,26 @@ module Accounts
     new_account
   end
 
+  def find_or_create_testing_user(account)
+    user = User.find_by(account: account.testing_accounts)
+
+    return user if user
+
+    testing_account = account.dup.tap { |a| a.name = "Testing - #{a.name}" }
+
+    ApplicationRecord.transaction do
+      account.testing_accounts << testing_account
+
+      testing_account.users.create!(
+        email: account.users.order(:id).first.email.sub('@', '+test@'),
+        first_name: 'Testing',
+        last_name: 'Environment',
+        password: SecureRandom.hex,
+        role: :admin
+      )
+    end
+  end
+
   def create_default_template(account)
     template = Template.find(1)
 
@@ -61,7 +81,8 @@ module Accounts
       if Docuseal.multitenant?
         EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || Docuseal::CERTS
       else
-        EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
+        EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value ||
+          EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
       end
 
     if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })

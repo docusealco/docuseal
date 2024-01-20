@@ -11,17 +11,17 @@
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <% unless Docuseal.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
           <li>
             <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) %>
+        <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
           </li>
@@ -43,7 +43,7 @@
         </li>
       <% end %>
       <% unless Docuseal.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) %>
+        <% if can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
@@ -88,10 +88,22 @@
             <% end %>
           </li>
         <% end %>
+        <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
+          <li>
+            <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'flex w-full' } do |f| %>
+              <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
+                <span class="mr-2 w-full">
+                  Test Environment
+                </span>
+                <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing?, onchange: 'this.form.requestSubmit()' %>
+              </label>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </menu-active>
-  <% if !can?(:manage, :tenants) %>
+  <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
     <div class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
         Need help? Ask a question:

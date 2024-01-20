@@ -26,6 +26,7 @@ gem 'pagy'
 gem 'pdf-reader'
 gem 'pg', require: false
 gem 'premailer-rails'
+gem 'pretender'
 gem 'puma'
 gem 'rack'
 gem 'rails'

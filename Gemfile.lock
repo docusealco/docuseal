@@ -354,6 +354,8 @@ GEM
       actionmailer (>= 3)
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
+    pretender (0.5.0)
+      actionpack (>= 6.1)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -596,6 +598,7 @@ DEPENDENCIES
   pdf-reader
   pg
   premailer-rails
+  pretender
   pry-rails
   puma
   rack

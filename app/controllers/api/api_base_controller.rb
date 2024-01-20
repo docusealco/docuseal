@@ -8,6 +8,8 @@ module Api
     DEFAULT_LIMIT = 10
     MAX_LIMIT = 100
 
+    impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
+
     wrap_parameters false
 
     before_action :authenticate_user!

@@ -1,0 +1,18 @@
+<%= render 'shared/turbo_modal', title: 'Testing Environment' do %>
+  <div>
+    <label class="text-sm font-semibold" for="api_key">
+      x-Auth-Token
+    </label>
+    <div class="flex gap-2 mb-4 mt-2">
+      <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="base-input w-full" autocomplete="off" readonly>
+      <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+    </div>
+  </div>
+  <%= form_for @webhook_config, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+    <%= f.label :value, 'Webhook URL', class: 'text-sm font-semibold' %>
+    <div class="space-y-2 md:flex-nowrap mt-2">
+      <%= f.url_field :value, class: 'base-input w-full', placeholder: 'https://example.com/hook' %>
+      <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button w-full' %>
+    </div>
+  <% end %>
+<% end %>
