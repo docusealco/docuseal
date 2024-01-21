@@ -33,10 +33,6 @@ module Params
       required(params, :template_id)
       required(params, %i[submission submissions])
 
-      in_path(params, :submission) do |submission_params|
-        required(submission_params, :submitters) if params[:submission]
-      end
-
       boolean(params, :send_email)
       boolean(params, :send_sms)
       type(params, :order, String)
@@ -53,8 +49,14 @@ module Params
 
       value_in(params, :order, %w[preserved random], allow_nil: true)
 
+      return true if params[:submission].is_a?(Array)
+
+      in_path(params, :submission) do |submission_params|
+        required(submission_params, :submitters) if params[:submission]
+      end
+
       in_path_each(params, %i[submission submitters]) do |submitter_params|
-        required(submitter_params, :email)
+        required(submitter_params, %i[email phone name])
 
         type(submitter_params, :name, String)
         type(submitter_params, :email, String)
