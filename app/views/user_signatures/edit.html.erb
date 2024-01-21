@@ -3,9 +3,9 @@
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
-        <span class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-28 normal-case">
+        <span>
           <%= radio_button_tag 'option', value, value == 'draw', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-          <label for="option_<%= value %>" class="peer-checked:btn-active">
+          <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-28 peer-checked:btn-active normal-case">
             <%= label %>
           </label>
         </span>
