@@ -125,7 +125,8 @@
         />
       </div>
       <span class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 flex justify-center items-center rounded">
-        <IconPlus
+        <component
+          :is="editable ? 'IconPlus' : 'IconChevronDown'"
           width="18"
           height="18"
         />
@@ -188,7 +189,7 @@
           </div>
         </a>
       </li>
-      <li v-if="submitters.length < 10 && editable">
+      <li v-if="submitters.length < 10 && editable && allowAddNew">
         <a
           href="#"
           class="flex px-2"
@@ -208,7 +209,7 @@
 </template>
 
 <script>
-import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp } from '@tabler/icons-vue'
+import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp, IconChevronDown } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
 
@@ -216,6 +217,7 @@ export default {
   name: 'FieldSubmitter',
   components: {
     IconUserPlus,
+    IconChevronDown,
     Contenteditable,
     IconPlus,
     IconTrashX,
@@ -241,6 +243,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    allowAddNew: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     modelValue: {
       type: String,

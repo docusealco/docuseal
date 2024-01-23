@@ -10,6 +10,7 @@
       :allow-draw="allowDraw"
       :is-drag="isDrag"
       :default-fields="defaultFields"
+      :default-submitters="defaultSubmitters"
       :draw-field="drawField"
       :selected-submitter="selectedSubmitter"
       :image="image"
@@ -38,6 +39,11 @@ export default {
       default: () => ({})
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultSubmitters: {
       type: Array,
       required: false,
       default: () => []

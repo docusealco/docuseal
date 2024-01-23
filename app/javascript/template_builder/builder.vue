@@ -148,6 +148,7 @@
                 :is-drag="!!dragField"
                 :default-fields="defaultFields"
                 :allow-draw="!onlyDefinedFields"
+                :default-submitters="defaultSubmitters"
                 :draw-field="drawField"
                 :editable="editable"
                 :base-url="baseUrl"

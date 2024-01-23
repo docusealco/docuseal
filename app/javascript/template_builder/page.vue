@@ -24,6 +24,7 @@
         :field="item.field"
         :editable="editable"
         :default-field="defaultFields.find((f) => f.name === item.field.name)"
+        :default-submitters="defaultSubmitters"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @start-drag="isMove = true"
@@ -84,6 +85,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    defaultSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     drawField: {
       type: Object,

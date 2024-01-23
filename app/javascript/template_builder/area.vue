@@ -43,7 +43,8 @@
         class="border-r"
         :compact="true"
         :editable="editable && !defaultField"
-        :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px]'"
+        :allow-add-new="!defaultSubmitters.length"
+        :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px] mt-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
         @click="selectedAreaRef.value = area"
@@ -165,6 +166,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    defaultSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     editable: {
       type: Boolean,
