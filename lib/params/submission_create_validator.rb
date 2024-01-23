@@ -60,7 +60,10 @@ module Params
 
         type(submitter_params, :name, String)
         type(submitter_params, :email, String)
+        format(submitter_params, :email, /@/, message: 'email is invalid')
         type(submitter_params, :phone, String)
+        format(submitter_params, :phone, /\A\+\d+\z/,
+               message: 'phone should start with +<country code> and contain only digits')
         type(submitter_params, :values, Hash)
         boolean(submitter_params, :send_email)
         boolean(submitter_params, :send_sms)

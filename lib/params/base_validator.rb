@@ -59,6 +59,14 @@ module Params
       raise_error(message || "#{key} must be a #{type}")
     end
 
+    def format(params, key, regexp, message: nil)
+      return if params.blank?
+      return if params[key].blank?
+      return if regexp.match?(params[key].to_s)
+
+      raise_error(message || "#{key} must follow the #{regexp.source} format")
+    end
+
     def in_path(params, path = [])
       old_path = @current_path
 
