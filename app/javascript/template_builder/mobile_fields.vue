@@ -1,6 +1,6 @@
 <template>
   <span
-    class="dropdown dropdown-top dropdown-end fixed bottom-4 right-4 z-10 md:hidden"
+    class="dropdown dropdown-top dropdown-end absolute bottom-4 right-4 z-10 md:hidden"
   >
     <label
       class="btn btn-neutral text-white btn-circle btn-lg group"

@@ -186,25 +186,6 @@
             </div>
           </template>
         </div>
-        <MobileDrawField
-          v-if="drawField && isBreakpointLg"
-          :draw-field="drawField"
-          :fields="template.fields"
-          :submitters="template.submitters"
-          :selected-submitter="selectedSubmitter"
-          class="md:hidden"
-          :editable="editable"
-          @cancel="[drawField = null, drawOption = null]"
-          @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
-        />
-        <MobileFields
-          v-if="sortedDocuments.length && !drawField && editable"
-          :fields="template.fields"
-          :default-fields="defaultFields"
-          :field-types="fieldTypes"
-          :selected-submitter="selectedSubmitter"
-          @select="startFieldDraw($event)"
-        />
       </div>
       <div
         v-if="withFieldsList"
@@ -259,6 +240,27 @@
           />
         </div>
       </div>
+    </div>
+    <div class="sticky bottom-0">
+      <MobileDrawField
+        v-if="drawField && isBreakpointLg"
+        :draw-field="drawField"
+        :fields="template.fields"
+        :submitters="template.submitters"
+        :selected-submitter="selectedSubmitter"
+        class="md:hidden"
+        :editable="editable"
+        @cancel="[drawField = null, drawOption = null]"
+        @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
+      />
+      <MobileFields
+        v-if="sortedDocuments.length && !drawField && editable"
+        :fields="template.fields"
+        :default-fields="defaultFields"
+        :field-types="fieldTypes"
+        :selected-submitter="selectedSubmitter"
+        @select="startFieldDraw($event)"
+      />
     </div>
   </div>
 </template>
