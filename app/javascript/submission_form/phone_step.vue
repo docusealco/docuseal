@@ -140,7 +140,11 @@ export default {
       })
     },
     async submit () {
-      if (!this.isCodeSent) {
+      if (!this.$refs.phone.value.toString().startsWith('+')) {
+        alert(this.t('use_international_format'))
+
+        return Promise.reject(new Error('phone invalid'))
+      } else if (!this.isCodeSent) {
         this.sendVerificationCode()
 
         this.$emit('update:model-value', this.$refs.phone.value)
