@@ -26,7 +26,7 @@ module Submitters
 
         next if key.blank?
 
-        if fields_uuid_index[key]['type'].in?(%w[initials signature image file])
+        if fields_uuid_index[key]['type'].in?(%w[initials signature image file]) && value.present?
           new_value, new_attachments = normalize_attachment_value(value, template.account, for_submitter)
 
           attachments.push(*new_attachments)
