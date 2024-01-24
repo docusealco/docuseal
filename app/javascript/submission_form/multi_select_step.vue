@@ -1,11 +1,11 @@
 <template>
   <label
-    v-if="field.name"
+    v-if="showFieldNames && field.name"
     :for="field.uuid"
     dir="auto"
     class="label text-2xl mb-2"
   >{{ field.name }}</label>
-  <div class="flex w-full">
+  <div class="flex w-full max-h-44 overflow-y-auto">
     <input
       v-if="modelValue.length === 0"
       type="text"
@@ -14,8 +14,8 @@
       class="hidden"
     >
     <div
-      v-if="field.options.length > 5"
-      class="text-xl text-center w-full"
+      v-if="!showOptions"
+      class="text-xl px-1"
     >
       <span @click="scrollIntoField(field)">
         {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ isLastStep ? t('submit') : t('next') }}</span>.
@@ -23,7 +23,7 @@
     </div>
     <div
       class="space-y-3.5 mx-auto"
-      :class="{ hidden: field.options.length > 5 }"
+      :class="{ hidden: !showOptions }"
     >
       <div
         v-for="(option, index) in field.options"
@@ -66,6 +66,11 @@ export default {
       required: true,
       default: false
     },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     modelValue: {
       type: Array,
       required: false,
@@ -76,6 +81,11 @@ export default {
   data () {
     return {
       inputRefs: []
+    }
+  },
+  computed: {
+    showOptions () {
+      return this.showFieldNames && (this.field.options.some((e) => e.value) || this.field.options.length < 5)
     }
   },
   beforeUpdate () {

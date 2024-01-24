@@ -1,6 +1,6 @@
 <template>
   <label
-    v-if="field.name"
+    v-if="showFieldNames && field.name"
     :for="field.uuid"
     dir="auto"
     class="label text-2xl"
@@ -80,6 +80,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     modelValue: {
       type: String,

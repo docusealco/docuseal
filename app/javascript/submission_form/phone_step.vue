@@ -3,7 +3,7 @@
     <label
       :for="isCodeSent ? 'one_time_code' : field.uuid"
       class="label text-2xl mb-2"
-    >{{ field.name || t('verified_phone_number') }}
+    >{{ showFieldNames && field.name ? field.name : t('verified_phone_number') }}
       <template v-if="!field.required">({{ t('optional') }})</template>
     </label>
     <div>
@@ -92,6 +92,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     modelValue: {
       type: String,

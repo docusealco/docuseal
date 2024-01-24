@@ -4,7 +4,7 @@
       <label
         :for="field.uuid"
         class="label text-2xl"
-      >{{ field.name || t('date') }}
+      >{{ field.name && showFieldNames ? field.name : t('date') }}
         <template v-if="!field.required">({{ t('optional') }})</template>
       </label>
       <button
@@ -45,6 +45,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     modelValue: {
       type: String,

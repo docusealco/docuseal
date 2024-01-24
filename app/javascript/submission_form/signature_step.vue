@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
-      >{{ field.name || t('signature') }}</label>
+      >{{ showFieldNames && field.name ? field.name : t('signature') }}</label>
       <div class="space-x-2 flex">
         <span
           v-if="isTextSignature"
@@ -146,6 +146,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     isDirectUpload: {
       type: Boolean,

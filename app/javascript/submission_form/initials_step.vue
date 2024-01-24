@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
-      >{{ field.name || t('initials') }}</label>
+      >{{ showFieldNames && field.name ? field.name : t('initials') }}</label>
       <div class="space-x-2 flex">
         <span
           v-if="isDrawInitials"
@@ -124,6 +124,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     isDirectUpload: {
       type: Boolean,

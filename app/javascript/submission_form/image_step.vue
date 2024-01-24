@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center w-full mb-2">
       <label
         class="label text-2xl"
-      >{{ field.name || 'Image' }}</label>
+      >{{ showFieldNames && field.name ? field.name : t('image') }}</label>
       <button
         class="btn btn-outline btn-sm"
         @click.prevent="remove"
@@ -46,6 +46,7 @@ export default {
     FileDropzone,
     IconReload
   },
+  inject: ['t'],
   props: {
     field: {
       type: Object,
@@ -55,6 +56,11 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     submitterSlug: {
       type: String,

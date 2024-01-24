@@ -4,7 +4,7 @@
     :steps="stepFields"
     :values="values"
     :attachments-index="attachmentsIndex"
-    :with-label="!isAnonymousChecboxes"
+    :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
@@ -64,6 +64,7 @@
             <TextStep
               :key="currentField.uuid"
               v-model="values[currentField.uuid]"
+              :show-field-names="showFieldNames"
               :field="currentField"
               @focus="scrollIntoField(currentField)"
             />
@@ -72,12 +73,13 @@
             v-else-if="currentField.type === 'date'"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
+            :show-field-names="showFieldNames"
             :field="currentField"
             @focus="scrollIntoField(currentField)"
           />
           <div v-else-if="currentField.type === 'select'">
             <label
-              v-if="currentField.name"
+              v-if="showFieldNames && currentField.name"
               :for="currentField.uuid"
               dir="auto"
               class="label text-2xl mb-2"
@@ -116,17 +118,17 @@
           </div>
           <div v-else-if="currentField.type === 'radio'">
             <label
-              v-if="currentField.name"
+              v-if="showFieldNames && currentField.name"
               :for="currentField.uuid"
               dir="auto"
               class="label text-2xl mb-2"
             >{{ currentField.name }}
               <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
-            <div class="flex w-full">
+            <div class="flex w-full max-h-44 overflow-y-auto">
               <div
-                v-if="currentField.options.length > 5"
-                class="text-xl text-center w-full"
+                v-if="!showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4)"
+                class="text-xl px-1"
               >
                 <span
                   @click="scrollIntoField(currentField)"
@@ -136,7 +138,7 @@
               </div>
               <div
                 class="space-y-3.5 mx-auto"
-                :class="{ hidden: currentField.options.length > 5 }"
+                :class="{ hidden: !showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4) }"
               >
                 <div
                   v-for="(option, index) in currentField.options"
@@ -167,6 +169,7 @@
             v-else-if="currentField.type === 'multiple'"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
+            :show-field-names="showFieldNames"
             :is-last-step="stepFields.length === currentStep + 1"
             :field="currentField"
           />
@@ -182,7 +185,7 @@
             <div
               class="space-y-3.5 mx-auto"
             >
-              <template v-if="isAnonymousChecboxes">
+              <template v-if="isAnonymousChecboxes || !showFieldNames">
                 <span class="text-xl">
                   {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
                 </span>
@@ -242,6 +245,7 @@
             :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
+            :show-field-names="showFieldNames"
             @attached="[attachments.push($event), scrollIntoField(currentField)]"
           />
           <SignatureStep
@@ -255,6 +259,7 @@
             :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
+            :show-field-names="showFieldNames"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
@@ -268,6 +273,7 @@
             :previous-value="previousInitialsValue"
             :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
+            :show-field-names="showFieldNames"
             :submitter-slug="submitterSlug"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
@@ -290,6 +296,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
+            :show-field-names="showFieldNames"
             :default-value="submitter.phone"
             :submitter-slug="submitterSlug"
             @focus="scrollIntoField(currentField)"
@@ -445,6 +452,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    showFieldNames: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withTypedSignature: {
       type: Boolean,
