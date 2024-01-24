@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex absolute lg:text-base"
+    class="flex absolute lg:text-base -outline-offset-1"
     dir="auto"
     :style="computedStyle"
-    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 border cursor-pointer ': submittable, 'border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'border-red-500 border-dashed border-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
