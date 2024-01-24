@@ -110,5 +110,13 @@ module Params
 
       raise_error(message || "#{key} must be one of #{values.join(', ')}")
     end
+
+    def more_than(params, key, value, message: nil)
+      return if params.blank?
+      return if params[key].blank?
+      return if params[key].to_f > value
+
+      raise_error(message || "#{key} must be more than #{value}")
+    end
   end
 end
