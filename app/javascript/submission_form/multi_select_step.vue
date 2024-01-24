@@ -13,7 +13,18 @@
       :value="''"
       class="hidden"
     >
-    <div class="space-y-3.5 mx-auto">
+    <div
+      v-if="field.options.length > 5"
+      class="text-xl text-center w-full"
+    >
+      <span @click="scrollIntoField(field)">
+        {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ isLastStep ? t('submit') : t('next') }}</span>.
+      </span>
+    </div>
+    <div
+      class="space-y-3.5 mx-auto"
+      :class="{ hidden: field.options.length > 5 }"
+    >
       <div
         v-for="(option, index) in field.options"
         :key="option.uuid"
@@ -44,11 +55,16 @@
 <script>
 export default {
   name: 'MultiSelectStep',
-  inject: ['t'],
+  inject: ['t', 'scrollIntoField'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    isLastStep: {
+      type: Boolean,
+      required: true,
+      default: false
     },
     modelValue: {
       type: Array,

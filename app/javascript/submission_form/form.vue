@@ -124,7 +124,20 @@
               <template v-if="!currentField.required">({{ t('optional') }})</template>
             </label>
             <div class="flex w-full">
-              <div class="space-y-3.5 mx-auto">
+              <div
+                v-if="currentField.options.length > 5"
+                class="text-xl text-center w-full"
+              >
+                <span
+                  @click="scrollIntoField(currentField)"
+                >
+                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                </span>
+              </div>
+              <div
+                class="space-y-3.5 mx-auto"
+                :class="{ hidden: currentField.options.length > 5 }"
+              >
                 <div
                   v-for="(option, index) in currentField.options"
                   :key="option.uuid"
@@ -154,6 +167,7 @@
             v-else-if="currentField.type === 'multiple'"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
+            :is-last-step="stepFields.length === currentStep + 1"
             :field="currentField"
           />
           <div
@@ -401,6 +415,7 @@ export default {
     return {
       baseUrl: this.baseUrl,
       scrollIntoArea: this.scrollIntoArea,
+      scrollIntoField: this.scrollIntoField,
       t: this.t
     }
   },

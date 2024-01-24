@@ -81,7 +81,8 @@
     </div>
     <div
       v-else-if="field.type === 'checkbox'"
-      class="w-full p-[0.2vw] flex items-center justify-center"
+      class="w-full p-[1px] flex items-center justify-center"
+      @click="$event.target.querySelector('input')?.click()"
     >
       <input
         v-if="submittable"
@@ -100,14 +101,15 @@
     </div>
     <div
       v-else-if="field.type === 'radio' && area.option_uuid"
-      class="w-full p-[0.2vw] flex items-center justify-center"
+      class="w-full p-[1px] flex items-center justify-center"
+      @click="$event.target.querySelector('input')?.click()"
     >
       <input
         v-if="submittable"
         type="radio"
         :value="false"
-        class="aspect-square base-radio"
-        :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+        class="aspect-square checked:checkbox checked:checkbox-xs"
+        :class="{ 'base-radio': !modelValue || modelValue !== optionValue(option), '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue && modelValue === optionValue(option)"
         @click="$emit('update:model-value', optionValue(option))"
       >
@@ -119,7 +121,8 @@
     </div>
     <div
       v-else-if="field.type === 'multiple' && area.option_uuid"
-      class="w-full p-[0.2vw] flex items-center justify-center"
+      class="w-full p-[1px] flex items-center justify-center"
+      @click="$event.target.querySelector('input')?.click()"
     >
       <input
         v-if="submittable"
