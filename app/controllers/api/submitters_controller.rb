@@ -44,7 +44,7 @@ module Api
 
       Submissions::CreateFromSubmitters.maybe_set_template_fields(@submitter.submission,
                                                                   [normalized_params],
-                                                                  submitter_uuid: @submitter.uuid)
+                                                                  default_submitter_uuid: @submitter.uuid)
 
       assign_submitter_attrs(@submitter, normalized_params)
 

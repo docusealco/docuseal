@@ -39,11 +39,11 @@ module Submissions
       end
     end
 
-    def maybe_set_template_fields(submission, submitters_attrs, submitter_uuid: nil)
+    def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil)
       template_fields = (submission.template_fields || submission.template.fields).deep_dup
 
       submitters_attrs.each_with_index do |submitter_attrs, index|
-        submitter_uuid ||= find_submitter_uuid(submission.template, submitter_attrs, index)
+        submitter_uuid = default_submitter_uuid || find_submitter_uuid(submission.template, submitter_attrs, index)
 
         process_readonly_fields_param(submitter_attrs[:readonly_fields], template_fields, submitter_uuid)
         process_field_values_param(submitter_attrs[:values], template_fields, submitter_uuid)
