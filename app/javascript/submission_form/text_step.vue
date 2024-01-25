@@ -26,7 +26,8 @@
       v-model="text"
       :maxlength="cellsMaxLegth"
       dir="auto"
-      class="base-input !text-2xl w-full !pr-11 -mr-10"
+      class="base-input !text-2xl w-full"
+      :class="{ '!pr-11 -mr-10': !field.validation?.pattern }"
       :required="field.required"
       :pattern="field.validation?.pattern"
       :oninvalid="field.validation?.message ? `this.setCustomValidity(${JSON.stringify(field.validation.message)})` : ''"
@@ -50,7 +51,7 @@
       @focus="$emit('focus')"
     />
     <div
-      v-if="!isTextArea && field.type !== 'cells'"
+      v-if="!isTextArea && field.type !== 'cells' && !field.validation?.pattern"
       class="tooltip"
       :data-tip="t('toggle_multiline_text')"
     >
