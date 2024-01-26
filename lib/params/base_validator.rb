@@ -83,7 +83,7 @@ module Params
       old_path = @current_path
 
       params.dig(*path)&.each_with_index do |item, index|
-        @current_path = old_path + [*path].map(&:to_s).join('.') + "[#{index}]"
+        @current_path = [old_path, [*path].map(&:to_s).join('.') + "[#{index}]"].compact_blank.join('.')
 
         yield item if item
       end
