@@ -63,7 +63,7 @@ module Api
     end
 
     def create
-      Params::SubmissionCreateValidator.call(params, dry_run: true)
+      Params::SubmissionCreateValidator.call(params, dry_run: !Docuseal.multitenant?)
 
       return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
 
