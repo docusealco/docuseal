@@ -89,6 +89,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
       withPayment: this.dataset.withPayment === 'true',
+      currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'
     })

@@ -31,7 +31,7 @@
           @change="save"
         >
           <option
-            v-for="currency in currencies"
+            v-for="currency in currenciesList"
             :key="currency"
             :value="currency"
           >
@@ -167,7 +167,7 @@ export default {
     IconInnerShadowTop,
     IconBrandStripe
   },
-  inject: ['backgroundColor', 'save'],
+  inject: ['backgroundColor', 'save', 'currencies'],
   props: {
     field: {
       type: Object,
@@ -187,8 +187,11 @@ export default {
     redirectUri () {
       return document.location.origin + '/auth/stripe_connect/callback'
     },
-    currencies () {
+    defaultCurrencies () {
       return ['USD', 'EUR', 'GBP']
+    },
+    currenciesList () {
+      return this.currencies.length ? this.currencies : this.defaultCurrencies
     },
     authenticityToken () {
       return document.querySelector('meta[name="csrf-token"]')?.content

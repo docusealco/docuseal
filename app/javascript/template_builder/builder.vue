@@ -304,6 +304,7 @@ export default {
       template: this.template,
       save: this.save,
       t: this.t,
+      currencies: this.currencies,
       baseFetch: this.baseFetch,
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
@@ -348,6 +349,11 @@ export default {
       default: true
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    currencies: {
       type: Array,
       required: false,
       default: () => []
