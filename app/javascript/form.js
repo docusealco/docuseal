@@ -15,7 +15,7 @@ window.customElements.define('submission-form', class extends HTMLElement {
       goToLast: this.dataset.goToLast === 'true',
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
-      withConfetti: true,
+      withConfetti: this.dataset.withConfetti !== 'false',
       withTypedSignature: this.dataset.withTypedSignature !== 'false',
       values: reactive(JSON.parse(this.dataset.values)),
       completedButton: JSON.parse(this.dataset.completedButton),
