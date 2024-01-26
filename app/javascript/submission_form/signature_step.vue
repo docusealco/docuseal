@@ -265,6 +265,7 @@ export default {
     },
     toggleTextInput () {
       this.remove()
+      this.clear()
       this.isTextSignature = !this.isTextSignature
 
       if (this.isTextSignature) {
