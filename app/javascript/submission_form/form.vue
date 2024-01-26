@@ -397,7 +397,7 @@ import DateStep from './date_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
-import { t } from './i18n'
+import i18n from './i18n'
 
 export default {
   name: 'SubmissionForm',
@@ -508,6 +508,11 @@ export default {
       required: false,
       default: true
     },
+    language: {
+      type: String,
+      required: false,
+      default: ''
+    },
     values: {
       type: Object,
       required: false,
@@ -548,6 +553,9 @@ export default {
   computed: {
     currentStepFields () {
       return this.stepFields[this.currentStep]
+    },
+    browserLanguage () {
+      return (navigator.language || navigator.userLanguage || 'en').split('-')[0]
     },
     queryParams () {
       return new URLSearchParams(window.location.search)
@@ -666,7 +674,9 @@ export default {
     })
   },
   methods: {
-    t,
+    t (key) {
+      return i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+    },
     maybeTrackEmailClick () {
       const { queryParams } = this
 

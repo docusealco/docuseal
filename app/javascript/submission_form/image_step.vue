@@ -9,7 +9,7 @@
         @click.prevent="remove"
       >
         <IconReload :width="16" />
-        Reupload
+        {{ t('reupload') }}
       </button>
     </div>
     <div>
@@ -27,7 +27,7 @@
   <div>
     <FileDropzone
       v-if="!modelValue"
-      :message="`Upload ${field.name || 'Image'}${field.required ? '' : ' (optional)'}`"
+      :message="`${t('upload')} ${field.name || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :accept="'image/*'"
       :is-direct-upload="isDirectUpload"

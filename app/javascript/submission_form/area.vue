@@ -236,20 +236,20 @@ export default {
   computed: {
     fieldNames () {
       return {
-        text: 'Text',
-        cells: 'Text',
-        signature: 'Signature',
-        date: 'Date',
-        image: 'Image',
-        stamp: 'Stamp',
-        initials: 'Initials',
-        file: 'File',
-        select: 'Select',
-        checkbox: 'Checkbox',
-        radio: 'Radio',
-        multiple: 'Multiple Select',
-        phone: 'Phone',
-        payment: 'Payment'
+        text: this.t('text'),
+        signature: this.t('signature'),
+        initials: this.t('initials'),
+        date: this.t('date'),
+        image: this.t('image'),
+        file: this.t('file'),
+        select: this.t('select'),
+        checkbox: this.t('checkbox'),
+        multiple: this.t('multiple'),
+        radio: this.t('radio'),
+        cells: this.t('cells'),
+        stamp: this.t('stamp'),
+        payment: this.t('payment'),
+        phone: this.t('phone')
       }
     },
     option () {

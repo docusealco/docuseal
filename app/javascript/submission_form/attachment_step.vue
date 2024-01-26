@@ -42,7 +42,7 @@
       >
     </template>
     <FileDropzone
-      :message="`Upload ${field.name || 'Attachments'}${field.required ? '' : ' (optional)'}`"
+      :message="`${t('upload')} ${field.name || t('files')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :is-direct-upload="isDirectUpload"
       :multiple="true"
@@ -62,6 +62,7 @@ export default {
     IconPaperclip,
     IconTrashX
   },
+  inject: ['t'],
   props: {
     field: {
       type: Object,
