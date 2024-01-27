@@ -74,7 +74,6 @@ module Params
           required(field_params, :name)
 
           type(field_params, :name, String)
-          type(field_params, :default_value, String)
           type(field_params, :validation_pattern, String)
           type(field_params, :invalid_message, String)
           boolean(field_params, :readonly)
