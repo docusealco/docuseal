@@ -36,8 +36,6 @@ module Params
       message += " in `#{@current_path}`." if @current_path.present?
 
       raise InvalidParameterError, message unless dry_run?
-
-      Rollbar.error(message) if defined?(Rollbar)
     end
 
     def required(params, keys, message: nil)

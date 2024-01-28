@@ -35,20 +35,16 @@
        --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
        --data-raw '{
          "template_id": <%= current_account.templates.last&.id || 1 %>,
-         "submission": [
+         "submitters": [
            {
-             "submitters": [
-               {
-                 "name": "John Doe",
-                 "role": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'First Party' %>",
-                 "email": "<%= current_user.email.sub('@', '+test@') %>",
-                 "values": {
-                   "Form Text Field Name": "Default Value"
-                 }
-               },
-               { "role": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
-             ]
-           }
+             "name": "John Doe",
+             "role": "<%= current_account.templates.last ? current_account.templates.last.submitters.first['name'] : 'First Party' %>",
+             "email": "<%= current_user.email.sub('@', '+test@') %>",
+             "values": {
+               "Form Text Field Name": "Default Value"
+             }
+           },
+           { "role": "Second Submitter", "email": "<%= current_user.email.sub('@', '+test2@') %>" }
          ]
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">

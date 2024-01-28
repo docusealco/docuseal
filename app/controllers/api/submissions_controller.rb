@@ -96,7 +96,8 @@ module Api
     def create_submissions(template, params)
       is_send_email = !params[:send_email].in?(['false', false])
 
-      if (emails = (params[:emails] || params[:email]).presence) && params[:submission].blank?
+      if (emails = (params[:emails] || params[:email]).presence) &&
+         (params[:submission].blank? && params[:submitters].blank?)
         Submissions.create_from_emails(template:,
                                        user: current_user,
                                        source: :api,
@@ -140,20 +141,27 @@ module Api
     end
 
     def submissions_params
-      key = params.key?(:submission) ? :submission : :submissions
+      permitted_attrs = [
+        :send_email, :send_sms, :bcc_completed, :completed_redirect_url,
+        {
+          message: %i[subject body],
+          submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
+                        :completed, :phone, :application_key,
+                        { values: {}, readonly_fields: [], message: %i[subject body],
+                          fields: [%i[name default_value title description
+                                      readonly validation_pattern invalid_message]] }]]
+        }
+      ]
 
-      params.permit(
-        key => [
-          [:send_email, :send_sms, :bcc_completed, :completed_redirect_url, {
-            message: %i[subject body],
-            submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
-                          :completed, :phone, :application_key,
-                          { values: {}, readonly_fields: [], message: %i[subject body],
-                            fields: [%i[name default_value title description
-                                        readonly validation_pattern invalid_message]] }]]
-          }]
-        ]
-      ).fetch(key, [])
+      if params.key?(:submitters)
+        params.permit(*permitted_attrs)
+      else
+        key = params.key?(:submission) ? :submission : :submissions
+
+        params.permit(
+          key => [permitted_attrs]
+        ).fetch(key, [])
+      end
     end
   end
 end
