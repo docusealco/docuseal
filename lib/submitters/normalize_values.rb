@@ -19,9 +19,11 @@ module Submitters
 
       normalized_values = values.to_h.filter_map do |key, value|
         if fields_uuid_index[key].blank?
-          key = fields_name_index[key]&.dig('uuid')
+          original_key = key
 
-          raise(UnknownFieldName, "Unknown field: #{key}") if key.blank? && throw_errors
+          key = fields_name_index[key]&.dig('uuid') || fields_name_index[key.to_s.downcase]&.dig('uuid')
+
+          raise(UnknownFieldName, "Unknown field: #{original_key}") if key.blank? && throw_errors
         end
 
         next if key.blank?
@@ -59,7 +61,9 @@ module Submitters
     end
 
     def build_fields_index(fields)
-      fields.index_by { |e| e['name'] }.merge(fields.index_by { |e| e['name'].to_s.parameterize.underscore })
+      fields.index_by { |e| e['name'] }
+            .merge(fields.index_by { |e| e['name'].to_s.parameterize.underscore })
+            .merge(fields.index_by { |e| e['name'].to_s.downcase })
     end
 
     def normalize_attachment_value(value, account, for_submitter = nil)
