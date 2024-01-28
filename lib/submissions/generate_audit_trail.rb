@@ -69,7 +69,7 @@ module Submissions
       composer.column(columns: 1) do |column|
         add_logo(column, submission)
 
-        column.text('Audit Log',
+        column.text(account.linked_account_account&.testing? ? 'Testing Log - Not for Production Use' : 'Audit Log',
                     font_size: 16,
                     padding: [15, 0, 0, 0],
                     position: :float, position_hint: :right)
