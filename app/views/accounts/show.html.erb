@@ -65,6 +65,12 @@
         <% end %>
       </div>
     <% end %>
+    <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
+      <div class="px-1 mt-8">
+        <h2 class="text-2xl font-bold mb-2">Danger Zone</h2>
+        <%= button_to button_title(title: 'Delete my account'), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: 'Schedule account for deletion?' }, method: :delete, id: :account_delete_button %>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

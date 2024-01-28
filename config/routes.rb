@@ -116,7 +116,7 @@ Rails.application.routes.draw do
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     resources :api, only: %i[index create], controller: 'api_settings'
     resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
-    resource :account, only: %i[show update]
+    resource :account, only: %i[show update destroy]
     resources :profile, only: %i[index] do
       collection do
         patch :update_contact

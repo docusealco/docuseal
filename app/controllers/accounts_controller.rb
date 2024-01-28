@@ -37,6 +37,18 @@ class AccountsController < ApplicationController
     render :show, status: :unprocessable_entity
   end
 
+  def destroy
+    authorize!(:manage, current_account)
+
+    true_user.update!(locked_at: Time.current)
+
+    render turbo_stream: turbo_stream.replace(
+      :account_delete_button,
+      html: helpers.tag.p('Your account removal request will be processed within 2 weeks. ' \
+                          'Please contact us if you want to keep your account.')
+    )
+  end
+
   private
 
   def load_account
