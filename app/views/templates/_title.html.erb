@@ -1,42 +1,48 @@
-<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-start mb-3">
-  <div>
-    <h1 class="text-4xl font-semibold mr-4" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-      <%= template.name %>
-      <% if template.archived_at? %>
-        <span class="badge badge-outline badge-lg align-middle">Archived</span>
-      <% end %>
-    </h1>
-    <div class="flex items-center">
-      <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
-        <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
-        <span class="text-sm">
-          <%= @template.folder.name %>
-        </span>
-      </a>
-      <% if can?(:update, template) %>
-        <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="Move">
-          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
-            <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
+<div class="flex flex-col items-start md:flex-row space-y-2 md:space-y-0 md:space-x-2 md:justify-between md:items-start mb-6 md:mb-3">
+  <div class="relative flex items-start justify-between w-full space-x-0">
+    <div>
+      <h1 class="text-4xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+        <%= template.name %>
+        <% if template.archived_at? %>
+          <span class="badge badge-outline badge-lg align-middle">Archived</span>
+        <% end %>
+      </h1>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
+            <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
+            <span class="text-sm">
+              <%= @template.folder.name %>
+            </span>
           </a>
-        </span>
-      <% end %>
+          <% if can?(:update, template) %>
+            <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="Move">
+              <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
+                <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
+              </a>
+            </span>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="flex md:justify-between space-x-2 flex-none pt-1">
     <% if !template.archived_at? %>
-      <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'btn btn-sm btn-neutral text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copied_title: 'Copied', copy_title_md: 'Link', copied_title_md: 'Copied' %>
+      <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', icon_class: 'w-4 h-4 md:w-6 md:h-6 text-white', copy_title: 'Copy Link', copied_title: 'Copied', copy_title_md: 'Link', copied_title_md: 'Copied' %>
     <% end %>
+  </div>
+  <div class="flex space-x-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
     <% if !template.archived_at? && can?(:destroy, template) %>
-      <%= button_to button_title(title: 'Archive', disabled_with: 'Archiving', title_class: 'hidden md:inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      <%= button_to button_title(title: 'Archive', disabled_with: 'Archiving', title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>
     <% if can?(:create, template) %>
-      <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm', data: { turbo_frame: :modal } do %>
-        <%= svg_icon('copy', class: 'w-6 h-6') %>
-        <span class="hidden md:inline">Clone</span>
+      <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
+        <span class="flex items-center justify-center space-x-2">
+          <%= svg_icon('copy', class: 'w-6 h-6') %>
+          <span class="inline">Clone</span>
+        </span>
       <% end %>
     <% end %>
     <% if !template.archived_at? && can?(:update, template) %>
-      <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm' do %>
+      <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('pencil', class: 'w-6 h-6') %>
           <span>Edit</span>
@@ -44,7 +50,7 @@
       <% end %>
     <% end %>
     <% if template.archived_at? && can?(:create, template) %>
-      <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm' %>
+      <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
     <% end %>
   </div>
 </div>

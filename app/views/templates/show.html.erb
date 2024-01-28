@@ -1,22 +1,24 @@
 <%= render 'title', template: @template %>
 <% is_show_tabs = @pagy.pages > 1 || params[:status].present? %>
 <% if !@pagy.count.zero? || params[:q].present? %>
-  <div class="flex justify-between md:items-end flex-col md:flex-row <%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
-    <p class="text-3xl font-bold">Submissions</p>
-    <div class="flex justify-end space-x-2 mt-3 md:mt-0">
-      <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
-        <%= render 'shared/search_input' %>
-      <% end %>
-      <%= link_to new_template_submissions_export_path(@template), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
-        <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
-        <span>Export</span>
-      <% end %>
-      <% if !@template.archived_at? && can?(:create, Submission) %>
-        <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
-          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-          <span>Add <span class="hidden md:inline">Recipients</span></span>
+  <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
+    <div class="flex justify-between items-center md:items-end">
+      <p class="text-3xl font-bold">Submissions</p>
+      <div class="flex justify-end space-x-2">
+        <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
+          <%= render 'shared/search_input' %>
         <% end %>
-      <% end %>
+        <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+          <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
+          <span>Export</span>
+        <% end %>
+        <% if !@template.archived_at? && can?(:create, Submission) %>
+          <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+            <span>Add <span class="hidden md:inline">Recipients</span></span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
