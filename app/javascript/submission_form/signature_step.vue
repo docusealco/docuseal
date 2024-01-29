@@ -226,7 +226,7 @@ export default {
     },
     loadFont () {
       if (!isFontLoaded) {
-        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript.otf) format("opentype")`)
+        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript-Regular.otf) format("opentype")`)
 
         font.load().then((loadedFont) => {
           document.fonts.add(loadedFont)
