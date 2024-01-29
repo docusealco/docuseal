@@ -207,6 +207,27 @@ he:
   downloading: מוריד
   completed_successfully: הושלם בהצלחה
 
+nl:
+  email: E-mail
+  digitally_signed_by: Digitaal ondertekend door
+  role: Rol
+  provide_your_email_to_start: Geef uw e-mailadres om te beginnen
+  start: Start
+  starting: Starten
+  form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Uitgenodigd door <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: U bent uitgenodigd om een formulier in te dienen
+  signed_on_time: 'Ondertekend op %{time}'
+  form_has_been_submitted_already: Formulier is al ingediend
+  send_copy_to_email: Stuur kopie naar E-mail
+  sending: Verzenden
+  resubmit: Opnieuw indienen
+  form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
+  or: of
+  download_documents: Documenten downloaden
+  downloading: Downloaden
+  completed_successfully: Succesvol voltooid
+
 en-US:
   <<: *en
   date:

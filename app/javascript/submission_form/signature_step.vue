@@ -41,7 +41,7 @@
         </span>
         <span
           class="tooltip"
-          data-tip="Take photo"
+          :data-tip="t('take_photo')"
         >
           <label
             class="btn btn-outline btn-sm font-medium"
