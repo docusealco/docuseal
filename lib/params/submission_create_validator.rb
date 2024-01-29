@@ -5,10 +5,13 @@ module Params
     def call
       if params[:submission].blank? && (params[:emails].present? || params[:email].present?)
         validate_creation_from_emails(params)
-      elsif params[:submitters].present?
+      elsif params.key?(:submitters)
         validate_creation_from_submitters(params)
-      else
+      elsif params.key?(:submission) || params.key?(:submissions)
         validate_creation_from_submission(params)
+      else
+        required(params, :submitters)
+        type(params, :submitters, Array)
       end
 
       true
@@ -40,6 +43,7 @@ module Params
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)
       type(params, :message, Hash)
+      type(params, :submitters, Array)
 
       in_path(params, :message) do |message_params|
         type(message_params, :subject, String)
