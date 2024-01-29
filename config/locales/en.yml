@@ -20,7 +20,6 @@ en: &en
   completed_successfully: Completed Successfully
 
 es: &es
-  digitally_signed_by: Firmado digitalmente por
   role: Rol
   email: Correo electrónico
   digitally_signed_by: Firmado digitalmente por
@@ -42,7 +41,6 @@ es: &es
   completed_successfully: Completado exitosamente
 
 it:
-  digitally_signed_by: Signé numériquement par
   role: Rôle
   email: Email
   digitally_signed_by: Firmato digitalmente da
@@ -84,7 +82,6 @@ fr: &fr
   completed_successfully: Terminé avec succès
 
 pt: &pt
-  digitally_signed_by: Assinado digitalmente por
   role: Função
   email: Email
   digitally_signed_by: Assinado digitalmente por
@@ -106,10 +103,9 @@ pt: &pt
   completed_successfully: Concluído com sucesso
 
 de: &de
-  digitally_signed_by: Digital signiert von
   role: Rolle
   email: E-Mail
-  digitally_signed_by: Digital unterzeichnet von
+  digitally_signed_by: Digital signiert von
   role: Rolle
   provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
   start: Starten
