@@ -4,6 +4,10 @@ ActiveSupport.on_load(:active_storage_attachment) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   has_many_attached :preview_images
+
+  def preview_image_url
+    preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })&.url
+  end
 end
 
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?

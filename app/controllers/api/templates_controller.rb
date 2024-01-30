@@ -52,7 +52,7 @@ module Api
     def serialize_params
       {
         include: { author: { only: %i[id email first_name last_name] },
-                   documents: { only: %i[id uuid], methods: %i[url filename] } }
+                   documents: { only: %i[id uuid], methods: %i[url preview_image_url filename] } }
       }
     end
 
