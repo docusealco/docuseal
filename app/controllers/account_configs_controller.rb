@@ -7,6 +7,7 @@ class AccountConfigsController < ApplicationController
   ALLOWED_KEYS = [
     AccountConfig::ALLOW_TYPED_SIGNATURE,
     AccountConfig::FORCE_MFA,
+    AccountConfig::ALLOW_TO_RESUBMIT,
     AccountConfig::ESIGNING_PREFERENCE_KEY
   ].freeze
 
