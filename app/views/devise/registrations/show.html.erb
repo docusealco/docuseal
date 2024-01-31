@@ -1,6 +1,14 @@
 <div class="max-w-lg mx-auto px-2">
-  <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
-  <h1 class="text-3xl font-bold text-center mt-8 mb-6">Create Free Account</h1>
+  <% if params[:redir].to_s.ends_with?('on_premise') %>
+    <h1 class="text-3xl font-bold text-center mt-8 mb-6">DocuSeal Console</h1>
+    <div class="alert my-4 text-sm">
+      Sign up in DocuSeal Console to upgrade.
+      On-premises app is completely standalone, Console is used only to manage your license.
+    </div>
+  <% else %>
+    <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
+    <h1 class="text-3xl font-bold text-center mt-8 mb-6">Create Free Account</h1>
+  <% end %>
   <%= form_for(User.new, html: { class: 'space-y-6' }, url: new_registration_path, data: { turbo: params[:redir].blank? }, method: :get) do |f| %>
     <% if params[:redir].present? %>
       <%= hidden_field_tag :redir, params[:redir] %>

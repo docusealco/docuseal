@@ -19,6 +19,11 @@ module Docuseal
                 else
                   'https://console.docuseal.co'
                 end
+  CLOUD_URL = if Rails.env.development?
+                'http://localhost:3000'
+              else
+                'https://docuseal.co'
+              end
   CDN_URL = if Rails.env.development?
               'http://localhost:3000'
             elsif ENV['MULTITENANT'] == 'true'
