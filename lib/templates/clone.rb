@@ -4,12 +4,12 @@ module Templates
   module Clone
     module_function
 
-    def call(original_template, author:, application_key: nil, name: nil, folder_name: nil)
+    def call(original_template, author:, external_id: nil, name: nil, folder_name: nil)
       original_template_account = original_template.account
 
       template = original_template_account.templates.new
 
-      template.application_key = application_key
+      template.external_id = external_id
       template.author = author
       template.name = name || "#{original_template.name} (Clone)"
 

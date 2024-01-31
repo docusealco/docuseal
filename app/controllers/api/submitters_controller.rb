@@ -7,7 +7,8 @@ module Api
     def index
       submitters = Submitters.search(@submitters, params[:q])
 
-      submitters = submitters.where(application_key: params[:application_key]) if params[:application_key].present?
+      submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
+      submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
       submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
 
       submitters = paginate(
@@ -69,7 +70,8 @@ module Api
       submitter_params = params.key?(:submitter) ? params.require(:submitter) : params
 
       submitter_params.permit(
-        :send_email, :send_sms, :uuid, :name, :email, :role, :completed, :phone, :application_key,
+        :send_email, :send_sms, :uuid, :name, :email, :role,
+        :completed, :phone, :application_key, :external_id,
         { values: {}, readonly_fields: [], message: %i[subject body],
           fields: [%i[name default_value readonly validation_pattern invalid_message]] }
       )
@@ -82,7 +84,8 @@ module Api
       submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '') if attrs.key?(:phone)
       submitter.values = submitter.values.merge(attrs[:values].to_unsafe_h) if attrs[:values].present?
       submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
-      submitter.application_key = attrs[:application_key] if attrs.key?(:application_key)
+      submitter.external_id = attrs[:application_key] if attrs.key?(:application_key)
+      submitter.external_id = attrs[:external_id] if attrs.key?(:external_id)
 
       assign_submission_fields(submitter.submission)
       assign_preferences(submitter, attrs)

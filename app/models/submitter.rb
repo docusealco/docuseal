@@ -4,23 +4,23 @@
 #
 # Table name: submitters
 #
-#  id              :bigint           not null, primary key
-#  application_key :string
-#  completed_at    :datetime
-#  email           :string
-#  ip              :string
-#  name            :string
-#  opened_at       :datetime
-#  phone           :string
-#  preferences     :text             not null
-#  sent_at         :datetime
-#  slug            :string           not null
-#  ua              :string
-#  uuid            :string           not null
-#  values          :text             not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  submission_id   :bigint           not null
+#  id            :bigint           not null, primary key
+#  completed_at  :datetime
+#  email         :string
+#  ip            :string
+#  name          :string
+#  opened_at     :datetime
+#  phone         :string
+#  preferences   :text             not null
+#  sent_at       :datetime
+#  slug          :string           not null
+#  ua            :string
+#  uuid          :string           not null
+#  values        :text             not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  external_id   :string
+#  submission_id :bigint           not null
 #
 # Indexes
 #
@@ -60,6 +60,10 @@ class Submitter < ApplicationRecord
     else
       'awaiting'
     end
+  end
+
+  def application_key
+    external_id
   end
 
   def friendly_name

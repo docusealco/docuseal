@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_20_192055) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_31_212010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -171,7 +171,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_192055) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone"
-    t.string "application_key"
+    t.string "external_id"
     t.text "preferences", null: false
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
@@ -202,7 +202,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_192055) do
     t.datetime "updated_at", null: false
     t.text "source", null: false
     t.bigint "folder_id", null: false
-    t.string "application_key"
+    t.string "external_id"
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
     t.index ["folder_id"], name: "index_templates_on_folder_id"

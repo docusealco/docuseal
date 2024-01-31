@@ -5,11 +5,7 @@ module Api
     load_and_authorize_resource :template
 
     def index
-      templates = Templates.search(@templates, params[:q])
-
-      templates = params[:archived] ? templates.archived : templates.active
-      templates = templates.where(application_key: params[:application_key]) if params[:application_key].present?
-      templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
+      templates = filter_templates(@templates, params)
 
       templates = paginate(templates.preload(:author, documents_attachments: :blob))
 
@@ -49,8 +45,19 @@ module Api
 
     private
 
+    def filter_templates(templates, params)
+      templates = Templates.search(templates, params[:q])
+      templates = params[:archived] ? templates.archived : templates.active
+      templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
+      templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?
+      templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
+
+      templates
+    end
+
     def serialize_params
       {
+        methods: %i[application_key],
         include: { author: { only: %i[id email first_name last_name] },
                    documents: { only: %i[id uuid], methods: %i[url preview_image_url filename] } }
       }

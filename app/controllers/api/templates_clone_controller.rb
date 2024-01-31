@@ -7,11 +7,13 @@ module Api
     def create
       authorize!(:manage, @template)
 
-      cloned_template = Templates::Clone.call(@template,
-                                              author: current_user,
-                                              name: params[:name],
-                                              application_key: params[:application_key],
-                                              folder_name: params[:folder_name])
+      cloned_template = Templates::Clone.call(
+        @template,
+        author: current_user,
+        name: params[:name],
+        external_id: params[:external_id].presence || params[:application_key],
+        folder_name: params[:folder_name]
+      )
 
       cloned_template.source = :api
       cloned_template.save!

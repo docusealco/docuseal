@@ -16,7 +16,8 @@ module Submitters
       submitter_name = (submitter.submission.template_submitters ||
                         submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
-      submitter.as_json(include: [template: { only: %i[id name created_at updated_at] }])
+      submitter.as_json(methods: %i[application_key],
+                        include: [template: { only: %i[id name external_id created_at updated_at] }])
                .except('uuid', 'values', 'slug')
                .merge('values' => values,
                       'documents' => documents,

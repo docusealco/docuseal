@@ -18,9 +18,9 @@ module Submitters
 
       serialize_params = {
         include: {},
-        only: %i[id slug uuid name email phone completed_at application_key
+        only: %i[id slug uuid name email phone completed_at external_id
                  opened_at sent_at created_at updated_at],
-        methods: %i[status]
+        methods: %i[status application_key]
       }
 
       serialize_params[:include][:template] = { only: %i[id name created_at updated_at] } if with_template

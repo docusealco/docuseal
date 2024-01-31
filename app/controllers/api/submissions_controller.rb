@@ -132,8 +132,8 @@ module Api
         include: {
           submitters: { only: %i[id slug uuid name email phone
                                  completed_at opened_at sent_at
-                                 created_at updated_at],
-                        methods: %i[status] },
+                                 created_at updated_at external_id],
+                        methods: %i[status application_key] },
           template: { only: %i[id name created_at updated_at] },
           created_by_user: { only: %i[id email first_name last_name] }
         }
@@ -146,7 +146,7 @@ module Api
         {
           message: %i[subject body],
           submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
-                        :completed, :phone, :application_key,
+                        :completed, :phone, :application_key, :external_id,
                         { values: {}, readonly_fields: [], message: %i[subject body],
                           fields: [%i[name default_value title description
                                       readonly validation_pattern invalid_message]] }]]
