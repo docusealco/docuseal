@@ -65,6 +65,7 @@ module Submissions
       template_fields.each do |f|
         next if f['submitter_uuid'] != submitter_uuid ||
                 (!f['name'].in?(readonly_fields) &&
+                 !f['name'].to_s.downcase.in?(readonly_fields) &&
                  !f['name'].to_s.parameterize.underscore.in?(readonly_fields))
 
         f['readonly'] = true
@@ -93,7 +94,7 @@ module Submissions
         next if f['submitter_uuid'] != submitter_uuid
 
         field_configs = fields.find do |e|
-          e['name'] == f['name'] || e['name'] == f['name'].to_s.parameterize.underscore
+          e['name'].to_s.casecmp(f['name'].to_s).zero? || e['name'] == f['name'].to_s.parameterize.underscore
         end
 
         next if field_configs.blank?
