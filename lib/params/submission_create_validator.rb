@@ -69,6 +69,7 @@ module Params
       format(submitter_params, :phone, /\A\+\d+\z/,
              message: 'phone should start with +<country code> and contain only digits')
       type(submitter_params, :values, Hash)
+      type(submitter_params, :metadata, Hash)
       boolean(submitter_params, :send_email)
       boolean(submitter_params, :send_sms)
       type(submitter_params, :completed_redirect_url, String)

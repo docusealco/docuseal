@@ -72,7 +72,7 @@ module Api
       submitter_params.permit(
         :send_email, :send_sms, :uuid, :name, :email, :role,
         :completed, :phone, :application_key, :external_id,
-        { values: {}, readonly_fields: [], message: %i[subject body],
+        { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
           fields: [%i[name default_value readonly validation_pattern invalid_message]] }
       )
     end
@@ -86,6 +86,7 @@ module Api
       submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
       submitter.external_id = attrs[:application_key] if attrs.key?(:application_key)
       submitter.external_id = attrs[:external_id] if attrs.key?(:external_id)
+      submitter.metadata = attrs[:metadata] if attrs.key?(:metadata)
 
       assign_submission_fields(submitter.submission)
       assign_preferences(submitter, attrs)

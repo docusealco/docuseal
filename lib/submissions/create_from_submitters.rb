@@ -139,6 +139,7 @@ module Submissions
         completed_at: attrs[:completed] ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
+        metadata: attrs[:metadata] || {},
         preferences: preferences.merge(submitter_preferences)
                                 .merge({ default_values: attrs[:values] }.compact_blank)
                                 .except('bcc_completed'),

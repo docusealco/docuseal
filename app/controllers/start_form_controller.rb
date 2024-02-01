@@ -57,7 +57,8 @@ class StartFormController < ApplicationController
       ip: request.remote_ip,
       ua: request.user_agent,
       values: resubmit_submitter&.preferences&.fetch('default_values', nil) || {},
-      preferences: resubmit_submitter&.preferences.presence || { 'send_email' => true }
+      preferences: resubmit_submitter&.preferences.presence || { 'send_email' => true },
+      metadata: resubmit_submitter&.metadata.presence || {}
     )
 
     if submitter.values.present?

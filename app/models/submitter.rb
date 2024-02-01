@@ -8,6 +8,7 @@
 #  completed_at  :datetime
 #  email         :string
 #  ip            :string
+#  metadata      :text             not null
 #  name          :string
 #  opened_at     :datetime
 #  phone         :string
@@ -39,10 +40,12 @@ class Submitter < ApplicationRecord
 
   attribute :values, :string, default: -> { {} }
   attribute :preferences, :string, default: -> { {} }
+  attribute :metadata, :string, default: -> { {} }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   serialize :values, coder: JSON
   serialize :preferences, coder: JSON
+  serialize :metadata, coder: JSON
 
   has_many_attached :documents
   has_many_attached :attachments

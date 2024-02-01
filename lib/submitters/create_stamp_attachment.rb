@@ -30,7 +30,6 @@ module Submitters
       )
     end
 
-    # rubocop:disable Metrics
     def generate_stamp_image(submitter)
       logo = Vips::Image.new_from_buffer(load_logo(submitter).read, '')
 
@@ -82,7 +81,6 @@ module Submitters
 
       Vips::Image.text(text, width: WIDTH, height: HEIGHT)
     end
-    # rubocop:enable Metrics
 
     def load_logo(_submitter)
       PdfIcons.logo_io

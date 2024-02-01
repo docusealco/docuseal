@@ -44,7 +44,7 @@ Layout/LineLength:
   AllowedPatterns: ['\A\s*#']
 
 Metrics/AbcSize:
-  Max: 35
+  Max: 40
 
 Metrics/ModuleLength:
   Max: 500
