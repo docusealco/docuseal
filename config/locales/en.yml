@@ -216,7 +216,7 @@ nl:
   signed_on_time: 'Ondertekend op %{time}'
   form_has_been_submitted_already: Formulier is al ingediend
   send_copy_to_email: Stuur kopie naar E-mail
-  sending: Verzenden
+  sending: Voltooien
   resubmit: Opnieuw indienen
   form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
   or: of
