@@ -81,7 +81,7 @@ sudo HOST=your-domain-name.com docker compose up
 
 At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
 
-[Book a Meeting](https://calendly.com/kriti-docuseal/30min)
+[Book a Meeting](https://www.docuseal.co/contact)
 
 ## License
 
