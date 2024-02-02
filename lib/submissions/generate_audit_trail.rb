@@ -78,7 +78,7 @@ module Submissions
       composer.column(columns: 1) do |column|
         column.text("Envelope ID: #{submission.id}", font_size: 12, padding: [20, 0, 10, 0], position: :float)
 
-        unless submission.source_embed?
+        unless submission.source.in?(%w[embed api])
           column.formatted_text([{ link: verify_url, text: 'Verify', style: :link }],
                                 font_size: 9, padding: [22, 0, 10, 0], position: :float, align: :right)
         end
