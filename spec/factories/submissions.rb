@@ -6,6 +6,7 @@ FactoryBot.define do
     created_by_user factory: %i[user]
 
     before(:create) do |submission, _|
+      submission.account_id = submission.template.account_id
       submission.template_fields = submission.template.fields
       submission.template_schema = submission.template.schema
       submission.template_submitters = submission.template.submitters

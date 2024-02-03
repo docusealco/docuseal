@@ -32,6 +32,7 @@ module Submissions
 
     parse_emails(emails).uniq.map do |email|
       submission = template.submissions.new(created_by_user: user,
+                                            account_id: user.account_id,
                                             source:,
                                             template_submitters: template.submitters)
 

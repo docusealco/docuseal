@@ -10,7 +10,8 @@ class StartFormController < ApplicationController
   before_action :load_template
 
   def show
-    @submitter = @template.submissions.new.submitters.new(uuid: @template.submitters.first['uuid'])
+    @submitter = @template.submissions.new(account_id: @template.account_id)
+                          .submitters.new(uuid: @template.submitters.first['uuid'])
   end
 
   def update
@@ -68,6 +69,7 @@ class StartFormController < ApplicationController
     end
 
     submitter.submission ||= Submission.new(template:,
+                                            account_id: template.account_id,
                                             template_submitters: template.submitters,
                                             source: :link)
 

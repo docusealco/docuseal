@@ -15,11 +15,13 @@
 #  template_submitters :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  account_id          :bigint           not null
 #  created_by_user_id  :bigint
 #  template_id         :bigint           not null
 #
 # Indexes
 #
+#  index_submissions_on_account_id          (account_id)
 #  index_submissions_on_created_by_user_id  (created_by_user_id)
 #  index_submissions_on_slug                (slug) UNIQUE
 #  index_submissions_on_template_id         (template_id)
@@ -31,7 +33,7 @@
 #
 class Submission < ApplicationRecord
   belongs_to :template
-  has_one :account, through: :template
+  belongs_to :account
   belongs_to :created_by_user, class_name: 'User', optional: true
 
   has_many :submitters, dependent: :destroy

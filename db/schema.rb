@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_210319) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_03_113454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -151,6 +151,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_210319) do
     t.string "submitters_order", null: false
     t.string "slug", null: false
     t.text "preferences", null: false
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_submissions_on_account_id"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
     t.index ["template_id"], name: "index_submissions_on_template_id"
