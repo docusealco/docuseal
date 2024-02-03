@@ -54,6 +54,12 @@ module Params
 
       value_in(params, :order, %w[preserved random], allow_nil: true)
 
+      if params[:submitters].present?
+        in_path(params, :submitters) do |submitters_params|
+          type(submitters_params, 0, Hash)
+        end
+      end
+
       in_path_each(params, :submitters) do |submitter_params|
         validate_submitter(submitter_params)
       end
