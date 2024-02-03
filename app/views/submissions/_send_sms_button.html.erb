@@ -1,5 +1,5 @@
 <div class="mt-2 mb-1">
   <div class="tooltip w-full" data-tip="Unlock with Enterpise">
-    <%= link_to submitter.sent_at? ? 'Re-send SMS' : 'Send SMS', "#{Docuseal::CONSOLE_URL}/#{Docuseal.multitenant? ? 'plans' : 'on_premise'}", class: 'btn btn-sm btn-primary text-gray-400 w-full' %>
+    <%= link_to submitter.sent_at? ? 'Re-send SMS' : 'Send SMS', Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}", class: 'btn btn-sm btn-primary text-gray-400 w-full' %>
   </div>
 </div>
