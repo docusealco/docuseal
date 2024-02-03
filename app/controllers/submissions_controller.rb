@@ -75,6 +75,6 @@ class SubmissionsController < ApplicationController
   end
 
   def load_template
-    @template = current_account.templates.find(params[:template_id])
+    @template = Template.accessible_by(current_ability).find(params[:template_id])
   end
 end

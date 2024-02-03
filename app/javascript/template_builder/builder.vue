@@ -62,6 +62,7 @@
             </span>
           </a>
           <button
+            v-if="editable"
             class="base-button"
             :class="{ disabled: isSaving }"
             v-bind="isSaving ? { disabled: true } : {}"
@@ -80,6 +81,15 @@
               {{ t('save') }}
             </span>
           </button>
+          <a
+            v-else
+            :href="`/templates/${template.id}`"
+            class="base-button"
+          >
+            <span class="hidden md:inline">
+              {{ t('back') }}
+            </span>
+          </a>
         </template>
       </div>
     </div>

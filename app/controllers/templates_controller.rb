@@ -6,7 +6,7 @@ class TemplatesController < ApplicationController
   before_action :load_base_template, only: %i[new create]
 
   def show
-    submissions = @template.submissions
+    submissions = @template.submissions.accessible_by(current_ability)
     submissions = submissions.active if @template.archived_at.blank?
     submissions = Submissions.search(submissions, params[:q])
 
@@ -47,10 +47,11 @@ class TemplatesController < ApplicationController
                                                         name: params.dig(:template, :name),
                                                         folder_name: params[:folder_name])
     else
-      @template.account = current_account
       @template.author = current_user
       @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     end
+
+    @template.account = current_account
 
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
@@ -87,6 +88,6 @@ class TemplatesController < ApplicationController
   def load_base_template
     return if params[:base_template_id].blank?
 
-    @base_template = current_account.templates.find_by(id: params[:base_template_id])
+    @base_template = Template.accessible_by(current_ability).find_by(id: params[:base_template_id])
   end
 end

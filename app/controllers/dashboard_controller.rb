@@ -52,7 +52,13 @@ class DashboardController < ApplicationController
 
   def filter_templates(templates)
     rel = templates.active.preload(:author).order(id: :desc)
-    rel = rel.where(folder_id: current_account.default_template_folder.id) if params[:q].blank?
+
+    if params[:q].blank?
+      shared_template_ids =
+        TemplateSharing.where(account_id: [current_account.id, TemplateSharing::ALL_ID]).select(:template_id)
+
+      rel = rel.where(folder_id: current_account.default_template_folder.id).or(rel.where(id: shared_template_ids))
+    end
 
     Templates.search(rel, params[:q])
   end

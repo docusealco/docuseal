@@ -70,11 +70,14 @@ Rails.application.routes.draw do
   end
   resources :templates_archived, only: %i[index], path: 'archived'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
+  resources :template_sharings_testing, only: %i[create]
   resources :templates, only: %i[new create edit show destroy] do
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
     resource :folder, only: %i[edit update], controller: 'templates_folders'
+    resource :preview, only: %i[show], controller: 'templates_preview'
+    resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resources :submissions_export, only: %i[index new]
   end
   resources :preview_document_page, only: %i[show], path: '/preview/:attachment_uuid'

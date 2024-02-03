@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_03_113454) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_03_113455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -192,6 +192,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_03_113454) do
     t.index ["author_id"], name: "index_template_folders_on_author_id"
   end
 
+  create_table "template_sharings", force: :cascade do |t|
+    t.bigint "template_id", null: false
+    t.bigint "account_id", null: false
+    t.string "ability", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "template_id"], name: "index_template_sharings_on_account_id_and_template_id", unique: true
+    t.index ["template_id"], name: "index_template_sharings_on_template_id"
+  end
+
   create_table "templates", force: :cascade do |t|
     t.string "slug", null: false
     t.string "name", null: false
@@ -272,6 +282,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_03_113454) do
   add_foreign_key "submitters", "submissions"
   add_foreign_key "template_folders", "accounts"
   add_foreign_key "template_folders", "users", column: "author_id"
+  add_foreign_key "template_sharings", "templates"
   add_foreign_key "templates", "accounts"
   add_foreign_key "templates", "template_folders", column: "folder_id"
   add_foreign_key "templates", "users", column: "author_id"

@@ -88,6 +88,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       backgroundColor: '#faf7f5',
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
+      editable: this.dataset.editable !== 'false',
       withPayment: this.dataset.withPayment === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,

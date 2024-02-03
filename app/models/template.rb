@@ -57,6 +57,7 @@ class Template < ApplicationRecord
            class_name: 'ActiveStorage::Attachment', dependent: :destroy, as: :record, inverse_of: :record
 
   has_many :submissions, dependent: :destroy
+  has_many :template_sharings, dependent: :destroy
 
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }

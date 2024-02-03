@@ -7,6 +7,9 @@
       <p class="flex items-center space-x-1 text-xs text-base-content/60">
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
+        <% if template.account_id != current_account.id %>
+          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase">shared</span>
+        <% end %>
       </p>
       <p class="flex text-xs text-base-content/60">
         <span class="flex items-center space-x-1 w-1/2">
@@ -24,7 +27,7 @@
   </a>
   <div class="absolute top-0 bottom-0 w-0 flex items-center hidden md:group-hover:flex" style="right: 37px">
     <div class="space-y-1">
-      <% if can?(:update, template) && !template.archived_at? %>
+      <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
         <span class="tooltip tooltip-left" data-tip="Move">
           <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('folder_share', class: 'w-4 h-4') %>

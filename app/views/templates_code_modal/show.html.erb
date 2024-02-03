@@ -1,0 +1,36 @@
+<%= render 'shared/turbo_modal', title: 'API and Embedding', close_after_submit: false do %>
+  <div>
+    <label class="text-sm font-semibold" for="template_id">
+      Template ID
+    </label>
+    <div class="flex gap-2 mb-4 mt-2">
+      <input id="template_id" type="text" value="<%= @template.id %>" class="base-input w-full" autocomplete="off" readonly>
+      <%= render 'shared/clipboard_copy', icon: 'copy', text: @template.id, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+    </div>
+  </div>
+  <div>
+    <label class="text-sm font-semibold" for="embedding_url">
+      Embedding URL
+    </label>
+    <div class="flex gap-2 mb-4 mt-2">
+      <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
+      <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+    </div>
+  </div>
+  <%= render 'templates/embedding', template: @template %>
+  <% if can?(:manage, TemplateSharing.new(template: @template)) %>
+    <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' } do |f| %>
+      <%= f.hidden_field :template_id, value: @template.id %>
+      <div class="flex items-center justify-between">
+        <span>
+          Share template with Test Environment
+        </span>
+        <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
+      </div>
+    <% end %>
+    <div class="mb-4">
+    </div>
+  <% end %>
+  <%= render 'templates_code_modal/preferences' %>
+  <%= render 'templates_code_modal/placeholder' %>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="alert">
+  <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+  <div>
+    <p class="font-bold">API and Embedding</p>
+    <p class="text-gray-700">
+      Unlock with DocuSeal Pro
+      <br>
+      <a class="link font-medium" target="_blank" href="<%= "#{Docuseal::CONSOLE_URL}/#{Docuseal.multitenant? ? 'plans' : 'on_premise'}" %>">Learn More</a>
+    </p>
+  </div>
+</div>
