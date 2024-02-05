@@ -27,6 +27,11 @@ class PdfProcessor < HexaPDF::Content::Processor
 
       @pos = 0
       @num += 1
+    rescue HexaPDF::Error => e
+      Rails.logger.error(e.message)
+
+      @pos = 0
+      @num += 1
     end
   end
 
