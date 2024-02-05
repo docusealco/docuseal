@@ -103,6 +103,7 @@ module Submitters
     end
 
     def replace_default_variables(value, attrs, template, with_time: false)
+      return value if value.in?([true, false])
       return if value.blank?
 
       value.to_s.gsub(VARIABLE_REGEXP) do |e|

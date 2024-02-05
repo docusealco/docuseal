@@ -2,6 +2,7 @@ const en = {
   are_you_sure: 'Are you sure?',
   sign_yourself: 'Sign Yourself',
   send: 'Send',
+  checked: 'Checked',
   save: 'Save',
   cancel: 'Cancel',
   draw_field_on_the_document: 'Draw {field} field on the document',

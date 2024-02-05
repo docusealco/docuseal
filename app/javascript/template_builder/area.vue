@@ -98,21 +98,32 @@
     </div>
     <div
       class="flex items-center h-full w-full"
+      dir="auto"
       :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
     >
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1 h-full"
+        :class="{'w-full h-full': field.type == 'checkbox'}"
       >
         <div
           v-if="field?.default_value"
-          :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
+          :class="{ 'w-full h-full': field.type == 'checkbox', 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
+            :class="{'w-full h-full': field.type == 'checkbox'}"
           >
-            <span class="whitespace-pre-wrap">{{ field.default_value }}</span>
+            <IconCheck
+              v-if="field.type == 'checkbox'"
+              class="aspect-square mx-auto"
+              :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+            />
+            <span
+              v-else
+              class="whitespace-pre-wrap"
+            >{{ field.default_value }}</span>
           </div>
         </div>
         <component
@@ -141,13 +152,14 @@
 import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
-import { IconX } from '@tabler/icons-vue'
+import { IconX, IconCheck } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
   name: 'FieldArea',
   components: {
     FieldType,
+    IconCheck,
     FieldSubmitter,
     IconX
   },

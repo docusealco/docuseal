@@ -157,6 +157,20 @@
                 </label>
               </li>
               <li
+                v-if="field.type == 'checkbox'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.default_value"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="[field.default_value = $event, field.readonly = $event, save()]"
+                  >
+                  <span class="label-text">{{ t('checked') }}</span>
+                </label>
+              </li>
+              <li
                 v-if="field.type === 'text' && !defaultField"
                 @click.stop
               >
