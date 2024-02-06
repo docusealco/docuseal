@@ -24,7 +24,7 @@ module Api
     end
 
     def update
-      if (folder_name = params.dig(:template, :folder_name))
+      if (folder_name = params[:folder_name] || params.dig(:template, :folder_name))
         @template.folder = TemplateFolders.find_or_create_by_name(current_user, folder_name)
       end
 
@@ -64,15 +64,21 @@ module Api
     end
 
     def template_params
-      params.require(:template).permit(
+      permit_params = [
         :name,
-        schema: [%i[attachment_uuid name]],
-        submitters: [%i[name uuid]],
-        fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,
-                  { preferences: {},
-                    options: [%i[value uuid]],
-                    areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
-      )
+        { schema: [%i[attachment_uuid name]],
+          submitters: [%i[name uuid]],
+          fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,
+                    { preferences: {},
+                      options: [%i[value uuid]],
+                      areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
+      ]
+
+      if params.key?(:template)
+        params.require(:template).permit(*permit_params)
+      else
+        params.permit(*permit_params)
+      end
     end
   end
 end
