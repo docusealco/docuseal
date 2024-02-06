@@ -104,7 +104,7 @@
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
       style="padding: 1px; 0"
-      class="bg-white border border-base-300 rounded-2xl"
+      class="bg-white border border-base-300 rounded-2xl w-full"
     />
     <input
       v-if="isTextSignature"
@@ -215,7 +215,19 @@ export default {
 
         this.$emit('start')
       })
+
+      this.intersectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
+            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+          }
+        })
+      }).observe(this.$refs.canvas)
     }
+  },
+  beforeUnmount () {
+    this.intersectionObserver?.disconnect()
   },
   methods: {
     remove () {

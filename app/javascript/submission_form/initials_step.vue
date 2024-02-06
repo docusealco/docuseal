@@ -190,7 +190,19 @@ export default {
 
         this.$emit('start')
       })
+
+      this.intersectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
+            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+          }
+        })
+      }).observe(this.$refs.canvas)
     }
+  },
+  beforeUnmount () {
+    this.intersectionObserver?.disconnect()
   },
   methods: {
     remove () {
