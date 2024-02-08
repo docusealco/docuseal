@@ -1,6 +1,7 @@
 const en = {
   are_you_sure: 'Are you sure?',
   sign_yourself: 'Sign Yourself',
+  set_signing_date: 'Set signing date',
   send: 'Send',
   checked: 'Checked',
   save: 'Save',

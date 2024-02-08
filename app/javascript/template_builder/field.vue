@@ -171,6 +171,20 @@
                 </label>
               </li>
               <li
+                v-if="field.type == 'date'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    v-model="field.readonly"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, save()]"
+                  >
+                  <span class="label-text">{{ t('set_signing_date') }}</span>
+                </label>
+              </li>
+              <li
                 v-if="field.type === 'text' && !defaultField"
                 @click.stop
               >
