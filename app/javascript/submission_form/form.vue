@@ -621,7 +621,7 @@ export default {
 
     this.fields.forEach((field) => {
       if (field.default_value && !field.readonly) {
-        this.values[field.uuid] = field.default_value
+        this.values[field.uuid] ||= field.default_value
       }
     })
 

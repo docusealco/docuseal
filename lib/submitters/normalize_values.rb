@@ -28,7 +28,9 @@ module Submitters
 
         next if key.blank?
 
-        if fields_uuid_index[key]['type'].in?(%w[initials signature image file]) && value.present?
+        field = fields_uuid_index[key]
+
+        if field['type'].in?(%w[initials signature image file]) && value.present?
           new_value, new_attachments = normalize_attachment_value(value, template.account, for_submitter)
 
           attachments.push(*new_attachments)
@@ -36,10 +38,24 @@ module Submitters
           value = new_value
         end
 
-        [key, value]
+        [key, normalize_value(field, value)]
       end.to_h
 
       [normalized_values, attachments]
+    end
+
+    def normalize_value(field, value)
+      if field['type'] == 'text' && value.present?
+        value.to_s
+      elsif field['type'] == 'date' && value.present?
+        Date.parse(value).to_s
+      else
+        value
+      end
+    rescue Date::Error => e
+      Rollbar.error(e) if defined?(Rollbar)
+
+      value
     end
 
     def fetch_fields(template, submitter_name: nil, for_submitter: nil)

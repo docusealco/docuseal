@@ -123,12 +123,14 @@ export default {
     }
   },
   mounted () {
-    this.isTextArea = this.modelValue?.includes('\n')
+    if (this.modelValue) {
+      this.isTextArea = this.modelValue.toString().includes('\n')
 
-    if (this.isTextArea) {
-      this.$nextTick(() => {
-        this.resizeTextarea()
-      })
+      if (this.isTextArea) {
+        this.$nextTick(() => {
+          this.resizeTextarea()
+        })
+      }
     }
   },
   methods: {

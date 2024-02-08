@@ -109,8 +109,10 @@ module Submissions
       field['description'] = attrs['description'] if attrs['description'].present?
       field['readonly'] = attrs['readonly'] if attrs.key?('readonly')
       field['required'] = attrs['required'] if attrs.key?('required')
-      field['default_value'] = attrs['default_value'] if attrs['default_value'].present? &&
-                                                         !field['type'].in?(%w[signature image initials file])
+
+      if attrs['default_value'].present? && !field['type'].in?(%w[signature image initials file])
+        field['default_value'] = Submitters::NormalizeValues.normalize_value(field, attrs['default_value'])
+      end
 
       return field if attrs['validation_pattern'].blank?
 
