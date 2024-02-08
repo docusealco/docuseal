@@ -67,7 +67,7 @@
               </button>
             </a>
           </li>
-          <li v-if="submitters.length < 10 && editable">
+          <li v-if="submitters.length < 18 && editable">
             <a
               href="#"
               class="flex px-2"
@@ -145,7 +145,7 @@
         <a
           href="#"
           class="flex px-2 group justify-between items-center"
-          :class="{ 'active': submitter === selectedSubmitter }"
+          :class="{ 'active': submitter === selectedSubmitter, 'py-1': submitters.length > 8 }"
           @click.prevent="selectSubmitter(submitter)"
         >
           <span class="py-1 flex items-center">
@@ -189,7 +189,7 @@
           </div>
         </a>
       </li>
-      <li v-if="submitters.length < 10 && editable && allowAddNew">
+      <li v-if="submitters.length < 18 && editable && allowAddNew">
         <a
           href="#"
           class="flex px-2"
@@ -277,7 +277,15 @@ export default {
         'bg-cyan-500',
         'bg-orange-500',
         'bg-lime-500',
-        'bg-indigo-500'
+        'bg-indigo-500',
+        'bg-red-500',
+        'bg-sky-500',
+        'bg-emerald-500',
+        'bg-yellow-300',
+        'bg-purple-600',
+        'bg-pink-500',
+        'bg-cyan-500',
+        'bg-orange-500'
       ]
     },
     names () {
@@ -291,7 +299,15 @@ export default {
         this.t('seventh_party'),
         this.t('eighth_party'),
         this.t('ninth_party'),
-        this.t('tenth_party')
+        this.t('tenth_party'),
+        this.t('eleventh_party'),
+        this.t('twelfth_party'),
+        this.t('thirteenth_party'),
+        this.t('fourteenth_party'),
+        this.t('fifteenth_party'),
+        this.t('sixteenth_party'),
+        this.t('seventeenth_party'),
+        this.t('eighteenth_party')
       ]
     },
     selectedSubmitter () {
