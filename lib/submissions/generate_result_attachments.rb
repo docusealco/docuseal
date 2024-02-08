@@ -294,6 +294,12 @@ module Submissions
             HexaPDF::Document.new(io: StringIO.new(attachment.download))
           end
 
+        begin
+          pdf.acro_form&.flatten
+        rescue StandardError => e
+          Rollbar.error(e) if defined?(Rollbar)
+        end
+
         [attachment.uuid, pdf]
       end
     end
