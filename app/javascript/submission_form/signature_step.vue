@@ -221,9 +221,13 @@ export default {
           if (entry.isIntersecting) {
             this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
             this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+
+            this.intersectionObserver?.disconnect()
           }
         })
-      }).observe(this.$refs.canvas)
+      })
+
+      this.intersectionObserver.observe(this.$refs.canvas)
     }
   },
   beforeUnmount () {
