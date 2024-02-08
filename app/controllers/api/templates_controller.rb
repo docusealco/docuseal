@@ -28,6 +28,12 @@ module Api
         @template.folder = TemplateFolders.find_or_create_by_name(current_user, folder_name)
       end
 
+      archived = params.key?(:archived) ? params[:archived] : params.dig(:template, :archived)
+
+      if archived.in?([true, false])
+        @template.archived_at = archived == true ? Time.current : nil
+      end
+
       @template.update!(template_params)
 
       render json: @template.as_json(only: %i[id updated_at])
