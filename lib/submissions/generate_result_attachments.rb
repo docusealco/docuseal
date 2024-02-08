@@ -21,6 +21,10 @@ module Submissions
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
+    REPLACE_EMOJI = {
+      '✔️' => 'V'
+    }.freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -173,6 +177,7 @@ module Submissions
             end
 
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
+            value = REPLACE_EMOJI[value] || value
 
             text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
                                                                font_size:)
