@@ -40,6 +40,8 @@ const en = {
   sixteenth_party: 'Sixteenth Party',
   seventeenth_party: 'Seventeenth Party',
   eighteenth_party: 'Eighteenth Party',
+  nineteenth_party: 'Nineteenth Party',
+  twentieth_party: 'Twentieth Party',
   add: 'Add',
   or_add_field_without_drawing: 'Or add field without drawing',
   text: 'Text',

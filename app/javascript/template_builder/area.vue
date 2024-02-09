@@ -254,7 +254,9 @@ export default {
         'border-purple-600/80',
         'border-pink-500/80',
         'border-cyan-500/80',
-        'border-orange-500/80'
+        'border-orange-500/80',
+        'border-lime-500/80',
+        'border-indigo-500/80'
       ]
     },
     bgColors () {
@@ -276,7 +278,9 @@ export default {
         'bg-purple-100/80',
         'bg-pink-100/80',
         'bg-cyan-100/80',
-        'bg-orange-100/80'
+        'bg-orange-100/80',
+        'bg-lime-100/80',
+        'bg-indigo-100/80'
       ]
     },
     isSelected () {
