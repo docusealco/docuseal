@@ -48,7 +48,11 @@ module Submitters
       if field['type'] == 'text' && value.present?
         value.to_s
       elsif field['type'] == 'date' && value.present?
-        Date.parse(value).to_s
+        if value.is_a?(Integer)
+          Time.zone.at(value.to_s.first(10).to_i).to_date
+        else
+          Date.parse(value).to_s
+        end
       else
         value
       end
