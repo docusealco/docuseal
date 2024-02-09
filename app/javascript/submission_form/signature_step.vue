@@ -340,6 +340,8 @@ export default {
         }
 
         reader.readAsDataURL(file)
+
+        event.target.value = null
       }
     },
     async submit () {
