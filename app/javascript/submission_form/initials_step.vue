@@ -84,7 +84,7 @@
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
-      class="bg-white border border-base-300 rounded-2xl"
+      class="bg-white border border-base-300 rounded-2xl w-full"
     />
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
@@ -105,6 +105,8 @@ import { cropCanvasAndExportToPNG } from './crop_canvas'
 import { IconReload, IconTextSize, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
+
+const scale = 3
 
 export default {
   name: 'InitialsStep',
@@ -171,8 +173,10 @@ export default {
   async mounted () {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
-        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 5
+        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
+        this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 3) * scale
+
+        this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
 
       this.$refs.textInput?.focus()
@@ -194,8 +198,10 @@ export default {
       this.intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
+            this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 3) * scale
+
+            this.$refs.canvas.getContext('2d').scale(scale, scale)
 
             this.intersectionObserver?.disconnect()
           }
@@ -238,8 +244,8 @@ export default {
       context.font = fontStyle + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily
       context.textAlign = 'center'
 
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      context.fillText(e.target.value, canvas.width / 2, canvas.height / 2 + 11)
+      context.clearRect(0, 0, canvas.width / scale, canvas.height / scale)
+      context.fillText(e.target.value, canvas.width / 2 / scale, canvas.height / 2 / scale + 11)
     },
     toggleTextInput () {
       this.remove()

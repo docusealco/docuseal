@@ -127,6 +127,8 @@ import AppearsOn from './appears_on'
 
 let isFontLoaded = false
 
+const scale = 3
+
 export default {
   name: 'SignatureStep',
   components: {
@@ -198,8 +200,10 @@ export default {
   async mounted () {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
-        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
+        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
+
+        this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
     })
 
@@ -219,8 +223,10 @@ export default {
       this.intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth
-            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth / 3
+            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
+            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
+
+            this.$refs.canvas.getContext('2d').scale(scale, scale)
 
             this.intersectionObserver?.disconnect()
           }
@@ -276,8 +282,8 @@ export default {
       context.font = fontStyle + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily
       context.textAlign = 'center'
 
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      context.fillText(e.target.value, canvas.width / 2, canvas.height / 2 + 11)
+      context.clearRect(0, 0, canvas.width / scale, canvas.height / scale)
+      context.fillText(e.target.value, canvas.width / 2 / scale, canvas.height / 2 / scale + 11)
     },
     toggleTextInput () {
       this.remove()
@@ -313,14 +319,16 @@ export default {
             const context = canvas.getContext('2d')
 
             const aspectRatio = img.width / img.height
+            const canvasWidth = canvas.width / scale
+            const canvasHeight = canvas.height / scale
 
-            let targetWidth = canvas.width
-            let targetHeight = canvas.height
+            let targetWidth = canvasWidth
+            let targetHeight = canvasHeight
 
-            if (canvas.width / canvas.height > aspectRatio) {
-              targetWidth = canvas.height * aspectRatio
+            if (canvasWidth / canvasHeight > aspectRatio) {
+              targetWidth = canvasHeight * aspectRatio
             } else {
-              targetHeight = canvas.width / aspectRatio
+              targetHeight = canvasWidth / aspectRatio
             }
 
             if (targetHeight > targetWidth) {
@@ -329,10 +337,10 @@ export default {
               targetHeight = targetHeight * scale
             }
 
-            const x = (canvas.width - targetWidth) / 2
-            const y = (canvas.height - targetHeight) / 2
+            const x = (canvasWidth - targetWidth) / 2
+            const y = (canvasHeight - targetHeight) / 2
 
-            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.clearRect(0, 0, canvasWidth, canvasHeight)
             context.drawImage(img, x, y, targetWidth, targetHeight)
 
             this.$emit('start')
