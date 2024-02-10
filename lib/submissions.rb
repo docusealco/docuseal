@@ -66,7 +66,7 @@ module Submissions
         first_submitter =
           submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
 
-        Submitters.send_signature_requests([first_submitter])
+        Submitters.send_signature_requests([first_submitter]) if first_submitter
       else
         Submitters.send_signature_requests(submitters)
       end

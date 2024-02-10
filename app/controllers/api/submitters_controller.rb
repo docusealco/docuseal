@@ -55,6 +55,8 @@ module Api
         @submitter.save!
 
         @submitter.submission.save!
+
+        SubmissionEvents.create_with_tracking_data(@submitter, 'api_complete_form', request) if @submitter.completed_at?
       end
 
       if @submitter.completed_at?

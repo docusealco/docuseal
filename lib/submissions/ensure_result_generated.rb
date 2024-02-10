@@ -23,9 +23,11 @@ module Submissions
       else
         submitter.document_generation_events.create!(event_name: events.present? ? :retry : :start)
 
-        GenerateResultAttachments.call(submitter)
+        documents = GenerateResultAttachments.call(submitter)
 
         submitter.document_generation_events.create!(event_name: :complete)
+
+        documents
       end
     rescue ActiveRecord::RecordNotUnique
       sleep WAIT_FOR_RETRY
@@ -49,7 +51,7 @@ module Submissions
             DocumentGenerationEvent.where(submitter:).order(:created_at).last
           end
 
-        break last_event if last_event.event_name.in?(%w[complete fail])
+        break submitter.documents if last_event.event_name.in?(%w[complete fail])
 
         raise WaitForCompleteTimeout if total_wait_time > CHECK_COMPLETE_TIMEOUT
       end

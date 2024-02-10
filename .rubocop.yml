@@ -30,7 +30,7 @@ Metrics/ParameterLists:
   Max: 10
 
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
   Exclude:
     - 'db/migrate/**'
 

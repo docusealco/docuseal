@@ -46,7 +46,8 @@ class SubmissionEvent < ApplicationRecord
     phone_verified: 'phone_verified',
     start_form: 'start_form',
     view_form: 'view_form',
-    complete_form: 'complete_form'
+    complete_form: 'complete_form',
+    api_complete_form: 'api_complete_form'
   }, scope: false
 
   private

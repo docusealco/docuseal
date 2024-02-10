@@ -33,11 +33,17 @@ module Api
     def show
       submitters = @submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
 
-      serialized_submitters = submitters.map do |submitter|
-        Submissions::EnsureResultGenerated.call(submitter) if submitter.completed_at?
-
-        Submitters::SerializeForApi.call(submitter)
+      submitters.each do |submitter|
+        if submitter.completed_at? && submitter.documents_attachments.blank?
+          submitter.documents_attachments = Submissions::EnsureResultGenerated.call(submitter)
+        end
       end
+
+      if @submission.audit_trail_attachment.blank? && submitters.all?(&:completed_at?)
+        @submission.audit_trail_attachment = Submissions::GenerateAuditTrail.call(@submission)
+      end
+
+      serialized_submitters = submitters.map { |submitter| Submitters::SerializeForApi.call(submitter) }
 
       json = @submission.as_json(
         serialize_params.deep_merge(
@@ -80,6 +86,12 @@ module Api
 
       Submissions.send_signature_requests(submissions)
 
+      submissions.each do |submission|
+        if submission.submitters.all?(&:completed_at?) && submission.submitters.last
+          ProcessSubmitterCompletionJob.perform_later(submission.submitters.last)
+        end
+      end
+
       render json: submissions.flat_map(&:submitters)
     rescue Submitters::NormalizeValues::UnknownFieldName, Submitters::NormalizeValues::UnknownSubmitterName => e
       render json: { error: e.message }, status: :unprocessable_entity
@@ -118,8 +130,13 @@ module Api
           params:
         )
 
-        Submissions::NormalizeParamUtils.save_default_value_attachments!(attachments,
-                                                                         submissions.flat_map(&:submitters))
+        submitters = submissions.flat_map(&:submitters)
+
+        Submissions::NormalizeParamUtils.save_default_value_attachments!(attachments, submitters)
+
+        submitters.each do |submitter|
+          SubmissionEvents.create_with_tracking_data(submitter, 'api_complete_form', request) if submitter.completed_at?
+        end
 
         submissions
       end

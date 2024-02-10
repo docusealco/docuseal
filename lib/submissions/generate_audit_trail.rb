@@ -279,6 +279,7 @@ module Submissions
       sign_params = {
         reason: SIGN_REASON,
         certificate: pkcs.certificate,
+        doc_mdp_permissions: :no_changes,
         key: pkcs.key,
         certificate_chain: pkcs.ca_certs || []
       }
