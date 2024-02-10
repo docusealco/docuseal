@@ -121,12 +121,26 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.lograge.enabled = true
-  config.lograge.formatter = Lograge::Formatters::Json.new
   config.lograge.base_controller_class = ['ActionController::API', 'ActionController::Base']
 
-  config.lograge.custom_payload do |controller|
-    {
-      fwd: controller.request.ip
-    }
+  if ENV['MULTITENANT'] == 'true'
+    config.lograge.formatter = ->(data) { data.except(:path, :location).to_json }
+
+    config.lograge.custom_payload do |controller|
+      {
+        fwd: controller.request.ip.to_s[/\A\d+\.(.*)/, 1],
+        params: controller.request.params&.slice(:id),
+        host: controller.request.host,
+        uid: controller.instance_variable_get(:@current_user).try(:id)
+      }
+    end
+  else
+    config.lograge.formatter = Lograge::Formatters::Json.new
+
+    config.lograge.custom_payload do |controller|
+      {
+        fwd: controller.request.ip
+      }
+    end
   end
 end
