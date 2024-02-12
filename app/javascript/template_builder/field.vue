@@ -142,6 +142,43 @@
                   {{ t('format') }}
                 </label>
               </div>
+              <div
+                v-if="field.type === 'signature'"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <select
+                  :placeholder="t('format')"
+                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+                  @change="[field.preferences.format = $event.target.value, save()]"
+                >
+                  <option
+                    value="any"
+                    :selected="!field.preferences?.format || field.preferences.format === 'any'"
+                  >
+                    {{ t('any') }}
+                  </option>
+                  <option
+                    value="drawn"
+                    :selected="field.preferences?.format === 'drawn'"
+                  >
+                    {{ t('drawn') }}
+                  </option>
+                  <option
+                    value="typed"
+                    :selected="field.preferences?.format === 'typed'"
+                  >
+                    {{ t('typed') }}
+                  </option>
+                </select>
+                <label
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  {{ t('format') }}
+                </label>
+              </div>
               <li
                 v-if="field.type != 'phone'"
                 @click.stop

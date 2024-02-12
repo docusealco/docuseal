@@ -254,7 +254,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
-            :previous-value="previousSignatureValue"
+            :previous-value="previousSignatureValueFor(currentField)"
             :is-direct-upload="isDirectUpload"
             :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
@@ -566,11 +566,6 @@ export default {
     submitterSlug () {
       return this.submitter.slug
     },
-    previousSignatureValue () {
-      const signatureField = [...this.fields].reverse().find((field) => field.type === 'signature' && !!this.values[field.uuid])
-
-      return this.values[signatureField?.uuid]
-    },
     previousInitialsValue () {
       const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
@@ -735,6 +730,13 @@ export default {
           submitter_slug: this.submitterSlug
         })
       })
+    },
+    previousSignatureValueFor (field) {
+      const signatureField = [...this.fields].reverse().find((f) =>
+        f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
+      )
+
+      return this.values[signatureField?.uuid]
     },
     goToStep (step, scrollToArea = false, clickUpload = false) {
       this.currentStep = this.stepFields.indexOf(step)

@@ -6,7 +6,7 @@
       >{{ showFieldNames && field.name ? field.name : t('signature') }}</label>
       <div class="space-x-2 flex">
         <span
-          v-if="isTextSignature"
+          v-if="isTextSignature && field.preferences?.format !== 'typed'"
           class="tooltip"
           :data-tip="t('draw_signature')"
         >
@@ -23,7 +23,7 @@
           </a>
         </span>
         <span
-          v-else-if="withTypedSignature"
+          v-else-if="withTypedSignature && field.preferences?.format !== 'typed' && field.preferences?.format !== 'drawn'"
           class="tooltip ml-2"
           :data-tip="t('type_text')"
         >
@@ -40,6 +40,7 @@
           </a>
         </span>
         <span
+          v-if="field.preferences?.format !== 'typed'"
           class="tooltip"
           :data-tip="t('take_photo')"
         >
@@ -185,7 +186,7 @@ export default {
     return {
       isSignatureStarted: !!this.previousValue,
       isUsePreviousValue: true,
-      isTextSignature: false
+      isTextSignature: this.field.preferences?.format === 'typed'
     }
   },
   computed: {
