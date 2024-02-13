@@ -28,7 +28,7 @@ module Submissions
   end
 
   def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false, params: {})
-    preferences = Submitters.normalize_preferences(template.account, user, params)
+    preferences = Submitters.normalize_preferences(user.account, user, params)
 
     parse_emails(emails).uniq.map do |email|
       submission = template.submissions.new(created_by_user: user,

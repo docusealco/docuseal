@@ -5,10 +5,10 @@ module Submissions
     module_function
 
     def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false, params: {})
-      preferences = Submitters.normalize_preferences(template.account, user, params)
+      preferences = Submitters.normalize_preferences(user.account, user, params)
 
       Array.wrap(submissions_attrs).map do |attrs|
-        submission_preferences = Submitters.normalize_preferences(template.account, user, attrs)
+        submission_preferences = Submitters.normalize_preferences(user.account, user, attrs)
         submission_preferences = preferences.merge(submission_preferences)
 
         set_submission_preferences = submission_preferences.slice('send_email', 'bcc_completed')
