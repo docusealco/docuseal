@@ -94,6 +94,8 @@ module Api
 
       render json: submissions.flat_map(&:submitters)
     rescue Submitters::NormalizeValues::UnknownFieldName, Submitters::NormalizeValues::UnknownSubmitterName => e
+      Rollbar.error(e) if defined?(Rollbar)
+
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
