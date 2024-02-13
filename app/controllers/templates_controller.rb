@@ -51,12 +51,17 @@ class TemplatesController < ApplicationController
       @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     end
 
-    @template.account = current_account
+    if params[:account_id].present? && current_account.linked_accounts.exists?(id: params[:account_id])
+      @template.account_id = params[:account_id]
+      @template.folder = @template.account.default_template_folder
+    else
+      @template.account = current_account
+    end
 
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
-      redirect_to edit_template_path(@template)
+      maybe_redirect_to_template(@template)
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_entity
     end
@@ -80,6 +85,14 @@ class TemplatesController < ApplicationController
   end
 
   private
+
+  def maybe_redirect_to_template(template)
+    if template.account == current_account
+      redirect_to(edit_template_path(@template))
+    else
+      redirect_back(fallback_location: root_path, notice: 'Template has been clonned')
+    end
+  end
 
   def template_params
     params.require(:template).permit(:name)
