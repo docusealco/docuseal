@@ -22,7 +22,8 @@ module Submissions
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
     REPLACE_EMOJI = {
-      '✔️' => 'V'
+      '✔️' => 'V',
+      '✔' => 'V'
     }.freeze
 
     module_function
