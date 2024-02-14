@@ -26,12 +26,14 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     user = submission.created_by_user || submitter.template.author
 
-    if submitter.template.account.users.exists?(id: user.id) &&
+    if submitter.account.users.exists?(id: user.id) &&
        submission.preferences['send_email'] != false
-      SubmitterMailer.completed_email(submitter, user).deliver_later!
+      if user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false
+        SubmitterMailer.completed_email(submitter, user).deliver_later!
+      end
 
       bcc = submission.preferences['bcc_completed'].presence ||
-            submission.template.account.account_configs
+            submission.account.account_configs
                       .find_by(key: AccountConfig::BCC_EMAILS)&.value.presence
 
       bcc.to_s.scan(User::EMAIL_REGEXP).each do |to|

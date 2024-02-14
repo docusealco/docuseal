@@ -22,6 +22,7 @@
 #
 class UserConfig < ApplicationRecord
   SIGNATURE_KEY = 'signature'
+  RECEIVE_COMPLETED_EMAIL = 'receive_completed_email'
 
   belongs_to :user
 
