@@ -40,13 +40,16 @@
         :height="20"
       />
     </button>
-    <div>
+    <div
+      :class="{ 'md:px-4': isBreakpointMd }"
+    >
       <form
         v-if="!isCompleted"
         ref="form"
         :action="submitPath"
         method="post"
-        :class="{ 'md:mx-16': isBreakpointMd }"
+        class="mx-auto"
+        :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
         @submit.prevent="submitStep"
       >
         <input
