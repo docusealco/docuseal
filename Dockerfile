@@ -2,9 +2,7 @@ FROM ruby:3.2.2-alpine3.18 as fonts
 
 WORKDIR /fonts
 
-RUN apk --no-cache add fontforge wget ttf-liberation &&  cp /usr/share/fonts/liberation/LiberationSans-Regular.ttf /usr/share/fonts/liberation/LiberationSans-Bold.ttf . && wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansArabic/hinted/ttf/NotoSansArabic-Regular.ttf && wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && wget https://github.com/impallari/DancingScript/raw/master/OFL.txt
-
-RUN fontforge -lang=py -c 'font1 = fontforge.open("LiberationSans-Regular.ttf"); font2 = fontforge.open("NotoSansArabic-Regular.ttf"); font1.mergeFonts(font2); font1.generate("LiberationSans-Regular.ttf")'
+RUN apk --no-cache add wget && wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoCurrent-Regular.ttf && wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoCurrent-Bold.ttf && wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && wget https://github.com/impallari/DancingScript/raw/master/OFL.txt
 
 FROM ruby:3.2.2-alpine3.18 as webpack
 
@@ -55,7 +53,7 @@ COPY ./public ./public
 COPY ./tmp ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 
-COPY --from=fonts /fonts/LiberationSans-Regular.ttf /fonts/LiberationSans-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
+COPY --from=fonts /fonts/GoNotoCurrent-Regular.ttf /fonts/GoNotoCurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
 COPY --from=webpack /app/public/packs ./public/packs
 
 RUN ln -s /fonts /app/public/fonts

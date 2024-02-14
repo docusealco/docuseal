@@ -3,7 +3,7 @@
 module Submissions
   module GenerateResultAttachments
     FONT_SIZE = 11
-    FONT_PATH = '/fonts/LiberationSans-Regular.ttf'
+    FONT_PATH = '/fonts/GoNotoCurrent-Regular.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else

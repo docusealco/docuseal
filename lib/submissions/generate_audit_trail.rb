@@ -4,8 +4,8 @@ module Submissions
   module GenerateAuditTrail
     FONT_SIZE = 9
     TEXT_COLOR = '525252'
-    FONT_PATH = '/fonts/LiberationSans-Regular.ttf'
-    FONT_BOLD_PATH = '/fonts/LiberationSans-Bold.ttf'
+    FONT_PATH = '/fonts/GoNotoCurrent-Regular.ttf'
+    FONT_BOLD_PATH = '/fonts/GoNotoCurrent-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
@@ -61,7 +61,7 @@ module Submissions
         style.frame = style.create_frame(canvas.context, 50)
       end
 
-      composer.style(:base, font: FONT_NAME, font_size: FONT_SIZE, fill_color: TEXT_COLOR, line_spacing: 1.2)
+      composer.style(:base, font: FONT_NAME, font_size: FONT_SIZE, fill_color: TEXT_COLOR, line_spacing: 1)
       composer.style(:link, fill_color: 'hp-blue-light', underline: true)
 
       composer.new_page
@@ -71,16 +71,16 @@ module Submissions
 
         column.text(account.linked_account_account&.testing? ? 'Testing Log - Not for Production Use' : 'Audit Log',
                     font_size: 16,
-                    padding: [15, 0, 0, 0],
+                    padding: [10, 0, 0, 0],
                     position: :float, position_hint: :right)
       end
 
       composer.column(columns: 1) do |column|
-        column.text("Envelope ID: #{submission.id}", font_size: 12, padding: [20, 0, 10, 0], position: :float)
+        column.text("Envelope ID: #{submission.id}", font_size: 12, padding: [15, 0, 8, 0], position: :float)
 
         unless submission.source.in?(%w[embed api])
           column.formatted_text([{ link: verify_url, text: 'Verify', style: :link }],
-                                font_size: 9, padding: [22, 0, 10, 0], position: :float, align: :right)
+                                font_size: 9, padding: [15, 0, 10, 0], position: :float, align: :right)
         end
       end
 
@@ -114,13 +114,13 @@ module Submissions
               { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
               "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
               "#{TimeUtils.timezone_abbr(account.timezone, document.created_at)}"
-            ], line_spacing: 1.8
+            ], line_spacing: 1.3
           )
         ]
       end
 
       if documents_data.present?
-        composer.table(documents_data, cell_style: { padding: [0, 0, 25, 0], border: { width: 0 } })
+        composer.table(documents_data, cell_style: { padding: [0, 0, 20, 0], border: { width: 0 } })
 
         composer.draw_box(divider)
       end
@@ -151,7 +151,7 @@ module Submissions
                 submitter.email && { text: "#{submitter.email}\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
                 submitter.name && { text: "#{TextUtils.maybe_rtl_reverse(submitter.name)}\n" },
                 submitter.phone && { text: "#{submitter.phone}\n" }
-              ].compact_blank, line_spacing: 1.8, padding: [0, 20, 0, 0]
+              ].compact_blank, line_spacing: 1.3, padding: [0, 20, 0, 0]
             )
           ],
           [
@@ -167,7 +167,7 @@ module Submissions
                 completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
                 completed_event.data['ua'] && { text: "User agent: #{completed_event.data['ua']}\n" },
                 "\n"
-              ].compact_blank, line_spacing: 1.8, padding: [10, 20, 20, 0]
+              ].compact_blank, line_spacing: 1.3, padding: [10, 20, 20, 0]
             )
           ]
         ]
@@ -193,7 +193,7 @@ module Submissions
                 }
               ].compact_blank,
               align: field['name'].to_s.match?(RTL_REGEXP) ? :right : :left,
-              line_spacing: 1.8, padding: [0, 0, 5, 0]
+              line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
             if field['type'].in?(%w[image signature initials stamp])
               attachment = submitter.attachments.find { |a| a.uuid == value }
@@ -207,7 +207,7 @@ module Submissions
               width = field['type'] == 'initials' ? 100 : 200
               height = resized_image.height * (width.to_f / resized_image.width)
 
-              composer.image(io, width:, height:, margin: [0, 0, 10, 0])
+              composer.image(io, width:, height:, margin: [5, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
             elsif field['type'].in?(%w[file payment])
               if field['type'] == 'payment'
@@ -270,7 +270,7 @@ module Submissions
         ]
       end
 
-      composer.table(events_data, cell_style: { padding: [0, 0, 20, 0], border: { width: 0 } }) if events_data.present?
+      composer.table(events_data, cell_style: { padding: [0, 0, 12, 0], border: { width: 0 } }) if events_data.present?
 
       io = StringIO.new
 
@@ -308,7 +308,7 @@ module Submissions
                             font_size: 20,
                             font: [FONT_BOLD_NAME, { variant: :bold }],
                             width: 100,
-                            padding: [12, 0, 0, 8],
+                            padding: [5, 0, 0, 8],
                             position: :float, position_hint: :left)
     end
     # rubocop:enable Metrics
