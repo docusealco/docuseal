@@ -4,12 +4,14 @@ class SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters
 
   def create
-    if Docuseal.multitenant? && !User.exists?(email: sign_in_params[:email])
+    email = sign_in_params[:email].to_s.downcase
+
+    if Docuseal.multitenant? && !User.exists?(email:)
       return redirect_to new_registration_path(sign_up: true, user: sign_in_params.slice(:email)),
                          notice: 'Create a new account'
     end
 
-    if User.exists?(email: sign_in_params[:email], otp_required_for_login: true) && sign_in_params[:otp_attempt].blank?
+    if User.exists?(email:, otp_required_for_login: true) && sign_in_params[:otp_attempt].blank?
       return render :otp, locals: { resource: User.new(sign_in_params) }, status: :unprocessable_entity
     end
 
