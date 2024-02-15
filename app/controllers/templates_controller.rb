@@ -51,7 +51,7 @@ class TemplatesController < ApplicationController
       @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     end
 
-    if params[:account_id].present? && current_account.linked_accounts.exists?(id: params[:account_id])
+    if params[:account_id].present? && authorized_clone_account_id?(params[:account_id])
       @template.account_id = params[:account_id]
       @template.folder = @template.account.default_template_folder
     else
@@ -85,6 +85,10 @@ class TemplatesController < ApplicationController
   end
 
   private
+
+  def authorized_clone_account_id?(account_id)
+    true_user.account_id.to_s == account_id.to_s || true_user.account.linked_accounts.exists?(id: account_id)
+  end
 
   def maybe_redirect_to_template(template)
     if template.account == current_account

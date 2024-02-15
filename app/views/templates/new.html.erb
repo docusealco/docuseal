@@ -17,9 +17,9 @@
         </a>
       </folder-autocomplete>
     </div>
-    <% if @base_template && can?(:manage, :tenants) && current_account.account_linked_accounts.exists?(account_type: :linked) %>
+    <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.account_linked_accounts.exists?(account_type: :linked) %>
       <div class="form-control mb-4">
-        <%= select_tag :account_id, options_for_select([current_account, *current_account.linked_accounts.where.not(id: current_account.testing_accounts)].map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
+        <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts.where.not(id: true_user.account.testing_accounts)].map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
       </div>
     <% end %>
     <div class="form-control">
