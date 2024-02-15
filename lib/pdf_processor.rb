@@ -70,6 +70,18 @@ class PdfProcessor < HexaPDF::Content::Processor
         page.contents = process_handler_instance.contents
       end
 
+      page[:Annots].to_a.each do |annot|
+        next unless annot
+
+        text = annot[:Contents].to_s.squish
+
+        next unless text.starts_with?('{{') && text.ends_with?('}}')
+
+        result_handler.call({ text:, rect: annot[:Rect] }, page, acc)
+
+        page[:Annots].delete(annot)
+      end
+
       process_handler_instance.result.each do |item|
         result_handler.call(item, page, acc)
       end
