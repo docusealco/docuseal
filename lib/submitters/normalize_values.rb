@@ -66,7 +66,8 @@ module Submitters
       if submitter_name
         submitter =
           template.submitters.find { |e| e['name'] == submitter_name } ||
-          raise(UnknownSubmitterName, "Unknown submitter role: #{submitter_name}")
+          raise(UnknownSubmitterName,
+                "Unknown submitter role: #{submitter_name}. Template defines #{template.submitters.pluck('name')}")
       end
 
       fields = for_submitter&.submission&.template_fields || template.fields
