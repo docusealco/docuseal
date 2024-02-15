@@ -72,7 +72,7 @@ module Submissions
         column.text(account.linked_account_account&.testing? ? 'Testing Log - Not for Production Use' : 'Audit Log',
                     font_size: 16,
                     padding: [10, 0, 0, 0],
-                    position: :float, position_hint: :right)
+                    position: :float, text_align: :right)
       end
 
       composer.column(columns: 1) do |column|
@@ -80,7 +80,7 @@ module Submissions
 
         unless submission.source.in?(%w[embed api])
           column.formatted_text([{ link: verify_url, text: 'Verify', style: :link }],
-                                font_size: 9, padding: [15, 0, 10, 0], position: :float, align: :right)
+                                font_size: 9, padding: [15, 0, 10, 0], position: :float, text_align: :right)
         end
       end
 
@@ -192,7 +192,7 @@ module Submissions
                   font_size: 6
                 }
               ].compact_blank,
-              align: field['name'].to_s.match?(RTL_REGEXP) ? :right : :left,
+              text_align: field['name'].to_s.match?(RTL_REGEXP) ? :right : :left,
               line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
             if field['type'].in?(%w[image signature initials stamp])
@@ -239,7 +239,7 @@ module Submissions
               value = Submissions::GenerateResultAttachments::REPLACE_EMOJI[value] || value
 
               composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
-                                          align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+                                          text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
                                           padding: [0, 0, 10, 0])
             end
           ]
@@ -309,7 +309,7 @@ module Submissions
                             font: [FONT_BOLD_NAME, { variant: :bold }],
                             width: 100,
                             padding: [5, 0, 0, 8],
-                            position: :float, position_hint: :left)
+                            position: :float, text_align: :left)
     end
     # rubocop:enable Metrics
   end

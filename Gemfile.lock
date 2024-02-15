@@ -261,7 +261,7 @@ GEM
       signet (>= 0.16, < 2.a)
     hashdiff (1.1.0)
     hashery (2.1.2)
-    hexapdf (0.34.1)
+    hexapdf (0.37.1)
       cmdparse (~> 3.0, >= 3.0.3)
       geom2d (~> 0.4, >= 0.4.1)
       openssl (>= 2.2.1)

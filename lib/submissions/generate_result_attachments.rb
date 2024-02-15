@@ -30,7 +30,7 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submitter)
-      cell_layouter = HexaPDF::Layout::TextLayouter.new(valign: :center, align: :center)
+      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       template = submitter.submission.template
 
@@ -65,8 +65,8 @@ module Submissions
 
           value = submitter.values[field['uuid']]
 
-          layouter = HexaPDF::Layout::TextLayouter.new(valign: :center,
-                                                       align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center,
+                                                       text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
                                                        font: pdf.fonts.add(FONT_NAME), font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
