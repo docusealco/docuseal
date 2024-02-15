@@ -26,9 +26,9 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     user = submission.created_by_user || submitter.template.author
 
-    if submitter.account.users.exists?(id: user.id) &&
-       submission.preferences['send_email'] != false
-      if user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false
+    if submitter.account.users.exists?(id: user.id) && submission.preferences['send_email'] != false
+      if submitter.submission.submitters.map(&:email).exclude?(user.email) &&
+         user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false
         SubmitterMailer.completed_email(submitter, user).deliver_later!
       end
 
