@@ -30,6 +30,10 @@ class Account < ApplicationRecord
                                    foreign_key: :linked_account_id,
                                    class_name: 'AccountLinkedAccount',
                                    inverse_of: :linked_account
+  has_many :linked_account_accounts, dependent: :destroy,
+                                     foreign_key: :linked_account_id,
+                                     class_name: 'AccountLinkedAccount',
+                                     inverse_of: :linked_account
   has_many :linked_accounts, through: :account_linked_accounts
   has_many :testing_accounts, through: :account_testing_accounts, source: :linked_account
   has_many :active_users, -> { active }, dependent: :destroy,
