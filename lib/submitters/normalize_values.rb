@@ -31,7 +31,8 @@ module Submitters
         field = fields_uuid_index[key]
 
         if field['type'].in?(%w[initials signature image file]) && value.present?
-          new_value, new_attachments = normalize_attachment_value(value, template.account, for_submitter)
+          new_value, new_attachments =
+            normalize_attachment_value(value, template.account, attachments, for_submitter)
 
           attachments.push(*new_attachments)
 
@@ -87,15 +88,21 @@ module Submitters
             .merge(fields.index_by { |e| e['name'].to_s.downcase })
     end
 
-    def normalize_attachment_value(value, account, for_submitter = nil)
+    def normalize_attachment_value(value, account, attachments, for_submitter = nil)
       if value.is_a?(Array)
-        new_attachments = value.map { |v| find_or_build_attachment(v, account, for_submitter) }
+        new_attachments = value.map do |v|
+          new_attachment = find_or_build_attachment(v, account, for_submitter)
+
+          attachments.find { |a| a.blob_id == new_attachment.blob_id } || new_attachment
+        end
 
         [new_attachments.map(&:uuid), new_attachments]
       else
         new_attachment = find_or_build_attachment(value, account, for_submitter)
 
-        [new_attachment.uuid, new_attachment]
+        existing_attachment = attachments.find { |a| a.blob_id == new_attachment.blob_id }
+
+        [new_attachment.uuid, existing_attachment || new_attachment]
       end
     end
 
