@@ -521,6 +521,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    i18n: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     withSendCopyButton: {
       type: Boolean,
       required: false,
@@ -673,7 +678,7 @@ export default {
   },
   methods: {
     t (key) {
-      return i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+      return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
     },
     maybeTrackEmailClick () {
       const { queryParams } = this
