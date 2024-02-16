@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   if Rails.env.production?
     rescue_from CanCan::AccessDenied do |e|
-      Rollbar.error(e) if defined?(Rollbar)
+      Rollbar.warning(e) if defined?(Rollbar)
 
       redirect_to root_path, alert: e.message
     end

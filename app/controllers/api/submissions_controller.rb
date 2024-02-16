@@ -74,7 +74,7 @@ module Api
       return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
 
       if @template.fields.blank?
-        Rollbar.error("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
+        Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
 
         return render json: { error: 'Template does not contain fields' }, status: :unprocessable_entity
       end
@@ -94,7 +94,7 @@ module Api
 
       render json: submissions.flat_map(&:submitters)
     rescue Submitters::NormalizeValues::UnknownFieldName, Submitters::NormalizeValues::UnknownSubmitterName => e
-      Rollbar.error(e) if defined?(Rollbar)
+      Rollbar.warning(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_entity
     end

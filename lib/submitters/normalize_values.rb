@@ -58,7 +58,7 @@ module Submitters
         value
       end
     rescue Date::Error => e
-      Rollbar.error(e) if defined?(Rollbar)
+      Rollbar.warning(e) if defined?(Rollbar)
 
       value
     end
