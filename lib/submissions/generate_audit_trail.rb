@@ -28,6 +28,7 @@ module Submissions
     }.freeze
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
+    MAX_IMAGE_HEIGHT = 100
 
     module_function
 
@@ -206,6 +207,11 @@ module Submissions
 
               width = field['type'] == 'initials' ? 100 : 200
               height = resized_image.height * (width.to_f / resized_image.width)
+
+              if height > MAX_IMAGE_HEIGHT
+                width = (MAX_IMAGE_HEIGHT / height) * width
+                height = MAX_IMAGE_HEIGHT
+              end
 
               composer.image(io, width:, height:, margin: [5, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
