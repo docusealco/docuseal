@@ -217,7 +217,7 @@ module Submissions
               composer.formatted_text_box([{ text: '' }])
             elsif field['type'].in?(%w[file payment])
               if field['type'] == 'payment'
-                unit = CURRENCY_SYMBOLS[field['preferences']['currency']]
+                unit = CURRENCY_SYMBOLS[field['preferences']['currency']] || field['preferences']['currency']
 
                 price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
 
