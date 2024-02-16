@@ -3,9 +3,10 @@
 class SendFormStartedWebhookRequestJob < ApplicationJob
   USER_AGENT = 'DocuSeal.co Webhook'
 
-  NotSuccessStatus = Class.new(StandardError)
+  MAX_ATTEMPTS = 10
 
-  def perform(submitter)
+  def perform(submitter, params = {})
+    attempt = params[:attempt].to_i
     config = Accounts.load_webhook_configs(submitter.submission.account)
 
     return if config.blank? || config.value.blank?
@@ -21,8 +22,13 @@ class SendFormStartedWebhookRequestJob < ApplicationJob
                         'Content-Type' => 'application/json',
                         'User-Agent' => USER_AGENT)
 
-    if resp.status.to_i >= 400 && (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
-      raise NotSuccessStatus, resp.status.to_s
+    if resp.status.to_i >= 400 && attempt <= MAX_ATTEMPTS &&
+       (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
+      SendFormStartedWebhookRequestJob.set(wait: (2**attempt).minutes)
+                                      .perform_later(submitter, {
+                                                       attempt: attempt + 1,
+                                                       last_status: resp.status.to_i
+                                                     })
     end
   end
 end
