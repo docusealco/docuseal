@@ -56,7 +56,7 @@
         >
           <button
             v-if="field && !field.areas.length"
-            title="Draw"
+            :title="t('draw')"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
             @click="$emit('set-draw', { field })"
           >
@@ -321,7 +321,7 @@
               @blur="save"
             >
             <button
-              title="Draw"
+              :title="t('draw')"
               tabindex="-1"
               @click.prevent="$emit('set-draw', { field, option })"
             >
