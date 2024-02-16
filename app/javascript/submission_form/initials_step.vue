@@ -8,7 +8,7 @@
         <span
           v-if="isDrawInitials"
           class="tooltip"
-          :data-tip="t('type_initials')"
+          :data-tip="t('type_initial')"
         >
           <a
             id="type_text_button"
@@ -231,7 +231,7 @@ export default {
       }
     },
     updateWrittenInitials (e) {
-      this.isInitialsStarted = true
+      this.isInitialsStarted = !!e.target.value
 
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')

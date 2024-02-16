@@ -112,7 +112,7 @@
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
-      :required="field.required"
+      :required="field.required && !isSignatureStarted"
       :placeholder="`${t('type_signature_here')}...`"
       type="text"
       @input="updateWrittenSignature"
@@ -270,7 +270,7 @@ export default {
       }
     },
     updateWrittenSignature (e) {
-      this.isSignatureStarted = true
+      this.isSignatureStarted = !!e.target.value
 
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')
