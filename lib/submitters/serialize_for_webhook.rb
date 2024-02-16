@@ -16,15 +16,24 @@ module Submitters
       submitter_name = (submitter.submission.template_submitters ||
                         submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
-      submitter.as_json(methods: %i[application_key],
-                        include: [template: { only: %i[id name external_id created_at updated_at] }])
+      submitter.as_json(methods: %i[status application_key],
+                        only: %i[id submission_id email phone name ua ip sent_at opened_at
+                                 completed_at created_at updated_at external_id metadata])
                .except('uuid', 'values', 'slug')
-               .merge('values' => values,
+               .merge('role' => submitter_name,
+                      'preferences' => submitter.preferences.except('default_values'),
+                      'values' => values,
                       'documents' => documents,
                       'audit_log_url' => submitter.submission.audit_log_url,
                       'submission_url' => r.submissions_preview_url(submitter.submission.slug,
                                                                     **Docuseal.default_url_options),
-                      'role' => submitter_name)
+                      'template' => submitter.template.as_json(only: %i[id name external_id created_at
+                                                                        updated_at]),
+                      'submission' => {
+                        **submitter.submission.slice(:id, :audit_log_url, :created_at),
+                        status: submitter.submission.submitters.all?(&:completed_at?) ? 'completed' : 'pending',
+                        url: r.submissions_preview_url(submitter.submission.slug, **Docuseal.default_url_options)
+                      })
     end
 
     def build_values_array(submitter)
