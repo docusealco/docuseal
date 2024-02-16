@@ -4,8 +4,8 @@ module Submissions
   module GenerateAuditTrail
     FONT_SIZE = 9
     TEXT_COLOR = '525252'
-    FONT_PATH = '/fonts/GoNotoCurrent-Regular.ttf'
-    FONT_BOLD_PATH = '/fonts/GoNotoCurrent-Bold.ttf'
+    FONT_PATH = '/fonts/GoNotoKurrent-Regular.ttf'
+    FONT_BOLD_PATH = '/fonts/GoNotoKurrent-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
