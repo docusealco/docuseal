@@ -4,8 +4,11 @@ module Submitters
   module NormalizeValues
     CHECKSUM_CACHE_STORE = ActiveSupport::Cache::MemoryStore.new
 
-    UnknownFieldName = Class.new(StandardError)
-    UnknownSubmitterName = Class.new(StandardError)
+    BaseError = Class.new(StandardError)
+
+    UnknownFieldName = Class.new(BaseError)
+    InvalidDefaultValue = Class.new(BaseError)
+    UnknownSubmitterName = Class.new(BaseError)
 
     module_function
 
@@ -32,7 +35,7 @@ module Submitters
 
         if field['type'].in?(%w[initials signature image file]) && value.present?
           new_value, new_attachments =
-            normalize_attachment_value(value, template.account, attachments, for_submitter)
+            normalize_attachment_value(value, field['type'], template.account, attachments, for_submitter)
 
           attachments.push(*new_attachments)
 
@@ -88,26 +91,37 @@ module Submitters
             .merge(fields.index_by { |e| e['name'].to_s.downcase })
     end
 
-    def normalize_attachment_value(value, account, attachments, for_submitter = nil)
+    def normalize_attachment_value(value, type, account, attachments, for_submitter = nil)
       if value.is_a?(Array)
         new_attachments = value.map do |v|
-          new_attachment = find_or_build_attachment(v, account, for_submitter)
+          new_attachment = find_or_build_attachment(v, type, account, for_submitter)
 
           attachments.find { |a| a.blob_id == new_attachment.blob_id } || new_attachment
         end
 
         [new_attachments.map(&:uuid), new_attachments]
       else
-        new_attachment = find_or_build_attachment(value, account, for_submitter)
+        new_attachment = find_or_build_attachment(value, type, account, for_submitter)
 
         existing_attachment = attachments.find { |a| a.blob_id == new_attachment.blob_id }
 
-        [new_attachment.uuid, existing_attachment || new_attachment]
+        attachment = existing_attachment || new_attachment
+
+        [attachment.uuid, attachment]
       end
     end
 
-    def find_or_build_attachment(value, account, for_submitter = nil)
-      blob = find_or_create_blobs(account, value)
+    def find_or_build_attachment(value, type, account, for_submitter = nil)
+      blob =
+        if value.match?(%r{\Ahttps?://})
+          find_or_create_blob_from_url(account, value)
+        elsif type.in?(%w[signature initials])
+          raise InvalidDefaultValue, "Text value can't be more than 50 characters: #{value}" unless value.length < 50
+
+          find_or_create_blob_from_text(account, value, type)
+        else
+          raise InvalidDefaultValue, "Invalid default value, url is expected: #{value}"
+        end
 
       attachment = for_submitter.attachments.find_by(blob_id: blob.id) if for_submitter
 
@@ -119,7 +133,20 @@ module Submitters
       attachment
     end
 
-    def find_or_create_blobs(account, url)
+    def find_or_create_blob_from_text(account, text, type)
+      data = Submitters::GenerateFontImage.call(text, font: type)
+
+      checksum = Digest::MD5.base64digest(data)
+
+      blob = find_blob_by_checksum(checksum, account)
+
+      blob || ActiveStorage::Blob.create_and_upload!(
+        io: StringIO.new(data),
+        filename: "#{type}.png"
+      )
+    end
+
+    def find_or_create_blob_from_url(account, url)
       cache_key = [account.id, url].join(':')
       checksum = CHECKSUM_CACHE_STORE.fetch(cache_key)
 
@@ -142,11 +169,15 @@ module Submitters
     end
 
     def find_blob_by_checksum(checksum, account)
-      ActiveStorage::Blob
-        .joins('JOIN active_storage_attachments ON active_storage_attachments.blob_id = active_storage_blobs.id')
-        .where(active_storage_attachments: { record_id: account.submitters.select(:id),
-                                             record_type: 'Submitter' })
-        .find_by(checksum:)
+      blob = ActiveStorage::Blob.find_by(checksum:)
+
+      return unless blob
+
+      return blob unless blob.attachments.exists?
+
+      return blob if account.submitters.exists?(id: blob.attachments.where(record_type: 'Submitter').select(:record_id))
+
+      nil
     end
 
     def conn

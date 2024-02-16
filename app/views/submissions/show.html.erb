@@ -144,10 +144,10 @@
               <div dir="auto">
                 <% if field['type'].in?(%w[signature initials]) %>
                   <div class="w-full bg-base-300 py-1">
-                    <img class="object-contain mx-auto" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
+                    <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>
                 <% elsif field['type'].in?(['image', 'stamp']) %>
-                  <img class="object-contain mx-auto max-h-28" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
+                  <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                 <% elsif field['type'] == 'file' || field['type'] == 'payment' %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
