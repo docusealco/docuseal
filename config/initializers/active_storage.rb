@@ -10,6 +10,12 @@ ActiveSupport.on_load(:active_storage_attachment) do
   end
 end
 
+ActiveSupport.on_load(:active_storage_blob) do
+  def delete
+    service.delete(key)
+  end
+end
+
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
 
 Rails.configuration.to_prepare do
