@@ -81,7 +81,7 @@ Rails.application.routes.draw do
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resources :submissions_export, only: %i[index new]
   end
-  resources :preview_document_page, only: %i[show], path: '/preview/:attachment_uuid'
+  resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed

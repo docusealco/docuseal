@@ -33,7 +33,7 @@ class TemplatesController < ApplicationController
     @template_data =
       @template.as_json.merge(
         documents: @template.schema_documents.as_json(
-          methods: [:metadata],
+          methods: %i[metadata signed_uuid],
           include: { preview_images: { methods: %i[url metadata filename] } }
         )
       ).to_json

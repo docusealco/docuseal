@@ -5,6 +5,10 @@ ActiveSupport.on_load(:active_storage_attachment) do
 
   has_many_attached :preview_images
 
+  def signed_uuid
+    @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours)
+  end
+
   def preview_image_url
     preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })&.url
   end

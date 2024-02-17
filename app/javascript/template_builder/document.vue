@@ -102,7 +102,7 @@ export default {
         return this.previewImagesIndex[i] || {
           metadata: lazyloadMetadata,
           id: Math.random().toString(),
-          url: this.basePreviewUrl + `/preview/${this.document.uuid}/${i}.jpg`
+          url: this.basePreviewUrl + `/preview/${this.document.signed_uuid || this.document.uuid}/${i}.jpg`
         }
       })
     },

@@ -98,8 +98,6 @@ module Templates
           record: attachment
         )
       end
-
-      io
     end
   end
 end

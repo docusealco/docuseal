@@ -13,7 +13,7 @@
         <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
         <% lazyload_metadata = document.preview_images.last.metadata %>
         <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
-          <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.uuid, "#{index}.jpg")) %>
+          <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
           <div class="relative my-4 shadow-md">
             <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
             <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">

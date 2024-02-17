@@ -16,7 +16,7 @@ module Api
       render json: {
         schema:,
         documents: documents.as_json(
-          methods: [:metadata],
+          methods: %i[metadata signed_uuid],
           include: {
             preview_images: { methods: %i[url metadata filename] }
           }
