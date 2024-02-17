@@ -33,17 +33,29 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 [![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.co)
 
 ## Features
-- [x] PDF form fields builder (WYSIWYG)
-- [x] 11 field types available (Signature, Date, File, Checkbox etc.)
-- [x] Multiple submitters per document
-- [x] Automated emails via SMTP
-- [x] Files storage on disk or AWS S3, Google Storage, Azure Cloud
-- [x] Automatic PDF eSignature
-- [x] PDF signature verification
-- [x] Users management
-- [x] Mobile-optimized
-- [x] API and Webhooks for integrations
-- [x] Easy to deploy in minutes
+- PDF form fields builder (WYSIWYG)
+- 12 field types available (Signature, Date, File, Checkbox etc.)
+- Multiple submitters per document
+- Automated emails via SMTP
+- Files storage on disk or AWS S3, Google Storage, Azure Cloud
+- Automatic PDF eSignature
+- PDF signature verification
+- Users management
+- Mobile-optimized
+- API and Webhooks for integrations
+- Easy to deploy in minutes
+
+## Pro Features
+- Company logo and white-label
+- User roles
+- Automated reminders
+- Invitation and identify verification via SMS
+- SSO / SAML
+- Template creation with HTML API ([Guide](https://www.docuseal.co/guides/create-pdf-document-fillable-form-with-html-api))
+- Template creation with PDF or DOCX and text tags API ([Guide](https://www.docuseal.co/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
+- Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
+- Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
+- [Learn more](https://www.docuseal.co/pricing)
 
 ## Deploy
 
@@ -77,7 +89,7 @@ sudo HOST=your-domain-name.com docker compose up
 ```
 
 ## For Businesses
-### Integrate seamless document signing into your web or mobile apps with DocuSeal!
+### Integrate seamless document signing into your web or mobile apps with DocuSeal
 
 At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
 
