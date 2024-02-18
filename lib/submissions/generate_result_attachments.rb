@@ -341,8 +341,6 @@ module Submissions
     def fetch_sign_reason(submitter)
       reason_name = submitter.email || submitter.name || submitter.phone
 
-      return sign_reason(reason_name) if Docuseal.multitenant?
-
       config =
         if Docuseal.multitenant?
           AccountConfig.where(account: submitter.account, key: AccountConfig::ESIGNING_PREFERENCE_KEY)

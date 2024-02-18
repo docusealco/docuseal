@@ -123,26 +123,24 @@
         <% end %>
       </div>
     <% end %>
-    <% if !Docuseal.multitenant? %>
-      <% account_config = AccountConfig.where(account: current_account, key: AccountConfig::ESIGNING_PREFERENCE_KEY).first_or_initialize(value: 'multiple') %>
-      <% if can?(:manage, account_config) %>
-        <div class="px-1 mt-8 max-w-xl">
-          <div class="flex justify-between items-end mb-4 mt-8">
-            <h2 class="text-3xl font-bold">Preferences</h2>
-          </div>
-          <% if can?(:manage, account_config) %>
-            <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
-              <%= f.hidden_field :key %>
-              <div class="flex items-center justify-between py-2.5">
-                <span>
-                  Apply multiple PDF digital signatures in the document per each signer
-                </span>
-                <%= f.check_box :value, { class: 'toggle', checked: account_config.value == 'multiple', onchange: 'this.form.requestSubmit()' }, 'multiple', 'single' %>
-              </div>
-            <% end %>
-          <% end %>
+    <% account_config = AccountConfig.where(account: current_account, key: AccountConfig::ESIGNING_PREFERENCE_KEY).first_or_initialize(value: 'multiple') %>
+    <% if can?(:manage, account_config) %>
+      <div class="px-1 mt-8 max-w-xl">
+        <div class="flex justify-between items-end mb-4 mt-8">
+          <h2 class="text-3xl font-bold">Preferences</h2>
         </div>
-      <% end %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between py-2.5">
+              <span>
+                Apply multiple PDF digital signatures in the document per each signer
+              </span>
+              <%= f.check_box :value, { class: 'toggle', checked: account_config.value == 'multiple', onchange: 'this.form.requestSubmit()' }, 'multiple', 'single' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
