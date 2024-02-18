@@ -19,6 +19,16 @@ ActiveSupport.on_load(:active_storage_attachment) do
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
+  attribute :uuid, :string, default: -> { SecureRandom.uuid }
+
+  def uuid
+    super || begin
+      new_uuid = SecureRandom.uuid
+      update_columns(uuid: new_uuid)
+      new_uuid
+    end
+  end
+
   def delete
     service.delete(key)
   end
