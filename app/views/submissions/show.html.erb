@@ -6,7 +6,7 @@
     </a>
     <div class="space-x-3 flex items-center">
       <% if @submission.audit_trail.present? %>
-        <a href="<%= rails_blob_path(@submission.audit_trail) %>" class="white-button" target="_blank">
+        <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline">
             Audit Log
