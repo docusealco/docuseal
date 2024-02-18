@@ -98,7 +98,7 @@ module Submissions
         end
 
         link =
-          Rails.application.routes.url_helpers.rails_blob_url(document, **Docuseal.default_url_options)
+          ActiveStorage::Blob.proxy_url(document.blob)
 
         [
           composer.document.layout.formatted_text_box(
@@ -228,7 +228,7 @@ module Submissions
                 Array.wrap(value).map do |uuid|
                   attachment = submitter.attachments.find { |a| a.uuid == uuid }
                   link =
-                    Rails.application.routes.url_helpers.rails_blob_url(attachment, **Docuseal.default_url_options)
+                    ActiveStorage::Blob.proxy_url(attachment.blob)
 
                   { link:, text: "#{attachment.filename}\n", style: :link }
                 end,

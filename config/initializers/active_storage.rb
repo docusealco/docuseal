@@ -14,12 +14,19 @@ ActiveSupport.on_load(:active_storage_attachment) do
 
     return unless first_page
 
-    Rails.application.routes.url_helpers.rails_storage_proxy_url(first_page, **Docuseal.default_url_options)
+    ActiveStorage::Blob.proxy_url(first_page.blob)
   end
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
+
+  def self.proxy_url(blob, expires_in: nil)
+    Rails.application.routes.url_helpers.blobs_proxy_url(
+      signed_uuid: blob.signed_uuid(expires_in:), filename: blob.filename,
+      **Docuseal.default_url_options
+    )
+  end
 
   def uuid
     super || begin
@@ -27,6 +34,10 @@ ActiveSupport.on_load(:active_storage_blob) do
       update_columns(uuid: new_uuid)
       new_uuid
     end
+  end
+
+  def signed_uuid(expires_in: nil)
+    ApplicationRecord.signed_id_verifier.generate(uuid, expires_in:)
   end
 
   def delete

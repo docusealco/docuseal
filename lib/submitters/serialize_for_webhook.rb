@@ -76,7 +76,7 @@ module Submitters
     def rails_storage_proxy_url(attachment)
       return if attachment.blank?
 
-      r.rails_storage_proxy_url(attachment, **Docuseal.default_url_options)
+      ActiveStorage::Blob.proxy_url(attachment.blob)
     end
 
     def r

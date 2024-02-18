@@ -82,6 +82,8 @@ Rails.application.routes.draw do
     resources :submissions_export, only: %i[index new]
   end
   resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'
+  resource :blobs_proxy, only: %i[show], path: '/blobs_proxy/:signed_uuid/*filename(.:format)',
+                         controller: 'api/active_storage_blobs_proxy'
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed

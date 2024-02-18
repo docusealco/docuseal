@@ -131,7 +131,7 @@ module Submissions
                     height - (area['y'] * height) - lines[..next_index].sum(&:height) + height_diff
                   ],
                   A: { Type: :Action, S: :URI,
-                       URI: h.rails_blob_url(attachment, **Docuseal.default_url_options) }
+                       URI: ActiveStorage::Blob.proxy_url(attachment.blob) }
                 }
               )
 

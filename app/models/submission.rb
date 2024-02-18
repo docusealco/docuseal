@@ -76,7 +76,7 @@ class Submission < ApplicationRecord
   def audit_trail_url
     return if audit_trail.blank?
 
-    Rails.application.routes.url_helpers.rails_storage_proxy_url(audit_trail, **Docuseal.default_url_options)
+    ActiveStorage::Blob.proxy_url(audit_trail.blob)
   end
   alias audit_log_url audit_trail_url
 end

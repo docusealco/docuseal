@@ -15,7 +15,7 @@ class SubmissionsDownloadController < ApplicationController
 
     urls =
       Submitters.select_attachments_for_download(last_submitter).map do |attachment|
-        helpers.rails_blob_url(attachment)
+        ActiveStorage::Blob.proxy_url(attachment.blob)
       end
 
     render json: urls
