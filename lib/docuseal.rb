@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Docuseal
+  URL_CACHE = ActiveSupport::Cache::MemoryStore.new
   PRODUCT_URL = 'https://www.docuseal.co'
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
   ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze

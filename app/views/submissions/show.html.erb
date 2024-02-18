@@ -34,7 +34,7 @@
       <% (@submission.template_schema || @submission.template.schema).each do |item| %>
         <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
-          <img src="<%= document.preview_images.first.url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
+          <img src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, 0].join(':'), expires_in: 10.minutes) { document.preview_images.first.url } %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
           <div class="pb-2 pt-1.5 text-center" dir="auto">
             <%= item['name'].presence || document.filename.base %>
           </div>
@@ -55,7 +55,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
             <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
+              <img loading="lazy" src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, index].join(':'), expires_in: 10.minutes) { page.url } %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>

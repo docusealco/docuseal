@@ -10,7 +10,11 @@ ActiveSupport.on_load(:active_storage_attachment) do
   end
 
   def preview_image_url
-    preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })&.url
+    first_page = preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })
+
+    return unless first_page
+
+    Rails.application.routes.url_helpers.rails_storage_proxy_url(first_page, **Docuseal.default_url_options)
   end
 end
 
