@@ -49,6 +49,7 @@
           >
             <IconCamera :width="16" />
             <input
+              :key="uploadImageInputKey"
               type="file"
               hidden
               accept="image/*"
@@ -186,7 +187,8 @@ export default {
     return {
       isSignatureStarted: !!this.previousValue,
       isUsePreviousValue: true,
-      isTextSignature: this.field.preferences?.format === 'typed'
+      isTextSignature: this.field.preferences?.format === 'typed',
+      uploadImageInputKey: Math.random().toString()
     }
   },
   computed: {
@@ -350,7 +352,7 @@ export default {
 
         reader.readAsDataURL(file)
 
-        event.target.value = null
+        this.uploadImageInputKey = Math.random().toString()
       }
     },
     async submit () {
