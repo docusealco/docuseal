@@ -108,7 +108,7 @@ Rails.application.configure do
   logger.formatter = config.log_formatter
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
-  encryption_secret = Digest::SHA256.hexdigest(ENV['SECRET_KEY_BASE'].to_s)
+  encryption_secret = ENV['ENCRYPTION_SECRET'].presence || Digest::SHA256.hexdigest(ENV['SECRET_KEY_BASE'].to_s)
 
   config.active_record.encryption = {
     primary_key: encryption_secret.first(32),
