@@ -12,6 +12,8 @@ RSpec.describe 'Submission Preview' do
     let(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
 
     before do
+      sign_in(user)
+
       visit submissions_preview_path(slug: submission.slug)
     end
 

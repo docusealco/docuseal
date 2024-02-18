@@ -6,8 +6,20 @@ class SubmissionsPreviewController < ApplicationController
 
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
+  TTL = 20.minutes
+
   def show
     @submission = Submission.find_by!(slug: params[:slug])
+
+    if !@submission.submitters.all?(&:completed_at?) && current_user.blank?
+      raise ActionController::RoutingError, 'Not Found'
+    end
+
+    unless submission_valid_ttl?(@submission)
+      Rollbar.info("TTL: #{@submission.id}") if defined?(Rollbar)
+
+      return redirect_to submissions_preview_completed_path(@submission.slug)
+    end
 
     ActiveRecord::Associations::Preloader.new(
       records: [@submission],
@@ -25,5 +37,21 @@ class SubmissionsPreviewController < ApplicationController
     end
 
     render 'submissions/show', layout: 'plain'
+  end
+
+  def completed
+    @submission = Submission.find_by!(slug: params[:submissions_preview_slug])
+
+    render :completed, layout: 'plain'
+  end
+
+  private
+
+  def submission_valid_ttl?(submission)
+    return true if current_user && current_user.account.submissions.exists?(id: submission.id)
+
+    last_submitter = submission.submitters.select(&:completed_at?).max_by(&:completed_at)
+
+    last_submitter && last_submitter.completed_at > TTL.ago
   end
 end

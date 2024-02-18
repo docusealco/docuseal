@@ -25,18 +25,20 @@
           <div class="py-2"></div>
         <% end %>
       <% end %>
-      <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
-        <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-          <%= svg_icon('download', class: 'w-6 h-6') %>
-          <span><%= t('download_documents') %></span>
-        </span>
-        <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-          <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-          <span><%= t('downloading') %></span>
-        </span>
-      </download-button>
+      <% if @submitter.completed_at > 15.minutes.ago || (current_user && current_user.account.submitters.exists?(id: @submitter.id)) %>
+        <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
+          <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+            <%= svg_icon('download', class: 'w-6 h-6') %>
+            <span><%= t('download_documents') %></span>
+          </span>
+          <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+            <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+            <span><%= t('downloading') %></span>
+          </span>
+        </download-button>
+      <% end %>
     </div>
-    <% if @submitter.submission.template.submitters.size == 1 && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false %>
+    <% if @submitter.submission.template.submitters.size == 1 && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false && !@submitter.template.archived_at? %>
       <div class="divider uppercase"><%= t('or') %></div>
       <div>
         <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@submitter.submission.template.slug), params: { submitter: { email: @submitter.email, phone: @submitter.phone, name: @submitter.name }, resubmit: @submitter.slug }, method: :put, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'white-button w-full' %>

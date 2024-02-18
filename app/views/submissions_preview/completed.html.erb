@@ -1,0 +1,30 @@
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <% if Docuseal.multitenant? %>
+        <div class="flex items-center justify-center">
+          <%= render 'start_form/docuseal_logo' %>
+        </div>
+      <% end %>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
+          </div>
+          <div>
+            <p dir="auto" class="text-lg font-bold mb-1"><%= @submission.template.name %></p>
+            <% if submitter = @submission.submitters.map(&:completed_at).max %>
+              <p dir="auto" class="text-sm"><%= t('signed_on_time', time: l(submitter.to_date, format: :long)) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if Docuseal.multitenant? %>
+      <div>
+        <%= link_to 'Create free account', registration_path, class: 'white-button w-full' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/attribution', link_path: '/start' %>

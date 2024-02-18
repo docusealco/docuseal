@@ -107,7 +107,9 @@ Rails.application.routes.draw do
     get :completed
   end
 
-  resources :submissions_preview, only: %i[show], path: 'e', param: 'slug'
+  resources :submissions_preview, only: %i[show], path: 'e', param: 'slug' do
+    get :completed
+  end
 
   resources :send_submission_email, only: %i[create] do
     get :success, on: :collection
