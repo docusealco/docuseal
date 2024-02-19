@@ -115,12 +115,12 @@ module Submitters
       blob =
         if value.match?(%r{\Ahttps?://})
           find_or_create_blob_from_url(account, value)
-        elsif type.in?(%w[signature initials])
-          raise InvalidDefaultValue, "Text value can't be more than 50 characters: #{value}" unless value.length < 50
-
+        elsif type.in?(%w[signature initials]) && value.length < 50
           find_or_create_blob_from_text(account, value, type)
+        elsif (data = Base64.decode64(value)) && Marcel::MimeType.for(data).include?('image')
+          find_or_create_blob_from_base64(account, data, type)
         else
-          raise InvalidDefaultValue, "Invalid default value, url is expected: #{value}"
+          raise InvalidDefaultValue, "Invalid value, url, base64 or text < 50 chars is expected: #{value.first(50)}..."
         end
 
       attachment = for_submitter.attachments.find_by(blob_id: blob.id) if for_submitter
@@ -131,6 +131,17 @@ module Submitters
       )
 
       attachment
+    end
+
+    def find_or_create_blob_from_base64(account, data, type)
+      checksum = Digest::MD5.base64digest(data)
+
+      blob = find_blob_by_checksum(checksum, account)
+
+      blob || ActiveStorage::Blob.create_and_upload!(
+        io: StringIO.new(data),
+        filename: "#{type}.png"
+      )
     end
 
     def find_or_create_blob_from_text(account, text, type)
