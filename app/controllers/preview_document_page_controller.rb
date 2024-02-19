@@ -8,14 +8,7 @@ class PreviewDocumentPageController < ActionController::API
   def show
     attachment_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid], purpose: :attachment)
 
-    attachment =
-      if attachment_uuid
-        ActiveStorage::Attachment.find_by(uuid: attachment_uuid)
-      else
-        Rollbar.warning("Load preview from uuid: #{params[:signed_uuid].to_s.first(10)}") if defined?(Rollbar)
-
-        ActiveStorage::Attachment.find_by(uuid: params[:signed_uuid])
-      end
+    attachment = ActiveStorage::Attachment.find_by(uuid: attachment_uuid, name: :preview_images) if attachment_uuid
 
     return head :not_found unless attachment
 
