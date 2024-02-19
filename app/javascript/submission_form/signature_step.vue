@@ -343,10 +343,12 @@ export default {
             const x = (canvasWidth - targetWidth) / 2
             const y = (canvasHeight - targetHeight) / 2
 
-            context.clearRect(0, 0, canvasWidth, canvasHeight)
-            context.drawImage(img, x, y, targetWidth, targetHeight)
+            setTimeout(() => {
+              context.clearRect(0, 0, canvasWidth, canvasHeight)
+              context.drawImage(img, x, y, targetWidth, targetHeight)
 
-            this.$emit('start')
+              this.$emit('start')
+            }, 50)
           }
         }
 
