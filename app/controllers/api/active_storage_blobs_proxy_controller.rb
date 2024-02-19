@@ -10,7 +10,11 @@ module Api
     def show
       blob_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 
-      return head :not_found unless blob_uuid
+      unless blob_uuid
+        Rollbar.error('Blob not found') if defined?(Rollbar)
+
+        return head :not_found
+      end
 
       blob = ActiveStorage::Blob.find_by!(uuid: blob_uuid)
 

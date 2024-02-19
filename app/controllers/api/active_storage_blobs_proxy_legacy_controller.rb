@@ -7,17 +7,21 @@ module Api
     skip_before_action :authenticate_user!
     skip_authorization_check
 
+    # rubocop:disable Metrics
     def show
       Rollbar.info('Blob legacy') if defined?(Rollbar)
 
-      return render json: { error: 'Not authenticated' }, status: :unauthorized unless current_user
-
       blob = ActiveStorage::Blob.find_signed!(params[:signed_blob_id] || params[:signed_id])
 
-      if blob.attachments.none? { |a| a.record.account.id == current_user.account_id }
+      is_permitted = blob.attachments.any? do |a|
+        (current_user && a.record.account.id == current_user.account_id) ||
+          a.record.account.account_configs.any? { |e| e.key == 'legacy_blob_proxy' }
+      end
+
+      unless is_permitted
         Rollbar.error("Blob account not found: #{blob.id}") if defined?(Rollbar)
 
-        return head :not_found
+        return render json: { error: 'Not authenticated' }, status: :unauthorized
       end
 
       if request.headers['Range'].present?
@@ -31,5 +35,6 @@ module Api
         end
       end
     end
+    # rubocop:enable Metrics
   end
 end
