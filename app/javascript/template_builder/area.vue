@@ -90,7 +90,7 @@
       <button
         v-else-if="editable"
         class="pr-1"
-        title="Remove"
+        :title="t('remove')"
         @click.prevent="$emit('remove')"
       >
         <IconX width="14" />

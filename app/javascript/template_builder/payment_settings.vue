@@ -5,7 +5,7 @@
   >
     <label
       tabindex="0"
-      title="Settings"
+      :title="t('settings')"
       class="cursor-pointer text-transparent group-hover:text-base-content"
     >
       <IconSettings
@@ -167,7 +167,7 @@ export default {
     IconInnerShadowTop,
     IconBrandStripe
   },
-  inject: ['backgroundColor', 'save', 'currencies'],
+  inject: ['backgroundColor', 'save', 'currencies', 't'],
   props: {
     field: {
       type: Object,

@@ -77,7 +77,7 @@
           >
             <label
               tabindex="0"
-              title="Settings"
+              :title="t('settings')"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
               <IconSettings
@@ -282,7 +282,7 @@
           </span>
           <button
             class="relative text-transparent group-hover:text-base-content pr-1"
-            title="Remove"
+            :title="t('remove')"
             @click="$emit('remove', field)"
           >
             <IconTrashX

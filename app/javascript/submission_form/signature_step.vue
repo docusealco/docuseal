@@ -80,7 +80,7 @@
         </a>
         <a
           href="#"
-          title="Minimize"
+          :title="t('minimize')"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
         >

@@ -32,7 +32,7 @@
       v-if="!isCompleted"
       id="minimize_form_button"
       class="absolute right-0 mr-2 mt-2 top-0 hidden md:block"
-      title="Minimize"
+      :title="t('minimize')"
       @click.prevent="isFormVisible = false"
     >
       <IconArrowsDiagonalMinimize2

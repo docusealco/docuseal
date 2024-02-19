@@ -12,6 +12,7 @@ const en = {
   radio: 'Radio',
   cells: 'Cells',
   stamp: 'Stamp',
+  minimize: 'Minimize',
   payment: 'Payment',
   phone: 'Phone',
   submit_form: 'Submit Form',
@@ -62,6 +63,7 @@ const en = {
 }
 
 const es = {
+  minimize: 'Minimizar',
   text: 'Texto',
   signature: 'Firma',
   initials: 'Iniciales',
@@ -124,6 +126,7 @@ const es = {
 }
 
 const it = {
+  minimize: 'Minimizza',
   text: 'Testo',
   signature: 'Firma',
   initials: 'Iniziali',
@@ -186,6 +189,7 @@ const it = {
 }
 
 const de = {
+  minimize: 'Minimieren',
   text: 'Text',
   signature: 'Unterschrift',
   initials: 'Initialen',
@@ -248,6 +252,7 @@ const de = {
 }
 
 const fr = {
+  minimize: 'Réduire',
   text: 'Texte',
   signature: 'Signature',
   initials: 'Initiales',
@@ -310,6 +315,7 @@ const fr = {
 }
 
 const pl = {
+  minimize: 'Zminimalizuj',
   text: 'Tekst',
   signature: 'Podpis',
   initials: 'Inicjały',
@@ -372,6 +378,7 @@ const pl = {
 }
 
 const uk = {
+  minimize: 'Зменшити',
   text: 'Текст',
   signature: 'Підпис',
   initials: 'Ініціали',
@@ -434,6 +441,7 @@ const uk = {
 }
 
 const cs = {
+  minimize: 'Minimalizovat',
   text: 'Text',
   signature: 'Podpis',
   initials: 'Iniciály',
@@ -496,6 +504,7 @@ const cs = {
 }
 
 const pt = {
+  minimize: 'Minimizar',
   text: 'Texto',
   signature: 'Assinatura',
   initials: 'Iniciais',
@@ -558,6 +567,7 @@ const pt = {
 }
 
 const he = {
+  minimize: 'לקטן',
   text: 'טקסט',
   signature: 'חתימה',
   initials: 'ראשי תיקיות',
@@ -621,6 +631,7 @@ const he = {
 }
 
 const nl = {
+  minimize: 'Minimaliseren',
   text: 'Tekst',
   signature: 'Handtekening',
   initials: 'Initialen',

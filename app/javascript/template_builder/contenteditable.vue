@@ -27,7 +27,7 @@
     <IconPencil
       class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
-      title="Edit"
+      :title="t('edit')"
       :class="{ invisible: !editable, 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
@@ -44,6 +44,7 @@ export default {
   components: {
     IconPencil
   },
+  inject: ['t'],
   props: {
     modelValue: {
       type: String,

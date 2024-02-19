@@ -58,7 +58,7 @@
           {{ t('clear') }}
         </a>
         <a
-          title="Minimize"
+          :title="t('minimize')"
           href="#"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"

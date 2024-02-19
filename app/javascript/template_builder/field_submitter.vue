@@ -163,7 +163,7 @@
           >
             <div class="flex-col pr-1 hidden group-hover:flex -mt-1 h-0">
               <button
-                title="Up"
+                :title="t('up')"
                 class="relative w-2"
                 style="font-size: 10px; margin-bottom: -4px"
                 @click.prevent.stop="[move(submitter, -1), $refs.label.focus()] "
@@ -171,7 +171,7 @@
                 ▲
               </button>
               <button
-                title="Down"
+                :title="t('down')"
                 class="relative w-2"
                 style="font-size: 10px; margin-top: -4px"
                 @click.prevent.stop="[move(submitter, 1), $refs.label.focus()] "
