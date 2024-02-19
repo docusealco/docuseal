@@ -12,7 +12,8 @@ if defined?(Rollbar)
       if data[:request]
         data[:request][:cookies] = {}
         data[:request][:session] = {}
-        data[:request][:url] = data[:request][:url].to_s.sub(%r{(/[sde]/)\w{8}}, '\1********')
+        data[:request][:url] =
+          data[:request][:url].to_s.sub(%r{(/[sde]/)\w{8}}, '\1********').sub(/\A(.*?)--(.*)/, '\1--********')
       end
     end
 
