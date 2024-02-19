@@ -6,7 +6,7 @@ class PreviewDocumentPageController < ActionController::API
   FORMAT = Templates::ProcessDocument::FORMAT
 
   def show
-    attachment_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
+    attachment_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid], purpose: :attachment)
 
     attachment =
       if attachment_uuid

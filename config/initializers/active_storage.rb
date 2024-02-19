@@ -6,7 +6,7 @@ ActiveSupport.on_load(:active_storage_attachment) do
   has_many_attached :preview_images
 
   def signed_uuid
-    @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours)
+    @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours, purpose: :attachment)
   end
 
   def preview_image_url
@@ -37,7 +37,7 @@ ActiveSupport.on_load(:active_storage_blob) do
   end
 
   def signed_uuid(expires_in: nil)
-    ApplicationRecord.signed_id_verifier.generate(uuid, expires_in:)
+    ApplicationRecord.signed_id_verifier.generate([uuid, 'blob'], expires_in:)
   end
 
   def delete
