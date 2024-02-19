@@ -80,7 +80,7 @@ module Submissions
           submission_data += submitter.documents.map.with_index(1) do |attachment, index|
             {
               name: "Document #{index}",
-              value: attachment.url
+              value: ActiveStorage::Blob.proxy_url(attachment.blob)
             }
           end
         end
@@ -131,9 +131,13 @@ module Submissions
 
         value =
           if template_field_type.in?(%w[image signature])
-            attachments_index[submitter_value]&.url
+            attachment = attachments_index[submitter_value]
+            ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
           elsif template_field_type == 'file'
-            Array.wrap(submitter_value).compact_blank.filter_map { |e| attachments_index[e]&.url }
+            Array.wrap(submitter_value).compact_blank.filter_map do |e|
+              attachment = attachments_index[e]&.url
+              ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
+            end
           else
             submitter_value
           end
