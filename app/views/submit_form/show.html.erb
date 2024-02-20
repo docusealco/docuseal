@@ -24,13 +24,13 @@
                 <% value = values[field['uuid']].presence || (field['readonly'] ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                 <% next if value.blank? %>
                 <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.submission.template.account.locale %>
+                <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.account.locale %>
               <% end %>
             </div>
           </div>
         <% end %>
       <% end %>
-      <%= render 'shared/attribution', link_path: '/start' %>
+      <%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>
     </div>
   </div>
 </div>
