@@ -7,6 +7,8 @@ module Api
     skip_before_action :authenticate_user!
     skip_authorization_check
 
+    before_action :set_cors_headers
+
     def show
       blob_uuid, = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 
