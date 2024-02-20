@@ -321,6 +321,7 @@ export default {
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
+      defaultDrawFieldType: this.defaultDrawFieldType,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
   },
@@ -363,6 +364,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    defaultDrawFieldType: {
+      type: String,
+      required: false,
+      default: 'text'
     },
     currencies: {
       type: Array,
@@ -755,7 +761,9 @@ export default {
 
         let type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
 
-        if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes(type)) {
+        if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
+          type = this.defaultDrawFieldType
+        } else if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes(type)) {
           type = this.fieldTypes[0]
         }
 

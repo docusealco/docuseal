@@ -61,7 +61,7 @@ export default {
   components: {
     FieldArea
   },
-  inject: ['fieldTypes'],
+  inject: ['fieldTypes', 'defaultDrawFieldType'],
   props: {
     image: {
       type: Object,
@@ -123,7 +123,9 @@ export default {
   },
   computed: {
     defaultFieldType () {
-      if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes('text')) {
+      if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
+        return this.defaultDrawFieldType
+      } else if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes('text')) {
         return this.fieldTypes[0]
       } else {
         return 'text'
