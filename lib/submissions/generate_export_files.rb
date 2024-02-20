@@ -135,7 +135,7 @@ module Submissions
             ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
           elsif template_field_type == 'file'
             Array.wrap(submitter_value).compact_blank.filter_map do |e|
-              attachment = attachments_index[e]&.url
+              attachment = attachments_index[e]
               ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
             end
           else
