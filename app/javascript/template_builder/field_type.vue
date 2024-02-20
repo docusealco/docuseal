@@ -26,7 +26,7 @@
       @click="closeDropdown"
     >
       <template
-        v-for="(icon, type) in fieldIcons"
+        v-for="(icon, type) in fieldIconsSorted"
         :key="type"
       >
         <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
@@ -122,6 +122,17 @@ export default {
         stamp: IconRubberStamp,
         payment: IconCreditCard,
         phone: IconPhoneCheck
+      }
+    },
+    fieldIconsSorted () {
+      if (this.fieldTypes.length) {
+        return this.fieldTypes.reduce((acc, type) => {
+          acc[type] = this.fieldIcons[type]
+
+          return acc
+        }, {})
+      } else {
+        return this.fieldIcons
       }
     }
   },

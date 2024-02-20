@@ -68,7 +68,7 @@
     class="grid grid-cols-3 gap-1 pb-2"
   >
     <template
-      v-for="(icon, type) in fieldIcons"
+      v-for="(icon, type) in fieldIconsSorted"
       :key="type"
     >
       <button
@@ -213,6 +213,17 @@ export default {
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    fieldIconsSorted () {
+      if (this.fieldTypes.length) {
+        return this.fieldTypes.reduce((acc, type) => {
+          acc[type] = this.fieldIcons[type]
+
+          return acc
+        }, {})
+      } else {
+        return this.fieldIcons
+      }
+    },
     submitterFields () {
       return this.fields.filter((f) => f.submitter_uuid === this.selectedSubmitter.uuid)
     },
