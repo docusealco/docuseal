@@ -1,0 +1,8 @@
+# Set database environment variables
+export DB_HOST="$POSTGRESQL_HOST"
+export DB_PORT="$POSTGRESQL_PORT"
+export DB_PATH="$POSTGRESQL_PATH"
+export DB_USERNAME="$POSTGRESQL_USERNAME"
+export DB_PASSWORD="$POSTGRESQL_PASSWORD"
+export DB_SCHEME="postgresql"
+export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_PATH}"
