@@ -32,7 +32,6 @@ gem 'rack'
 gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
-gem 'rollbar', require: ENV.key?('ROLLBAR_ACCESS_TOKEN')
 gem 'rotp'
 gem 'rqrcode'
 gem 'ruby-vips'
