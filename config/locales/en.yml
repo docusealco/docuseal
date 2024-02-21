@@ -224,6 +224,27 @@ nl:
   downloading: Downloaden
   completed_successfully: Succesvol voltooid
 
+ar:
+  email: البريد الإلكتروني
+  digitally_signed_by: تم التوقيع الرقمي بواسطة
+  role: الدور
+  provide_your_email_to_start: قدم بريدك الإلكتروني للبدء
+  start: بدء
+  starting: بداية
+  form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'تمت الدعوة بواسطة <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
+  signed_on_time: 'تم التوقيع في %{time}'
+  form_has_been_submitted_already: تم تقديم الاستمارة بالفعل
+  send_copy_to_email: إرسال نسخة إلى البريد الإلكتروني
+  sending: جارٍ الإرسال
+  resubmit: إعادة التقديم
+  form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
+  or: أو
+  download_documents: تحميل الوثائق
+  downloading: جارٍ التحميل
+  completed_successfully: تم الانتهاء بنجاح
+
 en-US:
   <<: *en
   date:
