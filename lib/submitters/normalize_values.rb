@@ -33,7 +33,7 @@ module Submitters
 
         field = fields_uuid_index[key]
 
-        if field['type'].in?(%w[initials signature image file]) && value.present?
+        if field['type'].in?(%w[initials signature image file stamp]) && value.present?
           new_value, new_attachments =
             normalize_attachment_value(value, field['type'], template.account, attachments, for_submitter)
 
