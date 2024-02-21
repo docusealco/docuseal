@@ -42,6 +42,7 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - PDF signature verification
 - Users management
 - Mobile-optimized
+- Signing available in 12 Languages
 - API and Webhooks for integrations
 - Easy to deploy in minutes
 
