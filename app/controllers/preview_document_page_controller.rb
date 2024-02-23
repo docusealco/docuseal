@@ -8,7 +8,7 @@ class PreviewDocumentPageController < ActionController::API
   def show
     attachment_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid], purpose: :attachment)
 
-    attachment = ActiveStorage::Attachment.find_by(uuid: attachment_uuid, name: :preview_images) if attachment_uuid
+    attachment = ActiveStorage::Attachment.find_by(uuid: attachment_uuid) if attachment_uuid
 
     return head :not_found unless attachment
 
