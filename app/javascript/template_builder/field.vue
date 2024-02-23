@@ -65,6 +65,17 @@
               :stroke-width="1.6"
             />
           </button>
+          <button
+            v-if="field.preferences?.formula"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            :disabled="!withFormula"
+            @click="isShowFormulaModal = true"
+          >
+            <IconMathFunction
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
@@ -191,6 +202,26 @@
                     @update:model-value="save"
                   >
                   <span class="label-text">{{ t('required') }}</span>
+                </label>
+              </li>
+              <li
+                v-if="field.type == 'number'"
+                :class="{'tooltip tooltip-bottom': !withFormula}"
+                :data-tip="withFormula ? '' : 'Available in Pro'"
+                @click.stop
+              >
+                <label
+                  class="label-text cursor-pointer py-1.5 text-center w-full flex items-center"
+                  @click="isShowFormulaModal = withFormula"
+                >
+                  <IconMathFunction
+                    width="18px"
+                    height="18px"
+                    class="ml-0.5 mr-1"
+                  />
+                  <span class="text-sm">
+                    {{ t('formula') }}
+                  </span>
                 </label>
               </li>
               <li
@@ -359,6 +390,16 @@
         </button>
       </div>
     </div>
+    <Teleport
+      v-if="isShowFormulaModal"
+      :to="modalContainerEl"
+    >
+      <FormulaModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowFormulaModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -366,7 +407,8 @@
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
-import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import FormulaModal from './formula_modal'
+import { IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -377,11 +419,13 @@ export default {
     IconShape,
     PaymentSettings,
     IconNewSection,
+    FormulaModal,
     IconTrashX,
+    IconMathFunction,
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't', 'withFormula'],
   props: {
     field: {
       type: Object,
@@ -403,11 +447,15 @@ export default {
     return {
       isNameFocus: false,
       showPaymentModal: false,
+      isShowFormulaModal: false,
       renderDropdown: false
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    modalContainerEl () {
+      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+    },
     dateFormats () {
       return [
         'MM/DD/YYYY',
@@ -422,22 +470,7 @@ export default {
       ]
     },
     defaultName () {
-      if (this.field.type === 'payment' && this.field.preferences?.price) {
-        const { price, currency } = this.field.preferences || {}
-
-        const formattedPrice = new Intl.NumberFormat([], {
-          style: 'currency',
-          currency
-        }).format(price)
-
-        return `${this.fieldNames[this.field.type]} ${formattedPrice}`
-      } else {
-        const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
-
-        const suffix = { multiple: this.t('select'), radio: this.t('group') }[this.field.type] || this.t('field')
-
-        return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
-      }
+      return this.buildDefaultName(this.field, this.template.fields)
     },
     areas () {
       return this.field.areas || []
@@ -452,6 +485,24 @@ export default {
     }
   },
   methods: {
+    buildDefaultName (field, fields) {
+      if (field.type === 'payment' && field.preferences?.price) {
+        const { price, currency } = field.preferences || {}
+
+        const formattedPrice = new Intl.NumberFormat([], {
+          style: 'currency',
+          currency
+        }).format(price)
+
+        return `${this.fieldNames[field.type]} ${formattedPrice}`
+      } else {
+        const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
+
+        const suffix = { multiple: this.t('select'), radio: this.t('group') }[field.type] || this.t('field')
+
+        return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
+      }
+    },
     formatDate (date, format) {
       const monthFormats = {
         M: 'numeric',

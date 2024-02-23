@@ -206,9 +206,11 @@ export default {
     }
   },
   computed: {
-    defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    defaultName () {
+      return this.buildDefaultName(this.field, this.template.fields)
+    },
     optionIndexText () {
       if (this.area.option_uuid && this.field.options) {
         return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
@@ -312,6 +314,7 @@ export default {
     }
   },
   methods: {
+    buildDefaultName: Field.methods.buildDefaultName,
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
 

@@ -273,6 +273,7 @@
         @select="startFieldDraw($event)"
       />
     </div>
+    <div id="docuseal_modal_container" />
   </div>
 </template>
 
@@ -321,6 +322,7 @@ export default {
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
+      withFormula: this.withFormula,
       defaultDrawFieldType: this.defaultDrawFieldType,
       selectedAreaRef: computed(() => this.selectedAreaRef)
     }
@@ -445,6 +447,11 @@ export default {
       default: false
     },
     withPayment: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withFormula: {
       type: Boolean,
       required: false,
       default: false

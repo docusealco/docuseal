@@ -13,6 +13,7 @@ const en = {
   cancel: 'Cancel',
   any: 'Any',
   drawn: 'Drawn',
+  formula: 'Formula',
   typed: 'Typed',
   draw_field_on_the_document: 'Draw {field} field on the document',
   click_to_upload: 'Click to upload',

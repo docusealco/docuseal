@@ -8,6 +8,11 @@
     :current-step="currentStepFields"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
+  <FormulaFieldAreas
+    v-if="formulaFields.length"
+    :fields="formulaFields"
+    :values="values"
+  />
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
@@ -396,6 +401,7 @@
 
 <script>
 import FieldAreas from './areas'
+import FormulaFieldAreas from './formula_areas'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import InitialsStep from './initials_step'
@@ -444,6 +450,7 @@ export default {
     IconArrowsDiagonal,
     TextStep,
     NumberStep,
+    FormulaFieldAreas,
     PhoneStep,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
@@ -636,6 +643,9 @@ export default {
         return acc
       }, [])
     },
+    formulaFields () {
+      return this.fields.filter((f) => f.preferences?.formula)
+    },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
         acc[a.uuid] = a
@@ -785,7 +795,7 @@ export default {
           this.scrollIntoField(step[0])
         }
 
-        this.$refs.form.querySelector('input[type="date"], input[type="text"], select')?.focus()
+        this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
 
         if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
           this.$refs.form.querySelector('input[type="file"]')?.click()

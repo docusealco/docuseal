@@ -59,7 +59,7 @@ export default {
       default: true
     },
     modelValue: {
-      type: String,
+      type: [String, Number],
       required: false,
       default: ''
     }
