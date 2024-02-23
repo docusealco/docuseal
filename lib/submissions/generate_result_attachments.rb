@@ -37,6 +37,7 @@ module Submissions
       account = submitter.submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
+      attachments_data_cache = {}
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -78,7 +79,9 @@ module Submissions
           when 'image', 'signature', 'initials', 'stamp'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+            attachments_data_cache[attachment.uuid] ||= attachment.download
+
+            image = Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
 
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min

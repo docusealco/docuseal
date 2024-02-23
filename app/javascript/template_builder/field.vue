@@ -485,11 +485,13 @@ export default {
       const areaString = JSON.stringify(field.areas[0])
 
       this.template.documents.forEach((attachment) => {
-        attachment.preview_images.forEach((page) => {
-          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === parseInt(page.filename))) {
-            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page: parseInt(page.filename) })
+        const numberOfPages = attachment.metadata?.pdf?.number_of_pages || attachment.preview_images.length
+
+        for (let page = 0; page <= numberOfPages - 1; page++) {
+          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === page)) {
+            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page })
           }
-        })
+        }
       })
 
       this.$nextTick(() => {
