@@ -608,7 +608,7 @@ export default {
       return this.values[initialsField?.uuid]
     },
     isAnonymousChecboxes () {
-      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4
+      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name && !e.required) && this.currentStepFields.length > 4
     },
     isButtonDisabled () {
       if (this.recalculateButtonDisabledKey) {
@@ -793,7 +793,7 @@ export default {
       })
     },
     saveStep (formData) {
-      const currentFieldUuid = this.currentField.uuid
+      const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
 
       if (this.isCompleted) {
         return Promise.resolve({})
@@ -803,7 +803,9 @@ export default {
           body: formData || new FormData(this.$refs.form)
         }).then((response) => {
           if (response.status === 200) {
-            this.submittedValues[currentFieldUuid] = this.values[currentFieldUuid]
+            currentFieldUuids.forEach((fieldUuid) => {
+              this.submittedValues[fieldUuid] = this.values[fieldUuid]
+            })
           }
 
           return response
@@ -825,7 +827,13 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[fields[0].uuid])
+          if (index >= this.currentStep) {
+            return false
+          }
+
+          return fields.some((f) => {
+            return f.required && (f.type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[f.uuid])
+          })
         })
 
         const formData = new FormData(this.$refs.form)
