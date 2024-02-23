@@ -72,6 +72,14 @@
               @focus="scrollIntoField(currentField)"
             />
           </div>
+          <NumberStep
+            v-else-if="currentField.type === 'number'"
+            :key="currentField.uuid"
+            v-model="values[currentField.uuid]"
+            :show-field-names="showFieldNames"
+            :field="currentField"
+            @focus="scrollIntoField(currentField)"
+          />
           <DateStep
             v-else-if="currentField.type === 'date'"
             :key="currentField.uuid"
@@ -396,11 +404,30 @@ import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import PaymentStep from './payment_step'
 import TextStep from './text_step'
+import NumberStep from './number_step'
 import DateStep from './date_step'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
+
+const isEmpty = (obj) => {
+  if (obj == null) return true
+
+  if (Array.isArray(obj) || typeof obj === 'string') {
+    return obj.length === 0
+  }
+
+  if (typeof obj === 'object') {
+    return Object.keys(obj).length === 0
+  }
+
+  if (obj === false) {
+    return true
+  }
+
+  return false
+}
 
 export default {
   name: 'SubmissionForm',
@@ -416,6 +443,7 @@ export default {
     DateStep,
     IconArrowsDiagonal,
     TextStep,
+    NumberStep,
     PhoneStep,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
@@ -797,7 +825,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && (this.submittedValues[fields[0].uuid] === true ? false : !this.submittedValues[fields[0].uuid]?.length)
+          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[fields[0].uuid])
         })
 
         const formData = new FormData(this.$refs.form)

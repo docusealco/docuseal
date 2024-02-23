@@ -54,6 +54,8 @@ module Submitters
       params.fetch(:values, {}).to_unsafe_h.transform_values do |v|
         if params[:cast_boolean] == 'true'
           v == 'true'
+        elsif params[:cast_number] == 'true'
+          (v.to_f % 1).zero? ? v.to_i : v.to_f
         elsif params[:normalize_phone] == 'true'
           v.to_s.gsub(/[^0-9+]/, '')
         else

@@ -54,6 +54,7 @@ const en = {
   add: 'Add',
   or_add_field_without_drawing: 'Or add field without drawing',
   text: 'Text',
+  number: 'Number',
   signature: 'Signature',
   initials: 'Initials',
   date: 'Date',

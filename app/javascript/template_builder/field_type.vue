@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -94,6 +94,7 @@ export default {
         signature: this.t('signature'),
         initials: this.t('initials'),
         date: this.t('date'),
+        number: this.t('number'),
         image: this.t('image'),
         file: this.t('file'),
         select: this.t('select'),
@@ -112,12 +113,13 @@ export default {
         signature: IconWritingSign,
         initials: IconLetterCaseUpper,
         date: IconCalendarEvent,
+        number: IconSquareNumber1,
         image: IconPhoto,
-        file: IconPaperclip,
         checkbox: IconCheckbox,
+        multiple: IconChecks,
+        file: IconPaperclip,
         radio: IconCircleDot,
         select: IconSelect,
-        multiple: IconChecks,
         cells: IconColumns3,
         stamp: IconRubberStamp,
         payment: IconCreditCard,

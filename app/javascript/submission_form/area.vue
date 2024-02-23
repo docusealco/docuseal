@@ -173,7 +173,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -240,6 +240,7 @@ export default {
         signature: this.t('signature'),
         initials: this.t('initials'),
         date: this.t('date'),
+        number: this.t('number'),
         image: this.t('image'),
         file: this.t('file'),
         select: this.t('select'),
@@ -260,6 +261,7 @@ export default {
         text: IconTextSize,
         signature: IconWritingSign,
         date: IconCalendarEvent,
+        number: IconSquareNumber1,
         image: IconPhoto,
         initials: IconLetterCaseUpper,
         file: IconPaperclip,

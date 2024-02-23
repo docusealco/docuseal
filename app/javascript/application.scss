@@ -75,16 +75,16 @@ button[disabled] .enabled {
   @apply select base-input w-full font-normal;
 }
 
-.tooltip-bottom-start:before {
-  transform: translateX(-30%);
+.tooltip-bottom-end:before {
+  transform: translateX(-95%);
   top: var(--tooltip-offset);
   left: 100%;
   right: auto;
   bottom: auto;
 }
 
-.tooltip-bottom-start:after {
-  transform: translateX(-75%);
+.tooltip-bottom-end:after {
+  transform: translateX(-25%);
   border-color: transparent transparent var(--tooltip-color) transparent;
   top: var(--tooltip-tail-offset);
   left: 50%;

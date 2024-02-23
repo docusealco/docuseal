@@ -93,7 +93,7 @@
       <div
         v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex"
-        :class="{'tooltip-bottom-start': !withPayment, 'tooltip-bottom': withPayment }"
+        :class="{'tooltip-bottom-end': withPayment, 'tooltip-bottom': !withPayment }"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
         <a
