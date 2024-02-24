@@ -7,10 +7,31 @@ module Api
     def index
       templates = filter_templates(@templates, params)
 
-      templates = paginate(templates.preload(:author, documents_attachments: :blob))
+      templates = paginate(templates.preload(:author, :folder))
+
+      schema_documents =
+        ActiveStorage::Attachment.where(record_id: templates.map(&:id),
+                                        record_type: 'Template',
+                                        name: :documents,
+                                        uuid: templates.flat_map { |t| t.schema.pluck('attachment_uuid') })
+                                 .preload(:blob)
+
+      preview_image_attachments =
+        ActiveStorage::Attachment.joins(:blob)
+                                 .where(blob: { filename: '0.jpg' })
+                                 .where(record_id: schema_documents.map(&:id),
+                                        record_type: 'ActiveStorage::Attachment',
+                                        name: :preview_images)
+                                 .preload(:blob)
 
       render json: {
-        data: templates.as_json(serialize_params),
+        data: templates.map do |t|
+          Templates::SerializeForApi.call(
+            t,
+            schema_documents.select { |e| e.record_id == t.id },
+            preview_image_attachments
+          )
+        end,
         pagination: {
           count: templates.size,
           next: templates.last&.id,
@@ -20,7 +41,7 @@ module Api
     end
 
     def show
-      render json: @template.as_json(serialize_params)
+      render json: Templates::SerializeForApi.call(@template)
     end
 
     def update
@@ -59,14 +80,6 @@ module Api
       templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
 
       templates
-    end
-
-    def serialize_params
-      {
-        methods: %i[application_key],
-        include: { author: { only: %i[id email first_name last_name] },
-                   documents: { only: %i[id uuid], methods: %i[url preview_image_url filename] } }
-      }
     end
 
     def template_params

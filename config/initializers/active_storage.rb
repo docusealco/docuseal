@@ -8,14 +8,6 @@ ActiveSupport.on_load(:active_storage_attachment) do
   def signed_uuid
     @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours, purpose: :attachment)
   end
-
-  def preview_image_url
-    first_page = preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })
-
-    return unless first_page
-
-    ActiveStorage::Blob.proxy_url(first_page.blob)
-  end
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
