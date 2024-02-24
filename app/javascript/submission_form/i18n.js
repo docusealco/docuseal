@@ -579,7 +579,7 @@ const he = {
   minimize: 'לקטן',
   text: 'טקסט',
   signature: 'חתימה',
-  initials: 'ראשי תיקיות',
+  initials: 'ראשי תיבות',
   date: 'תאריך',
   number: 'מספר',
   image: 'תמונה',
