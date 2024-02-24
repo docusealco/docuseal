@@ -11,7 +11,9 @@ module Api
     def show
       Rollbar.info('Blob legacy') if defined?(Rollbar)
 
-      blob = ActiveStorage::Blob.find_signed!(params[:signed_blob_id] || params[:signed_id])
+      blob = ActiveStorage::Blob.find_signed(params[:signed_blob_id] || params[:signed_id])
+
+      return head :not_found unless blob
 
       is_permitted = blob.attachments.any? do |a|
         (current_user && a.record.account.id == current_user.account_id) ||
