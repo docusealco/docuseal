@@ -66,6 +66,8 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 | [<img alt="Deploy on DigitalOcean" src="https://www.deploytodo.com/do-btn-blue.svg" height="40">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/docusealco/docuseal-digitalocean/tree/master&refcode=421d50f53990) | [<img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg" height="40">](https://render.com/deploy?repo=https://github.com/docusealco/docuseal-render)
 |**Koyeb**|**Elestio**|
 | [<img alt="Deploy on Koyeb" src="https://www.koyeb.com/static/images/deploy/button.svg" height="40">](https://app.koyeb.com/deploy?name=docuseal&type=docker&image=docker.io/docuseal/docuseal&env[PORT]=8000&env[DATABASE_URL]=CHANGE_ME&env[SECRET_KEY_BASE]=CHANGE_ME&ports=8000;http;/) | [<img alt="Deploy on Elestio" src="https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png">](https://dash.elest.io/deploy?soft=DocuSeal&id=339) |
+|**RepoCloud**| |
+| [<img alt="Deploy on RepoCloud" src="https://d16t0pc4846x52.cloudfront.net/deploy.png">](https://repocloud.io/details/?app_id=252) | |
 
 
 #### Docker
