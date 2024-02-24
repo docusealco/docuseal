@@ -121,7 +121,7 @@
               </div>
             <% end %>
             <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && can?(:update, submitter) %>
-              <%= render 'send_sms_button', submitter: %>
+              <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
             <% if signed_in? && submitter && !submitter.completed_at? && can?(:create, submitter) %>
               <div class="mt-2 mb-1">
