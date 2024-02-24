@@ -2,6 +2,20 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Email Notifications</h1>
+    <div class="mt-2 mb-1">
+      <% user_config = UserConfig.find_or_initialize_by(user: current_user, key: UserConfig::RECEIVE_COMPLETED_EMAIL) %>
+      <% if can?(:manage, user_config) %>
+        <%= form_for user_config, url: user_configs_path, method: :post do |f| %>
+          <%= f.hidden_field :key %>
+          <div class="flex items-center justify-between">
+            <span>
+              Receive notification emails on completed submission
+            </span>
+            <%= f.check_box :value, class: 'toggle', checked: user_config.value != false, onchange: 'this.form.requestSubmit()' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
     <%= render 'email_stats' %>
     <%= render 'bcc_form', config: @bcc_config %>
     <div class="flex justify-between items-end mb-4 mt-8">
