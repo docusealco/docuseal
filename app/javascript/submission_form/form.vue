@@ -17,7 +17,7 @@
     v-if="!isFormVisible"
     id="expand_form_button"
     class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
-    @click.prevent="isFormVisible = true"
+    @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >
     {{ t('submit_form') }}
     <IconArrowsDiagonal
@@ -486,6 +486,11 @@ export default {
         return () => {}
       }
     },
+    expand: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     withConfetti: {
       type: Boolean,
       required: false,
@@ -585,7 +590,7 @@ export default {
   data () {
     return {
       isCompleted: false,
-      isFormVisible: true,
+      isFormVisible: this.expand,
       showFillAllRequiredFields: false,
       currentStep: 0,
       isSubmitting: false,
@@ -655,6 +660,11 @@ export default {
     },
     submitPath () {
       return `/s/${this.submitterSlug}`
+    }
+  },
+  watch: {
+    expand (value) {
+      this.isFormVisible = value
     }
   },
   mounted () {
