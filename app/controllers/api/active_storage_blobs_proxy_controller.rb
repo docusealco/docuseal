@@ -10,9 +10,9 @@ module Api
     before_action :set_cors_headers
 
     def show
-      blob_uuid, = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
+      blob_uuid, purp = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 
-      if blob_uuid.blank?
+      if blob_uuid.blank? || purp != 'blob'
         Rollbar.error('Blob not found') if defined?(Rollbar)
 
         return head :not_found
