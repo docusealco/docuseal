@@ -13,21 +13,25 @@ class SendFormStartedWebhookRequestJob < ApplicationJob
 
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
-    resp = Faraday.post(config.value,
-                        {
-                          event_type: 'form.started',
-                          timestamp: Time.current,
-                          data: Submitters::SerializeForWebhook.call(submitter)
-                        }.to_json,
-                        'Content-Type' => 'application/json',
-                        'User-Agent' => USER_AGENT)
+    resp = begin
+      Faraday.post(config.value,
+                   {
+                     event_type: 'form.started',
+                     timestamp: Time.current,
+                     data: Submitters::SerializeForWebhook.call(submitter)
+                   }.to_json,
+                   'Content-Type' => 'application/json',
+                   'User-Agent' => USER_AGENT)
+    rescue Faraday::TimeoutError
+      nil
+    end
 
-    if resp.status.to_i >= 400 && attempt <= MAX_ATTEMPTS &&
+    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
       SendFormStartedWebhookRequestJob.set(wait: (2**attempt).minutes)
                                       .perform_later(submitter, {
                                                        attempt: attempt + 1,
-                                                       last_status: resp.status.to_i
+                                                       last_status: resp&.status.to_i
                                                      })
     end
   end
