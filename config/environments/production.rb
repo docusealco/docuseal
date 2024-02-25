@@ -128,9 +128,15 @@ Rails.application.configure do
     config.lograge.formatter = ->(data) { data.except(:path, :location).to_json }
 
     config.lograge.custom_payload do |controller|
+      params = controller.request.params || {}
+
       {
         fwd: controller.request.ip,
-        params: controller.request.params&.slice(:id),
+        params: {
+          id: params[:id],
+          sig: (params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
+          slug: (params[:slug] || params[:submission_slug] || params[:template_slug]).to_s.last(5)
+        }.compact_blank,
         host: controller.request.host,
         uid: controller.instance_variable_get(:@current_user).try(:id)
       }
