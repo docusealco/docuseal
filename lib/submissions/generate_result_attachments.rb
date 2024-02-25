@@ -271,9 +271,10 @@ module Submissions
       end
 
       ActiveStorage::Attachment.create!(
-        uuid:,
         blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
-        metadata: { sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
+        metadata: { original_uuid: uuid,
+                    analyzed: true,
+                    sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
         name: 'documents',
         record: submitter
       )
@@ -284,11 +285,7 @@ module Submissions
     end
 
     def build_pdfs_index(submitter)
-      latest_submitter =
-        submitter.submission.submitters
-                 .select(&:completed_at?)
-                 .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
-                 .max_by(&:completed_at)
+      latest_submitter = find_last_submitter(submitter)
 
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
@@ -309,8 +306,15 @@ module Submissions
           Rollbar.error(e) if defined?(Rollbar)
         end
 
-        [attachment.uuid, pdf]
+        [attachment.metadata['original_uuid'] || attachment.uuid, pdf]
       end
+    end
+
+    def find_last_submitter(submitter)
+      submitter.submission.submitters
+               .select(&:completed_at?)
+               .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
+               .max_by(&:completed_at)
     end
 
     def build_pdf_from_image(attachment)
