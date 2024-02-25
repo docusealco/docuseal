@@ -18,7 +18,7 @@ module ReplaceEmailVariables
   module_function
 
   # rubocop:disable Metrics
-  def call(text, submitter:, tracking_event_type: 'click_email')
+  def call(text, submitter:, tracking_event_type: 'click_email', sig: nil)
     submitter_link = build_submitter_link(submitter, tracking_event_type)
 
     submission_link = build_submission_link(submitter.submission) if submitter.submission
@@ -35,8 +35,8 @@ module ReplaceEmailVariables
     if text.include?(SUBMISSION_SUBMITTERS)
       text = text.gsub(SUBMISSION_SUBMITTERS, build_submission_submitters(submitter.submission))
     end
-    text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter))
-    text = text.gsub(DOCUMENTS_LINK, build_documents_links_text(submitter))
+    text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter, sig))
+    text = text.gsub(DOCUMENTS_LINK, build_documents_links_text(submitter, sig))
 
     text = text.gsub(ACCOUNT_NAME, submitter.template.account.name) if submitter.template
 
@@ -44,9 +44,9 @@ module ReplaceEmailVariables
   end
   # rubocop:enable Metrics
 
-  def build_documents_links_text(submitter)
+  def build_documents_links_text(submitter, sig = nil)
     Rails.application.routes.url_helpers.submissions_preview_url(
-      submitter.submission.slug, **Docuseal.default_url_options
+      submitter.submission.slug, { sig:, **Docuseal.default_url_options }.compact
     )
   end
 

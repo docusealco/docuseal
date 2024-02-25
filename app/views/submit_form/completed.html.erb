@@ -25,7 +25,7 @@
           <div class="py-2"></div>
         <% end %>
       <% end %>
-      <% if @submitter.completed_at > 15.minutes.ago || (current_user && current_user.account.submitters.exists?(id: @submitter.id)) %>
+      <% if @submitter.completed_at > 30.minutes.ago || (current_user && current_user.account.submitters.exists?(id: @submitter.id)) %>
         <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
           <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
             <%= svg_icon('download', class: 'w-6 h-6') %>

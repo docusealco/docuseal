@@ -6,7 +6,7 @@
     </a>
     <div class="space-x-3 flex items-center">
       <% if @submission.audit_trail.present? %>
-        <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob) %>" class="white-button" target="_blank">
+        <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline">
             Audit Log
@@ -14,7 +14,7 @@
         </a>
       <% end %>
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
-        <download-button data-src="<%= submitter_download_index_path(last_submitter.slug) %>" class="base-button">
+        <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig] }.compact) %>" class="base-button">
           <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
             <%= svg_icon('download', class: 'w-6 h-6') %>
             <span class="hidden md:inline">Download</span>

@@ -13,9 +13,9 @@ end
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
-  def self.proxy_url(blob, expires_in: nil)
+  def self.proxy_url(blob, expires_at: nil)
     Rails.application.routes.url_helpers.blobs_proxy_url(
-      signed_uuid: blob.signed_uuid(expires_in:), filename: blob.filename,
+      signed_uuid: blob.signed_uuid(expires_at:), filename: blob.filename,
       **Docuseal.default_url_options
     )
   end
@@ -28,8 +28,10 @@ ActiveSupport.on_load(:active_storage_blob) do
     end
   end
 
-  def signed_uuid(expires_in: nil)
-    ApplicationRecord.signed_id_verifier.generate([uuid, 'blob'], expires_in:)
+  def signed_uuid(expires_at: nil)
+    expires_at = expires_at.to_i if expires_at
+
+    ApplicationRecord.signed_id_verifier.generate([uuid, 'blob', expires_at].compact)
   end
 
   def delete

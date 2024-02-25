@@ -129,7 +129,7 @@ Rails.application.configure do
 
     config.lograge.custom_payload do |controller|
       {
-        fwd: controller.request.ip.to_s[/\A\d+\.(.*)/, 1],
+        fwd: controller.request.ip,
         params: controller.request.params&.slice(:id),
         host: controller.request.host,
         uid: controller.instance_variable_get(:@current_user).try(:id)
