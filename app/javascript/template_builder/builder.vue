@@ -324,7 +324,8 @@ export default {
       withPayment: this.withPayment,
       withFormula: this.withFormula,
       defaultDrawFieldType: this.defaultDrawFieldType,
-      selectedAreaRef: computed(() => this.selectedAreaRef)
+      selectedAreaRef: computed(() => this.selectedAreaRef),
+      fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef)
     }
   },
   props: {
@@ -480,6 +481,7 @@ export default {
   },
   computed: {
     selectedAreaRef: () => ref(),
+    fieldsDragFieldRef: () => ref(),
     fieldAreasIndex () {
       const areas = {}
 
@@ -811,7 +813,7 @@ export default {
       }
     },
     onDropfield (area) {
-      const field = {
+      const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
@@ -819,17 +821,19 @@ export default {
         ...this.dragField
       }
 
-      if (['select', 'multiple', 'radio'].includes(field.type)) {
-        field.options = [{ value: '', uuid: v4() }]
-      }
+      if (!this.fieldsDragFieldRef.value) {
+        if (['select', 'multiple', 'radio'].includes(field.type)) {
+          field.options = [{ value: '', uuid: v4() }]
+        }
 
-      if (field.type === 'stamp') {
-        field.readonly = true
-      }
+        if (field.type === 'stamp') {
+          field.readonly = true
+        }
 
-      if (field.type === 'date') {
-        field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        if (field.type === 'date') {
+          field.preferences = {
+            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+          }
         }
       }
 
@@ -885,11 +889,23 @@ export default {
         fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
       }
 
-      field.areas = [fieldArea]
+      field.areas ||= []
+
+      const lastArea = field.areas[field.areas.length - 1]
+
+      if (lastArea) {
+        fieldArea.x -= lastArea.w / 2
+        fieldArea.w = lastArea.w
+        fieldArea.h = lastArea.h
+      }
+
+      field.areas.push(fieldArea)
 
       this.selectedAreaRef.value = fieldArea
 
-      this.template.fields.push(field)
+      if (this.template.fields.indexOf(field) === -1) {
+        this.template.fields.push(field)
+      }
 
       this.save()
     },

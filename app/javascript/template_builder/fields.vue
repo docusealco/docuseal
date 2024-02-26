@@ -24,11 +24,11 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && (!dragField || dragField !== field)"
+      :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
       :default-field="defaultFields.find((f) => f.name === field.name)"
       :draggable="editable"
-      @dragstart="dragField = field"
-      @dragend="dragField = null"
+      @dragstart="fieldsDragFieldRef.value = field"
+      @dragend="fieldsDragFieldRef.value = null"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
@@ -154,7 +154,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment', 't'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment', 't', 'fieldsDragFieldRef'],
   props: {
     fields: {
       type: Array,
@@ -205,11 +205,6 @@ export default {
     }
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
-  data () {
-    return {
-      dragField: null
-    }
-  },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
@@ -239,7 +234,7 @@ export default {
     },
     onFieldDragover (e) {
       const targetField = e.target.closest('[data-uuid]')
-      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.dragField.uuid}"]`)
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
 
       if (dragField && targetField && targetField !== dragField) {
         const fields = Array.from(this.$refs.fields.children)

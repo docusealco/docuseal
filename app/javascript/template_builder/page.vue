@@ -39,7 +39,7 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile)"
+      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
@@ -61,7 +61,7 @@ export default {
   components: {
     FieldArea
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef'],
   props: {
     image: {
       type: Object,
