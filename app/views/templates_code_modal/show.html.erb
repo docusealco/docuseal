@@ -18,7 +18,7 @@
     </div>
   </div>
   <%= render 'templates/embedding', template: @template %>
-  <% if can?(:manage, TemplateSharing.new(template: @template)) %>
+  <% if can?(:manage, TemplateSharing.new(template: @template)) && !Docuseal.multitenant? %>
     <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' } do |f| %>
       <%= f.hidden_field :template_id, value: @template.id %>
       <div class="flex items-center justify-between">
