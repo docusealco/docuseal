@@ -12,7 +12,7 @@ module Api
     def show
       blob_uuid, purp, exp = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 
-      if blob_uuid.blank? || purp != 'blob' || (exp && exp < Time.current.to_i)
+      if blob_uuid.blank? || (purp.present? && purp != 'blob') || (exp && exp < Time.current.to_i)
         Rollbar.error('Blob not found') if defined?(Rollbar)
 
         return head :not_found
