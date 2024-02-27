@@ -19,7 +19,13 @@
     class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
     @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >
-    {{ t('submit_form') }}
+    <template v-if="['initials', 'signature'].includes(currentField.type)">
+      <IconWritingSign stroke-width="1.5" />
+      {{ t('sign_now') }}
+    </template>
+    <template v-else>
+      {{ t('submit_form') }}
+    </template>
     <IconArrowsDiagonal
       class="absolute right-0 mr-4"
       :width="20"
@@ -413,7 +419,7 @@ import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
 import FormCompleted from './completed'
-import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
 
@@ -442,6 +448,7 @@ export default {
     ImageStep,
     SignatureStep,
     AppearsOn,
+    IconWritingSign,
     AttachmentStep,
     InitialsStep,
     MultiSelectStep,
@@ -489,7 +496,7 @@ export default {
     expand: {
       type: Boolean,
       required: false,
-      default: true
+      default: null
     },
     withConfetti: {
       type: Boolean,
@@ -590,7 +597,7 @@ export default {
   data () {
     return {
       isCompleted: false,
-      isFormVisible: this.expand,
+      isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
       isSubmitting: false,
@@ -697,6 +704,10 @@ export default {
       }
 
       this.currentStep = Math.min(...indexesList)
+    }
+
+    if (document.body?.clientWidth >= 768 && this.expand !== true && ['signature', 'initials', 'file', 'image'].includes(this.currentField?.type)) {
+      this.isFormVisible = false
     }
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
