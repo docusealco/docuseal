@@ -37,7 +37,9 @@ export default class extends HTMLElement {
     if (q) {
       const queryParams = new URLSearchParams({ q, field: this.dataset.field })
 
-      fetch('/api/submitters_autocomplete?' + queryParams).then(async (resp) => {
+      this.currentFetch ||= fetch('/api/submitters_autocomplete?' + queryParams)
+
+      this.currentFetch.then(async (resp) => {
         const items = await resp.json()
 
         if (q.length < 3) {
@@ -47,6 +49,8 @@ export default class extends HTMLElement {
         }
       }).catch(() => {
         resolve([])
+      }).finally(() => {
+        this.currentFetch = null
       })
     } else {
       resolve([])
