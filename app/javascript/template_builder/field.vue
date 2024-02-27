@@ -339,7 +339,7 @@
             {{ index + 1 }}.
           </span>
           <div
-            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
+            v-if="editable && ['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
             class="items-center flex w-full"
           >
             <input
@@ -368,12 +368,14 @@
             class="w-full input input-primary input-xs text-sm bg-transparent"
             :placeholder="`${t('option')} ${index + 1}`"
             type="text"
+            :readonly="!editable"
             required
             dir="auto"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
           <button
+            v-if="editable"
             class="text-sm w-3.5"
             tabindex="-1"
             @click="removeOption(option)"
@@ -381,8 +383,12 @@
             &times;
           </button>
         </div>
+        <div
+          v-if="field.options && !editable"
+          class="pb-1"
+        />
         <button
-          v-if="field.options"
+          v-else-if="field.options && editable"
           class="text-center text-sm w-full pb-1"
           @click="addOption"
         >
