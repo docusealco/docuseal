@@ -51,7 +51,7 @@ module Submissions
   def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false, params: {})
     preferences = Submitters.normalize_preferences(user.account, user, params)
 
-    parse_emails(emails).uniq.map do |email|
+    parse_emails(emails, user).uniq.map do |email|
       submission = template.submissions.new(created_by_user: user,
                                             account_id: user.account_id,
                                             source:,
@@ -66,7 +66,7 @@ module Submissions
     end
   end
 
-  def parse_emails(emails)
+  def parse_emails(emails, _user)
     emails = emails.to_s.scan(User::EMAIL_REGEXP) unless emails.is_a?(Array)
 
     emails
