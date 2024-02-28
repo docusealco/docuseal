@@ -7,6 +7,7 @@ export default class extends HTMLElement {
       preventSubmit: 1,
       minLength: 1,
       showOnFocus: true,
+      debounceWaitMs: 200,
       onSelect: this.onSelect,
       render: this.render,
       fetch: this.fetch
