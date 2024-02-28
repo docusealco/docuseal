@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_074821) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_28_083356) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_074821) do
     t.string "checksum"
     t.datetime "created_at", null: false
     t.string "uuid"
+    t.index ["checksum"], name: "index_active_storage_blobs_on_checksum"
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
     t.index ["uuid"], name: "index_active_storage_blobs_on_uuid", unique: true
   end
