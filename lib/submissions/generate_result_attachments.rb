@@ -164,7 +164,7 @@ module Submissions
               width: PdfIcons::WIDTH * scale,
               height: PdfIcons::HEIGHT * scale
             )
-          when 'cells'
+          when ->(type) { type == 'cells' && area['cell_w'] }
             cell_width = area['cell_w'] * width
 
             TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
