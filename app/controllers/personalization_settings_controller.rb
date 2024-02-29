@@ -1,22 +1,41 @@
 # frozen_string_literal: true
 
 class PersonalizationSettingsController < ApplicationController
+  ALLOWED_KEYS = [
+    AccountConfig::FORM_COMPLETED_BUTTON_KEY,
+    AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY,
+    AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY,
+    AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY
+  ].freeze
+
+  InvalidKey = Class.new(StandardError)
+
+  before_action :load_and_authorize_account_config, only: :create
+
   def show
     authorize!(:read, AccountConfig)
   end
 
   def create
-    account_config =
-      current_account.account_configs.find_or_initialize_by(key: account_config_params[:key])
-
-    authorize!(:create, account_config)
-
-    account_config.update!(account_config_params)
+    @account_config.save!
 
     redirect_back(fallback_location: settings_personalization_path, notice: 'Settings have been saved.')
   end
 
   private
+
+  def load_and_authorize_account_config
+    @account_config =
+      current_account.account_configs.find_or_initialize_by(key: account_config_params[:key])
+
+    @account_config.assign_attributes(account_config_params)
+
+    authorize!(:create, @account_config)
+
+    raise InvalidKey unless ALLOWED_KEYS.include?(@account_config.key)
+
+    @account_config
+  end
 
   def account_config_params
     attrs = params.require(:account_config).permit!

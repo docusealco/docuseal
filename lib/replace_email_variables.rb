@@ -38,7 +38,7 @@ module ReplaceEmailVariables
     text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter, sig))
     text = text.gsub(DOCUMENTS_LINK, build_documents_links_text(submitter, sig))
 
-    text = text.gsub(ACCOUNT_NAME, submitter.template.account.name) if submitter.template
+    text = text.gsub(ACCOUNT_NAME, submitter.account.name) if submitter.account
 
     text
   end

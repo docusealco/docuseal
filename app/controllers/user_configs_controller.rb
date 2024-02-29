@@ -8,6 +8,8 @@ class UserConfigsController < ApplicationController
     UserConfig::RECEIVE_COMPLETED_EMAIL
   ].freeze
 
+  InvalidKey = Class.new(StandardError)
+
   def create
     @user_config.update!(user_config_params)
 
@@ -17,7 +19,7 @@ class UserConfigsController < ApplicationController
   private
 
   def load_user_config
-    return head :not_found unless ALLOWED_KEYS.include?(user_config_params[:key])
+    raise InvalidKey unless ALLOWED_KEYS.include?(user_config_params[:key])
 
     @user_config =
       UserConfig.find_or_initialize_by(user: current_user, key: user_config_params[:key])
