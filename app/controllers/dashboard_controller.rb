@@ -54,7 +54,7 @@ class DashboardController < ApplicationController
     rel = templates.active.preload(:author).order(id: :desc)
 
     if params[:q].blank?
-      if Docuseal.multitenant?
+      if Docuseal.multitenant? && !current_account.testing?
         rel = rel.where(folder_id: current_account.default_template_folder.id)
       else
         shared_template_ids =
