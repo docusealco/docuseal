@@ -65,21 +65,21 @@ fr: &fr
   email: Email
   digitally_signed_by: Signé numériquement par
   role: Rôle
-  provide_your_email_to_start: Entrez votre email pour commencer
+  provide_your_email_to_start: Entrez votre adresse email pour commencer
   start: Démarrer
   starting: Démarrage
   form_has_been_deleted_by_html: 'Le formulaire a été supprimé par <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Invité par <span class="font-semibold">%{name}</span>'
-  you_have_been_invited_to_submit_a_form: Vous avez été invité à soumettre un formulaire
-  signed_on_time: 'Signé à %{time}'
-  form_has_been_submitted_already: Le formulaire a déjà été soumis
-  send_copy_to_email: Envoyer une copie par email
-  sending: Envoi
-  resubmit: Soumettre à nouveau
+  you_have_been_invited_to_submit_a_form: Vous avez été invité à remplir un formulaire
+  signed_on_time: 'Signé le %{time}'
+  form_has_been_submitted_already: Le formulaire a déjà été complété
+  send_copy_to_email: Envoyer une copie par e-mail
+  sending: Envoi en cours
+  resubmit: Compléter à nouveau
   or: ou
-  download_documents: Télécharger des documents
+  download_documents: Télécharger les documents
   downloading: Téléchargement
-  completed_successfully: Terminé avec succès
+  completed_successfully: Complété avec succès
 
 pt: &pt
   role: Função
