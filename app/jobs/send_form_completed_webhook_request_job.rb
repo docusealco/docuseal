@@ -24,7 +24,7 @@ class SendFormCompletedWebhookRequestJob < ApplicationJob
                    }.to_json,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
-    rescue Faraday::TimeoutError
+    rescue Faraday::Error
       nil
     end
 
