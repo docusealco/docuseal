@@ -91,6 +91,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       editable: this.dataset.editable !== 'false',
       withPayment: this.dataset.withPayment === 'true',
       withFormula: this.dataset.withFormula === 'true',
+      withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'

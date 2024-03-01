@@ -621,6 +621,13 @@ export default {
     submitterSlug () {
       return this.submitter.slug
     },
+    fieldsUuidIndex () {
+      return this.fields.reduce((acc, f) => {
+        acc[f.uuid] = f
+
+        return acc
+      }, {})
+    },
     previousInitialsValue () {
       const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
@@ -646,10 +653,12 @@ export default {
       return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
-        if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {
-          prevStep.push(f)
-        } else {
-          acc.push([f])
+        if (this.checkFieldConditions(f)) {
+          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {
+            prevStep.push(f)
+          } else {
+            acc.push([f])
+          }
         }
 
         return acc
@@ -738,6 +747,40 @@ export default {
   methods: {
     t (key) {
       return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+    },
+    checkFieldConditions (field) {
+      if (field.conditions?.length) {
+        return field.conditions.reduce((acc, c) => {
+          if (['empty', 'unchecked'].includes(c.action)) {
+            return acc && isEmpty(this.values[c.field_uuid])
+          } else if (['not_empty', 'checked'].includes(c.action)) {
+            return acc && !isEmpty(this.values[c.field_uuid])
+          } else if (['equal', 'contains'].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid]
+            const option = field.options.find((o) => o.uuid === c.value)
+            const values = [this.values[c.field_uuid]].flat()
+
+            return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid]
+            const option = field.options.find((o) => o.uuid === c.value)
+            const values = [this.values[c.field_uuid]].flat()
+
+            return acc && !values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return acc
+          }
+        }, true)
+      } else {
+        return true
+      }
+    },
+    optionValue (option, index) {
+      if (option.value) {
+        return option.value
+      } else {
+        return `${this.t('option')} ${index + 1}`
+      }
     },
     maybeTrackEmailClick () {
       const { queryParams } = this

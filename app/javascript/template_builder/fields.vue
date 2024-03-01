@@ -278,6 +278,14 @@ export default {
     removeField (field) {
       this.fields.splice(this.fields.indexOf(field), 1)
 
+      this.fields.forEach((f) => {
+        (f.conditions || []).forEach((c) => {
+          if (c.field_uuid === field.uuid) {
+            f.conditions.splice(f.conditions.indexOf(c), 1)
+          }
+        })
+      })
+
       this.save()
     },
     addField (type, area = null) {

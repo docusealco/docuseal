@@ -89,6 +89,7 @@ module Api
           submitters: [%i[name uuid]],
           fields: [[:uuid, :submitter_uuid, :name, :type, :required, :readonly, :default_value,
                     { preferences: {},
+                      conditions: [%i[field_uuid value action]],
                       options: [%i[value uuid]],
                       areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
       ]

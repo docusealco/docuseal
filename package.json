@@ -10,7 +10,7 @@
     "@hotwired/turbo": "https://github.com/docusealco/turbo#main",
     "@hotwired/turbo-rails": "^7.3.0",
     "@rails/activestorage": "^7.0.0",
-    "@tabler/icons-vue": "^2.20.0",
+    "@tabler/icons-vue": "^2.47.0",
     "autocompleter": "^9.1.0",
     "autoprefixer": "^10.4.14",
     "babel-loader": "9.1.2",

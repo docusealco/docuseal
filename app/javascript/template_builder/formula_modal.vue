@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span>
-          {{ t('formula') }}
+          {{ t('formula') }} - {{ field.name || buildDefaultName(field, template.fields) }}
         </span>
         <a
           href="#"
@@ -18,6 +18,16 @@
         >&times;</a>
       </div>
       <div>
+        <div
+          v-if="!withFormula"
+          class="bg-base-300 rounded-xl py-2 px-3 text-center"
+        >
+          <a
+            href="https://www.docuseal.co/pricing"
+            target="_blank"
+            class="link"
+          >Available in Pro</a>
+        </div>
         <div class="flex-inline mb-2 gap-2 space-y-1">
           <button
             v-for="f in fields"
@@ -118,7 +128,7 @@ export default {
   components: {
     IconCodePlus
   },
-  inject: ['t', 'save', 'template'],
+  inject: ['t', 'save', 'template', 'withFormula'],
   props: {
     field: {
       type: Object,
@@ -178,6 +188,10 @@ export default {
       })
     },
     validateSaveAndClose () {
+      if (!this.withFormula) {
+        return alert('Available only in Pro')
+      }
+
       const normalizedFormula = this.normalizeFormula(this.formula)
 
       if (normalizedFormula.includes('FIELD NOT FOUND')) {

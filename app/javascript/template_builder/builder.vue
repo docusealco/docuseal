@@ -323,6 +323,7 @@ export default {
       withPhone: this.withPhone,
       withPayment: this.withPayment,
       withFormula: this.withFormula,
+      withConditions: this.withConditions,
       defaultDrawFieldType: this.defaultDrawFieldType,
       selectedAreaRef: computed(() => this.selectedAreaRef),
       fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef)
@@ -453,6 +454,11 @@ export default {
       default: false
     },
     withFormula: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withConditions: {
       type: Boolean,
       required: false,
       default: false

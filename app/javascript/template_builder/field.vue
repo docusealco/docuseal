@@ -68,10 +68,21 @@
           <button
             v-if="field.preferences?.formula"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
-            :disabled="!withFormula"
+            :title="t('formula')"
             @click="isShowFormulaModal = true"
           >
             <IconMathFunction
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
+          <button
+            v-if="field.conditions?.length"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            :title="t('condition')"
+            @click="isShowConditionsModal = true"
+          >
+            <IconRouteAltLeft
               :width="18"
               :stroke-width="1.6"
             />
@@ -205,26 +216,6 @@
                 </label>
               </li>
               <li
-                v-if="field.type == 'number'"
-                :class="{'tooltip tooltip-bottom': !withFormula}"
-                :data-tip="withFormula ? '' : 'Available in Pro'"
-                @click.stop
-              >
-                <label
-                  class="label-text cursor-pointer py-1.5 text-center w-full flex items-center"
-                  @click="isShowFormulaModal = withFormula"
-                >
-                  <IconMathFunction
-                    width="18px"
-                    height="18px"
-                    class="ml-0.5 mr-1"
-                  />
-                  <span class="text-sm">
-                    {{ t('formula') }}
-                  </span>
-                </label>
-              </li>
-              <li
                 v-if="field.type == 'checkbox'"
                 @click.stop
               >
@@ -264,6 +255,33 @@
                     @update:model-value="save"
                   >
                   <span class="label-text">{{ t('read_only') }}</span>
+                </label>
+              </li>
+              <hr class="pb-0.5 mt-0.5">
+              <li>
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowConditionsModal = !isShowConditionsModal"
+                >
+                  <IconRouteAltLeft
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('condition') }}
+                  </span>
+                </label>
+              </li>
+              <li v-if="field.type == 'number'">
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowFormulaModal = true"
+                >
+                  <IconMathFunction
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('formula') }}
+                  </span>
                 </label>
               </li>
               <hr class="pb-0.5 mt-0.5">
@@ -406,6 +424,16 @@
         @close="isShowFormulaModal = false"
       />
     </Teleport>
+    <Teleport
+      v-if="isShowConditionsModal"
+      :to="modalContainerEl"
+    >
+      <ConditionsModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowConditionsModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -414,7 +442,8 @@ import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
 import FormulaModal from './formula_modal'
-import { IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import ConditionsModal from './conditions_modal'
+import { IconRouteAltLeft, IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -426,12 +455,14 @@ export default {
     PaymentSettings,
     IconNewSection,
     FormulaModal,
+    ConditionsModal,
+    IconRouteAltLeft,
     IconTrashX,
     IconMathFunction,
     IconCopy,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't', 'withFormula'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't'],
   props: {
     field: {
       type: Object,
@@ -454,6 +485,7 @@ export default {
       isNameFocus: false,
       showPaymentModal: false,
       isShowFormulaModal: false,
+      isShowConditionsModal: false,
       renderDropdown: false
     }
   },
