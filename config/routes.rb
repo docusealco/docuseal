@@ -17,15 +17,6 @@ Rails.application.routes.draw do
              end
 
   devise_scope :user do
-    if Docuseal.multitenant?
-      resource :registration, only: %i[show], path: 'sign_up'
-      unauthenticated do
-        resource :registration, only: %i[create], path: 'new' do
-          get '' => :new, as: :new
-        end
-      end
-    end
-
     resource :invitation, only: %i[update] do
       get '' => :edit
     end
