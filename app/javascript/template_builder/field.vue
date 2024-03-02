@@ -298,7 +298,8 @@
                     :width="20"
                     :stroke-width="1.6"
                   />
-                  {{ t('page') }} {{ area.page + 1 }}
+                  {{ t('page') }}
+                  <template v-if="template.schema.length > 1">{{ template.schema.findIndex((item) => item.attachment_uuid === area.attachment_uuid) + 1 }}-</template>{{ area.page + 1 }}
                 </a>
               </li>
               <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
