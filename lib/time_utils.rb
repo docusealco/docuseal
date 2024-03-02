@@ -42,7 +42,7 @@ module TimeUtils
 
     I18n.l(date, format: i18n_format, locale:)
   rescue Date::Error => e
-    Rollbar.warning(e) if defined?(Rollbar)
+    Rollbar.warning("#{e}: #{string}") if defined?(Rollbar)
 
     string
   end
