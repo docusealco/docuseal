@@ -90,7 +90,10 @@ module Submissions
       last_submitter = submission.submitters.where.not(completed_at: nil).order(:completed_at).last
 
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
-        original_documents = submission.template.documents.select { |e| e.uuid == document.uuid }.presence
+        original_documents = submission.template.documents.select do |e|
+          e.uuid == (document.metadata['original_uuid'] || document.uuid)
+        end.presence
+
         original_documents ||= submission.template.documents.select do |e|
           e.image? && submission.template_schema.any? do |item|
             item['attachment_uuid'] == e.uuid
