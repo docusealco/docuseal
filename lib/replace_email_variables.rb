@@ -5,6 +5,8 @@ module ReplaceEmailVariables
   TEMPLATE_ID = '{{template.id}}'
   SUBMITTER_LINK = '{{submitter.link}}'
   ACCOUNT_NAME = '{{account.name}}'
+  SENDER_NAME = '{{sender.name}}'
+  SENDER_EMAIL = '{{sender.email}}'
   SUBMITTER_EMAIL = '{{submitter.email}}'
   SUBMITTER_NAME = '{{submitter.name}}'
   SUBMITTER_ID = '{{submitter.id}}'
@@ -19,28 +21,24 @@ module ReplaceEmailVariables
 
   # rubocop:disable Metrics
   def call(text, submitter:, tracking_event_type: 'click_email', sig: nil)
-    submitter_link = build_submitter_link(submitter, tracking_event_type)
-
-    submission_link = build_submission_link(submitter.submission) if submitter.submission
-
-    text = text.gsub(TEMPLATE_NAME, submitter.template.name) if submitter.template
-    text = text.gsub(TEMPLATE_ID, submitter.template.id.to_s) if submitter.template
-    text = text.gsub(SUBMITTER_ID, submitter.id.to_s)
-    text = text.gsub(SUBMITTER_SLUG, submitter.slug.to_s)
-    text = text.gsub(SUBMISSION_ID, submitter.submission.id.to_s) if submitter.submission
-    text = text.gsub(SUBMITTER_EMAIL, submitter.email) if submitter.email
-    text = text.gsub(SUBMITTER_NAME, submitter.name || submitter.email || submitter.phone)
-    text = text.gsub(SUBMITTER_LINK, submitter_link)
-    text = text.gsub(SUBMISSION_LINK, submission_link) if submission_link
-    if text.include?(SUBMISSION_SUBMITTERS)
-      text = text.gsub(SUBMISSION_SUBMITTERS, build_submission_submitters(submitter.submission))
+    text = text.gsub(TEMPLATE_NAME) { submitter.template.name }
+    text = text.gsub(TEMPLATE_ID) { submitter.template.id }
+    text = text.gsub(SUBMITTER_ID) { submitter.id }
+    text = text.gsub(SUBMITTER_SLUG) { submitter.slug }
+    text = text.gsub(SUBMISSION_ID) { submitter.submission.id }
+    text = text.gsub(SUBMITTER_EMAIL) { submitter.email }
+    text = text.gsub(SUBMITTER_NAME) { submitter.name || submitter.email || submitter.phone }
+    text = text.gsub(SUBMITTER_LINK) { build_submitter_link(submitter, tracking_event_type) }
+    text = text.gsub(SUBMISSION_LINK) do
+      submitter.submission ? build_submission_link(submitter.submission) : ''
     end
-    text = text.gsub(DOCUMENTS_LINKS, build_documents_links_text(submitter, sig))
-    text = text.gsub(DOCUMENTS_LINK, build_documents_links_text(submitter, sig))
+    text = text.gsub(SUBMISSION_SUBMITTERS) { build_submission_submitters(submitter.submission) }
+    text = text.gsub(DOCUMENTS_LINKS) { build_documents_links_text(submitter, sig) }
+    text = text.gsub(DOCUMENTS_LINK) { build_documents_links_text(submitter, sig) }
+    text = text.gsub(ACCOUNT_NAME) { submitter.account.name }
+    text = text.gsub(SENDER_NAME) { submitter.submission.created_by_user&.full_name }
 
-    text = text.gsub(ACCOUNT_NAME, submitter.account.name) if submitter.account
-
-    text
+    text.gsub(SENDER_EMAIL) { submitter.submission.created_by_user&.email }
   end
   # rubocop:enable Metrics
 
