@@ -69,7 +69,7 @@ Rails.configuration.to_prepare do
 
   LoadActiveStorageConfigs.call
 rescue StandardError => e
-  Rails.logger.error(e)
+  Rails.logger.error(e) unless Rails.env.production?
 
   nil
 end
