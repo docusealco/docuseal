@@ -9,6 +9,7 @@ module Submitters
     UnknownFieldName = Class.new(BaseError)
     InvalidDefaultValue = Class.new(BaseError)
     UnknownSubmitterName = Class.new(BaseError)
+    UnableToDownload = Class.new(BaseError)
 
     module_function
 
@@ -167,7 +168,12 @@ module Submitters
 
       return blob if blob
 
-      data = conn.get(Addressable::URI.parse(url).display_uri.to_s).body
+      uri = Addressable::URI.parse(url)
+      resp = conn.get(uri.display_uri.to_s)
+
+      raise UnableToDownload, "Error loading: #{uri.display_uri}" if resp.status >= 400
+
+      data = resp.body
 
       checksum = Digest::MD5.base64digest(data)
 
