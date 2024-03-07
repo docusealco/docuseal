@@ -523,7 +523,7 @@ export default {
       submitter.name = name
 
       if (existingSubmittersUuids.filter(Boolean).length) {
-        submitter.uuid = existingSubmittersUuids[index] || v4()
+        submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
       } else {
         submitter.uuid ||= v4()
       }
