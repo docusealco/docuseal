@@ -286,7 +286,7 @@
               </li>
               <hr class="pb-0.5 mt-0.5">
               <li
-                v-for="(area, index) in field.areas || []"
+                v-for="(area, index) in sortedAreas"
                 :key="index"
               >
                 <a
@@ -492,6 +492,18 @@ export default {
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    schemaAttachmentsIndexes () {
+      return (this.template.schema || []).reduce((acc, item, index) => {
+        acc[item.attachment_uuid] = index
+
+        return acc
+      }, {})
+    },
+    sortedAreas () {
+      return (this.field.areas || []).sort((a, b) => {
+        return this.schemaAttachmentsIndexes[a.attachment_uuid] - this.schemaAttachmentsIndexes[b.attachment_uuid]
+      })
+    },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
@@ -607,7 +619,7 @@ export default {
       }
     },
     scrollToFirstArea () {
-      return this.field.areas?.[0] && this.$emit('scroll-to', this.field.areas[0])
+      return this.sortedAreas[0] && this.$emit('scroll-to', this.sortedAreas[0])
     },
     closeDropdown () {
       document.activeElement.blur()
