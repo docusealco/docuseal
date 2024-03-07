@@ -31,40 +31,42 @@
       </div>
     <% end %>
     <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">Update Signature</a>
-    <p class="text-2xl font-bold mt-8 mb-4">Change Password</p>
-    <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
-      <div class="form-control">
-        <%= f.label :password, 'New password', class: 'label' %>
-        <%= f.password_field :password, autocomplete: 'off', class: 'base-input' %>
-      </div>
-      <div class="form-control">
-        <%= f.label :password_confirmation, 'Confirm new password', class: 'label' %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
-      </div>
-      <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+    <% if true_user == current_user && !current_account.testing? %>
+      <p class="text-2xl font-bold mt-8 mb-4">Change Password</p>
+      <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+        <div class="form-control">
+          <%= f.label :password, 'New password', class: 'label' %>
+          <%= f.password_field :password, autocomplete: 'off', class: 'base-input' %>
+        </div>
+        <div class="form-control">
+          <%= f.label :password_confirmation, 'Confirm new password', class: 'label' %>
+          <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
+        </div>
+        <div class="form-control pt-2">
+          <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+        </div>
+      <% end %>
+      <p class="text-2xl font-bold mt-8 mb-4">Two-Factor Authentication</p>
+      <div class="space-y-4">
+        <% if current_user.otp_required_for_login %>
+          <p class="flex items-center space-x-1">
+            <%= svg_icon('circle_check', class: 'stroke-success inline flex-none w-5 h-5') %>
+            <span>
+              2FA has been configured.
+            </span>
+          </p>
+          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 Remove 2FA</a>
+        <% else %>
+          <p class="flex items-center space-x-1">
+            <%= svg_icon('info_circle', class: 'stroke-warning inline flex-none w-5 h-5') %>
+            <span>
+              2FA is not configured.
+            </span>
+          </p>
+          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 Set up 2FA</a>
+        <% end %>
       </div>
     <% end %>
-    <p class="text-2xl font-bold mt-8 mb-4">Two-Factor Authentication</p>
-    <div class="space-y-4">
-      <% if current_user.otp_required_for_login %>
-        <p class="flex items-center space-x-1">
-          <%= svg_icon('circle_check', class: 'stroke-success inline flex-none w-5 h-5') %>
-          <span>
-            2FA has been configured.
-          </span>
-        </p>
-        <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 Remove 2FA</a>
-      <% else %>
-        <p class="flex items-center space-x-1">
-          <%= svg_icon('info_circle', class: 'stroke-warning inline flex-none w-5 h-5') %>
-          <span>
-            2FA is not configured.
-          </span>
-        </p>
-        <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 Set up 2FA</a>
-      <% end %>
-    </div>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>
