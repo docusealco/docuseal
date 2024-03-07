@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group pb-2"
+    class="list-field group mb-2"
   >
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"

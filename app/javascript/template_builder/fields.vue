@@ -2,7 +2,7 @@
   <div :class="withStickySubmitters ? 'sticky top-0 z-10' : ''">
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
-      class="w-full rounded-lg"
+      class="roles-dropdown w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
       :editable="editable && !defaultSubmitters.length"
@@ -14,7 +14,7 @@
   </div>
   <div
     ref="fields"
-    class="mb-1 mt-2"
+    class="fields mb-1 mt-2"
     @dragover.prevent="onFieldDragover"
     @drop="reorderFields"
   >
@@ -43,7 +43,7 @@
       <div
         :style="{ backgroundColor: backgroundColor }"
         draggable="true"
-        class="border border-base-300 rounded rounded-tr-none relative group mb-2"
+        class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
         @dragstart="onDragstart({ type: 'text', ...field })"
         @dragend="$emit('drag-end')"
       >
@@ -74,7 +74,7 @@
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
-        class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
+        class="field-type-button group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
         @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"

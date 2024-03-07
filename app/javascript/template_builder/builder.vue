@@ -94,11 +94,13 @@
       </div>
     </div>
     <div
+      id="main_container"
       class="flex"
       :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
     >
       <div
         v-if="withDocumentsList"
+        id="documents_container"
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
         class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
@@ -134,7 +136,10 @@
           />
         </div>
       </div>
-      <div class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+      <div
+        id="pages_container"
+        class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5"
+      >
         <div
           ref="documents"
           class="pr-3.5 pl-0.5"
@@ -200,6 +205,7 @@
       </div>
       <div
         v-if="withFieldsList"
+        id="fields_list_container"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
