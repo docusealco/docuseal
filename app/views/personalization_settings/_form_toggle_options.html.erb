@@ -1,0 +1,14 @@
+<% account_config = AccountConfig.where(account: current_account, key: AccountConfig::FORM_WITH_CONFETTI_KEY).first_or_initialize(value: true) %>
+<% if can?(:manage, account_config) %>
+  <div class="px-1 mt-2">
+    <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+      <%= f.hidden_field :key %>
+      <div class="flex items-center justify-between py-2.5">
+        <span>
+          Show confetti on successful completion
+        </span>
+        <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' }, '1', '0' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

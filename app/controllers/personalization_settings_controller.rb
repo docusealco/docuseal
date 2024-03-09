@@ -17,7 +17,11 @@ class PersonalizationSettingsController < ApplicationController
   end
 
   def create
-    @account_config.save!
+    if @account_config.value != false && @account_config.value.blank?
+      @account_config.destroy!
+    else
+      @account_config.save!
+    end
 
     redirect_back(fallback_location: settings_personalization_path, notice: 'Settings have been saved.')
   end
@@ -39,6 +43,8 @@ class PersonalizationSettingsController < ApplicationController
 
   def account_config_params
     attrs = params.require(:account_config).permit!
+
+    return attrs if attrs[:value].is_a?(String)
 
     attrs[:value]&.transform_values! do |value|
       if value.in?(%w[true false])

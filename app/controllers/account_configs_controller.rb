@@ -8,7 +8,8 @@ class AccountConfigsController < ApplicationController
     AccountConfig::ALLOW_TYPED_SIGNATURE,
     AccountConfig::FORCE_MFA,
     AccountConfig::ALLOW_TO_RESUBMIT,
-    AccountConfig::ESIGNING_PREFERENCE_KEY
+    AccountConfig::ESIGNING_PREFERENCE_KEY,
+    AccountConfig::FORM_WITH_CONFETTI_KEY
   ].freeze
 
   InvalidKey = Class.new(StandardError)
