@@ -38,7 +38,7 @@ module ReplaceEmailVariables
     text = text.gsub(ACCOUNT_NAME) { submitter.account.name }
     text = text.gsub(SENDER_NAME) { submitter.submission.created_by_user&.full_name }
 
-    text.gsub(SENDER_EMAIL) { submitter.submission.created_by_user&.email }
+    text.gsub(SENDER_EMAIL) { submitter.submission.created_by_user&.email.to_s.sub(/\+\w+@/, '@') }
   end
   # rubocop:enable Metrics
 
