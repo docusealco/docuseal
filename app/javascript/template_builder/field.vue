@@ -261,6 +261,19 @@
               <li>
                 <label
                   class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowDescriptionModal = !isShowDescriptionModal"
+                >
+                  <IconInfoCircle
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('description') }}
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
                   @click="isShowConditionsModal = !isShowConditionsModal"
                 >
                   <IconRouteAltLeft
@@ -435,6 +448,16 @@
         @close="isShowConditionsModal = false"
       />
     </Teleport>
+    <Teleport
+      v-if="isShowDescriptionModal"
+      :to="modalContainerEl"
+    >
+      <DescriptionModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowDescriptionModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -444,7 +467,8 @@ import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
 import FormulaModal from './formula_modal'
 import ConditionsModal from './conditions_modal'
-import { IconRouteAltLeft, IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import DescriptionModal from './description_modal'
+import { IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -455,7 +479,9 @@ export default {
     IconShape,
     PaymentSettings,
     IconNewSection,
+    IconInfoCircle,
     FormulaModal,
+    DescriptionModal,
     ConditionsModal,
     IconRouteAltLeft,
     IconTrashX,
@@ -487,6 +513,7 @@ export default {
       showPaymentModal: false,
       isShowFormulaModal: false,
       isShowConditionsModal: false,
+      isShowDescriptionModal: false,
       renderDropdown: false
     }
   },

@@ -41,6 +41,13 @@
         :name="`values[${field.uuid}][]`"
       >
     </template>
+    <div
+      v-if="field.description && !modelValue.length"
+      dir="auto"
+      class="mb-3 px-1"
+    >
+      <MarkdownContent :string="field.description" />
+    </div>
     <FileDropzone
       :message="`${t('upload')} ${field.name || t('files')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
@@ -53,12 +60,14 @@
 
 <script>
 import FileDropzone from './dropzone'
+import MarkdownContent from './markdown_content'
 import { IconPaperclip, IconTrashX } from '@tabler/icons-vue'
 
 export default {
   name: 'AttachmentStep',
   components: {
     FileDropzone,
+    MarkdownContent,
     IconPaperclip,
     IconTrashX
   },

@@ -1,10 +1,23 @@
 <template>
   <label
-    v-if="showFieldNames && field.name"
+    v-if="showFieldNames && (field.name || field.title)"
     :for="field.uuid"
     dir="auto"
-    class="label text-2xl mb-2"
-  >{{ field.name }}</label>
+    class="label text-2xl"
+    :class="{ 'mb-2': !field.description }"
+  ><MarkdownContent
+     v-if="field.title"
+     :string="field.title"
+   />
+    <template v-else>{{ field.name }}</template>
+  </label>
+  <div
+    v-if="field.description"
+    dir="auto"
+    class="mb-3 px-1"
+  >
+    <MarkdownContent :string="field.description" />
+  </div>
   <div class="flex w-full max-h-44 overflow-y-auto">
     <input
       v-if="modelValue.length === 0"
@@ -53,8 +66,13 @@
 </template>
 
 <script>
+import MarkdownContent from './markdown_content'
+
 export default {
   name: 'MultiSelectStep',
+  components: {
+    MarkdownContent
+  },
   inject: ['t', 'scrollIntoField'],
   props: {
     field: {

@@ -101,17 +101,32 @@
           />
           <div v-else-if="currentField.type === 'select'">
             <label
-              v-if="showFieldNames && currentField.name"
+              v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
+              class="label text-2xl"
+              :class="{ 'mb-2': !currentField.description }"
+            >
+              <MarkdownContent
+                v-if="currentField.title"
+                :string="currentField.title"
+              />
+              <template v-else>
+                {{ currentField.name }}
+                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
             </label>
             <div
               v-else
               class="py-1"
             />
+            <div
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
+            >
+              <MarkdownContent :string="currentField.description" />
+            </div>
             <AppearsOn :field="currentField" />
             <select
               :id="currentField.uuid"
@@ -140,13 +155,28 @@
           </div>
           <div v-else-if="currentField.type === 'radio'">
             <label
-              v-if="showFieldNames && currentField.name"
+              v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
+              class="label text-2xl"
+              :class="{ 'mb-2': !currentField.description }"
+            >
+              <MarkdownContent
+                v-if="currentField.title"
+                :string="currentField.title"
+              />
+              <template v-else>
+                {{ currentField.name }}
+                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
             </label>
+            <div
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
+            >
+              <MarkdownContent :string="currentField.description" />
+            </div>
             <div class="flex w-full max-h-44 overflow-y-auto">
               <div
                 v-if="!showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4)"
@@ -197,66 +227,77 @@
           />
           <div
             v-else-if="currentField.type === 'checkbox'"
-            class="flex w-full max-h-44 overflow-y-auto"
           >
-            <input
-              type="hidden"
-              name="cast_boolean"
-              value="true"
-            >
             <div
-              class="space-y-3.5 mx-auto"
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
             >
-              <template v-if="isAnonymousChecboxes || !showFieldNames">
-                <span class="text-xl">
-                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
-                </span>
-                <input
-                  v-for="field in currentStepFields"
-                  :key="field.uuid"
-                  type="hidden"
-                  :name="`values[${field.uuid}]`"
-                  :value="!!values[field.uuid]"
-                >
-              </template>
-              <template v-else>
-                <div
-                  v-for="(field, index) in currentStepFields"
-                  :key="field.uuid"
-                >
-                  <label
-                    :for="field.uuid"
-                    class="flex items-center space-x-3"
+              <MarkdownContent :string="currentField.description" />
+            </div>
+            <div
+              class="flex w-full max-h-44 overflow-y-auto"
+            >
+              <input
+                type="hidden"
+                name="cast_boolean"
+                value="true"
+              >
+              <div
+                class="space-y-3.5 mx-auto"
+              >
+                <template v-if="isAnonymousChecboxes || !showFieldNames">
+                  <span class="text-xl">
+                    {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                  </span>
+                  <input
+                    v-for="field in currentStepFields"
+                    :key="field.uuid"
+                    type="hidden"
+                    :name="`values[${field.uuid}]`"
+                    :value="!!values[field.uuid]"
                   >
-                    <input
-                      type="hidden"
-                      :name="`values[${field.uuid}]`"
-                      :value="!!values[field.uuid]"
+                </template>
+                <template v-else>
+                  <div
+                    v-for="(field, index) in currentStepFields"
+                    :key="field.uuid"
+                  >
+                    <label
+                      :for="field.uuid"
+                      class="flex items-center space-x-3"
                     >
-                    <input
-                      :id="field.uuid"
-                      type="checkbox"
-                      class="base-checkbox !h-7 !w-7"
-                      :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
-                      :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
-                      :required="field.required"
-                      :checked="!!values[field.uuid]"
-                      @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
-                    >
-                    <span
-                      v-if="field.title"
-                      class="text-xl"
-                      v-html="field.title"
-                    />
-                    <span
-                      v-else
-                      class="text-xl"
-                    >
-                      {{ field.name || field.type + ' ' + (index + 1) }}
-                    </span>
-                  </label>
-                </div>
-              </template>
+                      <input
+                        type="hidden"
+                        :name="`values[${field.uuid}]`"
+                        :value="!!values[field.uuid]"
+                      >
+                      <input
+                        :id="field.uuid"
+                        type="checkbox"
+                        class="base-checkbox !h-7 !w-7"
+                        :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
+                        :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
+                        :required="field.required"
+                        :checked="!!values[field.uuid]"
+                        @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
+                      >
+                      <span
+                        v-if="field.title"
+                        class="text-xl"
+                      >
+                        <MarkdownContent :string="field.title" />
+                      </span>
+                      <span
+                        v-else
+                        class="text-xl"
+                      >
+                        {{ field.name || field.type + ' ' + (index + 1) }}
+                      </span>
+                    </label>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
           <ImageStep
@@ -418,6 +459,7 @@ import PaymentStep from './payment_step'
 import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
+import MarkdownContent from './markdown_content'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
@@ -459,6 +501,7 @@ export default {
     NumberStep,
     FormulaFieldAreas,
     PhoneStep,
+    MarkdownContent,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
@@ -654,7 +697,7 @@ export default {
         const prevStep = acc[acc.length - 1]
 
         if (this.checkFieldConditions(f)) {
-          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {
+          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
             prevStep.push(f)
           } else {
             acc.push([f])

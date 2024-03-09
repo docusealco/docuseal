@@ -1,11 +1,14 @@
 <template>
   <label
-    v-if="showFieldNames && field.name"
+    v-if="showFieldNames && (field.name || field.title)"
     :for="field.uuid"
     dir="auto"
     class="label text-2xl"
     :class="{ 'mb-2': !field.description }"
-  ><template v-if="field.title"><span v-html="field.title" /></template>
+  ><MarkdownContent
+     v-if="field.title"
+     :string="field.title"
+   />
     <template v-else>{{ field.name }}</template>
     <template v-if="!field.required">({{ t('optional') }})</template>
   </label>
@@ -15,9 +18,11 @@
   />
   <div
     v-if="field.description"
-    class="mb-3 px-1 text-lg"
-    v-html="field.description"
-  />
+    dir="auto"
+    class="mb-3 px-1"
+  >
+    <MarkdownContent :string="field.description" />
+  </div>
   <AppearsOn :field="field" />
   <div class="items-center flex">
     <input
@@ -69,11 +74,13 @@
 <script>
 import { IconAlignBoxLeftTop } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
+import MarkdownContent from './markdown_content'
 
 export default {
   name: 'TextStep',
   components: {
     IconAlignBoxLeftTop,
+    MarkdownContent,
     AppearsOn
   },
   inject: ['t'],

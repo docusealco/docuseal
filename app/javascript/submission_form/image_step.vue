@@ -24,9 +24,17 @@
       :name="`values[${field.uuid}]`"
     >
   </div>
-  <div>
+  <div
+    v-if="!modelValue"
+  >
+    <div
+      v-if="field.description"
+      dir="auto"
+      class="mb-3 px-1"
+    >
+      <MarkdownContent :string="field.description" />
+    </div>
     <FileDropzone
-      v-if="!modelValue"
       :message="`${t('upload')} ${field.name || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :accept="'image/*'"
@@ -39,12 +47,14 @@
 <script>
 import FileDropzone from './dropzone'
 import { IconReload } from '@tabler/icons-vue'
+import MarkdownContent from './markdown_content'
 
 export default {
   name: 'ImageStep',
   components: {
     FileDropzone,
-    IconReload
+    IconReload,
+    MarkdownContent
   },
   inject: ['t'],
   props: {
