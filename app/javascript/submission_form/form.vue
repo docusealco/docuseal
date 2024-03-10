@@ -1000,7 +1000,11 @@ export default {
           this.isSubmitting = false
         })
       }).catch(error => {
-        console.log(error)
+        if (error?.message === 'Image too small') {
+          alert('Signature is too small - please redraw.')
+        } else {
+          console.log(error)
+        }
       }).finally(() => {
         this.isSubmitting = false
       })

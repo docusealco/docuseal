@@ -41,7 +41,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
@@ -56,7 +56,7 @@
           :data-tip="t('take_photo')"
         >
           <label
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
           >
             <IconCamera :width="16" />
             <input
@@ -386,8 +386,8 @@ export default {
         return Promise.resolve({})
       }
 
-      return new Promise((resolve) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+      return new Promise((resolve, reject) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
           if (this.isDirectUpload) {
@@ -429,6 +429,8 @@ export default {
               return resolve(attachment)
             })
           }
+        }).catch((error) => {
+          return reject(error)
         })
       })
     }
