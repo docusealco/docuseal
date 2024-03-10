@@ -24,7 +24,7 @@
               <label
                 dir="auto"
                 class="label text-sm"
-                for="title_field"
+                for="description_field"
               >
                 {{ t('description') }}
               </label>
