@@ -22,6 +22,8 @@ class ErrorsController < ActionController::Base
 
     respond_to do |f|
       f.json do
+        set_cors_headers
+
         render json: { status: error_status_code }, status: error_status_code
       end
 
@@ -30,6 +32,14 @@ class ErrorsController < ActionController::Base
   end
 
   private
+
+  def set_cors_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = '*'
+    headers['Access-Control-Max-Age'] = '1728000'
+    headers['Access-Control-Allow-Credentials'] = true
+  end
 
   def error_status_code
     @error_status_code ||=
