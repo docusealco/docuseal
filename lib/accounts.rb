@@ -32,7 +32,7 @@ module Accounts
   end
 
   def find_or_create_testing_user(account)
-    user = User.find_by(account: account.testing_accounts)
+    user = User.where(role: :admin).order(:id).find_by(account: account.testing_accounts)
 
     return user if user
 
