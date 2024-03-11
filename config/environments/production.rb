@@ -128,7 +128,7 @@ Rails.application.configure do
     config.lograge.formatter = ->(data) { data.except(:path, :location).to_json }
 
     config.lograge.custom_payload do |controller|
-      params = controller.request.params || {}
+      params = controller.request.try(:params) || {}
 
       {
         fwd: controller.request.ip,
