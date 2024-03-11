@@ -35,7 +35,7 @@ module ReplaceEmailVariables
     text = text.gsub(SUBMISSION_SUBMITTERS) { build_submission_submitters(submitter.submission) }
     text = text.gsub(DOCUMENTS_LINKS) { build_documents_links_text(submitter, sig) }
     text = text.gsub(DOCUMENTS_LINK) { build_documents_links_text(submitter, sig) }
-    text = text.gsub(ACCOUNT_NAME) { submitter.account.name }
+    text = text.gsub(ACCOUNT_NAME) { submitter.submission.account.name }
     text = text.gsub(SENDER_NAME) { submitter.submission.created_by_user&.full_name }
 
     text.gsub(SENDER_EMAIL) { submitter.submission.created_by_user&.email.to_s.sub(/\+\w+@/, '@') }
