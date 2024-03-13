@@ -125,9 +125,14 @@ module Submissions
     end
 
     def find_submitter_uuid(template, attrs, index)
-      attrs[:uuid].presence ||
-        template.submitters.find { |e| e['name'] == attrs[:role] }&.dig('uuid') ||
-        template.submitters[index]&.dig('uuid')
+      uuid = attrs[:uuid].presence
+      uuid ||= template.submitters.find { |e| e['name'].to_s.casecmp(attrs[:role].to_s).zero? }&.dig('uuid')
+
+      if attrs[:role].present? && uuid.blank? && defined?(Rollbar)
+        Rollbar.error("Role doesn't existng: #{attrs[:role]}, #{template.id}")
+      end
+
+      uuid || template.submitters[index]&.dig('uuid')
     end
 
     def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:, user:, preferences:)
