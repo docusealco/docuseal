@@ -35,11 +35,11 @@
       :class="{ '!pr-11 -mr-10': !field.validation?.pattern }"
       :required="field.required"
       :pattern="field.validation?.pattern"
-      :oninvalid="field.validation?.message ? `this.setCustomValidity(${JSON.stringify(field.validation.message)})` : ''"
-      :oninput="field.validation?.message ? `this.setCustomValidity('')` : ''"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       type="text"
       :name="`values[${field.uuid}]`"
+      @invalid="field.validation?.message ? $event.target.setCustomValidity(field.validation.message) : ''"
+      @input="field.validation?.message ? $event.target.setCustomValidity('') : ''"
       @focus="$emit('focus')"
     >
     <textarea

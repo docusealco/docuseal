@@ -93,6 +93,7 @@ module Api
                     { preferences: {},
                       conditions: [%i[field_uuid value action]],
                       options: [%i[value uuid]],
+                      validation: %i[message pattern],
                       areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
       ]
 

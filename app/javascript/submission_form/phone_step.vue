@@ -68,14 +68,13 @@
         class="base-input !text-2xl w-full"
         autocomplete="tel"
         pattern="^\+[0-9\s\-]+$"
-        :oninvalid="`this.value ? this.setCustomValidity('${t('use_international_format')}...') : ''`"
-        oninput="this.setCustomValidity('')"
         type="tel"
         inputmode="tel"
         :required="field.required"
         placeholder="+1 234 567-8900"
         :name="`values[${field.uuid}]`"
-        @input="$emit('update:model-value', $event.target.value)"
+        @invalid="$event.target.value ? $event.target.setCustomValidity(`${t('use_international_format')}...`) : ''"
+        @input="[$event.target.setCustomValidity(''), $emit('update:model-value', $event.target.value)]"
         @focus="$emit('focus')"
       >
     </div>
