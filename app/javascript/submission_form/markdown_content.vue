@@ -6,7 +6,7 @@
     >
       <a
         v-if="item.startsWith('<a') && item.endsWith('</a>')"
-        :href="extractAttr(item, 'href')"
+        :href="sanitizeHref(extractAttr(item, 'href'))"
         rel="noopener noreferrer nofollow"
         :class="extractAttr(item, 'class') || 'link'"
         target="_blank"
@@ -55,6 +55,11 @@ export default {
     }
   },
   methods: {
+    sanitizeHref (href) {
+      if (href && href.trim().match(/^((?:https?:\/\/)|\/)/)) {
+        return href.replace(/javascript:/g, '')
+      }
+    },
     extractAttr (text, attr) {
       if (text.includes(attr)) {
         return text.split(attr).pop().split('"')[1]

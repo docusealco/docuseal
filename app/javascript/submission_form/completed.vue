@@ -16,7 +16,8 @@
     <div class="space-y-3 mt-5">
       <a
         v-if="completedButton.url"
-        :href="completedButton.url"
+        :href="sanitizeHref(completedButton.url)"
+        rel="noopener noreferrer nofollow"
         class="white-button flex items-center w-full"
       >
         <span>
@@ -214,6 +215,11 @@ export default {
       )
 
       this.isDownloading = false
+    },
+    sanitizeHref (href) {
+      if (href && href.trim().match(/^((?:https?:\/\/)|\/)/)) {
+        return href.replace(/javascript:/g, '')
+      }
     },
     downloadSafariIos (urls) {
       const fileRequests = urls.map((url) => {
