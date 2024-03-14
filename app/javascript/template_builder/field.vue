@@ -202,7 +202,7 @@
                 </label>
               </div>
               <li
-                v-if="field.type != 'phone'"
+                v-if="field.type != 'phone' && field.type != 'stamp'"
                 @click.stop
               >
                 <label class="cursor-pointer py-1.5">
@@ -213,6 +213,20 @@
                     @update:model-value="save"
                   >
                   <span class="label-text">{{ t('required') }}</span>
+                </label>
+              </li>
+              <li
+                v-if="field.type == 'stamp'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    :checked="field.preferences?.with_logo != false"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, save()]"
+                  >
+                  <span class="label-text">{{ t('with_logo') }}</span>
                 </label>
               </li>
               <li
@@ -257,8 +271,13 @@
                   <span class="label-text">{{ t('read_only') }}</span>
                 </label>
               </li>
-              <hr class="pb-0.5 mt-0.5">
-              <li>
+              <hr
+                v-if="field.type != 'stamp'"
+                class="pb-0.5 mt-0.5"
+              >
+              <li
+                v-if="field.type != 'stamp'"
+              >
                 <label
                   class="label-text cursor-pointer text-center w-full flex items-center"
                   @click="isShowDescriptionModal = !isShowDescriptionModal"
@@ -271,7 +290,9 @@
                   </span>
                 </label>
               </li>
-              <li>
+              <li
+                v-if="field.type != 'stamp'"
+              >
                 <label
                   class="label-text cursor-pointer text-center w-full flex items-center"
                   @click="isShowConditionsModal = !isShowConditionsModal"

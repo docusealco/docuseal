@@ -1,6 +1,7 @@
 const en = {
   description: 'Description',
   display_title: 'Display title',
+  with_logo: 'With logo',
   unchecked: 'Unchecked',
   equal: 'Equal',
   not_equal: 'Not equal',

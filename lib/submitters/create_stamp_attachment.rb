@@ -13,8 +13,8 @@ module Submitters
 
     module_function
 
-    def call(submitter)
-      image = generate_stamp_image(submitter)
+    def call(submitter, with_logo: true)
+      image = generate_stamp_image(submitter, with_logo:)
 
       image_data = image.write_to_buffer('.png')
 
@@ -30,8 +30,13 @@ module Submitters
       )
     end
 
-    def generate_stamp_image(submitter)
-      logo = Vips::Image.new_from_buffer(load_logo(submitter).read, '')
+    def generate_stamp_image(submitter, with_logo: true)
+      logo =
+        if with_logo
+          Vips::Image.new_from_buffer(load_logo(submitter).read, '')
+        else
+          Vips::Image.new_from_buffer(TRANSPARENT_PIXEL, '').resize(WIDTH)
+        end
 
       logo = logo.resize([WIDTH / logo.width.to_f, HEIGHT / logo.height.to_f].min)
 
