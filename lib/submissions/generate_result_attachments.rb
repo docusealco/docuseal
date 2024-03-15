@@ -211,28 +211,28 @@ module Submissions
       image_pdfs = []
       original_documents = template.documents.preload(:blob)
 
-      results =
+      result_attachments =
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_pdf(pdf:, submitter:, pkcs:, tsa_url:,
-                                uuid: item['attachment_uuid'],
-                                name: item['name'])
+          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+                                            uuid: item['attachment_uuid'],
+                                            name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
           attachment
         end
 
-      return results if image_pdfs.size < 2
+      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
 
       images_pdf =
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
           pdf.pages.each { |page| doc.pages << doc.import(page) }
         end
 
-      images_pdf_result =
-        save_pdf(
+      images_pdf_attachment =
+        build_pdf_attachment(
           pdf: images_pdf,
           submitter:,
           tsa_url:,
@@ -241,10 +241,10 @@ module Submissions
           name: template.name
         )
 
-      results + [images_pdf_result]
+      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
     end
 
-    def save_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
+    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
@@ -282,7 +282,7 @@ module Submissions
       end
       # rubocop:enable Metrics
 
-      ActiveStorage::Attachment.create!(
+      ActiveStorage::Attachment.new(
         blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
         metadata: { original_uuid: uuid,
                     analyzed: true,
