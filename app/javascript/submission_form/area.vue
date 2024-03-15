@@ -338,17 +338,21 @@ export default {
   },
   watch: {
     modelValue () {
-      if (this.field.type === 'text' && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.modelValue.length)) {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
-      }
+      this.$nextTick(() => {
+        if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.modelValue.length)) {
+          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
+        }
+      })
     }
   },
   mounted () {
-    if (this.field.type === 'text' && this.$refs.textContainer) {
-      this.$nextTick(() => {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
-      })
-    }
+    this.$nextTick(() => {
+      if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer) {
+        this.$nextTick(() => {
+          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
+        })
+      }
+    })
   },
   methods: {
     optionValue (option) {

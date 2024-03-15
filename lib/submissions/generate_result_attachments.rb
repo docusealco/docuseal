@@ -71,7 +71,7 @@ module Submissions
 
           width = page.box.width
           height = page.box.height
-          font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+          font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           value = submitter.values[field['uuid']]
 
