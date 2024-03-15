@@ -41,6 +41,8 @@ module Submissions
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
       composer.document.fonts.add(FONT_BOLD_NAME, variant: :bold)
+      composer.document.config['font.on_missing_glyph'] =
+        Submissions::GenerateResultAttachments.method(:on_missing_glyph).to_proc
 
       divider = HexaPDF::Layout::Box.create(
         margin: [0, 0, 15, 0],
@@ -245,7 +247,6 @@ module Submissions
               end
 
               value = value.join(', ') if value.is_a?(Array)
-              value = Submissions::GenerateResultAttachments::REPLACE_EMOJI[value] || value
 
               composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
                                           text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,

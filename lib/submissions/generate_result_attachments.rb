@@ -21,9 +21,18 @@ module Submissions
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
-    REPLACE_EMOJI = {
+    MISSING_GLYPH_REPLACE = {
+      '▪' => '-',
       '✔️' => 'V',
-      '✔' => 'V'
+      '✔' => 'V',
+      '✅' => 'V'
+    }.freeze
+
+    MISSING_GLYPH_REPLACE_TYPE1 = {
+      '▪' => :bullet,
+      '✔️' => :V,
+      '✔' => :V,
+      '✅' => :V
     }.freeze
 
     module_function
@@ -181,7 +190,6 @@ module Submissions
             end
 
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
-            value = REPLACE_EMOJI[value] || value
 
             text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
                                                                font_size:)
@@ -318,8 +326,23 @@ module Submissions
           Rollbar.error(e) if defined?(Rollbar)
         end
 
+        pdf.config['font.on_missing_glyph'] = method(:on_missing_glyph).to_proc
+
         [attachment.metadata['original_uuid'] || attachment.uuid, pdf]
       end
+    end
+
+    def on_missing_glyph(character, font_wrapper)
+      Rollbar.error("Missing glyph: #{character}") if character.present? && defined?(Rollbar)
+
+      replace_with =
+        if font_wrapper.font_type == :Type1
+          MISSING_GLYPH_REPLACE_TYPE1[character] || :space
+        else
+          (MISSING_GLYPH_REPLACE[character] || ' ').bytes.first - 29
+        end
+
+      font_wrapper.custom_glyph(replace_with, character)
     end
 
     def find_last_submitter(submitter)
