@@ -243,7 +243,6 @@ module Submissions
 
       results + [images_pdf_result]
     end
-    # rubocop:enable Metrics
 
     def save_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
@@ -265,10 +264,23 @@ module Submissions
           sign_params[:signature_size] = 10_000
         end
 
-        pdf.sign(io, write_options: { validate: false }, **sign_params)
+        begin
+          pdf.sign(io, write_options: { validate: false }, **sign_params)
+        rescue HexaPDF::MalformedPDFError => e
+          Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
+        end
       else
-        pdf.write(io, incremental: true, validate: false)
+        begin
+          pdf.write(io, incremental: true, validate: false)
+        rescue HexaPDF::MalformedPDFError => e
+          Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.write(io, incremental: false, validate: false)
+        end
       end
+      # rubocop:enable Metrics
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
