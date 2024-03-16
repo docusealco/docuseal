@@ -28,6 +28,8 @@ export default class extends HTMLElement {
 
       if (textarea && item[field]) {
         textarea.value = textarea.value.replace(/[^;,\s]+$/, item[field] + ' ')
+
+        textarea.dispatchEvent(new Event('input', { bubbles: true }))
       }
     })
   }

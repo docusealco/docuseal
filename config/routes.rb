@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   resource :user_signature, only: %i[edit update destroy]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
+  resources :upgrade, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[show destroy]
   resources :testing_api_settings, only: %i[index]
   resource :templates_upload, only: %i[create]
