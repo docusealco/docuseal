@@ -21,6 +21,8 @@ class SendSubmissionEmailController < ApplicationController
         Submitter.find_by!(slug: params[:submitter_slug])
       end
 
+    RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
+
     SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later!
 
     respond_to do |f|

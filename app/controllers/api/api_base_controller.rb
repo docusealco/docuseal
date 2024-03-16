@@ -19,6 +19,12 @@ module Api
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
+    rescue_from RateLimit::LimitApproached do |e|
+      Rollbar.error(e) if defined?(Rollbar)
+
+      render json: { error: 'Too many requests' }, status: :too_many_requests
+    end
+
     if Rails.env.production?
       rescue_from CanCan::AccessDenied do |e|
         Rollbar.warning(e) if defined?(Rollbar)
