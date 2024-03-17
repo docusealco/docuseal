@@ -711,7 +711,12 @@ export default {
     },
     removeOption (option) {
       this.field.options.splice(this.field.options.indexOf(option), 1)
-      this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
+
+      const optionIndex = this.field.areas.findIndex((a) => a.option_uuid === option.uuid)
+
+      if (optionIndex !== -1) {
+        this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
+      }
 
       this.save()
     },
