@@ -116,15 +116,15 @@
               @click="closeDropdown"
             >
               <div
-                v-if="field.type === 'text' && !defaultField"
+                v-if="['text', 'number'].includes(field.type) && !defaultField"
                 class="py-1.5 px-1 relative"
                 @click.stop
               >
                 <input
                   v-model="field.default_value"
-                  type="text"
                   :placeholder="t('default_value')"
                   dir="auto"
+                  :type="field.type"
                   class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
                   @blur="save"
                 >
@@ -258,7 +258,7 @@
                 </label>
               </li>
               <li
-                v-if="field.type === 'text' && !defaultField"
+                v-if="['text', 'number'].includes(field.type) && !defaultField"
                 @click.stop
               >
                 <label class="cursor-pointer py-1.5">
