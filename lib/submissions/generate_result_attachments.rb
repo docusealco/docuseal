@@ -75,8 +75,10 @@ module Submissions
 
           value = submitter.values[field['uuid']]
 
-          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center,
-                                                       text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+          text_align = field.dig('preferences', 'align').to_s.to_sym.presence ||
+                       (value.to_s.match?(RTL_REGEXP) ? :right : :left)
+
+          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align:,
                                                        font: pdf.fonts.add(FONT_NAME), font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
@@ -202,15 +204,23 @@ module Submissions
                                                           font: pdf.fonts.add(FONT_NAME),
                                                           font_size: (font_size / 1.4).to_i)
 
-              lines = layouter.fit([text], area['w'] * width, height).lines
+              lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
 
               box_height = lines.sum(&:height)
             end
 
             height_diff = [0, box_height - (area['h'] * height)].max
 
-            layouter.fit([text], area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
-                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+            right_align_x_adjustment =
+              if field['type'].in?(%w[date number]) && text_align != :left
+                (width - (area['w'] * width)) / (text_align == :center ? 2.0 : 1)
+              else
+                0
+              end
+
+            layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width,
+                         height_diff.positive? ? box_height : area['h'] * height)
+                    .draw(canvas, (area['x'] * width) - right_align_x_adjustment + TEXT_LEFT_MARGIN,
                           height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
           end
         end

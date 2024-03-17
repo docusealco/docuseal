@@ -1,4 +1,8 @@
 const en = {
+  align: 'Align',
+  left: 'Left',
+  right: 'Right',
+  center: 'Center',
   description: 'Description',
   display_title: 'Display title',
   with_logo: 'With logo',

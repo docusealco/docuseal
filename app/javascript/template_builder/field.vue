@@ -116,6 +116,32 @@
               @click="closeDropdown"
             >
               <div
+                v-if="['number'].includes(field.type)"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <select
+                  class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal"
+                  @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
+                >
+                  <option
+                    v-for="value in ['left', 'right', 'center']"
+                    :key="value"
+                    :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
+                    :value="value"
+                  >
+                    {{ t(value) }}
+                  </option>
+                </select>
+                <label
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  {{ t('align') }}
+                </label>
+              </div>
+              <div
                 v-if="['text', 'number'].includes(field.type) && !defaultField"
                 class="py-1.5 px-1 relative"
                 @click.stop

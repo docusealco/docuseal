@@ -157,6 +157,7 @@
       ref="textContainer"
       dir="auto"
       class="flex items-center px-0.5 w-full"
+      :class="alignClasses[field.preferences?.align]"
     >
       <span v-if="Array.isArray(modelValue)">
         {{ modelValue.join(', ') }}
@@ -167,6 +168,7 @@
       <span
         v-else
         class="whitespace-pre-wrap"
+        :class="{ 'w-full': field.preferences?.align }"
       >{{ modelValue }}</span>
     </div>
   </div>
@@ -251,6 +253,13 @@ export default {
         stamp: this.t('stamp'),
         payment: this.t('payment'),
         phone: this.t('phone')
+      }
+    },
+    alignClasses () {
+      return {
+        center: 'text-center',
+        left: 'text-left',
+        right: 'text-right'
       }
     },
     option () {

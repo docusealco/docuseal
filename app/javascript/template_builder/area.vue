@@ -99,7 +99,7 @@
     <div
       class="flex items-center h-full w-full"
       dir="auto"
-      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
+      :class="[bgColors[submitterIndex], field?.default_value ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
     >
       <span
         v-if="field"
@@ -210,6 +210,13 @@ export default {
     fieldIcons: FieldType.computed.fieldIcons,
     defaultName () {
       return this.buildDefaultName(this.field, this.template.fields)
+    },
+    alignClasses () {
+      return {
+        center: 'justify-center',
+        left: 'justify-start',
+        right: 'justify-end'
+      }
     },
     optionIndexText () {
       if (this.area.option_uuid && this.field.options) {
