@@ -7,7 +7,7 @@ module Submissions
 
   module_function
 
-  def search(submissions, keyword)
+  def search(submissions, keyword, search_values: false)
     return submissions if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -17,6 +17,8 @@ module Submissions
     arel = arel_table[:email].lower.matches(term)
                              .or(arel_table[:phone].matches(term))
                              .or(arel_table[:name].lower.matches(term))
+
+    arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
 
     submissions.joins(:submitters).where(arel).distinct
   end

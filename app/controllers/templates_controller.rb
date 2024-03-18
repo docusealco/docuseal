@@ -8,7 +8,7 @@ class TemplatesController < ApplicationController
   def show
     submissions = @template.submissions.accessible_by(current_ability)
     submissions = submissions.active if @template.archived_at.blank?
-    submissions = Submissions.search(submissions, params[:q])
+    submissions = Submissions.search(submissions, params[:q], search_values: true)
 
     @base_submissions = submissions
 

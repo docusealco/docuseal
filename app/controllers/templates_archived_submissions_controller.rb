@@ -6,7 +6,7 @@ class TemplatesArchivedSubmissionsController < ApplicationController
 
   def index
     @submissions = @submissions.where.not(archived_at: nil)
-    @submissions = Submissions.search(@submissions, params[:q])
+    @submissions = Submissions.search(@submissions, params[:q], search_values: true)
 
     @pagy, @submissions = pagy(@submissions.preload(:submitters).order(id: :desc))
   rescue ActiveRecord::RecordNotFound
