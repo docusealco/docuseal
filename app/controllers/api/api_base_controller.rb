@@ -27,8 +27,6 @@ module Api
 
     if Rails.env.production?
       rescue_from CanCan::AccessDenied do |e|
-        Rollbar.warning(e) if defined?(Rollbar)
-
         render json: { error: e.message }, status: :forbidden
       end
 
