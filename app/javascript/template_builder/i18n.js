@@ -1,4 +1,7 @@
 const en = {
+  search_field: 'Search field',
+  field_not_found: 'Field not found',
+  clear: 'Clear',
   align: 'Align',
   left: 'Left',
   right: 'Right',

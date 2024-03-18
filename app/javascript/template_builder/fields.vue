@@ -36,32 +36,63 @@
   </div>
   <div v-if="submitterDefaultFields.length">
     <hr class="mb-2">
-    <template
-      v-for="field in submitterDefaultFields"
-      :key="field.name"
+    <template v-if="isShowFieldSearch">
+      <input
+        v-model="defaultFieldsSearch"
+        :placeholder="t('search_field')"
+        class="input input-ghost input-xs px-0 text-base mb-2 !outline-0 !rounded bg-transparent w-full"
+      >
+      <hr class="mb-2">
+    </template>
+    <div
+      class="overflow-auto relative"
+      :style="{
+        maxHeight: isShowFieldSearch ? '210px' : '',
+        minHeight: isShowFieldSearch ? '210px' : ''
+      }"
     >
       <div
-        :style="{ backgroundColor: backgroundColor }"
-        draggable="true"
-        class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
-        @dragstart="onDragstart({ type: 'text', ...field })"
-        @dragend="$emit('drag-end')"
+        v-if="!filteredSubmitterDefaultFields.length && defaultFieldsSearch"
+        class="top-0 bottom-0 text-center absolute flex items-center justify-center w-full flex-col"
       >
-        <div class="flex items-center justify-between relative cursor-grab">
-          <div class="flex items-center p-1 space-x-1">
-            <IconDrag />
-            <FieldType
-              :model-value="field.type || 'text'"
-              :editable="false"
-              :button-width="20"
-            />
-            <span class="block pl-0.5">
-              {{ field.name }}
-            </span>
+        <div>
+          {{ t('field_not_found') }}
+        </div>
+        <a
+          href="#"
+          class="link"
+          @click.prevent="defaultFieldsSearch = ''"
+        >
+          {{ t('clear') }}
+        </a>
+      </div>
+      <template
+        v-for="field in filteredSubmitterDefaultFields"
+        :key="field.name"
+      >
+        <div
+          :style="{ backgroundColor: backgroundColor }"
+          draggable="true"
+          class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
+          @dragstart="onDragstart({ type: 'text', ...field })"
+          @dragend="$emit('drag-end')"
+        >
+          <div class="flex items-center justify-between relative cursor-grab">
+            <div class="flex items-center p-1 space-x-1">
+              <IconDrag />
+              <FieldType
+                :model-value="field.type || 'text'"
+                :editable="false"
+                :button-width="20"
+              />
+              <span class="block pl-0.5">
+                {{ field.name }}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </template>
+      </template>
+    </div>
   </div>
   <div
     v-if="editable && !onlyDefinedFields"
@@ -205,9 +236,17 @@ export default {
     }
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  data () {
+    return {
+      defaultFieldsSearch: ''
+    }
+  },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    isShowFieldSearch () {
+      return this.submitterDefaultFields.length > 15
+    },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
         return this.fieldTypes.reduce((acc, type) => {
@@ -226,6 +265,13 @@ export default {
       return this.defaultFields.filter((f) => {
         return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
       })
+    },
+    filteredSubmitterDefaultFields () {
+      if (this.defaultFieldsSearch) {
+        return this.submitterDefaultFields.filter((f) => f.name.toLowerCase().includes(this.defaultFieldsSearch.toLowerCase()))
+      } else {
+        return this.submitterDefaultFields
+      }
     }
   },
   methods: {

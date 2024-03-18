@@ -42,7 +42,7 @@
         v-model="field.submitter_uuid"
         class="border-r"
         :compact="true"
-        :editable="editable && !defaultField"
+        :editable="editable && (!defaultField || defaultField.role !== submitter?.name)"
         :allow-add-new="!defaultSubmitters.length"
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px] mt-[1px]'"
         :submitters="template.submitters"
