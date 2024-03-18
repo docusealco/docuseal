@@ -3,6 +3,11 @@
     <% if @base_template %>
       <%= hidden_field_tag :base_template_id, @base_template.id %>
     <% end %>
+    <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.account_linked_accounts.exists? %>
+      <div class="form-control -mb-2 mt-2">
+        <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts].uniq.map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
+      </div>
+    <% end %>
     <div class="form-control mt-6">
       <%= f.text_field :name, required: true, placeholder: 'Document Name', class: 'base-input', dir: 'auto' %>
     </div>
@@ -17,11 +22,6 @@
         </a>
       </folder-autocomplete>
     </div>
-    <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.account_linked_accounts.exists?(account_type: :linked) %>
-      <div class="form-control mb-4">
-        <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts.where.not(id: true_user.account.testing_accounts)].map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
-      </div>
-    <% end %>
     <div class="form-control">
       <%= f.button button_title(title: @base_template ? 'Submit' : 'Create', disabled_with: 'Creating'), class: 'base-button' %>
     </div>
