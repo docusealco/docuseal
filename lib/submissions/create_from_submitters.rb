@@ -52,7 +52,7 @@ module Submissions
         process_fields_param(submitter_attrs[:fields], template_fields, submitter_uuid)
       end
 
-      if template_fields != submission.template.fields
+      if template_fields != submission.template.fields || submitters_attrs.any? { |e| e[:completed].present? }
         submission.template_fields = template_fields
         submission.template_schema = submission.template.schema
       end
@@ -140,7 +140,7 @@ module Submissions
         phone: attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
         name: attrs[:name],
         external_id: attrs[:external_id].presence || attrs[:application_key],
-        completed_at: attrs[:completed] ? Time.current : nil,
+        completed_at: attrs[:completed].present? ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
         values: attrs[:values] || {},
         metadata: attrs[:metadata] || {},
