@@ -128,10 +128,6 @@ module Submissions
       uuid = attrs[:uuid].presence
       uuid ||= template.submitters.find { |e| e['name'].to_s.casecmp(attrs[:role].to_s).zero? }&.dig('uuid')
 
-      if attrs[:role].present? && uuid.blank? && defined?(Rollbar)
-        Rollbar.error("Role doesn't existng: #{attrs[:role]}, #{template.id}")
-      end
-
       uuid || template.submitters[index]&.dig('uuid')
     end
 
