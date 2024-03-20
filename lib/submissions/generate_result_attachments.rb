@@ -209,6 +209,16 @@ module Submissions
               box_height = lines.sum(&:height)
             end
 
+            if box_height > (area['h'] * height) + 1
+              text = HexaPDF::Layout::TextFragment.create(value,
+                                                          font: pdf.fonts.add(FONT_NAME),
+                                                          font_size: (font_size / 1.9).to_i)
+
+              lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
+
+              box_height = lines.sum(&:height)
+            end
+
             height_diff = [0, box_height - (area['h'] * height)].max
 
             right_align_x_adjustment =
