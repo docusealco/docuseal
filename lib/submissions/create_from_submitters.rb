@@ -52,7 +52,8 @@ module Submissions
         process_fields_param(submitter_attrs[:fields], template_fields, submitter_uuid)
       end
 
-      if template_fields != submission.template.fields || submitters_attrs.any? { |e| e[:completed].present? }
+      if template_fields != (submission.template_fields || submission.template.fields) ||
+         submitters_attrs.any? { |e| e[:completed].present? }
         submission.template_fields = template_fields
         submission.template_schema = submission.template.schema
       end
@@ -80,11 +81,15 @@ module Submissions
         next if f['type'].in?(%w[signature image initials file])
         next if f['submitter_uuid'] != submitter_uuid
 
+        next unless values.key?(f['uuid'])
+
         value = values[f['uuid']]
 
-        next if value.blank?
-
-        f['default_value'] = value
+        if value.present?
+          f['default_value'] = value
+        else
+          f.delete('default_value')
+        end
       end
     end
 
@@ -110,8 +115,12 @@ module Submissions
       field['readonly'] = attrs['readonly'] if attrs.key?('readonly')
       field['required'] = attrs['required'] if attrs.key?('required')
 
-      if attrs['default_value'].present? && !field['type'].in?(%w[signature image initials file])
-        field['default_value'] = Submitters::NormalizeValues.normalize_value(field, attrs['default_value'])
+      if attrs.key?('default_value') && !field['type'].in?(%w[signature image initials file])
+        if attrs['default_value'].present?
+          field['default_value'] = Submitters::NormalizeValues.normalize_value(field, attrs['default_value'])
+        else
+          field.delete('default_value')
+        end
       end
 
       return field if attrs['validation_pattern'].blank?
