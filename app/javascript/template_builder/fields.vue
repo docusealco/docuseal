@@ -2,7 +2,7 @@
   <div :class="withStickySubmitters ? 'sticky top-0 z-10' : ''">
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
-      class="w-full rounded-lg"
+      class="roles-dropdown w-full rounded-lg"
       :class="{ 'bg-base-100': withStickySubmitters }"
       :submitters="submitters"
       :editable="editable && !defaultSubmitters.length"
@@ -14,7 +14,7 @@
   </div>
   <div
     ref="fields"
-    class="mb-1 mt-2"
+    class="fields mb-1 mt-2"
     @dragover.prevent="onFieldDragover"
     @drop="reorderFields"
   >
@@ -24,11 +24,11 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && (!dragField || dragField !== field)"
+      :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
       :default-field="defaultFields.find((f) => f.name === field.name)"
       :draggable="editable"
-      @dragstart="dragField = field"
-      @dragend="dragField = null"
+      @dragstart="fieldsDragFieldRef.value = field"
+      @dragend="fieldsDragFieldRef.value = null"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
@@ -43,7 +43,7 @@
       <div
         :style="{ backgroundColor: backgroundColor }"
         draggable="true"
-        class="border border-base-300 rounded rounded-tr-none relative group mb-2"
+        class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
         @dragstart="onDragstart({ type: 'text', ...field })"
         @dragend="$emit('drag-end')"
       >
@@ -74,7 +74,7 @@
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
-        class="group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
+        class="field-type-button group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
         @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"
@@ -93,7 +93,7 @@
       <div
         v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex"
-        :class="{'tooltip-bottom-start': !withPayment, 'tooltip-bottom': withPayment }"
+        :class="{'tooltip-bottom-end': withPayment, 'tooltip-bottom': !withPayment }"
         data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
       >
         <a
@@ -154,7 +154,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment', 't'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withPayment', 't', 'fieldsDragFieldRef'],
   props: {
     fields: {
       type: Array,
@@ -205,11 +205,6 @@ export default {
     }
   },
   emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
-  data () {
-    return {
-      dragField: null
-    }
-  },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
@@ -239,7 +234,7 @@ export default {
     },
     onFieldDragover (e) {
       const targetField = e.target.closest('[data-uuid]')
-      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.dragField.uuid}"]`)
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
 
       if (dragField && targetField && targetField !== dragField) {
         const fields = Array.from(this.$refs.fields.children)
@@ -282,6 +277,14 @@ export default {
     },
     removeField (field) {
       this.fields.splice(this.fields.indexOf(field), 1)
+
+      this.fields.forEach((f) => {
+        (f.conditions || []).forEach((c) => {
+          if (c.field_uuid === field.uuid) {
+            f.conditions.splice(f.conditions.indexOf(c), 1)
+          }
+        })
+      })
 
       this.save()
     },

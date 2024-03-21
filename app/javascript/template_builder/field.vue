@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group pb-2"
+    class="list-field group mb-2"
   >
     <div
       class="border border-base-300 rounded rounded-tr-none relative group"
@@ -65,6 +65,28 @@
               :stroke-width="1.6"
             />
           </button>
+          <button
+            v-if="field.preferences?.formula"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            :title="t('formula')"
+            @click="isShowFormulaModal = true"
+          >
+            <IconMathFunction
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
+          <button
+            v-if="field.conditions?.length"
+            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            :title="t('condition')"
+            @click="isShowConditionsModal = true"
+          >
+            <IconRouteAltLeft
+              :width="18"
+              :stroke-width="1.6"
+            />
+          </button>
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
@@ -94,15 +116,41 @@
               @click="closeDropdown"
             >
               <div
-                v-if="field.type === 'text' && !defaultField"
+                v-if="['number'].includes(field.type)"
+                class="py-1.5 px-1 relative"
+                @click.stop
+              >
+                <select
+                  class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal"
+                  @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
+                >
+                  <option
+                    v-for="value in ['left', 'right', 'center']"
+                    :key="value"
+                    :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
+                    :value="value"
+                  >
+                    {{ t(value) }}
+                  </option>
+                </select>
+                <label
+                  :style="{ backgroundColor: backgroundColor }"
+                  class="absolute -top-1 left-2.5 px-1 h-4"
+                  style="font-size: 8px"
+                >
+                  {{ t('align') }}
+                </label>
+              </div>
+              <div
+                v-if="['text', 'number'].includes(field.type) && !defaultField"
                 class="py-1.5 px-1 relative"
                 @click.stop
               >
                 <input
                   v-model="field.default_value"
-                  type="text"
                   :placeholder="t('default_value')"
                   dir="auto"
+                  :type="field.type"
                   class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
                   @blur="save"
                 >
@@ -180,7 +228,7 @@
                 </label>
               </div>
               <li
-                v-if="field.type != 'phone'"
+                v-if="field.type != 'phone' && field.type != 'stamp'"
                 @click.stop
               >
                 <label class="cursor-pointer py-1.5">
@@ -191,6 +239,20 @@
                     @update:model-value="save"
                   >
                   <span class="label-text">{{ t('required') }}</span>
+                </label>
+              </li>
+              <li
+                v-if="field.type == 'stamp'"
+                @click.stop
+              >
+                <label class="cursor-pointer py-1.5">
+                  <input
+                    :checked="field.preferences?.with_logo != false"
+                    type="checkbox"
+                    class="toggle toggle-xs"
+                    @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, save()]"
+                  >
+                  <span class="label-text">{{ t('with_logo') }}</span>
                 </label>
               </li>
               <li
@@ -222,7 +284,7 @@
                 </label>
               </li>
               <li
-                v-if="field.type === 'text' && !defaultField"
+                v-if="['text', 'number'].includes(field.type) && !defaultField"
                 @click.stop
               >
                 <label class="cursor-pointer py-1.5">
@@ -235,9 +297,56 @@
                   <span class="label-text">{{ t('read_only') }}</span>
                 </label>
               </li>
+              <hr
+                v-if="field.type != 'stamp'"
+                class="pb-0.5 mt-0.5"
+              >
+              <li
+                v-if="field.type != 'stamp'"
+              >
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowDescriptionModal = !isShowDescriptionModal"
+                >
+                  <IconInfoCircle
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('description') }}
+                  </span>
+                </label>
+              </li>
+              <li
+                v-if="field.type != 'stamp'"
+              >
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowConditionsModal = !isShowConditionsModal"
+                >
+                  <IconRouteAltLeft
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('condition') }}
+                  </span>
+                </label>
+              </li>
+              <li v-if="field.type == 'number'">
+                <label
+                  class="label-text cursor-pointer text-center w-full flex items-center"
+                  @click="isShowFormulaModal = true"
+                >
+                  <IconMathFunction
+                    width="18"
+                  />
+                  <span class="text-sm">
+                    {{ t('formula') }}
+                  </span>
+                </label>
+              </li>
               <hr class="pb-0.5 mt-0.5">
               <li
-                v-for="(area, index) in field.areas || []"
+                v-for="(area, index) in sortedAreas"
                 :key="index"
               >
                 <a
@@ -249,7 +358,8 @@
                     :width="20"
                     :stroke-width="1.6"
                   />
-                  {{ t('page') }} {{ area.page + 1 }}
+                  {{ t('page') }}
+                  <template v-if="template.schema.length > 1">{{ template.schema.findIndex((item) => item.attachment_uuid === area.attachment_uuid) + 1 }}-</template>{{ area.page + 1 }}
                 </a>
               </li>
               <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
@@ -308,7 +418,7 @@
             {{ index + 1 }}.
           </span>
           <div
-            v-if="['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
+            v-if="editable && ['radio', 'multiple'].includes(field.type) && (index > 0 || field.areas.find((a) => a.option_uuid) || !field.areas.length) && !field.areas.find((a) => a.option_uuid === option.uuid)"
             class="items-center flex w-full"
           >
             <input
@@ -337,12 +447,14 @@
             class="w-full input input-primary input-xs text-sm bg-transparent"
             :placeholder="`${t('option')} ${index + 1}`"
             type="text"
+            :readonly="!editable"
             required
             dir="auto"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
           <button
+            v-if="editable"
             class="text-sm w-3.5"
             tabindex="-1"
             @click="removeOption(option)"
@@ -350,8 +462,12 @@
             &times;
           </button>
         </div>
+        <div
+          v-if="field.options && !editable"
+          class="pb-1"
+        />
         <button
-          v-if="field.options"
+          v-else-if="field.options && editable"
           class="text-center text-sm w-full pb-1"
           @click="addOption"
         >
@@ -359,6 +475,36 @@
         </button>
       </div>
     </div>
+    <Teleport
+      v-if="isShowFormulaModal"
+      :to="modalContainerEl"
+    >
+      <FormulaModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowFormulaModal = false"
+      />
+    </Teleport>
+    <Teleport
+      v-if="isShowConditionsModal"
+      :to="modalContainerEl"
+    >
+      <ConditionsModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowConditionsModal = false"
+      />
+    </Teleport>
+    <Teleport
+      v-if="isShowDescriptionModal"
+      :to="modalContainerEl"
+    >
+      <DescriptionModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowDescriptionModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -366,7 +512,10 @@
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
-import { IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import FormulaModal from './formula_modal'
+import ConditionsModal from './conditions_modal'
+import DescriptionModal from './description_modal'
+import { IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -377,7 +526,13 @@ export default {
     IconShape,
     PaymentSettings,
     IconNewSection,
+    IconInfoCircle,
+    FormulaModal,
+    DescriptionModal,
+    ConditionsModal,
+    IconRouteAltLeft,
     IconTrashX,
+    IconMathFunction,
     IconCopy,
     FieldType
   },
@@ -403,11 +558,29 @@ export default {
     return {
       isNameFocus: false,
       showPaymentModal: false,
+      isShowFormulaModal: false,
+      isShowConditionsModal: false,
+      isShowDescriptionModal: false,
       renderDropdown: false
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    schemaAttachmentsIndexes () {
+      return (this.template.schema || []).reduce((acc, item, index) => {
+        acc[item.attachment_uuid] = index
+
+        return acc
+      }, {})
+    },
+    sortedAreas () {
+      return (this.field.areas || []).sort((a, b) => {
+        return this.schemaAttachmentsIndexes[a.attachment_uuid] - this.schemaAttachmentsIndexes[b.attachment_uuid]
+      })
+    },
+    modalContainerEl () {
+      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+    },
     dateFormats () {
       return [
         'MM/DD/YYYY',
@@ -422,22 +595,7 @@ export default {
       ]
     },
     defaultName () {
-      if (this.field.type === 'payment' && this.field.preferences?.price) {
-        const { price, currency } = this.field.preferences || {}
-
-        const formattedPrice = new Intl.NumberFormat([], {
-          style: 'currency',
-          currency
-        }).format(price)
-
-        return `${this.fieldNames[this.field.type]} ${formattedPrice}`
-      } else {
-        const typeIndex = this.template.fields.filter((f) => f.type === this.field.type).indexOf(this.field)
-
-        const suffix = { multiple: this.t('select'), radio: this.t('group') }[this.field.type] || this.t('field')
-
-        return `${this.fieldNames[this.field.type]} ${suffix} ${typeIndex + 1}`
-      }
+      return this.buildDefaultName(this.field, this.template.fields)
     },
     areas () {
       return this.field.areas || []
@@ -452,6 +610,24 @@ export default {
     }
   },
   methods: {
+    buildDefaultName (field, fields) {
+      if (field.type === 'payment' && field.preferences?.price) {
+        const { price, currency } = field.preferences || {}
+
+        const formattedPrice = new Intl.NumberFormat([], {
+          style: 'currency',
+          currency
+        }).format(price)
+
+        return `${this.fieldNames[field.type]} ${formattedPrice}`
+      } else {
+        const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
+
+        const suffix = { multiple: this.t('select'), radio: this.t('group') }[field.type] || this.t('field')
+
+        return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
+      }
+    },
     formatDate (date, format) {
       const monthFormats = {
         M: 'numeric',
@@ -485,11 +661,13 @@ export default {
       const areaString = JSON.stringify(field.areas[0])
 
       this.template.documents.forEach((attachment) => {
-        attachment.preview_images.forEach((page) => {
-          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === parseInt(page.filename))) {
-            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page: parseInt(page.filename) })
+        const numberOfPages = attachment.metadata?.pdf?.number_of_pages || attachment.preview_images.length
+
+        for (let page = 0; page <= numberOfPages - 1; page++) {
+          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === page)) {
+            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page })
           }
-        })
+        }
       })
 
       this.$nextTick(() => {
@@ -515,7 +693,7 @@ export default {
       }
     },
     scrollToFirstArea () {
-      return this.field.areas?.[0] && this.$emit('scroll-to', this.field.areas[0])
+      return this.sortedAreas[0] && this.$emit('scroll-to', this.sortedAreas[0])
     },
     closeDropdown () {
       document.activeElement.blur()
@@ -533,7 +711,12 @@ export default {
     },
     removeOption (option) {
       this.field.options.splice(this.field.options.indexOf(option), 1)
-      this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
+
+      const optionIndex = this.field.areas.findIndex((a) => a.option_uuid === option.uuid)
+
+      if (optionIndex !== -1) {
+        this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
+      }
 
       this.save()
     },

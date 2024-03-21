@@ -94,11 +94,13 @@
       </div>
     </div>
     <div
+      id="main_container"
       class="flex"
       :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
     >
       <div
         v-if="withDocumentsList"
+        id="documents_container"
         ref="previews"
         :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
         class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
@@ -134,7 +136,10 @@
           />
         </div>
       </div>
-      <div class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+      <div
+        id="pages_container"
+        class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5"
+      >
         <div
           ref="documents"
           class="pr-3.5 pl-0.5"
@@ -200,6 +205,7 @@
       </div>
       <div
         v-if="withFieldsList"
+        id="fields_list_container"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
@@ -273,6 +279,7 @@
         @select="startFieldDraw($event)"
       />
     </div>
+    <div id="docuseal_modal_container" />
   </div>
 </template>
 
@@ -321,8 +328,11 @@ export default {
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
+      withFormula: this.withFormula,
+      withConditions: this.withConditions,
       defaultDrawFieldType: this.defaultDrawFieldType,
-      selectedAreaRef: computed(() => this.selectedAreaRef)
+      selectedAreaRef: computed(() => this.selectedAreaRef),
+      fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef)
     }
   },
   props: {
@@ -449,6 +459,16 @@ export default {
       required: false,
       default: false
     },
+    withFormula: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withConditions: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     onlyDefinedFields: {
       type: Boolean,
       required: false,
@@ -473,6 +493,7 @@ export default {
   },
   computed: {
     selectedAreaRef: () => ref(),
+    fieldsDragFieldRef: () => ref(),
     fieldAreasIndex () {
       const areas = {}
 
@@ -508,7 +529,7 @@ export default {
       submitter.name = name
 
       if (existingSubmittersUuids.filter(Boolean).length) {
-        submitter.uuid = existingSubmittersUuids[index] || v4()
+        submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
       } else {
         submitter.uuid ||= v4()
       }
@@ -804,7 +825,7 @@ export default {
       }
     },
     onDropfield (area) {
-      const field = {
+      const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
@@ -812,17 +833,19 @@ export default {
         ...this.dragField
       }
 
-      if (['select', 'multiple', 'radio'].includes(field.type)) {
-        field.options = [{ value: '', uuid: v4() }]
-      }
+      if (!this.fieldsDragFieldRef.value) {
+        if (['select', 'multiple', 'radio'].includes(field.type)) {
+          field.options = [{ value: '', uuid: v4() }]
+        }
 
-      if (field.type === 'stamp') {
-        field.readonly = true
-      }
+        if (field.type === 'stamp') {
+          field.readonly = true
+        }
 
-      if (field.type === 'date') {
-        field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        if (field.type === 'date') {
+          field.preferences = {
+            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+          }
         }
       }
 
@@ -878,11 +901,23 @@ export default {
         fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
       }
 
-      field.areas = [fieldArea]
+      field.areas ||= []
+
+      const lastArea = field.areas[field.areas.length - 1]
+
+      if (lastArea) {
+        fieldArea.x -= lastArea.w / 2
+        fieldArea.w = lastArea.w
+        fieldArea.h = lastArea.h
+      }
+
+      field.areas.push(fieldArea)
 
       this.selectedAreaRef.value = fieldArea
 
-      this.template.fields.push(field)
+      if (this.template.fields.indexOf(field) === -1) {
+        this.template.fields.push(field)
+      }
 
       this.save()
     },

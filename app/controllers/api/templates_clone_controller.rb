@@ -20,16 +20,7 @@ module Api
 
       Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
 
-      render json: cloned_template.as_json(serialize_params)
-    end
-
-    private
-
-    def serialize_params
-      {
-        include: { author: { only: %i[id email first_name last_name] },
-                   documents: { only: %i[id uuid], methods: %i[url filename] } }
-      }
+      render json: Templates::SerializeForApi.call(cloned_template)
     end
   end
 end

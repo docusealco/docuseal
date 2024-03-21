@@ -39,7 +39,7 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile)"
+      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
@@ -61,7 +61,7 @@ export default {
   components: {
     FieldArea
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef'],
   props: {
     image: {
       type: Object,
@@ -162,8 +162,8 @@ export default {
     },
     onDrop (e) {
       this.$emit('drop-field', {
-        x: e.layerX,
-        y: e.layerY,
+        x: e.offsetX,
+        y: e.offsetY,
         maskW: this.$refs.mask.clientWidth,
         maskH: this.$refs.mask.clientHeight,
         page: this.number
@@ -186,10 +186,10 @@ export default {
 
       this.$nextTick(() => {
         this.newArea = {
-          initialX: e.layerX / this.$refs.mask.clientWidth,
-          initialY: e.layerY / this.$refs.mask.clientHeight,
-          x: e.layerX / this.$refs.mask.clientWidth,
-          y: e.layerY / this.$refs.mask.clientHeight,
+          initialX: e.offsetX / this.$refs.mask.clientWidth,
+          initialY: e.offsetY / this.$refs.mask.clientHeight,
+          x: e.offsetX / this.$refs.mask.clientWidth,
+          y: e.offsetY / this.$refs.mask.clientHeight,
           w: 0,
           h: 0
         }
@@ -197,19 +197,19 @@ export default {
     },
     onPointermove (e) {
       if (this.newArea) {
-        const dx = e.layerX / this.$refs.mask.clientWidth - this.newArea.initialX
-        const dy = e.layerY / this.$refs.mask.clientHeight - this.newArea.initialY
+        const dx = e.offsetX / this.$refs.mask.clientWidth - this.newArea.initialX
+        const dy = e.offsetY / this.$refs.mask.clientHeight - this.newArea.initialY
 
         if (dx > 0) {
           this.newArea.x = this.newArea.initialX
         } else {
-          this.newArea.x = e.layerX / this.$refs.mask.clientWidth
+          this.newArea.x = e.offsetX / this.$refs.mask.clientWidth
         }
 
         if (dy > 0) {
           this.newArea.y = this.newArea.initialY
         } else {
-          this.newArea.y = e.layerY / this.$refs.mask.clientHeight
+          this.newArea.y = e.offsetY / this.$refs.mask.clientHeight
         }
 
         if (this.drawField?.type === 'cells') {

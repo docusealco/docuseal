@@ -8,8 +8,11 @@ class AccountConfigsController < ApplicationController
     AccountConfig::ALLOW_TYPED_SIGNATURE,
     AccountConfig::FORCE_MFA,
     AccountConfig::ALLOW_TO_RESUBMIT,
-    AccountConfig::ESIGNING_PREFERENCE_KEY
+    AccountConfig::ESIGNING_PREFERENCE_KEY,
+    AccountConfig::FORM_WITH_CONFETTI_KEY
   ].freeze
+
+  InvalidKey = Class.new(StandardError)
 
   def create
     @account_config.update!(account_config_params)
@@ -20,7 +23,7 @@ class AccountConfigsController < ApplicationController
   private
 
   def load_account_config
-    return head :not_found unless ALLOWED_KEYS.include?(account_config_params[:key])
+    raise InvalidKey unless ALLOWED_KEYS.include?(account_config_params[:key])
 
     @account_config =
       AccountConfig.find_or_initialize_by(account: current_account, key: account_config_params[:key])

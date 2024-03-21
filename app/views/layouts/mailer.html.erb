@@ -3,10 +3,9 @@
   <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-    </style>
+    <style></style>
   </head>
-  <body dir="<%= yield&.match?(TextUtils::RTL_REGEXP) ? 'rtl' : 'auto' %>">
+  <body dir="<%= TextUtils.rtl?(yield) ? 'rtl' : 'auto' %>">
     <%= yield %>
     <%= render partial: 'shared/mailer_attribution' %>
   </body>

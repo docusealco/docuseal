@@ -1,11 +1,11 @@
 <% if @email_config %>
-  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(@email_config.value['body'], submitter: @submitter)))) %>
+  <%= render 'custom_content', content: @email_config.value['body'], submitter: @submitter, sig: @sig %>
 <% else %>
   <p>Hi there,</p>
   <p>Please check the copy of your "<%= @submitter.submission.template.name %>" submission in the email attachments.</p>
   <p>Alternatively, you can review and download your copy using:</p>
   <p>
-    <%= link_to @submitter.template.name, submissions_preview_url(@submitter.submission.slug) %>
+    <%= link_to @submitter.template.name, submissions_preview_url(@submitter.submission.slug, { sig: @sig }.compact) %>
   </p>
   <p>
     Thanks,<br><%= @current_account.name %>

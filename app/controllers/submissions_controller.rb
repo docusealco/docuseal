@@ -6,23 +6,8 @@ class SubmissionsController < ApplicationController
 
   load_and_authorize_resource :submission, only: %i[show destroy]
 
-  PRELOAD_ALL_PAGES_AMOUNT = 200
-
   def show
-    ActiveRecord::Associations::Preloader.new(
-      records: [@submission],
-      associations: [:template, { template_schema_documents: :blob }]
-    ).call
-
-    total_pages =
-      @submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
-
-    if total_pages < PRELOAD_ALL_PAGES_AMOUNT
-      ActiveRecord::Associations::Preloader.new(
-        records: @submission.template_schema_documents,
-        associations: [:blob, { preview_images_attachments: :blob }]
-      ).call
-    end
+    @submission = Submissions.preload_with_pages(@submission)
 
     render :show, layout: 'plain'
   end

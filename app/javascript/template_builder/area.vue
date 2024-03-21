@@ -99,7 +99,7 @@
     <div
       class="flex items-center h-full w-full"
       dir="auto"
-      :class="[bgColors[submitterIndex], field?.default_value ? '' : 'justify-center']"
+      :class="[bgColors[submitterIndex], field?.default_value ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
     >
       <span
         v-if="field"
@@ -206,9 +206,18 @@ export default {
     }
   },
   computed: {
-    defaultName: Field.computed.defaultName,
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    defaultName () {
+      return this.buildDefaultName(this.field, this.template.fields)
+    },
+    alignClasses () {
+      return {
+        center: 'justify-center',
+        left: 'justify-start',
+        right: 'justify-end'
+      }
+    },
     optionIndexText () {
       if (this.area.option_uuid && this.field.options) {
         return `${this.field.options.findIndex((o) => o.uuid === this.area.option_uuid) + 1}.`
@@ -299,19 +308,22 @@ export default {
   },
   watch: {
     'field.default_value' () {
-      if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value.length)) {
-        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
-      }
-    }
-  },
-  mounted () {
-    if (this.field.type === 'text' && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.field.default_value)) {
       this.$nextTick(() => {
-        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? this.field.default_value.length : 0
+        if (['date', 'text', 'number'].includes(this.field.type) && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.field.default_value}`.length)) {
+          this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
+        }
       })
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+      if (['date', 'text', 'number'].includes(this.field.type) && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.field.default_value}`.length)) {
+        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
+      }
+    })
+  },
   methods: {
+    buildDefaultName: Field.methods.buildDefaultName,
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
 
@@ -340,7 +352,7 @@ export default {
     },
     onResizeCell (e) {
       if (e.target.id === 'mask') {
-        const positionX = e.layerX / (e.target.clientWidth - 1)
+        const positionX = e.offsetX / (e.target.clientWidth - 1)
 
         if (positionX > this.area.x) {
           this.area.cell_w = positionX - this.area.x
@@ -386,16 +398,16 @@ export default {
     },
     resize (e) {
       if (e.target.id === 'mask') {
-        this.area.w = e.layerX / e.target.clientWidth - this.area.x
-        this.area.h = e.layerY / e.target.clientHeight - this.area.y
+        this.area.w = e.offsetX / e.target.clientWidth - this.area.x
+        this.area.h = e.offsetY / e.target.clientHeight - this.area.y
       }
     },
     drag (e) {
       if (e.target.id === 'mask') {
         this.isDragged = true
 
-        this.area.x = (e.layerX - this.dragFrom.x) / e.target.clientWidth
-        this.area.y = (e.layerY - this.dragFrom.y) / e.target.clientHeight
+        this.area.x = (e.offsetX - this.dragFrom.x) / e.target.clientWidth
+        this.area.y = (e.offsetY - this.dragFrom.y) / e.target.clientHeight
       }
     },
     startDrag (e) {

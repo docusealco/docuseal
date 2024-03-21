@@ -20,6 +20,7 @@ import FolderAutocomplete from './elements/folder_autocomplete'
 import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
 import PromptPassword from './elements/prompt_password'
+import EmailsTextarea from './elements/emails_textarea'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -53,6 +54,7 @@ window.customElements.define('folder-autocomplete', FolderAutocomplete)
 window.customElements.define('signature-form', SignatureForm)
 window.customElements.define('submit-form', SubmitForm)
 window.customElements.define('prompt-password', PromptPassword)
+window.customElements.define('emails-textarea', EmailsTextarea)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {
@@ -90,6 +92,8 @@ window.customElements.define('template-builder', class extends HTMLElement {
       withLogo: this.dataset.withLogo !== 'false',
       editable: this.dataset.editable !== 'false',
       withPayment: this.dataset.withPayment === 'true',
+      withFormula: this.dataset.withFormula === 'true',
+      withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'

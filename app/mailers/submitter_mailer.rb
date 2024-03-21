@@ -2,6 +2,7 @@
 
 class SubmitterMailer < ApplicationMailer
   MAX_ATTACHMENTS_SIZE = 10.megabytes
+  SIGN_TTL = 1.hour + 20.minutes
 
   DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
 
@@ -61,9 +62,10 @@ class SubmitterMailer < ApplicationMailer
          subject:)
   end
 
-  def documents_copy_email(submitter, to: nil)
+  def documents_copy_email(submitter, to: nil, sig: false)
     @current_account = submitter.submission.template.account
     @submitter = submitter
+    @sig = submitter.signed_id(expires_in: SIGN_TTL, purpose: :download_completed) if sig
 
     Submissions::EnsureResultGenerated.call(@submitter)
 

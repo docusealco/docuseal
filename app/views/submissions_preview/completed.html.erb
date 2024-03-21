@@ -20,6 +20,21 @@
         </div>
       </div>
     </div>
+    <% if Accounts.can_send_emails?(@submission.account) %>
+      <%= form_for '', url: send_submission_email_index_path, method: :post, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
+        <div dir="auto" class="form-control !mt-0">
+          <%= f.hidden_field :submission_slug, value: @submission.slug %>
+          <%= f.label :email, t('email'), class: 'label' %>
+          <%= f.email_field :email, value: current_user&.email || params[:email], required: true, class: 'base-input', placeholder: t('send_copy_to_email') %>
+        </div>
+        <div dir="auto" class="form-control">
+          <%= f.button button_title(title: t('send_copy_to_email'), disabled_with: t('starting')), class: 'base-button' %>
+        </div>
+      <% end %>
+      <% if Docuseal.multitenant? %>
+        <div class="divider uppercase"><%= t('or') %></div>
+      <% end %>
+    <% end %>
     <% if Docuseal.multitenant? %>
       <div>
         <%= link_to 'Create free account', registration_path, class: 'white-button w-full' %>

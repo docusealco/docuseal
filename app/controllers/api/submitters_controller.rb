@@ -10,6 +10,7 @@ module Api
       submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
       submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
       submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
+      submitters = maybe_filder_by_completed_at(submitters, params)
 
       submitters = paginate(
         submitters.preload(:template, :submission, :submission_events,
@@ -80,6 +81,18 @@ module Api
     end
 
     private
+
+    def maybe_filder_by_completed_at(submitters, params)
+      if params[:completed_after].present?
+        submitters = submitters.where(completed_at: Time.zone.parse(params[:completed_after])..)
+      end
+
+      if params[:completed_before].present?
+        submitters = submitters.where(completed_at: ..Time.zone.parse(params[:completed_before]))
+      end
+
+      submitters
+    end
 
     def assign_submitter_attrs(submitter, attrs)
       submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)

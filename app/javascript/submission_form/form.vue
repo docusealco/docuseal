@@ -8,13 +8,24 @@
     :current-step="currentStepFields"
     @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
   />
+  <FormulaFieldAreas
+    v-if="formulaFields.length"
+    :fields="formulaFields"
+    :values="values"
+  />
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
     class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
-    @click.prevent="isFormVisible = true"
+    @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >
-    {{ t('submit_form') }}
+    <template v-if="['initials', 'signature'].includes(currentField.type)">
+      <IconWritingSign stroke-width="1.5" />
+      {{ t('sign_now') }}
+    </template>
+    <template v-else>
+      {{ t('submit_form') }}
+    </template>
     <IconArrowsDiagonal
       class="absolute right-0 mr-4"
       :width="20"
@@ -72,6 +83,14 @@
               @focus="scrollIntoField(currentField)"
             />
           </div>
+          <NumberStep
+            v-else-if="currentField.type === 'number'"
+            :key="currentField.uuid"
+            v-model="values[currentField.uuid]"
+            :show-field-names="showFieldNames"
+            :field="currentField"
+            @focus="scrollIntoField(currentField)"
+          />
           <DateStep
             v-else-if="currentField.type === 'date'"
             :key="currentField.uuid"
@@ -82,17 +101,32 @@
           />
           <div v-else-if="currentField.type === 'select'">
             <label
-              v-if="showFieldNames && currentField.name"
+              v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
+              class="label text-2xl"
+              :class="{ 'mb-2': !currentField.description }"
+            >
+              <MarkdownContent
+                v-if="currentField.title"
+                :string="currentField.title"
+              />
+              <template v-else>
+                {{ currentField.name }}
+                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
             </label>
             <div
               v-else
               class="py-1"
             />
+            <div
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
+            >
+              <MarkdownContent :string="currentField.description" />
+            </div>
             <AppearsOn :field="currentField" />
             <select
               :id="currentField.uuid"
@@ -121,13 +155,28 @@
           </div>
           <div v-else-if="currentField.type === 'radio'">
             <label
-              v-if="showFieldNames && currentField.name"
+              v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl mb-2"
-            >{{ currentField.name }}
-              <template v-if="!currentField.required">({{ t('optional') }})</template>
+              class="label text-2xl"
+              :class="{ 'mb-2': !currentField.description }"
+            >
+              <MarkdownContent
+                v-if="currentField.title"
+                :string="currentField.title"
+              />
+              <template v-else>
+                {{ currentField.name }}
+                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
             </label>
+            <div
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
+            >
+              <MarkdownContent :string="currentField.description" />
+            </div>
             <div class="flex w-full max-h-44 overflow-y-auto">
               <div
                 v-if="!showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4)"
@@ -178,66 +227,77 @@
           />
           <div
             v-else-if="currentField.type === 'checkbox'"
-            class="flex w-full max-h-44 overflow-y-auto"
           >
-            <input
-              type="hidden"
-              name="cast_boolean"
-              value="true"
-            >
             <div
-              class="space-y-3.5 mx-auto"
+              v-if="currentField.description"
+              dir="auto"
+              class="mb-3 px-1"
             >
-              <template v-if="isAnonymousChecboxes || !showFieldNames">
-                <span class="text-xl">
-                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
-                </span>
-                <input
-                  v-for="field in currentStepFields"
-                  :key="field.uuid"
-                  type="hidden"
-                  :name="`values[${field.uuid}]`"
-                  :value="!!values[field.uuid]"
-                >
-              </template>
-              <template v-else>
-                <div
-                  v-for="(field, index) in currentStepFields"
-                  :key="field.uuid"
-                >
-                  <label
-                    :for="field.uuid"
-                    class="flex items-center space-x-3"
+              <MarkdownContent :string="currentField.description" />
+            </div>
+            <div
+              class="flex w-full max-h-44 overflow-y-auto"
+            >
+              <input
+                type="hidden"
+                name="cast_boolean"
+                value="true"
+              >
+              <div
+                class="space-y-3.5 mx-auto"
+              >
+                <template v-if="isAnonymousChecboxes || !showFieldNames">
+                  <span class="text-xl">
+                    {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                  </span>
+                  <input
+                    v-for="field in currentStepFields"
+                    :key="field.uuid"
+                    type="hidden"
+                    :name="`values[${field.uuid}]`"
+                    :value="!!values[field.uuid]"
                   >
-                    <input
-                      type="hidden"
-                      :name="`values[${field.uuid}]`"
-                      :value="!!values[field.uuid]"
+                </template>
+                <template v-else>
+                  <div
+                    v-for="(field, index) in currentStepFields"
+                    :key="field.uuid"
+                  >
+                    <label
+                      :for="field.uuid"
+                      class="flex items-center space-x-3"
                     >
-                    <input
-                      :id="field.uuid"
-                      type="checkbox"
-                      class="base-checkbox !h-7 !w-7"
-                      :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
-                      :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
-                      :required="field.required"
-                      :checked="!!values[field.uuid]"
-                      @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
-                    >
-                    <span
-                      v-if="field.title"
-                      class="text-xl"
-                      v-html="field.title"
-                    />
-                    <span
-                      v-else
-                      class="text-xl"
-                    >
-                      {{ field.name || field.type + ' ' + (index + 1) }}
-                    </span>
-                  </label>
-                </div>
-              </template>
+                      <input
+                        type="hidden"
+                        :name="`values[${field.uuid}]`"
+                        :value="!!values[field.uuid]"
+                      >
+                      <input
+                        :id="field.uuid"
+                        type="checkbox"
+                        class="base-checkbox !h-7 !w-7"
+                        :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
+                        :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
+                        :required="field.required"
+                        :checked="!!values[field.uuid]"
+                        @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
+                      >
+                      <span
+                        v-if="field.title"
+                        class="text-xl"
+                      >
+                        <MarkdownContent :string="field.title" />
+                      </span>
+                      <span
+                        v-else
+                        class="text-xl"
+                      >
+                        {{ field.name || field.type + ' ' + (index + 1) }}
+                      </span>
+                    </label>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
           <ImageStep
@@ -388,6 +448,7 @@
 
 <script>
 import FieldAreas from './areas'
+import FormulaFieldAreas from './formula_areas'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import InitialsStep from './initials_step'
@@ -396,11 +457,31 @@ import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import PaymentStep from './payment_step'
 import TextStep from './text_step'
+import NumberStep from './number_step'
 import DateStep from './date_step'
+import MarkdownContent from './markdown_content'
 import FormCompleted from './completed'
-import { IconInnerShadowTop, IconArrowsDiagonal, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
+
+const isEmpty = (obj) => {
+  if (obj == null) return true
+
+  if (Array.isArray(obj) || typeof obj === 'string') {
+    return obj.length === 0
+  }
+
+  if (typeof obj === 'object') {
+    return Object.keys(obj).length === 0
+  }
+
+  if (obj === false) {
+    return true
+  }
+
+  return false
+}
 
 export default {
   name: 'SubmissionForm',
@@ -409,6 +490,7 @@ export default {
     ImageStep,
     SignatureStep,
     AppearsOn,
+    IconWritingSign,
     AttachmentStep,
     InitialsStep,
     MultiSelectStep,
@@ -416,7 +498,10 @@ export default {
     DateStep,
     IconArrowsDiagonal,
     TextStep,
+    NumberStep,
+    FormulaFieldAreas,
     PhoneStep,
+    MarkdownContent,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
     FormCompleted
@@ -450,6 +535,11 @@ export default {
       default () {
         return () => {}
       }
+    },
+    expand: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     withConfetti: {
       type: Boolean,
@@ -550,7 +640,7 @@ export default {
   data () {
     return {
       isCompleted: false,
-      isFormVisible: true,
+      isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
       isSubmitting: false,
@@ -574,13 +664,20 @@ export default {
     submitterSlug () {
       return this.submitter.slug
     },
+    fieldsUuidIndex () {
+      return this.fields.reduce((acc, f) => {
+        acc[f.uuid] = f
+
+        return acc
+      }, {})
+    },
     previousInitialsValue () {
       const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
       return this.values[initialsField?.uuid]
     },
     isAnonymousChecboxes () {
-      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name) && this.currentStepFields.length > 4
+      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name && !e.required) && this.currentStepFields.length > 4
     },
     isButtonDisabled () {
       if (this.recalculateButtonDisabledKey) {
@@ -599,14 +696,19 @@ export default {
       return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
-        if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox') {
-          prevStep.push(f)
-        } else {
-          acc.push([f])
+        if (this.checkFieldConditions(f)) {
+          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
+            prevStep.push(f)
+          } else {
+            acc.push([f])
+          }
         }
 
         return acc
       }, [])
+    },
+    formulaFields () {
+      return this.fields.filter((f) => f.preferences?.formula)
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
@@ -617,6 +719,11 @@ export default {
     },
     submitPath () {
       return `/s/${this.submitterSlug}`
+    }
+  },
+  watch: {
+    expand (value) {
+      this.isFormVisible = value
     }
   },
   mounted () {
@@ -651,6 +758,10 @@ export default {
       this.currentStep = Math.min(...indexesList)
     }
 
+    if (document.body?.clientWidth >= 768 && this.expand !== true && ['signature', 'initials', 'file', 'image'].includes(this.currentField?.type)) {
+      this.isFormVisible = false
+    }
+
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode()
@@ -679,6 +790,40 @@ export default {
   methods: {
     t (key) {
       return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+    },
+    checkFieldConditions (field) {
+      if (field.conditions?.length) {
+        return field.conditions.reduce((acc, c) => {
+          if (['empty', 'unchecked'].includes(c.action)) {
+            return acc && isEmpty(this.values[c.field_uuid])
+          } else if (['not_empty', 'checked'].includes(c.action)) {
+            return acc && !isEmpty(this.values[c.field_uuid])
+          } else if (['equal', 'contains'].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid]
+            const option = field.options.find((o) => o.uuid === c.value)
+            const values = [this.values[c.field_uuid]].flat()
+
+            return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid]
+            const option = field.options.find((o) => o.uuid === c.value)
+            const values = [this.values[c.field_uuid]].flat()
+
+            return acc && !values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return acc
+          }
+        }, true)
+      } else {
+        return true
+      }
+    },
+    optionValue (option, index) {
+      if (option.value) {
+        return option.value
+      } else {
+        return `${this.t('option')} ${index + 1}`
+      }
     },
     maybeTrackEmailClick () {
       const { queryParams } = this
@@ -757,7 +902,7 @@ export default {
           this.scrollIntoField(step[0])
         }
 
-        this.$refs.form.querySelector('input[type="date"], input[type="text"], select')?.focus()
+        this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
 
         if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
           this.$refs.form.querySelector('input[type="file"]')?.click()
@@ -765,7 +910,7 @@ export default {
       })
     },
     saveStep (formData) {
-      const currentFieldUuid = this.currentField.uuid
+      const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
 
       if (this.isCompleted) {
         return Promise.resolve({})
@@ -775,7 +920,9 @@ export default {
           body: formData || new FormData(this.$refs.form)
         }).then((response) => {
           if (response.status === 200) {
-            this.submittedValues[currentFieldUuid] = this.values[currentFieldUuid]
+            currentFieldUuids.forEach((fieldUuid) => {
+              this.submittedValues[fieldUuid] = this.values[fieldUuid]
+            })
           }
 
           return response
@@ -797,7 +944,13 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          return index < this.currentStep && fields[0].required && (fields[0].type === 'phone' || !this.allowToSkip) && (this.submittedValues[fields[0].uuid] === true ? false : !this.submittedValues[fields[0].uuid]?.length)
+          if (index >= this.currentStep) {
+            return false
+          }
+
+          return fields.some((f) => {
+            return f.required && (f.type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[f.uuid])
+          })
         })
 
         const formData = new FormData(this.$refs.form)
@@ -847,7 +1000,11 @@ export default {
           this.isSubmitting = false
         })
       }).catch(error => {
-        console.log(error)
+        if (error?.message === 'Image too small') {
+          alert('Signature is too small - please redraw.')
+        } else {
+          console.log(error)
+        }
       }).finally(() => {
         this.isSubmitting = false
       })

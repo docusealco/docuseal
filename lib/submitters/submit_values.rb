@@ -37,6 +37,7 @@ module Submitters
         submitter.ip = request.remote_ip
         submitter.ua = request.user_agent
         submitter.values = merge_default_values(submitter)
+        submitter.values = merge_formula_values(submitter)
       end
 
       ApplicationRecord.transaction do
@@ -54,6 +55,8 @@ module Submitters
       params.fetch(:values, {}).to_unsafe_h.transform_values do |v|
         if params[:cast_boolean] == 'true'
           v == 'true'
+        elsif params[:cast_number] == 'true'
+          (v.to_f % 1).zero? ? v.to_i : v.to_f
         elsif params[:normalize_phone] == 'true'
           v.to_s.gsub(/[^0-9+]/, '')
         else
@@ -75,7 +78,9 @@ module Submitters
         next if field['submitter_uuid'] != submitter.uuid
 
         if field['type'] == 'stamp'
-          acc[field['uuid']] ||= Submitters::CreateStampAttachment.call(submitter).uuid
+          acc[field['uuid']] ||=
+            Submitters::CreateStampAttachment.call(submitter,
+                                                   with_logo: field.dig('preferences', 'with_logo') != false).uuid
 
           next
         end
@@ -88,6 +93,24 @@ module Submitters
       end
 
       default_values.compact_blank.merge(submitter.values)
+    end
+
+    def merge_formula_values(submitter)
+      computed_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
+        next if field['submitter_uuid'] != submitter.uuid
+
+        formula = field.dig('preferences', 'formula')
+
+        next if formula.blank?
+
+        acc[field['uuid']] = calculate_formula_value(formula, submitter.values.merge(acc.compact_blank))
+      end
+
+      submitter.values.merge(computed_values.compact_blank)
+    end
+
+    def calculate_formula_value(_formula, _values)
+      0
     end
 
     def template_default_value_for_submitter(value, submitter, with_time: false)

@@ -33,7 +33,10 @@ module Submissions
       sleep WAIT_FOR_RETRY
 
       retry
-    rescue StandardError
+    rescue StandardError => e
+      Rollbar.error(e) if defined?(Rollbar)
+      Rails.logger.error(e)
+
       submitter.document_generation_events.create!(event_name: :fail)
 
       raise

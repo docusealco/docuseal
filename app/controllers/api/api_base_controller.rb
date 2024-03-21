@@ -19,6 +19,12 @@ module Api
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
+    rescue_from RateLimit::LimitApproached do |e|
+      Rollbar.error(e) if defined?(Rollbar)
+
+      render json: { error: 'Too many requests' }, status: :too_many_requests
+    end
+
     if Rails.env.production?
       rescue_from CanCan::AccessDenied do |e|
         Rollbar.warning(e) if defined?(Rollbar)
@@ -39,8 +45,8 @@ module Api
       result = relation.order(id: :desc)
                        .limit([params.fetch(:limit, DEFAULT_LIMIT).to_i, MAX_LIMIT].min)
 
-      result = result.where(relation.arel_table[:id].lt(params[:after])) if params[:after].present?
-      result = result.where(relation.arel_table[:id].gt(params[:before])) if params[:before].present?
+      result = result.where(id: ...params[:after].to_i) if params[:after].present?
+      result = result.where(id: (params[:before].to_i + 1)...) if params[:before].present?
 
       result
     end

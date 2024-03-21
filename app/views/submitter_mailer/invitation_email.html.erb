@@ -1,6 +1,6 @@
 <% if @email_config || @body.present? %>
   <% body = (@body.presence || @email_config.value['body']).to_s %>
-  <%= auto_link(simple_format(h(ReplaceEmailVariables.call(body, submitter: @submitter)))) %>
+  <%= render 'custom_content', content: body, submitter: @submitter %>
   <% if !body.include?(ReplaceEmailVariables::SUBMITTER_LINK) && !body.include?(ReplaceEmailVariables::SUBMITTER_ID) && !body.include?(ReplaceEmailVariables::SUBMISSION_LINK) && !body.include?(ReplaceEmailVariables::TEMPLATE_ID) && !@submitter.submission.source.in?(%w[api embed]) %>
     <p><%= link_to nil, submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email')) %></p>
   <% end %>

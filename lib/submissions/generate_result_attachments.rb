@@ -21,9 +21,18 @@ module Submissions
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
-    REPLACE_EMOJI = {
+    MISSING_GLYPH_REPLACE = {
+      '▪' => '-',
       '✔️' => 'V',
-      '✔' => 'V'
+      '✔' => 'V',
+      '✅' => 'V'
+    }.freeze
+
+    MISSING_GLYPH_REPLACE_TYPE1 = {
+      '▪' => :bullet,
+      '✔️' => :V,
+      '✔' => :V,
+      '✅' => :V
     }.freeze
 
     module_function
@@ -37,6 +46,7 @@ module Submissions
       account = submitter.submission.template.account
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
+      attachments_data_cache = {}
 
       pdfs_index = build_pdfs_index(submitter)
 
@@ -61,12 +71,14 @@ module Submissions
 
           width = page.box.width
           height = page.box.height
-          font_size = ((page.box.width / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+          font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           value = submitter.values[field['uuid']]
 
-          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center,
-                                                       text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+          text_align = field.dig('preferences', 'align').to_s.to_sym.presence ||
+                       (value.to_s.match?(RTL_REGEXP) ? :right : :left)
+
+          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align:,
                                                        font: pdf.fonts.add(FONT_NAME), font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
@@ -78,7 +90,9 @@ module Submissions
           when 'image', 'signature', 'initials', 'stamp'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            image = Vips::Image.new_from_buffer(attachment.download, '').autorot
+            attachments_data_cache[attachment.uuid] ||= attachment.download
+
+            image = Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
 
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
@@ -161,7 +175,7 @@ module Submissions
               width: PdfIcons::WIDTH * scale,
               height: PdfIcons::HEIGHT * scale
             )
-          when 'cells'
+          when ->(type) { type == 'cells' && area['cell_w'] }
             cell_width = area['cell_w'] * width
 
             TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
@@ -178,7 +192,6 @@ module Submissions
             end
 
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
-            value = REPLACE_EMOJI[value] || value
 
             text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
                                                                font_size:)
@@ -191,15 +204,23 @@ module Submissions
                                                           font: pdf.fonts.add(FONT_NAME),
                                                           font_size: (font_size / 1.4).to_i)
 
-              lines = layouter.fit([text], area['w'] * width, height).lines
+              lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
 
               box_height = lines.sum(&:height)
             end
 
             height_diff = [0, box_height - (area['h'] * height)].max
 
-            layouter.fit([text], area['w'] * width, height_diff.positive? ? box_height : area['h'] * height)
-                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+            right_align_x_adjustment =
+              if field['type'].in?(%w[date number]) && text_align != :left
+                (width - (area['w'] * width)) / (text_align == :center ? 2.0 : 1)
+              else
+                0
+              end
+
+            layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width,
+                         height_diff.positive? ? box_height : area['h'] * height)
+                    .draw(canvas, (area['x'] * width) - right_align_x_adjustment + TEXT_LEFT_MARGIN,
                           height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
           end
         end
@@ -208,28 +229,28 @@ module Submissions
       image_pdfs = []
       original_documents = template.documents.preload(:blob)
 
-      results =
+      result_attachments =
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = save_pdf(pdf:, submitter:, pkcs:, tsa_url:,
-                                uuid: item['attachment_uuid'],
-                                name: item['name'])
+          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+                                            uuid: item['attachment_uuid'],
+                                            name: item['name'])
 
           image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
 
           attachment
         end
 
-      return results if image_pdfs.size < 2
+      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
 
       images_pdf =
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
           pdf.pages.each { |page| doc.pages << doc.import(page) }
         end
 
-      images_pdf_result =
-        save_pdf(
+      images_pdf_attachment =
+        build_pdf_attachment(
           pdf: images_pdf,
           submitter:,
           tsa_url:,
@@ -238,11 +259,10 @@ module Submissions
           name: template.name
         )
 
-      results + [images_pdf_result]
+      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
     end
-    # rubocop:enable Metrics
 
-    def save_pdf(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
+    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
@@ -262,15 +282,29 @@ module Submissions
           sign_params[:signature_size] = 10_000
         end
 
-        pdf.sign(io, write_options: { validate: false }, **sign_params)
-      else
-        pdf.write(io, incremental: true, validate: false)
-      end
+        begin
+          pdf.sign(io, write_options: { validate: false }, **sign_params)
+        rescue HexaPDF::MalformedPDFError => e
+          Rollbar.error(e) if defined?(Rollbar)
 
-      ActiveStorage::Attachment.create!(
-        uuid:,
+          pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
+        end
+      else
+        begin
+          pdf.write(io, incremental: true, validate: false)
+        rescue HexaPDF::MalformedPDFError => e
+          Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.write(io, incremental: false, validate: false)
+        end
+      end
+      # rubocop:enable Metrics
+
+      ActiveStorage::Attachment.new(
         blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
-        metadata: { sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
+        metadata: { original_uuid: uuid,
+                    analyzed: true,
+                    sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
         name: 'documents',
         record: submitter
       )
@@ -281,11 +315,7 @@ module Submissions
     end
 
     def build_pdfs_index(submitter)
-      latest_submitter =
-        submitter.submission.submitters
-                 .select(&:completed_at?)
-                 .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
-                 .max_by(&:completed_at)
+      latest_submitter = find_last_submitter(submitter)
 
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
@@ -306,8 +336,30 @@ module Submissions
           Rollbar.error(e) if defined?(Rollbar)
         end
 
-        [attachment.uuid, pdf]
+        pdf.config['font.on_missing_glyph'] = method(:on_missing_glyph).to_proc
+
+        [attachment.metadata['original_uuid'] || attachment.uuid, pdf]
       end
+    end
+
+    def on_missing_glyph(character, font_wrapper)
+      Rollbar.error("Missing glyph: #{character}") if character.present? && defined?(Rollbar)
+
+      replace_with =
+        if font_wrapper.font_type == :Type1
+          MISSING_GLYPH_REPLACE_TYPE1[character] || :space
+        else
+          (MISSING_GLYPH_REPLACE[character] || ' ').bytes.first - 29
+        end
+
+      font_wrapper.custom_glyph(replace_with, character)
+    end
+
+    def find_last_submitter(submitter)
+      submitter.submission.submitters
+               .select(&:completed_at?)
+               .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
+               .max_by(&:completed_at)
     end
 
     def build_pdf_from_image(attachment)

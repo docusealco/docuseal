@@ -2,10 +2,25 @@
   <div>
     <label
       :for="isCodeSent ? 'one_time_code' : field.uuid"
-      class="label text-2xl mb-2"
-    >{{ showFieldNames && field.name ? field.name : t('verified_phone_number') }}
-      <template v-if="!field.required">({{ t('optional') }})</template>
+      class="label text-2xl"
+      :class="{ 'mb-2': !field.description }"
+    >
+      <MarkdownContent
+        v-if="field.title"
+        :string="field.title"
+      />
+      <template v-else>
+        {{ showFieldNames && field.name ? field.name : t('verified_phone_number') }}
+        <template v-if="!field.required">({{ t('optional') }})</template>
+      </template>
     </label>
+    <div
+      v-if="field.description"
+      dir="auto"
+      class="mb-3 px-1"
+    >
+      <MarkdownContent :string="field.description" />
+    </div>
     <div>
       <input
         type="hidden"
@@ -53,14 +68,13 @@
         class="base-input !text-2xl w-full"
         autocomplete="tel"
         pattern="^\+[0-9\s\-]+$"
-        :oninvalid="`this.value ? this.setCustomValidity('${t('use_international_format')}...') : ''`"
-        oninput="this.setCustomValidity('')"
         type="tel"
         inputmode="tel"
         :required="field.required"
         placeholder="+1 234 567-8900"
         :name="`values[${field.uuid}]`"
-        @input="$emit('update:model-value', $event.target.value)"
+        @invalid="$event.target.value ? $event.target.setCustomValidity(`${t('use_international_format')}...`) : ''"
+        @input="[$event.target.setCustomValidity(''), $emit('update:model-value', $event.target.value)]"
         @focus="$emit('focus')"
       >
     </div>
@@ -68,6 +82,8 @@
 </template>
 
 <script>
+import MarkdownContent from './markdown_content'
+
 function throttle (func, delay) {
   let lastCallTime = 0
 
@@ -83,6 +99,9 @@ function throttle (func, delay) {
 
 export default {
   name: 'PhoneStep',
+  components: {
+    MarkdownContent
+  },
   inject: ['t', 'baseUrl'],
   props: {
     field: {

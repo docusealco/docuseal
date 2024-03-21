@@ -24,9 +24,9 @@ module Api
       if SELECT_COLUMNS.include?(params[:field])
         column = Submitter.arel_table[params[:field].to_sym]
 
-        term = "%#{params[:q].downcase}%"
+        term = "#{params[:q].downcase}%"
 
-        submitters.where(column.lower.matches(term))
+        submitters.where(column.matches(term, false, true))
       else
         Submitters.search(submitters, params[:q])
       end

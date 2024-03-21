@@ -15,6 +15,7 @@
 #
 # Indexes
 #
+#  index_submission_events_on_created_at     (created_at)
 #  index_submission_events_on_submission_id  (submission_id)
 #  index_submission_events_on_submitter_id   (submitter_id)
 #

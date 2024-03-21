@@ -42,6 +42,7 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - PDF signature verification
 - Users management
 - Mobile-optimized
+- Signing available in 12 Languages
 - API and Webhooks for integrations
 - Easy to deploy in minutes
 
@@ -50,9 +51,10 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - User roles
 - Automated reminders
 - Invitation and identify verification via SMS
+- Conditional fields and formulas
 - SSO / SAML
 - Template creation with HTML API ([Guide](https://www.docuseal.co/guides/create-pdf-document-fillable-form-with-html-api))
-- Template creation with PDF or DOCX and text tags API ([Guide](https://www.docuseal.co/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
+- Template creation with PDF or DOCX and field tags API ([Guide](https://www.docuseal.co/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
 - Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
 - Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
 - [Learn more](https://www.docuseal.co/pricing)
@@ -68,7 +70,6 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 | [<img alt="Deploy on Koyeb" src="https://www.koyeb.com/static/images/deploy/button.svg" height="40">](https://app.koyeb.com/deploy?name=docuseal&type=docker&image=docker.io/docuseal/docuseal&env[PORT]=8000&env[DATABASE_URL]=CHANGE_ME&env[SECRET_KEY_BASE]=CHANGE_ME&ports=8000;http;/) | [<img alt="Deploy on Elestio" src="https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png">](https://dash.elest.io/deploy?soft=DocuSeal&id=339) |
 |**RepoCloud**| |
 | [<img alt="Deploy on RepoCloud" src="https://d16t0pc4846x52.cloudfront.net/deploy.png">](https://repocloud.io/details/?app_id=252) | |
-
 
 #### Docker
 
@@ -101,3 +102,9 @@ At DocuSeal we have expertise and technologies to make documents creation, filli
 
 Distributed under the AGPLv3 License. See [LICENSE](https://github.com/docusealco/docuseal/blob/master/LICENSE) for more information.
 Unless otherwise noted, all files © 2023 DocuSeal LLC.
+
+## Tools
+
+- [Signature Maker](https://www.docuseal.co/online-signature)
+- [Sign Document Online](https://www.docuseal.co/sign-documents-online)
+- [Fill PDF Online](https://www.docuseal.co/fill-pdf)

@@ -51,7 +51,7 @@ class PdfProcessor < HexaPDF::Content::Processor
     handler.call(self, operator, operands)
   end
 
-  def self.call(data, process_handler, result_handler, acc = {})
+  def self.call(data, process_handler, result_handler, acc = {}, remove_tags: true)
     doc = HexaPDF::Document.new(io: StringIO.new(data))
 
     doc.pages.each do |page|
@@ -67,7 +67,7 @@ class PdfProcessor < HexaPDF::Content::Processor
 
         page.process_contents(processor)
 
-        page.contents = process_handler_instance.contents
+        page.contents = process_handler_instance.contents if process_handler_instance.result.present? && remove_tags
       end
 
       page[:Annots].to_a.each do |annot|

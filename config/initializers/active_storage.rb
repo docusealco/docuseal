@@ -8,22 +8,14 @@ ActiveSupport.on_load(:active_storage_attachment) do
   def signed_uuid
     @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours, purpose: :attachment)
   end
-
-  def preview_image_url
-    first_page = preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })
-
-    return unless first_page
-
-    ActiveStorage::Blob.proxy_url(first_page.blob)
-  end
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
-  def self.proxy_url(blob, expires_in: nil)
+  def self.proxy_url(blob, expires_at: nil)
     Rails.application.routes.url_helpers.blobs_proxy_url(
-      signed_uuid: blob.signed_uuid(expires_in:), filename: blob.filename,
+      signed_uuid: blob.signed_uuid(expires_at:), filename: blob.filename,
       **Docuseal.default_url_options
     )
   end
@@ -36,8 +28,10 @@ ActiveSupport.on_load(:active_storage_blob) do
     end
   end
 
-  def signed_uuid(expires_in: nil)
-    ApplicationRecord.signed_id_verifier.generate([uuid, 'blob'], expires_in:)
+  def signed_uuid(expires_at: nil)
+    expires_at = expires_at.to_i if expires_at
+
+    ApplicationRecord.signed_id_verifier.generate([uuid, 'blob', expires_at].compact)
   end
 
   def delete
@@ -75,7 +69,7 @@ Rails.configuration.to_prepare do
 
   LoadActiveStorageConfigs.call
 rescue StandardError => e
-  Rails.logger.error(e)
+  Rails.logger.error(e) unless Rails.env.production?
 
   nil
 end

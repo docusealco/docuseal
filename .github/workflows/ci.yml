@@ -59,7 +59,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 16.13.1
+          node-version: 20.9.0
       - name: Cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -104,7 +104,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 16.13.1
+          node-version: 20.9.0
       - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
       - name: Cache node_modules

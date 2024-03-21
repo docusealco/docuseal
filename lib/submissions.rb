@@ -3,6 +3,8 @@
 module Submissions
   DEFAULT_SUBMITTERS_ORDER = 'random'
 
+  PRELOAD_ALL_PAGES_AMOUNT = 200
+
   module_function
 
   def search(submissions, keyword)
@@ -27,10 +29,29 @@ module Submissions
     submission.save!
   end
 
+  def preload_with_pages(submission)
+    ActiveRecord::Associations::Preloader.new(
+      records: [submission],
+      associations: [:template, { template_schema_documents: :blob }]
+    ).call
+
+    total_pages =
+      submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
+
+    if total_pages < PRELOAD_ALL_PAGES_AMOUNT
+      ActiveRecord::Associations::Preloader.new(
+        records: submission.template_schema_documents,
+        associations: [:blob, { preview_images_attachments: :blob }]
+      ).call
+    end
+
+    submission
+  end
+
   def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false, params: {})
     preferences = Submitters.normalize_preferences(user.account, user, params)
 
-    parse_emails(emails).uniq.map do |email|
+    parse_emails(emails, user).uniq.map do |email|
       submission = template.submissions.new(created_by_user: user,
                                             account_id: user.account_id,
                                             source:,
@@ -45,7 +66,7 @@ module Submissions
     end
   end
 
-  def parse_emails(emails)
+  def parse_emails(emails, _user)
     emails = emails.to_s.scan(User::EMAIL_REGEXP) unless emails.is_a?(Array)
 
     emails

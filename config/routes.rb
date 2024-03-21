@@ -17,15 +17,6 @@ Rails.application.routes.draw do
              end
 
   devise_scope :user do
-    if Docuseal.multitenant?
-      resource :registration, only: %i[show], path: 'sign_up'
-      unauthenticated do
-        resource :registration, only: %i[create], path: 'new' do
-          get '' => :new, as: :new
-        end
-      end
-    end
-
     resource :invitation, only: %i[update] do
       get '' => :edit
     end
@@ -53,6 +44,7 @@ Rails.application.routes.draw do
   resources :verify_pdf_signature, only: %i[create]
   resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
   resources :account_configs, only: %i[create]
+  resources :user_configs, only: %i[create]
   resources :encrypted_user_configs, only: %i[destroy]
   resources :timestamp_server, only: %i[create]
   resources :dashboard, only: %i[index]
@@ -63,6 +55,7 @@ Rails.application.routes.draw do
   resource :user_signature, only: %i[edit update destroy]
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
+  resources :upgrade, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[show destroy]
   resources :testing_api_settings, only: %i[index]
   resource :templates_upload, only: %i[create]

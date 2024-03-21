@@ -157,6 +157,7 @@
       ref="textContainer"
       dir="auto"
       class="flex items-center px-0.5 w-full"
+      :class="alignClasses[field.preferences?.align]"
     >
       <span v-if="Array.isArray(modelValue)">
         {{ modelValue.join(', ') }}
@@ -167,13 +168,14 @@
       <span
         v-else
         class="whitespace-pre-wrap"
+        :class="{ 'w-full': field.preferences?.align }"
       >{{ modelValue }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -240,6 +242,7 @@ export default {
         signature: this.t('signature'),
         initials: this.t('initials'),
         date: this.t('date'),
+        number: this.t('number'),
         image: this.t('image'),
         file: this.t('file'),
         select: this.t('select'),
@@ -252,6 +255,13 @@ export default {
         phone: this.t('phone')
       }
     },
+    alignClasses () {
+      return {
+        center: 'text-center',
+        left: 'text-left',
+        right: 'text-right'
+      }
+    },
     option () {
       return this.field.options.find((o) => o.uuid === this.area.option_uuid)
     },
@@ -260,6 +270,7 @@ export default {
         text: IconTextSize,
         signature: IconWritingSign,
         date: IconCalendarEvent,
+        number: IconSquareNumber1,
         image: IconPhoto,
         initials: IconLetterCaseUpper,
         file: IconPaperclip,
@@ -336,17 +347,19 @@ export default {
   },
   watch: {
     modelValue () {
-      if (this.field.type === 'text' && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > this.modelValue.length)) {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
-      }
+      this.$nextTick(() => {
+        if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.modelValue}`.length)) {
+          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue}`.length : 0
+        }
+      })
     }
   },
   mounted () {
-    if (this.field.type === 'text' && this.$refs.textContainer) {
-      this.$nextTick(() => {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? this.modelValue.length : 0
-      })
-    }
+    this.$nextTick(() => {
+      if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer) {
+        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue}`.length : 0
+      }
+    })
   },
   methods: {
     optionValue (option) {

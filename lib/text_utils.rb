@@ -5,6 +5,14 @@ module TextUtils
 
   module_function
 
+  def rtl?(text)
+    return false if text.blank?
+
+    text.match?(TextUtils::RTL_REGEXP)
+  rescue Encoding::CompatibilityError
+    false
+  end
+
   def maybe_rtl_reverse(text)
     if text.match?(RTL_REGEXP)
       TwitterCldr::Shared::Bidi

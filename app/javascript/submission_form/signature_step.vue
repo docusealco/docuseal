@@ -1,9 +1,20 @@
 <template>
   <div dir="auto">
-    <div class="flex justify-between items-center w-full mb-2">
+    <div
+      class="flex justify-between items-center w-full"
+      :class="{ 'mb-2': !field.description }"
+    >
       <label
         class="label text-2xl"
-      >{{ showFieldNames && field.name ? field.name : t('signature') }}</label>
+      >
+        <MarkdownContent
+          v-if="field.title"
+          :string="field.title"
+        />
+        <template v-else>
+          {{ showFieldNames && field.name ? field.name : t('signature') }}
+        </template>
+      </label>
       <div class="space-x-2 flex">
         <span
           v-if="isTextSignature && field.preferences?.format !== 'typed'"
@@ -30,7 +41,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
@@ -45,7 +56,7 @@
           :data-tip="t('take_photo')"
         >
           <label
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
           >
             <IconCamera :width="16" />
             <input
@@ -91,6 +102,13 @@
         </a>
       </div>
     </div>
+    <div
+      v-if="field.description"
+      dir="auto"
+      class="mb-3 px-1"
+    >
+      <MarkdownContent :string="field.description" />
+    </div>
     <AppearsOn :field="field" />
     <input
       :value="modelValue || computedPreviousValue"
@@ -126,6 +144,7 @@ import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonal
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
+import MarkdownContent from './markdown_content'
 
 let isFontLoaded = false
 
@@ -137,6 +156,7 @@ export default {
     AppearsOn,
     IconReload,
     IconCamera,
+    MarkdownContent,
     IconTextSize,
     IconSignature,
     IconArrowsDiagonalMinimize2
@@ -366,8 +386,8 @@ export default {
         return Promise.resolve({})
       }
 
-      return new Promise((resolve) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+      return new Promise((resolve, reject) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
           if (this.isDirectUpload) {
@@ -409,6 +429,8 @@ export default {
               return resolve(attachment)
             })
           }
+        }).catch((error) => {
+          return reject(error)
         })
       })
     }
