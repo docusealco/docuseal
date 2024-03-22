@@ -55,8 +55,8 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - SSO / SAML
 - Template creation with HTML API ([Guide](https://www.docuseal.co/guides/create-pdf-document-fillable-form-with-html-api))
 - Template creation with PDF or DOCX and field tags API ([Guide](https://www.docuseal.co/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
-- Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
-- Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue) or [JavaScript](https://www.docuseal.co/docs/embedded))
+- Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.co/docs/embedded))
+- Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.co/docs/embedded))
 - [Learn more](https://www.docuseal.co/pricing)
 
 ## Deploy
