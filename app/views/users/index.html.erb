@@ -2,7 +2,7 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="flex justify-between mb-4">
-      <h1 class="text-4xl font-bold">Team</h1>
+      <h1 class="text-4xl font-bold">Users</h1>
       <div class="flex items-center space-x-4">
         <% if can?(:create, User.new(account: current_account)) %>
           <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>

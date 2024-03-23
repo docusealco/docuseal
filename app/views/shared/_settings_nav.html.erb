@@ -39,7 +39,7 @@
       <% end %>
       <% if can?(:read, User) %>
         <li>
-          <%= link_to 'Team', settings_users_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to 'Users', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <% unless Docuseal.multitenant? %>
