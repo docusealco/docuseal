@@ -20,7 +20,7 @@ export default class extends HTMLElement {
   fetch = (text, resolve) => {
     const queryParams = new URLSearchParams({ q: text })
 
-    fetch('/api/template_folders_autocomplete?' + queryParams).then(async (resp) => {
+    fetch('/template_folders_autocomplete?' + queryParams).then(async (resp) => {
       const items = await resp.json()
 
       resolve(items)

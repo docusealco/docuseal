@@ -24,8 +24,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
-    resources :submitters_autocomplete, only: %i[index]
-    resources :template_folders_autocomplete, only: %i[index]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submitters, only: %i[index show update]
@@ -57,6 +55,8 @@ Rails.application.routes.draw do
   resources :upgrade, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[show destroy]
   resources :testing_api_settings, only: %i[index]
+  resources :submitters_autocomplete, only: %i[index]
+  resources :template_folders_autocomplete, only: %i[index]
   resource :templates_upload, only: %i[create]
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'
