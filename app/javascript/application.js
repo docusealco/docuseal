@@ -91,6 +91,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
       editable: this.dataset.editable !== 'false',
+      authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       withPayment: this.dataset.withPayment === 'true',
       withFormula: this.dataset.withFormula === 'true',
       withConditions: this.dataset.withConditions === 'true',

@@ -83,24 +83,10 @@ module Api
     end
 
     def template_params
-      permit_params = [
-        :name,
-        { schema: [%i[attachment_uuid name]],
-          submitters: [%i[name uuid]],
-          fields: [[:uuid, :submitter_uuid, :name, :type,
-                    :required, :readonly, :default_value,
-                    :title, :description,
-                    { preferences: {},
-                      conditions: [%i[field_uuid value action]],
-                      options: [%i[value uuid]],
-                      validation: %i[message pattern],
-                      areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
-      ]
-
       if params.key?(:template)
-        params.require(:template).permit(*permit_params)
+        params.require(:template).permit(:name)
       else
-        params.permit(*permit_params)
+        params.permit(:name)
       end
     end
   end

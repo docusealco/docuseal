@@ -444,6 +444,11 @@ export default {
       required: false,
       default: true
     },
+    authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
+    },
     withDocumentsList: {
       type: Boolean,
       required: false,
@@ -1023,7 +1028,11 @@ export default {
     baseFetch (path, options = {}) {
       return fetch(this.baseUrl + path, {
         ...options,
-        headers: { ...this.fetchOptions.headers, ...options.headers }
+        headers: {
+          'X-CSRF-Token': this.authenticityToken,
+          ...this.fetchOptions.headers,
+          ...options.headers
+        }
       })
     },
     save ({ force } = { force: false }) {
@@ -1039,7 +1048,7 @@ export default {
 
       this.pushUndo()
 
-      return this.baseFetch(`/api/templates/${this.template.id}`, {
+      return this.baseFetch(`/templates/${this.template.id}`, {
         method: 'PUT',
         body: JSON.stringify({
           template: {

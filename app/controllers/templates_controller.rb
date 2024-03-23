@@ -67,6 +67,12 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def update
+    @template.update!(template_params)
+
+    head :ok
+  end
+
   def destroy
     notice =
       if params[:permanently].present?
@@ -86,6 +92,22 @@ class TemplatesController < ApplicationController
 
   private
 
+  def template_params
+    params.require(:template).permit(
+      :name,
+      { schema: [%i[attachment_uuid name]],
+        submitters: [%i[name uuid]],
+        fields: [[:uuid, :submitter_uuid, :name, :type,
+                  :required, :readonly, :default_value,
+                  :title, :description,
+                  { preferences: {},
+                    conditions: [%i[field_uuid value action]],
+                    options: [%i[value uuid]],
+                    validation: %i[message pattern],
+                    areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
+    )
+  end
+
   def authorized_clone_account_id?(account_id)
     true_user.account_id.to_s == account_id.to_s || true_user.account.linked_accounts.exists?(id: account_id)
   end
@@ -96,10 +118,6 @@ class TemplatesController < ApplicationController
     else
       redirect_back(fallback_location: root_path, notice: 'Template has been clonned')
     end
-  end
-
-  def template_params
-    params.require(:template).permit(:name)
   end
 
   def load_base_template

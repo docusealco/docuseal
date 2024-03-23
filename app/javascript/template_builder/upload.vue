@@ -119,7 +119,7 @@ export default {
 
         this.isProcessing = true
 
-        this.baseFetch(`/api/templates/${this.templateId}/documents`, {
+        this.baseFetch(`/templates/${this.templateId}/documents`, {
           method: 'POST',
           body: JSON.stringify({ blobs }),
           headers: { 'Content-Type': 'application/json' }
@@ -132,7 +132,7 @@ export default {
           } else if (resp.status === 422) {
             resp.json().then((data) => {
               if (data.error === 'PDF encrypted') {
-                this.baseFetch(`/api/templates/${this.templateId}/documents`, {
+                this.baseFetch(`/templates/${this.templateId}/documents`, {
                   method: 'POST',
                   body: JSON.stringify({ blobs, password: prompt('Enter PDF password') }),
                   headers: { 'Content-Type': 'application/json' }
@@ -151,7 +151,7 @@ export default {
           this.isProcessing = false
         })
       } else {
-        this.baseFetch(`/api/templates/${this.templateId}/documents`, {
+        this.baseFetch(`/templates/${this.templateId}/documents`, {
           method: 'POST',
           body: new FormData(this.$refs.form)
         }).then((resp) => {
@@ -167,7 +167,7 @@ export default {
 
                 formData.append('password', prompt('Enter PDF password'))
 
-                this.baseFetch(`/api/templates/${this.templateId}/documents`, {
+                this.baseFetch(`/templates/${this.templateId}/documents`, {
                   method: 'POST',
                   body: formData
                 }).then(async (resp) => {

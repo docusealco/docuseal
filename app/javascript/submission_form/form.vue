@@ -611,6 +611,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
+    },
     i18n: {
       type: Object,
       required: false,
@@ -657,9 +662,6 @@ export default {
     },
     queryParams () {
       return new URLSearchParams(window.location.search)
-    },
-    authenticityToken () {
-      return document.querySelector('meta[name="csrf-token"]')?.content
     },
     submitterSlug () {
       return this.submitter.slug

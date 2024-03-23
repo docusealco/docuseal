@@ -37,7 +37,6 @@ Rails.application.routes.draw do
     resources :templates, only: %i[update show index destroy] do
       resources :clone, only: %i[create], controller: 'templates_clone'
       resources :submissions, only: %i[index create]
-      resources :documents, only: %i[create], controller: 'templates_documents'
     end
   end
 
@@ -65,7 +64,8 @@ Rails.application.routes.draw do
   resources :templates_archived, only: %i[index], path: 'archived'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :template_sharings_testing, only: %i[create]
-  resources :templates, only: %i[new create edit show destroy] do
+  resources :templates, only: %i[new create edit update show destroy] do
+    resources :documents, only: %i[create], controller: 'template_documents'
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
