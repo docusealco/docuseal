@@ -30,7 +30,8 @@ class SubmitterMailer < ApplicationMailer
       to: @submitter.friendly_name,
       from: from_address_for_submitter(submitter),
       subject:,
-      reply_to: (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+      reply_to: submitter.preferences['reply_to'].presence ||
+                (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
     )
   end
 
@@ -84,6 +85,9 @@ class SubmitterMailer < ApplicationMailer
 
     mail(from: from_address_for_submitter(submitter),
          to: to || @submitter.friendly_name,
+         reply_to: @submitter.preferences['reply_to'].presence ||
+                   (@submitter.submission.created_by_user ||
+                    @submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@'),
          subject:)
   end
 

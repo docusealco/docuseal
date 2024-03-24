@@ -161,11 +161,11 @@ module Api
 
     def submissions_params
       permitted_attrs = [
-        :send_email, :send_sms, :bcc_completed, :completed_redirect_url,
+        :send_email, :send_sms, :bcc_completed, :completed_redirect_url, :reply_to,
         {
           message: %i[subject body],
           submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
-                        :completed, :phone, :application_key, :external_id,
+                        :completed, :phone, :application_key, :external_id, :reply_to,
                         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
                           fields: [%i[name default_value title description
                                       readonly validation_pattern invalid_message]] }]]

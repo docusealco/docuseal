@@ -61,6 +61,7 @@ module Submitters
     preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
     preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
     preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
+    preferences['reply_to'] = params['reply_to'] if params.key?('reply_to')
     preferences['completed_redirect_url'] = params['completed_redirect_url'] if params.key?('completed_redirect_url')
 
     preferences

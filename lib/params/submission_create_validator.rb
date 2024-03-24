@@ -42,6 +42,7 @@ module Params
       type(params, :order, String)
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)
+      type(params, :reply_to, String)
       type(params, :message, Hash)
       type(params, :submitters, Array)
 
@@ -69,6 +70,7 @@ module Params
       required(submitter_params, %i[email phone name])
 
       type(submitter_params, :name, String)
+      type(submitter_params, :reply_to, String)
       type(submitter_params, :email, String)
       format(submitter_params, :email, /@/, message: 'email is invalid')
       type(submitter_params, :phone, String)
