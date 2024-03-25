@@ -49,6 +49,14 @@ module Api
         @template.folder = TemplateFolders.find_or_create_by_name(current_user, folder_name)
       end
 
+      Array.wrap(params[:roles].presence || params.dig(:template, :roles).presence).each_with_index do |role, index|
+        if (item = @template.submitters[index])
+          item['name'] = role
+        else
+          @template.submitters << { 'name' => role, 'uuid' => SecureRandom.uuid }
+        end
+      end
+
       archived = params.key?(:archived) ? params[:archived] : params.dig(:template, :archived)
 
       if archived.in?([true, false])
