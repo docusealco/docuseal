@@ -30,6 +30,8 @@ module Submissions
     RTL_REGEXP = TextUtils::RTL_REGEXP
     MAX_IMAGE_HEIGHT = 100
 
+    US_TIMEZONES = %w[EST CST MST PST HST AKDT].freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -38,6 +40,12 @@ module Submissions
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
       verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
+      page_size =
+        if TimeUtils.timezone_abbr(account.timezone, Time.current.beginning_of_year).in?(US_TIMEZONES)
+          :Letter
+        else
+          :A4
+        end
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
       composer.document.fonts.add(FONT_BOLD_NAME, variant: :bold)
@@ -53,7 +61,7 @@ module Submissions
         height: 1
       )
 
-      composer.page_style(:default, page_size: :A4) do |canvas, style|
+      composer.page_style(:default, page_size:) do |canvas, style|
         box = canvas.context.box(:media)
         canvas.save_graphics_state do
           canvas.fill_color('FAF7F5')
