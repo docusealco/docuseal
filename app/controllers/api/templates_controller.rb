@@ -84,9 +84,9 @@ module Api
 
     def template_params
       if params.key?(:template)
-        params.require(:template).permit(:name)
+        params.require(:template).permit(:name, submitters: [%i[name uuid]])
       else
-        params.permit(:name)
+        params.permit(:name, submitters: [%i[name uuid]])
       end
     end
   end
