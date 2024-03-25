@@ -36,7 +36,6 @@ FROM ruby:3.2.2-alpine3.18 as app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
-ENV PIDFILE=/dev/null
 
 WORKDIR /app
 
@@ -67,4 +66,4 @@ WORKDIR /data/docuseal
 ENV WORKDIR=/data/docuseal
 
 EXPOSE 3000
-CMD ["/app/bin/rails", "server"]
+CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]
