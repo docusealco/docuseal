@@ -159,7 +159,9 @@ module Submissions
             if field['type'].in?(%w[multiple radio])
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
-              value = Array.wrap(value).include?(option['value'])
+              option_name = option['value'].presence || "Option #{field['options'].index(option) + 1}"
+
+              value = Array.wrap(value).include?(option_name)
             end
 
             next unless value == true
