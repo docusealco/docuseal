@@ -956,13 +956,20 @@ export default {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 
+      const removedFieldUuids = []
+
       this.template.fields.forEach((field) => {
         [...(field.areas || [])].forEach((area) => {
           if (area.attachment_uuid === item.attachment_uuid) {
             field.areas.splice(field.areas.indexOf(area), 1)
+
+            removedFieldUuids.push(field.uuid)
           }
         })
       })
+
+      this.template.fields =
+        this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
 
       this.save()
     },
