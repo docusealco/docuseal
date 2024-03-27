@@ -83,6 +83,12 @@ module Submissions
 
           next if Array.wrap(value).compact_blank.blank?
 
+          begin
+            page.flatten_annotations
+          rescue StandardError => e
+            Rollbar.error(e) if defined?(Rollbar)
+          end
+
           canvas = page.canvas(type: :overlay)
           canvas.font(FONT_NAME, size: font_size)
 
