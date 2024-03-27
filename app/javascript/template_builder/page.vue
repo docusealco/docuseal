@@ -77,6 +77,11 @@ export default {
       required: false,
       default: () => []
     },
+    drawFieldType: {
+      type: String,
+      required: false,
+      default: ''
+    },
     allowDraw: {
       type: Boolean,
       required: false,
@@ -123,7 +128,9 @@ export default {
   },
   computed: {
     defaultFieldType () {
-      if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
+      if (this.drawFieldType) {
+        return this.drawFieldType
+      } else if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
         return this.defaultDrawFieldType
       } else if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes('text')) {
         return this.fieldTypes[0]

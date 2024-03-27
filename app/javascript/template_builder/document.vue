@@ -12,6 +12,7 @@
       :default-fields="defaultFields"
       :default-submitters="defaultSubmitters"
       :draw-field="drawField"
+      :draw-field-type="drawFieldType"
       :selected-submitter="selectedSubmitter"
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
@@ -42,6 +43,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    drawFieldType: {
+      type: String,
+      required: false,
+      default: ''
     },
     defaultSubmitters: {
       type: Array,

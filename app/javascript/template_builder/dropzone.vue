@@ -5,7 +5,7 @@
     @drop.prevent="onDropFiles"
   >
     <label
-      class="w-full relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed"
+      class="w-full relative hover:bg-base-200/30 rounded-md border border-2 border-base-content/10 border-dashed"
       :for="inputId"
       :class="{ 'opacity-50': isLoading || isProcessing }"
     >

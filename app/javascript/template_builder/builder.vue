@@ -166,9 +166,10 @@
                 :allow-draw="!onlyDefinedFields"
                 :default-submitters="defaultSubmitters"
                 :draw-field="drawField"
+                :draw-field-type="drawFieldType"
                 :editable="editable"
                 :base-url="baseUrl"
-                @draw="onDraw"
+                @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
               />
@@ -210,13 +211,13 @@
         :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
-          v-if="drawField"
+          v-if="showDrawField || drawField"
           class="sticky inset-0 h-full z-20"
           :style="{ backgroundColor }"
         >
-          <div class="bg-base-300 rounded-lg p-5 text-center space-y-4">
+          <div class="bg-base-200 rounded-lg p-5 text-center space-y-4">
             <p>
-              {{ t('draw_field_on_the_document').replace('{field}', drawField.name) }}
+              {{ t('draw_field_on_the_document').replace('{field}', drawField?.name || '') }}
             </p>
             <div>
               <button
@@ -226,10 +227,10 @@
                 {{ t('cancel') }}
               </button>
               <a
-                v-if="!drawOption && !drawField.areas.length && !['stamp', 'signature', 'initials'].includes(drawField.type)"
+                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials'].includes(drawField?.type || drawFieldType)"
                 href="#"
                 class="link block mt-3 text-sm"
-                @click.prevent="[drawField = null, drawOption = null]"
+                @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
               >
                 {{ t('or_add_field_without_drawing') }}
               </a>
@@ -244,12 +245,15 @@
             :selected-submitter="selectedSubmitter"
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
+            :draw-field-type="drawFieldType"
             :default-fields="defaultFields"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
+            @add-field="addField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
+            @set-draw-type="[drawFieldType = $event, showDrawField = true]"
             @set-drag="dragField = $event"
             @change-submitter="selectedSubmitter = $event"
             @drag-end="dragField = null"
@@ -375,6 +379,11 @@ export default {
       required: false,
       default: () => []
     },
+    withSelectedFieldType: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     defaultDrawFieldType: {
       type: String,
       required: false,
@@ -491,7 +500,9 @@ export default {
       isBreakpointLg: false,
       isSaving: false,
       selectedSubmitter: null,
+      showDrawField: false,
       drawField: null,
+      drawFieldType: null,
       drawOption: null,
       dragField: null
     }
@@ -574,6 +585,34 @@ export default {
     t (key) {
       return this.i18n[key] || i18nEn[key] || key
     },
+    addField (type, area = null) {
+      const field = {
+        name: '',
+        uuid: v4(),
+        required: type !== 'checkbox',
+        areas: area ? [area] : [],
+        submitter_uuid: this.selectedSubmitter.uuid,
+        type
+      }
+
+      if (['select', 'multiple', 'radio'].includes(type)) {
+        field.options = [{ value: '', uuid: v4() }]
+      }
+
+      if (type === 'stamp') {
+        field.readonly = true
+      }
+
+      if (type === 'date') {
+        field.preferences = {
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+        }
+      }
+
+      this.template.fields.push(field)
+
+      this.save()
+    },
     startFieldDraw ({ name, type }) {
       const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)
 
@@ -654,15 +693,13 @@ export default {
       ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     clearDrawField () {
-      if (this.drawField && !this.drawOption && this.drawField.areas.length === 0) {
-        const fieldIndex = this.template.fields.indexOf(this.drawField)
-
-        if (fieldIndex !== -1) {
-          this.template.fields.splice(fieldIndex, 1)
-        }
-      }
       this.drawField = null
       this.drawOption = null
+      this.showDrawField = false
+
+      if (!this.withSelectedFieldType) {
+        this.drawFieldType = ''
+      }
     },
     onKeyUp (e) {
       if (e.code === 'Escape') {
@@ -712,6 +749,27 @@ export default {
         }
       }
     },
+    setDefaultAreaSize (area, type) {
+      const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+      const pageMask = documentRef.pageRefs[area.page].$refs.mask
+
+      if (type === 'checkbox') {
+        area.w = pageMask.clientWidth / 30 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 30 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
+      } else if (type === 'image') {
+        area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
+      } else if (type === 'signature' || type === 'stamp') {
+        area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight) / 2
+      } else if (type === 'initials') {
+        area.w = pageMask.clientWidth / 10 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
+      } else {
+        area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
+      }
+    },
     onDraw (area) {
       if (this.drawField) {
         if (this.drawOption) {
@@ -734,25 +792,7 @@ export default {
             area.w = previousArea.w
             area.h = previousArea.h
           } else {
-            const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
-            const pageMask = documentRef.pageRefs[area.page].$refs.mask
-
-            if (this.drawField.type === 'checkbox' || this.drawOption) {
-              area.w = pageMask.clientWidth / 30 / pageMask.clientWidth
-              area.h = (pageMask.clientWidth / 30 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
-            } else if (this.drawField.type === 'image') {
-              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
-              area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
-            } else if (this.drawField.type === 'signature' || this.drawField.type === 'stamp') {
-              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
-              area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight) / 2
-            } else if (this.drawField.type === 'initials') {
-              area.w = pageMask.clientWidth / 10 / pageMask.clientWidth
-              area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
-            } else {
-              area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
-              area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
-            }
+            this.setDefaultAreaSize(area, this.drawOption ? 'checkbox' : this.drawField?.type)
           }
 
           area.x -= area.w / 2
@@ -787,13 +827,15 @@ export default {
 
         let type = (pageMask.clientWidth * area.w) < 35 ? 'checkbox' : 'text'
 
-        if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
+        if (this.drawFieldType) {
+          type = this.drawFieldType
+        } else if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
           type = this.defaultDrawFieldType
         } else if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes(type)) {
           type = this.fieldTypes[0]
         }
 
-        if (type === 'checkbox') {
+        if (type === 'checkbox' && !this.drawFieldType) {
           const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
           const previousArea = previousField?.areas?.[previousField.areas.length - 1]
 
@@ -811,21 +853,22 @@ export default {
           }
         }
 
-        if (area.w) {
-          const field = {
-            name: '',
-            uuid: v4(),
-            required: type !== 'checkbox',
-            type,
-            submitter_uuid: this.selectedSubmitter.uuid,
-            areas: [area]
+        if (this.drawFieldType && (area.w === 0 || area.h === 0)) {
+          if (this.selectedField?.type === this.drawFieldType) {
+            area.w = this.selectedAreaRef.value.w
+            area.h = this.selectedAreaRef.value.h
+          } else {
+            this.setDefaultAreaSize(area, this.drawFieldType)
           }
 
-          this.template.fields.push(field)
+          area.x -= area.w / 2
+          area.y -= area.h / 2
+        }
+
+        if (area.w) {
+          this.addField(type, area)
 
           this.selectedAreaRef.value = area
-
-          this.save()
         }
       }
     },

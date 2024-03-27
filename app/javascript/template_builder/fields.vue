@@ -105,14 +105,18 @@
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
-        class="field-type-button group flex items-center justify-center border border-dashed border-base-300 hover:border-base-content/20 w-full rounded relative"
+        class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative"
         :style="{ backgroundColor: backgroundColor }"
+        :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
         @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"
-        @click="addField(type)"
+        @click="['file', 'payment'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
-        <div class="flex items-console group-hover:bg-base-200/50 transition-all cursor-grab h-full absolute left-0">
-          <IconDrag class=" my-auto" />
+        <div
+          class="flex items-console transition-all cursor-grab h-full absolute left-0"
+          :class="drawFieldType === type ? 'bg-base-200/50' : 'group-hover:bg-base-200/50'"
+        >
+          <IconDrag class="my-auto" />
         </div>
         <div class="flex items-center flex-col px-2 py-2">
           <component :is="icon" />
@@ -170,10 +174,9 @@
 
 <script>
 import Field from './field'
-import { v4 } from 'uuid'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
-import { IconLock } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 
 export default {
@@ -181,6 +184,7 @@ export default {
   components: {
     Field,
     FieldType,
+    IconCirclePlus,
     FieldSubmitter,
     IconDrag,
     IconLock
@@ -211,6 +215,11 @@ export default {
       required: false,
       default: true
     },
+    drawFieldType: {
+      type: String,
+      required: false,
+      default: ''
+    },
     defaultSubmitters: {
       type: Array,
       required: false,
@@ -235,7 +244,7 @@ export default {
       required: true
     }
   },
-  emits: ['set-draw', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
   data () {
     return {
       defaultFieldsSearch: ''
@@ -331,38 +340,6 @@ export default {
           }
         })
       })
-
-      this.save()
-    },
-    addField (type, area = null) {
-      const field = {
-        name: '',
-        uuid: v4(),
-        required: type !== 'checkbox',
-        areas: [],
-        submitter_uuid: this.selectedSubmitter.uuid,
-        type
-      }
-
-      if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = [{ value: '', uuid: v4() }]
-      }
-
-      if (type === 'stamp') {
-        field.readonly = true
-      }
-
-      if (type === 'date') {
-        field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
-        }
-      }
-
-      this.fields.push(field)
-
-      if (!['payment', 'file'].includes(type)) {
-        this.$emit('set-draw', { field })
-      }
 
       this.save()
     }
