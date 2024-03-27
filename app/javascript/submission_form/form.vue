@@ -208,6 +208,7 @@
                       :name="`values[${currentField.uuid}]`"
                       :value="option.value || `${t('option')} ${index + 1}`"
                       :required="currentField.required"
+                      @click="scrollIntoField(currentField)"
                     >
                     <span class="text-xl">
                       {{ option.value || `${t('option')} ${index + 1}` }}
