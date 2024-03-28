@@ -43,6 +43,8 @@ module Params
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)
       type(params, :reply_to, String)
+      format(params, :bcc_completed, /@/, message: 'bcc_completed email is invalid')
+      format(params, :reply_to, /@/, message: 'reply_to email is invalid')
       type(params, :message, Hash)
       type(params, :submitters, Array)
 
@@ -73,6 +75,7 @@ module Params
       type(submitter_params, :reply_to, String)
       type(submitter_params, :email, String)
       format(submitter_params, :email, /@/, message: 'email is invalid')
+      format(submitter_params, :reply_to, /@/, message: 'reply_to email is invalid')
       type(submitter_params, :phone, String)
       format(submitter_params, :phone, /\A\+\d+\z/,
              message: 'phone should start with +<country code> and contain only digits')
@@ -102,6 +105,7 @@ module Params
       type(params, :order, String)
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)
+      format(params, :bcc_completed, /@/, message: 'bcc_completed email is invalid')
       type(params, :message, Hash)
 
       in_path(params, :message) do |message_params|
