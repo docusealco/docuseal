@@ -93,6 +93,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       withPayment: this.dataset.withPayment === 'true',
+      isPaymentConnected: this.dataset.isPaymentConnected === 'true',
       withFormula: this.dataset.withFormula === 'true',
       withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),

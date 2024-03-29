@@ -332,6 +332,7 @@ export default {
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withPayment: this.withPayment,
+      isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -469,6 +470,11 @@ export default {
       default: false
     },
     withPayment: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isPaymentConnected: {
       type: Boolean,
       required: false,
       default: false

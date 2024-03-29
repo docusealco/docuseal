@@ -167,7 +167,7 @@ export default {
     IconInnerShadowTop,
     IconBrandStripe
   },
-  inject: ['backgroundColor', 'save', 'currencies', 't'],
+  inject: ['backgroundColor', 'save', 'currencies', 't', 'isPaymentConnected'],
   props: {
     field: {
       type: Object,
@@ -220,6 +220,8 @@ export default {
   },
   mounted () {
     this.field.preferences.currency ||= this.defaultCurrency
+
+    isConnected.value ||= this.isPaymentConnected
 
     if (!this.isConnected) {
       this.checkStatus()
