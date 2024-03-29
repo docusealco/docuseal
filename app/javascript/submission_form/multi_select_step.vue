@@ -45,6 +45,7 @@
         <label
           :for="option.uuid"
           class="flex items-center space-x-3"
+          @click="scrollIntoField(field)"
         >
           <input
             :id="option.uuid"
