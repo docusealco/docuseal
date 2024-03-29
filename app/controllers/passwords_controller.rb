@@ -5,6 +5,12 @@ class PasswordsController < Devise::PasswordsController
     attribute :user
   end
 
+  def create
+    super do |resource|
+      resource.errors.clear unless Docuseal.multitenant?
+    end
+  end
+
   def update
     super do |resource|
       Current.user = resource
