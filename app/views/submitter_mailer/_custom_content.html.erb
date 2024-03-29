@@ -1,1 +1,1 @@
-<%= auto_link(simple_format(h(ReplaceEmailVariables.call(local_assigns[:content], submitter: local_assigns[:submitter], sig: local_assigns[:sig])))) %>
+<%= auto_link(simple_format(MarkdownToHtml.call(h(ReplaceEmailVariables.call(local_assigns[:content], submitter: local_assigns[:submitter], sig: local_assigns[:sig]))))) %>
