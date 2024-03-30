@@ -83,6 +83,11 @@ button[disabled] .enabled {
   bottom: auto;
 }
 
+.tooltip-pre:before {
+  white-space: pre;
+  text-align: left;
+}
+
 .tooltip-bottom-end:after {
   transform: translateX(-25%);
   border-color: transparent transparent var(--tooltip-color) transparent;

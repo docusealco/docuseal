@@ -9,7 +9,6 @@ class UpdateFieldOptions < ActiveRecord::Migration[7.0]
     self.table_name = 'submissions'
   end
 
-  # rubocop:disable Metrics
   def up
     MigrationTemplate.find_each do |template|
       next if template.fields.blank?
@@ -43,7 +42,6 @@ class UpdateFieldOptions < ActiveRecord::Migration[7.0]
       submission.update_columns(template_fields: new_fields.to_json) if template_fields != new_fields
     end
   end
-  # rubocop:enable Metrics
 
   def down
     nil

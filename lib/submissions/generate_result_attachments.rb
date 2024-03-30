@@ -43,7 +43,7 @@ module Submissions
 
       template = submitter.submission.template
 
-      account = submitter.submission.template.account
+      account = submitter.account
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
       attachments_data_cache = {}

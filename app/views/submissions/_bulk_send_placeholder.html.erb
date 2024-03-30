@@ -1,0 +1,11 @@
+<div class="alert">
+  <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+  <div>
+    <p class="font-bold">Bulk send from Excel XLSX or CSV</p>
+    <p class="text-gray-700">
+      Unlock with DocuSeal Pro
+      <br>
+      <a class="link font-medium" target="_blank" href="<%= Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}" %>" data-turbo="false">Learn More</a>
+    </p>
+  </div>
+</div>

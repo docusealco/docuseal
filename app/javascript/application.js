@@ -3,6 +3,7 @@ import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascrip
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
+import ImportList from './template_builder/import_list'
 
 import ToggleVisible from './elements/toggle_visible'
 import DisableHidden from './elements/disable_hidden'
@@ -99,6 +100,26 @@ window.customElements.define('template-builder', class extends HTMLElement {
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       isDirectUpload: this.dataset.isDirectUpload === 'true'
+    })
+
+    this.app.mount(this.appElem)
+
+    this.appendChild(this.appElem)
+  }
+
+  disconnectedCallback () {
+    this.app?.unmount()
+    this.appElem?.remove()
+  }
+})
+
+window.customElements.define('import-list', class extends HTMLElement {
+  connectedCallback () {
+    this.appElem = document.createElement('div')
+
+    this.app = createApp(ImportList, {
+      template: JSON.parse(this.dataset.template),
+      authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content
     })
 
     this.app.mount(this.appElem)

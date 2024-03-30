@@ -8,7 +8,8 @@
   },
   "rules": {
     "vue/no-deprecated-html-element-is": 0,
-    "vue/no-mutating-props": 0
+    "vue/no-mutating-props": 0,
+    "vue/one-component-per-file": 0
   },
   "parserOptions": {
     "ecmaVersion": 2022,

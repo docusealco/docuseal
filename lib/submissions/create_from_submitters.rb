@@ -7,7 +7,7 @@ module Submissions
     def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false, params: {})
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
-      Array.wrap(submissions_attrs).map do |attrs|
+      Array.wrap(submissions_attrs).filter_map do |attrs|
         submission_preferences = Submitters.normalize_preferences(user.account, user, attrs)
         submission_preferences = preferences.merge(submission_preferences)
 
@@ -35,6 +35,8 @@ module Submissions
                           is_order_sent:, mark_as_sent:, user:,
                           preferences: preferences.merge(submission_preferences))
         end
+
+        next if submission.submitters.blank?
 
         submission.tap(&:save!)
       end

@@ -52,6 +52,7 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - Automated reminders
 - Invitation and identify verification via SMS
 - Conditional fields and formulas
+- Bulk send with CSV, XLSX spreadsheet import
 - SSO / SAML
 - Template creation with HTML API ([Guide](https://www.docuseal.co/guides/create-pdf-document-fillable-form-with-html-api))
 - Template creation with PDF or DOCX and field tags API ([Guide](https://www.docuseal.co/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
