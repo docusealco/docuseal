@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module ActionMailerConfigsInterceptor
+  OPEN_TIMEOUT = 15
+  READ_TIMEOUT = 25
+
   module_function
 
   def delivering_email(message)
@@ -43,6 +46,8 @@ module ActionMailerConfigsInterceptor
       openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
       authentication: value.fetch('authentication', 'plain'),
       enable_starttls_auto: true,
+      open_timeout: OPEN_TIMEOUT,
+      read_timeout: READ_TIMEOUT,
       ssl: value['security'] == 'ssl',
       tls: value['security'] == 'tls' || (value['security'].blank? && value['port'].to_s == '465')
     }.compact_blank
