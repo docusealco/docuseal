@@ -38,6 +38,9 @@ module Submitters
         submitter.ua = request.user_agent
         submitter.values = merge_default_values(submitter)
         submitter.values = merge_formula_values(submitter)
+        submitter.values = submitter.values.transform_values do |v|
+          v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
+        end
       end
 
       ApplicationRecord.transaction do
@@ -121,11 +124,11 @@ module Submitters
 
       replace_default_variables(value,
                                 submitter.attributes.merge('role' => role),
-                                submitter.submission.template,
+                                submitter.submission,
                                 with_time:)
     end
 
-    def replace_default_variables(value, attrs, template, with_time: false)
+    def replace_default_variables(value, attrs, submission, with_time: false)
       return value if value.in?([true, false])
       return if value.blank?
 
@@ -135,13 +138,14 @@ module Submitters
           attrs['submission_id']
         when 'time'
           if with_time
-            I18n.l(Time.current.in_time_zone(template.account.timezone), format: :long, locale: template.account.locale)
+            I18n.l(Time.current.in_time_zone(submission.account.timezone),
+                   format: :long, locale: submission.account.locale)
           else
             e
           end
         when 'date'
           if with_time
-            I18n.l(Time.current.in_time_zone(template.account.timezone).to_date)
+            I18n.l(Time.current.in_time_zone(submission.account.timezone).to_date)
           else
             e
           end
