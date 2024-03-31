@@ -33,9 +33,10 @@
         <% end %>
       <% end %>
     </div>
-  <% elsif field['type'] == 'date' && value != '{{date}}' %>
+  <% elsif field['type'] == 'date' %>
     <autosize-field></autosize-field>
     <div class="flex items-center px-0.5">
+      <% value = Time.current.in_time_zone(local_assigns[:timezone]).to_date.to_s if value == '{{date}}' %>
       <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), local_assigns[:locale]) %>
     </div>
   <% else %>

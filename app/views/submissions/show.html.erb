@@ -1,6 +1,6 @@
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= signed_in? && @submission.template.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
+    <a href="<%= signed_in? && @submission.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
       <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><%= @submission.template.name %></span>
     </a>
@@ -63,7 +63,7 @@
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']] %>
                   <% next if value.blank? %>
-                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.template.account.locale %>
+                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone %>
                 <% end %>
               </div>
             </div>
@@ -112,7 +112,7 @@
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
-                <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.template.account.timezone), format: :long, locale: @submission.template.account.locale) : 'Not completed yet' %>
+                <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
               </span>
             </div>
             <% if signed_in? && submitter && submitter.email && !submitter.completed_at && can?(:update, submitter) %>
@@ -162,7 +162,7 @@
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
                 <% elsif field['type'] == 'date' %>
-                  <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.template.account.locale) %>
+                  <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                 <% else %>
                   <%= Array.wrap(value).join(', ') %>
                 <% end %>

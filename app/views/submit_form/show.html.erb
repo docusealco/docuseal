@@ -25,7 +25,7 @@
                 <% next if value.blank? %>
                 <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
                 <% next if field.dig('preferences', 'formula') && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.account.locale %>
+                <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone %>
               <% end %>
             </div>
           </div>
