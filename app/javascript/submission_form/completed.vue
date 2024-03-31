@@ -212,9 +212,9 @@ export default {
       fileRequests.reduce(
         (prevPromise, request) => prevPromise.then(() => request()),
         Promise.resolve()
-      )
-
-      this.isDownloading = false
+      ).finally(() => {
+        this.isDownloading = false
+      })
     },
     sanitizeHref (href) {
       if (href && href.trim().match(/^((?:https?:\/\/)|\/)/)) {
