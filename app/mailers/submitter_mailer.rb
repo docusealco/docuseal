@@ -7,7 +7,7 @@ class SubmitterMailer < ApplicationMailer
   DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
 
   def invitation_email(submitter)
-    @current_account = submitter.submission.template.account
+    @current_account = submitter.submission.account
     @submitter = submitter
 
     if submitter.preferences['email_message_uuid']
@@ -36,7 +36,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def completed_email(submitter, user, to: nil)
-    @current_account = submitter.submission.template.account
+    @current_account = submitter.submission.account
     @submitter = submitter
     @submission = submitter.submission
     @user = user
@@ -64,7 +64,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def documents_copy_email(submitter, to: nil, sig: false)
-    @current_account = submitter.submission.template.account
+    @current_account = submitter.submission.account
     @submitter = submitter
     @sig = submitter.signed_id(expires_in: SIGN_TTL, purpose: :download_completed) if sig
 

@@ -9,7 +9,7 @@ module Submitters
     module_function
 
     def call(submitter, keys = [])
-      configs = submitter.submission.template.account.account_configs
+      configs = submitter.submission.account.account_configs
                          .where(key: DEFAULT_KEYS + keys)
 
       completed_button = configs.find { |e| e.key == AccountConfig::FORM_COMPLETED_BUTTON_KEY }&.value || {}

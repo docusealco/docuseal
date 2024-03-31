@@ -36,7 +36,7 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submission)
-      account = submission.template.account
+      account = submission.account
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
       verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
