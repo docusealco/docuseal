@@ -160,52 +160,62 @@
     </div>
     <div
       v-else
-      class="flex h-52 w-full"
-      @dragover.prevent
-      @drop.prevent="onDropFiles"
     >
-      <label
-        class="w-full relative hover:bg-base-200/30 rounded-md border border-2 border-base-content/10 border-dashed"
-        for="import_list_file"
-        :class="{ 'opacity-50': isLoading }"
+      <div
+        class="flex h-52 w-full"
+        @dragover.prevent
+        @drop.prevent="onDropFiles"
       >
-        <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
-          <div class="flex flex-col items-center">
-            <IconInnerShadowTop
-              v-if="isLoading"
-              class="animate-spin"
-              :width="40"
-              :height="40"
-            />
-            <IconCloudUpload
-              v-else
-              :width="40"
-              :height="40"
-            />
-            <div
-              class="font-medium text-lg mb-1"
-            >
-              Upload CSV or XLSX Spreadsheet
-            </div>
-            <div class="text-sm">
-              <span class="font-medium">Click to Upload</span> or drag and drop files.
+        <label
+          class="w-full relative bg-base-200/20  hover:bg-base-200/30 rounded-md border border-2 border-base-content/10 border-dashed"
+          for="import_list_file"
+          :class="{ 'opacity-50': isLoading }"
+        >
+          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <IconInnerShadowTop
+                v-if="isLoading"
+                class="animate-spin"
+                :width="40"
+                :height="40"
+              />
+              <IconCloudUpload
+                v-else
+                :width="40"
+                :height="40"
+              />
+              <div
+                class="font-medium text-lg mb-1"
+              >
+                Upload CSV or XLSX Spreadsheet
+              </div>
+              <div class="text-sm">
+                <span class="font-medium">Click to Upload</span> or drag and drop files.
+              </div>
             </div>
           </div>
-        </div>
-        <form
-          ref="form"
-          class="hidden"
-        >
-          <input
-            id="import_list_file"
-            ref="input"
-            type="file"
-            name="file"
-            accept=".xlsx, .xls, .csv"
-            @change="onSelectFile"
+          <form
+            ref="form"
+            class="hidden"
           >
-        </form>
-      </label>
+            <input
+              id="import_list_file"
+              ref="input"
+              type="file"
+              name="file"
+              accept=".xlsx, .xls, .csv"
+              @change="onSelectFile"
+            >
+          </form>
+        </label>
+      </div>
+      <div class="text-center mt-2">
+        Or <a
+          :download="`${template.name}.csv`"
+          :href="`data:text/csv;base64,${csvBase64}`"
+          class="link font-medium"
+        >download</a> a spreadsheet to fill and import
+      </div>
     </div>
   </div>
 </template>
@@ -273,6 +283,25 @@ export default {
       })
 
       return submissions
+    },
+    csvBase64 () {
+      const rows = []
+
+      this.submitters.forEach((submitter) => {
+        this.selectFieldsForSubmitter(submitter).forEach((field) => {
+          rows.push(this.submitters.length > 1 ? `${submitter.name} - ${field.name}` : field.name)
+        })
+      })
+
+      const csv = rows.map(item => {
+        if (/[",\n]/.test(item)) {
+          return `"${item.replace(/"/g, '""')}"`
+        } else {
+          return item
+        }
+      }).join(',')
+
+      return window.btoa(csv + '\n' + rows.map(() => '').join(',') + '\n')
     },
     submitters () {
       return this.template.submitters
