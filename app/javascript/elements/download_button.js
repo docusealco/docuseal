@@ -48,9 +48,9 @@ export default targetable(class extends HTMLElement {
     fileRequests.reduce(
       (prevPromise, request) => prevPromise.then(() => request()),
       Promise.resolve()
-    )
-
-    this.toggleState()
+    ).finally(() => {
+      this.toggleState()
+    })
   }
 
   downloadSafariIos (urls) {
