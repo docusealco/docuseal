@@ -54,7 +54,7 @@ module Submitters
         value.to_s
       elsif field['type'] == 'number' && value.present?
         (value.to_f % 1).zero? ? value.to_i : value.to_f
-      elsif field['type'] == 'date' && value.present?
+      elsif field['type'] == 'date' && value.present? && value != '{{date}}'
         if value.is_a?(Integer)
           Time.zone.at(value.to_s.first(10).to_i).to_date
         else
