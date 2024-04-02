@@ -1,0 +1,12 @@
+<form action="<%= root_path %>" method="get" class="bg-base-200 px-1.5 rounded-xl py-1">
+  <toggle-cookies data-value="templates" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="Templates">
+    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9' : 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>">
+      <%= svg_icon('layout_grid', class: 'w-6 h-6 stroke-2') %>
+    </button>
+  </toggle-cookies>
+  <toggle-cookies data-value="submissions" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="Submissions">
+    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9' : 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>">
+      <%= svg_icon('layout_list', class: 'w-6 h-6 stroke-2') %>
+    </button>
+  </toggle-cookies>
+</form>

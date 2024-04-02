@@ -1,0 +1,61 @@
+<% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
+<% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
+<div class="flex justify-between mb-4 items-center">
+  <div class="flex items-center">
+    <% if has_archived || @pagy.count > 0 %>
+      <div class="mr-2">
+        <%= render 'dashboard/toggle_view', selected: 'templates' %>
+      </div>
+    <% end %>
+    <h1 class="text-3xl sm:text-4xl font-bold"><span class="hidden md:inline">Document</span> Templates</h1>
+  </div>
+  <div class="flex space-x-2">
+    <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <%= render 'shared/search_input' %>
+    <% end %>
+    <% if can?(:create, ::Template) %>
+      <span class="hidden sm:block">
+        <%= render 'templates/upload_button' %>
+      </span>
+      <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+        <span class="hidden md:block">Create</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% view_archived_html = capture do %>
+  <% if has_archived %>
+    <div>
+      <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+    </div>
+  <% end %>
+<% end %>
+<% if @template_folders.present? %>
+  <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
+    <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+  </div>
+<% end %>
+<% if @templates.present? %>
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render partial: 'templates/template', collection: @templates %>
+  </div>
+<% end %>
+<% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
+  <%= render 'templates/dropzone' %>
+<% end %>
+<% if @templates.present? || params[:q].blank? %>
+  <% if @pagy.pages > 1 %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
+  <% else %>
+    <div class="mt-2">
+      <%= view_archived_html %>
+    </div>
+  <% end %>
+<% elsif params[:q].present? %>
+  <div class="text-center">
+    <div class="mt-16 text-3xl font-semibold">
+      Templates not Found
+    </div>
+  </div>
+<% end %>

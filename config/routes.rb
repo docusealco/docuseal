@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy]
   resource :user_signature, only: %i[edit update destroy]
+  resources :submissions_archived, only: %i[index], path: 'submissions/archived'
+  resources :submissions, only: %i[index], controller: 'submissions_dashboard'
   resources :submissions, only: %i[show destroy]
   resources :console_redirect, only: %i[index]
   resources :upgrade, only: %i[index], controller: 'console_redirect'
@@ -61,9 +63,10 @@ Rails.application.routes.draw do
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'
   end
-  resources :templates_archived, only: %i[index], path: 'archived'
+  resources :templates_archived, only: %i[index], path: 'templates/archived'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :template_sharings_testing, only: %i[create]
+  resources :templates, only: %i[index], controller: 'templates_dashboard'
   resources :templates, only: %i[new create edit update show destroy] do
     resources :documents, only: %i[create], controller: 'template_documents'
     resources :restore, only: %i[create], controller: 'templates_restore'

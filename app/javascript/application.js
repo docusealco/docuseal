@@ -6,6 +6,7 @@ import TemplateBuilder from './template_builder/builder'
 import ImportList from './template_builder/import_list'
 
 import ToggleVisible from './elements/toggle_visible'
+import ToggleCookies from './elements/toggle_cookies'
 import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
 import FileDropzone from './elements/file_dropzone'
@@ -56,6 +57,7 @@ window.customElements.define('signature-form', SignatureForm)
 window.customElements.define('submit-form', SubmitForm)
 window.customElements.define('prompt-password', PromptPassword)
 window.customElements.define('emails-textarea', EmailsTextarea)
+window.customElements.define('toggle-cookies', ToggleCookies)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {

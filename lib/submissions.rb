@@ -7,7 +7,7 @@ module Submissions
 
   module_function
 
-  def search(submissions, keyword, search_values: false)
+  def search(submissions, keyword, search_values: false, search_template: false)
     return submissions if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -19,6 +19,12 @@ module Submissions
                              .or(arel_table[:name].lower.matches(term))
 
     arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
+
+    if search_template
+      submissions = submissions.joins(:template)
+
+      arel = arel.or(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
+    end
 
     submissions.joins(:submitters).where(arel).distinct
   end
