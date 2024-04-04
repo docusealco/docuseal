@@ -541,6 +541,12 @@ export default {
     }
   },
   created () {
+    if (!this.template.fields?.length && this.template.submitters?.length === 1) {
+      if (this.template.submitters[0]?.name === 'First Party') {
+        this.template.submitters[0].name = this.t('first_party')
+      }
+    }
+
     const existingSubmittersUuids = this.defaultSubmitters.map((name) => {
       return this.template.submitters.find(e => e.name === name)?.uuid
     })
