@@ -582,7 +582,7 @@ export default {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
     dateFormats () {
-      return [
+      const formats = [
         'MM/DD/YYYY',
         'DD/MM/YYYY',
         'YYYY-MM-DD',
@@ -593,6 +593,16 @@ export default {
         'D MMM YYYY',
         'D MMMM YYYY'
       ]
+
+      if (Intl.DateTimeFormat().resolvedOptions().timeZone?.includes('Seoul') || navigator.language?.startsWith('ko')) {
+        formats.push('YYYY년 MM월 DD일')
+      }
+
+      if (this.field.preferences?.format && !formats.includes(this.field.preferences.format)) {
+        formats.unshift(this.field.preferences.format)
+      }
+
+      return formats
     },
     defaultName () {
       return this.buildDefaultName(this.field, this.template.fields)
