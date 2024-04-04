@@ -9,11 +9,14 @@ class VerifyPdfSignatureController < ApplicationController
         HexaPDF::Document.new(io: file.open)
       end
 
-    cert_data = if Docuseal.multitenant?
-                  Docuseal::CERTS
-                else
-                  EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
-                end
+    cert_data =
+      if Docuseal.multitenant?
+        value = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+
+        Docuseal::CERTS.merge(value)
+      else
+        EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+      end
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data)
 
