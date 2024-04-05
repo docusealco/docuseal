@@ -37,6 +37,7 @@ module Accounts
     return user if user
 
     testing_account = account.dup.tap { |a| a.name = "Testing - #{a.name}" }
+    testing_account.uuid = SecureRandom.uuid
 
     ApplicationRecord.transaction do
       account.testing_accounts << testing_account
