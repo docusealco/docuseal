@@ -8,10 +8,17 @@
 #  locale     :string           not null
 #  name       :string           not null
 #  timezone   :string           not null
+#  uuid       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_accounts_on_uuid  (uuid) UNIQUE
+#
 class Account < ApplicationRecord
+  attribute :uuid, :string, default: -> { SecureRandom.uuid }
+
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
