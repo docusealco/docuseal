@@ -26,7 +26,7 @@
           @update:model-value="updateName"
         />
       </div>
-      <div class="space-x-3 flex items-center">
+      <div class="space-x-3 flex items-center flex-shrink-0">
         <slot
           v-if="$slots.buttons"
           name="buttons"
@@ -40,7 +40,7 @@
             @click="maybeShowEmptyTemplateAlert"
           >
             <IconWritingSign
-              width="20"
+              width="22"
               class="inline"
             />
             <span class="hidden md:inline">
