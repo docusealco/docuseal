@@ -76,7 +76,8 @@ module Api
         :send_email, :send_sms, :uuid, :name, :email, :role,
         :completed, :phone, :application_key, :external_id,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
-          fields: [%i[name default_value readonly validation_pattern invalid_message]] }
+          fields: [[:name, :default_value, :readonly, :validation_pattern, :invalid_message,
+                    { default_value: [] }]] }
       )
     end
 
