@@ -2,7 +2,7 @@
   <div class="relative flex items-start justify-between w-full space-x-0">
     <div>
       <h1 class="text-4xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-        <%= template.name %>
+        <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
         <% if template.archived_at? %>
           <span class="badge badge-outline badge-lg align-middle">Archived</span>
         <% end %>
