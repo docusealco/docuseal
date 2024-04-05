@@ -418,6 +418,7 @@
         :is-demo="isDemo"
         :attribution="attribution"
         :completed-button="completedRedirectUrl ? {} : completedButton"
+        :completed-message="completedRedirectUrl ? {} : completedMessage"
         :with-send-copy-button="withSendCopyButton && !completedRedirectUrl"
         :with-download-button="withDownloadButton && !completedRedirectUrl"
         :with-confetti="withConfetti"
@@ -638,6 +639,11 @@ export default {
       default: ''
     },
     completedButton: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    completedMessage: {
       type: Object,
       required: false,
       default: () => ({})

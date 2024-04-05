@@ -3,16 +3,24 @@
     class="mx-auto max-w-md flex flex-col"
     dir="auto"
   >
-    <p class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
+    <div class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
       <IconCircleCheck
         class="inline text-green-600"
         :width="30"
         :height="30"
       />
       <span>
-        {{ t('form_has_been_completed') }}
+        {{ completedMessage.title || t('form_has_been_completed') }}
       </span>
-    </p>
+    </div>
+    <div
+      v-if="completedMessage.body"
+      class="mt-2"
+    >
+      <MarkdownContent
+        :string="completedMessage.body"
+      />
+    </div>
     <div class="space-y-3 mt-5">
       <a
         v-if="completedButton.url"
@@ -92,10 +100,12 @@
 
 <script>
 import { IconCircleCheck, IconBrandGithub, IconMail, IconDownload, IconInnerShadowTop, IconLogin } from '@tabler/icons-vue'
+import MarkdownContent from './markdown_content'
 
 export default {
   name: 'FormCompleted',
   components: {
+    MarkdownContent,
     IconCircleCheck,
     IconInnerShadowTop,
     IconBrandGithub,
@@ -140,6 +150,11 @@ export default {
       default: false
     },
     completedButton: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    completedMessage: {
       type: Object,
       required: false,
       default: () => ({})
