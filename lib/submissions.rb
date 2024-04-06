@@ -105,6 +105,7 @@ module Submissions
   def normalize_email(email)
     return if email.blank?
     return email.downcase if email.to_s.include?(',')
+    return email.downcase if email.to_s.include?('.gob')
 
     EmailTypo.call(email.delete_prefix('<'))
   end
