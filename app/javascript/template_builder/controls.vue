@@ -9,6 +9,7 @@
     <ReplaceButton
       v-if="withReplaceButton"
       :template-id="template.id"
+      :accept-file-types="acceptFileTypes"
       @click.stop
       @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
     />
@@ -61,6 +62,11 @@ export default {
     document: {
       type: Object,
       required: true
+    },
+    acceptFileTypes: {
+      type: String,
+      required: false,
+      default: 'image/*, application/pdf'
     },
     withReplaceButton: {
       type: Boolean,

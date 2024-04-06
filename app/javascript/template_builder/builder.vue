@@ -175,6 +175,7 @@
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
                 :with-replace-button="withUploadButton"
+                :accept-file-types="acceptFileTypes"
                 :document="document"
                 :template="template"
                 class="pb-2 mb-2 border-b border-base-300 border-dashed"
