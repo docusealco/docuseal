@@ -61,9 +61,6 @@ Rails.configuration.to_prepare do
   end
 
   ActiveStorage::DirectUploadsController.before_action do
-    next if current_user
-    next if Submitter.find_signed(cookies[:submitter_sid])
-
     head :forbidden
   end
 

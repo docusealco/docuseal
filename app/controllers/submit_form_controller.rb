@@ -31,8 +31,6 @@ class SubmitFormController < ApplicationController
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
-    cookies[:submitter_sid] = @submitter.signed_id
-
     render(@submitter.submission.template.archived_at? || @submitter.submission.archived_at? ? :archived : :show)
   end
 
