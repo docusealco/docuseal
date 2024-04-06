@@ -42,11 +42,6 @@
           <%= link_to 'Users', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:manage, :saml_sso) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
-        <li>
-          <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
@@ -84,6 +79,11 @@
             <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
               Embedding
             <% end %>
+          </li>
+        <% end %>
+        <% if can?(:manage, :saml_sso) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
+          <li>
+            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
         <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
