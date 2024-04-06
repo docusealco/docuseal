@@ -100,8 +100,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
       withFormula: this.dataset.withFormula === 'true',
       withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
-      acceptFileTypes: this.dataset.acceptFileTypes,
-      isDirectUpload: this.dataset.isDirectUpload === 'true'
+      acceptFileTypes: this.dataset.acceptFileTypes
     })
 
     this.app.mount(this.appElem)

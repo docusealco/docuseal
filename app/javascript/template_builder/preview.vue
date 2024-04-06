@@ -20,7 +20,6 @@
           <div class="">
             <ReplaceButton
               v-if="withReplaceButton"
-              :is-direct-upload="isDirectUpload"
               :template-id="template.id"
               :accept-file-types="acceptFileTypes"
               class="opacity-0 group-hover:opacity-100"
@@ -115,11 +114,6 @@ export default {
       required: true,
       default: true
     },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
     withArrows: {
       type: Boolean,
       required: false,
@@ -130,11 +124,6 @@ export default {
   computed: {
     previewImage () {
       return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]
-    }
-  },
-  mounted () {
-    if (this.isDirectUpload) {
-      import('@rails/activestorage')
     }
   },
   methods: {

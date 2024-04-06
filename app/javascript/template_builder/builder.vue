@@ -115,7 +115,6 @@
           :with-replace-button="withUploadButton"
           :editable="editable"
           :template="template"
-          :is-direct-upload="isDirectUpload"
           @scroll-to="scrollIntoDocument(item)"
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
@@ -131,7 +130,6 @@
             v-if="sortedDocuments.length && editable && withUploadButton"
             :accept-file-types="acceptFileTypes"
             :template-id="template.id"
-            :is-direct-upload="isDirectUpload"
             @success="updateFromUpload"
           />
         </div>
@@ -148,7 +146,6 @@
             v-if="!sortedDocuments.length && withUploadButton"
             :template-id="template.id"
             :accept-file-types="acceptFileTypes"
-            :is-direct-upload="isDirectUpload"
             @success="updateFromUpload"
           />
           <template v-else>
@@ -180,7 +177,6 @@
                 :with-replace-button="withUploadButton"
                 :document="document"
                 :template="template"
-                :is-direct-upload="isDirectUpload"
                 class="pb-2 mb-2 border-b border-base-300 border-dashed"
                 @remove="onDocumentRemove"
                 @replace="onDocumentReplace"
@@ -196,7 +192,6 @@
               <Upload
                 v-if="withUploadButton"
                 :template-id="template.id"
-                :is-direct-upload="isDirectUpload"
                 :accept-file-types="acceptFileTypes"
                 @success="updateFromUpload"
               />
@@ -344,11 +339,6 @@ export default {
     template: {
       type: Object,
       required: true
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: false,
-      default: false
     },
     i18n: {
       type: Object,

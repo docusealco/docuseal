@@ -43,11 +43,7 @@ module Templates
     end
 
     def find_or_create_blobs(params)
-      blobs = params[:blobs]&.map do |attrs|
-        ActiveStorage::Blob.find_signed(attrs[:signed_id])
-      end
-
-      blobs || params[:files].map do |file|
+      params[:files].map do |file|
         data = file.read
 
         if file.content_type == PDF_CONTENT_TYPE

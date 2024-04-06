@@ -71,11 +71,6 @@ export default {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   },
   emits: ['success'],
@@ -99,11 +94,6 @@ export default {
       } else {
         return this.t('add_documents_or_images')
       }
-    }
-  },
-  mounted () {
-    if (this.isDirectUpload) {
-      import('@rails/activestorage')
     }
   },
   methods: {

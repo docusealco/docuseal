@@ -176,11 +176,6 @@ export default {
       required: false,
       default: true
     },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
     withTypedSignature: {
       type: Boolean,
       required: false,
@@ -229,10 +224,6 @@ export default {
         this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
     })
-
-    if (this.isDirectUpload) {
-      import('@rails/activestorage')
-    }
 
     if (this.$refs.canvas) {
       this.pad = new SignaturePad(this.$refs.canvas)
@@ -390,45 +381,21 @@ export default {
         cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
-          if (this.isDirectUpload) {
-            const { DirectUpload } = await import('@rails/activestorage')
+          const formData = new FormData()
 
-            new DirectUpload(
-              file,
-              '/direct_uploads'
-            ).create((_error, data) => {
-              fetch(this.baseUrl + '/api/attachments', {
-                method: 'POST',
-                body: JSON.stringify({
-                  submitter_slug: this.submitterSlug,
-                  blob_signed_id: data.signed_id,
-                  name: 'attachments'
-                }),
-                headers: { 'Content-Type': 'application/json' }
-              }).then((resp) => resp.json()).then((attachment) => {
-                this.$emit('update:model-value', attachment.uuid)
-                this.$emit('attached', attachment)
+          formData.append('file', file)
+          formData.append('submitter_slug', this.submitterSlug)
+          formData.append('name', 'attachments')
 
-                return resolve(attachment)
-              })
-            })
-          } else {
-            const formData = new FormData()
+          return fetch(this.baseUrl + '/api/attachments', {
+            method: 'POST',
+            body: formData
+          }).then((resp) => resp.json()).then((attachment) => {
+            this.$emit('attached', attachment)
+            this.$emit('update:model-value', attachment.uuid)
 
-            formData.append('file', file)
-            formData.append('submitter_slug', this.submitterSlug)
-            formData.append('name', 'attachments')
-
-            return fetch(this.baseUrl + '/api/attachments', {
-              method: 'POST',
-              body: formData
-            }).then((resp) => resp.json()).then((attachment) => {
-              this.$emit('attached', attachment)
-              this.$emit('update:model-value', attachment.uuid)
-
-              return resolve(attachment)
-            })
-          }
+            return resolve(attachment)
+          })
         }).catch((error) => {
           return reject(error)
         })

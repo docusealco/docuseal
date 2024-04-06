@@ -38,7 +38,6 @@
       :message="`${t('upload')} ${field.name || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :accept="'image/*'"
-      :is-direct-upload="isDirectUpload"
       @upload="onImageUpload"
     />
   </div>
@@ -61,11 +60,6 @@ export default {
     field: {
       type: Object,
       required: true
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
     },
     showFieldNames: {
       type: Boolean,

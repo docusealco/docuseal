@@ -36,11 +36,6 @@ export default {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   },
   emits: ['success'],
@@ -62,11 +57,6 @@ export default {
       } else {
         return this.t('replace')
       }
-    }
-  },
-  mounted () {
-    if (this.isDirectUpload) {
-      import('@rails/activestorage')
     }
   },
   methods: {

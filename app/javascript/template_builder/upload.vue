@@ -60,11 +60,6 @@ export default {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   },
   emits: ['success'],
@@ -79,112 +74,43 @@ export default {
       return 'el' + Math.random().toString(32).split('.')[1]
     }
   },
-  mounted () {
-    if (this.isDirectUpload) {
-      import('@rails/activestorage')
-    }
-  },
   methods: {
     async upload () {
       this.isLoading = true
 
-      if (this.isDirectUpload) {
-        const { DirectUpload } = await import('@rails/activestorage')
+      this.baseFetch(`/templates/${this.templateId}/documents`, {
+        method: 'POST',
+        body: new FormData(this.$refs.form)
+      }).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((data) => {
+            this.$emit('success', data)
+            this.$refs.input.value = ''
+          })
+        } else if (resp.status === 422) {
+          resp.json().then((data) => {
+            if (data.error === 'PDF encrypted') {
+              const formData = new FormData(this.$refs.form)
 
-        const blobs = await Promise.all(
-          Array.from(this.$refs.input.files).map(async (file) => {
-            const upload = new DirectUpload(
-              file,
-              '/direct_uploads',
-              this.$refs.input
-            )
+              formData.append('password', prompt('Enter PDF password'))
 
-            return new Promise((resolve, reject) => {
-              upload.create((error, blob) => {
-                if (error) {
-                  console.error(error)
-
-                  return reject(error)
+              this.baseFetch(`/templates/${this.templateId}/documents`, {
+                method: 'POST',
+                body: formData
+              }).then(async (resp) => {
+                if (resp.ok) {
+                  this.$emit('success', await resp.json())
+                  this.$refs.input.value = ''
                 } else {
-                  return resolve(blob)
+                  alert('Wrong password')
                 }
               })
-            }).catch((error) => {
-              console.error(error)
-            })
+            }
           })
-        ).finally(() => {
-          this.isLoading = false
-        })
-
-        this.isProcessing = true
-
-        this.baseFetch(`/templates/${this.templateId}/documents`, {
-          method: 'POST',
-          body: JSON.stringify({ blobs }),
-          headers: { 'Content-Type': 'application/json' }
-        }).then((resp) => {
-          if (resp.ok) {
-            resp.json().then((data) => {
-              this.$emit('success', data)
-              this.$refs.input.value = ''
-            })
-          } else if (resp.status === 422) {
-            resp.json().then((data) => {
-              if (data.error === 'PDF encrypted') {
-                this.baseFetch(`/templates/${this.templateId}/documents`, {
-                  method: 'POST',
-                  body: JSON.stringify({ blobs, password: prompt('Enter PDF password') }),
-                  headers: { 'Content-Type': 'application/json' }
-                }).then(async (resp) => {
-                  if (resp.ok) {
-                    this.$emit('success', await resp.json())
-                    this.$refs.input.value = ''
-                  } else {
-                    alert('Wrong password')
-                  }
-                })
-              }
-            })
-          }
-        }).finally(() => {
-          this.isProcessing = false
-        })
-      } else {
-        this.baseFetch(`/templates/${this.templateId}/documents`, {
-          method: 'POST',
-          body: new FormData(this.$refs.form)
-        }).then((resp) => {
-          if (resp.ok) {
-            resp.json().then((data) => {
-              this.$emit('success', data)
-              this.$refs.input.value = ''
-            })
-          } else if (resp.status === 422) {
-            resp.json().then((data) => {
-              if (data.error === 'PDF encrypted') {
-                const formData = new FormData(this.$refs.form)
-
-                formData.append('password', prompt('Enter PDF password'))
-
-                this.baseFetch(`/templates/${this.templateId}/documents`, {
-                  method: 'POST',
-                  body: formData
-                }).then(async (resp) => {
-                  if (resp.ok) {
-                    this.$emit('success', await resp.json())
-                    this.$refs.input.value = ''
-                  } else {
-                    alert('Wrong password')
-                  }
-                })
-              }
-            })
-          }
-        }).finally(() => {
-          this.isLoading = false
-        })
-      }
+        }
+      }).finally(() => {
+        this.isLoading = false
+      })
     }
   }
 }

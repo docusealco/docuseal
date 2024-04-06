@@ -306,7 +306,6 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
-            :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
             :show-field-names="showFieldNames"
@@ -319,7 +318,6 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :previous-value="previousSignatureValueFor(currentField)"
-            :is-direct-upload="isDirectUpload"
             :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
@@ -335,7 +333,6 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :previous-value="previousInitialsValue"
-            :is-direct-upload="isDirectUpload"
             :attachments-index="attachmentsIndex"
             :show-field-names="showFieldNames"
             :submitter-slug="submitterSlug"
@@ -348,7 +345,6 @@
             v-else-if="currentField.type === 'file'"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
-            :is-direct-upload="isDirectUpload"
             :field="currentField"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
@@ -577,11 +573,6 @@ export default {
       type: String,
       required: false,
       default: ''
-    },
-    isDirectUpload: {
-      type: Boolean,
-      required: false,
-      default: false
     },
     allowToSkip: {
       type: Boolean,
