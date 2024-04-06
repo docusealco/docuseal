@@ -6,6 +6,8 @@ class TemplateDocumentsController < ApplicationController
   def create
     return head :unprocessable_entity if params[:blobs].blank? && params[:files].blank?
 
+    old_fields_hash = @template.fields.hash
+
     documents = Templates::CreateAttachments.call(@template, params)
 
     schema = documents.map do |doc|
@@ -14,6 +16,8 @@ class TemplateDocumentsController < ApplicationController
 
     render json: {
       schema:,
+      fields: old_fields_hash == @template.fields.hash ? nil : @template.fields,
+      submitters: old_fields_hash == @template.fields.hash ? nil : @template.submitters,
       documents: documents.as_json(
         methods: %i[metadata signed_uuid],
         include: {

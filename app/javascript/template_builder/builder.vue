@@ -971,14 +971,26 @@ export default {
 
       this.save()
     },
-    updateFromUpload ({ schema, documents }) {
-      this.template.schema.push(...schema)
-      this.template.documents.push(...documents)
+    updateFromUpload (data) {
+      this.template.schema.push(...data.schema)
+      this.template.documents.push(...data.documents)
+
+      if (data.fields) {
+        this.template.fields = data.fields
+      }
+
+      if (data.submitters) {
+        this.template.submitters = data.submitters
+
+        if (!this.template.submitters.find((s) => s.uuid === this.selectedSubmitter?.uuid)) {
+          this.selectedSubmitter = this.template.submitters[0]
+        }
+      }
 
       this.$nextTick(() => {
         this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
 
-        this.scrollIntoDocument(schema[0])
+        this.scrollIntoDocument(data.schema[0])
       })
 
       if (this.template.name === 'New Document') {
@@ -1018,9 +1030,39 @@ export default {
 
       this.save()
     },
-    onDocumentReplace ({ replaceSchemaItem, schema, documents }) {
+    onDocumentReplace (data) {
+      const { replaceSchemaItem, schema, documents } = data
+
       this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, schema[0])
       this.template.documents.push(...documents)
+
+      if (data.fields) {
+        this.template.fields = data.fields
+
+        const removedFieldUuids = []
+
+        this.template.fields.forEach((field) => {
+          [...(field.areas || [])].forEach((area) => {
+            if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
+              field.areas.splice(field.areas.indexOf(area), 1)
+
+              removedFieldUuids.push(field.uuid)
+            }
+          })
+        })
+
+        this.template.fields =
+          this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+      }
+
+      if (data.submitters) {
+        this.template.submitters = data.submitters
+
+        if (!this.template.submitters.find((s) => s.uuid === this.selectedSubmitter?.uuid)) {
+          this.selectedSubmitter = this.template.submitters[0]
+        }
+      }
+
       this.template.fields.forEach((field) => {
         (field.areas || []).forEach((area) => {
           if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {

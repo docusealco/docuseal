@@ -10,37 +10,43 @@ module Templates
     module_function
 
     def call(template, params)
-      Array.wrap(params[:files].presence || params[:file]).map do |file|
+      res = Array.wrap(params[:files].presence || params[:file]).map do |file|
         if file.content_type.exclude?('image') && file.content_type != PDF_CONTENT_TYPE
-          file, document_data = handle_file_types(file)
+          next handle_file_types(template, file, params)
         end
 
-        document_data ||= file.read
-
-        if file.content_type == PDF_CONTENT_TYPE
-          document_data = maybe_decrypt_pdf_or_raise(document_data, params)
-
-          annotations =
-            document_data.size < ANNOTATIONS_SIZE_LIMIT ? Templates::BuildAnnotations.call(document_data) : []
-        end
-
-        sha256 = Base64.urlsafe_encode64(Digest::SHA256.digest(document_data))
-
-        blob = ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(document_data),
-          filename: file.original_filename,
-          metadata: {
-            identified: file.content_type == PDF_CONTENT_TYPE,
-            analyzed: file.content_type == PDF_CONTENT_TYPE,
-            pdf: { annotations: }.compact_blank, sha256:
-          }.compact_blank,
-          content_type: file.content_type
-        )
-
-        document = template.documents.create!(blob:)
-
-        Templates::ProcessDocument.call(document, document_data)
+        handle_pdf_or_image(template, file, file.read, params)
       end
+      Rails.logger.debug res
+      res
+    end
+
+    def handle_pdf_or_image(template, file, document_data = nil, params = {})
+      document_data ||= file.read
+
+      if file.content_type == PDF_CONTENT_TYPE
+        document_data = maybe_decrypt_pdf_or_raise(document_data, params)
+
+        annotations =
+          document_data.size < ANNOTATIONS_SIZE_LIMIT ? Templates::BuildAnnotations.call(document_data) : []
+      end
+
+      sha256 = Base64.urlsafe_encode64(Digest::SHA256.digest(document_data))
+
+      blob = ActiveStorage::Blob.create_and_upload!(
+        io: StringIO.new(document_data),
+        filename: file.original_filename,
+        metadata: {
+          identified: file.content_type == PDF_CONTENT_TYPE,
+          analyzed: file.content_type == PDF_CONTENT_TYPE,
+          pdf: { annotations: }.compact_blank, sha256:
+        }.compact_blank,
+        content_type: file.content_type
+      )
+
+      document = template.documents.create!(blob:)
+
+      Templates::ProcessDocument.call(document, document_data)
     end
 
     def maybe_decrypt_pdf_or_raise(data, params)
@@ -53,8 +59,8 @@ module Templates
       raise PdfEncrypted
     end
 
-    def handle_file_types(_file)
-      raise InvalidFileType, blob.content_type
+    def handle_file_types(_template, file, params)
+      raise InvalidFileType, file.content_type
     end
   end
 end

@@ -95,7 +95,7 @@
     <label
       v-if="compact"
       tabindex="0"
-      :title="selectedSubmitter.name"
+      :title="selectedSubmitter?.name"
       class="cursor-pointer text-base-100 flex h-full items-center justify-center"
     >
       <button
