@@ -59,7 +59,7 @@ module Templates
       raise PdfEncrypted
     end
 
-    def handle_file_types(_template, file, params)
+    def handle_file_types(_template, file, _params)
       raise InvalidFileType, file.content_type
     end
   end
