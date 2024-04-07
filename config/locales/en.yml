@@ -245,6 +245,27 @@ ar:
   downloading: جارٍ التحميل
   completed_successfully: تم الانتهاء بنجاح
 
+ko:
+  email: 이메일
+  digitally_signed_by: 디지털로 서명됨
+  role: 역할
+  provide_your_email_to_start: 시작하려면 이메일을 제공하세요
+  start: 시작
+  starting: 시작 중
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
+  invited_by_html: '<span class="font-semibold">%{name}</span>에 의해 초대되었습니다.'
+  you_have_been_invited_to_submit_a_form: 양식을 제출하도록 초대되었습니다.
+  signed_on_time: '%{time}에 서명됨'
+  form_has_been_submitted_already: 양식이 이미 제출되었습니다.
+  send_copy_to_email: 이메일로 사본 보내기
+  sending: 전송 중
+  resubmit: 다시 제출
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
+  or: 또는
+  download_documents: 문서 다운로드
+  downloading: 다운로드 중
+  completed_successfully: 성공적으로 완료됨
+
 en-US:
   <<: *en
   date:
