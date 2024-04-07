@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <% if Accounts.can_send_emails?(@submission.account) %>
+    <% if Docuseal.multitenant? || Accounts.can_send_emails?(@submission.account) %>
       <%= form_for '', url: send_submission_email_index_path, method: :post, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
         <div dir="auto" class="form-control !mt-0">
           <%= f.hidden_field :submission_slug, value: @submission.slug %>

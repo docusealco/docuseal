@@ -1,6 +1,6 @@
 <%= render 'title', template: @template %>
 <% is_show_tabs = @pagy.pages > 1 || params[:status].present? %>
-<% if !@pagy.count.zero? || params[:q].present? %>
+<% if !@pagy.count.zero? || params[:q].present? || params[:status].present? %>
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
       <p class="text-3xl font-bold">Submissions</p>

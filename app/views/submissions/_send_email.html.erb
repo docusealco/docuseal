@@ -1,19 +1,21 @@
 <div class="form-control">
-  <% is_smtp_configured = Accounts.can_send_emails?(current_account) %>
+  <% can_send_emails = Accounts.can_send_emails?(current_account) %>
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
-      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !is_smtp_configured, checked: is_smtp_configured %>
+      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails, checked: can_send_emails %>
       <span class="label">Send emails</span>
     <% end %>
     <div>
-      <label>
-        <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
-        <span class="link peer-checked:hidden">Edit message</span>
-      </label>
+      <% if can_send_emails %>
+        <label>
+          <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
+          <span class="link peer-checked:hidden">Edit message</span>
+        </label>
+      <% end %>
       <%= render 'email_stats' %>
     </div>
   </div>
-  <% unless is_smtp_configured %>
+  <% if !Docuseal.multitenant? && !can_send_emails %>
     <div class="alert my-4">
       <%= svg_icon('info_circle', class: 'w-6 h-6') %>
       <div>

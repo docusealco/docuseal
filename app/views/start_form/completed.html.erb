@@ -19,7 +19,7 @@
     <div dir="auto" class="text-center text-2xl font-semibold">
       <%= t('form_has_been_submitted_already') %>
     </div>
-    <% if Accounts.can_send_emails?(@submitter.account) %>
+    <% if Docuseal.multitenant? || Accounts.can_send_emails?(@submitter.account) %>
       <div>
         <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, form: { onsubmit: 'event.submitter.disabled = true' }, class: 'base-button w-full' %>
       </div>
