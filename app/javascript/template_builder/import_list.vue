@@ -301,7 +301,7 @@ export default {
         }
       }).join(',')
 
-      return window.btoa(csv + '\n' + rows.map(() => '').join(',') + '\n')
+      return window.btoa(window.unescape(window.encodeURIComponent(csv + '\n' + rows.map(() => '').join(',') + '\n')))
     },
     submitters () {
       return this.template.submitters
