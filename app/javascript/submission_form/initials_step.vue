@@ -193,8 +193,6 @@ export default {
 
         this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
-
-      this.$refs.textInput?.focus()
     })
 
     if (this.$refs.canvas) {

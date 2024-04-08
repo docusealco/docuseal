@@ -19,7 +19,7 @@
       </label>
       <button
         class="btn btn-outline btn-sm !normal-case font-normal"
-        @click.prevent="setCurrentDate"
+        @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
         <IconCalendarCheck :width="16" />
         {{ t('set_today') }}

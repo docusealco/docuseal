@@ -544,6 +544,11 @@ export default {
       required: false,
       default: false
     },
+    autoscrollFields: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     showFieldNames: {
       type: Boolean,
       required: false,
@@ -900,9 +905,9 @@ export default {
 
         if (scrollToArea) {
           this.scrollIntoField(step[0])
-        }
 
-        this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+          this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+        }
 
         if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
           this.$refs.form.querySelector('input[type="file"]')?.click()
@@ -976,7 +981,7 @@ export default {
           const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[this.currentStep + 1]
 
           if (nextStep) {
-            this.goToStep(nextStep, true)
+            this.goToStep(nextStep, this.autoscrollFields)
 
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true
