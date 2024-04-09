@@ -14,6 +14,23 @@
             <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button w-full md:w-32' %>
           </div>
         <% end %>
+        <% preference = current_account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)&.value || {} %>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-1 gap-y-2">
+          <% WebhookPreferencesController::EVENTS.each do |event| %>
+            <%= form_for '', url: webhook_preferences_path, method: :post do |f| %>
+              <%= f.hidden_field :event, value: event %>
+              <% uuid = SecureRandom.uuid %>
+              <div class="flex">
+                <label for="<%= uuid %>" class="flex items-center space-x-2">
+                  <%= f.check_box :value, class: 'base-checkbox', checked: preference[event] || (!preference.key?(event) && event.starts_with?('form.')), onchange: 'this.form.requestSubmit()', id: uuid %>
+                  <span>
+                    <%= event %>
+                  </span>
+                </label>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
     <% submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last %>

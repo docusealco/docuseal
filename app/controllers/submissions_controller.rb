@@ -50,6 +50,8 @@ class SubmissionsController < ApplicationController
   def destroy
     @submission.update!(archived_at: Time.current)
 
+    SendSubmissionArchivedWebhookRequestJob.perform_later(@submission)
+
     redirect_back(fallback_location: template_path(@submission.template), notice: 'Submission has been archived')
   end
 

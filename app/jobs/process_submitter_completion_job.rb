@@ -16,7 +16,7 @@ class ProcessSubmitterCompletionJob < ApplicationJob
       enqueue_completed_emails(submitter)
     end
 
-    return if Accounts.load_webhook_configs(submitter.account).blank?
+    return if Accounts.load_webhook_url(submitter.account).blank?
 
     SendFormCompletedWebhookRequestJob.perform_later(submitter)
   end

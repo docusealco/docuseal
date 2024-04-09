@@ -7,14 +7,18 @@ class SendFormStartedWebhookRequestJob < ApplicationJob
 
   def perform(submitter, params = {})
     attempt = params[:attempt].to_i
-    config = Accounts.load_webhook_configs(submitter.submission.account)
+    url = Accounts.load_webhook_url(submitter.submission.account)
 
-    return if config.blank? || config.value.blank?
+    return if url.blank?
+
+    preferences = Accounts.load_webhook_preferences(submitter.submission.account)
+
+    return if preferences['form.started'] == false
 
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
     resp = begin
-      Faraday.post(config.value,
+      Faraday.post(url,
                    {
                      event_type: 'form.started',
                      timestamp: Time.current,

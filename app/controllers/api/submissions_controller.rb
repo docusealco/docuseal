@@ -102,6 +102,8 @@ module Api
     def destroy
       @submission.update!(archived_at: Time.current)
 
+      SendSubmissionArchivedWebhookRequestJob.perform_later(@submission)
+
       render json: @submission.as_json(only: %i[id], methods: %i[archived_at])
     end
 

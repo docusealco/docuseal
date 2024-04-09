@@ -33,6 +33,7 @@ class AccountConfig < ApplicationRecord
   FORM_COMPLETED_MESSAGE_KEY = 'form_completed_message'
   FORM_WITH_CONFETTI_KEY = 'form_with_confetti'
   ESIGNING_PREFERENCE_KEY = 'esigning_preference'
+  WEBHOOK_PREFERENCES_KEY = 'webhook_preferences'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
