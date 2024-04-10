@@ -76,7 +76,7 @@ module Api
         :send_email, :send_sms, :reply_to, :completed_redirect_url, :uuid, :name, :email, :role,
         :completed, :phone, :application_key, :external_id,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
-          fields: [[:name, :uuid, :default_value, :readonly, :validation_pattern, :invalid_message,
+          fields: [[:name, :uuid, :default_value, :readonly, :redacted, :validation_pattern, :invalid_message,
                     { default_value: [] }]] }
       )
     end

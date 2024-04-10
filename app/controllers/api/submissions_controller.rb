@@ -170,7 +170,7 @@ module Api
                         :completed, :phone, :application_key, :external_id, :reply_to,
                         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
                           fields: [:name, :uuid, :default_value, :title, :description,
-                                   :readonly, :validation_pattern, :invalid_message,
+                                   :readonly, :redacted, :validation_pattern, :invalid_message,
                                    { default_value: [] }] }]]
         }
       ]

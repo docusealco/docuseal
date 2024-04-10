@@ -119,6 +119,7 @@ module Submissions
       field['title'] = attrs['title'] if attrs['title'].present?
       field['description'] = attrs['description'] if attrs['description'].present?
       field['readonly'] = attrs['readonly'] if attrs.key?('readonly')
+      field['redacted'] = attrs['redacted'] if attrs.key?('redacted')
       field['required'] = attrs['required'] if attrs.key?('required')
 
       if attrs.key?('default_value') && !field['type'].in?(%w[signature image initials file])
