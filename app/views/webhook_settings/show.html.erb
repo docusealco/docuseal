@@ -15,7 +15,7 @@
           </div>
         <% end %>
         <% preference = current_account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)&.value || {} %>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-1 gap-y-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-2 gap-y-2">
           <% WebhookPreferencesController::EVENTS.each do |event| %>
             <%= form_for '', url: webhook_preferences_path, method: :post do |f| %>
               <%= f.hidden_field :event, value: event %>
