@@ -87,7 +87,7 @@ module Params
       type(submitter_params, :fields, Array)
 
       in_path_each(submitter_params, :fields) do |field_params|
-        required(field_params, :name)
+        required(field_params, %i[name uuid])
 
         type(field_params, :name, String)
         type(field_params, :validation_pattern, String)

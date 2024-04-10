@@ -102,7 +102,11 @@ module Submissions
         next if f['submitter_uuid'] != submitter_uuid
 
         field_configs = fields.find do |e|
-          e['name'].to_s.casecmp(f['name'].to_s).zero? || e['name'] == f['name'].to_s.parameterize.underscore
+          if e['name'].present?
+            e['name'].to_s.casecmp(f['name'].to_s).zero? || e['name'] == f['name'].to_s.parameterize.underscore
+          else
+            e['uuid'] == f['uuid']
+          end
         end
 
         next if field_configs.blank?

@@ -22,7 +22,7 @@ module Submissions
       default_values = submitter_params[:values] || {}
 
       submitter_params[:fields]&.each do |f|
-        default_values[f[:name]] = f[:default_value] if f.key?(:default_value)
+        default_values[f[:name].presence || f[:uuid]] = f[:default_value] if f.key?(:default_value)
       end
 
       return submitter_params if default_values.blank?
