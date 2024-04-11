@@ -17,7 +17,8 @@ module Api
         submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
       end
 
-      submissions = paginate(submissions.preload(:created_by_user, :template, :submitters,
+      submissions = paginate(submissions.preload(:created_by_user, :submitters,
+                                                 template: :folder,
                                                  audit_trail_attachment: :blob))
 
       render json: {
@@ -155,7 +156,8 @@ module Api
                                  completed_at opened_at sent_at
                                  created_at updated_at external_id metadata],
                         methods: %i[status application_key] },
-          template: { only: %i[id name created_at updated_at] },
+          template: { only: %i[id name external_id created_at updated_at],
+                      methods: %i[folder_name] },
           created_by_user: { only: %i[id email first_name last_name] }
         }
       }

@@ -62,6 +62,8 @@ class Template < ApplicationRecord
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
 
+  delegate :name, to: :folder, prefix: true
+
   def application_key
     external_id
   end

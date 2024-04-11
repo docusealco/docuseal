@@ -6,11 +6,9 @@ module Templates
 
     def call(template, schema_documents = template.schema_documents, preview_image_attachments = [])
       json = template.as_json(
-        methods: %i[application_key],
+        methods: %i[application_key folder_name],
         include: { author: { only: %i[id email first_name last_name] } }
       )
-
-      json[:folder_name] = template.folder.name
 
       json[:documents] = template.schema.map do |item|
         attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
