@@ -23,10 +23,10 @@ RUN yarn install --network-timeout 1000000
 COPY ./bin/shakapacker ./bin/shakapacker
 COPY ./config/webpack ./config/webpack
 COPY ./config/shakapacker.yml ./config/shakapacker.yml
-COPY ./postcss.config.js ./postcss.config.js ./
-COPY ./tailwind.config.js ./tailwind.config.js ./
-COPY ./tailwind.form.config.js ./tailwind.form.config.js ./
-COPY ./tailwind.application.config.js ./tailwind.application.config.js ./
+COPY ./postcss.config.js ./postcss.config.js
+COPY ./tailwind.config.js ./tailwind.config.js
+COPY ./tailwind.form.config.js ./tailwind.form.config.js
+COPY ./tailwind.application.config.js ./tailwind.application.config.js
 COPY ./app/javascript ./app/javascript
 COPY ./app/views ./app/views
 
