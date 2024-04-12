@@ -63,6 +63,7 @@ class Submission < ApplicationRecord
 
   enum :source, {
     invite: 'invite',
+    bulk: 'bulk',
     api: 'api',
     embed: 'embed',
     link: 'link'
