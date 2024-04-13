@@ -74,7 +74,7 @@ module Api
 
       submitter_params.permit(
         :send_email, :send_sms, :reply_to, :completed_redirect_url, :uuid, :name, :email, :role,
-        :completed, :phone, :application_key, :external_id,
+        :completed, :phone, :application_key, :external_id, :go_to_last,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
           fields: [[:name, :uuid, :default_value, :readonly, :redacted, :validation_pattern, :invalid_message,
                     { default_value: [] }]] }
@@ -126,6 +126,9 @@ module Api
 
       submitter.preferences['send_sms'] = submitter_preferences['send_sms'] if submitter_preferences.key?('send_sms')
       submitter.preferences['reply_to'] = submitter_preferences['reply_to'] if submitter_preferences.key?('reply_to')
+      if submitter_preferences.key?('go_to_last')
+        submitter.preferences['go_to_last'] = submitter_preferences['go_to_last']
+      end
 
       if submitter_preferences.key?('completed_redirect_url')
         submitter.preferences['completed_redirect_url'] = submitter_preferences['completed_redirect_url']
