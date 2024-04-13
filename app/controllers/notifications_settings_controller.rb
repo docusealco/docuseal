@@ -35,12 +35,12 @@ class NotificationsSettingsController < ApplicationController
 
   def load_reminder_config
     @reminder_config =
-      AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::SUBMITTER_REMAILERS)
+      AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::SUBMITTER_REMINDERS)
   end
 
   def email_config_params
     params.require(:account_config).permit!.tap do |attrs|
-      attrs[:key] = nil unless attrs[:key].in?([AccountConfig::BCC_EMAILS, AccountConfig::SUBMITTER_REMAILERS])
+      attrs[:key] = nil unless attrs[:key].in?([AccountConfig::BCC_EMAILS, AccountConfig::SUBMITTER_REMINDERS])
     end
   end
 end

@@ -28,7 +28,7 @@ class AccountConfig < ApplicationRecord
   FORCE_MFA = 'force_mfa'
   ALLOW_TYPED_SIGNATURE = 'allow_typed_signature'
   ALLOW_TO_RESUBMIT = 'allow_to_resubmit'
-  SUBMITTER_REMAILERS = 'submitter_reminders'
+  SUBMITTER_REMINDERS = 'submitter_reminders'
   FORM_COMPLETED_BUTTON_KEY = 'form_completed_button'
   FORM_COMPLETED_MESSAGE_KEY = 'form_completed_message'
   FORM_WITH_CONFETTI_KEY = 'form_with_confetti'
