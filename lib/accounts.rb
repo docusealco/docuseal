@@ -118,7 +118,7 @@ module Accounts
     end.presence
   end
 
-  def can_send_emails?(_account)
+  def can_send_emails?(_account, **_params)
     return true if Docuseal.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?
 
