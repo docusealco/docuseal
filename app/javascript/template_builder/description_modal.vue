@@ -34,6 +34,7 @@
                 v-model="description"
                 dir="auto"
                 class="base-textarea !text-base w-full"
+                :readonly="!editable"
                 @input="resizeTextarea"
               />
             </div>
@@ -49,6 +50,7 @@
                 id="title_field"
                 v-model="title"
                 dir="auto"
+                :readonly="!editable"
                 class="base-input !text-base w-full"
               >
             </div>
@@ -72,6 +74,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     buildDefaultName: {
       type: Function,

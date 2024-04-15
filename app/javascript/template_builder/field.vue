@@ -21,7 +21,7 @@
           />
           <Contenteditable
             ref="name"
-            :model-value="field.name || defaultName"
+            :model-value="(defaultField ? (field.title || field.name) : field.name) || defaultName"
             :editable="editable && !defaultField"
             :icon-inline="true"
             :icon-width="18"
@@ -235,6 +235,7 @@
                   <input
                     v-model="field.required"
                     type="checkbox"
+                    :disabled="!editable || defaultField"
                     class="toggle toggle-xs"
                     @update:model-value="save"
                   >
@@ -481,6 +482,7 @@
     >
       <FormulaModal
         :field="field"
+        :editable="editable && !defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFormulaModal = false"
       />
@@ -501,6 +503,7 @@
     >
       <DescriptionModal
         :field="field"
+        :editable="editable && !defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowDescriptionModal = false"
       />

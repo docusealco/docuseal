@@ -86,9 +86,16 @@
                 :button-width="20"
               />
               <span class="block pl-0.5">
-                {{ field.name }}
+                {{ field.title || field.name }}
               </span>
             </div>
+            <span
+              v-if="defaultRequiredFields.includes(field)"
+              :data-tip="t('required')"
+              class="text-red-400 text-3xl pr-1.5 tooltip tooltip-left h-8"
+            >
+              *
+            </span>
           </div>
         </div>
       </template>
@@ -206,6 +213,11 @@ export default {
       default: true
     },
     defaultFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultRequiredFields: {
       type: Array,
       required: false,
       default: () => []

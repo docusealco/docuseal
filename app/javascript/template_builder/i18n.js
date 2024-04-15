@@ -3,6 +3,7 @@ const en = {
   field_not_found: 'Field not found',
   clear: 'Clear',
   align: 'Align',
+  add_all_required_fields_to_continue: 'Add all required fields to continue',
   left: 'Left',
   right: 'Right',
   center: 'Center',

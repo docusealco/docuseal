@@ -37,7 +37,7 @@
             class="btn btn-primary btn-ghost text-base hidden md:flex"
             :target="template.submitters.length > 1 ? '' : '_blank'"
             :data-turbo-frame="template.submitters.length > 1 ? 'modal' : ''"
-            @click="maybeShowEmptyTemplateAlert"
+            @click="maybeShowErrorTemplateAlert"
           >
             <IconWritingSign
               width="22"
@@ -51,7 +51,7 @@
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
-            @click="maybeShowEmptyTemplateAlert"
+            @click="maybeShowErrorTemplateAlert"
           >
             <IconUsersPlus
               width="20"
@@ -159,7 +159,7 @@
                 :selected-submitter="selectedSubmitter"
                 :document="document"
                 :is-drag="!!dragField"
-                :default-fields="defaultFields"
+                :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields"
                 :default-submitters="defaultSubmitters"
                 :draw-field="drawField"
@@ -242,7 +242,8 @@
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :draw-field-type="drawFieldType"
-            :default-fields="defaultFields"
+            :default-fields="[...defaultRequiredFields, ...defaultFields]"
+            :default-required-fields="defaultRequiredFields"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :only-defined-fields="onlyDefinedFields"
@@ -273,7 +274,7 @@
       <MobileFields
         v-if="sortedDocuments.length && !drawField && editable"
         :fields="template.fields"
-        :default-fields="defaultFields"
+        :default-fields="[...defaultRequiredFields, ...defaultFields]"
         :field-types="fieldTypes"
         :selected-submitter="selectedSubmitter"
         @select="startFieldDraw($event)"
@@ -371,6 +372,11 @@ export default {
       required: false,
       default: () => []
     },
+    defaultRequiredFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     withSelectedFieldType: {
       type: Boolean,
       required: false,
@@ -419,6 +425,13 @@ export default {
       }
     },
     onSave: {
+      type: Function,
+      required: false,
+      default () {
+        return () => {}
+      }
+    },
+    onChange: {
       type: Function,
       required: false,
       default () {
@@ -521,6 +534,11 @@ export default {
       })
 
       return areas
+    },
+    isAllRequiredFieldsAdded () {
+      return !this.defaultRequiredFields?.some((f) => {
+        return !this.template.fields?.some((field) => field.name === f.name)
+      })
     },
     selectedField () {
       return this.template.fields.find((f) => f.areas?.includes(this.selectedAreaRef.value))
@@ -1093,7 +1111,13 @@ export default {
 
       this.save()
     },
-    maybeShowEmptyTemplateAlert (e) {
+    maybeShowErrorTemplateAlert (e) {
+      if (!this.isAllRequiredFieldsAdded) {
+        e.preventDefault()
+
+        return alert(this.t('add_all_required_fields_to_continue'))
+      }
+
       if (!this.template.fields.length) {
         e.preventDefault()
 
@@ -1101,6 +1125,10 @@ export default {
       }
     },
     onSaveClick () {
+      if (!this.isAllRequiredFieldsAdded) {
+        return alert(this.t('add_all_required_fields_to_continue'))
+      }
+
       if (this.template.fields.length) {
         this.isSaving = true
 
@@ -1131,6 +1159,10 @@ export default {
       })
     },
     save ({ force } = { force: false }) {
+      if (this.onChange) {
+        this.onChange(this.template)
+      }
+
       if (!this.autosave && !force) {
         return Promise.resolve({})
       }

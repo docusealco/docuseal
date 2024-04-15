@@ -68,7 +68,7 @@
         @keydown.enter.prevent="onNameEnter"
         @focus="onNameFocus"
         @blur="onNameBlur"
-      >{{ optionIndexText }} {{ field.name || defaultName }}</span>
+      >{{ optionIndexText }} {{ (defaultField ? (field.title || field.name) : field.name) || defaultName }}</span>
       <div
         v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
         class="flex items-center ml-1.5"
