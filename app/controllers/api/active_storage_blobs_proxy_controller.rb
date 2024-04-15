@@ -20,6 +20,8 @@ module Api
 
       blob = ActiveStorage::Blob.find_by!(uuid: blob_uuid)
 
+      authorization_check!(blob) if exp.blank?
+
       if request.headers['Range'].present?
         send_blob_byte_range_data blob, request.headers['Range']
       else
@@ -30,6 +32,21 @@ module Api
           send_blob_stream blob, disposition: params[:disposition]
         end
       end
+    end
+
+    private
+
+    def authorization_check!(blob)
+      is_authorized =
+        blob.attachments.all? do |a|
+          a.name.in?(%w[logo preview_images]) ||
+            (current_user && a.record.account.id == current_user.account_id) ||
+            !a.record.account.account_configs.find_or_initialize_by(key: AccountConfig::DOWNLOAD_LINKS_AUTH_KEY).value
+        end
+
+      return if is_authorized
+
+      raise CanCan::AccessDenied
     end
   end
 end

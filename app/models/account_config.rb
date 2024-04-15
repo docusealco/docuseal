@@ -34,6 +34,7 @@ class AccountConfig < ApplicationRecord
   FORM_WITH_CONFETTI_KEY = 'form_with_confetti'
   ESIGNING_PREFERENCE_KEY = 'esigning_preference'
   WEBHOOK_PREFERENCES_KEY = 'webhook_preferences'
+  DOWNLOAD_LINKS_AUTH_KEY = 'download_links_auth'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
