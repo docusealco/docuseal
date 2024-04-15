@@ -27,7 +27,7 @@
     "postcss-loader": "^7.3.0",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
-    "shakapacker": "7.1.0",
+    "shakapacker": "7.2.3",
     "signature_pad": "^4.1.5",
     "snarkdown": "^2.0.0",
     "tailwindcss": "^3.3.2",

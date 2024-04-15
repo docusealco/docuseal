@@ -19,7 +19,7 @@ development:
   compiler_strategy: mtime
 
   dev_server:
-    https: false
+    server: 'http'
     host: localhost
     port: 3035
     hmr: false

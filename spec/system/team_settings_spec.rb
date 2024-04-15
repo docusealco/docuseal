@@ -23,7 +23,7 @@ RSpec.describe 'Team Settings' do
         users.each do |user|
           expect(page).to have_content(user.full_name)
           expect(page).to have_content(user.email)
-          expect(page).not_to have_content(other_user.email)
+          expect(page).to have_no_content(other_user.email)
         end
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe 'Team Settings' do
     end
 
     it 'does not allow to remove the current user' do
-      expect(page).not_to have_content('User has been removed')
+      expect(page).to have_no_content('User has been removed')
     end
   end
 end
