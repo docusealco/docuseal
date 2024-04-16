@@ -46,6 +46,8 @@ module Api
 
       return if is_authorized
 
+      Rollbar.error('Blob aunauthorized') if defined?(Rollbar)
+
       raise CanCan::AccessDenied
     end
   end
