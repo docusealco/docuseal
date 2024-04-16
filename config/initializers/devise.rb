@@ -2,6 +2,14 @@
 
 Devise.otp_allowed_drift = 60.seconds
 
+class FailureApp < Devise::FailureApp
+  def respond
+    Rollbar.warning('Invalid password') if defined?(Rollbar) && warden_message == :invalid
+
+    super
+  end
+end
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -277,6 +285,7 @@ Devise.setup do |config|
   config.warden do |manager|
     # manager.intercept_401 = false
     # manager.default_strategies(scope: :user).unshift(:auth_token)
+    manager.failure_app = FailureApp
   end
 
   # ==> Mountable engine configurations

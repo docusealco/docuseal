@@ -7,6 +7,8 @@ class SessionsController < Devise::SessionsController
     email = sign_in_params[:email].to_s.downcase
 
     if Docuseal.multitenant? && !User.exists?(email:)
+      Rollbar.warning('Sign in new user') if defined?(Rollbar)
+
       return redirect_to new_registration_path(sign_up: true, user: sign_in_params.slice(:email)),
                          notice: 'Create a new account'
     end
