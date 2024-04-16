@@ -38,7 +38,14 @@
                 :stroke-width="1.6"
                 :width="20"
               />
-              {{ field.name }}
+              {{ field.title || field.name }}
+              <span
+                v-if="defaultRequiredFields.includes(field)"
+                :data-tip="t('required')"
+                class="text-red-400 text-2xl tooltip tooltip-left h-6"
+              >
+                *
+              </span>
             </a>
           </li>
         </template>
@@ -95,6 +102,11 @@ export default {
       required: true
     },
     fieldTypes: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    defaultRequiredFields: {
       type: Array,
       required: false,
       default: () => []

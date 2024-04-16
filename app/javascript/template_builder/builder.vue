@@ -275,6 +275,7 @@
         v-if="sortedDocuments.length && !drawField && editable"
         :fields="template.fields"
         :default-fields="[...defaultRequiredFields, ...defaultFields]"
+        :default-required-fields="defaultRequiredFields"
         :field-types="fieldTypes"
         :selected-submitter="selectedSubmitter"
         @select="startFieldDraw($event)"
