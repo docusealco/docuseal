@@ -81,7 +81,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Require authorization for file download links
+                Require authentication for file download links
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
