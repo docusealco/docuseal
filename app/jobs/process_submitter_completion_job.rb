@@ -34,6 +34,7 @@ class ProcessSubmitterCompletionJob < ApplicationJob
       end
 
       bcc = submission.preferences['bcc_completed'].presence ||
+            submission.template.preferences['bcc_completed'].presence ||
             submission.account.account_configs
                       .find_by(key: AccountConfig::BCC_EMAILS)&.value
 

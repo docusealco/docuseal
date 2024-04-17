@@ -1,4 +1,4 @@
-<toggle-visible data-element-ids="[&quot;js_1&quot;,&quot;react_1&quot;,&quot;vue_1&quot;]" class="block relative" data-catalyst="">
+<toggle-visible data-element-ids="[&quot;js_1&quot;,&quot;react_1&quot;,&quot;vue_1&quot;,&quot;angular_1&quot;]" class="block relative">
   <ul class="items-center w-full text-sm font-medium text-gray-900 my-4 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
     <li class="w-full h-10 text-sm font-medium flex items-center relative group py-3.5">
       <input type="radio" name="option_1" id="js_radio_1" value="js_1" data-action="change:toggle-visible#trigger" class="relative peer z-10 hidden" checked="checked">
@@ -31,6 +31,23 @@
         <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" version="1.1" viewBox="0 0 261.76 226.69"><g transform="matrix(1.3333 0 0 -1.3333 -76.311 313.34)"><g transform="translate(178.06 235.01)"><path d="m0 0-22.669-39.264-22.669 39.264h-75.491l98.16-170.02 98.16 170.02z" fill="#41b883"></path></g><g transform="translate(178.06 235.01)"><path d="m0 0-22.669-39.264-22.669 39.264h-36.227l58.896-102.01 58.896 102.01z" fill="#34495e"></path></g></g></svg>
         </span>
         <span>Vue</span>
+      </label>
+    </li>
+    <li class="w-full h-10 text-sm font-medium flex items-center relative group py-3.5">
+      <input type="radio" name="option_1" id="angular_radio_1" value="angular_1" data-action="change:toggle-visible#trigger" class="relative peer z-10 hidden">
+      <label for="angular_radio_1" class="absolute border-neutral-focus space-x-2 border rounded-xl left-0 right-0 top-0 bottom-0 flex items-center justify-center group-hover:bg-neutral group-hover:text-white peer-checked:btn-neutral">
+        <span><svg class="h-5 w-5" width="800px" height="800px" viewBox="-8 0 272 272" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+            <g>
+            <path d="M0.0996108949,45.522179 L125.908171,0.697276265 L255.103502,44.7252918 L234.185214,211.175097 L125.908171,271.140856 L19.3245136,211.971984 L0.0996108949,45.522179 Z" fill="#E23237">
+            </path>
+            <path d="M255.103502,44.7252918 L125.908171,0.697276265 L125.908171,271.140856 L234.185214,211.274708 L255.103502,44.7252918 L255.103502,44.7252918 Z" fill="#B52E31">
+            </path>
+            <path d="M126.107393,32.27393 L126.107393,32.27393 L47.7136187,206.692607 L76.9992218,206.194553 L92.7377432,166.848249 L126.207004,166.848249 L126.306615,166.848249 L163.063035,166.848249 L180.29572,206.692607 L208.286381,207.190661 L126.107393,32.27393 L126.107393,32.27393 Z M126.306615,88.155642 L152.803113,143.5393 L127.402335,143.5393 L126.107393,143.5393 L102.997665,143.5393 L126.306615,88.155642 L126.306615,88.155642 Z" fill="#FFFFFF">
+            </path>
+            </g>
+          </svg>
+        </span>
+        <span>Angular</span>
       </label>
     </li>
   </ul>
@@ -170,6 +187,64 @@ export default {
   <span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">}</span>
 <span style="color: #f4bf75">&lt;/</span><span style="color: #f4bf75">script</span><span style="color: #f4bf75">&gt;</span>
+</code></pre>
+  </div>
+</div>
+<div id="angular_1" class="block my-4 hidden">
+    <div class="mockup-code overflow-hidden pb-0 mt-4">
+      <span class="top-0 right-0 absolute flex">
+        <%= link_to 'Learn More', console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <clipboard-copy data-text="import { Component } from '@angular/core';
+import { DocusealFormComponent } from '@docuseal/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [DocusealFormComponent],
+  template: `
+    <div class=&quot;app&quot;>
+      <docuseal-form
+        [src]=&quot;'<%= start_form_url(slug: template.slug) %>'&quot;>
+      </docuseal-form>
+    </div>
+  `
+})
+export class AppComponent {}
+">
+  <label class="btn btn-ghost text-white">
+    <input type="radio" class="peer hidden">
+    <span class="peer-checked:hidden flex items-center space-x-2">
+      <%= svg_icon('copy', class: 'w-6 h-6 text-white') %>
+      <span class="hidden md:inline">
+        Copy
+      </span>
+    </span>
+    <span class="hidden peer-checked:flex items-center space-x-2">
+      <%= svg_icon('clipboard_copy', class: 'w-6 h-6 text-white') %>
+      <span class="hidden md:inline">
+        Copied
+      </span>
+    </span>
+  </label>
+</clipboard-copy>
+
+      </span>
+      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #aa759f">import</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0;background-color: #151515">Component</span> <span style="color: #d0d0d0">}</span> <span style="color: #aa759f">from</span> <span style="color: #90a959">'</span><span style="color: #90a959">@angular/core</span><span style="color: #90a959">'</span><span style="color: #d0d0d0">;</span>
+<span style="color: #aa759f">import</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0;background-color: #151515">DocusealFormComponent</span> <span style="color: #d0d0d0">}</span> <span style="color: #aa759f">from</span> <span style="color: #90a959">'</span><span style="color: #90a959">@docuseal/angular</span><span style="color: #90a959">'</span><span style="color: #d0d0d0">;</span>
+
+<span style="color: #d0d0d0">@</span><span style="color: #d0d0d0;background-color: #151515">Component</span><span style="color: #d0d0d0">({</span>
+  <span style="color: #6a9fb5">selector</span><span style="color: #d0d0d0">:</span> <span style="color: #90a959">'</span><span style="color: #90a959">app-root</span><span style="color: #90a959">'</span><span style="color: #d0d0d0">,</span>
+  <span style="color: #6a9fb5">standalone</span><span style="color: #d0d0d0">:</span> <span style="color: #d28445">true</span><span style="color: #d0d0d0">,</span>
+  <span style="color: #6a9fb5">imports</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">[</span><span style="color: #d0d0d0;background-color: #151515">DocusealFormComponent</span><span style="color: #d0d0d0">],</span>
+  <span style="color: #6a9fb5">template</span><span style="color: #d0d0d0">:</span> <span style="color: #90a959">`
+    &lt;div class="app"&gt;
+      &lt;docuseal-form
+        [src]="'<%= start_form_url(slug: template.slug) %>'"&gt;
+      &lt;/docuseal-form&gt;
+    &lt;/div&gt;
+  `</span>
+<span style="color: #d0d0d0">})</span>
+<span style="color: #aa759f">export</span> <span style="color: #d28445">class</span> <span style="color: #f4bf75">AppComponent</span> <span style="color: #d0d0d0">{}</span>
 </code></pre>
   </div>
 </div>

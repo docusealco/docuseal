@@ -35,7 +35,7 @@
     <div class="form-control space-y-2">
       <div class="form-control">
         <%= f.label :subject, class: 'label' %>
-        <%= f.text_field :subject, value: config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
+        <%= f.text_field :subject, value: @template.preferences['request_email_subject'].presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
         <div class="flex items-center">
@@ -45,8 +45,12 @@
           </span>
         </div>
         <autoresize-textarea>
-          <%= f.text_area :body, value: config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
+          <%= f.text_area :body, value: @template.preferences['request_email_body'].presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
         </autoresize-textarea>
+        <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
+          <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
+          <span class="label">Save as default template message</span>
+        </label>
       </div>
       <%= render 'message_fields' %>
     </div>

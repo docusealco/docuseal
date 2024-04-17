@@ -23,6 +23,7 @@ import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
+import ToggleOnSubmit from './elements/toggle_on_submit'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -58,6 +59,7 @@ window.customElements.define('submit-form', SubmitForm)
 window.customElements.define('prompt-password', PromptPassword)
 window.customElements.define('emails-textarea', EmailsTextarea)
 window.customElements.define('toggle-cookies', ToggleCookies)
+window.customElements.define('toggle-on-submit', ToggleOnSubmit)
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {

@@ -8,6 +8,7 @@
 #  archived_at :datetime
 #  fields      :text             not null
 #  name        :string           not null
+#  preferences :text             not null
 #  schema      :text             not null
 #  slug        :string           not null
 #  source      :text             not null
@@ -41,12 +42,14 @@ class Template < ApplicationRecord
 
   before_validation :maybe_set_default_folder, on: :create
 
+  attribute :preferences, :string, default: -> { {} }
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
   attribute :submitters, :string, default: -> { [{ name: DEFAULT_SUBMITTER_NAME, uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
   attribute :source, :string, default: 'native'
 
+  serialize :preferences, coder: JSON
   serialize :fields, coder: JSON
   serialize :schema, coder: JSON
   serialize :submitters, coder: JSON

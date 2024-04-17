@@ -14,8 +14,8 @@ class SubmitterMailer < ApplicationMailer
       @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
     end
 
-    @body = @email_message&.body.presence
-    @subject = @email_message&.subject.presence
+    @body = @email_message&.body.presence || @submitter.template.preferences['request_email_body'].presence
+    @subject = @email_message&.subject.presence || @submitter.template.preferences['request_email_subject'].presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 

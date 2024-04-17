@@ -76,6 +76,7 @@ Rails.application.routes.draw do
     resource :folder, only: %i[edit update], controller: 'templates_folders'
     resource :preview, only: %i[show], controller: 'templates_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
+    resource :preferences, only: %i[show create], controller: 'templates_preferences'
     resources :submissions_export, only: %i[index new]
   end
   resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'

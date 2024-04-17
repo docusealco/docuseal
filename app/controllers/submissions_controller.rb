@@ -19,6 +19,8 @@ class SubmissionsController < ApplicationController
   def create
     authorize!(:create, Submission)
 
+    save_template_message(@template, params) if params[:save_message] == '1'
+
     if params[:is_custom_message] != '1'
       params.delete(:subject)
       params.delete(:body)
@@ -56,6 +58,13 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
+  def save_template_message(template, params)
+    template.preferences['request_email_subject'] = params[:subject] if params[:subject].present?
+    template.preferences['request_email_body'] = params[:body] if params[:body].present?
+
+    template.save!
+  end
 
   def submissions_params
     params.permit(submission: { submitters: [%i[uuid email phone name]] })
