@@ -1,4 +1,4 @@
-<%= render 'shared/turbo_drawer', title: 'Preferences', close_after_submit: false do %>
+<%= render 'shared/turbo_modal_large', title: 'Preferences', close_after_submit: false do %>
   <% options = [['General', 'general'], ['API and Embedding', 'api']] %>
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
     <div class="join">
@@ -12,7 +12,7 @@
       <% end %>
     </div>
   </toggle-visible>
-  <div id="general" class="px-4 mb-4">
+  <div id="general" class="px-5 mb-4">
     <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
       <toggle-on-submit data-element-id="email_saved_alert"></toggle-on-submit>
       <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
@@ -62,7 +62,7 @@
     <% end %>
     <%= render 'templates_code_modal/preferences' %>
   </div>
-  <div id="api" class="hidden mt-2 mb-4 px-4">
+  <div id="api" class="hidden mt-2 mb-4 px-5">
     <div>
       <label class="text-sm font-semibold" for="template_id">
         Template ID

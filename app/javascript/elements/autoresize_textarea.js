@@ -7,7 +7,7 @@ export default class extends HTMLElement {
 
   resize () {
     if (this.textarea.clientHeight < this.textarea.scrollHeight) {
-      this.textarea.style.height = `${this.textarea.scrollHeight}px`
+      this.textarea.style.height = `${this.textarea.scrollHeight + 5}px`
     }
   }
 
