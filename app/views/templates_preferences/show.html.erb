@@ -50,7 +50,7 @@
               </span>
             </span>
           <% end %>
-          <%= ff.email_field :bcc_completed, autocomplete: 'off', class: 'base-input' %>
+          <%= tag.input type: 'email', multiple: true, name: 'template[preferences][bcc_completed]', autocomplete: 'off', class: 'base-input', value: ff.object.bcc_completed %>
         </div>
       <% end %>
       <div class="form-control pt-3">
