@@ -11,6 +11,7 @@ module Templates
 
       template.external_id = external_id
       template.author = author
+      template.preferences = original_template.preferences.deep_dup
       template.name = name || "#{original_template.name} (Clone)"
 
       template.assign_attributes(original_template.slice(:folder_id, :schema))
