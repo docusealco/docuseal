@@ -19,6 +19,7 @@ module LoadActiveStorageConfigs
     return if Docuseal.multitenant?
     return if IS_ENV_CONFIGURED
     return if Rails.env.test?
+    return if Rails.env.development?
 
     encrypted_config = EncryptedConfig.find_by(key: EncryptedConfig::FILES_STORAGE_KEY)
 
