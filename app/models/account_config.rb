@@ -35,6 +35,7 @@ class AccountConfig < ApplicationRecord
   ESIGNING_PREFERENCE_KEY = 'esigning_preference'
   WEBHOOK_PREFERENCES_KEY = 'webhook_preferences'
   DOWNLOAD_LINKS_AUTH_KEY = 'download_links_auth'
+  FORCE_SSO_AUTH_KEY = 'force_sso_auth'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
