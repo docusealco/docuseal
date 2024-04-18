@@ -53,6 +53,8 @@ class Submitter < ApplicationRecord
   has_many :document_generation_events, dependent: :destroy
   has_many :submission_events, dependent: :destroy
 
+  scope :completed, -> { where.not(completed_at: nil) }
+
   def status
     if completed_at?
       'completed'

@@ -55,7 +55,7 @@ class SubmitFormController < ApplicationController
   end
 
   def completed
-    @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
+    @submitter = Submitter.completed.find_by!(slug: params[:submit_form_slug])
   end
 
   def success; end
