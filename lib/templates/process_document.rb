@@ -45,7 +45,8 @@ module Templates
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
       number_of_pages = HexaPDF::Document.new(io: StringIO.new(data)).pages.size
 
-      (attachment.metadata['pdf'] ||= {})[:number_of_pages] = number_of_pages
+      attachment.metadata['pdf'] ||= {}
+      attachment.metadata['pdf']['number_of_pages'] = number_of_pages
 
       attachment.save!
 
