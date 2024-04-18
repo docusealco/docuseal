@@ -108,6 +108,10 @@ module Submissions
     return email.downcase if email.to_s.include?('.gob')
     return email.downcase if email.to_s.include?('.om')
 
-    EmailTypo.call(email.delete_prefix('<'))
+    fixed_email = EmailTypo.call(email.delete_prefix('<'))
+
+    Rollbar.warning("Fixed email #{email}") if fixed_email != email.downcase.delete_prefix('<') && defined?(Rollbar)
+
+    fixed_email
   end
 end
