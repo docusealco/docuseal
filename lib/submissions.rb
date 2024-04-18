@@ -106,6 +106,7 @@ module Submissions
     return if email.blank?
     return email.downcase if email.to_s.include?(',')
     return email.downcase if email.to_s.include?('.gob')
+    return email.downcase if email.to_s.include?('.om')
 
     EmailTypo.call(email.delete_prefix('<'))
   end
