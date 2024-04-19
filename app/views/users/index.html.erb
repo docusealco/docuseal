@@ -2,7 +2,7 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="flex justify-between mb-4">
-      <h1 class="text-4xl font-bold">Users</h1>
+      <h1 class="text-4xl font-bold"><%= params[:status].to_s.titleize %> Users</h1>
       <div class="flex items-center space-x-4">
         <% if can?(:create, User.new(account: current_account)) %>
           <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
@@ -55,9 +55,14 @@
                     Edit
                   <% end %>
                 <% end %>
-                <% if can?(:destroy, user) && user != current_user %>
+                <% if params[:status].blank? && can?(:destroy, user) && user != current_user %>
                   <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
                     Remove
+                  <% end %>
+                <% end %>
+                <% if params[:status].present? && can?(:manage, user) && user != current_user %>
+                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-secondary btn-xs', title: 'Unarchive', data: { turbo_confirm: 'Are you sure?' } do %>
+                    Unarchive
                   <% end %>
                 <% end %>
               </td>
@@ -66,6 +71,23 @@
         </tbody>
       </table>
     </div>
-    <%= render 'shared/pagination', pagy: @pagy, items_name: 'users' %>
+    <% view_archived_html = capture do %>
+      <% if current_account.users.archived.exists? %>
+        <div>
+          <% if params[:status] == 'archived' %>
+            <a href="<%= settings_users_path %>" class="link text-sm">View Active</a>
+          <% else %>
+            <a href="<%= settings_archived_users_path %>" class="link text-sm">View Archived</a>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @pagy.pages > 1 %>
+      <%= render 'shared/pagination', pagy: @pagy, items_name: 'users', left_additional_html: view_archived_html %>
+    <% else %>
+      <div class="mt-2">
+        <%= view_archived_html %>
+      </div>
+    <% end %>
   </div>
 </div>

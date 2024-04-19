@@ -131,6 +131,8 @@ Rails.application.routes.draw do
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
+    resources :archived_users, only: %i[index], path: 'users/:status', controller: 'users',
+                               defaults: { status: :archived }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     resources :api, only: %i[index create], controller: 'api_settings'
     resource :webhooks, only: %i[show create update], controller: 'webhook_settings'

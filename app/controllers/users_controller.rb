@@ -7,7 +7,14 @@ class UsersController < ApplicationController
   authorize_resource :user, only: :create
 
   def index
-    @pagy, @users = pagy(@users.active.order(id: :desc))
+    @users =
+      if params[:status] == 'archived'
+        @users.archived
+      else
+        @users.active
+      end
+
+    @pagy, @users = pagy(@users.order(id: :desc))
   end
 
   def new; end
@@ -15,10 +22,19 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
+    existing_user = User.accessible_by(current_ability).find_by(email: @user.email)
+
+    if existing_user
+      existing_user.archived_at = nil
+      existing_user.assign_attributes(user_params)
+
+      @user = existing_user
+    end
+
     if @user.save
       UserMailer.invitation_email(@user).deliver_later!
 
-      redirect_to settings_users_path, notice: 'User has been invited'
+      redirect_back fallback_location: settings_users_path, notice: 'User has been invited'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
     end
@@ -27,11 +43,11 @@ class UsersController < ApplicationController
   def update
     return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
 
-    attrs = user_params.compact_blank
+    attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
     attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
 
     if @user.update(attrs)
-      redirect_to settings_users_path, notice: 'User has been updated'
+      redirect_back fallback_location: settings_users_path, notice: 'User has been updated'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity
     end
@@ -44,7 +60,7 @@ class UsersController < ApplicationController
 
     @user.update!(archived_at: Time.current)
 
-    redirect_to settings_users_path, notice: 'User has been removed'
+    redirect_back fallback_location: settings_users_path, notice: 'User has been removed'
   end
 
   private
@@ -65,6 +81,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :role)
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :role, :archived_at)
   end
 end
