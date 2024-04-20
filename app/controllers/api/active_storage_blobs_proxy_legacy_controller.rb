@@ -7,6 +7,9 @@ module Api
     skip_before_action :authenticate_user!
     skip_authorization_check
 
+    before_action :set_cors_headers
+    before_action :set_noindex_headers
+
     # rubocop:disable Metrics
     def show
       Rollbar.info('Blob legacy') if defined?(Rollbar)
