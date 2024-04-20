@@ -731,6 +731,11 @@ export default {
   watch: {
     expand (value) {
       this.isFormVisible = value
+    },
+    currentStepFields (value) {
+      if (!value) {
+        this.currentStep -= 1
+      }
     }
   },
   mounted () {
