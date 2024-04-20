@@ -16,12 +16,16 @@
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
-    class="btn btn-neutral flex text-white absolute rounded-none border-x-0 md:border md:rounded-full bottom-0 w-full md:mb-4 text-base"
+    class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3"
+    style="width: 96%; margin-left: 2%"
     @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >
     <template v-if="['initials', 'signature'].includes(currentField.type)">
       <IconWritingSign stroke-width="1.5" />
       {{ t('sign_now') }}
+    </template>
+    <template v-else-if="alwaysMinimize">
+      {{ t('next') }}
     </template>
     <template v-else>
       {{ t('submit_form') }}
@@ -391,7 +395,7 @@
                 v-if="isSubmitting"
                 class="mr-1 animate-spin"
               />
-              <span v-if="stepFields.length === currentStep + 1">
+              <span v-if="alwaysMinimize || stepFields.length === currentStep + 1">
                 {{ t('submit') }}
               </span>
               <span v-else>
@@ -540,6 +544,11 @@ export default {
       required: false,
       default: null
     },
+    minimize: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withConfetti: {
       type: Boolean,
       required: false,
@@ -653,12 +662,19 @@ export default {
       showFillAllRequiredFields: false,
       currentStep: 0,
       phoneVerifiedValues: {},
+      orientation: screen?.orientation?.type,
       isSubmitting: false,
       submittedValues: {},
       recalculateButtonDisabledKey: ''
     }
   },
   computed: {
+    isMobile () {
+      return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
+    alwaysMinimize () {
+      return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)
+    },
     currentStepFields () {
       return this.stepFields[this.currentStep]
     },
@@ -738,8 +754,13 @@ export default {
       }
     }
   },
+  beforeUnmount () {
+    screen?.orientation?.removeEventListener('change', this.onOrientationChange)
+  },
   mounted () {
     this.submittedValues = JSON.parse(JSON.stringify(this.values))
+
+    screen?.orientation.addEventListener('change', this.onOrientationChange)
 
     this.fields.forEach((field) => {
       if (field.default_value && !field.readonly) {
@@ -774,6 +795,10 @@ export default {
       this.isFormVisible = false
     }
 
+    if (this.alwaysMinimize) {
+      this.isFormVisible = false
+    }
+
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode()
@@ -802,6 +827,9 @@ export default {
   methods: {
     t (key) {
       return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+    },
+    onOrientationChange (event) {
+      this.orientation = event.target.type
     },
     checkFieldConditions (field) {
       if (field.conditions?.length) {
@@ -1001,6 +1029,10 @@ export default {
           const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[this.currentStep + 1]
 
           if (nextStep) {
+            if (this.alwaysMinimize) {
+              this.isFormVisible = false
+            }
+
             this.goToStep(nextStep, this.autoscrollFields)
 
             if (emptyRequiredField === nextStep) {
