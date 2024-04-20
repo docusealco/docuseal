@@ -108,6 +108,11 @@ export default {
       type: Object,
       required: true
     },
+    verifiedValue: {
+      type: String,
+      required: false,
+      default: ''
+    },
     submitterSlug: {
       type: String,
       required: true
@@ -164,6 +169,10 @@ export default {
       })
     },
     async submit () {
+      if (this.verifiedValue && this.verifiedValue === this.modelValue) {
+        return Promise.resolve({})
+      }
+
       if (!this.$refs.phone.value.toString().startsWith('+')) {
         alert(this.t('use_international_format'))
 

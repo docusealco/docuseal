@@ -357,6 +357,7 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :show-field-names="showFieldNames"
+            :verified-value="phoneVerifiedValues[currentField.uuid]"
             :default-value="submitter.phone"
             :submitter-slug="submitterSlug"
             @focus="scrollIntoField(currentField)"
@@ -651,6 +652,7 @@ export default {
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
+      phoneVerifiedValues: {},
       isSubmitting: false,
       submittedValues: {},
       recalculateButtonDisabledKey: ''
@@ -916,6 +918,7 @@ export default {
     },
     saveStep (formData) {
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
+      const currentFieldType = this.currentField.type
 
       if (this.isCompleted) {
         return Promise.resolve({})
@@ -927,6 +930,10 @@ export default {
           if (response.status === 200) {
             currentFieldUuids.forEach((fieldUuid) => {
               this.submittedValues[fieldUuid] = this.values[fieldUuid]
+
+              if (currentFieldType === 'phone') {
+                this.phoneVerifiedValues[fieldUuid] = this.values[fieldUuid]
+              }
             })
           }
 
@@ -965,7 +972,15 @@ export default {
           formData.append('completed', 'true')
         }
 
-        await this.saveStep(formData).then(async (response) => {
+        let saveStepRequest
+
+        if (this.phoneVerifiedValues[this.currentField.uuid] === this.values[this.currentField.uuid]) {
+          saveStepRequest = Promise.resolve({})
+        } else {
+          saveStepRequest = this.saveStep(formData)
+        }
+
+        await saveStepRequest.then(async (response) => {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
