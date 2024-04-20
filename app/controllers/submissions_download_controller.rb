@@ -44,7 +44,7 @@ class SubmissionsDownloadController < ApplicationController
 
   def build_urls(submitter)
     Submitters.select_attachments_for_download(submitter).map do |attachment|
-      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.minutes.from_now.to_i)
+      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
     end
   end
 end
