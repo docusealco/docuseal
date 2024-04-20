@@ -219,7 +219,7 @@ export default {
           this.newArea.y = e.offsetY / this.$refs.mask.clientHeight
         }
 
-        if (this.drawField?.type === 'cells') {
+        if ((this.drawField?.type || this.drawFieldType) === 'cells') {
           this.newArea.cell_w = this.newArea.h * (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth)
         }
 
