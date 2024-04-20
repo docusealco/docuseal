@@ -4,7 +4,7 @@
       <h1 class="text-4xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
         <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
         <% if template.archived_at? %>
-          <span class="badge badge-outline badge-lg align-middle">Archived</span>
+          <span class="ml-1 badge badge-outline badge-lg align-middle">Archived</span>
         <% end %>
       </h1>
       <% if @template.account_id == current_account.id %>

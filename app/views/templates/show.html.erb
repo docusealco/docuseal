@@ -55,7 +55,7 @@
 <% end %>
 <% if @submissions.present? %>
   <div class="space-y-4">
-    <%= render partial: 'submission', collection: @submissions %>
+    <%= render partial: 'submission', collection: @submissions, locals: { template: @template } %>
   </div>
   <% view_archived_html = capture do %>
     <% if @template.submissions.where.not(archived_at: nil).exists? && !@template.archived_at? %>

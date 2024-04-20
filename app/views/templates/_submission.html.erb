@@ -61,7 +61,7 @@
               </download-button>
             </button>
           </form>
-        <% else %>
+        <% elsif !submission.archived_at? && !template.archived_at? %>
           <% if current_user.email == submitter.email %>
             <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>" class="flex-1 md:flex-none">
               <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex">
@@ -80,7 +80,7 @@
         <div class="flex-1 md:flex-none">
           <span class="btn btn-outline btn-sm w-full md:w-24">View</span>
         </div>
-        <% if !submission.archived_at? && can?(:destroy, submission) %>
+        <% if !submission.archived_at? && !template.archived_at? && can?(:destroy, submission) %>
           <span data-tip="Archive" class="sm:tooltip tooltip-top">
             <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Archive', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </span>
@@ -127,7 +127,7 @@
                       </download-button>
                     </button>
                   </form>
-                <% elsif !is_submission_completed %>
+                <% elsif !template.archived_at? && !submission.archived_at? && !is_submission_completed %>
                   <div class="relative flex items-center space-x-3">
                     <% if current_user.email == submitter.email %>
                       <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>">
@@ -171,7 +171,7 @@
         <div class="flex-1 md:flex-none">
           <span class="btn btn-outline btn-sm w-full md:w-24">View</span>
         </div>
-        <% unless submission.archived_at? %>
+        <% if !submission.archived_at? && !template.archived_at? %>
           <span data-tip="Archive" class="sm:tooltip tooltip-top">
             <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Archive', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </span>
