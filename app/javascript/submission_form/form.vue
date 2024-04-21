@@ -1007,7 +1007,7 @@ export default {
 
         let saveStepRequest
 
-        if (this.phoneVerifiedValues[this.currentField.uuid] === this.values[this.currentField.uuid]) {
+        if (!isLastStep && this.phoneVerifiedValues[this.currentField.uuid] && this.phoneVerifiedValues[this.currentField.uuid] === this.values[this.currentField.uuid]) {
           saveStepRequest = Promise.resolve({})
         } else {
           saveStepRequest = this.saveStep(formData)
