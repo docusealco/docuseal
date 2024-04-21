@@ -279,7 +279,7 @@ module Submissions
                 font: [FONT_BOLD_NAME, { variant: :bold }] },
               event.event_type.include?('send_') ? ' to ' : ' by ',
               if event.event_type.include?('sms') || event.event_type.include?('phone')
-                submitter.phone
+                event.data['phone'] || submitter.phone
               else
                 submitter.name || submitter.email || submitter.phone
               end
