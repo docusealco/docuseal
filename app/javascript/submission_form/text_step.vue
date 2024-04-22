@@ -34,7 +34,7 @@
       class="base-input !text-2xl w-full"
       :class="{ '!pr-11 -mr-10': !field.validation?.pattern }"
       :required="field.required"
-      :pattern="field.validation?.pattern"
+      :pattern="field.validation?.pattern || (field.required ? '.*\\S+.*' : '')"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       type="text"
       :name="`values[${field.uuid}]`"

@@ -471,8 +471,12 @@ import i18n from './i18n'
 const isEmpty = (obj) => {
   if (obj == null) return true
 
-  if (Array.isArray(obj) || typeof obj === 'string') {
+  if (Array.isArray(obj)) {
     return obj.length === 0
+  }
+
+  if (typeof obj === 'string') {
+    return obj.trim().length === 0
   }
 
   if (typeof obj === 'object') {
