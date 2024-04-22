@@ -11,7 +11,8 @@ class AccountConfigsController < ApplicationController
     AccountConfig::ESIGNING_PREFERENCE_KEY,
     AccountConfig::FORM_WITH_CONFETTI_KEY,
     AccountConfig::DOWNLOAD_LINKS_AUTH_KEY,
-    AccountConfig::FORCE_SSO_AUTH_KEY
+    AccountConfig::FORCE_SSO_AUTH_KEY,
+    AccountConfig::FLATTEN_RESULT_PDF_KEY
   ].freeze
 
   InvalidKey = Class.new(StandardError)

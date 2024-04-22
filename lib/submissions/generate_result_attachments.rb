@@ -44,12 +44,16 @@ module Submissions
 
       template = submitter.submission.template
 
+      is_flatten =
+        submitter.account.account_configs
+                 .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value != false
+
       account = submitter.account
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
       attachments_data_cache = {}
 
-      pdfs_index = build_pdfs_index(submitter)
+      pdfs_index = build_pdfs_index(submitter, flatten: is_flatten)
 
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
@@ -86,10 +90,12 @@ module Submissions
 
           next if Array.wrap(value).compact_blank.blank?
 
-          begin
-            page.flatten_annotations
-          rescue StandardError => e
-            Rollbar.error(e) if defined?(Rollbar)
+          if is_flatten
+            begin
+              page.flatten_annotations
+            rescue StandardError => e
+              Rollbar.error(e) if defined?(Rollbar)
+            end
           end
 
           canvas = page.canvas(type: :overlay)
@@ -335,7 +341,7 @@ module Submissions
       Digest::UUID.uuid_v5(Digest::UUID::OID_NAMESPACE, attachments.map(&:uuid).sort.join(':'))
     end
 
-    def build_pdfs_index(submitter)
+    def build_pdfs_index(submitter, flatten: true)
       latest_submitter = find_last_submitter(submitter)
 
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
@@ -353,10 +359,12 @@ module Submissions
 
         pdf = maybe_rotate_pdf(pdf)
 
-        begin
-          pdf.acro_form&.flatten
-        rescue StandardError => e
-          Rollbar.error(e) if defined?(Rollbar)
+        if flatten
+          begin
+            pdf.acro_form&.flatten
+          rescue StandardError => e
+            Rollbar.error(e) if defined?(Rollbar)
+          end
         end
 
         pdf.config['font.on_missing_glyph'] = method(:on_missing_glyph).to_proc
