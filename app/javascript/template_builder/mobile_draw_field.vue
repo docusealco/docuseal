@@ -24,6 +24,7 @@
       :submitters="submitters"
       :editable="editable"
       :mobile-view="true"
+      :menu-style="{ backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
       @new-submitter="save"
       @remove="removeSubmitter"
       @name-change="save"
@@ -43,7 +44,7 @@ export default {
     Field,
     FieldSubmitter
   },
-  inject: ['save', 't'],
+  inject: ['save', 't', 'backgroundColor'],
   props: {
     drawField: {
       type: Object,

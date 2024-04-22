@@ -22,6 +22,7 @@
       v-if="editable && renderDropdown"
       tabindex="0"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
+      :style="menuStyle"
       :class="menuClasses"
       @click="closeDropdown"
     >
@@ -64,6 +65,11 @@ export default {
       type: String,
       required: false,
       default: 'mt-1.5 bg-base-100'
+    },
+    menuStyle: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     buttonClasses: {
       type: String,

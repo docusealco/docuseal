@@ -3,8 +3,9 @@
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
       class="roles-dropdown w-full rounded-lg"
-      :class="{ 'bg-base-100': withStickySubmitters }"
+      :style="withStickySubmitters ? { backgroundColor } : {}"
       :submitters="submitters"
+      :menu-style="{ backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
       :editable="editable && !defaultSubmitters.length"
       @new-submitter="save"
       @remove="removeSubmitter"
@@ -71,7 +72,7 @@
         :key="field.name"
       >
         <div
-          :style="{ backgroundColor: backgroundColor }"
+          :style="{ backgroundColor }"
           draggable="true"
           class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
           @dragstart="onDragstart({ type: 'text', ...field })"
@@ -113,7 +114,7 @@
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative"
-        :style="{ backgroundColor: backgroundColor }"
+        :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
         @dragstart="onDragstart({ type: type })"
         @dragend="$emit('drag-end')"
@@ -142,7 +143,7 @@
           href="https://www.docuseal.co/pricing"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-          :style="{ backgroundColor: backgroundColor }"
+          :style="{ backgroundColor }"
         >
           <div class="w-0 absolute left-0">
             <IconLock

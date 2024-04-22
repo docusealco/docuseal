@@ -16,6 +16,8 @@
             v-model="field.type"
             :editable="editable && !defaultField"
             :button-width="20"
+            :menu-classes="'mt-1.5'"
+            :menu-style="{ backgroundColor: dropdownBgColor }"
             @update:model-value="[maybeUpdateOptions(), save()]"
             @click="scrollToFirstArea"
           />
@@ -110,7 +112,8 @@
             <ul
               v-if="renderDropdown"
               tabindex="0"
-              class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
+              class="mt-1.5 dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
+              :style="{ backgroundColor: dropdownBgColor }"
               draggable="true"
               @dragstart.prevent.stop
               @click="closeDropdown"
@@ -121,7 +124,7 @@
                 @click.stop
               >
                 <select
-                  class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal"
+                  class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
                   @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
                 >
                   <option
@@ -134,7 +137,7 @@
                   </option>
                 </select>
                 <label
-                  :style="{ backgroundColor: backgroundColor }"
+                  :style="{ backgroundColor: dropdownBgColor }"
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
@@ -151,12 +154,12 @@
                   :placeholder="t('default_value')"
                   dir="auto"
                   :type="field.type"
-                  class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+                  class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
                   @blur="save"
                 >
                 <label
                   v-if="field.default_value"
-                  :style="{ backgroundColor: backgroundColor }"
+                  :style="{ backgroundColor: dropdownBgColor }"
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
@@ -171,7 +174,7 @@
                 <select
                   v-model="field.preferences.format"
                   :placeholder="t('format')"
-                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
                   @change="save"
                 >
                   <option
@@ -183,7 +186,7 @@
                   </option>
                 </select>
                 <label
-                  :style="{ backgroundColor: backgroundColor }"
+                  :style="{ backgroundColor: dropdownBgColor }"
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
@@ -197,7 +200,7 @@
               >
                 <select
                   :placeholder="t('format')"
-                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
                   @change="[field.preferences.format = $event.target.value, save()]"
                 >
                   <option
@@ -220,7 +223,7 @@
                   </option>
                 </select>
                 <label
-                  :style="{ backgroundColor: backgroundColor }"
+                  :style="{ backgroundColor: dropdownBgColor }"
                   class="absolute -top-1 left-2.5 px-1 h-4"
                   style="font-size: 8px"
                 >
@@ -569,6 +572,9 @@ export default {
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    dropdownBgColor () {
+      return ['', null, 'transparent'].includes(this.backgroundColor) ? 'white' : this.backgroundColor
+    },
     schemaAttachmentsIndexes () {
       return (this.template.schema || []).reduce((acc, item, index) => {
         acc[item.attachment_uuid] = index

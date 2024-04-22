@@ -37,6 +37,7 @@
           tabindex="0"
           class="rounded-md min-w-max mb-2"
           :class="menuClasses"
+          :style="menuStyle"
           @click="closeDropdown"
         >
           <li
@@ -136,6 +137,7 @@
       v-if="(editable || !compact) && renderDropdown"
       tabindex="0"
       :class="menuClasses"
+      :style="menuStyle"
       @click="closeDropdown"
     >
       <li
@@ -253,10 +255,15 @@ export default {
       type: String,
       required: true
     },
+    menuStyle: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     menuClasses: {
       type: String,
       required: false,
-      default: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full z-10'
+      default: 'dropdown-content menu p-2 shadow rounded-box w-full z-10'
     }
   },
   emits: ['update:model-value', 'remove', 'new-submitter', 'name-change'],
