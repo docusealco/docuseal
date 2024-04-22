@@ -17,6 +17,7 @@ module Submissions
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
+    MAX_PAGE_ROTATE = 20
 
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
@@ -350,6 +351,8 @@ module Submissions
             HexaPDF::Document.new(io: StringIO.new(attachment.download))
           end
 
+        pdf = maybe_rotate_pdf(pdf)
+
         begin
           pdf.acro_form&.flatten
         rescue StandardError => e
@@ -360,6 +363,26 @@ module Submissions
 
         [attachment.metadata['original_uuid'] || attachment.uuid, pdf]
       end
+    end
+
+    def maybe_rotate_pdf(pdf)
+      return pdf if pdf.pages.size > MAX_PAGE_ROTATE
+
+      is_rotated = pdf.pages.filter_map do |page|
+        page.rotate(0, flatten: true) if page[:Rotate] != 0
+      end.present?
+
+      return pdf unless is_rotated
+
+      io = StringIO.new
+
+      pdf.write(io, incremental: false, validate: false)
+
+      HexaPDF::Document.new(io:)
+    rescue StandardError => e
+      Rollbar.error(e) if defined?(Rollbar)
+
+      pdf
     end
 
     def on_missing_glyph(character, font_wrapper)
