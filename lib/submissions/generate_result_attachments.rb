@@ -147,17 +147,22 @@ module Submissions
               attachment_uuid = Array.wrap(value)[acc]
               attachment = submitter.attachments.find { |a| a.uuid == attachment_uuid }
 
-              next_index =
-                lines[(index + 1)..].index { |l| l.items.first.is_a?(HexaPDF::Layout::InlineBox) } || (lines.size - 1)
+              next_index = lines[(index + 1)..].index { |l| l.items.first.is_a?(HexaPDF::Layout::InlineBox) }
+              next_index += index if next_index
+              next_index ||= lines.size - 1
+
+              diff = ((area['h'] * height) / 2) - (lines.sum(&:height) / 2)
 
               page[:Annots] << pdf.add(
                 {
                   Type: :Annot, Subtype: :Link,
                   Rect: [
                     (area['x'] * width) + TEXT_LEFT_MARGIN,
-                    height - (area['y'] * height) - lines[...index].sum(&:height) + height_diff,
+                    height - (area['y'] * height) - lines[...index].sum(&:height) +
+                    height_diff - (height_diff.zero? ? diff : 0),
                     (area['x'] * width) + (area['w'] * width) + TEXT_LEFT_MARGIN,
-                    height - (area['y'] * height) - lines[..next_index].sum(&:height) + height_diff
+                    height - (area['y'] * height) - lines[..next_index].sum(&:height) +
+                    height_diff - (height_diff.zero? ? diff : 0)
                   ],
                   A: { Type: :Action, S: :URI,
                        URI: ActiveStorage::Blob.proxy_url(attachment.blob) }
