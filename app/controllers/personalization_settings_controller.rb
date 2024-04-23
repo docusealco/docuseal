@@ -18,7 +18,11 @@ class PersonalizationSettingsController < ApplicationController
   end
 
   def create
-    @account_config.value = @account_config.value.compact_blank if @account_config.value.is_a?(Hash)
+    if @account_config.value.is_a?(Hash)
+      @account_config.value = @account_config.value.reject do |_, v|
+        v.blank? && v != false
+      end
+    end
 
     if @account_config.value != false && @account_config.value.blank?
       @account_config.destroy!
