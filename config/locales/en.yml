@@ -1,5 +1,6 @@
 en: &en
   email: Email
+  verification_code_code: 'Verification code: %{code}'
   digitally_signed_by: Digitally signed by
   role: Role
   provide_your_email_to_start: Provide your email to start
@@ -21,6 +22,7 @@ en: &en
 
 es: &es
   role: Rol
+  verification_code_code: 'Código de verificación: %{code}'
   email: Correo electrónico
   digitally_signed_by: Firmado digitalmente por
   role: Rol
@@ -42,6 +44,7 @@ es: &es
 
 it:
   role: Rôle
+  verification_code_code: 'Codice di verifica: %{code}'
   email: Email
   digitally_signed_by: Firmato digitalmente da
   role: Ruolo
@@ -63,6 +66,7 @@ it:
 
 fr: &fr
   email: Email
+  verification_code_code: 'Code de vérification: %{code}'
   digitally_signed_by: Signé numériquement par
   role: Rôle
   provide_your_email_to_start: Entrez votre adresse email pour commencer
@@ -84,6 +88,7 @@ fr: &fr
 pt: &pt
   role: Função
   email: Email
+  verification_code_code: 'Código de verificação: %{code}'
   digitally_signed_by: Assinado digitalmente por
   role: Função
   provide_your_email_to_start: Forneça o seu email para começar
@@ -104,6 +109,7 @@ pt: &pt
 
 de: &de
   role: Rolle
+  verification_code_code: 'Verifizierungscode: %{code}'
   email: E-Mail
   digitally_signed_by: Digital signiert von
   role: Rolle
@@ -125,6 +131,7 @@ de: &de
 
 pl:
   email: Email
+  verification_code_code: 'Kod weryfikacyjny: %{code}'
   digitally_signed_by: Podpis cyfrowy przez
   role: Rola
   provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
@@ -146,6 +153,7 @@ pl:
 uk:
   email: Email
   digitally_signed_by: Цифровий підпис від
+  verification_code_code: 'Код підтвердження: %{code}'
   role: Роль
   provide_your_email_to_start: Введіть свій email, щоб почати
   start: Почати
@@ -166,6 +174,7 @@ uk:
 cs:
   email: Email
   digitally_signed_by: Digitálně podepsáno uživatelem
+  verification_code_code: 'Ověřovací kód: %{code}'
   role: Role
   provide_your_email_to_start: Zadejte svůj email pro zahájení
   start: Zahájit
@@ -187,6 +196,7 @@ he:
   email: דוא"ל
   digitally_signed_by: חתום דיגיטלית על ידי
   role: תפקיד
+  verification_code_code: 'קוד אימות: %{code}'
   provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
   start: התחל
   starting: מתחיל
@@ -207,6 +217,7 @@ nl:
   email: E-mail
   digitally_signed_by: Digitaal ondertekend door
   role: Rol
+  verification_code_code: 'Verificatiecode: %{code}'
   provide_your_email_to_start: Geef uw e-mailadres om te beginnen
   start: Start
   starting: Starten
@@ -231,6 +242,7 @@ ar:
   provide_your_email_to_start: قدم بريدك الإلكتروني للبدء
   start: بدء
   starting: بداية
+  verification_code_code: 'رمز التحقق: %{code}'
   form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'تمت الدعوة بواسطة <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
@@ -255,6 +267,7 @@ ko:
   form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
   invited_by_html: '<span class="font-semibold">%{name}</span>에 의해 초대되었습니다.'
   you_have_been_invited_to_submit_a_form: 양식을 제출하도록 초대되었습니다.
+  verification_code_code: '확인 코드: %{code}'
   signed_on_time: '%{time}에 서명됨'
   form_has_been_submitted_already: 양식이 이미 제출되었습니다.
   send_copy_to_email: 이메일로 사본 보내기

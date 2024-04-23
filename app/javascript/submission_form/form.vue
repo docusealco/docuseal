@@ -360,6 +360,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
+            :locale="language?.toLowerCase() || browserLanguage"
             :show-field-names="showFieldNames"
             :verified-value="phoneVerifiedValues[currentField.uuid]"
             :default-value="submitter.phone"

@@ -117,6 +117,11 @@ export default {
       type: String,
       required: true
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en'
+    },
     showFieldNames: {
       type: Boolean,
       required: false,
@@ -163,6 +168,7 @@ export default {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug,
+          locale: this.locale,
           phone: this.$refs.phone.value
         }),
         headers: { 'Content-Type': 'application/json' }
