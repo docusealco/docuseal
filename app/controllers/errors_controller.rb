@@ -15,6 +15,11 @@ class ErrorsController < ActionController::Base
     '/api/templates/docx'
   ].freeze
 
+  SAFE_ERROR_MESSAGE_CLASSES = [
+    ActionDispatch::Http::Parameters::ParseError,
+    JSON::ParserError
+  ].freeze
+
   def show
     if request.original_fullpath.in?(ENTERPRISE_PATHS) && error_status_code == 404
       return render json: { status: 404, message: ENTERPRISE_FEATURE_MESSAGE }, status: :not_found
@@ -24,7 +29,11 @@ class ErrorsController < ActionController::Base
       f.json do
         set_cors_headers
 
-        render json: { status: error_status_code }, status: error_status_code
+        exception = request.env['action_dispatch.exception']
+
+        error = exception.message if exception.class.in?(SAFE_ERROR_MESSAGE_CLASSES)
+
+        render json: { status: error_status_code, error: }.compact, status: error_status_code
       end
 
       f.html { render error_status_code.to_s, status: error_status_code }
