@@ -10,7 +10,7 @@ AllCops:
     - node_modules/**/*
     - bin/*
     - vendor/**/*
-  TargetRubyVersion: '3.2'
+  TargetRubyVersion: '3.3'
 
 Metrics/BlockLength:
   Exclude:

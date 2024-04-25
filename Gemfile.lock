@@ -149,6 +149,7 @@ GEM
     crass (1.0.6)
     css_parser (1.17.1)
       addressable
+    csv (3.3.0)
     cuprite (0.15)
       capybara (~> 3.0)
       ferrum (~> 0.14.0)
@@ -461,7 +462,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
-    rubocop (1.63.1)
+    rubocop (1.63.3)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -585,6 +586,7 @@ DEPENDENCIES
   bullet
   cancancan
   capybara
+  csv
   cuprite
   debug
   devise
@@ -636,7 +638,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.1p55
 
 BUNDLED WITH
    2.5.3
