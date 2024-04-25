@@ -554,6 +554,11 @@ export default {
       required: false,
       default: false
     },
+    reuseSignature: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     withConfetti: {
       type: Boolean,
       required: false,
@@ -700,9 +705,13 @@ export default {
       }, {})
     },
     previousInitialsValue () {
-      const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
+      if (this.reuseSignature !== false) {
+        const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
-      return this.values[initialsField?.uuid]
+        return this.values[initialsField?.uuid]
+      } else {
+        return null
+      }
     },
     isAnonymousChecboxes () {
       return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name && !e.required) && this.currentStepFields.length > 4
@@ -930,11 +939,15 @@ export default {
       })
     },
     previousSignatureValueFor (field) {
-      const signatureField = [...this.fields].reverse().find((f) =>
-        f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
-      )
+      if (this.reuseSignature !== false) {
+        const signatureField = [...this.fields].reverse().find((f) =>
+          f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
+        )
 
-      return this.values[signatureField?.uuid]
+        return this.values[signatureField?.uuid]
+      } else {
+        return null
+      }
     },
     goToStep (step, scrollToArea = false, clickUpload = false) {
       this.currentStep = this.stepFields.indexOf(step)
