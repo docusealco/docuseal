@@ -93,7 +93,13 @@ module Api
         end
       end
 
-      render json: submissions.flat_map(&:submitters)
+      json = submissions.flat_map do |submission|
+        submission.submitters.map do |s|
+          Submitters::SerializeForApi.call(s, with_documents: false, with_urls: true)
+        end
+      end
+
+      render json:
     rescue Submitters::NormalizeValues::BaseError => e
       Rollbar.warning(e) if defined?(Rollbar)
 

@@ -71,7 +71,9 @@ module Api
         Submitters.send_signature_requests([@submitter])
       end
 
-      render json: Submitters::SerializeForApi.call(@submitter, with_template: false, with_events: false)
+      render json: Submitters::SerializeForApi.call(@submitter, with_template: false,
+                                                                with_urls: true,
+                                                                with_events: false)
     end
 
     def submitter_params

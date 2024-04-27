@@ -2,6 +2,12 @@
 
 module Submitters
   module SerializeForWebhook
+    SERIALIZE_PARAMS = {
+      methods: %i[status application_key],
+      only: %i[id submission_id email phone name ua ip sent_at opened_at
+               completed_at created_at updated_at external_id metadata]
+    }.freeze
+
     module_function
 
     def call(submitter)
@@ -16,10 +22,7 @@ module Submitters
       submitter_name = (submitter.submission.template_submitters ||
                         submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
-      submitter.as_json(methods: %i[status application_key],
-                        only: %i[id submission_id email phone name ua ip sent_at opened_at
-                                 completed_at created_at updated_at external_id metadata])
-               .except('uuid', 'values', 'slug')
+      submitter.as_json(SERIALIZE_PARAMS)
                .merge('role' => submitter_name,
                       'preferences' => submitter.preferences.except('default_values'),
                       'values' => values,
