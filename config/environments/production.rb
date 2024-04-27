@@ -140,7 +140,10 @@ Rails.application.configure do
         params: {
           id: params[:id],
           sig: (params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
-          slug: (params[:slug] || params[:submission_slug] || params[:template_slug]).to_s.last(5)
+          slug: (params[:slug] ||
+                 params[:submitter_slug] ||
+                 params[:submission_slug] ||
+                 params[:template_slug]).to_s.last(5)
         }.compact_blank,
         host: controller.request.host,
         uid: controller.instance_variable_get(:@current_user).try(:id)
