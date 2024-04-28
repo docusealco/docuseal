@@ -73,7 +73,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && !archived_at?
+    super && !archived_at? && !account.archived_at?
   end
 
   def remember_me

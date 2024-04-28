@@ -4,13 +4,14 @@
 #
 # Table name: accounts
 #
-#  id         :bigint           not null, primary key
-#  locale     :string           not null
-#  name       :string           not null
-#  timezone   :string           not null
-#  uuid       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  archived_at :datetime
+#  locale      :string           not null
+#  name        :string           not null
+#  timezone    :string           not null
+#  uuid        :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -48,6 +49,8 @@ class Account < ApplicationRecord
 
   attribute :timezone, :string, default: 'UTC'
   attribute :locale, :string, default: 'en-US'
+
+  scope :active, -> { where(archived_at: nil) }
 
   def testing?
     linked_account_account&.testing?

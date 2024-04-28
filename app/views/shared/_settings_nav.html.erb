@@ -37,11 +37,17 @@
           <%= link_to 'E-Signature', settings_esign_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <% if can?(:read, AccountConfig) %>
+        <li>
+          <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <% if can?(:read, User) %>
         <li>
           <%= link_to 'Users', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
+      <%= render 'shared/settings_nav_extra' %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
@@ -54,12 +60,6 @@
           </li>
         <% end %>
       <% end %>
-      <% if can?(:read, AccountConfig) %>
-        <li>
-          <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <%= render 'shared/settings_nav_extra' %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.testing?) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>

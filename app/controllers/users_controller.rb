@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  load_and_authorize_resource :user, only: %i[index edit new update destroy]
+  load_and_authorize_resource :user, only: %i[index edit update destroy]
 
-  before_action :build_user, only: :create
-  authorize_resource :user, only: :create
+  before_action :build_user, only: %i[new create]
+  authorize_resource :user, only: %i[new create]
 
   def index
     @users =
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         @users.active
       end
 
-    @pagy, @users = pagy(@users.order(id: :desc))
+    @pagy, @users = pagy(@users.where(account: current_account).order(id: :desc))
   end
 
   def new; end
@@ -81,6 +81,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :role, :archived_at)
+    if params.key?(:user)
+      params.require(:user).permit(:email, :first_name, :last_name, :password,
+                                   :role, :archived_at, :account_id)
+    else
+      {}
+    end
   end
 end
