@@ -3,9 +3,9 @@
     <% if @base_template %>
       <%= hidden_field_tag :base_template_id, @base_template.id %>
     <% end %>
-    <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.account_linked_accounts.exists? %>
+    <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.account_linked_accounts.active.exists? %>
       <div class="form-control -mb-2 mt-2">
-        <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts].uniq.map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
+        <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts.active].uniq.map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
       </div>
     <% end %>
     <div class="form-control mt-6">
