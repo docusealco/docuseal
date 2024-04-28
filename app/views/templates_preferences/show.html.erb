@@ -1,17 +1,21 @@
 <%= render 'shared/turbo_modal_large', title: 'Preferences', close_after_submit: false do %>
-  <% options = [['General', 'general'], ['API and Embedding', 'api']] %>
-  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
-    <div class="join">
-      <% options.each_with_index do |(label, value), index| %>
-        <span>
-          <%= radio_button_tag 'option', value, value == 'general', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-          <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-48 peer-checked:btn-active normal-case <%= 'px-8 md:px-0' if value == 'general' %>">
-            <%= label %>
-          </label>
-        </span>
-      <% end %>
-    </div>
-  </toggle-visible>
+  <% show_api = Docuseal.multitenant? || current_account.testing? || !current_account.linked_account_account %>
+  <% options = [%w[General general]] %>
+  <% options << ['API and Embedding', 'api'] if show_api %>
+  <% if options.size > 1 %>
+    <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
+      <div class="join">
+        <% options.each_with_index do |(label, value), index| %>
+          <span>
+            <%= radio_button_tag 'option', value, value == 'general', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
+            <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-48 peer-checked:btn-active normal-case <%= 'px-8 md:px-0' if value == 'general' %>">
+              <%= label %>
+            </label>
+          </span>
+        <% end %>
+      </div>
+    </toggle-visible>
+  <% end %>
   <div id="general" class="px-5 mb-4">
     <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
       <toggle-on-submit data-element-id="email_saved_alert"></toggle-on-submit>
@@ -62,39 +66,41 @@
     <% end %>
     <%= render 'templates_code_modal/preferences' %>
   </div>
-  <div id="api" class="hidden mt-2 mb-4 px-5">
-    <div>
-      <label class="text-sm font-semibold" for="template_id">
-        Template ID
-      </label>
-      <div class="flex gap-2 mb-4 mt-2">
-        <input id="template_id" type="text" value="<%= @template.id %>" class="base-input w-full" autocomplete="off" readonly>
-        <%= render 'shared/clipboard_copy', icon: 'copy', text: @template.id, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+  <% if show_api %>
+    <div id="api" class="hidden mt-2 mb-4 px-5">
+      <div>
+        <label class="text-sm font-semibold" for="template_id">
+          Template ID
+        </label>
+        <div class="flex gap-2 mb-4 mt-2">
+          <input id="template_id" type="text" value="<%= @template.id %>" class="base-input w-full" autocomplete="off" readonly>
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: @template.id, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+        </div>
       </div>
-    </div>
-    <div>
-      <label class="text-sm font-semibold" for="embedding_url">
-        Embedding URL
-      </label>
-      <div class="flex gap-2 mb-4 mt-2">
-        <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
-        <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+      <div>
+        <label class="text-sm font-semibold" for="embedding_url">
+          Embedding URL
+        </label>
+        <div class="flex gap-2 mb-4 mt-2">
+          <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+        </div>
       </div>
-    </div>
-    <%= render 'templates_code_modal/placeholder' %>
-    <%= render 'templates/embedding', template: @template %>
-    <% if can?(:manage, TemplateSharing.new(template: @template)) %>
-      <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' } do |f| %>
-        <%= f.hidden_field :template_id, value: @template.id %>
-        <div class="flex items-center justify-between">
-          <span>
-            Share template with Test Environment
-          </span>
-          <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
+      <%= render 'templates_code_modal/placeholder' %>
+      <%= render 'templates/embedding', template: @template %>
+      <% if can?(:manage, TemplateSharing.new(template: @template)) %>
+        <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' } do |f| %>
+          <%= f.hidden_field :template_id, value: @template.id %>
+          <div class="flex items-center justify-between">
+            <span>
+              Share template with Test Environment
+            </span>
+            <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
+          </div>
+        <% end %>
+        <div class="mb-4">
         </div>
       <% end %>
-      <div class="mb-4">
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

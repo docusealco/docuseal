@@ -37,7 +37,7 @@
     </div>
     <% if !template.archived_at? %>
       <div class="flex items-center space-x-2">
-        <% if can?(:update, template) && (Docuseal.multitenant? || current_account.testing? || current_account.id == 1) %>
+        <% if can?(:update, template) %>
           <div class="tooltip" data-tip="Preferences">
             <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
               <span class="flex items-center justify-center space-x-2">
