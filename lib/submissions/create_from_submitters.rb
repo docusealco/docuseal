@@ -150,15 +150,21 @@ module Submissions
     def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:, user:, preferences:)
       email = Submissions.normalize_email(attrs[:email])
       submitter_preferences = Submitters.normalize_preferences(submission.account, user, attrs)
+      values = attrs[:values] || {}
+
+      phone_field_uuid =
+        (submission.template_fields || submission.template.fields).find do |f|
+          values[f['uuid']].present? && f['type'] == 'phone'
+        end&.dig('uuid')
 
       submission.submitters.new(
         email:,
-        phone: attrs[:phone].to_s.gsub(/[^0-9+]/, ''),
+        phone: (attrs[:phone] || values[phone_field_uuid]).to_s.gsub(/[^0-9+]/, ''),
         name: attrs[:name],
         external_id: attrs[:external_id].presence || attrs[:application_key],
         completed_at: attrs[:completed].present? ? Time.current : nil,
         sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
-        values: attrs[:values] || {},
+        values: values.except(phone_field_uuid),
         metadata: attrs[:metadata] || {},
         preferences: preferences.merge(submitter_preferences)
                                 .merge({ default_values: attrs[:values] }.compact_blank)

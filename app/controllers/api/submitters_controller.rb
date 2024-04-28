@@ -104,16 +104,37 @@ module Api
     end
 
     def assign_submitter_attrs(submitter, attrs)
-      submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)
-      submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '') if attrs.key?(:phone)
-      submitter.values = submitter.values.merge(attrs[:values].to_unsafe_h) if attrs[:values].present?
-      submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
-      submitter.external_id = attrs[:application_key] if attrs.key?(:application_key)
-      submitter.external_id = attrs[:external_id] if attrs.key?(:external_id)
-      submitter.metadata = attrs[:metadata] if attrs.key?(:metadata)
+      values = attrs[:values]&.to_unsafe_h || {}
 
       assign_submission_fields(submitter.submission)
+
+      phone_field_uuid = submitter.submission.template_fields.find do |f|
+        values[f['uuid']].present? && f['type'] == 'phone'
+      end&.dig('uuid')
+
+      submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)
+
+      if attrs.key?(:phone)
+        submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '')
+      elsif values[phone_field_uuid].present?
+        submitter.phone = values[phone_field_uuid].to_s.gsub(/[^0-9+]/, '')
+      end
+
+      values = values.except(phone_field_uuid)
+
+      submitter.values = submitter.values.merge(values) if values.present?
+      submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
+      submitter.metadata = attrs[:metadata] if attrs.key?(:metadata)
+
+      assign_external_id(submitter, attrs)
       assign_preferences(submitter, attrs)
+
+      submitter
+    end
+
+    def assign_external_id(submitter, attrs)
+      submitter.external_id = attrs[:application_key] if attrs.key?(:application_key)
+      submitter.external_id = attrs[:external_id] if attrs.key?(:external_id)
 
       submitter
     end
