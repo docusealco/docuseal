@@ -35,7 +35,7 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div v-if="submitterDefaultFields.length">
+  <div v-if="submitterDefaultFields.length && editable">
     <hr class="mb-2">
     <template v-if="isShowFieldSearch">
       <input
