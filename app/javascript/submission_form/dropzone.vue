@@ -104,8 +104,12 @@ export default {
       this.isLoading = true
 
       return await Promise.all(
-        Array.from(files).map((file) => {
+        Array.from(files).map(async (file) => {
           const formData = new FormData()
+
+          if (file.type === 'image/bmp') {
+            file = await this.convertBmpToPng(file)
+          }
 
           formData.append('file', file)
           formData.append('submitter_slug', this.submitterSlug)
@@ -121,6 +125,32 @@ export default {
         this.$emit('upload', result)
       }).finally(() => {
         this.isLoading = false
+      })
+    },
+    convertBmpToPng (bmpFile) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+
+        reader.onload = function (event) {
+          const img = new Image()
+
+          img.onload = function () {
+            const canvas = document.createElement('canvas')
+            const ctx = canvas.getContext('2d')
+
+            canvas.width = img.width
+            canvas.height = img.height
+            ctx.drawImage(img, 0, 0)
+            canvas.toBlob(function (blob) {
+              const newFile = new File([blob], bmpFile.name.replace(/\.\w+$/, '.png'), { type: 'image/png' })
+              resolve(newFile)
+            }, 'image/png')
+          }
+
+          img.src = event.target.result
+        }
+        reader.onerror = reject
+        reader.readAsDataURL(bmpFile)
       })
     }
   }
