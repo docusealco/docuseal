@@ -296,16 +296,8 @@ module Submissions
 
       sign_params = {
         reason: SIGN_REASON,
-        certificate: pkcs.certificate,
-        doc_mdp_permissions: :no_changes,
-        key: pkcs.key,
-        certificate_chain: pkcs.ca_certs || []
+        **Submissions::GenerateResultAttachments.build_signing_params(pkcs, tsa_url)
       }
-
-      if tsa_url
-        sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
-        sign_params[:signature_size] = 10_000
-      end
 
       composer.document.sign(io, **sign_params)
 

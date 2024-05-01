@@ -304,15 +304,8 @@ module Submissions
       if sign_reason
         sign_params = {
           reason: sign_reason,
-          certificate: pkcs.certificate,
-          key: pkcs.key,
-          certificate_chain: pkcs.ca_certs || []
+          **build_signing_params(pkcs, tsa_url)
         }
-
-        if tsa_url
-          sign_params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
-          sign_params[:signature_size] = 10_000
-        end
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
@@ -340,6 +333,21 @@ module Submissions
         name: 'documents',
         record: submitter
       )
+    end
+
+    def build_signing_params(pkcs, tsa_url)
+      params = {
+        certificate: pkcs.certificate,
+        key: pkcs.key,
+        certificate_chain: pkcs.ca_certs || []
+      }
+
+      if tsa_url
+        params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
+        params[:signature_size] = 10_000
+      end
+
+      params
     end
 
     def images_pdf_uuid(attachments)

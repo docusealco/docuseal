@@ -27,7 +27,8 @@ class VerifyPdfSignatureController < ApplicationController
     trusted_certs = [default_pkcs.certificate,
                      *default_pkcs.ca_certs,
                      *custom_certs.map(&:certificate),
-                     *custom_certs.flat_map(&:ca_certs).compact]
+                     *custom_certs.flat_map(&:ca_certs).compact,
+                     *Docuseal.trusted_certs]
 
     render turbo_stream: turbo_stream.replace('result', partial: 'result',
                                                         locals: { pdfs:, files: params[:files], trusted_certs: })

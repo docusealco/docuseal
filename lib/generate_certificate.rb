@@ -3,6 +3,8 @@
 module GenerateCertificate
   SIZE = 2**11
 
+  Pkcs12Struct = Struct.new(:certificate, :ca_certs, keyword_init: true)
+
   module_function
 
   def call(name = Docuseal.product_name)
@@ -89,9 +91,11 @@ module GenerateCertificate
 
   def load_pkcs(cert_data)
     cert = OpenSSL::X509::Certificate.new(cert_data['cert'])
-    key = OpenSSL::PKey::RSA.new(cert_data['key'])
+    key = OpenSSL::PKey::RSA.new(cert_data['key']) if cert_data['key'].present?
     sub_ca = OpenSSL::X509::Certificate.new(cert_data['sub_ca'])
     root_ca = OpenSSL::X509::Certificate.new(cert_data['root_ca'])
+
+    return Pkcs12Struct.new(certificate: cert, ca_certs: [sub_ca, root_ca]) unless key
 
     OpenSSL::PKCS12.create(
       '',

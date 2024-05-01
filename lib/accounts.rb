@@ -90,7 +90,11 @@ module Accounts
   def load_signing_pkcs(account)
     cert_data =
       if Docuseal.multitenant?
-        EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || Docuseal::CERTS
+        data = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value
+
+        return Docuseal.default_pkcs if data.blank?
+
+        data
       else
         EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value ||
           EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value

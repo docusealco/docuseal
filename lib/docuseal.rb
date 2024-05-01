@@ -60,6 +60,17 @@ module Docuseal
     ENV['ACTIVE_STORAGE_PUBLIC'] == 'true'
   end
 
+  def default_pkcs
+    @default_pkcs ||= GenerateCertificate.load_pkcs(Docuseal::CERTS)
+  end
+
+  def trusted_certs
+    @trusted_certs ||=
+      ENV['TRUSTED_CERTS'].to_s.split("\n\n").map do |base64|
+        OpenSSL::X509::Certificate.new(base64)
+      end
+  end
+
   def default_url_options
     return DEFAULT_URL_OPTIONS if multitenant?
 
