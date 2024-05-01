@@ -1,12 +1,32 @@
 # frozen_string_literal: true
 
 module HexaPDF
+  module Encryption
+    class SecurityHandler
+      def encrypt_string(str, obj)
+        return str.dup if str.empty? || obj == document.trailer[:Encrypt] || obj.type == :XRef ||
+                          (obj.type == :Sig && obj[:Contents].equal?(str))
+
+        key = object_key(obj.oid, obj.gen, string_algorithm)
+        string_algorithm.encrypt(key, str).dup
+      end
+    end
+  end
+
   module Type
     # fix NoMethodError: undefined method `field_value' for #<HexaPDF::Type::AcroForm::Field
     module AcroForm
       class Field
         def field_value
           ''
+        end
+
+        def terminal_field?
+          kids = self[:Kids]
+
+          # rubocop:disable Rails/Blank
+          kids.nil? || kids.empty? || kids.none? { |kid| kid&.key?(:T) }
+          # rubocop:enable Rails/Blank
         end
       end
     end
