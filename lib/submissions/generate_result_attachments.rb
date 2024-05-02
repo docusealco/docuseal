@@ -428,6 +428,7 @@ module Submissions
 
     def build_pdf_from_image(attachment)
       pdf = HexaPDF::Document.new
+
       page = pdf.pages.add
 
       scale = [A4_SIZE.first / attachment.metadata['width'].to_f,

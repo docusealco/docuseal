@@ -7,15 +7,10 @@ module Submissions
     FONT_PATH = '/fonts/GoNotoKurrent-Regular.ttf'
     FONT_BOLD_PATH = '/fonts/GoNotoKurrent-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
-                  FONT_PATH
+                  'GoNotoKurrent'
                 else
                   'Helvetica'
                 end
-    FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
-                       FONT_BOLD_PATH
-                     else
-                       'Helvetica'
-                     end
 
     SIGN_REASON = 'Signed with DocuSeal.co'
     VERIFIED_TEXT = 'Verified'
@@ -48,7 +43,18 @@ module Submissions
         end
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
-      composer.document.fonts.add(FONT_BOLD_NAME, variant: :bold)
+      composer.document.task(:pdfa)
+      composer.document.config['font.map'] = {
+        'Helvetica' => {
+          none: FONT_PATH,
+          bold: FONT_BOLD_PATH
+        },
+        FONT_NAME => {
+          none: FONT_PATH,
+          bold: FONT_BOLD_PATH
+        }
+      }
+
       composer.document.config['font.on_missing_glyph'] =
         Submissions::GenerateResultAttachments.method(:on_missing_glyph).to_proc
 
@@ -119,13 +125,13 @@ module Submissions
           ),
           composer.document.layout.formatted_text_box(
             [
-              { text: "Original SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
+              { text: "Original SHA256:\n", font: [FONT_NAME, { variant: :bold }] },
               original_documents.map { |d| d.metadata['sha256'] || d.checksum }.join("\n"),
               "\n",
-              { text: "Result SHA256:\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
+              { text: "Result SHA256:\n", font: [FONT_NAME, { variant: :bold }] },
               document.metadata['sha256'] || document.checksum,
               "\n",
-              { text: 'Generated at: ', font: [FONT_BOLD_NAME, { variant: :bold }] },
+              { text: 'Generated at: ', font: [FONT_NAME, { variant: :bold }] },
               "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
               "#{TimeUtils.timezone_abbr(account.timezone, document.created_at)}"
             ], line_spacing: 1.3
@@ -162,7 +168,7 @@ module Submissions
             composer.document.layout.formatted_text_box(
               [
                 submission.template_submitters.size > 1 && { text: "#{item['name']}\n" },
-                submitter.email && { text: "#{submitter.email}\n", font: [FONT_BOLD_NAME, { variant: :bold }] },
+                submitter.email && { text: "#{submitter.email}\n", font: [FONT_NAME, { variant: :bold }] },
                 submitter.name && { text: "#{TextUtils.maybe_rtl_reverse(submitter.name)}\n" },
                 submitter.phone && { text: "#{submitter.phone}\n" }
               ].compact_blank, line_spacing: 1.3, padding: [0, 20, 0, 0]
@@ -276,7 +282,7 @@ module Submissions
           composer.document.layout.formatted_text_box(
             [
               { text: SubmissionEvents::EVENT_NAMES[event.event_type.to_sym],
-                font: [FONT_BOLD_NAME, { variant: :bold }] },
+                font: [FONT_NAME, { variant: :bold }] },
               event.event_type.include?('send_') ? ' to ' : ' by ',
               if event.event_type.include?('sms') || event.event_type.include?('phone')
                 event.data['phone'] || submitter.phone
@@ -316,7 +322,7 @@ module Submissions
       column.formatted_text([{ text: 'DocuSeal',
                                link: Docuseal::PRODUCT_URL }],
                             font_size: 20,
-                            font: [FONT_BOLD_NAME, { variant: :bold }],
+                            font: [FONT_NAME, { variant: :bold }],
                             width: 100,
                             padding: [5, 0, 0, 8],
                             position: :float, text_align: :left)
