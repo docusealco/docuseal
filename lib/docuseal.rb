@@ -66,7 +66,7 @@ module Docuseal
 
   def trusted_certs
     @trusted_certs ||=
-      ENV['TRUSTED_CERTS'].to_s.split("\n\n").map do |base64|
+      ENV['TRUSTED_CERTS'].to_s.gsub('\\n', "\n").split("\n\n").map do |base64|
         OpenSSL::X509::Certificate.new(base64)
       end
   end
