@@ -36,14 +36,15 @@ FROM ruby:3.3.1-alpine3.18 as app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
+ENV LD_PRELOAD=/lib/libgcompat.so.0
 
 WORKDIR /app
 
-RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif libc6-compat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
+RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
 COPY ./Gemfile ./Gemfile.lock ./
 
-RUN apk add --no-cache build-base && bundle update --bundler && bundle install && apk del build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
+RUN apk add --no-cache build-base && bundle install && apk del build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
 
 COPY ./bin ./bin
 COPY ./app ./app

@@ -333,7 +333,9 @@ GEM
     nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.4-arm64-darwin)
+    nokogiri (1.16.4-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     oj (3.16.3)
       bigdecimal (>= 3.0)
@@ -529,7 +531,6 @@ GEM
     smart_properties (1.17.0)
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (1.7.3-arm64-darwin)
     stringio (3.1.0)
     strip_attributes (1.13.0)
       activemodel (>= 3.0, < 8.0)
@@ -573,8 +574,9 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  arm64-darwin-22
+  aarch64-linux
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   annotate
