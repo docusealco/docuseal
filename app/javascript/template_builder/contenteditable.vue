@@ -14,10 +14,7 @@
       @focus="$emit('focus', $event)"
       @blur="onBlur"
     >
-      <template
-        v-for="(item, index) in (value || '').split(/(_)/)"
-        :key="index"
-      >{{ item }}<wbr></template>
+      {{ value }}
     </span>
     <span
       v-if="withRequired"
