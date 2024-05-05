@@ -70,7 +70,7 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ (defaultField ? (field.title || field.name) : field.name) || defaultName }}</span>
       <div
-        v-if="isNameFocus && !['checkbox', 'phone'].includes(field.type)"
+        v-if="isSettingsFocus || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
         class="flex items-center ml-1.5"
       >
         <input
@@ -86,6 +86,47 @@
           @click.prevent="field.required = !field.required"
           @mousedown.prevent
         >{{ t('required') }}</label>
+        <span
+          v-if="field.type !== 'payment'"
+          class="dropdown dropdown-end"
+          @mouseenter="renderDropdown = true"
+          @touchstart="renderDropdown = true"
+        >
+          <label
+            ref="settingsButton"
+            tabindex="0"
+            :title="t('settings')"
+            class="cursor-pointer flex items-center"
+            style="height: 25px"
+            @focus="isSettingsFocus = true"
+            @blur="maybeBlurSettings"
+          >
+            <IconDotsVertical class="w-5 h-5" />
+          </label>
+          <ul
+            v-if="renderDropdown"
+            ref="settingsDropdown"
+            tabindex="0"
+            class="dropdown-content menu menu-xs px-2 pb-2 pt-1 shadow rounded-box w-52 z-10 rounded-t-none"
+            :style="{ backgroundColor: 'white' }"
+            @dragstart.prevent.stop
+            @click="closeDropdown"
+            @focusout="maybeBlurSettings"
+          >
+            <FieldSettings
+              :field="field"
+              :default-field="defaultField"
+              :editable="editable"
+              :background-color="'white'"
+              :with-required="false"
+              :with-areas="false"
+              @click-formula="isShowFormulaModal = true"
+              @click-description="isShowDescriptionModal = true"
+              @click-condition="isShowConditionsModal = true"
+              @scroll-to="[selectedAreaRef.value = $event, $emit('scroll-to', $event)]"
+            />
+          </ul>
+        </span>
       </div>
       <button
         v-else-if="editable"
@@ -145,6 +186,38 @@
       @mousedown.stop="startResize"
       @touchstart="startTouchResize"
     />
+    <Teleport
+      v-if="isShowFormulaModal"
+      :to="modalContainerEl"
+    >
+      <FormulaModal
+        :field="field"
+        :editable="editable && !defaultField"
+        :build-default-name="buildDefaultName"
+        @close="isShowFormulaModal = false"
+      />
+    </Teleport>
+    <Teleport
+      v-if="isShowConditionsModal"
+      :to="modalContainerEl"
+    >
+      <ConditionsModal
+        :field="field"
+        :build-default-name="buildDefaultName"
+        @close="isShowConditionsModal = false"
+      />
+    </Teleport>
+    <Teleport
+      v-if="isShowDescriptionModal"
+      :to="modalContainerEl"
+    >
+      <DescriptionModal
+        :field="field"
+        :editable="editable && !defaultField"
+        :build-default-name="buildDefaultName"
+        @close="isShowDescriptionModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -152,7 +225,11 @@
 import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
-import { IconX, IconCheck } from '@tabler/icons-vue'
+import FieldSettings from './field_settings'
+import FormulaModal from './formula_modal'
+import ConditionsModal from './conditions_modal'
+import DescriptionModal from './description_modal'
+import { IconX, IconCheck, IconDotsVertical } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -160,6 +237,11 @@ export default {
   components: {
     FieldType,
     IconCheck,
+    FieldSettings,
+    FormulaModal,
+    IconDotsVertical,
+    DescriptionModal,
+    ConditionsModal,
     FieldSubmitter,
     IconX
   },
@@ -195,11 +277,16 @@ export default {
       default: null
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to'],
   data () {
     return {
+      isShowFormulaModal: false,
+      isShowConditionsModal: false,
+      isSettingsFocus: false,
+      isShowDescriptionModal: false,
       isResize: false,
       isDragged: false,
+      renderDropdown: false,
       isNameFocus: false,
       textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 }
@@ -208,6 +295,9 @@ export default {
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    modalContainerEl () {
+      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+    },
     defaultName () {
       return this.buildDefaultName(this.field, this.template.fields)
     },
@@ -324,6 +414,14 @@ export default {
   },
   methods: {
     buildDefaultName: Field.methods.buildDefaultName,
+    closeDropdown () {
+      document.activeElement.blur()
+    },
+    maybeBlurSettings (e) {
+      if (!e.relatedTarget || !this.$refs.settingsDropdown.contains(e.relatedTarget)) {
+        this.isSettingsFocus = false
+      }
+    },
     onNameFocus (e) {
       this.selectedAreaRef.value = this.area
 
@@ -379,6 +477,10 @@ export default {
       })
     },
     onNameBlur (e) {
+      if (e.relatedTarget === this.$refs.settingsButton) {
+        this.isSettingsFocus = true
+      }
+
       const text = this.$refs.name.innerText.trim()
 
       this.isNameFocus = false

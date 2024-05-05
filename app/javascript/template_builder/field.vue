@@ -118,280 +118,17 @@
               @dragstart.prevent.stop
               @click="closeDropdown"
             >
-              <div
-                v-if="['number'].includes(field.type)"
-                class="py-1.5 px-1 relative"
-                @click.stop
-              >
-                <select
-                  class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-                  @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
-                >
-                  <option
-                    v-for="value in ['left', 'right', 'center']"
-                    :key="value"
-                    :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
-                    :value="value"
-                  >
-                    {{ t(value) }}
-                  </option>
-                </select>
-                <label
-                  :style="{ backgroundColor: dropdownBgColor }"
-                  class="absolute -top-1 left-2.5 px-1 h-4"
-                  style="font-size: 8px"
-                >
-                  {{ t('align') }}
-                </label>
-              </div>
-              <div
-                v-if="['text', 'number'].includes(field.type) && !defaultField"
-                class="py-1.5 px-1 relative"
-                @click.stop
-              >
-                <input
-                  v-model="field.default_value"
-                  :placeholder="t('default_value')"
-                  dir="auto"
-                  :type="field.type"
-                  class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-                  @blur="save"
-                >
-                <label
-                  v-if="field.default_value"
-                  :style="{ backgroundColor: dropdownBgColor }"
-                  class="absolute -top-1 left-2.5 px-1 h-4"
-                  style="font-size: 8px"
-                >
-                  {{ t('default_value') }}
-                </label>
-              </div>
-              <div
-                v-if="field.type === 'date'"
-                class="py-1.5 px-1 relative"
-                @click.stop
-              >
-                <select
-                  v-model="field.preferences.format"
-                  :placeholder="t('format')"
-                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-                  @change="save"
-                >
-                  <option
-                    v-for="format in dateFormats"
-                    :key="format"
-                    :value="format"
-                  >
-                    {{ formatDate(new Date(), format) }}
-                  </option>
-                </select>
-                <label
-                  :style="{ backgroundColor: dropdownBgColor }"
-                  class="absolute -top-1 left-2.5 px-1 h-4"
-                  style="font-size: 8px"
-                >
-                  {{ t('format') }}
-                </label>
-              </div>
-              <div
-                v-if="field.type === 'signature'"
-                class="py-1.5 px-1 relative"
-                @click.stop
-              >
-                <select
-                  :placeholder="t('format')"
-                  class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-                  @change="[field.preferences.format = $event.target.value, save()]"
-                >
-                  <option
-                    value="any"
-                    :selected="!field.preferences?.format || field.preferences.format === 'any'"
-                  >
-                    {{ t('any') }}
-                  </option>
-                  <option
-                    value="drawn"
-                    :selected="field.preferences?.format === 'drawn'"
-                  >
-                    {{ t('drawn') }}
-                  </option>
-                  <option
-                    value="typed"
-                    :selected="field.preferences?.format === 'typed'"
-                  >
-                    {{ t('typed') }}
-                  </option>
-                </select>
-                <label
-                  :style="{ backgroundColor: dropdownBgColor }"
-                  class="absolute -top-1 left-2.5 px-1 h-4"
-                  style="font-size: 8px"
-                >
-                  {{ t('format') }}
-                </label>
-              </div>
-              <li
-                v-if="field.type != 'phone' && field.type != 'stamp'"
-                @click.stop
-              >
-                <label class="cursor-pointer py-1.5">
-                  <input
-                    v-model="field.required"
-                    type="checkbox"
-                    :disabled="!editable || defaultField"
-                    class="toggle toggle-xs"
-                    @update:model-value="save"
-                  >
-                  <span class="label-text">{{ t('required') }}</span>
-                </label>
-              </li>
-              <li
-                v-if="field.type == 'stamp'"
-                @click.stop
-              >
-                <label class="cursor-pointer py-1.5">
-                  <input
-                    :checked="field.preferences?.with_logo != false"
-                    type="checkbox"
-                    class="toggle toggle-xs"
-                    @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, save()]"
-                  >
-                  <span class="label-text">{{ t('with_logo') }}</span>
-                </label>
-              </li>
-              <li
-                v-if="field.type == 'checkbox'"
-                @click.stop
-              >
-                <label class="cursor-pointer py-1.5">
-                  <input
-                    v-model="field.default_value"
-                    type="checkbox"
-                    class="toggle toggle-xs"
-                    @update:model-value="[field.default_value = $event, field.readonly = $event, save()]"
-                  >
-                  <span class="label-text">{{ t('checked') }}</span>
-                </label>
-              </li>
-              <li
-                v-if="field.type == 'date'"
-                @click.stop
-              >
-                <label class="cursor-pointer py-1.5">
-                  <input
-                    v-model="field.readonly"
-                    type="checkbox"
-                    class="toggle toggle-xs"
-                    @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, save()]"
-                  >
-                  <span class="label-text">{{ t('set_signing_date') }}</span>
-                </label>
-              </li>
-              <li
-                v-if="['text', 'number'].includes(field.type) && !defaultField"
-                @click.stop
-              >
-                <label class="cursor-pointer py-1.5">
-                  <input
-                    v-model="field.readonly"
-                    type="checkbox"
-                    class="toggle toggle-xs"
-                    @update:model-value="save"
-                  >
-                  <span class="label-text">{{ t('read_only') }}</span>
-                </label>
-              </li>
-              <hr
-                v-if="field.type != 'stamp'"
-                class="pb-0.5 mt-0.5"
-              >
-              <li
-                v-if="field.type != 'stamp'"
-              >
-                <label
-                  class="label-text cursor-pointer text-center w-full flex items-center"
-                  @click="isShowDescriptionModal = !isShowDescriptionModal"
-                >
-                  <IconInfoCircle
-                    width="18"
-                  />
-                  <span class="text-sm">
-                    {{ t('description') }}
-                  </span>
-                </label>
-              </li>
-              <li
-                v-if="field.type != 'stamp'"
-              >
-                <label
-                  class="label-text cursor-pointer text-center w-full flex items-center"
-                  @click="isShowConditionsModal = !isShowConditionsModal"
-                >
-                  <IconRouteAltLeft
-                    width="18"
-                  />
-                  <span class="text-sm">
-                    {{ t('condition') }}
-                  </span>
-                </label>
-              </li>
-              <li v-if="field.type == 'number'">
-                <label
-                  class="label-text cursor-pointer text-center w-full flex items-center"
-                  @click="isShowFormulaModal = true"
-                >
-                  <IconMathFunction
-                    width="18"
-                  />
-                  <span class="text-sm">
-                    {{ t('formula') }}
-                  </span>
-                </label>
-              </li>
-              <hr class="pb-0.5 mt-0.5">
-              <li
-                v-for="(area, index) in sortedAreas"
-                :key="index"
-              >
-                <a
-                  href="#"
-                  class="text-sm py-1 px-2"
-                  @click.prevent="$emit('scroll-to', area)"
-                >
-                  <IconShape
-                    :width="20"
-                    :stroke-width="1.6"
-                  />
-                  {{ t('page') }}
-                  <template v-if="template.schema.length > 1">{{ template.schema.findIndex((item) => item.attachment_uuid === area.attachment_uuid) + 1 }}-</template>{{ area.page + 1 }}
-                </a>
-              </li>
-              <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
-                <a
-                  href="#"
-                  class="text-sm py-1 px-2"
-                  @click.prevent="$emit('set-draw', { field })"
-                >
-                  <IconNewSection
-                    :width="20"
-                    :stroke-width="1.6"
-                  />
-                  {{ t('draw_new_area') }}
-                </a>
-              </li>
-              <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
-                <a
-                  href="#"
-                  class="text-sm py-1 px-2"
-                  @click.prevent="copyToAllPages(field)"
-                >
-                  <IconCopy
-                    :width="20"
-                    :stroke-width="1.6"
-                  />
-                  {{ t('copy_to_all_pages') }}
-                </a>
-              </li>
+              <FieldSettings
+                :field="field"
+                :default-field="defaultField"
+                :editable="editable"
+                :background-color="dropdownBgColor"
+                @click-formula="isShowFormulaModal = true"
+                @click-description="isShowDescriptionModal = true"
+                @click-condition="isShowConditionsModal = true"
+                @set-draw="$emit('set-draw', $event)"
+                @scroll-to="$emit('scroll-to', $event)"
+              />
             </ul>
           </span>
           <button
@@ -518,10 +255,11 @@
 import Contenteditable from './contenteditable'
 import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
+import FieldSettings from './field_settings'
 import FormulaModal from './formula_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconShape, IconNewSection, IconTrashX, IconCopy, IconSettings } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -529,17 +267,15 @@ export default {
   components: {
     Contenteditable,
     IconSettings,
-    IconShape,
+    FieldSettings,
     PaymentSettings,
     IconNewSection,
-    IconInfoCircle,
     FormulaModal,
     DescriptionModal,
     ConditionsModal,
     IconRouteAltLeft,
     IconTrashX,
     IconMathFunction,
-    IconCopy,
     FieldType
   },
   inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't'],
@@ -590,29 +326,6 @@ export default {
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
-    dateFormats () {
-      const formats = [
-        'MM/DD/YYYY',
-        'DD/MM/YYYY',
-        'YYYY-MM-DD',
-        'DD-MM-YYYY',
-        'DD.MM.YYYY',
-        'MMM D, YYYY',
-        'MMMM D, YYYY',
-        'D MMM YYYY',
-        'D MMMM YYYY'
-      ]
-
-      if (Intl.DateTimeFormat().resolvedOptions().timeZone?.includes('Seoul') || navigator.language?.startsWith('ko')) {
-        formats.push('YYYY년 MM월 DD일')
-      }
-
-      if (this.field.preferences?.format && !formats.includes(this.field.preferences.format)) {
-        formats.unshift(this.field.preferences.format)
-      }
-
-      return formats
-    },
     defaultName () {
       return this.buildDefaultName(this.field, this.template.fields)
     },
@@ -646,54 +359,6 @@ export default {
 
         return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
       }
-    },
-    formatDate (date, format) {
-      const monthFormats = {
-        M: 'numeric',
-        MM: '2-digit',
-        MMM: 'short',
-        MMMM: 'long'
-      }
-
-      const dayFormats = {
-        D: 'numeric',
-        DD: '2-digit'
-      }
-
-      const yearFormats = {
-        YYYY: 'numeric',
-        YY: '2-digit'
-      }
-
-      const parts = new Intl.DateTimeFormat([], {
-        day: dayFormats[format.match(/D+/)],
-        month: monthFormats[format.match(/M+/)],
-        year: yearFormats[format.match(/Y+/)]
-      }).formatToParts(date)
-
-      return format
-        .replace(/D+/, parts.find((p) => p.type === 'day').value)
-        .replace(/M+/, parts.find((p) => p.type === 'month').value)
-        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
-    },
-    copyToAllPages (field) {
-      const areaString = JSON.stringify(field.areas[0])
-
-      this.template.documents.forEach((attachment) => {
-        const numberOfPages = attachment.metadata?.pdf?.number_of_pages || attachment.preview_images.length
-
-        for (let page = 0; page <= numberOfPages - 1; page++) {
-          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === page)) {
-            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page })
-          }
-        }
-      })
-
-      this.$nextTick(() => {
-        this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
-      })
-
-      this.save()
     },
     onNameFocus (e) {
       this.isNameFocus = true
@@ -769,11 +434,6 @@ export default {
       }
 
       this.isNameFocus = false
-
-      this.save()
-    },
-    removeArea (area) {
-      this.field.areas.splice(this.field.areas.indexOf(area), 1)
 
       this.save()
     }

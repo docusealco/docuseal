@@ -30,6 +30,7 @@
         @start-drag="isMove = true"
         @stop-drag="isMove = false"
         @remove="$emit('remove-area', item.area)"
+        @scroll-to="$emit('scroll-to', $event)"
       />
       <FieldArea
         v-if="newArea"
@@ -116,7 +117,7 @@ export default {
       required: true
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area'],
+  emits: ['draw', 'drop-field', 'remove-area', 'scroll-to'],
   data () {
     return {
       areaRefs: [],

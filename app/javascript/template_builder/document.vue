@@ -17,6 +17,7 @@
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
+      @scroll-to="scrollToArea"
       @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
     />
   </div>
@@ -125,7 +126,9 @@ export default {
   },
   methods: {
     scrollToArea (area) {
-      this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      this.$nextTick(() => {
+        this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      })
     },
     setPageRefs (el) {
       if (el) {
