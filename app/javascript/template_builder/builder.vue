@@ -857,7 +857,7 @@ export default {
           type = this.fieldTypes[0]
         }
 
-        if (type === 'checkbox' && !this.drawFieldType) {
+        if (type === 'checkbox' && !this.drawFieldType && (this.template.fields[this.template.fields.length - 1]?.type === 'checkbox' || area.w)) {
           const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
           const previousArea = previousField?.areas?.[previousField.areas.length - 1]
 
