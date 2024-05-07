@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
 
     attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
-    attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
+    # attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
 
     if @user.update(attrs)
       redirect_back fallback_location: settings_users_path, notice: 'User has been updated'

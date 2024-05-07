@@ -2,8 +2,8 @@
   <%= f.label :role, class: 'label' %>
   <%= f.select :role, nil, {}, class: 'base-select' do %>
     <option value="admin">Admin</option>
-    <option value="editor" disabled>Editor</option>
-    <option value="viewer" disabled>Viewer</option>
+    <option value="editor">Editor</option>
+    <option value="viewer">Viewer</option>
   <% end %>
   <a class="text-sm mt-3 px-4 py-2 bg-base-300 rounded-full block" target="_blank" href="<%= Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}" %>">
     <%= svg_icon('info_circle', class: 'w-4 h-4 inline align-text-bottom') %>
