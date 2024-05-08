@@ -344,7 +344,7 @@ module Submissions
 
       if tsa_url
         params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
-        params[:signature_size] = 10_000
+        params[:signature_size] = 20_000
       end
 
       params
