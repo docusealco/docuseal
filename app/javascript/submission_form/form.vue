@@ -686,7 +686,7 @@ export default {
       return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)
     },
     currentStepFields () {
-      return this.stepFields[this.currentStep]
+      return this.stepFields[this.currentStep] || []
     },
     browserLanguage () {
       return (navigator.language || navigator.userLanguage || 'en').split('-')[0]
@@ -763,7 +763,7 @@ export default {
       this.isFormVisible = value
     },
     currentStepFields (value) {
-      if (!value) {
+      if (isEmpty(value)) {
         this.currentStep -= 1
       }
     }
