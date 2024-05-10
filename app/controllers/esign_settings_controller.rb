@@ -57,8 +57,8 @@ class EsignSettingsController < ApplicationController
     save_new_cert!(@encrypted_config, @cert_record)
 
     redirect_to settings_esign_path, notice: 'Certificate has been successfully added!'
-  rescue OpenSSL::PKCS12::PKCS12Error
-    @cert_record.errors.add(:password, "is invalid. Make sure you're uploading a valid .p12 file")
+  rescue OpenSSL::PKCS12::PKCS12Error => e
+    @cert_record.errors.add(:password, e.message)
 
     render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'), status: :unprocessable_entity
   end

@@ -37,10 +37,23 @@ FROM ruby:3.3.1-alpine3.18 as app
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
+ENV OPENSSL_CONF=/app/openssl_legacy.cnf
 
 WORKDIR /app
 
 RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
+
+RUN echo $'.include = /etc/ssl/openssl.cnf\n\
+\n\
+[provider_sect]\n\
+default = default_sect\n\
+legacy = legacy_sect\n\
+\n\
+[default_sect]\n\
+activate = 1\n\
+\n\
+[legacy_sect]\n\
+activate = 1' >> /app/openssl_legacy.cnf
 
 COPY ./Gemfile ./Gemfile.lock ./
 
