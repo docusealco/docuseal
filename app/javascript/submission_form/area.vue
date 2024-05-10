@@ -388,6 +388,7 @@ export default {
 
       const yearFormats = {
         YYYY: 'numeric',
+        YYY: 'numeric',
         YY: '2-digit'
       }
 

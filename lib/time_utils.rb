@@ -15,6 +15,7 @@ module TimeUtils
 
   YEAR_FORMATS = {
     'YYYY' => '%Y',
+    'YYY' => '%Y',
     'YY' => '%y'
   }.freeze
 
