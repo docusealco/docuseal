@@ -1,5 +1,32 @@
 <template>
   <div
+    v-if="field.type === 'number'"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('format')"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
+    >
+      <option
+        v-for="format in numberFormats"
+        :key="format"
+        :value="format"
+        :selected="format === field.preferences?.format || (format === 'none' && !field.preferences?.format)"
+      >
+        {{ formatNumber(123456789.567, format) }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('format') }}
+    </label>
+  </div>
+  <div
     v-if="['number'].includes(field.type)"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -335,6 +362,14 @@ export default {
         return acc
       }, {})
     },
+    numberFormats () {
+      return [
+        'none',
+        'comma',
+        'dot',
+        'space'
+      ]
+    },
     dateFormats () {
       const formats = [
         'MM/DD/YYYY',
@@ -381,6 +416,17 @@ export default {
       this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
 
       this.save()
+    },
+    formatNumber (number, format) {
+      if (format === 'comma') {
+        return new Intl.NumberFormat('en-US').format(number)
+      } else if (format === 'dot') {
+        return new Intl.NumberFormat('de-DE').format(number)
+      } else if (format === 'space') {
+        return new Intl.NumberFormat('fr-FR').format(number)
+      } else {
+        return number
+      }
     },
     formatDate (date, format) {
       const monthFormats = {

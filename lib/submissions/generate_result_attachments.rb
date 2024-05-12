@@ -213,6 +213,8 @@ module Submissions
               value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
             end
 
+            value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'
+
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
 
             text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),

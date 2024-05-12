@@ -165,6 +165,9 @@
       <span v-else-if="field.type === 'date'">
         {{ formattedDate }}
       </span>
+      <span v-else-if="field.type === 'number'">
+        {{ formatNumber(modelValue, field.preferences?.format) }}
+      </span>
       <span
         v-else
         class="whitespace-pre-wrap"
@@ -371,6 +374,17 @@ export default {
 
           return `${this.t('option')} ${index + 1}`
         }
+      }
+    },
+    formatNumber (number, format) {
+      if (format === 'comma') {
+        return new Intl.NumberFormat('en-US').format(number)
+      } else if (format === 'dot') {
+        return new Intl.NumberFormat('de-DE').format(number)
+      } else if (format === 'space') {
+        return new Intl.NumberFormat('fr-FR').format(number)
+      } else {
+        return number
       }
     },
     formatDate (date, format) {

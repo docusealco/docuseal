@@ -162,6 +162,10 @@
               :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
             />
             <span
+              v-else-if="field.type === 'number'"
+              class="whitespace-pre-wrap"
+            >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
+            <span
               v-else
               class="whitespace-pre-wrap"
             >{{ field.default_value }}</span>
@@ -416,6 +420,17 @@ export default {
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {
       document.activeElement.blur()
+    },
+    formatNumber (number, format) {
+      if (format === 'comma') {
+        return new Intl.NumberFormat('en-US').format(number)
+      } else if (format === 'dot') {
+        return new Intl.NumberFormat('de-DE').format(number)
+      } else if (format === 'space') {
+        return new Intl.NumberFormat('fr-FR').format(number)
+      } else {
+        return number
+      }
     },
     maybeBlurSettings (e) {
       if (!e.relatedTarget || !this.$refs.settingsDropdown.contains(e.relatedTarget)) {

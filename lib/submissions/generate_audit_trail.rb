@@ -261,6 +261,8 @@ module Submissions
                 value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
               end
 
+              value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'
+
               value = value.join(', ') if value.is_a?(Array)
 
               composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
