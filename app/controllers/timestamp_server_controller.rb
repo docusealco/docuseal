@@ -4,6 +4,8 @@ class TimestampServerController < ApplicationController
   before_action :build_encrypted_config
   authorize_resource :encrypted_config
 
+  TimestampError = Class.new(StandardError)
+
   def create
     return head :not_found if Docuseal.multitenant?
 
@@ -14,25 +16,29 @@ class TimestampServerController < ApplicationController
     else
       redirect_back fallback_location: settings_notifications_path, alert: 'Unable to save'
     end
-  rescue HexaPDF::Error, SocketError, Submissions::TimestampHandler::TimestampError, OpenSSL::Timestamp::TimestampError
+  rescue SocketError, TimestampError, OpenSSL::Timestamp::TimestampError
     redirect_back fallback_location: settings_notifications_path, alert: 'Invalid Timeserver'
   end
 
   private
 
   def test_timeserver_url(url)
-    pdf = HexaPDF::Document.new
-    pdf.pages.add
+    req = OpenSSL::Timestamp::Request.new
+    req.algorithm = 'SHA512'
+    req.message_imprint = 'test'
 
-    pkcs = Accounts.load_signing_pkcs(current_account)
+    uri = Addressable::URI.parse(url)
 
-    pdf.sign(StringIO.new,
-             reason: 'Test',
-             certificate: pkcs.certificate,
-             key: pkcs.key,
-             signature_size: 10_000,
-             certificate_chain: pkcs.ca_certs || [],
-             timestamp_handler: Submissions::TimestampHandler.new(tsa_url: url))
+    conn = Faraday.new(uri.origin) do |c|
+      c.basic_auth(uri.user, uri.password) if uri.password.present?
+    end
+
+    response = conn.post(uri.path, req.to_der,
+                         'content-type' => 'application/timestamp-query')
+
+    raise TimestampError if response.status != 200 || response.body.blank?
+
+    response
   end
 
   def load_encrypted_config
