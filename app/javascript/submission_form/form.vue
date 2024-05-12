@@ -324,6 +324,8 @@
             :previous-value="previousSignatureValueFor(currentField)"
             :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
+            :button-text="buttonText"
+            :with-disclosure="withDisclosure"
             :submitter-slug="submitterSlug"
             :show-field-names="showFieldNames"
             @attached="attachments.push($event)"
@@ -382,7 +384,7 @@
         </div>
         <div
           v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
-          class="mt-6 md:mt-8"
+          :class="withDisclosure && currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
         >
           <button
             id="submit_form_button"
@@ -396,11 +398,8 @@
                 v-if="isSubmitting"
                 class="mr-1 animate-spin"
               />
-              <span v-if="alwaysMinimize || stepFields.length === currentStep + 1">
-                {{ t('submit') }}
-              </span>
               <span v-else>
-                {{ t('next') }}
+                {{ buttonText }}
               </span><span
                 v-if="isSubmitting"
                 class="w-6 flex justify-start mr-1"
@@ -554,6 +553,11 @@ export default {
       required: false,
       default: false
     },
+    withDisclosure: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     reuseSignature: {
       type: Boolean,
       required: false,
@@ -681,6 +685,13 @@ export default {
   computed: {
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
+    buttonText () {
+      if (this.alwaysMinimize || this.stepFields.length === this.currentStep + 1) {
+        return this.t('submit')
+      } else {
+        return this.t('next')
+      }
     },
     alwaysMinimize () {
       return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)

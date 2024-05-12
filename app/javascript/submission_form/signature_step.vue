@@ -1,5 +1,8 @@
 <template>
-  <div dir="auto">
+  <div
+    dir="auto"
+    class="relative"
+  >
     <div
       class="flex justify-between items-center w-full"
       :class="{ 'mb-2': !field.description }"
@@ -136,6 +139,23 @@
       type="text"
       @input="updateWrittenSignature"
     >
+    <div
+      v-if="withDisclosure"
+      dir="auto"
+      class="text-base-content/60 text-xs text-center w-full mt-1"
+    >
+      {{ t('by_clicking_you_agree_to_the').replace('{button}', buttonText.charAt(0).toUpperCase() + buttonText.slice(1)) }} <a
+        href="https://www.docuseal.co/esign-disclosure"
+        target="_blank"
+      >
+        <span class="inline md:hidden">
+          {{ t('esignature_disclosure') }}
+        </span>
+        <span class="hidden md:inline">
+          {{ t('electronic_signature_disclosure') }}
+        </span>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -175,6 +195,16 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withDisclosure: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    buttonText: {
+      type: String,
+      required: false,
+      default: 'Submit'
     },
     withTypedSignature: {
       type: Boolean,

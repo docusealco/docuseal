@@ -1,5 +1,8 @@
 const en = {
   text: 'Text',
+  by_clicking_you_agree_to_the: 'By clicking "{button}", you agree to the',
+  electronic_signature_disclosure: 'Electronic Signature Disclosure',
+  esignature_disclosure: 'eSignature Disclosure',
   signature: 'Signature',
   initials: 'Initials',
   date: 'Date',
@@ -65,6 +68,9 @@ const en = {
 }
 
 const es = {
+  by_clicking_you_agree_to_the: 'Al hacer clic en "{button}", usted acepta el',
+  electronic_signature_disclosure: 'Divulgación de Firma Electrónica',
+  esignature_disclosure: 'Divulgación de eFirma',
   minimize: 'Minimizar',
   text: 'Texto',
   signature: 'Firma',
@@ -130,6 +136,9 @@ const es = {
 }
 
 const it = {
+  by_clicking_you_agree_to_the: 'Cliccando su "{button}", accetti il',
+  electronic_signature_disclosure: 'Divulgazione della Firma Elettronica',
+  esignature_disclosure: 'Divulgazione della eFirma',
   minimize: 'Minimizza',
   text: 'Testo',
   signature: 'Firma',
@@ -195,6 +204,9 @@ const it = {
 }
 
 const de = {
+  by_clicking_you_agree_to_the: 'Durch Klicken auf "{button}" stimmen Sie zu, dass Sie die',
+  electronic_signature_disclosure: 'Elektronische Unterschriftenoffenlegung',
+  esignature_disclosure: 'eSignatur Offenlegung',
   minimize: 'Minimieren',
   text: 'Text',
   signature: 'Unterschrift',
@@ -260,6 +272,9 @@ const de = {
 }
 
 const fr = {
+  by_clicking_you_agree_to_the: 'En cliquant sur "{button}", vous acceptez la',
+  electronic_signature_disclosure: 'Divulgation de Signature Électronique',
+  esignature_disclosure: 'Divulgation de la eSignature',
   minimize: 'Réduire',
   text: 'Texte',
   signature: 'Signature',
@@ -325,6 +340,9 @@ const fr = {
 }
 
 const pl = {
+  by_clicking_you_agree_to_the: 'Klikając na "{button}", zgadzasz się na',
+  electronic_signature_disclosure: 'Ujawnienie Elektronicznej Sygnatury',
+  esignature_disclosure: 'Ujawnienie ePodpisu',
   minimize: 'Zminimalizuj',
   text: 'Tekst',
   signature: 'Podpis',
@@ -390,6 +408,9 @@ const pl = {
 }
 
 const uk = {
+  by_clicking_you_agree_to_the: 'Натиснувши на "{button}", ви погоджуєтеся з',
+  electronic_signature_disclosure: 'Розголошення Електронного Підпису',
+  esignature_disclosure: 'Розголошення еПідпису',
   minimize: 'Зменшити',
   text: 'Текст',
   signature: 'Підпис',
@@ -455,6 +476,9 @@ const uk = {
 }
 
 const cs = {
+  by_clicking_you_agree_to_the: 'Kliknutím na "{button}" souhlasíte s',
+  electronic_signature_disclosure: 'Zveřejněním Elektronického Podpisu',
+  esignature_disclosure: 'Zveřejnění ePodpisu',
   minimize: 'Minimalizovat',
   text: 'Text',
   signature: 'Podpis',
@@ -520,6 +544,9 @@ const cs = {
 }
 
 const pt = {
+  by_clicking_you_agree_to_the: 'Ao clicar em "{button}", você concorda com o',
+  electronic_signature_disclosure: 'Divulgação de Assinatura Eletrônica',
+  esignature_disclosure: 'Divulgação da eAssinatura',
   minimize: 'Minimizar',
   text: 'Texto',
   signature: 'Assinatura',
@@ -585,6 +612,9 @@ const pt = {
 }
 
 const he = {
+  by_clicking_you_agree_to_the: 'על ידי לחיצה על "{button}", אתה מסכים ל',
+  electronic_signature_disclosure: 'חשיפת חתימה אלקטרונית',
+  esignature_disclosure: 'חשיפת ה-eחתימה',
   minimize: 'לקטן',
   text: 'טקסט',
   signature: 'חתימה',
@@ -651,6 +681,9 @@ const he = {
 }
 
 const nl = {
+  by_clicking_you_agree_to_the: 'Door op "{button}" te klikken, gaat u akkoord met de',
+  electronic_signature_disclosure: 'Openbaarmaking van Elektronische Handtekening',
+  esignature_disclosure: 'Openbaarmaking van eHandtekening',
   minimize: 'Minimaliseren',
   text: 'Tekst',
   signature: 'Handtekening',
@@ -717,6 +750,9 @@ const nl = {
 }
 
 const ar = {
+  by_clicking_you_agree_to_the: 'بالنقر فوق "{button}"، أنت توافق على',
+  electronic_signature_disclosure: 'كشف التوقيع الإلكتروني',
+  esignature_disclosure: 'كشف التوقيع الإلكتروني',
   text: 'نص',
   signature: 'توقيع',
   initials: 'الاختصارات',
@@ -783,6 +819,9 @@ const ar = {
 }
 
 const ko = {
+  by_clicking_you_agree_to_the: '"{button}"를 클릭함으로써, 다음에 동의하게 됩니다',
+  electronic_signature_disclosure: '전자 서명 공개',
+  esignature_disclosure: '전자 서명 공개',
   text: '텍스트',
   signature: '서명',
   initials: '이니셜',

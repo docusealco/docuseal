@@ -15,6 +15,7 @@ window.customElements.define('submission-form', class extends HTMLElement {
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
       withConfetti: this.dataset.withConfetti !== 'false',
+      withDisclosure: this.dataset.withDisclosure === 'true',
       withTypedSignature: this.dataset.withTypedSignature !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       values: reactive(JSON.parse(this.dataset.values)),
