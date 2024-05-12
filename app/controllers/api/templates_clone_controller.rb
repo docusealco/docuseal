@@ -20,6 +20,8 @@ module Api
 
       Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
 
+      SendTemplateCreatedWebhookRequestJob.perform_later(cloned_template)
+
       render json: Templates::SerializeForApi.call(cloned_template)
     end
   end

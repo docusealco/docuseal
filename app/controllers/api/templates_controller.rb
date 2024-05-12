@@ -65,6 +65,8 @@ module Api
 
       @template.update!(template_params)
 
+      SendTemplateUpdatedWebhookRequestJob.perform_later(@template)
+
       render json: @template.as_json(only: %i[id updated_at])
     end
 

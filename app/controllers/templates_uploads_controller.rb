@@ -18,6 +18,8 @@ class TemplatesUploadsController < ApplicationController
 
     @template.update!(schema:)
 
+    SendTemplateCreatedWebhookRequestJob.perform_later(@template)
+
     redirect_to edit_template_path(@template)
   rescue Templates::CreateAttachments::PdfEncrypted
     render turbo_stream: turbo_stream.append(params[:form_id], html: helpers.tag.prompt_password)

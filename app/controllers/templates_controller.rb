@@ -61,6 +61,8 @@ class TemplatesController < ApplicationController
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
+      SendTemplateUpdatedWebhookRequestJob.perform_later(@template)
+
       maybe_redirect_to_template(@template)
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_entity
@@ -69,6 +71,8 @@ class TemplatesController < ApplicationController
 
   def update
     @template.update!(template_params)
+
+    SendTemplateUpdatedWebhookRequestJob.perform_later(@template)
 
     head :ok
   end
