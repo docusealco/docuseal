@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TimestampServerController < ApplicationController
+  HASH_ALGORITHM = 'SHA256'
+
   before_action :build_encrypted_config
   authorize_resource :encrypted_config
 
@@ -24,8 +26,8 @@ class TimestampServerController < ApplicationController
 
   def test_timeserver_url(url)
     req = OpenSSL::Timestamp::Request.new
-    req.algorithm = 'SHA512'
-    req.message_imprint = 'test'
+    req.algorithm = HASH_ALGORITHM
+    req.message_imprint = OpenSSL::Digest.digest(HASH_ALGORITHM, 'test')
 
     uri = Addressable::URI.parse(url)
 
