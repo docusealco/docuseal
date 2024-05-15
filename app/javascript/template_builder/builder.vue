@@ -1116,7 +1116,13 @@ export default {
       if (!this.isAllRequiredFieldsAdded) {
         e.preventDefault()
 
-        return alert(this.t('add_all_required_fields_to_continue'))
+        const fields = this.defaultRequiredFields?.filter((f) => {
+          return !this.template.fields?.some((field) => field.name === f.name)
+        })
+
+        if (fields?.length) {
+          return alert(this.t('add_all_required_fields_to_continue') + ': ' + fields.map((f) => f.name).join(', '))
+        }
       }
 
       if (!this.template.fields.length) {
@@ -1127,7 +1133,13 @@ export default {
     },
     onSaveClick () {
       if (!this.isAllRequiredFieldsAdded) {
-        return alert(this.t('add_all_required_fields_to_continue'))
+        const fields = this.defaultRequiredFields?.filter((f) => {
+          return !this.template.fields?.some((field) => field.name === f.name)
+        })
+
+        if (fields?.length) {
+          return alert(this.t('add_all_required_fields_to_continue') + ': ' + fields.map((f) => f.name).join(', '))
+        }
       }
 
       if (this.template.fields.length) {
