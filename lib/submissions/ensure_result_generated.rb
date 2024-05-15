@@ -54,7 +54,7 @@ module Submissions
             DocumentGenerationEvent.where(submitter:).order(:created_at).last
           end
 
-        break submitter.documents if last_event.event_name.in?(%w[complete fail])
+        break submitter.documents.reload if last_event.event_name.in?(%w[complete fail])
 
         raise WaitForCompleteTimeout if total_wait_time > CHECK_COMPLETE_TIMEOUT
       end
