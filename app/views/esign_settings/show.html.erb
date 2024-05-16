@@ -123,7 +123,7 @@
         <% end %>
       </div>
     <% end %>
-    <% account_config = AccountConfig.where(account: current_account, key: AccountConfig::ESIGNING_PREFERENCE_KEY).first_or_initialize(value: 'multiple') %>
+    <% account_config = AccountConfig.where(account: current_account, key: AccountConfig::ESIGNING_PREFERENCE_KEY).first_or_initialize(value: 'single') %>
     <% if can?(:manage, account_config) %>
       <div class="px-1 mt-8 max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">

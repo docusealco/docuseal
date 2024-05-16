@@ -11,7 +11,6 @@ module Submissions
                 end
 
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
-    SIGN_SIGNLE_REASON = 'Digitally signed with DocuSeal.co'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -453,8 +452,10 @@ module Submissions
       format(SIGN_REASON, name:)
     end
 
-    def single_sign_reason
-      SIGN_SIGNLE_REASON
+    def single_sign_reason(submitter)
+      signers = submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
+
+      format(SIGN_REASON, name: signers.reverse.join(', '))
     end
 
     def fetch_sign_reason(submitter)
@@ -463,16 +464,18 @@ module Submissions
       config =
         if Docuseal.multitenant?
           AccountConfig.where(account: submitter.account, key: AccountConfig::ESIGNING_PREFERENCE_KEY)
-                       .first_or_initialize(value: 'multiple')
+                       .first_or_initialize(value: 'single')
         else
           AccountConfig.where(key: AccountConfig::ESIGNING_PREFERENCE_KEY)
-                       .first_or_initialize(value: 'multiple')
+                       .first_or_initialize(value: 'single')
         end
 
       return sign_reason(reason_name) if config.value == 'multiple'
 
-      return single_sign_reason if !submitter.submission.submitters.exists?(completed_at: nil) &&
-                                   submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
+      if !submitter.submission.submitters.exists?(completed_at: nil) &&
+         submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
+        return single_sign_reason(submitter)
+      end
 
       nil
     end
