@@ -3,7 +3,7 @@
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Account</h1>
     <%= form_for '', url: settings_account_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
-      <%= f.fields_for current_account do |ff| %>
+      <%= fields_for current_account do |ff| %>
         <div class="form-control">
           <%= ff.label :name, 'Company Name', class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input', dir: 'auto' %>
@@ -23,7 +23,7 @@
       <% end %>
       <% encrypted_config = @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) %>
       <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? %>
-        <%= f.fields_for encrypted_config do |ff| %>
+        <%= fields_for encrypted_config do |ff| %>
           <div class="form-control">
             <%= ff.label :value, 'App URL', class: 'label' %>
             <%= ff.text_field :value, autocomplete: 'off', class: 'base-input' %>

@@ -2,7 +2,7 @@
   <h1 class="text-4xl font-bold text-center my-8">Initial Setup 👋</h1>
   <%= form_for '', html: { class: 'space-y-6' }, url: setup_index_path do |f| %>
     <div class="space-y-2">
-      <%= f.fields_for @user do |ff| %>
+      <%= fields_for @user do |ff| %>
         <div class="grid gap-2 md:grid-cols-2 md:gap-4">
           <div class="form-control">
             <%= ff.label :first_name, class: 'label' %>
@@ -14,30 +14,30 @@
           </div>
         </div>
       <% end %>
-      <%= f.fields_for @user do |ff| %>
+      <%= fields_for @user do |ff| %>
         <div class="form-control">
           <%= ff.label :email, class: 'label' %>
           <%= ff.email_field :email, required: true, class: 'base-input' %>
         </div>
       <% end %>
-      <%= f.fields_for @account do |ff| %>
-        <set-timezone data-input-id="_account_timezone"></set-timezone>
+      <%= fields_for @account do |ff| %>
+        <set-timezone data-input-id="account_timezone"></set-timezone>
         <%= ff.hidden_field :timezone %>
         <div class="form-control">
           <%= ff.label :name, 'Company name', class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input' %>
         </div>
       <% end %>
-      <%= f.fields_for @user do |ff| %>
+      <%= fields_for @user do |ff| %>
         <div class="form-control">
           <%= ff.label :password, class: 'label' %>
           <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input' %>
         </div>
       <% end %>
-      <%= f.fields_for @encrypted_config do |ff| %>
+      <%= fields_for @encrypted_config do |ff| %>
         <div class="form-control">
           <% if @encrypted_config.value.blank? %>
-            <set-origin-url data-input-id="_encrypted_config_value"></set-origin-url>
+            <set-origin-url data-input-id="encrypted_config_value"></set-origin-url>
           <% end %>
           <%= ff.label :value, 'App URL', class: 'label' %>
           <%= ff.text_field :value, required: true, class: 'base-input' %>
