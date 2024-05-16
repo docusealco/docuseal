@@ -24,7 +24,6 @@ gem 'lograge'
 gem 'mysql2', require: false
 gem 'oj'
 gem 'pagy'
-gem 'pdf-reader'
 gem 'pg', require: false
 gem 'premailer-rails'
 gem 'pretender'
