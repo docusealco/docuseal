@@ -11,6 +11,7 @@ module Submissions
     module_function
 
     def call(submitter)
+      return [] unless submitter
       return submitter.documents if ApplicationRecord.uncached { submitter.document_generation_events.complete.exists? }
 
       events =
