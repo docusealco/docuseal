@@ -10,6 +10,7 @@ module Templates
     Q = 35
     MAX_WIDTH = 1400
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
+    MAX_FLATTEN_FILE_SIZE = 15.megabytes
 
     module_function
 
@@ -43,7 +44,11 @@ module Templates
 
     def generate_pdf_preview_images(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
-      number_of_pages = HexaPDF::Document.new(io: StringIO.new(data)).pages.size
+
+      pdf = HexaPDF::Document.new(io: StringIO.new(data))
+      number_of_pages = pdf.pages.size
+
+      data = maybe_flatten_form(data, pdf, attachment)
 
       attachment.metadata['pdf'] ||= {}
       attachment.metadata['pdf']['number_of_pages'] = number_of_pages
@@ -67,6 +72,26 @@ module Templates
           )
         end
       end
+    end
+
+    def maybe_flatten_form(data, pdf, attachment)
+      return data if data.size > MAX_FLATTEN_FILE_SIZE
+      return data if pdf.acro_form.blank?
+      return data if attachment.record.account.account_configs
+                               .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value == false
+
+      io = StringIO.new
+
+      pdf.acro_form&.flatten
+      pdf.write(io, incremental: false, validate: false)
+
+      io.string
+    rescue StandardError => e
+      raise if Rails.env.development?
+
+      Rollbar.error(e) if defined?(Rollbar)
+
+      data
     end
 
     def generate_pdf_preview_from_file(attachment, file_path, page_number)
