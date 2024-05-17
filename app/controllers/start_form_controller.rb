@@ -33,7 +33,11 @@ class StartFormController < ApplicationController
 
       assign_submission_attributes(@submitter, @template) if @submitter.new_record?
 
+      is_new_record = @submitter.new_record?
+
       if @submitter.save
+        SendSubmissionCreatedWebhookRequestJob.perform_later(@submitter.submission) if is_new_record
+
         redirect_to submit_form_path(@submitter.slug)
       else
         render :show

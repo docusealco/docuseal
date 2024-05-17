@@ -44,6 +44,10 @@ class SubmissionsController < ApplicationController
                                            params: params.merge('send_completed_email' => true))
       end
 
+    submissions.each do |submission|
+      SendSubmissionCreatedWebhookRequestJob.perform_later(submission)
+    end
+
     Submissions.send_signature_requests(submissions)
 
     redirect_to template_path(@template), notice: 'New recipients have been added'

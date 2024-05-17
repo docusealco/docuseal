@@ -7,6 +7,7 @@ class WebhookPreferencesController < ApplicationController
     form.completed
     template.created
     template.updated
+    submission.created
     submission.archived
   ].freeze
 
