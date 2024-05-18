@@ -398,7 +398,7 @@
                 v-if="isSubmitting"
                 class="mr-1 animate-spin"
               />
-              <span v-else>
+              <span>
                 {{ buttonText }}
               </span><span
                 v-if="isSubmitting"
@@ -614,6 +614,11 @@ export default {
       default: true
     },
     isDemo: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    dryRun: {
       type: Boolean,
       required: false,
       default: false
@@ -1030,7 +1035,7 @@ export default {
         const formData = new FormData(this.$refs.form)
         const isLastStep = this.currentStep === this.stepFields.length - 1
 
-        if (isLastStep && !emptyRequiredField) {
+        if (isLastStep && !emptyRequiredField && !this.dryRun) {
           formData.append('completed', 'true')
         }
 
