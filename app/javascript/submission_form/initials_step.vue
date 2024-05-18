@@ -189,7 +189,7 @@ export default {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
         this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-        this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 3) * scale
+        this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 4.5) * scale
 
         this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
@@ -208,7 +208,7 @@ export default {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-            this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 3) * scale
+            this.$refs.canvas.height = (this.$refs.canvas.parentNode.clientWidth / 4.5) * scale
 
             this.$refs.canvas.getContext('2d').scale(scale, scale)
 
