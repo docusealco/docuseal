@@ -76,9 +76,15 @@ class SubmitterMailer < ApplicationMailer
       submitter, with_audit_log: @email_config.nil? || @email_config.value['attach_audit_log'] != false
     )
 
+    @subject = @submitter.template.preferences['documents_copy_email_subject'].presence
+    @subject ||= @email_config.value['subject'] if @email_config
+
+    @body = @submitter.template.preferences['documents_copy_email_body'].presence
+    @body ||= @email_config.value['body'] if @email_config
+
     subject =
-      if @email_config
-        ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
+      if @subject.present?
+        ReplaceEmailVariables.call(@subject, submitter:)
       else
         'Your document copy'
       end

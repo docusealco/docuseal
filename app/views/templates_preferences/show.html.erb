@@ -17,32 +17,6 @@
     </toggle-visible>
   <% end %>
   <div id="general" class="px-5 mb-4">
-    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
-      <toggle-on-submit data-element-id="email_saved_alert"></toggle-on-submit>
-      <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
-        <div class="form-control">
-          <%= ff.label :request_email_subject, 'Email subject', class: 'label' %>
-          <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-        </div>
-        <div class="form-control">
-          <div class="flex items-center">
-            <%= ff.label :request_email_body, 'Email body', class: 'label' %>
-            <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
-              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-            </span>
-          </div>
-          <autoresize-textarea>
-            <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-          </autoresize-textarea>
-        </div>
-      <% end %>
-      <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
-        <div class="flex justify-center">
-          <span id="email_saved_alert" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
-        </div>
-      </div>
-    <% end %>
     <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' } do |f| %>
       <toggle-on-submit data-element-id="bcc_saved_alert"></toggle-on-submit>
       <%= f.fields_for :preferences, Struct.new(:bcc_completed).new(@template.preferences['bcc_completed']) do |ff| %>
@@ -65,6 +39,76 @@
       </div>
     <% end %>
     <%= render 'templates_code_modal/preferences' %>
+    <div class="join join-vertical w-full !rounded-2xl mb-1.5 mt-2.5">
+      <div class="collapse collapse-arrow join-item border border-base-300">
+        <input type="checkbox" name="accordion">
+        <div class="collapse-title text-xl font-medium">
+          Signature request email
+        </div>
+        <div class="collapse-content">
+          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
+            <toggle-on-submit data-element-id="email_saved_alert1"></toggle-on-submit>
+            <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
+              <div class="form-control">
+                <%= ff.label :request_email_subject, 'Email subject', class: 'label' %>
+                <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+              </div>
+              <div class="form-control">
+                <div class="flex items-center">
+                  <%= ff.label :request_email_body, 'Email body', class: 'label' %>
+                  <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                  </span>
+                </div>
+                <autoresize-textarea>
+                  <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+                </autoresize-textarea>
+              </div>
+            <% end %>
+            <div class="form-control pt-2">
+              <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+              <div class="flex justify-center">
+                <span id="email_saved_alert1" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow join-item border border-base-300">
+        <input type="checkbox" name="accordion">
+        <div class="collapse-title text-xl font-medium">
+          Documents copy email
+        </div>
+        <div class="collapse-content">
+          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
+            <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
+            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body).new(*(@template.preferences.values_at('documents_copy_email_subject', 'documents_copy_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
+              <div class="form-control">
+                <%= ff.label :documents_copy_email_subject, 'Email subject', class: 'label' %>
+                <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+              </div>
+              <div class="form-control">
+                <div class="flex items-center">
+                  <%= ff.label :documents_copy_email_body, 'Email body', class: 'label' %>
+                  <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                  </span>
+                </div>
+                <autoresize-textarea>
+                  <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+                </autoresize-textarea>
+              </div>
+            <% end %>
+            <div class="form-control pt-2">
+              <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+              <div class="flex justify-center">
+                <span id="email_saved_alert2" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   <% if show_api %>
     <div id="api" class="hidden mt-2 mb-4 px-5">

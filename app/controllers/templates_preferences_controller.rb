@@ -17,6 +17,9 @@ class TemplatesPreferencesController < ApplicationController
   private
 
   def template_params
-    params.require(:template).permit(preferences: %i[bcc_completed request_email_subject request_email_body])
+    params.require(:template).permit(
+      preferences: %i[bcc_completed request_email_subject request_email_body
+                      documents_copy_email_subject documents_copy_email_body]
+    )
   end
 end
