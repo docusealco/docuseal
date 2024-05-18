@@ -1,4 +1,4 @@
-<% is_show_tabs = @pagy.pages > 1 || params[:status].present? %>
+<% is_show_tabs = @pagy.count >= 5 || params[:status].present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between mb-4 items-center">
   <div class="flex items-center">
@@ -56,7 +56,7 @@
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
   </div>
 <% end %>
-<% if params[:q].blank? && @pagy.count < 5 %>
+<% if params[:q].blank? && params[:status].blank? && @pagy.count < 5 %>
   <%= render 'templates/dropzone' %>
 <% end %>
 <% if @submissions.present? || params[:q].blank? %>
