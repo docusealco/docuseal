@@ -1,5 +1,8 @@
 <div class="max-w-xl mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center my-8">Initial Setup 👋</h1>
+  <h1 class="flex text-4xl font-bold items-center justify-center my-8 space-x-2">
+    <span>Initial Setup</span>
+    <%= svg_icon('waving_hand', class: 'h-10 w-10') %>
+  </h1>
   <%= form_for '', html: { class: 'space-y-6' }, url: setup_index_path do |f| %>
     <div class="space-y-2">
       <%= fields_for @user do |ff| %>
