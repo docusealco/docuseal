@@ -27,7 +27,7 @@
     "postcss-loader": "^7.3.0",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
-    "shakapacker": "7.2.3",
+    "shakapacker": "8.0.0",
     "signature_pad": "^4.1.5",
     "snarkdown": "^2.0.0",
     "tailwindcss": "^3.3.2",
@@ -42,6 +42,7 @@
     "webpack-dev-server": "^4.15.0",
     "webpack-merge": "5"
   },
+  "packageManager": "yarn@1.0",
   "version": "0.1.0",
   "scripts": {
     "eslint": "./node_modules/eslint/bin/eslint.js \"app/javascript/**/*.{js,vue}\" --fix"
