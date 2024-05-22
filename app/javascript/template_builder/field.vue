@@ -57,7 +57,7 @@
           class="flex items-center space-x-1"
         >
           <button
-            v-if="field && !field.areas.length"
+            v-if="field && !field.areas?.length"
             :title="t('draw')"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
             @click="$emit('set-draw', { field })"
