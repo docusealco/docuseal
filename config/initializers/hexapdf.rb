@@ -14,6 +14,13 @@ module HexaPDF
   end
 
   module Type
+    class Page
+      # fix NoMethodError (undefined method `color_space' for an instance of HexaPDF::Type::Page)
+      def color_space(name)
+        GlobalConfiguration.constantize('color_space.map', name).new
+      end
+    end
+
     # fix NoMethodError: undefined method `field_value' for #<HexaPDF::Type::AcroForm::Field
     module AcroForm
       class Field
