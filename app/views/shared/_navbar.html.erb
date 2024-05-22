@@ -26,10 +26,10 @@
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>
         </label>
-        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box whitespace-nowrap text-right">
+        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box w-40 text-right">
           <li>
             <%= link_to settings_profile_index_path, class: 'flex items-center' do %>
-              <%= svg_icon('adjustments', class: 'w-5 h-5 stroke-2') %>
+              <%= svg_icon('adjustments', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
               <span class="mr-1">Profile</span>
             <% end %>
           </li>
