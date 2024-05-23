@@ -779,7 +779,7 @@ export default {
       this.isFormVisible = value
     },
     currentStepFields (value) {
-      if (isEmpty(value)) {
+      if (isEmpty(value) && this.currentStep > 0) {
         this.currentStep -= 1
       }
     }
