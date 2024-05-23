@@ -41,26 +41,6 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-window.customElements.define('toggle-visible', ToggleVisible)
-window.customElements.define('disable-hidden', DisableHidden)
-window.customElements.define('turbo-modal', TurboModal)
-window.customElements.define('file-dropzone', FileDropzone)
-window.customElements.define('menu-active', MenuActive)
-window.customElements.define('clipboard-copy', ClipboardCopy)
-window.customElements.define('dynamic-list', DynamicList)
-window.customElements.define('download-button', DownloadButton)
-window.customElements.define('set-origin-url', SetOriginUrl)
-window.customElements.define('set-timezone', SetTimezone)
-window.customElements.define('autoresize-textarea', AutoresizeTextarea)
-window.customElements.define('submitters-autocomplete', SubmittersAutocomplete)
-window.customElements.define('folder-autocomplete', FolderAutocomplete)
-window.customElements.define('signature-form', SignatureForm)
-window.customElements.define('submit-form', SubmitForm)
-window.customElements.define('prompt-password', PromptPassword)
-window.customElements.define('emails-textarea', EmailsTextarea)
-window.customElements.define('toggle-cookies', ToggleCookies)
-window.customElements.define('toggle-on-submit', ToggleOnSubmit)
-
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
@@ -84,7 +64,29 @@ document.addEventListener('turbo:submit-end', async (event) => {
   URL.revokeObjectURL(url)
 })
 
-window.customElements.define('template-builder', class extends HTMLElement {
+const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options)
+
+safeRegisterElement('toggle-visible', ToggleVisible)
+safeRegisterElement('disable-hidden', DisableHidden)
+safeRegisterElement('turbo-modal', TurboModal)
+safeRegisterElement('file-dropzone', FileDropzone)
+safeRegisterElement('menu-active', MenuActive)
+safeRegisterElement('clipboard-copy', ClipboardCopy)
+safeRegisterElement('dynamic-list', DynamicList)
+safeRegisterElement('download-button', DownloadButton)
+safeRegisterElement('set-origin-url', SetOriginUrl)
+safeRegisterElement('set-timezone', SetTimezone)
+safeRegisterElement('autoresize-textarea', AutoresizeTextarea)
+safeRegisterElement('submitters-autocomplete', SubmittersAutocomplete)
+safeRegisterElement('folder-autocomplete', FolderAutocomplete)
+safeRegisterElement('signature-form', SignatureForm)
+safeRegisterElement('submit-form', SubmitForm)
+safeRegisterElement('prompt-password', PromptPassword)
+safeRegisterElement('emails-textarea', EmailsTextarea)
+safeRegisterElement('toggle-cookies', ToggleCookies)
+safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
+
+safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
 
@@ -116,7 +118,7 @@ window.customElements.define('template-builder', class extends HTMLElement {
   }
 })
 
-window.customElements.define('import-list', class extends HTMLElement {
+safeRegisterElement('import-list', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
 

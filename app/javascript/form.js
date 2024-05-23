@@ -3,8 +3,10 @@ import { createApp, reactive } from 'vue'
 import Form from './submission_form/form'
 import DownloadButton from './elements/download_button'
 
-window.customElements.define('download-button', DownloadButton)
-window.customElements.define('submission-form', class extends HTMLElement {
+const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options)
+
+safeRegisterElement('download-button', DownloadButton)
+safeRegisterElement('submission-form', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
 
