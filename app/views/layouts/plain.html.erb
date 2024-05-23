@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= javascript_pack_tag 'application', defer: true %>
+    <% if ENV['SENTRY_DSN'] %>
+      <meta name="sentry-dsn" content="<%= ENV.fetch('SENTRY_DSN', nil) %>">
+      <%= javascript_pack_tag 'sentry', 'application', defer: true %>
+    <% else %>
+      <%= javascript_pack_tag 'application', defer: true %>
+    <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>

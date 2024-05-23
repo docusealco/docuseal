@@ -12,6 +12,9 @@ const configs = generateWebpackConfig({
   optimization: {
     runtimeChunk: false,
     splitChunks: {
+      chunks (chunk) {
+        return chunk.name !== 'sentry'
+      },
       cacheGroups: {
         default: false,
         applicationVendors: {
