@@ -13,7 +13,7 @@ const configs = generateWebpackConfig({
     runtimeChunk: false,
     splitChunks: {
       chunks (chunk) {
-        return chunk.name !== 'sentry'
+        return chunk.name !== 'rollbar'
       },
       cacheGroups: {
         default: false,

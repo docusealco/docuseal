@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <% if ENV['SENTRY_DSN'] %>
-      <meta name="sentry-dsn" content="<%= ENV.fetch('SENTRY_DSN', nil) %>">
-      <%= javascript_pack_tag 'sentry', 'form', defer: true %>
+    <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
+      <meta name="rollbar-token" content="<%= ENV['ROLLBAR_CLIENT_TOKEN'] %>">
+      <%= javascript_pack_tag 'rollbar', 'form', defer: true %>
     <% else %>
       <%= javascript_pack_tag 'form', defer: true %>
     <% end %>
