@@ -136,7 +136,7 @@ Rails.application.configure do
         end
 
       {
-        fwd: controller.request.ip,
+        fwd: controller.request.remote_ip,
         params: {
           id: params[:id],
           sig: (params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
@@ -154,7 +154,7 @@ Rails.application.configure do
 
     config.lograge.custom_payload do |controller|
       {
-        fwd: controller.request.ip
+        fwd: controller.request.remote_ip
       }
     end
   end
