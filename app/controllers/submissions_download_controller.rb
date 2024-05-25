@@ -33,7 +33,17 @@ class SubmissionsDownloadController < ApplicationController
       return head :not_found
     end
 
-    render json: build_urls(last_submitter)
+    if params[:combined]
+      url = build_combined_url(submitter)
+
+      if url
+        render json: [url]
+      else
+        head :not_found
+      end
+    else
+      render json: build_urls(last_submitter)
+    end
   end
 
   private
@@ -46,5 +56,15 @@ class SubmissionsDownloadController < ApplicationController
     Submitters.select_attachments_for_download(submitter).map do |attachment|
       ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
     end
+  end
+
+  def build_combined_url(submitter)
+    return if submitter.submission.submitters.exists?(completed_at: nil)
+    return if submitter.submission.submitters.order(:completed_at).last != submitter
+
+    attachment = submitter.submission.combined_document_attachment
+    attachment ||= Submissions::GenerateCombinedAttachment.call(submitter)
+
+    ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
   end
 end

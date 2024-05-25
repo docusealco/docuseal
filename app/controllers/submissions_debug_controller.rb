@@ -16,13 +16,16 @@ class SubmissionsDebugController < ApplicationController
         render 'submit_form/show'
       end
       f.pdf do
-        if params[:audit]
-          Submissions::GenerateAuditTrail.call(@submitter.submission)
-        else
-          Submissions::GenerateResultAttachments.call(@submitter)
-        end
+        result =
+          if params[:audit]
+            Submissions::GenerateAuditTrail.call(@submitter.submission)
+          elsif params[:combined]
+            Submissions::GenerateCombinedAttachment.call(@submitter)
+          else
+            Submissions::GenerateResultAttachments.call(@submitter)
+          end
 
-        send_data ActiveStorage::Attachment.where(name: params[:audit] ? :audit_trail : :documents).last.download,
+        send_data Array.wrap(result).first.download,
                   filename: 'debug.pdf',
                   disposition: 'inline',
                   type: 'application/pdf'

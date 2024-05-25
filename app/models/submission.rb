@@ -52,6 +52,7 @@ class Submission < ApplicationRecord
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
   has_one_attached :audit_trail
+  has_one_attached :combined_document
 
   has_many :template_schema_documents,
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },

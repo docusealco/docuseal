@@ -14,16 +14,42 @@
         </a>
       <% end %>
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
-        <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig] }.compact) %>" class="base-button">
-          <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-            <%= svg_icon('download', class: 'w-6 h-6') %>
-            <span class="hidden md:inline">Download</span>
-          </span>
-          <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-            <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-            <span class="hidden md:inline">Downloading</span>
-          </span>
-        </download-button>
+        <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
+        <div class="join relative">
+          <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig] }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed %>">
+            <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+              <%= svg_icon('download', class: 'w-6 h-6') %>
+              <span class="hidden md:inline">Download</span>
+            </span>
+            <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+              <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+              <span class="hidden md:inline">Downloading</span>
+            </span>
+          </download-button>
+          <% if is_all_completed %>
+            <div class="dropdown dropdown-end">
+              <label tabindex="0" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
+                <span class="text-sm align-text-top">
+                  <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
+                </span>
+              </label>
+              <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
+                <li>
+                  <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: true }.compact) %>" class="flex items-center">
+                    <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                      <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
+                      <span class="whitespace-nowrap">Download combined PDF</span>
+                    </span>
+                    <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                      <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                      <span>Downloading</span>
+                    </span>
+                  </download-button>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
       <% elsif @submission.submitters.to_a.size == 1 %>
         <%= render 'shared/clipboard_copy', text: start_form_url(slug: @submission.template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
       <% end %>
@@ -77,7 +103,7 @@
       <% submitter_field_counters = Hash.new { 0 } %>
       <% (@submission.template_submitters || @submission.template.submitters).each_with_index do |item, index| %>
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
-        <div class="sticky -top-1 bg-base-100 pt-1 -mt-1 z-10">
+        <div class="sticky -top-1 bg-base-100 pt-1 -mt-1">
           <div class="border border-base-300 rounded-md px-2 py-1 mb-1">
             <div class="flex items-center space-x-1">
               <span class="mx-1 w-3 h-3 rounded-full <%= colors[index] %>"></span>

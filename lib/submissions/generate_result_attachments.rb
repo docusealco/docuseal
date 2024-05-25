@@ -39,17 +39,58 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submitter)
-      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
+      pdfs_index = generate_pdfs(submitter)
 
       template = submitter.submission.template
+      account = submitter.account
+
+      pkcs = Accounts.load_signing_pkcs(account)
+      tsa_url = Accounts.load_timeserver_url(account)
+
+      image_pdfs = []
+      original_documents = template.documents.preload(:blob)
+
+      result_attachments =
+        submitter.submission.template_schema.map do |item|
+          pdf = pdfs_index[item['attachment_uuid']]
+
+          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+                                            uuid: item['attachment_uuid'],
+                                            name: item['name'])
+
+          image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
+
+          attachment
+        end
+
+      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
+
+      images_pdf =
+        image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
+          pdf.pages.each { |page| doc.pages << doc.import(page) }
+        end
+
+      images_pdf_attachment =
+        build_pdf_attachment(
+          pdf: images_pdf,
+          submitter:,
+          tsa_url:,
+          pkcs:,
+          uuid: images_pdf_uuid(original_documents.select(&:image?)),
+          name: template.name
+        )
+
+      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+    end
+
+    def generate_pdfs(submitter)
+      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       is_flatten =
         submitter.account.account_configs
                  .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value != false
 
       account = submitter.account
-      pkcs = Accounts.load_signing_pkcs(account)
-      tsa_url = Accounts.load_timeserver_url(account)
       attachments_data_cache = {}
 
       pdfs_index = build_pdfs_index(submitter, flatten: is_flatten)
@@ -259,40 +300,7 @@ module Submissions
         end
       end
 
-      image_pdfs = []
-      original_documents = template.documents.preload(:blob)
-
-      result_attachments =
-        submitter.submission.template_schema.map do |item|
-          pdf = pdfs_index[item['attachment_uuid']]
-
-          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
-                                            uuid: item['attachment_uuid'],
-                                            name: item['name'])
-
-          image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
-
-          attachment
-        end
-
-      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
-
-      images_pdf =
-        image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
-          pdf.pages.each { |page| doc.pages << doc.import(page) }
-        end
-
-      images_pdf_attachment =
-        build_pdf_attachment(
-          pdf: images_pdf,
-          submitter:,
-          tsa_url:,
-          pkcs:,
-          uuid: images_pdf_uuid(original_documents.select(&:image?)),
-          name: template.name
-        )
-
-      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+      pdfs_index
     end
 
     def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)

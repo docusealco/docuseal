@@ -12,7 +12,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    SIGN_REASON = 'Signed with DocuSeal.co'
     VERIFIED_TEXT = 'Verified'
     UNVERIFIED_TEXT = 'Unverified'
 
@@ -31,9 +30,35 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submission)
+      document = build_audit_trail(submission)
+
       account = submission.account
+
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
+
+      io = StringIO.new
+
+      document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
+
+      sign_params = {
+        reason: sign_reason,
+        **Submissions::GenerateResultAttachments.build_signing_params(pkcs, tsa_url)
+      }
+
+      document.sign(io, **sign_params)
+
+      ActiveStorage::Attachment.create!(
+        blob: ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new(io.string), filename: "Audit Log - #{submission.template.name}.pdf"
+        ),
+        name: 'audit_trail',
+        record: submission
+      )
+    end
+
+    def build_audit_trail(submission)
+      account = submission.account
       verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
       page_size =
         if TimeUtils.timezone_abbr(account.timezone, Time.current.beginning_of_year).in?(US_TIMEZONES)
@@ -299,24 +324,11 @@ module Submissions
 
       composer.table(events_data, cell_style: { padding: [0, 0, 12, 0], border: { width: 0 } }) if events_data.present?
 
-      io = StringIO.new
+      composer.document
+    end
 
-      composer.document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
-
-      sign_params = {
-        reason: SIGN_REASON,
-        **Submissions::GenerateResultAttachments.build_signing_params(pkcs, tsa_url)
-      }
-
-      composer.document.sign(io, **sign_params)
-
-      ActiveStorage::Attachment.create!(
-        blob: ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(io.string), filename: "Audit Log - #{submission.template.name}.pdf"
-        ),
-        name: 'audit_trail',
-        record: submission
-      )
+    def sign_reason
+      'Signed with DocuSeal.co'
     end
 
     def add_logo(column, _submission = nil)
