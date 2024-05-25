@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
-      <meta name="rollbar-token" content="<%= ENV['ROLLBAR_CLIENT_TOKEN'] %>">
+      <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
       <%= javascript_pack_tag 'rollbar', 'form', defer: true %>
     <% else %>
       <%= javascript_pack_tag 'form', defer: true %>
