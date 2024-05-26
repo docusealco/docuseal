@@ -383,6 +383,7 @@ module Submissions
 
         if flatten
           begin
+            pdf.acro_form.create_appearances(force: true) if pdf.acro_form && pdf.acro_form[:NeedAppearances]
             pdf.acro_form&.flatten
           rescue StandardError => e
             Rollbar.error(e) if defined?(Rollbar)

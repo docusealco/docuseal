@@ -26,6 +26,8 @@ class TemplatesUploadsController < ApplicationController
   rescue StandardError => e
     Rollbar.error(e) if defined?(Rollbar)
 
+    raise if Rails.env.local?
+
     redirect_to root_path, alert: 'Unable to upload file'
   end
 

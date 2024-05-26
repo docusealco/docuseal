@@ -48,7 +48,7 @@ module Templates
       pdf = HexaPDF::Document.new(io: StringIO.new(data))
       number_of_pages = pdf.pages.size
 
-      data = maybe_flatten_form(data, pdf, attachment)
+      data = maybe_flatten_form(data, pdf)
 
       attachment.metadata['pdf'] ||= {}
       attachment.metadata['pdf']['number_of_pages'] = number_of_pages
@@ -74,15 +74,15 @@ module Templates
       end
     end
 
-    def maybe_flatten_form(data, pdf, attachment)
+    def maybe_flatten_form(data, pdf)
       return data if data.size > MAX_FLATTEN_FILE_SIZE
       return data if pdf.acro_form.blank?
-      return data if attachment.record.account.account_configs
-                               .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value == false
 
       io = StringIO.new
 
-      pdf.acro_form&.flatten
+      pdf.acro_form.create_appearances(force: true) if pdf.acro_form[:NeedAppearances]
+      pdf.acro_form.flatten
+
       pdf.write(io, incremental: false, validate: false)
 
       io.string
