@@ -11,7 +11,7 @@
           <% if content_for(:add_user_button) %>
             <%= content_for(:add_user_button) %>
           <% else %>
-            <%= link_to new_user_path, class: "btn btn-primary btn-md gap-2", data: { turbo_frame: 'modal' } do %>
+            <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
               <%= svg_icon('plus', class: 'w-6 h-6') %>
               <span>New User</span>
             <% end %>
