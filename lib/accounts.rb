@@ -31,6 +31,17 @@ module Accounts
     new_account
   end
 
+  def users_count(account)
+    rel = User.where(account_id: account.id).or(
+      User.where(account_id: account.account_linked_accounts
+                                           .where.not(account_type: :testing)
+                                           .select(:linked_account_id))
+    )
+
+    rel.where.not(account: account.linked_accounts.where.not(archived_at: nil))
+       .where.not(role: :integration).active.count
+  end
+
   def find_or_create_testing_user(account)
     user = User.where(role: :admin).order(:id).find_by(account: account.testing_accounts)
 

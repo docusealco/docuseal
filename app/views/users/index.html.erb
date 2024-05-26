@@ -5,9 +5,16 @@
       <h1 class="text-4xl font-bold"><%= params[:status].to_s.titleize %> Users</h1>
       <div class="flex items-center space-x-4">
         <% if can?(:create, User.new(account: current_account)) %>
-          <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6') %>
-            <span>New User</span>
+          <% if Docuseal.multitenant? %>
+            <%= render 'users/extra_buttons' %>
+          <% end %>
+          <% if content_for(:add_user_button) %>
+            <%= content_for(:add_user_button) %>
+          <% else %>
+            <%= link_to new_user_path, class: "btn btn-primary btn-md gap-2", data: { turbo_frame: 'modal' } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6') %>
+              <span>New User</span>
+            <% end %>
           <% end %>
         <% end %>
       </div>
