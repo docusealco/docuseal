@@ -1,5 +1,6 @@
 queues:
   - [default, 1]
+  - [webhooks, 1]
   - [mailers, 1]
   - [recurrent, 1]
   - [rollbar, 1]

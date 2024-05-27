@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SendFormCompletedWebhookRequestJob < ApplicationJob
+  queue_as :webhooks
+
   USER_AGENT = 'DocuSeal.co Webhook'
 
   MAX_ATTEMPTS = 10
