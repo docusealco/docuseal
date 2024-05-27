@@ -5,9 +5,7 @@
       <h1 class="text-4xl font-bold"><%= params[:status].to_s.titleize %> Users</h1>
       <div class="flex items-center space-x-4">
         <% if can?(:create, User.new(account: current_account)) %>
-          <% if Docuseal.multitenant? %>
-            <%= render 'users/extra_buttons' %>
-          <% end %>
+          <%= render 'users/extra_buttons' %>
           <% if content_for(:add_user_button) %>
             <%= content_for(:add_user_button) %>
           <% else %>
@@ -57,7 +55,7 @@
                 <%= user.last_sign_in_at ? l(user.last_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
-                <% if can?(:update, user) %>
+                <% if can?(:update, user) && user.archived_at.blank? %>
                   <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
                     Edit
                   <% end %>
@@ -68,7 +66,7 @@
                   <% end %>
                 <% end %>
                 <% if params[:status].present? && can?(:manage, user) && user != current_user %>
-                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-secondary btn-xs', title: 'Unarchive', data: { turbo_confirm: 'Are you sure?' } do %>
+                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: 'Unarchive', data: { turbo_confirm: 'Are you sure?' } do %>
                     Unarchive
                   <% end %>
                 <% end %>
