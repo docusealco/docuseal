@@ -3,7 +3,7 @@
 module Submissions
   module SerializeForApi
     SERIALIZE_PARAMS = {
-      only: %i[id source submitters_order created_at updated_at archived_at],
+      only: %i[id slug source submitters_order created_at updated_at archived_at],
       methods: %i[audit_log_url],
       include: {
         submitters: { only: %i[id slug uuid name email phone
