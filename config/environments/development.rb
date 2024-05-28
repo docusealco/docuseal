@@ -2,6 +2,8 @@
 
 require 'active_support/core_ext/integer/time'
 
+Rails.backtrace_cleaner.remove_silencers!
+
 Rails.application.configure do
   config.after_initialize do
     Bullet.enable        = true
