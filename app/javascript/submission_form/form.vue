@@ -972,14 +972,16 @@ export default {
       this.$nextTick(() => {
         this.recalculateButtonDisabledKey = Math.random()
 
-        if (scrollToArea) {
-          this.scrollIntoField(step[0])
+        if (!this.isCompleted) {
+          if (scrollToArea) {
+            this.scrollIntoField(step[0])
 
-          this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
-        }
+            this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+          }
 
-        if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
-          this.$refs.form.querySelector('input[type="file"]')?.click()
+          if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
+            this.$refs.form.querySelector('input[type="file"]')?.click()
+          }
         }
       })
     },

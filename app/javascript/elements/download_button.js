@@ -17,13 +17,18 @@ export default targetable(class extends HTMLElement {
 
     this.toggleState()
 
-    fetch(this.dataset.src).then((response) => response.json()).then((urls) => {
-      const isSafariIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    fetch(this.dataset.src).then(async (response) => {
+      if (response.ok) {
+        const urls = await response.json()
+        const isSafariIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
-      if (isSafariIos && urls.length > 1) {
-        this.downloadSafariIos(urls)
+        if (isSafariIos && urls.length > 1) {
+          this.downloadSafariIos(urls)
+        } else {
+          this.downloadUrls(urls)
+        }
       } else {
-        this.downloadUrls(urls)
+        alert('Failed to download files')
       }
     })
   }
