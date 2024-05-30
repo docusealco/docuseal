@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     if existing_user
       existing_user.archived_at = nil
       existing_user.assign_attributes(user_params)
+      existing_user.account = current_account
 
       @user = existing_user
     end
