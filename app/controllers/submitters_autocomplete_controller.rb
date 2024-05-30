@@ -25,7 +25,7 @@ class SubmittersAutocompleteController < ApplicationController
 
       term = "#{params[:q].downcase}%"
 
-      submitters.where(column.matches(term, false, true))
+      submitters.where(column.matches(term))
     else
       Submitters.search(submitters, params[:q])
     end
