@@ -1,21 +1,25 @@
 <% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<meta name="description" content="Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.">
-<meta property="og:title" content="DocuSeal | Open Source Document Filling and Signing">
-<meta property="og:description" content="Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.">
+<% title = content_for(:html_title) || 'DocuSeal | Open Source Document Filling and Signing' %>
+<% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
+<meta name="description" content="<%= description %>">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
 <meta property="og:site_name" content="DocuSeal">
-<meta property="og:image" content="<%= image_pack_url('images/preview.png') %>">
-<meta property="og:image:width" content="800">
-<meta property="og:image:height" content="800">
-<meta name="twitter:image" content="<%= image_pack_url('images/preview.png') %>">
+<% unless content_for(:disable_image_preview) %>
+  <meta property="og:image" content="<%= image_pack_url('images/preview.png') %>">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta name="twitter:image" content="<%= image_pack_url('images/preview.png') %>">
+<% end %>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@docusealco">
 <meta name="twitter:site" content="@docusealco">
-<meta name="twitter:title" content="DocuSeal | Open Source Document Filling and Signing">
-<meta name="twitter:description" content="Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description %>">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
