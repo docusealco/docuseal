@@ -24,15 +24,15 @@
       </div>
     </div>
     <% unless @template.archived_at? %>
-      <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4', onsubmit: 'event.submitter.disabled = true' } do |f| %>
+      <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
         <div dir="auto" class="form-control !mt-0">
           <%= f.label :email, t('email'), class: 'label' %>
           <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: t('provide_your_email_to_start') %>
           <%= @error_message %>
         </div>
-        <div dir="auto" class="form-control">
+        <toggle-submit dir="auto" class="form-control">
           <%= f.button button_title(title: t('start'), disabled_with: t('starting')), class: 'base-button' %>
-        </div>
+        </toggle-submit>
       <% end %>
     <% end %>
   </div>
