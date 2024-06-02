@@ -50,6 +50,7 @@ class User < ApplicationRecord
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
   has_one_attached :signature
+  has_one_attached :initials
 
   belongs_to :account
   has_one :access_token, dependent: :destroy

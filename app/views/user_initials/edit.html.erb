@@ -1,0 +1,55 @@
+<%= render 'shared/turbo_modal', title: 'Update Initials' do %>
+  <% options = [%w[Draw draw], %w[Upload upload]] %>
+  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
+    <div class="join">
+      <% options.each_with_index do |(label, value), index| %>
+        <span>
+          <%= radio_button_tag 'option', value, value == 'draw', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
+          <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-28 peer-checked:btn-active normal-case">
+            <%= label %>
+          </label>
+        </span>
+      <% end %>
+    </div>
+  </toggle-visible>
+  <div id="draw" class="mt-3">
+    <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
+      <signature-form class="relative block">
+        <a class="absolute top-1 right-1 link text-sm" data-target="signature-form.clear" href="#">Clear</a>
+        <canvas data-target="signature-form.canvas" class="bg-white border border-base-300 rounded"></canvas>
+        <input name="file" class="hidden" data-target="signature-form.input" type="file" accept="image/png,image/jpeg,image/jpg">
+        <div class="form-control mt-4">
+          <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button', data: { target: 'signature-form.button' } %>
+        </div>
+      </signature-form>
+    <% end %>
+  </div>
+  <div id="upload" class="hidden mt-3">
+    <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
+      <file-dropzone data-submit-on-upload="true" class="w-full">
+        <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">
+          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <span data-target="file-dropzone.icon">
+                <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
+              </span>
+              <span data-target="file-dropzone.loading" class="hidden">
+                <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+              </span>
+              <div class="font-medium mb-1">
+                Upload Initials
+              </div>
+              <div class="text-xs">
+                <span class="font-medium">Click to upload</span> or drag and drop
+              </div>
+            </div>
+            <input id="file" name="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/png,image/jpeg,image/jpg">
+          </div>
+        </label>
+      </file-dropzone>
+      <div class="form-control mt-4">
+        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
