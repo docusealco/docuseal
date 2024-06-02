@@ -143,6 +143,7 @@ Rails.application.configure do
           slug: (params[:slug] ||
                  params[:submitter_slug] ||
                  params[:submission_slug] ||
+                 params[:submit_form_slug] ||
                  params[:template_slug]).to_s.last(5)
         }.compact_blank,
         host: controller.request.host,
