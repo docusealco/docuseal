@@ -326,6 +326,7 @@
             :attachments-index="attachmentsIndex"
             :button-text="buttonText"
             :with-disclosure="withDisclosure"
+            :with-qr-button="withQrButton"
             :submitter-slug="submitterSlug"
             :show-field-names="showFieldNames"
             @attached="attachments.push($event)"
@@ -384,7 +385,7 @@
         </div>
         <div
           v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
-          :class="withDisclosure && currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
+          :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
         >
           <button
             id="submit_form_button"
@@ -577,6 +578,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withQrButton: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withTypedSignature: {
       type: Boolean,

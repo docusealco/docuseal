@@ -28,7 +28,7 @@
             id="type_text_button"
             href="#"
             class="btn btn-outline btn-sm font-medium"
-            @click.prevent="toggleTextInput"
+            @click.prevent="[toggleTextInput(), showQr()]"
           >
             <IconSignature :width="16" />
             <span class="hidden sm:inline">
@@ -87,7 +87,7 @@
           v-else
           href="#"
           class="btn btn-outline btn-sm font-medium"
-          @click.prevent="clear"
+          @click.prevent="[clear(), hideQr()]"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
@@ -123,12 +123,56 @@
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72"
     >
-    <canvas
-      v-show="!modelValue && !computedPreviousValue"
-      ref="canvas"
-      style="padding: 1px; 0"
-      class="bg-white border border-base-300 rounded-2xl w-full"
-    />
+    <div class="relative">
+      <div
+        v-if="withQrButton"
+        class="absolute top-1.5 right-1.5 tooltip hidden md:inline"
+        :data-tip="t('drawn_signature_on_a_touchscreen_device')"
+      >
+        <a
+          v-if="!isShowQr && !isSignatureStarted && !isTextSignature && !modelValue"
+          href="#"
+          class="btn btn-sm btn-circle btn-ghost"
+          @click.prevent="showQr"
+        >
+          <IconQrcode />
+        </a>
+      </div>
+      <canvas
+        v-show="!modelValue && !computedPreviousValue"
+        ref="canvas"
+        style="padding: 1px; 0"
+        class="bg-white border border-base-300 rounded-2xl w-full"
+      />
+      <div
+        v-show="isShowQr"
+        class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
+      >
+        <div
+          class="absolute top-1.5 right-1.5 tooltip"
+        >
+          <a
+            href="#"
+            class="btn btn-sm btn-circle btn-normal btn-outline"
+            @click.prevent="hideQr"
+          >
+            <IconX />
+          </a>
+        </div>
+        <div class="flex items-center justify-center w-full h-full p-4">
+          <div
+            v-if="withQrButton"
+            ref="qr"
+            class="bg-white p-4 rounded-xl h-full"
+          >
+            <canvas
+              ref="qrCanvas"
+              class="h-full"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <input
       v-if="isTextSignature"
       id="signature_text_input"
@@ -140,7 +184,14 @@
       @input="updateWrittenSignature"
     >
     <div
-      v-if="withDisclosure"
+      v-if="isShowQr"
+      dir="auto"
+      class="text-base-content/60 text-xs text-center w-full mt-1"
+    >
+      {{ t('scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature') }}
+    </div>
+    <div
+      v-else-if="withDisclosure"
       dir="auto"
       class="text-base-content/60 text-xs text-center w-full mt-1"
     >
@@ -156,11 +207,15 @@
         </span>
       </a>
     </div>
+    <div
+      v-else
+      class="mt-5 md:mt-7"
+    />
   </div>
 </template>
 
 <script>
-import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2, IconQrcode, IconX } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
@@ -176,7 +231,9 @@ export default {
     AppearsOn,
     IconReload,
     IconCamera,
+    IconQrcode,
     MarkdownContent,
+    IconX,
     IconTextSize,
     IconSignature,
     IconArrowsDiagonalMinimize2
@@ -197,6 +254,11 @@ export default {
       default: true
     },
     withDisclosure: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withQrButton: {
       type: Boolean,
       required: false,
       default: false
@@ -231,6 +293,7 @@ export default {
   data () {
     return {
       isSignatureStarted: !!this.previousValue,
+      isShowQr: false,
       isUsePreviousValue: true,
       isTextSignature: this.field.preferences?.format === 'typed',
       uploadImageInputKey: Math.random().toString()
@@ -252,6 +315,18 @@ export default {
         this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
 
         this.$refs.canvas.getContext('2d').scale(scale, scale)
+      }
+
+      if (this.withQrButton) {
+        import('qr-creator').then(({ default: Qr }) => {
+          Qr.render({
+            text: `${document.location.origin}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
+            radius: 0.0,
+            ecLevel: 'H',
+            background: null,
+            size: 132
+          }, this.$refs.qrCanvas)
+        })
       }
     })
 
@@ -282,6 +357,7 @@ export default {
   },
   beforeUnmount () {
     this.intersectionObserver?.disconnect()
+    this.stopCheckSignature()
   },
   methods: {
     remove () {
@@ -302,6 +378,41 @@ export default {
           console.error('Font loading failed:', error)
         })
       }
+    },
+    showQr () {
+      this.isShowQr = true
+
+      this.startCheckSignature()
+    },
+    hideQr () {
+      this.isShowQr = false
+
+      this.stopCheckSignature()
+    },
+    startCheckSignature () {
+      const after = JSON.stringify(new Date())
+
+      this.checkSignatureInterval = setInterval(() => {
+        this.checkSignature({ after })
+      }, 2000)
+    },
+    stopCheckSignature () {
+      if (this.checkSignatureInterval) {
+        clearInterval(this.checkSignatureInterval)
+      }
+    },
+    checkSignature (params = {}) {
+      return fetch(this.baseUrl + '/s/' + this.submitterSlug + '/values?field_uuid=' + this.field.uuid + '&after=' + params.after, {
+        method: 'GET'
+      }).then(async (resp) => {
+        const { attachment } = await resp.json()
+
+        if (attachment?.uuid) {
+          this.$emit('attached', attachment)
+          this.$emit('update:model-value', attachment.uuid)
+          this.hideQr()
+        }
+      })
     },
     clear () {
       this.pad.clear()

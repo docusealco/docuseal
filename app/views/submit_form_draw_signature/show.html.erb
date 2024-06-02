@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-theme="docuseal" lang="en">
+  <head>
+    <%= render 'layouts/head_tags' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
+      <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
+      <%= javascript_pack_tag 'rollbar', 'draw', defer: true %>
+    <% else %>
+      <%= javascript_pack_tag 'draw', defer: true %>
+    <% end %>
+    <%= stylesheet_pack_tag 'form', media: 'all' %>
+    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
+  </head>
+  <body>
+    <signature-form data-slug="<%= params[:slug] %>" class="flex items-center h-screen p-2 justify-center">
+      <%= form_for '', url: submit_form_path(params[:slug]), html: { style: 'max-width: 900px; width: 100%; margin-bottom: 120px' }, method: :put do |f| %>
+        <input value="" type="hidden" name="values[<%= (@submitter.submission.template_fields || @submitter.template.fields).find { |f| f['type'] == 'signature' && f['uuid'].starts_with?(params[:f]) }['uuid'] %>]">
+        <div class="font-semibold text-4xl text-center w-full mb-2">
+          Draw Signature
+        </div>
+        <div class="w-full bg-white rounded-2xl border relative" style="height: 300px">
+          <canvas class="w-full"></canvas>
+          <button aria-label="Clear" class="btn btn-ghost btn-sm font-medium top-0 right-0 absolute mt-1 mr-1">
+            <%= svg_icon('reload', class: 'w-5 h-5') %>
+            <span class="inline">Clear</span>
+          </button>
+        </div>
+        <div class="mt-4">
+          <button disabled class="base-button w-full">
+            Submit
+          </button>
+          <%= f.button button_title(title: 'Submit'), class: 'base-button w-full', style: 'display: none' %>
+        </div>
+      <% end %>
+      <div id="success" class="text-center p-2 hidden" style="margin-bottom: 100px">
+        <div class="flex items-center space-x-1 items-center justify-center text-2xl font-semibold mb-2">
+          <%= svg_icon('circle_check', class: 'text-green-600') %>
+          <span>
+            Signature Uploaded
+          </span>
+        </div>
+        <div>
+          Return back to your desktop device to complete the form or <a class="link" href="<%= submit_form_path(params[:slug]) %>">continue on mobile</a>
+        </div>
+      </div>
+    </signature-form>
+  </body>
+</html>

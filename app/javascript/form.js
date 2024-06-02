@@ -24,6 +24,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       values: reactive(JSON.parse(this.dataset.values)),
       completedButton: JSON.parse(this.dataset.completedButton || '{}'),
+      withQrButton: true,
       completedMessage: JSON.parse(this.dataset.completedMessage || '{}'),
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: reactive(JSON.parse(this.dataset.attachments)),

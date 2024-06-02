@@ -21,6 +21,10 @@ const configs = generateWebpackConfig({
           test: /\/node_modules\//,
           chunks: chunk => chunk.name === 'application'
         },
+        drawVendors: {
+          test: /\/node_modules\//,
+          chunks: chunk => chunk.name === 'draw'
+        },
         formVendors: {
           test: /\/node_modules\//,
           chunks: chunk => chunk.name === 'form'

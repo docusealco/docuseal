@@ -105,8 +105,11 @@ Rails.application.routes.draw do
   end
 
   resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
+    resources :values, only: %i[index], controller: 'submit_form_values'
     get :completed
   end
+
+  resources :submit_form_draw_signature, only: %i[show], path: 'p', param: 'slug'
 
   resources :submissions_preview, only: %i[show], path: 'e', param: 'slug' do
     get :completed

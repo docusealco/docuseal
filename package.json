@@ -25,6 +25,7 @@
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.3.0",
+    "qr-creator": "^1.0.0",
     "rollbar": "^2.26.4",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",

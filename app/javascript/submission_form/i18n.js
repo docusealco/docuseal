@@ -5,6 +5,8 @@ const en = {
   esignature_disclosure: 'eSignature Disclosure',
   signature: 'Signature',
   initials: 'Initials',
+  drawn_signature_on_a_touchscreen_device: 'Drawn signature on a touchscreen device',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scan the QR code with the camera app to open the form on mobile and draw your signature',
   date: 'Date',
   number: 'Number',
   image: 'Image',
@@ -68,6 +70,8 @@ const en = {
 }
 
 const es = {
+  drawn_signature_on_a_touchscreen_device: 'Firma dibujada en un dispositivo con pantalla táctil',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Escanea el código QR con la aplicación de la cámara para abrir el formulario en el móvil y dibujar tu firma',
   by_clicking_you_agree_to_the: 'Al hacer clic en "{button}", usted acepta el',
   electronic_signature_disclosure: 'Divulgación de Firma Electrónica',
   esignature_disclosure: 'Divulgación de eFirma',
@@ -136,6 +140,8 @@ const es = {
 }
 
 const it = {
+  drawn_signature_on_a_touchscreen_device: 'Firma disegnata su un dispositivo con schermo tattile',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scansiona il codice QR con l\'app della fotocamera per aprire il modulo sul cellulare e disegnare la tua firma',
   by_clicking_you_agree_to_the: 'Cliccando su "{button}", accetti il',
   electronic_signature_disclosure: 'Divulgazione della Firma Elettronica',
   esignature_disclosure: 'Divulgazione della eFirma',
@@ -204,6 +210,8 @@ const it = {
 }
 
 const de = {
+  drawn_signature_on_a_touchscreen_device: 'Gezeichnete Unterschrift auf einem Touchscreen-Gerät',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scannen Sie den QR-Code mit der Kamera-App, um das Formular auf dem Handy zu öffnen und Ihre Unterschrift zu zeichnen',
   by_clicking_you_agree_to_the: 'Durch Klicken auf "{button}" stimmen Sie zu, dass Sie die',
   electronic_signature_disclosure: 'Elektronische Unterschriftenoffenlegung',
   esignature_disclosure: 'eSignatur Offenlegung',
@@ -272,6 +280,8 @@ const de = {
 }
 
 const fr = {
+  drawn_signature_on_a_touchscreen_device: 'Signature dessinée sur un appareil à écran tactile',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scannez le code QR avec l\'application de l\'appareil photo pour ouvrir le formulaire sur mobile et dessiner votre signature',
   by_clicking_you_agree_to_the: 'En cliquant sur "{button}", vous acceptez la',
   electronic_signature_disclosure: 'Divulgation de Signature Électronique',
   esignature_disclosure: 'Divulgation de la eSignature',
@@ -340,6 +350,8 @@ const fr = {
 }
 
 const pl = {
+  drawn_signature_on_a_touchscreen_device: 'Podpis odręczny na urządzeniu z ekranem dotykowym',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Zeskanuj kod QR za pomocą aplikacji aparatu, aby otworzyć formularz na telefonie i narysować swój podpis',
   by_clicking_you_agree_to_the: 'Klikając na "{button}", zgadzasz się na',
   electronic_signature_disclosure: 'Ujawnienie Elektronicznej Sygnatury',
   esignature_disclosure: 'Ujawnienie ePodpisu',
@@ -408,6 +420,8 @@ const pl = {
 }
 
 const uk = {
+  drawn_signature_on_a_touchscreen_device: 'Підпис на сенсорному пристрої',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Скануйте QR-код за допомогою програми камери, щоб відкрити форму на мобільному пристрої та намалювати свій підпис',
   by_clicking_you_agree_to_the: 'Натиснувши на "{button}", ви погоджуєтеся з',
   electronic_signature_disclosure: 'Розголошення Електронного Підпису',
   esignature_disclosure: 'Розголошення еПідпису',
@@ -476,6 +490,8 @@ const uk = {
 }
 
 const cs = {
+  drawn_signature_on_a_touchscreen_device: 'Namalovaný podpis na dotykovém zařízení',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Naskenujte QR kód pomocí aplikace fotoaparátu, abyste otevřeli formulář na mobilním zařízení a nakreslili svůj podpis',
   by_clicking_you_agree_to_the: 'Kliknutím na "{button}" souhlasíte s',
   electronic_signature_disclosure: 'Zveřejněním Elektronického Podpisu',
   esignature_disclosure: 'Zveřejnění ePodpisu',
@@ -544,6 +560,8 @@ const cs = {
 }
 
 const pt = {
+  drawn_signature_on_a_touchscreen_device: 'Assinatura desenhada em um dispositivo com tela sensível ao toque',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Escaneie o código QR com o aplicativo da câmera para abrir o formulário no celular e desenhar sua assinatura',
   by_clicking_you_agree_to_the: 'Ao clicar em "{button}", você concorda com o',
   electronic_signature_disclosure: 'Divulgação de Assinatura Eletrônica',
   esignature_disclosure: 'Divulgação da eAssinatura',
@@ -612,6 +630,8 @@ const pt = {
 }
 
 const he = {
+  drawn_signature_on_a_touchscreen_device: 'חתימה שנוצרה במכשיר עם מסך מגע',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'סרוק את קוד ה-QR באמצעות אפליקציית המצלמה כדי לפתוח את הטופס במובייל ולצייר את החתימה שלך',
   by_clicking_you_agree_to_the: 'על ידי לחיצה על "{button}", אתה מסכים ל',
   electronic_signature_disclosure: 'חשיפת חתימה אלקטרונית',
   esignature_disclosure: 'חשיפת ה-eחתימה',
@@ -681,6 +701,8 @@ const he = {
 }
 
 const nl = {
+  drawn_signature_on_a_touchscreen_device: 'Getekende handtekening op een apparaat met een touchscreen',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scan de QR-code met de camera-app om het formulier op mobiel te openen en uw handtekening te tekenen',
   by_clicking_you_agree_to_the: 'Door op "{button}" te klikken, gaat u akkoord met de',
   electronic_signature_disclosure: 'Openbaarmaking van Elektronische Handtekening',
   esignature_disclosure: 'Openbaarmaking van eHandtekening',
@@ -750,6 +772,8 @@ const nl = {
 }
 
 const ar = {
+  drawn_signature_on_a_touchscreen_device: 'توقيع مرسوم على جهاز بشاشة تعمل باللمس',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'امسح رمز الاستجابة السريعة باستخدام تطبيق الكاميرا لفتح النموذج على الهاتف المحمول ورسم توقيعك',
   by_clicking_you_agree_to_the: 'بالنقر فوق "{button}"، أنت توافق على',
   electronic_signature_disclosure: 'كشف التوقيع الإلكتروني',
   esignature_disclosure: 'كشف التوقيع الإلكتروني',
@@ -819,6 +843,8 @@ const ar = {
 }
 
 const ko = {
+  drawn_signature_on_a_touchscreen_device: '터치스크린 장치에서 그린 서명',
+  scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: '카메라 앱으로 QR 코드를 스캔하여 모바일에서 양식을 열고 서명을 그리세요',
   by_clicking_you_agree_to_the: '"{button}"를 클릭함으로써, 다음에 동의하게 됩니다',
   electronic_signature_disclosure: '전자 서명 공개',
   esignature_disclosure: '전자 서명 공개',
