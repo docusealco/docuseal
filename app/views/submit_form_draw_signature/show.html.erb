@@ -15,7 +15,7 @@
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>
   <body>
-    <signature-form data-slug="<%= params[:slug] %>" class="flex items-center h-screen p-2 justify-center">
+    <draw-signature data-slug="<%= params[:slug] %>" class="flex items-center h-screen p-2 justify-center">
       <%= form_for '', url: submit_form_path(params[:slug]), html: { style: 'max-width: 900px; width: 100%; margin-bottom: 120px' }, method: :put do |f| %>
         <input value="" type="hidden" name="values[<%= (@submitter.submission.template_fields || @submitter.template.fields).find { |f| f['type'] == 'signature' && f['uuid'].starts_with?(params[:f]) }['uuid'] %>]">
         <div class="font-semibold text-4xl text-center w-full mb-2">
@@ -46,6 +46,6 @@
           Return back to your desktop device to complete the form or <a class="link" href="<%= submit_form_path(params[:slug]) %>">continue on mobile</a>
         </div>
       </div>
-    </signature-form>
+    </draw-signature>
   </body>
 </html>

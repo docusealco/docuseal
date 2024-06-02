@@ -1,7 +1,7 @@
 import SignaturePad from 'signature_pad'
 import { cropCanvasAndExportToPNG } from './submission_form/crop_canvas'
 
-window.customElements.define('signature-form', class extends HTMLElement {
+window.customElements.define('draw-signature', class extends HTMLElement {
   connectedCallback () {
     const scale = 3
 
