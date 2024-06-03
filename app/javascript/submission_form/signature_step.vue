@@ -28,7 +28,7 @@
             id="type_text_button"
             href="#"
             class="btn btn-outline btn-sm font-medium"
-            @click.prevent="[toggleTextInput(), showQr()]"
+            @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconSignature :width="16" />
             <span class="hidden sm:inline">
@@ -45,7 +45,7 @@
             id="type_text_button"
             href="#"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
-            @click.prevent="toggleTextInput"
+            @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconTextSize :width="16" />
             <span class="hidden sm:inline">
