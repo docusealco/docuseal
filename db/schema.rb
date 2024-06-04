@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_112400) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_070648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_112400) do
     t.datetime "updated_at", null: false
     t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
+  end
+
+  create_table "email_events", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "emailable_type", null: false
+    t.bigint "emailable_id", null: false
+    t.string "message_id", null: false
+    t.string "tag", null: false
+    t.string "event_type", null: false
+    t.string "email", null: false
+    t.text "data", null: false
+    t.datetime "event_datetime", null: false
+    t.datetime "created_at", null: false
+    t.index ["account_id"], name: "index_email_events_on_account_id"
+    t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
+    t.index ["message_id"], name: "index_email_events_on_message_id"
   end
 
   create_table "email_messages", force: :cascade do |t|
@@ -279,6 +295,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_112400) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "email_events", "accounts"
   add_foreign_key "email_messages", "accounts"
   add_foreign_key "email_messages", "users", column: "author_id"
   add_foreign_key "encrypted_configs", "accounts"

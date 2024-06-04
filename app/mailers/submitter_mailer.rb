@@ -26,6 +26,8 @@ class SubmitterMailer < ApplicationMailer
         DEFAULT_INVITATION_SUBJECT
       end
 
+    assign_message_metadata('submitter_invitation', @submitter)
+
     mail(
       to: @submitter.friendly_name,
       from: from_address_for_submitter(submitter),
@@ -58,6 +60,8 @@ class SubmitterMailer < ApplicationMailer
         %(#{submitter.submission.template.name} has been completed by #{submitters})
       end
 
+    assign_message_metadata('submitter_completed', @submitter)
+
     mail(from: from_address_for_submitter(submitter),
          to: to || (user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name),
          subject:)
@@ -88,6 +92,8 @@ class SubmitterMailer < ApplicationMailer
       else
         'Your document copy'
       end
+
+    assign_message_metadata('submitter_documents_copy', @submitter)
 
     mail(from: from_address_for_submitter(submitter),
          to: to || @submitter.friendly_name,

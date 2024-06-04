@@ -25,6 +25,7 @@ module Submissions
       '▪' => '-',
       '✔️' => 'V',
       '✔' => 'V',
+      '✓' => 'V',
       '✅' => 'V'
     }.freeze
 
@@ -32,6 +33,7 @@ module Submissions
       '▪' => :bullet,
       '✔️' => :V,
       '✔' => :V,
+      '✓' => :V,
       '✅' => :V
     }.freeze
 

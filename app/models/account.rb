@@ -31,6 +31,7 @@ class Account < ApplicationRecord
   has_many :submissions, dependent: :destroy
   has_many :submitters, through: :submissions
   has_many :account_linked_accounts, dependent: :destroy
+  has_many :email_events, dependent: :destroy
   has_many :account_testing_accounts, -> { testing }, dependent: :destroy,
                                                       class_name: 'AccountLinkedAccount',
                                                       inverse_of: :account
