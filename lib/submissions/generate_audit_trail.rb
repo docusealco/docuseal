@@ -229,16 +229,18 @@ module Submissions
 
           next if Array.wrap(value).compact_blank.blank?
 
+          field_name = field['title'].presence || field['name']
+
           [
             composer.formatted_text_box(
               [
                 {
-                  text: TextUtils.maybe_rtl_reverse(field['name'].to_s).upcase.presence ||
+                  text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
                         "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
                   font_size: 6
                 }
               ].compact_blank,
-              text_align: field['name'].to_s.match?(RTL_REGEXP) ? :right : :left,
+              text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
               line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
             if field['type'].in?(%w[image signature initials stamp])
