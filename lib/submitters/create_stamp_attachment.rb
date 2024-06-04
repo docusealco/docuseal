@@ -82,9 +82,9 @@ module Submitters
 
       digitally_signed_by = I18n.t(:digitally_signed_by, locale: submitter.account.locale)
 
-      text = %(<span size="90">#{digitally_signed_by}: <b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
+      text = %(<span size="90">#{digitally_signed_by}:\n<b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
 
-      Vips::Image.text(text, width: WIDTH, height: HEIGHT)
+      Vips::Image.text(text, width: WIDTH, height: HEIGHT, wrap: :'word-char')
     end
 
     def load_logo(_submitter)
