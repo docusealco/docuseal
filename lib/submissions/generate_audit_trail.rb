@@ -229,7 +229,7 @@ module Submissions
 
           next if Array.wrap(value).compact_blank.blank?
 
-          field_name = field['title'].presence || field['name']
+          field_name = field['title'].presence || field['name'].to_s
 
           [
             composer.formatted_text_box(
