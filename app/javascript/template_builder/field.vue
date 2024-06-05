@@ -92,6 +92,7 @@
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
+            @click-condition="isShowConditionsModal = true"
           />
           <span
             v-else

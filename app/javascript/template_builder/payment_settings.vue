@@ -149,12 +149,26 @@
           data-turbo="false"
         >Learn more</a>
       </div>
+      <hr>
+      <li class="mt-1">
+        <label
+          class="label-text cursor-pointer text-center w-full flex items-center"
+          @click="$emit('click-condition')"
+        >
+          <IconRouteAltLeft
+            width="18"
+          />
+          <span class="text-sm">
+            {{ t('condition') }}
+          </span>
+        </label>
+      </li>
     </ul>
   </span>
 </template>
 
 <script>
-import { IconSettings, IconCircleCheck, IconBrandStripe, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconSettings, IconCircleCheck, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft } from '@tabler/icons-vue'
 import { ref } from 'vue'
 
 const isConnected = ref(false)
@@ -164,6 +178,7 @@ export default {
   components: {
     IconSettings,
     IconCircleCheck,
+    IconRouteAltLeft,
     IconInnerShadowTop,
     IconBrandStripe
   },
@@ -174,6 +189,7 @@ export default {
       required: true
     }
   },
+  emits: ['click-condition'],
   data () {
     return {
       isLoading: false
