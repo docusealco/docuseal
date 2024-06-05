@@ -10,6 +10,19 @@ class FailureApp < Devise::FailureApp
   end
 end
 
+module Devise
+  module Mailers
+    module Helpers
+      def devise_mail(record, action, opts = {}, &)
+        assign_message_metadata(action, record)
+
+        initialize_from_record(record)
+        mail(headers_for(action, opts), &)
+      end
+    end
+  end
+end
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
