@@ -144,15 +144,15 @@
                 <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
               </span>
             </div>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && can?(:update, submitter) && Accounts.can_send_emails?(current_account) %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && Accounts.can_send_emails?(current_account) %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? 'Re-send Email' : 'Send Email', disabled_with: 'Sending'), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && can?(:update, submitter) %>
+            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) %>
               <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
-            <% if signed_in? && submitter && !submitter.completed_at? && can?(:create, submitter) %>
+            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, submitter) %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   Sign In-person
