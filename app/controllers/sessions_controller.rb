@@ -3,6 +3,8 @@
 class SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters
 
+  around_action :with_browser_locale
+
   def create
     email = sign_in_params[:email].to_s.downcase
 

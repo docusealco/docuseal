@@ -1,22 +1,22 @@
 <div class="max-w-lg mx-auto px-2">
   <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
-  <h1 class="text-4xl font-bold text-center mt-8">Sign In</h1>
+  <h1 class="text-4xl font-bold text-center mt-8"><%= t('sign_in') %></h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <% if params[:redir].present? %>
       <%= hidden_field_tag :redir, params[:redir] %>
     <% end %>
-    <div class="space-y-2">
+    <div class="space-y-2" dir="auto">
       <div class="form-control">
-        <%= f.label :email, class: 'label' %>
+        <%= f.label :email, t(:email), class: 'label' %>
         <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
       </div>
       <div class="form-control">
-        <%= f.label :password, class: 'label' %>
+        <%= f.label :password, t(:password), class: 'label' %>
         <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Sign In', disabled_with: 'Signing In'), class: 'base-button' %>
+      <%= f.button button_title(title: t(:sign_in), disabled_with: t(:signing_in)), class: 'base-button' %>
     </div>
   <% end %>
   <% if devise_mapping.omniauthable? %>
@@ -25,14 +25,14 @@
         <%= form_for '', url: omniauth_authorize_path(resource_name, :google_oauth2), data: { turbo: false }, method: :post do |f| %>
           <set-timezone data-input-id="state" data-params="true"></set-timezone>
           <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query %>
-          <%= f.button button_title(title: 'Sign in with Google', icon: svg_icon('brand_google', class: 'w-6 h-6')), class: 'white-button w-full mt-4' %>
+          <%= f.button button_title(title: t('sign_in_with_google'), icon: svg_icon('brand_google', class: 'w-6 h-6')), class: 'white-button w-full mt-4' %>
         <% end %>
       <% end %>
       <% if User.omniauth_providers.include?(:microsoft_office365) %>
         <%= form_for '', url: omniauth_authorize_path(resource_name, :microsoft_office365), data: { turbo: false }, method: :post do |f| %>
           <set-timezone data-input-id="state_microsoft" data-params="true"></set-timezone>
           <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query, id: 'state_microsoft' %>
-          <%= f.button button_title(title: 'Sign in with Microsoft', icon: svg_icon('brand_microsoft', class: 'w-6 h-6')), class: 'white-button w-full' %>
+          <%= f.button button_title(title: t('sign_in_with_microsoft'), icon: svg_icon('brand_microsoft', class: 'w-6 h-6')), class: 'white-button w-full' %>
         <% end %>
       <% end %>
     </div>

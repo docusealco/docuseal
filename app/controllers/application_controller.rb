@@ -52,7 +52,8 @@ class ApplicationController < ActionController::Base
   private
 
   def with_browser_locale(&)
-    locale = request.env['HTTP_ACCEPT_LANGUAGE'].to_s[BROWSER_LOCALE_REGEXP].to_s
+    locale   = params[:lang].presence
+    locale ||= request.env['HTTP_ACCEPT_LANGUAGE'].to_s[BROWSER_LOCALE_REGEXP].to_s
 
     locale =
       if locale.starts_with?('en-') && locale != 'en-US'

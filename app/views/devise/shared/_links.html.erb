@@ -1,11 +1,19 @@
 <div class="flex justify-between mt-4">
   <%- if controller_name != 'sessions' %>
-    <%= link_to 'Already have an account?', new_session_path(resource_name), class: 'link link-hover mx-auto' %>
+    <%= link_to t('already_have_an_account'), new_session_path(resource_name, { lang: params[:lang] }.compact_blank), class: 'link link-hover mx-auto' %>
   <% end %>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to 'Create free account', registration_path({ redir: params[:redir] }.compact_blank), class: 'link link-hover' %>
+    <%= link_to t('create_free_account'), registration_path({ redir: params[:redir], lang: params[:lang] }.compact_blank), class: 'link link-hover' %>
   <% end %>
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'link link-hover' %>
+    <%= link_to t('forgot_your_password_'), new_password_path(resource_name, { lang: params[:lang] }.compact_blank), class: 'link link-hover' %>
+  <% end %>
+</div>
+<div class="text-center mt-10">
+  <%= form_with url: url_for, method: :get do %>
+    <% if params[:redir].present? %>
+      <%= hidden_field_tag :redir, params[:redir] %>
+    <% end %>
+    <%= select_tag :lang, options_for_select((I18n.available_locales - %i[en pt-PT de-DE fr-FR es-ES]).map { |code| [t("language_#{code}"), code] }, I18n.locale), onchange: 'this.form.requestSubmit();', class: 'select select-sm border-base-content/30 text-base' %>
   <% end %>
 </div>

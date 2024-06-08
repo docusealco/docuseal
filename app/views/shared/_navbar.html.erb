@@ -11,7 +11,7 @@
     <div class="space-x-4 flex items-center">
       <% if Docuseal.demo? %>
         <a href="https://docuseal.co/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
-          Sign Up
+          <%= t('sign_up') %>
         </a>
         <span class="hidden sm:inline">
           <%= render 'shared/github_button' %>
@@ -61,18 +61,18 @@
   <% else %>
     <div class="flex space-x-2">
       <% if request.path != new_user_session_path %>
-        <%= link_to new_user_session_path, class: 'font-medium text-lg' do %>
+        <%= link_to new_user_session_path({ lang: params[:lang] }.compact_blank), class: 'font-medium text-lg' do %>
           <span class="flex items-center justify-center space-x-1">
             <%= svg_icon('login', class: 'w-6 h-6') %>
-            <span>Sign in</span>
+            <span><%= t('sign_in') %></span>
           </span>
         <% end %>
       <% end %>
       <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path]) %>
-        <%= link_to registration_path, class: 'btn btn-neutral btn-sm btn-outline' do %>
+        <%= link_to registration_path({ lang: params[:lang] }.compact_blank), class: 'btn btn-neutral btn-sm btn-outline' do %>
           <span class="flex items-center justify-center space-x-1">
-            <span class="hidden sm:block">Create free Account</span>
-            <span class="md:hidden">Sign Up</span>
+            <span class="hidden sm:block"><%= t('create_free_account') %></span>
+            <span class="md:hidden"><%= t('sign_up') %></span>
           </span>
         <% end %>
       <% end %>

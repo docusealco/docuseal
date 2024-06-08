@@ -1,4 +1,23 @@
 en: &en
+  language_en: English
+  language_en-US: English (US)
+  language_en-GB: English (UK)
+  language_es-ES: Español
+  language_fr-FR: Français
+  language_pt-PT: Português
+  language_de-DE: Deutsch
+  language_es: Español
+  language_it: Italiano
+  language_de: Deutsch
+  language_fr: Français
+  language_pl: Polski
+  language_uk: Українська
+  language_cs: Čeština
+  language_pt: Português
+  language_he: עברית
+  language_nl: Nederlands
+  language_ar: العربية
+  language_ko: 한국어
   email: Email
   verification_code_code: 'Verification code: %{code}'
   digitally_signed_by: Digitally signed by
@@ -19,6 +38,25 @@ en: &en
   download_documents: Download documents
   downloading: Downloading
   completed_successfully: Completed Successfully
+  password: Password
+  sign_in: Sign In
+  signing_in: Signing In
+  sign_in_with_microsoft: Sign in with Microsoft
+  sign_in_with_google: Sign in with Google
+  forgot_your_password_: Forgot your password?
+  create_free_account: Create free account
+  already_have_an_account: Already have an account?
+  first_name: First name
+  last_name: Last name
+  company_name_optional: Company name (optional)
+  sign_up: Sign up
+  signing_up: Signing up
+  profile_details: Profile Details
+  create_free_account: Create Free Account
+  sign_up_with_google: Sign up with Google
+  sign_up_with_microsoft: Sign up with Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.co/terms">Terms of Service</a>.'
+  enter_email_to_continue: Enter email to continue
 
 es: &es
   role: Rol
@@ -41,6 +79,26 @@ es: &es
   download_documents: Descargar documentos
   downloading: Descargando
   completed_successfully: Completado exitosamente
+  password: Contraseña
+  email: Correo electrónico
+  sign_in: Iniciar sesión
+  signing_in: Iniciando sesión
+  sign_in_with_microsoft: Iniciar sesión con Microsoft
+  sign_in_with_google: Iniciar sesión con Google
+  forgot_your_password_: ¿Olvidaste tu contraseña?
+  create_free_account: Crear cuenta gratuita
+  already_have_an_account: ¿Ya tienes una cuenta?
+  first_name: Nombre
+  last_name: Apellido
+  company_name_optional: Nombre de la empresa (opcional)
+  sign_up: Registrarse
+  signing_up: Registrándose
+  profile_details: Detalles del perfil
+  create_free_account: Crear cuenta gratuita
+  sign_up_with_google: Registrarse con Google
+  sign_up_with_microsoft: Registrarse con Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.co/terms">Términos de Servicio</a>.'
+  enter_email_to_continue: Ingresa tu correo electrónico para continuar
 
 it:
   role: Rôle
@@ -63,6 +121,25 @@ it:
   download_documents: Scarica documenti
   downloading: Scaricamento
   completed_successfully: Completato con successo
+  password: Password
+  sign_in: Accedi
+  signing_in: Accesso in corso
+  sign_in_with_microsoft: Accedi con Microsoft
+  sign_in_with_google: Accedi con Google
+  forgot_your_password_: Hai dimenticato la password?
+  create_free_account: Crea un account gratuito
+  already_have_an_account: Hai già un account?
+  first_name: Nome
+  last_name: Cognome
+  company_name_optional: Nome dell'azienda (opzionale)
+  sign_up: Registrati
+  signing_up: Registrazione in corso
+  profile_details: Dettagli del profilo
+  create_free_account: Crea un account gratuito
+  sign_up_with_google: Registrati con Google
+  sign_up_with_microsoft: Registrati con Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.docuseal.co/terms">Termini di servizio</a>.'
+  enter_email_to_continue: Inserisci l'email per continuare
 
 fr: &fr
   email: Email
@@ -84,6 +161,26 @@ fr: &fr
   download_documents: Télécharger les documents
   downloading: Téléchargement
   completed_successfully: Complété avec succès
+  password: Mot de passe
+  sign_in: Se connecter
+  signing_in: Connexion en cours
+  sign_in_with_microsoft: Se connecter avec Microsoft
+  sign_in_with_google: Se connecter avec Google
+  forgot_your_password_: Mot de passe oublié?
+  create_free_account: Créer un compte gratuit
+  already_have_an_account: Vous avez déjà un compte?
+  first_name: Prénom
+  last_name: Nom de famille
+  company_name_optional: Nom de l'entreprise (optionnel)
+  sign_up: S'inscrire
+  signing_up: Inscription en cours
+  profile_details: Détails du profil
+  create_free_account: Créer un compte gratuit
+  sign_up_with_google: S'inscrire avec Google
+  sign_up_with_microsoft: S'inscrire avec Microsoft
+  by_creating_an_account_you_agree_to_our_html: |
+    En créant un compte, vous acceptez notre <a target="_blank" href="https://www.docuseal.co/privacy">Politique de Confidentialité</a> et nos <a target="_blank" href="https://www.docuseal.co/terms">Conditions d'Utilisation</a>.
+  enter_email_to_continue: Entrez votre e-mail pour continuer
 
 pt: &pt
   role: Função
@@ -106,6 +203,25 @@ pt: &pt
   download_documents: Baixar documentos
   downloading: Baixando
   completed_successfully: Concluído com sucesso
+  password: Senha
+  sign_in: Entrar
+  signing_in: Entrando
+  sign_in_with_microsoft: Entrar com Microsoft
+  sign_in_with_google: Entrar com Google
+  forgot_your_password_: Esqueceu sua senha?
+  create_free_account: Criar conta gratuita
+  already_have_an_account: Já tem uma conta?
+  first_name: Nome
+  last_name: Sobrenome
+  company_name_optional: Nome da empresa (opcional)
+  sign_up: Inscrever-se
+  signing_up: Inscrevendo-se
+  profile_details: Detalhes do perfil
+  create_free_account: Criar conta gratuita
+  sign_up_with_google: Inscrever-se com Google
+  sign_up_with_microsoft: Inscrever-se com Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.co/terms">Termos de Serviço</a>.'
+  enter_email_to_continue: Insira o e-mail para continuar
 
 de: &de
   role: Rolle
@@ -128,6 +244,25 @@ de: &de
   download_documents: Dokumente herunterladen
   downloading: Herunterladen
   completed_successfully: Erfolgreich abgeschlossen
+  password: Passwort
+  sign_in: Anmelden
+  signing_in: Anmeldung
+  sign_in_with_microsoft: Mit Microsoft anmelden
+  sign_in_with_google: Mit Google anmelden
+  forgot_your_password_: Passwort vergessen?
+  create_free_account: Kostenloses Konto erstellen
+  already_have_an_account: Hast du schon ein Konto?
+  first_name: Vorname
+  last_name: Nachname
+  company_name_optional: Firmenname (optional)
+  sign_up: Registrieren
+  signing_up: Registrierung
+  profile_details: Profildetails
+  create_free_account: Kostenloses Konto erstellen
+  sign_up_with_google: Mit Google registrieren
+  sign_up_with_microsoft: Mit Microsoft registrieren
+  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.docuseal.co/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.docuseal.co/terms">Nutzungsbedingungen</a> zu.'
+  enter_email_to_continue: E-Mail eingeben, um fortzufahren
 
 pl:
   email: Email
@@ -149,6 +284,25 @@ pl:
   download_documents: Pobierz dokumenty
   downloading: Pobieranie
   completed_successfully: Zakończono pomyślnie
+  password: Hasło
+  sign_in: Zaloguj się
+  signing_in: Logowanie
+  sign_in_with_microsoft: Zaloguj się przez Microsoft
+  sign_in_with_google: Zaloguj się przez Google
+  forgot_your_password_: Zapomniałeś hasła?
+  create_free_account: Utwórz darmowe konto
+  already_have_an_account: Masz już konto?
+  first_name: Imię
+  last_name: Nazwisko
+  company_name_optional: Nazwa firmy (opcjonalnie)
+  sign_up: Zarejestruj się
+  signing_up: Rejestracja
+  profile_details: Szczegóły profilu
+  create_free_account: Utwórz darmowe konto
+  sign_up_with_google: Zarejestruj się przez Google
+  sign_up_with_microsoft: Zarejestruj się przez Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.co/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.co/terms">Regulamin</a>.'
+  enter_email_to_continue: Wprowadź e-mail, aby kontynuować
 
 uk:
   email: Email
@@ -170,6 +324,25 @@ uk:
   download_documents: Завантажити документи
   downloading: Завантаження
   completed_successfully: Успішно завершено
+  password: Пароль
+  sign_in: Увійти
+  signing_in: Вхід
+  sign_in_with_microsoft: Увійти через Microsoft
+  sign_in_with_google: Увійти через Google
+  forgot_your_password_: Забули пароль?
+  create_free_account: Створити безкоштовний акаунт
+  already_have_an_account: Вже є акаунт?
+  first_name: Ім'я
+  last_name: Прізвище
+  company_name_optional: Назва компанії (необов'язково)
+  sign_up: Зареєструватися
+  signing_up: Реєстрація
+  profile_details: Дані профілю
+  create_free_account: Створити безкоштовний акаунт
+  sign_up_with_google: Зареєструватися через Google
+  sign_up_with_microsoft: Зареєструватися через Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.co/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.co/terms">Умовами надання послуг</a>.'
+  enter_email_to_continue: Введіть електронну пошту, щоб продовжити
 
 cs:
   email: Email
@@ -191,6 +364,25 @@ cs:
   download_documents: Stáhnout dokumenty
   downloading: Stahování
   completed_successfully: Úspěšně dokončeno
+  password: Heslo
+  sign_in: Přihlásit se
+  signing_in: Přihlašování
+  sign_in_with_microsoft: Přihlásit se pomocí Microsoftu
+  sign_in_with_google: Přihlásit se pomocí Googlu
+  forgot_your_password_: Zapomněli jste heslo?
+  create_free_account: Vytvořit bezplatný účet
+  already_have_an_account: Už máte účet?
+  first_name: Jméno
+  last_name: Příjmení
+  company_name_optional: Název společnosti (volitelné)
+  sign_up: Zaregistrovat se
+  signing_up: Registrace
+  profile_details: Detaily profilu
+  create_free_account: Vytvořit bezplatný účet
+  sign_up_with_google: Zaregistrovat se pomocí Googlu
+  sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
+  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.co/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.co/terms">Podmínkami služby</a>.'
+  enter_email_to_continue: Zadejte e-mail pro pokračování
 
 he:
   email: דוא"ל
@@ -212,6 +404,25 @@ he:
   download_documents: הורד מסמכים
   downloading: מוריד
   completed_successfully: הושלם בהצלחה
+  password: סיסמה
+  sign_in: התחבר
+  signing_in: מתחבר
+  sign_in_with_microsoft: התחבר עם מיקרוסופט
+  sign_in_with_google: התחבר עם גוגל
+  forgot_your_password_: שכחת את הסיסמה?
+  create_free_account: צור חשבון חינם
+  already_have_an_account: כבר יש לך חשבון?
+  first_name: שם פרטי
+  last_name: שם משפחה
+  company_name_optional: שם החברה (לא חובה)
+  sign_up: הירשם
+  signing_up: נרשם
+  profile_details: פרטי הפרופיל
+  create_free_account: צור חשבון חינם
+  sign_up_with_google: הירשם עם גוגל
+  sign_up_with_microsoft: הירשם עם מיקרוסופט
+  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.co/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.co/terms">תנאי השירות</a> שלנו.'
+  enter_email_to_continue: הכנס דוא"ל כדי להמשיך
 
 nl:
   email: E-mail
@@ -234,6 +445,25 @@ nl:
   download_documents: Documenten downloaden
   downloading: Downloaden
   completed_successfully: Succesvol voltooid
+  password: Wachtwoord
+  sign_in: Inloggen
+  signing_in: Aan het inloggen
+  sign_in_with_microsoft: Inloggen met Microsoft
+  sign_in_with_google: Inloggen met Google
+  forgot_your_password_: Wachtwoord vergeten?
+  create_free_account: Gratis account aanmaken
+  already_have_an_account: Heb je al een account?
+  first_name: Voornaam
+  last_name: Achternaam
+  company_name_optional: Bedrijfsnaam (optioneel)
+  sign_up: Aanmelden
+  signing_up: Aanmelden bezig
+  profile_details: Profielgegevens
+  create_free_account: Gratis account aanmaken
+  sign_up_with_google: Aanmelden met Google
+  sign_up_with_microsoft: Aanmelden met Microsoft
+  by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.co/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.co/terms">Gebruiksvoorwaarden</a>.'
+  enter_email_to_continue: Voer e-mail in om door te gaan
 
 ar:
   email: البريد الإلكتروني
@@ -256,6 +486,25 @@ ar:
   download_documents: تحميل الوثائق
   downloading: جارٍ التحميل
   completed_successfully: تم الانتهاء بنجاح
+  password: كلمة المرور
+  sign_in: تسجيل الدخول
+  signing_in: تسجيل الدخول
+  sign_in_with_microsoft: تسجيل الدخول باستخدام مايكروسوفت
+  sign_in_with_google: تسجيل الدخول باستخدام جوجل
+  forgot_your_password_: هل نسيت كلمة المرور؟
+  create_free_account: إنشاء حساب مجاني
+  already_have_an_account: هل لديك حساب؟
+  first_name: الاسم الأول
+  last_name: الاسم الأخير
+  company_name_optional: اسم الشركة (اختياري)
+  sign_up: اشتراك
+  signing_up: الاشتراك
+  profile_details: تفاصيل الملف الشخصي
+  create_free_account: إنشاء حساب مجاني
+  sign_up_with_google: الاشتراك باستخدام جوجل
+  sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
+  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.co/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.co/terms">شروط الخدمة</a> الخاصة بنا.'
+  enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
 
 ko:
   email: 이메일
@@ -278,6 +527,25 @@ ko:
   download_documents: 문서 다운로드
   downloading: 다운로드 중
   completed_successfully: 성공적으로 완료됨
+  password: 비밀번호
+  sign_in: 로그인
+  signing_in: 로그인 중
+  sign_in_with_microsoft: Microsoft로 로그인
+  sign_in_with_google: Google로 로그인
+  forgot_your_password_: 비밀번호를 잊으셨나요?
+  create_free_account: 무료 계정 생성
+  already_have_an_account: 이미 계정이 있으신가요?
+  first_name: 이름
+  last_name: 성
+  company_name_optional: 회사 이름 (선택 사항)
+  sign_up: 가입하기
+  signing_up: 가입 중
+  profile_details: 프로필 세부 정보
+  create_free_account: 무료 계정 생성
+  sign_up_with_google: Google로 가입
+  sign_up_with_microsoft: Microsoft로 가입
+  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.co/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.co/terms">서비스 약관</a>에 동의하는 것입니다.'
+  enter_email_to_continue: 계속하려면 이메일을 입력하세요
 
 en-US:
   <<: *en
