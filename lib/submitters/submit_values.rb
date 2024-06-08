@@ -38,6 +38,7 @@ module Submitters
         submitter.ua = request.user_agent
         submitter.values = merge_default_values(submitter)
         submitter.values = merge_formula_values(submitter)
+        submitter.values = maybe_remove_condition_values(submitter)
         submitter.values = submitter.values.transform_values do |v|
           v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
         end
@@ -126,6 +127,47 @@ module Submitters
                                 submitter.attributes.merge('role' => role),
                                 submitter.submission,
                                 with_time:)
+    end
+
+    def maybe_remove_condition_values(submitter)
+      fields_uuid_index = submitter.submission.template_fields.index_by { |e| e['uuid'] }
+
+      submitter.submission.template_fields.each do |field|
+        next if field['submitter_uuid'] != submitter.uuid
+
+        submitter.values.delete(field['uuid']) unless check_field_condition(submitter, field, fields_uuid_index)
+      end
+
+      submitter.values
+    end
+
+    def check_field_condition(submitter, field, fields_uuid_index)
+      return true if field['conditions'].blank?
+
+      submitter_values = submitter.values
+
+      field['conditions'].reduce(true) do |acc, c|
+        case c['action']
+        when 'empty', 'unchecked'
+          acc && submitter_values[c['field_uuid']].blank?
+        when 'not_empty', 'checked'
+          acc && submitter_values[c['field_uuid']].present?
+        when 'equal', 'contains'
+          field = fields_uuid_index[c['field_uuid']]
+          option = field['options'].find { |o| o['uuid'] == c['value'] }
+          values = Array.wrap(submitter_values[c['field_uuid']])
+
+          acc && values.include?(option['value'].presence || "Option #{field['options'].index(option)}")
+        when 'not_equal', 'does_not_contain'
+          field = fields_uuid_index[c['field_uuid']]
+          option = field['options'].find { |o| o['uuid'] == c['value'] }
+          values = Array.wrap(submitter_values[c['field_uuid']])
+
+          acc && values.exclude?(option['value'].presence || "Option #{field['options'].index(option)}")
+        else
+          acc
+        end
+      end
     end
 
     def replace_default_variables(value, attrs, submission, with_time: false)
