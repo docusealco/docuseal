@@ -278,6 +278,27 @@ ko:
   download_documents: 문서 다운로드
   downloading: 다운로드 중
   completed_successfully: 성공적으로 완료됨
+  
+zh: &zh
+  email: 电子邮件
+  digitally_signed_by: 数字签名者
+  role: 角色
+  provide_your_email_to_start: 提供您的电子邮件以继续
+  start: 开始
+  starting: 开始中 
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span> 您访问的页面已被删除.'
+  invited_by_html: '<span class="font-semibold">%{name}</span> 网页邀请.'
+  you_have_been_invited_to_submit_a_form: 已邀请您填写表单.
+  verification_code_code: '验证码: %{code}'
+  signed_on_time: '签署时间: %{time}'
+  form_has_been_submitted_already: 表单已经提交.
+  send_copy_to_email: 发送副本到电子邮件
+  sending: 发送中
+  resubmit: 重新发送
+  or: 或者
+  download_documents: 下载文件
+  downloading: 下载中
+  completed_successfully: 已完成
 
 en-US:
   <<: *en
@@ -302,3 +323,6 @@ pt-PT:
 
 de-DE:
   <<: *de
+
+zh-CN:
+  <<: *zh
