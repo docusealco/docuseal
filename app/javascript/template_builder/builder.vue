@@ -1129,6 +1129,15 @@ export default {
         e.preventDefault()
 
         alert('Please draw fields to prepare the document.')
+      } else {
+        const submitterWithoutFields =
+          this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
+
+        if (submitterWithoutFields) {
+          e.preventDefault()
+
+          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`)
+        }
       }
     },
     onSaveClick () {
@@ -1142,16 +1151,23 @@ export default {
         }
       }
 
-      if (this.template.fields.length) {
-        this.isSaving = true
-
-        this.save().then(() => {
-          window.Turbo.visit(`/templates/${this.template.id}`)
-        }).finally(() => {
-          this.isSaving = false
-        })
-      } else {
+      if (!this.template.fields.length) {
         alert('Please draw fields to prepare the document.')
+      } else {
+        const submitterWithoutFields =
+          this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
+
+        if (submitterWithoutFields) {
+          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`)
+        } else {
+          this.isSaving = true
+
+          this.save().then(() => {
+            window.Turbo.visit(`/templates/${this.template.id}`)
+          }).finally(() => {
+            this.isSaving = false
+          })
+        }
       }
     },
     scrollToArea (area) {
