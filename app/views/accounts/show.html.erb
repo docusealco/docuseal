@@ -89,6 +89,7 @@
         <% end %>
       </div>
     <% end %>
+    <%= render 'integrations' %>
     <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
       <div class="px-1 mt-8">
         <h2 class="text-2xl font-bold mb-2">Danger Zone</h2>
