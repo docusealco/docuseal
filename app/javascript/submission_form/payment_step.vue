@@ -116,7 +116,7 @@ export default {
   methods: {
     async submit () {
       if (this.sessionId) {
-        return fetch((this.baseUrl || '/embed').replace('/embed', '/api/stripe_payments/' + this.sessionId), {
+        return fetch(this.baseUrl + '/api/stripe_payments/' + this.sessionId, {
           method: 'PUT',
           body: JSON.stringify({
             submitter_slug: this.submitterSlug
@@ -147,11 +147,12 @@ export default {
     startCheckout () {
       this.isCreatingCheckout = true
 
-      fetch((this.baseUrl || '/embed').replace('/embed', '/api/stripe_payments'), {
+      fetch(this.baseUrl + '/api/stripe_payments', {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug,
-          field_uuid: this.field.uuid
+          field_uuid: this.field.uuid,
+          referer: document.location.href
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {
