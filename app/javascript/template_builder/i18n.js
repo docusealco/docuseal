@@ -20,6 +20,7 @@ const en = {
   select_field_: 'Select field...',
   select_value_: 'Select value...',
   remove_condition: 'Remove condition',
+  add_condition: 'Add condition',
   are_you_sure: 'Are you sure?',
   sign_yourself: 'Sign Yourself',
   set_signing_date: 'Set signing date',
