@@ -130,6 +130,8 @@ module Submissions
         end
       end
 
+      field['preferences'] = (field['preferences'] || {}).merge(attrs['preferences']) if attrs['preferences'].present?
+
       return field if attrs['validation_pattern'].blank?
 
       field['validation'] = {
