@@ -56,7 +56,9 @@ module Submitters
         (value.to_f % 1).zero? ? value.to_i : value.to_f
       elsif field['type'] == 'date' && value.present? && value != '{{date}}'
         if value.is_a?(Integer)
-          Time.zone.at(value.to_s.first(10).to_i).to_date
+          Time.zone.at(value.to_s.first(10).to_i).to_date.to_s
+        elsif value.gsub(/\w/, '0') == field.dig('preferences', 'format').to_s.gsub(/\w/, '0')
+          TimeUtils.parse_date_string(value, field.dig('preferences', 'format')).to_s
         else
           Date.parse(value).to_s
         end

@@ -32,6 +32,14 @@ module TimeUtils
     tz_info.abbreviation(time)
   end
 
+  def parse_date_string(string, pattern)
+    pattern = pattern.sub(/Y+/, YEAR_FORMATS)
+                     .sub(/M+/, MONTH_FORMATS)
+                     .sub(/D+/, DAY_FORMATS)
+
+    Date.strptime(string, pattern)
+  end
+
   def format_date_string(string, format, locale)
     date = Date.parse(string.to_s)
 
