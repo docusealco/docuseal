@@ -20,9 +20,15 @@ module SubmissionEvents
 
   module_function
 
+  def build_tracking_param_legacy(submitter, event_type = 'click_email')
+    Base64.urlsafe_encode64(
+      [submitter.slug, event_type].join(':')
+    ).first(TRACKING_PARAM_LENGTH)
+  end
+
   def build_tracking_param(submitter, event_type = 'click_email')
     Base64.urlsafe_encode64(
-      [submitter.slug, event_type, Rails.application.secret_key_base].join(':')
+      Digest::SHA1.digest([submitter.slug, event_type, Rails.application.secret_key_base].join(':'))
     ).first(TRACKING_PARAM_LENGTH)
   end
 
