@@ -31,6 +31,11 @@ class SubmitFormController < ApplicationController
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
+    @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)
+                                                  .preload(:blob).index_by(&:uuid)
+
+    @signature_attachment = Submitters::MaybeAssignDefaultSignature.call(@submitter, params, @attachments_index)
+
     render(@submitter.submission.template.archived_at? || @submitter.submission.archived_at? ? :archived : :show)
   end
 

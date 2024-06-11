@@ -2,7 +2,6 @@
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
-<% attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
@@ -29,7 +28,7 @@
                 <% next if field['redacted'] && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if field.dig('preferences', 'formula') && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone %>
+                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone %>
               <% end %>
             </div>
           </div>
@@ -42,7 +41,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <%= render 'submission_form', attachments_index:, submitter: @submitter %>
+      <%= render 'submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment %>
     </div>
   </div>
 </div>

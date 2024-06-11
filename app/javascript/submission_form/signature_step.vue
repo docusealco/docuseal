@@ -129,7 +129,7 @@
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
-      class="mx-auto bg-white border border-base-300 rounded max-h-72"
+      class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <div class="relative">
       <div

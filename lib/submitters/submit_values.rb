@@ -32,17 +32,7 @@ module Submitters
       submitter.values.merge!(values)
       submitter.opened_at ||= Time.current
 
-      if params[:completed] == 'true'
-        submitter.completed_at = Time.current
-        submitter.ip = request.remote_ip
-        submitter.ua = request.user_agent
-        submitter.values = merge_default_values(submitter)
-        submitter.values = merge_formula_values(submitter)
-        submitter.values = maybe_remove_condition_values(submitter)
-        submitter.values = submitter.values.transform_values do |v|
-          v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
-        end
-      end
+      assign_completed_attributes(submitter, request) if params[:completed] == 'true'
 
       ApplicationRecord.transaction do
         validate_values!(values, submitter, params, request)
@@ -51,6 +41,29 @@ module Submitters
 
         submitter.save!
       end
+
+      submitter
+    end
+
+    def assign_completed_attributes(submitter, request)
+      submitter.completed_at = Time.current
+      submitter.ip = request.remote_ip
+      submitter.ua = request.user_agent
+      submitter.values = merge_default_values(submitter)
+      submitter.values = merge_formula_values(submitter)
+      submitter.values = maybe_remove_condition_values(submitter)
+      submitter.values = submitter.values.transform_values do |v|
+        v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
+      end
+
+      signature_attachment =
+        submitter.submission.template_fields.reduce(nil) do |_, field|
+          next nil if field['submitter_uuid'] != submitter.uuid || field['type'] != 'signature'
+
+          break submitter.attachments_attachments.find_by(uuid: submitter.values[field['uuid']])
+        end
+
+      submitter.build_signature_attachment(blob_id: signature_attachment.blob_id) if signature_attachment
 
       submitter
     end

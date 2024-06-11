@@ -321,7 +321,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
-            :previous-value="previousSignatureValueFor(currentField)"
+            :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
             :with-typed-signature="withTypedSignature"
             :attachments-index="attachmentsIndex"
             :button-text="buttonText"
@@ -605,6 +605,11 @@ export default {
       default: () => []
     },
     backgroundColor: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    previousSignatureValue: {
       type: String,
       required: false,
       default: ''

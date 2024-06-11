@@ -50,6 +50,8 @@ class Submitter < ApplicationRecord
   has_many_attached :documents
   has_many_attached :attachments
 
+  has_one_attached :signature
+
   has_many :document_generation_events, dependent: :destroy
   has_many :submission_events, dependent: :destroy
 
