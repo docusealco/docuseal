@@ -27,8 +27,6 @@
         :default-submitters="defaultSubmitters"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
-        @start-drag="isMove = true"
-        @stop-drag="isMove = false"
         @remove="$emit('remove-area', item.area)"
         @scroll-to="$emit('scroll-to', $event)"
       />
@@ -40,11 +38,11 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
+      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
+      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
       @dragover.prevent
@@ -122,7 +120,6 @@ export default {
     return {
       areaRefs: [],
       showMask: false,
-      isMove: false,
       resizeDirection: null,
       newArea: null
     }

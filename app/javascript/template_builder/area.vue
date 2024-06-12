@@ -3,7 +3,7 @@
     class="absolute overflow-visible group"
     :style="positionStyle"
     @pointerdown.stop
-    @mousedown.stop="startDrag"
+    @mousedown="startMouseMove"
     @touchstart="startTouchDrag"
   >
     <div
@@ -70,10 +70,11 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ (defaultField ? (field.title || field.name) : field.name) || defaultName }}</span>
       <div
-        v-if="isSettingsFocus || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
+        v-if="isSettingsFocus || isContenteditable || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
         class="flex items-center ml-1.5"
       >
         <input
+          v-if="!isContenteditable"
           :id="`required-checkbox-${field.uuid}`"
           v-model="field.required"
           type="checkbox"
@@ -81,13 +82,30 @@
           @mousedown.prevent
         >
         <label
+          v-if="!isContenteditable"
           :for="`required-checkbox-${field.uuid}`"
           class="label text-xs"
           @click.prevent="field.required = !field.required"
           @mousedown.prevent
         >{{ t('required') }}</label>
+        <input
+          v-if="isContenteditable"
+          :id="`readonly-checkbox-${field.uuid}`"
+          type="checkbox"
+          class="checkbox checkbox-xs no-animation rounded"
+          :checked="!(field.readonly ?? true)"
+          @change="field.readonly = !(field.readonly ?? true)"
+          @mousedown.prevent
+        >
+        <label
+          v-if="isContenteditable"
+          :for="`readonly-checkbox-${field.uuid}`"
+          class="label text-xs"
+          @click.prevent="field.readonly = !(field.readonly ?? true)"
+          @mousedown.prevent
+        >{{ t('editable') }}</label>
         <span
-          v-if="field.type !== 'payment'"
+          v-if="field.type !== 'payment' && !isContenteditable"
           class="dropdown dropdown-end"
           @mouseenter="renderDropdown = true"
           @touchstart="renderDropdown = true"
@@ -140,7 +158,7 @@
     <div
       class="flex items-center h-full w-full"
       dir="auto"
-      :class="[bgColors[submitterIndex], field?.default_value ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
+      :class="[isContenteditable ? 'bg-opacity-50' : 'bg-opacity-80', bgColors[submitterIndex], isDefaultValuePresent || isContenteditable ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
     >
       <span
         v-if="field"
@@ -148,7 +166,7 @@
         :class="{'w-full h-full': field.type == 'checkbox'}"
       >
         <div
-          v-if="field?.default_value"
+          v-if="isDefaultValuePresent || isContenteditable"
           :class="{ 'w-full h-full': field.type == 'checkbox', 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
           <div
@@ -162,12 +180,18 @@
               :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
             />
             <span
-              v-else-if="field.type === 'number'"
+              v-else-if="field.type === 'number' && !isContenteditable"
               class="whitespace-pre-wrap"
             >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
             <span
               v-else
-              class="whitespace-pre-wrap"
+              ref="defaultValue"
+              :contenteditable="isContenteditable"
+              class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-gray-400"
+              :class="{ 'cursor-text': isContenteditable }"
+              :placeholder="t('type_value')"
+              @blur="onDefaultValueBlur"
+              @keydown.enter.prevent="onDefaultValueEnter"
             >{{ field.default_value }}</span>
           </div>
         </div>
@@ -181,8 +205,11 @@
       </span>
     </div>
     <div
+      v-if="!isContenteditable"
       ref="touchTarget"
-      class="absolute top-0 bottom-0 right-0 left-0 cursor-pointer"
+      class="absolute top-0 bottom-0 right-0 left-0"
+      :class="isDragged ? 'cursor-grab' : 'cursor-pointer'"
+      @dblclick="maybeFocusDefaultValue"
     />
     <span
       v-if="field?.type && editable"
@@ -286,6 +313,7 @@ export default {
     return {
       isShowFormulaModal: false,
       isShowConditionsModal: false,
+      isContenteditable: false,
       isSettingsFocus: false,
       isShowDescriptionModal: false,
       isResize: false,
@@ -299,6 +327,9 @@ export default {
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    isDefaultValuePresent () {
+      return this.field?.default_value || this.field?.default_value === 0
+    },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
@@ -364,26 +395,26 @@ export default {
     },
     bgColors () {
       return [
-        'bg-red-100/80',
-        'bg-sky-100/80',
-        'bg-emerald-100/80',
-        'bg-yellow-100/80',
-        'bg-purple-100/80',
-        'bg-pink-100/80',
-        'bg-cyan-100/80',
-        'bg-orange-100/80',
-        'bg-lime-100/80',
-        'bg-indigo-100/80',
-        'bg-red-100/80',
-        'bg-sky-100/80',
-        'bg-emerald-100/80',
-        'bg-yellow-100/80',
-        'bg-purple-100/80',
-        'bg-pink-100/80',
-        'bg-cyan-100/80',
-        'bg-orange-100/80',
-        'bg-lime-100/80',
-        'bg-indigo-100/80'
+        'bg-red-100',
+        'bg-sky-100',
+        'bg-emerald-100',
+        'bg-yellow-100',
+        'bg-purple-100',
+        'bg-pink-100',
+        'bg-cyan-100',
+        'bg-orange-100',
+        'bg-lime-100',
+        'bg-indigo-100',
+        'bg-red-100',
+        'bg-sky-100',
+        'bg-emerald-100',
+        'bg-yellow-100',
+        'bg-purple-100',
+        'bg-pink-100',
+        'bg-cyan-100',
+        'bg-orange-100',
+        'bg-lime-100',
+        'bg-indigo-100'
       ]
     },
     isSelected () {
@@ -420,6 +451,22 @@ export default {
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {
       document.activeElement.blur()
+    },
+    maybeFocusDefaultValue () {
+      if (['text', 'number'].includes(this.field.type)) {
+        this.isContenteditable = true
+
+        this.$nextTick(() => {
+          this.$refs.defaultValue.focus()
+
+          if (this.$refs.defaultValue.innerText.length) {
+            window.getSelection().collapse(
+              this.$refs.defaultValue.firstChild,
+              this.$refs.defaultValue.innerText.length
+            )
+          }
+        })
+      }
     },
     formatNumber (number, format) {
       if (format === 'comma') {
@@ -510,6 +557,38 @@ export default {
 
       this.save()
     },
+    onDefaultValueBlur (e) {
+      const text = this.$refs.defaultValue.innerText.trim()
+
+      this.isContenteditable = false
+
+      if (text) {
+        if (this.field.type === 'number') {
+          const number = parseFloat(text)
+
+          if (number || number === 0) {
+            this.field.default_value = parseFloat(text)
+          }
+        } else {
+          this.field.default_value = text
+        }
+
+        if (![true, false].includes(this.field.readonly)) {
+          this.field.readonly = true
+        }
+
+        this.$refs.defaultValue.innerText = text
+      } else {
+        delete this.field.readonly
+        delete this.field.default_value
+        this.$refs.defaultValue.innerText = ''
+      }
+
+      this.save()
+    },
+    onDefaultValueEnter (e) {
+      this.$refs.defaultValue.blur()
+    },
     onNameEnter (e) {
       this.$refs.name.blur()
     },
@@ -569,12 +648,53 @@ export default {
       const page = this.$parent.$refs.mask.previousSibling
       const rect = page.getBoundingClientRect()
 
-      this.area.x = (this.dragFrom.x + e.touches[0].clientX - rect.left) / rect.width
-      this.area.y = (this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height
+      this.area.x = Math.min(Math.max((this.dragFrom.x + e.touches[0].clientX - rect.left) / rect.width, 0), 1 - this.area.w)
+      this.area.y = Math.min(Math.max((this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height, 0), 1 - this.area.h)
     },
     stopTouchDrag () {
       this.$el.getRootNode().removeEventListener('touchmove', this.touchDrag)
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
+
+      if (this.isDragged) {
+        this.save()
+      }
+
+      this.isDragged = false
+
+      this.$emit('stop-drag')
+    },
+    startMouseMove (e) {
+      if (e.target !== this.$refs.touchTarget) {
+        return
+      }
+
+      this.$refs?.name?.blur()
+
+      e.preventDefault()
+
+      this.isDragged = true
+
+      const rect = e.target.getBoundingClientRect()
+
+      this.selectedAreaRef.value = this.area
+
+      this.dragFrom = { x: rect.left - e.clientX, y: rect.top - e.clientY }
+
+      this.$el.getRootNode().addEventListener('mousemove', this.mouseMove)
+      this.$el.getRootNode().addEventListener('mouseup', this.stopMouseMove)
+
+      this.$emit('start-drag')
+    },
+    mouseMove (e) {
+      const page = this.$parent.$refs.mask.previousSibling
+      const rect = page.getBoundingClientRect()
+
+      this.area.x = Math.min(Math.max((this.dragFrom.x + e.clientX - rect.left) / rect.width, 0), 1 - this.area.w)
+      this.area.y = Math.min(Math.max((this.dragFrom.y + e.clientY - rect.top) / rect.height, 0), 1 - this.area.h)
+    },
+    stopMouseMove (e) {
+      this.$el.getRootNode().removeEventListener('mousemove', this.mouseMove)
+      this.$el.getRootNode().removeEventListener('mouseup', this.stopMouseMove)
 
       if (this.isDragged) {
         this.save()

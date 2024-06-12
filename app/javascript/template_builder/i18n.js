@@ -1,4 +1,5 @@
 const en = {
+  editable: 'Editable',
   search_field: 'Search field',
   field_not_found: 'Field not found',
   clear: 'Clear',
@@ -11,6 +12,7 @@ const en = {
   display_title: 'Display title',
   with_logo: 'With logo',
   unchecked: 'Unchecked',
+  type_value: 'Type value',
   equal: 'Equal',
   not_equal: 'Not equal',
   contains: 'Contains',
