@@ -65,6 +65,7 @@
         dir="auto"
         class="pr-1 cursor-text outline-none block"
         style="min-width: 2px"
+        @paste.prevent="onPaste"
         @keydown.enter.prevent="onNameEnter"
         @focus="onNameFocus"
         @blur="onNameBlur"
@@ -191,6 +192,7 @@
               :class="{ 'cursor-text': isContenteditable }"
               :placeholder="t('type_value')"
               @blur="onDefaultValueBlur"
+              @paste.prevent="onPaste"
               @keydown.enter.prevent="onDefaultValueEnter"
             >{{ field.default_value }}</span>
           </div>
@@ -509,6 +511,9 @@ export default {
       this.$emit('stop-resize')
 
       this.save()
+    },
+    onPaste (e) {
+      e.target.innerText = (e.clipboardData || window.clipboardData).getData('text/plain')
     },
     onResizeCell (e) {
       if (e.target.id === 'mask') {
