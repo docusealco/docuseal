@@ -96,8 +96,10 @@ module Submitters
 
         if field['type'] == 'stamp'
           acc[field['uuid']] ||=
-            Submitters::CreateStampAttachment.call(submitter,
-                                                   with_logo: field.dig('preferences', 'with_logo') != false).uuid
+            Submitters::CreateStampAttachment.build_attachment(
+              submitter,
+              with_logo: field.dig('preferences', 'with_logo') != false
+            ).uuid
 
           next
         end

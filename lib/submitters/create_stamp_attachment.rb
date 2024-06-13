@@ -14,6 +14,14 @@ module Submitters
     module_function
 
     def call(submitter, with_logo: true)
+      attachment = build_attachment(submitter, with_logo:)
+
+      attachment.save!
+
+      attachment
+    end
+
+    def build_attachment(submitter, with_logo: true)
       image = generate_stamp_image(submitter, with_logo:)
 
       image_data = image.write_to_buffer('.png')
@@ -22,11 +30,9 @@ module Submitters
 
       attachment = submitter.attachments.joins(:blob).find_by(blob: { checksum: })
 
-      attachment || ActiveStorage::Attachment.create!(
+      attachment || submitter.attachments_attachments.new(
         blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(image_data), filename: 'stamp.png'),
-        metadata: { analyzed: true, identified: true, width: image.width, height: image.height },
-        name: 'attachments',
-        record: submitter
+        metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
       )
     end
 
@@ -61,10 +67,11 @@ module Submitters
     end
 
     def build_text_image(submitter)
-      time = I18n.l(submitter.completed_at.in_time_zone(submitter.account.timezone), format: :long,
-                                                                                     locale: submitter.account.locale)
+      time = I18n.l(submitter.completed_at.in_time_zone(submitter.submission.account.timezone),
+                    format: :long,
+                    locale: submitter.submission.account.locale)
 
-      timezone = TimeUtils.timezone_abbr(submitter.account.timezone, submitter.completed_at)
+      timezone = TimeUtils.timezone_abbr(submitter.submission.account.timezone, submitter.completed_at)
 
       name = if submitter.name.present? && submitter.email.present?
                "#{submitter.name} #{submitter.email}"
@@ -80,7 +87,7 @@ module Submitters
                ''
              end
 
-      digitally_signed_by = I18n.t(:digitally_signed_by, locale: submitter.account.locale)
+      digitally_signed_by = I18n.t(:digitally_signed_by, locale: submitter.submission.account.locale)
 
       text = %(<span size="90">#{digitally_signed_by}:\n<b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
 

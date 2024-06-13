@@ -159,20 +159,37 @@ module Submissions
           values[f['uuid']].present? && f['type'] == 'phone'
         end&.dig('uuid')
 
-      submission.submitters.new(
-        email:,
-        phone: (attrs[:phone] || values[phone_field_uuid]).to_s.gsub(/[^0-9+]/, ''),
-        name: attrs[:name],
-        external_id: attrs[:external_id].presence || attrs[:application_key],
-        completed_at: attrs[:completed].present? ? Time.current : nil,
-        sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
-        values: values.except(phone_field_uuid),
-        metadata: attrs[:metadata] || {},
-        preferences: preferences.merge(submitter_preferences)
-                                .merge({ default_values: attrs[:values] }.compact_blank)
-                                .except('bcc_completed'),
-        uuid:
-      )
+      submitter =
+        submission.submitters.new(
+          email:,
+          phone: (attrs[:phone] || values[phone_field_uuid]).to_s.gsub(/[^0-9+]/, ''),
+          name: attrs[:name],
+          external_id: attrs[:external_id].presence || attrs[:application_key],
+          completed_at: attrs[:completed].present? ? Time.current : nil,
+          sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
+          values: values.except(phone_field_uuid),
+          metadata: attrs[:metadata] || {},
+          preferences: preferences.merge(submitter_preferences)
+                                  .merge({ default_values: attrs[:values] }.compact_blank)
+                                  .except('bcc_completed'),
+          uuid:
+        )
+
+      assign_completed_attributes(submitter) if submitter.completed_at?
+
+      submitter
+    end
+
+    def assign_completed_attributes(submitter)
+      submitter.values = Submitters::SubmitValues.merge_default_values(submitter)
+      submitter.values = Submitters::SubmitValues.merge_formula_values(submitter)
+      submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
+
+      submitter.values = submitter.values.transform_values do |v|
+        v == '{{date}}' ? Time.current.in_time_zone(submitter.submission.account.timezone).to_date.to_s : v
+      end
+
+      submitter
     end
   end
 end

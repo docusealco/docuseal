@@ -123,11 +123,28 @@ module Api
       values = values.except(phone_field_uuid)
 
       submitter.values = submitter.values.merge(values) if values.present?
-      submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
       submitter.metadata = attrs[:metadata] if attrs.key?(:metadata)
+
+      maybe_assign_completed_attributes(submitter, attrs)
 
       assign_external_id(submitter, attrs)
       assign_preferences(submitter, attrs)
+
+      submitter
+    end
+
+    def maybe_assign_completed_attributes(submitter, attrs)
+      submitter.completed_at = attrs[:completed] ? Time.current : submitter.completed_at
+
+      if attrs[:completed]
+        submitter.values = Submitters::SubmitValues.merge_default_values(submitter)
+        submitter.values = Submitters::SubmitValues.merge_formula_values(submitter)
+        submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
+
+        submitter.values = submitter.values.transform_values do |v|
+          v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
+        end
+      end
 
       submitter
     end
