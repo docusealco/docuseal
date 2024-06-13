@@ -58,6 +58,8 @@ class EsignSettingsController < ApplicationController
 
     redirect_to settings_esign_path, notice: 'Certificate has been successfully added!'
   rescue OpenSSL::PKCS12::PKCS12Error => e
+    Rollbar.error(e) if defined?(Rollbar)
+
     @cert_record.errors.add(:password, e.message)
 
     render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'), status: :unprocessable_entity
