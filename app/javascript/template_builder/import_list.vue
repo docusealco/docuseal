@@ -267,7 +267,7 @@ export default {
           if (mapping.field_name && mapping.column_index != null) {
             submittersIndex[mapping.submitter_uuid] ||= { uuid: mapping.submitter_uuid, fields: [] }
 
-            if (['name', 'email', 'phone'].includes(mapping.field_name.toLowerCase())) {
+            if (['name', 'email', 'phone', 'external_id'].includes(mapping.field_name.toLowerCase())) {
               submittersIndex[mapping.submitter_uuid][mapping.field_name.toLowerCase()] = row[mapping.column_index]
             } else {
               submittersIndex[mapping.submitter_uuid].fields.push({
@@ -351,7 +351,13 @@ export default {
           this.defaultFields.every((f) => field.name?.toLowerCase() !== f.name?.toLowerCase())
       })
 
-      return [...this.defaultFields, ...templateFields]
+      const fields = [...this.defaultFields, ...templateFields]
+
+      if (this.spreadsheet && this.columns.includes('external_id')) {
+        fields.push({ name: 'external_id' })
+      }
+
+      return fields
     },
     buildDefaultMappings () {
       this.submitters.forEach((submitter) => {
