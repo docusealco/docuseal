@@ -632,7 +632,7 @@ export default {
         return
       }
 
-      this.$refs?.name?.blur()
+      document.activeElement?.blur()
 
       e.preventDefault()
 
@@ -673,7 +673,7 @@ export default {
         return
       }
 
-      this.$refs?.name?.blur()
+      document.activeElement?.blur()
 
       e.preventDefault()
 
