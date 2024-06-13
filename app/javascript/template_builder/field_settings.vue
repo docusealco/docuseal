@@ -75,6 +75,66 @@
     </label>
   </div>
   <div
+    v-if="['text', 'cells'].includes(field.type)"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
+      @change="onChangeValidation"
+    >
+      <option
+        :selected="!field.validation"
+        value=""
+      >
+        {{ t('none') }}
+      </option>
+      <option
+        v-for="(key, value) in validations"
+        :key="key"
+        :selected="field.validation?.pattern ? value === field.validation.pattern : value === 'none'"
+        :value="value"
+      >
+        {{ t(key) }}
+      </option>
+      <option
+        :selected="field.validation && !validations[field.validation.pattern]"
+        :value="validations[field.validation?.pattern] || !field.validation?.pattern ? 'custom' : field.validation?.pattern"
+      >
+        {{ t('custom') }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('validation') }}
+    </label>
+  </div>
+  <div
+    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern]"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <input
+      ref="validationCustom"
+      v-model="field.validation.pattern"
+      :placeholder="t('regexp_validation')"
+      dir="auto"
+      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      @blur="save"
+    >
+    <label
+      v-if="field.validation.pattern"
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('regexp_validation') }}
+    </label>
+  </div>
+  <div
     v-if="field.type === 'date'"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -393,6 +453,17 @@ export default {
 
       return formats
     },
+    validations () {
+      return {
+        '^[0-9]{3}-[0-9]{2}-[0-9]{4}$': 'ssn',
+        '^[0-9]{2}-[0-9]{7}$': 'ein',
+        '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$': 'email',
+        '^https?://.*': 'url',
+        '^[0-9]{5}(?:-[0-9]{4})?$': 'zip',
+        '^[0-9]+$': 'numbers_only',
+        '^[a-zA-Z]+$': 'letters_only'
+      }
+    },
     sortedAreas () {
       return (this.field.areas || []).sort((a, b) => {
         return this.schemaAttachmentsIndexes[a.attachment_uuid] - this.schemaAttachmentsIndexes[b.attachment_uuid]
@@ -400,6 +471,20 @@ export default {
     }
   },
   methods: {
+    onChangeValidation (event) {
+      if (event.target.value === 'custom') {
+        this.field.validation = { pattern: '' }
+
+        this.$nextTick(() => this.$refs.validationCustom.focus())
+      } else if (event.target.value) {
+        this.field.validation ||= {}
+        this.field.validation.pattern = event.target.value
+      } else {
+        delete this.field.validation
+      }
+
+      this.save()
+    },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
 

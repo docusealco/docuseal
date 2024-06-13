@@ -10,7 +10,9 @@
      :string="field.title"
    />
     <template v-else>{{ field.name }}</template>
-    <template v-if="!field.required">({{ t('optional') }})</template>
+    <template v-if="!field.required">
+      ({{ t('optional') }})
+    </template>
   </label>
   <div
     v-else

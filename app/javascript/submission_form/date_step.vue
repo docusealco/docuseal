@@ -14,7 +14,9 @@
         />
         <template v-else>
           {{ field.name && showFieldNames ? field.name : t('date') }}
-          <template v-if="!field.required">({{ t('optional') }})</template>
+          <template v-if="!field.required">
+            ({{ t('optional') }})
+          </template>
         </template>
       </label>
       <button

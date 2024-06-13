@@ -11,7 +11,9 @@
       />
       <template v-else>
         {{ showFieldNames && field.name ? field.name : t('verified_phone_number') }}
-        <template v-if="!field.required">({{ t('optional') }})</template>
+        <template v-if="!field.required">
+          ({{ t('optional') }})
+        </template>
       </template>
     </label>
     <div

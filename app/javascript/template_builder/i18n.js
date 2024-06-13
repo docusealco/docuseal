@@ -6,6 +6,7 @@ const en = {
   align: 'Align',
   add_all_required_fields_to_continue: 'Add all required fields to continue',
   left: 'Left',
+  validation: 'Validation',
   right: 'Right',
   center: 'Center',
   description: 'Description',
@@ -100,7 +101,17 @@ const en = {
   draw_field: 'Draw {field} Field',
   replace: 'Replace',
   uploading_: 'Uploading...',
-  add_document: 'Add Document'
+  add_document: 'Add Document',
+  none: 'None',
+  ssn: 'SSN',
+  ein: 'EIN',
+  email: 'Email',
+  url: 'URL',
+  zip: 'ZIP',
+  custom: 'Custom',
+  numbers_only: 'Numbers only',
+  letters_only: 'Letters only',
+  regexp_validation: 'Regexp validation'
 }
 
 export { en }
