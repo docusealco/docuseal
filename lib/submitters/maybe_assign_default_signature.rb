@@ -12,11 +12,14 @@ module Submitters
 
       return if signature_attachment.blank?
 
-      existing_attachment = attachments_index.values.find { |a| a.blob_id == signature_attachment.blob_id }
+      existing_attachment = attachments_index.values.find do |a|
+        a.blob_id == signature_attachment.blob_id && submitter.id == signature_attachment.record_id
+      end
 
       return existing_attachment if existing_attachment
 
-      attachment = submitter.attachments_attachments.create!(blob_id: signature_attachment.blob_id)
+      attachment =
+        submitter.attachments_attachments.find_or_create_by!(blob_id: signature_attachment.blob_id)
 
       attachments_index[attachment.uuid] = attachment
 
