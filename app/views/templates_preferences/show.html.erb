@@ -82,7 +82,7 @@
         <div class="collapse-content">
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
             <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
-            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body).new(*(@template.preferences.values_at('documents_copy_email_subject', 'documents_copy_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
+            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled).new(*(@template.preferences.values_at('documents_copy_email_subject', 'documents_copy_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value.values_at('subject', 'body')), @template.preferences['documents_copy_email_enabled']) do |ff| %>
               <div class="form-control">
                 <%= ff.label :documents_copy_email_subject, 'Email subject', class: 'label' %>
                 <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -97,6 +97,12 @@
                 <autoresize-textarea>
                   <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
                 </autoresize-textarea>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+                <span>
+                  Send emails automatically on completion
+                </span>
+                <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
               </div>
             <% end %>
             <div class="form-control pt-2">

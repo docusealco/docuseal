@@ -33,19 +33,25 @@ class ProcessSubmitterCompletionJob < ApplicationJob
         SubmitterMailer.completed_email(submitter, user).deliver_later!
       end
 
-      bcc = submission.preferences['bcc_completed'].presence ||
-            submission.template.preferences['bcc_completed'].presence ||
-            submission.account.account_configs
-                      .find_by(key: AccountConfig::BCC_EMAILS)&.value
-
-      bcc.to_s.scan(User::EMAIL_REGEXP).each do |to|
+      build_bcc_addresses(submission).each do |to|
         SubmitterMailer.completed_email(submitter, user, to:).deliver_later!
       end
     end
 
     to = build_to_addresses(submitter)
 
-    SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! if to.present?
+    return if to.blank? || submitter.template.preferences['documents_copy_email_enabled'] == false
+
+    SubmitterMailer.documents_copy_email(submitter, to:).deliver_later!
+  end
+
+  def build_bcc_addresses(submission)
+    bcc = submission.preferences['bcc_completed'].presence ||
+          submission.template.preferences['bcc_completed'].presence ||
+          submission.account.account_configs
+                    .find_by(key: AccountConfig::BCC_EMAILS)&.value
+
+    bcc.to_s.scan(User::EMAIL_REGEXP)
   end
 
   def build_to_addresses(submitter)
