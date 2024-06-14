@@ -19,7 +19,7 @@ module Submitters
       return existing_attachment if existing_attachment
 
       attachment =
-        submitter.attachments_attachments.find_or_create_by!(blob_id: signature_attachment.blob_id)
+        submitter.attachments_attachments.create_or_find_by!(blob_id: signature_attachment.blob_id)
 
       attachments_index[attachment.uuid] = attachment
 
