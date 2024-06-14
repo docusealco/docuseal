@@ -47,6 +47,14 @@ class UsersController < ApplicationController
     attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
     attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
 
+    if params.dig(:user, :account_id).present?
+      account = Account.accessible_by(current_ability).find(params[:user][:account_id])
+
+      authorize!(:manage, account)
+
+      @user.account = account
+    end
+
     if @user.update(attrs)
       redirect_back fallback_location: settings_users_path, notice: 'User has been updated'
     else

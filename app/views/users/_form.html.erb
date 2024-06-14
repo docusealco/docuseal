@@ -19,6 +19,9 @@
     <% if f.object != current_user %>
       <%= render 'role_select', f: %>
     <% end %>
+    <% if local_assigns[:extra_fields_html].present? %>
+      <%= local_assigns[:extra_fields_html] %>
+    <% end %>
   </div>
   <div class="form-control pt-2">
     <%= f.button button_title, class: 'base-button' %>
