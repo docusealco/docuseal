@@ -23,6 +23,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       withDisclosure: this.dataset.withDisclosure === 'true',
       withTypedSignature: this.dataset.withTypedSignature !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
+      rememberSignature: this.dataset.rememberSignature === 'true',
       values: reactive(JSON.parse(this.dataset.values)),
       completedButton: JSON.parse(this.dataset.completedButton || '{}'),
       withQrButton: true,

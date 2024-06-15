@@ -7,12 +7,14 @@ class SubmitFormController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
+  CONFIG_KEYS = [].freeze
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
   def show
     @submitter = Submitter.find_by!(slug: params[:slug])
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+    return render :archived if @submitter.submission.template.archived_at? || @submitter.submission.archived_at?
 
     ActiveRecord::Associations::Preloader.new(
       records: [@submitter],
@@ -34,11 +36,14 @@ class SubmitFormController < ApplicationController
     @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)
                                                   .preload(:blob).index_by(&:uuid)
 
-    unless Docuseal.multitenant?
-      @signature_attachment = Submitters::MaybeAssignDefaultSignature.call(@submitter, params, @attachments_index)
-    end
+    @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
-    render(@submitter.submission.template.archived_at? || @submitter.submission.archived_at? ? :archived : :show)
+    return unless @form_configs[:prefill_signature]
+
+    @signature_attachment =
+      Submitters::MaybeAssignDefaultBrowserSignature.call(@submitter, params, cookies, @attachments_index.values)
+
+    @attachments_index[@signature_attachment.uuid] = @signature_attachment if @signature_attachment
   end
 
   def update

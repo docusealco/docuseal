@@ -255,8 +255,8 @@ export default {
       type: Object,
       required: true
     },
-    submitterSlug: {
-      type: String,
+    submitter: {
+      type: Object,
       required: true
     },
     showFieldNames: {
@@ -283,6 +283,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    rememberSignature: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     attachmentsIndex: {
       type: Object,
@@ -311,6 +316,9 @@ export default {
     }
   },
   computed: {
+    submitterSlug () {
+      return this.submitter.slug
+    },
     computedPreviousValue () {
       if (this.isUsePreviousValue) {
         return this.previousValue
@@ -521,6 +529,27 @@ export default {
         this.uploadImageInputKey = Math.random().toString()
       }
     },
+    maybeSetSignedUuid (signedUuid) {
+      try {
+        if (window.localStorage && signedUuid && this.rememberSignature) {
+          const values = window.localStorage.getItem('signed_signature_uuids')
+
+          let data
+
+          if (values) {
+            data = JSON.parse(values)
+          } else {
+            data = {}
+          }
+
+          data[this.submitter.email] = signedUuid
+
+          window.localStorage.setItem('signed_signature_uuids', JSON.stringify(data))
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    },
     async submit () {
       if (this.modelValue || this.computedPreviousValue) {
         if (this.computedPreviousValue) {
@@ -539,6 +568,7 @@ export default {
           formData.append('file', file)
           formData.append('submitter_slug', this.submitterSlug)
           formData.append('name', 'attachments')
+          formData.append('remember_signature', this.rememberSignature)
 
           return fetch(this.baseUrl + '/api/attachments', {
             method: 'POST',
@@ -546,6 +576,8 @@ export default {
           }).then((resp) => resp.json()).then((attachment) => {
             this.$emit('attached', attachment)
             this.$emit('update:model-value', attachment.uuid)
+
+            this.maybeSetSignedUuid(attachment.signed_uuid)
 
             return resolve(attachment)
           })

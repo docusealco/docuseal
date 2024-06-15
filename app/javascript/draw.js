@@ -70,6 +70,7 @@ window.customElements.define('draw-signature', class extends HTMLElement {
         formData.append('file', file)
         formData.append('submitter_slug', this.dataset.slug)
         formData.append('name', 'attachments')
+        formData.append('remember_signature', 'true')
 
         return fetch('/api/attachments', {
           method: 'POST',

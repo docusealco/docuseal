@@ -75,6 +75,18 @@
             </div>
           <% end %>
         <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORM_PREFILL_SIGNATURE_KEY) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between py-2.5">
+              <span>
+                Remember and pre-fill signatures
+              </span>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' %>
+            </div>
+          <% end %>
+        <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::DOWNLOAD_LINKS_AUTH_KEY) %>
         <% if can?(:manage, account_config) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

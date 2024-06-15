@@ -323,11 +323,12 @@
             :field="currentField"
             :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
             :with-typed-signature="withTypedSignature"
+            :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
             :button-text="buttonText"
             :with-disclosure="withDisclosure"
             :with-qr-button="withQrButton"
-            :submitter-slug="submitterSlug"
+            :submitter="submitter"
             :show-field-names="showFieldNames"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
@@ -548,6 +549,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    rememberSignature: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     minimize: {
       type: Boolean,
