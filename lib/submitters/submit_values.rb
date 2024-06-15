@@ -56,15 +56,6 @@ module Submitters
         v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
       end
 
-      signature_attachment =
-        submitter.submission.template_fields.reduce(nil) do |_, field|
-          next nil if field['submitter_uuid'] != submitter.uuid || field['type'] != 'signature'
-
-          break submitter.attachments_attachments.find_by(uuid: submitter.values[field['uuid']])
-        end
-
-      submitter.build_signature_attachment(blob_id: signature_attachment.blob_id) if signature_attachment
-
       submitter
     end
 
