@@ -11,6 +11,7 @@ module Templates
     MAX_WIDTH = 1400
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 15.megabytes
+    GENERATE_PREVIEW_SIZE_LIMIT = 50.megabytes
 
     module_function
 
@@ -55,7 +56,9 @@ module Templates
 
       attachment.save!
 
-      (0..[number_of_pages - 1, MAX_NUMBER_OF_PAGES_PROCESSED].min).each do |page_number|
+      max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? MAX_NUMBER_OF_PAGES_PROCESSED : 1
+
+      (0..[number_of_pages - 1, max_pages_to_process].min).each do |page_number|
         page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
