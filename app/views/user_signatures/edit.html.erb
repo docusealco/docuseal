@@ -16,7 +16,7 @@
     <%= form_for @user_config, url: user_signature_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <signature-form class="relative block">
         <a class="absolute top-1 right-1 link text-sm" data-target="signature-form.clear" href="#">Clear</a>
-        <canvas data-target="signature-form.canvas" class="bg-white border border-base-300 rounded"></canvas>
+        <canvas data-target="signature-form.canvas" class="bg-white border border-base-300 w-full rounded"></canvas>
         <input name="file" class="hidden" data-target="signature-form.input" type="file" accept="image/png,image/jpeg,image/jpg">
         <div class="form-control mt-4">
           <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button', data: { target: 'signature-form.button' } %>

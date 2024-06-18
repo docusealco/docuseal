@@ -5,8 +5,12 @@ export default targetable(class extends HTMLElement {
   static [target.static] = ['canvas', 'input', 'clear', 'button']
 
   async connectedCallback () {
-    this.canvas.width = this.canvas.parentNode.parentNode.clientWidth
-    this.canvas.height = this.canvas.parentNode.parentNode.clientWidth / 3
+    const scale = 3
+
+    this.canvas.width = this.canvas.parentNode.clientWidth * scale
+    this.canvas.height = this.canvas.parentNode.clientHeight * scale
+
+    this.canvas.getContext('2d').scale(scale, scale)
 
     const { default: SignaturePad } = await import('signature_pad')
 
