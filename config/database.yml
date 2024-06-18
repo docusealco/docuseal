@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15) %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
 
 development:
   <<: *default
@@ -22,12 +22,14 @@ production:
 <% elsif ENV['DATABASE_URL'].to_s.empty? %>
   adapter: sqlite3
   database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
+  timeout: 5000
 <% elsif ENV['DATABASE_URL'].match?(/\Apostgres/) %>
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
 <% elsif ENV['DATABASE_URL'].match?(/\Amysql/) %>
   adapter: mysql2
   encoding: utf8mb4
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15) %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
   url: <%= ENV['DATABASE_URL'] %>
 <% end %>

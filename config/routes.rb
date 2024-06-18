@@ -2,7 +2,12 @@
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  mount Sidekiq::Web => '/sidekiq' if defined?(Sidekiq)
+
+  if !Docuseal.multitenant? && defined?(Sidekiq::Web)
+    authenticated :user, ->(u) { u.sidekiq? } do
+      mount Sidekiq::Web => '/jobs'
+    end
+  end
 
   root 'dashboard#index'
 

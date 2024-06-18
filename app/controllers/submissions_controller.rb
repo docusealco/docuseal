@@ -45,7 +45,7 @@ class SubmissionsController < ApplicationController
       end
 
     submissions.each do |submission|
-      SendSubmissionCreatedWebhookRequestJob.perform_later({ 'submission_id' => submission.id })
+      SendSubmissionCreatedWebhookRequestJob.perform_async({ 'submission_id' => submission.id })
     end
 
     Submissions.send_signature_requests(submissions)
@@ -56,7 +56,7 @@ class SubmissionsController < ApplicationController
   def destroy
     @submission.update!(archived_at: Time.current)
 
-    SendSubmissionArchivedWebhookRequestJob.perform_later('submission_id' => @submission.id)
+    SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id)
 
     redirect_back(fallback_location: template_path(@submission.template), notice: 'Submission has been archived')
   end

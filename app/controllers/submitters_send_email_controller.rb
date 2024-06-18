@@ -13,7 +13,7 @@ class SubmittersSendEmailController < ApplicationController
                            alert: 'Email has been sent already.')
     end
 
-    SendSubmitterInvitationEmailJob.perform_later('submitter_id' => @submitter.id)
+    SendSubmitterInvitationEmailJob.perform_async('submitter_id' => @submitter.id)
 
     @submitter.sent_at ||= Time.current
     @submitter.save!

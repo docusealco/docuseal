@@ -81,7 +81,7 @@ RSpec.describe 'Submit Form' do
 
       expect do
         click_on 'submit'
-      end.to change(enqueued_jobs, :size).by(2)
+      end.to change(enqueued_jobs, :size).by(1)
     end
   end
 end

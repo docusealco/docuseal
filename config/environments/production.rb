@@ -27,7 +27,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.active_record.sqlite3_production_warning = false
 
-  config.active_job.queue_adapter = :sidekiq if defined?(Sidekiq)
+  config.active_job.queue_adapter = :sidekiq
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).

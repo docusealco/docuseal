@@ -9,6 +9,9 @@ require 'rspec/rails'
 require 'capybara/cuprite'
 require 'capybara/rspec'
 require 'webmock/rspec'
+require 'sidekiq/testing'
+
+Sidekiq::Testing.fake!
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -55,5 +58,13 @@ RSpec.configure do |config|
     else
       driven_by :headless_cuprite
     end
+  end
+
+  config.before do
+    Sidekiq::Worker.clear_all
+  end
+
+  config.before do |example|
+    Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
   end
 end

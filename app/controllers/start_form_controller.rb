@@ -37,7 +37,7 @@ class StartFormController < ApplicationController
 
       if @submitter.save
         if is_new_record
-          SendSubmissionCreatedWebhookRequestJob.perform_later({ 'submission_id' => @submitter.submission.id })
+          SendSubmissionCreatedWebhookRequestJob.perform_async({ 'submission_id' => @submitter.submission.id })
         end
 
         redirect_to submit_form_path(@submitter.slug)

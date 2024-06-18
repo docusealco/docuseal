@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ProcessSubmitterCompletionJob < ApplicationJob
+class ProcessSubmitterCompletionJob
+  include Sidekiq::Job
+
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 
@@ -20,7 +22,7 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     return if Accounts.load_webhook_url(submitter.account).blank?
 
-    SendFormCompletedWebhookRequestJob.perform_later({ 'submitter_id' => submitter.id })
+    SendFormCompletedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id })
   end
 
   def enqueue_completed_emails(submitter)

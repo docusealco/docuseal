@@ -36,3 +36,4 @@ yarn-debug.log*
 /attachments
 /docuseal
 /ee
+dump.rdb

@@ -81,6 +81,12 @@ class User < ApplicationRecord
     true
   end
 
+  def sidekiq?
+    return true if Rails.env.development?
+
+    role == 'admin'
+  end
+
   def self.sign_in_after_reset_password
     if PasswordsController::Current.user.present?
       !PasswordsController::Current.user.otp_required_for_login

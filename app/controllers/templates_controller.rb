@@ -61,7 +61,7 @@ class TemplatesController < ApplicationController
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
-      SendTemplateUpdatedWebhookRequestJob.perform_later('template_id' => @template.id)
+      SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id)
 
       maybe_redirect_to_template(@template)
     else
@@ -72,7 +72,7 @@ class TemplatesController < ApplicationController
   def update
     @template.update!(template_params)
 
-    SendTemplateUpdatedWebhookRequestJob.perform_later('template_id' => @template.id)
+    SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id)
 
     head :ok
   end

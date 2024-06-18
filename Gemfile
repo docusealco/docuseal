@@ -27,7 +27,7 @@ gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'
 gem 'pretender'
-gem 'puma'
+gem 'puma', require: false
 gem 'rack'
 gem 'rails'
 gem 'rails_autolink'
@@ -37,7 +37,7 @@ gem 'rqrcode'
 gem 'ruby-vips'
 gem 'rubyXL'
 gem 'shakapacker'
-gem 'sidekiq', require: ENV.key?('REDIS_URL')
+gem 'sidekiq'
 gem 'sqlite3', require: false, force_ruby_platform: true
 gem 'strip_attributes'
 gem 'turbo-rails'

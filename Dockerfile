@@ -41,7 +41,7 @@ ENV OPENSSL_CONF=/app/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
+RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils redis vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
 RUN echo $'.include = /etc/ssl/openssl.cnf\n\
 \n\

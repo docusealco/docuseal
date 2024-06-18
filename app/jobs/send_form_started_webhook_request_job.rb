@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class SendFormStartedWebhookRequestJob < ApplicationJob
-  queue_as :webhooks
+class SendFormStartedWebhookRequestJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: :webhooks
 
   USER_AGENT = 'DocuSeal.co Webhook'
 
@@ -36,12 +38,11 @@ class SendFormStartedWebhookRequestJob < ApplicationJob
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
-      SendFormStartedWebhookRequestJob.set(wait: (2**attempt).minutes)
-                                      .perform_later({
-                                                       'submitter_id' => submitter.id,
-                                                       'attempt' => attempt + 1,
-                                                       'last_status' => resp&.status.to_i
-                                                     })
+      SendFormStartedWebhookRequestJob.perform_in((2**attempt).minutes, {
+                                                    'submitter_id' => submitter.id,
+                                                    'attempt' => attempt + 1,
+                                                    'last_status' => resp&.status.to_i
+                                                  })
     end
   end
 end

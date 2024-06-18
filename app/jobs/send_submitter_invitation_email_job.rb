@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class SendSubmitterInvitationEmailJob < ApplicationJob
+class SendSubmitterInvitationEmailJob
+  include Sidekiq::Job
+
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 

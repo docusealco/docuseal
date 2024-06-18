@@ -73,7 +73,7 @@ module Submitters
       next if submitter.email.blank?
       next if submitter.preferences['send_email'] == false
 
-      SendSubmitterInvitationEmailJob.perform_later('submitter_id' => submitter.id)
+      SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
     end
   end
 end

@@ -64,14 +64,14 @@ module Api
       submissions = create_submissions(@template, params)
 
       submissions.each do |submission|
-        SendSubmissionCreatedWebhookRequestJob.perform_later({ 'submission_id' => submission.id })
+        SendSubmissionCreatedWebhookRequestJob.perform_async({ 'submission_id' => submission.id })
       end
 
       Submissions.send_signature_requests(submissions)
 
       submissions.each do |submission|
         if submission.submitters.all?(&:completed_at?) && submission.submitters.last
-          ProcessSubmitterCompletionJob.perform_later({ 'submitter_id' => submission.submitters.last.id })
+          ProcessSubmitterCompletionJob.perform_async({ 'submitter_id' => submission.submitters.last.id })
         end
       end
 
@@ -94,7 +94,7 @@ module Api
       else
         @submission.update!(archived_at: Time.current)
 
-        SendSubmissionArchivedWebhookRequestJob.perform_later('submission_id' => @submission.id)
+        SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id)
       end
 
       render json: @submission.as_json(only: %i[id archived_at])
