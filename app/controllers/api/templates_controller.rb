@@ -71,7 +71,7 @@ module Api
     end
 
     def destroy
-      if params[:permanently] == 'true' && !Docuseal.multitenant?
+      if params[:permanently] == 'true'
         @template.destroy!
       else
         @template.update!(archived_at: Time.current)

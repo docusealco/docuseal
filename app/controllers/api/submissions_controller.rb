@@ -89,11 +89,15 @@ module Api
     end
 
     def destroy
-      @submission.update!(archived_at: Time.current)
+      if params[:permanently] == 'true'
+        @submission.destroy!
+      else
+        @submission.update!(archived_at: Time.current)
 
-      SendSubmissionArchivedWebhookRequestJob.perform_later(@submission)
+        SendSubmissionArchivedWebhookRequestJob.perform_later(@submission)
+      end
 
-      render json: @submission.as_json(only: %i[id], methods: %i[archived_at])
+      render json: @submission.as_json(only: %i[id archived_at])
     end
 
     private
