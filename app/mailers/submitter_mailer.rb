@@ -119,7 +119,7 @@ class SubmitterMailer < ApplicationMailer
 
     total_size = add_attachments_with_size_limit(documents, total_size)
 
-    attachments[submitter.submission.audit_trail.filename.to_s] = audit_trail_data if audit_trail_data
+    attachments[submitter.submission.audit_trail.filename.to_s.tr('"', "'")] = audit_trail_data if audit_trail_data
 
     file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
 
@@ -141,7 +141,7 @@ class SubmitterMailer < ApplicationMailer
 
       break if total_size >= MAX_ATTACHMENTS_SIZE
 
-      attachments[attachment.filename.to_s] = attachment.download
+      attachments[attachment.filename.to_s.tr('"', "'")] = attachment.download
     end
 
     total_size
