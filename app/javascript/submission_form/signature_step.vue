@@ -582,7 +582,11 @@ export default {
             return resolve(attachment)
           })
         }).catch((error) => {
-          return reject(error)
+          if (error.message === 'Image too small' && this.field.required === false) {
+            return resolve({})
+          } else {
+            return reject(error)
+          }
         })
       })
     }
