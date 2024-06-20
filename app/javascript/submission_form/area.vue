@@ -340,12 +340,18 @@ export default {
     computedStyle () {
       const { x, y, w, h } = this.area
 
-      return {
+      const style = {
         top: y * 100 + '%',
         left: x * 100 + '%',
         width: w * 100 + '%',
         height: h * 100 + '%'
       }
+
+      if (this.field.preferences?.font_size) {
+        style.fontSize = this.field.preferences.font_size + 'pt'
+      }
+
+      return style
     }
   },
   watch: {
