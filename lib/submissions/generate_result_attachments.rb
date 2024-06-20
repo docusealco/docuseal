@@ -120,7 +120,11 @@ module Submissions
 
           width = page.box.width
           height = page.box.height
-          font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+
+          preferences_font_size = field.dig('preferences', 'font_size').then { |num| num.present? ? num.to_i : nil }
+
+          font_size   = preferences_font_size
+          font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           value = submitter.values[field['uuid']]
 
@@ -265,7 +269,7 @@ module Submissions
             lines = layouter.fit([text], area['w'] * width, height).lines
             box_height = lines.sum(&:height)
 
-            if box_height > (area['h'] * height) + 1
+            if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
                                                           font: pdf.fonts.add(FONT_NAME),
                                                           font_size: (font_size / 1.4).to_i)
@@ -275,7 +279,7 @@ module Submissions
               box_height = lines.sum(&:height)
             end
 
-            if box_height > (area['h'] * height) + 1
+            if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
                                                           font: pdf.fonts.add(FONT_NAME),
                                                           font_size: (font_size / 1.9).to_i)
