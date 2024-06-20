@@ -1,4 +1,4 @@
-FROM ruby:3.3.1-alpine3.18 as fonts
+FROM ruby:3.3.1-alpine as fonts
 
 WORKDIR /fonts
 
@@ -6,7 +6,7 @@ RUN apk --no-cache add fontforge wget && wget https://github.com/satbyy/go-noto-
 
 RUN fontforge -lang=py -c 'font1 = fontforge.open("FreeSans.ttf"); font2 = fontforge.open("NotoSansSymbols2-Regular.ttf"); font1.mergeFonts(font2); font1.generate("FreeSans.ttf")'
 
-FROM ruby:3.3.1-alpine3.18 as webpack
+FROM ruby:3.3.1-alpine as webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -32,7 +32,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:3.3.1-alpine3.18 as app
+FROM ruby:3.3.1-alpine as app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
