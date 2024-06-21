@@ -53,7 +53,7 @@ class TemplatesController < ApplicationController
 
     if params[:account_id].present? && authorized_clone_account_id?(params[:account_id])
       @template.account_id = params[:account_id]
-      @template.folder = @template.account.default_template_folder
+      @template.folder = @template.account.default_template_folder if @template.account_id != current_account.id
     else
       @template.account = current_account
     end
