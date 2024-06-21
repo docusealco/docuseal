@@ -48,16 +48,21 @@ class SubmitterMailer < ApplicationMailer
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
     add_completed_email_attachments!(
-      submitter, with_audit_log: @email_config.nil? || @email_config.value['attach_audit_log'] != false
+      submitter, with_audit_log: (@email_config.nil? || @email_config.value['attach_audit_log'] != false) &&
+                                 @submitter.template.preferences['completed_notification_email_attach_audit'] != false
     )
 
+    @subject = @submitter.template.preferences['completed_notification_email_subject'].presence
+    @subject ||= @email_config.value['subject'] if @email_config
+
+    @body = @submitter.template.preferences['completed_notification_email_body'].presence
+    @body ||= @email_config.value['body'] if @email_config
+
     subject =
-      if @email_config
-        ReplaceEmailVariables.call(@email_config.value['subject'], submitter:)
+      if @subject.present?
+        ReplaceEmailVariables.call(@subject, submitter:)
       else
-        submitters = submitter.submission.submitters.order(:completed_at)
-                              .map { |e| e.name || e.email || e.phone }.join(', ')
-        %(#{submitter.submission.template.name} has been completed by #{submitters})
+        build_completed_subject(submitter)
       end
 
     assign_message_metadata('submitter_completed', @submitter)
@@ -77,7 +82,8 @@ class SubmitterMailer < ApplicationMailer
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
     @documents = add_completed_email_attachments!(
-      submitter, with_audit_log: @email_config.nil? || @email_config.value['attach_audit_log'] != false
+      submitter, with_audit_log: @submitter.template.preferences['documents_copy_email_attach_audit'] != false &&
+                                 (@email_config.nil? || @email_config.value['attach_audit_log'] != false)
     )
 
     @subject = @submitter.template.preferences['documents_copy_email_subject'].presence
@@ -104,6 +110,12 @@ class SubmitterMailer < ApplicationMailer
   end
 
   private
+
+  def build_completed_subject(submitter)
+    submitters = submitter.submission.submitters.order(:completed_at)
+                          .map { |e| e.name || e.email || e.phone }.join(', ')
+    %(#{submitter.submission.template.name} has been completed by #{submitters})
+  end
 
   def add_completed_email_attachments!(submitter, with_audit_log: true)
     documents = Submitters.select_attachments_for_download(submitter)

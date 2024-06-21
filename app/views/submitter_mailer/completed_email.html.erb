@@ -1,5 +1,5 @@
-<% if @email_config %>
-  <%= render 'custom_content', content: @email_config.value['body'], submitter: @submitter %>
+<% if @body.present? %>
+  <%= render 'custom_content', content: @body, submitter: @submitter %>
 <% else %>
   <p>Hi there,</p>
   <p>"<%= @submitter.submission.template.name %>" form has been completed by <%= @submitter.submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.join(', ') %>.</p>

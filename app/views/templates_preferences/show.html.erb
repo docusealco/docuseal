@@ -24,7 +24,7 @@
           <%= ff.label :bcc_completed, class: 'label' do %>
             <span class="flex items-center space-x-1 justify-between w-full">
               <span>
-                Completed documents BCC address
+                Completed documents notification BCC address
               </span>
             </span>
           <% end %>
@@ -82,7 +82,8 @@
         <div class="collapse-content">
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
             <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
-            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled).new(*(@template.preferences.values_at('documents_copy_email_subject', 'documents_copy_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value.values_at('subject', 'body')), @template.preferences['documents_copy_email_enabled']) do |ff| %>
+            <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value %>
+            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled, :documents_copy_email_attach_audit).new(@template.preferences['documents_copy_email_subject'].presence || configs['subject'], @template.preferences['documents_copy_email_body'].presence || configs['body'], @template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false) do |ff| %>
               <div class="form-control">
                 <%= ff.label :documents_copy_email_subject, 'Email subject', class: 'label' %>
                 <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -98,6 +99,12 @@
                   <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
                 </autoresize-textarea>
               </div>
+              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
+                <span>
+                  Attach Audit Log PDF to the email
+                </span>
+                <%= ff.check_box :documents_copy_email_attach_audit, { checked: ff.object.documents_copy_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+              </div>
               <div class="flex items-center justify-between py-2.5 px-1 mb-2">
                 <span>
                   Send emails automatically on completion
@@ -109,6 +116,53 @@
               <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
               <div class="flex justify-center">
                 <span id="email_saved_alert2" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow join-item border border-base-300">
+        <input type="checkbox" name="accordion">
+        <div class="collapse-title text-xl font-medium">
+          Completed notification email
+        </div>
+        <div class="collapse-content">
+          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
+            <toggle-on-submit data-element-id="email_saved_alert3"></toggle-on-submit>
+            <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
+            <%= f.fields_for :preferences, Struct.new(:completed_notification_email_subject, :completed_notification_email_body, :completed_notification_email_enabled, :completed_notification_email_attach_audit).new(@template.preferences['completed_notification_email_subject'].presence || configs['subject'], @template.preferences['completed_notification_email_body'].presence || configs['body'], @template.preferences['completed_notification_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['completed_notification_email_attach_audit'] != false) do |ff| %>
+              <div class="form-control">
+                <%= ff.label :completed_notification_email_subject, 'Email subject', class: 'label' %>
+                <%= ff.text_field :completed_notification_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+              </div>
+              <div class="form-control">
+                <div class="flex items-center">
+                  <%= ff.label :completed_notification_email_body, 'Email body', class: 'label' %>
+                  <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                  </span>
+                </div>
+                <autoresize-textarea>
+                  <%= ff.text_area :completed_notification_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+                </autoresize-textarea>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
+                <span>
+                  Attach Audit Log PDF to the email
+                </span>
+                <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+                <span>
+                  Send emails automatically on completion
+                </span>
+                <%= ff.check_box :completed_notification_email_enabled, { checked: ff.object.completed_notification_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+              </div>
+            <% end %>
+            <div class="form-control pt-2">
+              <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+              <div class="flex justify-center">
+                <span id="email_saved_alert3" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
               </div>
             </div>
           <% end %>
