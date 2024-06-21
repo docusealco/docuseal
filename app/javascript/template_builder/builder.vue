@@ -1136,7 +1136,7 @@ export default {
         if (submitterWithoutFields) {
           e.preventDefault()
 
-          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`)
+          alert(`Please add fields for the ${submitterWithoutFields.name}. Or, remove the ${submitterWithoutFields.name} if not needed.`)
         }
       }
     },
@@ -1158,7 +1158,7 @@ export default {
           this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
 
         if (submitterWithoutFields) {
-          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`)
+          alert(`Please add fields for the ${submitterWithoutFields.name}. Or, remove the ${submitterWithoutFields.name} if not needed.`)
         } else {
           this.isSaving = true
 
