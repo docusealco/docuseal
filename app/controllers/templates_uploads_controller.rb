@@ -18,7 +18,7 @@ class TemplatesUploadsController < ApplicationController
 
     @template.update!(schema:)
 
-    SendTemplateCreatedWebhookRequestJob.perform_later(@template)
+    SendTemplateCreatedWebhookRequestJob.perform_later('template_id' => @template.id)
 
     redirect_to edit_template_path(@template)
   rescue Templates::CreateAttachments::PdfEncrypted

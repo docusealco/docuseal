@@ -7,8 +7,10 @@ class SendTemplateUpdatedWebhookRequestJob < ApplicationJob
 
   MAX_ATTEMPTS = 10
 
-  def perform(template, params = {})
-    attempt = params[:attempt].to_i
+  def perform(params = {})
+    template = Template.find(params['template_id'])
+
+    attempt = params['attempt'].to_i
     url = Accounts.load_webhook_url(template.account)
 
     return if url.blank?
@@ -33,9 +35,10 @@ class SendTemplateUpdatedWebhookRequestJob < ApplicationJob
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || template.account.account_configs.exists?(key: :plan))
       SendTemplateUpdatedWebhookRequestJob.set(wait: (2**attempt).minutes)
-                                          .perform_later(template, {
-                                                           attempt: attempt + 1,
-                                                           last_status: resp&.status.to_i
+                                          .perform_later({
+                                                           'template_id' => template.id,
+                                                           'attempt' => attempt + 1,
+                                                           'last_status' => resp&.status.to_i
                                                          })
     end
   end

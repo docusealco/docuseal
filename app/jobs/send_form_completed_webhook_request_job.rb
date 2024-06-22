@@ -7,8 +7,10 @@ class SendFormCompletedWebhookRequestJob < ApplicationJob
 
   MAX_ATTEMPTS = 10
 
-  def perform(submitter, params = {})
-    attempt = params[:attempt].to_i
+  def perform(params = {})
+    submitter = Submitter.find(params['submitter_id'])
+
+    attempt = params['attempt'].to_i
     url = Accounts.load_webhook_url(submitter.submission.account)
 
     return if url.blank?
@@ -37,9 +39,10 @@ class SendFormCompletedWebhookRequestJob < ApplicationJob
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
       SendFormCompletedWebhookRequestJob.set(wait: (2**attempt).minutes)
-                                        .perform_later(submitter, {
-                                                         attempt: attempt + 1,
-                                                         last_status: resp&.status.to_i
+                                        .perform_later({
+                                                         'submitter_id' => submitter.id,
+                                                         'attempt' => attempt + 1,
+                                                         'last_status' => resp&.status.to_i
                                                        })
     end
   end

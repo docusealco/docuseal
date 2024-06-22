@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ProcessSubmitterCompletionJob < ApplicationJob
-  def perform(submitter)
+  def perform(params = {})
+    submitter = Submitter.find(params['submitter_id'])
+
     is_all_completed = !submitter.submission.submitters.exists?(completed_at: nil)
 
     if !is_all_completed && submitter.submission.submitters_order_preserved?
@@ -18,7 +20,7 @@ class ProcessSubmitterCompletionJob < ApplicationJob
 
     return if Accounts.load_webhook_url(submitter.account).blank?
 
-    SendFormCompletedWebhookRequestJob.perform_later(submitter)
+    SendFormCompletedWebhookRequestJob.perform_later({ 'submitter_id' => submitter.id })
   end
 
   def enqueue_completed_emails(submitter)

@@ -14,14 +14,14 @@ module Submitters
       unless submitter.submission_events.exists?(event_type: 'start_form')
         SubmissionEvents.create_with_tracking_data(submitter, 'start_form', request)
 
-        SendFormStartedWebhookRequestJob.perform_later(submitter)
+        SendFormStartedWebhookRequestJob.perform_later({ 'submitter_id' => submitter.id })
       end
 
       update_submitter!(submitter, params, request)
 
       submitter.submission.save!
 
-      ProcessSubmitterCompletionJob.perform_later(submitter) if submitter.completed_at?
+      ProcessSubmitterCompletionJob.perform_later({ 'submitter_id' => submitter.id }) if submitter.completed_at?
 
       submitter
     end
