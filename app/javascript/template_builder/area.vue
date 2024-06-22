@@ -164,16 +164,16 @@
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1 h-full"
-        :class="{'w-full h-full': field.type == 'checkbox'}"
+        :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
       >
         <div
           v-if="isDefaultValuePresent || isContenteditable"
-          :class="{ 'w-full h-full': field.type == 'checkbox', 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
+          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type), 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
-            :class="{'w-full h-full': field.type == 'checkbox'}"
+            :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
           >
             <IconCheck
               v-if="field.type == 'checkbox'"
@@ -189,6 +189,19 @@
             >
               {{ t('signing_date') }}
             </span>
+            <div
+              v-else-if="field.type === 'cells' && field.default_value"
+              class="w-full flex items-center"
+            >
+              <div
+                v-for="(char, index) in field.default_value"
+                :key="index"
+                class="text-center flex-none"
+                :style="{ width: (area.cell_w / area.w * 100) + '%' }"
+              >
+                {{ char }}
+              </div>
+            </div>
             <span
               v-else
               ref="defaultValue"

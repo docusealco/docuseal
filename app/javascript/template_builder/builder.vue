@@ -4,6 +4,31 @@
     class="mx-auto pl-3 md:pl-4 h-full"
   >
     <div
+      v-if="pendingFieldAttachmentUuids.length"
+      class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
+    >
+      <div class="alert border-base-300 py-2 px-2.5 rounded-xl">
+        <IconInfoCircle
+          class="stroke-info shrink-0 w-6 h-6"
+        />
+        <span>{{ t('uploaded_pdf_contains_form_fields_keep_or_remove_them') }}</span>
+        <div>
+          <button
+            class="btn btn-sm"
+            @click.prevent="removePendingFields"
+          >
+            {{ t('remove') }}
+          </button>
+          <button
+            class="btn btn-sm btn-neutral text-white"
+            @click.prevent="save"
+          >
+            {{ t('keep') }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       v-if="$slots.buttons || withTitle"
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10"
@@ -296,7 +321,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
-import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 import { en as i18nEn } from './i18n'
@@ -307,6 +332,7 @@ export default {
     Upload,
     Document,
     Fields,
+    IconInfoCircle,
     MobileDrawField,
     IconWritingSign,
     MobileFields,
@@ -512,6 +538,7 @@ export default {
       isSaving: false,
       selectedSubmitter: null,
       showDrawField: false,
+      pendingFieldAttachmentUuids: [],
       drawField: null,
       copiedArea: null,
       drawFieldType: null,
@@ -594,6 +621,12 @@ export default {
         document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
       }
     })
+
+    this.template.schema.forEach((item) => {
+      if (item.pending_fields) {
+        this.pendingFieldAttachmentUuids.push(item.attachment_uuid)
+      }
+    })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
@@ -607,6 +640,13 @@ export default {
   methods: {
     t (key) {
       return this.i18n[key] || i18nEn[key] || key
+    },
+    removePendingFields () {
+      this.template.fields = this.template.fields.filter((f) => {
+        return this.template.schema.find((item) => item.attachment_uuid === f.attachment_uuid && item.pending_fields)
+      })
+
+      this.save()
     },
     addField (type, area = null) {
       const field = {
@@ -1066,6 +1106,18 @@ export default {
       }
 
       this.save()
+
+      data.documents.forEach((attachment) => {
+        if (attachment.metadata?.pdf?.fields?.length) {
+          this.pendingFieldAttachmentUuids.push(attachment.uuid)
+
+          attachment.metadata.pdf.fields.forEach((field) => {
+            field.submitter_uuid = this.selectedSubmitter.uuid
+
+            this.template.fields.push(field)
+          })
+        }
+      })
     },
     updateName (value) {
       this.template.name = value
@@ -1232,6 +1284,8 @@ export default {
       })
     },
     save ({ force } = { force: false }) {
+      this.pendingFieldAttachmentUuids = []
+
       if (this.onChange) {
         this.onChange(this.template)
       }

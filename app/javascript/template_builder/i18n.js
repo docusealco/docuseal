@@ -5,6 +5,8 @@ const en = {
   clear: 'Clear',
   align: 'Align',
   add_all_required_fields_to_continue: 'Add all required fields to continue',
+  uploaded_pdf_contains_form_fields_keep_or_remove_them: 'Uploaded PDF contains form fields. Keep or remove them?',
+  keep: 'Keep',
   left: 'Left',
   validation: 'Validation',
   right: 'Right',

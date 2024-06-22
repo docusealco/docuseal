@@ -10,14 +10,22 @@ module Templates
     Q = 35
     MAX_WIDTH = 1400
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
-    MAX_FLATTEN_FILE_SIZE = 15.megabytes
+    MAX_FLATTEN_FILE_SIZE = 20.megabytes
     GENERATE_PREVIEW_SIZE_LIMIT = 50.megabytes
 
     module_function
 
-    def call(attachment, data)
+    def call(attachment, data, extract_fields: false)
       if attachment.content_type == PDF_CONTENT_TYPE
-        generate_pdf_preview_images(attachment, data)
+        if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
+          pdf = HexaPDF::Document.new(io: StringIO.new(data))
+
+          fields = Templates::FindAcroFields.call(pdf, attachment)
+        end
+
+        generate_pdf_preview_images(attachment, data, pdf)
+
+        attachment.metadata['pdf']['fields'] = fields if fields
       elsif attachment.image?
         generate_preview_image(attachment, data)
       end
@@ -43,10 +51,10 @@ module Templates
       )
     end
 
-    def generate_pdf_preview_images(attachment, data)
+    def generate_pdf_preview_images(attachment, data, pdf = nil)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      pdf = HexaPDF::Document.new(io: StringIO.new(data))
+      pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
       number_of_pages = pdf.pages.size
 
       data = maybe_flatten_form(data, pdf)
@@ -95,6 +103,18 @@ module Templates
       Rollbar.error(e) if defined?(Rollbar)
 
       data
+    end
+
+    def normalize_attachment_fields(template, attachments = template.documents)
+      attachments.flat_map do |a|
+        pdf_fields = a.metadata['pdf'].delete('fields').to_a if a.metadata['pdf'].present?
+
+        next [] if pdf_fields.blank?
+
+        pdf_fields.each { |f| f['submitter_uuid'] = template.submitters.first['uuid'] }
+
+        pdf_fields
+      end
     end
 
     def generate_pdf_preview_from_file(attachment, file_path, page_number)

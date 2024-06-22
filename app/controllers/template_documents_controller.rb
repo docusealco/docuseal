@@ -10,7 +10,7 @@ class TemplateDocumentsController < ApplicationController
 
     old_fields_hash = @template.fields.hash
 
-    documents = Templates::CreateAttachments.call(@template, params)
+    documents = Templates::CreateAttachments.call(@template, params, extract_fields: true)
 
     schema = documents.map do |doc|
       { attachment_uuid: doc.uuid, name: doc.filename.base }

@@ -12,11 +12,14 @@ class TemplatesUploadsController < ApplicationController
 
     save_template!(@template, url_params)
 
-    documents = Templates::CreateAttachments.call(@template, url_params || params)
-
+    documents = Templates::CreateAttachments.call(@template, url_params || params, extract_fields: true)
     schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
 
-    @template.update!(schema:)
+    fields = Templates::ProcessDocument.normalize_attachment_fields(@template, documents)
+
+    schema.each { |item| item['pending_fields'] = true } if fields.present?
+
+    @template.update!(schema:, fields:)
 
     SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => @template.id)
 

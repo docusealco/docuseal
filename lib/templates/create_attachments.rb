@@ -9,17 +9,17 @@ module Templates
 
     module_function
 
-    def call(template, params)
+    def call(template, params, extract_fields: false)
       Array.wrap(params[:files].presence || params[:file]).map do |file|
         if file.content_type.exclude?('image') && file.content_type != PDF_CONTENT_TYPE
           next handle_file_types(template, file, params)
         end
 
-        handle_pdf_or_image(template, file, file.read, params)
+        handle_pdf_or_image(template, file, file.read, params, extract_fields:)
       end
     end
 
-    def handle_pdf_or_image(template, file, document_data = nil, params = {})
+    def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false)
       document_data ||= file.read
 
       if file.content_type == PDF_CONTENT_TYPE
@@ -44,7 +44,7 @@ module Templates
 
       document = template.documents.create!(blob:)
 
-      Templates::ProcessDocument.call(document, document_data)
+      Templates::ProcessDocument.call(document, document_data, extract_fields:)
     end
 
     def maybe_decrypt_pdf_or_raise(data, params)
