@@ -5,13 +5,18 @@ module Abilities
     module_function
 
     def collection(user, ability: nil)
-      shared_ids =
-        Template.joins(:template_sharings)
-                .where(template_sharings: { ability:,
-                                            account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
-                .select(:id)
+      template_ids = Template.where(account_id: user.account_id).select(:id)
 
-      Template.where(account_id: user.account_id).or(Template.where(id: shared_ids))
+      shared_ids =
+        TemplateSharing.where({ ability:,
+                                account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
+                       .select(:template_id)
+
+      join_query = Template.arel_table
+                           .join(template_ids.arel.union(shared_ids.arel).as('union_ids'))
+                           .on(Template.arel_table[:id].eq(Arel::Table.new(:union_ids)[:id]))
+
+      Template.joins(join_query.join_sources.first)
     end
 
     def entity(template, user:, ability: nil)
