@@ -22,10 +22,11 @@
 #
 # Indexes
 #
-#  index_templates_on_account_id  (account_id)
-#  index_templates_on_author_id   (author_id)
-#  index_templates_on_folder_id   (folder_id)
-#  index_templates_on_slug        (slug) UNIQUE
+#  index_templates_on_account_id   (account_id)
+#  index_templates_on_author_id    (author_id)
+#  index_templates_on_external_id  (external_id)
+#  index_templates_on_folder_id    (folder_id)
+#  index_templates_on_slug         (slug) UNIQUE
 #
 # Foreign Keys
 #

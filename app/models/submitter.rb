@@ -26,6 +26,7 @@
 # Indexes
 #
 #  index_submitters_on_email          (email)
+#  index_submitters_on_external_id    (external_id)
 #  index_submitters_on_slug           (slug) UNIQUE
 #  index_submitters_on_submission_id  (submission_id)
 #
