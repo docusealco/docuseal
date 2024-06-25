@@ -627,7 +627,7 @@ export default {
 
       if (type === 'date') {
         field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
         }
       }
 
@@ -660,7 +660,7 @@ export default {
 
         if (type === 'date') {
           field.preferences = {
-            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
           }
         }
 
@@ -914,7 +914,7 @@ export default {
 
         if (field.type === 'date') {
           field.preferences = {
-            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
           }
         }
       }
