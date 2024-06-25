@@ -13,7 +13,7 @@ module Abilities
                        .select(:template_id)
 
       join_query = Template.arel_table
-                           .join(template_ids.arel.union(shared_ids.arel).as('union_ids'))
+                           .join(Arel::Nodes::TableAlias.new(template_ids.arel.union(shared_ids.arel), 'union_ids'))
                            .on(Template.arel_table[:id].eq(Arel::Table.new(:union_ids)[:id]))
 
       Template.joins(join_query.join_sources.first)
