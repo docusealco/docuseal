@@ -86,6 +86,7 @@
             <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
+        <%= render 'shared/settings_nav_extra2' %>
         <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
           <li>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'flex w-full' } do |f| %>
