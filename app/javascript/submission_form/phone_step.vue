@@ -174,6 +174,14 @@ export default {
           phone: this.$refs.phone.value
         }),
         headers: { 'Content-Type': 'application/json' }
+      }).then(async (resp) => {
+        if (resp.status === 422) {
+          const data = await resp.json()
+
+          alert(this.t('number_phone_is_invalid').replace('{number}', this.$refs.phone.value))
+
+          return Promise.reject(new Error(data.error))
+        }
       })
     },
     async submit () {
@@ -186,13 +194,13 @@ export default {
 
         return Promise.reject(new Error('phone invalid'))
       } else if (!this.isCodeSent) {
-        this.sendVerificationCode()
+        return this.sendVerificationCode().then(() => {
+          this.$emit('update:model-value', this.$refs.phone.value)
 
-        this.$emit('update:model-value', this.$refs.phone.value)
+          this.isCodeSent = true
 
-        this.isCodeSent = true
-
-        return Promise.reject(new Error('verify with code'))
+          return Promise.reject(new Error('verify with code'))
+        })
       } else {
         return Promise.resolve({})
       }
