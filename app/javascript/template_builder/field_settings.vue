@@ -53,6 +53,40 @@
     </label>
   </div>
   <div
+    v-if="['select', 'radio'].includes(field.type) && !defaultField"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('default_value')"
+      dir="auto"
+      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
+      @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, save()]"
+    >
+      <option
+        value=""
+        :selected="!field.default_value"
+      >
+        {{ t('none') }}
+      </option>
+      <option
+        v-for="(option, index) in field.options || []"
+        :key="option.uuid"
+        :value="option.value || `${t('option')} ${index + 1}`"
+        :selected="field.default_value === (option.value || `${t('option')} ${index + 1}`)"
+      >
+        {{ option.value || `${t('option')} ${index + 1}` }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('default_value') }}
+    </label>
+  </div>
+  <div
     v-if="['text', 'number'].includes(field.type) && !defaultField"
     class="py-1.5 px-1 relative"
     @click.stop

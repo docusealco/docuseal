@@ -335,7 +335,11 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
     isDefaultValuePresent () {
-      return this.field?.default_value || this.field?.default_value === 0
+      if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {
+        return false
+      } else {
+        return this.field?.default_value || this.field?.default_value === 0
+      }
     },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
