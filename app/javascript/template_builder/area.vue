@@ -185,6 +185,11 @@
               class="whitespace-pre-wrap"
             >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
             <span
+              v-else-if="field.default_value === '{{date}}'"
+            >
+              {{ t('signing_date') }}
+            </span>
+            <span
               v-else
               ref="defaultValue"
               :contenteditable="isContenteditable"
@@ -211,7 +216,7 @@
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0"
       :class="isDragged ? 'cursor-grab' : 'cursor-pointer'"
-      @dblclick="maybeFocusDefaultValue"
+      @dblclick="maybeToggleDefaultValue"
     />
     <span
       v-if="field?.type && editable"
@@ -454,7 +459,7 @@ export default {
     closeDropdown () {
       document.activeElement.blur()
     },
-    maybeFocusDefaultValue () {
+    maybeToggleDefaultValue () {
       if (['text', 'number'].includes(this.field.type)) {
         this.isContenteditable = true
 
@@ -468,6 +473,11 @@ export default {
             )
           }
         })
+      } else if (this.field.type === 'date') {
+        this.field.readonly = !this.field.readonly
+        this.field.default_value === '{{date}}' ? delete this.field.default_value : this.field.default_value = '{{date}}'
+
+        this.save()
       }
     },
     formatNumber (number, format) {
