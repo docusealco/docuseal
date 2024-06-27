@@ -527,7 +527,15 @@ export default {
       this.save()
     },
     onPaste (e) {
-      e.target.innerText = (e.clipboardData || window.clipboardData).getData('text/plain')
+      const text = (e.clipboardData || window.clipboardData).getData('text/plain')
+
+      const selection = window.getSelection()
+
+      if (selection.rangeCount) {
+        selection.deleteFromDocument()
+        selection.getRangeAt(0).insertNode(document.createTextNode(text))
+        selection.collapseToEnd()
+      }
     },
     onResizeCell (e) {
       if (e.target.id === 'mask') {

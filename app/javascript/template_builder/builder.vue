@@ -513,6 +513,7 @@ export default {
       selectedSubmitter: null,
       showDrawField: false,
       drawField: null,
+      copiedArea: null,
       drawFieldType: null,
       drawOption: null,
       dragField: null
@@ -747,6 +748,14 @@ export default {
         event.preventDefault()
 
         this.undo()
+      } else if ((event.ctrlKey || event.metaKey) && event.key === 'c' && document.activeElement === document.body) {
+        event.preventDefault()
+
+        this.copiedArea = this.selectedAreaRef?.value
+      } else if ((event.ctrlKey || event.metaKey) && event.key === 'v' && this.copiedArea && document.activeElement === document.body) {
+        event.preventDefault()
+
+        this.pasteField()
       }
     },
     removeArea (area) {
@@ -759,6 +768,39 @@ export default {
       }
 
       this.save()
+    },
+    pasteField () {
+      const field = this.template.fields.find((f) => f.areas?.includes(this.copiedArea))
+      const currentArea = this.selectedAreaRef?.value || this.copiedArea
+
+      if (field && currentArea) {
+        const area = {
+          ...JSON.parse(JSON.stringify(this.copiedArea)),
+          attachment_uuid: currentArea.attachment_uuid,
+          page: currentArea.page,
+          x: currentArea.x,
+          y: currentArea.y + currentArea.h * 1.3
+        }
+
+        if (['radio', 'multiple'].includes(field.type)) {
+          this.copiedArea.option_uuid ||= field.options[0].uuid
+          area.option_uuid = v4()
+
+          field.options.push({ uuid: area.option_uuid })
+
+          field.areas.push(area)
+        } else {
+          this.template.fields.push({
+            ...JSON.parse(JSON.stringify(field)),
+            uuid: v4(),
+            areas: [area]
+          })
+        }
+
+        this.selectedAreaRef.value = area
+
+        this.save()
+      }
     },
     pushUndo () {
       const stringData = JSON.stringify(this.template)
@@ -990,6 +1032,8 @@ export default {
       }
 
       this.save()
+
+      document.activeElement?.blur()
     },
     updateFromUpload (data) {
       this.template.schema.push(...data.schema)
