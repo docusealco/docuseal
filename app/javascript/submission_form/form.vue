@@ -697,6 +697,7 @@ export default {
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
+      enableScrollIntoField: true,
       phoneVerifiedValues: {},
       orientation: screen?.orientation?.type,
       isSubmitting: false,
@@ -992,9 +993,11 @@ export default {
         if (!this.isCompleted) {
           if (scrollToArea) {
             this.scrollIntoField(step[0])
-
-            this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
           }
+
+          this.enableScrollIntoField = false
+          this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+          this.enableScrollIntoField = true
 
           if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
             this.$refs.form.querySelector('input[type="file"]')?.click()
@@ -1028,7 +1031,9 @@ export default {
       }
     },
     scrollIntoField (field) {
-      return this.$refs.areas.scrollIntoField(field)
+      if (this.enableScrollIntoField) {
+        return this.$refs.areas.scrollIntoField(field)
+      }
     },
     scrollIntoArea (area) {
       return this.$refs.areas.scrollIntoArea(area)
