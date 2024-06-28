@@ -7,7 +7,7 @@
       v-if="pendingFieldAttachmentUuids.length"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
-      <div class="alert border-base-300 py-2 px-2.5 rounded-xl">
+      <div class="alert border-base-content/30 py-2 px-2.5">
         <IconInfoCircle
           class="stroke-info shrink-0 w-6 h-6"
         />
