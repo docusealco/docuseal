@@ -477,6 +477,11 @@ export default {
             )
           }
         })
+      } else if (this.field.type === 'checkbox') {
+        this.field.readonly = !this.field.readonly
+        this.field.default_value === true ? delete this.field.default_value : this.field.default_value = true
+
+        this.save()
       } else if (this.field.type === 'date') {
         this.field.readonly = !this.field.readonly
         this.field.default_value === '{{date}}' ? delete this.field.default_value : this.field.default_value = '{{date}}'
