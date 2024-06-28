@@ -54,7 +54,7 @@
           </a>
         </span>
         <span
-          v-if="field.preferences?.format !== 'typed'"
+          v-if="field.preferences?.format !== 'typed' && field.preferences?.format !== 'drawn'"
           class="tooltip"
           :data-tip="t('take_photo')"
         >
