@@ -204,7 +204,7 @@ export default {
       return document.location.origin + '/auth/stripe_connect/callback'
     },
     defaultCurrencies () {
-      return ['USD', 'EUR', 'GBP']
+      return ['USD', 'EUR', 'GBP', 'CAD', 'AUD']
     },
     currenciesList () {
       return this.currencies.length ? this.currencies : this.defaultCurrencies
@@ -226,6 +226,10 @@ export default {
         return 'EUR'
       } else if (userTimezone.includes('London') || userTimezone.includes('Belfast')) {
         return 'GBP'
+      } else if (userTimezone.includes('Vancouver') || userTimezone.includes('Toronto') || userTimezone.includes('Halifax') || userTimezone.includes('Edmonton')) {
+        return 'CAD'
+      } else if (userTimezone.startsWith('Australia')) {
+        return 'AUD'
       } else {
         return 'USD'
       }
