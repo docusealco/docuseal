@@ -1,7 +1,7 @@
 <turbo-frame id="drawer">
   <turbo-modal class="modal modal-open items-start !animate-none justify-end overflow-y-auto !justify-normal md:!justify-end" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
     <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
-    <div class="bg-base-100 min-h-screen max-h-screen relative w-full relative overflow-y-auto">
+    <div class="bg-base-100 min-h-screen max-h-screen relative w-full relative">
       <% if local_assigns[:title] %>
         <div class="flex justify-between bg-base-100 py-2 px-4 items-center border-b pb-2 font-medium">
           <span>
