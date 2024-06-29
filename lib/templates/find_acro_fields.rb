@@ -77,7 +77,6 @@ module Templates
         {
           uuid: SecureRandom.uuid,
           required: false,
-          readonly: false,
           preferences: {},
           areas:,
           **field_properties
