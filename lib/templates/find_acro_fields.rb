@@ -65,6 +65,10 @@ module Templates
         next if field_properties[:default_value].present?
 
         if field_properties[:type].in?(%w[radio multiple])
+          if areas.size != field_properties[:options].size
+            field_properties[:options] = build_options(Array.new(areas.size, ''))
+          end
+
           areas.each_with_index do |area, index|
             area[:option_uuid] = field_properties[:options][index][:uuid]
           end
@@ -111,7 +115,7 @@ module Templates
           default_value: selected_option
         }
       elsif field.field_type == :Btn && field.concrete_field_type == :check_box &&
-            field[:Kids].present? && field[:Kids].size > 1 && field.allowed_values.present?
+            field[:Kids].present? && field[:Kids].size > 1 && field.allowed_values.size > 1
         selected_option = (field.allowed_values || []).find { |v| v == field.field_value }
 
         return {} if field.allowed_values.include?(:BBox)
