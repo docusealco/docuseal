@@ -18,7 +18,7 @@ module Submissions
 
     module_function
 
-    def call(submission, submitters = nil)
+    def call(submission, submitters = nil, params = {})
       submitters ||= submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
 
       serialized_submitters = submitters.map { |submitter| Submitters::SerializeForApi.call(submitter) }
@@ -32,6 +32,10 @@ module Submissions
       if submitters.all?(&:completed_at?)
         last_submitter = submitters.max_by(&:completed_at)
 
+        if params[:include].to_s.include?('combined_document_url')
+          json[:combined_document_url] = build_combined_url(submitters.max_by(&:completed_at), submission)
+        end
+
         json[:documents] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
         json[:status] = 'completed'
         json[:completed_at] = last_submitter.completed_at
@@ -44,6 +48,15 @@ module Submissions
       json[:submitters] = serialized_submitters
 
       json
+    end
+
+    def build_combined_url(submitter, submission)
+      return unless submitter.completed_at?
+
+      attachment = submission.combined_document_attachment
+      attachment ||= Submissions::GenerateCombinedAttachment.call(submitter)
+
+      ActiveStorage::Blob.proxy_url(attachment.blob)
     end
   end
 end

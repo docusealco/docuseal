@@ -44,7 +44,7 @@ module Api
         @submission.audit_trail_attachment = Submissions::GenerateAuditTrail.call(@submission)
       end
 
-      render json: Submissions::SerializeForApi.call(@submission, submitters)
+      render json: Submissions::SerializeForApi.call(@submission, submitters, params)
     end
 
     def create
