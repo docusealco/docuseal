@@ -691,6 +691,10 @@ export default {
       this.$emit('start-drag')
     },
     touchDrag (e) {
+      if (!this.editable) {
+        return
+      }
+
       const page = this.$parent.$refs.mask.previousSibling
       const rect = page.getBoundingClientRect()
 
@@ -732,6 +736,10 @@ export default {
       this.$emit('start-drag')
     },
     mouseMove (e) {
+      if (!this.editable) {
+        return
+      }
+
       this.isMoved = true
 
       const page = this.$parent.$refs.mask.previousSibling
