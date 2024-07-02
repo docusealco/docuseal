@@ -264,6 +264,11 @@ export default {
       required: false,
       default: true
     },
+    dryRun: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withDisclosure: {
       type: Boolean,
       required: false,
@@ -563,24 +568,39 @@ export default {
         cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
-          const formData = new FormData()
+          if (this.dryRun) {
+            const reader = new FileReader()
 
-          formData.append('file', file)
-          formData.append('submitter_slug', this.submitterSlug)
-          formData.append('name', 'attachments')
-          formData.append('remember_signature', this.rememberSignature)
+            reader.readAsDataURL(file)
 
-          return fetch(this.baseUrl + '/api/attachments', {
-            method: 'POST',
-            body: formData
-          }).then((resp) => resp.json()).then((attachment) => {
-            this.$emit('attached', attachment)
-            this.$emit('update:model-value', attachment.uuid)
+            reader.onloadend = () => {
+              const attachment = { url: reader.result, uuid: Math.random().toString() }
 
-            this.maybeSetSignedUuid(attachment.signed_uuid)
+              this.$emit('attached', attachment)
+              this.$emit('update:model-value', attachment.uuid)
 
-            return resolve(attachment)
-          })
+              resolve(attachment)
+            }
+          } else {
+            const formData = new FormData()
+
+            formData.append('file', file)
+            formData.append('submitter_slug', this.submitterSlug)
+            formData.append('name', 'attachments')
+            formData.append('remember_signature', this.rememberSignature)
+
+            return fetch(this.baseUrl + '/api/attachments', {
+              method: 'POST',
+              body: formData
+            }).then((resp) => resp.json()).then((attachment) => {
+              this.$emit('attached', attachment)
+              this.$emit('update:model-value', attachment.uuid)
+
+              this.maybeSetSignedUuid(attachment.signed_uuid)
+
+              return resolve(attachment)
+            })
+          }
         }).catch((error) => {
           if (error.message === 'Image too small' && this.field.required === false) {
             return resolve({})

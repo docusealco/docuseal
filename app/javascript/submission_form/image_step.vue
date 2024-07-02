@@ -37,6 +37,7 @@
     <FileDropzone
       :message="`${t('upload')} ${field.name || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
+      :dry-run="dryRun"
       :accept="'image/*'"
       @upload="onImageUpload"
     />
@@ -65,6 +66,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    dryRun: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     submitterSlug: {
       type: String,

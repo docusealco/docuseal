@@ -86,26 +86,55 @@
               {{ t('send') }}
             </span>
           </a>
-          <button
+          <span
             v-if="editable"
-            class="base-button"
-            :class="{ disabled: isSaving }"
-            v-bind="isSaving ? { disabled: true } : {}"
-            @click.prevent="onSaveClick"
+            class="flex"
           >
-            <IconInnerShadowTop
-              v-if="isSaving"
-              width="22"
-              class="animate-spin"
-            />
-            <IconDeviceFloppy
-              v-else
-              width="22"
-            />
-            <span class="hidden md:inline">
-              {{ t('save') }}
-            </span>
-          </button>
+            <button
+              class="base-button !rounded-r-none !pr-2"
+              :class="{ disabled: isSaving }"
+              v-bind="isSaving ? { disabled: true } : {}"
+              @click.prevent="onSaveClick"
+            >
+              <IconInnerShadowTop
+                v-if="isSaving"
+                width="22"
+                class="animate-spin"
+              />
+              <IconDeviceFloppy
+                v-else
+                width="22"
+              />
+              <span class="hidden md:inline">
+                {{ t('save') }}
+              </span>
+            </button>
+            <div class="dropdown dropdown-end">
+              <label
+                tabindex="0"
+                class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500"
+              >
+                <span class="text-sm align-text-top">
+                  <IconChevronDown class="w-5 h-5 flex-shrink-0" />
+                </span>
+              </label>
+              <ul
+                tabindex="0"
+                class="dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right"
+              >
+                <li>
+                  <a
+                    :href="`/templates/${template.id}/form`"
+                    data-turbo="false"
+                    class="flex items-center justify-center space-x-2"
+                  >
+                    <IconEye class="w-6 h-6 flex-shrink-0" />
+                    <span class="whitespace-nowrap">Save and Preview</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </span>
           <a
             v-else
             :href="`/templates/${template.id}`"
@@ -321,7 +350,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
-import { IconUsersPlus, IconDeviceFloppy, IconWritingSign, IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
+import { IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 import { en as i18nEn } from './i18n'
@@ -343,6 +372,8 @@ export default {
     IconInnerShadowTop,
     Contenteditable,
     IconUsersPlus,
+    IconChevronDown,
+    IconEye,
     IconDeviceFloppy
   },
   provide () {

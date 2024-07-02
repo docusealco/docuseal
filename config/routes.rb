@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     resources :submissions, only: %i[new create]
     resource :folder, only: %i[edit update], controller: 'templates_folders'
     resource :preview, only: %i[show], controller: 'templates_preview'
+    resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create], controller: 'templates_preferences'
     resources :submissions_export, only: %i[index new]

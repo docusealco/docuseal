@@ -41,7 +41,8 @@
     <div
       v-if="isActive"
       ref="scrollToElem"
-      class="absolute -top-20"
+      class="absolute"
+      :style="{ top: scrollPadding }"
     />
     <img
       v-if="field.type === 'image' && image"
@@ -196,6 +197,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    scrollPadding: {
+      type: String,
+      required: false,
+      default: '-80px'
     },
     submittable: {
       type: Boolean,

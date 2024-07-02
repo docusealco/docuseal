@@ -7,7 +7,7 @@
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 %>
-      <%= render 'banner' %>
+      <%= local_assigns[:banner_html] || render('submit_form/banner') %>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
@@ -41,7 +41,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <%= render 'submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs %>
+      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns[:scroll_padding] %>
     </div>
   </div>
 </div>

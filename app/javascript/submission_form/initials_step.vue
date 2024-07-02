@@ -143,6 +143,11 @@ export default {
       type: Object,
       required: true
     },
+    dryRun: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     submitterSlug: {
       type: String,
       required: true
@@ -282,21 +287,36 @@ export default {
         cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
           const file = new File([blob], 'initials.png', { type: 'image/png' })
 
-          const formData = new FormData()
+          if (this.dryRun) {
+            const reader = new FileReader()
 
-          formData.append('file', file)
-          formData.append('submitter_slug', this.submitterSlug)
-          formData.append('name', 'attachments')
+            reader.readAsDataURL(file)
 
-          return fetch(this.baseUrl + '/api/attachments', {
-            method: 'POST',
-            body: formData
-          }).then((resp) => resp.json()).then((attachment) => {
-            this.$emit('attached', attachment)
-            this.$emit('update:model-value', attachment.uuid)
+            reader.onloadend = () => {
+              const attachment = { url: reader.result, uuid: Math.random().toString() }
 
-            return resolve(attachment)
-          })
+              this.$emit('attached', attachment)
+              this.$emit('update:model-value', attachment.uuid)
+
+              resolve(attachment)
+            }
+          } else {
+            const formData = new FormData()
+
+            formData.append('file', file)
+            formData.append('submitter_slug', this.submitterSlug)
+            formData.append('name', 'attachments')
+
+            return fetch(this.baseUrl + '/api/attachments', {
+              method: 'POST',
+              body: formData
+            }).then((resp) => resp.json()).then((attachment) => {
+              this.$emit('attached', attachment)
+              this.$emit('update:model-value', attachment.uuid)
+
+              return resolve(attachment)
+            })
+          }
         })
       })
     }

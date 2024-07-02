@@ -22,6 +22,7 @@
             :area="area"
             :submittable="true"
             :field-index="fieldIndex"
+            :scroll-padding="scrollPadding"
             :is-active="currentStep === step"
             :with-label="withLabel"
             :is-value-set="step.some((f) => f.uuid in values)"
@@ -52,6 +53,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    scrollPadding: {
+      type: String,
+      required: false,
+      default: '-80px'
     },
     attachmentsIndex: {
       type: Object,

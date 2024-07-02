@@ -52,6 +52,7 @@
       :message="`${t('upload')} ${field.name || t('files')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :multiple="true"
+      :dry-run="dryRun"
       @upload="onUpload"
     />
   </div>
@@ -79,6 +80,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    dryRun: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     attachmentsIndex: {
       type: Object,

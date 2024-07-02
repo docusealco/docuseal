@@ -65,6 +65,11 @@ export default {
       type: String,
       required: true
     },
+    dryRun: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     accept: {
       type: String,
       required: false,
@@ -107,20 +112,36 @@ export default {
         Array.from(files).map(async (file) => {
           const formData = new FormData()
 
-          if (file.type === 'image/bmp') {
-            file = await this.convertBmpToPng(file)
+          if (this.dryRun) {
+            return new Promise((resolve) => {
+              const reader = new FileReader()
+
+              reader.readAsDataURL(file)
+
+              reader.onloadend = () => {
+                resolve({
+                  url: reader.result,
+                  uuid: Math.random().toString(),
+                  filename: file.name
+                })
+              }
+            })
+          } else {
+            if (file.type === 'image/bmp') {
+              file = await this.convertBmpToPng(file)
+            }
+
+            formData.append('file', file)
+            formData.append('submitter_slug', this.submitterSlug)
+            formData.append('name', 'attachments')
+
+            return fetch(this.baseUrl + '/api/attachments', {
+              method: 'POST',
+              body: formData
+            }).then(resp => resp.json()).then((data) => {
+              return data
+            })
           }
-
-          formData.append('file', file)
-          formData.append('submitter_slug', this.submitterSlug)
-          formData.append('name', 'attachments')
-
-          return fetch(this.baseUrl + '/api/attachments', {
-            method: 'POST',
-            body: formData
-          }).then(resp => resp.json()).then((data) => {
-            return data
-          })
         })).then((result) => {
         this.$emit('upload', result)
       }).finally(() => {
