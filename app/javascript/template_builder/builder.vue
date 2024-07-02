@@ -796,7 +796,49 @@ export default {
         event.preventDefault()
 
         this.pasteField()
+      } else if (this.selectedAreaRef.value && ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'].includes(event.key) && document.activeElement === document.body) {
+        event.preventDefault()
+
+        this.handleAreaArrows(event)
       }
+    },
+    handleAreaArrows (event) {
+      if (!this.editable) {
+        return
+      }
+
+      const area = this.selectedAreaRef.value
+      const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+      const page = documentRef.pageRefs[area.page].$refs.image
+      const rect = page.getBoundingClientRect()
+      const diff = (event.shiftKey ? 5.0 : 1.0)
+
+      if (event.key === 'ArrowRight' && event.altKey) {
+        area.w = Math.min(Math.max(area.w + diff / rect.width, 0), 1 - area.x)
+      } else if (event.key === 'ArrowLeft' && event.altKey) {
+        area.w = Math.min(Math.max(area.w - diff / rect.width, 0), 1 - area.x)
+      } else if (event.key === 'ArrowUp' && event.altKey) {
+        area.h = Math.min(Math.max(area.h - diff / rect.height, 0), 1 - area.y)
+      } else if (event.key === 'ArrowDown' && event.altKey) {
+        area.h = Math.min(Math.max(area.h + diff / rect.height, 0), 1 - area.y)
+      } else if (event.key === 'ArrowRight') {
+        area.x = Math.min(Math.max(area.x + diff / rect.width, 0), 1 - area.w)
+      } else if (event.key === 'ArrowLeft') {
+        area.x = Math.min(Math.max(area.x - diff / rect.width, 0), 1 - area.w)
+      } else if (event.key === 'ArrowUp') {
+        area.y = Math.min(Math.max(area.y - diff / rect.height, 0), 1 - area.h)
+      } else if (event.key === 'ArrowDown') {
+        area.y = Math.min(Math.max(area.y + diff / rect.height, 0), 1 - area.h)
+      }
+
+      this.debouncedSave()
+    },
+    debouncedSave () {
+      clearTimeout(this._saveTimeout)
+
+      this._saveTimeout = setTimeout(() => {
+        this.save()
+      }, 700)
     },
     removeArea (area) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))

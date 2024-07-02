@@ -338,6 +338,7 @@ export default {
       isShowDescriptionModal: false,
       isResize: false,
       isDragged: false,
+      isMoved: false,
       renderDropdown: false,
       isNameFocus: false,
       textOverflowChars: 0,
@@ -731,6 +732,8 @@ export default {
       this.$emit('start-drag')
     },
     mouseMove (e) {
+      this.isMoved = true
+
       const page = this.$parent.$refs.mask.previousSibling
       const rect = page.getBoundingClientRect()
 
@@ -741,11 +744,12 @@ export default {
       this.$el.getRootNode().removeEventListener('mousemove', this.mouseMove)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopMouseMove)
 
-      if (this.isDragged) {
+      if (this.isMoved) {
         this.save()
       }
 
       this.isDragged = false
+      this.isMoved = false
 
       this.$emit('stop-drag')
     },
