@@ -102,14 +102,16 @@ module Templates
 
       field_name = field_name&.encode('utf-8', invalid: :replace, undef: :replace, replace: '')
 
+      attrs = { name: field_name.to_s }
+      attrs[:description] = field[:TU] if field[:TU].present? && field[:TU] != field.full_field_name
+
       if field.field_type == :Btn && field.concrete_field_type == :radio_button && field[:Opt].present?
         selected_option_index = (field.allowed_values || []).find_index(field.field_value)
         selected_option = field[:Opt][selected_option_index] if selected_option_index
 
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'radio',
-          description: field[:TU],
           options: build_options(field[:Opt], 'radio'),
           default_value: selected_option
         }
@@ -120,55 +122,48 @@ module Templates
         return {} if field.allowed_values.include?(:BBox)
 
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'radio',
-          description: field[:TU],
           options: build_options(field.allowed_values, 'radio'),
           default_value: selected_option
         }
       elsif field.field_type == :Btn && field.concrete_field_type == :check_box
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'checkbox',
-          description: field[:TU],
           default_value: field.field_value.present?
         }
       elsif field.field_type == :Ch &&
             %i[combo_box editable_combo_box].include?(field.concrete_field_type) && field[:Opt].present?
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'select',
-          description: field[:TU],
           options: build_options(field[:Opt]),
           default_value: field.field_value
         }
       elsif field.field_type == :Ch && field.concrete_field_type == :multi_select && field[:Opt].present?
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'multiple',
-          description: field[:TU],
           options: build_options(field[:Opt], 'multiple'),
           default_value: field.field_value
         }
       elsif field.field_type == :Tx && field.concrete_field_type == :comb_text_field
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'cells',
-          description: field[:TU],
           default_value: field.field_value
         }
       elsif field.field_type == :Tx
         {
-          name: field_name.to_s,
+          **attrs,
           type: 'text',
-          description: field[:TU],
           default_value: field.field_value
         }
       elsif field.field_type == :Sig
         {
-          name: field_name.to_s,
-          type: 'signature',
-          description: field[:TU]
+          **attrs,
+          type: 'signature'
         }
       else
         {}
