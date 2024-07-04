@@ -11,6 +11,9 @@ module Submitters
     UnknownSubmitterName = Class.new(BaseError)
     UnableToDownload = Class.new(BaseError)
 
+    TRUE_VALUES = ['1', 'true', true, 'TRUE', 'True', 'yes', 'YES', 'Yes'].freeze
+    FALSE_VALUES = ['0', 'false', false, 'FALSE', 'False', 'no', 'NO', 'No'].freeze
+
     module_function
 
     def call(template, values, submitter_name: nil, for_submitter: nil, throw_errors: false)
@@ -50,20 +53,31 @@ module Submitters
     end
 
     def normalize_value(field, value)
-      if field['type'] == 'text' && value.present?
+      if field['type'] == 'checkbox'
+        return true if TRUE_VALUES.include?(value)
+        return false if FALSE_VALUES.include?(value)
+      end
+
+      return nil if value.blank?
+
+      if field['type'] == 'text'
         value.to_s
-      elsif field['type'] == 'number' && value.present?
+      elsif field['type'] == 'number'
         (value.to_f % 1).zero? ? value.to_i : value.to_f
-      elsif field['type'] == 'date' && value.present? && value != '{{date}}'
-        if value.is_a?(Integer)
-          Time.zone.at(value.to_s.first(10).to_i).to_date.to_s
-        elsif value.gsub(/\w/, '0') == field.dig('preferences', 'format').to_s.gsub(/\w/, '0')
-          TimeUtils.parse_date_string(value, field.dig('preferences', 'format')).to_s
-        else
-          Date.parse(value).to_s
-        end
+      elsif field['type'] == 'date' && value != '{{date}}'
+        normalize_date(field, value)
       else
         value
+      end
+    end
+
+    def normalize_date(field, value)
+      if value.is_a?(Integer)
+        Time.zone.at(value.to_s.first(10).to_i).to_date.to_s
+      elsif value.gsub(/\w/, '0') == field.dig('preferences', 'format').to_s.gsub(/\w/, '0')
+        TimeUtils.parse_date_string(value, field.dig('preferences', 'format')).to_s
+      else
+        Date.parse(value).to_s
       end
     rescue Date::Error => e
       Rollbar.warning(e) if defined?(Rollbar)

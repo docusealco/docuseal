@@ -146,14 +146,14 @@
         <input
           name="submissions_json"
           hidden
-          :value="JSON.stringify(submissionsData.slice(0, 1100))"
+          :value="multitenant ? JSON.stringify(submissionsData.slice(0, 1100)) : JSON.stringify(submissionsData)"
         >
       </div>
       <div
         class="px-3 border-y py-2 border-base-300 text-center w-full text-sm font-semibold"
       >
         Total entries: {{ submissionsData.length }}
-        <template v-if="submissionsData.length >= 1000">
+        <template v-if="multitenant && submissionsData.length >= 1000">
           / 1000
         </template>
       </div>
@@ -239,6 +239,11 @@ export default {
       type: Object,
       required: true
     },
+    multitenant: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     authenticityToken: {
       type: String,
       required: false,
@@ -269,7 +274,11 @@ export default {
 
             if (['name', 'email', 'phone', 'external_id'].includes(mapping.field_name.toLowerCase())) {
               submittersIndex[mapping.submitter_uuid][mapping.field_name.toLowerCase()] = row[mapping.column_index]
-            } else {
+            }
+
+            const fieldType = this.fieldTypesIndex[mapping.submitter_uuid][mapping.field_name]
+
+            if (fieldType && fieldType !== 'phone') {
               submittersIndex[mapping.submitter_uuid].fields.push({
                 name: mapping.field_name, default_value: row[mapping.column_index], readonly: true
               })
@@ -305,6 +314,17 @@ export default {
     },
     submitters () {
       return this.template.submitters
+    },
+    fieldTypesIndex () {
+      return this.template.fields.reduce((acc, field) => {
+        acc[field.submitter_uuid] ||= {}
+
+        if (field.name) {
+          acc[field.submitter_uuid][field.name] = field.type
+        }
+
+        return acc
+      }, {})
     },
     columns () {
       return this.table[0]
