@@ -67,7 +67,7 @@ module Submitters
     end
 
     def fetch_field_value(field, value, attachments_index)
-      if field['type'].in?(%w[image signature initials stamp])
+      if field['type'].in?(%w[image signature initials stamp payment])
         rails_storage_proxy_url(attachments_index[value])
       elsif field['type'] == 'file'
         Array.wrap(value).compact_blank.filter_map { |e| rails_storage_proxy_url(attachments_index[e]) }
