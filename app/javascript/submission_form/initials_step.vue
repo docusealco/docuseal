@@ -251,13 +251,28 @@ export default {
       const context = canvas.getContext('2d')
 
       const fontFamily = 'Arial'
-      const fontSize = '44px'
+      const initialFontSize = 50
       const fontStyle = 'italic'
       const fontWeight = ''
 
-      context.font = fontStyle + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily
-      context.textAlign = 'center'
+      const setFontSize = (size) => {
+        context.font = `${fontStyle} ${fontWeight} ${size}px ${fontFamily}`
+      }
 
+      const adjustFontSizeToFit = (text, maxWidth, initialSize) => {
+        let size = initialSize
+
+        setFontSize(size)
+
+        while (context.measureText(text).width > maxWidth && size > 1) {
+          size -= 1
+          setFontSize(size)
+        }
+      }
+
+      adjustFontSizeToFit(e.target.value, canvas.width / scale, initialFontSize)
+
+      context.textAlign = 'center'
       context.clearRect(0, 0, canvas.width / scale, canvas.height / scale)
       context.fillText(e.target.value, canvas.width / 2 / scale, canvas.height / 2 / scale + 11)
     },
