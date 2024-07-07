@@ -3,8 +3,20 @@
     v-if="!modelValue && !sessionId"
     :for="field.uuid"
     class="label text-2xl mb-2"
-  >{{ field.name || defaultName }}
+  >
+    <MarkdownContent
+      v-if="field.title"
+      :string="field.title"
+    />
+    <template v-else>{{ field.name || defaultName }}</template>
   </label>
+  <div
+    v-if="field.description"
+    dir="auto"
+    class="mb-4 px-1"
+  >
+    <MarkdownContent :string="field.description" />
+  </div>
   <div>
     <input
       type="text"
@@ -17,7 +29,7 @@
       v-if="modelValue && !sessionId"
       class=" text-2xl mb-2"
     >
-      Already paid
+      {{ t('already_paid') }}
     </div>
     <div v-else>
       <button
@@ -60,11 +72,13 @@
 
 <script>
 import { IconBrandStripe, IconInnerShadowTop, IconLoader } from '@tabler/icons-vue'
+import MarkdownContent from './markdown_content'
 
 export default {
   name: 'PaymentStep',
   components: {
     IconBrandStripe,
+    MarkdownContent,
     IconInnerShadowTop,
     IconLoader
   },
@@ -105,7 +119,7 @@ export default {
         currency
       }).format(price)
 
-      return `Pay ${formattedPrice}`
+      return this.t('pay') + ' ' + formattedPrice
     }
   },
   mounted () {

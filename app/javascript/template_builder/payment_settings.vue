@@ -153,6 +153,19 @@
       <li class="mt-1">
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
+          @click="$emit('click-description')"
+        >
+          <IconInfoCircle
+            width="18"
+          />
+          <span class="text-sm">
+            {{ t('description') }}
+          </span>
+        </label>
+      </li>
+      <li class="mt-1">
+        <label
+          class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-condition')"
         >
           <IconRouteAltLeft
@@ -168,7 +181,7 @@
 </template>
 
 <script>
-import { IconSettings, IconCircleCheck, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft } from '@tabler/icons-vue'
+import { IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft } from '@tabler/icons-vue'
 import { ref } from 'vue'
 
 const isConnected = ref(false)
@@ -179,6 +192,7 @@ export default {
     IconSettings,
     IconCircleCheck,
     IconRouteAltLeft,
+    IconInfoCircle,
     IconInnerShadowTop,
     IconBrandStripe
   },
@@ -189,7 +203,7 @@ export default {
       required: true
     }
   },
-  emits: ['click-condition'],
+  emits: ['click-condition', 'click-description'],
   data () {
     return {
       isLoading: false
