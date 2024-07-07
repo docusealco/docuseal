@@ -5,6 +5,7 @@ module Templates
     PDF_CONTENT_TYPE = 'application/pdf'
 
     FIELD_NAME_REGEXP = /\A(?=.*\p{L})[\p{L}\d\s]+\z/
+    SKIP_FIELD_DESCRIPTION = %w[undefined].freeze
 
     module_function
 
@@ -103,7 +104,9 @@ module Templates
       field_name = field_name&.encode('utf-8', invalid: :replace, undef: :replace, replace: '')
 
       attrs = { name: field_name.to_s }
-      attrs[:description] = field[:TU] if field[:TU].present? && field[:TU] != field.full_field_name
+      attrs[:description] = field[:TU] if field[:TU].present? &&
+                                          field[:TU] != field.full_field_name &&
+                                          !field[:TU].in?(SKIP_FIELD_DESCRIPTION)
 
       if field.field_type == :Btn && field.concrete_field_type == :radio_button && field[:Opt].present?
         selected_option_index = (field.allowed_values || []).find_index(field.field_value)
