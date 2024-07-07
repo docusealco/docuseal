@@ -247,10 +247,30 @@ module Submissions
             cell_width = area['cell_w'] * width
 
             TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
+              next if char.blank?
+
               text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
                                                                 font_size:)
 
-              cell_layouter.fit([text], cell_width, area['h'] * height)
+              line_height = layouter.fit([text], cell_width, height).lines.first.height
+
+              if preferences_font_size.blank? && line_height > (area['h'] * height)
+                text = HexaPDF::Layout::TextFragment.create(char,
+                                                            font: pdf.fonts.add(FONT_NAME),
+                                                            font_size: (font_size / 1.4).to_i)
+
+                line_height = layouter.fit([text], cell_width, height).lines.first.height
+              end
+
+              if preferences_font_size.blank? && line_height > (area['h'] * height)
+                text = HexaPDF::Layout::TextFragment.create(char,
+                                                            font: pdf.fonts.add(FONT_NAME),
+                                                            font_size: (font_size / 1.9).to_i)
+
+                line_height = layouter.fit([text], cell_width, height).lines.first.height
+              end
+
+              cell_layouter.fit([text], cell_width, [line_height, area['h'] * height].max)
                            .draw(canvas, ((area['x'] * width) + (cell_width * index)),
                                  height - (area['y'] * height))
             end
