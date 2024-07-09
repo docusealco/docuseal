@@ -9,6 +9,7 @@ const en = {
   keep: 'Keep',
   left: 'Left',
   validation: 'Validation',
+  add_blank_page: 'Add blank page',
   right: 'Right',
   center: 'Center',
   description: 'Description',

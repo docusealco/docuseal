@@ -1,6 +1,7 @@
 <template>
   <div>
     <label
+      id="add_document_button"
       :for="inputId"
       class="btn btn-outline w-full"
       :class="{ 'btn-disabled': isLoading || isProcessing }"
