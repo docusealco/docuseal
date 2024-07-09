@@ -26,4 +26,19 @@ module PdfUtils
 
     decrypted_io.tap(&:rewind).read
   end
+
+  def merge(files)
+    merged_pdf = HexaPDF::Document.new
+
+    files.each do |file|
+      pdf = HexaPDF::Document.new(io: file)
+      pdf.pages.each { |page| merged_pdf.pages << merged_pdf.import(page) }
+    end
+
+    merged_content = StringIO.new
+    merged_pdf.write(merged_content)
+    merged_content.rewind
+
+    merged_content
+  end
 end
