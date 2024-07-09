@@ -349,6 +349,8 @@ module Submissions
 
           pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
         end
+
+        maybe_enable_ltv(io, sign_params)
       else
         begin
           pdf.write(io, incremental: true, validate: false)
@@ -358,16 +360,20 @@ module Submissions
           pdf.write(io, incremental: false, validate: false)
         end
       end
-      # rubocop:enable Metrics
 
       ActiveStorage::Attachment.new(
-        blob: ActiveStorage::Blob.create_and_upload!(io: StringIO.new(io.string), filename: "#{name}.pdf"),
+        blob: ActiveStorage::Blob.create_and_upload!(io: io.tap(&:rewind), filename: "#{name}.pdf"),
         metadata: { original_uuid: uuid,
                     analyzed: true,
                     sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
         name: 'documents',
         record: submitter
       )
+    end
+    # rubocop:enable Metrics
+
+    def maybe_enable_ltv(io, _sign_params)
+      io
     end
 
     def build_signing_params(pkcs, tsa_url)

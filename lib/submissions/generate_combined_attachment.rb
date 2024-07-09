@@ -24,9 +24,11 @@ module Submissions
 
       pdf.sign(io, **sign_params)
 
+      Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
+
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
-          io: StringIO.new(io.string), filename: "#{submission.template.name}.pdf"
+          io: io.tap(&:rewind), filename: "#{submission.template.name}.pdf"
         ),
         name: 'combined_document',
         record: submission
