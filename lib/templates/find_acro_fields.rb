@@ -19,7 +19,7 @@ module Templates
         areas = Array.wrap(field[:Kids] || field).filter_map do |child_field|
           page = annots_index[child_field.hash]
 
-          media_box = page[:MediaBox]
+          media_box = page[:CropBox] || page[:MediaBox]
           crop_box = page[:CropBox] || media_box
 
           media_box_start = [media_box[0], media_box[1]]
@@ -51,7 +51,7 @@ module Templates
 
           next if attrs[:w].zero? || attrs[:h].zero?
 
-          if child_field[:MaxLen] && child_field.concrete_field_type == :comb_text_field
+          if child_field[:MaxLen] && child_field.try(:concrete_field_type) == :comb_text_field
             attrs[:cell_w] = w / page_width / child_field[:MaxLen].to_f
           end
 
