@@ -42,10 +42,10 @@ module Templates
 
           attrs = {
             page: page.index,
-            x: x / page_width,
-            y: transformed_y / page_height,
-            w: w / page_width,
-            h: h / page_height,
+            x: x / page_width.to_f,
+            y: transformed_y / page_height.to_f,
+            w: w / page_width.to_f,
+            h: h / page_height.to_f,
             attachment_uuid: attachment.uuid
           }
 
