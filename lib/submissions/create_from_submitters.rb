@@ -4,7 +4,7 @@ module Submissions
   module CreateFromSubmitters
     module_function
 
-    def call(template:, user:, submissions_attrs:, source:, submitters_order:, mark_as_sent: false, params: {})
+    def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {})
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
       Array.wrap(submissions_attrs).filter_map do |attrs|
@@ -32,7 +32,7 @@ module Submissions
           is_order_sent = submitters_order == 'random' || index.zero?
 
           build_submitter(submission:, attrs: submitter_attrs, uuid:,
-                          is_order_sent:, mark_as_sent:, user:,
+                          is_order_sent:, user:,
                           preferences: preferences.merge(submission_preferences))
         end
 
@@ -149,7 +149,7 @@ module Submissions
       uuid || template.submitters[index]&.dig('uuid')
     end
 
-    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, mark_as_sent:, user:, preferences:)
+    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, user:, preferences:)
       email = Submissions.normalize_email(attrs[:email])
       submitter_preferences = Submitters.normalize_preferences(submission.account, user, attrs)
       values = attrs[:values] || {}
@@ -166,7 +166,6 @@ module Submissions
           name: attrs[:name],
           external_id: attrs[:external_id].presence || attrs[:application_key],
           completed_at: attrs[:completed].present? ? Time.current : nil,
-          sent_at: mark_as_sent && email.present? && is_order_sent ? Time.current : nil,
           values: values.except(phone_field_uuid),
           metadata: attrs[:metadata] || {},
           preferences: preferences.merge(submitter_preferences)
@@ -174,6 +173,9 @@ module Submissions
                                   .except('bcc_completed'),
           uuid:
         )
+
+      submitter.sent_at =
+        submitter.preferences['send_email'] != false && email.present? && is_order_sent ? Time.current : nil
 
       assign_completed_attributes(submitter) if submitter.completed_at?
 

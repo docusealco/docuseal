@@ -39,7 +39,6 @@ class SubmissionsController < ApplicationController
                                            user: current_user,
                                            source: :invite,
                                            submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
-                                           mark_as_sent: params[:send_email] == '1',
                                            submissions_attrs: submissions_params[:submission].to_h.values,
                                            params: params.merge('send_completed_email' => true))
       end

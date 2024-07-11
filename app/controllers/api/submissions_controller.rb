@@ -121,7 +121,6 @@ module Api
           template:,
           user: current_user,
           source: :api,
-          mark_as_sent: is_send_email,
           submitters_order: params[:submitters_order] || params[:order] || 'preserved',
           submissions_attrs:,
           params:

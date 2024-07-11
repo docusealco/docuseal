@@ -80,10 +80,10 @@ module Submissions
     emails
   end
 
-  def create_from_submitters(template:, user:, submissions_attrs:, source:, mark_as_sent: false,
+  def create_from_submitters(template:, user:, submissions_attrs:, source:,
                              submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {})
     Submissions::CreateFromSubmitters.call(
-      template:, user:, submissions_attrs:, source:, mark_as_sent:, submitters_order:, params:
+      template:, user:, submissions_attrs:, source:, submitters_order:, params:
     )
   end
 
