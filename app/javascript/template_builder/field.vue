@@ -14,7 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
-            :editable="editable && !defaultField"
+            :editable="editable && !defaultField && field.type != 'heading'"
             :button-width="20"
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
@@ -24,7 +24,7 @@
           <Contenteditable
             ref="name"
             :model-value="(defaultField ? (field.title || field.name) : field.name) || defaultName"
-            :editable="editable && !defaultField"
+            :editable="editable && !defaultField && field.type != 'heading'"
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
@@ -96,7 +96,7 @@
             @click-description="isShowDescriptionModal = true"
           />
           <span
-            v-else
+            v-else-if="field.type !== 'heading'"
             class="dropdown dropdown-end"
             @mouseenter="renderDropdown = true"
             @touchstart="renderDropdown = true"
@@ -357,9 +357,12 @@ export default {
       } else {
         const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
 
-        const suffix = { multiple: this.t('select'), radio: this.t('group') }[field.type] || this.t('field')
-
-        return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
+        if (this.field.type === 'heading') {
+          return `${this.fieldNames[field.type]} ${typeIndex + 1}`
+        } else {
+          const suffix = { multiple: this.t('select'), radio: this.t('group') }[field.type] || this.t('field')
+          return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
+        }
       }
     },
     onNameFocus (e) {
@@ -415,6 +418,10 @@ export default {
 
       if (['radio', 'multiple', 'select'].includes(this.field.type)) {
         this.field.options ||= [{ value: '', uuid: v4() }]
+      }
+
+      if (['heading'].includes(this.field.type)) {
+        this.field.readonly = true
       }
 
       (this.field.areas || []).forEach((area) => {

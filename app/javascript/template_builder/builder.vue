@@ -327,7 +327,7 @@
                 {{ t('cancel') }}
               </button>
               <a
-                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials'].includes(drawField?.type || drawFieldType)"
+                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading'].includes(drawField?.type || drawFieldType)"
                 href="#"
                 class="link block mt-3 text-sm"
                 @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
@@ -1120,7 +1120,7 @@ export default {
           field.options = [{ value: '', uuid: v4() }]
         }
 
-        if (field.type === 'stamp') {
+        if (['stamp', 'heading'].includes(field.type)) {
           field.readonly = true
         }
 
@@ -1204,6 +1204,15 @@ export default {
       this.save()
 
       document.activeElement?.blur()
+
+      if (field.type === 'heading') {
+        this.$nextTick(() => {
+          const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+          const areaRef = documentRef.pageRefs[area.page].areaRefs.find((ref) => ref.area === this.selectedAreaRef.value)
+
+          areaRef.focusValueInput()
+        })
+      }
     },
     addBlankPage () {
       this.isLoadingBlankPage = true

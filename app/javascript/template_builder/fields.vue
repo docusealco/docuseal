@@ -277,7 +277,7 @@ export default {
           return acc
         }, {})
       } else {
-        return this.fieldIcons
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading'))
       }
     },
     submitterFields () {

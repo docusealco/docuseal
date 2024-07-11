@@ -48,6 +48,7 @@ module Submitters
         submitter_field_counters[field['type']] += 1
 
         next if field['submitter_uuid'] != submitter.uuid
+        next if field['type'] == 'heading'
 
         field_name =
           field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}"

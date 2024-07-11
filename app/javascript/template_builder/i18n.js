@@ -8,6 +8,7 @@ const en = {
   uploaded_pdf_contains_form_fields_keep_or_remove_them: 'Uploaded PDF contains form fields. Keep or remove them?',
   keep: 'Keep',
   left: 'Left',
+  heading: 'Heading',
   validation: 'Validation',
   add_blank_page: 'Add blank page',
   right: 'Right',

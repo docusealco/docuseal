@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -96,6 +96,7 @@ export default {
   computed: {
     fieldNames () {
       return {
+        heading: this.t('heading'),
         text: this.t('text'),
         signature: this.t('signature'),
         initials: this.t('initials'),
@@ -115,6 +116,7 @@ export default {
     },
     fieldIcons () {
       return {
+        heading: IconHeading,
         text: IconTextSize,
         signature: IconWritingSign,
         initials: IconLetterCaseUpper,
@@ -140,7 +142,7 @@ export default {
           return acc
         }, {})
       } else {
-        return this.fieldIcons
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading'))
       }
     }
   },

@@ -224,6 +224,7 @@ module Submissions
 
         submission.template_fields.filter_map do |field|
           next if field['submitter_uuid'] != submitter.uuid
+          next if field['type'] == 'heading'
 
           submitter_field_counters[field['type']] += 1
 
