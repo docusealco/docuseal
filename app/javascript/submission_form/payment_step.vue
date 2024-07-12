@@ -51,7 +51,7 @@
         class="btn bg-[#7B73FF] text-white hover:bg-[#0A2540] text-lg w-full"
         :class="{ disabled: isCreatingCheckout }"
         :disabled="isCreatingCheckout"
-        @click.prevent="startCheckout"
+        @click.prevent="postCheckout"
       >
         <IconInnerShadowTop
           v-if="isCreatingCheckout"
@@ -126,6 +126,10 @@ export default {
     if (this.sessionId) {
       this.$emit('submit')
     }
+
+    if (!this.sessionId) {
+      this.postCheckout({ checkStatus: true })
+    }
   },
   methods: {
     async submit () {
@@ -158,7 +162,7 @@ export default {
         return Promise.resolve({})
       }
     },
-    startCheckout () {
+    postCheckout ({ checkStatus } = {}) {
       this.isCreatingCheckout = true
 
       fetch(this.baseUrl + '/api/stripe_payments', {
@@ -166,6 +170,7 @@ export default {
         body: JSON.stringify({
           submitter_slug: this.submitterSlug,
           field_uuid: this.field.uuid,
+          check_status: checkStatus,
           referer: document.location.href
         }),
         headers: { 'Content-Type': 'application/json' }
