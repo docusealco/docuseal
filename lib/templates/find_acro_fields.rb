@@ -4,7 +4,7 @@ module Templates
   module FindAcroFields
     PDF_CONTENT_TYPE = 'application/pdf'
 
-    FIELD_NAME_REGEXP = /\A(?=.*\p{L})[\p{L}\d\s]+\z/
+    FIELD_NAME_REGEXP = /\A(?=.*\p{L})[\p{L}\d\s-]+\z/
     SKIP_FIELD_DESCRIPTION = %w[undefined].freeze
 
     module_function
