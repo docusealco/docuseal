@@ -57,6 +57,10 @@ en: &en
   sign_up_with_microsoft: Sign up with Microsoft
   by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.co/terms">Terms of Service</a>.'
   enter_email_to_continue: Enter email to continue
+  doorkeeper:
+    scopes:
+      write: Update your data
+      read: Read your data
 
 es: &es
   role: Rol
