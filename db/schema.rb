@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_24_102526) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_14_172222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -290,6 +290,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_102526) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  create_table "webhook_urls", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.text "url", null: false
+    t.text "events", null: false
+    t.string "sha1", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_webhook_urls_on_account_id"
+    t.index ["sha1"], name: "index_webhook_urls_on_sha1"
+  end
+
   add_foreign_key "access_tokens", "users"
   add_foreign_key "account_configs", "accounts"
   add_foreign_key "account_linked_accounts", "accounts"
@@ -315,4 +326,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_102526) do
   add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "user_configs", "users"
   add_foreign_key "users", "accounts"
+  add_foreign_key "webhook_urls", "accounts"
 end

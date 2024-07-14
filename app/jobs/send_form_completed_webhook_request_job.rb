@@ -13,13 +13,10 @@ class SendFormCompletedWebhookRequestJob
     submitter = Submitter.find(params['submitter_id'])
 
     attempt = params['attempt'].to_i
-    url = Accounts.load_webhook_url(submitter.submission.account)
+
+    url = load_url(submitter, params)
 
     return if url.blank?
-
-    preferences = Accounts.load_webhook_preferences(submitter.submission.account)
-
-    return if preferences['form.completed'] == false
 
     Submissions::EnsureResultGenerated.call(submitter)
 
@@ -41,10 +38,28 @@ class SendFormCompletedWebhookRequestJob
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
       SendFormCompletedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                      'submitter_id' => submitter.id,
+                                                      **params,
                                                       'attempt' => attempt + 1,
                                                       'last_status' => resp&.status.to_i
                                                     })
+    end
+  end
+
+  def load_url(submitter, params)
+    if params['encrypted_config_id']
+      url = EncryptedConfig.find(params['encrypted_config_id']).value
+
+      return if url.blank?
+
+      preferences = Accounts.load_webhook_preferences(submitter.submission.account)
+
+      return if preferences['form.completed'] == false
+
+      url
+    elsif params['webhook_url_id']
+      webhook_url = submitter.account.webhook_urls.find(params['webhook_url_id'])
+
+      webhook_url.url if webhook_url.events.include?('form.completed')
     end
   end
 end

@@ -79,13 +79,17 @@ module Accounts
   end
 
   def load_webhook_url(account)
+    load_webhook_config(account)&.value.presence
+  end
+
+  def load_webhook_config(account)
     configs = account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
 
     if !configs && !Docuseal.multitenant? && !account.testing?
       configs = Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
     end
 
-    configs&.value.presence
+    configs
   end
 
   def load_webhook_preferences(account)
