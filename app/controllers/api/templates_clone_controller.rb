@@ -7,6 +7,11 @@ module Api
     def create
       authorize!(:manage, @template)
 
+      ActiveRecord::Associations::Preloader.new(
+        records: [@template],
+        associations: [schema_documents: :preview_images_attachments]
+      ).call
+
       cloned_template = Templates::Clone.call(
         @template,
         author: current_user,
@@ -18,11 +23,11 @@ module Api
       cloned_template.source = :api
       cloned_template.save!
 
-      Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
+      schema_documents = Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
 
       SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => cloned_template.id)
 
-      render json: Templates::SerializeForApi.call(cloned_template)
+      render json: Templates::SerializeForApi.call(cloned_template, schema_documents)
     end
   end
 end

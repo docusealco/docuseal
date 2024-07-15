@@ -27,7 +27,7 @@ class TemplatesController < ApplicationController
   def edit
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
-      associations: [schema_documents: { preview_images_attachments: :blob }]
+      associations: [schema_documents: [:blob, { preview_images_attachments: :blob }]]
     ).call
 
     @template_data =
@@ -43,6 +43,11 @@ class TemplatesController < ApplicationController
 
   def create
     if @base_template
+      ActiveRecord::Associations::Preloader.new(
+        records: [@base_template],
+        associations: [schema_documents: :preview_images_attachments]
+      ).call
+
       @template = Templates::Clone.call(@base_template, author: current_user,
                                                         name: params.dig(:template, :name),
                                                         folder_name: params[:folder_name])

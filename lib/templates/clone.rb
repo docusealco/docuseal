@@ -4,7 +4,6 @@ module Templates
   module Clone
     module_function
 
-    # rubocop:disable Metrics
     def call(original_template, author:, external_id: nil, name: nil, folder_name: nil)
       template = original_template.account.templates.new
 
@@ -17,6 +16,12 @@ module Templates
 
       template.folder = TemplateFolders.find_or_create_by_name(author, folder_name) if folder_name.present?
 
+      template.submitters, template.fields = clone_submitters_and_fields(original_template)
+
+      template
+    end
+
+    def clone_submitters_and_fields(original_template)
       submitter_uuids_replacements = {}
       field_uuids_replacements = {}
 
@@ -52,10 +57,7 @@ module Templates
         end
       end
 
-      template.assign_attributes(fields: cloned_fields, submitters: cloned_submitters)
-
-      template
+      [cloned_submitters, cloned_fields]
     end
-    # rubocop:enable Metrics
   end
 end
