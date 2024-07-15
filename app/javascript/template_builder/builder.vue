@@ -250,6 +250,7 @@
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields"
                 :default-submitters="defaultSubmitters"
+                :with-field-placeholder="withFieldPlaceholder"
                 :draw-field="drawField"
                 :draw-field-type="drawFieldType"
                 :editable="editable"
@@ -455,6 +456,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     backgroundColor: {
       type: String,

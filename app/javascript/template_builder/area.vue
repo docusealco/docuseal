@@ -160,7 +160,7 @@
       ref="touchValueTarget"
       class="flex items-center h-full w-full"
       dir="auto"
-      :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex], isDefaultValuePresent || isValueInput ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
+      :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
       @click="focusValueInput"
     >
       <span
@@ -169,7 +169,7 @@
         :class="{ 'w-full': ['cells', 'checkbox'].includes(field.type), 'h-full': !isValueInput }"
       >
         <div
-          v-if="isDefaultValuePresent || isValueInput"
+          v-if="isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
           :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type), 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
           <div
@@ -183,7 +183,7 @@
               :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
             />
             <span
-              v-else-if="field.type === 'number' && !isValueInput"
+              v-else-if="field.type === 'number' && !isValueInput && (field.default_value || field.default_value == 0)"
               class="whitespace-pre-wrap"
             >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
             <span
@@ -210,7 +210,7 @@
               :contenteditable="isValueInput"
               class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-gray-400"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="t('type_value')"
+              :placeholder="withFieldPlaceholder && !isValueInput ? field.name || defaultName : t('type_value')"
               @blur="onDefaultValueBlur"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
@@ -313,6 +313,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     defaultSubmitters: {
       type: Array,

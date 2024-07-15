@@ -9,6 +9,7 @@
       :areas="areasIndex[index]"
       :allow-draw="allowDraw"
       :is-drag="isDrag"
+      :with-field-placeholder="withFieldPlaceholder"
       :default-fields="defaultFields"
       :default-submitters="defaultSubmitters"
       :draw-field="drawField"
@@ -44,6 +45,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     drawFieldType: {
       type: String,

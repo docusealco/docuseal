@@ -23,6 +23,7 @@
         :area="item.area"
         :field="item.field"
         :editable="editable"
+        :with-field-placeholder="withFieldPlaceholder"
         :default-field="defaultFields.find((f) => f.name === item.field.name)"
         :default-submitters="defaultSubmitters"
         @start-resize="resizeDirection = $event"
@@ -75,6 +76,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     drawFieldType: {
       type: String,
