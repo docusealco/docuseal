@@ -77,7 +77,7 @@ module Api
 
       json = submissions.flat_map do |submission|
         submission.submitters.map do |s|
-          Submitters::SerializeForApi.call(s, with_documents: false, with_urls: true)
+          Submitters::SerializeForApi.call(s, with_documents: false, with_urls: true, params:)
         end
       end
 

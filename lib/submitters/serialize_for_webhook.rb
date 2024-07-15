@@ -61,6 +61,28 @@ module Submitters
       end
     end
 
+    def build_fields_array(submitter)
+      fields = submitter.submission.template_fields.presence || submitter.submission.template.fields
+      attachments_index = submitter.attachments.index_by(&:uuid)
+      submitter_field_counters = Hash.new { 0 }
+
+      fields.filter_map do |field|
+        submitter_field_counters[field['type']] += 1
+
+        next if field['submitter_uuid'] != submitter.uuid
+        next if field['type'] == 'heading'
+
+        field_name =
+          field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}"
+
+        next if !submitter.values.key?(field['uuid']) && !submitter.completed_at?
+
+        value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
+
+        { name: field_name, uuid: field['uuid'], value: }
+      end
+    end
+
     def build_documents_array(submitter)
       submitter.documents.map do |attachment|
         { name: attachment.filename.base, url: rails_storage_proxy_url(attachment) }

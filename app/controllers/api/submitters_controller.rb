@@ -23,7 +23,9 @@ module Api
       )
 
       render json: {
-        data: submitters.map { |s| Submitters::SerializeForApi.call(s, with_template: true, with_events: true) },
+        data: submitters.map do |s|
+                Submitters::SerializeForApi.call(s, with_template: true, with_events: true, params:)
+              end,
         pagination: {
           count: submitters.size,
           next: submitters.last&.id,
@@ -35,7 +37,7 @@ module Api
     def show
       Submissions::EnsureResultGenerated.call(@submitter) if @submitter.completed_at?
 
-      render json: Submitters::SerializeForApi.call(@submitter, with_template: true, with_events: true)
+      render json: Submitters::SerializeForApi.call(@submitter, with_template: true, with_events: true, params:)
     end
 
     def update
@@ -73,7 +75,8 @@ module Api
 
       render json: Submitters::SerializeForApi.call(@submitter, with_template: false,
                                                                 with_urls: true,
-                                                                with_events: false)
+                                                                with_events: false,
+                                                                params:)
     end
 
     def submitter_params

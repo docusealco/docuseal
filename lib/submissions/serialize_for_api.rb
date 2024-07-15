@@ -21,7 +21,7 @@ module Submissions
     def call(submission, submitters = nil, params = {})
       submitters ||= submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
 
-      serialized_submitters = submitters.map { |submitter| Submitters::SerializeForApi.call(submitter) }
+      serialized_submitters = submitters.map { |submitter| Submitters::SerializeForApi.call(submitter, params:) }
 
       json = submission.as_json(
         SERIALIZE_PARAMS.deep_merge(

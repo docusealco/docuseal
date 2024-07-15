@@ -10,7 +10,7 @@ module Submitters
 
     module_function
 
-    def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false)
+    def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false, params: {})
       ActiveRecord::Associations::Preloader.new(
         records: [submitter],
         associations: if with_documents
@@ -21,6 +21,10 @@ module Submitters
       ).call
 
       additional_attrs = {}
+
+      if params[:include].to_s.include?('fields')
+        additional_attrs['fields'] = SerializeForWebhook.build_fields_array(submitter)
+      end
 
       additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter)
       additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter) if with_documents
