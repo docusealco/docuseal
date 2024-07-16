@@ -247,6 +247,7 @@
                 :selected-submitter="selectedSubmitter"
                 :document="document"
                 :is-drag="!!dragField"
+                :input-mode="inputMode"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields"
                 :default-submitters="defaultSubmitters"
@@ -471,6 +472,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    inputMode: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withHelp: {
       type: Boolean,

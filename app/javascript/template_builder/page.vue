@@ -21,6 +21,7 @@
         :key="i"
         :ref="setAreaRefs"
         :area="item.area"
+        :input-mode="inputMode"
         :field="item.field"
         :editable="editable"
         :with-field-placeholder="withFieldPlaceholder"
@@ -71,6 +72,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    inputMode: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     defaultFields: {
       type: Array,

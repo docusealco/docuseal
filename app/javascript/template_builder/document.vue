@@ -4,6 +4,7 @@
       v-for="(image, index) in sortedPreviewImages"
       :key="image.id"
       :ref="setPageRefs"
+      :input-mode="inputMode"
       :number="index"
       :editable="editable"
       :areas="areasIndex[index]"
@@ -35,6 +36,11 @@ export default {
     document: {
       type: Object,
       required: true
+    },
+    inputMode: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     areasIndex: {
       type: Object,

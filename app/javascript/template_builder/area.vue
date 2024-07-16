@@ -232,6 +232,7 @@
       class="absolute top-0 bottom-0 right-0 left-0"
       :class="isDragged ? 'cursor-grab' : 'cursor-pointer'"
       @dblclick="maybeToggleDefaultValue"
+      @click="maybeToggleCheckboxValue"
     />
     <span
       v-if="field?.type && editable"
@@ -304,6 +305,11 @@ export default {
       type: Object,
       required: true
     },
+    inputMode: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isDraw: {
       type: Boolean,
       required: false,
@@ -363,7 +369,7 @@ export default {
       }
     },
     isValueInput () {
-      return (this.field.type === 'heading' && this.isSelected) || this.isContenteditable
+      return (this.field.type === 'heading' && this.isSelected) || this.isContenteditable || (this.inputMode && ['text', 'number', 'date'].includes(this.field.type))
     },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
@@ -504,11 +510,19 @@ export default {
         this.save()
       }
     },
-    focusValueInput () {
+    maybeToggleCheckboxValue () {
+      if (this.inputMode && this.field.type === 'checkbox') {
+        this.field.readonly = !this.field.readonly
+        this.field.default_value === true ? delete this.field.default_value : this.field.default_value = true
+
+        this.save()
+      }
+    },
+    focusValueInput (e) {
       if (this.$refs.defaultValue !== document.activeElement) {
         this.$refs.defaultValue.focus()
 
-        if (this.$refs.defaultValue.innerText.length) {
+        if (this.$refs.defaultValue.innerText.length && this.$refs.defaultValue !== e?.target) {
           window.getSelection().collapse(
             this.$refs.defaultValue.firstChild,
             this.$refs.defaultValue.innerText.length
