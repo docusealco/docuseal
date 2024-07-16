@@ -126,13 +126,15 @@ module Submissions
           font_size   = preferences_font_size
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
+          font = pdf.fonts.add(field.dig('preferences', 'font').presence || FONT_NAME)
+
           value = submitter.values[field['uuid']]
 
           text_align = field.dig('preferences', 'align').to_s.to_sym.presence ||
                        (value.to_s.match?(RTL_REGEXP) ? :right : :left)
 
           layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align:,
-                                                       font: pdf.fonts.add(FONT_NAME), font_size:)
+                                                       font:, font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
 
@@ -178,7 +180,7 @@ module Submissions
                 cv.image(PdfIcons.paperclip_io, at: [0, 0], width: box.content_width)
               end
 
-              acc << HexaPDF::Layout::TextFragment.create("#{attachment.filename}\n", font: pdf.fonts.add(FONT_NAME),
+              acc << HexaPDF::Layout::TextFragment.create("#{attachment.filename}\n", font:,
                                                                                       font_size:)
             end
 
@@ -249,14 +251,14 @@ module Submissions
             TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
               next if char.blank?
 
-              text = HexaPDF::Layout::TextFragment.create(char, font: pdf.fonts.add(FONT_NAME),
+              text = HexaPDF::Layout::TextFragment.create(char, font:,
                                                                 font_size:)
 
               line_height = layouter.fit([text], cell_width, height).lines.first.height
 
               if preferences_font_size.blank? && line_height > (area['h'] * height)
                 text = HexaPDF::Layout::TextFragment.create(char,
-                                                            font: pdf.fonts.add(FONT_NAME),
+                                                            font:,
                                                             font_size: (font_size / 1.4).to_i)
 
                 line_height = layouter.fit([text], cell_width, height).lines.first.height
@@ -264,7 +266,7 @@ module Submissions
 
               if preferences_font_size.blank? && line_height > (area['h'] * height)
                 text = HexaPDF::Layout::TextFragment.create(char,
-                                                            font: pdf.fonts.add(FONT_NAME),
+                                                            font:,
                                                             font_size: (font_size / 1.9).to_i)
 
                 line_height = layouter.fit([text], cell_width, height).lines.first.height
@@ -283,7 +285,7 @@ module Submissions
 
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
 
-            text = HexaPDF::Layout::TextFragment.create(value, font: pdf.fonts.add(FONT_NAME),
+            text = HexaPDF::Layout::TextFragment.create(value, font:,
                                                                font_size:)
 
             lines = layouter.fit([text], area['w'] * width, height).lines
@@ -291,7 +293,7 @@ module Submissions
 
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
-                                                          font: pdf.fonts.add(FONT_NAME),
+                                                          font:,
                                                           font_size: (font_size / 1.4).to_i)
 
               lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
@@ -301,7 +303,7 @@ module Submissions
 
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
-                                                          font: pdf.fonts.add(FONT_NAME),
+                                                          font:,
                                                           font_size: (font_size / 1.9).to_i)
 
               lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
