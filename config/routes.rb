@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :submitters, only: %i[index show update]
     resources :submissions, only: %i[index show create destroy] do
       collection do
+        resources :init, only: %i[create], controller: 'submissions'
         resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails
       end
     end

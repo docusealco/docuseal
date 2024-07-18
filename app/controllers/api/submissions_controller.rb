@@ -75,13 +75,7 @@ module Api
         end
       end
 
-      json = submissions.flat_map do |submission|
-        submission.submitters.map do |s|
-          Submitters::SerializeForApi.call(s, with_documents: false, with_urls: true, params:)
-        end
-      end
-
-      render json:
+      render json: build_create_json(submissions)
     rescue Submitters::NormalizeValues::BaseError => e
       Rollbar.warning(e) if defined?(Rollbar)
 
@@ -101,6 +95,18 @@ module Api
     end
 
     private
+
+    def build_create_json(submissions)
+      json = submissions.flat_map do |submission|
+        submission.submitters.map do |s|
+          Submitters::SerializeForApi.call(s, with_documents: false, with_urls: true, params:)
+        end
+      end
+
+      json = { submitters: json } if request.path.ends_with?('/init')
+
+      json
+    end
 
     def create_submissions(template, params)
       is_send_email = !params[:send_email].in?(['false', false])
