@@ -575,7 +575,7 @@ export default {
     onPaste (e) {
       const text = (e.clipboardData || window.clipboardData).getData('text/plain')
 
-      const selection = window.getSelection()
+      const selection = this.$el.getRootNode().getSelection()
 
       if (selection.rangeCount) {
         selection.deleteFromDocument()
