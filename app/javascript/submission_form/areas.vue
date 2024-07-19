@@ -23,8 +23,9 @@
             :submittable="true"
             :field-index="fieldIndex"
             :scroll-padding="scrollPadding"
+            :with-field-placeholder="withFieldPlaceholder"
             :is-active="currentStep === step"
-            :with-label="withLabel"
+            :with-label="withLabel && !withFieldPlaceholder"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
             @click="$emit('focus-step', step)"
@@ -53,6 +54,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     scrollPadding: {
       type: String,

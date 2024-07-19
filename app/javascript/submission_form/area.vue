@@ -6,7 +6,7 @@
     :class="{ 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'field-area-active outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
-      v-if="!isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
+      v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
       class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
     >
       <span
@@ -65,7 +65,7 @@
       :src="initials.url"
     >
     <div
-      v-else-if="field.type === 'file' || field.type === 'payment'"
+      v-else-if="(field.type === 'file' || field.type === 'payment') && attachments.length"
       class="px-0.5 flex flex-col justify-center"
     >
       <a
@@ -160,7 +160,12 @@
       class="flex items-center px-0.5 w-full"
       :class="alignClasses[field.preferences?.align]"
     >
-      <span v-if="Array.isArray(modelValue)">
+      <span
+        v-if="field && field.name && withFieldPlaceholder && !modelValue && modelValue !== 0"
+        class="whitespace-pre-wrap text-gray-400"
+        :class="{ 'w-full': field.preferences?.align }"
+      >{{ field.name }}</span>
+      <span v-else-if="Array.isArray(modelValue)">
         {{ modelValue.join(', ') }}
       </span>
       <span v-else-if="field.type === 'date'">
@@ -202,6 +207,11 @@ export default {
       type: String,
       required: false,
       default: '-80px'
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     submittable: {
       type: Boolean,
@@ -364,7 +374,7 @@ export default {
     modelValue () {
       this.$nextTick(() => {
         if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.modelValue}`.length)) {
-          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue}`.length : 0
+          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
         }
       })
     }
@@ -372,7 +382,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer) {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue}`.length : 0
+        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
       }
     })
   },

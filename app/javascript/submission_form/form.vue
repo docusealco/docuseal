@@ -3,6 +3,7 @@
     ref="areas"
     :steps="stepFields"
     :values="values"
+    :with-field-placeholder="withFieldPlaceholder"
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
@@ -547,6 +548,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    withFieldPlaceholder: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     onComplete: {
       type: Function,
