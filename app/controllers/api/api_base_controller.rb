@@ -39,12 +39,17 @@ module Api
 
     private
 
-    def paginate(relation)
-      result = relation.order(id: :desc)
+    def paginate(relation, field: :id)
+      result = relation.order(field => :desc)
                        .limit([params.fetch(:limit, DEFAULT_LIMIT).to_i, MAX_LIMIT].min)
 
-      result = result.where(id: ...params[:after].to_i) if params[:after].present?
-      result = result.where(id: (params[:before].to_i + 1)...) if params[:before].present?
+      if field == :id
+        result = result.where(id: ...params[:after].to_i) if params[:after].present?
+        result = result.where(id: (params[:before].to_i + 1)...) if params[:before].present?
+      else
+        result = result.where(field => ...params[:after]) if params[:after].present?
+        result = result.where(field => (params[:before] + 1)...) if params[:before].present?
+      end
 
       result
     end

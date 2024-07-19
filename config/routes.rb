@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     resources :tools, only: %i[] do
       post :merge, on: :collection
     end
+    scope 'events' do
+      resources :form_events, only: %i[index], path: 'form/:type'
+    end
   end
 
   resources :verify_pdf_signature, only: %i[create]
