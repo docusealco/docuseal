@@ -53,11 +53,22 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    @submission.update!(archived_at: Time.current)
+    notice =
+      if params[:permanently].present?
+        @submission.destroy!
 
-    SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id)
+        Rollbar.info("Remove submission: #{@submission.id}") if defined?(Rollbar)
 
-    redirect_back(fallback_location: template_path(@submission.template), notice: 'Submission has been archived')
+        'Submission has been removed'
+      else
+        @submission.update!(archived_at: Time.current)
+
+        SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id)
+
+        'Submission has been archived'
+      end
+
+    redirect_back(fallback_location: template_path(@submission.template), notice:)
   end
 
   private

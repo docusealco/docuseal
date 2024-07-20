@@ -85,6 +85,11 @@
             <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Archive', method: :delete, data: { turbo_confirm: 'Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </span>
         <% end %>
+        <% if local_assigns[:archived] && can?(:destroy, submission) %>
+          <span data-tip="Remove" class="sm:tooltip tooltip-top">
+            <%= button_to button_title(title: nil, disabled_with: 'Rem', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Remove', method: :delete, data: { turbo_confirm: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' }, onclick: 'event.stopPropagation()' %>
+          </span>
+        <% end %>
       </div>
     <% else %>
       <div class="space-y-1 w-full md:mr-2">

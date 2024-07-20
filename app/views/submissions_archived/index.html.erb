@@ -12,7 +12,7 @@
 </div>
 <% if @pagy.count > 0 %>
   <div class="space-y-4">
-    <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
+    <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true, archived: true } %>
   </div>
 <% elsif params[:q].present? %>
   <div class="text-center">
