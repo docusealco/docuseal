@@ -8,7 +8,7 @@
   <div class="collapse-content">
     <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.hidden_field :key %>
-      <%= f.fields_for :value, Struct.new(:subject, :body, :attach_audit_log).new(*f.object.value.values_at('subject', 'body', 'attach_audit_log')) do |ff| %>
+      <%= f.fields_for :value, Struct.new(:subject, :body, :attach_audit_log, :attach_documents).new(*f.object.value.values_at('subject', 'body', 'attach_audit_log', 'attach_documents')) do |ff| %>
         <div class="form-control">
           <div class="flex items-center">
             <%= ff.label :subject, class: 'label' %>
@@ -29,7 +29,13 @@
             <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
         </div>
-        <div class="flex items-center justify-between py-2.5 mx-1">
+        <div class="flex items-center justify-between pt-2.5 mx-1">
+          <span>
+            Attach documents
+          </span>
+          <%= ff.check_box :attach_documents, { checked: ff.object.attach_documents != false, class: 'toggle' }, 'true', 'false' %>
+        </div>
+        <div class="flex items-center justify-between pb-2.5 mx-1">
           <span>
             Attach audit log PDF
           </span>

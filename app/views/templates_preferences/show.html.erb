@@ -130,7 +130,7 @@
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' } do |f| %>
             <toggle-on-submit data-element-id="email_saved_alert3"></toggle-on-submit>
             <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
-            <%= f.fields_for :preferences, Struct.new(:completed_notification_email_subject, :completed_notification_email_body, :completed_notification_email_enabled, :completed_notification_email_attach_audit).new(@template.preferences['completed_notification_email_subject'].presence || configs['subject'], @template.preferences['completed_notification_email_body'].presence || configs['body'], @template.preferences['completed_notification_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['completed_notification_email_attach_audit'] != false) do |ff| %>
+            <%= f.fields_for :preferences, Struct.new(:completed_notification_email_subject, :completed_notification_email_body, :completed_notification_email_enabled, :completed_notification_email_attach_audit, :completed_notification_email_attach_documents).new(@template.preferences['completed_notification_email_subject'].presence || configs['subject'], @template.preferences['completed_notification_email_body'].presence || configs['body'], @template.preferences['completed_notification_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['completed_notification_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['completed_notification_email_attach_documents'] != false) do |ff| %>
               <div class="form-control">
                 <%= ff.label :completed_notification_email_subject, 'Email subject', class: 'label' %>
                 <%= ff.text_field :completed_notification_email_subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -148,15 +148,21 @@
               </div>
               <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
                 <span>
-                  Attach Audit Log PDF to the email
-                </span>
-                <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
-                <span>
                   Send emails automatically on completion
                 </span>
                 <%= ff.check_box :completed_notification_email_enabled, { checked: ff.object.completed_notification_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
+                <span>
+                  Attach documents to the email
+                </span>
+                <%= ff.check_box :completed_notification_email_attach_documents, { checked: ff.object.completed_notification_email_attach_documents != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+                <span>
+                  Attach Audit Log PDF to the email
+                </span>
+                <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
               </div>
             <% end %>
             <div class="form-control pt-2">

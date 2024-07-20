@@ -48,8 +48,11 @@ class SubmitterMailer < ApplicationMailer
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
     add_completed_email_attachments!(
-      submitter, with_audit_log: (@email_config.nil? || @email_config.value['attach_audit_log'] != false) &&
-                                 @submitter.template.preferences['completed_notification_email_attach_audit'] != false
+      submitter,
+      with_documents: @email_config&.value&.dig('attach_documents') != false &&
+                      @submitter.template.preferences['completed_notification_email_attach_documents'] != false,
+      with_audit_log: @email_config&.value&.dig('attach_audit_log') != false &&
+                      @submitter.template.preferences['completed_notification_email_attach_audit'] != false
     )
 
     @subject = @submitter.template.preferences['completed_notification_email_subject'].presence
@@ -117,8 +120,8 @@ class SubmitterMailer < ApplicationMailer
     %(#{submitter.submission.template.name} has been completed by #{submitters})
   end
 
-  def add_completed_email_attachments!(submitter, with_audit_log: true)
-    documents = Submitters.select_attachments_for_download(submitter)
+  def add_completed_email_attachments!(submitter, with_audit_log: true, with_documents: true)
+    documents = with_documents ? Submitters.select_attachments_for_download(submitter) : []
 
     total_size = 0
     audit_trail_data = nil
@@ -133,13 +136,15 @@ class SubmitterMailer < ApplicationMailer
 
     attachments[submitter.submission.audit_trail.filename.to_s.tr('"', "'")] = audit_trail_data if audit_trail_data
 
-    file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
+    if with_documents
+      file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
 
-    if file_fields.pluck('submitter_uuid').uniq.size == 1
-      storage_attachments =
-        submitter.attachments.where(uuid: submitter.values.values_at(*file_fields.pluck('uuid')).flatten)
+      if file_fields.pluck('submitter_uuid').uniq.size == 1
+        storage_attachments =
+          submitter.attachments.where(uuid: submitter.values.values_at(*file_fields.pluck('uuid')).flatten)
 
-      add_attachments_with_size_limit(storage_attachments, total_size)
+        add_attachments_with_size_limit(storage_attachments, total_size)
+      end
     end
 
     documents

@@ -22,6 +22,7 @@ class TemplatesPreferencesController < ApplicationController
       preferences: %i[bcc_completed request_email_subject request_email_body
                       documents_copy_email_subject documents_copy_email_body
                       documents_copy_email_enabled documents_copy_email_attach_audit
+                      completed_notification_email_attach_documents
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit]
     ).tap do |attrs|
