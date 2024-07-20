@@ -156,7 +156,7 @@
         class="top-0 bottom-0 right-0 left-0 absolute bg-white rounded-2xl m-0.5"
       />
       <div
-        v-show="isShowQr"
+        v-if="isShowQr"
         class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
       >
         <div
@@ -172,13 +172,13 @@
         </div>
         <div class="flex items-center justify-center w-full h-full p-4">
           <div
-            v-if="withQrButton"
-            ref="qr"
             class="bg-white p-4 rounded-xl h-full"
           >
             <canvas
               ref="qrCanvas"
               class="h-full"
+              width="132"
+              height="132"
             />
           </div>
         </div>
@@ -340,18 +340,6 @@ export default {
 
         this.$refs.canvas.getContext('2d').scale(scale, scale)
       }
-
-      if (this.withQrButton) {
-        import('qr-creator').then(({ default: Qr }) => {
-          Qr.render({
-            text: `${document.location.origin}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
-            radius: 0.0,
-            ecLevel: 'H',
-            background: null,
-            size: 132
-          }, this.$refs.qrCanvas)
-        })
-      }
     })
 
     if (this.$refs.canvas) {
@@ -405,6 +393,20 @@ export default {
     },
     showQr () {
       this.isShowQr = true
+
+      this.$nextTick(() => {
+        import('qr-creator').then(({ default: Qr }) => {
+          if (this.$refs.qrCanvas) {
+            Qr.render({
+              text: `${document.location.origin}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
+              radius: 0.0,
+              ecLevel: 'H',
+              background: null,
+              size: 132
+            }, this.$refs.qrCanvas)
+          }
+        })
+      })
 
       this.startCheckSignature()
     },
