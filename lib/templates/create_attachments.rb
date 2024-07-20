@@ -11,11 +11,7 @@ module Templates
 
     def call(template, params, extract_fields: false)
       Array.wrap(params[:files].presence || params[:file]).map do |file|
-        if file.content_type.exclude?('image') && file.content_type != PDF_CONTENT_TYPE
-          next handle_file_types(template, file, params)
-        end
-
-        handle_pdf_or_image(template, file, file.read, params, extract_fields:)
+        handle_file_types(template, file, params, extract_fields:)
       end
     end
 
@@ -57,7 +53,11 @@ module Templates
       raise PdfEncrypted
     end
 
-    def handle_file_types(_template, file, _params)
+    def handle_file_types(template, file, params, extract_fields:)
+      if file.content_type.include?('image') || file.content_type == PDF_CONTENT_TYPE
+        return handle_pdf_or_image(template, file, file.read, params, extract_fields:)
+      end
+
       raise InvalidFileType, file.content_type
     end
   end

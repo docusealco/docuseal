@@ -58,7 +58,7 @@ class TemplatesUploadsController < ApplicationController
     file = ActionDispatch::Http::UploadedFile.new(
       tempfile:,
       filename: File.basename(
-        URI.decode_www_form_component(params[:filename].presence || params[:url])
+        URI.decode_www_form_component(params[:filename].presence || params[:url]), '.*'
       ),
       type: Marcel::MimeType.for(tempfile)
     )
