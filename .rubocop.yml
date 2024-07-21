@@ -11,6 +11,7 @@ AllCops:
     - bin/*
     - vendor/**/*
   TargetRubyVersion: '3.3'
+  SuggestExtensions: false
 
 Metrics/BlockLength:
   Exclude:
@@ -77,7 +78,4 @@ Rails/ApplicationController:
   Enabled: false
 
 Rails/Output:
-  Enabled: false
-
-Capybara/ClickLinkOrButtonStyle:
   Enabled: false
