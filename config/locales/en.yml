@@ -104,7 +104,7 @@ es: &es
   by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.co/terms">Términos de Servicio</a>.'
   enter_email_to_continue: Ingresa tu correo electrónico para continuar
 
-it:
+it: &it
   role: Rôle
   verification_code_code: 'Codice di verifica: %{code}'
   email: Email
@@ -574,3 +574,6 @@ pt-PT:
 
 de-DE:
   <<: *de
+
+it-IT:
+  <<: *it
