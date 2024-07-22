@@ -4,6 +4,7 @@
     :steps="stepFields"
     :values="values"
     :with-field-placeholder="withFieldPlaceholder"
+    :scroll-el="scrollEl"
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
@@ -553,6 +554,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    scrollEl: {
+      type: Object,
+      required: false,
+      default: null
     },
     onComplete: {
       type: Function,

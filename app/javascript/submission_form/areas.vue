@@ -75,6 +75,11 @@ export default {
       required: false,
       default: true
     },
+    scrollEl: {
+      type: Object,
+      required: false,
+      default: null
+    },
     currentStep: {
       type: Array,
       required: false,
@@ -109,7 +114,12 @@ export default {
         if (container.style.overflow === 'hidden') {
           this.scrollInContainer(areaRef.$el)
         } else {
-          areaRef.$refs.scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          const targetRect = areaRef.$refs.scrollToElem.getBoundingClientRect()
+          const root = this.$root.$el?.parentNode?.classList?.contains('ds') ? this.$root.$el : document.body
+          const rootRect = root.getBoundingClientRect()
+          const scrollEl = this.scrollEl || window
+
+          scrollEl.scrollTo({ top: targetRect.top - rootRect.top, behavior: 'smooth' })
         }
 
         return true
@@ -128,7 +138,7 @@ export default {
 
       const targetTopRelativeToBox = targetRect.top - boxRect.top
 
-      scrollbox.scrollTop = targetTopRelativeToBox - container.offsetHeight + formContainer.offsetHeight + target.offsetHeight + padding
+      scrollbox.scrollTo({ top: targetTopRelativeToBox - container.offsetHeight + formContainer.offsetHeight + target.offsetHeight + padding, behavior: 'smooth' })
     },
     setAreaRef (el) {
       if (el) {
