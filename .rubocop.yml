@@ -79,6 +79,3 @@ Rails/ApplicationController:
 
 Rails/Output:
   Enabled: false
-
-Capybara/ClickLinkOrButtonStyle:
-  Enabled: false
