@@ -54,11 +54,37 @@
       class="object-contain mx-auto"
       :src="stamp.url"
     >
-    <img
+    <div
       v-else-if="field.type === 'signature' && signature"
-      class="object-contain mx-auto"
-      :src="signature.url"
+      class="flex flex-col justify-between h-full overflow-hidden"
     >
+      <div
+        class="flex-grow flex overflow-hidden"
+        style="min-height: 50%"
+      >
+        <img
+          class="object-contain mx-auto"
+          :src="signature.url"
+        >
+      </div>
+      <div
+        v-if="withSignatureId"
+        class="w-full mt-1 text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]"
+      >
+        <div class="truncate uppercase">
+          ID: {{ signature.uuid }}
+        </div>
+        <div>
+          {{ t('reason') }}: {{ t('digitally_signed_by') }} {{ submitter.name }}
+          <template v-if="submitter.email">
+            &lt;{{ submitter.email }}&gt;
+          </template>
+        </div>
+        <div>
+          {{ new Date(signature.created_at).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }) }}
+        </div>
+      </div>
+    </div>
     <img
       v-else-if="field.type === 'initials' && initials"
       class="object-contain mx-auto"
@@ -197,6 +223,15 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    submitter: {
+      type: Object,
+      required: true
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     isValueSet: {
       type: Boolean,

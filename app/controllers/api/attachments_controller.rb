@@ -16,7 +16,7 @@ module Api
         cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(submitter, attachment)
       end
 
-      render json: attachment.as_json(only: %i[uuid], methods: %i[url filename content_type])
+      render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
     end
 
     def build_new_cookie_signatures_json(submitter, attachment)

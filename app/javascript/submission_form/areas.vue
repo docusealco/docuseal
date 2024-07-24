@@ -23,7 +23,9 @@
             :submittable="true"
             :field-index="fieldIndex"
             :scroll-padding="scrollPadding"
+            :submitter="submitter"
             :with-field-placeholder="withFieldPlaceholder"
+            :with-signature-id="withSignatureId"
             :is-active="currentStep === step"
             :with-label="withLabel && !withFieldPlaceholder"
             :is-value-set="step.some((f) => f.uuid in values)"
@@ -49,6 +51,15 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    submitter: {
+      type: Object,
+      required: true
     },
     values: {
       type: Object,

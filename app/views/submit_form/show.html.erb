@@ -28,7 +28,7 @@
                 <% next if field['redacted'] && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone %>
+                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: @submitter, with_signature_id: @form_configs[:with_signature_id] %>
               <% end %>
             </div>
           </div>

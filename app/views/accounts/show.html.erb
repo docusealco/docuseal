@@ -51,6 +51,18 @@
             </div>
           <% end %>
         <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::WITH_SIGNATURE_ID) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between py-2.5">
+              <span>
+                Add signature ID to the documents
+              </span>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
+            </div>
+          <% end %>
+        <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TYPED_SIGNATURE) %>
         <% if can?(:manage, account_config) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

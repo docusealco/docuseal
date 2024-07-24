@@ -102,6 +102,8 @@ module Submissions
                 .rectangle(0, 0, box.width, 20)
                 .rectangle(0, box.height - 20, box.width, 20)
                 .fill
+
+          maybe_add_background(canvas, submission, page_size)
         end
         style.frame = style.create_frame(canvas.context, 50)
       end
@@ -335,6 +337,8 @@ module Submissions
     def sign_reason
       'Signed with DocuSeal.co'
     end
+
+    def maybe_add_background(_canvas, _submission, _page_size); end
 
     def add_logo(column, _submission = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)

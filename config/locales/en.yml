@@ -22,6 +22,7 @@ en: &en
   verification_code_code: 'Verification code: %{code}'
   digitally_signed_by: Digitally signed by
   role: Role
+  reason: Reason
   provide_your_email_to_start: Provide your email to start
   start: Start
   starting: Starting
@@ -64,6 +65,7 @@ en: &en
 
 es: &es
   role: Rol
+  reason: Razón
   verification_code_code: 'Código de verificación: %{code}'
   email: Correo electrónico
   digitally_signed_by: Firmado digitalmente por
@@ -106,6 +108,7 @@ es: &es
 
 it: &it
   role: Rôle
+  reason: Ragione
   verification_code_code: 'Codice di verifica: %{code}'
   email: Email
   digitally_signed_by: Firmato digitalmente da
@@ -149,6 +152,7 @@ fr: &fr
   email: Email
   verification_code_code: 'Code de vérification: %{code}'
   digitally_signed_by: Signé numériquement par
+  reason: Raison
   role: Rôle
   provide_your_email_to_start: Entrez votre adresse email pour commencer
   start: Démarrer
@@ -189,6 +193,7 @@ fr: &fr
 pt: &pt
   role: Função
   email: Email
+  reason: Razão
   verification_code_code: 'Código de verificação: %{code}'
   digitally_signed_by: Assinado digitalmente por
   role: Função
@@ -230,6 +235,7 @@ pt: &pt
 de: &de
   role: Rolle
   verification_code_code: 'Verifizierungscode: %{code}'
+  reason: Grund
   email: E-Mail
   digitally_signed_by: Digital signiert von
   role: Rolle
@@ -275,6 +281,7 @@ pl:
   role: Rola
   provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
   start: Rozpocznij
+  reason: Powód
   starting: Rozpoczynanie
   form_has_been_deleted_by_html: 'Formularz został usunięty przez <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Zaproszony przez <span class="font-semibold">%{name}</span>'
@@ -315,6 +322,7 @@ uk:
   role: Роль
   provide_your_email_to_start: Введіть свій email, щоб почати
   start: Почати
+  reason: Причина
   starting: Початок
   form_has_been_deleted_by_html: 'Форму було видалено користувачем <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Запрошений користувачем <span class="font-semibold">%{name}</span>'
@@ -354,6 +362,7 @@ cs:
   verification_code_code: 'Ověřovací kód: %{code}'
   role: Role
   provide_your_email_to_start: Zadejte svůj email pro zahájení
+  reason: Důvod
   start: Zahájit
   starting: Zahajování
   form_has_been_deleted_by_html: 'Formulář byl smazán uživatelem <span class="font-semibold">%{name}</span>.'
@@ -392,6 +401,7 @@ he:
   email: דוא"ל
   digitally_signed_by: חתום דיגיטלית על ידי
   role: תפקיד
+  reason: סיבה
   verification_code_code: 'קוד אימות: %{code}'
   provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
   start: התחל
@@ -435,6 +445,7 @@ nl:
   verification_code_code: 'Verificatiecode: %{code}'
   provide_your_email_to_start: Geef uw e-mailadres om te beginnen
   start: Start
+  reason: Reden
   starting: Starten
   form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Uitgenodigd door <span class="font-semibold">%{name}</span>'
@@ -478,6 +489,7 @@ ar:
   starting: بداية
   verification_code_code: 'رمز التحقق: %{code}'
   form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
+  reason: سبب
   invited_by_html: 'تمت الدعوة بواسطة <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
   signed_on_time: 'تم التوقيع في %{time}'
@@ -516,6 +528,7 @@ ko:
   role: 역할
   provide_your_email_to_start: 시작하려면 이메일을 제공하세요
   start: 시작
+  reason: 이유
   starting: 시작 중
   form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
   invited_by_html: '<span class="font-semibold">%{name}</span>에 의해 초대되었습니다.'

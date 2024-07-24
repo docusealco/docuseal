@@ -1,6 +1,28 @@
 <% align = field.dig('preferences', 'align') %>
 <field-value dir="auto" class="flex absolute text-[1.5vw] lg:text-base <%= align == 'right' ? 'justify-end' : (align == 'center' ? 'justify-center' : '') %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: #{field['preferences']['font_size']}pt" if field.dig('preferences', 'font_size') %>">
-  <% if field['type'].in?(['signature', 'image', 'initials', 'stamp']) %>
+  <% if field['type'] == 'signature' %>
+    <div class="flex flex-col justify-between h-full overflow-hidden">
+      <div class="flex-grow flex overflow-hidden" style="min-height: 50%">
+        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>">
+      </div>
+      <% if local_assigns[:with_signature_id] && attachment = attachments_index[value] %>
+        <div class="w-full mt-1 text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]">
+          <div class="truncate uppercase">
+            ID: <%= attachment.uuid %>
+          </div>
+          <div>
+            <%= t('reason') %>: <%= t('digitally_signed_by') %> <%= submitter.name %>
+            <% if submitter.email %>
+              &lt;<%= submitter.email %>&gt;
+            <% end %>
+          </div>
+          <div>
+            <%= l(attachment.created_at.in_time_zone(local_assigns[:timezone]), format: :long, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(local_assigns[:timezone], attachment.created_at) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% elsif field['type'].in?(['image', 'initials', 'stamp']) %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
   <% elsif field['type'].in?(['file', 'payment']) %>
     <autosize-field></autosize-field>

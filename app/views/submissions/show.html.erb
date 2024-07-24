@@ -1,6 +1,7 @@
 <% if params[:controller] == 'submissions_preview' %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
+<% with_signature_id = @submission.account.account_configs.exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true) %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= signed_in? && @submission.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
@@ -73,6 +74,7 @@
     <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
+        <% submitters_index = @submission.submitters.index_by(&:uuid) %>
         <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
@@ -92,7 +94,7 @@
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']] %>
                   <% next if value.blank? %>
-                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone %>
+                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                 <% end %>
               </div>
             </div>

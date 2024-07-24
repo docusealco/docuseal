@@ -4,7 +4,9 @@
     :steps="stepFields"
     :values="values"
     :with-field-placeholder="withFieldPlaceholder"
+    :submitter="submitter"
     :scroll-el="scrollEl"
+    :with-signature-id="withSignatureId"
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
@@ -534,6 +536,11 @@ export default {
     submitter: {
       type: Object,
       required: true
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     scrollPadding: {
       type: String,

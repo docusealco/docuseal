@@ -38,6 +38,7 @@ class AccountConfig < ApplicationRecord
   DOWNLOAD_LINKS_AUTH_KEY = 'download_links_auth'
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
+  WITH_SIGNATURE_ID = 'with_signature_id'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
