@@ -44,14 +44,6 @@ module Submitters
         )
 
         attachment.uuid
-      elsif field['type'] == 'signature' && (signature = UserConfigs.load_signature(user))
-        attachment = ActiveStorage::Attachment.find_or_create_by!(
-          blob_id: signature.blob_id,
-          name: 'attachments',
-          record: submitter
-        )
-
-        attachment.uuid
       end
     end
   end
