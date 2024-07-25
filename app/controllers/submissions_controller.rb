@@ -57,8 +57,6 @@ class SubmissionsController < ApplicationController
       if params[:permanently].present?
         @submission.destroy!
 
-        Rollbar.info("Remove submission: #{@submission.id}") if defined?(Rollbar)
-
         'Submission has been removed'
       else
         @submission.update!(archived_at: Time.current)

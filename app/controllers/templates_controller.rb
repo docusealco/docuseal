@@ -87,8 +87,6 @@ class TemplatesController < ApplicationController
       if params[:permanently].present?
         @template.destroy!
 
-        Rollbar.info("Remove template: #{@template.id}") if defined?(Rollbar)
-
         'Template has been removed.'
       else
         @template.update!(archived_at: Time.current)

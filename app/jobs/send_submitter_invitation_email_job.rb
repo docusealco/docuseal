@@ -6,11 +6,7 @@ class SendSubmitterInvitationEmailJob
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 
-    if submitter.submission.source == 'invite' && !Accounts.can_send_emails?(submitter.account, on_events: true)
-      Rollbar.error("Skip email: #{submitter.id}") if defined?(Rollbar)
-
-      return
-    end
+    return if submitter.submission.source == 'invite' && !Accounts.can_send_emails?(submitter.account, on_events: true)
 
     mail = SubmitterMailer.invitation_email(submitter)
 

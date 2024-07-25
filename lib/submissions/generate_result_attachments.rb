@@ -533,7 +533,7 @@ module Submissions
     end
 
     def on_missing_glyph(character, font_wrapper)
-      Rollbar.error("Missing glyph: #{character}") if character.present? && defined?(Rollbar)
+      Rails.logger.info("Missing glyph: #{character}") if character.present? && defined?(Rollbar)
 
       replace_with =
         if font_wrapper.font_type == :Type1

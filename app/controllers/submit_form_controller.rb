@@ -48,8 +48,6 @@ class SubmitFormController < ApplicationController
     end
 
     if submitter.template.archived_at? || submitter.submission.archived_at?
-      Rollbar.info("Archived template: #{submitter.template.id}") if defined?(Rollbar)
-
       return render json: { error: 'Form has been archived.' }, status: :unprocessable_entity
     end
 
