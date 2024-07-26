@@ -1,5 +1,5 @@
 <% align = field.dig('preferences', 'align') %>
-<field-value dir="auto" class="flex absolute text-[1.5vw] lg:text-base <%= align == 'right' ? 'justify-end' : (align == 'center' ? 'justify-center' : '') %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: #{field['preferences']['font_size']}pt" if field.dig('preferences', 'font_size') %>">
+<field-value dir="auto" class="flex absolute text-[1.6vw] lg:text-base <%= align == 'right' ? 'justify-end' : (align == 'center' ? 'justify-center' : '') %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: #{field['preferences']['font_size']}pt" if field.dig('preferences', 'font_size') %>">
   <% if field['type'] == 'signature' %>
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <div class="flex-grow flex overflow-hidden" style="min-height: 50%">
@@ -29,7 +29,7 @@
     <div class="px-0.5 flex flex-col justify-center">
       <% Array.wrap(value).each do |val| %>
         <a target="_blank" href="<%= attachments_index[val].url %>">
-          <%= svg_icon('paperclip', class: 'inline w-[1.5vw] h-[1.5vw] lg:w-4 lg:h-4') %>
+          <%= svg_icon('paperclip', class: 'inline w-[1.6vw] h-[1.6vw] lg:w-4 lg:h-4') %>
           <%= attachments_index[val].filename %>
         </a>
       <% end %>

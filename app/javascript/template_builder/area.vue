@@ -170,7 +170,7 @@
       >
         <div
           v-if="isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
-          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type), 'text-[1.5vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
+          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type), 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
         >
           <div
             ref="textContainer"
