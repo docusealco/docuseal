@@ -14,6 +14,6 @@
     <% if params[:redir].present? %>
       <%= hidden_field_tag :redir, params[:redir] %>
     <% end %>
-    <%= select_tag :lang, options_for_select((I18n.available_locales - %i[en pt-PT de-DE fr-FR es-ES]).map { |code| [t("language_#{code}"), code] }, I18n.locale), onchange: 'this.form.requestSubmit();', class: 'select select-sm border-base-content/30 text-base' %>
+    <%= select_tag :lang, options_for_select((I18n.available_locales - %i[en pt-PT de-DE fr-FR it-IT es-ES]).map { |code| [t("language_#{code}"), code] }, I18n.locale), onchange: 'this.form.requestSubmit();', class: 'select select-sm border-base-content/30 text-base' %>
   <% end %>
 </div>
