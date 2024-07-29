@@ -79,9 +79,7 @@ module Submitters
       else
         Date.parse(value).to_s
       end
-    rescue Date::Error => e
-      Rollbar.warning(e) if defined?(Rollbar)
-
+    rescue Date::Error
       value
     end
 

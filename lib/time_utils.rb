@@ -50,9 +50,7 @@ module TimeUtils
                         .sub(/Y+/, YEAR_FORMATS[format[/Y+/]])
 
     I18n.l(date, format: i18n_format, locale:)
-  rescue Date::Error => e
-    Rollbar.warning("#{e}: #{string}") if defined?(Rollbar)
-
+  rescue Date::Error
     string
   end
 end
