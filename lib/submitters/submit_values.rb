@@ -108,6 +108,7 @@ module Submitters
     def merge_formula_values(submitter)
       computed_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
+        next if field['type'] == 'payment'
 
         formula = field.dig('preferences', 'formula')
 

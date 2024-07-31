@@ -94,6 +94,7 @@
             :field="field"
             @click-condition="isShowConditionsModal = true"
             @click-description="isShowDescriptionModal = true"
+            @click-formula="isShowFormulaModal = true"
           />
           <span
             v-else-if="field.type !== 'heading'"
@@ -345,7 +346,7 @@ export default {
   },
   methods: {
     buildDefaultName (field, fields) {
-      if (field.type === 'payment' && field.preferences?.price) {
+      if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {
         const { price, currency } = field.preferences || {}
 
         const formattedPrice = new Intl.NumberFormat([], {

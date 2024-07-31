@@ -17,6 +17,7 @@ const en = {
   display_title: 'Display title',
   with_logo: 'With logo',
   unchecked: 'Unchecked',
+  price: 'Price',
   type_value: 'Type value',
   equal: 'Equal',
   not_equal: 'Not equal',

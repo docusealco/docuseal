@@ -93,6 +93,10 @@ export default {
       type: Object,
       required: true
     },
+    values: {
+      type: Object,
+      required: true
+    },
     submitterSlug: {
       type: String,
       required: true
@@ -101,7 +105,8 @@ export default {
   emits: ['focus', 'submit', 'update:model-value', 'attached'],
   data () {
     return {
-      isCreatingCheckout: false
+      isCreatingCheckout: false,
+      isMathLoaded: false
     }
   },
   computed: {
@@ -114,15 +119,23 @@ export default {
     defaultName () {
       const { price, currency } = this.field.preferences || {}
 
-      const formattedPrice = new Intl.NumberFormat([], {
+      const formatter = new Intl.NumberFormat([], {
         style: 'currency',
         currency
-      }).format(price)
+      })
 
-      return this.t('pay') + ' ' + formattedPrice
+      if (this.field.preferences?.formula) {
+        if (this.isMathLoaded) {
+          return this.t('pay') + ' ' + formatter.format(this.calculateFormula())
+        } else {
+          return ''
+        }
+      } else {
+        return this.t('pay') + ' ' + formatter.format(price)
+      }
     }
   },
-  mounted () {
+  async mounted () {
     if (this.sessionId) {
       this.$emit('submit')
     }
@@ -130,8 +143,48 @@ export default {
     if (!this.sessionId) {
       this.postCheckout({ checkStatus: true })
     }
+
+    if (this.field.preferences?.formula) {
+      const {
+        create,
+        evaluateDependencies,
+        addDependencies,
+        subtractDependencies,
+        divideDependencies,
+        multiplyDependencies,
+        powDependencies,
+        roundDependencies,
+        absDependencies,
+        sinDependencies,
+        tanDependencies,
+        cosDependencies
+      } = await import('mathjs')
+
+      this.math = create({
+        evaluateDependencies,
+        addDependencies,
+        subtractDependencies,
+        divideDependencies,
+        multiplyDependencies,
+        powDependencies,
+        roundDependencies,
+        absDependencies,
+        sinDependencies,
+        tanDependencies,
+        cosDependencies
+      })
+
+      this.isMathLoaded = true
+    }
   },
   methods: {
+    calculateFormula () {
+      const transformedFormula = this.field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        return this.values[uuid] || 0.0
+      })
+
+      return this.math.evaluate(transformedFormula.toLowerCase())
+    },
     async submit () {
       if (this.sessionId) {
         return fetch(this.baseUrl + '/api/stripe_payments/' + this.sessionId, {

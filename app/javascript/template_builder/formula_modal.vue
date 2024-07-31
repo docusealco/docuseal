@@ -204,7 +204,10 @@ export default {
         alert('Some fields are missing in the formula.')
       } else {
         this.field.preferences.formula = normalizedFormula
-        this.field.readonly = !!normalizedFormula
+
+        if (this.field.type !== 'payment') {
+          this.field.readonly = !!normalizedFormula
+        }
 
         this.save()
 

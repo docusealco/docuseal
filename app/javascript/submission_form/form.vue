@@ -388,6 +388,7 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :submitter-slug="submitterSlug"
+            :values="values"
             @attached="attachments.push($event)"
             @focus="scrollIntoField(currentField)"
             @submit="submitStep"
@@ -808,7 +809,7 @@ export default {
       }, [])
     },
     formulaFields () {
-      return this.fields.filter((f) => f.preferences?.formula)
+      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment')
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
