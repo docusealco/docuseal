@@ -7,7 +7,7 @@ module Templates
     ATTACHMENT_NAME = 'preview_images'
 
     PDF_CONTENT_TYPE = 'application/pdf'
-    Q = 35
+    Q = ENV.fetch('PAGE_QUALITY', '35').to_i
     MAX_WIDTH = 1400
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 20.megabytes
