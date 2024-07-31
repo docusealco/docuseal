@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     items () {
-      return snarkdown(this.string.replace(/\n/g, '<br>')).split(htmlSplitRegexp)
+      return snarkdown(this.string.replace(/(?<!\(\s*)(https?:\/\/[^\s]+)(?!\s*\))/g, '[$1]($1)').replace(/\n/g, '<br>')).split(htmlSplitRegexp)
     }
   },
   methods: {
