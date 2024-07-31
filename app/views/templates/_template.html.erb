@@ -57,7 +57,7 @@
       <% end %>
       <% if can?(:destroy, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? 'Delete' : 'Archive' %>">
-          <%= button_to template_path(template), data: { turbo_confirm: template.archived_at? ? 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' : 'Are you sure?' }, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
             <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>

@@ -44,9 +44,7 @@ RSpec.describe 'Template' do
 
     it 'archives a template' do
       expect do
-        accept_confirm('Are you sure?') do
-          click_button 'Archive'
-        end
+        click_button 'Archive'
       end.to change { Template.active.count }.by(-1)
 
       expect(page).to have_content('Template has been archived')
