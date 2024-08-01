@@ -34,7 +34,17 @@
       <%= fields_for @user do |ff| %>
         <div class="form-control">
           <%= ff.label :password, class: 'label' %>
-          <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input' %>
+          <password-input class="block relative">
+            <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input w-full pr-10', data: { target: 'password-input.passwordInput' } %>
+            <button data-target="password-input.togglePasswordVisibility" type="button" class="absolute inset-y-0 h-12 right-0 pr-3 flex items-center">
+              <span data-target="password-input.hiddenPasswordIcon">
+                <%= svg_icon('eye_off', class: 'w-6 h-6 shrink-0 bg-white') %>
+              </span>
+              <span data-target="password-input.visiblePasswordIcon" class="hidden">
+                <%= svg_icon('eye', class: 'w-6 h-6 shrink-0 bg-white') %>
+              </span>
+            </button>
+          </password-input>
         </div>
       <% end %>
       <%= fields_for @encrypted_config do |ff| %>
