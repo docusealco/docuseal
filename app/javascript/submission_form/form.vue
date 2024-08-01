@@ -106,6 +106,7 @@
             v-model="values[currentField.uuid]"
             :show-field-names="showFieldNames"
             :field="currentField"
+            @submit="submitStep"
             @focus="scrollIntoField(currentField)"
           />
           <div v-else-if="currentField.type === 'select'">
