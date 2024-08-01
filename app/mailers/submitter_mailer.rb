@@ -6,6 +6,8 @@ class SubmitterMailer < ApplicationMailer
 
   DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
 
+  NO_REPLY_REGEXP = /no-?reply@/i
+
   def invitation_email(submitter)
     @current_account = submitter.submission.account
     @submitter = submitter
@@ -28,12 +30,13 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_invitation', @submitter)
 
+    reply_to = build_submitter_reply_to(@submitter)
+
     mail(
       to: @submitter.friendly_name,
       from: from_address_for_submitter(submitter),
       subject:,
-      reply_to: submitter.preferences['reply_to'].presence ||
-                (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+      reply_to:
     )
   end
 
@@ -104,15 +107,25 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_documents_copy', @submitter)
 
+    reply_to = build_submitter_reply_to(submitter)
+
     mail(from: from_address_for_submitter(submitter),
          to: to || @submitter.friendly_name,
-         reply_to: @submitter.preferences['reply_to'].presence ||
-                   (@submitter.submission.created_by_user ||
-                    @submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@'),
+         reply_to:,
          subject:)
   end
 
   private
+
+  def build_submitter_reply_to(submitter)
+    reply_to =
+      submitter.preferences['reply_to'].presence ||
+      (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+
+    return nil if reply_to.to_s.match?(NO_REPLY_REGEXP)
+
+    reply_to
+  end
 
   def build_completed_subject(submitter)
     submitters = submitter.submission.submitters.order(:completed_at)
