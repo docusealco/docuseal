@@ -17,7 +17,8 @@ class StartFormController < ApplicationController
   def update
     return redirect_to start_form_path(@template.slug) if @template.archived_at?
 
-    @submitter = Submitter.where(submission: @template.submissions.where(archived_at: nil))
+    @submitter = Submitter.where(submission: @template.submissions.where(expire_at: Time.current..)
+                                             .or(@template.submissions.where(expire_at: nil)).where(archived_at: nil))
                           .order(id: :desc)
                           .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
                           .find_or_initialize_by(**submitter_params.compact_blank)

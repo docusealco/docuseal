@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  archived_at         :datetime
+#  expire_at           :datetime
 #  preferences         :text             not null
 #  slug                :string           not null
 #  source              :text             not null
@@ -74,6 +75,10 @@ class Submission < ApplicationRecord
     random: 'random',
     preserved: 'preserved'
   }, scope: false, prefix: true
+
+  def expired?
+    expire_at && expire_at <= Time.current
+  end
 
   def audit_trail_url
     return if audit_trail.blank?

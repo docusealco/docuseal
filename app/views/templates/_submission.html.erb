@@ -34,11 +34,19 @@
         <% submitter = submitters.first %>
         <div class="flex items-center space-x-4">
           <span class="flex flex-col md:flex-row md:items-center gap-3">
-            <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
-              <span class="badge <%= status_badges[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm font-semibold">
-                <%= submitter.status %>
-              </span>
-            </div>
+            <% if submission.expired? %>
+              <div class="tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
+                  Expired
+                </span>
+              </div>
+            <% else %>
+              <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge <%= status_badges[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm font-semibold">
+                  <%= submitter.status %>
+                </span>
+              </div>
+            <% end %>
             <span class="text-lg break-all flex items-center">
               <%= submitter.name || submitter.email || submitter.phone %>
             </span>
@@ -61,7 +69,7 @@
               </download-button>
             </button>
           </form>
-        <% elsif !submission.archived_at? && !template.archived_at? %>
+        <% elsif !submission.archived_at? && !template.archived_at? && !submission.expired? %>
           <% if current_user.email == submitter.email %>
             <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>" class="flex-1 md:flex-none">
               <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex">
@@ -101,12 +109,18 @@
                 <%= latest_submitter.status %>
               </span>
             </div>
+          <% elsif submission.expired? %>
+            <div class="tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+              <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
+                Expired
+              </span>
+            </div>
           <% end %>
           <div class="w-full <%= is_submission_completed ? 'space-y-1' : 'space-y-4' %> md:space-y-0">
             <% submitters.each_with_index do |submitter, index| %>
               <div class="relative flex justify-between items-start md:items-center space-x-3">
                 <span class="flex flex-col md:flex-row md:items-center gap-2">
-                  <% unless is_submission_completed %>
+                  <% if !is_submission_completed && !submission.expired? %>
                     <div class="tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                       <span class="badge md:w-24 <%= status_badges[submitter.status] %> bg-opacity-50 uppercase text-xs font-semibold">
                         <%= submitter.status %>
@@ -132,7 +146,7 @@
                       </download-button>
                     </button>
                   </form>
-                <% elsif !template.archived_at? && !submission.archived_at? && !is_submission_completed %>
+                <% elsif !template.archived_at? && !submission.archived_at? && !is_submission_completed && !submission.expired? %>
                   <div class="relative flex items-center space-x-3">
                     <% if current_user.email == submitter.email %>
                       <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>">

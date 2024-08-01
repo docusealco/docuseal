@@ -3,7 +3,7 @@
 module Submissions
   module SerializeForApi
     SERIALIZE_PARAMS = {
-      only: %i[id slug source submitters_order created_at updated_at archived_at],
+      only: %i[id slug source submitters_order expire_at created_at updated_at archived_at],
       methods: %i[audit_log_url],
       include: {
         submitters: { only: %i[id slug uuid name email phone
@@ -41,7 +41,7 @@ module Submissions
         json[:completed_at] = last_submitter.completed_at
       else
         json[:documents] = []
-        json[:status] = 'pending'
+        json[:status] = submission.expired? ? 'expired' : 'pending'
         json[:completed_at] = nil
       end
 

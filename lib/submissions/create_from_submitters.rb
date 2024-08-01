@@ -17,6 +17,7 @@ module Submissions
         submission = template.submissions.new(created_by_user: user, source:,
                                               account_id: user.account_id,
                                               preferences: set_submission_preferences,
+                                              expire_at: attrs[:expire_at],
                                               template_submitters: [], submitters_order:)
 
         maybe_set_template_fields(submission, attrs[:submitters])

@@ -19,6 +19,7 @@ en: &en
   language_ar: العربية
   language_ko: 한국어
   email: Email
+  form_expired_at_html: 'Form expired on <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Verification code: %{code}'
   digitally_signed_by: Digitally signed by
   role: Role
@@ -66,6 +67,7 @@ en: &en
 es: &es
   role: Rol
   reason: Razón
+  form_expired_at_html: 'El formulario expiró el <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Código de verificación: %{code}'
   email: Correo electrónico
   digitally_signed_by: Firmado digitalmente por
@@ -111,6 +113,7 @@ it: &it
   reason: Ragione
   verification_code_code: 'Codice di verifica: %{code}'
   email: Email
+  form_expired_at_html: 'Il modulo è scaduto il <span class="font-semibold">%{time}</span>'
   digitally_signed_by: Firmato digitalmente da
   role: Ruolo
   provide_your_email_to_start: Fornisci la tua email per iniziare
@@ -154,6 +157,7 @@ fr: &fr
   digitally_signed_by: Signé numériquement par
   reason: Raison
   role: Rôle
+  form_expired_at_html: 'Le formulaire a expiré le <span class="font-semibold">%{time}</span>'
   provide_your_email_to_start: Entrez votre adresse email pour commencer
   start: Démarrer
   starting: Démarrage
@@ -196,6 +200,7 @@ pt: &pt
   reason: Razão
   verification_code_code: 'Código de verificação: %{code}'
   digitally_signed_by: Assinado digitalmente por
+  form_expired_at_html: 'O formulário expirou em <span class="font-semibold">%{time}</span>'
   role: Função
   provide_your_email_to_start: Forneça o seu email para começar
   start: Iniciar
@@ -237,6 +242,7 @@ de: &de
   verification_code_code: 'Verifizierungscode: %{code}'
   reason: Grund
   email: E-Mail
+  form_expired_at_html: 'Das Formular ist am <span class="font-semibold">%{time}</span> abgelaufen'
   digitally_signed_by: Digital signiert von
   role: Rolle
   provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
@@ -278,6 +284,7 @@ pl:
   email: Email
   verification_code_code: 'Kod weryfikacyjny: %{code}'
   digitally_signed_by: Podpis cyfrowy przez
+  form_expired_at_html: 'Formularz wygasł o <span class="font-semibold">%{time}</span>'
   role: Rola
   provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
   start: Rozpocznij
@@ -321,6 +328,7 @@ uk:
   verification_code_code: 'Код підтвердження: %{code}'
   role: Роль
   provide_your_email_to_start: Введіть свій email, щоб почати
+  form_expired_at_html: 'Строк подачі завершився о <span class="font-semibold">%{time}</span>'
   start: Почати
   reason: Причина
   starting: Початок
@@ -363,6 +371,7 @@ cs:
   role: Role
   provide_your_email_to_start: Zadejte svůj email pro zahájení
   reason: Důvod
+  form_expired_at_html: 'Formulář vypršel <span class="font-semibold">%{time}</span>'
   start: Zahájit
   starting: Zahajování
   form_has_been_deleted_by_html: 'Formulář byl smazán uživatelem <span class="font-semibold">%{name}</span>.'
@@ -406,6 +415,7 @@ he:
   provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
   start: התחל
   starting: מתחיל
+  form_expired_at_html: 'הטופס פג תוקף ב- <span class="font-semibold">%{time}</span>'
   form_has_been_deleted_by_html: 'הטופס נמחק על ידי <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'הוזמן על ידי <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: הוזמנת להגיש טופס
@@ -446,6 +456,7 @@ nl:
   provide_your_email_to_start: Geef uw e-mailadres om te beginnen
   start: Start
   reason: Reden
+  form_expired_at_html: 'Formulier is verlopen op <span class="font-semibold">%{time}</span>'
   starting: Starten
   form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Uitgenodigd door <span class="font-semibold">%{name}</span>'
@@ -491,6 +502,7 @@ ar:
   form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
   reason: سبب
   invited_by_html: 'تمت الدعوة بواسطة <span class="font-semibold">%{name}</span>'
+  form_expired_at_html: 'استمارة انتهت صلاحيتها في <span class="font-semibold">%{time}</span>'
   you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
   signed_on_time: 'تم التوقيع في %{time}'
   form_has_been_submitted_already: تم تقديم الاستمارة بالفعل
@@ -530,6 +542,7 @@ ko:
   start: 시작
   reason: 이유
   starting: 시작 중
+  form_expired_at_html: '양식이 만료되었습니다 <span class="font-semibold">%{time}</span>'
   form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
   invited_by_html: '<span class="font-semibold">%{name}</span>에 의해 초대되었습니다.'
   you_have_been_invited_to_submit_a_form: 양식을 제출하도록 초대되었습니다.
