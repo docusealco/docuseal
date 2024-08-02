@@ -51,7 +51,17 @@ export default {
   },
   computed: {
     items () {
-      return snarkdown(this.string.replace(/(?<!\(\s*)(https?:\/\/[^\s]+)(?!\s*\))/g, '[$1]($1)').replace(/\n/g, '<br>')).split(htmlSplitRegexp)
+      const linkParts = this.string.split(/(https?:\/\/[^\s)]+)/g)
+
+      const text = linkParts.map((part, index) => {
+        if (part.match(/^https?:\/\//) && !linkParts[index - 1]?.match(/\(\s*$/) && !linkParts[index + 1]?.match(/^\s*\)/)) {
+          return `[${part}](${part})`
+        } else {
+          return part
+        }
+      }).join('')
+
+      return snarkdown(text.replace(/\n/g, '<br>')).split(htmlSplitRegexp)
     }
   },
   methods: {
