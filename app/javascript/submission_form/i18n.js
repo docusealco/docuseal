@@ -9,6 +9,8 @@ const en = {
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scan the QR code with the camera app to open the form on mobile and draw your signature',
   date: 'Date',
   number: 'Number',
+  value_is_invalid: 'Value is invalid',
+  verification_code_is_invalid: 'Verification code is invalid',
   already_paid: 'Already paid',
   image: 'Image',
   pay: 'Pay',
@@ -75,6 +77,8 @@ const en = {
 }
 
 const es = {
+  value_is_invalid: 'El valor no es válido',
+  verification_code_is_invalid: 'El código de verificación no es válido',
   drawn_signature_on_a_touchscreen_device: 'Firma dibujada en un dispositivo con pantalla táctil',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Escanea el código QR con la aplicación de la cámara para abrir el formulario en el móvil y dibujar tu firma',
   by_clicking_you_agree_to_the: 'Al hacer clic en "{button}", usted acepta el',
@@ -150,6 +154,8 @@ const es = {
 }
 
 const it = {
+  value_is_invalid: 'Il valore non è valido',
+  verification_code_is_invalid: 'Il codice di verifica non è valido',
   drawn_signature_on_a_touchscreen_device: 'Firma disegnata su un dispositivo con schermo tattile',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scansiona il codice QR con l\'app della fotocamera per aprire il modulo sul cellulare e disegnare la tua firma',
   by_clicking_you_agree_to_the: 'Cliccando su "{button}", accetti il',
@@ -225,6 +231,8 @@ const it = {
 }
 
 const de = {
+  value_is_invalid: 'Wert ist ungültig',
+  verification_code_is_invalid: 'Bestätigungscode ist ungültig',
   drawn_signature_on_a_touchscreen_device: 'Gezeichnete Unterschrift auf einem Touchscreen-Gerät',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scannen Sie den QR-Code mit der Kamera-App, um das Formular auf dem Handy zu öffnen und Ihre Unterschrift zu zeichnen',
   by_clicking_you_agree_to_the: 'Durch Klicken auf "{button}" stimmen Sie zu, dass Sie die',
@@ -300,6 +308,8 @@ const de = {
 }
 
 const fr = {
+  value_is_invalid: 'La valeur est invalide',
+  verification_code_is_invalid: 'Le code de vérification est invalide',
   drawn_signature_on_a_touchscreen_device: 'Signature dessinée sur un appareil à écran tactile',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scannez le code QR avec l\'application de l\'appareil photo pour ouvrir le formulaire sur mobile et dessiner votre signature',
   by_clicking_you_agree_to_the: 'En cliquant sur "{button}", vous acceptez la',
@@ -375,6 +385,8 @@ const fr = {
 }
 
 const pl = {
+  value_is_invalid: 'Wartość jest nieprawidłowa',
+  verification_code_is_invalid: 'Kod weryfikacyjny jest nieprawidłowy',
   drawn_signature_on_a_touchscreen_device: 'Podpis odręczny na urządzeniu z ekranem dotykowym',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Zeskanuj kod QR za pomocą aplikacji aparatu, aby otworzyć formularz na telefonie i narysować swój podpis',
   by_clicking_you_agree_to_the: 'Klikając na "{button}", zgadzasz się na',
@@ -450,6 +462,8 @@ const pl = {
 }
 
 const uk = {
+  value_is_invalid: 'Значення є неправильним',
+  verification_code_is_invalid: 'Код підтвердження є неправильним',
   drawn_signature_on_a_touchscreen_device: 'Підпис на сенсорному пристрої',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Скануйте QR-код за допомогою програми камери, щоб відкрити форму на мобільному пристрої та намалювати свій підпис',
   by_clicking_you_agree_to_the: 'Натиснувши на "{button}", ви погоджуєтеся з',
@@ -525,6 +539,8 @@ const uk = {
 }
 
 const cs = {
+  value_is_invalid: 'Hodnota je neplatná',
+  verification_code_is_invalid: 'Ověřovací kód je neplatný',
   drawn_signature_on_a_touchscreen_device: 'Namalovaný podpis na dotykovém zařízení',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Naskenujte QR kód pomocí aplikace fotoaparátu, abyste otevřeli formulář na mobilním zařízení a nakreslili svůj podpis',
   by_clicking_you_agree_to_the: 'Kliknutím na "{button}" souhlasíte s',
@@ -600,6 +616,8 @@ const cs = {
 }
 
 const pt = {
+  value_is_invalid: 'Valor é inválido',
+  verification_code_is_invalid: 'Código de verificação é inválido',
   drawn_signature_on_a_touchscreen_device: 'Assinatura desenhada em um dispositivo com tela sensível ao toque',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Escaneie o código QR com o aplicativo da câmera para abrir o formulário no celular e desenhar sua assinatura',
   by_clicking_you_agree_to_the: 'Ao clicar em "{button}", você concorda com o',
@@ -675,6 +693,8 @@ const pt = {
 }
 
 const he = {
+  value_is_invalid: 'ערך לא תקין',
+  verification_code_is_invalid: 'קוד האימות אינו תקין',
   drawn_signature_on_a_touchscreen_device: 'חתימה שנוצרה במכשיר עם מסך מגע',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'סרוק את קוד ה-QR באמצעות אפליקציית המצלמה כדי לפתוח את הטופס במובייל ולצייר את החתימה שלך',
   by_clicking_you_agree_to_the: 'על ידי לחיצה על "{button}", אתה מסכים ל',
@@ -751,6 +771,8 @@ const he = {
 }
 
 const nl = {
+  value_is_invalid: 'Waarde is ongeldig',
+  verification_code_is_invalid: 'Verificatiecode is ongeldig',
   drawn_signature_on_a_touchscreen_device: 'Getekende handtekening op een apparaat met een touchscreen',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scan de QR-code met de camera-app om het formulier op mobiel te openen en uw handtekening te tekenen',
   by_clicking_you_agree_to_the: 'Door op "{button}" te klikken, gaat u akkoord met de',
@@ -827,6 +849,8 @@ const nl = {
 }
 
 const ar = {
+  value_is_invalid: 'القيمة غير صالحة',
+  verification_code_is_invalid: 'رمز التحقق غير صالح',
   drawn_signature_on_a_touchscreen_device: 'توقيع مرسوم على جهاز بشاشة تعمل باللمس',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'امسح رمز الاستجابة السريعة باستخدام تطبيق الكاميرا لفتح النموذج على الهاتف المحمول ورسم توقيعك',
   by_clicking_you_agree_to_the: 'بالنقر فوق "{button}"، أنت توافق على',
