@@ -97,6 +97,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
       backgroundColor: '#faf7f5',
+      locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
       editable: this.dataset.editable !== 'false',

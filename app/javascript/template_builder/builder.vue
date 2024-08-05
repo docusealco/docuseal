@@ -435,6 +435,7 @@ export default {
       save: this.save,
       t: this.t,
       currencies: this.currencies,
+      locale: this.locale,
       baseFetch: this.baseFetch,
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
@@ -464,6 +465,11 @@ export default {
       default: false
     },
     backgroundColor: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    locale: {
       type: String,
       required: false,
       default: ''
@@ -649,6 +655,20 @@ export default {
   computed: {
     selectedAreaRef: () => ref(),
     fieldsDragFieldRef: () => ref(),
+    defaultDateFormat () {
+      const isUsBrowser = Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US')
+      const isUsTimezone = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/)
+
+      return this.localeDateFormats[this.locale] || ((isUsBrowser || isUsTimezone) ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+    },
+    localeDateFormats () {
+      return {
+        'de-DE': 'DD.MM.YYYY',
+        'fr-FR': 'DD/MM/YYYY',
+        'it-IT': 'DD/MM/YYYY',
+        'es-ES': 'DD/MM/YYYY'
+      }
+    },
     fieldAreasIndex () {
       const areas = {}
 
@@ -768,7 +788,7 @@ export default {
 
       if (type === 'date') {
         field.preferences = {
-          format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+          format: this.defaultDateFormat
         }
       }
 
@@ -801,7 +821,7 @@ export default {
 
         if (type === 'date') {
           field.preferences = {
-            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+            format: this.defaultDateFormat
           }
         }
 
@@ -1138,7 +1158,7 @@ export default {
 
         if (field.type === 'date') {
           field.preferences = {
-            format: Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US') || new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/) ? 'MM/DD/YYYY' : 'DD/MM/YYYY'
+            format: this.defaultDateFormat
           }
         }
       }
