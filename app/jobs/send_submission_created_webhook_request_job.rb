@@ -13,7 +13,9 @@ class SendSubmissionCreatedWebhookRequestJob
     submission = Submission.find(params['submission_id'])
 
     attempt = params['attempt'].to_i
-    url = Accounts.load_webhook_url(submission.account)
+
+    config = Accounts.load_webhook_config(submission.account)
+    url = config&.value.presence
 
     return if url.blank?
 
@@ -28,6 +30,8 @@ class SendSubmissionCreatedWebhookRequestJob
                      timestamp: Time.current,
                      data: Submissions::SerializeForApi.call(submission)
                    }.to_json,
+                   **EncryptedConfig.find_or_initialize_by(account_id: config.account_id,
+                                                           key: EncryptedConfig::WEBHOOK_SECRET_KEY)&.value.to_h,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
     rescue Faraday::Error

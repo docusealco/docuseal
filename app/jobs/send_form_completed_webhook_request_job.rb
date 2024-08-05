@@ -14,7 +14,7 @@ class SendFormCompletedWebhookRequestJob
 
     attempt = params['attempt'].to_i
 
-    url = load_url(submitter, params)
+    url, secret = load_url_and_secret(submitter, params)
 
     return if url.blank?
 
@@ -29,6 +29,7 @@ class SendFormCompletedWebhookRequestJob
                      timestamp: Time.current,
                      data: Submitters::SerializeForWebhook.call(submitter)
                    }.to_json,
+                   **secret.to_h,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
     rescue Faraday::Error
@@ -45,9 +46,11 @@ class SendFormCompletedWebhookRequestJob
     end
   end
 
-  def load_url(submitter, params)
+  def load_url_and_secret(submitter, params)
     if params['encrypted_config_id']
-      url = EncryptedConfig.find(params['encrypted_config_id']).value
+      config = EncryptedConfig.find(params['encrypted_config_id'])
+
+      url = config.value
 
       return if url.blank?
 
@@ -55,7 +58,10 @@ class SendFormCompletedWebhookRequestJob
 
       return if preferences['form.completed'] == false
 
-      url
+      secret = EncryptedConfig.find_or_initialize_by(account_id: config.account_id,
+                                                     key: EncryptedConfig::WEBHOOK_SECRET_KEY)&.value.to_h
+
+      [url, secret]
     elsif params['webhook_url_id']
       webhook_url = submitter.account.webhook_urls.find(params['webhook_url_id'])
 

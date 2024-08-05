@@ -27,7 +27,8 @@ class EncryptedConfig < ApplicationRecord
     ESIGN_CERTS_KEY = 'esign_certs',
     TIMESTAMP_SERVER_URL_KEY = 'timestamp_server_url',
     APP_URL_KEY = 'app_url',
-    WEBHOOK_URL_KEY = 'webhook_url'
+    WEBHOOK_URL_KEY = 'webhook_url',
+    WEBHOOK_SECRET_KEY = 'webhook_secret'
   ].freeze
 
   belongs_to :account

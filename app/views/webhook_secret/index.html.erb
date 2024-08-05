@@ -1,0 +1,19 @@
+<%= render 'shared/turbo_modal', title: 'Webhook Secret' do %>
+  <%= form_for @encrypted_config, url: webhook_secret_index_path, method: :post, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+    <div class="space-y-2">
+      <%= f.fields_for :value, Struct.new(:key, :value).new(*@encrypted_config.value.to_a.first) do |ff| %>
+        <div class="form-control">
+          <%= ff.label :key, class: 'label' %>
+          <%= ff.text_field :key, class: 'base-input', placeholder: 'X-Example-Header' %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :value, class: 'label' %>
+          <%= ff.text_field :value, class: 'base-input' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-control pt-2">
+      <%= f.button button_title, class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>
