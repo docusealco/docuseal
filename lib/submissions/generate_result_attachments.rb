@@ -21,6 +21,8 @@ module Submissions
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
+    TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
+
     MISSING_GLYPH_REPLACE = {
       '▪' => '-',
       '✔️' => 'V',
@@ -100,18 +102,31 @@ module Submissions
 
       pdfs_index = build_pdfs_index(submitter, flatten: is_flatten)
 
-      if with_signature_id
+      if with_signature_id || submitter.account.testing?
         pdfs_index.each_value do |pdf|
           next if pdf.trailer.info[:DocumentID].present?
 
-          pdf.trailer.info[:DocumentID] = Digest::MD5.hexdigest(submitter.submission.slug).upcase
+          document_id = Digest::MD5.hexdigest(submitter.submission.slug).upcase
+
+          pdf.trailer.info[:DocumentID] = document_id
           pdf.pages.each do |page|
             font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * 9).to_i
             cnv = page.canvas(type: :overlay)
 
             cnv.font(FONT_NAME, size: font_size)
-            cnv.text("Document ID: #{Digest::MD5.hexdigest(submitter.submission.slug).upcase}",
-                     at: [2, 4])
+
+            text =
+              if submitter.account.testing?
+                if with_signature_id
+                  "#{TESTING_FOOTER} | ID: #{document_id}"
+                else
+                  TESTING_FOOTER
+                end
+              else
+                "Document ID: #{document_id}"
+              end
+
+            cnv.text(text, at: [2, 4])
           end
         end
       end
