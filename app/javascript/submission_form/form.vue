@@ -327,17 +327,20 @@
             ref="currentStep"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
+            :reason="values[currentField.preferences?.reason_field_uuid]"
             :field="currentField"
             :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
             :with-typed-signature="withTypedSignature"
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
+            :require-signing-reason="requireSigningReason"
             :button-text="buttonText"
             :dry-run="dryRun"
             :with-disclosure="withDisclosure"
             :with-qr-button="withQrButton"
             :submitter="submitter"
             :show-field-names="showFieldNames"
+            @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
@@ -548,6 +551,11 @@ export default {
       type: String,
       required: false,
       default: '-80px'
+    },
+    requireSigningReason: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     canSendEmail: {
       type: Boolean,

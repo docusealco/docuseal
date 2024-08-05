@@ -35,6 +35,7 @@ module Submitters
       assign_completed_attributes(submitter, request) if params[:completed] == 'true'
 
       ApplicationRecord.transaction do
+        maybe_set_signature_reason!(values, submitter, params)
         validate_values!(values, submitter, params, request)
 
         SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request) if params[:completed] == 'true'
@@ -57,6 +58,31 @@ module Submitters
       end
 
       submitter
+    end
+
+    def maybe_set_signature_reason!(values, submitter, params)
+      return if params[:with_reason].blank?
+
+      reason_field_uuid = params[:with_reason]
+      signature_field_uuid = values.except(reason_field_uuid).keys.first
+
+      signature_field = submitter.submission.template_fields.find { |e| e['uuid'] == signature_field_uuid }
+
+      signature_field['preferences'] ||= {}
+      signature_field['preferences']['reason_field_uuid'] = reason_field_uuid
+
+      unless submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
+        reason_field = { 'type' => 'text',
+                         'uuid' => reason_field_uuid,
+                         'name' => I18n.t(:reason),
+                         'readonly' => true,
+                         'submitter_uuid' => submitter.uuid }
+
+        submitter.submission.template_fields.insert(submitter.submission.template_fields.index(signature_field) + 1,
+                                                    reason_field)
+      end
+
+      submitter.submission.save!
     end
 
     def normalized_values(params)

@@ -184,7 +184,7 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           case field['type']
-          when ->(type) { type == 'signature' && with_signature_id }
+          when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             attachments_data_cache[attachment.uuid] ||= attachment.download
@@ -207,8 +207,10 @@ module Submissions
               break if id_string.length < 8
             end
 
+            reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
+
             reason_string =
-              "#{I18n.t('reason')}: #{I18n.t('digitally_signed_by')} " \
+              "#{I18n.t('reason')}: #{reason_value || I18n.t('digitally_signed_by')} " \
               "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
               "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone),
                         format: :long, locale: submitter.account.locale)} " \

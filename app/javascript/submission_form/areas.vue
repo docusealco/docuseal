@@ -18,6 +18,7 @@
           <FieldArea
             :ref="setAreaRef"
             v-model="values[field.uuid]"
+            :values="values"
             :field="field"
             :area="area"
             :submittable="true"
