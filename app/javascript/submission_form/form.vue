@@ -453,7 +453,7 @@
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
             :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
+            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
           />
         </div>
       </div>
@@ -1024,8 +1024,8 @@ export default {
         return null
       }
     },
-    goToStep (step, scrollToArea = false, clickUpload = false) {
-      this.currentStep = this.stepFields.indexOf(step)
+    goToStep (stepIndex, scrollToArea = false, clickUpload = false) {
+      this.currentStep = stepIndex
       this.showFillAllRequiredFields = false
 
       this.$nextTick(() => {
@@ -1033,7 +1033,7 @@ export default {
 
         if (!this.isCompleted) {
           if (scrollToArea) {
-            this.scrollIntoField(step[0])
+            this.scrollIntoField(this.currentField)
           }
 
           this.enableScrollIntoField = false
@@ -1140,7 +1140,7 @@ export default {
               this.isFormVisible = false
             }
 
-            this.goToStep(nextStep, this.autoscrollFields)
+            this.goToStep(this.stepFields.indexOf(nextStep), this.autoscrollFields)
 
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true
