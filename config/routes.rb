@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     end
     resources :tools, only: %i[] do
       post :merge, on: :collection
+      post :verify, on: :collection
     end
     scope 'events' do
       resources :form_events, only: %i[index], path: 'form/:type'
