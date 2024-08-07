@@ -923,18 +923,22 @@ export default {
     checkFieldConditions (field) {
       if (field.conditions?.length) {
         return field.conditions.reduce((acc, c) => {
+          const field = this.fieldsUuidIndex[c.field_uuid]
+
+          if (!this.checkFieldConditions(field)) {
+            return false
+          }
+
           if (['empty', 'unchecked'].includes(c.action)) {
             return acc && isEmpty(this.values[c.field_uuid])
           } else if (['not_empty', 'checked'].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid])
           } else if (['equal', 'contains'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
             return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
           } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
