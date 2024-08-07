@@ -130,6 +130,7 @@
                 @click-description="isShowDescriptionModal = true"
                 @click-condition="isShowConditionsModal = true"
                 @set-draw="$emit('set-draw', $event)"
+                @remove-area="removeArea"
                 @scroll-to="$emit('scroll-to', $event)"
               />
             </ul>
@@ -345,6 +346,11 @@ export default {
     }
   },
   methods: {
+    removeArea (area) {
+      this.field.areas.splice(this.field.areas.indexOf(area), 1)
+
+      this.save()
+    },
     buildDefaultName (field, fields) {
       if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {
         const { price, currency } = field.preferences || {}
