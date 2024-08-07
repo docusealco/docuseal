@@ -118,7 +118,7 @@
             <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
           </a>
         </div>
-        <%= content_for(:gpt_link) || capture do %>
+        <%= capture do %>
           <div class="tooltip" data-tip="AI Assistant">
             <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
               <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
