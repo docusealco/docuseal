@@ -925,7 +925,7 @@ export default {
         return field.conditions.reduce((acc, c) => {
           const field = this.fieldsUuidIndex[c.field_uuid]
 
-          if (!this.checkFieldConditions(field)) {
+          if (['not_empty', 'checked', 'equal', 'contains'].includes(c.action) && !this.checkFieldConditions(field)) {
             return false
           }
 
