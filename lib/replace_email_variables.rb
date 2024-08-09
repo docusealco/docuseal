@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 module ReplaceEmailVariables
-  TEMPLATE_NAME = '{{template.name}}'
-  TEMPLATE_ID = '{{template.id}}'
-  SUBMITTER_LINK = '{{submitter.link}}'
-  ACCOUNT_NAME = '{{account.name}}'
-  SENDER_NAME = '{{sender.name}}'
-  SENDER_EMAIL = '{{sender.email}}'
-  SUBMITTER_EMAIL = '{{submitter.email}}'
-  SUBMITTER_NAME = '{{submitter.name}}'
-  SUBMITTER_ID = '{{submitter.id}}'
-  SUBMITTER_SLUG = '{{submitter.slug}}'
-  SUBMISSION_LINK = '{{submission.link}}'
-  SUBMISSION_ID = '{{submission.id}}'
-  SUBMISSION_SUBMITTERS = '{{submission.submitters}}'
-  DOCUMENTS_LINKS = '{{documents.links}}'
-  DOCUMENTS_LINK = '{{documents.link}}'
+  TEMPLATE_NAME = /\{+template\.name\}+/i
+  TEMPLATE_ID = /\{+template\.id\}+/i
+  SUBMITTER_LINK = /\{+submitter\.link\}+/i
+  ACCOUNT_NAME = /\{+account\.name\}+/i
+  SENDER_NAME = /\{+sender\.name\}+/i
+  SENDER_EMAIL = /\{+sender\.email\}+/i
+  SUBMITTER_EMAIL = /\{+submitter\.email\}+/i
+  SUBMITTER_NAME = /\{+submitter\.name\}+/i
+  SUBMITTER_ID = /\{+submitter\.id\}+/i
+  SUBMITTER_SLUG = /\{+submitter\.slug\}+/i
+  SUBMISSION_LINK = /\{+submission\.link\}+/i
+  SUBMISSION_ID = /\{+submission\.id\}+/i
+  SUBMISSION_SUBMITTERS = /\{+submission\.submitters\}+/i
+  DOCUMENTS_LINKS = /\{+documents\.links\}+/i
+  DOCUMENTS_LINK = /\{+documents\.link\}+/i
 
   module_function
 
