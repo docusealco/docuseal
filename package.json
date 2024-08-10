@@ -22,7 +22,7 @@
     "daisyui": "^3.9.4",
     "mathjs": "^12.4.0",
     "mini-css-extract-plugin": "^2.7.5",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.3.0",
     "qr-creator": "^1.0.0",
