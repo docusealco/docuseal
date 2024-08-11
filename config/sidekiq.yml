@@ -7,4 +7,4 @@ queues:
 
 production:
   :concurrency: 15
-  :max_retries: 5
+  :max_retries: 3
