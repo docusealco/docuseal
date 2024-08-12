@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     end
     scope 'events' do
       resources :form_events, only: %i[index], path: 'form/:type'
+      resources :submission_events, only: %i[index], path: 'submission/:type'
     end
   end
 
