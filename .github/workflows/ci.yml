@@ -107,6 +107,8 @@ jobs:
           node-version: 20.9.0
       - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: 125
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
