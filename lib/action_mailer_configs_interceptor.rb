@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ActionMailerConfigsInterceptor
-  OPEN_TIMEOUT = 15
-  READ_TIMEOUT = 25
+  OPEN_TIMEOUT = ENV.fetch('SMTP_OPEN_TIMEOUT', '15').to_i
+  READ_TIMEOUT = ENV.fetch('SMTP_READ_TIMEOUT', '25').to_i
 
   module_function
 
