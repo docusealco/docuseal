@@ -58,13 +58,15 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
-                                            uuid: item['attachment_uuid'],
-                                            name: item['name'])
+          if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
+            pdf = normalize_image_pdf(pdf)
 
-          image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
+            image_pdfs << pdf
+          end
 
-          attachment
+          build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+                               uuid: item['attachment_uuid'],
+                               name: item['name'])
         end
 
       return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
@@ -73,6 +75,8 @@ module Submissions
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
           pdf.pages.each { |page| doc.pages << doc.import(page) }
         end
+
+      images_pdf = normalize_image_pdf(images_pdf)
 
       images_pdf_attachment =
         build_pdf_attachment(
@@ -588,6 +592,14 @@ module Submissions
       )
 
       pdf
+    end
+
+    def normalize_image_pdf(pdf)
+      io = StringIO.new
+      pdf.write(io)
+      io.rewind
+
+      HexaPDF::Document.new(io:)
     end
 
     def sign_reason(name)
