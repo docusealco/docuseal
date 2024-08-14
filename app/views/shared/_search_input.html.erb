@@ -1,4 +1,4 @@
-<form action="<%= url_for %>" method="get" class="items-center hidden md:flex">
+<form action="<%= url_for %>" method="get" class="items-center flex">
   <% if params[:status].present? %>
     <input name="status" value="<%= params[:status] %>" class="hidden">
   <% end %>
@@ -9,7 +9,9 @@
       </a>
     </div>
   <% end %>
-  <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12 <%= 'pl-8 input-outlined' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
+  <search-input data-title="<%= local_assigns[:title_selector] || 'h1' %>">
+    <input id="search" name="q" value="<%= params[:q] %>" class="input input-ghost text-lg pr-10 -mr-12 w-0 md:w-64 <%= 'pl-8 input-outlined w-64' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
+  </search-input>
   <button type="submit" title="Search" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
     <span class="enabled">
       <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>

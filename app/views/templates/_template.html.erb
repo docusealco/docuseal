@@ -1,7 +1,7 @@
 <div class="h-36 relative group">
   <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 peer">
     <div class="pb-4 text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-      <%= template.name %>
+      <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
     </div>
     <div class="pb-6 pt-1 space-y-1">
       <p class="flex items-center space-x-1 text-xs text-base-content/60">

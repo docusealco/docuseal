@@ -5,7 +5,7 @@
   <% end %>
 </div>
 <div class="flex justify-between mb-4 items-center">
-  <h1 class="text-4xl font-bold flex items-center space-x-2">
+  <h1 class="text-4xl font-bold flex items-center space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
     <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
     <span class="peer">
       <%= @template_folder.name %>

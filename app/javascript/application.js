@@ -25,6 +25,7 @@ import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleOnSubmit from './elements/toggle_on_submit'
 import PasswordInput from './elements/password_input'
+import SearchInput from './elements/search_input'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -87,6 +88,7 @@ safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
 safeRegisterElement('password-input', PasswordInput)
+safeRegisterElement('search-input', SearchInput)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

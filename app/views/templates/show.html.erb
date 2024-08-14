@@ -3,10 +3,12 @@
 <% if !@pagy.count.zero? || params[:q].present? || params[:status].present? %>
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
-      <p class="text-3xl font-bold">Submissions</p>
+      <div>
+        <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions</h2>
+      </div>
       <div class="flex justify-end space-x-2">
         <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
-          <%= render 'shared/search_input' %>
+          <%= render 'shared/search_input', title_selector: 'h2' %>
         <% end %>
         <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
