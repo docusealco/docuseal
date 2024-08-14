@@ -23,6 +23,7 @@ gem 'image_processing'
 gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
+gem 'net-smtp', '0.4.0'
 gem 'oj'
 gem 'pagy'
 gem 'pg', require: false
