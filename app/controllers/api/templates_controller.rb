@@ -95,6 +95,7 @@ module Api
     def template_params
       permitted_params = [
         :name,
+        :external_id,
         {
           submitters: [%i[name uuid]],
           fields: [[:uuid, :submitter_uuid, :name, :type,
