@@ -22,7 +22,7 @@
 #
 # Indexes
 #
-#  index_submissions_on_account_id          (account_id)
+#  index_submissions_on_account_id_and_id   (account_id,id)
 #  index_submissions_on_created_by_user_id  (created_by_user_id)
 #  index_submissions_on_slug                (slug) UNIQUE
 #  index_submissions_on_template_id         (template_id)
