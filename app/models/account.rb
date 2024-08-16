@@ -29,7 +29,7 @@ class Account < ApplicationRecord
   has_one :default_template_folder, -> { where(name: TemplateFolder::DEFAULT_NAME) },
           class_name: 'TemplateFolder', dependent: :destroy, inverse_of: :account
   has_many :submissions, dependent: :destroy
-  has_many :submitters, through: :submissions
+  has_many :submitters, dependent: :destroy
   has_many :account_linked_accounts, dependent: :destroy
   has_many :email_events, dependent: :destroy
   has_many :webhook_urls, dependent: :destroy

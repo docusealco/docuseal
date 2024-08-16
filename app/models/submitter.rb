@@ -38,8 +38,8 @@
 #
 class Submitter < ApplicationRecord
   belongs_to :submission
+  belongs_to :account
   has_one :template, through: :submission
-  has_one :account, through: :submission
 
   attribute :values, :string, default: -> { {} }
   attribute :preferences, :string, default: -> { {} }
