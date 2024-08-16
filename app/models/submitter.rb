@@ -20,7 +20,7 @@
 #  values        :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  account_id    :bigint
+#  account_id    :bigint           not null
 #  external_id   :string
 #  submission_id :bigint           not null
 #
