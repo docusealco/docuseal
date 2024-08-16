@@ -67,6 +67,7 @@ module Submissions
 
       submission.submitters.new(email: normalize_email(email),
                                 uuid: template.submitters.first['uuid'],
+                                account_id: user.account_id,
                                 preferences:,
                                 sent_at: mark_as_sent ? Time.current : nil)
 
