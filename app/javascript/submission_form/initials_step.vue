@@ -50,6 +50,26 @@
             </span>
           </a>
         </span>
+        <span
+          class="tooltip"
+          :data-tip="t('click_to_upload')"
+        >
+          <label
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
+          >
+            <IconUpload :width="16" />
+            <input
+              :key="uploadImageInputKey"
+              type="file"
+              hidden
+              accept="image/*"
+              @change="drawImage"
+            >
+            <span class="hidden sm:inline">
+              {{ t('upload') }}
+            </span>
+          </label>
+        </span>
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
@@ -97,7 +117,7 @@
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
-      class="mx-auto bg-white border border-base-300 rounded max-h-72"
+      class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <canvas
       v-show="!modelValue && !computedPreviousValue"
@@ -120,16 +140,18 @@
 
 <script>
 import { cropCanvasAndExportToPNG } from './crop_canvas'
-import { IconReload, IconTextSize, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
+import { IconReload, IconTextSize, IconUpload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
 import MarkdownContent from './markdown_content'
+import SignatureStep from './signature_step'
 
 const scale = 3
 
 export default {
   name: 'InitialsStep',
   components: {
+    IconUpload,
     AppearsOn,
     IconReload,
     IconTextSize,
@@ -178,7 +200,8 @@ export default {
     return {
       isInitialsStarted: !!this.previousValue,
       isUsePreviousValue: true,
-      isDrawInitials: false
+      isDrawInitials: false,
+      uploadImageInputKey: Math.random().toString()
     }
   },
   computed: {
@@ -229,6 +252,15 @@ export default {
     this.intersectionObserver?.disconnect()
   },
   methods: {
+    drawOnCanvas: SignatureStep.methods.drawOnCanvas,
+    drawImage (event) {
+      this.remove()
+      this.isInitialsStarted = true
+
+      this.drawOnCanvas(this.$refs.canvas)
+
+      this.uploadImageInputKey = Math.random().toString()
+    },
     remove () {
       this.$emit('update:model-value', '')
 

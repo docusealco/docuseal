@@ -569,6 +569,11 @@ export default {
       this.remove()
       this.isSignatureStarted = true
 
+      this.drawOnCanvas(this.$refs.canvas)
+
+      this.uploadImageInputKey = Math.random().toString()
+    },
+    drawOnCanvas (canvas) {
       const file = event.target.files[0]
 
       if (file && file.type.match('image.*')) {
@@ -580,7 +585,6 @@ export default {
           img.src = event.target.result
 
           img.onload = () => {
-            const canvas = this.$refs.canvas
             const context = canvas.getContext('2d')
 
             const aspectRatio = img.width / img.height
@@ -615,8 +619,6 @@ export default {
         }
 
         reader.readAsDataURL(file)
-
-        this.uploadImageInputKey = Math.random().toString()
       }
     },
     maybeSetSignedUuid (signedUuid) {
