@@ -257,7 +257,7 @@ export default {
       this.remove()
       this.isInitialsStarted = true
 
-      this.drawOnCanvas(this.$refs.canvas)
+      this.drawOnCanvas(event.target.files[0], this.$refs.canvas)
 
       this.uploadImageInputKey = Math.random().toString()
     },

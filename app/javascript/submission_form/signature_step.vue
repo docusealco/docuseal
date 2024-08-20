@@ -569,13 +569,11 @@ export default {
       this.remove()
       this.isSignatureStarted = true
 
-      this.drawOnCanvas(this.$refs.canvas)
+      this.drawOnCanvas(event.target.files[0], this.$refs.canvas)
 
       this.uploadImageInputKey = Math.random().toString()
     },
-    drawOnCanvas (canvas) {
-      const file = event.target.files[0]
-
+    drawOnCanvas (file, canvas) {
       if (file && file.type.match('image.*')) {
         const reader = new FileReader()
 
