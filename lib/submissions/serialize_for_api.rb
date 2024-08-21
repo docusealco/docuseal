@@ -23,11 +23,9 @@ module Submissions
 
       serialized_submitters = submitters.map { |submitter| Submitters::SerializeForApi.call(submitter, params:) }
 
-      json = submission.as_json(
-        SERIALIZE_PARAMS.deep_merge(
-          include: { submission_events: { only: %i[id submitter_id event_type event_timestamp] } }
-        )
-      )
+      json = submission.as_json(SERIALIZE_PARAMS)
+
+      json['submission_events'] = Submitters::SerializeForApi.serialize_events(submission.submission_events)
 
       if submitters.all?(&:completed_at?)
         last_submitter = submitters.max_by(&:completed_at)

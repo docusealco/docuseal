@@ -29,6 +29,7 @@ module Submitters
       additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter)
       additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter) if with_documents
       additional_attrs['preferences'] = submitter.preferences.except('default_values')
+      additional_attrs['submission_events'] = serialize_events(submitter.submission_events) if with_events
 
       additional_attrs['role'] =
         (submitter.submission.template_submitters ||
@@ -41,9 +42,14 @@ module Submitters
 
       include_params = {}
       include_params[:template] = { only: %i[id name created_at updated_at] } if with_template
-      include_params[:submission_events] = { only: %i[id submitter_id event_type event_timestamp] } if with_events
 
       submitter.as_json(SERIALIZE_PARAMS.merge(include: include_params)).merge(additional_attrs)
+    end
+
+    def serialize_events(events)
+      events.map do |event|
+        event.as_json(only: %i[id submitter_id event_type event_timestamp]).merge('data' => event.data.slice('reason'))
+      end
     end
   end
 end
