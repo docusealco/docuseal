@@ -89,6 +89,7 @@ class SubmitterMailer < ApplicationMailer
     I18n.with_locale(submitter.account.locale) do
       mail(from: from_address_for_submitter(submitter),
            to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
+           reply_to: @submitter.friendly_name,
            subject: I18n.t(:name_declined_by_submitter,
                            name: @submission.template.name.truncate(20),
                            submitter: @submitter.name || @submitter.email || @submitter.phone))
