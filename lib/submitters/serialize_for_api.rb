@@ -3,7 +3,7 @@
 module Submitters
   module SerializeForApi
     SERIALIZE_PARAMS = {
-      only: %i[id slug uuid name email phone completed_at external_id
+      only: %i[id slug uuid name email phone completed_at declined_at external_id
                submission_id metadata opened_at sent_at created_at updated_at],
       methods: %i[status application_key]
     }.freeze

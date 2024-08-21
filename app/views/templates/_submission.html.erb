@@ -1,4 +1,4 @@
-<% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning' } %>
+<% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning', 'declined' => 'badge-error' } %>
 <div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
@@ -69,7 +69,7 @@
               </download-button>
             </button>
           </form>
-        <% elsif !submission.archived_at? && !template.archived_at? && !submission.expired? %>
+        <% elsif !submission.archived_at? && !template.archived_at? && !submission.expired? && !submitter.declined_at? %>
           <% if current_user.email == submitter.email %>
             <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>" class="flex-1 md:flex-none">
               <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex">
@@ -146,7 +146,7 @@
                       </download-button>
                     </button>
                   </form>
-                <% elsif !template.archived_at? && !submission.archived_at? && !is_submission_completed && !submission.expired? %>
+                <% elsif !template.archived_at? && !submission.archived_at? && !is_submission_completed && !submission.expired? && !submitter.declined_at? %>
                   <div class="relative flex items-center space-x-3">
                     <% if current_user.email == submitter.email %>
                       <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>">

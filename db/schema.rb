@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_16_121641) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_20_180922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -244,6 +244,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_121641) do
     t.text "preferences", null: false
     t.text "metadata", null: false
     t.bigint "account_id", null: false
+    t.datetime "declined_at"
     t.index ["account_id", "id"], name: "index_submitters_on_account_id_and_id"
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["external_id"], name: "index_submitters_on_external_id"

@@ -5,6 +5,7 @@ class WebhookPreferencesController < ApplicationController
     form.viewed
     form.started
     form.completed
+    form.declined
     template.created
     template.updated
     submission.created

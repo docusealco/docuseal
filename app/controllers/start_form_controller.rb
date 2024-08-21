@@ -17,11 +17,7 @@ class StartFormController < ApplicationController
   def update
     return redirect_to start_form_path(@template.slug) if @template.archived_at?
 
-    @submitter = Submitter.where(submission: @template.submissions.where(expire_at: Time.current..)
-                                             .or(@template.submissions.where(expire_at: nil)).where(archived_at: nil))
-                          .order(id: :desc)
-                          .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
-                          .find_or_initialize_by(**submitter_params.compact_blank)
+    @submitter = find_or_initialize_submitter(@template, submitter_params)
 
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
@@ -55,6 +51,15 @@ class StartFormController < ApplicationController
   end
 
   private
+
+  def find_or_initialize_submitter(template, submitter_params)
+    Submitter.where(submission: template.submissions.where(expire_at: Time.current..)
+                                        .or(template.submissions.where(expire_at: nil)).where(archived_at: nil))
+             .order(id: :desc)
+             .where(declined_at: nil)
+             .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
+             .find_or_initialize_by(**submitter_params.compact_blank)
+  end
 
   def assign_submission_attributes(submitter, template)
     resubmit_submitter =

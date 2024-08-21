@@ -1,0 +1,19 @@
+<% uuid = SecureRandom.uuid %>
+<label for="<%= uuid %>" class="<%= local_assigns[:btn_class] %>"><%= local_assigns[:btn_text] %></label>
+<input type="checkbox" id="<%= uuid %>" class="modal-toggle">
+<div id="<%= local_assigns[:id] %>" class="modal items-start !animate-none overflow-y-auto">
+  <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
+    <% if local_assigns[:title] %>
+      <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
+        <span>
+          <%= local_assigns[:title] %>
+        </span>
+        <label for="<%= uuid %>" class="text-xl">&times;</label>
+      </div>
+    <% end %>
+    <div>
+      <%= yield %>
+    </div>
+  </div>
+  <label class="modal-backdrop" for="<%= uuid %>">Close</label>
+</div>

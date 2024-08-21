@@ -18,6 +18,8 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  view: View
+  hi_there: Hi there
   email: Email
   form_expired_at_html: 'Form expired on <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Verification code: %{code}'
@@ -39,6 +41,15 @@ en: &en
   or: or
   download_documents: Download documents
   downloading: Downloading
+  download: Download
+  decline: Decline
+  declined: Declined
+  decline_reason: Decline reason
+  provide_a_reason: Provide a reason
+  notify_the_sender_with_the_reason_you_declined: Notify the sender with the reason you declined
+  form_has_been_declined_on_html: 'Form has been declined on <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" declined by %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" has been declined by %{submitter} with the following reason:'
   completed_successfully: Completed Successfully
   password: Password
   sign_in: Sign In
@@ -65,6 +76,17 @@ en: &en
       read: Read your data
 
 es: &es
+  view: Vista
+  hi_there: Hola
+  download: Descargar
+  decline: Rechazar
+  declined: Rechazado
+  decline_reason: Motivo de rechazo
+  provide_a_reason: Proporcione un motivo
+  notify_the_sender_with_the_reason_you_declined: Notifique al remitente con el motivo por el que rechazó
+  form_has_been_declined_on_html: 'El formulario ha sido rechazado el <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" rechazado por %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" ha sido rechazado por %{submitter} con el siguiente motivo:'
   role: Rol
   reason: Razón
   form_expired_at_html: 'El formulario expiró el <span class="font-semibold">%{time}</span>'
@@ -109,6 +131,17 @@ es: &es
   enter_email_to_continue: Ingresa tu correo electrónico para continuar
 
 it: &it
+  view: View
+  hi_there: Bonjour,
+  download: Télécharger
+  decline: Refuser
+  declined: Refusé
+  decline_reason: Raison du refus
+  provide_a_reason: Fournir une raison
+  notify_the_sender_with_the_reason_you_declined: Informer l'expéditeur de la raison pour laquelle vous avez refusé
+  form_has_been_declined_on_html: 'Le formulaire a été refusé le <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" refusé par %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" a été refusé par %{submitter} pour la raison suivante :'
   role: Rôle
   reason: Ragione
   verification_code_code: 'Codice di verifica: %{code}'
@@ -152,6 +185,17 @@ it: &it
   enter_email_to_continue: Inserisci l'email per continuare
 
 fr: &fr
+  view: Vue
+  hi_there: Salut,
+  download: Télécharger
+  decline: Refuser
+  declined: Refusé
+  decline_reason: Raison du refus
+  provide_a_reason: Fournir une raison
+  notify_the_sender_with_the_reason_you_declined: Informer l'expéditeur de la raison pour laquelle vous avez refusé
+  form_has_been_declined_on_html: 'Le formulaire a été refusé le <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" a été refusé par %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" a été refusé par %{submitter} avec la raison suivante :'
   email: Email
   verification_code_code: 'Code de vérification: %{code}'
   digitally_signed_by: Signé numériquement par
@@ -195,13 +239,23 @@ fr: &fr
   enter_email_to_continue: Entrez votre e-mail pour continuer
 
 pt: &pt
+  view: Visualizar
+  hi_there: Olá,
+  download: Baixar
+  decline: Recusar
+  declined: Recusado
+  decline_reason: Motivo da recusa
+  provide_a_reason: Forneça um motivo
+  notify_the_sender_with_the_reason_you_declined: Notifique o remetente com o motivo que você recusou
+  form_has_been_declined_on_html: 'O formulário foi recusado em <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" foi recusado por %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" foi recusado por %{submitter} com o seguinte motivo:'
   role: Função
   email: Email
   reason: Razão
   verification_code_code: 'Código de verificação: %{code}'
   digitally_signed_by: Assinado digitalmente por
   form_expired_at_html: 'O formulário expirou em <span class="font-semibold">%{time}</span>'
-  role: Função
   provide_your_email_to_start: Forneça o seu email para começar
   start: Iniciar
   starting: Iniciando
@@ -238,13 +292,23 @@ pt: &pt
   enter_email_to_continue: Insira o e-mail para continuar
 
 de: &de
+  view: Ansicht
+  hi_there: Hallo,
+  download: Herunterladen
+  decline: Ablehnen
+  declined: Abgelehnt
+  decline_reason: Ablehnungsgrund
+  provide_a_reason: Geben Sie einen Grund an
+  notify_the_sender_with_the_reason_you_declined: Benachrichtigen Sie den Absender über den Grund für Ihre Ablehnung
+  form_has_been_declined_on_html: 'Das Formular wurde am <span class="font-semibold">%{time}</span> abgelehnt'
+  name_declined_by_submitter: '"%{name}" wurde von %{submitter} abgelehnt'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" wurde von %{submitter} mit folgendem Grund abgelehnt:'
   role: Rolle
   verification_code_code: 'Verifizierungscode: %{code}'
   reason: Grund
   email: E-Mail
   form_expired_at_html: 'Das Formular ist am <span class="font-semibold">%{time}</span> abgelaufen'
   digitally_signed_by: Digital signiert von
-  role: Rolle
   provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
   start: Starten
   starting: Starten
@@ -281,7 +345,18 @@ de: &de
   enter_email_to_continue: E-Mail eingeben, um fortzufahren
 
 pl:
-  email: Email
+  view: Widok
+  hi_there: Cześć,
+  download: Pobierz
+  decline: Odrzuć
+  declined: Odrzucono
+  decline_reason: Powód odrzucenia
+  provide_a_reason: Podaj powód
+  notify_the_sender_with_the_reason_you_declined: Powiadom nadawcę o powodzie, dla którego odrzuciłeś
+  form_has_been_declined_on_html: 'Formularz został odrzucony o <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" odrzucono przez %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" został odrzucony przez %{submitter} z następującym powodem:'
+  email: E-mail
   verification_code_code: 'Kod weryfikacyjny: %{code}'
   digitally_signed_by: Podpis cyfrowy przez
   form_expired_at_html: 'Formularz wygasł o <span class="font-semibold">%{time}</span>'
@@ -323,7 +398,18 @@ pl:
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
 
 uk:
-  email: Email
+  view: Переглянути
+  hi_there: Привіт,
+  download: Завантажити
+  decline: Відхилити
+  declined: Відхилено
+  decline_reason: Причина відхилення
+  provide_a_reason: Надайте причину
+  notify_the_sender_with_the_reason_you_declined: Повідомте відправника про причину, з якої ви відхилили
+  form_has_been_declined_on_html: 'Форму було відхилено о <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" відхилено %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" було відхилено %{submitter} з такою причиною:'
+  email: E-mail
   digitally_signed_by: Цифровий підпис від
   verification_code_code: 'Код підтвердження: %{code}'
   role: Роль
@@ -365,7 +451,18 @@ uk:
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
 
 cs:
-  email: Email
+  view: Zobrazit
+  hi_there: Ahoj,
+  download: Stáhnout
+  decline: Odmítnout
+  declined: Odmítnuto
+  decline_reason: Důvod odmítnutí
+  provide_a_reason: Uveďte důvod
+  notify_the_sender_with_the_reason_you_declined: Informujte odesílatele o důvodu odmítnutí
+  form_has_been_declined_on_html: 'Formulář byl odmítnut dne <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" odmítnuto %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" bylo odmítnuto %{submitter} s následujícím důvodem:'
+  email: E-mail
   digitally_signed_by: Digitálně podepsáno uživatelem
   verification_code_code: 'Ověřovací kód: %{code}'
   role: Role
@@ -407,6 +504,17 @@ cs:
   enter_email_to_continue: Zadejte e-mail pro pokračování
 
 he:
+  view: תצוגה
+  hi_there: שלום,
+  download: הורד
+  decline: דחייה
+  declined: דחוי
+  decline_reason: סיבת דחייה
+  provide_a_reason: אנא ספק סיבה
+  notify_the_sender_with_the_reason_you_declined: הודע לשולח על הסיבה לדחייה
+  form_has_been_declined_on_html: 'הטופס נדחה בתאריך <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" נדחה על ידי %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" נדחה על ידי %{submitter} עם הסיבה הבאה:'
   email: דוא"ל
   digitally_signed_by: חתום דיגיטלית על ידי
   role: תפקיד
@@ -449,6 +557,17 @@ he:
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
 
 nl:
+  view: Bekijken
+  hi_there: Hallo,
+  download: Downloaden
+  decline: Weigeren
+  declined: Geweigerd
+  decline_reason: Weigeringsreden
+  provide_a_reason: Geef een reden op
+  notify_the_sender_with_the_reason_you_declined: Informeer de afzender over de reden waarom je hebt geweigerd
+  form_has_been_declined_on_html: 'Formulier is afgewezen op <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" is geweigerd door %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" is geweigerd door %{submitter} met de volgende reden:'
   email: E-mail
   digitally_signed_by: Digitaal ondertekend door
   role: Rol
@@ -492,6 +611,17 @@ nl:
   enter_email_to_continue: Voer e-mail in om door te gaan
 
 ar:
+  view: عرض
+  hi_there: مرحبا,
+  download: تحميل
+  decline: رفض
+  declined: مرفوض
+  decline_reason: سبب الرفض
+  provide_a_reason: قدم سببًا
+  notify_the_sender_with_the_reason_you_declined: أخطر المرسل بسبب الرفض
+  form_has_been_declined_on_html: 'تم رفض النموذج في <span class="font-semibold">%{time}</span>'
+  name_declined_by_submitter: '"%{name}" مرفوض بواسطة %{submitter}'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" تم رفضه بواسطة %{submitter} مع السبب التالي:'
   email: البريد الإلكتروني
   digitally_signed_by: تم التوقيع الرقمي بواسطة
   role: الدور
@@ -535,6 +665,17 @@ ar:
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
 
 ko:
+  view: 보기
+  hi_there: 안녕하세요,
+  download: 다운로드
+  decline: 거절
+  declined: 거절됨
+  decline_reason: 거절 사유
+  provide_a_reason: 사유를 제공하세요
+  notify_the_sender_with_the_reason_you_declined: 거절한 이유로 발신자에게 알리기
+  form_has_been_declined_on_html: '양식이 <span class="font-semibold">%{time}</span>에 거절되었습니다.'
+  name_declined_by_submitter: '"%{name}"이(가) %{submitter}에 의해 거절되었습니다.'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}"이(가) %{submitter}에 의해 다음과 같은 사유로 거절되었습니다:'
   email: 이메일
   digitally_signed_by: 디지털로 서명됨
   role: 역할

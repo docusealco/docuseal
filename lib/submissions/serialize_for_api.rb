@@ -7,7 +7,7 @@ module Submissions
       methods: %i[audit_log_url],
       include: {
         submitters: { only: %i[id slug uuid name email phone
-                               completed_at opened_at sent_at
+                               completed_at opened_at sent_at declined_at
                                created_at updated_at external_id metadata],
                       methods: %i[status application_key] },
         template: { only: %i[id name external_id created_at updated_at],
@@ -41,7 +41,11 @@ module Submissions
         json[:completed_at] = last_submitter.completed_at
       else
         json[:documents] = []
-        json[:status] = submission.expired? ? 'expired' : 'pending'
+        json[:status] = if submitters.any?(&:declined_at?)
+                          'declined'
+                        else
+                          submission.expired? ? 'expired' : 'pending'
+                        end
         json[:completed_at] = nil
       end
 

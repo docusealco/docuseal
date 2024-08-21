@@ -8,7 +8,30 @@
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 %>
-      <%= local_assigns[:banner_html] || render('submit_form/banner') %>
+      <%= local_assigns[:banner_html] || capture do %>
+        <%= render('submit_form/banner') %>
+        <div class="sticky top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
+          <div class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <%= @submitter.submission.template.name %>
+          </div>
+          <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
+            <div>
+              <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5' do %>
+                <%= render 'submit_form/decline_form', submitter: @submitter %>
+              <% end %>
+            </div>
+            <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
+              <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                <span><%= t('download') %></span>
+              </span>
+              <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                <span><%= t('downloading') %></span>
+              </span>
+            </download-button>
+          </div>
+        </div>
+      <% end %>
       <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>

@@ -5,7 +5,7 @@ module Submitters
     SERIALIZE_PARAMS = {
       methods: %i[status application_key],
       only: %i[id submission_id email phone name ua ip sent_at opened_at
-               completed_at created_at updated_at external_id metadata]
+               completed_at declined_at created_at updated_at external_id metadata]
     }.freeze
 
     module_function
@@ -34,7 +34,7 @@ module Submitters
                                                                methods: %i[folder_name]),
                       'submission' => {
                         **submitter.submission.slice(:id, :audit_log_url, :created_at),
-                        status: submitter.submission.submitters.all?(&:completed_at?) ? 'completed' : 'pending',
+                        status: build_submission_status(submitter.submission),
                         url: r.submissions_preview_url(submitter.submission.slug, **Docuseal.default_url_options)
                       })
     end
@@ -80,6 +80,18 @@ module Submitters
         value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
 
         { name: field_name, uuid: field['uuid'], value: }
+      end
+    end
+
+    def build_submission_status(submission)
+      submitters = submission.submitters
+
+      if submitters.all?(&:completed_at?)
+        'completed'
+      elsif submitters.any?(&:declined_at?)
+        'declined'
+      else
+        submission.expired? ? 'expired' : 'pending'
       end
     end
 

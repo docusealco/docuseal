@@ -54,8 +54,8 @@
             </div>
           <% end %>
         </div>
-      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? %>
-        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @submission.template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
+      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? %>
+        <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Share Link', copied_title: 'Copied to Clipboard' %>
       <% end %>
     </div>
   </div>
@@ -143,18 +143,30 @@
             <div class="flex items-center space-x-1 mt-1">
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
-                <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
+                <% if submitter&.declined_at? %>
+                  Declined on <%= l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %>
+                <% else %>
+                  <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
+                <% end %>
               </span>
             </div>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && Accounts.can_send_emails?(current_account) && !@submission.expired? %>
+            <% if submitter&.declined_at? %>
+              <div class="flex items-center space-x-1 mt-1">
+                <span>
+                  Reason:
+                  <%= simple_format(submitter.submission_events.find_by(event_type: :decline_form).data['reason']) %>
+                </span>
+              </div>
+            <% end %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? 'Re-send Email' : 'Send Email', disabled_with: 'Sending'), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && !@submission.expired? %>
+            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && !@submission.expired? && !submitter.declined_at? %>
               <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
-            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, submitter) && !@submission.expired? %>
+            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, submitter) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   Sign In-person

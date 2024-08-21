@@ -15,6 +15,7 @@ class SubmitFormController < ApplicationController
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
     return render :archived if @submitter.submission.template.archived_at? || @submitter.submission.archived_at?
     return render :expired if @submitter.submission.expired?
+    return render :declined if @submitter.declined_at?
 
     Submitters.preload_with_pages(@submitter)
 
@@ -55,6 +56,8 @@ class SubmitFormController < ApplicationController
     if submitter.submission.expired?
       return render json: { error: 'Form has been expired.' }, status: :unprocessable_entity
     end
+
+    return render json: { error: 'Form has been declined.' }, status: :unprocessable_entity if submitter.declined_at?
 
     Submitters::SubmitValues.call(submitter, params, request)
 

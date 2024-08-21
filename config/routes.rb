@@ -125,6 +125,8 @@ Rails.application.routes.draw do
 
   resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
     resources :values, only: %i[index], controller: 'submit_form_values'
+    resources :download, only: %i[index], controller: 'submit_form_download'
+    resources :decline, only: %i[create], controller: 'submit_form_decline'
     get :completed
   end
 

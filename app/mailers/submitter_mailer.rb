@@ -78,6 +78,23 @@ class SubmitterMailer < ApplicationMailer
          subject:)
   end
 
+  def declined_email(submitter, user)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+    @submission = submitter.submission
+    @user = user
+
+    assign_message_metadata('submitter_declined', @submitter)
+
+    I18n.with_locale(submitter.account.locale) do
+      mail(from: from_address_for_submitter(submitter),
+           to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
+           subject: I18n.t(:name_declined_by_submitter,
+                           name: @submission.template.name.truncate(20),
+                           submitter: @submitter.name || @submitter.email || @submitter.phone))
+    end
+  end
+
   def documents_copy_email(submitter, to: nil, sig: false)
     @current_account = submitter.submission.account
     @submitter = submitter
