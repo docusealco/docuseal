@@ -181,6 +181,10 @@ export default {
         spread: 140
       })
     }
+
+    if (window.decline_button) {
+      window.decline_button.setAttribute('disabled', 'true')
+    }
   },
   methods: {
     sendCopyToEmail () {
