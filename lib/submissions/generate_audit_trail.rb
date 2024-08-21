@@ -21,6 +21,8 @@ module Submissions
       'GBP' => '£'
     }.freeze
 
+    TESTING_FOOTER = GenerateResultAttachments::TESTING_FOOTER
+
     RTL_REGEXP = TextUtils::RTL_REGEXP
     MAX_IMAGE_HEIGHT = 100
 
@@ -105,6 +107,31 @@ module Submissions
 
           maybe_add_background(canvas, submission, page_size)
         end
+
+        with_signature_id = submission.account.account_configs
+                                      .exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true)
+
+        if with_signature_id || submission.account.testing?
+          canvas.save_graphics_state do
+            document_id = Digest::MD5.hexdigest(submission.slug).upcase
+
+            canvas.font(FONT_NAME, size: FONT_SIZE)
+
+            text =
+              if submission.account.testing?
+                if with_signature_id
+                  "#{TESTING_FOOTER} | ID: #{document_id}"
+                else
+                  TESTING_FOOTER
+                end
+              else
+                "Document ID: #{document_id}"
+              end
+
+            canvas.text(text, at: [2, 4])
+          end
+        end
+
         style.frame = style.create_frame(canvas.context, 50)
       end
 
