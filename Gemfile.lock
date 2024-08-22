@@ -434,7 +434,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.3.3)
+    rexml (3.3.6)
       strscan
     rotp (6.3.0)
     rqrcode (2.2.0)
