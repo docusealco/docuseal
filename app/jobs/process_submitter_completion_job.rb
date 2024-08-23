@@ -15,6 +15,10 @@ class ProcessSubmitterCompletionJob
     Submissions::EnsureResultGenerated.call(submitter)
 
     if is_all_completed && submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
+      if submitter.submission.account.account_configs.exists?(key: AccountConfig::COMBINE_PDF_RESULT_KEY, value: true)
+        Submissions::GenerateCombinedAttachment.call(submitter)
+      end
+
       Submissions::GenerateAuditTrail.call(submitter.submission)
 
       enqueue_completed_emails(submitter)

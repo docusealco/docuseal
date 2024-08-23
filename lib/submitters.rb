@@ -21,6 +21,12 @@ module Submitters
   end
 
   def select_attachments_for_download(submitter)
+    if AccountConfig.exists?(account_id: submitter.submission.account_id,
+                             key: AccountConfig::COMBINE_PDF_RESULT_KEY,
+                             value: true) && submitter.submission.combined_document_attachment
+      return [submitter.submission.combined_document_attachment]
+    end
+
     original_documents = submitter.submission.template.documents.preload(:blob)
     is_more_than_two_images = original_documents.count(&:image?) > 1
 

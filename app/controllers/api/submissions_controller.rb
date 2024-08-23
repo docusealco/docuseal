@@ -19,6 +19,7 @@ module Api
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
                                                  template: :folder,
+                                                 combined_document_attachment: :blob,
                                                  audit_trail_attachment: :blob))
 
       render json: {

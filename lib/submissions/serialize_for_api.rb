@@ -4,7 +4,7 @@ module Submissions
   module SerializeForApi
     SERIALIZE_PARAMS = {
       only: %i[id slug source submitters_order expire_at created_at updated_at archived_at],
-      methods: %i[audit_log_url],
+      methods: %i[audit_log_url combined_document_url],
       include: {
         submitters: { only: %i[id slug uuid name email phone
                                completed_at opened_at sent_at declined_at
@@ -26,13 +26,10 @@ module Submissions
       json = submission.as_json(SERIALIZE_PARAMS)
 
       json['submission_events'] = Submitters::SerializeForApi.serialize_events(submission.submission_events)
+      json['combined_document_url'] ||= maybe_build_combined_url(submitters, submission, params)
 
       if submitters.all?(&:completed_at?)
         last_submitter = submitters.max_by(&:completed_at)
-
-        if params[:include].to_s.include?('combined_document_url')
-          json[:combined_document_url] = build_combined_url(submitters.max_by(&:completed_at), submission)
-        end
 
         json[:documents] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
         json[:status] = 'completed'
@@ -52,13 +49,18 @@ module Submissions
       json
     end
 
-    def build_combined_url(submitter, submission)
-      return unless submitter.completed_at?
+    def maybe_build_combined_url(submitters, submission, params)
+      return unless submitters.all?(&:completed_at?)
 
       attachment = submission.combined_document_attachment
-      attachment ||= Submissions::GenerateCombinedAttachment.call(submitter)
 
-      ActiveStorage::Blob.proxy_url(attachment.blob)
+      if !attachment && params[:include].to_s.include?('combined_document_url')
+        submitter = submitters.max_by(&:completed_at)
+
+        attachment = Submissions::GenerateCombinedAttachment.call(submitter)
+      end
+
+      ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
     end
   end
 end

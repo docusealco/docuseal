@@ -157,7 +157,7 @@ class SubmitterMailer < ApplicationMailer
     total_size = 0
     audit_trail_data = nil
 
-    if with_audit_log && submitter.submission.audit_trail.present?
+    if with_audit_log && submitter.submission.audit_trail.present? && documents.first&.name != 'combined_document'
       audit_trail_data = submitter.submission.audit_trail.download
 
       total_size = audit_trail_data.size

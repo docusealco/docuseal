@@ -33,7 +33,7 @@ class SubmissionsDownloadController < ApplicationController
       return head :not_found
     end
 
-    if params[:combined]
+    if params[:combined] == 'true'
       url = build_combined_url(submitter)
 
       if url

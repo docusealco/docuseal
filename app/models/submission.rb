@@ -86,4 +86,10 @@ class Submission < ApplicationRecord
     ActiveStorage::Blob.proxy_url(audit_trail.blob)
   end
   alias audit_log_url audit_trail_url
+
+  def combined_document_url
+    return if combined_document.blank?
+
+    ActiveStorage::Blob.proxy_url(combined_document.blob)
+  end
 end

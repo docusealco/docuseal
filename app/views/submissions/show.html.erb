@@ -1,7 +1,7 @@
 <% if params[:controller] == 'submissions_preview' %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
-<% with_signature_id = @submission.account.account_configs.exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true) %>
+<% with_signature_id, is_combined_enabled = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID], value: true).then { |configs| [configs.any? { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }, configs.any? { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }] } %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= signed_in? && @submission.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
@@ -20,7 +20,7 @@
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
         <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
         <div class="join relative">
-          <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig] }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed %>">
+          <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
             <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
               <%= svg_icon('download', class: 'w-6 h-6') %>
               <span class="hidden md:inline">Download</span>
@@ -30,7 +30,7 @@
               <span class="hidden md:inline">Downloading</span>
             </span>
           </download-button>
-          <% if is_all_completed %>
+          <% if is_all_completed && !is_combined_enabled %>
             <div class="dropdown dropdown-end">
               <label tabindex="0" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
                 <span class="text-sm align-text-top">

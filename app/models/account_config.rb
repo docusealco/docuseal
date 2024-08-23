@@ -40,6 +40,7 @@ class AccountConfig < ApplicationRecord
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
+  COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
