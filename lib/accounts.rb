@@ -137,6 +137,29 @@ module Accounts
     end.presence
   end
 
+  def load_trusted_certs(account)
+    cert_data =
+      if Docuseal.multitenant?
+        value = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+
+        Docuseal::CERTS.merge(value)
+      else
+        EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
+      end
+
+    default_pkcs = GenerateCertificate.load_pkcs(cert_data)
+
+    custom_certs = cert_data.fetch('custom', []).map do |e|
+      OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'].to_s)
+    end
+
+    [default_pkcs.certificate,
+     *default_pkcs.ca_certs,
+     *custom_certs.map(&:certificate),
+     *custom_certs.flat_map(&:ca_certs).compact,
+     *Docuseal.trusted_certs]
+  end
+
   def can_send_emails?(_account, **_params)
     return true if Docuseal.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?

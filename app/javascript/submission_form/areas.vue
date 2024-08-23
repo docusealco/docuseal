@@ -1,6 +1,6 @@
 <template>
   <template
-    v-for="step in steps"
+    v-for="(step, stepIndex) in steps"
     :key="step[0].uuid"
   >
     <template
@@ -18,6 +18,7 @@
           <FieldArea
             :ref="setAreaRef"
             v-model="values[field.uuid]"
+            :values="values"
             :field="field"
             :area="area"
             :submittable="true"
@@ -30,7 +31,7 @@
             :with-label="withLabel && !withFieldPlaceholder"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
-            @click="$emit('focus-step', step)"
+            @click="$emit('focus-step', stepIndex)"
           />
         </Teleport>
       </template>

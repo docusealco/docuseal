@@ -82,6 +82,8 @@ class StartFormController < ApplicationController
                                             template_submitters: template.submitters,
                                             source: :link)
 
+    submitter.account_id = submitter.submission.account_id
+
     submitter
   end
 

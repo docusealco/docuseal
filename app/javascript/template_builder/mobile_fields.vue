@@ -52,7 +52,7 @@
       </template>
       <template v-else>
         <template
-          v-for="(icon, type) in fieldIcons"
+          v-for="(icon, type) in fieldIconsSorted"
           :key="type"
         >
           <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">

@@ -6,6 +6,14 @@ const en = {
   signature: 'Signature',
   initials: 'Initials',
   drawn_signature_on_a_touchscreen_device: 'Drawn signature on a touchscreen device',
+  approved: 'Approved',
+  reviewed: 'Reviewed',
+  other: 'Other',
+  authored_by_me: 'Authored by me',
+  approved_by: 'Approved by',
+  reviewed_by: 'Reviewed by',
+  authored_by: 'Authored by',
+  select_a_reason: 'Select a reason',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: 'Scan the QR code with the camera app to open the form on mobile and draw your signature',
   date: 'Date',
   number: 'Number',
@@ -77,6 +85,14 @@ const en = {
 }
 
 const es = {
+  approved: 'Aprobado',
+  reviewed: 'Revisado',
+  other: 'Otro',
+  authored_by_me: 'Escrito por mí',
+  approved_by: 'Aprobado por',
+  reviewed_by: 'Revisado por',
+  authored_by: 'Escrito por',
+  select_a_reason: 'Selecciona una razón',
   value_is_invalid: 'El valor no es válido',
   verification_code_is_invalid: 'El código de verificación no es válido',
   drawn_signature_on_a_touchscreen_device: 'Firma dibujada en un dispositivo con pantalla táctil',
@@ -154,6 +170,14 @@ const es = {
 }
 
 const it = {
+  approved: 'Approvato',
+  reviewed: 'Revisionato',
+  other: 'Altro',
+  authored_by_me: 'Creato da me',
+  approved_by: 'Approvato da',
+  reviewed_by: 'Revisionato da',
+  authored_by: 'Creato da',
+  select_a_reason: 'Seleziona una ragione',
   value_is_invalid: 'Il valore non è valido',
   verification_code_is_invalid: 'Il codice di verifica non è valido',
   drawn_signature_on_a_touchscreen_device: 'Firma disegnata su un dispositivo con schermo tattile',
@@ -231,6 +255,14 @@ const it = {
 }
 
 const de = {
+  approved: 'Genehmigt',
+  reviewed: 'Überprüft',
+  other: 'Andere',
+  authored_by_me: 'Von mir verfasst',
+  approved_by: 'Genehmigt von',
+  reviewed_by: 'Überprüft von',
+  authored_by: 'Verfasst von',
+  select_a_reason: 'Grund auswählen',
   value_is_invalid: 'Wert ist ungültig',
   verification_code_is_invalid: 'Bestätigungscode ist ungültig',
   drawn_signature_on_a_touchscreen_device: 'Gezeichnete Unterschrift auf einem Touchscreen-Gerät',
@@ -308,6 +340,14 @@ const de = {
 }
 
 const fr = {
+  approved: 'Approuvé',
+  reviewed: 'Révisé',
+  other: 'Autre',
+  authored_by_me: 'Rédigé par moi',
+  approved_by: 'Approuvé par',
+  reviewed_by: 'Révisé par',
+  authored_by: 'Rédigé par',
+  select_a_reason: 'Sélectionnez une raison',
   value_is_invalid: 'La valeur est invalide',
   verification_code_is_invalid: 'Le code de vérification est invalide',
   drawn_signature_on_a_touchscreen_device: 'Signature dessinée sur un appareil à écran tactile',
@@ -385,6 +425,14 @@ const fr = {
 }
 
 const pl = {
+  approved: 'Zaakceptowany',
+  reviewed: 'Przejrzany',
+  other: 'Inny',
+  authored_by_me: 'Napisane przeze mnie',
+  approved_by: 'Zaakceptowany przez',
+  reviewed_by: 'Przejrzany przez',
+  authored_by: 'Napisane przez',
+  select_a_reason: 'Wybierz powód',
   value_is_invalid: 'Wartość jest nieprawidłowa',
   verification_code_is_invalid: 'Kod weryfikacyjny jest nieprawidłowy',
   drawn_signature_on_a_touchscreen_device: 'Podpis odręczny na urządzeniu z ekranem dotykowym',
@@ -462,6 +510,14 @@ const pl = {
 }
 
 const uk = {
+  approved: 'Затверджено',
+  reviewed: 'Переглянуто',
+  other: 'Інше',
+  authored_by_me: 'Авторство моє',
+  approved_by: 'Затверджено',
+  reviewed_by: 'Переглянуто',
+  authored_by: 'Автор',
+  select_a_reason: 'Виберіть причину',
   value_is_invalid: 'Значення є неправильним',
   verification_code_is_invalid: 'Код підтвердження є неправильним',
   drawn_signature_on_a_touchscreen_device: 'Підпис на сенсорному пристрої',
@@ -539,6 +595,14 @@ const uk = {
 }
 
 const cs = {
+  approved: 'Schváleno',
+  reviewed: 'Zkontrolováno',
+  other: 'Jiné',
+  authored_by_me: 'Autorem jsem já',
+  approved_by: 'Schváleno kým',
+  reviewed_by: 'Zkontrolováno kým',
+  authored_by: 'Autorem',
+  select_a_reason: 'Vyberte důvod',
   value_is_invalid: 'Hodnota je neplatná',
   verification_code_is_invalid: 'Ověřovací kód je neplatný',
   drawn_signature_on_a_touchscreen_device: 'Namalovaný podpis na dotykovém zařízení',
@@ -616,6 +680,14 @@ const cs = {
 }
 
 const pt = {
+  approved: 'Aprovado',
+  reviewed: 'Revisado',
+  other: 'Outro',
+  authored_by_me: 'Autorizado por mim',
+  approved_by: 'Aprovado por',
+  reviewed_by: 'Revisado por',
+  authored_by: 'Autorizado por',
+  select_a_reason: 'Selecione um motivo',
   value_is_invalid: 'Valor é inválido',
   verification_code_is_invalid: 'Código de verificação é inválido',
   drawn_signature_on_a_touchscreen_device: 'Assinatura desenhada em um dispositivo com tela sensível ao toque',
@@ -693,6 +765,14 @@ const pt = {
 }
 
 const he = {
+  approved: 'מאושר',
+  reviewed: 'נסקר',
+  other: 'אחר',
+  authored_by_me: 'נכתב על ידי',
+  approved_by: 'אושר על ידי',
+  reviewed_by: 'נסקר על ידי',
+  authored_by: 'נכתב על ידי',
+  select_a_reason: 'בחר סיבה',
   value_is_invalid: 'ערך לא תקין',
   verification_code_is_invalid: 'קוד האימות אינו תקין',
   drawn_signature_on_a_touchscreen_device: 'חתימה שנוצרה במכשיר עם מסך מגע',
@@ -771,6 +851,14 @@ const he = {
 }
 
 const nl = {
+  approved: 'Goedgekeurd',
+  reviewed: 'Beoordeeld',
+  other: 'Anders',
+  authored_by_me: 'Door mij geschreven',
+  approved_by: 'Goedgekeurd door',
+  reviewed_by: 'Beoordeeld door',
+  authored_by: 'Geschreven door',
+  select_a_reason: 'Selecteer een reden',
   value_is_invalid: 'Waarde is ongeldig',
   verification_code_is_invalid: 'Verificatiecode is ongeldig',
   drawn_signature_on_a_touchscreen_device: 'Getekende handtekening op een apparaat met een touchscreen',
@@ -849,6 +937,14 @@ const nl = {
 }
 
 const ar = {
+  approved: 'موافق عليه',
+  reviewed: 'تمت مراجعته',
+  other: 'آخر',
+  authored_by_me: 'مؤلف بواسطتي',
+  approved_by: 'موافق عليه من قبل',
+  reviewed_by: 'مراجع من قبل',
+  authored_by: 'مؤلف من قبل',
+  select_a_reason: 'اختر سببًا',
   value_is_invalid: 'القيمة غير صالحة',
   verification_code_is_invalid: 'رمز التحقق غير صالح',
   drawn_signature_on_a_touchscreen_device: 'توقيع مرسوم على جهاز بشاشة تعمل باللمس',
@@ -926,6 +1022,14 @@ const ar = {
 }
 
 const ko = {
+  approved: '승인됨',
+  reviewed: '검토됨',
+  other: '기타',
+  authored_by_me: '내가 작성한',
+  approved_by: '승인자',
+  reviewed_by: '검토자',
+  authored_by: '작성자',
+  select_a_reason: '이유 선택',
   drawn_signature_on_a_touchscreen_device: '터치스크린 장치에서 그린 서명',
   scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature: '카메라 앱으로 QR 코드를 스캔하여 모바일에서 양식을 열고 서명을 그리세요',
   by_clicking_you_agree_to_the: '"{button}"를 클릭함으로써, 다음에 동의하게 됩니다',

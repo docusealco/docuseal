@@ -14,5 +14,29 @@ module Api
         data: Base64.encode64(PdfUtils.merge(files.map { |base64| StringIO.new(Base64.decode64(base64)) }).string)
       }
     end
+
+    def verify
+      file = Base64.decode64(params[:file])
+      pdf = HexaPDF::Document.new(io: StringIO.new(file))
+
+      trusted_certs = Accounts.load_trusted_certs(current_account)
+
+      is_checksum_found = ActiveStorage::Attachment.joins(:blob)
+                                                   .where(name: 'documents', record_type: 'Submitter')
+                                                   .exists?(blob: { checksum: Digest::MD5.base64digest(file) })
+
+      render json: {
+        checksum_status: is_checksum_found ? 'verified' : 'not_found',
+        signatures: pdf.signatures.map do |sig|
+          {
+            verification_result: sig.verify(trusted_certs:).messages,
+            signer_name: sig.signer_name,
+            signing_reason: sig.signing_reason,
+            signing_time: sig.signing_time,
+            signature_type: sig.signature_type
+          }
+        end
+      }
+    end
   end
 end

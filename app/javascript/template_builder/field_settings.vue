@@ -358,7 +358,7 @@
     >
       <a
         href="#"
-        class="text-sm py-1 px-2"
+        class="text-sm py-1 px-2 group/1"
         @click.prevent="$emit('scroll-to', area)"
       >
         <IconShape
@@ -367,6 +367,11 @@
         />
         {{ t('page') }}
         <template v-if="template.schema.length > 1">{{ template.schema.findIndex((item) => item.attachment_uuid === area.attachment_uuid) + 1 }}-</template>{{ area.page + 1 }}
+        <IconX
+          :width="12"
+          class="group-hover/1:inline hidden"
+          @click.prevent.stop="[$emit('remove-area', area), $event.target.closest('.dropdown').querySelector('label').focus()]"
+        />
       </a>
     </li>
     <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
@@ -399,7 +404,7 @@
 </template>
 
 <script>
-import { IconRouteAltLeft, IconShape, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldSettings',
@@ -409,7 +414,8 @@ export default {
     IconMathFunction,
     IconRouteAltLeft,
     IconCopy,
-    IconNewSection
+    IconNewSection,
+    IconX
   },
   inject: ['template', 'save', 't'],
   props: {
@@ -443,7 +449,7 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition'],
+  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'remove-area'],
   data () {
     return {
     }

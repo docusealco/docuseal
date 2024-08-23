@@ -25,6 +25,7 @@ import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleOnSubmit from './elements/toggle_on_submit'
 import PasswordInput from './elements/password_input'
+import SearchInput from './elements/search_input'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -87,6 +88,7 @@ safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
 safeRegisterElement('password-input', PasswordInput)
+safeRegisterElement('search-input', SearchInput)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
@@ -97,6 +99,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
       backgroundColor: '#faf7f5',
+      locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
       withLogo: this.dataset.withLogo !== 'false',
       editable: this.dataset.editable !== 'false',

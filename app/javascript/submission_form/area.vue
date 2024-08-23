@@ -75,7 +75,7 @@
           ID: {{ signature.uuid }}
         </div>
         <div>
-          {{ t('reason') }}: {{ t('digitally_signed_by') }} {{ submitter.name }}
+          {{ t('reason') }}: {{ values[field.preferences?.reason_field_uuid] || t('digitally_signed_by') }} {{ submitter.name }}
           <template v-if="submitter.email">
             &lt;{{ submitter.email }}&gt;
           </template>
@@ -257,6 +257,11 @@ export default {
       type: [Array, String, Number, Object, Boolean],
       required: false,
       default: ''
+    },
+    values: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     isActive: {
       type: Boolean,

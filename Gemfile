@@ -6,6 +6,7 @@ ruby '3.3.3'
 
 gem 'arabic-letter-connector', require: 'arabic-letter-connector/logic'
 gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-secretsmanager', require: false
 gem 'azure-storage-blob', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
@@ -22,6 +23,7 @@ gem 'image_processing'
 gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
+gem 'net-smtp', '0.4.0'
 gem 'oj'
 gem 'pagy'
 gem 'pg', require: false

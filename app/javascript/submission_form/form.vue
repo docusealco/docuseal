@@ -327,17 +327,20 @@
             ref="currentStep"
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
+            :reason="values[currentField.preferences?.reason_field_uuid]"
             :field="currentField"
             :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
             :with-typed-signature="withTypedSignature"
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
+            :require-signing-reason="requireSigningReason"
             :button-text="buttonText"
             :dry-run="dryRun"
             :with-disclosure="withDisclosure"
             :with-qr-button="withQrButton"
             :submitter="submitter"
             :show-field-names="showFieldNames"
+            @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @minimize="isFormVisible = false"
@@ -450,7 +453,7 @@
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
             :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
+            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
           />
         </div>
       </div>
@@ -548,6 +551,11 @@ export default {
       type: String,
       required: false,
       default: '-80px'
+    },
+    requireSigningReason: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     canSendEmail: {
       type: Boolean,
@@ -915,18 +923,22 @@ export default {
     checkFieldConditions (field) {
       if (field.conditions?.length) {
         return field.conditions.reduce((acc, c) => {
+          const field = this.fieldsUuidIndex[c.field_uuid]
+
+          if (['not_empty', 'checked', 'equal', 'contains'].includes(c.action) && field && !this.checkFieldConditions(field)) {
+            return false
+          }
+
           if (['empty', 'unchecked'].includes(c.action)) {
             return acc && isEmpty(this.values[c.field_uuid])
           } else if (['not_empty', 'checked'].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid])
           } else if (['equal', 'contains'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
             return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
           } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
@@ -1016,8 +1028,8 @@ export default {
         return null
       }
     },
-    goToStep (step, scrollToArea = false, clickUpload = false) {
-      this.currentStep = this.stepFields.indexOf(step)
+    goToStep (stepIndex, scrollToArea = false, clickUpload = false) {
+      this.currentStep = stepIndex
       this.showFillAllRequiredFields = false
 
       this.$nextTick(() => {
@@ -1025,7 +1037,7 @@ export default {
 
         if (!this.isCompleted) {
           if (scrollToArea) {
-            this.scrollIntoField(step[0])
+            this.scrollIntoField(this.currentField)
           }
 
           this.enableScrollIntoField = false
@@ -1132,7 +1144,7 @@ export default {
               this.isFormVisible = false
             }
 
-            this.goToStep(nextStep, this.autoscrollFields)
+            this.goToStep(this.stepFields.indexOf(nextStep), this.autoscrollFields)
 
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true

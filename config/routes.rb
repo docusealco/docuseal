@@ -45,9 +45,11 @@ Rails.application.routes.draw do
     end
     resources :tools, only: %i[] do
       post :merge, on: :collection
+      post :verify, on: :collection
     end
     scope 'events' do
       resources :form_events, only: %i[index], path: 'form/:type'
+      resources :submission_events, only: %i[index], path: 'submission/:type'
     end
   end
 
@@ -75,6 +77,7 @@ Rails.application.routes.draw do
   resources :submitters_autocomplete, only: %i[index]
   resources :template_folders_autocomplete, only: %i[index]
   resources :webhook_preferences, only: %i[create]
+  resources :webhook_secret, only: %i[index create]
   resource :templates_upload, only: %i[create]
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'

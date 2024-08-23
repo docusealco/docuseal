@@ -20,10 +20,10 @@ class ProcessSubmitterCompletionJob
       enqueue_completed_emails(submitter)
     end
 
-    enqueue_completed_webhooks(submitter)
+    enqueue_completed_webhooks(submitter, is_all_completed:)
   end
 
-  def enqueue_completed_webhooks(submitter)
+  def enqueue_completed_webhooks(submitter, is_all_completed: false)
     webhook_config = Accounts.load_webhook_config(submitter.account)
 
     if webhook_config
@@ -31,13 +31,26 @@ class ProcessSubmitterCompletionJob
                                                          'encrypted_config_id' => webhook_config.id })
     end
 
-    webhook_ids = submitter.account.webhook_urls.where(
-      Arel::Table.new(:webhook_urls)[:events].matches('%"form.completed"%')
-    ).pluck(:id)
+    webhook_urls = submitter.account.webhook_urls
 
-    webhook_ids.each do |webhook_id|
-      SendFormCompletedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
-                                                         'webhook_url_id' => webhook_id })
+    webhook_urls = webhook_urls.where(
+      Arel::Table.new(:webhook_urls)[:events].matches('%"form.completed"%')
+    ).or(
+      webhook_urls.where(
+        Arel::Table.new(:webhook_urls)[:events].matches('%"submission.completed"%')
+      )
+    )
+
+    webhook_urls.each do |webhook|
+      if webhook.events.include?('form.completed')
+        SendFormCompletedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
+                                                           'webhook_url_id' => webhook.id })
+      end
+
+      if webhook.events.include?('submission.completed') && is_all_completed
+        SendSubmissionCompletedWebhookRequestJob.perform_async({ 'submission_id' => submitter.submission_id,
+                                                                 'webhook_url_id' => webhook.id })
+      end
     end
   end
 

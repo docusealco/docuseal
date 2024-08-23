@@ -13,7 +13,9 @@ class SendTemplateUpdatedWebhookRequestJob
     template = Template.find(params['template_id'])
 
     attempt = params['attempt'].to_i
-    url = Accounts.load_webhook_url(template.account)
+
+    config = Accounts.load_webhook_config(template.account)
+    url = config&.value.presence
 
     return if url.blank?
 
@@ -28,6 +30,8 @@ class SendTemplateUpdatedWebhookRequestJob
                      timestamp: Time.current,
                      data: Templates::SerializeForApi.call(template)
                    }.to_json,
+                   **EncryptedConfig.find_or_initialize_by(account_id: config.account_id,
+                                                           key: EncryptedConfig::WEBHOOK_SECRET_KEY)&.value.to_h,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
     rescue Faraday::Error

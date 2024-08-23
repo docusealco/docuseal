@@ -20,15 +20,17 @@
 #  values        :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  account_id    :bigint           not null
 #  external_id   :string
 #  submission_id :bigint           not null
 #
 # Indexes
 #
-#  index_submitters_on_email          (email)
-#  index_submitters_on_external_id    (external_id)
-#  index_submitters_on_slug           (slug) UNIQUE
-#  index_submitters_on_submission_id  (submission_id)
+#  index_submitters_on_account_id_and_id  (account_id,id)
+#  index_submitters_on_email              (email)
+#  index_submitters_on_external_id        (external_id)
+#  index_submitters_on_slug               (slug) UNIQUE
+#  index_submitters_on_submission_id      (submission_id)
 #
 # Foreign Keys
 #
@@ -36,8 +38,8 @@
 #
 class Submitter < ApplicationRecord
   belongs_to :submission
+  belongs_to :account
   has_one :template, through: :submission
-  has_one :account, through: :submission
 
   attribute :values, :string, default: -> { {} }
   attribute :preferences, :string, default: -> { {} }

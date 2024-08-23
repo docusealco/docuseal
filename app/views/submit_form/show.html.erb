@@ -2,6 +2,7 @@
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
@@ -28,7 +29,7 @@
                 <% next if field['redacted'] && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: @submitter, with_signature_id: @form_configs[:with_signature_id] %>
+                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
               <% end %>
             </div>
           </div>

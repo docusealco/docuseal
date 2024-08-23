@@ -21,6 +21,8 @@ module Submissions
     A4_SIZE = [595, 842].freeze
     SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
+    TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
+
     MISSING_GLYPH_REPLACE = {
       '▪' => '-',
       '✔️' => 'V',
@@ -56,13 +58,15 @@ module Submissions
         submitter.submission.template_schema.map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
-          attachment = build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
-                                            uuid: item['attachment_uuid'],
-                                            name: item['name'])
+          if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
+            pdf = normalize_image_pdf(pdf)
 
-          image_pdfs << pdf if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
+            image_pdfs << pdf
+          end
 
-          attachment
+          build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+                               uuid: item['attachment_uuid'],
+                               name: item['name'])
         end
 
       return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
@@ -71,6 +75,8 @@ module Submissions
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
           pdf.pages.each { |page| doc.pages << doc.import(page) }
         end
+
+      images_pdf = normalize_image_pdf(images_pdf)
 
       images_pdf_attachment =
         build_pdf_attachment(
@@ -100,18 +106,31 @@ module Submissions
 
       pdfs_index = build_pdfs_index(submitter, flatten: is_flatten)
 
-      if with_signature_id
+      if with_signature_id || submitter.account.testing?
         pdfs_index.each_value do |pdf|
           next if pdf.trailer.info[:DocumentID].present?
 
-          pdf.trailer.info[:DocumentID] = Digest::MD5.hexdigest(submitter.submission.slug).upcase
+          document_id = Digest::MD5.hexdigest(submitter.submission.slug).upcase
+
+          pdf.trailer.info[:DocumentID] = document_id
           pdf.pages.each do |page|
             font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * 9).to_i
             cnv = page.canvas(type: :overlay)
 
             cnv.font(FONT_NAME, size: font_size)
-            cnv.text("Document ID: #{Digest::MD5.hexdigest(submitter.submission.slug).upcase}",
-                     at: [2, 4])
+
+            text =
+              if submitter.account.testing?
+                if with_signature_id
+                  "#{TESTING_FOOTER} | ID: #{document_id}"
+                else
+                  TESTING_FOOTER
+                end
+              else
+                "Document ID: #{document_id}"
+              end
+
+            cnv.text(text, at: [2, 4])
           end
         end
       end
@@ -169,7 +188,7 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           case field['type']
-          when ->(type) { type == 'signature' && with_signature_id }
+          when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             attachments_data_cache[attachment.uuid] ||= attachment.download
@@ -192,8 +211,10 @@ module Submissions
               break if id_string.length < 8
             end
 
+            reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
+
             reason_string =
-              "#{I18n.t('reason')}: #{I18n.t('digitally_signed_by')} " \
+              "#{I18n.t('reason')}: #{reason_value || I18n.t('digitally_signed_by')} " \
               "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
               "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone),
                         format: :long, locale: submitter.account.locale)} " \
@@ -571,6 +592,14 @@ module Submissions
       )
 
       pdf
+    end
+
+    def normalize_image_pdf(pdf)
+      io = StringIO.new
+      pdf.write(io)
+      io.rewind
+
+      HexaPDF::Document.new(io:)
     end
 
     def sign_reason(name)

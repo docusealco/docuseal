@@ -39,6 +39,7 @@ class AccountConfig < ApplicationRecord
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'
+  REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => {
