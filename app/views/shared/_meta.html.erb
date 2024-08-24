@@ -1,14 +1,13 @@
-<% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
-  <meta name="robots" content="noindex">
-<% end %>
-<% title = content_for(:html_title) || 'DocuSeal | Open Source Document Filling and Signing' %>
+<%= content_for :html_title, 'Sigma9' %>
+<meta name="robots" content="noindex">
+<% title = (content_for(:html_title) || 'DocuSeal') + '| Open Source Document Filling and Signing' %>
 <% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
-<meta property="og:site_name" content="DocuSeal">
+<meta property="og:site_name" content="Relatorios Corsar">
 <% if content_for(:disable_image_preview) %>
   <meta property="og:image" content="">
   <meta name="twitter:image" content="">
@@ -27,4 +26,4 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<meta name="theme-color" content="#faf7f5">
+<meta name="theme-color" content="#010066">

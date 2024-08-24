@@ -5,6 +5,12 @@ module.exports = {
   daisyui: {
     themes: [
       {
+	winter: {
+          ...require("daisyui/src/theming/themes")["winter"],
+	  "base-100": "#010066",
+	  "base-200": "#010177",
+	  "base-300": "#010277",
+	},
         docuseal: {
           'color-scheme': 'light',
           primary: '#e4e0e1',
