@@ -58,6 +58,7 @@
         />
         <template v-else>
           <a
+            v-if="withSignYourselfButton"
             :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
             class="btn btn-primary btn-ghost text-base hidden md:flex"
             :target="template.submitters.length > 1 ? '' : '_blank'"
@@ -73,6 +74,7 @@
             </span>
           </a>
           <a
+            v-if="withSendButton"
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
@@ -475,6 +477,16 @@ export default {
       default: ''
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withSendButton: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withSignYourselfButton: {
       type: Boolean,
       required: false,
       default: true

@@ -70,7 +70,7 @@
             <span>Edit</span>
           </span>
         <% end %>
-      <% elsif can?(:read, template) %>
+      <% elsif can?(:read, template) && !template.archived_at? %>
         <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
           <span class="flex items-center justify-center space-x-2">
             <%= svg_icon('file_text', class: 'w-6 h-6') %>
@@ -79,8 +79,16 @@
         <% end %>
       <% end %>
     <% end %>
-    <% if template.archived_at? && can?(:create, template) %>
-      <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
+    <% if template.archived_at? %>
+      <% if can?(:create, template) %>
+        <%= button_to button_title(title: 'Restore', disabled_with: 'Restoring', icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
+      <% end %>
+      <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
+        <span class="flex items-center justify-center space-x-2">
+          <%= svg_icon('file_text', class: 'w-6 h-6') %>
+          <span>Preview</span>
+        </span>
+      <% end %>
     <% end %>
   </div>
 </div>

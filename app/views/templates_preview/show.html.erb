@@ -1,1 +1,1 @@
-<template-builder class="grid" data-editable="false" data-template="<%= @template_data %>"></template-builder>
+<template-builder class="grid" data-editable="false" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-template="<%= @template_data %>"></template-builder>

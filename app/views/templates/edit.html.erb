@@ -1,1 +1,1 @@
-<template-builder class="grid" data-template="<%= @template_data %>" data-locale="<%= current_account.locale %>"></template-builder>
+<template-builder class="grid" data-template="<%= @template_data %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-locale="<%= current_account.locale %>"></template-builder>

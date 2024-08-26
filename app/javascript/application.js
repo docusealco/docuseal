@@ -107,6 +107,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withPayment: this.dataset.withPayment === 'true',
       isPaymentConnected: this.dataset.isPaymentConnected === 'true',
       withFormula: this.dataset.withFormula === 'true',
+      withSendButton: this.dataset.withSendButton !== 'false',
+      withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes
