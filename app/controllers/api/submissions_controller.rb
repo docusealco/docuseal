@@ -23,7 +23,10 @@ module Api
                                                  audit_trail_attachment: :blob))
 
       render json: {
-        data: submissions.as_json(Submissions::SerializeForApi::SERIALIZE_PARAMS),
+        data: submissions.map do |s|
+          Submissions::SerializeForApi.call(s, s.submitters, params,
+                                            with_events: false, with_documents: false, with_values: false)
+        end,
         pagination: {
           count: submissions.size,
           next: submissions.last&.id,

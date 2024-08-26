@@ -10,12 +10,13 @@ module Submitters
 
     module_function
 
-    def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false, params: {})
+    def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false,
+             with_values: true, params: {})
       ActiveRecord::Associations::Preloader.new(
         records: [submitter],
         associations: if with_documents
                         [documents_attachments: :blob, attachments_attachments: :blob]
-                      else
+                      elsif with_values
                         [attachments_attachments: :blob]
                       end
       ).call
@@ -26,7 +27,7 @@ module Submitters
         additional_attrs['fields'] = SerializeForWebhook.build_fields_array(submitter)
       end
 
-      additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter)
+      additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter) if with_values
       additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter) if with_documents
       additional_attrs['preferences'] = submitter.preferences.except('default_values')
       additional_attrs['submission_events'] = serialize_events(submitter.submission_events) if with_events
