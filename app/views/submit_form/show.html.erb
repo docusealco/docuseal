@@ -65,7 +65,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns[:scroll_padding] %>
+      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns.fetch(:scroll_padding, '-110px') %>
     </div>
   </div>
 </div>
