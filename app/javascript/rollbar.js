@@ -18,9 +18,15 @@ if (token) {
     transform (payload) {
       payload.body.telemetry = []
 
-      const string = JSON.stringify(payload)
+      if (payload.request.query_string) {
+        payload.request.query_string = ''
+      }
 
-      return JSON.parse(string.replace(/(\/[des]\/)\w{6}/g, (_, m) => m))
+      if (payload.request.url) {
+        payload.request.url = payload.request.url.replace(/(\/[sdep]\/)(\w{5})[^/]+/, '$1$2')
+      }
+
+      return payload
     },
     payload: {
       client: {

@@ -114,9 +114,7 @@ module Submissions
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
 
-    if defined?(Rollbar) && fixed_email != email.downcase.delete_prefix('<').strip
-      Rollbar.warning("Fixed email #{email}")
-    end
+    Rails.logger.info("Fixed email #{email}") if fixed_email != email.downcase.delete_prefix('<').strip
 
     fixed_email
   end
