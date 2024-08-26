@@ -28,7 +28,7 @@
             :with-field-placeholder="withFieldPlaceholder"
             :with-signature-id="withSignatureId"
             :is-active="currentStep === step"
-            :with-label="withLabel && !withFieldPlaceholder"
+            :with-label="withLabel && !withFieldPlaceholder && step.length < 2"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
             @click="$emit('focus-step', stepIndex)"
