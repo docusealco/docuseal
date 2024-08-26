@@ -123,7 +123,7 @@ class TemplatesController < ApplicationController
     if template.account == current_account
       redirect_to(edit_template_path(@template))
     else
-      redirect_back(fallback_location: root_path, notice: 'Template has been clonned')
+      redirect_back(fallback_location: root_path, notice: 'Template has been cloned')
     end
   end
 
