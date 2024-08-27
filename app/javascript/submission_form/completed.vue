@@ -90,10 +90,10 @@
     >
       {{ t('signed_with') }}
       <a
-        href="https://www.docuseal.co/start"
+        href="https://corsar.sigma9.pt/start"
         target="_blank"
         class="underline"
-      >DocuSeal</a> - {{ t('open_source_documents_software') }}
+      >Sigma9Sign</a> - {{ t('open_source_documents_software') }}
     </div>
   </div>
 </template>
