@@ -22,7 +22,7 @@ class StartFormController < ApplicationController
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
-      if @template.submitters.to_a.size > 1 && @submitter.new_record?
+      if @template.submitters.to_a.size > 2 && @submitter.new_record?
         @error_message = 'Not found'
 
         return render :show
@@ -63,9 +63,7 @@ class StartFormController < ApplicationController
 
   def assign_submission_attributes(submitter, template)
     resubmit_submitter =
-      if params[:resubmit].present?
-        Submitter.where(submission: @template.submissions).find_by(slug: params[:resubmit])
-      end
+      (Submitter.where(submission: template.submissions).find_by(slug: params[:resubmit]) if params[:resubmit].present?)
 
     submitter.assign_attributes(
       uuid: template.submitters.first['uuid'],
@@ -87,9 +85,23 @@ class StartFormController < ApplicationController
                                             template_submitters: template.submitters,
                                             source: :link)
 
+    maybe_assign_default_second_submitter(submitter.submission)
+
     submitter.account_id = submitter.submission.account_id
 
     submitter
+  end
+
+  def maybe_assign_default_second_submitter(submission)
+    return unless submission.new_record?
+    return if submission.template.submitters.to_a.size != 2
+
+    submission.submitters_order = 'preserved'
+    submission.submitters.new(
+      account_id: submission.account_id,
+      uuid: submission.template.submitters.second['uuid'],
+      email: submission.template.author.email
+    )
   end
 
   def submitter_params
