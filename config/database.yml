@@ -6,6 +6,9 @@ default: &default
 development:
   <<: *default
   database: docuseal_dev
+  port: <%= ENV['DATABASE_PORT'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 test:
   <<: *default

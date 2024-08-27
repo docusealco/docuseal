@@ -8,8 +8,8 @@ RUN fontforge -lang=py -c 'font1 = fontforge.open("FreeSans.ttf"); font2 = fontf
 
 FROM ruby:3.3.3-alpine as webpack
 
-ENV RAILS_ENV=production
-ENV NODE_ENV=production
+ENV RAILS_ENV=development
+ENV NODE_ENV=development
 
 WORKDIR /app
 
@@ -34,7 +34,7 @@ RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
 FROM ruby:3.3.3-alpine as app
 
-ENV RAILS_ENV=production
+ENV RAILS_ENV=development
 ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
 ENV OPENSSL_CONF=/app/openssl_legacy.cnf

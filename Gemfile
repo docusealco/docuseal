@@ -13,7 +13,6 @@ gem 'cancancan'
 gem 'csv'
 gem 'devise'
 gem 'devise-two-factor'
-gem 'dotenv', require: false
 gem 'email_typo'
 gem 'faraday'
 gem 'faraday-follow_redirects'
@@ -61,6 +60,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov', require: false
+  gem 'dotenv'
 end
 
 group :development do

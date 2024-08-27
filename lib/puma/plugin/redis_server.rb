@@ -52,9 +52,10 @@ Puma::Plugin.create do
       Process.setsid
 
       Dir.chdir(ENV.fetch('WORKDIR', nil)) unless ENV['WORKDIR'].to_s.empty?
-
-      exec('redis-server', '--requirepass', Digest::SHA1.hexdigest("redis#{ENV.fetch('SECRET_KEY_BASE', '')}"),
+      if ENV['DOCKER_REDIS'].to_s.empty?
+        exec('redis-server', '--requirepass', Digest::SHA1.hexdigest("redis#{ENV.fetch('SECRET_KEY_BASE', '')}"),
            out: '/dev/null')
+      end
     end
   end
 

@@ -3,16 +3,27 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    build: .
+      redis: 
+        condition: service_started
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
       - ./docuseal:/data/docuseal
+
     environment:
       - HOST=${HOST}
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+      - RAILS_ENV=development
 
+  redis:
+    image: redis:latest
+    ports: 
+      - 6379:6379
+    
   postgres:
     image: postgres:15
     volumes:
@@ -26,6 +37,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    ports: 
+      - 5432:5432
+
 
         # caddy:
         #   image: caddy:latest
@@ -38,3 +52,4 @@ services:
         #     - .:/data
         #   environment:
         #     - HOST=${HOST}
+ 
