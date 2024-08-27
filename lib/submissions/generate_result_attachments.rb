@@ -110,14 +110,14 @@ module Submissions
         pdfs_index.each_value do |pdf|
           next if pdf.trailer.info[:DocumentID].present?
 
+          font = pdf.fonts.add(FONT_NAME)
+
           document_id = Digest::MD5.hexdigest(submitter.submission.slug).upcase
 
           pdf.trailer.info[:DocumentID] = document_id
           pdf.pages.each do |page|
             font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * 9).to_i
             cnv = page.canvas(type: :overlay)
-
-            cnv.font(FONT_NAME, size: font_size)
 
             text =
               if submitter.account.testing?
@@ -130,7 +130,17 @@ module Submissions
                 "Document ID: #{document_id}"
               end
 
-            cnv.text(text, at: [2, 4])
+            text = HexaPDF::Layout::TextFragment.create(
+              text, font:, font_size:, underlays: [
+                lambda do |canv, box|
+                  canv.fill_color('white').rectangle(-1, 0, box.width + 2, box.height).fill
+                end
+              ]
+            )
+
+            HexaPDF::Layout::TextLayouter.new(font:, font_size:)
+                                         .fit([text], page.box.width, page.box.height)
+                                         .draw(cnv, 1, font_size * 1.37)
           end
         end
       end

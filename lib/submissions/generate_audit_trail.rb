@@ -115,7 +115,7 @@ module Submissions
           canvas.save_graphics_state do
             document_id = Digest::MD5.hexdigest(submission.slug).upcase
 
-            canvas.font(FONT_NAME, size: FONT_SIZE)
+            font = composer.document.fonts.add(FONT_NAME)
 
             text =
               if submission.account.testing?
@@ -128,7 +128,17 @@ module Submissions
                 "Document ID: #{document_id}"
               end
 
-            canvas.text(text, at: [2, 4])
+            text = HexaPDF::Layout::TextFragment.create(
+              text, font:, font_size: FONT_SIZE, underlays: [
+                lambda do |canv, box|
+                  canv.fill_color('white').rectangle(-1, 0, box.width + 2, box.height).fill
+                end
+              ]
+            )
+
+            HexaPDF::Layout::TextLayouter.new(font:, font_size: FONT_SIZE)
+                                         .fit([text], 1000, 1000)
+                                         .draw(canvas, 1, FONT_SIZE * 1.37)
           end
         end
 
