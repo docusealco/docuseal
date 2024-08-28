@@ -30,7 +30,7 @@ RSpec.describe 'Template' do
       visit template_path(template)
 
       submitters.each do |submitter|
-        expect(page).to have_content(submitter.email)
+        expect(page).to have_content(submitter.name)
       end
 
       expect(page).to have_content(template.name)
