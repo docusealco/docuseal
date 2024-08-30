@@ -7,8 +7,10 @@ class SubmitFormValuesController < ApplicationController
   def index
     submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-    return render json: {} if submitter.completed_at?
-    return render json: {} if submitter.submission.template.archived_at? || submitter.submission.archived_at?
+    return render json: {} if submitter.completed_at? || submitter.declined_at?
+    return render json: {} if submitter.submission.template.archived_at? ||
+                              submitter.submission.archived_at? ||
+                              submitter.submission.expired?
 
     value = submitter.values[params['field_uuid']]
     attachment = submitter.attachments.where(created_at: params[:after]..).find_by(uuid: value) if value.present?
