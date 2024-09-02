@@ -4,6 +4,8 @@ module Submitters
   module NormalizeValues
     CHECKSUM_CACHE_STORE = ActiveSupport::Cache::MemoryStore.new
 
+    BASE64_PREFIX_REGEXP = %r{\Adata:image/\w+;base64,}
+
     BaseError = Class.new(StandardError)
 
     UnknownFieldName = Class.new(BaseError)
@@ -134,7 +136,8 @@ module Submitters
           find_or_create_blob_from_url(account, value)
         elsif type.in?(%w[signature initials]) && value.length < 60
           find_or_create_blob_from_text(account, value, type)
-        elsif (data = Base64.decode64(value)) && Marcel::MimeType.for(data).include?('image')
+        elsif (data = Base64.decode64(value.sub(BASE64_PREFIX_REGEXP, ''))) &&
+              Marcel::MimeType.for(data).include?('image')
           find_or_create_blob_from_base64(account, data, type)
         else
           raise InvalidDefaultValue, "Invalid value, url, base64 or text < 60 chars is expected: #{value.first(200)}..."
