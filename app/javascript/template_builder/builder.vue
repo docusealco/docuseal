@@ -134,6 +134,17 @@
                     <span class="whitespace-nowrap">Save and Preview</span>
                   </a>
                 </li>
+                <li>
+                  <a
+                    :href="`/templates/${template.id}/preferences`"
+                    data-turbo-frame="modal"
+                    class="flex space-x-2"
+                    @click="closeDropdown"
+                  >
+                    <IconAdjustments class="w-6 h-6 flex-shrink-0" />
+                    <span class="whitespace-nowrap">Preferences</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </span>
@@ -404,7 +415,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
+import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
 import { en as i18nEn } from './i18n'
@@ -428,6 +439,7 @@ export default {
     Contenteditable,
     IconUsersPlus,
     IconChevronDown,
+    IconAdjustments,
     IconEye,
     IconDeviceFloppy
   },
@@ -770,6 +782,9 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    closeDropdown () {
+      document.activeElement.blur()
+    },
     t (key) {
       return this.i18n[key] || i18nEn[key] || key
     },
