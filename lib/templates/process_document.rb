@@ -97,10 +97,8 @@ module Templates
       pdf.write(io, incremental: false, validate: false)
 
       io.string
-    rescue StandardError => e
+    rescue StandardError
       raise if Rails.env.development?
-
-      Rollbar.error(e) if defined?(Rollbar)
 
       data
     end
