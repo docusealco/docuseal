@@ -21,7 +21,7 @@
             :values="values"
             :field="field"
             :area="area"
-            :submittable="true"
+            :submittable="submittable"
             :field-index="fieldIndex"
             :scroll-padding="scrollPadding"
             :submitter="submitter"
@@ -57,6 +57,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    submittable: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     submitter: {
       type: Object,

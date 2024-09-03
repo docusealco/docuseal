@@ -13,6 +13,12 @@
     :scroll-padding="scrollPadding"
     @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
+  <FieldAreas
+    :steps="readonlyConditionalFields.map((e) => [e])"
+    :values="readonlyConditionalFields.reduce((acc, f) => { acc[f.uuid] = f.default_value; return acc }, {})"
+    :submitter="submitter"
+    :submittable="false"
+  />
   <FormulaFieldAreas
     v-if="formulaFields.length"
     :fields="formulaFields"
@@ -802,6 +808,9 @@ export default {
     currentField () {
       return this.currentStepFields[0]
     },
+    readonlyConditionalFields () {
+      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f))
+    },
     stepFields () {
       return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
@@ -933,12 +942,12 @@ export default {
             return acc && isEmpty(this.values[c.field_uuid])
           } else if (['not_empty', 'checked'].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid])
-          } else if (['equal', 'contains'].includes(c.action)) {
+          } else if (['equal', 'contains'].includes(c.action) && field) {
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
             return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
-          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
+          } else if (['not_equal', 'does_not_contain'].includes(c.action) && field) {
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 

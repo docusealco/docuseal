@@ -51,6 +51,8 @@
                 <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
                 <% next if field['redacted'] && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
+                <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
+                <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
                 <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
                 <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
               <% end %>
