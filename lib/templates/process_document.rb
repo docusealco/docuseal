@@ -15,7 +15,7 @@ module Templates
 
     module_function
 
-    def call(attachment, data, extract_fields: false)
+    def call(attachment, data, extract_fields: false, image_quality: nil)
       if attachment.content_type == PDF_CONTENT_TYPE
         if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
           pdf = HexaPDF::Document.new(io: StringIO.new(data))
@@ -23,23 +23,23 @@ module Templates
           fields = Templates::FindAcroFields.call(pdf, attachment)
         end
 
-        generate_pdf_preview_images(attachment, data, pdf)
+        generate_pdf_preview_images(attachment, data, pdf, image_quality:)
 
         attachment.metadata['pdf']['fields'] = fields if fields
       elsif attachment.image?
-        generate_preview_image(attachment, data)
+        generate_preview_image(attachment, data, image_quality:)
       end
 
       attachment
     end
 
-    def generate_preview_image(attachment, data)
+    def generate_preview_image(attachment, data, image_quality: nil)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       image = Vips::Image.new_from_buffer(data, '')
       image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
 
-      io = StringIO.new(image.write_to_buffer(FORMAT, Q: Q, interlace: true))
+      io = StringIO.new(image.write_to_buffer(FORMAT, Q: image_quality || Q, interlace: true))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -51,7 +51,7 @@ module Templates
       )
     end
 
-    def generate_pdf_preview_images(attachment, data, pdf = nil)
+    def generate_pdf_preview_images(attachment, data, pdf = nil, image_quality: nil)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
@@ -70,7 +70,7 @@ module Templates
         page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
-        io = StringIO.new(page.write_to_buffer(FORMAT, Q: Q, interlace: true))
+        io = StringIO.new(page.write_to_buffer(FORMAT, Q: image_quality || Q, interlace: true))
 
         ApplicationRecord.no_touching do
           ActiveStorage::Attachment.create!(
@@ -117,11 +117,11 @@ module Templates
       end
     end
 
-    def generate_pdf_preview_from_file(attachment, file_path, page_number)
+    def generate_pdf_preview_from_file(attachment, file_path, page_number, image_quality: nil)
       io = StringIO.new
 
       command = [
-        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{Q},optimize=y",
+        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{image_quality || Q},optimize=y",
         '-scale-to-x', MAX_WIDTH, '-scale-to-y', '-1',
         '-r', DPI, '-f', page_number + 1, '-l', page_number + 1,
         '-singlefile', Shellwords.escape(file_path), '-'
