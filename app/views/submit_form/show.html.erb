@@ -1,4 +1,4 @@
-<% content_for(:html_title, "#{@submitter.submission.template.name} | DocuSeal") %>
+<% content_for(:html_title, "#{@submitter.submission.template.name} | #{Docuseal.product_name}") %>
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
@@ -6,7 +6,7 @@
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
-    <div class="mx-auto block pb-72" style="max-width: 1000px">
+    <div class="mx-auto block pb-72 bg-base-300 justify-between" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 %>
       <%= local_assigns[:banner_html] || capture do %>
         <%= render('submit_form/banner') %>

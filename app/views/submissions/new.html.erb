@@ -1,11 +1,11 @@
-<%= render 'shared/turbo_modal', title: params[:selfsign] ? 'Add Recipients' : 'Add New Recipients' do %>
-  <% options = [['via Email', 'email'], ['via Phone', 'phone'], %w[Detailed detailed], ['Upload List', 'list']].compact %>
+<%= render 'shared/turbo_modal', title: params[:selfsign] ? t('submissions_add_recipient') : t('submissions_add_recipients') do %>
+  <% options = [['via Email', 'email']].compact %>
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
         <span>
           <%= radio_button_tag 'option', value, value == 'email', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-          <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item md:w-28 peer-checked:btn-active normal-case">
+          <label for="option_<%= value %>" class=" btn btn-focus btn-sm  md:w-28 peer-checked:btn-active normal-case">
             <%= label %>
           </label>
         </span>
@@ -16,15 +16,7 @@
     <div id="email">
       <%= render 'email_form', template: @template %>
     </div>
-    <div id="phone" class="hidden">
-      <%= render 'phone_form', template: @template %>
-    </div>
-    <div id="detailed" class="hidden">
-      <%= render 'detailed_form', template: @template %>
-    </div>
-    <div id="list" class="hidden">
-      <%= render 'list_form', template: @template %>
-    </div>
+
   </div>
   <%= content_for(:modal_extra) %>
 <% end %>

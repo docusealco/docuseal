@@ -1,4 +1,5 @@
-<% content_for(:html_title, "#{@template.name} | DocuSeal") %>
+<%= content_for :html_title, 'Sigma9 | ' %>
+<% content_for(:html_title, "#{@template.name} | #{Docuseal.product_name}") %>
 <% content_for(:html_description, "#{@template.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <div class="max-w-md mx-auto px-2 mt-12 mb-4">
   <div class="space-y-6 mx-auto">
