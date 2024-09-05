@@ -4,7 +4,7 @@
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
       <div>
-        <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions</h2>
+        <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= I18n.t('submissions') %></h2>
       </div>
       <div class="flex justify-end space-x-2">
         <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
@@ -12,12 +12,12 @@
         <% end %>
         <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
-          <span>Export</span>
+          <span><%= I18n.t('general_export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
           <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <span>Add <span class="hidden md:inline">Recipients</span></span>
+            <span><%= I18n.t('general_add') %> <span class="hidden md:inline"><%= I18n.t('recipients') %></span></span>
           <% end %>
         <% end %>
       </div>
@@ -63,25 +63,25 @@
   <div class="card bg-base-200">
     <div class="card-body text-center py-16">
       <div class="max-w-lg mx-auto">
-        <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions</p>
+        <p class="text-3xl font-bold text-base-content mb-4"><%= I18n.t('submissions_empty') %></p>
         <% if @template.archived_at.blank? && params[:q].blank? %>
-          <p>Send an invitation to fill and complete the form</p>
+          <p><%= I18n.t('submissions_send_invite') %></p>
           <div class="space-y-2 flex flex-col">
             <% if can?(:create, Submission) %>
               <%= link_to new_template_submission_path(@template, with_link: true), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-                <span class="mr-1">Send to Recipients</span>
+                <span class="mr-1"><%= I18n.t('submissions_send_recipients') %></span>
               <% end %>
             <% end %>
             <% if @template.submitters.size == 1 %>
               <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
                 <%= svg_icon('writing', class: 'w-6 h-6') %>
-                <span class="mr-1">Sign it Yourself</span>
+                <span class="mr-1"><%= I18n.t('submissions_sign_yourself') %></span>
               <% end %>
             <% else %>
               <%= link_to new_template_submission_path(@template, selfsign: true), class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('writing', class: 'w-6 h-6') %>
-                <span class="mr-1">Sign it Yourself</span>
+                <span class="mr-1"><%= I18n.t('submissions_sign_yourself') %></span>
               <% end %>
             <% end %>
           <% end %>
@@ -93,7 +93,7 @@
 <% view_archived_html = capture do %>
   <% if @template.submissions.where.not(archived_at: nil).exists? && !@template.archived_at? %>
     <div>
-      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm">View Archived</a>
+      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm"><%= I18n.t('general_view') %> <%= I18n.t('general_archive') %></a>
     </div>
   <% end %>
 <% end %>

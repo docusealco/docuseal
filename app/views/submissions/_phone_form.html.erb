@@ -43,7 +43,7 @@
     <% if params[:selfsign].blank? %>
       <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
         <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
-        <span>Add New</span>
+        <span><%= t('general_add')+' '+t('general_new') %></span>
       </a>
     <% end %>
   </dynamic-list>
@@ -52,6 +52,6 @@
     <%= render 'send_sms', f: %>
   </div>
   <div class="form-control">
-    <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
+    <%= f.button button_title(title: t('general_add')+' '+t('recipients')), class: 'base-button' %>
   </div>
 <% end %>

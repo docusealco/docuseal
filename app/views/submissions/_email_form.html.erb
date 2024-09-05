@@ -4,7 +4,7 @@
       <emails-textarea data-bulk-enabled="<%= Docuseal.demo? || !Docuseal.multitenant? || can?(:manage, :bulk_send) %>" data-limit="<%= Docuseal.multitenant? ? (can?(:manage, :bulk_send) ? 40 : 1) : nil %>">
         <submitters-autocomplete data-field="email" class="block relative">
           <autoresize-textarea>
-            <%= f.text_area :emails, required: true, class: 'base-textarea w-full', placeholder: 'Type emails here...' %>
+            <%= f.text_area :emails, required: true, class: 'base-textarea w-full', placeholder: t('submissions_type_emails')+'...' %>
           </autoresize-textarea>
         </submitters-autocomplete>
       </emails-textarea>
@@ -38,7 +38,7 @@
       <% if params[:selfsign].blank? %>
         <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
           <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
-          <span>Add New</span>
+          <span><%= t('submissions_add_new') %></span>
         </a>
       <% end %>
     </dynamic-list>
@@ -49,7 +49,7 @@
   </div>
   <div class="form-control">
     <%= content_for(:submit_button) || capture do %>
-      <%= f.button button_title(title: 'Add Recipients'), class: 'base-button' %>
+      <%= f.button button_title(title: t('submissions_add_recipients')), class: 'base-button' %>
     <% end %>
   </div>
 <% end %>

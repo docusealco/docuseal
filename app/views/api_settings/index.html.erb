@@ -48,7 +48,7 @@
          ]
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('general_copy'), copied_title: t('general_copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>
@@ -74,7 +74,7 @@
            "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('general_copy'), copied_title: t('general_copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>
@@ -96,7 +96,7 @@
             <% text = capture do %>curl '<%= api_template_url(current_account.templates&.last || 1) %>' \
        --header 'X-Auth-Token: <%= current_user.access_token.token %>'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('general_copy'), copied_title: t('general_copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>

@@ -52,13 +52,13 @@
   </div>
   <div class="flex space-x-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
     <% if !template.archived_at? && can?(:destroy, template) %>
-      <%= button_to button_title(title: 'Archive', disabled_with: 'Archiving', title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      <%= button_to button_title(title: I18n.t('general_toarchive'), disabled_with: I18n.t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
       <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('copy', class: 'w-6 h-6') %>
-          <span class="inline">Clone</span>
+          <span class="inline"><%= I18n.t('general_clone') %></span>
         </span>
       <% end %>
     <% end %>
@@ -67,14 +67,14 @@
         <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
           <span class="flex items-center justify-center space-x-2">
             <%= svg_icon('pencil', class: 'w-6 h-6') %>
-            <span>Edit</span>
+            <span><%= I18n.t('general_edit') %></span>
           </span>
         <% end %>
       <% elsif can?(:read, template) && !template.archived_at? %>
         <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
           <span class="flex items-center justify-center space-x-2">
             <%= svg_icon('file_text', class: 'w-6 h-6') %>
-            <span>Preview</span>
+            <span><%= I18n.t('general_preview') %></span>
           </span>
         <% end %>
       <% end %>

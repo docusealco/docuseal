@@ -1,7 +1,7 @@
 <div>
   <%= link_to root_path do %>
     &larr;
-    <span>Back to Active</span>
+    <span><%= I18n.t('templates_archived_back_to_active') %></span>
   <% end %>
 </div>
 <div class="flex justify-between mb-4 items-center">
@@ -19,7 +19,7 @@
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
-      Templates not Found
+      Templates <%= I18n.t('not_found') %>
     </div>
   </div>
 <% end %>

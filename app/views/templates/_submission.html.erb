@@ -1,4 +1,4 @@
-<% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning', 'declined' => 'badge-error' } %>
+<% status_badges = { 'espera' => 'badge-info', 'enviado' => 'badge-info', 'completo' => 'badge-success', 'aberto' => 'badge-warning', 'declinado' => 'badge-error' } %>
 <div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
@@ -75,27 +75,27 @@
               <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex">
                 <span class="flex items-center justify-center space-x-1 md:space-x-2">
                   <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
-                  <span class="inline shrink-0">Sign now</span>
+                  <span class="inline shrink-0"><%= I18n.t('submissions_sign_now') %></span>
                 </span>
               </button>
             </form>
           <% else %>
             <div class="flex-1 md:flex-none">
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy Link', copy_title_md: 'Copy', copied_title_md: 'Copied' %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: I18n.t('general_copy')+' Link', copy_title_md: I18n.t('general_copy')+' Link', copied_title_md: I18n.t('general_copied') %>
             </div>
           <% end %>
         <% end %>
         <div class="flex-1 md:flex-none">
-          <span class="btn btn-outline btn-sm w-full md:w-24">View</span>
+          <span class="btn btn-outline btn-sm w-full md:w-24"><%= I18n.t('general_view') %></span>
         </div>
         <% if !submission.archived_at? && !template.archived_at? && can?(:destroy, submission) %>
-          <span data-tip="Archive" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Archive', method: :delete, onclick: 'event.stopPropagation()' %>
+          <span data-tip="<%= I18n.t('general_archive') %>" class="sm:tooltip tooltip-top">
+            <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: I18n.t('general_archive'), method: :delete, onclick: 'event.stopPropagation()' %>
           </span>
         <% end %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
-          <span data-tip="Remove" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: 'Rem', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Remove', method: :delete, data: { turbo_confirm: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' }, onclick: 'event.stopPropagation()' %>
+          <span data-tip="<%= I18n.t('general_remove') %>" class="sm:tooltip tooltip-top">
+            <%= button_to button_title(title: nil, disabled_with: 'Rem', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: I18n.t('general_remove'), method: :delete, data: { turbo_confirm: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </span>
         <% end %>
       </div>
@@ -153,12 +153,12 @@
                         <button onclick="event.stopPropagation()" class="absolute md:relative top-0 right-0 btn btn-xs btn-outline btn-neutral bg-white w-28 md:w-36">
                           <span class="flex items-center justify-center space-x-1 md:space-x-2">
                             <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
-                            <span class="inline shrink-0">Sign now</span>
+                            <span class="inline shrink-0"><%= I18n.t('submissions_sign_now') %></span>
                           </span>
                         </button>
                       </form>
                     <% else %>
-                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'absolute md:relative top-0 right-0 btn btn-xs text-xs btn-neutral text-white w-28 md:w-36 flex', icon_class: 'w-4 h-4 text-white', copy_title: 'Copy Link', copy_title_md: 'Copy Link', copied_title_md: 'Copied' %>
+                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'absolute md:relative top-0 right-0 btn btn-xs text-xs btn-neutral text-white w-28 md:w-36 flex', icon_class: 'w-4 h-4 text-white', copy_title: I18n.t('general_copy')+' Link', copy_title_md: I18n.t('general_copy')+' Link', copied_title_md: I18n.t('general_copied') %>
                     <% end %>
                   </div>
                 <% end %>
@@ -180,7 +180,7 @@
                   </span>
                   <span class="flex items-center justify-center space-x-1 md:space-x-2 hidden" data-target="download-button.loadingButton">
                     <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-                    <span class="inline">Downloa...</span>
+                    <span class="inline">Downloading...</span>
                   </span>
                 </download-button>
               </button>
@@ -188,16 +188,16 @@
           </div>
         <% end %>
         <div class="flex-1 md:flex-none">
-          <span class="btn btn-outline btn-sm w-full md:w-24">View</span>
+          <span class="btn btn-outline btn-sm w-full md:w-24"><%= I18n.t('general_view') %></span>
         </div>
         <% if !submission.archived_at? && !template.archived_at? %>
-          <span data-tip="Archive" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Archive', method: :delete, onclick: 'event.stopPropagation()' %>
+          <span data-tip="<%= I18n.t('general_archive') %>" class="sm:tooltip tooltip-top">
+            <%= button_to button_title(title: nil, disabled_with: 'Arch', icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: I18n.t('general_archive'), method: :delete, onclick: 'event.stopPropagation()' %>
           </span>
         <% end %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
           <span data-tip="Remove" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: 'Rem', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: 'Remove', method: :delete, data: { turbo_confirm: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' }, onclick: 'event.stopPropagation()' %>
+            <%= button_to button_title(title: nil, disabled_with: 'Rem', icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: I18n.t('general_remove'), method: :delete, data: { turbo_confirm: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' }, onclick: 'event.stopPropagation()' %>
           </span>
         <% end %>
       </div>

@@ -3,13 +3,13 @@
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails, checked: can_send_emails %>
-      <span class="label">Send emails</span>
+      <span class="label"><%= t('submissions_send_emails') %></span>
     <% end %>
     <div>
       <% if can_send_emails %>
         <label>
           <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
-          <span class="link peer-checked:hidden">Edit message</span>
+          <span class="link peer-checked:hidden"><%= t('submissions_edit_message') %></span>
         </label>
       <% end %>
       <%= render 'email_stats' %>
