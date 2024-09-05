@@ -137,7 +137,7 @@ module Submitters
         elsif type.in?(%w[signature initials]) && value.length < 60
           find_or_create_blob_from_text(account, value, type)
         elsif (data = Base64.decode64(value.sub(BASE64_PREFIX_REGEXP, ''))) &&
-              Marcel::MimeType.for(data).include?('image')
+              Marcel::MimeType.for(data).exclude?('octet-stream')
           find_or_create_blob_from_base64(account, data, type)
         else
           raise InvalidDefaultValue, "Invalid value, url, base64 or text < 60 chars is expected: #{value.first(200)}..."
