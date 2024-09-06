@@ -97,7 +97,7 @@ module Api
         :name,
         :external_id,
         {
-          submitters: [%i[name uuid]],
+          submitters: [%i[name uuid is_requester linked_to_uuid email]],
           fields: [[:uuid, :submitter_uuid, :name, :type,
                     :required, :readonly, :default_value,
                     :title, :description,

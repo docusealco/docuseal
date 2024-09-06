@@ -24,6 +24,7 @@ export default class extends HTMLElement {
 
       if (input && item[field]) {
         input.value = item[field]
+        input.dispatchEvent(new CustomEvent('linked-input.update', { bubbles: true }))
       }
 
       if (textarea && item[field]) {
