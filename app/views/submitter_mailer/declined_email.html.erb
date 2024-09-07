@@ -1,4 +1,4 @@
 <p><%= t('hi_there') %>,</p>
 <p><%= t('name_declined_by_submitter_with_the_following_reason', name: @submitter.submission.template.name, submitter: @submitter.name || @submitter.email || @submitter.phone) %></p>
-<%= simple_format(@submitter.submission_events.find_by(event_type: :decline_form).data['reason']) %>
+<%= simple_format(h(@submitter.submission_events.find_by(event_type: :decline_form).data['reason'])) %>
 <p><%= link_to t('view'), submission_url(@submitter.submission) %></p>
