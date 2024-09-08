@@ -11,7 +11,7 @@ class StartFormController < ApplicationController
 
   def show
     @submitter = @template.submissions.new(account_id: @template.account_id)
-                          .submitters.new(uuid: @template.submitters.first['uuid'])
+                          .submitters.new(uuid: filter_undefined_submitters(@template).first['uuid'])
   end
 
   def update
@@ -22,15 +22,17 @@ class StartFormController < ApplicationController
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
-      if @template.submitters.to_a.size > 2 && @submitter.new_record?
+      if filter_undefined_submitters(@template).size > 2 && @submitter.new_record?
         @error_message = 'Not found'
 
         return render :show
       end
 
-      assign_submission_attributes(@submitter, @template) if @submitter.new_record?
+      if (is_new_record = @submitter.new_record?)
+        assign_submission_attributes(@submitter, @template)
 
-      is_new_record = @submitter.new_record?
+        Submissions::AssignDefinedSubmitters.call(@submitter.submission)
+      end
 
       if @submitter.save
         if is_new_record
@@ -66,7 +68,7 @@ class StartFormController < ApplicationController
       (Submitter.where(submission: template.submissions).find_by(slug: params[:resubmit]) if params[:resubmit].present?)
 
     submitter.assign_attributes(
-      uuid: template.submitters.first['uuid'],
+      uuid: filter_undefined_submitters(template).first['uuid'],
       ip: request.remote_ip,
       ua: request.user_agent,
       values: resubmit_submitter&.preferences&.fetch('default_values', nil) || {},
@@ -83,25 +85,18 @@ class StartFormController < ApplicationController
     submitter.submission ||= Submission.new(template:,
                                             account_id: template.account_id,
                                             template_submitters: template.submitters,
+                                            submitters: [submitter],
                                             source: :link)
-
-    maybe_assign_default_second_submitter(submitter.submission)
 
     submitter.account_id = submitter.submission.account_id
 
     submitter
   end
 
-  def maybe_assign_default_second_submitter(submission)
-    return unless submission.new_record?
-    return if submission.template.submitters.to_a.size != 2
-
-    submission.submitters_order = 'preserved'
-    submission.submitters.new(
-      account_id: submission.account_id,
-      uuid: submission.template.submitters.second['uuid'],
-      email: submission.template.author.email
-    )
+  def filter_undefined_submitters(template)
+    template.submitters.select do |item|
+      item['linked_to_uuid'].blank? && item['is_requester'].blank? && item['email'].blank?
+    end
   end
 
   def submitter_params
