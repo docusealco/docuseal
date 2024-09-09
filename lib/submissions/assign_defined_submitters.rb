@@ -10,10 +10,10 @@ module Submissions
       assign_defined_submitters(submission)
       assign_linked_submitters(submission)
 
-      if submission.submitters.size == 1 && submission.template.submitters.size == 2
+      if submission.submitters.size == 1 && submission.template.submitters.size == 2 && submission.source != 'embed'
         submission.submitters.new(
           account_id: submission.account_id,
-          uuid: submission.template.submitters.second['uuid'],
+          uuid: submission.template.submitters.find { |e| e['uuid'] != submission.submitters.first.uuid }['uuid'],
           email: submission.template.author.email
         )
       end
