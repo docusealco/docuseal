@@ -79,7 +79,7 @@ module Submitters
 
         value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
 
-        { name: field_name, uuid: field['uuid'], value: }
+        { name: field_name, uuid: field['uuid'], value:, readonly: field['readonly'] == true }
       end
     end
 
