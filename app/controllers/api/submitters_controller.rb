@@ -91,7 +91,7 @@ module Api
         :completed, :phone, :application_key, :external_id, :go_to_last,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
           fields: [[:name, :uuid, :default_value, :value,
-                    :readonly, :redacted, :validation_pattern, :invalid_message,
+                    :readonly, :validation_pattern, :invalid_message,
                     { default_value: [], value: [], preferences: {} }]] }
       )
     end

@@ -49,7 +49,6 @@
                 <% value = values[field['uuid']].presence || (field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                 <% next if value.blank? %>
                 <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
-                <% next if field['redacted'] && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
                 <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
