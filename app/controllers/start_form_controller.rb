@@ -11,7 +11,8 @@ class StartFormController < ApplicationController
 
   def show
     @submitter = @template.submissions.new(account_id: @template.account_id)
-                          .submitters.new(uuid: filter_undefined_submitters(@template).first['uuid'])
+                          .submitters.new(uuid: (filter_undefined_submitters(@template).first ||
+                                                 @template.submitters.first)['uuid'])
   end
 
   def update
@@ -68,7 +69,7 @@ class StartFormController < ApplicationController
       (Submitter.where(submission: template.submissions).find_by(slug: params[:resubmit]) if params[:resubmit].present?)
 
     submitter.assign_attributes(
-      uuid: filter_undefined_submitters(template).first['uuid'],
+      uuid: (filter_undefined_submitters(template).first || @template.submitters.first)['uuid'],
       ip: request.remote_ip,
       ua: request.user_agent,
       values: resubmit_submitter&.preferences&.fetch('default_values', nil) || {},

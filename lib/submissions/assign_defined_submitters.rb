@@ -24,6 +24,7 @@ module Submissions
     def assign_defined_submitters(submission)
       submission.template.submitters.to_a.select do |item|
         next if item['email'].blank? && item['is_requester'].blank?
+        next if submission.submitters.any? { |e| e.uuid == item['uuid'] }
 
         submission.submitters.new(
           account_id: submission.account_id,
@@ -36,6 +37,7 @@ module Submissions
     def assign_linked_submitters(submission)
       submission.template.submitters.to_a.select do |item|
         next if item['linked_to_uuid'].blank?
+        next if submission.submitters.any? { |e| e.uuid == item['uuid'] }
 
         email = submission.submitters.find { |s| s.uuid == item['linked_to_uuid'] }&.email
 
