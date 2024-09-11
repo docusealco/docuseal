@@ -3,11 +3,12 @@
 module Templates
   module ProcessDocument
     DPI = 200
-    FORMAT = '.jpg'
+    FORMAT = '.png'
     ATTACHMENT_NAME = 'preview_images'
 
     PDF_CONTENT_TYPE = 'application/pdf'
-    Q = ENV.fetch('PAGE_QUALITY', '35').to_i
+    Q = 95
+    JPEG_Q = ENV.fetch('PAGE_QUALITY', '35').to_i
     MAX_WIDTH = 1400
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 20.megabytes
@@ -15,7 +16,7 @@ module Templates
 
     module_function
 
-    def call(attachment, data, extract_fields: false, image_quality: nil)
+    def call(attachment, data, extract_fields: false)
       if attachment.content_type == PDF_CONTENT_TYPE
         if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
           pdf = HexaPDF::Document.new(io: StringIO.new(data))
@@ -23,23 +24,26 @@ module Templates
           fields = Templates::FindAcroFields.call(pdf, attachment)
         end
 
-        generate_pdf_preview_images(attachment, data, pdf, image_quality:)
+        generate_pdf_preview_images(attachment, data, pdf)
 
         attachment.metadata['pdf']['fields'] = fields if fields
       elsif attachment.image?
-        generate_preview_image(attachment, data, image_quality:)
+        generate_preview_image(attachment, data)
       end
 
       attachment
     end
 
-    def generate_preview_image(attachment, data, image_quality: nil)
+    def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       image = Vips::Image.new_from_buffer(data, '')
       image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
 
-      io = StringIO.new(image.write_to_buffer(FORMAT, Q: image_quality || Q, interlace: true))
+      bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
+
+      io = StringIO.new(image.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
+                                                      palette: true, Q: Q, dither: 0))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -51,7 +55,7 @@ module Templates
       )
     end
 
-    def generate_pdf_preview_images(attachment, data, pdf = nil, image_quality: nil)
+    def generate_pdf_preview_images(attachment, data, pdf = nil)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
@@ -70,7 +74,10 @@ module Templates
         page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
         page = page.resize(MAX_WIDTH / page.width.to_f)
 
-        io = StringIO.new(page.write_to_buffer(FORMAT, Q: image_quality || Q, interlace: true))
+        bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+
+        io = StringIO.new(page.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
+                                                       palette: true, Q: Q, dither: 0))
 
         ApplicationRecord.no_touching do
           ActiveStorage::Attachment.create!(
@@ -115,11 +122,11 @@ module Templates
       end
     end
 
-    def generate_pdf_preview_from_file(attachment, file_path, page_number, image_quality: nil)
+    def generate_pdf_preview_from_file(attachment, file_path, page_number)
       io = StringIO.new
 
       command = [
-        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{image_quality || Q},optimize=y",
+        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{JPEG_Q},optimize=y",
         '-scale-to-x', MAX_WIDTH, '-scale-to-y', '-1',
         '-r', DPI, '-f', page_number + 1, '-l', page_number + 1,
         '-singlefile', Shellwords.escape(file_path), '-'
@@ -138,7 +145,7 @@ module Templates
       ApplicationRecord.no_touching do
         ActiveStorage::Attachment.create!(
           blob: ActiveStorage::Blob.create_and_upload!(
-            io:, filename: "#{page_number}#{FORMAT}",
+            io:, filename: "#{page_number}.jpg",
             metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
           ),
           name: ATTACHMENT_NAME,

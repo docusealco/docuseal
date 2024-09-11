@@ -130,7 +130,7 @@ describe 'Templates API', type: :request do
     attachment = template.schema_documents.preload(:blob).find { |e| e.uuid == template_attachment_uuid }
     first_page_blob =
       ActiveStorage::Attachment.joins(:blob)
-                               .where(blob: { filename: '0.jpg' })
+                               .where(blob: { filename: '0.png' })
                                .where(record_id: template.schema_documents.map(&:id),
                                       record_type: 'ActiveStorage::Attachment',
                                       name: :preview_images)
