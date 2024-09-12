@@ -21,7 +21,7 @@
         <toggle-submit>
           <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, class: 'white-button w-full' %>
         </toggle-submit>
-        <% if @submitter.submission.template.submitters.size != 1 %>
+        <% if Templates.filter_undefined_submitters(@submitter.submission.template).size != 1 %>
           <div class="divider uppercase"><%= t('or') %></div>
         <% else %>
           <div class="py-2"></div>
