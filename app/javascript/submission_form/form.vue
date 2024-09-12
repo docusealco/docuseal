@@ -436,6 +436,15 @@
           </div>
         </div>
       </form>
+      <InviteForm
+        v-else-if="!isInvited && inviteSubmitters.length"
+        :submitters="inviteSubmitters"
+        :submitter-slug="submitterSlug"
+        :authenticity-token="authenticityToken"
+        :url="baseUrl + submitPath + '/invite'"
+        :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
+        @success="isInvited = true"
+      />
       <FormCompleted
         v-else
         :is-demo="isDemo"
@@ -485,6 +494,7 @@ import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
 import MarkdownContent from './markdown_content'
+import InviteForm from './invite_form'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
@@ -522,6 +532,7 @@ export default {
     IconWritingSign,
     AttachmentStep,
     InitialsStep,
+    InviteForm,
     MultiSelectStep,
     IconInnerShadowTop,
     DateStep,
@@ -547,6 +558,11 @@ export default {
     submitter: {
       type: Object,
       required: true
+    },
+    inviteSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withSignatureId: {
       type: Boolean,
@@ -739,6 +755,7 @@ export default {
   data () {
     return {
       isCompleted: false,
+      isInvited: false,
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
@@ -1119,7 +1136,7 @@ export default {
         const formData = new FormData(this.$refs.form)
         const isLastStep = this.currentStep === this.stepFields.length - 1
 
-        if (isLastStep && !emptyRequiredField) {
+        if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length) {
           formData.append('completed', 'true')
         }
 

@@ -23,4 +23,11 @@ module Templates
 
     templates.where(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
   end
+
+  def filter_undefined_submitters(template)
+    template.submitters.to_a.select do |item|
+      item['invite_by_uuid'].blank? && item['linked_to_uuid'].blank? &&
+        item['is_requester'].blank? && item['email'].blank?
+    end
+  end
 end

@@ -39,7 +39,18 @@ module Submissions
 
         next if submission.submitters.blank?
 
+        maybe_add_invite_submitters(submission, template)
+
         submission.tap(&:save!)
+      end
+    end
+
+    def maybe_add_invite_submitters(submission, template)
+      template.submitters.each do |item|
+        next if item['invite_by_uuid'].blank? ||
+                submission.template_submitters.any? { |e| e['uuid'] == item['uuid'] }
+
+        submission.template_submitters << item
       end
     end
 

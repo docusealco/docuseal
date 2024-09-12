@@ -14,6 +14,7 @@ module SubmissionEvents
     phone_verified: 'Phone verified',
     start_form: 'Submission started',
     view_form: 'Form viewed',
+    invite_party: 'Invited',
     complete_form: 'Submission completed',
     api_complete_form: 'Submission completed via API'
   }.freeze

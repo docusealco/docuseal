@@ -145,8 +145,10 @@
               <span>
                 <% if submitter&.declined_at? %>
                   Declined on <%= l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %>
+                <% elsif submitter %>
+                  <%= submitter.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
                 <% else %>
-                  <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
+                  Not invited yet
                 <% end %>
               </span>
             </div>

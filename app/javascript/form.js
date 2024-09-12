@@ -14,6 +14,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
 
     this.app = createApp(Form, {
       submitter: JSON.parse(this.dataset.submitter),
+      inviteSubmitters: JSON.parse(this.dataset.inviteSubmitters),
       canSendEmail: this.dataset.canSendEmail === 'true',
       previousSignatureValue: this.dataset.previousSignatureValue,
       goToLast: this.dataset.goToLast === 'true',

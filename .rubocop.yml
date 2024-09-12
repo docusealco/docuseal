@@ -68,6 +68,9 @@ RSpec/ExampleLength:
 RSpec/MultipleMemoizedHelpers:
   Max: 6
 
+Metrics/BlockNesting:
+  Max: 4
+
 Rails/I18nLocaleTexts:
   Enabled: false
 

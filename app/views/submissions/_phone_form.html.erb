@@ -1,18 +1,19 @@
 <%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+  <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? } %>
   <dynamic-list class="space-y-4">
     <div class="space-y-4">
       <div class="card card-compact bg-base-200" data-targets="dynamic-list.items">
         <div class="card-body">
           <div class="absolute right-4 top-5">
-            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= template.submitters.size == 1 ? 'right-2' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
+            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
               <%= svg_icon('trash', class: 'w-4 h-4') %>
             </a>
           </div>
-          <div class="grid <%= template.submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1' %>">
-            <% template.submitters.each_with_index do |item, index| %>
-              <submitter-item class="grid <%= template.submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1' %>">
+          <div class="grid <%= submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1' %>">
+            <% submitters.each_with_index do |item, index| %>
+              <submitter-item class="grid <%= submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1' %>">
                 <div class="form-control">
-                  <% if template.submitters.size > 1 %>
+                  <% if submitters.size > 1 %>
                     <label class="label pt-0 pb-1 text-xs">
                       <span class="label-text"> <%= item['name'] %></span>
                     </label>
@@ -23,7 +24,7 @@
                       <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', oninvalid: "this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''", oninput: "this.setCustomValidity('')", name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'input input-sm input-bordered w-full', placeholder: 'Phone', required: index.zero?, id: "phone_phone_#{item['uuid']}" %>
                     </linked-input>
                   </submitters-autocomplete>
-                  <% if template.submitters.size > 1 %>
+                  <% if submitters.size > 1 %>
                     <submitters-autocomplete data-field="name">
                       <linked-input data-target-id="<%= "phone_name_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
                         <input type="text" name="submission[1][submitters][][name]" autocomplete="off" class="input input-sm input-bordered mt-1.5 w-full" placeholder="Name (optional)" value="<%= (params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.full_name : '' %>" dir="auto" id="phone_name_<%= item['uuid'] %>">
@@ -31,7 +32,7 @@
                     </submitters-autocomplete>
                   <% end %>
                 </div>
-                <% if template.submitters.size == 1 %>
+                <% if submitters.size == 1 %>
                   <div class="form-control flex">
                     <submitters-autocomplete data-field="name">
                       <linked-input data-target-id="<%= "phone_name_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">

@@ -23,7 +23,7 @@ class StartFormController < ApplicationController
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
-      if filter_undefined_submitters(@template).size > 2 && @submitter.new_record?
+      if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
         @error_message = 'Not found'
 
         return render :show
@@ -95,9 +95,7 @@ class StartFormController < ApplicationController
   end
 
   def filter_undefined_submitters(template)
-    template.submitters.select do |item|
-      item['linked_to_uuid'].blank? && item['is_requester'].blank? && item['email'].blank?
-    end
+    Templates.filter_undefined_submitters(template)
   end
 
   def submitter_params

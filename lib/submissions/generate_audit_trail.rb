@@ -348,13 +348,21 @@ module Submissions
 
       events_data = submission.submission_events.sort_by(&:event_timestamp).map do |event|
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
+
+        text = SubmissionEvents::EVENT_NAMES[event.event_type.to_sym]
+
+        if event.event_type == 'invite_party' &&
+           (invited_submitter = submission.submitters.find { |e| e.uuid == event.data['uuid'] }) &&
+           (name = submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
+          text += ['', invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' ')
+        end
+
         [
           "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
           "#{TimeUtils.timezone_abbr(account.timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(
             [
-              { text: SubmissionEvents::EVENT_NAMES[event.event_type.to_sym],
-                font: [FONT_NAME, { variant: :bold }] },
+              { text:, font: [FONT_NAME, { variant: :bold }] },
               event.event_type.include?('send_') ? ' to ' : ' by ',
               if event.event_type.include?('sms') || event.event_type.include?('phone')
                 event.data['phone'] || submitter.phone

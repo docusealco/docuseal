@@ -184,22 +184,22 @@
         <div class="space-y-3 divide-y">
           <% @template.submitters.each_with_index do |submitter, index| %>
             <div class="pt-3">
-              <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :linked_to_uuid, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'linked_to_uuid')), index: do |ff| %>
-                <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : '')) %>
+              <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :linked_to_uuid, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'linked_to_uuid')), index: do |ff| %>
+                <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : (item.invite_by_uuid.present? ? "invite_by_#{item.invite_by_uuid}" : ''))) %>
                 <%= ff.hidden_field :uuid %>
                 <div class="form-control">
                   <%= ff.text_field :name, class: 'w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer mb-2', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
                   <% if @template.submitters.size == 2 %>
-                    <%= ff.email_field :email, class: 'base-input', autocomplete: 'off', placeholder: 'Default Email', disabled: ff.object.is_requester, id: field_uuid = SecureRandom.uuid %>
+                    <%= ff.email_field :email, class: 'base-input', autocomplete: 'off', placeholder: 'Default Email', disabled: ff.object.is_requester || ff.object.invite_by_uuid.present?, id: field_uuid = SecureRandom.uuid %>
                   <% else %>
                     <toggle-attribute data-target-id="<%= email_field_uuid = SecureRandom.uuid %>" data-class-name="hidden" data-value="email">
-                      <%= ff.select :option, [['Not specified', 'not_set'], ['Submission requester', 'is_requester'], ['Specified email', 'email'], *(@template.submitters - [submitter]).map { |e| ["Same as #{e['name']}", "linked_to_#{e['uuid']}"] }], {}, class: 'base-select mb-3' %>
+                      <%= ff.select :option, [['Not specified', 'not_set'], ['Submission requester', 'is_requester'], ['Specified email', 'email'], *(@template.submitters - [submitter]).map { |e| ["Invite by #{e['name']}", "invite_by_#{e['uuid']}"] }, *(@template.submitters - [submitter]).map { |e| ["Same as #{e['name']}", "linked_to_#{e['uuid']}"] }], {}, class: 'base-select mb-3' %>
                     </toggle-attribute>
                     <%= ff.email_field :email, class: "base-input #{'hidden' if item.option != 'email'}", autocomplete: 'off', placeholder: 'Default Email', id: email_field_uuid %>
                   <% end %>
                 </div>
                 <% if @template.submitters.size == 2 %>
-                  <div class="mt-3">
+                  <checkbox-group class="mt-3 flex items-center space-x-4">
                     <label class="flex items-center space-x-2 cursor-pointer">
                       <toggle-attribute data-target-id="<%= field_uuid %>" class="flex" data-attribute="disabled">
                         <%= ff.check_box :is_requester, class: 'base-checkbox' %>
@@ -208,7 +208,17 @@
                         Submission requester
                       </span>
                     </label>
-                  </div>
+                    <% if index == 1 %>
+                      <label class="flex items-center space-x-2 cursor-pointer">
+                        <toggle-attribute data-target-id="<%= field_uuid %>" class="flex" data-attribute="disabled">
+                          <%= ff.check_box :invite_by_uuid, { class: 'base-checkbox' }, @template.submitters.first['uuid'], '' %>
+                        </toggle-attribute>
+                        <span class="select-none">
+                          Invite by <%= @template.submitters.first['name'] %>
+                        </span>
+                      </label>
+                    <% end %>
+                  </checkbox-group>
                 <% end %>
               <% end %>
             </div>
