@@ -70,7 +70,7 @@
       :class="{ 'md:px-4': isBreakpointMd }"
     >
       <form
-        v-if="!isCompleted"
+        v-if="!isCompleted && !isInvite"
         ref="form"
         :action="submitPath"
         method="post"
@@ -437,13 +437,13 @@
         </div>
       </form>
       <InviteForm
-        v-else-if="!isInvited && inviteSubmitters.length"
+        v-else-if="isInvite"
         :submitters="inviteSubmitters"
         :submitter-slug="submitterSlug"
         :authenticity-token="authenticityToken"
         :url="baseUrl + submitPath + '/invite'"
         :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
-        @success="isInvited = true"
+        @success="[isInvite = false, performComplete($event)]"
       />
       <FormCompleted
         v-else
@@ -755,7 +755,7 @@ export default {
   data () {
     return {
       isCompleted: false,
-      isInvited: false,
+      isInvite: false,
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
@@ -1175,18 +1175,10 @@ export default {
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true
             }
+          } else if (this.inviteSubmitters.length) {
+            this.isInvite = true
           } else {
-            this.isCompleted = true
-
-            const respData = await response.text()
-
-            if (respData) {
-              this.onComplete(JSON.parse(respData))
-            }
-
-            if (this.completedRedirectUrl) {
-              window.location.href = this.completedRedirectUrl
-            }
+            this.performComplete(response)
           }
         }).catch(error => {
           console.error(error)
@@ -1202,6 +1194,21 @@ export default {
       }).finally(() => {
         this.isSubmitting = false
       })
+    },
+    async performComplete (resp) {
+      this.isCompleted = true
+
+      if (resp) {
+        const respData = await resp.text()
+
+        if (respData) {
+          this.onComplete(JSON.parse(respData))
+        }
+      }
+
+      if (this.completedRedirectUrl) {
+        window.location.href = this.completedRedirectUrl
+      }
     }
   }
 }
