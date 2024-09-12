@@ -41,6 +41,38 @@
       </div>
     <% end %>
     <%= render 'templates_code_modal/preferences' %>
+    <div class="collapse collapse-arrow join-item border border-base-300 mb-2">
+      <input type="checkbox" name="accordion">
+      <div class="collapse-title text-xl font-medium">
+        Form preferences
+      </div>
+      <div class="collapse-content">
+        <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
+          <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
+          <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
+          <%= f.fields_for :preferences, Struct.new(:completed_redirect_url, :completed_message).new(@template.preferences['completed_redirect_url'].presence, Struct.new(:title, :body).new(*(@template.preferences['completed_message'] || {}).values_at('title', 'body'))) do |ff| %>
+            <div class="form-control mb-2">
+              <%= ff.label :completed_redirect_url, 'Redirect on completion URL', class: 'label' %>
+              <%= ff.url_field :completed_redirect_url, required: false, class: 'base-input', dir: 'auto' %>
+            </div>
+            <%= ff.fields_for :completed_message, ff.object.completed_message do |fff| %>
+              <div class="form-control mb-2 border-t mt-4">
+                <%= fff.label :body, 'Completion message', class: 'label' %>
+                <autoresize-textarea>
+                  <%= fff.text_area :body, required: false, class: 'base-input w-full py-2', dir: 'auto' %>
+                </autoresize-textarea>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="form-control pt-2">
+            <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+            <div class="flex justify-center">
+              <span id="form_saved_alert" class="text-sm invisible font-normal mt-0.5">Changes have been saved</span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class="join join-vertical w-full !rounded-2xl mb-1.5 mt-2.5">
       <div class="collapse collapse-arrow join-item border border-base-300">
         <input type="checkbox" name="accordion">
