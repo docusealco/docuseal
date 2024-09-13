@@ -5,7 +5,7 @@
       <emails-textarea data-bulk-enabled="<%= Docuseal.demo? || !Docuseal.multitenant? || can?(:manage, :bulk_send) %>" data-limit="<%= Docuseal.multitenant? ? (can?(:manage, :bulk_send) ? 40 : 1) : nil %>">
         <submitters-autocomplete data-field="email" class="block relative">
           <autoresize-textarea>
-            <%= f.text_area :emails, required: true, class: 'base-textarea w-full !text-lg', placeholder: 'Type emails here...', rows: 4 %>
+            <%= f.text_area :emails, required: true, class: 'base-textarea w-full !text-lg', placeholder: 'Type emails here...', rows: 2 %>
           </autoresize-textarea>
         </submitters-autocomplete>
       </emails-textarea>
