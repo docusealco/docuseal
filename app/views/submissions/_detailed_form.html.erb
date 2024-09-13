@@ -2,10 +2,10 @@
   <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? } %>
   <dynamic-list class="space-y-4">
     <div class="space-y-4">
-      <div class="card card-compact bg-base-200" data-targets="dynamic-list.items">
+      <div class="card card-compact bg-base-300/40" data-targets="dynamic-list.items">
         <div class="card-body">
           <div class="absolute right-4 top-5">
-            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
+            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2 top-1' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
               <%= svg_icon('trash', class: 'w-4 h-4') %>
             </a>
           </div>
@@ -13,25 +13,25 @@
             <% submitters.each_with_index do |item, index| %>
               <submitter-item class="form-control">
                 <% if submitters.size > 1 %>
-                  <label class="label pt-0 pb-1 text-xs">
+                  <label class="label pt-0 pb-1">
                     <span class="label-text"> <%= item['name'] %></span>
                   </label>
                 <% end %>
                 <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
                 <submitters-autocomplete data-field="name">
                   <linked-input data-target-id="<%= "detailed_name_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                    <%= tag.input type: 'text', name: 'submission[1][submitters][][name]', autocomplete: 'off', class: 'input input-sm input-bordered w-full', placeholder: 'Name', required: index.zero?, value: (params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.full_name : '', dir: 'auto', id: "detailed_name_#{item['uuid']}" %>
+                    <%= tag.input type: 'text', name: 'submission[1][submitters][][name]', autocomplete: 'off', class: 'base-input-slim w-full', placeholder: 'Name', required: index.zero?, value: (params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.full_name : '', dir: 'auto', id: "detailed_name_#{item['uuid']}" %>
                   </linked-input>
                 </submitters-autocomplete>
                 <div class="grid <%= 'md:grid-cols-2 gap-1' if submitters.size == 1 %>">
                   <submitters-autocomplete data-field="email">
                     <linked-input data-target-id="<%= "detailed_email_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                      <input type="email" multiple name="submission[1][submitters][][email]" autocomplete="off" class="input input-sm input-bordered mt-1.5 w-full" placeholder="Email (optional)" value="<%= item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : '') %>" id="detailed_email_<%= item['uuid'] %>">
+                      <input type="email" multiple name="submission[1][submitters][][email]" autocomplete="off" class="base-input-slim mt-1.5 w-full" placeholder="Email (optional)" value="<%= item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : '') %>" id="detailed_email_<%= item['uuid'] %>">
                     </linked-input>
                   </submitters-autocomplete>
                   <submitters-autocomplete data-field="phone">
                     <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                      <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="input input-sm input-bordered mt-1.5 w-full" placeholder="Phone (optional)" id="detailed_phone_<%= item['uuid'] %>">
+                      <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="base-input-slim mt-1.5 w-full" placeholder="Phone (optional)" id="detailed_phone_<%= item['uuid'] %>">
                     </linked-input>
                   </submitters-autocomplete>
                 </div>

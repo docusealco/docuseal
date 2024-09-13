@@ -1,6 +1,6 @@
-<%= render 'shared/turbo_modal', title: params[:selfsign] ? 'Add Recipients' : 'Add New Recipients' do %>
+<%= render 'shared/turbo_modal_large', title: params[:selfsign] ? 'Add Recipients' : 'Add New Recipients' do %>
   <% options = [['via Email', 'email'], ['via Phone', 'phone'], %w[Detailed detailed], ['Upload List', 'list']].compact %>
-  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
+  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 mt-4 block">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
         <span>
@@ -12,7 +12,7 @@
       <% end %>
     </div>
   </toggle-visible>
-  <div class="mt-4">
+  <div class="px-5 my-4">
     <div id="email">
       <%= render 'email_form', template: @template %>
     </div>
