@@ -18,7 +18,7 @@ module Api
 
       preview_image_attachments =
         ActiveStorage::Attachment.joins(:blob)
-                                 .where(blob: { filename: '0.png' })
+                                 .where(blob: { filename: ['0.png', '0.jpg'] })
                                  .where(record_id: schema_documents.map(&:id),
                                         record_type: 'ActiveStorage::Attachment',
                                         name: :preview_images)
