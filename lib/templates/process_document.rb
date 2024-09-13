@@ -7,6 +7,7 @@ module Templates
     ATTACHMENT_NAME = 'preview_images'
 
     PDF_CONTENT_TYPE = 'application/pdf'
+    CONCURRENCY = 2
     Q = 95
     JPEG_Q = ENV.fetch('PAGE_QUALITY', '35').to_i
     MAX_WIDTH = 1400
@@ -66,30 +67,49 @@ module Templates
       attachment.metadata['pdf'] ||= {}
       attachment.metadata['pdf']['number_of_pages'] = number_of_pages
 
-      attachment.save!
+      ApplicationRecord.no_touching do
+        attachment.save!
+      end
 
       max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? MAX_NUMBER_OF_PAGES_PROCESSED : 1
 
-      (0..[number_of_pages - 1, max_pages_to_process].min).each do |page_number|
-        page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
-        page = page.resize(MAX_WIDTH / page.width.to_f)
+      pool = Concurrent::FixedThreadPool.new(CONCURRENCY)
 
-        bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+      promises =
+        (0..[number_of_pages - 1, max_pages_to_process].min).map do |page_number|
+          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(data, page_number) }
+        end
 
-        io = StringIO.new(page.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
-                                                       palette: true, Q: Q, dither: 0))
-
+      Concurrent::Promise.zip(*promises).value!.each do |blob|
         ApplicationRecord.no_touching do
           ActiveStorage::Attachment.create!(
-            blob: ActiveStorage::Blob.create_and_upload!(
-              io:, filename: "#{page_number}#{FORMAT}",
-              metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
-            ),
+            blob:,
             name: ATTACHMENT_NAME,
             record: attachment
           )
         end
       end
+
+      pool.kill
+    end
+
+    def build_and_upload_blob(data, page_number)
+      page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
+      page = page.resize(MAX_WIDTH / page.width.to_f)
+
+      bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+
+      io = StringIO.new(page.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
+                                                     palette: true, Q: Q, dither: 0))
+
+      blob = ActiveStorage::Blob.new(
+        filename: "#{page_number}#{FORMAT}",
+        metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
+      )
+
+      blob.upload(io)
+
+      blob
     end
 
     def maybe_flatten_form(data, pdf)
