@@ -22,8 +22,12 @@ module Submitters
       submitter_name = (submitter.submission.template_submitters ||
                         submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
+      decline_reason =
+        submitter.declined_at? ? submitter.submission_events.find_by(event_type: :decline_form).data['reason'] : nil
+
       submitter.as_json(SERIALIZE_PARAMS)
-               .merge('role' => submitter_name,
+               .merge('decline_reason' => decline_reason,
+                      'role' => submitter_name,
                       'preferences' => submitter.preferences.except('default_values'),
                       'values' => values,
                       'documents' => documents,
