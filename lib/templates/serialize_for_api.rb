@@ -19,7 +19,7 @@ module Templates
 
       preview_image_attachments ||=
         ActiveStorage::Attachment.joins(:blob)
-                                 .where(blob: { filename: '0.jpg' })
+                                 .where(blob: { filename: ['0.jpg', '0.png'] })
                                  .where(record_id: schema_documents.map(&:id),
                                         record_type: 'ActiveStorage::Attachment',
                                         name: :preview_images)
@@ -29,7 +29,7 @@ module Templates
         attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
 
         first_page_blob = preview_image_attachments.find { |e| e.record_id == attachment.id }&.blob
-        first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: '0.jpg' })&.blob
+        first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: ['0.jpg', '0.png'] })&.blob
 
         {
           id: attachment.id,

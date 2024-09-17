@@ -13,6 +13,12 @@
     :scroll-padding="scrollPadding"
     @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
+  <FieldAreas
+    :steps="readonlyConditionalFields.map((e) => [e])"
+    :values="readonlyConditionalFields.reduce((acc, f) => { acc[f.uuid] = f.default_value; return acc }, {})"
+    :submitter="submitter"
+    :submittable="false"
+  />
   <FormulaFieldAreas
     v-if="formulaFields.length"
     :fields="formulaFields"
@@ -64,7 +70,7 @@
       :class="{ 'md:px-4': isBreakpointMd }"
     >
       <form
-        v-if="!isCompleted"
+        v-if="!isCompleted && !isInvite"
         ref="form"
         :action="submitPath"
         method="post"
@@ -430,6 +436,15 @@
           </div>
         </div>
       </form>
+      <InviteForm
+        v-else-if="isInvite"
+        :submitters="inviteSubmitters"
+        :submitter-slug="submitterSlug"
+        :authenticity-token="authenticityToken"
+        :url="baseUrl + submitPath + '/invite'"
+        :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
+        @success="[isInvite = false, performComplete($event)]"
+      />
       <FormCompleted
         v-else
         :is-demo="isDemo"
@@ -479,6 +494,7 @@ import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
 import MarkdownContent from './markdown_content'
+import InviteForm from './invite_form'
 import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
@@ -516,6 +532,7 @@ export default {
     IconWritingSign,
     AttachmentStep,
     InitialsStep,
+    InviteForm,
     MultiSelectStep,
     IconInnerShadowTop,
     DateStep,
@@ -541,6 +558,11 @@ export default {
     submitter: {
       type: Object,
       required: true
+    },
+    inviteSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withSignatureId: {
       type: Boolean,
@@ -733,6 +755,7 @@ export default {
   data () {
     return {
       isCompleted: false,
+      isInvite: false,
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
@@ -801,6 +824,9 @@ export default {
     },
     currentField () {
       return this.currentStepFields[0]
+    },
+    readonlyConditionalFields () {
+      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f))
     },
     stepFields () {
       return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
@@ -933,12 +959,12 @@ export default {
             return acc && isEmpty(this.values[c.field_uuid])
           } else if (['not_empty', 'checked'].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid])
-          } else if (['equal', 'contains'].includes(c.action)) {
+          } else if (['equal', 'contains'].includes(c.action) && field) {
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
             return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
-          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
+          } else if (['not_equal', 'does_not_contain'].includes(c.action) && field) {
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
 
@@ -1110,7 +1136,7 @@ export default {
         const formData = new FormData(this.$refs.form)
         const isLastStep = this.currentStep === this.stepFields.length - 1
 
-        if (isLastStep && !emptyRequiredField) {
+        if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length) {
           formData.append('completed', 'true')
         }
 
@@ -1149,18 +1175,10 @@ export default {
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true
             }
+          } else if (this.inviteSubmitters.length) {
+            this.isInvite = true
           } else {
-            this.isCompleted = true
-
-            const respData = await response.text()
-
-            if (respData) {
-              this.onComplete(JSON.parse(respData))
-            }
-
-            if (this.completedRedirectUrl) {
-              window.location.href = this.completedRedirectUrl
-            }
+            this.performComplete(response)
           }
         }).catch(error => {
           console.error(error)
@@ -1176,6 +1194,21 @@ export default {
       }).finally(() => {
         this.isSubmitting = false
       })
+    },
+    async performComplete (resp) {
+      this.isCompleted = true
+
+      if (resp) {
+        const respData = await resp.text()
+
+        if (respData) {
+          this.onComplete(JSON.parse(respData))
+        }
+      }
+
+      if (this.completedRedirectUrl) {
+        window.location.href = this.completedRedirectUrl
+      }
     }
   }
 }

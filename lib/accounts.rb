@@ -111,6 +111,8 @@ module Accounts
 
         data
       else
+        return Docuseal.default_pkcs if Docuseal::CERTS.present?
+
         EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value ||
           EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
       end
@@ -143,6 +145,8 @@ module Accounts
         value = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
 
         Docuseal::CERTS.merge(value)
+      elsif Docuseal::CERTS.present?
+        Docuseal::CERTS
       else
         EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
       end

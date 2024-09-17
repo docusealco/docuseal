@@ -226,7 +226,8 @@ export default {
     },
     submitter: {
       type: Object,
-      required: true
+      required: false,
+      default: () => ({})
     },
     withSignatureId: {
       type: Boolean,

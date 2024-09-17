@@ -97,6 +97,7 @@ Rails.application.routes.draw do
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create], controller: 'templates_preferences'
+    resources :recipients, only: %i[create], controller: 'templates_recipients'
     resources :submissions_export, only: %i[index new]
   end
   resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'
@@ -127,6 +128,7 @@ Rails.application.routes.draw do
     resources :values, only: %i[index], controller: 'submit_form_values'
     resources :download, only: %i[index], controller: 'submit_form_download'
     resources :decline, only: %i[create], controller: 'submit_form_decline'
+    resources :invite, only: %i[create], controller: 'submit_form_invite'
     get :completed
   end
 

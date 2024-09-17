@@ -51,6 +51,10 @@ button[disabled] .enabled {
   @apply input input-bordered bg-white;
 }
 
+.base-input-slim {
+  @apply input input-bordered bg-white h-10;
+}
+
 .base-textarea {
   @apply textarea textarea-bordered bg-white rounded-3xl;
 }
@@ -100,7 +104,7 @@ button[disabled] .enabled {
 .autocomplete {
   background: white;
   z-index: 1000;
-  font: 14px/22px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 16px/25px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow: auto;
   box-sizing: border-box;
   @apply border border-base-300 mt-1 rounded-md;
@@ -111,7 +115,7 @@ button[disabled] .enabled {
 }
 
 .autocomplete > div {
-  @apply px-2 py-1 font-normal text-sm;
+  @apply px-2 py-1.5 font-normal;
 }
 
 .autocomplete .group {

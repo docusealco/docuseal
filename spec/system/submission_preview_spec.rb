@@ -9,9 +9,10 @@ RSpec.describe 'Submission Preview' do
 
   context 'when not submitted' do
     let(:submission) { create(:submission, template:, created_by_user: user) }
-    let(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
 
     before do
+      template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) }
+
       sign_in(user)
 
       visit submissions_preview_path(slug: submission.slug)

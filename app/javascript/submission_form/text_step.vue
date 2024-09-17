@@ -147,7 +147,7 @@ export default {
       const textarea = this.$refs.textarea
 
       textarea.style.height = 'auto'
-      textarea.style.height = textarea.scrollHeight + 'px'
+      textarea.style.height = Math.min(250, textarea.scrollHeight) + 'px'
     },
     toggleTextArea () {
       this.isTextArea = true

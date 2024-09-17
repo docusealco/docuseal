@@ -18,7 +18,7 @@ module Api
 
       preview_image_attachments =
         ActiveStorage::Attachment.joins(:blob)
-                                 .where(blob: { filename: '0.jpg' })
+                                 .where(blob: { filename: ['0.png', '0.jpg'] })
                                  .where(record_id: schema_documents.map(&:id),
                                         record_type: 'ActiveStorage::Attachment',
                                         name: :preview_images)
@@ -97,7 +97,7 @@ module Api
         :name,
         :external_id,
         {
-          submitters: [%i[name uuid]],
+          submitters: [%i[name uuid is_requester invite_by_uuid invite_by_uuid linked_to_uuid email]],
           fields: [[:uuid, :submitter_uuid, :name, :type,
                     :required, :readonly, :default_value,
                     :title, :description,

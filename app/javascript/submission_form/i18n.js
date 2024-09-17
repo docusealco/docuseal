@@ -10,6 +10,8 @@ const en = {
   reviewed: 'Reviewed',
   other: 'Other',
   authored_by_me: 'Authored by me',
+  invite: 'Invite',
+  email: 'Email',
   approved_by: 'Approved by',
   reviewed_by: 'Reviewed by',
   authored_by: 'Authored by',
@@ -85,6 +87,8 @@ const en = {
 }
 
 const es = {
+  invite: 'Invitar',
+  email: 'Correo electrónico',
   approved: 'Aprobado',
   reviewed: 'Revisado',
   other: 'Otro',
@@ -170,6 +174,8 @@ const es = {
 }
 
 const it = {
+  invite: 'Invita',
+  email: 'Email',
   approved: 'Approvato',
   reviewed: 'Revisionato',
   other: 'Altro',
@@ -255,6 +261,8 @@ const it = {
 }
 
 const de = {
+  invite: 'Einladen',
+  email: 'E-Mail',
   approved: 'Genehmigt',
   reviewed: 'Überprüft',
   other: 'Andere',
@@ -340,6 +348,8 @@ const de = {
 }
 
 const fr = {
+  invite: 'Inviter',
+  email: 'Courriel',
   approved: 'Approuvé',
   reviewed: 'Révisé',
   other: 'Autre',
@@ -425,6 +435,8 @@ const fr = {
 }
 
 const pl = {
+  invite: 'Zaproś',
+  email: 'E-mail',
   approved: 'Zaakceptowany',
   reviewed: 'Przejrzany',
   other: 'Inny',
@@ -510,6 +522,8 @@ const pl = {
 }
 
 const uk = {
+  invite: 'Запросити',
+  email: 'Електронна пошта',
   approved: 'Затверджено',
   reviewed: 'Переглянуто',
   other: 'Інше',
@@ -595,6 +609,8 @@ const uk = {
 }
 
 const cs = {
+  invite: 'Pozvat',
+  email: 'E-mail',
   approved: 'Schváleno',
   reviewed: 'Zkontrolováno',
   other: 'Jiné',
@@ -680,6 +696,8 @@ const cs = {
 }
 
 const pt = {
+  invite: 'Convidar',
+  email: 'E-mail',
   approved: 'Aprovado',
   reviewed: 'Revisado',
   other: 'Outro',
@@ -765,6 +783,8 @@ const pt = {
 }
 
 const he = {
+  invite: 'הזמן',
+  email: 'דוא"ל',
   approved: 'מאושר',
   reviewed: 'נסקר',
   other: 'אחר',
@@ -851,6 +871,8 @@ const he = {
 }
 
 const nl = {
+  invite: 'Uitnodigen',
+  email: 'E-mail',
   approved: 'Goedgekeurd',
   reviewed: 'Beoordeeld',
   other: 'Anders',
@@ -937,6 +959,8 @@ const nl = {
 }
 
 const ar = {
+  invite: 'دعوة',
+  email: 'البريد الإلكتروني',
   approved: 'موافق عليه',
   reviewed: 'تمت مراجعته',
   other: 'آخر',
@@ -1022,6 +1046,8 @@ const ar = {
 }
 
 const ko = {
+  invite: '초대하기',
+  email: '이메일',
   approved: '승인됨',
   reviewed: '검토됨',
   other: '기타',

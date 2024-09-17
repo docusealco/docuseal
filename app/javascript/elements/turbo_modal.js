@@ -22,7 +22,7 @@ export default actionable(class extends HTMLElement {
   }
 
   onSubmit = (e) => {
-    if (e.detail.success) {
+    if (e.detail.success && e.detail?.formSubmission?.formElement?.dataset?.closeOnSubmit !== 'false') {
       this.close()
     }
   }

@@ -26,6 +26,9 @@ import EmailsTextarea from './elements/emails_textarea'
 import ToggleOnSubmit from './elements/toggle_on_submit'
 import PasswordInput from './elements/password_input'
 import SearchInput from './elements/search_input'
+import ToggleAttribute from './elements/toggle_attribute'
+import LinkedInput from './elements/linked_input'
+import CheckboxGroup from './elements/checkbox_group'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -89,9 +92,14 @@ safeRegisterElement('toggle-cookies', ToggleCookies)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
 safeRegisterElement('password-input', PasswordInput)
 safeRegisterElement('search-input', SearchInput)
+safeRegisterElement('toggle-attribute', ToggleAttribute)
+safeRegisterElement('linked-input', LinkedInput)
+safeRegisterElement('checkbox-group', CheckboxGroup)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
+    document.addEventListener('turbo:submit-end', this.onSubmit)
+
     this.appElem = document.createElement('div')
 
     this.appElem.classList.add('md:h-screen')
@@ -114,12 +122,22 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       acceptFileTypes: this.dataset.acceptFileTypes
     })
 
-    this.app.mount(this.appElem)
+    this.component = this.app.mount(this.appElem)
 
     this.appendChild(this.appElem)
   }
 
+  onSubmit = (e) => {
+    if (e.detail.success && e.detail?.formSubmission?.formElement?.id === 'submitters_form') {
+      e.detail.fetchResponse.response.json().then((data) => {
+        this.component.template.submitters = data.submitters
+      })
+    }
+  }
+
   disconnectedCallback () {
+    document.removeEventListener('turbo:submit-end', this.onSubmit)
+
     this.app?.unmount()
     this.appElem?.remove()
   }

@@ -48,13 +48,15 @@ module Submissions
 
       submitters.each do |submitter|
         submitter.values.each_value do |value|
-          attachment = attachments_index[value]
+          Array.wrap(value).each do |v|
+            attachment = attachments_index[v]
 
-          next unless attachment
+            next unless attachment
 
-          attachment.record = submitter
+            attachment.record = submitter
 
-          attachment.save!
+            attachment.save!
+          end
         end
       end
     end

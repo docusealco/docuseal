@@ -77,7 +77,7 @@ module Api
                                                                 with_urls: true,
                                                                 with_events: false,
                                                                 params:)
-    rescue Submitters::NormalizeValues::BaseError => e
+    rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_entity
@@ -91,7 +91,7 @@ module Api
         :completed, :phone, :application_key, :external_id, :go_to_last,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
           fields: [[:name, :uuid, :default_value, :value,
-                    :readonly, :redacted, :validation_pattern, :invalid_message,
+                    :readonly, :validation_pattern, :invalid_message,
                     { default_value: [], value: [], preferences: {} }]] }
       )
     end

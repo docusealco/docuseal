@@ -110,6 +110,7 @@ module Submissions
     return email.downcase if email.to_s.include?('.om')
     return email.downcase if email.to_s.include?('.mm')
     return email.downcase if email.to_s.include?('.cm')
+    return email.downcase if email.to_s.include?('.et')
     return email.downcase unless email.to_s.include?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))

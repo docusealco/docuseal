@@ -145,8 +145,10 @@
               <span>
                 <% if submitter&.declined_at? %>
                   Declined on <%= l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %>
+                <% elsif submitter %>
+                 <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : t('submissions_not_completed_yet') %>
                 <% else %>
-                  <%= submitter&.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : t('submissions_not_completed_yet') %>
+                  t('submissions_not_invited_yet')
                 <% end %>
               </span>
             </div>
@@ -154,7 +156,7 @@
               <div class="flex items-center space-x-1 mt-1">
                 <span>
                   Reason:
-                  <%= simple_format(submitter.submission_events.find_by(event_type: :decline_form).data['reason']) %>
+                  <%= simple_format(h(submitter.submission_events.find_by(event_type: :decline_form).data['reason'])) %>
                 </span>
               </div>
             <% end %>
