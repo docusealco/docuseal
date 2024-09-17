@@ -4,7 +4,7 @@
       <%= svg_icon('layout_grid', class: 'w-6 h-6 stroke-2') %>
     </button>
   </toggle-cookies>
-  <toggle-cookies data-value="submissions" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="Submissions">
+  <toggle-cookies data-value="submissions" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="<%= t('submissions') %>">
     <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9' : 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>">
       <%= svg_icon('layout_list', class: 'w-6 h-6 stroke-2') %>
     </button>

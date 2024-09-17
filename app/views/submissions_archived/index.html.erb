@@ -6,7 +6,7 @@
 </div>
 <div class="flex justify-between mb-4 items-center">
   <div>
-    <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions <span class="badge badge-outline badge-lg align-middle">Archived</span></h1>
+    <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= I18n.t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= I18n.t('general_archive') %></span></h1>
   </div>
   <% if params[:q].present? || @pagy.pages > 1 %>
     <%= render 'shared/search_input', placeholder: 'Search...' %>

@@ -82,7 +82,7 @@
           <% if params[:status] == 'archived' %>
             <a href="<%= settings_users_path %>" class="link text-sm">View Active</a>
           <% else %>
-            <a href="<%= settings_archived_users_path %>" class="link text-sm">View Archived</a>
+            <a href="<%= settings_archived_users_path %>" class="link text-sm"><%= I18n.t('general_view') %> <%= I18n.t('general_archive') %></a>
           <% end %>
         </div>
       <% end %>

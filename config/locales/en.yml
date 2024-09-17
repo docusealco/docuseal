@@ -1,4 +1,4 @@
-en: &en
+langs: &langs
   language_en: English
   language_en-US: English (US)
   language_en-GB: English (UK)
@@ -18,6 +18,8 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  
+en: &en
   view: View
   hi_there: Hi there
   email: Email
@@ -74,6 +76,65 @@ en: &en
     scopes:
       write: Update your data
       read: Read your data
+  templates_dropzone_upload_new: Click to upload file
+  templates_dropzone_drop_message: Click to upload or drop here
+  templates_dropzone_uploading: Uploading...
+  templates_archived_back_to_active: Back to active
+  templates_form_preview_exit: Exit preview
+  submissions_empty: No submissions yet
+  submissions_send_invite: Send invite to complete the file
+  submissions_send_recipients: Send to recipients
+  submissions_send_emails: Send emails
+  submissions_sign_yourself: Sign yourself
+  submissions_type_emails: Type emails here
+  submissions: Submissions
+  submissions_sign_now: Sign now
+  submissions_add_new: Add New
+  submissions_add_recipient: Add Recipient
+  submissions_add_recipients: Add Recipients
+  submissions_not_completed_yet: Not completed yet
+  submissions_sign_in_person: Sign in person
+  signed_with: signed with
+  template: Document
+  recipient: Recipient
+  recipients: Recipients
+  archiving: Archiving
+  general_name: Name
+  general_document: Document
+  general_documents: Documents
+  general_export: Export
+  general_new: New
+  general_add: Add
+  general_archive: Archive
+  general_toarchive: Archive
+  general_archived: Archived
+  general_edit: Edit
+  general_view: View
+  general_create: Create
+  general_remove: Remove
+  general_change: Change
+  general_copy: Copy
+  general_copied: Copied
+  general_submit: Submit
+  general_clone: Clone
+  copy_share_link: Copy share link
+  copied_to_clipboard: Copied to Clipboard
+  processing: Processing
+  not_found: not found
+  folder: Folder
+  first_party: First Party
+  devise:
+    sessions:
+      user:
+        signed_in: Signed in
+        signed_out: Signed out
+    failure:
+      user:
+        invalid: Invalid user
+  settings: Settings
+  submissions_preserve_order: Preserve Order
+  submissions_preserve_order_hint: When checked, notifications will be sent to the second party once the form is completed by the previous party. Uncheck this option to send notifications to all parties simultaneously right away.
+  submissions_edit_message: Edit Message
 
 es: &es
   view: Vista
@@ -241,7 +302,7 @@ fr: &fr
 pt: &pt
   view: Visualizar
   hi_there: Olá,
-  download: Baixar
+  download: Descarregar
   decline: Recusar
   declined: Recusado
   decline_reason: Motivo da recusa
@@ -268,12 +329,12 @@ pt: &pt
   sending: Enviando
   resubmit: Reenviar
   or: ou
-  download_documents: Baixar documentos
-  downloading: Baixando
+  download_documents: Descarregar documentos
+  downloading: A Descarregar
   completed_successfully: Concluído com sucesso
   password: Senha
   sign_in: Entrar
-  signing_in: Entrando
+  signing_in: A Entrar
   sign_in_with_microsoft: Entrar com Microsoft
   sign_in_with_google: Entrar com Google
   forgot_your_password_: Esqueceu sua senha?
@@ -283,13 +344,80 @@ pt: &pt
   last_name: Sobrenome
   company_name_optional: Nome da empresa (opcional)
   sign_up: Inscrever-se
-  signing_up: Inscrevendo-se
+  signing_up: A Inscrevenr-se
   profile_details: Detalhes do perfil
   create_free_account: Criar conta gratuita
   sign_up_with_google: Inscrever-se com Google
   sign_up_with_microsoft: Inscrever-se com Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.co/terms">Termos de Serviço</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.sigma9.pt/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.sigma9.pt/terms">Termos de Serviço</a>.'
   enter_email_to_continue: Insira o e-mail para continuar
+  templates_dropzone_upload_new: Clique para inserir ficheiro
+  templates_dropzone_drop_message: Clique para inserir ou deixe cair aqui
+  templates_dropzone_uploading: A Carregar...
+  templates_archived_back_to_active: Voltar aos activos
+  templates_form_preview_exit: Sair do preview
+  submissions_empty: Não há submissões ainda
+  submissions_send_invite: Enviar convite para completar o ficheiro
+  submissions_send_recipients: Enviar aos recipientes
+  submissions_send_emails: Enviar emails
+  submissions_send_invite: Enviar convite para completar o ficheiro
+  submissions_send_recipients: Enviar aos recipientes
+  submissions_send_emails: Enviar emails
+  submissions_sign_yourself: Assine você mesmo
+  submissions_type_emails: Escrever emails aqui 
+  submissions_type_emails: Escrever emails aqui 
+  submissions: Submissões
+  submissions_sign_now: Assinar agora
+  submissions_add_new: Adicionar Novo
+  submissions_add_recipient: Adicionar Recipiente
+  submissions_add_recipients: Adicionar Recipientes
+  submissions_not_completed_yet: Não finalizado ainda
+  submissions_sign_in_person: Assinar pessoalmente
+  submissions_preserve_order: Preservar Ordem
+  submissions_preserve_order_hint: Quando verificada, as notificações serão enviadas à segunda parte assim que o formulário for preenchido pela parte anterior. Desmarque esta opção para enviar notificações a todas as partes simultaneamente imediatamente.
+  submissions_edit_message: Editar mensagem
+  signed_with: assinados com 
+  template: Documento
+  recipient: Recipiente
+  recipients: Recipientes
+  archiving: A Arquivar
+  general_name: Nome
+  general_document: Documento
+  general_documents: Documentos
+  general_export: Exportar
+  general_new: Novo
+  general_add: Adicionar
+  general_archive: Arquivo
+  general_toarchive: Arquivar
+  general_archived: Arquivado
+  general_edit: Editar
+  general_view: Ver
+  general_create: Criar
+  general_remove: Remover
+  general_change: Mudar
+  general_copy: Copiar
+  general_copied: Copiado
+  general_submit: Submeter
+  general_submit: Submeter
+  general_clone: Clonar
+  copy_share_link: Copiar o link de partilha
+  copied_to_clipboard: Copiado para o Clipboard
+  processing: A processar
+  not_found: não encontrados
+  folder: Pasta
+  first_party: Primeira Parte
+  devise:
+    sessions:
+      user:
+        signed_in: Iniciou a sessão
+        signed_out: Fechou a sessão
+      failure:
+        user:
+          invalid: Utilizador inválido
+  settings: Configurar
+  submission_has_been_removed: Submissão foi removida
+  submission_has_been_archived: Submissão foi arquivada
+  submission_has_been_unarchived: Submissão foi desarquivada
 
 de: &de
   view: Ansicht
@@ -720,27 +848,34 @@ ko:
 
 en-US:
   <<: *en
+  <<: *langs
   date:
     formats:
       default: "%m/%d/%Y"
 
 en-GB:
   <<: *en
+  <<: *langs
   date:
     formats:
       default: "%d/%m/%Y"
 
 es-ES:
   <<: *es
+  <<: *langs
 
 fr-FR:
   <<: *fr
+  <<: *langs
 
 pt-PT:
   <<: *pt
+  <<: *langs
 
 de-DE:
   <<: *de
+  <<: *langs
 
 it-IT:
   <<: *it
+  <<: *langs
