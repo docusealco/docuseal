@@ -96,4 +96,12 @@ class Submitter < ApplicationRecord
   def status_event_at
     declined_at || completed_at || opened_at || sent_at || created_at
   end
+
+  def with_signature_fields?
+    @with_signature_fields ||= begin
+      fields = submission.template_fields || template.fields
+      signature_field_types = %w[signature initials]
+      fields.any? { |f| f['submitter_uuid'] == uuid && signature_field_types.include?(f['type']) }
+    end
+  end
 end

@@ -10,7 +10,7 @@
         :height="30"
       />
       <span>
-        {{ completedMessage.title || t('form_has_been_completed') }}
+        {{ completedMessage.title || (hasSignatureFields ? (hasMultipleDocuments ? t('documents_have_been_signed') : t('document_has_been_signed')) : t('form_has_been_completed')) }}
       </span>
     </div>
     <div
@@ -88,7 +88,7 @@
       v-if="attribution"
       class="text-center mt-4"
     >
-      {{ t('signed_with') }}
+      {{ t('powered_by') }}
       <a
         href="https://www.docuseal.co/start"
         target="_blank"
@@ -128,6 +128,16 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    hasSignatureFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    hasMultipleDocuments: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withDownloadButton: {
       type: Boolean,

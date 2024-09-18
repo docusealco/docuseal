@@ -11,13 +11,15 @@
           </div>
           <div>
             <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
-            <p dir="auto" class="text-sm"><%= t('signed_on_time', time: l(@submitter.completed_at.to_date, format: :long)) %></p>
+            <p dir="auto" class="text-sm">
+              <%= t(@submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(@submitter.completed_at.to_date, format: :long)) %>
+            </p>
           </div>
         </div>
       </div>
     </div>
     <div dir="auto" class="text-center text-2xl font-semibold">
-      <%= t('form_has_been_submitted_already') %>
+      <%= @submitter.with_signature_fields? ? t('document_has_been_signed_already') : t('form_has_been_submitted_already') %>
     </div>
     <% if Docuseal.multitenant? || Accounts.can_send_emails?(@submitter.account) %>
       <toggle-submit class="block">

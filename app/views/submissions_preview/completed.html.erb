@@ -14,8 +14,11 @@
           </div>
           <div>
             <p dir="auto" class="text-lg font-bold mb-1"><%= @submission.template.name %></p>
-            <% if completed_at = @submission.submitters.map(&:completed_at).compact.max %>
-              <p dir="auto" class="text-sm"><%= t('signed_on_time', time: l(completed_at.to_date, format: :long)) %></p>
+            <% last_submitter = @submission.submitters.completed.order(:completed_at).last %>
+            <% if last_submitter %>
+              <p dir="auto" class="text-sm">
+                <%= t(last_submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(last_submitter.completed_at.to_date, format: :long)) %>
+              </p>
             <% end %>
           </div>
         </div>

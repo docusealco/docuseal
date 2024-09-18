@@ -33,6 +33,8 @@ en: &en
   invited_by_html: 'Invited by <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: You have been invited to submit a form
   signed_on_time: 'Signed on %{time}'
+  completed_on_time: 'Completed on %{time}'
+  document_has_been_signed_already: Document has been signed already
   form_has_been_submitted_already: Form has been submitted already
   send_copy_to_email: Send copy to Email
   sending: Sending
@@ -101,6 +103,8 @@ es: &es
   invited_by_html: 'Invitado por <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Has sido invitado/a a enviar un formulario
   signed_on_time: 'Firmado en %{time}'
+  completed_on_time: 'Completado el %{time}'
+  document_has_been_signed_already: 'El documento ya ha sido firmado'
   form_has_been_submitted_already: El formulario ya ha sido enviado
   send_copy_to_email: Enviar copia a Correo electrónico
   sending: Enviando
@@ -156,6 +160,8 @@ it: &it
   invited_by_html: 'Invitato da <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Sei stato invitato a inviare un modulo
   signed_on_time: 'Firmato alle %{time}'
+  completed_on_time: 'Completato il %{time}'
+  document_has_been_signed_already: 'Il documento è già stato firmato'
   form_has_been_submitted_already: Il modulo è già stato inviato
   send_copy_to_email: Invia copia via email
   sending: Inviando
@@ -209,6 +215,8 @@ fr: &fr
   invited_by_html: 'Invité par <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Vous avez été invité à remplir un formulaire
   signed_on_time: 'Signé le %{time}'
+  completed_on_time: 'Terminé le %{time}'
+  document_has_been_signed_already: 'Le document a déjà été signé'
   form_has_been_submitted_already: Le formulaire a déjà été complété
   send_copy_to_email: Envoyer une copie par e-mail
   sending: Envoi en cours
@@ -263,6 +271,8 @@ pt: &pt
   invited_by_html: 'Convidado por <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Foi convidado a submeter um formulário
   signed_on_time: 'Assinado em %{time}'
+  completed_on_time: 'Concluído em %{time}'
+  document_has_been_signed_already: 'O documento já foi assinado'
   form_has_been_submitted_already: O formulário já foi submetido
   send_copy_to_email: Enviar cópia para Email
   sending: Enviando
@@ -316,6 +326,8 @@ de: &de
   invited_by_html: 'Eingeladen von <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Du wurdest eingeladen, ein Formular einzureichen
   signed_on_time: 'Unterzeichnet um %{time}'
+  completed_on_time: 'Abgeschlossen am %{time}'
+  document_has_been_signed_already: 'Das Dokument wurde bereits unterschrieben'
   form_has_been_submitted_already: Formular wurde bereits eingereicht
   send_copy_to_email: Kopie per E-Mail senden
   sending: Senden
@@ -369,6 +381,8 @@ pl:
   invited_by_html: 'Zaproszony przez <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Zostałeś zaproszony do przesłania formularza
   signed_on_time: 'Podpisano %{time}'
+  completed_on_time: 'Zakończono %{time}'
+  document_has_been_signed_already: 'Dokument został już podpisany'
   form_has_been_submitted_already: Formularz został już przesłany
   send_copy_to_email: Wyślij kopię na Email
   sending: Wysyłanie
@@ -422,6 +436,8 @@ uk:
   invited_by_html: 'Запрошений користувачем <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Вас запросили подати форму
   signed_on_time: 'Підписаний %{time}'
+  completed_on_time: 'Завершено %{time}'
+  document_has_been_signed_already: 'Документ уже був підписаний'
   form_has_been_submitted_already: Форма вже була подана
   send_copy_to_email: Надіслати копію на Email
   sending: Надсилання
@@ -475,6 +491,8 @@ cs:
   invited_by_html: 'Pozván uživatelem <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: Byli jste pozváni k odeslání formuláře
   signed_on_time: 'Podepsáno %{time}'
+  completed_on_time: 'Dokončeno %{time}'
+  document_has_been_signed_already: 'Dokument již byl podepsán'
   form_has_been_submitted_already: Formulář již byl odeslán
   send_copy_to_email: Odeslat kopii na Email
   sending: Odesílání
@@ -528,6 +546,8 @@ he:
   invited_by_html: 'הוזמן על ידי <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: הוזמנת להגיש טופס
   signed_on_time: 'חתום ב-%{time}'
+  completed_on_time: 'הושלם ב-%{time}'
+  document_has_been_signed_already: 'המסמך כבר נחתם'
   form_has_been_submitted_already: הטופס כבר נשלח
   send_copy_to_email: שלח עותק לדוא"ל
   sending: שולח
@@ -581,6 +601,8 @@ nl:
   invited_by_html: 'Uitgenodigd door <span class="font-semibold">%{name}</span>'
   you_have_been_invited_to_submit_a_form: U bent uitgenodigd om een formulier in te dienen
   signed_on_time: 'Ondertekend op %{time}'
+  completed_on_time: 'Voltooid op %{time}'
+  document_has_been_signed_already: 'Het document is al ondertekend'
   form_has_been_submitted_already: Formulier is al ingediend
   send_copy_to_email: Stuur kopie naar E-mail
   sending: Voltooien
@@ -635,6 +657,8 @@ ar:
   form_expired_at_html: 'استمارة انتهت صلاحيتها في <span class="font-semibold">%{time}</span>'
   you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
   signed_on_time: 'تم التوقيع في %{time}'
+  completed_on_time: 'تم إكماله في %{time}'
+  document_has_been_signed_already: 'تم توقيع الوثيقة بالفعل'
   form_has_been_submitted_already: تم تقديم الاستمارة بالفعل
   send_copy_to_email: إرسال نسخة إلى البريد الإلكتروني
   sending: جارٍ الإرسال
@@ -689,6 +713,8 @@ ko:
   you_have_been_invited_to_submit_a_form: 양식을 제출하도록 초대되었습니다.
   verification_code_code: '확인 코드: %{code}'
   signed_on_time: '%{time}에 서명됨'
+  completed_on_time: '%{time}에 완료됨'
+  document_has_been_signed_already: '문서가 이미 서명되었습니다'
   form_has_been_submitted_already: 양식이 이미 제출되었습니다.
   send_copy_to_email: 이메일로 사본 보내기
   sending: 전송 중

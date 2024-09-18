@@ -38,8 +38,11 @@
     <template v-else-if="alwaysMinimize">
       {{ t('next') }}
     </template>
+    <template v-else-if="isFormStarted">
+      {{ t('continue') }}
+    </template>
     <template v-else>
-      {{ t('submit_form') }}
+      {{ t('start_now') }}
     </template>
     <IconArrowsDiagonal
       class="absolute right-0 mr-4"
@@ -449,6 +452,8 @@
         v-else
         :is-demo="isDemo"
         :attribution="attribution"
+        :has-signature-fields="stepFields.some((fields) => fields.some((f) => ['signature', 'initials'].includes(f.type)))"
+        :has-multiple-documents="hasMultipleDocuments"
         :completed-button="completedRedirectUrl ? {} : completedButton"
         :completed-message="completedRedirectUrl ? {} : completedMessage"
         :with-send-copy-button="withSendCopyButton && !completedRedirectUrl"
@@ -780,6 +785,21 @@ export default {
     },
     alwaysMinimize () {
       return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)
+    },
+    isFormStarted () {
+      return Object.keys(this.values).length > 0
+    },
+    hasMultipleDocuments () {
+      return Object.keys(
+        this.stepFields.reduce((acc, fields) => {
+          fields.forEach((f) => {
+            f.areas?.forEach((a) => {
+              acc[a.attachment_uuid] = 1
+            })
+          })
+          return acc
+        }, {})
+      ).filter(Boolean).length > 1
     },
     currentStepFields () {
       return this.stepFields[this.currentStep] || []
