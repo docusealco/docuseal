@@ -1,17 +1,18 @@
 <% if signed_in? && current_user != true_user && current_account.testing? %>
   <div class="alert py-1 text-sm font-medium gap-x-2 flex whitespace-nowrap">
     <a href="<%= testing_api_settings_path %>" data-turbo-frame="modal" class="link font-semibold flex">
-      <%= svg_icon('code_circle', class: 'w-5 h-5 mr-1') %>Testing Environment
+      <%= svg_icon('code_circle', class: 'w-5 h-5 mr-1') %>
+      <span><%= t('testing_environment') %></span>
     </a>
     <span>
       |
     </span>
     <%= button_to testing_account_path, method: :delete, class: 'inline flex' do %>
       <% title = capture do %>
-        <span class="link">Exit</span>
+        <span class="link"><%= t('exit') %></span>
         <span>&times;</span>
       <% end %>
-      <%= button_title(title:, disabled_with: 'Leave') %>
+      <%= button_title(title:, disabled_with: t('leave')) %>
     <% end %>
   </div>
 <% end %>

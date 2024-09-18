@@ -43,7 +43,7 @@
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
         >
-          Currency
+          {{ t('currency') }}
         </label>
       </div>
       <div
@@ -156,7 +156,7 @@
           href="https://www.docuseal.co/blog/accept-payments-and-request-signatures-with-ease"
           target="_blank"
           data-turbo="false"
-        >Learn more</a>
+        >{{ t('learn_more') }}</a>
       </div>
       <li class="mb-1">
         <label

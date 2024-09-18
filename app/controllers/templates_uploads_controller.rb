@@ -33,7 +33,7 @@ class TemplatesUploadsController < ApplicationController
 
     raise if Rails.env.local?
 
-    redirect_to root_path, alert: 'Unable to upload file'
+    redirect_to root_path, alert: I18n.t('unable_to_update_file')
   end
 
   private

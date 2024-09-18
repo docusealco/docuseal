@@ -12,9 +12,7 @@
       <% if @submission.audit_trail.present? %>
         <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
-          <span class="hidden md:inline">
-            Audit Log
-          </span>
+          <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
       <% end %>
       <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
@@ -23,11 +21,11 @@
           <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
             <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
               <%= svg_icon('download', class: 'w-6 h-6') %>
-              <span class="hidden md:inline">Download</span>
+              <span class="hidden md:inline"><%= t('download') %></span>
             </span>
             <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
               <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-              <span class="hidden md:inline">Downloading</span>
+              <span class="hidden md:inline"><%= t('downloading') %></span>
             </span>
           </download-button>
           <% if is_all_completed && !is_combined_enabled %>
@@ -42,11 +40,11 @@
                   <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: true }.compact) %>" class="flex items-center">
                     <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                       <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
-                      <span class="whitespace-nowrap">Download combined PDF</span>
+                      <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
                     </span>
                     <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
                       <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                      <span>Downloading</span>
+                      <span><%= t('downloading') %></span>
                     </span>
                   </download-button>
                 </li>
@@ -144,25 +142,25 @@
               <%= svg_icon('writing', class: 'w-5 h-5') %>
               <span>
                 <% if submitter&.declined_at? %>
-                  Declined on <%= l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %>
+                  <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
                 <% elsif submitter %>
-                  <%= submitter.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : 'Not completed yet' %>
+                  <%= submitter.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : t('not_copleted_yet') %>
                 <% else %>
-                  Not invited yet
+                  <%= t('not_invited_yet') %>
                 <% end %>
               </span>
             </div>
             <% if submitter&.declined_at? %>
               <div class="flex items-center space-x-1 mt-1">
                 <span>
-                  Reason:
+                  <%= t('Reason') %>:
                   <%= simple_format(h(submitter.submission_events.find_by(event_type: :decline_form).data['reason'])) %>
                 </span>
               </div>
             <% end %>
             <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
-                <%= button_to button_title(title: submitter.sent_at? ? 'Re-send Email' : 'Send Email', disabled_with: 'Sending'), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
+                <%= button_to button_title(title: submitter.sent_at? ? 'Re-send Email' : 'Send Email', disabled_with: t('sending')), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
             <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && !@submission.expired? && !submitter.declined_at? %>
@@ -171,7 +169,7 @@
             <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, submitter) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
-                  Sign In-person
+                  <%= t('sign_in_person') %>
                 </a>
               </div>
             <% end %>
@@ -222,11 +220,11 @@
     <input type="checkbox" class="peer hidden" onclick="[document_view.classList.toggle('hidden'), parties_view.classList.toggle('hidden')]">
     <span class="peer-checked:hidden flex items-center space-x-2">
       <%= svg_icon('users', class: 'w-8 h-8') %>
-      <span>Signers</span>
+      <span><%= t('signers') %></span>
     </span>
     <span class="hidden peer-checked:flex items-center">
       <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
-      <span>Back</span>
+      <span><%= t('back') %></span>
     </span>
   </label>
 </div>

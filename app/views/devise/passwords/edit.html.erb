@@ -1,25 +1,27 @@
 <div class="max-w-lg mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center mt-8">Change your password</h1>
+  <h1 class="text-4xl font-bold text-center mt-8">
+    <%= t('change_your_password') %>
+  </h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
       <%= f.hidden_field :reset_password_token %>
       <div class="form-control">
-        <%= f.label :password, 'New password', class: 'label' %>
+        <%= f.label :password, t('new_password'), class: 'label' %>
         <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'base-input' %>
         <% if @minimum_password_length %>
           <label class="label">
-            <span class="label-text">(<%= @minimum_password_length %> characters minimum)</span>
+            <span class="label-text">(<%= t('minimum_password_length_characters_minimum', minimum_password_length: @minimum_password_length) %>)</span>
           </label>
         <% end %>
       </div>
       <div class="form-control">
-        <%= f.label :password_confirmation, 'Confirm new password', class: 'label' %>
+        <%= f.label :password_confirmation, t('confirm_new_password'), class: 'label' %>
         <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'base-input' %>
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Change my password', disabled_with: 'Changing password'), class: 'base-button' %>
+      <%= f.button button_title(title: t('change_my_password'), disabled_with: t('changing_password')), class: 'base-button' %>
     </div>
   <% end %>
 </div>

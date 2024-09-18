@@ -72,7 +72,7 @@ RSpec.describe 'Team Settings' do
     it 'removes a user' do
       expect do
         accept_confirm('Are you sure?') do
-          first(:button, 'Delete').click
+          first(:button, 'Remove').click
         end
       end.to change { User.active.count }.by(-1)
 

@@ -1,15 +1,15 @@
 <div>
   <%= link_to root_path do %>
     &larr;
-    <span>Back to Active</span>
+    <span><%= t('back_to_active') %></span>
   <% end %>
 </div>
 <div class="flex justify-between mb-4 items-center">
   <div>
-    <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions <span class="badge badge-outline badge-lg align-middle">Archived</span></h1>
+    <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
   </div>
   <% if params[:q].present? || @pagy.pages > 1 %>
-    <%= render 'shared/search_input', placeholder: 'Search...' %>
+    <%= render 'shared/search_input', placeholder: "#{t('search')}..." %>
   <% end %>
 </div>
 <% if @pagy.count > 0 %>
@@ -19,7 +19,7 @@
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
-      Submissions not Found
+      <%= t('submissions_not_found') %>
     </div>
   </div>
 <% end %>

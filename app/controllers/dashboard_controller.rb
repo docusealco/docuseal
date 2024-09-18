@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
                                                                              account_id: current_user.account_id,
                                                                              key: AccountConfig::FORCE_MFA)
 
-    redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
+    redirect_to mfa_setup_path, notice: I18n.t('setup_2fa_to_continue')
   end
 
   def maybe_render_landing

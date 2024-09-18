@@ -5,7 +5,7 @@
       <%= f.hidden_field :key %>
       <div class="flex items-center justify-between py-2.5">
         <span>
-          Show confetti on successful completion
+          <%= t('show_confetti_on_successful_completion') %>
         </span>
         <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' }, '1', '0' %>
       </div>

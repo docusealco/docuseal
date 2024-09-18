@@ -11,7 +11,7 @@ class StorageSettingsController < ApplicationController
     if @encrypted_config.update(storage_configs)
       LoadActiveStorageConfigs.reload
 
-      redirect_to settings_storage_index_path, notice: 'Changes have been saved'
+      redirect_to settings_storage_index_path, notice: I18n.t('changes_have_been_saved')
     else
       render :index, status: :unprocessable_entity
     end

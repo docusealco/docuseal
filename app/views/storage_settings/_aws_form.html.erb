@@ -22,10 +22,10 @@
       </div>
     </div>
     <div class="form-control">
-      <%= fff.label :endpoint, 'Endpoint (optional)', class: 'label' %>
+      <%= fff.label :endpoint, "Endpoint (#{t('optional')})", class: 'label' %>
       <%= fff.text_field :endpoint, value: configs['endpoint'], type: :url, class: 'base-input' %>
       <label class="label">
-        <span class="label-text-alt">For AWS S3 compatible APIs like Minio.</span>
+        <span class="label-text-alt"><%= t('for_aws_s3_compatible_apis_like_minio') %></span>
       </label>
     </div>
   <% end %>

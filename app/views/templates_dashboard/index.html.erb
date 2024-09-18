@@ -7,7 +7,7 @@
         <%= render 'dashboard/toggle_view', selected: 'templates' %>
       </div>
     <% end %>
-    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><span class="hidden md:inline">Document</span> Templates</h1>
+    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('document_templates_html') %></h1>
   </div>
   <div class="flex space-x-2">
     <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
@@ -19,7 +19,7 @@
       </span>
       <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
         <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block">Create</span>
+        <span class="hidden md:block"><%= t('create') %></span>
       <% end %>
     <% end %>
   </div>
@@ -27,7 +27,7 @@
 <% view_archived_html = capture do %>
   <% if has_archived %>
     <div>
-      <a href="<%= templates_archived_index_path %>" class="link text-sm">View Archived</a>
+      <a href="<%= templates_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>
   <% end %>
 <% end %>
@@ -55,7 +55,7 @@
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
-      Templates not Found
+      <%= t('templates_not_found') %>
     </div>
   </div>
 <% end %>

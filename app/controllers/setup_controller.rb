@@ -21,7 +21,7 @@ class SetupController < ApplicationController
     @encrypted_config = EncryptedConfig.new(encrypted_config_params)
 
     unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
-      @encrypted_config.errors.add(:value, 'should be a valid URL')
+      @encrypted_config.errors.add(:value, I18n.t('should_be_a_valid_url'))
 
       return render :index, status: :unprocessable_entity
     end
@@ -66,10 +66,10 @@ class SetupController < ApplicationController
   end
 
   def redirect_to_root_if_signed
-    redirect_to root_path, notice: 'You are already signed in'
+    redirect_to root_path, notice: I18n.t('you_are_already_signed_in')
   end
 
   def ensure_first_user_not_created!
-    redirect_to new_user_session_path, notice: 'Please sign in.' if User.exists?
+    redirect_to new_user_session_path, notice: I18n.t('please_sign_in') if User.exists?
   end
 end

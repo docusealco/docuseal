@@ -10,7 +10,7 @@ class SubmittersSendEmailController < ApplicationController
       Rollbar.warning("Already sent: #{@submitter.id}") if defined?(Rollbar)
 
       return redirect_back(fallback_location: submission_path(@submitter.submission),
-                           alert: 'Email has been sent already.')
+                           alert: I18n.t('email_has_been_sent_already'))
     end
 
     SendSubmitterInvitationEmailJob.perform_async('submitter_id' => @submitter.id)
@@ -18,6 +18,6 @@ class SubmittersSendEmailController < ApplicationController
     @submitter.sent_at ||= Time.current
     @submitter.save!
 
-    redirect_back(fallback_location: submission_path(@submitter.submission), notice: 'Email has been sent')
+    redirect_back(fallback_location: submission_path(@submitter.submission), notice: I18n.t('email_has_been_sent'))
   end
 end

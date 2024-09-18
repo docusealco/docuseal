@@ -9,7 +9,7 @@ class UserInitialsController < ApplicationController
   def update
     file = params[:file]
 
-    return redirect_to settings_profile_index_path, notice: 'Unable to save initials' if file.blank?
+    return redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_initials') if file.blank?
 
     blob = ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                   filename: file.original_filename,
@@ -22,16 +22,16 @@ class UserInitialsController < ApplicationController
     )
 
     if @user_config.update(value: attachment.uuid)
-      redirect_to settings_profile_index_path, notice: 'Initials has been saved'
+      redirect_to settings_profile_index_path, notice: I18n.t('initials_has_been_saved')
     else
-      redirect_to settings_profile_index_path, notice: 'Unable to save initials'
+      redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_initials')
     end
   end
 
   def destroy
     @user_config.destroy
 
-    redirect_to settings_profile_index_path, notice: 'Initials has been removed'
+    redirect_to settings_profile_index_path, notice: I18n.t('initials_has_been_removed')
   end
 
   private

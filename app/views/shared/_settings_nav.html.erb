@@ -2,23 +2,25 @@
   <menu-active>
     <ul class="menu px-0">
       <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium">&larr; Back</a></li>
-      <li class="menu-title py-0 !bg-transparent"><span class="!bg-transparent">Settings</span></li>
+      <li class="menu-title py-0 !bg-transparent">
+        <span class="!bg-transparent"><%= t('settings') %></span>
+      </li>
       <li></li>
       <li>
-        <%= link_to 'Profile', settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
+        <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <li>
-        <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
+        <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <% unless Docuseal.multitenant? %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
           <li>
-            <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
           <li>
-            <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
         <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
@@ -29,22 +31,22 @@
       <% end %>
       <% if can?(:read, AccountConfig) %>
         <li>
-          <%= link_to 'Notifications', settings_notifications_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
-          <%= link_to 'E-Signature', settings_esign_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <% if can?(:read, AccountConfig) %>
         <li>
-          <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <% if can?(:read, User) %>
         <li>
-          <%= link_to 'Users', settings_users_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
@@ -63,21 +65,21 @@
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-            Plans
-            <span class="badge badge-warning">New</span>
+            <%= t('plans') %>
+            <span class="badge badge-warning"><%= t('new') %></span>
           <% end %>
         </li>
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.testing?) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/api") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-            <% if Docuseal.multitenant? %> API <% else %> Console <% end %>
+            <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
           <% end %>
         </li>
         <% if Docuseal.multitenant? %>
           <li>
             <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
-              Embedding
+              <%= t('embedding') %>
             <% end %>
           </li>
         <% end %>
@@ -92,7 +94,7 @@
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'flex w-full' } do |f| %>
               <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
                 <span class="mr-2 w-full">
-                  Test Environment
+                  <%= t('test_environment') %>
                 </span>
                 <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing?, onchange: 'this.form.requestSubmit()' %>
               </label>
@@ -105,7 +107,7 @@
   <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
     <div class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
-        Need help? Ask a question:
+        <%= t('need_help_ask_a_question_') %>
       </div>
       <div class="flex mt-3 space-x-3">
         <div class="tooltip" data-tip="GitHub">
@@ -113,13 +115,13 @@
             <%= svg_icon('brand_github', class: 'w-8 h-8') %>
           </a>
         </div>
-        <div class="tooltip" data-tip="Discord Community">
+        <div class="tooltip" data-tip="<%= t('discord_community') %>">
           <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
             <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
           </a>
         </div>
         <%= capture do %>
-          <div class="tooltip" data-tip="AI Assistant">
+          <div class="tooltip" data-tip="<%= t('ai_assistant') %>">
             <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
               <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
             </a>

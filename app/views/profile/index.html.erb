@@ -1,78 +1,92 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Profile</h1>
+    <h1 class="text-4xl font-bold mb-4">
+      <%= t('profile') %>
+    </h1>
     <%= form_for current_user, url: update_contact_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="form-control">
-          <%= f.label :first_name, class: 'label' %>
+          <%= f.label :first_name, t('first_name'), class: 'label' %>
           <%= f.text_field :first_name, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
-          <%= f.label :last_name, class: 'label' %>
+          <%= f.label :last_name, t('last_name'), class: 'label' %>
           <%= f.text_field :last_name, required: true, class: 'base-input', dir: 'auto' %>
         </div>
       </div>
       <div class="form-control">
-        <%= f.label :email, 'Email', class: 'label' %>
+        <%= f.label :email, t('email'), class: 'label' %>
         <%= f.email_field :email, autocomplete: 'off', class: 'base-input' %>
       </div>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+        <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
       </div>
     <% end %>
     <%= render 'email_configs' %>
-    <p class="text-2xl font-bold mt-8 mb-4">Signature</p>
+    <p class="text-2xl font-bold mt-8 mb-4">
+      <%= t('signature') %>
+    </p>
     <% signature = UserConfigs.load_signature(current_user) %>
     <% if signature %>
       <div class="flex justify-center mb-4 relative">
-        <%= button_to button_title(title: 'Remove', disabled_with: 'Removing'), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
+        <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
         <img src="<%= signature.url %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
       </div>
     <% end %>
-    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">Update Signature</a>
-    <p class="text-2xl font-bold mt-8 mb-4">Initials</p>
+    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
+      <%= t('update_signature') %>
+    </a>
+    <p class="text-2xl font-bold mt-8 mb-4">
+      <%= t('initials') %>
+    </p>
     <% initials = UserConfigs.load_initials(current_user) %>
     <% if initials %>
       <div class="flex justify-center mb-4 relative">
-        <%= button_to button_title(title: 'Remove', disabled_with: 'Removing'), user_initials_path, method: :delete, class: 'right-0 top-0 absolute link' %>
+        <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_initials_path, method: :delete, class: 'right-0 top-0 absolute link' %>
         <img src="<%= initials.url %>" style="max-height: 200px; width: auto" width="<%= initials.metadata['width'] %>" height="<%= initials.metadata['height'] %>">
       </div>
     <% end %>
-    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">Update Initials</a>
+    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">
+      <%= t('update_initials') %>
+    </a>
     <% if true_user == current_user && !current_account.testing? %>
-      <p class="text-2xl font-bold mt-8 mb-4">Change Password</p>
+      <p class="text-2xl font-bold mt-8 mb-4">
+        <%= t('change_password') %>
+      </p>
       <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
         <div class="form-control">
-          <%= f.label :password, 'New password', class: 'label' %>
+          <%= f.label :password, t('new_password'), class: 'label' %>
           <%= f.password_field :password, autocomplete: 'off', class: 'base-input' %>
         </div>
         <div class="form-control">
-          <%= f.label :password_confirmation, 'Confirm new password', class: 'label' %>
+          <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
           <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
         </div>
         <div class="form-control pt-2">
-          <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+          <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
         </div>
       <% end %>
-      <p class="text-2xl font-bold mt-8 mb-4">Two-Factor Authentication</p>
+      <p class="text-2xl font-bold mt-8 mb-4">
+        <%= t('two_factor_authentication') %>
+      </p>
       <div class="space-y-4">
         <% if current_user.otp_required_for_login %>
           <p class="flex items-center space-x-1">
             <%= svg_icon('circle_check', class: 'stroke-success inline flex-none w-5 h-5') %>
             <span>
-              2FA has been configured.
+              <%= t('2fa_has_been_configured') %>
             </span>
           </p>
-          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 Remove 2FA</a>
+          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 <%= t('remove_2fa') %></a>
         <% else %>
           <p class="flex items-center space-x-1">
             <%= svg_icon('info_circle', class: 'stroke-warning inline flex-none w-5 h-5') %>
             <span>
-              2FA is not configured.
+              <%= t('2fa_is_not_configured') %>
             </span>
           </p>
-          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 Set up 2FA</a>
+          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
         <% end %>
       </div>
     <% end %>

@@ -3,7 +3,7 @@
     <%= link_to t('already_have_an_account'), new_session_path(resource_name, { lang: params[:lang] }.compact_blank), class: 'link link-hover mx-auto' %>
   <% end %>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to t('create_free_account'), registration_path({ redir: params[:redir], lang: params[:lang] }.compact_blank), class: 'link link-hover' %>
+    <%= link_to t('create_free_account'), registration_path({ redir: params[:redir], lang: params[:lang] }.compact_blank), class: 'link link-hover capitalize' %>
   <% end %>
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     <%= link_to t('forgot_your_password_'), new_password_path(resource_name, { lang: params[:lang] }.compact_blank), class: 'link link-hover' %>

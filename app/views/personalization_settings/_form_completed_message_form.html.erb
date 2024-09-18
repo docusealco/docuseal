@@ -2,7 +2,7 @@
   <input type="checkbox">
   <div class="collapse-title text-xl font-medium">
     <div>
-      Completed Form Message
+      <%= t('completed_form_message') %>
     </div>
   </div>
   <div class="collapse-content">
@@ -10,18 +10,18 @@
       <%= f.hidden_field :key %>
       <%= f.fields_for :value, Struct.new(:title, :body).new(*(f.object.value || {}).values_at('title', 'body')) do |ff| %>
         <div class="form-control">
-          <%= ff.label :title, 'Title', class: 'label' %>
+          <%= ff.label :title, t('title'), class: 'label' %>
           <%= ff.text_field :title, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
-          <%= ff.label :body, 'Body', class: 'label' %>
+          <%= ff.label :body, t('body'), class: 'label' %>
           <autoresize-textarea>
             <%= ff.text_area :body, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
         </div>
       <% end %>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

@@ -1,7 +1,7 @@
 <div>
   <%= link_to root_path do %>
     &larr;
-    <span>Home</span>
+    <span><%= t('home') %></span>
   <% end %>
 </div>
 <div class="flex justify-between mb-4 items-center">
@@ -26,7 +26,7 @@
       <%= render 'templates/upload_button', folder_name: @template_folder.name %>
       <%= link_to new_template_path(folder_name: @template_folder.name), class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
         <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block">Create</span>
+        <span class="hidden md:block"><%= t('create') %></span>
       <% end %>
     <% end %>
   </div>
@@ -39,7 +39,7 @@
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
-      Templates not Found
+      <%= t('templates_not_found') %>
     </div>
   </div>
 <% end %>

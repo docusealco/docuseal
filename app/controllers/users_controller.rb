@@ -35,14 +35,14 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.invitation_email(@user).deliver_later!
 
-      redirect_back fallback_location: settings_users_path, notice: 'User has been invited'
+      redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
     end
   end
 
   def update
-    return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
+    return redirect_to settings_users_path, notice: I18n.t('unable_to_update_user') if Docuseal.demo?
 
     attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
     attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update(attrs)
-      redirect_back fallback_location: settings_users_path, notice: 'User has been updated'
+      redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity
     end
@@ -64,12 +64,12 @@ class UsersController < ApplicationController
 
   def destroy
     if Docuseal.demo? || @user.id == current_user.id
-      return redirect_to settings_users_path, notice: 'Unable to remove user'
+      return redirect_to settings_users_path, notice: I18n.t('unable_to_remove_user')
     end
 
     @user.update!(archived_at: Time.current)
 
-    redirect_back fallback_location: settings_users_path, notice: 'User has been removed'
+    redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_removed')
   end
 
   private

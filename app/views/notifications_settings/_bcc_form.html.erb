@@ -4,7 +4,7 @@
     <%= f.label :value, class: 'label' do %>
       <span class="flex items-center space-x-1">
         <span>
-          Completed documents notification BCC address
+          <%= t('completed_documents_notification_bcc_address') %>
         </span>
         <span class="tooltip" data-tip="Send email copy with completed documents to a specified BCC address.">
           <%= svg_icon('info_circle', class: 'w-4 h-4') %>
@@ -14,6 +14,6 @@
     <%= tag.input type: 'email', multiple: true, name: 'account_config[value]', autocomplete: 'off', class: 'base-input', value: f.object.value %>
   </div>
   <div class="form-control pt-2">
-    <%= f.button button_title(title: 'Save', disabled_with: 'Updating'), class: 'base-button' %>
+    <%= f.button button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button' %>
   </div>
 <% end %>

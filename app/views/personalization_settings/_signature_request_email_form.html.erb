@@ -1,8 +1,8 @@
 <div class="collapse collapse-plus bg-base-200 overflow-visible">
   <input type="checkbox">
-  <div class="collapse-title text-xl font-medium">
+  <div class="collapse-title text-xl font-medium capitalize">
     <div>
-      Signature Request Email
+      <%= t('signature_request_email') %>
     </div>
   </div>
   <div class="collapse-content">
@@ -10,13 +10,13 @@
       <%= f.hidden_field :key %>
       <%= f.fields_for :value, Struct.new(:subject, :body).new(*f.object.value.values_at('subject', 'body')) do |ff| %>
         <div class="form-control">
-          <%= ff.label :subject, class: 'label' %>
+          <%= ff.label :subject, t('subject'), class: 'label' %>
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
           <div class="flex items-center">
-            <%= ff.label :body, class: 'label' %>
-            <span class="tooltip" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+            <%= ff.label :body, t('body'), class: 'label' %>
+            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>
@@ -26,7 +26,7 @@
         </div>
       <% end %>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

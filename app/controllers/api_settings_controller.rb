@@ -12,6 +12,6 @@ class ApiSettingsController < ApplicationController
 
     current_user.access_token.save!
 
-    redirect_back(fallback_location: settings_api_index_path, notice: 'API token as been updated.')
+    redirect_back(fallback_location: settings_api_index_path, notice: I18n.t('api_token_has_been_updated'))
   end
 end

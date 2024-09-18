@@ -3,13 +3,13 @@
     <span class="enabled">
       <span class="flex items-center justify-center space-x-2">
         <%= svg_icon('upload', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block">Upload</span>
+        <span class="hidden md:block"><%= t('upload') %></span>
       </span>
     </span>
     <span class="disabled">
       <span class="flex items-center justify-center space-x-2">
         <%= local_assigns[:icon_disabled] || svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-        <span class="hidden md:block">Uploading...</span>
+        <span class="hidden md:block"><%= t('uploading') %>...</span>
       </span>
     </span>
   </button>

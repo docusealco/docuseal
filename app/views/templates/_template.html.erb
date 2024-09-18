@@ -8,7 +8,7 @@
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
         <% if template.account_id != current_account.id %>
-          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase">shared</span>
+          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase"><%= t('shared') %></span>
         <% end %>
       </p>
       <p class="flex text-xs text-base-content/60">
@@ -28,36 +28,36 @@
   <div class="absolute top-0 bottom-0 w-0 flex items-center hidden md:group-hover:flex" style="right: 37px">
     <div class="space-y-1">
       <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
-        <span class="tooltip tooltip-left" data-tip="Move">
+        <span class="tooltip tooltip-left" data-tip="<%= t('move') %>">
           <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('folder_share', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if template.archived_at? && can?(:update, template) %>
-        <span class="tooltip tooltip-left" data-tip="Restore">
+        <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
           <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
             <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
         </span>
       <% elsif can?(:update, template) %>
-        <span class="tooltip tooltip-left" data-tip="Edit">
+        <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
           <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('pencil', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if can?(:create, template) %>
-        <span class="tooltip tooltip-left" data-tip="Clone">
+        <span class="tooltip tooltip-left" data-tip="<%= t('clone') %>">
           <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if can?(:destroy, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? 'Delete' : 'Archive' %>">
-          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: 'Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?' } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: 'Restore' do %>
+        <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? t('delete') : t('archive') %>">
+          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: t('restore') do %>
             <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>

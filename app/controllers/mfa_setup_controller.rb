@@ -18,11 +18,11 @@ class MfaSetupController < ApplicationController
       current_user.otp_required_for_login = true
       current_user.save!
 
-      redirect_to settings_profile_index_path, notice: '2FA has been configured'
+      redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_configured')
     else
       @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
 
-      @error_message = 'Code is invalid'
+      @error_message = I18n.t('code_is_invalid')
 
       render turbo_stream: turbo_stream.replace(:mfa_form, partial: 'mfa_setup/form'), status: :unprocessable_entity
     end
@@ -32,9 +32,9 @@ class MfaSetupController < ApplicationController
     if current_user.validate_and_consume_otp!(params[:otp_attempt])
       current_user.update!(otp_required_for_login: false, otp_secret: nil)
 
-      redirect_to settings_profile_index_path, notice: '2FA has been removed'
+      redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_removed')
     else
-      @error_message = 'Code is invalid'
+      @error_message = I18n.t('code_is_invalid')
 
       render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/edit'), status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class MfaSetupController < ApplicationController
   private
 
   def set_provision_url
-    return redirect_to root_path, alert: '2FA has been set up already' if current_user.otp_required_for_login
+    return redirect_to root_path, alert: I18n.t('2fa_has_been_set_up_already') if current_user.otp_required_for_login
 
     current_user.otp_secret ||= User.generate_otp_secret
 

@@ -1,15 +1,21 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <p class="text-4xl font-bold mb-4">Email Templates</p>
+    <p class="text-4xl font-bold mb-4">
+      <%= t('email_templates') %>
+    </p>
     <div class="space-y-4">
       <%= render 'signature_request_email_form' %>
       <%= render 'documents_copy_email_form' %>
       <%= render 'submitter_completed_email_form' %>
     </div>
-    <p class="text-4xl font-bold mb-4 mt-8">Company Logo</p>
+    <p class="text-4xl font-bold mb-4 mt-8">
+      <%= t('company_logo') %>
+    </p>
     <%= render 'logo_form' %>
-    <p class="text-4xl font-bold mb-4 mt-8">Submission Form</p>
+    <p class="text-4xl font-bold mb-4 mt-8">
+      <%= t('submission_form') %>
+    </p>
     <div class="space-y-4">
       <%= render 'form_completed_message_form' %>
       <%= render 'form_completed_button_form' %>

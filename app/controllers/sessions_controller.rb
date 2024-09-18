@@ -12,7 +12,7 @@ class SessionsController < Devise::SessionsController
       Rollbar.warning('Sign in new user') if defined?(Rollbar)
 
       return redirect_to new_registration_path(sign_up: true, user: sign_in_params.slice(:email)),
-                         notice: 'Create a new account'
+                         notice: I18n.t('create_a_new_account')
     end
 
     if User.exists?(email:, otp_required_for_login: true) && sign_in_params[:otp_attempt].blank?

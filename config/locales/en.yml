@@ -63,15 +63,456 @@ en: &en
   already_have_an_account: Already have an account?
   first_name: First name
   last_name: Last name
-  company_name_optional: Company name (optional)
   sign_up: Sign up
   signing_up: Signing up
   profile_details: Profile Details
-  create_free_account: Create Free Account
   sign_up_with_google: Sign up with Google
   sign_up_with_microsoft: Sign up with Microsoft
   by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.co/terms">Terms of Service</a>.'
   enter_email_to_continue: Enter email to continue
+  account: Account
+  preferences: Preferences
+  company_name: Company name
+  time_zone: Time zone
+  time_format: Time format
+  app_url: App URL
+  update: Update
+  updating: Updating
+  force_2fa_with_authenticator_app: Force 2FA with Authenticator App
+  add_signature_id_to_the_documents: Add signature ID to the documents
+  require_signing_reason: Require signing reason
+  allow_typed_text_signatures: Allow typed text signatures
+  allow_to_resubmit_completed_forms: Allow to resubmit completed forms
+  remember_and_pre_fill_signatures: Remember and pre-fill signatures
+  require_authentication_for_file_download_links: Require authentication for file download links
+  combine_completed_documents_and_audit_log: Combine completed documents and Audit Log
+  salesforce_integration: Salesforce Integration
+  salesforce_has_been_connected: Salesforce has been connected.
+  connect_salesforce_account_to_integrate_with_docuseal: Connect Salesforce account to integrate with DocuSeal
+  re_connect_salesforce: Re-connect Salesforce
+  connect_salesforce: Connect Salesforce
+  danger_zone: Danger Zone
+  delete_my_account: Delete my account
+  schedule_account_for_deletion_: Schedule account for deletion?
+  account_information_has_been_updated: Account information has been updated
+  should_be_a_valid_url: should be a valid URL
+  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 weeks. Please contact us if you want to keep your account.
+  test_environment: Test Environment
+  copy: Copy
+  copied: Copied
+  rotate: Rotate
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Remove existing API token and generated a new one. Are you sure?
+  request_signature_multiple_submitters_with_default_values: Request signature, multiple submitters with default values
+  request_signature_single_submitter: Request signature, single submitter
+  template_details: Template details
+  open_full_api_reference: Open Full API Reference
+  api_token_has_been_updated: API token as been updated.
+  change_your_password: Change your password
+  new_password: New password
+  minimum_password_length_characters_minimum: '%{minimum_password_length} characters minimum'
+  confirm_new_password: Confirm new password
+  change_my_password: Change my password
+  changing_password: Changing password
+  reset_password: Reset password
+  resetting_password: Resetting password
+  sign_in_with_name_account: 'Sign in with %{name} account'
+  two_factor_code_from_authenticator_app: Two-Factor Code from Authenticator App
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Sign up in DocuSeal Console to upgrade. On-premises app is completely standalone, Console is used only to manage your license.
+  send_from_email: Send from Email
+  optional: optional
+  save: Save
+  saving: Saving
+  changes_have_been_saved: Changes have been saved
+  unlock_with_docuseal_pro: Unlock with DocuSeal Pro
+  use_your_own_certificates_to_sign_and_verify_pdf_files: Use your own certificates to sign and verify PDF files.
+  upload_certificate: Upload Certificate
+  name: Name
+  file: File
+  use_a_valid_der_p12_or_pfx_file: Use a valid .der, .p12 or .pfx file.
+  submit: Submit
+  submitting: Submitting
+  pdf_signature: PDF Signature
+  upload_signed_pdf_file_to_validate_its_signature_: 'Upload signed PDF file to validate its signature:'
+  analyzing: Analyzing
+  verify_signed_pdf: Verify Signed PDF
+  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Click to upload</span> or drag and drop'
+  click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Click to upload</span> or drag and drop files'
+  signing_certificates: Signing Certificates
+  upload_cert: Upload Cert
+  valid_to: Valid To
+  status: Status
+  make_default: Make Default
+  remove: Remove
+  removing: Removing
+  delete: Delete
+  default: Default
+  are_you_sure_: Are you sure?
+  timestamp_server: Timestamp Server
+  timeserver_url: Timeserver URL
+  url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: URL of the trusted RFC 3161 timeserver to be used to generate timestamp signatures.
+  apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer: Apply multiple PDF digital signatures in the document per each signer
+  remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form: Remove PDF form fillable fields from the signed PDF (flatten form)
+  certificate_has_been_successfully_added_: Certificate has been successfully added!
+  default_certificate_has_been_selected: Default certificate has been selected
+  certificate_has_been_removed: Certificate has been removed
+  already_exists: already exists
+  welcome_to_product_name: 'Welcome to %{product_name}'
+  set_password: Set password
+  confirm_password: Confirm new password
+  save_password_and_sign_in: Save password and Sign in
+  use_an_authenticator_mobile_app_like_google_authenticator_or_1password_to_scan_the_qr_code_below: Use an authenticator mobile app like Google Authenticator or 1Password to scan the QR code below.
+  remove_2fa: Remove 2FA
+  setup_2fa: Setup 2FA
+  2fa_has_been_configured: 2FA has been configured
+  code_is_invalid: Code is invalid
+  2fa_has_been_removed: 2FA has been removed
+  2fa_has_been_set_up_already: 2FA has been set up already
+  developer_newsletters: Developer Newsletters
+  skip: Skip
+  email_notifications: Email Notifications
+  receive_notification_emails_on_completed_submission: Receive notification emails on completed submission
+  completed_documents_notification_bcc_address: Completed documents notification BCC address
+  sign_request_email_reminders: Sign Request Email Reminders
+  send_automatic_email_reminders_to_your_recipients: Send automatic email reminders to your recipients.
+  first_reminder_in: First reminder in
+  second_reminder_in: Second reminder in
+  third_reminder_in: Third reminder in
+  learn_more: Learn More
+  unable_to_save: Unable to save
+  invalid_timeserver: Invalid Timeserver
+  email_templates: Email Templates
+  signature_request_email: Signature request email
+  signature_request_sms: Signature Request SMS
+  verification_code_sms: Verification Code SMS
+  copleted_notification_email: Completed notification email
+  company_logo: Company Logo
+  submission_form: Submission Form
+  completed_form_message: Completed Form Message
+  completed_form_redirect_button: Completed Form Redirect Button
+  documents_copy_email: Documents copy email
+  form_custom_css: Form Custom CSS
+  subject: Subject
+  body: Body
+  text_message: Text message
+  title: Title
+  button_title: Button title
+  button_url: Button URL
+  upload_logo: Upload Logo
+  show_confetti_on_successful_completion: Show confetti on successful completion
+  attach_audit_log_pdf: Attach audit log PDF
+  attach_documents: Attach documents
+  settings_have_been_saved: Settings have been saved
+  display_your_company_name_and_logo_when_signing_documents: Display your company name and logo when signing documents.
+  profile: Profile
+  signature: Signature
+  update_signature: Update Signature
+  unable_to_save_signature: Unable to save signature
+  signature_has_been_saved: Signature has been saved
+  signature_has_been_removed: Signature has been removed
+  initials: Initials
+  update_initials: Update Initials
+  unable_to_save_initials: Unable to save initials
+  initials_has_been_saved: Initials has been saved
+  initials_has_been_removed: Initials has been removed
+  change_password: Change Password
+  two_factor_authentication: Two-Factor Authentication
+  2fa_is_not_configured: 2FA is not configured
+  set_up_2fa: Set up 2FA
+  contact_information_has_been_update: Contact information has been update
+  password_has_been_changed: Password has been changed
+  email_integration: Email Integration
+  send_via_connected_email: Send via connected email
+  activate_with_docuseal_pro: Activate with DocuSeal Pro
+  send_signature_request_to_your_recipients_directly_from_your_email: Send signature request to your recipients directly from your email
+  connect_gmail: Connect Gmail
+  re_connect_gmail: Re-connect Gmail
+  connect_microsoft: Connect Microsoft
+  re_connect_microsoft: Re-connect Microsoft
+  gmail_has_been_connected: Gmail has been connected
+  microsoft_account_has_been_connected: Microsoft Account has been connected
+  but_not_activated: but not activated
+  email_has_been_sent: Email has been sent
+  email_has_been_sent_already: Email has been sent already
+  initial_setup: Initial Setup
+  demo_environment: Demo Environment
+  close: Close
+  upgrade: Upgrade
+  settings: Settings
+  console: Console
+  verify_pdf: Verify PDF
+  sign_out: Sign out
+  page_number: 'Page %{number}'
+  powered_by: Powered by
+  count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
+  storage: Storage
+  notifications: Notifications
+  e_signature: E-Signature
+  personalization: Personalization
+  users: Users
+  plans: Plans
+  new: New
+  embedding: Embedding
+  background_jobs: Background Jobs
+  need_help_ask_a_question_: 'Need help? Ask a question:'
+  testing_environment: Testing Environment
+  exit: Exit
+  leave: Leave
+  impersonated_as: Impersonated as
+  ask_ai: Ask AI
+  ai_assistant: AI Assistant
+  discord_community: Discord Community
+  integrations: Integrations
+  teams: Teams
+  tenants: Tenants
+  send_signature_requests_via_sms: Send signature requests via SMS
+  twilio_settings: Twilio Settings
+  webhook_settings: Webhook Settings
+  sending_sms: Sending SMS
+  from: From
+  account_sid: Account SID
+  send_sms_via_webhook: Send SMS via webhook
+  webhook_integration_allows_to_send_sms_using_any_provider: Webhook integration allows to send SMS using any provider
+  test: Test
+  single_sign_on_with_saml_2_0: Single Sign On with SAML 2.0
+  force_sso_disable_login_with_email_and_password: Force SSO (disable login with email and password)
+  for_aws_s3_compatible_apis_like_minio: For AWS S3 compatible APIs like Minio.
+  store_all_files_on_disk: Store all files on disk
+  no_configs_are_needed_but_make_sure_your_disk_is_persistent: No configs are needed but make sure your disk is persistent
+  not_suitable_for_heroku_and_other_paas: Not suitable for Heroku and other PaaS
+  bulk_send_from_excel_xlsx_or_csv: Bulk send from Excel XLSX or CSV
+  add_new: Add New
+  add_recipients: Add Recipients
+  add_recipients_html: <span>Add <span class="hidden md:inline">Recipients</span></span>
+  type_emails_here: Type emails here
+  or_embed_on_your_website: Or embed on your website
+  phone: Phone
+  send_emails: Send emails
+  edit_message: Edit message
+  smtp_not_configured: SMTP not Configured
+  configure_smtp_settings_in_order_to_send_emails_: 'Configure SMTP settings in order to send emails:'
+  go_to_smtp_setting: Go to SMTP setting
+  save_as_default_template_message: Save as default template message
+  re_send_sms: Re-send SMS
+  send_sms: Send SMS
+  preserve_order: Preserve order
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party: When checked, notifications will be sent to the second party once the form is completed by the previous party. Uncheck this option to send notifications to all parties simultaneously right away.
+  upgrade_to_send_unlimited_signature_requests: Upgrade to send unlimited signature requests
+  add_without_sending: Add without sending
+  upgade_now: Upgrade Now
+  send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with DocuSeal Pro
+  count_emails_used: '%{count} emails used'
+  has_been_connected: has been connected
+  but_not_activated: but not activated
+  sms_not_configured: SMS not Configure
+  configure_sms_settings_in_order_to_send_text_messages_: 'Configure SMS settings in order to send text messages:'
+  go_to_sms_settings: Go to SMS settings
+  back_to_active: Back to Active
+  submissions: Submissions
+  templates: Templates
+  document_templates_html: <span class="hidden md:inline">Document</span> Templates
+  archived: Archived
+  search: Search
+  submissions_not_found: Submissions not Found
+  create: Create
+  view_archived: View Archived
+  all: All
+  pending: Pending
+  completed: Completed
+  primarily_opened_with_microsoft_excel_other_options_include_google_sheets_libreoffice_calc_and_openoffice_calc: Primarily opened with Microsoft Excel. Other options include Google Sheets, LibreOffice Calc, and OpenOffice Calc.
+  can_be_opened_with_microsoft_excel_google_sheets_or_any_text_editor_like_notepad: Can be opened with Microsoft Excel, Google Sheets, or any text editor like Notepad.
+  draw_signature: Draw Signature
+  clear: Clear
+  signature_uploaded: Signature Uploaded
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_:
+  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Return back to your desktop device to complete the form or <a class="link" href="%{link}">continue on mobile</a>'
+  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?
+  rename_folder: Rename Folder
+  folder_name: Folder Name
+  rename: Rename
+  home: Home
+  templates_not_found: Templates not Found
+  upload_new_document: Upload New Document
+  uploading: Uploading
+  expired: Expired
+  sign_now: Sign now
+  archive: Archive
+  archiving: Archiving
+  restore: Restore
+  restoring: Restoring
+  clone: Clone
+  edit: Edit
+  move: Move
+  moving: moving
+  preview: Preview
+  upload: Upload
+  clone_template: Clone Template
+  new_document_template: New Document Template
+  document_name: Document Name
+  change_folder: Change Folder
+  shared: shared
+  export: Export
+  there_are_no_submissions: There are no Submissions
+  send_an_invitation_to_fill_and_complete_the_form: Send an invitation to fill and complete the form
+  send_to_recipients: Send to Recipients
+  sign_it_yourself: Sign it Yourself
+  api_and_embedding: API and Embedding
+  template_id: Template ID
+  embedding_url: Embedding URL
+  share_template_with_test_environment: Share template with Test Environment
+  share_template_with_all_tenants: Share template with all Tenants
+  use_following_placeholders_text_: 'Use following placeholders text:'
+  upgrade_plan_to_add_more_users: Upgrade plan to add more users
+  move_into_folder: Move Into Folder
+  new_folder_name: New Folder Name
+  exit_preview: Exit Preview
+  general: General
+  recipients: Recipients
+  form_preferences: Form preferences
+  redirect_on_completion_url: Redirect on completion URL
+  completion_message: Completion message
+  email_subject: Email subject
+  email_body: Email body
+  attach_audit_log_pdf_to_the_email: Attach Audit Log PDF to the email
+  send_emails_automatically_on_completion: Send emails automatically on completion
+  attach_documents_to_the_email: Attach documents to the email
+  not_specified: Not specified
+  submission_requester: Submission requester
+  specified_email: Specified email
+  invite_by_name: 'Invite by %{name}'
+  same_as_name: 'Same as %{name}'
+  default_email: Default Email
+  processing: Processing
+  upload_initials: Upload Initials
+  draw: Draw
+  upload_signature: Upload Signature
+  admin: Admin
+  editor: Editor
+  viewer: Viewer
+  member: Member
+  agent: Agent
+  superadmin: Superadmin
+  edit_user: Edit User
+  new_user: New User
+  unarchive: Unarchive
+  role: Role
+  last_session: Last session
+  unlock_more_user_roles_with_docuseal_pro: Unlock more user roles with DocuSeal Pro.
+  view_active: View Active
+  team_account: Team account
+  team_accounts: Team Accounts
+  tenant_account: Tenant account
+  tenant_accounts: Tenant Accounts
+  upgrade_plan: Upgrade Plan
+  add_user: Add User
+  impersonate: Impersonate
+  loading: Loading
+  documents: Documents
+  accounts: Accounts
+  edit_account: Edit Account
+  new_team: New Team
+  new_tenant: New Tenant
+  remove_team: Remove Team
+  remove_tenant: Remove Tenant
+  replace: Replace
+  allow_tenant_admins_to_invite_new_users: Allow tenant admins to invite new users
+  manage_multiple_teams: Manage Multiple Teams
+  api_key: API Key
+  logo: Logo
+  back: Back
+  add_secret: Add Secret
+  submission_example_payload: Submission example payload
+  status_users: '%{status} Users'
+  there_are_no_signatures: There are no signatures
+  signed_with_trusted_certificate: Signed with trusted certificate
+  signed_with_external_certificate: Signed with external certificate
+  setup_2fa_to_continue: Setup 2FA to continue
+  create_a_new_account: Create a new account
+  you_are_already_signed_in: You are already signed in
+  please_sign_in: Please sign in.
+  not_found: Not found
+  new_recipients_have_been_added: New recipients have been added
+  submission_has_been_deleted: Submission has been deleted
+  submission_has_been_archived: Submission has been archived
+  form_has_been_completed_already: Form has been completed already.
+  form_has_been_archived: Form has been archived.
+  form_has_been_expired: Form has been expired.
+  form_has_been_declined: Form has been declined.
+  file_is_missing: File is missing
+  folder_name_has_been_updated: Folder name has been updated
+  unable_to_rename_folder: Unable to rename folder
+  template_has_been_removed: Template has been removed.
+  template_has_been_archived: Template has been archived.
+  template_has_been_cloned: Template has been cloned
+  document_template_has_been_moved: Document template has been moved
+  unable_to_move_template_into_folder: Unable to move template into folder
+  template_has_been_unarchived: Template has been unarchived
+  unable_to_update_file: Unable to upload file
+  user_has_been_invited: User has been invited
+  unable_to_update_user: Unable to update user
+  user_has_been_updated: User has been updated
+  unable_to_remove_user: Unable to remove user
+  user_has_been_removed: User has been removed
+  invalid_pdf: Invalid PDF
+  webhook_secret_has_been_saved: Webhook Secret has been saved.
+  webhook_url_has_been_saved: Webhook URL has been saved.
+  webhook_request_has_been_sent: Webhook request has been sent.
+  count_submissions_have_been_create: '%{count} submissions have been create'
+  gmail_has_been_connected: Gmail has been connected
+  microsoft_account_has_been_connected: Microsoft Account has been connected
+  sms_length_cant_be_longer_than_120_bytes: SMS length can't be longer than 120 bytes
+  connected_successfully: Connected successfully
+  user_nameid_not_found: 'User %{nameid} not found.'
+  webhook_request_has_been_sent: Webhook request has been sent
+  sso_settings_have_been_updated: SSO settings have been updated.
+  sms_has_been_sent: SMS has been sent
+  account_has_been_created: Account has been created
+  account_has_been_updated: Account has been updated
+  account_has_been_removed: Account has been removed
+  logo_has_been_uploaded: Logo has been uploaded
+  invalid_file_type: Invalid file type
+  upload_file: Upload file
+  upgrade_your_plan_to_invite_more_users_contact_email: 'Upgrade your plan to invite more users (contact %{email}).'
+  contact_your_admin_email_to_invite_more_users: 'Contact your admin %{email} to invite more users.'
+  contact_your_administrator_to_add_new_users: Contact your administrator to add new user
+  one_hour: 1 hour
+  two_hours: 2 hours
+  four_hours: 4 hours
+  eight_hours: 8 hours
+  twelve_hours: 12 hours
+  twenty_four_hours: 24 hours
+  two_days: 2 days
+  four_days: 4 days
+  eight_days: 8 days
+  fifteen_days: 15 days
+  free: Free
+  unlimited_documents_storage: Unlimited documents storage
+  users_management: Users management
+  ten_filed_types: 10 field types
+  multiple_signers: Multiple signers
+  automatic_esignature: Automatic eSignature
+  ten_signature_request_emails_per_month: 10 signature request emails per month
+  unlimited_sign_yourself: Unlimited sign yourself
+  free_developer_testing_sandbox: Free developer testing sandbox
+  continue_with_free_basic: Continue with Free Basic
+  unlimited_signature_request_emails: Unlimited signature request emails
+  your_company_logo: Your company logo
+  connect_own_email_address: Connect own email address
+  personalize_email_content: Personalize email content
+  automated_reminders: Automated reminders
+  bulk_send_from_spreadsheet: Bulk send from spreadsheet
+  identify_verification_via_sms: Identify verification via SMS
+  start_with_pro: Start with Pro
+  user_month: user / month
+  developer_sandbox: Developer Sandbox.
+  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> to start using in Production.'
+  download_combined_pdf: Download combined PDF
+  audit_log: Audit Log
+  signers: Signers
+  not_invited_yet:  Not invited yet
+  not_copleted_yet: Not completed yet
+  declined_on_time: 'Declined on %{time}'
+  sign_in_person: Sign In-person
+  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
   doorkeeper:
     scopes:
       write: Update your data
@@ -124,11 +565,9 @@ es: &es
   already_have_an_account: ¿Ya tienes una cuenta?
   first_name: Nombre
   last_name: Apellido
-  company_name_optional: Nombre de la empresa (opcional)
   sign_up: Registrarse
   signing_up: Registrándose
   profile_details: Detalles del perfil
-  create_free_account: Crear cuenta gratuita
   sign_up_with_google: Registrarse con Google
   sign_up_with_microsoft: Registrarse con Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.co/terms">Términos de Servicio</a>.'
@@ -180,11 +619,9 @@ it: &it
   already_have_an_account: Hai già un account?
   first_name: Nome
   last_name: Cognome
-  company_name_optional: Nome dell'azienda (opzionale)
   sign_up: Registrati
   signing_up: Registrazione in corso
   profile_details: Dettagli del profilo
-  create_free_account: Crea un account gratuito
   sign_up_with_google: Registrati con Google
   sign_up_with_microsoft: Registrati con Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.docuseal.co/terms">Termini di servizio</a>.'
@@ -235,11 +672,9 @@ fr: &fr
   already_have_an_account: Vous avez déjà un compte?
   first_name: Prénom
   last_name: Nom de famille
-  company_name_optional: Nom de l'entreprise (optionnel)
   sign_up: S'inscrire
   signing_up: Inscription en cours
   profile_details: Détails du profil
-  create_free_account: Créer un compte gratuit
   sign_up_with_google: S'inscrire avec Google
   sign_up_with_microsoft: S'inscrire avec Microsoft
   by_creating_an_account_you_agree_to_our_html: |
@@ -291,11 +726,9 @@ pt: &pt
   already_have_an_account: Já tem uma conta?
   first_name: Nome
   last_name: Sobrenome
-  company_name_optional: Nome da empresa (opcional)
   sign_up: Inscrever-se
   signing_up: Inscrevendo-se
   profile_details: Detalhes do perfil
-  create_free_account: Criar conta gratuita
   sign_up_with_google: Inscrever-se com Google
   sign_up_with_microsoft: Inscrever-se com Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.co/terms">Termos de Serviço</a>.'
@@ -342,15 +775,13 @@ de: &de
   sign_in_with_microsoft: Mit Microsoft anmelden
   sign_in_with_google: Mit Google anmelden
   forgot_your_password_: Passwort vergessen?
-  create_free_account: Kostenloses Konto erstellen
+  create_free_account: Kostenloses konto erstellen
   already_have_an_account: Hast du schon ein Konto?
   first_name: Vorname
   last_name: Nachname
-  company_name_optional: Firmenname (optional)
   sign_up: Registrieren
   signing_up: Registrierung
   profile_details: Profildetails
-  create_free_account: Kostenloses Konto erstellen
   sign_up_with_google: Mit Google registrieren
   sign_up_with_microsoft: Mit Microsoft registrieren
   by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.docuseal.co/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.docuseal.co/terms">Nutzungsbedingungen</a> zu.'
@@ -401,11 +832,9 @@ pl:
   already_have_an_account: Masz już konto?
   first_name: Imię
   last_name: Nazwisko
-  company_name_optional: Nazwa firmy (opcjonalnie)
   sign_up: Zarejestruj się
   signing_up: Rejestracja
   profile_details: Szczegóły profilu
-  create_free_account: Utwórz darmowe konto
   sign_up_with_google: Zarejestruj się przez Google
   sign_up_with_microsoft: Zarejestruj się przez Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.co/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.co/terms">Regulamin</a>.'
@@ -456,11 +885,9 @@ uk:
   already_have_an_account: Вже є акаунт?
   first_name: Ім'я
   last_name: Прізвище
-  company_name_optional: Назва компанії (необов'язково)
   sign_up: Зареєструватися
   signing_up: Реєстрація
   profile_details: Дані профілю
-  create_free_account: Створити безкоштовний акаунт
   sign_up_with_google: Зареєструватися через Google
   sign_up_with_microsoft: Зареєструватися через Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.co/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.co/terms">Умовами надання послуг</a>.'
@@ -511,11 +938,9 @@ cs:
   already_have_an_account: Už máte účet?
   first_name: Jméno
   last_name: Příjmení
-  company_name_optional: Název společnosti (volitelné)
   sign_up: Zaregistrovat se
   signing_up: Registrace
   profile_details: Detaily profilu
-  create_free_account: Vytvořit bezplatný účet
   sign_up_with_google: Zaregistrovat se pomocí Googlu
   sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
   by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.co/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.co/terms">Podmínkami služby</a>.'
@@ -566,11 +991,9 @@ he:
   already_have_an_account: כבר יש לך חשבון?
   first_name: שם פרטי
   last_name: שם משפחה
-  company_name_optional: שם החברה (לא חובה)
   sign_up: הירשם
   signing_up: נרשם
   profile_details: פרטי הפרופיל
-  create_free_account: צור חשבון חינם
   sign_up_with_google: הירשם עם גוגל
   sign_up_with_microsoft: הירשם עם מיקרוסופט
   by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.co/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.co/terms">תנאי השירות</a> שלנו.'
@@ -622,11 +1045,9 @@ nl:
   already_have_an_account: Heb je al een account?
   first_name: Voornaam
   last_name: Achternaam
-  company_name_optional: Bedrijfsnaam (optioneel)
   sign_up: Aanmelden
   signing_up: Aanmelden bezig
   profile_details: Profielgegevens
-  create_free_account: Gratis account aanmaken
   sign_up_with_google: Aanmelden met Google
   sign_up_with_microsoft: Aanmelden met Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.co/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.co/terms">Gebruiksvoorwaarden</a>.'
@@ -678,11 +1099,9 @@ ar:
   already_have_an_account: هل لديك حساب؟
   first_name: الاسم الأول
   last_name: الاسم الأخير
-  company_name_optional: اسم الشركة (اختياري)
   sign_up: اشتراك
   signing_up: الاشتراك
   profile_details: تفاصيل الملف الشخصي
-  create_free_account: إنشاء حساب مجاني
   sign_up_with_google: الاشتراك باستخدام جوجل
   sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
   by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.co/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.co/terms">شروط الخدمة</a> الخاصة بنا.'
@@ -734,11 +1153,9 @@ ko:
   already_have_an_account: 이미 계정이 있으신가요?
   first_name: 이름
   last_name: 성
-  company_name_optional: 회사 이름 (선택 사항)
   sign_up: 가입하기
   signing_up: 가입 중
   profile_details: 프로필 세부 정보
-  create_free_account: 무료 계정 생성
   sign_up_with_google: Google로 가입
   sign_up_with_microsoft: Microsoft로 가입
   by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.co/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.co/terms">서비스 약관</a>에 동의하는 것입니다.'

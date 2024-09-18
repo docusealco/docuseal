@@ -3,13 +3,13 @@
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails, checked: can_send_emails %>
-      <span class="label">Send emails</span>
+      <span class="label"><%= t('send_emails') %></span>
     <% end %>
     <div>
       <% if can_send_emails %>
         <label>
           <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
-          <span class="link peer-checked:hidden">Edit message</span>
+          <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
         </label>
       <% end %>
       <%= render 'email_stats' %>
@@ -19,11 +19,13 @@
     <div class="alert my-4">
       <%= svg_icon('info_circle', class: 'w-6 h-6') %>
       <div>
-        <p class="font-bold">SMTP not Configured</p>
+        <p class="font-bold"><%= t('smtp_not_configured') %></p>
         <p class="text-gray-700">
-          Configure SMTP settings in order to send emails:
+          <%= t('configure_smtp_settings_in_order_to_send_emails_') %>
           <br>
-          <a class="link font-medium" data-turbo-frame="_top" href="<%= settings_email_index_path %>">Go to SMTP settings</a>
+          <a class="link font-medium" data-turbo-frame="_top" href="<%= settings_email_index_path %>">
+            <%= t('go_to_smtp_setting') %>
+          </a>
         </p>
       </div>
     </div>
@@ -34,13 +36,13 @@
   <div class="card-body">
     <div class="form-control space-y-2">
       <div class="form-control">
-        <%= f.label :subject, class: 'label' %>
+        <%= f.label :subject, t('subject'), class: 'label' %>
         <%= f.text_field :subject, value: @template.preferences['request_email_subject'].presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
         <div class="flex items-center">
-          <%= f.label :message, 'Body', class: 'label' %>
-          <span class="tooltip tooltip-right" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+          <%= f.label :message, t('body'), class: 'label' %>
+          <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
             <%= svg_icon('info_circle', class: 'w-4 h-4') %>
           </span>
         </div>
@@ -49,7 +51,7 @@
         </autoresize-textarea>
         <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
           <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
-          <span class="label">Save as default template message</span>
+          <span class="label"><%= t('save_as_default_template_message') %></span>
         </label>
       </div>
       <%= render 'message_fields' %>

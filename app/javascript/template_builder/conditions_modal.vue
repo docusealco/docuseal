@@ -26,7 +26,7 @@
             href="https://www.docuseal.co/pricing"
             target="_blank"
             class="link"
-          >Available in Pro</a>
+          >{{ t('available_in_pro') }}</a>
         </div>
         <form @submit.prevent="validateSaveAndClose">
           <div class="my-4 space-y-5">

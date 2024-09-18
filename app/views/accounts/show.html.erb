@@ -1,22 +1,24 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Account</h1>
+    <h1 class="text-4xl font-bold mb-4">
+      <%= t('account') %>
+    </h1>
     <%= form_for '', url: settings_account_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= fields_for current_account do |ff| %>
         <div class="form-control">
-          <%= ff.label :name, 'Company Name', class: 'label' %>
+          <%= ff.label :name, t('company_name'), class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
-            <%= ff.label :timezone, class: 'label' %>
+            <%= ff.label :timezone, t('time_zone'), class: 'label' %>
             <%= ff.select :timezone, nil, {}, class: 'base-select' do %>
               <%= time_zone_options_for_select(current_account.timezone) %>
             <% end %>
           </div>
           <div class="form-control">
-            <%= ff.label :locale, 'Time format', class: 'label' %>
+            <%= ff.label :locale, t('time_format'), class: 'label' %>
             <%= ff.select :locale, options_for_select(controller.class::LOCALE_OPTIONS.invert, current_account.locale), {}, class: 'base-select' %>
           </div>
         </div>
@@ -25,27 +27,29 @@
       <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? && ENV['APP_URL'].blank? %>
         <%= fields_for encrypted_config do |ff| %>
           <div class="form-control">
-            <%= ff.label :value, 'App URL', class: 'label' %>
+            <%= ff.label :value, t('app_url'), class: 'label' %>
             <%= ff.text_field :value, autocomplete: 'off', class: 'base-input' %>
           </div>
         <% end %>
       <% end %>
       <% if can?(:update, current_account) %>
         <div class="form-control pt-2">
-          <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>
+          <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
         </div>
       <% end %>
     <% end %>
     <% if can?(:manage, AccountConfig) %>
       <div class="px-1 mt-8">
-        <h2 class="text-2xl font-bold mb-2">Preferences</h2>
+        <h2 class="text-2xl font-bold mb-2">
+          <%= t('preferences') %>
+        </h2>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORCE_MFA) %>
         <% if can?(:manage, account_config) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Force 2FA with Authenticator App
+                <%= t('force_2fa_with_authenticator_app') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -57,7 +61,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Add signature ID to the documents
+                <%= t('add_signature_id_to_the_documents') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -69,7 +73,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Require signing reason
+                <%= t('require_signing_reason') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -81,7 +85,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Allow typed text signatures
+                <%= t('allow_typed_text_signatures') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -93,7 +97,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Allow to resubmit completed forms
+                <%= t('allow_to_resubmit_completed_forms') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -105,7 +109,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Remember and pre-fill signatures
+                <%= t('remember_and_pre_fill_signatures') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -117,7 +121,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Require authentication for file download links
+                <%= t('require_authentication_for_file_download_links') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -129,7 +133,7 @@
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
               <span>
-                Combine completed documents and Audit Log
+                <%= t('combine_completed_documents_and_audit_log') %>
               </span>
               <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
             </div>
@@ -140,8 +144,10 @@
     <%= render 'integrations' %>
     <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
       <div class="px-1 mt-8">
-        <h2 class="text-2xl font-bold mb-2">Danger Zone</h2>
-        <%= button_to button_title(title: 'Delete my account'), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: 'Schedule account for deletion?' }, method: :delete, id: :account_delete_button %>
+        <h2 class="text-2xl font-bold mb-2">
+          <%= t('danger_zone') %>
+        </h2>
+        <%= button_to button_title(title: t('delete_my_account')), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: t('schedule_account_for_deletion_') }, method: :delete, id: :account_delete_button %>
       </div>
     <% end %>
   </div>

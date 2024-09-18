@@ -11,7 +11,7 @@ class WebhookSettingsController < ApplicationController
 
     @encrypted_config.value.present? ? @encrypted_config.save! : @encrypted_config.delete
 
-    redirect_back(fallback_location: settings_webhooks_path, notice: 'Webhook URL has been saved.')
+    redirect_back(fallback_location: settings_webhooks_path, notice: I18n.t('webhook_url_has_been_saved'))
   end
 
   def update
@@ -20,7 +20,7 @@ class WebhookSettingsController < ApplicationController
     SendFormCompletedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
                                                        'encrypted_config_id' => @encrypted_config.id })
 
-    redirect_back(fallback_location: settings_webhooks_path, notice: 'Webhook request has been sent.')
+    redirect_back(fallback_location: settings_webhooks_path, notice: I18n.t('webhook_request_has_been_sent'))
   end
 
   private

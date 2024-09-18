@@ -2,7 +2,7 @@
   <input type="checkbox">
   <div class="collapse-title text-xl font-medium">
     <div>
-      Completed Form Redirect Button
+      <%= t('completed_form_redirect_button') %>
     </div>
   </div>
   <div class="collapse-content">
@@ -10,16 +10,16 @@
       <%= f.hidden_field :key %>
       <%= f.fields_for :value, Struct.new(:title, :url).new(*(f.object.value || {}).values_at('title', 'url')) do |ff| %>
         <div class="form-control">
-          <%= ff.label :title, 'Button title', class: 'label' %>
+          <%= ff.label :title, t('button_title'), class: 'label' %>
           <%= ff.text_field :title, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
-          <%= ff.label :url, 'Button URL', class: 'label' %>
+          <%= ff.label :url, t('button_url'), class: 'label' %>
           <%= ff.url_field :url, class: 'base-input' %>
         </div>
       <% end %>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

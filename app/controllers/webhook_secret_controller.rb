@@ -13,7 +13,7 @@ class WebhookSecretController < ApplicationController
 
     @encrypted_config.value.present? ? @encrypted_config.save! : @encrypted_config.delete
 
-    redirect_back(fallback_location: settings_webhooks_path, notice: 'Webhook Secret has been saved.')
+    redirect_back(fallback_location: settings_webhooks_path, notice: I18n.t('webhook_secret_has_been_saved'))
   end
 
   private

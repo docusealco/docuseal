@@ -117,7 +117,15 @@ const en = {
   custom: 'Custom',
   numbers_only: 'Numbers only',
   letters_only: 'Letters only',
-  regexp_validation: 'Regexp validation'
+  regexp_validation: 'Regexp validation',
+  enter_pdf_password: 'Enter PDF password',
+  wrong_password: 'Wrong password',
+  currency: 'Currency',
+  save_and_preview: 'Save and Preview',
+  preferences: 'Preferences',
+  available_in_pro: 'Available in Pro',
+  some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
+  learn_more: 'Learn more'
 }
 
 export { en }

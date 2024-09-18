@@ -90,10 +90,10 @@ export default {
           })
         } else if (resp.status === 422) {
           resp.json().then((data) => {
-            if (data.error === 'PDF encrypted') {
+            if (data.status === 'pdf_encrypted') {
               const formData = new FormData(this.$refs.form)
 
-              formData.append('password', prompt('Enter PDF password'))
+              formData.append('password', prompt(this.t('enter_pdf_password')))
 
               this.baseFetch(`/templates/${this.templateId}/documents`, {
                 method: 'POST',
@@ -103,7 +103,7 @@ export default {
                   this.$emit('success', await resp.json())
                   this.$refs.input.value = ''
                 } else {
-                  alert('Wrong password')
+                  alert(this.t('wrong_password'))
                 }
               })
             }

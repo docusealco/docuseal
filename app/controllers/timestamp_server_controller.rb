@@ -14,12 +14,12 @@ class TimestampServerController < ApplicationController
     test_timeserver_url(@encrypted_config.value) if @encrypted_config.value.present?
 
     if @encrypted_config.value.present? ? @encrypted_config.save : @encrypted_config.delete
-      redirect_back fallback_location: settings_notifications_path, notice: 'Changes have been saved'
+      redirect_back fallback_location: settings_notifications_path, notice: I18n.t('changes_have_been_saved')
     else
-      redirect_back fallback_location: settings_notifications_path, alert: 'Unable to save'
+      redirect_back fallback_location: settings_notifications_path, alert: I18n.t('unable_to_save')
     end
   rescue SocketError, TimestampError, OpenSSL::Timestamp::TimestampError
-    redirect_back fallback_location: settings_notifications_path, alert: 'Invalid Timeserver'
+    redirect_back fallback_location: settings_notifications_path, alert: t('invalid_timeserver')
   end
 
   private

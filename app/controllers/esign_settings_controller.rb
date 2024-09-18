@@ -48,7 +48,7 @@ class EsignSettingsController < ApplicationController
     if (@encrypted_config.value && @encrypted_config.value['custom']&.any? { |e| e['name'] == @cert_record.name }) ||
        @cert_record.name == DEFAULT_CERT_NAME
 
-      @cert_record.errors.add(:name, 'already exists')
+      @cert_record.errors.add(:name, I18n.t('already_exists'))
 
       return render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'),
                     status: :unprocessable_entity
@@ -56,7 +56,7 @@ class EsignSettingsController < ApplicationController
 
     save_new_cert!(@encrypted_config, @cert_record)
 
-    redirect_to settings_esign_path, notice: 'Certificate has been successfully added!'
+    redirect_to settings_esign_path, notice: I18n.t('certificate_has_been_successfully_added_')
   rescue OpenSSL::PKCS12::PKCS12Error => e
     Rollbar.error(e) if defined?(Rollbar)
 
@@ -73,7 +73,7 @@ class EsignSettingsController < ApplicationController
 
     @encrypted_config.save!
 
-    redirect_to settings_esign_path, notice: 'Default certificate has been selected'
+    redirect_to settings_esign_path, notice: I18n.t('default_certificate_has_been_selected')
   end
 
   def destroy
@@ -81,7 +81,7 @@ class EsignSettingsController < ApplicationController
 
     @encrypted_config.save!
 
-    redirect_to settings_esign_path, notice: 'Certificate has been removed'
+    redirect_to settings_esign_path, notice: I18m.t('certificate_has_been_removed')
   end
 
   private

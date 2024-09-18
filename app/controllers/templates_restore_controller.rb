@@ -6,6 +6,6 @@ class TemplatesRestoreController < ApplicationController
   def create
     @template.update!(archived_at: nil)
 
-    redirect_to template_path(@template), notice: 'Template has been unarchived'
+    redirect_to template_path(@template), notice: I18n.t('template_has_been_unarchived')
   end
 end

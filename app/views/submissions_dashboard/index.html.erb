@@ -5,7 +5,9 @@
     <div class="mr-2">
       <%= render 'dashboard/toggle_view', selected: 'submissions' %>
     </div>
-    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions</h1>
+    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+      <%= t('submissions') %>
+    </h1>
   </div>
   <div class="flex space-x-2">
     <% if params[:q].present? || @pagy.pages > 1 %>
@@ -17,7 +19,7 @@
       </span>
       <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
         <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block">Create</span>
+        <span class="hidden md:block"><%= t('create') %></span>
       <% end %>
     <% end %>
   </div>
@@ -25,7 +27,7 @@
 <% view_archived_html = capture do %>
   <% if current_account.submissions.where.not(archived_at: nil).exists? %>
     <div>
-      <a href="<%= submissions_archived_index_path %>" class="link text-sm">View Archived</a>
+      <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>
   <% end %>
 <% end %>
@@ -34,19 +36,19 @@
     <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('list', class: 'w-5 h-5') %>
-        <span class="font-normal">All</span>
+        <span class="font-normal"><%= t('all') %></span>
       </div>
     </a>
     <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('clock', class: 'w-5 h-5') %>
-        <span class="font-normal">Pending</span>
+        <span class="font-normal"><%= t('pending') %></span>
       </div>
     </a>
     <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('circle_check', class: 'w-5 h-5') %>
-        <span class="font-normal">Completed</span>
+        <span class="font-normal"><%= t('completed') %></span>
       </div>
     </a>
   </div>
@@ -70,7 +72,7 @@
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
-      Submissions not Found
+      <%= t('submissions_not_found') %>
     </div>
   </div>
 <% end %>

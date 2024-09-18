@@ -4,7 +4,9 @@
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
       <div>
-        <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">Submissions</h2>
+        <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+          <%= t('submissions') %>
+        </h2>
       </div>
       <div class="flex justify-end space-x-2">
         <% if params[:q].present? || params[:status].present? || @pagy.pages > 1 %>
@@ -12,12 +14,12 @@
         <% end %>
         <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
-          <span>Export</span>
+          <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
           <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <span>Add <span class="hidden md:inline">Recipients</span></span>
+            <%= t('add_recipients_html') %>
           <% end %>
         <% end %>
       </div>
@@ -29,7 +31,7 @@
     <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('list', class: 'w-5 h-5') %>
-        <span class="font-normal">All</span>
+        <span class="font-normal"><%= t('all') %></span>
       </div>
       <div class="badge badge-neutral badge-outline font-medium">
         <%= params[:status].blank? ? @pagy.count : @base_submissions.count %>
@@ -38,7 +40,7 @@
     <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('clock', class: 'w-5 h-5') %>
-        <span class="font-normal">Pending</span>
+        <span class="font-normal"><%= t('pending') %></span>
       </div>
       <div class="badge badge-neutral badge-outline font-medium">
         <%= params[:status] == 'pending' ? @pagy.count : @base_submissions.pending.count %>
@@ -47,7 +49,7 @@
     <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
       <div class="flex items-center space-x-1">
         <%= svg_icon('circle_check', class: 'w-5 h-5') %>
-        <span class="font-normal">Completed</span>
+        <span class="font-normal"><%= t('completed') %></span>
       </div>
       <div class="badge badge-neutral badge-outline font-medium">
         <%= params[:status] == 'completed' ? @pagy.count : @base_submissions.completed.count %>
@@ -63,25 +65,27 @@
   <div class="card bg-base-200">
     <div class="card-body text-center py-16">
       <div class="max-w-lg mx-auto">
-        <p class="text-3xl font-bold text-base-content mb-4">There are no Submissions</p>
+        <p class="text-3xl font-bold text-base-content mb-4">
+          <%= t('there_are_no_submissions') %>
+        </p>
         <% if @template.archived_at.blank? && params[:q].blank? %>
-          <p>Send an invitation to fill and complete the form</p>
+          <p><%= t('send_an_invitation_to_fill_and_complete_the_form') %></p>
           <div class="space-y-2 flex flex-col">
             <% if can?(:create, Submission) %>
               <%= link_to new_template_submission_path(@template, with_link: true), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-                <span class="mr-1">Send to Recipients</span>
+                <span class="mr-1"><%= t('send_to_recipients') %></span>
               <% end %>
             <% end %>
             <% if @template.submitters.size == 1 %>
               <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
                 <%= svg_icon('writing', class: 'w-6 h-6') %>
-                <span class="mr-1">Sign it Yourself</span>
+                <span class="mr-1"><%= t('sign_it_yourself') %></span>
               <% end %>
             <% else %>
               <%= link_to new_template_submission_path(@template, selfsign: true), class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('writing', class: 'w-6 h-6') %>
-                <span class="mr-1">Sign it Yourself</span>
+                <span class="mr-1"><%= t('sign_it_yourself') %></span>
               <% end %>
             <% end %>
           <% end %>
@@ -93,7 +97,7 @@
 <% view_archived_html = capture do %>
   <% if @template.submissions.where.not(archived_at: nil).exists? && !@template.archived_at? %>
     <div>
-      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm">View Archived</a>
+      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>
   <% end %>
 <% end %>

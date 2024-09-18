@@ -1,7 +1,9 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Email Notifications</h1>
+    <h1 class="text-4xl font-bold mb-4">
+      <%= t('email_notifications') %>
+    </h1>
     <div class="mt-2 mb-1">
       <% user_config = UserConfig.find_or_initialize_by(user: current_user, key: UserConfig::RECEIVE_COMPLETED_EMAIL) %>
       <% if can?(:manage, user_config) %>
@@ -9,7 +11,7 @@
           <%= f.hidden_field :key %>
           <div class="flex items-center justify-between">
             <span>
-              Receive notification emails on completed submission
+              <%= t('receive_notification_emails_on_completed_submission') %>
             </span>
             <%= f.check_box :value, class: 'toggle', checked: user_config.value != false, onchange: 'this.form.requestSubmit()' %>
           </div>
@@ -18,7 +20,9 @@
     </div>
     <%= render 'bcc_form', config: @bcc_config %>
     <div class="flex justify-between items-end mb-4 mt-8">
-      <h2 class="text-3xl font-bold">Sign Request Email Reminders</h2>
+      <h2 class="text-3xl font-bold">
+        <%= t('sign_request_email_reminders') %>
+      </h2>
     </div>
     <%= render 'reminder_banner' %>
     <%= render 'reminder_form', config: @reminder_config %>

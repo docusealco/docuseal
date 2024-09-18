@@ -46,18 +46,21 @@ class SubmitFormController < ApplicationController
     submitter = Submitter.find_by!(slug: params[:slug])
 
     if submitter.completed_at?
-      return render json: { error: 'Form has been completed already.' }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_entity
     end
 
     if submitter.template.archived_at? || submitter.submission.archived_at?
-      return render json: { error: 'Form has been archived.' }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_entity
     end
 
     if submitter.submission.expired?
-      return render json: { error: 'Form has been expired.' }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_expired') }, status: :unprocessable_entity
     end
 
-    return render json: { error: 'Form has been declined.' }, status: :unprocessable_entity if submitter.declined_at?
+    if submitter.declined_at?
+      return render json: { error: I18n.t('form_has_been_declined') },
+                    status: :unprocessable_entity
+    end
 
     Submitters::SubmitValues.call(submitter, params, request)
 

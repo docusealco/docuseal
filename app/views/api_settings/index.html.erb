@@ -11,9 +11,9 @@
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex w-full space-x-4">
             <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-            <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+            <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
           </div>
-          <%= button_to button_title(title: 'Rotate', disabled_with: 'Rotate', icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button w-full', data: { turbo_confirm: 'Remove existing API token and generated a new one. Are you sure?' } %>
+          <%= button_to button_title(title: t('rotate'), disabled_with: t('rotate'), icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button w-full', data: { turbo_confirm: t('remove_existing_api_token_and_generated_a_new_one_are_you_sure_') } %>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
         <input type="checkbox">
         <div class="collapse-title text-xl font-medium">
           <div>
-            Request signature, multiple submitters with default values
+            <%= t('request_signature_multiple_submitters_with_default_values') %>
           </div>
           <div class="mt-1">
             <div class="badge badge-warning badge-lg">POST</div>
@@ -48,7 +48,7 @@
          ]
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>
@@ -58,7 +58,7 @@
         <input type="checkbox">
         <div class="collapse-title text-xl font-medium">
           <div>
-            Request signature, single submitter
+            <%= t('request_signature_single_submitter') %>
           </div>
           <div class="mt-1">
             <div class="badge badge-warning badge-lg">POST</div>
@@ -74,7 +74,7 @@
            "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
        }'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>
@@ -84,7 +84,7 @@
         <input type="checkbox">
         <div class="collapse-title text-xl font-medium">
           <div>
-            Template details
+            <%= t('template_details') %>
           </div>
           <div class="mt-1">
             <div class="badge badge-info badge-lg">GET</div>
@@ -96,7 +96,7 @@
             <% text = capture do %>curl '<%= api_template_url(current_account.templates&.last || 1) %>' \
        --header 'X-Auth-Token: <%= current_user.access_token.token %>'<% end.to_str %>
             <span class="top-0 right-0 absolute">
-              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
             <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
           </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
     <div class="text-center">
-      <%= link_to 'Open Full API Reference', "#{Docuseal::PRODUCT_URL}/docs/api", class: 'btn btn-warning text-base mt-4 px-8', target: '_blank', rel: 'noopener' %>
+      <%= link_to t('open_full_api_reference'), "#{Docuseal::PRODUCT_URL}/docs/api", class: 'btn btn-warning text-base mt-4 px-8', target: '_blank', rel: 'noopener' %>
     </div>
   </div>
 </div>

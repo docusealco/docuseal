@@ -6,7 +6,7 @@
           <%= file.original_filename %>
         </div>
         <p class="text-xl font-medium">
-          There are no signatures...
+          <%= t('there_are_no_signatures') %>...
         </p>
       <% else %>
         <div class="flex items-center space-x-1 border-b border-dashed border-base-300 pb-2">
@@ -32,12 +32,12 @@
                     <% if trusted_certs.any? { |e| e.public_key.to_der == signature.signature_handler.signer_certificate.public_key.to_der } %>
                       <%= svg_icon('circle_check', class: 'w-6 h-6 text-green-500') %>
                       <span>
-                        Signed with trusted certificate
+                        <%= t('signed_with_trusted_certificate') %>
                       </span>
                     <% else %>
                       <%= svg_icon('x_circle', class: 'w-6 h-6 text-red-500') %>
                       <span>
-                        Signed with external certificate
+                        <%= t('signed_with_external_certificate') %>
                       </span>
                     <% end %>
                   </p>

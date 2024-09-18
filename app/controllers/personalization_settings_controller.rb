@@ -30,7 +30,7 @@ class PersonalizationSettingsController < ApplicationController
       @account_config.save!
     end
 
-    redirect_back(fallback_location: settings_personalization_path, notice: 'Settings have been saved.')
+    redirect_back(fallback_location: settings_personalization_path, notice: I18n.t('settings_have_been_saved'))
   end
 
   private

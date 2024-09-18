@@ -14,16 +14,16 @@ RSpec.describe 'Account Settings' do
 
   it 'shows pre-filled account settings page' do
     expect(page).to have_content('Account')
-    expect(page).to have_field('Company Name', with: account.name)
-    expect(page).to have_field('Timezone', with: account.timezone)
+    expect(page).to have_field('Company name', with: account.name)
+    expect(page).to have_field('Time zone', with: account.timezone)
     expect(page).to have_field('Time format', with: account.locale)
     expect(page).to have_field('App URL', with: encrypted_config.value)
   end
 
   it 'updates the account settings' do
-    fill_in 'Company Name', with: 'New Company Name'
+    fill_in 'Company name', with: 'New Company Name'
     fill_in 'App URL', with: 'https://example.com'
-    select '(GMT+01:00) Berlin', from: 'Timezone'
+    select '(GMT+01:00) Berlin', from: 'Time zone'
     select 'Spanish (Spain)', from: 'Time format'
 
     click_button 'Update'

@@ -26,7 +26,7 @@
             href="https://www.docuseal.co/pricing"
             target="_blank"
             class="link"
-          >Available in Pro</a>
+          >{{ t('available_in_pro') }}</a>
         </div>
         <div class="flex-inline mb-2 gap-2 space-y-1">
           <button
@@ -201,7 +201,7 @@ export default {
       const normalizedFormula = this.normalizeFormula(this.formula)
 
       if (normalizedFormula.includes('FIELD NOT FOUND')) {
-        alert('Some fields are missing in the formula.')
+        alert(this.t('some_fields_are_missing_in_the_formula'))
       } else {
         this.field.preferences.formula = normalizedFormula
 

@@ -119,7 +119,7 @@
             <div class="flex items-center pl-1">
               <span
                 class="tooltip tooltip-top"
-                data-tip="Remove"
+                data-tip="<%= t('remove') %>"
               >
                 <button
                   :disabled="mappings.filter((m) => m.submitter_uuid === submitter.uuid).length < 2"

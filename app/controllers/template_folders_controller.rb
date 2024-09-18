@@ -15,9 +15,9 @@ class TemplateFoldersController < ApplicationController
   def update
     if @template_folder != current_account.default_template_folder &&
        @template_folder.update(template_folder_params)
-      redirect_to folder_path(@template_folder), notice: 'Folder name has been updated'
+      redirect_to folder_path(@template_folder), notice: I18n.t('folder_name_has_been_updated')
     else
-      redirect_to folder_path(@template_folder), alert: 'Unable to rename folder'
+      redirect_to folder_path(@template_folder), alert: I18n.t('unable_to_rename_folder')
     end
   end
 

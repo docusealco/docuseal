@@ -24,7 +24,7 @@ class StartFormController < ApplicationController
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
-        @error_message = 'Not found'
+        @error_message = I18n.t('not_found')
 
         return render :show
       end

@@ -7,31 +7,31 @@
       <%= f.fields_for :value do |ff| %>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
-            <%= ff.label :host, class: 'label' %>
+            <%= ff.label :host, 'Host', class: 'label' %>
             <%= ff.text_field :host, value: value['host'], required: true, class: 'base-input' %>
           </div>
           <div class="form-control">
-            <%= ff.label :port, class: 'label' %>
+            <%= ff.label :port, 'Port', class: 'label' %>
             <%= ff.text_field :port, value: value['port'], required: true, class: 'base-input' %>
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
-            <%= ff.label :username, class: 'label' %>
+            <%= ff.label :username, 'Username', class: 'label' %>
             <%= ff.text_field :username, value: value['username'], class: 'base-input' %>
           </div>
           <div class="form-control">
-            <%= ff.label :password, class: 'label' %>
+            <%= ff.label :password, 'Password', class: 'label' %>
             <%= ff.password_field :password, value: value['password'], class: 'base-input' %>
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
-            <%= ff.label :domain, 'Domain (optional)', class: 'label' %>
+            <%= ff.label :domain, "Domain (#{t('optional')})", class: 'label' %>
             <%= ff.text_field :domain, value: value['domain'], class: 'base-input' %>
           </div>
           <div class="form-control">
-            <%= ff.label :authentication, class: 'label' %>
+            <%= ff.label :authentication, 'Authentication', class: 'label' %>
             <%= ff.select :authentication, options_for_select([%w[Plain plain], %w[Login login], %w[CRAM-MD5 cram_md5]], value.fetch('authentication', 'plain')), { prompt: true }, required: true, class: 'base-select' %>
           </div>
         </div>
@@ -47,12 +47,12 @@
           </div>
         </div>
         <div class="form-control">
-          <%= ff.label :from_email, 'Send from Email', class: 'label' %>
+          <%= ff.label :from_email, t('send_from_email'), class: 'label' %>
           <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>
         </div>
       <% end %>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

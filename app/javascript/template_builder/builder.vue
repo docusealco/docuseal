@@ -131,7 +131,7 @@
                     class="flex items-center justify-center space-x-2"
                   >
                     <IconEye class="w-6 h-6 flex-shrink-0" />
-                    <span class="whitespace-nowrap">Save and Preview</span>
+                    <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
                   </a>
                 </li>
                 <li>
@@ -142,7 +142,7 @@
                     @click="closeDropdown"
                   >
                     <IconAdjustments class="w-6 h-6 flex-shrink-0" />
-                    <span class="whitespace-nowrap">Preferences</span>
+                    <span class="whitespace-nowrap">{{ t('preferences') }}</span>
                   </a>
                 </li>
               </ul>

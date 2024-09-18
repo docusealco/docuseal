@@ -1,7 +1,9 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Storage</h1>
+    <h1 class="text-4xl font-bold mb-4">
+      <%= t('storage') %>
+    </h1>
     <% value = @encrypted_config.value || { 'service' => 'disk' } %>
     <% configs = value['configs'] || {} %>
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
@@ -29,7 +31,7 @@
         <%= render 'azure_form', f:, configs:, value: %>
       </disable-hidden>
       <div class="form-control">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

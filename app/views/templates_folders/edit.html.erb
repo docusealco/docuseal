@@ -1,12 +1,12 @@
-<%= render 'shared/turbo_modal', title: 'Move Into Folder' do %>
+<%= render 'shared/turbo_modal', title: t('move_into_folder') do %>
   <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
     <div class="form-control my-6">
       <folder-autocomplete class="block" data-submit-on-select="true">
-        <%= f.text_field :name, required: true, placeholder: 'New Folder Name...', class: 'base-input w-full', autofocus: true %>
+        <%= f.text_field :name, required: true, placeholder: "#{t('new_folder_name')}...", class: 'base-input w-full', autofocus: true %>
       </folder-autocomplete>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Move', disabled_with: 'Moving'), class: 'base-button' %>
+      <%= f.button button_title(title: t('move'), disabled_with: t('moving')), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>

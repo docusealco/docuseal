@@ -1,15 +1,17 @@
 <div class="max-w-lg mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center mt-8">Forgot your password?</h1>
+  <h1 class="text-4xl font-bold text-center mt-8">
+    <%= t('forgot_your_password_') %>
+  </h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
       <div class="form-control">
-        <%= f.label :email, class: 'label' %>
+        <%= f.label :email, t(:email), class: 'label' %>
         <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Reset password', disabled_with: 'Resetting password'), class: 'base-button' %>
+      <%= f.button button_title(title: t('reset_password'), disabled_with: t('resetting_password')), class: 'base-button' %>
     </div>
   <% end %>
 </div>

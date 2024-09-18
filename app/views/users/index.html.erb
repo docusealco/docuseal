@@ -2,7 +2,9 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="flex justify-between mb-4">
-      <h1 class="text-4xl font-bold"><%= params[:status].to_s.titleize %> Users</h1>
+      <h1 class="text-4xl font-bold">
+        <%= t('status_users', status: params[:status].to_s.titleize) %>
+      </h1>
       <div class="flex items-center space-x-4">
         <% if can?(:create, User.new(account: current_account)) %>
           <%= render 'users/extra_buttons' %>
@@ -11,7 +13,7 @@
           <% else %>
             <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2', data: { turbo_frame: 'modal' } do %>
               <%= svg_icon('plus', class: 'w-6 h-6') %>
-              <span>New User</span>
+              <span><%= t('new_user') %></span>
             <% end %>
           <% end %>
         <% end %>
@@ -22,16 +24,16 @@
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
             <th>
-              Name
+              <%= t('name') %>
             </th>
             <th>
-              Email
+              <%= t('email') %>
             </th>
             <th>
-              Role
+              <%= t('role') %>
             </th>
             <th>
-              Last session
+              <%= t('last_session') %>
             </th>
             <th class="text-right" width="1px">
             </th>
@@ -56,18 +58,18 @@
               </td>
               <td class="flex items-center space-x-2 justify-end">
                 <% if can?(:update, user) && user.archived_at.blank? %>
-                  <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: 'Edit', data: { turbo_frame: 'modal' } do %>
-                    Edit
+                  <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
+                    <%= t('edit') %>
                   <% end %>
                 <% end %>
                 <% if params[:status].blank? && can?(:destroy, user) && user != current_user %>
-                  <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: 'Delete', data: { turbo_confirm: 'Are you sure?' } do %>
-                    Remove
+                  <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('remove'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                    <%= t('remove') %>
                   <% end %>
                 <% end %>
                 <% if params[:status].present? && can?(:manage, user) && user != current_user %>
-                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: 'Unarchive', data: { turbo_confirm: 'Are you sure?' } do %>
-                    Unarchive
+                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: t('unarchive'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                    <%= t('unarchive') %>
                   <% end %>
                 <% end %>
               </td>
@@ -80,9 +82,9 @@
       <% if current_account.users.archived.exists? %>
         <div>
           <% if params[:status] == 'archived' %>
-            <a href="<%= settings_users_path %>" class="link text-sm">View Active</a>
+            <a href="<%= settings_users_path %>" class="link text-sm"><%= t('view_active') %></a>
           <% else %>
-            <a href="<%= settings_archived_users_path %>" class="link text-sm">View Archived</a>
+            <a href="<%= settings_archived_users_path %>" class="link text-sm"><%= t('view_archived') %></a>
           <% end %>
         </div>
       <% end %>

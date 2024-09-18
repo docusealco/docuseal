@@ -19,7 +19,7 @@ class SubmissionsPreviewController < ApplicationController
     @submission ||= Submission.find_by!(slug: params[:slug])
 
     if !@submission.submitters.all?(&:completed_at?) && current_user.blank?
-      raise ActionController::RoutingError, 'Not Found'
+      raise ActionController::RoutingError, I18n.t('not_found')
     end
 
     if !submission_valid_ttl?(@submission) && !signature_valid

@@ -12,7 +12,7 @@
         <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
       <% end %>
       <span class="join-item btn uppercase min-h-full h-10">
-        Page <%= @pagy.page %>
+        <%= t('page_number', number: @pagy.page) %>
       </span>
       <% if @pagy.next %>
         <%== link.call(@pagy.next, '»', classes: 'join-item btn min-h-full h-10') %>

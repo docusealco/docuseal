@@ -2,12 +2,16 @@
   <div class="">
     <input id="api_key" type="text" value="<%= start_form_url(slug: template.slug) %>" class="input font-mono input-bordered w-full bg-white" autocomplete="off" readonly>
     <div class="mt-4">
-      <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: template.slug), class: 'base-button w-full block', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+      <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: template.slug), class: 'base-button w-full block', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
     </div>
   </div>
-  <div class="divider uppercase  normal-case mt-5 mb-6 text-neutral-700">Or embed on your website</div>
+  <div class="divider uppercase  normal-case mt-5 mb-6 text-neutral-700">
+    <%= t('or_embed_on_your_website') %>
+  </div>
   <%= render 'templates/embedding', template: %>
   <div class="mt-4">
-    <a href="#" class="link text-center block" data-action="click:turbo-modal#close">Close</a>
+    <a href="#" class="link text-center block" data-action="click:turbo-modal#close">
+      <%= t('close') %>
+    </a>
   </div>
 </div>

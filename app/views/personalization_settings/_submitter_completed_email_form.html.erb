@@ -1,8 +1,8 @@
 <div class="collapse collapse-plus bg-base-200 overflow-visible">
   <input type="checkbox">
-  <div class="collapse-title text-xl font-medium">
+  <div class="collapse-title text-xl font-medium capitalize">
     <div>
-      Completed Notification Email
+      <%= t('copleted_notification_email') %>
     </div>
   </div>
   <div class="collapse-content">
@@ -11,8 +11,8 @@
       <%= f.fields_for :value, Struct.new(:subject, :body, :attach_audit_log, :attach_documents).new(*f.object.value.values_at('subject', 'body', 'attach_audit_log', 'attach_documents')) do |ff| %>
         <div class="form-control">
           <div class="flex items-center">
-            <%= ff.label :subject, class: 'label' %>
-            <span class="tooltip" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY, 'subject').scan(/{{.*?}}/).join(', ') %>">
+            <%= ff.label :subject, t('subject'), class: 'label' %>
+            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY, 'subject').scan(/{{.*?}}/).join(', ') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>
@@ -20,8 +20,8 @@
         </div>
         <div class="form-control">
           <div class="flex items-center">
-            <%= ff.label :body, class: 'label' %>
-            <span class="tooltip" data-tip="Use following placeholders text: <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+            <%= ff.label :body, t('body'), class: 'label' %>
+            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>
@@ -31,19 +31,19 @@
         </div>
         <div class="flex items-center justify-between pt-2.5 mx-1">
           <span>
-            Attach documents
+            <%= t('attach_documents') %>
           </span>
           <%= ff.check_box :attach_documents, { checked: ff.object.attach_documents != false, class: 'toggle' }, 'true', 'false' %>
         </div>
         <div class="flex items-center justify-between pb-2.5 mx-1">
           <span>
-            Attach audit log PDF
+            <%= t('attach_audit_log_pdf') %>
           </span>
           <%= ff.check_box :attach_audit_log, { checked: ff.object.attach_audit_log != false, class: 'toggle' }, 'true', 'false' %>
         </div>
       <% end %>
       <div class="form-control pt-2">
-        <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
   </div>

@@ -1,10 +1,9 @@
 <div class="mx-auto mt-1.5">
   <div class="py-3 rounded-2xl flex items-center justify-between mx-4 md:mx-0">
     <div class="w-full text-center">
-      <span class="font-bold">Demo Environment</span>
+      <span class="font-bold"><%= t('demo_environment') %></span>
       <br>
-      <a href="<%= new_template_path %>" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or
-      <a href="<%= start_form_url(slug: ::Template.first&.slug) %>" target="_blank" class="inline underline font-medium">submit the existing one</a> 😊
+      <%= t('create_a_new_template_document_form_or_submit_the_existing_one_html', new_template_link: new_template_path, start_form_link: start_form_url(slug: ::Template.first&.slug)) %> 😊
     </div>
   </div>
 </div>

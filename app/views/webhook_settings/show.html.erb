@@ -11,9 +11,9 @@
           <%= f.label :value, 'Webhook URL', class: 'text-sm font-semibold' %>
           <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-2 mt-2">
             <%= f.url_field :value, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
-            <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button w-full md:w-32' %>
+            <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button w-full md:w-32' %>
             <a href="<%= webhook_secret_index_path %>" data-turbo-frame="modal" class="white-button w-full md:w-auto">
-              Add Secret
+              <%= t('add_secret') %>
             </a>
           </div>
         <% end %>
@@ -45,17 +45,17 @@
           <div class="p-4 text-xl font-medium">
             <div class="flex items-center justify-between">
               <span>
-                Submission example payload
+                <%= t('submission_example_payload') %>
               </span>
               <% if @encrypted_config.value.present? %>
-                <%= button_to button_title(title: 'Test Webhook', disabled_with: 'Sending', icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), settings_webhooks_path, class: 'btn btn-neutral btn-outline btn-sm', method: :put %>
+                <%= button_to button_title(title: 'Test Webhook', disabled_with: t('sending'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), settings_webhooks_path, class: 'btn btn-neutral btn-outline btn-sm', method: :put %>
               <% end %>
             </div>
           </div>
           <div class="collapse-content" style="display: inherit">
             <div class="mockup-code overflow-hidden relative">
               <span class="top-0 right-0 absolute">
-                <%= render 'shared/clipboard_copy', icon: 'copy', text: code = JSON.pretty_generate({ event_type: 'form.completed', timestamp: Time.current.iso8601, data: Submitters::SerializeForWebhook.call(submitter) }).gsub(/^/, '  ').sub(/^\s+/, ''), class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: 'Copy', copied_title: 'Copied' %>
+                <%= render 'shared/clipboard_copy', icon: 'copy', text: code = JSON.pretty_generate({ event_type: 'form.completed', timestamp: Time.current.iso8601, data: Submitters::SerializeForWebhook.call(submitter) }).gsub(/^/, '  ').sub(/^\s+/, ''), class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
               </span>
               <pre><code class="overflow-hidden w-full"><%= code %></code></pre>
             </div>

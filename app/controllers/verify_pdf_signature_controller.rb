@@ -14,6 +14,6 @@ class VerifyPdfSignatureController < ApplicationController
     render turbo_stream: turbo_stream.replace('result', partial: 'result',
                                                         locals: { pdfs:, files: params[:files], trusted_certs: })
   rescue HexaPDF::MalformedPDFError
-    render turbo_stream: turbo_stream.replace('result', html: helpers.tag.div('Invalid PDF', id: 'result'))
+    render turbo_stream: turbo_stream.replace('result', html: helpers.tag.div(I18n.t('invalid_pdf'), id: 'result'))
   end
 end

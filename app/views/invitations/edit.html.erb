@@ -1,28 +1,28 @@
 <div class="max-w-xl mx-auto px-2">
   <h1 class="flex text-4xl font-bold items-center justify-center my-8 space-x-2">
     <%= svg_icon('waving_hand', class: 'h-10 w-10') %>
-    <span>Welcome to <%= Docuseal.product_name %></span>
+    <span><%= t('welcome_to_product_name', product_name: Docuseal.product_name) %></span>
   </h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
       <%= f.hidden_field :reset_password_token %>
       <div class="form-control">
-        <%= f.label :password, 'Set password', class: 'label' %>
+        <%= f.label :password, t('set_password'), class: 'label' %>
         <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'base-input' %>
         <% if @minimum_password_length %>
           <label class="label">
-            <span class="label-text">(<%= @minimum_password_length %> characters minimum)</span>
+            <span class="label-text">(<%= t('minimum_password_length_characters_minimum', minimum_password_length: @minimum_password_length) %>)</span>
           </label>
         <% end %>
       </div>
       <div class="form-control">
-        <%= f.label :password_confirmation, 'Confirm new password', class: 'label' %>
+        <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
         <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'base-input' %>
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Save password and Sign in', disabled_with: 'Saving'), class: 'base-button' %>
+      <%= f.button button_title(title: t('save_password_and_sign_in'), disabled_with: t('saving')), class: 'base-button' %>
     </div>
   <% end %>
 </div>

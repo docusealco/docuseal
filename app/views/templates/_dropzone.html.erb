@@ -10,16 +10,16 @@
               <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
             </span>
             <div class="font-medium mb-1">
-              Upload New Document
+              <%= t('upload_new_document') %>
             </div>
             <div class="text-xs">
-              <span class="font-medium">Click to upload</span> or drag and drop
+              <%= t('click_to_upload_or_drag_and_drop_html') %>
             </div>
           </span>
           <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
             <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
             <div class="font-medium mb-1">
-              Uploading...
+              <%= t('uploading') %>...
             </div>
           </span>
         </div>

@@ -1,5 +1,7 @@
 <div class="max-w-lg mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center mt-8">Sign In</h1>
+  <h1 class="text-4xl font-bold text-center mt-8">
+    <%= t('sign_in') %>
+  </h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <%= f.hidden_field :email %>
     <%= f.hidden_field :password %>
@@ -8,12 +10,12 @@
     <% end %>
     <div class="space-y-2">
       <div class="form-control">
-        <%= f.label :otp_attempt, 'Two-Factor Code from Authenticator App', class: 'label' %>
+        <%= f.label :otp_attempt, t('two_factor_code_from_authenticator_app'), class: 'label' %>
         <%= f.text_field :otp_attempt, autofocus: true, placeholder: 'XXX-XXX', required: true, class: 'base-input' %>
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Sign In', disabled_with: 'Signing In'), class: 'base-button' %>
+      <%= f.button button_title(title: t('sign_in'), disabled_with: t('signing_in')), class: 'base-button' %>
     </div>
   <% end %>
 </div>

@@ -13,9 +13,9 @@ class NotificationsSettingsController < ApplicationController
 
   def create
     if @account_config.value.present? ? @account_config.save : @account_config.delete
-      redirect_back fallback_location: settings_notifications_path, notice: 'Changes have been saved'
+      redirect_back fallback_location: settings_notifications_path, notice: I18n.t('changes_have_been_saved')
     else
-      redirect_back fallback_location: settings_notifications_path, alert: 'Unable to save'
+      redirect_back fallback_location: settings_notifications_path, alert: I18n.t('unable_to_save')
     end
   end
 

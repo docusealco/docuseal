@@ -19,7 +19,7 @@
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
           <%= render 'shared/navbar_buttons' %>
-          <%= link_to 'Settings', settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
+          <%= link_to t('settings'), settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg' %>
         </div>
       <% end %>
       <div class="dropdown dropdown-end">
@@ -30,14 +30,14 @@
           <li>
             <%= link_to settings_profile_index_path, class: 'flex items-center' do %>
               <%= svg_icon('adjustments', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-              <span class="mr-1">Profile</span>
+              <span class="mr-1"><%= t('profile') %></span>
             <% end %>
           </li>
           <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
             <li>
               <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
                 <%= svg_icon('terminal', class: 'w-5 h-5 stroke-2') %>
-                Console
+                <%= t('console') %>
               <% end %>
             </li>
           <% end %>
@@ -45,14 +45,14 @@
             <li>
               <%= link_to settings_esign_path, class: 'flex items-center' do %>
                 <%= svg_icon('zoom_check', class: 'w-5 h-5 stroke-2') %>
-                <span class="mr-1">Verify PDF</span>
+                <span class="mr-1"><%= t('verify_pdf') %></span>
               <% end %>
             </li>
           <% end %>
           <li>
             <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>
               <%= svg_icon('logout', class: 'w-5 h-5 stroke-2 mr-2 inline') %>
-              <span class="mr-1">Sign out</span>
+              <span class="mr-1"><%= t('sign_out') %></span>
             <% end %>
           </li>
         </ul>
@@ -71,7 +71,7 @@
       <% if Docuseal.multitenant? && !request.path.in?([registration_path, new_registration_path]) %>
         <%= link_to registration_path({ lang: params[:lang] }.compact_blank), class: 'btn btn-neutral btn-sm btn-outline' do %>
           <span class="flex items-center justify-center space-x-1">
-            <span class="hidden sm:block"><%= t('create_free_account') %></span>
+            <span class="hidden sm:block capitalize"><%= t('create_free_account') %></span>
             <span class="md:hidden"><%= t('sign_up') %></span>
           </span>
         <% end %>
