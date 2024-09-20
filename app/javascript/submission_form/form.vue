@@ -38,7 +38,7 @@
     <template v-else-if="alwaysMinimize">
       {{ t('next') }}
     </template>
-    <template v-else-if="isFormStarted">
+    <template v-else-if="isShowContinue">
       {{ t('continue') }}
     </template>
     <template v-else>
@@ -62,7 +62,7 @@
       id="minimize_form_button"
       class="absolute right-0 mr-2 mt-2 top-0 hidden md:block"
       :title="t('minimize')"
-      @click.prevent="isFormVisible = false"
+      @click.prevent="minimizeForm"
     >
       <IconArrowsDiagonalMinimize2
         :width="20"
@@ -352,7 +352,7 @@
             @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
-            @minimize="isFormVisible = false"
+            @minimize="minimizeForm"
           />
           <InitialsStep
             v-else-if="currentField.type === 'initials'"
@@ -368,7 +368,7 @@
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @focus="scrollIntoField(currentField)"
-            @minimize="isFormVisible = false"
+            @minimize="minimizeForm"
           />
           <AttachmentStep
             v-else-if="currentField.type === 'file'"
@@ -764,6 +764,7 @@ export default {
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
+      isShowContinue: false,
       enableScrollIntoField: true,
       phoneVerifiedValues: {},
       orientation: screen?.orientation?.type,
@@ -785,9 +786,6 @@ export default {
     },
     alwaysMinimize () {
       return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)
-    },
-    isFormStarted () {
-      return Object.keys(this.values).length > 0
     },
     hasMultipleDocuments () {
       return Object.keys(
@@ -925,11 +923,11 @@ export default {
     }
 
     if (document.body?.clientWidth >= 768 && this.expand !== true && ['signature', 'initials', 'file', 'image'].includes(this.currentField?.type)) {
-      this.isFormVisible = false
+      this.minimizeForm()
     }
 
     if (this.alwaysMinimize) {
-      this.isFormVisible = false
+      this.minimizeForm()
     }
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -1187,7 +1185,7 @@ export default {
 
           if (nextStep) {
             if (this.alwaysMinimize) {
-              this.isFormVisible = false
+              this.minimizeForm()
             }
 
             this.goToStep(this.stepFields.indexOf(nextStep), this.autoscrollFields)
@@ -1214,6 +1212,10 @@ export default {
       }).finally(() => {
         this.isSubmitting = false
       })
+    },
+    minimizeForm () {
+      this.isFormVisible = false
+      this.isShowContinue = true
     },
     async performComplete (resp) {
       this.isCompleted = true
