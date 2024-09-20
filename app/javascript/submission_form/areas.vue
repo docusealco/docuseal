@@ -132,9 +132,17 @@ export default {
           this.scrollInContainer(areaRef.$el)
         } else {
           const targetRect = areaRef.$refs.scrollToElem.getBoundingClientRect()
-          const root = this.$root.$el?.parentNode?.classList?.contains('ds') ? this.$root.$el : document.body
-          const rootRect = root.getBoundingClientRect()
           const scrollEl = this.scrollEl || window
+
+          let rootRect = {}
+
+          if (this.scrollEl === document.documentElement) {
+            rootRect = this.scrollEl.getBoundingClientRect()
+          } else {
+            const root = this.$root.$el?.parentNode?.classList?.contains('ds') ? this.$root.$el : document.body
+
+            rootRect = root.getBoundingClientRect()
+          }
 
           scrollEl.scrollTo({ top: targetRect.top - rootRect.top, behavior: 'smooth' })
         }
