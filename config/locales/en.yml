@@ -26,14 +26,14 @@ en: &en
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Please check the copy of your "%{name}" in the email attachments.'
   review_and_sign: Review and Sign
   review_and_submit: Review and Submit
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Please contact us by replying to this email if you didn't request this."
+  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Please contact us by replying to this email if you have any questions."
   submitter_invitation_sms_body_sign: '{account.name} has invited you to sign a document: {submitter.link}'
   verification_code_sms_body: 'Verification code: {code}'
   you_are_invited_to_submit_a_form: 'You are invited to submit a form'
   you_are_invited_to_sign_a_document: 'You are invited to sign a document'
   you_are_invited_to_sign_documents: 'You are invited to sign documents'
   your_document_copy: 'Your document copy'
-  name_has_been_completed_by_submitters: '%{name} has been completed by %{submitters}.'
+  name_has_been_completed_by_submitters: '"%{name}" has been completed by %{submitters}.'
   template_name_has_been_completed_by_submitters: '{template.name} has been completed by {submission.submitters}'
   submitter_invitation_email_sign_body: |
     Hi there,
@@ -42,7 +42,7 @@ en: &en
 
     [Review and Sign]({submitter.link})
 
-    Please contact us by replying to this email if you didn't request this.
+    Please contact us by replying to this email if you have any questions.
 
     Thanks,
     {account.name}
