@@ -1,13 +1,13 @@
 <% if @body.present? %>
   <%= render 'custom_content', content: @body, submitter: @submitter, sig: @sig %>
 <% else %>
-  <p>Hi there,</p>
-  <p>Please check the copy of your "<%= @submitter.submission.template.name %>" submission in the email attachments.</p>
-  <p>Alternatively, you can review and download your copy using:</p>
+  <p><%= t('hi_there') %>,</p>
+  <p><%= t('please_check_the_copy_of_your_name_in_the_email_attachments', name: @submitter.submission.template.name) %>
+  <p><%= t('alternatively_you_can_review_and_download_your_copy_using_the_link_below') %></p>
   <p>
     <%= link_to @submitter.template.name, submissions_preview_url(@submitter.submission.slug, { sig: @sig }.compact) %>
   </p>
   <p>
-    Thanks,<br><%= @current_account.name %>
+  <%= t('thanks') %>,<br><%= @current_account.name %>
   </p>
 <% end %>

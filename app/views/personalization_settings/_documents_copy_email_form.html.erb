@@ -16,7 +16,7 @@
         <div class="form-control">
           <div class="flex items-center">
             <%= ff.label :body, t('body'), class: 'label' %>
-            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>

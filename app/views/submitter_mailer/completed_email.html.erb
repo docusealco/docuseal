@@ -1,7 +1,7 @@
 <% if @body.present? %>
   <%= render 'custom_content', content: @body, submitter: @submitter %>
 <% else %>
-  <p>Hi there,</p>
-  <p>"<%= @submitter.submission.template.name %>" form has been completed by <%= @submitter.submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.join(', ') %>.</p>
-  <p><%= link_to 'View Submission', submission_url(@submitter.submission) %></p>
+  <p><%= t('hi_there') %>,</p>
+  <p><%= I18n.t(:name_has_been_completed_by_submitters, name: @submitter.submission.template.name, submitters: @submitter.submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.join(', ')) %></p>
+  <p><%= link_to submission_url(@submitter.submission), submission_url(@submitter.submission) %></p>
 <% end %>

@@ -90,7 +90,7 @@
               <div class="form-control">
                 <div class="flex items-center">
                   <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
                     <%= svg_icon('info_circle', class: 'w-4 h-4') %>
                   </span>
                 </div>
@@ -125,7 +125,7 @@
               <div class="form-control">
                 <div class="flex items-center">
                   <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
                     <%= svg_icon('info_circle', class: 'w-4 h-4') %>
                   </span>
                 </div>
@@ -172,7 +172,7 @@
               <div class="form-control">
                 <div class="flex items-center">
                   <%= ff.label :completed_notification_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES.dig(AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY, 'body').scan(/{{.*?}}/).join(', ') %>">
+                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
                     <%= svg_icon('info_circle', class: 'w-4 h-4') %>
                   </span>
                 </div>

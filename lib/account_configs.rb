@@ -18,7 +18,7 @@ module AccountConfigs
 
   def find_or_initialize_for_key(account, key)
     find_for_account(account, key) ||
-      account.account_configs.new(key:, value: AccountConfig::DEFAULT_VALUES[key])
+      account.account_configs.new(key:, value: AccountConfig::DEFAULT_VALUES[key]&.call)
   end
 
   def find_for_account(account, key)

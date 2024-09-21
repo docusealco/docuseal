@@ -18,6 +18,50 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  hi_there: Hi there
+  thanks: Thanks
+  you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
+  you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
+  alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatively, you can review and download your copy using the link below:"
+  please_check_the_copy_of_your_name_in_the_email_attachments: 'Please check the copy of your "%{name}" in the email attachments.'
+  review_and_sign: Review and Sign
+  review_and_submit: Review and Submit
+  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Please contact us by replying to this email if you didn't request this."
+  submitter_invitation_sms_body_sign: '{account.name} has invited you to sign a document: {submitter.link}'
+  verification_code_sms_body: 'Verification code: {code}'
+  you_are_invited_to_submit_a_form: 'You are invited to submit a form'
+  you_are_invited_to_sign_a_document: 'You are invited to sign a document'
+  you_are_invited_to_sign_documents: 'You are invited to sign documents'
+  your_document_copy: 'Your document copy'
+  name_has_been_completed_by_submitters: '%{name} has been completed by %{submitters}.'
+  template_name_has_been_completed_by_submitters: '{template.name} has been completed by {submission.submitters}'
+  submitter_invitation_email_sign_body: |
+    Hi there,
+
+    You have been invited to sign the "{template.name}".
+
+    [Review and Sign]({submitter.link})
+
+    Please contact us by replying to this email if you didn't request this.
+
+    Thanks,
+    {account.name}
+  submitter_completed_email_body: |
+    Hi,
+
+    "{template.name}" has been completed by {submission.submitters}
+
+    {submission.link}
+  submitter_documents_copy_email_body: |
+    Hi there,
+
+    Please check the copy of your "{template.name}" in the email attachments.
+    Alternatively, you can review and download your copy using the link below:
+
+    [{template.name}]({documents.link})
+
+    Thanks,
+    {account.name}
   view: View
   hi_there: Hi there
   email: Email
@@ -323,7 +367,7 @@ en: &en
   draw_signature: Draw Signature
   clear: Clear
   signature_uploaded: Signature Uploaded
-  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_:
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Return back to your desktop device to complete the form or <a class="link" href="%{link}">continue on mobile</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?
   rename_folder: Rename Folder

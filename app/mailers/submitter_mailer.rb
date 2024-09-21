@@ -4,8 +4,6 @@ class SubmitterMailer < ApplicationMailer
   MAX_ATTACHMENTS_SIZE = 10.megabytes
   SIGN_TTL = 1.hour + 20.minutes
 
-  DEFAULT_INVITATION_SUBJECT = 'You are invited to submit a form'
-
   NO_REPLY_REGEXP = /no-?reply@/i
 
   def invitation_email(submitter)
@@ -21,16 +19,18 @@ class SubmitterMailer < ApplicationMailer
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
-    subject =
-      if @email_config || @subject
-        ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
-      else
-        DEFAULT_INVITATION_SUBJECT
-      end
-
     assign_message_metadata('submitter_invitation', @submitter)
 
     reply_to = build_submitter_reply_to(@submitter)
+
+    subject =
+      if @email_config || @subject
+        ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
+      elsif @submitter.with_signature_fields?
+        I18n.t(:you_are_invited_to_sign_a_document)
+      else
+        I18n.t(:you_are_invited_to_submit_a_form)
+      end
 
     mail(
       to: @submitter.friendly_name,
@@ -64,14 +64,11 @@ class SubmitterMailer < ApplicationMailer
     @body = @submitter.template.preferences['completed_notification_email_body'].presence
     @body ||= @email_config.value['body'] if @email_config
 
-    subject =
-      if @subject.present?
-        ReplaceEmailVariables.call(@subject, submitter:)
-      else
-        build_completed_subject(submitter)
-      end
-
     assign_message_metadata('submitter_completed', @submitter)
+
+    subject =
+      ReplaceEmailVariables.call(@subject.presence || I18n.t(:template_name_has_been_completed_by_submitters),
+                                 submitter:)
 
     mail(from: from_address_for_submitter(submitter),
          to: to || (user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name),
@@ -116,16 +113,15 @@ class SubmitterMailer < ApplicationMailer
     @body = @submitter.template.preferences['documents_copy_email_body'].presence
     @body ||= @email_config.value['body'] if @email_config
 
+    assign_message_metadata('submitter_documents_copy', @submitter)
+    reply_to = build_submitter_reply_to(submitter)
+
     subject =
       if @subject.present?
         ReplaceEmailVariables.call(@subject, submitter:)
       else
-        'Your document copy'
+        I18n.t(:your_document_copy)
       end
-
-    assign_message_metadata('submitter_documents_copy', @submitter)
-
-    reply_to = build_submitter_reply_to(submitter)
 
     mail(from: from_address_for_submitter(submitter),
          to: to || @submitter.friendly_name,
@@ -143,12 +139,6 @@ class SubmitterMailer < ApplicationMailer
     return nil if reply_to.to_s.match?(NO_REPLY_REGEXP)
 
     reply_to
-  end
-
-  def build_completed_subject(submitter)
-    submitters = submitter.submission.submitters.order(:completed_at)
-                          .map { |e| e.name || e.email || e.phone }.join(', ')
-    %(#{submitter.submission.template.name} has been completed by #{submitters})
   end
 
   def add_completed_email_attachments!(submitter, with_audit_log: true, with_documents: true)
