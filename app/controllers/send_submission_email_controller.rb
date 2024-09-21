@@ -7,6 +7,8 @@ class SendSubmissionEmailController < ApplicationController
   skip_before_action :verify_authenticity_token
   skip_authorization_check
 
+  SEND_DURATION = 30.minutes
+
   def success; end
 
   def create
@@ -23,7 +25,10 @@ class SendSubmissionEmailController < ApplicationController
 
     RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 
-    SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later!
+    unless EmailEvent.exists?(tag: :submitter_documents_copy, email: @submitter.email, emailable: @submitter,
+                              event_type: :send, created_at: SEND_DURATION.ago..Time.current)
+      SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later!
+    end
 
     respond_to do |f|
       f.html { redirect_to success_send_submission_email_index_path }
