@@ -32,7 +32,7 @@ RSpec.describe 'Submit Form' do
       fill_in 'signature_text_input', with: 'Adam'
 
       expect do
-        click_on 'submit'
+        click_on 'Sign and Complete'
       end.not_to(change(Submitter, :count))
 
       submitter = Submitter.find_by(email: 'john.dou@example.com')
@@ -61,7 +61,7 @@ RSpec.describe 'Submit Form' do
       click_on 'next'
       click_on 'type_text_button'
       fill_in 'signature_text_input', with: 'Sally'
-      click_on 'submit'
+      click_on 'Sign and Complete'
 
       submitter.reload
 
@@ -80,7 +80,7 @@ RSpec.describe 'Submit Form' do
       fill_in 'signature_text_input', with: 'Adam'
 
       expect do
-        click_on 'submit'
+        click_on 'Sign and Complete'
       end.to change(enqueued_jobs, :size).by(1)
     end
   end

@@ -204,7 +204,7 @@
                 <span
                   @click="scrollIntoField(currentField)"
                 >
-                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ submitButtonText }}</span>.
                 </span>
               </div>
               <div
@@ -268,7 +268,7 @@
               >
                 <template v-if="isAnonymousChecboxes || !showFieldNames">
                   <span class="text-xl">
-                    {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                    {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ submitButtonText }}</span>.
                   </span>
                   <input
                     v-for="field in currentStepFields"
@@ -343,7 +343,7 @@
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
             :require-signing-reason="requireSigningReason"
-            :button-text="buttonText"
+            :button-text="submitButtonText"
             :dry-run="dryRun"
             :with-disclosure="withDisclosure"
             :with-qr-button="withQrButton"
@@ -424,7 +424,7 @@
                 class="mr-1 animate-spin"
               />
               <span>
-                {{ buttonText }}
+                {{ submitButtonText }}
               </span><span
                 v-if="isSubmitting"
                 class="w-6 flex justify-start mr-1"
@@ -777,9 +777,15 @@ export default {
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
     },
-    buttonText () {
-      if (this.alwaysMinimize || this.stepFields.length === this.currentStep + 1) {
+    submitButtonText () {
+      if (this.alwaysMinimize) {
         return this.t('submit')
+      } else if (this.stepFields.length === this.currentStep + 1) {
+        if (this.currentField.type === 'signature') {
+          return this.t('sign_and_complete')
+        } else {
+          return this.t('complete')
+        }
       } else {
         return this.t('next')
       }

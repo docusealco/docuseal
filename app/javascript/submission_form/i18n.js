@@ -1,4 +1,6 @@
 const en = {
+  complete: 'Complete',
+  sign_and_complete: 'Sign and Complete',
   text: 'Text',
   by_clicking_you_agree_to_the: 'By clicking "{button}", you agree to the',
   electronic_signature_disclosure: 'Electronic Signature Disclosure',
@@ -90,6 +92,8 @@ const en = {
 }
 
 const es = {
+  complete: 'Completar',
+  sign_and_complete: 'Firmar y Completar',
   invite: 'Invitar',
   email: 'Correo electrónico',
   approved: 'Aprobado',
@@ -180,6 +184,8 @@ const es = {
 }
 
 const it = {
+  complete: 'Completa',
+  sign_and_complete: 'Firma e Completa',
   invite: 'Invita',
   email: 'Email',
   approved: 'Approvato',
@@ -270,6 +276,8 @@ const it = {
 }
 
 const de = {
+  complete: 'Abschließen',
+  sign_and_complete: 'Signieren und Abschließen',
   invite: 'Einladen',
   email: 'E-Mail',
   approved: 'Genehmigt',
@@ -360,6 +368,8 @@ const de = {
 }
 
 const fr = {
+  complete: 'Terminer',
+  sign_and_complete: 'Signer et Terminer',
   invite: 'Inviter',
   email: 'Courriel',
   approved: 'Approuvé',
@@ -450,6 +460,8 @@ const fr = {
 }
 
 const pl = {
+  complete: 'Zakończ',
+  sign_and_complete: 'Podpisz i zakończ',
   invite: 'Zaproś',
   email: 'E-mail',
   approved: 'Zaakceptowany',
@@ -540,6 +552,8 @@ const pl = {
 }
 
 const uk = {
+  complete: 'Завершити',
+  sign_and_complete: 'Підписати і завершити',
   invite: 'Запросити',
   email: 'Електронна пошта',
   approved: 'Затверджено',
@@ -630,6 +644,8 @@ const uk = {
 }
 
 const cs = {
+  complete: 'Dokončit',
+  sign_and_complete: 'Podepsat a dokončit',
   invite: 'Pozvat',
   email: 'E-mail',
   approved: 'Schváleno',
@@ -720,6 +736,8 @@ const cs = {
 }
 
 const pt = {
+  complete: 'Completar',
+  sign_and_complete: 'Assinar e Completar',
   invite: 'Convidar',
   email: 'E-mail',
   approved: 'Aprovado',
@@ -810,6 +828,8 @@ const pt = {
 }
 
 const he = {
+  complete: 'השלם',
+  sign_and_complete: 'חתום והשלם',
   invite: 'הזמן',
   email: 'דוא"ל',
   approved: 'מאושר',
@@ -901,6 +921,8 @@ const he = {
 }
 
 const nl = {
+  complete: 'Voltooien',
+  sign_and_complete: 'Ondertekenen en voltooien',
   invite: 'Uitnodigen',
   email: 'E-mail',
   approved: 'Goedgekeurd',
@@ -992,6 +1014,8 @@ const nl = {
 }
 
 const ar = {
+  complete: 'اكتمال',
+  sign_and_complete: 'التوقيع والاكتمال',
   invite: 'دعوة',
   email: 'البريد الإلكتروني',
   approved: 'موافق عليه',
@@ -1082,6 +1106,8 @@ const ar = {
 }
 
 const ko = {
+  complete: '완료',
+  sign_and_complete: '서명하고 완료하기',
   invite: '초대하기',
   email: '이메일',
   approved: '승인됨',
