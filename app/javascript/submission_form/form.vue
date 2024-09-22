@@ -1226,7 +1226,7 @@ export default {
     async performComplete (resp) {
       this.isCompleted = true
 
-      if (resp) {
+      if (resp?.text) {
         const respData = await resp.text()
 
         if (respData) {
