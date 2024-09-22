@@ -29,12 +29,12 @@
         {{ optionValue(option) }}
       </template>
       <template v-else>
-        {{ field.name || fieldNames[field.type] }}
+        {{ field.title || field.name || fieldNames[field.type] }}
         <template v-if="field.type === 'checkbox' && !field.name">
           {{ fieldIndex + 1 }}
         </template>
         <template v-else-if="!field.required && field.type !== 'checkbox'">
-          (optional)
+          ({{ t('optional') }})
         </template>
       </template>
     </div>
