@@ -3,7 +3,7 @@
     <%= f.label :preserve_order, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :preserve_order, id: uuid, class: 'base-checkbox', checked: template.submissions.last&.submitters_order.in?(['preserved', nil]) %>
       <span class="label"><%= t('preserve_order') %></span>
-      <span class="tooltip" data-tip="<%= t('when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party') %>">
+      <span class="tooltip" data-tip="<%= t('when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away') %>">
         <%= svg_icon('info_circle', class: 'w-4 h-4') %>
       </span>
     <% end %>

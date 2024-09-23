@@ -326,6 +326,7 @@ en: &en
   bulk_send_from_excel_xlsx_or_csv: Bulk send from Excel XLSX or CSV
   add_new: Add New
   add_recipients: Add Recipients
+  add_new_recipients: Add New Recipients
   add_recipients_html: <span>Add <span class="hidden md:inline">Recipients</span></span>
   type_emails_here: Type emails here
   or_embed_on_your_website: Or embed on your website
@@ -339,7 +340,7 @@ en: &en
   re_send_sms: Re-send SMS
   send_sms: Send SMS
   preserve_order: Preserve order
-  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party: When checked, notifications will be sent to the second party once the form is completed by the previous party. Uncheck this option to send notifications to all parties simultaneously right away.
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: When checked, notifications will be sent to the second party once the form is completed by the previous party. Uncheck this option to send notifications to all parties simultaneously right away.
   upgrade_to_send_unlimited_signature_requests: Upgrade to send unlimited signature requests
   add_without_sending: Add without sending
   upgade_now: Upgrade Now
@@ -475,7 +476,7 @@ en: &en
   please_sign_in: Please sign in.
   not_found: Not found
   new_recipients_have_been_added: New recipients have been added
-  submission_has_been_deleted: Submission has been deleted
+  submission_has_been_removed: Submission has been removed
   submission_has_been_archived: Submission has been archived
   form_has_been_completed_already: Form has been completed already.
   form_has_been_archived: Form has been archived.
