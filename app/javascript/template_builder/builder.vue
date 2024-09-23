@@ -418,7 +418,7 @@ import MobileFields from './mobile_fields'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
-import { en as i18nEn } from './i18n'
+import * as i18n from './i18n'
 
 export default {
   name: 'TemplateBuilder',
@@ -679,6 +679,9 @@ export default {
   computed: {
     selectedAreaRef: () => ref(),
     fieldsDragFieldRef: () => ref(),
+    language () {
+      return this.locale.split('-')[0].toLowerCase()
+    },
     defaultDateFormat () {
       const isUsBrowser = Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US')
       const isUsTimezone = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/)
@@ -786,7 +789,7 @@ export default {
       document.activeElement.blur()
     },
     t (key) {
-      return this.i18n[key] || i18nEn[key] || key
+      return this.i18n[key] || i18n[this.language]?.[key] || i18n.en[key] || key
     },
     removePendingFields () {
       this.template.fields = this.template.fields.filter((f) => {
@@ -1451,7 +1454,7 @@ export default {
       if (!this.template.fields.length) {
         e.preventDefault()
 
-        alert('Please draw fields to prepare the document.')
+        alert(this.t('please_draw_fields_to_prepare_the_document'))
       } else {
         const submitterWithoutFields =
           this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
@@ -1459,7 +1462,7 @@ export default {
         if (submitterWithoutFields) {
           e.preventDefault()
 
-          alert(`Please add fields for the ${submitterWithoutFields.name}. Or, remove the ${submitterWithoutFields.name} if not needed.`)
+          alert(this.t('please_add_fields_for_the_submitter_name_or_remove_the_submitter_name_if_not_needed').replaceAll('{submitter_name}', submitterWithoutFields.name))
         }
       }
     },
@@ -1475,13 +1478,13 @@ export default {
       }
 
       if (!this.template.fields.length) {
-        alert('Please draw fields to prepare the document.')
+        alert(this.t('please_draw_fields_to_prepare_the_document'))
       } else {
         const submitterWithoutFields =
           this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
 
         if (submitterWithoutFields) {
-          alert(`Please add fields for the ${submitterWithoutFields.name}. Or, remove the ${submitterWithoutFields.name} if not needed.`)
+          alert(this.t('please_add_fields_for_the_submitter_name_or_remove_the_submitter_name_if_not_needed').replaceAll('{submitter_name}', submitterWithoutFields.name))
         } else {
           this.isSaving = true
 

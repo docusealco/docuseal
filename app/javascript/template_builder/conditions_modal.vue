@@ -200,7 +200,7 @@ export default {
     },
     validateSaveAndClose () {
       if (!this.withConditions) {
-        return alert('Available only in Pro')
+        return alert(this.t('available_only_in_pro'))
       }
 
       if (this.conditions.find((f) => f.field_uuid)) {

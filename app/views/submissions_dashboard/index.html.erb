@@ -1,11 +1,11 @@
 <% is_show_tabs = @pagy.count >= 5 || params[:status].present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<div class="flex justify-between mb-4 items-center">
-  <div class="flex items-center">
+<div class="flex justify-between items-center w-full mb-4">
+  <div class="flex items-center flex-grow min-w-0">
     <div class="mr-2">
       <%= render 'dashboard/toggle_view', selected: 'submissions' %>
     </div>
-    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+    <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
       <%= t('submissions') %>
     </h1>
   </div>

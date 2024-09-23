@@ -28,8 +28,8 @@
     <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <file-dropzone data-submit-on-upload="true" class="w-full">
         <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">
-          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
-            <div class="flex flex-col items-center">
+          <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2">
+            <div class="flex flex-col items-center text-center">
               <span data-target="file-dropzone.icon">
                 <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
               </span>

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   check_authorization unless: :devise_controller?
 
+  before_action :set_locale
   before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
@@ -50,6 +51,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale
+    I18n.locale =
+      if Rails.env.development? && params[:locale].present?
+        params[:locale]
+      elsif current_user && current_account.locale.present?
+        current_account.locale.to_sym
+      else
+        I18n.default_locale
+      end
+  end
 
   def with_browser_locale(&)
     locale   = params[:lang].presence

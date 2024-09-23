@@ -56,7 +56,7 @@ class EsignSettingsController < ApplicationController
 
     save_new_cert!(@encrypted_config, @cert_record)
 
-    redirect_to settings_esign_path, notice: I18n.t('certificate_has_been_successfully_added_')
+    redirect_to settings_esign_path, notice: I18n.t('certificate_has_been_successfully_added')
   rescue OpenSSL::PKCS12::PKCS12Error => e
     Rollbar.error(e) if defined?(Rollbar)
 

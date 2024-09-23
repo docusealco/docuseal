@@ -1,8 +1,8 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow">
-    <div class="flex justify-between">
-      <h1 class="text-4xl font-bold mb-4">Webhooks</h1>
+    <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-end mb-4">
+      <h1 class="text-4xl font-bold">Webhooks</h1>
       <%= render 'shared/test_mode_toggle' %>
     </div>
     <div class="card bg-base-200">
@@ -19,7 +19,7 @@
         <% end %>
         <% preference = current_account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)&.value || {} %>
         <% WebhookPreferencesController::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-y-2">
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-y-2">
             <% events.each do |event| %>
               <%= form_for '', url: webhook_preferences_path, method: :post do |f| %>
                 <%= f.hidden_field :event, value: event %>
@@ -43,7 +43,7 @@
       <div class="space-y-4 mt-4">
         <div class="collapse collapse-open bg-base-200 px-1">
           <div class="p-4 text-xl font-medium">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between gap-2">
               <span>
                 <%= t('submission_example_payload') %>
               </span>

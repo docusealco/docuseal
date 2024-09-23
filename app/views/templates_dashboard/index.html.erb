@@ -1,13 +1,15 @@
 <% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<div class="flex justify-between mb-4 items-center">
-  <div class="flex items-center">
+<div class="flex justify-between items-center w-full mb-4">
+  <div class="flex items-center flex-grow min-w-0">
     <% if has_archived || @pagy.count > 0 %>
       <div class="mr-2">
         <%= render 'dashboard/toggle_view', selected: 'templates' %>
       </div>
     <% end %>
-    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('document_templates_html') %></h1>
+    <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+      <%= t('document_templates_html') %>
+    </h1>
   </div>
   <div class="flex space-x-2">
     <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>

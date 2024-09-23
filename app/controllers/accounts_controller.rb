@@ -4,11 +4,11 @@ class AccountsController < ApplicationController
   LOCALE_OPTIONS = {
     'en-US' => 'English (United States)',
     'en-GB' => 'English (United Kingdom)',
-    'fr-FR' => 'French (France)',
-    'es-ES' => 'Spanish (Spain)',
-    'pt-PT' => 'Portuguese (Portugal)',
-    'de-DE' => 'German (Germany)',
-    'it-IT' => 'Italian (Italy)'
+    'fr-FR' => 'Français',
+    'es-ES' => 'Español',
+    'pt-PT' => 'Português',
+    'de-DE' => 'Deutsch',
+    'it-IT' => 'Italiano'
   }.freeze
 
   before_action :load_account

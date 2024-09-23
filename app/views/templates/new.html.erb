@@ -23,7 +23,7 @@
       </folder-autocomplete>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: @base_template ? 'Submit' : 'Create', disabled_with: 'Creating'), class: 'base-button' %>
+      <%= f.button button_title(title: @base_template ? t('submit') : t('create'), disabled_with: t('creating')), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>

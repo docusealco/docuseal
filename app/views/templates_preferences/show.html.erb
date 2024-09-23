@@ -158,7 +158,7 @@
       <div class="collapse collapse-arrow join-item border border-base-300">
         <input type="checkbox" name="accordion">
         <div class="collapse-title text-xl font-medium">
-          <%= t('copleted_notification_email') %>
+          <%= t('completed_notification_email') %>
         </div>
         <div class="collapse-content">
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>

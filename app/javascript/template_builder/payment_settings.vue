@@ -72,7 +72,7 @@
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
         >
-          Price
+          {{ t('price') }}
         </label>
       </div>
       <div

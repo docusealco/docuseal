@@ -3,22 +3,22 @@
   <div class="form-control">
     <% record = Struct.new(:first_duration, :second_duration, :third_duration).new(*(f.object.value || {}).values_at('first_duration', 'second_duration', 'third_duration')) %>
     <% durations = (Docuseal.multitenant? ? AccountConfigs::REMINDER_DURATIONS.except('one_hour', 'two_hours') : AccountConfigs::REMINDER_DURATIONS).keys.map { |v| [t(v.underscore), v] } %>
-    <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex flex-col md:flex-row gap-2">
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
-          <%= ff.label :first_duration, t('first_reminder_in'), class: 'label' %>
+          <%= ff.label :first_duration, t('first_reminder_in'), class: 'label truncate' %>
           <%= ff.select :first_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
         <% end %>
       </div>
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
-          <%= ff.label :second_duration, t('second_reminder_in'), class: 'label' %>
+          <%= ff.label :second_duration, t('second_reminder_in'), class: 'label truncate' %>
           <%= ff.select :second_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
         <% end %>
       </div>
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
-          <%= ff.label :third_duration, t('third_reminder_in'), class: 'label' %>
+          <%= ff.label :third_duration, t('third_reminder_in'), class: 'label truncate' %>
           <%= ff.select :third_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
         <% end %>
       </div>

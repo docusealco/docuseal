@@ -1207,7 +1207,7 @@ export default {
         })
       }).catch(error => {
         if (error?.message === 'Image too small') {
-          alert('Signature is too small - please redraw.')
+          alert(this.t('signature_is_too_small_please_redraw'))
         } else {
           console.log(error)
         }

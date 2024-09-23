@@ -7,7 +7,7 @@
       </div>
       <div class="form-control">
         <%= f.label :file, t('file'), class: 'label' %>
-        <%= f.file_field :file, required: true %>
+        <%= f.file_field :file, class: 'file-input file-input-bordered w-full', required: true %>
         <label class="label">
           <span class="label-text-alt">
             <%= t('use_a_valid_der_p12_or_pfx_file') %>

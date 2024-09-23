@@ -46,11 +46,11 @@
             <% end %>
           </div>
         <% end %>
-        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', icon_class: 'w-4 h-4 md:w-6 md:h-6 text-white', copy_title: 'Link', copied_title: t('copied'), copy_title_md: 'Link', copied_title_md: t('copied') %>
+        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', icon_class: 'w-4 h-4 md:w-6 md:h-6 text-white', copy_title: t('link'), copied_title: t('copied'), copy_title_md: t('link'), copied_title_md: t('copied') %>
       </div>
     <% end %>
   </div>
-  <div class="flex space-x-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
+  <div class="flex flex-wrap gap-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
     <% if !template.archived_at? && can?(:destroy, template) %>
       <%= button_to button_title(title: t('archive'), disabled_with: t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: t('are_you_sure_') } %>
     <% end %>

@@ -222,7 +222,7 @@ export default {
             this.downloadUrls(urls)
           }
         } else {
-          alert('Failed to download files')
+          alert(this.t('failed_to_download_files'))
         }
       })
     },

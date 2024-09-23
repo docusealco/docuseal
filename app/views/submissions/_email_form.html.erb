@@ -29,7 +29,7 @@
                   <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
                   <submitters-autocomplete data-field="email">
                     <linked-input data-target-id="<%= "email_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                      <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input-slim w-full', placeholder: t('email'), required: index.zero?, value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "email_#{item['uuid']}" %>
+                      <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input !h-10 w-full', placeholder: t('email'), required: index.zero?, value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "email_#{item['uuid']}" %>
                     </linked-input>
                   </submitters-autocomplete>
                 </submitter-item>

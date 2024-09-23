@@ -137,7 +137,7 @@
         v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex"
         :class="{'tooltip-bottom-end': withPayment, 'tooltip-bottom': !withPayment }"
-        data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
+        :data-tip="t('unlock_sms_verified_phone_number_field_with_paid_plan_use_text_field_for_phone_numbers_without_verification')"
       >
         <a
           href="https://www.docuseal.co/pricing"
@@ -168,13 +168,13 @@
   >
     <ul class="list-disc list-outside ml-3">
       <li>
-        Draw a text field on the page with a mouse
+        {{ t('draw_a_text_field_on_the_page_with_a_mouse') }}
       </li>
       <li>
-        Drag &amp; drop any other field type on the page
+        {{ t('drag_and_drop_any_other_field_type_on_the_page') }}
       </li>
       <li>
-        Click on the field type above to start drawing it
+        {{ t('click_on_the_field_type_above_to_start_drawing_it') }}
       </li>
     </ul>
   </div>

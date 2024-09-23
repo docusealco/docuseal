@@ -4,10 +4,10 @@
     <span><%= t('home') %></span>
   <% end %>
 </div>
-<div class="flex justify-between mb-4 items-center">
-  <h1 class="text-4xl font-bold flex items-center space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
+<div class="flex justify-between items-center w-full mb-4">
+  <h1 class="text-4xl font-bold flex flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
     <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
-    <span class="peer">
+    <span class="peer truncate">
       <%= @template_folder.name %>
     </span>
     <% if can?(:update, @template_folder) && @template_folder.name != TemplateFolder::DEFAULT_NAME %>

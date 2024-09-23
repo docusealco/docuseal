@@ -1,4 +1,4 @@
-<%= render 'shared/turbo_modal', title: 'Export', close_after_submit: false do %>
+<%= render 'shared/turbo_modal', title: t('export'), close_after_submit: false do %>
   <div class="space-y-2">
     <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx }, method: :get, data: { turbo_frame: :_top } do %>
       <div class="flex items-center p-4 text-left rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">

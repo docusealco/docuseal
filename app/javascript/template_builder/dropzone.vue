@@ -105,7 +105,7 @@ export default {
 
         this.upload()
       } else {
-        alert('Only PDF and images are supported.')
+        alert(this.t('only_pdf_and_images_are_supported'))
       }
     }
   }

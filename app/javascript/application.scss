@@ -51,10 +51,6 @@ button[disabled] .enabled {
   @apply input input-bordered bg-white;
 }
 
-.base-input-slim {
-  @apply input input-bordered bg-white h-10;
-}
-
 .base-textarea {
   @apply textarea textarea-bordered bg-white rounded-3xl;
 }
