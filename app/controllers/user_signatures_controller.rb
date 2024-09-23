@@ -9,7 +9,7 @@ class UserSignaturesController < ApplicationController
   def update
     file = params[:file]
 
-    return redirect_to settings_profile_index_path, notice: I18n.t('Unable to save signature') if file.blank?
+    return redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_signature') if file.blank?
 
     blob = ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                   filename: file.original_filename,
@@ -24,7 +24,7 @@ class UserSignaturesController < ApplicationController
     if @user_config.update(value: attachment.uuid)
       redirect_to settings_profile_index_path, notice: I18n.t('signature_has_been_saved')
     else
-      redirect_to settings_profile_index_path, notice: I18n.t('Unable to save signature')
+      redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_signature')
     end
   end
 
