@@ -27,7 +27,7 @@ module Submitters
       return [submitter.submission.combined_document_attachment]
     end
 
-    original_documents = submitter.submission.template.documents.preload(:blob)
+    original_documents = submitter.submission.template_schema_documents.preload(:blob)
     is_more_than_two_images = original_documents.count(&:image?) > 1
 
     submitter.documents.preload(:blob).reject do |attachment|
