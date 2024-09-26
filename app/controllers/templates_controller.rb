@@ -116,7 +116,8 @@ class TemplatesController < ApplicationController
   end
 
   def authorized_clone_account_id?(account_id)
-    true_user.account_id.to_s == account_id.to_s || true_user.account.linked_accounts.exists?(id: account_id)
+    true_user.account_id.to_s == account_id.to_s ||
+      true_user.account.linked_accounts.accessible_by(current_ability).exists?(id: account_id)
   end
 
   def maybe_redirect_to_template(template)
