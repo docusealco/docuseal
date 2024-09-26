@@ -12,16 +12,20 @@ class SubmitFormController < ApplicationController
   def show
     @submitter = Submitter.find_by!(slug: params[:slug])
 
+    submission = @submitter.submission
+
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
-    return render :archived if @submitter.submission.template.archived_at? || @submitter.submission.archived_at?
-    return render :expired if @submitter.submission.expired?
+    return render :archived if submission.template.archived_at? || submission.archived_at?
+    return render :expired if submission.expired?
     return render :declined if @submitter.declined_at?
+    return render :awaiting if submission.template.preferences['submitters_order'] == 'preserved' &&
+                               !Submitters.current_submitter_order?(@submitter)
 
     Submitters.preload_with_pages(@submitter)
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
-    @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)
+    @attachments_index = ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                                                   .preload(:blob).index_by(&:uuid)
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)

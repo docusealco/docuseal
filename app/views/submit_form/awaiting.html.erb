@@ -1,0 +1,21 @@
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <%= render 'start_form/banner' %>
+      </div>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
+          </div>
+          <div dir="auto">
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
+            <p class="text-sm"><%= t('awaiting_completion_by_the_other_party') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>

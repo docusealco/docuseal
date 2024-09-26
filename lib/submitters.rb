@@ -102,4 +102,14 @@ module Submitters
       SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
     end
   end
+
+  def current_submitter_order?(submitter)
+    submitter_items = submitter.submission.template_submitters || submitter.submission.template.submitters
+
+    before_items = submitter_items[0...(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })]
+
+    before_items.reduce(true) do |acc, item|
+      acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
+    end
+  end
 end

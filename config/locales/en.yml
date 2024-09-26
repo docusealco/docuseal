@@ -24,6 +24,7 @@ en: &en
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatively, you can review and download your copy using the link below:"
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Please check the copy of your "%{name}" in the email attachments.'
+  awaiting_completion_by_the_other_party: "Awaiting completion by the other party"
   review_and_sign: Review and Sign
   review_and_submit: Review and Submit
   please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Please contact us by replying to this email if you have any questions."
