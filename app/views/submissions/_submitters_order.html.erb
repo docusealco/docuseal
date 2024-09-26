@@ -1,4 +1,6 @@
-<% if template.submitters.size > 1 %>
+<% if template.preferences['submitters_order'] == 'preserved' %>
+  <%= f.hidden_field :preserve_order, value: '1' %>
+<% elsif template.submitters.size > 1 %>
   <div class="form-control">
     <%= f.label :preserve_order, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :preserve_order, id: uuid, class: 'base-checkbox', checked: template.submissions.last&.submitters_order.in?(['preserved', nil]) %>

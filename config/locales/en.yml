@@ -72,6 +72,7 @@ en: &en
   reason: Reason
   provide_your_email_to_start: Provide your email to start
   start: Start
+  enforce_recipients_order: Enforce recipients order
   starting: Starting
   form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
   invited_by_html: 'Invited by <span class="font-semibold">%{name}</span>'
