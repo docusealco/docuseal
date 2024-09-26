@@ -86,11 +86,11 @@ class Submitter < ApplicationRecord
   end
 
   def first_name
-    name.split(/\s+/, 2).first
+    name&.split(/\s+/, 2)&.first
   end
 
   def last_name
-    name.split(/\s+/, 2).last
+    name&.split(/\s+/, 2)&.last
   end
 
   def status_event_at
