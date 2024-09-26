@@ -71,6 +71,7 @@
         </thead>
         <tbody>
           <% @pkcs_list.each do |item| %>
+            <% next if item['pkcs'].blank? %>
             <tr scope="row" class="group">
               <td>
                 <%= item['name'] %>
@@ -97,6 +98,9 @@
                 <% end %>
               </td>
             </tr>
+          <% end %>
+          <% unless Docuseal.multitenant? %>
+            <%= render 'default_signature_row' %>
           <% end %>
         </tbody>
       </table>

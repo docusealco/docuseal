@@ -118,7 +118,11 @@ module Accounts
       end
 
     if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })
-      OpenSSL::PKCS12.new(Base64.urlsafe_decode64(default_cert['data']), default_cert['password'].to_s)
+      if default_cert['name'] == Docuseal::AATL_CERT_NAME
+        Docuseal.default_pkcs
+      else
+        OpenSSL::PKCS12.new(Base64.urlsafe_decode64(default_cert['data']), default_cert['password'].to_s)
+      end
     else
       GenerateCertificate.load_pkcs(cert_data)
     end
@@ -153,7 +157,9 @@ module Accounts
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data)
 
-    custom_certs = cert_data.fetch('custom', []).map do |e|
+    custom_certs = cert_data.fetch('custom', []).filter_map do |e|
+      next if e['data'].blank?
+
       OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'].to_s)
     end
 

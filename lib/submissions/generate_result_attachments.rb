@@ -454,7 +454,7 @@ module Submissions
       if sign_reason
         sign_params = {
           reason: sign_reason,
-          **build_signing_params(pkcs, tsa_url)
+          **build_signing_params(submitter, pkcs, tsa_url)
         }
 
         begin
@@ -491,7 +491,7 @@ module Submissions
       io
     end
 
-    def build_signing_params(pkcs, tsa_url)
+    def build_signing_params(_submitter, pkcs, tsa_url)
       params = {
         certificate: pkcs.certificate,
         key: pkcs.key,

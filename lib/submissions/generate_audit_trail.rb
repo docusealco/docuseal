@@ -43,9 +43,11 @@ module Submissions
 
       document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
+      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
+
       sign_params = {
         reason: sign_reason,
-        **Submissions::GenerateResultAttachments.build_signing_params(pkcs, tsa_url)
+        **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
       }
 
       document.sign(io, **sign_params)
@@ -170,7 +172,7 @@ module Submissions
 
       composer.draw_box(divider)
 
-      last_submitter = submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
         original_documents = submission.template.documents.select do |e|

@@ -19,7 +19,7 @@ module Submissions
 
       sign_params = {
         reason: sign_reason,
-        **Submissions::GenerateResultAttachments.build_signing_params(pkcs, tsa_url)
+        **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
       }
 
       pdf.sign(io, **sign_params)

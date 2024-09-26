@@ -21,9 +21,9 @@ class EsignSettingsController < ApplicationController
     default_pkcs = GenerateCertificate.load_pkcs(cert_data) if cert_data['cert'].present?
 
     custom_pkcs_list = (cert_data['custom'] || []).map do |e|
-      { 'pkcs' => OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'].to_s),
-        'name' => e['name'],
-        'status' => e['status'] }
+      pkcs = e['data'].present? ? OpenSSL::PKCS12.new(Base64.urlsafe_decode64(e['data']), e['password'].to_s) : nil
+
+      { 'pkcs' => pkcs, 'name' => e['name'], 'status' => e['status'] }
     end
 
     @pkcs_list = [
@@ -69,7 +69,12 @@ class EsignSettingsController < ApplicationController
     @encrypted_config.value['custom'].each { |e| e['status'] = 'validate' }
 
     custom_cert_data = @encrypted_config.value['custom'].find { |e| e['name'] == params[:name] }
-    custom_cert_data['status'] = 'default' if custom_cert_data
+
+    if custom_cert_data
+      custom_cert_data['status'] = 'default'
+    elsif params[:name] == Docuseal::AATL_CERT_NAME
+      @encrypted_config.value['custom'] << { 'name' => params[:name], 'status' => 'default' }
+    end
 
     @encrypted_config.save!
 
