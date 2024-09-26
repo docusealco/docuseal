@@ -66,13 +66,14 @@ class EsignSettingsController < ApplicationController
   end
 
   def update
-    @encrypted_config.value['custom'].each { |e| e['status'] = 'validate' }
+    @encrypted_config.value['custom'].to_a.each { |e| e['status'] = 'validate' }
 
-    custom_cert_data = @encrypted_config.value['custom'].find { |e| e['name'] == params[:name] }
+    custom_cert_data = @encrypted_config.value['custom'].to_a.find { |e| e['name'] == params[:name] }
 
     if custom_cert_data
       custom_cert_data['status'] = 'default'
     elsif params[:name] == Docuseal::AATL_CERT_NAME
+      @encrypted_config.value['custom'] ||= []
       @encrypted_config.value['custom'] << { 'name' => params[:name], 'status' => 'default' }
     end
 
