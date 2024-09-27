@@ -1183,10 +1183,6 @@ export default {
             return Promise.reject(new Error(data.error))
           }
 
-          if (isLastStep) {
-            this.isSecondWalkthrough = true
-          }
-
           const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[this.currentStep + 1]
 
           if (nextStep) {
