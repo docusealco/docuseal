@@ -5,7 +5,7 @@
       <% options.each_with_index do |(label, value), index| %>
         <div>
           <%= radio_button_tag 'option', value, value == 'email', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-          <label for="option_<%= value %>" class="block bg-base-200 text-sm font-semibold whitespace-nowrap py-1.5 px-4 peer-checked:bg-base-300 <%= 'hidden sm:inline-block' if value == 'list' %> <%= 'rounded-l-3xl' if index.zero? %> <%= 'rounded-r-3xl sm:rounded-r-none' if value == 'detailed' %> <%= 'rounded-r-3xl' if index == options.size - 1 %>">
+          <label for="option_<%= value %>" class="block bg-base-200 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 peer-checked:bg-base-300 <%= 'hidden sm:inline-block' if value == 'list' %> <%= 'rounded-l-3xl' if index.zero? %> <%= 'rounded-r-3xl sm:rounded-r-none' if value == 'detailed' %> <%= 'rounded-r-3xl' if index == options.size - 1 %>">
             <%= label %>
           </label>
         </div>

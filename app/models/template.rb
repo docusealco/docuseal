@@ -46,7 +46,7 @@ class Template < ApplicationRecord
   attribute :preferences, :string, default: -> { {} }
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
-  attribute :submitters, :string, default: -> { [{ name: DEFAULT_SUBMITTER_NAME, uuid: SecureRandom.uuid }] }
+  attribute :submitters, :string, default: -> { [{ name: I18n.t(:first_party), uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
   attribute :source, :string, default: 'native'
 

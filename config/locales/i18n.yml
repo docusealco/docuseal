@@ -20,6 +20,9 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  first_party: 'First Party'
+  docuseal_trusted_signature: DocuSeal Trusted Signature
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatively, you can review and download your copy using the link below:"
@@ -596,6 +599,11 @@ en: &en
       read: Read your data
 
 es: &es
+  awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
+  enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
+  first_party: 'Primera Parte'
+  docuseal_trusted_signature: Firma de confianza DocuSeal
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
   you_have_been_invited_to_submit_the_name_form: 'Has sido invitado/a a enviar el formulario "%{name}".'
@@ -872,7 +880,7 @@ es: &es
   plans: Planes
   new: Nuevo
   embedding: Integración
-  background_jobs: Trabajos en segundo plano
+  background_jobs: Trabajos asíncronos
   need_help_ask_a_question_: '¿Necesitas ayuda? Haz una pregunta:'
   testing_environment: Entorno de pruebas
   exit: Salir
@@ -903,7 +911,7 @@ es: &es
   add_new: Agregar nuevo
   add_recipients: Agregar destinatarios
   add_new_recipients: Agregar nuevos destinatarios
-  add_recipients_html: <span>Agregar <span class="hidden md:inline">destinatarios</span></span>
+  add_recipients_html: <span>Agregar</span>
   type_emails_here: Escribe correos electrónicos aquí
   or_embed_on_your_website: O integra en tu sitio web
   phone: Teléfono
@@ -1172,6 +1180,11 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
+  enforce_recipients_order: Aplicar el orden de los destinatarios
+  first_party: 'Prima parte'
+  docuseal_trusted_signature: "Firma Fiduciaria DocuSeal"
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
   you_have_been_invited_to_submit_the_name_form: 'Sei stato invitato a inviare il modulo "%{name}".'
@@ -1479,7 +1492,7 @@ it: &it
   add_new: Aggiungi nuovo
   add_recipients: Aggiungi destinatari
   add_new_recipients: Aggiungi nuovi destinatari
-  add_recipients_html: <span>Aggiungi <span class="hidden md:inline">destinatari</span></span>
+  add_recipients_html: <span>Aggiungi</span>
   type_emails_here: Digita qui le email
   or_embed_on_your_website: Oppure integra nel tuo sito web
   phone: Telefono
@@ -1748,6 +1761,11 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  awaiting_completion_by_the_other_party: "En attente de la complétion par l'autre partie"
+  enforce_recipients_order: "Respecter l'ordre des destinataires"
+  first_party: 'Première partie'
+  docuseal_trusted_signature: Signature de confiance DocuSeal
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
   you_have_been_invited_to_submit_the_name_form: 'Vous avez été invité à remplir le formulaire "%{name}".'
@@ -1870,7 +1888,7 @@ fr: &fr
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 semaines. Veuillez nous contacter si vous souhaitez conserver votre compte.
-  test_environment: Environnement de test
+  test_environment: Mode de test
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -2056,7 +2074,7 @@ fr: &fr
   add_new: Ajouter nouveau
   add_recipients: Ajouter des destinataires
   add_new_recipients: Ajouter de nouveaux destinataires
-  add_recipients_html: <span>Ajouter <span class="hidden md:inline">des destinataires</span></span>
+  add_recipients_html: <span>Ajouter</span>
   type_emails_here: Saisissez les e-mails ici
   or_embed_on_your_website: Ou intégrez-le sur votre site web
   phone: Téléphone
@@ -2325,6 +2343,11 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  awaiting_completion_by_the_other_party: "Aguardando a conclusão pela outra parte"
+  enforce_recipients_order: 'Forçar a ordem dos recipientes'
+  first_party: 'Primeira Parte'
+  docuseal_trusted_signature: Assinatura Confiável DocuSeal
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
   you_have_been_invited_to_submit_the_name_form: 'Você foi convidado a submeter o formulário "%{name}".'
@@ -2601,7 +2624,7 @@ pt: &pt
   plans: Planos
   new: Novo
   embedding: Incorporação
-  background_jobs: Tarefas em segundo plano
+  background_jobs: Trabalhos assíncronos
   need_help_ask_a_question_: 'Precisa de ajuda? Faça uma pergunta:'
   testing_environment: Ambiente de teste
   exit: Sair
@@ -2632,7 +2655,7 @@ pt: &pt
   add_new: Adicionar novo
   add_recipients: Adicionar destinatários
   add_new_recipients: Adicionar novos destinatários
-  add_recipients_html: <span>Adicionar <span class="hidden md:inline">destinatários</span></span>
+  add_recipients_html: <span>Adicionar</span>
   type_emails_here: Digite os e-mails aqui
   or_embed_on_your_website: Ou incorpore em seu site
   phone: Telefone
@@ -2901,6 +2924,11 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  awaiting_completion_by_the_other_party: "Warten auf die Fertigstellung durch die andere Partei"
+  enforce_recipients_order: 'Empfängerreihenfolge durchsetzen'
+  first_party: 'Erste Partei'
+  docuseal_trusted_signature: DocuSeal-Vertrauenssignatur
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
   thanks: Danke
   you_have_been_invited_to_submit_the_name_form: 'Du wurdest eingeladen, das Formular "%{name}" einzureichen.'
@@ -3208,7 +3236,7 @@ de: &de
   add_new: Neu hinzufügen
   add_recipients: Empfänger hinzufügen
   add_new_recipients: Neue Empfänger hinzufügen
-  add_recipients_html: <span>Empfänger hinzufügen<span class="hidden md:inline"></span></span>
+  add_recipients_html: <span>Empfänger</span>
   type_emails_here: E-Mail-Adressen hier eingeben
   or_embed_on_your_website: Oder auf deiner Website einbetten
   phone: Telefon
@@ -3477,6 +3505,7 @@ de: &de
       read: Lese deine Daten
 
 pl:
+  awaiting_completion_by_the_other_party: "Oczekuje na dokończenie przez drugą stronę"
   view: Widok
   hi_there: Cześć,
   download: Pobierz
@@ -3530,6 +3559,7 @@ pl:
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
 
 uk:
+  awaiting_completion_by_the_other_party: "Очікує завершення з боку іншої сторони"
   view: Переглянути
   hi_there: Привіт,
   download: Завантажити
@@ -3583,6 +3613,7 @@ uk:
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
 
 cs:
+  awaiting_completion_by_the_other_party: "Čeká se na dokončení druhou stranou"
   view: Zobrazit
   hi_there: Ahoj,
   download: Stáhnout
@@ -3636,6 +3667,7 @@ cs:
   enter_email_to_continue: Zadejte e-mail pro pokračování
 
 he:
+  awaiting_completion_by_the_other_party: "המתנה להשלמה מצד הצד השני"
   view: תצוגה
   hi_there: שלום,
   download: הורד
@@ -3689,6 +3721,7 @@ he:
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
 
 nl:
+  awaiting_completion_by_the_other_party: "In afwachting van voltooiing door de andere partij"
   view: Bekijken
   hi_there: Hallo,
   download: Downloaden
@@ -3742,6 +3775,7 @@ nl:
   enter_email_to_continue: Voer e-mail in om door te gaan
 
 ar:
+  awaiting_completion_by_the_other_party: "في انتظار إكتمال الطرف الآخر"
   view: عرض
   hi_there: مرحبا,
   download: تحميل
@@ -3795,6 +3829,7 @@ ar:
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
 
 ko:
+  awaiting_completion_by_the_other_party: "다른 당사자의 완료를 기다리고 있습니다"
   view: 보기
   hi_there: 안녕하세요,
   download: 다운로드

@@ -33,7 +33,9 @@ class AccountsController < ApplicationController
 
     Docuseal.refresh_default_url_options!
 
-    redirect_to settings_account_path, notice: I18n.t('account_information_has_been_updated')
+    with_locale do
+      redirect_to settings_account_path, notice: I18n.t('account_information_has_been_updated')
+    end
   rescue ActiveRecord::RecordInvalid
     render :show, status: :unprocessable_entity
   end

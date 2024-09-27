@@ -2,19 +2,19 @@
   <td class="flex items-center space-x-1">
     <%= svg_icon('discount_check_filled', class: 'w-6 h-6 text-green-500') %>
     <span class="flex items-center">
-      DocuSeal Trusted Signature
-      <div class="tooltip ml-1" data-tip="Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.">
+      <%= t('docuseal_trusted_signature') %>
+      <div class="tooltip ml-1" data-tip="<%= t('sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature') %>">
         <%= svg_icon('circle_question', class: 'w-4 h-4 stroke-1') %>
       </div>
     </span>
   </td>
   <td>
     <a href="<%= "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premise" }.to_query}" %>" class="btn btn-neutral btn-sm text-white">
-      Upgrade to Pro
+      <%= t('unlock_with_docuseal_pro') %>
     </a>
   </td>
   <td>
-    <div class="tooltip" data-tip="Upgrade to Pro">
+    <div class="tooltip" data-tip="<%= t('unlock_with_docuseal_pro') %>">
       <%= button_to settings_esign_path, method: :put, params: { name: Docuseal::AATL_CERT_NAME }, class: 'btn btn-outline btn-neutral btn-xs whitespace-nowrap', title: t('make_default'), disabled: true do %>
         <%= t('make_default') %>
       <% end %>

@@ -56,6 +56,12 @@
           <%= ff.text_field :value, required: true, class: 'base-input' %>
         </div>
       <% end %>
+      <%= fields_for @account do |ff| %>
+        <div class="form-control">
+          <%= ff.label :locale, t('language'), class: 'label' %>
+          <%= ff.select :locale, options_for_select(AccountsController::LOCALE_OPTIONS.invert, @account.locale), {}, class: 'base-select' %>
+        </div>
+      <% end %>
     </div>
     <div class="form-control">
       <%= f.button button_title, class: 'base-button' %>

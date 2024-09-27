@@ -21,6 +21,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
       scrollPadding: this.dataset.scrollPadding || '-80px',
+      language: this.dataset.language,
       dryRun: this.dataset.dryRun === 'true',
       expand: ['true', 'false'].includes(this.dataset.expand) ? this.dataset.expand === 'true' : null,
       withSignatureId: this.dataset.withSignatureId === 'true',

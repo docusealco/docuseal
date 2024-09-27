@@ -19,7 +19,7 @@
           </div>
           <div class="form-control">
             <%= ff.label :locale, t('language'), class: 'label' %>
-            <%= ff.select :locale, options_for_select(controller.class::LOCALE_OPTIONS.invert, current_account.locale), {}, class: 'base-select' %>
+            <%= ff.select :locale, options_for_select(AccountsController::LOCALE_OPTIONS.invert, current_account.locale), {}, class: 'base-select' %>
           </div>
         </div>
       <% end %>
