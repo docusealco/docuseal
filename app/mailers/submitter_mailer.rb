@@ -23,21 +23,23 @@ class SubmitterMailer < ApplicationMailer
 
     reply_to = build_submitter_reply_to(@submitter)
 
-    subject =
-      if @email_config || @subject
-        ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
-      elsif @submitter.with_signature_fields?
-        I18n.t(:you_are_invited_to_sign_a_document)
-      else
-        I18n.t(:you_are_invited_to_submit_a_form)
-      end
+    I18n.with_locale(@current_account.locale) do
+      subject =
+        if @email_config || @subject
+          ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
+        elsif @submitter.with_signature_fields?
+          I18n.t(:you_are_invited_to_sign_a_document)
+        else
+          I18n.t(:you_are_invited_to_submit_a_form)
+        end
 
-    mail(
-      to: @submitter.friendly_name,
-      from: from_address_for_submitter(submitter),
-      subject:,
-      reply_to:
-    )
+      mail(
+        to: @submitter.friendly_name,
+        from: from_address_for_submitter(submitter),
+        subject:,
+        reply_to:
+      )
+    end
   end
 
   def completed_email(submitter, user, to: nil)
@@ -66,13 +68,15 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_completed', @submitter)
 
-    subject =
-      ReplaceEmailVariables.call(@subject.presence || I18n.t(:template_name_has_been_completed_by_submitters),
-                                 submitter:)
+    I18n.with_locale(@current_account.locale) do
+      subject =
+        ReplaceEmailVariables.call(@subject.presence || I18n.t(:template_name_has_been_completed_by_submitters),
+                                   submitter:)
 
-    mail(from: from_address_for_submitter(submitter),
-         to: to || (user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name),
-         subject:)
+      mail(from: from_address_for_submitter(submitter),
+           to: to || normalize_user_email(user),
+           subject:)
+    end
   end
 
   def declined_email(submitter, user)
@@ -83,7 +87,7 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_declined', @submitter)
 
-    I18n.with_locale(submitter.account.locale) do
+    I18n.with_locale(@current_account.locale) do
       mail(from: from_address_for_submitter(submitter),
            to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
            reply_to: @submitter.friendly_name,
@@ -116,17 +120,19 @@ class SubmitterMailer < ApplicationMailer
     assign_message_metadata('submitter_documents_copy', @submitter)
     reply_to = build_submitter_reply_to(submitter)
 
-    subject =
-      if @subject.present?
-        ReplaceEmailVariables.call(@subject, submitter:)
-      else
-        I18n.t(:your_document_copy)
-      end
+    I18n.with_locale(@current_account.locale) do
+      subject =
+        if @subject.present?
+          ReplaceEmailVariables.call(@subject, submitter:)
+        else
+          I18n.t(:your_document_copy)
+        end
 
-    mail(from: from_address_for_submitter(submitter),
-         to: to || @submitter.friendly_name,
-         reply_to:,
-         subject:)
+      mail(from: from_address_for_submitter(submitter),
+           to: to || @submitter.friendly_name,
+           reply_to:,
+           subject:)
+    end
   end
 
   private
@@ -169,6 +175,10 @@ class SubmitterMailer < ApplicationMailer
     end
 
     documents
+  end
+
+  def normalize_user_email(user)
+    user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name
   end
 
   def add_attachments_with_size_limit(storage_attachments, current_size)
