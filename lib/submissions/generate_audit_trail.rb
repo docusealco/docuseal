@@ -99,6 +99,12 @@ module Submissions
         height: 1
       )
 
+      configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
+                                                               AccountConfig::WITH_SIGNATURE_ID])
+
+      with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
+
       composer.page_style(:default, page_size:) do |canvas, style|
         box = canvas.context.box(:media)
         canvas.save_graphics_state do
@@ -109,9 +115,6 @@ module Submissions
 
           maybe_add_background(canvas, submission, page_size)
         end
-
-        with_signature_id = submission.account.account_configs
-                                      .exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true)
 
         if with_signature_id || submission.account.testing?
           canvas.save_graphics_state do
@@ -263,84 +266,89 @@ module Submissions
 
         composer.table(info_rows, cell_style: { padding: [0, 0, 0, 0], border: { width: 0 } })
 
-        submission.template_fields.filter_map do |field|
-          next if field['submitter_uuid'] != submitter.uuid
-          next if field['type'] == 'heading'
+        if with_audit_values
+          submission.template_fields.filter_map do |field|
+            next if field['submitter_uuid'] != submitter.uuid
+            next if field['type'] == 'heading'
 
-          submitter_field_counters[field['type']] += 1
+            submitter_field_counters[field['type']] += 1
 
-          value = submitter.values[field['uuid']]
+            value = submitter.values[field['uuid']]
 
-          next if Array.wrap(value).compact_blank.blank?
+            next if Array.wrap(value).compact_blank.blank?
 
-          field_name = field['title'].presence || field['name'].to_s
+            field_name = field['title'].presence || field['name'].to_s
 
-          [
-            composer.formatted_text_box(
-              [
-                {
-                  text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
-                        "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
-                  font_size: 6
-                }
-              ].compact_blank,
-              text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
-              line_spacing: 1.3, padding: [0, 0, 2, 0]
-            ),
-            if field['type'].in?(%w[image signature initials stamp])
-              attachment = submitter.attachments.find { |a| a.uuid == value }
-              image = Vips::Image.new_from_buffer(attachment.download, '').autorot
-
-              scale = [600.0 / image.width, 600.0 / image.height].min
-
-              resized_image = image.resize([scale, 1].min)
-              io = StringIO.new(resized_image.write_to_buffer('.png'))
-
-              width = field['type'] == 'initials' ? 100 : 200
-              height = resized_image.height * (width.to_f / resized_image.width)
-
-              if height > MAX_IMAGE_HEIGHT
-                width = (MAX_IMAGE_HEIGHT / height) * width
-                height = MAX_IMAGE_HEIGHT
-              end
-
-              composer.image(io, width:, height:, margin: [5, 0, 10, 0])
-              composer.formatted_text_box([{ text: '' }])
-            elsif field['type'].in?(%w[file payment])
-              if field['type'] == 'payment'
-                unit = CURRENCY_SYMBOLS[field['preferences']['currency']] || field['preferences']['currency']
-
-                price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
-
-                composer.formatted_text_box([{ text: "Paid #{price}\n" }], padding: [0, 0, 10, 0])
-              end
-
+            [
               composer.formatted_text_box(
-                Array.wrap(value).map do |uuid|
-                  attachment = submitter.attachments.find { |a| a.uuid == uuid }
-                  link =
-                    ActiveStorage::Blob.proxy_url(attachment.blob)
+                [
+                  {
+                    text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
+                          "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
+                    font_size: 6
+                  }
+                ].compact_blank,
+                text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
+                line_spacing: 1.3, padding: [0, 0, 2, 0]
+              ),
+              if field['type'].in?(%w[image signature initials stamp])
+                attachment = submitter.attachments.find { |a| a.uuid == value }
+                image = Vips::Image.new_from_buffer(attachment.download, '').autorot
 
-                  { link:, text: "#{attachment.filename}\n", style: :link }
-                end,
-                padding: [0, 0, 10, 0]
-              )
-            elsif field['type'] == 'checkbox'
-              composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
-            else
-              if field['type'] == 'date'
-                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+                scale = [600.0 / image.width, 600.0 / image.height].min
+
+                resized_image = image.resize([scale, 1].min)
+                io = StringIO.new(resized_image.write_to_buffer('.png'))
+
+                width = field['type'] == 'initials' ? 100 : 200
+                height = resized_image.height * (width.to_f / resized_image.width)
+
+                if height > MAX_IMAGE_HEIGHT
+                  width = (MAX_IMAGE_HEIGHT / height) * width
+                  height = MAX_IMAGE_HEIGHT
+                end
+
+                composer.image(io, width:, height:, margin: [5, 0, 10, 0])
+                composer.formatted_text_box([{ text: '' }])
+              elsif field['type'].in?(%w[file payment])
+                if field['type'] == 'payment'
+                  unit = CURRENCY_SYMBOLS[field['preferences']['currency']] || field['preferences']['currency']
+
+                  price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
+
+                  composer.formatted_text_box([{ text: "Paid #{price}\n" }], padding: [0, 0, 10, 0])
+                end
+
+                composer.formatted_text_box(
+                  Array.wrap(value).map do |uuid|
+                    attachment = submitter.attachments.find { |a| a.uuid == uuid }
+                    link =
+                      ActiveStorage::Blob.proxy_url(attachment.blob)
+
+                    { link:, text: "#{attachment.filename}\n", style: :link }
+                  end,
+                  padding: [0, 0, 10, 0]
+                )
+              elsif field['type'] == 'checkbox'
+                composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
+              else
+                if field['type'] == 'date'
+                  value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+                end
+
+                if field['type'] == 'number'
+                  value = NumberUtils.format_number(value,
+                                                    field.dig('preferences', 'format'))
+                end
+
+                value = value.join(', ') if value.is_a?(Array)
+
+                composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
+                                            text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
+                                            padding: [0, 0, 10, 0])
               end
-
-              value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'
-
-              value = value.join(', ') if value.is_a?(Array)
-
-              composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
-                                          text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
-                                          padding: [0, 0, 10, 0])
-            end
-          ]
+            ]
+          end
         end
 
         composer.draw_box(divider)
