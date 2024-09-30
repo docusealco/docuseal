@@ -18,7 +18,7 @@ module Submissions
       pdf.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
       sign_params = {
-        reason: sign_reason,
+        reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),
         **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
       }
 
@@ -55,10 +55,6 @@ module Submissions
       audit_trail.pages.each { |page| result.pages << result.import(page) }
 
       result
-    end
-
-    def sign_reason
-      'Signed with DocuSeal.co'
     end
   end
 end
