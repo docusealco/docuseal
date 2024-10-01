@@ -189,12 +189,9 @@ module Submissions
           end
         end
 
-        link =
-          ActiveStorage::Blob.proxy_url(document.blob)
-
         [
           composer.document.layout.formatted_text_box(
-            [{ text: document.filename.to_s, link: }]
+            [{ text: document.filename.to_s }]
           ),
           composer.document.layout.formatted_text_box(
             [
