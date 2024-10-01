@@ -382,15 +382,13 @@ module Submissions
             I18n.t("submission_event_names.#{event.event_type}_by_html", submitter_name:)
           end
 
+        bold_text, normal_text = text.match(%r{<b>(.*?)</b>(.*)}).captures
+
         [
           "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
           "#{TimeUtils.timezone_abbr(account.timezone, event.event_timestamp)}",
-          composer.document.layout.formatted_text_box(
-            [
-              { text: text[%r{<b>(.*?)</b>}, 1], font: [FONT_NAME, { variant: :bold }] },
-              text[%r{<b>(.*?)</b>(.*)}, 2]
-            ]
-          )
+          composer.document.layout.formatted_text_box([{ text: bold_text, font: [FONT_NAME, { variant: :bold }] },
+                                                       normal_text])
         ]
       end
 
