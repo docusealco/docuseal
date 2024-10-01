@@ -577,6 +577,35 @@ en: &en
   opened: Opened
   sent: Sent
   awaiting: Awaiting
+  document_id: Document ID
+  envelope_id: Envelope ID
+  event_log: Event Log
+  verify: Verify
+  testing_log_not_for_production_use: Testing Log - Not for Production Use
+  original_sha256: Original SHA256
+  result_sha256: Result SHA256
+  generated_at: Generated at
+  email_verification: Email verification
+  phone_verification: Phone verification
+  session_id: Session ID
+  type_field: '%{type} Field'
+  paid_price: 'Paid %{price}'
+  verified: Verified
+  unverified: Unverified
+  submission_event_names:
+    send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
+    send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
+    send_sms_to_html: '<b>SMS sent</b> to %{submitter_name}'
+    send_2fa_sms_to_html: '<b>Verification SMS sent</b> to %{submitter_name}'
+    open_email_by_html: '<b>Email opened</b> by %{submitter_name}'
+    click_email_by_html: '<b>Email link clicked</b> by %{submitter_name}'
+    click_sms_by_html: '<b>SMS link clicked</b> by %{submitter_name}'
+    phone_verified_by_html: '<b>Phone verified</b> by %{submitter_name}'
+    start_form_by_html: '<b>Submission started</b> by %{submitter_name}'
+    view_form_by_html: '<b>Form viewed</b> by %{submitter_name}'
+    invite_party_by_html: '<b>Invited</b> %{invited_submitter_name} by %{submitter_name}'
+    complete_form_by_html: '<b>Submission completed</b> by %{submitter_name}'
+    api_complete_form_by_html: '<b>Submission completed via API</b> by %{submitter_name}'
   import_list:
     select_worksheet: Select Worksheet
     open: Open
@@ -1158,6 +1187,35 @@ es: &es
   opened: Abierto
   sent: Enviado
   awaiting: Pendiente
+  document_id: ID del Documento
+  envelope_id: ID del Sobre
+  event_log: Registro de Eventos
+  verify: Verificar
+  testing_log_not_for_production_use: Registro de Pruebas - No para Uso en Producción
+  original_sha256: SHA256 Original
+  result_sha256: SHA256 del Resultado
+  generated_at: Generado el
+  email_verification: Verificación de correo electrónico
+  phone_verification: Verificación telefónica
+  session_id: ID de la Sesión
+  type_field: 'Campo %{type}'
+  paid_price: 'Pagado %{price}'
+  verified: Verificado
+  unverified: No verificado
+  submission_event_names:
+    send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
+    send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
+    send_sms_to_html: '<b>SMS enviado</b> a %{submitter_name}'
+    send_2fa_sms_to_html: '<b>SMS de verificación enviado</b> a %{submitter_name}'
+    open_email_by_html: '<b>Correo electrónico abierto</b> por %{submitter_name}'
+    click_email_by_html: '<b>Enlace del correo electrónico clicado</b> por %{submitter_name}'
+    click_sms_by_html: '<b>Enlace del SMS clicado</b> por %{submitter_name}'
+    phone_verified_by_html: '<b>Teléfono verificado</b> por %{submitter_name}'
+    start_form_by_html: '<b>Envío iniciado</b> por %{submitter_name}'
+    view_form_by_html: '<b>Formulario visto</b> por %{submitter_name}'
+    invite_party_by_html: '<b>Invitado</b> %{invited_submitter_name} por %{submitter_name}'
+    complete_form_by_html: '<b>Envío completado</b> por %{submitter_name}'
+    api_complete_form_by_html: '<b>Envío completado vía API</b> por %{submitter_name}'
   import_list:
     select_worksheet: Seleccionar hoja de cálculo
     open: Abrir
@@ -1739,6 +1797,35 @@ it: &it
   opened: Aperto
   sent: Inviato
   awaiting: In attesa
+  document_id: ID del Documento
+  envelope_id: ID della Busta
+  event_log: Registro degli Eventi
+  verify: Verifica
+  testing_log_not_for_production_use: Registro di Test - Non per Uso in Produzione
+  original_sha256: SHA256 Originale
+  result_sha256: SHA256 del Risultato
+  generated_at: Generato il
+  email_verification: Verifica e-mail
+  phone_verification: Verifica telefono
+  session_id: ID della Sessione
+  type_field: 'Campo %{type}'
+  paid_price: 'Pagato %{price}'
+  verified: Verificato
+  unverified: Non verificato
+  submission_event_names:
+    send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
+    send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
+    send_sms_to_html: '<b>SMS inviato</b> a %{submitter_name}'
+    send_2fa_sms_to_html: '<b>SMS di verifica inviato</b> a %{submitter_name}'
+    open_email_by_html: '<b>E-mail aperta</b> da %{submitter_name}'
+    click_email_by_html: "<b>Link dell'e-mail cliccato</b> da %{submitter_name}"
+    click_sms_by_html: "<b>Link dell'SMS cliccato</b> da %{submitter_name}"
+    phone_verified_by_html: '<b>Telefono verificato</b> da %{submitter_name}'
+    start_form_by_html: '<b>Invio iniziato</b> da %{submitter_name}'
+    view_form_by_html: '<b>Modulo visualizzato</b> da %{submitter_name}'
+    invite_party_by_html: '<b>Invitato</b> %{invited_submitter_name} da %{submitter_name}'
+    complete_form_by_html: '<b>Invio completato</b> da %{submitter_name}'
+    api_complete_form_by_html: '<b>Invio completato tramite API</b> da %{submitter_name}'
   import_list:
     select_worksheet: Seleziona il foglio di lavoro
     open: Apri
@@ -2321,6 +2408,35 @@ fr: &fr
   opened: Ouvert
   sent: Envoyé
   awaiting: En attente
+  document_id: ID du document
+  envelope_id: ID de l'enveloppe
+  event_log: Journal d'événements
+  verify: Vérifier
+  testing_log_not_for_production_use: Journal de test - Ne pas utiliser en production
+  original_sha256: SHA256 original
+  result_sha256: SHA256 du résultat
+  generated_at: Généré le
+  email_verification: Vérification de l'e-mail
+  phone_verification: Vérification du téléphone
+  session_id: ID de session
+  type_field: 'Champ %{type}'
+  paid_price: 'Payé %{price}'
+  verified: Vérifié
+  unverified: Non vérifié
+  submission_event_names:
+    send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
+    send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
+    send_sms_to_html: '<b>SMS envoyé</b> à %{submitter_name}'
+    send_2fa_sms_to_html: '<b>SMS de vérification envoyé</b> à %{submitter_name}'
+    open_email_by_html: '<b>E-mail ouvert</b> par %{submitter_name}'
+    click_email_by_html: "<b>Lien de l'e-mail cliqué</b> par %{submitter_name}"
+    click_sms_by_html: '<b>Lien du SMS cliqué</b> par %{submitter_name}'
+    phone_verified_by_html: '<b>Téléphone vérifié</b> par %{submitter_name}'
+    start_form_by_html: '<b>Soumission commencée</b> par %{submitter_name}'
+    view_form_by_html: '<b>Formulaire consulté</b> par %{submitter_name}'
+    invite_party_by_html: '<b>Invité</b> %{invited_submitter_name} par %{submitter_name}'
+    complete_form_by_html: '<b>Soumission terminée</b> par %{submitter_name}'
+    api_complete_form_by_html: "<b>Soumission terminée via l'API</b> par %{submitter_name}"
   import_list:
     select_worksheet: Sélectionner la feuille de calcul
     open: Ouvrir
@@ -2902,6 +3018,35 @@ pt: &pt
   opened: Aberto
   sent: Enviado
   awaiting: Aguardando
+  document_id: ID do Documento
+  envelope_id: ID do Envelope
+  event_log: Log de Eventos
+  verify: Verificar
+  testing_log_not_for_production_use: Log de Teste - Não para Uso em Produção
+  original_sha256: SHA256 Original
+  result_sha256: SHA256 do Resultado
+  generated_at: Gerado em
+  email_verification: Verificação de E-mail
+  phone_verification: Verificação de Telefone
+  session_id: ID da Sessão
+  type_field: 'Campo %{type}'
+  paid_price: 'Pago %{price}'
+  verified: Verificado
+  unverified: Não verificado
+  submission_event_names:
+    send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
+    send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
+    send_sms_to_html: '<b>SMS enviado</b> para %{submitter_name}'
+    send_2fa_sms_to_html: '<b>SMS de verificação enviado</b> para %{submitter_name}'
+    open_email_by_html: '<b>E-mail aberto</b> por %{submitter_name}'
+    click_email_by_html: '<b>Link do e-mail clicado</b> por %{submitter_name}'
+    click_sms_by_html: '<b>Link do SMS clicado</b> por %{submitter_name}'
+    phone_verified_by_html: '<b>Telefone verificado</b> por %{submitter_name}'
+    start_form_by_html: '<b>Submissão iniciada</b> por %{submitter_name}'
+    view_form_by_html: '<b>Formulário visualizado</b> por %{submitter_name}'
+    invite_party_by_html: '<b>Convidado</b> %{invited_submitter_name} por %{submitter_name}'
+    complete_form_by_html: '<b>Submissão concluída</b> por %{submitter_name}'
+    api_complete_form_by_html: '<b>Submissão concluída via API</b> por %{submitter_name}'
   import_list:
     select_worksheet: Selecionar planilha
     open: Abrir
@@ -3483,6 +3628,35 @@ de: &de
   opened: Geöffnet
   sent: Gesendet
   awaiting: Ausstehend
+  document_id: Dokumenten-ID
+  envelope_id: Umschlag-ID
+  event_log: Ereignisprotokoll
+  verify: Überprüfen
+  testing_log_not_for_production_use: Testprotokoll - Nicht für den Produktionseinsatz
+  original_sha256: Original SHA256
+  result_sha256: Ergebnis SHA256
+  generated_at: Generiert am
+  email_verification: E-Mail-Verifizierung
+  phone_verification: Telefonverifizierung
+  session_id: Sitzungs-ID
+  type_field: '%{type} Feld'
+  paid_price: 'Bezahlt %{price}'
+  verified: Verifiziert
+  unverified: Nicht verifiziert
+  submission_event_names:
+    send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
+    send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
+    send_sms_to_html: '<b>SMS gesendet</b> an %{submitter_name}'
+    send_2fa_sms_to_html: '<b>Verifizierungs-SMS gesendet</b> an %{submitter_name}'
+    open_email_by_html: '<b>E-Mail geöffnet</b> von %{submitter_name}'
+    click_email_by_html: '<b>E-Mail-Link angeklickt</b> von %{submitter_name}'
+    click_sms_by_html: '<b>SMS-Link angeklickt</b> von %{submitter_name}'
+    phone_verified_by_html: '<b>Telefon verifiziert</b> von %{submitter_name}'
+    start_form_by_html: '<b>Einreichung gestartet</b> von %{submitter_name}'
+    view_form_by_html: '<b>Formular angesehen</b> von %{submitter_name}'
+    invite_party_by_html: '<b>Eingeladen</b> %{invited_submitter_name} von %{submitter_name}'
+    complete_form_by_html: '<b>Einreichung abgeschlossen</b> von %{submitter_name}'
+    api_complete_form_by_html: '<b>Einreichung über API abgeschlossen</b> von %{submitter_name}'
   import_list:
     select_worksheet: Arbeitsblatt auswählen
     open: Öffnen

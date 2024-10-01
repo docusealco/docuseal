@@ -38,7 +38,9 @@ module Submissions
     def build_combined_pdf(submitter)
       pdfs_index = Submissions::GenerateResultAttachments.generate_pdfs(submitter)
 
-      audit_trail = Submissions::GenerateAuditTrail.build_audit_trail(submitter.submission)
+      audit_trail = I18n.with_locale(submitter.account.locale) do
+        Submissions::GenerateAuditTrail.build_audit_trail(submitter.submission)
+      end
 
       audit_trail.dispatch_message(:complete_objects)
 

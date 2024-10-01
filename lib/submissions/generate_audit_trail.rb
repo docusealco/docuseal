@@ -12,9 +12,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    VERIFIED_TEXT = 'Verified'
-    UNVERIFIED_TEXT = 'Unverified'
-
     CURRENCY_SYMBOLS = {
       'USD' => '$',
       'EUR' => '€',
@@ -32,35 +29,37 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submission)
-      document = build_audit_trail(submission)
-
       account = submission.account
 
-      pkcs = Accounts.load_signing_pkcs(account)
-      tsa_url = Accounts.load_timeserver_url(account)
+      I18n.with_locale(account.locale) do
+        document = build_audit_trail(submission)
 
-      io = StringIO.new
+        pkcs = Accounts.load_signing_pkcs(account)
+        tsa_url = Accounts.load_timeserver_url(account)
 
-      document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
+        io = StringIO.new
 
-      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
+        document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
-      sign_params = {
-        reason: sign_reason,
-        **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
-      }
+        last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
-      document.sign(io, **sign_params)
+        sign_params = {
+          reason: sign_reason,
+          **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
+        }
 
-      Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
+        document.sign(io, **sign_params)
 
-      ActiveStorage::Attachment.create!(
-        blob: ActiveStorage::Blob.create_and_upload!(
-          io: io.tap(&:rewind), filename: "Audit Log - #{submission.template.name}.pdf"
-        ),
-        name: 'audit_trail',
-        record: submission
-      )
+        Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
+
+        ActiveStorage::Attachment.create!(
+          blob: ActiveStorage::Blob.create_and_upload!(
+            io: io.tap(&:rewind), filename: "#{I18n.t('audit_log')} - #{submission.template.name}.pdf"
+          ),
+          name: 'audit_trail',
+          record: submission
+        )
+      end
     end
 
     def build_audit_trail(submission)
@@ -130,7 +129,7 @@ module Submissions
                   TESTING_FOOTER
                 end
               else
-                "Document ID: #{document_id}"
+                "#{I18n.t('document_id')}: #{document_id}"
               end
 
             text = HexaPDF::Layout::TextFragment.create(
@@ -158,17 +157,19 @@ module Submissions
       composer.column(columns: 1) do |column|
         add_logo(column, submission)
 
-        column.text(account.testing? ? 'Testing Log - Not for Production Use' : 'Audit Log',
+        column.text(account.testing? ? I18n.t('testing_log_not_for_production_use') : I18n.t('audit_log'),
                     font_size: 16,
                     padding: [10, 0, 0, 0],
                     position: :float, text_align: :right)
       end
 
       composer.column(columns: 1) do |column|
-        column.text("Envelope ID: #{submission.id}", font_size: 12, padding: [15, 0, 8, 0], position: :float)
+        column.text("#{I18n.t('envelope_id')}: #{submission.id}", font_size: 12,
+                                                                  padding: [15, 0, 8, 0],
+                                                                  position: :float)
 
         unless submission.source.in?(%w[embed api])
-          column.formatted_text([{ link: verify_url, text: 'Verify', style: :link }],
+          column.formatted_text([{ link: verify_url, text: I18n.t('verify'), style: :link }],
                                 font_size: 9, padding: [15, 0, 10, 0], position: :float, text_align: :right)
         end
       end
@@ -197,13 +198,13 @@ module Submissions
           ),
           composer.document.layout.formatted_text_box(
             [
-              { text: "Original SHA256:\n", font: [FONT_NAME, { variant: :bold }] },
+              { text: "#{I18n.t('original_sha256')}:\n", font: [FONT_NAME, { variant: :bold }] },
               original_documents.map { |d| d.metadata['sha256'] || d.checksum }.join("\n"),
               "\n",
-              { text: "Result SHA256:\n", font: [FONT_NAME, { variant: :bold }] },
+              { text: "#{I18n.t('result_sha256')}:\n", font: [FONT_NAME, { variant: :bold }] },
               document.metadata['sha256'] || document.checksum,
               "\n",
-              { text: 'Generated at: ', font: [FONT_NAME, { variant: :bold }] },
+              { text: "#{I18n.t('generated_at')}: ", font: [FONT_NAME, { variant: :bold }] },
               "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
               "#{TimeUtils.timezone_abbr(account.timezone, document.created_at)}"
             ], line_spacing: 1.3
@@ -250,13 +251,13 @@ module Submissions
             composer.document.layout.formatted_text_box(
               [
                 submitter.email && click_email_event && {
-                  text: "Email verification: #{VERIFIED_TEXT}\n"
+                  text: "#{I18n.t('email_verification')}: #{I18n.t('verified')}\n"
                 },
                 submitter.phone && is_phone_verified && {
-                  text: "Phone verification: #{VERIFIED_TEXT}\n"
+                  text: "#{I18n.t('phone_verification')}: #{I18n.t('verified')}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
-                completed_event.data['sid'] && { text: "Session ID: #{completed_event.data['sid']}\n" },
+                completed_event.data['sid'] && { text: "#{I18n.t('session_id')}: #{completed_event.data['sid']}\n" },
                 completed_event.data['ua'] && { text: "User agent: #{completed_event.data['ua']}\n" },
                 "\n"
               ].compact_blank, line_spacing: 1.3, padding: [10, 20, 20, 0]
@@ -284,7 +285,8 @@ module Submissions
                 [
                   {
                     text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
-                          "#{field['type']} Field #{submitter_field_counters[field['type']]}\n".upcase,
+                          "#{I18n.t('type_field',
+                                    type: field['type'])} #{submitter_field_counters[field['type']]}\n".upcase,
                     font_size: 6
                   }
                 ].compact_blank,
@@ -316,7 +318,8 @@ module Submissions
 
                   price = ApplicationController.helpers.number_to_currency(field['preferences']['price'], unit:)
 
-                  composer.formatted_text_box([{ text: "Paid #{price}\n" }], padding: [0, 0, 10, 0])
+                  composer.formatted_text_box([{ text: "#{I18n.t('paid_price', price:)}\n" }],
+                                              padding: [0, 0, 10, 0])
                 end
 
                 composer.formatted_text_box(
@@ -354,31 +357,38 @@ module Submissions
         composer.draw_box(divider)
       end
 
-      composer.text('Event Log', font_size: 12, padding: [10, 0, 20, 0])
+      composer.text(I18n.t('event_log'), font_size: 12, padding: [10, 0, 20, 0])
 
       events_data = submission.submission_events.sort_by(&:event_timestamp).map do |event|
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
+        submitter_name =
+          if event.event_type.include?('sms') || event.event_type.include?('phone')
+            event.data['phone'] || submitter.phone
+          else
+            submitter.name || submitter.email || submitter.phone
+          end
 
-        text = SubmissionEvents::EVENT_NAMES[event.event_type.to_sym]
-
-        if event.event_type == 'invite_party' &&
-           (invited_submitter = submission.submitters.find { |e| e.uuid == event.data['uuid'] }) &&
-           (name = submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
-          text += ['', invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' ')
-        end
+        text =
+          if event.event_type == 'invite_party' &&
+             (invited_submitter = submission.submitters.find { |e| e.uuid == event.data['uuid'] }) &&
+             (name = submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
+            invited_submitter_name = [invited_submitter.name || invited_submitter.email || invited_submitter.phone,
+                                      name].join(' ')
+            I18n.t('submission_event_names.invite_party_by_html', invited_submitter_name:,
+                                                                  submitter_name:)
+          elsif event.event_type.include?('send_')
+            I18n.t("submission_event_names.#{event.event_type}_to_html", submitter_name:)
+          else
+            I18n.t("submission_event_names.#{event.event_type}_by_html", submitter_name:)
+          end
 
         [
           "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
           "#{TimeUtils.timezone_abbr(account.timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(
             [
-              { text:, font: [FONT_NAME, { variant: :bold }] },
-              event.event_type.include?('send_') ? ' to ' : ' by ',
-              if event.event_type.include?('sms') || event.event_type.include?('phone')
-                event.data['phone'] || submitter.phone
-              else
-                submitter.name || submitter.email || submitter.phone
-              end
+              { text: text[%r{<b>(.*?)</b>}, 1], font: [FONT_NAME, { variant: :bold }] },
+              text[%r{<b>(.*?)</b>(.*)}, 2]
             ]
           )
         ]
