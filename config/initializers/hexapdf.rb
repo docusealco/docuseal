@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 module HexaPDF
+  module DigitalSignature
+    class Signatures
+      private
+
+      def generate_field_name
+        index = (@document.acro_form.each_field
+                 .map { |field| field.full_field_name.to_s.scan(/\ASignature(\d+)/).first&.first.to_i }
+                 .max || 0) + 1
+        "Signature#{index}"
+      end
+    end
+  end
+
   module Encryption
     class SecurityHandler
       def encrypt_string(str, obj)
