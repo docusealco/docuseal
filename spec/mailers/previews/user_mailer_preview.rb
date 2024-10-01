@@ -2,6 +2,8 @@
 
 class UserMailerPreview < ActionMailer::Preview
   def invitation_email
-    UserMailer.invitation_email(User.last)
+    user = User.first
+    user.account.locale = I18n.locale
+    UserMailer.invitation_email(user)
   end
 end

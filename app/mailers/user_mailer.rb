@@ -8,7 +8,9 @@ class UserMailer < ApplicationMailer
 
     assign_message_metadata('user_invitation', @user)
 
-    mail(to: @user.friendly_name,
-         subject: "You are invited to #{Docuseal.product_name}")
+    I18n.with_locale(@current_account.locale) do
+      mail(to: @user.friendly_name,
+           subject: I18n.t('you_are_invited_to_product_name', product_name: Docuseal.product_name))
+    end
   end
 end

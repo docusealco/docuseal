@@ -1,7 +1,7 @@
-<p>Hello <%= @user.first_name %>,</p>
-<p>You have been invited to <%= @user.account.name %> <%= Docuseal.product_name %>. Please sign up using the link below:</p>
-<p><%= link_to 'Sign up', invitation_url(reset_password_token: @token) %></p>
-<p>Please contact us by replying to this email if you didn't request this.</p>
+<p><%= @user.first_name.present? ? t('hello_name', name: @user.first_name) : t('hi_there') %>,</p>
+<p><%= t('you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_', account_name: @user.account.name, product_name: Docuseal.product_name) %></p>
+<p><%= link_to t('sign_up'), invitation_url(reset_password_token: @token) %></p>
+<p><%= t('please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this') %></p>
 <p>
-  Thanks,<br><%= @current_account.name %>
+  <%= t('thanks') %>,<br><%= @current_account.name %>
 </p>
