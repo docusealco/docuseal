@@ -114,6 +114,25 @@ export default {
         phone: this.t('phone')
       }
     },
+    fieldLabels () {
+      return {
+        text: this.t('text_field'),
+        signature: this.t('signature_field'),
+        initials: this.t('initials_field'),
+        date: this.t('date_field'),
+        number: this.t('number_field'),
+        image: this.t('image_field'),
+        file: this.t('file_field'),
+        select: this.t('select_field'),
+        checkbox: this.t('checkbox_field'),
+        multiple: this.t('multiple_field'),
+        radio: this.t('radio_field'),
+        cells: this.t('cells_field'),
+        stamp: this.t('stamp_field'),
+        payment: this.t('payment_field'),
+        phone: this.t('phone_field')
+      }
+    },
     fieldIcons () {
       return {
         heading: IconHeading,

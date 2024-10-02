@@ -341,7 +341,8 @@ module Submissions
             if field['type'].in?(%w[multiple radio])
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
-              option_name = option['value'].presence || "Option #{field['options'].index(option) + 1}"
+              option_name = option['value'].presence
+              option_name ||= "#{I18n.t('option', locale: account.locale)} #{field['options'].index(option) + 1}"
 
               value = Array.wrap(value).include?(option_name)
             end

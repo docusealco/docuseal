@@ -592,10 +592,27 @@ en: &en
   email_verification: Email verification
   phone_verification: Phone verification
   session_id: Session ID
-  type_field: '%{type} Field'
+  option: Option
+  text_field: Text Field
+  signature_field: Signature Field
+  initials_field: Initials Field
+  date_field: Date Field
+  number_field: Number Field
+  image_field: Image Field
+  file_field: File Field
+  select_field: Select Field
+  checkbox_field: Checkbox Field
+  multiple_field: Multiple Select Field
+  radio_field: Radio Group Field
+  cells_field: Cells Field
+  stamp_field: Stamp Field
+  payment_field: Payment Field
+  phone_field: Phone Field
   paid_price: 'Paid %{price}'
   verified: Verified
   unverified: Unverified
+  document: Document
+  completed_at: Completed At
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1206,10 +1223,27 @@ es: &es
   email_verification: Verificación de correo electrónico
   phone_verification: Verificación telefónica
   session_id: ID de la Sesión
-  type_field: 'Campo %{type}'
+  option: Opción
+  text_field: Campo de Texto
+  signature_field: Campo de Firma
+  initials_field: Campo de Iniciales
+  date_field: Campo de Fecha
+  number_field: Campo de Número
+  image_field: Campo de Imagen
+  file_field: Campo de Archivo
+  select_field: Campo de Selección
+  multiple_field: Campo Múltiple
+  radio_field: Campo de Grupo Radio
+  radio_field: Campo de Radio
+  cells_field: Campo de Celdas
+  stamp_field: Campo de Sello
+  payment_field: Campo de Pago
+  phone_field: Campo de Teléfono
   paid_price: 'Pagado %{price}'
   verified: Verificado
   unverified: No verificado
+  document: Documento
+  completed_at: Completado el
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1820,10 +1854,27 @@ it: &it
   email_verification: Verifica e-mail
   phone_verification: Verifica telefono
   session_id: ID della Sessione
-  type_field: 'Campo %{type}'
+  option: Opzione
+  text_field: Campo di Testo
+  signature_field: Campo di Firma
+  initials_field: Campo di Iniziali
+  date_field: Campo Data
+  number_field: Campo Numero
+  image_field: Campo Immagine
+  file_field: Campo File
+  select_field: Campo di Selezione
+  checkbox_field: Campo di Checkbox
+  multiple_field: Campo Selezione Multipla
+  radio_field: Campo di Gruppo Radio
+  cells_field: Campo Celle
+  stamp_field: Campo Timbro
+  payment_field: Campo Pagamento
+  phone_field: Campo Telefono
   paid_price: 'Pagato %{price}'
   verified: Verificato
   unverified: Non verificato
+  document: Documento
+  completed_at: Completato il
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2435,10 +2486,27 @@ fr: &fr
   email_verification: Vérification de l'e-mail
   phone_verification: Vérification du téléphone
   session_id: ID de session
-  type_field: 'Champ %{type}'
+  option: Option
+  text_field: Champ de Texte
+  signature_field: Champ de Signature
+  initials_field: "Champ d'Initiales"
+  date_field: Champ de Date
+  number_field: Champ de Numéro
+  image_field: "Champ d'Image"
+  file_field: Champ de Fichier
+  select_field: Champ de Choix
+  checkbox_field: Champ de Coche
+  multiple_field: Champ de Choix Multiple
+  radio_field: Champ de Groupe Radio
+  cells_field: Champ de Cellules
+  stamp_field: Champ de Tampon
+  payment_field: Champ de Paiement
+  phone_field: Champ de Téléphone
   paid_price: 'Payé %{price}'
   verified: Vérifié
   unverified: Non vérifié
+  document: Document
+  completed_at: Terminé le
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3049,10 +3117,27 @@ pt: &pt
   email_verification: Verificação de E-mail
   phone_verification: Verificação de Telefone
   session_id: ID da Sessão
-  type_field: 'Campo %{type}'
+  option: Opção
+  text_field: Campo de Texto
+  signature_field: Campo de Assinatura
+  initials_field: Campo de Rúbrica
+  date_field: Campo de Data
+  number_field: Campo de Número
+  image_field: Campo de Imagem
+  file_field: Campo de Arquivo
+  select_field: Campo de Seleção
+  checkbox_field: Campo de Caixa
+  multiple_field: Campo de Opção Múltipla
+  radio_field: Campo de Grupo Rádio
+  cells_field: Campo de Células
+  stamp_field: Campo de Carimbo
+  payment_field: Campo de Pagamento
+  phone_field: Campo de Telefone
   paid_price: 'Pago %{price}'
   verified: Verificado
   unverified: Não verificado
+  document: Documento
+  completed_at: Concluído em
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3663,10 +3748,27 @@ de: &de
   email_verification: E-Mail-Verifizierung
   phone_verification: Telefonverifizierung
   session_id: Sitzungs-ID
-  type_field: '%{type} Feld'
+  option: Option
+  text_field: Textfeld
+  signature_field: Unterschriftsfeld
+  initials_field: Initialenfeld
+  date_field: Datumsfeld
+  number_field: Zahlenfeld
+  image_field: Bildfeld
+  file_field: Dateifeld
+  select_field: Auswahlfeld
+  checkbox_field: Checkbox-Feld
+  multiple_field: Mehrfach-Auswahlfeld
+  radio_field: Radio-Gruppenfeld
+  cells_field: Zellenfeld
+  stamp_field: Stempelfeld
+  payment_field: Zahlungsfeld
+  phone_field: Telefonfeld
   paid_price: 'Bezahlt %{price}'
   verified: Verifiziert
   unverified: Nicht verifiziert
+  document: Dokument
+  completed_at: Abgeschlossen am
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

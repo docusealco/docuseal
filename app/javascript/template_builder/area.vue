@@ -360,6 +360,7 @@ export default {
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
     isDefaultValuePresent () {
       if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {

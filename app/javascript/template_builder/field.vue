@@ -312,6 +312,7 @@ export default {
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
+    fieldLabels: FieldType.computed.fieldLabels,
     dropdownBgColor () {
       return ['', null, 'transparent'].includes(this.backgroundColor) ? 'white' : this.backgroundColor
     },
@@ -367,8 +368,7 @@ export default {
         if (this.field.type === 'heading') {
           return `${this.fieldNames[field.type]} ${typeIndex + 1}`
         } else {
-          const suffix = { multiple: this.t('select'), radio: this.t('group') }[field.type] || this.t('field')
-          return `${this.fieldNames[field.type]} ${suffix} ${typeIndex + 1}`
+          return `${this.fieldLabels[field.type]} ${typeIndex + 1}`
         }
       }
     },

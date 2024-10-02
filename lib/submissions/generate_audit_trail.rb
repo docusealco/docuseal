@@ -282,8 +282,7 @@ module Submissions
                 [
                   {
                     text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
-                          "#{I18n.t('type_field',
-                                    type: field['type'])} #{submitter_field_counters[field['type']]}\n".upcase,
+                          "#{I18n.t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}\n".upcase,
                     font_size: 6
                   }
                 ].compact_blank,

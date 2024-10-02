@@ -216,7 +216,7 @@ const it = {
   pay: 'Pagamento',
   file: 'File',
   select: 'Seleziona',
-  checkbox: 'Casella di controllo',
+  checkbox: 'Checkbox',
   multiple: 'Multiplo',
   radio: 'Radio',
   cells: 'Celle',

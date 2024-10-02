@@ -182,7 +182,7 @@
             <% next if value.blank? %>
             <div class="pt-2.5 border-b border-base-300">
               <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
-                <%= field['name'].presence || "#{field['type'].titleize} Field #{submitter_field_counters[field['type']]}" %>
+                <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>
               </div>
               <div dir="auto">
                 <% if field['type'].in?(%w[signature initials]) %>

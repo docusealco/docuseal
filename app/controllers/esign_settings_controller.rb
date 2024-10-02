@@ -87,7 +87,7 @@ class EsignSettingsController < ApplicationController
 
     @encrypted_config.save!
 
-    redirect_to settings_esign_path, notice: I18m.t('certificate_has_been_removed')
+    redirect_to settings_esign_path, notice: I18n.t('certificate_has_been_removed')
   end
 
   private

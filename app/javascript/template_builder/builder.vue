@@ -332,7 +332,7 @@
         >
           <div class="bg-base-200 rounded-lg p-5 text-center space-y-4">
             <p>
-              {{ t('draw_field_on_the_document').replace('{field}', drawField?.name || '') }}
+              {{ t('draw_field_on_the_document') }}
             </p>
             <div>
               <button
