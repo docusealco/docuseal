@@ -7,6 +7,6 @@ class TemplatesArchivedController < ApplicationController
     @templates = @templates.where.not(archived_at: nil).preload(:author, :folder).order(id: :desc)
     @templates = Templates.search(@templates, params[:q])
 
-    @pagy, @templates = pagy(@templates, items: 12)
+    @pagy, @templates = pagy(@templates, limit: 12)
   end
 end

@@ -23,14 +23,14 @@ class TemplatesDashboardController < ApplicationController
       @template_folders = @template_folders.reject { |e| e.name == TemplateFolder::DEFAULT_NAME }
       @templates = filter_templates(@templates)
 
-      items =
+      limit =
         if @template_folders.size < 4
           TEMPLATES_PER_PAGE
         else
           (@template_folders.size < 7 ? 9 : 6)
         end
 
-      @pagy, @templates = pagy(@templates, items:)
+      @pagy, @templates = pagy(@templates, limit:)
     end
   end
 

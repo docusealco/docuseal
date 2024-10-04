@@ -7,7 +7,7 @@ class TemplateFoldersController < ApplicationController
     @templates = @template_folder.templates.active.preload(:author).order(id: :desc)
     @templates = Templates.search(@templates, params[:q])
 
-    @pagy, @templates = pagy(@templates, items: 12)
+    @pagy, @templates = pagy(@templates, limit: 12)
   end
 
   def edit; end
