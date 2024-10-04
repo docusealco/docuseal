@@ -81,7 +81,7 @@ RSpec.describe 'Submit Form' do
 
       expect do
         click_on 'Sign and Complete'
-      end.to change(enqueued_jobs, :size).by(1)
+      end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
     end
   end
 end
