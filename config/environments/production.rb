@@ -87,7 +87,7 @@ Rails.application.configure do
       domain: ENV.fetch('SMTP_DOMAIN', nil),
       user_name: ENV.fetch('SMTP_USERNAME', nil),
       password: ENV.fetch('SMTP_PASSWORD', nil),
-      authentication: ENV.fetch('SMTP_AUTHENTICATION', 'plain'),
+      authentication: ENV.fetch('SMTP_PASSWORD', nil).present? ? ENV.fetch('SMTP_AUTHENTICATION', 'plain') : nil,
       enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
     }.compact
   end

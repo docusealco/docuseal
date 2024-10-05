@@ -44,7 +44,7 @@ module ActionMailerConfigsInterceptor
       port: value['port'],
       domain: value['domain'],
       openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-      authentication: value.fetch('authentication', 'plain'),
+      authentication: value['password'].present? ? value.fetch('authentication', 'plain') : nil,
       enable_starttls_auto: true,
       open_timeout: OPEN_TIMEOUT,
       read_timeout: READ_TIMEOUT,
