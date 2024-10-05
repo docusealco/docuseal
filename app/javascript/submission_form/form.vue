@@ -897,7 +897,7 @@ export default {
   mounted () {
     this.submittedValues = JSON.parse(JSON.stringify(this.values))
 
-    screen?.orientation.addEventListener('change', this.onOrientationChange)
+    screen?.orientation?.addEventListener('change', this.onOrientationChange)
 
     this.fields.forEach((field) => {
       if (field.default_value && !field.readonly) {
