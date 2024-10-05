@@ -39,7 +39,7 @@ gem 'ruby-vips'
 gem 'rubyXL'
 gem 'shakapacker'
 gem 'sidekiq'
-gem 'sqlite3', require: false, force_ruby_platform: true
+gem 'sqlite3', require: false
 gem 'strip_attributes'
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
