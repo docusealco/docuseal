@@ -1,5 +1,6 @@
 <template>
   <div
+    id="form_completed"
     class="mx-auto max-w-md flex flex-col"
     dir="auto"
   >
