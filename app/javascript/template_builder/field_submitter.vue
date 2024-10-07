@@ -330,7 +330,7 @@ export default {
       this.$emit('update:model-value', submitter.uuid)
     },
     remove (submitter) {
-      if (window.confirm(this.t('are_you_sure'))) {
+      if (window.confirm(this.t('are_you_sure_'))) {
         this.$emit('remove', submitter)
       }
     },

@@ -1355,7 +1355,7 @@ export default {
       this.save()
     },
     onDocumentRemove (item) {
-      if (window.confirm(this.t('are_you_sure'))) {
+      if (window.confirm(this.t('are_you_sure_'))) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
       }
 

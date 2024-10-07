@@ -2722,7 +2722,7 @@ pt: &pt
   removing: Removendo
   delete: Excluir
   default: Padrão
-  are_you_sure_: Você tem certeza?
+  are_you_sure_: Tem certeza?
   timestamp_server: Servidor de carimbo de tempo
   timeserver_url: URL do servidor de carimbo de tempo
   url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: URL do servidor de carimbo de tempo RFC 3161 confiável a ser usado para gerar assinaturas de carimbo de tempo.
@@ -2900,9 +2900,9 @@ pt: &pt
   draw_signature: Desenhar assinatura
   clear: Limpar
   signature_uploaded: Assinatura enviada
-  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'A exclusão da submissão é irreversível e removerá permanentemente todos os documentos assinados associados a ela. Você tem certeza?'
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'A exclusão da submissão é irreversível e removerá permanentemente todos os documentos assinados associados a ela. Tem certeza?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Volte para seu dispositivo desktop para concluir o formulário ou <a class="link" href="%{link}">continue no celular</a>'
-  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: A exclusão do modelo é irreversível e removerá permanentemente todos os documentos assinados associados a ele. Você tem certeza?
+  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: A exclusão do modelo é irreversível e removerá permanentemente todos os documentos assinados associados a ele. Tem certeza?
   rename_folder: Renomear pasta
   folder_name: Nome da pasta
   rename: Renomear
