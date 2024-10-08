@@ -31,7 +31,7 @@
                   </submitters-autocomplete>
                   <submitters-autocomplete data-field="phone">
                     <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                      <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('Use internatioanl format: +1xxx...') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="base-input !h-10 mt-1.5 w-full" placeholder="<%= "#{t('phone')} (#{t('optional')})" %>" id="detailed_phone_<%= item['uuid'] %>">
+                      <input type="tel" pattern="^\+[0-9\s\-]+$" oninvalid="this.value ? this.setCustomValidity('<%= t('use_international_format_1xxx_') %>') : ''" oninput="this.setCustomValidity('')" name="submission[1][submitters][][phone]" autocomplete="off" class="base-input !h-10 mt-1.5 w-full" placeholder="<%= "#{t('phone')} (#{t('optional')})" %>" id="detailed_phone_<%= item['uuid'] %>">
                     </linked-input>
                   </submitters-autocomplete>
                 </div>

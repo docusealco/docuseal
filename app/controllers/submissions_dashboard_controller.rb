@@ -15,6 +15,6 @@ class SubmissionsDashboardController < ApplicationController
     @submissions = @submissions.pending if params[:status] == 'pending'
     @submissions = @submissions.completed if params[:status] == 'completed'
 
-    @pagy, @submissions = pagy(@submissions.preload(:submitters).order(id: :desc))
+    @pagy, @submissions = pagy(@submissions.preload(submitters: :submission_events).order(id: :desc))
   end
 end

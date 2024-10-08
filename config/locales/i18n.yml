@@ -613,6 +613,11 @@ en: &en
   unverified: Unverified
   document: Document
   completed_at: Completed At
+  edit_recipient: Edit Recipient
+  update_recipient: Update Recipient
+  use_international_format_1xxx_: 'Use internatioanl format: +1xxx...'
+  submitter_cannot_be_updated: Submitter cannot be updated.
+  at_least_one_field_must_be_filled: At least one field must be filled.
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1244,6 +1249,11 @@ es: &es
   unverified: No verificado
   document: Documento
   completed_at: Completado el
+  edit_recipient: Editar Destinatario
+  update_recipient: Actualizar Destinatario
+  use_international_format_1xxx_: 'Usa el formato internacional: +1xxx...'
+  submitter_cannot_be_updated: El remitente no puede ser actualizado.
+  at_least_one_field_must_be_filled: Al menos un campo debe estar completo.
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1875,6 +1885,11 @@ it: &it
   unverified: Non verificato
   document: Documento
   completed_at: Completato il
+  edit_recipient: Modifica Destinatario
+  update_recipient: Aggiorna Destinatario
+  use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
+  submitter_cannot_be_updated: Il mittente non può essere aggiornato.
+  at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2507,6 +2522,11 @@ fr: &fr
   unverified: Non vérifié
   document: Document
   completed_at: Terminé le
+  edit_recipient: Modifica Destinatario
+  update_recipient: Aggiorna Destinatario
+  use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
+  submitter_cannot_be_updated: Il mittente non può essere aggiornato.
+  at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3138,6 +3158,11 @@ pt: &pt
   unverified: Não verificado
   document: Documento
   completed_at: Concluído em
+  edit_recipient: Editar Destinatário
+  update_recipient: Atualizar Destinatário
+  use_international_format_1xxx_: 'Use o formato internacional: +1xxx...'
+  submitter_cannot_be_updated: O remetente não pode ser atualizado.
+  at_least_one_field_must_be_filled: Pelo menos um campo deve ser preenchido.
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3769,6 +3794,11 @@ de: &de
   unverified: Nicht verifiziert
   document: Dokument
   completed_at: Abgeschlossen am
+  edit_recipient: Empfänger bearbeiten
+  update_recipient: Empfänger aktualisieren
+  use_international_format_1xxx_: 'Verwenden Sie das internationale Format: +1xxx...'
+  submitter_cannot_be_updated: Der Absender kann nicht aktualisiert werden.
+  at_least_one_field_must_be_filled: Mindestens ein Feld muss ausgefüllt werden.
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

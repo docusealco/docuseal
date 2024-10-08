@@ -26,7 +26,8 @@
       </div>
     </a>
   <% end %>
-  <a href="<%= submission_path(submission) %>" class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:justify-between px-5 md:px-6 pb-5 md:items-center pt-5">
+  <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:justify-between px-5 md:px-6 pb-5 md:items-center pt-5 relative cursor-pointer">
+    <a href="<%= submission_path(submission) %>" class="top-0 bottom-0 left-0 right-0 absolute"></a>
     <% submitters = (submission.template_submitters || submission.template.submitters).filter_map { |item| submission.submitters.find { |e| e.uuid == item['uuid'] } } %>
     <% is_submission_completed = submitters.all?(&:completed_at?) && submitters.size.positive? %>
     <% if submitters.size == 1 %>
@@ -47,13 +48,22 @@
                 </span>
               </div>
             <% end %>
-            <span class="text-lg break-all flex items-center">
-              <%= submitter.name || submitter.email || submitter.phone %>
+            <span class="flex space-x-1 items-center z-[1]">
+              <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
+                <%= submitter.name || submitter.email || submitter.phone %>
+              </a>
+              <% if can?(:update, submitter) && !submitter.submission_events.any? { |e| e.event_type == 'start_form' } && !submission.archived_at? && !submission.expired? %>
+                <span class="tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
+                  <%= link_to edit_submitter_path(submitter), class: 'text-neutral-600 shrink-0', data: { turbo_frame: 'modal' } do %>
+                    <%= svg_icon('pencil', class: 'w-5 h-5 stroke-2') %>
+                  <% end %>
+                </span>
+              <% end %>
             </span>
           </span>
         </div>
       </div>
-      <div class="flex space-x-2 items-center">
+      <div class="flex space-x-2 items-center z-[1]">
         <% if submitter.completed_at? %>
           <form onsubmit="event.preventDefault()" class="flex-1 md:flex-none">
             <button onclick="event.stopPropagation()" class="w-full md:w-fit">
@@ -71,16 +81,14 @@
           </form>
         <% elsif !submission.archived_at? && !template.archived_at? && !submission.expired? && !submitter.declined_at? %>
           <% if current_user.email == submitter.email %>
-            <form data-turbo="false" method="get" action="<%= submit_form_url(slug: submitter.slug) %>" class="flex-1 md:flex-none">
-              <button onclick="event.stopPropagation()" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex">
-                <span class="flex items-center justify-center space-x-1 md:space-x-2">
-                  <% if t('sign_now').length < 12 %>
-                    <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
-                  <% end %>
-                  <span class="inline shrink-0"><%= t('sign_now') %></span>
-                </span>
-              </button>
-            </form>
+            <a href="<%= submit_form_url(slug: submitter.slug) %>" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex z-[1]">
+              <span class="flex items-center justify-center space-x-1 md:space-x-2">
+                <% if t('sign_now').length < 12 %>
+                  <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
+                <% end %>
+                <span class="inline shrink-0"><%= t('sign_now') %></span>
+              </span>
+            </a>
           <% else %>
             <div class="flex-1 md:flex-none">
               <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('copy'), copied_title_md: t('copied') %>
@@ -88,7 +96,9 @@
           <% end %>
         <% end %>
         <div class="flex-1 md:flex-none">
-          <span class="btn btn-outline btn-sm w-full md:w-24"><%= t('view') %></span>
+          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm w-full md:w-24">
+            <%= t('view') %>
+          </a>
         </div>
         <% if !submission.archived_at? && !template.archived_at? && can?(:destroy, submission) %>
           <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
@@ -129,8 +139,17 @@
                       </span>
                     </div>
                   <% end %>
-                  <span class="text-lg break-all">
-                    <%= submitter.name || submitter.email || submitter.phone %>
+                  <span class="flex space-x-1 items-center z-[1]">
+                    <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
+                      <%= submitter.name || submitter.email || submitter.phone %>
+                    </a>
+                    <% if can?(:update, submitter) && !submitter.submission_events.any? { |e| e.event_type == 'start_form' } && !submission.archived_at? && !submission.expired? %>
+                      <span class="tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
+                        <%= link_to edit_submitter_path(submitter), class: 'text-neutral-600 shrink-0', data: { turbo_frame: 'modal' } do %>
+                          <%= svg_icon('pencil', class: 'w-5 h-5 stroke-2') %>
+                        <% end %>
+                      </span>
+                    <% end %>
                   </span>
                 </span>
                 <% if submitter.completed_at? && !is_submission_completed %>
@@ -171,7 +190,7 @@
           </div>
         </div>
       </div>
-      <div class="flex space-x-1 md:space-x-2 items-center">
+      <div class="flex space-x-1 md:space-x-2 items-center z-[1]">
         <% if is_submission_completed %>
           <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
           <div class="flex-1 md:flex-none">
@@ -192,7 +211,9 @@
           </div>
         <% end %>
         <div class="flex-1 md:flex-none">
-          <span class="btn btn-outline btn-sm w-full md:w-24"><%= t('view') %></span>
+          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm w-full md:w-24">
+            <%= t('view') %>
+          </a>
         </div>
         <% if !submission.archived_at? && !template.archived_at? %>
           <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
@@ -206,5 +227,5 @@
         <% end %>
       </div>
     <% end %>
-  </a>
+  </div>
 </div>

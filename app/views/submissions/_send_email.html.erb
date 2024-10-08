@@ -2,12 +2,12 @@
   <% can_send_emails = Accounts.can_send_emails?(current_account) %>
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
-      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails, checked: can_send_emails %>
-      <span class="label"><%= t('send_emails') %></span>
+      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails, checked: can_send_emails && !local_assigns.key?(:resend_email) %>
+      <span class="label"><%= local_assigns[:resend_email] ? t('re_send_email') : t('send_email') %></span>
     <% end %>
     <div>
       <% if can_send_emails %>
-        <%= render 'email_stats' %>
+        <%= render 'submissions/email_stats' %>
         <%= content_for(:edit_button) || capture do %>
           <label>
             <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
@@ -39,7 +39,7 @@
     <div class="form-control space-y-2">
       <div class="form-control">
         <%= f.label :subject, t('subject'), class: 'label' %>
-        <%= f.text_field :subject, value: @template.preferences['request_email_subject'].presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
+        <%= f.text_field :subject, value: local_assigns[:submitter_email_message]&.subject.presence || template.preferences['request_email_subject'].presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
         <div class="flex items-center">
@@ -49,14 +49,16 @@
           </span>
         </div>
         <autoresize-textarea>
-          <%= f.text_area :body, value: @template.preferences['request_email_body'].presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
+          <%= f.text_area :body, value: local_assigns[:submitter_email_message]&.body.presence || template.preferences['request_email_body'].presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
         </autoresize-textarea>
-        <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
-          <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
-          <span class="label"><%= t('save_as_default_template_message') %></span>
-        </label>
+        <% unless local_assigns.fetch(:disable_save_as_default_template_option, false) %>
+          <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
+            <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
+            <span class="label"><%= t('save_as_default_template_message') %></span>
+          </label>
+        <% end %>
       </div>
-      <%= render 'message_fields' %>
+      <%= render 'submissions/message_fields' %>
     </div>
   </div>
 </div>
