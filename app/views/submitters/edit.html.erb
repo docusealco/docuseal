@@ -1,12 +1,12 @@
 <%= render 'shared/turbo_modal_large', title: t('edit_recipient') do %>
   <div class="px-5 mb-5 mt-4">
-    <%= form_for '', url: submitter_path(@submitter), method: :patch, html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
-      <div class="grid gap-4">
+    <%= form_for '', url: submitter_path(@submitter), method: :patch, html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+      <div class="mb-2">
         <submitter-item class="form-control">
           <submitters-autocomplete data-field="name">
             <%= text_field_tag 'submitter[name]', @submitter.name, autocomplete: 'off', class: 'base-input !h-10 w-full', placeholder: "#{t('name')} (#{t('optional')})", dir: 'auto' %>
           </submitters-autocomplete>
-          <div class="grid md:grid-cols-2 gap-1">
+          <div class="grid md:grid-cols-2 gap-1.5 mt-1.5">
             <submitters-autocomplete data-field="email">
               <%= email_field_tag 'submitter[email]', @submitter.email, autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: "#{t('email')} (#{t('optional')})" %>
             </submitters-autocomplete>
@@ -20,7 +20,7 @@
         <%= render 'submissions/send_email', f:, template: @submitter.template, submitter: @submitter, resend_email: @submitter.sent_at?, submitter_email_message: @submitter_email_message, disable_save_as_default_template_option: true %>
         <%= render 'submissions/send_sms', f:, resend_sms: @submitter.sent_at? %>
       </div>
-      <div class="form-control">
+      <div class="form-control mt-4">
         <%= f.button button_title(title: t('update_recipient'), disabled_with: t('updating')), class: 'base-button' %>
       </div>
     <% end %>

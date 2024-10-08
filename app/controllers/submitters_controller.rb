@@ -6,9 +6,7 @@ class SubmittersController < ApplicationController
   def edit
     @submitter_email_message =
       if @submitter.preferences['email_message_uuid'].present?
-        @submitter.account
-                  .email_messages
-                  .find_by(uuid: @submitter.preferences['email_message_uuid'])
+        @submitter.account.email_messages.find_by(uuid: @submitter.preferences['email_message_uuid'])
       end
   end
 
@@ -29,13 +27,16 @@ class SubmittersController < ApplicationController
       params.delete(:body)
     end
 
-    assign_preferences(@submitter, params)
+    submitter_preferences = Submitters.normalize_preferences(@submitter.account, current_user, params)
+
+    if submitter_preferences.key?('email_message_uuid')
+      submitter.preferences['email_message_uuid'] = submitter_preferences['email_message_uuid']
+    end
+
     assign_submitter_attrs(@submitter, submitter_params)
 
     if @submitter.save
-      if @submitter.preferences['send_email'] || @submitter.preferences['send_sms']
-        Submitters.send_signature_requests([@submitter])
-      end
+      maybe_resend_email_sms(@submitter, params)
 
       redirect_back fallback_location: submission_path(submission), notice: I18n.t('changes_have_been_saved')
     else
@@ -45,28 +46,30 @@ class SubmittersController < ApplicationController
 
   private
 
+  def maybe_resend_email_sms(submitter, params)
+    if params[:send_email] == '1' && submitter.email.present?
+      is_sent_recently = Docuseal.multitenant? &&
+                         EmailEvent.exists?(email: submitter.email,
+                                            tag: 'submitter_invitation',
+                                            emailable: submitter,
+                                            event_type: 'send',
+                                            created_at: 4.hours.ago..Time.current)
+
+      SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id) unless is_sent_recently
+    end
+
+    return if submitter.phone.blank?
+    return unless params[:send_sms] == '1'
+
+    SendSubmitterInvitationSmsJob.perform_async('submitter_id' => submitter.id)
+  end
+
   def assign_submitter_attrs(submitter, attrs)
     submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '') if attrs.key?(:phone)
 
     submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)
 
     submitter.name = attrs[:name] if attrs.key?(:name)
-
-    submitter
-  end
-
-  def assign_preferences(submitter, attrs)
-    submitter_preferences = Submitters.normalize_preferences(submitter.account, current_user, attrs)
-
-    if submitter_preferences.key?('send_email')
-      submitter.preferences['send_email'] = submitter_preferences['send_email']
-    end
-
-    submitter.preferences['send_sms'] = submitter_preferences['send_sms'] if submitter_preferences.key?('send_sms')
-
-    if submitter_preferences.key?('email_message_uuid')
-      submitter.preferences['email_message_uuid'] = submitter_preferences['email_message_uuid']
-    end
 
     submitter
   end
