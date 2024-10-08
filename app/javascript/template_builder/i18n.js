@@ -1,5 +1,7 @@
 const en = {
   editable: 'Editable',
+  recurrent: 'Recurrent',
+  one_off: 'One-off',
   search_field: 'Search field',
   field_not_found: 'Field not found',
   clear: 'Clear',
@@ -151,6 +153,8 @@ const en = {
 }
 
 const es = {
+  recurrent: 'Recurrente',
+  one_off: 'Único',
   editable: 'Editable',
   search_field: 'Campo de búsqueda',
   field_not_found: 'Campo no encontrado',
@@ -303,6 +307,8 @@ const es = {
 }
 
 const it = {
+  ricorrente: 'Ricorrente',
+  una_volta: 'Una volta',
   editable: 'Modificabile',
   search_field: 'Campo di ricerca',
   field_not_found: 'Campo non trovato',
@@ -455,6 +461,8 @@ const it = {
 }
 
 const pt = {
+  recurrent: 'Recurrente',
+  one_off: 'Único',
   editable: 'Editável',
   search_field: 'Campo de busca',
   field_not_found: 'Campo não encontrado',
@@ -607,6 +615,8 @@ const pt = {
 }
 
 const fr = {
+  recurrent: 'Récurrent',
+  one_off: 'Ponctuel',
   editable: 'Éditable',
   search_field: 'Champ de recherche',
   field_not_found: 'Champ non trouvé',
@@ -759,6 +769,8 @@ const fr = {
 }
 
 const de = {
+  wiederkehrend: 'Wiederkehrend',
+  einmalig: 'Einmalig',
   editable: 'Bearbeitbar',
   search_field: 'Suchfeld',
   field_not_found: 'Feld nicht gefunden',

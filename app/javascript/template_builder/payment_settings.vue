@@ -21,6 +21,7 @@
       @click="closeDropdown"
     >
       <div
+        v-if="!('price_id' in field.preferences)"
         class="py-1.5 px-1 relative"
         @click.stop
       >
@@ -59,6 +60,13 @@
           @blur="save"
         >
         <input
+          v-else-if="'price_id' in field.preferences"
+          v-model="field.preferences.price_id"
+          placeholder="Price ID: price_XXXXX"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          @blur="save"
+        >
+        <input
           v-else
           v-model="field.preferences.price"
           type="number"
@@ -74,6 +82,23 @@
         >
           {{ t('price') }}
         </label>
+        <div class="flex items-center justify-center">
+          <a
+            href="#"
+            class="hover:underline"
+            style="font-size: 11px"
+            :class="{'underline': !('price_id' in field.preferences)}"
+            @click="delete field.preferences.price_id"
+          >{{ t('one_off') }}</a>
+          <span class="h-2.5 border-l border-base-content mx-1" />
+          <a
+            href="#"
+            class="hover:underline"
+            style="font-size: 11px"
+            :class="{'underline': ('price_id' in field.preferences)}"
+            @click="field.preferences.price_id ??= ''"
+          >{{ t('recurrent') }}</a>
+        </div>
       </div>
       <div
         v-if="!isConnected || isOauthSuccess"
@@ -158,7 +183,10 @@
           data-turbo="false"
         >{{ t('learn_more') }}</a>
       </div>
-      <li class="mb-1">
+      <li
+        v-if="!('price_id' in field.preferences)"
+        class="mb-1"
+      >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-formula')"
