@@ -17,7 +17,7 @@ module Templates
 
     module_function
 
-    def call(attachment, data, extract_fields: false)
+    def call(attachment, data, extract_fields: false, max_pages: MAX_NUMBER_OF_PAGES_PROCESSED)
       if attachment.content_type == PDF_CONTENT_TYPE
         if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
           pdf = HexaPDF::Document.new(io: StringIO.new(data))
@@ -25,7 +25,7 @@ module Templates
           fields = Templates::FindAcroFields.call(pdf, attachment)
         end
 
-        generate_pdf_preview_images(attachment, data, pdf)
+        generate_pdf_preview_images(attachment, data, pdf, max_pages:)
 
         attachment.metadata['pdf']['fields'] = fields if fields
       elsif attachment.image?
@@ -56,7 +56,7 @@ module Templates
       )
     end
 
-    def generate_pdf_preview_images(attachment, data, pdf = nil)
+    def generate_pdf_preview_images(attachment, data, pdf = nil, max_pages: MAX_NUMBER_OF_PAGES_PROCESSED)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
       pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
@@ -71,12 +71,16 @@ module Templates
         attachment.save!
       end
 
-      max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? MAX_NUMBER_OF_PAGES_PROCESSED : 1
+      max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? max_pages : 1
 
-      pool = Concurrent::FixedThreadPool.new(CONCURRENCY)
+      generate_document_preview_images(attachment, data, (0..[number_of_pages - 1, max_pages_to_process].min))
+    end
+
+    def generate_document_preview_images(attachment, data, range, concurrency: CONCURRENCY)
+      pool = Concurrent::FixedThreadPool.new(concurrency)
 
       promises =
-        (0..[number_of_pages - 1, max_pages_to_process].min).map do |page_number|
+        range.map do |page_number|
           Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(data, page_number) }
         end
 
