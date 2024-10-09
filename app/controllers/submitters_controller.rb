@@ -30,7 +30,7 @@ class SubmittersController < ApplicationController
     submitter_preferences = Submitters.normalize_preferences(@submitter.account, current_user, params)
 
     if submitter_preferences.key?('email_message_uuid')
-      submitter.preferences['email_message_uuid'] = submitter_preferences['email_message_uuid']
+      @submitter.preferences['email_message_uuid'] = submitter_preferences['email_message_uuid']
     end
 
     assign_submitter_attrs(@submitter, submitter_params)
