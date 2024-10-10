@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProcessDocumentJob
+class GeneratePreviewImagesJob
   include Sidekiq::Job
 
   sidekiq_options queue: :images
