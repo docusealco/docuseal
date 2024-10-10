@@ -50,6 +50,7 @@
               </div>
               <select
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                :class="{ 'text-gray-300': !condition.field_uuid }"
                 required
                 @change="[
                   condition.field_uuid = $event.target.value,
@@ -68,6 +69,7 @@
                   v-for="f in fields"
                   :key="f.uuid"
                   :value="f.uuid"
+                  class="text-base-content"
                   :selected="condition.field_uuid === f.uuid"
                 >
                   {{ f.name || buildDefaultName(f, template.fields) }}
@@ -90,6 +92,7 @@
               <select
                 v-if="conditionField(condition)?.options?.length"
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                :class="{ 'text-gray-300': !condition.value }"
                 required
                 @change="condition.value = $event.target.value"
               >
@@ -105,6 +108,7 @@
                   :key="option.uuid"
                   :value="option.uuid"
                   :selected="condition.value === option.uuid"
+                  class="text-base-content"
                 >
                   {{ option.value || `${t('option')} ${index + 1}` }}
                 </option>

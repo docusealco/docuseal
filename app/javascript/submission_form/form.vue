@@ -152,6 +152,7 @@
               dir="auto"
               :required="currentField.required"
               class="select base-input !text-2xl w-full text-center font-normal"
+              :class="{ 'text-gray-300': !values[currentField.uuid] }"
               :name="`values[${currentField.uuid}]`"
               @change="values[currentField.uuid] = $event.target.value"
               @focus="scrollIntoField(currentField)"
@@ -159,6 +160,7 @@
               <option
                 value=""
                 :selected="!values[currentField.uuid]"
+                class="text-gray-300"
               >
                 {{ t('select_your_option') }}
               </option>
@@ -167,6 +169,7 @@
                 :key="option.uuid"
                 :selected="values[currentField.uuid] == option.value"
                 :value="option.value"
+                class="text-base-content"
               >
                 {{ option.value }}
               </option>

@@ -197,6 +197,7 @@
     <select
       v-if="requireSigningReason && !isOtherReason"
       class="select base-input !text-2xl w-full mt-6 text-center"
+      :class="{ 'text-gray-300': !reason }"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
       @change="$event.target.value === 'other' ? [reason = '', isOtherReason = true] : $emit('update:reason', $event.target.value)"
@@ -205,6 +206,7 @@
         value=""
         disabled
         :selected="!reason"
+        class="text-gray-300"
       >
         {{ t('select_a_reason') }}
       </option>
@@ -213,10 +215,14 @@
         :key="option"
         :value="option"
         :selected="reason === option"
+        class="text-base-content"
       >
         {{ label }}
       </option>
-      <option value="other">
+      <option
+        value="other"
+        class="text-base-content"
+      >
         {{ t('other') }}
       </option>
     </select>

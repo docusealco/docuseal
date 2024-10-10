@@ -31,10 +31,6 @@ button[disabled] .enabled {
   display: none;
 }
 
-select:required:invalid {
-  @apply text-gray-300;
-}
-
 .input-bordered {
   @apply border-base-content/20;
 }

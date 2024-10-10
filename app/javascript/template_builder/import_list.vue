@@ -50,6 +50,7 @@
           <div class="flex">
             <select
               class="base-select !select-sm !h-10"
+              :class="{ '!text-gray-300': !mapping.field_name }"
               required
               @change="mapping.field_name = $event.target.value"
             >
@@ -65,6 +66,7 @@
                 :key="index"
                 :value="field.name"
                 :selected="mapping.field_name === field.name"
+                class="text-base-content"
               >
                 {{ field.name }}
               </option>
@@ -75,6 +77,7 @@
             <div class="w-full relative">
               <select
                 class="base-select !select-sm !h-10"
+                :class="{ '!text-gray-300': !mapping.column_index }"
                 required
                 @change="mapping.column_index = parseInt($event.target.value)"
               >
@@ -93,6 +96,7 @@
                     v-if="column"
                     :value="index"
                     :selected="index === mapping.column_index"
+                    class="text-base-content"
                   >
                     {{ column }}
                   </option>

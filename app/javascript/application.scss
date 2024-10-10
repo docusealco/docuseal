@@ -130,7 +130,3 @@ button[disabled] .enabled {
   outline-offset: 3px;
   outline-color: hsl(var(--bc) / 0.2);
 }
-
-select:required:invalid {
-  color: gray !important;
-}
