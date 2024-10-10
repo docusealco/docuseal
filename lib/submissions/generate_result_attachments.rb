@@ -459,6 +459,8 @@ module Submissions
           **build_signing_params(submitter, pkcs, tsa_url)
         }
 
+        pdf.pages.first[:Annots] = [] unless pdf.pages.first[:Annots].respond_to?(:<<)
+
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
         rescue HexaPDF::MalformedPDFError => e
