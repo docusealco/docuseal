@@ -8,6 +8,7 @@ module Submitters
                     AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
                     AccountConfig::WITH_SIGNATURE_ID,
                     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
+                    AccountConfig::REUSE_SIGNATURE_KEY,
                     AccountConfig::ALLOW_TYPED_SIGNATURE].freeze
 
     module_function
@@ -20,16 +21,20 @@ module Submitters
       with_typed_signature = find_safe_value(configs, AccountConfig::ALLOW_TYPED_SIGNATURE) != false
       with_confetti = find_safe_value(configs, AccountConfig::FORM_WITH_CONFETTI_KEY) != false
       prefill_signature = find_safe_value(configs, AccountConfig::FORM_PREFILL_SIGNATURE_KEY) != false
+      reuse_signature = find_safe_value(configs, AccountConfig::REUSE_SIGNATURE_KEY) != false
       with_signature_id = find_safe_value(configs, AccountConfig::WITH_SIGNATURE_ID) == true
       require_signing_reason = find_safe_value(configs, AccountConfig::REQUIRE_SIGNING_REASON_KEY) == true
 
-      attrs = { completed_button:,
-                with_typed_signature:,
-                with_confetti:,
-                completed_message:,
-                require_signing_reason:,
-                prefill_signature:,
-                with_signature_id: }
+      attrs = {
+        completed_button:,
+        with_typed_signature:,
+        with_confetti:,
+        reuse_signature:,
+        completed_message:,
+        require_signing_reason:,
+        prefill_signature:,
+        with_signature_id:
+      }
 
       keys.each do |key|
         attrs[key.to_sym] = configs.find { |e| e.key == key.to_s }&.value

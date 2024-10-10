@@ -41,6 +41,7 @@ class AccountConfig < ApplicationRecord
   WITH_SIGNATURE_ID = 'with_signature_id'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
+  REUSE_SIGNATURE_KEY = 'reuse_signature'
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
 
   DEFAULT_VALUES = {
