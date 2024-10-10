@@ -21,12 +21,13 @@
               <% end %>
             </div>
             <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
-              <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                <span><%= t('download') %></span>
+              <span class="flex items-center justify-center" data-target="download-button.defaultButton">
+                <%= svg_icon('download', class: 'w-6 h-6 inline md:hidden') %>
+                <span class="hidden md:inline"><%= t('download') %></span>
               </span>
               <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
                 <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                <span><%= t('downloading') %></span>
+                <span class="hidden md:inline"><%= t('downloading') %></span>
               </span>
             </download-button>
           </div>
