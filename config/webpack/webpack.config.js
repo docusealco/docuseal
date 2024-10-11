@@ -11,6 +11,7 @@ const configs = generateWebpackConfig({
   },
   optimization: {
     runtimeChunk: false,
+    concatenateModules: !process.env.BUNDLE_ANALYZE,
     splitChunks: {
       chunks (chunk) {
         return chunk.name !== 'rollbar'

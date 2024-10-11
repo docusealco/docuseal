@@ -70,7 +70,7 @@
             {{ selectedCountry.flag }} +{{ selectedCountry.dial }}
           </div>
           <select
-            class="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+            class="absolute top-0 bottom-0 right-0 left-0 opacity-0 w-full h-full cursor-pointer"
             :disabled="!!defaultValue"
             @change="onCountrySelect(countries.find((country) => country.flag === $event.target.value))"
           >
@@ -84,6 +84,11 @@
           </select>
         </div>
         <input
+          :name="`values[${field.uuid}]`"
+          :value="fullInternationalPhoneValue"
+          hidden
+        >
+        <input
           :id="field.uuid"
           ref="phone"
           :value="phoneValue"
@@ -94,7 +99,6 @@
           inputmode="tel"
           :required="field.required"
           placeholder="234 567-8900"
-          :name="`values[${field.uuid}]`"
           @input="onPhoneInput"
           @focus="$emit('focus')"
         >
@@ -105,7 +109,7 @@
 
 <script>
 import MarkdownContent from './markdown_content'
-import Geo from './geo'
+import phoneData from './phone_data'
 
 function throttle (func, delay) {
   let lastCallTime = 0
@@ -167,33 +171,50 @@ export default {
       isCodeSent: false,
       isResendLoading: false,
       phoneValue: this.modelValue || this.defaultValue || '',
-      fullInternationalPhoneValue: '',
-      selectedCountry: Geo.countryFlags['🇺🇸'],
-      countries: Geo.countries
+      selectedCountry: {}
     }
   },
-  watch: {
-    fullInternationalPhoneValue (value) {
-      const digitCount = value.replace(/[^\d]/g, '').length
+  computed: {
+    countries () {
+      return phoneData.map(([name, dial, flag, tz]) => {
+        return { name, dial, flag, tz }
+      })
+    },
+    countriesDialIndex () {
+      return this.countries.reduce((acc, item) => {
+        acc[item.dial] ||= item
 
-      if (!value.match(/^\+[0-9\s\\-]+$/) || digitCount < 8 || digitCount > 15) {
-        this.$refs.phone.setCustomValidity(this.t('use_international_format'))
+        return acc
+      }, {})
+    },
+    dialCodesRegexp () {
+      const dialCodes = this.countries.map((country) => country.dial).sort((a, b) => b.length - a.length)
+
+      return new RegExp(`^\\+(${dialCodes.join('|')})`)
+    },
+    detectedPhoneValueDialCode () {
+      return (this.phoneValue || '').replace(/[^\d+]/g, '').match(this.dialCodesRegexp)?.[1]
+    },
+    fullInternationalPhoneValue () {
+      if (this.detectedPhoneValueDialCode) {
+        return this.phoneValue
+      } else if (this.phoneValue) {
+        return ['+', this.selectedCountry.dial, this.phoneValue].filter(Boolean).join('')
       } else {
-        this.$refs.phone.setCustomValidity('')
+        return ''
       }
     }
   },
   mounted () {
-    const detectedDialCode = this.detectDialeCode(this.phoneValue)
-    const brawserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-    if (detectedDialCode) {
-      this.selectedCountry = Geo.countries.find((country) => country.dial === detectedDialCode)
-    } else if (brawserTimeZone) {
-      this.selectedCountry = Geo.countries.find((country) => country.tz.includes(brawserTimeZone)) || Geo.countryFlags['🇺🇸']
+    if (this.detectedPhoneValueDialCode) {
+      this.selectedCountry = this.countriesDialIndex[this.detectedPhoneValueDialCode]
+    } else if (browserTimeZone) {
+      const tz = browserTimeZone.split('/')[1]
+
+      this.selectedCountry = this.countries.find((country) => country.tz.includes(tz)) || this.countries[0]
     }
-
-    this.updateFullInternationalPhoneValue(this.phoneValue)
   },
   methods: {
     emitSubmit: throttle(function (e) {
@@ -206,32 +227,14 @@ export default {
 
       this.selectedCountry = country
 
-      this.updateFullInternationalPhoneValue(this.phoneValue)
       this.$refs.phone.focus()
     },
     onPhoneInput (e) {
       this.phoneValue = e.target.value
 
-      this.updateFullInternationalPhoneValue(this.phoneValue)
-    },
-    detectDialeCode (value) {
-      const dialCodes = Geo.countries.map((country) => country.dial).sort((a, b) => b.length - a.length)
-
-      return (value || '').replace(/[^\d+]/g, '').match(new RegExp(`^\\+(${dialCodes.join('|')})`))?.[1]
-    },
-    updateFullInternationalPhoneValue (value) {
-      const detectedDialCode = this.detectDialeCode(value)
-
-      if (detectedDialCode) {
-        this.selectedCountry = Geo.countries.find((country) => country.dial === detectedDialCode)
-        this.fullInternationalPhoneValue = this.phoneValue
-      } else if (this.phoneValue) {
-        this.fullInternationalPhoneValue = ['+', this.selectedCountry.dial, this.phoneValue].filter(Boolean).join('')
-      } else {
-        this.fullInternationalPhoneValue = ''
+      if (this.detectedPhoneValueDialCode) {
+        this.selectedCountry = this.countriesDialIndex[this.detectedPhoneValueDialCode]
       }
-
-      this.$emit('update:model-value', this.fullInternationalPhoneValue)
     },
     onInputCode (e) {
       if (e.target.value.length === 6) {
