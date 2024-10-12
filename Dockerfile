@@ -41,7 +41,7 @@ ENV OPENSSL_CONF=/app/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils redis vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
+RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler poppler-utils redis libheif@edge vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
 RUN echo $'.include = /etc/ssl/openssl.cnf\n\
 \n\
@@ -57,7 +57,7 @@ activate = 1' >> /app/openssl_legacy.cnf
 
 COPY ./Gemfile ./Gemfile.lock ./
 
-RUN apk add --no-cache build-base && bundle install && apk del build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
+RUN apk add --no-cache build-base && bundle install && apk del --no-cache build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
 
 COPY ./bin ./bin
 COPY ./app ./app
