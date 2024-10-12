@@ -220,7 +220,7 @@ module Submitters
           end
         when 'date'
           if with_time
-            I18n.l(Time.current.in_time_zone(submission.account.timezone).to_date)
+            Time.current.in_time_zone(submission.account.timezone).to_date.to_s
           else
             e
           end
