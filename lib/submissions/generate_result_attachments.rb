@@ -92,19 +92,13 @@ module Submissions
     end
 
     def generate_pdfs(submitter)
-      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
+      configs = submitter.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
+                                                              AccountConfig::WITH_SIGNATURE_ID])
 
-      with_signature_id = submitter.account.account_configs
-                                   .exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true)
+      with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
 
-      is_flatten =
-        submitter.account.account_configs
-                 .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value != false
-
-      account = submitter.account
-      attachments_data_cache = {}
-
-      pdfs_index = build_pdfs_index(submitter, flatten: is_flatten)
+      pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten)
 
       if with_signature_id || submitter.account.testing?
         pdfs_index.each_value do |pdf|
@@ -144,6 +138,16 @@ module Submissions
           end
         end
       end
+
+      fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:)
+
+      pdfs_index
+    end
+
+    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:)
+      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
+
+      attachments_data_cache = {}
 
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
@@ -442,8 +446,6 @@ module Submissions
           end
         end
       end
-
-      pdfs_index
     end
 
     def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
@@ -514,13 +516,13 @@ module Submissions
       Digest::UUID.uuid_v5(Digest::UUID::OID_NAMESPACE, attachments.map(&:uuid).sort.join(':'))
     end
 
-    def build_pdfs_index(submitter, flatten: true)
-      latest_submitter = find_last_submitter(submitter)
+    def build_pdfs_index(submission, submitter: nil, flatten: true)
+      latest_submitter = find_last_submitter(submission, submitter:)
 
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submitter.submission.template_schema_documents.preload(:blob)
+      documents ||= submission.template_schema_documents.preload(:blob)
 
       documents.to_h do |attachment|
         pdf =
@@ -582,11 +584,11 @@ module Submissions
       font_wrapper.custom_glyph(replace_with, character)
     end
 
-    def find_last_submitter(submitter)
-      submitter.submission.submitters
-               .select(&:completed_at?)
-               .select { |e| e.id != submitter.id && e.completed_at <= submitter.completed_at }
-               .max_by(&:completed_at)
+    def find_last_submitter(submission, submitter: nil)
+      submission.submitters
+                .select(&:completed_at?)
+                .select { |e| submitter.nil? ? true : e.id != submitter.id && e.completed_at <= submitter.completed_at }
+                .max_by(&:completed_at)
     end
 
     def build_pdf_from_image(attachment)
