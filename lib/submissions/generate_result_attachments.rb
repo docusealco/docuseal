@@ -140,14 +140,14 @@ module Submissions
       end
 
       fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:)
-
-      pdfs_index
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
+
+      return pdfs_index if submitter.submission.template_fields.blank?
 
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
@@ -446,6 +446,8 @@ module Submissions
           end
         end
       end
+
+      pdfs_index
     end
 
     def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
