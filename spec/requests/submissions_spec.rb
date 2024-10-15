@@ -7,6 +7,7 @@ describe 'Submission API', type: :request do
   let!(:author) { create(:user, account:) }
   let!(:folder) { create(:template_folder, account:) }
   let!(:templates) { create_list(:template, 2, account:, author:, folder:) }
+  let!(:multiple_submitters_template) { create(:template, submitter_count: 3, account:, author:, folder:) }
 
   describe 'GET /api/submissions' do
     it 'returns a list of submissions' do
@@ -57,6 +58,31 @@ describe 'Submission API', type: :request do
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
     end
 
+    it 'creates a submission when some submitter roles are not provided' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: multiple_submitters_template.id,
+        send_email: true,
+        submitters: [
+          { role: 'First Role', email: 'john.doe@example.com' },
+          { email: 'jane.doe@example.com' },
+          { email: 'mike.doe@example.com' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submission = Submission.last
+
+      expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
+      expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
+      expect(response.parsed_body[0]['role']).to eq('First Party')
+      expect(response.parsed_body[0]['email']).to eq('john.doe@example.com')
+      expect(response.parsed_body[1]['role']).to eq('Second Party')
+      expect(response.parsed_body[1]['email']).to eq('jane.doe@example.com')
+      expect(response.parsed_body[2]['role']).to eq('Third Party')
+      expect(response.parsed_body[2]['email']).to eq('mike.doe@example.com')
+    end
+
     it 'returns an error if the template fields are missing' do
       templates[0].update(fields: [])
 
@@ -72,7 +98,7 @@ describe 'Submission API', type: :request do
 
     it 'returns an error if submitter roles are not unique' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
-        template_id: templates[0].id,
+        template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
           { role: 'First Role', email: 'john.doe@example.com' },

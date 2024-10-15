@@ -65,11 +65,11 @@ module Params
       raise_error(message || "#{key} must follow the #{regexp.source} format")
     end
 
-    def unique(params, key, message: nil)
+    def unique_value(params, key, message: nil)
       return unless params.is_a?(Array)
       return if params.none?
       return if params.all? { |p| p[key].blank? }
-      return if params.pluck(key).uniq.size == params.pluck(key).size
+      return if params.pluck(key).compact_blank.uniq.size == params.pluck(key).compact_blank.size
 
       raise_error(message || "#{key} must be unique")
     end

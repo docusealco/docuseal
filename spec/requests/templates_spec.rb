@@ -144,8 +144,8 @@ describe 'Templates API', type: :request do
       name: template.name,
       fields: [
         {
-          'uuid' => '21637fc9-0655-45df-8952-04ec64949e85',
-          'submitter_uuid' => '513848eb-1096-4abc-a743-68596b5aaa4c',
+          'uuid' => template.fields[0]['uuid'],
+          'submitter_uuid' => template.submitters[0]['uuid'],
           'name' => 'First Name',
           'type' => 'text',
           'required' => true,
@@ -161,8 +161,8 @@ describe 'Templates API', type: :request do
           ]
         },
         {
-          'uuid' => '1f97f8e3-dc82-4586-aeea-6ebed6204e46',
-          'submitter_uuid' => '513848eb-1096-4abc-a743-68596b5aaa4c',
+          'uuid' => template.fields[1]['uuid'],
+          'submitter_uuid' => template.submitters[0]['uuid'],
           'name' => '',
           'type' => 'signature',
           'required' => true,
