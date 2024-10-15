@@ -56,6 +56,33 @@ describe 'Submission API', type: :request do
 
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
     end
+
+    it 'returns an error if the template fields are missing' do
+      templates[0].update(fields: [])
+
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [{ role: 'First Role', email: 'john.doe@example.com' }]
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq({ 'error' => 'Template does not contain fields' })
+    end
+
+    it 'returns an error if submitter roles are not unique' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [
+          { role: 'First Role', email: 'john.doe@example.com' },
+          { role: 'First Role', email: 'jane.doe@example.com' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq({ 'error' => 'role must be unique in `submitters`.' })
+    end
   end
 
   describe 'POST /api/submissions/emails' do

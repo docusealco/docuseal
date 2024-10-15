@@ -65,6 +65,15 @@ module Params
       raise_error(message || "#{key} must follow the #{regexp.source} format")
     end
 
+    def unique(params, key, message: nil)
+      return unless params.is_a?(Array)
+      return if params.none?
+      return if params.all? { |p| p[key].blank? }
+      return if params.pluck(key).uniq.size == params.pluck(key).size
+
+      raise_error(message || "#{key} must be unique")
+    end
+
     def in_path(params, path = [])
       old_path = @current_path
 

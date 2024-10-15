@@ -60,6 +60,7 @@ module Params
       if params[:submitters].present?
         in_path(params, :submitters) do |submitters_params|
           type(submitters_params, 0, Hash)
+          unique(submitters_params, :role)
         end
       end
 
