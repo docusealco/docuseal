@@ -83,6 +83,20 @@ describe 'Submission API', type: :request do
       expect(response.parsed_body[2]['email']).to eq('mike.doe@example.com')
     end
 
+    it 'returns an error if the submitter email is invalid' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [
+          { role: 'First Role', email: 'john@example' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+
+      expect(response.parsed_body).to eq({ 'error' => 'email is invalid in `submitters[0]`.' })
+    end
+
     it 'returns an error if the template fields are missing' do
       templates[0].update(fields: [])
 
@@ -113,16 +127,28 @@ describe 'Submission API', type: :request do
 
   describe 'POST /api/submissions/emails' do
     it 'creates a submission using email' do
-      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+      post '/api/submissions/emails', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
-        emails: 'john.doe@example.com'
+        emails: 'john.doe@example.com,jane.doe@example.com'
       }.to_json
 
       expect(response).to have_http_status(:ok)
 
-      submission = Submission.last
+      submissions = Submission.last(2)
+      submissions_body = submissions.reduce([]) { |acc, submission| acc + create_submission_body(submission) }
 
-      expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
+      expect(response.parsed_body).to eq(JSON.parse(submissions_body.to_json))
+    end
+
+    it 'returns an error if emails are invalid' do
+      post '/api/submissions/emails', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        emails: 'amy.baker@example.com, george.morris@example.com@gmail.com'
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+
+      expect(response.parsed_body).to eq({ 'error' => 'emails are invalid' })
     end
   end
 
