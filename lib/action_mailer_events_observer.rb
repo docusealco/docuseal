@@ -22,7 +22,7 @@ module ActionMailerEventsObserver
         emailable_type:,
         event_type: :send,
         email:,
-        data: { method: mail.delivery_method.class.name.underscore },
+        data: { from: mail.from, method: mail.delivery_method.class.name.underscore },
         event_datetime: Time.current
       )
     end
