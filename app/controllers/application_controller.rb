@@ -38,6 +38,10 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
+    if request.domain == 'docuseal.com'
+      return { host: 'docuseal.com', protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http' }
+    end
+
     Docuseal.default_url_options
   end
 
