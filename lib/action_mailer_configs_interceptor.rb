@@ -16,10 +16,14 @@ module ActionMailerConfigsInterceptor
     end
 
     if Rails.env.production? && Rails.application.config.action_mailer.delivery_method
-      message.from = ENV.fetch('SMTP_FROM').to_s.split(',').sample
+      from = ENV.fetch('SMTP_FROM').to_s.split(',').sample
 
-      if message.from == 'DocuSeal <info@docuseal.com>'
-        message.body.raw_source.gsub!('https://docuseal.co/', 'https://docuseal.com/')
+      message.from = from
+
+      if from == 'DocuSeal <info@docuseal.com>'
+        message.body.instance_variable_set(
+          :@raw_source, message.body.raw_source.gsub('https://docuseal.co/', 'https://docuseal.com/')
+        )
       end
 
       return message
