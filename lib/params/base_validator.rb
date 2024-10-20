@@ -72,7 +72,11 @@ module Params
       return if params[key].blank?
       return if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| email.match?(EMAIL_REGEXP) }
 
-      raise_error(message || "#{key} must follow the email format")
+      if Rails.env.production?
+        Rollbar.error(message || "#{key} must follow the email format") if defined?(Rollbar)
+      else
+        raise_error(message || "#{key} must follow the email format")
+      end
     end
 
     def unique_value(params, key, message: nil)
