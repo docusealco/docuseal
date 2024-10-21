@@ -2,6 +2,6 @@
 
 class SettingsMailer < ApplicationMailer
   def smtp_successful_setup(email)
-    mail(to: email, subject: 'SMTP has been configured')
+    mail(to: email, from: email, subject: 'SMTP has been configured')
   end
 end
