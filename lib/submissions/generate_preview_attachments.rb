@@ -8,12 +8,11 @@ module Submissions
     def call(submission, values_hash: nil)
       values_hash ||= build_values_hash(submission)
 
-      with_signature_id = submission.account.account_configs
-                                    .exists?(key: AccountConfig::WITH_SIGNATURE_ID, value: true)
+      configs = submission.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
+                                                               AccountConfig::WITH_SIGNATURE_ID])
 
-      is_flatten =
-        submission.account.account_configs
-                  .find_or_initialize_by(key: AccountConfig::FLATTEN_RESULT_PDF_KEY).value != false
+      with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
 
       pdfs_index = GenerateResultAttachments.build_pdfs_index(submission, flatten: is_flatten)
 
