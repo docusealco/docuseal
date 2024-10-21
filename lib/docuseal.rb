@@ -32,7 +32,7 @@ module Docuseal
             elsif ENV['MULTITENANT'] == 'true'
               "https://cdn.#{HOST}"
             else
-              'https://cdn.docuseal.co'
+              'https://cdn.docuseal.com'
             end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
