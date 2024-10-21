@@ -55,6 +55,8 @@ class Submission < ApplicationRecord
   has_one_attached :audit_trail
   has_one_attached :combined_document
 
+  has_many_attached :preview_documents
+
   has_many :template_schema_documents,
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
            through: :template, source: :documents_attachments

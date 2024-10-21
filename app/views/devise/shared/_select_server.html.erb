@@ -1,6 +1,6 @@
 <div class="text-center">
   <div class="join">
-    <a href="https://docuseal.co<%= request.fullpath.gsub('docuseal.eu', 'docuseal.co') %>" class="btn bg-base-200 join-item w-32  <%= 'bg-base-300' if request.host == 'docuseal.co' %>">
+    <a href="https://docuseal.co<%= request.fullpath.gsub('docuseal.eu', 'docuseal.co') %>" class="btn bg-base-200 join-item w-32  <%= 'bg-base-300' if request.host == 'docuseal.co' || request.host == 'docuseal.com' %>">
       <%= svg_icon 'world', class: 'w-5 h-5' %>
       Global
     </a>

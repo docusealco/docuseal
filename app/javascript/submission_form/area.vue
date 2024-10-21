@@ -405,7 +405,8 @@ export default {
       }
 
       if (this.field.preferences?.font_size) {
-        style.fontSize = this.field.preferences.font_size + 'pt'
+        style.fontSize = `clamp(4pt, 1.6vw, ${this.field.preferences.font_size}pt)`
+        style.lineHeight = `clamp(6pt, 2.0vw, ${parseInt(this.field.preferences.font_size) + 3}pt)`
       }
 
       return style

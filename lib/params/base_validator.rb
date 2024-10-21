@@ -2,6 +2,8 @@
 
 module Params
   class BaseValidator
+    EMAIL_REGEXP = /\A[a-z0-9][\.']?(?:(?:[a-z0-9_-]+[\.\+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[\.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+
     InvalidParameterError = Class.new(StandardError)
 
     def self.call(...)
@@ -63,6 +65,27 @@ module Params
       return if regexp.match?(params[key].to_s)
 
       raise_error(message || "#{key} must follow the #{regexp.source} format")
+    end
+
+    def email_format(params, key, message: nil)
+      return if params.blank?
+      return if params[key].blank?
+      return if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| email.match?(EMAIL_REGEXP) }
+
+      if Rails.env.production?
+        Rollbar.error(message || "#{key} must follow the email format") if defined?(Rollbar)
+      else
+        raise_error(message || "#{key} must follow the email format")
+      end
+    end
+
+    def unique_value(params, key, message: nil)
+      return unless params.is_a?(Array)
+      return if params.none?
+      return if params.all? { |p| p[key].blank? }
+      return if params.pluck(key).compact_blank.uniq.size == params.pluck(key).compact_blank.size
+
+      raise_error(message || "#{key} must be unique")
     end
 
     def in_path(params, path = [])
