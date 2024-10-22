@@ -75,11 +75,7 @@ module Params
         return
       end
 
-      if Rails.env.production?
-        Rollbar.error(message || "#{key} must follow the email format") if defined?(Rollbar)
-      else
-        raise_error(message || "#{key} must follow the email format")
-      end
+      raise_error(message || "#{key} must follow the email format")
     end
 
     def unique_value(params, key, message: nil)
