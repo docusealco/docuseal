@@ -36,6 +36,7 @@ RSpec.describe Params::BaseValidator do
         'jone.doe@',
         'this...is@strange.but.valid.com',
         'user@-weird-domain-.com',
+        'user.name@[IPv6:2001:db8::1]',
         'tricky.email@sub.example-.com'
       ]
 

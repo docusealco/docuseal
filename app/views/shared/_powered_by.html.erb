@@ -1,6 +1,6 @@
 <div class="text-center px-2">
   <% if local_assigns[:with_counter] %>
-    <% count = Submitter.where.not(completed_at: nil).distinct.count(:submission_id) %>
+    <% count = CompletedSubmitter.distinct.count(:submission_id) %>
     <% if count > 1 %>
       <%= t('count_documents_signed_with_html', count:) %>
     <% else %>
