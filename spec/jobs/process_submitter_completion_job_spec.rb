@@ -2,13 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe ProcessSubmitterCompletionJob, sidekiq: :inline, type: :job do
+RSpec.describe ProcessSubmitterCompletionJob do
   let(:account) { create(:account) }
   let(:user) { create(:user, account:) }
   let(:template) { create(:template, account:, author: user) }
   let(:submission) { create(:submission, template:, created_by_user: user) }
   let(:submitter) { create(:submitter, submission:, uuid: SecureRandom.uuid, completed_at: Time.current) }
-  let!(:encrypted_config) do
+
+  before do
     create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
                               value: GenerateCertificate.call.transform_values(&:to_pem))
   end
@@ -16,7 +17,7 @@ RSpec.describe ProcessSubmitterCompletionJob, sidekiq: :inline, type: :job do
   describe '#perform' do
     it 'creates a completed submitter' do
       expect do
-        described_class.perform_async('submitter_id' => submitter.id)
+        described_class.new.perform('submitter_id' => submitter.id)
       end.to change(CompletedSubmitter, :count).by(1)
 
       completed_submitter = CompletedSubmitter.last
@@ -31,7 +32,7 @@ RSpec.describe ProcessSubmitterCompletionJob, sidekiq: :inline, type: :job do
 
     it 'creates a completed document' do
       expect do
-        described_class.perform_async('submitter_id' => submitter.id)
+        described_class.new.perform('submitter_id' => submitter.id)
       end.to change(CompletedDocument, :count).by(1)
 
       completed_document = CompletedDocument.last
@@ -43,7 +44,7 @@ RSpec.describe ProcessSubmitterCompletionJob, sidekiq: :inline, type: :job do
 
     it 'raises an error if the submitter is not found' do
       expect do
-        described_class.perform_async('submitter_id' => 'invalid_id')
+        described_class.new.perform('submitter_id' => 'invalid_id')
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

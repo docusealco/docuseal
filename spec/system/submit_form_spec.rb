@@ -3,13 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Submit Form' do
-  let!(:account) { create(:account) }
-  let!(:user) { create(:user, account:) }
-  let!(:template) { create(:template, account:, author: user) }
-  let!(:encrypted_config) do
-    create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
-                              value: GenerateCertificate.call.transform_values(&:to_pem))
-  end
+  let(:account) { create(:account) }
+  let(:user) { create(:user, account:) }
+  let(:template) { create(:template, account:, author: user) }
 
   before do
     sign_in(user)
@@ -52,8 +48,8 @@ RSpec.describe 'Submit Form' do
   end
 
   context 'when initialized by shared email address' do
-    let!(:submission) { create(:submission, template:, created_by_user: user) }
-    let!(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
+    let(:submission) { create(:submission, template:, created_by_user: user) }
+    let(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
     let(:submitter) { submitters.first }
 
     before do
@@ -75,6 +71,17 @@ RSpec.describe 'Submit Form' do
       expect(submitter.opened_at).to be_present
       expect(submitter.completed_at).to be_present
       expect(submitter.values.values).to include('Sally')
+    end
+
+    it 'sends completed email' do
+      fill_in 'First Name', with: 'Adam'
+      click_on 'next'
+      click_on 'type_text_button'
+      fill_in 'signature_text_input', with: 'Adam'
+
+      expect do
+        click_on 'Sign and Complete'
+      end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
     end
   end
 end

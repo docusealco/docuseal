@@ -66,10 +66,7 @@ RSpec/ExampleLength:
   Max: 40
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 7
-
-RSpec/LetSetup:
-  Enabled: false
+  Max: 6
 
 Metrics/BlockNesting:
   Max: 4

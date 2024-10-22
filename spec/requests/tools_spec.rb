@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 describe 'Tools API', type: :request do
-  let!(:account) { create(:account) }
-  let!(:author) { create(:user, account:) }
-  let!(:file_path) { Rails.root.join('spec/fixtures/sample-document.pdf') }
-  let!(:encrypted_config) do
+  let(:account) { create(:account) }
+  let(:author) { create(:user, account:) }
+  let(:file_path) { Rails.root.join('spec/fixtures/sample-document.pdf') }
+
+  before do
     create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
                               value: GenerateCertificate.call.transform_values(&:to_pem))
   end
