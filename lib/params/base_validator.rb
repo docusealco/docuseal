@@ -75,7 +75,7 @@ module Params
         return
       end
 
-      raise_error(message || "#{key} must follow the email format")
+      raise_error(message || "#{key} must follow the email format: '#{params[key]}'")
     end
 
     def unique_value(params, key, message: nil)

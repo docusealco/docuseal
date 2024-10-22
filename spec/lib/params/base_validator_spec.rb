@@ -42,7 +42,7 @@ RSpec.describe Params::BaseValidator do
       emails.each do |email|
         expect do
           validator.email_format({ email: }, :email)
-        end.to raise_error(described_class::InvalidParameterError, 'email must follow the email format')
+        end.to raise_error(described_class::InvalidParameterError, "email must follow the email format: '#{email}'")
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe Params::BaseValidator do
       emails.each do |email|
         expect do
           validator.email_format({ email: }, :email)
-        end.to raise_error(described_class::InvalidParameterError, 'email must follow the email format')
+        end.to raise_error(described_class::InvalidParameterError, "email must follow the email format: '#{email}'")
       end
     end
 
