@@ -70,7 +70,10 @@ module Params
     def email_format(params, key, message: nil)
       return if params.blank?
       return if params[key].blank?
-      return if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| email.match?(EMAIL_REGEXP) }
+
+      if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) }
+        return
+      end
 
       if Rails.env.production?
         Rollbar.error(message || "#{key} must follow the email format") if defined?(Rollbar)
