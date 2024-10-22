@@ -48,7 +48,7 @@ describe 'Submission API', type: :request do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Role', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:ok)
@@ -63,7 +63,7 @@ describe 'Submission API', type: :request do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john.doe@example.com' },
+          { role: 'First Party', email: 'john.doe@example.com' },
           { email: 'jane.doe@example.com' },
           { email: 'mike.doe@example.com' }
         ]
@@ -88,7 +88,7 @@ describe 'Submission API', type: :request do
         template_id: templates[0].id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john@example' }
+          { role: 'First Party', email: 'john@example' }
         ]
       }.to_json
 
@@ -103,7 +103,7 @@ describe 'Submission API', type: :request do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Role', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:unprocessable_entity)
@@ -115,13 +115,27 @@ describe 'Submission API', type: :request do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john.doe@example.com' },
-          { role: 'First Role', email: 'jane.doe@example.com' }
+          { role: 'First Party', email: 'john.doe@example.com' },
+          { role: 'First Party', email: 'jane.doe@example.com' }
         ]
       }.to_json
 
       expect(response).to have_http_status(:unprocessable_entity)
       expect(response.parsed_body).to eq({ 'error' => 'role must be unique in `submitters`.' })
+    end
+
+    it 'returns an error if number of submitters more than in the template' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [
+          { email: 'jane.doe@example.com' },
+          { role: 'First Party', email: 'john.doe@example.com' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq({ 'error' => 'Defined more signing parties than in template' })
     end
   end
 

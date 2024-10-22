@@ -2,8 +2,11 @@
 
 module Submissions
   module CreateFromSubmitters
+    BaseError = Class.new(StandardError)
+
     module_function
 
+    # rubocop:disable Metrics/BlockLength
     def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {})
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
@@ -37,6 +40,10 @@ module Submissions
                           preferences: preferences.merge(submission_preferences))
         end
 
+        if submission.submitters.size > template.submitters.size
+          raise BaseError, 'Defined more signing parties than in template'
+        end
+
         next if submission.submitters.blank?
 
         maybe_add_invite_submitters(submission, template)
@@ -44,6 +51,7 @@ module Submissions
         submission.tap(&:save!)
       end
     end
+    # rubocop:enable Metrics/BlockLength
 
     def maybe_add_invite_submitters(submission, template)
       template.submitters.each do |item|

@@ -80,7 +80,8 @@ module Api
       end
 
       render json: build_create_json(submissions)
-    rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
+    rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,
+           DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_entity
