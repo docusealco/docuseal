@@ -3,7 +3,7 @@
 class CreateCompletedSubmittersAndDocuments < ActiveRecord::Migration[7.2]
   def change
     create_table :completed_submitters do |t|
-      t.bigint :submitter_id, null: false
+      t.bigint :submitter_id, null: false, index: true
       t.bigint :submission_id, null: false
       t.bigint :account_id, null: false, index: true
       t.bigint :template_id, null: false

@@ -109,6 +109,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_125135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_completed_submitters_on_account_id"
+    t.index ["submitter_id"], name: "index_completed_submitters_on_submitter_id"
   end
 
   create_table "document_generation_events", force: :cascade do |t|

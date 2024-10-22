@@ -17,11 +17,17 @@
 #
 # Indexes
 #
-#  index_completed_submitters_on_account_id  (account_id)
+#  index_completed_submitters_on_account_id    (account_id)
+#  index_completed_submitters_on_submitter_id  (submitter_id)
 #
 class CompletedSubmitter < ApplicationRecord
   belongs_to :submitter
   belongs_to :submission
   belongs_to :account
   belongs_to :template
+
+  has_many :completed_documents, dependent: :destroy,
+                                 primary_key: :submitter_id,
+                                 foreign_key: :submitter_id,
+                                 inverse_of: :submitter
 end

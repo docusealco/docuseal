@@ -17,4 +17,6 @@
 #
 class CompletedDocument < ApplicationRecord
   belongs_to :submitter
+
+  has_one :completed_submitter, primary_key: :submitter_id, inverse_of: :completed_documents, dependent: :destroy
 end
