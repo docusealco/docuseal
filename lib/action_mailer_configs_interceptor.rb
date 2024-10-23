@@ -29,14 +29,16 @@ module ActionMailerConfigsInterceptor
       return message
     end
 
-    email_configs = EncryptedConfig.find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
+    unless Docuseal.multitenant?
+      email_configs = EncryptedConfig.find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
 
-    if email_configs
-      message.delivery_method(:smtp, build_smtp_configs_hash(email_configs))
+      if email_configs
+        message.delivery_method(:smtp, build_smtp_configs_hash(email_configs))
 
-      message.from = %("#{email_configs.account.name.to_s.delete('"')}" <#{email_configs.value['from_email']}>)
-    else
-      message.delivery_method(:test)
+        message.from = %("#{email_configs.account.name.to_s.delete('"')}" <#{email_configs.value['from_email']}>)
+      else
+        message.delivery_method(:test)
+      end
     end
 
     message
