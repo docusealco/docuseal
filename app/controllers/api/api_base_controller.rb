@@ -25,9 +25,9 @@ module Api
       render json: { error: 'Too many requests' }, status: :too_many_requests
     end
 
-    if Rails.env.production?
+    unless Rails.env.development?
       rescue_from CanCan::AccessDenied do |e|
-        render json: { error: e.message }, status: :forbidden
+        render json: { error: access_denied_error_message(e) }, status: :forbidden
       end
 
       rescue_from JSON::ParserError do |e|
@@ -38,6 +38,38 @@ module Api
     end
 
     private
+
+    def access_denied_error_message(error)
+      return 'Not authorized' if request.headers['X-Auth-Token'].blank?
+      return 'Not authorized' unless error.subject.is_a?(ActiveRecord::Base)
+      return 'Not authorized' unless error.subject.respond_to?(:account_id)
+
+      linked_account_record_exists =
+        if current_user.account.testing?
+          current_user.account.linked_account_accounts.where(account_type: 'testing')
+                      .exists?(account_id: error.subject.account_id)
+        else
+          current_user.account.testing_accounts.exists?(id: error.subject.account_id)
+        end
+
+      return 'Not authorized' unless linked_account_record_exists
+
+      object_name = error.subject.model_name.human
+      id = error.subject.id
+
+      message =
+        if current_user.account.testing?
+          "#{object_name} #{id} not found using testing API key; Use production API key to " \
+            "access production #{object_name.downcase.pluralize}."
+        else
+          "#{object_name} #{id} not found using production API key; Use testing API key to " \
+            "access testing #{object_name.downcase.pluralize}."
+        end
+
+      Rollbar.warning(message) if defined?(Rollbar)
+
+      message
+    end
 
     def paginate(relation, field: :id)
       result = relation.order(field => :desc)

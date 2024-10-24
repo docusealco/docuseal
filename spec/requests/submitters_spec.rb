@@ -3,10 +3,16 @@
 require 'rails_helper'
 
 describe 'Submitter API', type: :request do
-  let!(:account) { create(:account) }
-  let!(:author) { create(:user, account:) }
-  let!(:folder) { create(:template_folder, account:) }
-  let!(:templates) { create_list(:template, 2, account:, author:, folder:) }
+  let(:account) { create(:account, :with_testing_account) }
+  let(:testing_account) { account.testing_accounts.first }
+  let(:author) { create(:user, account:) }
+  let(:testing_author) { create(:user, account: testing_account) }
+  let(:folder) { create(:template_folder, account:) }
+  let(:testing_folder) { create(:template_folder, account: testing_account) }
+  let(:templates) { create_list(:template, 2, account:, author:, folder:) }
+  let(:testing_templates) do
+    create_list(:template, 2, account: testing_account, author: testing_author, folder: testing_folder)
+  end
 
   describe 'GET /api/submitters' do
     it 'returns a list of submitters' do
@@ -41,6 +47,34 @@ describe 'Submitter API', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body).to eq(JSON.parse(submitter_body(submitter).to_json))
+    end
+
+    it 'returns an authorization error if test account API token is used with a production submitter' do
+      submitter = create(:submission, :with_submitters, :with_events,
+                         template: templates[0],
+                         created_by_user: author).submitters.first
+
+      get "/api/submitters/#{submitter.id}", headers: { 'x-auth-token': testing_author.access_token.token }
+
+      expect(response).to have_http_status(:forbidden)
+      expect(response.parsed_body).to eq(
+        JSON.parse({ error: "Submitter #{submitter.id} not found using " \
+                            'testing API key; Use production API key to access production submitters.' }.to_json)
+      )
+    end
+
+    it 'returns an authorization error if production account API token is used with a test submitter' do
+      submitter = create(:submission, :with_submitters, :with_events,
+                         template: testing_templates[0],
+                         created_by_user: testing_author).submitters.first
+
+      get "/api/submitters/#{submitter.id}", headers: { 'x-auth-token': author.access_token.token }
+
+      expect(response).to have_http_status(:forbidden)
+      expect(response.parsed_body).to eq(
+        JSON.parse({ error: "Submitter #{submitter.id} not found using production API key; " \
+                            'Use testing API key to access testing submitters.' }.to_json)
+      )
     end
   end
 
