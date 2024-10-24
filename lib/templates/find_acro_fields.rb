@@ -25,6 +25,8 @@ module Templates
           media_box_start = [media_box[0], media_box[1]]
           crop_shift = [crop_box[0] - media_box[0], crop_box[1] - media_box[1]]
 
+          next unless child_field[:Rect]
+
           x0, y0, x1, y1 = child_field[:Rect]
 
           x0, y0 = correct_coordinates(x0, y0, crop_shift, media_box_start)
@@ -202,6 +204,7 @@ module Templates
             field = annot[:Parent]
             field = field[:Parent] while field[:Parent]
 
+            annots_index[field.hash] ||= page
             fields_index[field.hash] ||= HexaPDF::Type::AcroForm::Field.wrap(pdf, field)
           end
         end
