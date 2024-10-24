@@ -162,6 +162,8 @@ Rails.application.routes.draw do
     resources :users, only: %i[index]
     resources :archived_users, only: %i[index], path: 'users/:status', controller: 'users',
                                defaults: { status: :archived }
+    resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
+                                  defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     resources :api, only: %i[index create], controller: 'api_settings'
     resource :webhooks, only: %i[show create update], controller: 'webhook_settings'

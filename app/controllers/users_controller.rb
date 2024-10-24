@@ -9,9 +9,11 @@ class UsersController < ApplicationController
   def index
     @users =
       if params[:status] == 'archived'
-        @users.archived
+        @users.archived.where.not(role: 'integration')
+      elsif params[:status] == 'integration'
+        @users.active.where(role: 'integration')
       else
-        @users.active
+        @users.active.where.not(role: 'integration')
       end
 
     @pagy, @users = pagy(@users.where(account: current_account).order(id: :desc))

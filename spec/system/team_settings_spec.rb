@@ -18,13 +18,19 @@ RSpec.describe 'Team Settings' do
       visit settings_users_path
     end
 
-    it 'shows all users' do
+    it 'shows only active users' do
       within '.table' do
         users.each do |user|
           expect(page).to have_content(user.full_name)
           expect(page).to have_content(user.email)
-          expect(page).to have_no_content(other_user.email)
+          expect(page).to have_link('Edit', href: edit_user_path(user))
         end
+
+        expect(page).to have_button('Remove')
+        expect(page).to have_no_button('Unarchive')
+
+        expect(page).to have_no_content(other_user.full_name)
+        expect(page).to have_no_content(other_user.email)
       end
     end
 
@@ -87,6 +93,60 @@ RSpec.describe 'Team Settings' do
 
     it 'does not allow to remove the current user' do
       expect(page).to have_no_content('User has been removed')
+    end
+  end
+
+  context 'when some users are archived' do
+    let!(:users) { create_list(:user, 2, account:) }
+    let!(:archived_users) { create_list(:user, 2, account:, archived_at: Time.current) }
+    let!(:other_user) { create(:user) }
+
+    it 'shows only active users' do
+      visit settings_users_path
+
+      within '.table' do
+        users.each do |user|
+          expect(page).to have_content(user.full_name)
+          expect(page).to have_content(user.email)
+        end
+
+        archived_users.each do |user|
+          expect(page).to have_no_content(user.full_name)
+          expect(page).to have_no_content(user.email)
+        end
+
+        expect(page).to have_no_content(other_user.full_name)
+        expect(page).to have_no_content(other_user.email)
+      end
+
+      expect(page).to have_link('View Archived', href: settings_archived_users_path)
+    end
+
+    it 'shows only archived users' do
+      visit settings_archived_users_path
+
+      within '.table' do
+        archived_users.each do |user|
+          expect(page).to have_content(user.full_name)
+          expect(page).to have_content(user.email)
+          expect(page).to have_no_link('Edit', href: edit_user_path(user))
+        end
+
+        users.each do |user|
+          expect(page).to have_no_content(user.full_name)
+          expect(page).to have_no_content(user.email)
+          expect(page).to have_no_link('Edit', href: edit_user_path(user))
+        end
+
+        expect(page).to have_button('Unarchive')
+        expect(page).to have_no_button('Remove')
+
+        expect(page).to have_no_content(other_user.full_name)
+        expect(page).to have_no_content(other_user.email)
+      end
+
+      expect(page).to have_content('Archived Users')
+      expect(page).to have_link('View Active', href: settings_users_path)
     end
   end
 end
