@@ -57,18 +57,13 @@ module Api
       object_name = error.subject.model_name.human
       id = error.subject.id
 
-      message =
-        if current_user.account.testing?
-          "#{object_name} #{id} not found using testing API key; Use production API key to " \
-            "access production #{object_name.downcase.pluralize}."
-        else
-          "#{object_name} #{id} not found using production API key; Use testing API key to " \
-            "access testing #{object_name.downcase.pluralize}."
-        end
-
-      Rollbar.warning(message) if defined?(Rollbar)
-
-      message
+      if current_user.account.testing?
+        "#{object_name} #{id} not found using testing API key; Use production API key to " \
+          "access production #{object_name.downcase.pluralize}."
+      else
+        "#{object_name} #{id} not found using production API key; Use testing API key to " \
+          "access testing #{object_name.downcase.pluralize}."
+      end
     end
 
     def paginate(relation, field: :id)
