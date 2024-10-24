@@ -2,7 +2,7 @@
 
 module Params
   class BaseValidator
-    EMAIL_REGEXP = /\A[a-z0-9][\.']?(?:(?:[a-z0-9_-]+[\.\+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[\.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+    EMAIL_REGEXP = User::FULL_EMAIL_REGEXP
 
     InvalidParameterError = Class.new(StandardError)
 
