@@ -2,13 +2,15 @@
   <% if %w[archived integration].include?(params[:status]) %>
     <%= link_to t('view_active'), settings_users_path, class: 'link text-sm' %>
   <% else %>
-    <% links = [] %>
+    <% archived_exists = current_account.users.archived.where.not(role: 'integration').exists? %>
     <% if current_account.users.active.exists?(role: 'integration') %>
-      <% links << link_to(t('view_embedding_users'), settings_integration_users_path, class: 'link text-sm') %>
+      <%= link_to t('view_embedding_users'), settings_integration_users_path, class: 'link text-sm' %>
+      <% if archived_exists %>
+        <span class="text-neutral-700">|</span>
+      <% end %>
     <% end %>
-    <% if current_account.users.archived.exists? %>
-      <% links << link_to(t('view_archived'), settings_archived_users_path, class: 'link text-sm') %>
+    <% if archived_exists %>
+      <%= link_to t('view_archived'), settings_archived_users_path, class: 'link text-sm' %>
     <% end %>
-    <%= links.join('<span class="text-neutral-700">|</span>').html_safe %>
   <% end %>
 </div>
