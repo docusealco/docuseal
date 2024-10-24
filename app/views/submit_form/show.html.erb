@@ -15,11 +15,13 @@
             <%= @submitter.submission.template.name %>
           </div>
           <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
-            <div>
-              <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5', button_id: 'decline_button' do %>
-                <%= render 'submit_form/decline_form', submitter: @submitter %>
-              <% end %>
-            </div>
+            <% if @form_configs[:with_decline] %>
+              <div>
+                <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5', button_id: 'decline_button' do %>
+                  <%= render 'submit_form/decline_form', submitter: @submitter %>
+                <% end %>
+              </div>
+            <% end %>
             <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
               <span class="flex items-center justify-center" data-target="download-button.defaultButton">
                 <%= svg_icon('download', class: 'w-6 h-6 inline md:hidden') %>

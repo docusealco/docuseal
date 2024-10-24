@@ -134,6 +134,7 @@ en: &en
   require_signing_reason: Require signing reason
   allow_typed_text_signatures: Allow typed text signatures
   allow_to_resubmit_completed_forms: Allow to resubmit completed forms
+  allow_to_decline_documents: Allow to decline documents
   remember_and_pre_fill_signatures: Remember and pre-fill signatures
   require_authentication_for_file_download_links: Require authentication for file download links
   combine_completed_documents_and_audit_log: Combine completed documents and Audit Log
@@ -770,6 +771,7 @@ es: &es
   require_signing_reason: Requerir motivo de firma
   allow_typed_text_signatures: Permitir firmas de texto mecanografiadas
   allow_to_resubmit_completed_forms: Permitir reenviar formularios completados
+  allow_to_decline_documents: Permitir rechazar documentos
   remember_and_pre_fill_signatures: Recordar y prellenar firmas
   require_authentication_for_file_download_links: Requerir autenticación para enlaces de descarga de archivos
   combine_completed_documents_and_audit_log: Combinar documentos completados y Registro de Auditoría
@@ -1406,6 +1408,7 @@ it: &it
   require_signing_reason: Richiedere il motivo della firma
   allow_typed_text_signatures: Permettere firme con testo digitato
   allow_to_resubmit_completed_forms: Permettere di reinviare i moduli completati
+  allow_to_decline_documents: Permettere di rifiutare i documenti
   remember_and_pre_fill_signatures: Ricordare e precompilare le firme
   require_authentication_for_file_download_links: "Richiedere l'autenticazione per i link di download dei file"
   combine_completed_documents_and_audit_log: Combinare i documenti completati e il Registro di Audit
@@ -2043,6 +2046,7 @@ fr: &fr
   require_signing_reason: Demander une raison pour la signature
   allow_typed_text_signatures: Autoriser les signatures en texte tapé
   allow_to_resubmit_completed_forms: Autoriser la resoumission des formulaires complétés
+  allow_to_decline_documents: Autoriser le refus des documents
   remember_and_pre_fill_signatures: Se souvenir et préremplir les signatures
   require_authentication_for_file_download_links: Exiger une authentification pour les liens de téléchargement des fichiers
   combine_completed_documents_and_audit_log: "Combiner les documents complétés et le journal d'audit"
@@ -2679,6 +2683,7 @@ pt: &pt
   require_signing_reason: Requerer motivo para assinatura
   allow_typed_text_signatures: Permitir assinaturas digitadas
   allow_to_resubmit_completed_forms: Permitir reenviar formulários concluídos
+  allow_to_decline_documents: Permitir recusar documentos
   remember_and_pre_fill_signatures: Lembrar e preencher assinaturas automaticamente
   require_authentication_for_file_download_links: Requerer autenticação para links de download de arquivos
   combine_completed_documents_and_audit_log: Combinar documentos concluídos e log de auditoria
@@ -3315,6 +3320,7 @@ de: &de
   require_signing_reason: Grund für die Signatur erforderlich
   allow_typed_text_signatures: Unterschriften mit getipptem Text zulassen
   allow_to_resubmit_completed_forms: Erneutes Einreichen abgeschlossener Formulare zulassen
+  allow_to_decline_documents: Erlauben, Dokumente abzulehnen
   remember_and_pre_fill_signatures: Signaturen merken und vorab ausfüllen
   require_authentication_for_file_download_links: Authentifizierung für Dateidownload-Links erforderlich
   combine_completed_documents_and_audit_log: Abgeschlossene Dokumente und Prüfprotokoll kombinieren
