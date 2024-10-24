@@ -90,7 +90,7 @@
                 </option>
               </select>
               <select
-                v-if="conditionField(condition)?.options?.length"
+                v-if="['radio', 'select', 'multiple'].includes(conditionField(condition)?.type) && conditionField(condition)?.options"
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
                 :class="{ 'text-gray-300': !condition.value }"
                 required
