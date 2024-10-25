@@ -10,8 +10,11 @@
         <label for="api_key" class="text-sm font-semibold">X-Auth-Token</label>
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex w-full space-x-4">
-            <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-            <%= render 'shared/clipboard_copy', icon: 'copy', text: current_user.access_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+            <% token = current_user.access_token.token %>
+            <masked-input class="block w-full" data-token="<%= token %>">
+              <input id="api_key" type="text" value="<%= token.sub(token[5..], '*' * token[5..].size) %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+            </masked-input>
+            <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
           </div>
           <%= button_to button_title(title: t('rotate'), disabled_with: t('rotate'), icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button w-full', data: { turbo_confirm: t('remove_existing_api_token_and_generated_a_new_one_are_you_sure_') } %>
         </div>
