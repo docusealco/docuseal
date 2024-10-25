@@ -70,8 +70,10 @@ module Params
     def email_format(params, key, message: nil)
       return if params.blank?
       return if params[key].blank?
+      return if params[key].to_s.include?('<')
 
-      if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) }
+      if params[key].to_s.strip.split(/\s*[;,]\s*/).compact_blank
+                    .all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) }
         return
       end
 

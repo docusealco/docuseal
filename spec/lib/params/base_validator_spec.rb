@@ -10,6 +10,7 @@ RSpec.describe Params::BaseValidator do
       emails = [
         '  john.doe@example.com  ',
         'john.doe@example.com',
+        'Test <john.doe@example.com>',
         'jane+newsletter@domain.org',
         'mike_smith@company.net',
         'lisa-wong@sub.example.co.uk',
@@ -49,7 +50,6 @@ RSpec.describe Params::BaseValidator do
 
     it 'when multiple emails are valid' do
       emails = [
-
         'john.doe@example.com, jane.doe+newsletter@domain.org',
         'joshua@automobile.car ; chloe+fashion@food.delivery',
         'mike-smith@company.net;lisa.wong-sales@sub.example.co.uk',
@@ -78,9 +78,7 @@ RSpec.describe Params::BaseValidator do
 
     it 'when multiple emails are invalid' do
       emails = [
-        'jone@gmail.com, ,mike@gmail.com',
         'john.doe@example.com  dave@nonprofit.org',
-        '; oliver.scott@example.com',
         'amy.baker@ example.com, george.morris@ example.com',
         'jenny.king@example.com . diana.robinson@example.com',
         'nancy.davis@.com, henry.ford@.com',
