@@ -25,12 +25,12 @@
 DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
 </p>
 <h2 align="center">
-  <a href="https://demo.docuseal.co">✨ Live Demo</a>
+  <a href="https://demo.docuseal.tech">✨ Live Demo</a>
   <span>|</span>
-  <a href="https://docuseal.co/sign_up">☁️ Try in Cloud</a>
+  <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
 </h2>
 
-[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.co)
+[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
 
 ## Features
 - PDF form fields builder (WYSIWYG)

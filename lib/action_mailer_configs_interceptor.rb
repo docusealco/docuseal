@@ -24,12 +24,6 @@ module ActionMailerConfigsInterceptor
         message.from = from
       end
 
-      if from == 'DocuSeal <info@docuseal.com>'
-        message.body.instance_variable_set(
-          :@raw_source, message.body.raw_source.gsub('https://docuseal.co/', 'https://docuseal.com/')
-        )
-      end
-
       return message
     end
 
