@@ -16,7 +16,7 @@
 #  index_completed_documents_on_submitter_id  (submitter_id)
 #
 class CompletedDocument < ApplicationRecord
-  belongs_to :submitter
+  belongs_to :submitter, optional: true
 
   has_one :completed_submitter, primary_key: :submitter_id, inverse_of: :completed_documents, dependent: :destroy
 end

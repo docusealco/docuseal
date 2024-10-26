@@ -18,7 +18,7 @@
 # Indexes
 #
 #  index_completed_submitters_on_account_id    (account_id)
-#  index_completed_submitters_on_submitter_id  (submitter_id)
+#  index_completed_submitters_on_submitter_id  (submitter_id) UNIQUE
 #
 class CompletedSubmitter < ApplicationRecord
   belongs_to :submitter
