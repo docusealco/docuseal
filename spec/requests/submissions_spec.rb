@@ -3,11 +3,17 @@
 require 'rails_helper'
 
 describe 'Submission API', type: :request do
-  let!(:account) { create(:account) }
-  let!(:author) { create(:user, account:) }
-  let!(:folder) { create(:template_folder, account:) }
-  let!(:templates) { create_list(:template, 2, account:, author:, folder:) }
-  let!(:multiple_submitters_template) { create(:template, submitter_count: 3, account:, author:, folder:) }
+  let(:account) { create(:account, :with_testing_account) }
+  let(:testing_account) { account.testing_accounts.first }
+  let(:author) { create(:user, account:) }
+  let(:testing_author) { create(:user, account: testing_account) }
+  let(:folder) { create(:template_folder, account:) }
+  let(:testing_folder) { create(:template_folder, account: testing_account) }
+  let(:templates) { create_list(:template, 2, account:, author:, folder:) }
+  let(:multiple_submitters_template) { create(:template, submitter_count: 3, account:, author:, folder:) }
+  let(:testing_templates) do
+    create_list(:template, 2, account: testing_account, author: testing_author, folder: testing_folder)
+  end
 
   describe 'GET /api/submissions' do
     it 'returns a list of submissions' do
@@ -41,6 +47,31 @@ describe 'Submission API', type: :request do
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body).to eq(JSON.parse(show_submission_body(submission).to_json))
     end
+
+    it 'returns an authorization error if test account API token is used with a production submission' do
+      submission = create(:submission, :with_submitters, :with_events, template: templates[0], created_by_user: author)
+
+      get "/api/submissions/#{submission.id}", headers: { 'x-auth-token': testing_author.access_token.token }
+
+      expect(response).to have_http_status(:forbidden)
+      expect(response.parsed_body).to eq(
+        JSON.parse({ error: "Submission #{submission.id} not found using testing API key; " \
+                            'Use production API key to access production submissions.' }.to_json)
+      )
+    end
+
+    it 'returns an authorization error if production account API token is used with a test submission' do
+      submission = create(:submission, :with_submitters, :with_events, template: testing_templates[0],
+                                                                       created_by_user: testing_author)
+
+      get "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }
+
+      expect(response).to have_http_status(:forbidden)
+      expect(response.parsed_body).to eq(
+        JSON.parse({ error: "Submission #{submission.id} not found using production API key; " \
+                            'Use testing API key to access testing submissions.' }.to_json)
+      )
+    end
   end
 
   describe 'POST /api/submissions' do
@@ -48,7 +79,7 @@ describe 'Submission API', type: :request do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Role', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:ok)
@@ -63,7 +94,7 @@ describe 'Submission API', type: :request do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john.doe@example.com' },
+          { role: 'First Party', email: 'john.doe@example.com' },
           { email: 'jane.doe@example.com' },
           { email: 'mike.doe@example.com' }
         ]
@@ -88,7 +119,7 @@ describe 'Submission API', type: :request do
         template_id: templates[0].id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john@example' }
+          { role: 'First Party', email: 'john@example' }
         ]
       }.to_json
 
@@ -103,7 +134,7 @@ describe 'Submission API', type: :request do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Role', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:unprocessable_entity)
@@ -115,13 +146,27 @@ describe 'Submission API', type: :request do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Role', email: 'john.doe@example.com' },
-          { role: 'First Role', email: 'jane.doe@example.com' }
+          { role: 'First Party', email: 'john.doe@example.com' },
+          { role: 'First Party', email: 'jane.doe@example.com' }
         ]
       }.to_json
 
       expect(response).to have_http_status(:unprocessable_entity)
       expect(response.parsed_body).to eq({ 'error' => 'role must be unique in `submitters`.' })
+    end
+
+    it 'returns an error if number of submitters more than in the template' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [
+          { email: 'jane.doe@example.com' },
+          { role: 'First Party', email: 'john.doe@example.com' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq({ 'error' => 'Defined more signing parties than in template' })
     end
   end
 

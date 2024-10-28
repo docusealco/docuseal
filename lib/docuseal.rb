@@ -20,19 +20,19 @@ module Docuseal
                 elsif ENV['MULTITENANT'] == 'true'
                   "https://console.#{HOST}"
                 else
-                  'https://console.docuseal.co'
+                  'https://console.docuseal.com'
                 end
   CLOUD_URL = if Rails.env.development?
                 'http://localhost:3000'
               else
-                'https://docuseal.co'
+                'https://docuseal.com'
               end
   CDN_URL = if Rails.env.development?
               'http://localhost:3000'
             elsif ENV['MULTITENANT'] == 'true'
               "https://cdn.#{HOST}"
             else
-              'https://cdn.docuseal.co'
+              'https://cdn.docuseal.com'
             end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))

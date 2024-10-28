@@ -7,6 +7,7 @@ module Submitters
                     AccountConfig::FORM_WITH_CONFETTI_KEY,
                     AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
                     AccountConfig::WITH_SIGNATURE_ID,
+                    AccountConfig::ALLOW_TO_DECLINE_KEY,
                     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
                     AccountConfig::REUSE_SIGNATURE_KEY,
                     AccountConfig::ALLOW_TYPED_SIGNATURE].freeze
@@ -22,6 +23,7 @@ module Submitters
       with_confetti = find_safe_value(configs, AccountConfig::FORM_WITH_CONFETTI_KEY) != false
       prefill_signature = find_safe_value(configs, AccountConfig::FORM_PREFILL_SIGNATURE_KEY) != false
       reuse_signature = find_safe_value(configs, AccountConfig::REUSE_SIGNATURE_KEY) != false
+      with_decline = find_safe_value(configs, AccountConfig::ALLOW_TO_DECLINE_KEY) != false
       with_signature_id = find_safe_value(configs, AccountConfig::WITH_SIGNATURE_ID) == true
       require_signing_reason = find_safe_value(configs, AccountConfig::REQUIRE_SIGNING_REASON_KEY) == true
 
@@ -30,6 +32,7 @@ module Submitters
         with_typed_signature:,
         with_confetti:,
         reuse_signature:,
+        with_decline:,
         completed_message:,
         require_signing_reason:,
         prefill_signature:,

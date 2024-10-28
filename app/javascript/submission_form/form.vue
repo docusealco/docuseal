@@ -1107,6 +1107,10 @@ export default {
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
       const currentFieldType = this.currentField.type
 
+      if (!formData && !this.$refs.form.checkValidity()) {
+        return
+      }
+
       if (this.dryRun) {
         currentFieldUuids.forEach((fieldUuid) => {
           this.submittedValues[fieldUuid] = this.values[fieldUuid]

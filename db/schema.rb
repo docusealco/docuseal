@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_20_180922) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_26_161207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_20_180922) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "completed_documents", force: :cascade do |t|
+    t.bigint "submitter_id", null: false
+    t.string "sha256", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sha256"], name: "index_completed_documents_on_sha256"
+    t.index ["submitter_id"], name: "index_completed_documents_on_submitter_id"
+  end
+
+  create_table "completed_submitters", force: :cascade do |t|
+    t.bigint "submitter_id", null: false
+    t.bigint "submission_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "template_id", null: false
+    t.string "source", null: false
+    t.integer "sms_count", null: false
+    t.datetime "completed_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_completed_submitters_on_account_id"
+    t.index ["submitter_id"], name: "index_completed_submitters_on_submitter_id", unique: true
   end
 
   create_table "document_generation_events", force: :cascade do |t|

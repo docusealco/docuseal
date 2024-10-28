@@ -120,6 +120,7 @@ module Api
       end&.dig('uuid')
 
       submitter.email = Submissions.normalize_email(attrs[:email]) if attrs.key?(:email)
+      submitter.name = attrs[:name] if attrs.key?(:name)
 
       if attrs.key?(:phone)
         submitter.phone = attrs[:phone].to_s.gsub(/[^0-9+]/, '')

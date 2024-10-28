@@ -76,7 +76,7 @@
       </a>
       <a
         v-if="isDemo"
-        href="https://docuseal.co/sign_up"
+        href="https://docuseal.com/sign_up"
         class="white-button flex items-center space-x-1 w-full"
       >
         <IconLogin />

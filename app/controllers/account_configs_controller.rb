@@ -8,6 +8,7 @@ class AccountConfigsController < ApplicationController
     AccountConfig::ALLOW_TYPED_SIGNATURE,
     AccountConfig::FORCE_MFA,
     AccountConfig::ALLOW_TO_RESUBMIT,
+    AccountConfig::ALLOW_TO_DECLINE_KEY,
     AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
     AccountConfig::ESIGNING_PREFERENCE_KEY,
     AccountConfig::FORM_WITH_CONFETTI_KEY,

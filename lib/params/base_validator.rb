@@ -2,7 +2,7 @@
 
 module Params
   class BaseValidator
-    EMAIL_REGEXP = /\A[a-z0-9][\.']?(?:(?:[a-z0-9_-]+[\.\+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[\.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+    EMAIL_REGEXP = User::FULL_EMAIL_REGEXP
 
     InvalidParameterError = Class.new(StandardError)
 
@@ -70,13 +70,14 @@ module Params
     def email_format(params, key, message: nil)
       return if params.blank?
       return if params[key].blank?
-      return if params[key].to_s.strip.split(/\s*[;,]\s*/).all? { |email| email.match?(EMAIL_REGEXP) }
+      return if params[key].to_s.include?('<')
 
-      if Rails.env.production?
-        Rollbar.error(message || "#{key} must follow the email format") if defined?(Rollbar)
-      else
-        raise_error(message || "#{key} must follow the email format")
+      if params[key].to_s.strip.split(/\s*[;,]\s*/).compact_blank
+                    .all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) }
+        return
       end
+
+      raise_error(message || "#{key} must follow the email format: '#{params[key]}'")
     end
 
     def unique_value(params, key, message: nil)

@@ -1,12 +1,18 @@
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
-    <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4">
+    <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4 min-h-12">
       <h1 class="text-4xl font-bold">
-        <%= t('status_users', status: params[:status].to_s.titleize) %>
+        <% if params[:status] == 'archived' %>
+          <%= t('archived_users') %>
+        <% elsif params[:status] == 'integration' %>
+          <%= t('embedding_users') %>
+        <% else %>
+          <%= t('users') %>
+        <% end %>
       </h1>
       <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
-        <% if can?(:create, User.new(account: current_account)) %>
+        <% if params[:status].blank? && can?(:create, User.new(account: current_account)) %>
           <%= render 'users/extra_buttons' %>
           <% if content_for(:add_user_button) %>
             <%= content_for(:add_user_button) %>
@@ -57,17 +63,17 @@
                 <%= user.last_sign_in_at ? l(user.last_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
-                <% if can?(:update, user) && user.archived_at.blank? %>
+                <% if params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
                   <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
                     <%= t('edit') %>
                   <% end %>
                 <% end %>
-                <% if params[:status].blank? && can?(:destroy, user) && user != current_user %>
+                <% if params[:status] != 'archived' && can?(:destroy, user) && user != current_user %>
                   <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('remove'), data: { turbo_confirm: t('are_you_sure_') } do %>
                     <%= t('remove') %>
                   <% end %>
                 <% end %>
-                <% if params[:status].present? && can?(:manage, user) && user != current_user %>
+                <% if params[:status] == 'archived' && can?(:manage, user) && user != current_user && user.archived_at? %>
                   <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: t('unarchive'), data: { turbo_confirm: t('are_you_sure_') } do %>
                     <%= t('unarchive') %>
                   <% end %>
@@ -78,22 +84,11 @@
         </tbody>
       </table>
     </div>
-    <% view_archived_html = capture do %>
-      <% if current_account.users.archived.exists? %>
-        <div>
-          <% if params[:status] == 'archived' %>
-            <a href="<%= settings_users_path %>" class="link text-sm"><%= t('view_active') %></a>
-          <% else %>
-            <a href="<%= settings_archived_users_path %>" class="link text-sm"><%= t('view_archived') %></a>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
     <% if @pagy.pages > 1 %>
-      <%= render 'shared/pagination', pagy: @pagy, items_name: 'users', left_additional_html: view_archived_html %>
+      <%= render 'shared/pagination', pagy: @pagy, items_name: 'users', left_additional_html: render('bottom_links') %>
     <% else %>
       <div class="mt-2">
-        <%= view_archived_html %>
+        <%= render 'bottom_links' %>
       </div>
     <% end %>
   </div>

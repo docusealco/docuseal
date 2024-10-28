@@ -48,7 +48,7 @@
         </div>
         <div class="form-control">
           <%= ff.label :from_email, t('send_from_email'), class: 'label' %>
-          <%= ff.email_field :from_email, value: value['from_email'], required: true, class: 'base-input' %>
+          <%= ff.email_field :from_email, value: value['from_email'], required: !Docuseal.multitenant?, class: 'base-input' %>
         </div>
       <% end %>
       <div class="form-control pt-2">

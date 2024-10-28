@@ -10,6 +10,7 @@ RSpec.describe Params::BaseValidator do
       emails = [
         '  john.doe@example.com  ',
         'john.doe@example.com',
+        'Test <john.doe@example.com>',
         'jane+newsletter@domain.org',
         'mike_smith@company.net',
         'lisa-wong@sub.example.co.uk',
@@ -34,50 +35,21 @@ RSpec.describe Params::BaseValidator do
     it 'when signle email is invalid' do
       emails = [
         'jone.doe@',
-        'mike.smith@',
-        'jane.doe@@example.com',
-        '@example.com',
-        'lisa.wong@example',
-        'peter.parker..@example.com',
-        'anna.jones@.com',
-        'jack.brown@com',
-        'john doe@example.com',
-        'laura.martin@ example.com',
-        'dave.clark@example .com',
-        'susan.green@example,com',
-        'chris.lee@example;com',
-        'jenny.king@.example.com',
-        '.henry.ford@example.com',
-        'amy.baker@sub_domain.com',
-        'george.morris@-example.com',
-        'nancy.davis@example..com',
-        'kevin.white@.',
-        'diana.robinson@.example..com',
-        'oliver.scott@example.c',
-        'email1@g.comemail@g.com',
-        'user.name@subdomain.example@example.com',
-        'double@at@sign.com',
-        'user@@example.com',
-        'email@123.123.123.123',
         'this...is@strange.but.valid.com',
-        'mix-and.match@strangely-formed-email_address.com',
-        'email@domain..com',
         'user@-weird-domain-.com',
         'user.name@[IPv6:2001:db8::1]',
-        'tricky.email@sub.example-.com',
-        'user@domain.c0m'
+        'tricky.email@sub.example-.com'
       ]
 
       emails.each do |email|
         expect do
           validator.email_format({ email: }, :email)
-        end.to raise_error(described_class::InvalidParameterError, 'email must follow the email format')
+        end.to raise_error(described_class::InvalidParameterError, "email must follow the email format: '#{email}'")
       end
     end
 
     it 'when multiple emails are valid' do
       emails = [
-
         'john.doe@example.com, jane.doe+newsletter@domain.org',
         'joshua@automobile.car ; chloe+fashion@food.delivery',
         'mike-smith@company.net;lisa.wong-sales@sub.example.co.uk',
@@ -106,9 +78,7 @@ RSpec.describe Params::BaseValidator do
 
     it 'when multiple emails are invalid' do
       emails = [
-        'jone@gmail.com, ,mike@gmail.com',
         'john.doe@example.com  dave@nonprofit.org',
-        '; oliver.scott@example.com',
         'amy.baker@ example.com, george.morris@ example.com',
         'jenny.king@example.com . diana.robinson@example.com',
         'nancy.davis@.com, henry.ford@.com',
@@ -126,7 +96,7 @@ RSpec.describe Params::BaseValidator do
       emails.each do |email|
         expect do
           validator.email_format({ email: }, :email)
-        end.to raise_error(described_class::InvalidParameterError, 'email must follow the email format')
+        end.to raise_error(described_class::InvalidParameterError, "email must follow the email format: '#{email}'")
       end
     end
 

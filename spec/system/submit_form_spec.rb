@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Submit Form' do
-  let!(:account) { create(:account) }
-  let!(:user) { create(:user, account:) }
-  let!(:template) { create(:template, account:, author: user) }
+  let(:account) { create(:account) }
+  let(:user) { create(:user, account:) }
+  let(:template) { create(:template, account:, author: user) }
 
   before do
     sign_in(user)
@@ -48,8 +48,8 @@ RSpec.describe 'Submit Form' do
   end
 
   context 'when initialized by shared email address' do
-    let!(:submission) { create(:submission, template:, created_by_user: user) }
-    let!(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
+    let(:submission) { create(:submission, template:, created_by_user: user) }
+    let(:submitters) { template.submitters.map { |s| create(:submitter, submission:, uuid: s['uuid']) } }
     let(:submitter) { submitters.first }
 
     before do

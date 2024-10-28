@@ -6,6 +6,8 @@ class ProcessSubmitterCompletionJob
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 
+    create_completed_submitter!(submitter)
+
     is_all_completed = !submitter.submission.submitters.exists?(completed_at: nil)
 
     if !is_all_completed && submitter.submission.submitters_order_preserved?
@@ -24,7 +26,40 @@ class ProcessSubmitterCompletionJob
       enqueue_completed_emails(submitter)
     end
 
+    create_completed_documents!(submitter)
+
     enqueue_completed_webhooks(submitter, is_all_completed:)
+  end
+
+  def create_completed_submitter!(submitter)
+    completed_submitter = CompletedSubmitter.find_or_initialize_by(submitter_id: submitter.id)
+
+    return completed_submitter if completed_submitter.persisted?
+
+    submission = submitter.submission
+
+    completed_submitter.assign_attributes(
+      submission_id: submitter.submission_id,
+      account_id: submission.account_id,
+      template_id: submission.template_id,
+      source: submission.source,
+      sms_count: submitter.submission_events.where(event_type: %w[send_sms send_2fa_sms]).count,
+      completed_at: submitter.completed_at
+    )
+
+    completed_submitter.save!
+
+    completed_submitter
+  rescue ActiveRecord::RecordNotUnique
+    retry
+  end
+
+  def create_completed_documents!(submitter)
+    submitter.documents.filter_map do |attachment|
+      next if attachment.metadata['sha256'].blank?
+
+      CompletedDocument.find_or_create_by!(sha256: attachment.metadata['sha256'], submitter_id: submitter.id)
+    end
   end
 
   def enqueue_completed_webhooks(submitter, is_all_completed: false)

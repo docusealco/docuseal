@@ -134,6 +134,7 @@ en: &en
   require_signing_reason: Require signing reason
   allow_typed_text_signatures: Allow typed text signatures
   allow_to_resubmit_completed_forms: Allow to resubmit completed forms
+  allow_to_decline_documents: Allow to decline documents
   remember_and_pre_fill_signatures: Remember and pre-fill signatures
   require_authentication_for_file_download_links: Require authentication for file download links
   combine_completed_documents_and_audit_log: Combine completed documents and Audit Log
@@ -473,7 +474,6 @@ en: &en
   back: Back
   add_secret: Add Secret
   submission_example_payload: Submission example payload
-  status_users: '%{status} Users'
   there_are_no_signatures: There are no signatures
   signed_with_trusted_certificate: Signed with trusted certificate
   signed_with_external_certificate: Signed with external certificate
@@ -618,6 +618,10 @@ en: &en
   use_international_format_1xxx_: 'Use internatioanl format: +1xxx...'
   submitter_cannot_be_updated: Submitter cannot be updated.
   at_least_one_field_must_be_filled: At least one field must be filled.
+  archived_users: Archived Users
+  embedding_users: Embedding Users
+  view_embedding_users: View Embedding Users
+  view_users: View Users
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -770,6 +774,7 @@ es: &es
   require_signing_reason: Requerir motivo de firma
   allow_typed_text_signatures: Permitir firmas de texto mecanografiadas
   allow_to_resubmit_completed_forms: Permitir reenviar formularios completados
+  allow_to_decline_documents: Permitir rechazar documentos
   remember_and_pre_fill_signatures: Recordar y prellenar firmas
   require_authentication_for_file_download_links: Requerir autenticación para enlaces de descarga de archivos
   combine_completed_documents_and_audit_log: Combinar documentos completados y Registro de Auditoría
@@ -1109,7 +1114,6 @@ es: &es
   back: Atrás
   add_secret: Agregar secreto
   submission_example_payload: Ejemplo de payload de envío
-  status_users: '%{status} Usuarios'
   there_are_no_signatures: No hay firmas
   signed_with_trusted_certificate: Firmado con certificado de confianza
   signed_with_external_certificate: Firmado con certificado externo
@@ -1254,6 +1258,9 @@ es: &es
   use_international_format_1xxx_: 'Usa el formato internacional: +1xxx...'
   submitter_cannot_be_updated: El remitente no puede ser actualizado.
   at_least_one_field_must_be_filled: Al menos un campo debe estar completo.
+  archived_users: Usuarios Archivados
+  embedding_users: Usuarios Integrados
+  view_embedding_users: Ver Usuarios Integrado
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1406,6 +1413,7 @@ it: &it
   require_signing_reason: Richiedere il motivo della firma
   allow_typed_text_signatures: Permettere firme con testo digitato
   allow_to_resubmit_completed_forms: Permettere di reinviare i moduli completati
+  allow_to_decline_documents: Permettere di rifiutare i documenti
   remember_and_pre_fill_signatures: Ricordare e precompilare le firme
   require_authentication_for_file_download_links: "Richiedere l'autenticazione per i link di download dei file"
   combine_completed_documents_and_audit_log: Combinare i documenti completati e il Registro di Audit
@@ -1745,7 +1753,6 @@ it: &it
   back: Indietro
   add_secret: Aggiungi segreto
   submission_example_payload: Esempio di payload di invio
-  status_users: '%{status} Utenti'
   there_are_no_signatures: Non ci sono firme
   signed_with_trusted_certificate: Firmato con certificato affidabile
   signed_with_external_certificate: Firmato con certificato esterno
@@ -1890,6 +1897,9 @@ it: &it
   use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
   submitter_cannot_be_updated: Il mittente non può essere aggiornato.
   at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
+  archived_users: Utenti Archiviati
+  embedding_users: Utenti Incorporati
+  view_embedding_users: Visualizza Utenti Incorporati
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2043,6 +2053,7 @@ fr: &fr
   require_signing_reason: Demander une raison pour la signature
   allow_typed_text_signatures: Autoriser les signatures en texte tapé
   allow_to_resubmit_completed_forms: Autoriser la resoumission des formulaires complétés
+  allow_to_decline_documents: Autoriser le refus des documents
   remember_and_pre_fill_signatures: Se souvenir et préremplir les signatures
   require_authentication_for_file_download_links: Exiger une authentification pour les liens de téléchargement des fichiers
   combine_completed_documents_and_audit_log: "Combiner les documents complétés et le journal d'audit"
@@ -2382,7 +2393,6 @@ fr: &fr
   back: Retour
   add_secret: Ajouter un secret
   submission_example_payload: Exemple de payload de soumission
-  status_users: '%{status} Utilisateurs'
   there_are_no_signatures: "Il n'y a pas de signatures"
   signed_with_trusted_certificate: Signé avec un certificat de confiance
   signed_with_external_certificate: Signé avec un certificat externe
@@ -2527,6 +2537,9 @@ fr: &fr
   use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
   submitter_cannot_be_updated: Il mittente non può essere aggiornato.
   at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
+  archived_users: Utilisateurs Archivés
+  embedding_users: Utilisateurs Intégrés
+  view_embedding_users: Voir les Utilisateurs Intégrés
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2679,6 +2692,7 @@ pt: &pt
   require_signing_reason: Requerer motivo para assinatura
   allow_typed_text_signatures: Permitir assinaturas digitadas
   allow_to_resubmit_completed_forms: Permitir reenviar formulários concluídos
+  allow_to_decline_documents: Permitir recusar documentos
   remember_and_pre_fill_signatures: Lembrar e preencher assinaturas automaticamente
   require_authentication_for_file_download_links: Requerer autenticação para links de download de arquivos
   combine_completed_documents_and_audit_log: Combinar documentos concluídos e log de auditoria
@@ -3018,7 +3032,6 @@ pt: &pt
   back: Voltar
   add_secret: Adicionar segredo
   submission_example_payload: Exemplo de payload de submissão
-  status_users: '%{status} Usuários'
   there_are_no_signatures: Não há assinaturas
   signed_with_trusted_certificate: Assinado com certificado confiável
   signed_with_external_certificate: Assinado com certificado externo
@@ -3163,6 +3176,9 @@ pt: &pt
   use_international_format_1xxx_: 'Use o formato internacional: +1xxx...'
   submitter_cannot_be_updated: O remetente não pode ser atualizado.
   at_least_one_field_must_be_filled: Pelo menos um campo deve ser preenchido.
+  archived_users: Usuários Arquivados
+  embedding_users: Usuários Incorporados
+  view_embedding_users: Ver Usuários Incorporados
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3315,6 +3331,7 @@ de: &de
   require_signing_reason: Grund für die Signatur erforderlich
   allow_typed_text_signatures: Unterschriften mit getipptem Text zulassen
   allow_to_resubmit_completed_forms: Erneutes Einreichen abgeschlossener Formulare zulassen
+  allow_to_decline_documents: Erlauben, Dokumente abzulehnen
   remember_and_pre_fill_signatures: Signaturen merken und vorab ausfüllen
   require_authentication_for_file_download_links: Authentifizierung für Dateidownload-Links erforderlich
   combine_completed_documents_and_audit_log: Abgeschlossene Dokumente und Prüfprotokoll kombinieren
@@ -3654,7 +3671,6 @@ de: &de
   back: Zurück
   add_secret: Geheimnis hinzufügen
   submission_example_payload: Beispiel-Payload für Einreichung
-  status_users: '%{status} Benutzer'
   there_are_no_signatures: Es gibt keine Unterschriften
   signed_with_trusted_certificate: Signiert mit vertrauenswürdigem Zertifikat
   signed_with_external_certificate: Signiert mit externem Zertifikat
@@ -3799,6 +3815,9 @@ de: &de
   use_international_format_1xxx_: 'Verwenden Sie das internationale Format: +1xxx...'
   submitter_cannot_be_updated: Der Absender kann nicht aktualisiert werden.
   at_least_one_field_must_be_filled: Mindestens ein Feld muss ausgefüllt werden.
+  archived_users: Archivierte Benutzer
+  embedding_users: Einbettende Benutzer
+  view_embedding_users: Einbettende Benutzer anzeigen
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

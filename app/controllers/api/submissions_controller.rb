@@ -74,13 +74,14 @@ module Api
       Submissions.send_signature_requests(submissions)
 
       submissions.each do |submission|
-        if submission.submitters.all?(&:completed_at?) && submission.submitters.last
-          ProcessSubmitterCompletionJob.perform_async({ 'submitter_id' => submission.submitters.last.id })
+        submission.submitters.each do |submitter|
+          ProcessSubmitterCompletionJob.perform_async({ 'submitter_id' => submitter.id }) if submitter.completed_at?
         end
       end
 
       render json: build_create_json(submissions)
-    rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
+    rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,
+           DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_entity

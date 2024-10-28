@@ -1,10 +1,10 @@
 <div class="text-center">
   <div class="join">
-    <a href="https://docuseal.co<%= request.fullpath.gsub('docuseal.eu', 'docuseal.co') %>" class="btn bg-base-200 join-item w-32  <%= 'bg-base-300' if request.host == 'docuseal.co' || request.host == 'docuseal.com' %>">
+    <a href="https://docuseal.com<%= request.fullpath.gsub('docuseal.eu', 'docuseal.com') %>" class="btn bg-base-200 join-item w-32  <%= 'bg-base-300' if request.host == 'docuseal.com' %>">
       <%= svg_icon 'world', class: 'w-5 h-5' %>
       Global
     </a>
-    <a href="https://docuseal.eu<%= request.fullpath.gsub('docuseal.co', 'docuseal.eu') %>" class="btn bg-base-200 join-item w-32 <%= 'bg-base-300' if request.host == 'docuseal.eu' %>">
+    <a href="https://docuseal.eu<%= request.fullpath.gsub('docuseal.com', 'docuseal.eu') %>" class="btn bg-base-200 join-item w-32 <%= 'bg-base-300' if request.host == 'docuseal.eu' %>">
       <%= svg_icon 'eu_flag', class: 'w-5 h-5' %>
       Europe
     </a>
