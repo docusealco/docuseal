@@ -474,6 +474,7 @@ en: &en
   logo: Logo
   back: Back
   add_secret: Add Secret
+  edit_secret: Edit Secret
   submission_example_payload: Submission example payload
   there_are_no_signatures: There are no signatures
   signed_with_trusted_certificate: Signed with trusted certificate
@@ -623,7 +624,9 @@ en: &en
   archived_users: Archived Users
   embedding_users: Embedding Users
   view_embedding_users: View Embedding Users
-  view_users: View Users
+  key: Key
+  value: Value
+  webhook_secret: Webhook Secret
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1116,6 +1119,7 @@ es: &es
   logo: Logotipo
   back: Atrás
   add_secret: Agregar secreto
+  edit_secret: Editar secreto
   submission_example_payload: Ejemplo de payload de envío
   there_are_no_signatures: No hay firmas
   signed_with_trusted_certificate: Firmado con certificado de confianza
@@ -1265,6 +1269,9 @@ es: &es
   archived_users: Usuarios Archivados
   embedding_users: Usuarios Integrados
   view_embedding_users: Ver Usuarios Integrado
+  key: Clave
+  value: Valor
+  webhook_secret: Secreto del Webhook
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1757,6 +1764,7 @@ it: &it
   logo: Logo
   back: Indietro
   add_secret: Aggiungi segreto
+  edit_secret: Modifica segreto
   submission_example_payload: Esempio di payload di invio
   there_are_no_signatures: Non ci sono firme
   signed_with_trusted_certificate: Firmato con certificato affidabile
@@ -1906,6 +1914,9 @@ it: &it
   archived_users: Utenti Archiviati
   embedding_users: Utenti Incorporati
   view_embedding_users: Visualizza Utenti Incorporati
+  key: Chiave
+  value: Valore
+  webhook_secret: Segreto del Webhook
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2399,6 +2410,7 @@ fr: &fr
   logo: Logo
   back: Retour
   add_secret: Ajouter un secret
+  edit_secret: Modifier le Secret
   submission_example_payload: Exemple de payload de soumission
   there_are_no_signatures: "Il n'y a pas de signatures"
   signed_with_trusted_certificate: Signé avec un certificat de confiance
@@ -2548,6 +2560,9 @@ fr: &fr
   archived_users: Utilisateurs Archivés
   embedding_users: Utilisateurs Intégrés
   view_embedding_users: Voir les Utilisateurs Intégrés
+  key: Clé
+  value: Valeur
+  webhook_secret: Secret du Webhook
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3040,6 +3055,7 @@ pt: &pt
   logo: Logotipo
   back: Voltar
   add_secret: Adicionar segredo
+  edit_secret: Editar Segredo
   submission_example_payload: Exemplo de payload de submissão
   there_are_no_signatures: Não há assinaturas
   signed_with_trusted_certificate: Assinado com certificado confiável
@@ -3189,6 +3205,9 @@ pt: &pt
   archived_users: Usuários Arquivados
   embedding_users: Usuários Incorporados
   view_embedding_users: Ver Usuários Incorporados
+  key: Chave
+  value: Valor
+  webhook_secret: Segredo do Webhook
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3681,6 +3700,7 @@ de: &de
   logo: Logo
   back: Zurück
   add_secret: Geheimnis hinzufügen
+  edit_secret: Geheimnis bearbeiten
   submission_example_payload: Beispiel-Payload für Einreichung
   there_are_no_signatures: Es gibt keine Unterschriften
   signed_with_trusted_certificate: Signiert mit vertrauenswürdigem Zertifikat
@@ -3830,6 +3850,9 @@ de: &de
   archived_users: Archivierte Benutzer
   embedding_users: Einbettende Benutzer
   view_embedding_users: Einbettende Benutzer anzeigen
+  key: Schlüssel
+  value: Wert
+  webhook_secret: Webhook-Geheimnis
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

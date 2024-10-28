@@ -14,24 +14,19 @@ class SendSubmissionArchivedWebhookRequestJob
 
     attempt = params['attempt'].to_i
 
-    config = Accounts.load_webhook_config(submission.account)
-    url = config&.value.presence
+    webhook_url = submission.account.webhook_urls.find_by(id: params['webhook_url_id'])
 
-    return if url.blank?
-
-    preferences = Accounts.load_webhook_preferences(submission.account)
-
-    return if preferences['submission.archived'].blank?
+    return unless webhook_url
+    return if webhook_url.url.blank? || webhook_url.events.exclude?('submission.archived')
 
     resp = begin
-      Faraday.post(url,
+      Faraday.post(webhook_url.url,
                    {
                      event_type: 'submission.archived',
                      timestamp: Time.current,
                      data: submission.as_json(only: %i[id archived_at])
                    }.to_json,
-                   **EncryptedConfig.find_or_initialize_by(account_id: config.account_id,
-                                                           key: EncryptedConfig::WEBHOOK_SECRET_KEY)&.value.to_h,
+                   **webhook_url.secret.to_h,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
     rescue Faraday::Error
@@ -42,6 +37,7 @@ class SendSubmissionArchivedWebhookRequestJob
        (!Docuseal.multitenant? || submission.account.account_configs.exists?(key: :plan))
       SendSubmissionArchivedWebhookRequestJob.perform_in((2**attempt).minutes, {
                                                            'submission_id' => submission.id,
+                                                           'webhook_url_id' => webhook_url.id,
                                                            'attempt' => attempt + 1,
                                                            'last_status' => resp&.status.to_i
                                                          })

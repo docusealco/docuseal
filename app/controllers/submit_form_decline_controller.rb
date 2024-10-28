@@ -25,7 +25,10 @@ class SubmitFormDeclineController < ApplicationController
       SubmitterMailer.declined_email(submitter, user).deliver_later!
     end
 
-    SendFormDeclinedWebhookRequestJob.perform_async('submitter_id' => submitter.id)
+    submitter.account.webhook_urls.with_event('form.declined').each do |webhook_url|
+      SendFormDeclinedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
+                                                        'webhook_url_id' => webhook_url.id })
+    end
 
     redirect_to submit_form_path(submitter.slug)
   end

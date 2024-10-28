@@ -23,7 +23,7 @@ class TemplatesUploadsController < ApplicationController
 
     @template.update!(schema:)
 
-    SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => @template.id)
+    enqueue_template_created_webhooks(@template)
 
     redirect_to edit_template_path(@template)
   rescue Templates::CreateAttachments::PdfEncrypted
@@ -64,5 +64,12 @@ class TemplatesUploadsController < ApplicationController
     )
 
     { files: [file] }
+  end
+
+  def enqueue_template_created_webhooks(template)
+    template.account.webhook_urls.with_event('template.created').each do |webhook_url|
+      SendTemplateCreatedWebhookRequestJob.perform_async({ 'template_id' => template.id,
+                                                           'webhook_url_id' => webhook_url.id })
+    end
   end
 end

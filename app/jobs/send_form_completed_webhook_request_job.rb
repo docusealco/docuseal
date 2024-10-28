@@ -14,22 +14,23 @@ class SendFormCompletedWebhookRequestJob
 
     attempt = params['attempt'].to_i
 
-    url, secret = load_url_and_secret(submitter, params)
+    webhook_url = submitter.account.webhook_urls.find_by(id: params['webhook_url_id'])
 
-    return if url.blank?
+    return unless webhook_url
+    return if webhook_url.url.blank? || webhook_url.events.exclude?('form.completed')
 
     Submissions::EnsureResultGenerated.call(submitter)
 
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
     resp = begin
-      Faraday.post(url,
+      Faraday.post(webhook_url.url,
                    {
                      event_type: 'form.completed',
                      timestamp: Time.current,
                      data: Submitters::SerializeForWebhook.call(submitter)
                    }.to_json,
-                   **secret.to_h,
+                   **webhook_url.secret.to_h,
                    'Content-Type' => 'application/json',
                    'User-Agent' => USER_AGENT)
     rescue Faraday::Error
@@ -43,29 +44,6 @@ class SendFormCompletedWebhookRequestJob
                                                       'attempt' => attempt + 1,
                                                       'last_status' => resp&.status.to_i
                                                     })
-    end
-  end
-
-  def load_url_and_secret(submitter, params)
-    if params['encrypted_config_id']
-      config = EncryptedConfig.find(params['encrypted_config_id'])
-
-      url = config.value
-
-      return if url.blank?
-
-      preferences = Accounts.load_webhook_preferences(submitter.submission.account)
-
-      return if preferences['form.completed'] == false
-
-      secret = EncryptedConfig.find_or_initialize_by(account_id: config.account_id,
-                                                     key: EncryptedConfig::WEBHOOK_SECRET_KEY)&.value.to_h
-
-      [url, secret]
-    elsif params['webhook_url_id']
-      webhook_url = submitter.account.webhook_urls.find(params['webhook_url_id'])
-
-      webhook_url.url if webhook_url.events.include?('form.completed')
     end
   end
 end

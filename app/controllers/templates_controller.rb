@@ -66,7 +66,7 @@ class TemplatesController < ApplicationController
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
-      SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id)
+      enqueue_template_created_webhooks(@template)
 
       maybe_redirect_to_template(@template)
     else
@@ -77,7 +77,7 @@ class TemplatesController < ApplicationController
   def update
     @template.update!(template_params)
 
-    SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id)
+    enqueue_template_updated_webhooks(@template)
 
     head :ok
   end
@@ -125,6 +125,20 @@ class TemplatesController < ApplicationController
       redirect_to(edit_template_path(@template))
     else
       redirect_back(fallback_location: root_path, notice: I18n.t('template_has_been_cloned'))
+    end
+  end
+
+  def enqueue_template_created_webhooks(template)
+    template.account.webhook_urls.with_event('template.updated').each do |webhook_url|
+      SendTemplateCreatedWebhookRequestJob.perform_async({ 'template_id' => template.id,
+                                                           'webhook_url_id' => webhook_url.id })
+    end
+  end
+
+  def enqueue_template_updated_webhooks(template)
+    template.account.webhook_urls.with_event('template.updated').each do |webhook_url|
+      SendTemplateUpdatedWebhookRequestJob.perform_async({ 'template_id' => template.id,
+                                                           'webhook_url_id' => webhook_url.id })
     end
   end
 

@@ -80,8 +80,7 @@ Rails.application.routes.draw do
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
   resources :template_folders_autocomplete, only: %i[index]
-  resources :webhook_preferences, only: %i[create]
-  resources :webhook_secret, only: %i[index create]
+  resources :webhook_secret, only: %i[show update]
   resource :templates_upload, only: %i[create]
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'
