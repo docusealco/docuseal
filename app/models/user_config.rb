@@ -24,6 +24,7 @@ class UserConfig < ApplicationRecord
   SIGNATURE_KEY = 'signature'
   INITIALS_KEY = 'initials'
   RECEIVE_COMPLETED_EMAIL = 'receive_completed_email'
+  RECEIVE_DECLINED_EMAIL = 'receive_declined_email'
 
   belongs_to :user
 
