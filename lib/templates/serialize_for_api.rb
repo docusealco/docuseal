@@ -25,8 +25,14 @@ module Templates
                                         name: :preview_images)
                                  .preload(:blob)
 
-      json[:documents] = template.schema.map do |item|
+      json[:documents] = template.schema.filter_map do |item|
         attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
+
+        unless attachment
+          Rollbar.error("Documents missing: #{template.id}") if defined?(Rollbar)
+
+          next
+        end
 
         first_page_blob = preview_image_attachments.find { |e| e.record_id == attachment.id }&.blob
         first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: ['0.jpg', '0.png'] })&.blob
