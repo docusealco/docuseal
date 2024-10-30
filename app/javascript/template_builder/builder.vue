@@ -415,6 +415,7 @@ import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
+import FieldSubmitter from './field_submitter'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed } from 'vue'
@@ -558,6 +559,11 @@ export default {
       required: false,
       default: () => []
     },
+    defineSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     acceptFileTypes: {
       type: String,
       required: false,
@@ -677,6 +683,7 @@ export default {
     }
   },
   computed: {
+    submitterDefaultNames: FieldSubmitter.computed.names,
     selectedAreaRef: () => ref(),
     fieldsDragFieldRef: () => ref(),
     language () {
@@ -741,6 +748,18 @@ export default {
       const submitter = (this.template.submitters[index] ||= {})
 
       submitter.name = name
+
+      if (existingSubmittersUuids.filter(Boolean).length) {
+        submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
+      } else {
+        submitter.uuid ||= v4()
+      }
+    })
+
+    this.defineSubmitters.forEach((name, index) => {
+      const submitter = (this.template.submitters[index] ||= {})
+
+      submitter.name = name || this.submitterDefaultNames[index]
 
       if (existingSubmittersUuids.filter(Boolean).length) {
         submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
