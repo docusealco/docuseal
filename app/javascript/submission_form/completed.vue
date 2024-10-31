@@ -91,7 +91,7 @@
     >
       {{ t('powered_by') }}
       <a
-        href="https://www.docuseal.co/start"
+        href="https://www.docuseal.com/start"
         target="_blank"
         class="underline"
       >DocuSeal</a> - {{ t('open_source_documents_software') }}

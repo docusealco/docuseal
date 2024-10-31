@@ -178,7 +178,7 @@
         <a
           v-if="!isConnected"
           class="block link text-center mt-1"
-          href="https://www.docuseal.co/blog/accept-payments-and-request-signatures-with-ease"
+          href="https://www.docuseal.com/blog/accept-payments-and-request-signatures-with-ease"
           target="_blank"
           data-turbo="false"
         >{{ t('learn_more') }}</a>
