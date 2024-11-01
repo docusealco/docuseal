@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  unarchive: Unarchive
   first_party: 'First Party'
   docuseal_trusted_signature: DocuSeal Trusted Signature
   hello_name: Hello %{name}
@@ -498,6 +499,7 @@ en: &en
   document_template_has_been_moved: Document template has been moved.
   unable_to_move_template_into_folder: Unable to move template into folder.
   template_has_been_unarchived: Template has been unarchived.
+  submission_has_been_unarchived: Submission has been unarchived.
   unable_to_update_file: Unable to upload file.
   user_has_been_invited: User has been invited.
   unable_to_update_user: Unable to update user.
@@ -658,6 +660,7 @@ en: &en
       read: Read your data
 
 es: &es
+  unarchive: Desarchivar
   awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
   enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
   first_party: 'Primera Parte'
@@ -1138,6 +1141,7 @@ es: &es
   document_template_has_been_moved: La plantilla de documento ha sido movida.
   unable_to_move_template_into_folder: No se pudo mover la plantilla a la carpeta.
   template_has_been_unarchived: La plantilla ha sido desarchivada.
+  submission_has_been_unarchived: La presentación ha sido desarchivada.
   unable_to_update_file: No se pudo subir el archivo.
   user_has_been_invited: El usuario ha sido invitado.
   unable_to_update_user: No se pudo actualizar el usuario.
@@ -1297,6 +1301,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  unarchive: Ripristina
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
   enforce_recipients_order: Aplicar el orden de los destinatarios
   first_party: 'Prima parte'
@@ -1777,6 +1782,7 @@ it: &it
   document_template_has_been_moved: Il modello di documento è stato spostato.
   unable_to_move_template_into_folder: Impossibile spostare il modello nella cartella.
   template_has_been_unarchived: Il modello è stato disarchiviato.
+  submission_has_been_unarchived: La sottomissione è stata dearchiviata.
   unable_to_update_file: Impossibile caricare il file.
   user_has_been_invited: "L'utente è stato invitato."
   unable_to_update_user: Impossibile aggiornare l'utente.
@@ -1936,6 +1942,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  unarchive: Désarchiver
   awaiting_completion_by_the_other_party: "En attente de la complétion par l'autre partie"
   enforce_recipients_order: "Respecter l'ordre des destinataires"
   first_party: 'Première partie'
@@ -2417,6 +2424,7 @@ fr: &fr
   document_template_has_been_moved: Le modèle de document a été déplacé.
   unable_to_move_template_into_folder: Impossible de déplacer le modèle dans le dossier.
   template_has_been_unarchived: Le modèle a été désarchivé.
+  submission_has_been_unarchived: La soumission a été désarchivée.
   unable_to_update_file: Impossible de télécharger le fichier.
   user_has_been_updated: "L'utilisateur a été mis à jour."
   unable_to_remove_user: Impossible de supprimer l'utilisateur.
@@ -2576,6 +2584,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  unarchive: Desarquivar
   awaiting_completion_by_the_other_party: "Aguardando a conclusão pela outra parte"
   enforce_recipients_order: 'Forçar a ordem dos recipientes'
   first_party: 'Primeira Parte'
@@ -3056,6 +3065,7 @@ pt: &pt
   document_template_has_been_moved: O modelo de documento foi movido.
   unable_to_move_template_into_folder: Não foi possível mover o modelo para a pasta.
   template_has_been_unarchived: O modelo foi desarquivado.
+  submission_has_been_unarchived: A submissao foi desarquivada.
   unable_to_update_file: Não foi possível atualizar o arquivo.
   user_has_been_updated: O usuário foi atualizado.
   unable_to_remove_user: Não foi possível remover o usuário.
@@ -3215,6 +3225,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  unarchive: Wiederherstellen
   awaiting_completion_by_the_other_party: "Warten auf die Fertigstellung durch die andere Partei"
   enforce_recipients_order: 'Empfängerreihenfolge durchsetzen'
   first_party: 'Erste Partei'
@@ -3695,6 +3706,7 @@ de: &de
   document_template_has_been_moved: Die Dokumentvorlage wurde verschoben.
   unable_to_move_template_into_folder: Vorlage konnte nicht in den Ordner verschoben werden.
   template_has_been_unarchived: Die Vorlage wurde entarchiviert.
+  submission_has_been_unarchived: Die Einreichung wurde wiederhergestellt.
   unable_to_update_file: Datei konnte nicht hochgeladen werden.
   user_has_been_updated: Der Benutzer wurde aktualisiert.
   unable_to_remove_user: Benutzer konnte nicht entfernt werden.

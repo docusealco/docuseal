@@ -9,14 +9,18 @@
       <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% @submission.template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %></span>
     </a>
     <div class="space-x-3 flex items-center">
+      <% last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
+      <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
+      <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !is_all_completed %>
+        <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
+      <% end %>
       <% if @submission.audit_trail.present? %>
         <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
       <% end %>
-      <% if last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
-        <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
+      <% if last_submitter %>
         <% if is_all_completed || !is_combined_enabled %>
           <div class="join relative">
             <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
@@ -54,7 +58,7 @@
             <% end %>
           </div>
         <% end %>
-      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? %>
+      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? %>
         <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
       <% end %>
     </div>
