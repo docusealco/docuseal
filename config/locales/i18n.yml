@@ -355,7 +355,6 @@ en: &en
   send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with DocuSeal Pro
   count_emails_used: '%{count} emails used'
   has_been_connected: has been connected
-  but_not_activated: but not activated
   sms_not_configured: SMS not Configure
   configure_sms_settings_in_order_to_send_text_messages_: 'Configure SMS settings in order to send text messages:'
   go_to_sms_settings: Go to SMS settings
@@ -447,7 +446,6 @@ en: &en
   edit_user: Edit User
   new_user: New User
   unarchive: Unarchive
-  role: Role
   last_session: Last session
   unlock_more_user_roles_with_docuseal_pro: Unlock more user roles with DocuSeal Pro.
   view_active: View Active
@@ -509,12 +507,9 @@ en: &en
   webhook_url_has_been_saved: Webhook URL has been saved.
   webhook_request_has_been_sent: Webhook request has been sent.
   count_submissions_have_been_created: '%{count} submissions have been created.'
-  gmail_has_been_connected: Gmail has been connected
-  microsoft_account_has_been_connected: Microsoft Account has been connected
   sms_length_cant_be_longer_than_120_bytes: SMS length can't be longer than 120 bytes
   connected_successfully: Connected successfully.
   user_nameid_not_found: 'User %{nameid} not found.'
-  webhook_request_has_been_sent: Webhook request has been sent.
   sso_settings_have_been_updated: SSO settings have been updated.
   sms_has_been_sent: SMS has been sent.
   account_has_been_created: Account has been created.
@@ -995,7 +990,6 @@ es: &es
   send_signature_request_emails_without_limits_with_docuseal_pro: Envía solicitudes de firma sin límites con DocuSeal Pro
   count_emails_used: '%{count} correos electrónicos utilizados'
   has_been_connected: ha sido conectado
-  but_not_activated: pero no activado
   sms_not_configured: SMS no configurado
   configure_sms_settings_in_order_to_send_text_messages_: 'Configura los ajustes de SMS para enviar mensajes de texto:'
   go_to_sms_settings: Ir a la configuración de SMS
@@ -1087,7 +1081,6 @@ es: &es
   edit_user: Editar usuario
   new_user: Nuevo usuario
   unarchive: Desarchivar
-  role: Rol
   last_session: Última sesión
   unlock_more_user_roles_with_docuseal_pro: Desbloquea más roles de usuario con DocuSeal Pro.
   view_active: Ver activos
@@ -1149,12 +1142,9 @@ es: &es
   webhook_url_has_been_saved: La URL del Webhook ha sido guardada.
   webhook_request_has_been_sent: La solicitud del Webhook ha sido enviada.
   count_submissions_have_been_created: '%{count} envíos han sido creados.'
-  gmail_has_been_connected: Gmail ha sido conectado.
-  microsoft_account_has_been_connected: La cuenta de Microsoft ha sido conectada.
   sms_length_cant_be_longer_than_120_bytes: La longitud del SMS no puede ser mayor a 120 bytes.
   connected_successfully: Conectado con éxito.
   user_nameid_not_found: 'Usuario %{nameid} no encontrado.'
-  webhook_request_has_been_sent: La solicitud del Webhook ha sido enviada.
   sso_settings_have_been_updated: La configuración de SSO ha sido actualizada.
   sms_has_been_sent: El SMS ha sido enviado.
   account_has_been_created: La cuenta ha sido creada.
@@ -1243,7 +1233,6 @@ es: &es
   select_field: Campo de Selección
   multiple_field: Campo Múltiple
   radio_field: Campo de Grupo Radio
-  radio_field: Campo de Radio
   cells_field: Campo de Celdas
   stamp_field: Campo de Sello
   payment_field: Campo de Pago
@@ -1634,7 +1623,6 @@ it: &it
   send_signature_request_emails_without_limits_with_docuseal_pro: Invia email di richiesta di firma senza limiti con DocuSeal Pro
   count_emails_used: '%{count} email utilizzate'
   has_been_connected: è stato connesso
-  but_not_activated: ma non attivato
   sms_not_configured: SMS non configurato
   configure_sms_settings_in_order_to_send_text_messages_: 'Configura le impostazioni SMS per inviare messaggi di testo:'
   go_to_sms_settings: Vai alle impostazioni SMS
@@ -1726,7 +1714,6 @@ it: &it
   edit_user: Modifica utente
   new_user: Nuovo utente
   unarchive: Disarchivia
-  role: Ruolo
   last_session: Ultima sessione
   unlock_more_user_roles_with_docuseal_pro: Sblocca più ruoli utente con DocuSeal Pro.
   view_active: Visualizza attivi
@@ -1788,12 +1775,9 @@ it: &it
   webhook_url_has_been_saved: "L'URL del Webhook è stato salvato."
   webhook_request_has_been_sent: La richiesta del Webhook è stata inviata.
   count_submissions_have_been_created: '%{count} invii sono stati creati.'
-  gmail_has_been_connected: Gmail è stato connesso.
-  microsoft_account_has_been_connected: "L'account Microsoft è stato connesso."
   sms_length_cant_be_longer_than_120_bytes: "La lunghezza dell'SMS non può superare i 120 byte."
   connected_successfully: Collegamento avvenuto con successo.
   user_nameid_not_found: 'Utente %{nameid} non trovato.'
-  webhook_request_has_been_sent: La richiesta del Webhook è stata inviata.
   sso_settings_have_been_updated: Le impostazioni SSO sono state aggiornate.
   sms_has_been_sent: "L'SMS è stato inviato."
   account_has_been_created: "L'account è stato creato."
@@ -2274,7 +2258,6 @@ fr: &fr
   send_signature_request_emails_without_limits_with_docuseal_pro: Envoyez des e-mails de demande de signature sans limites avec DocuSeal Pro
   count_emails_used: '%{count} e-mails utilisés'
   has_been_connected: a été connecté
-  but_not_activated: mais pas activé
   sms_not_configured: SMS non configuré
   configure_sms_settings_in_order_to_send_text_messages_: 'Configurez les paramètres SMS pour envoyer des messages texte'
   go_to_sms_settings: Aller aux paramètres SMS
@@ -2366,7 +2349,6 @@ fr: &fr
   edit_user: "Modifier l'utilisateur"
   new_user: Nouvel utilisateur
   unarchive: Désarchiver
-  role: Rôle
   last_session: Dernière session
   unlock_more_user_roles_with_docuseal_pro: Déverrouillez plus de rôles d'utilisateurs avec DocuSeal Pro.
   view_active: Voir les actifs
@@ -2428,12 +2410,9 @@ fr: &fr
   webhook_url_has_been_saved: "L'URL du Webhook a été enregistrée."
   webhook_request_has_been_sent: La demande du Webhook a été envoyée.
   count_submissions_have_been_created: '%{count} soumissions ont été créées.'
-  gmail_has_been_connected: Gmail a été connecté.
-  microsoft_account_has_been_connected: Le compte Microsoft a été connecté.
   sms_length_cant_be_longer_than_120_bytes: La longueur du SMS ne peut pas dépasser 120 octets.
   connected_successfully: Connecté avec succès.
   user_nameid_not_found: 'Utilisateur %{nameid} introuvable.'
-  webhook_request_has_been_sent: La demande du Webhook a été envoyée.
   sso_settings_have_been_updated: Les paramètres de SSO ont été mis à jour.
   sms_has_been_sent: Le SMS a été envoyé.
   account_has_been_created: Le compte a été créé.
@@ -2913,7 +2892,6 @@ pt: &pt
   send_signature_request_emails_without_limits_with_docuseal_pro: Enviar e-mails de solicitação de assinatura sem limites com o DocuSeal Pro
   count_emails_used: '%{count} e-mails usados'
   has_been_connected: foi conectado
-  but_not_activated: mas não ativado
   sms_not_configured: SMS não configurado
   configure_sms_settings_in_order_to_send_text_messages_: 'Configure as configurações de SMS para enviar mensagens de texto:'
   go_to_sms_settings: Ir para configurações de SMS
@@ -3005,7 +2983,6 @@ pt: &pt
   edit_user: Editar usuário
   new_user: Novo usuário
   unarchive: Desarquivar
-  role: Função
   last_session: Última sessão
   unlock_more_user_roles_with_docuseal_pro: Desbloqueie mais funções de usuário com DocuSeal Pro.
   view_active: Ver ativos
@@ -3067,12 +3044,9 @@ pt: &pt
   webhook_url_has_been_saved: A URL do Webhook foi salva.
   webhook_request_has_been_sent: A solicitação do Webhook foi enviada.
   count_submissions_have_been_created: '%{count} submissões foram criadas.'
-  gmail_has_been_connected: O Gmail foi conectado
-  microsoft_account_has_been_connected: A conta da Microsoft foi conectada
   sms_length_cant_be_longer_than_120_bytes: O comprimento do SMS não pode ultrapassar 120 bytes
   connected_successfully: Conectado com sucesso.
   user_nameid_not_found: 'Usuário %{nameid} não encontrado.'
-  webhook_request_has_been_sent: A solicitação do Webhook foi enviada.
   sso_settings_have_been_updated: As configurações de SSO foram atualizadas.
   sms_has_been_sent: O SMS foi enviado.
   account_has_been_created: A conta foi criada.
@@ -3552,7 +3526,6 @@ de: &de
   send_signature_request_emails_without_limits_with_docuseal_pro: Unterschriftsanfragen ohne Limits mit DocuSeal Pro senden
   count_emails_used: '%{count} E-Mails verwendet'
   has_been_connected: wurde verbunden
-  but_not_activated: aber nicht aktiviert
   sms_not_configured: SMS nicht konfiguriert
   configure_sms_settings_in_order_to_send_text_messages_: 'Konfiguriere die SMS-Einstellungen, um Textnachrichten zu senden:'
   go_to_sms_settings: Zu den SMS-Einstellungen gehen
@@ -3644,7 +3617,6 @@ de: &de
   edit_user: Benutzer bearbeiten
   new_user: Neuer Benutzer
   unarchive: Entarchivieren
-  role: Rolle
   last_session: Letzte Sitzung
   unlock_more_user_roles_with_docuseal_pro: Weitere Benutzerrollen mit DocuSeal Pro freischalten.
   view_active: Aktive anzeigen
@@ -3706,12 +3678,9 @@ de: &de
   webhook_url_has_been_saved: Die Webhook-URL wurde gespeichert.
   webhook_request_has_been_sent: Die Webhook-Anfrage wurde gesendet.
   count_submissions_have_been_created: '%{count} Einreichungen wurden erstellt.'
-  gmail_has_been_connected: Gmail wurde verbunden.
-  microsoft_account_has_been_connected: Microsoft-Konto wurde verbunden.
   sms_length_cant_be_longer_than_120_bytes: Die SMS-Länge darf 120 Bytes nicht überschreiten.
   connected_successfully: Erfolgreich verbunden.
   user_nameid_not_found: 'Benutzer %{nameid} nicht gefunden.'
-  webhook_request_has_been_sent: Die Webhook-Anfrage wurde gesendet.
   sso_settings_have_been_updated: Die SSO-Einstellungen wurden aktualisiert.
   sms_has_been_sent: Die SMS wurde gesendet.
   account_has_been_created: Das Konto wurde erstellt.
