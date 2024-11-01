@@ -53,24 +53,10 @@ RSpec.describe SendSubmissionCompletedWebhookRequestJob do
       ).once
     end
 
-    it "doesn't send a webhook request if the submission doesn't exist" do
-      expect do
-        described_class.new.perform('submission_id' => 100_500, 'webhook_url_id' => webhook_url.id)
-      end.to raise_error ActiveRecord::RecordNotFound
-
-      expect(WebMock).not_to have_requested(:post, webhook_url.url)
-    end
-
     it "doesn't send a webhook request if the event is not in the webhook's events" do
       webhook_url.update!(events: ['submission.archived'])
 
       described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id)
-
-      expect(WebMock).not_to have_requested(:post, webhook_url.url)
-    end
-
-    it "doesn't send a webhook request if the webhook doesn't exist" do
-      described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => 100_500)
 
       expect(WebMock).not_to have_requested(:post, webhook_url.url)
     end

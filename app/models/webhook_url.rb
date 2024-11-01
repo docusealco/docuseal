@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  events     :text             not null
-#  secret     :text
+#  secret     :text             not null
 #  sha1       :string           not null
 #  url        :text             not null
 #  created_at :datetime         not null
@@ -37,16 +37,10 @@ class WebhookUrl < ApplicationRecord
   belongs_to :account
 
   attribute :events, :string, default: -> { %w[form.viewed form.started form.completed form.declined] }
+  attribute :secret, :string, default: -> { {} }
 
   serialize :events, coder: JSON
   serialize :secret, coder: JSON
-
-  scope :with_event, ->(event) { with_events([event]) }
-  scope :with_events, lambda { |events|
-    where(events.map do |event|
-      Arel::Table.new(:webhook_urls)[:events].matches("%\"#{event}\"%")
-    end.reduce(:or))
-  }
 
   before_validation :set_sha1
 

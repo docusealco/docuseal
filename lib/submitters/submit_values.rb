@@ -14,9 +14,9 @@ module Submitters
       unless submitter.submission_events.exists?(event_type: 'start_form')
         SubmissionEvents.create_with_tracking_data(submitter, 'start_form', request)
 
-        submitter.account.webhook_urls.with_event('form.started').each do |webhook_url|
-          SendFormStartedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
-                                                           'webhook_url_id' => webhook_url.id })
+        WebhookUrls.for_account_id(submitter.account_id, 'form.started').each do |webhook_url|
+          SendFormStartedWebhookRequestJob.perform_async('submitter_id' => submitter.id,
+                                                         'webhook_url_id' => webhook_url.id)
         end
       end
 
@@ -24,7 +24,7 @@ module Submitters
 
       submitter.submission.save!
 
-      ProcessSubmitterCompletionJob.perform_async({ 'submitter_id' => submitter.id }) if submitter.completed_at?
+      ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id) if submitter.completed_at?
 
       submitter
     end

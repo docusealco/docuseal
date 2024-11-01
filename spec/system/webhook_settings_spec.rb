@@ -80,7 +80,7 @@ RSpec.describe 'Webhook Settings' do
 
     visit settings_webhooks_path
 
-    expect(webhook_url.secret).to be_nil
+    expect(webhook_url.secret).to eq({})
 
     click_link 'Add Secret'
 

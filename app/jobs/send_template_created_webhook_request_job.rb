@@ -11,12 +11,10 @@ class SendTemplateCreatedWebhookRequestJob
 
   def perform(params = {})
     template = Template.find(params['template_id'])
+    webhook_url = WebhookUrl.find(params['webhook_url_id'])
 
     attempt = params['attempt'].to_i
 
-    webhook_url = template.account.webhook_urls.find_by(id: params['webhook_url_id'])
-
-    return unless webhook_url
     return if webhook_url.url.blank? || webhook_url.events.exclude?('template.created')
 
     resp = begin

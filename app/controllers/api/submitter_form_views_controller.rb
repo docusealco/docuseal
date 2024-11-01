@@ -13,9 +13,9 @@ module Api
 
       SubmissionEvents.create_with_tracking_data(submitter, 'view_form', request)
 
-      submitter.account.webhook_urls.with_event('form.viewed').each do |webhook_url|
-        SendFormViewedWebhookRequestJob.perform_async({ 'submitter_id' => submitter.id,
-                                                        'webhook_url_id' => webhook_url.id })
+      WebhookUrls.for_account_id(submitter.account_id, 'form.viewed').each do |webhook_url|
+        SendFormViewedWebhookRequestJob.perform_async('submitter_id' => submitter.id,
+                                                      'webhook_url_id' => webhook_url.id)
       end
 
       render json: {}

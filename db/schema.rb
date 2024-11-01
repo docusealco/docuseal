@@ -367,7 +367,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_192232) do
     t.string "sha1", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "secret"
+    t.text "secret", null: false
     t.index ["account_id"], name: "index_webhook_urls_on_account_id"
     t.index ["sha1"], name: "index_webhook_urls_on_sha1"
   end

@@ -67,9 +67,9 @@ class TemplatesUploadsController < ApplicationController
   end
 
   def enqueue_template_created_webhooks(template)
-    template.account.webhook_urls.with_event('template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async({ 'template_id' => template.id,
-                                                           'webhook_url_id' => webhook_url.id })
+    WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
+      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
+                                                         'webhook_url_id' => webhook_url.id)
     end
   end
 end

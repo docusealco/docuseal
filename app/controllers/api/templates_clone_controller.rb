@@ -25,9 +25,9 @@ module Api
 
       schema_documents = Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
 
-      cloned_template.account.webhook_urls.with_event('template.created').each do |webhook_url|
-        SendTemplateCreatedWebhookRequestJob.perform_async({ 'template_id' => cloned_template.id,
-                                                             'webhook_url_id' => webhook_url.id })
+      WebhookUrls.for_account_id(cloned_template.account_id, 'template.created').each do |webhook_url|
+        SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => cloned_template.id,
+                                                           'webhook_url_id' => webhook_url.id)
       end
 
       render json: Templates::SerializeForApi.call(cloned_template, schema_documents)
