@@ -6,10 +6,10 @@ module Submissions
 
     TimestampError = Class.new(StandardError)
 
-    attr_reader :tsa_url
+    attr_reader :tsa_url, :tsa_fallback_url
 
     def initialize(tsa_url:)
-      @tsa_url = tsa_url
+      @tsa_url, @tsa_fallback_url = tsa_url.split(',')
     end
 
     def finalize_objects(_signature_field, signature)
@@ -37,7 +37,16 @@ module Submissions
       response = conn.post(uri.path, build_payload(digest.digest),
                            'content-type' => 'application/timestamp-query')
 
-      raise TimestampError if response.status != 200 || response.body.blank?
+      if response.status != 200 || response.body.blank?
+        raise TimestampError if tsa_fallback_url.blank?
+
+        Rollbar.error('TimestampError: use fallback URL') if defined?(Rollbar)
+
+        response = Faraday.post(tsa_fallback_url, build_payload(digest.digest),
+                                'content-type' => 'application/timestamp-query')
+
+        raise TimestampError if response.status != 200 || response.body.blank?
+      end
 
       OpenSSL::Timestamp::Response.new(response.body).token.to_der
     end

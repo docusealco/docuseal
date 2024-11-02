@@ -10,7 +10,7 @@ module Submissions
                   'Helvetica'
                 end
 
-    SIGN_REASON = 'Signed by %<name>s with DocuSeal.co'
+    SIGN_REASON = 'Signed by %<name>s with DocuSeal.com'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -19,7 +19,6 @@ module Submissions
     MAX_PAGE_ROTATE = 20
 
     A4_SIZE = [595, 842].freeze
-    SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg'].freeze
 
     TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
 
@@ -273,7 +272,15 @@ module Submissions
 
             attachments_data_cache[attachment.uuid] ||= attachment.download
 
-            image = Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
+            image =
+              begin
+                Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
+              rescue Vips::Error
+                next unless attachment.content_type.starts_with?('image/')
+                next if attachment.byte_size.zero?
+
+                raise
+              end
 
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min

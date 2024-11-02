@@ -77,7 +77,7 @@
             <div class="w-full relative">
               <select
                 class="base-select !select-sm !h-10"
-                :class="{ '!text-gray-300': !mapping.column_index }"
+                :class="{ '!text-gray-300': !mapping.column_index && mapping.column_index != 0 }"
                 required
                 @change="mapping.column_index = parseInt($event.target.value)"
               >
@@ -285,7 +285,7 @@ export default {
               submittersIndex[mapping.submitter_uuid][mapping.field_name.toLowerCase()] = row[mapping.column_index]
             }
 
-            const fieldType = this.fieldTypesIndex[mapping.submitter_uuid][mapping.field_name]
+            const fieldType = this.fieldTypesIndex[mapping.submitter_uuid]?.[mapping.field_name]
 
             if (fieldType && fieldType !== 'phone') {
               submittersIndex[mapping.submitter_uuid].fields.push({

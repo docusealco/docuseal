@@ -140,7 +140,7 @@
         :data-tip="t('unlock_sms_verified_phone_number_field_with_paid_plan_use_text_field_for_phone_numbers_without_verification')"
       >
         <a
-          href="https://www.docuseal.co/pricing"
+          href="https://www.docuseal.com/pricing"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
           :style="{ backgroundColor }"

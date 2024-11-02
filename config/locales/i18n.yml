@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  unarchive: Unarchive
   first_party: 'First Party'
   docuseal_trusted_signature: DocuSeal Trusted Signature
   hello_name: Hello %{name}
@@ -119,7 +120,7 @@ en: &en
   profile_details: Profile Details
   sign_up_with_google: Sign up with Google
   sign_up_with_microsoft: Sign up with Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.co/terms">Terms of Service</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.com/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.com/terms">Terms of Service</a>.'
   enter_email_to_continue: Enter email to continue
   account: Account
   preferences: Preferences
@@ -498,6 +499,7 @@ en: &en
   document_template_has_been_moved: Document template has been moved.
   unable_to_move_template_into_folder: Unable to move template into folder.
   template_has_been_unarchived: Template has been unarchived.
+  submission_has_been_unarchived: Submission has been unarchived.
   unable_to_update_file: Unable to upload file.
   user_has_been_invited: User has been invited.
   unable_to_update_user: Unable to update user.
@@ -658,6 +660,7 @@ en: &en
       read: Read your data
 
 es: &es
+  unarchive: Desarchivar
   awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
   enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
   first_party: 'Primera Parte'
@@ -759,7 +762,7 @@ es: &es
   profile_details: Detalles del perfil
   sign_up_with_google: Registrarse con Google
   sign_up_with_microsoft: Registrarse con Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.co/terms">Términos de Servicio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.com/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.com/terms">Términos de Servicio</a>.'
   enter_email_to_continue: Ingresa tu correo electrónico para continuar
   account: Cuenta
   preferences: Preferencias
@@ -1138,6 +1141,7 @@ es: &es
   document_template_has_been_moved: La plantilla de documento ha sido movida.
   unable_to_move_template_into_folder: No se pudo mover la plantilla a la carpeta.
   template_has_been_unarchived: La plantilla ha sido desarchivada.
+  submission_has_been_unarchived: La presentación ha sido desarchivada.
   unable_to_update_file: No se pudo subir el archivo.
   user_has_been_invited: El usuario ha sido invitado.
   unable_to_update_user: No se pudo actualizar el usuario.
@@ -1297,6 +1301,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  unarchive: Ripristina
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
   enforce_recipients_order: Aplicar el orden de los destinatarios
   first_party: 'Prima parte'
@@ -1398,7 +1403,7 @@ it: &it
   profile_details: Dettagli del profilo
   sign_up_with_google: Registrati con Google
   sign_up_with_microsoft: Registrati con Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.docuseal.co/terms">Termini di servizio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.docuseal.com/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.docuseal.com/terms">Termini di servizio</a>.'
   enter_email_to_continue: "Inserisci l'email per continuare"
   account: Account
   preferences: Preferenze
@@ -1777,6 +1782,7 @@ it: &it
   document_template_has_been_moved: Il modello di documento è stato spostato.
   unable_to_move_template_into_folder: Impossibile spostare il modello nella cartella.
   template_has_been_unarchived: Il modello è stato disarchiviato.
+  submission_has_been_unarchived: La sottomissione è stata dearchiviata.
   unable_to_update_file: Impossibile caricare il file.
   user_has_been_invited: "L'utente è stato invitato."
   unable_to_update_user: Impossibile aggiornare l'utente.
@@ -1936,6 +1942,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  unarchive: Désarchiver
   awaiting_completion_by_the_other_party: "En attente de la complétion par l'autre partie"
   enforce_recipients_order: "Respecter l'ordre des destinataires"
   first_party: 'Première partie'
@@ -2038,7 +2045,7 @@ fr: &fr
   sign_up_with_google: S'inscrire avec Google
   sign_up_with_microsoft: S'inscrire avec Microsoft
   by_creating_an_account_you_agree_to_our_html: |
-    En créant un compte, vous acceptez notre <a target="_blank" href="https://www.docuseal.co/privacy">Politique de Confidentialité</a> et nos <a target="_blank" href="https://www.docuseal.co/terms">Conditions d'Utilisation</a>.
+    En créant un compte, vous acceptez notre <a target="_blank" href="https://www.docuseal.com/privacy">Politique de Confidentialité</a> et nos <a target="_blank" href="https://www.docuseal.com/terms">Conditions d'Utilisation</a>.
   enter_email_to_continue: Entrez votre e-mail pour continuer
   account: Compte
   preferences: Préférences
@@ -2417,6 +2424,7 @@ fr: &fr
   document_template_has_been_moved: Le modèle de document a été déplacé.
   unable_to_move_template_into_folder: Impossible de déplacer le modèle dans le dossier.
   template_has_been_unarchived: Le modèle a été désarchivé.
+  submission_has_been_unarchived: La soumission a été désarchivée.
   unable_to_update_file: Impossible de télécharger le fichier.
   user_has_been_updated: "L'utilisateur a été mis à jour."
   unable_to_remove_user: Impossible de supprimer l'utilisateur.
@@ -2576,6 +2584,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  unarchive: Desarquivar
   awaiting_completion_by_the_other_party: "Aguardando a conclusão pela outra parte"
   enforce_recipients_order: 'Forçar a ordem dos recipientes'
   first_party: 'Primeira Parte'
@@ -2677,7 +2686,7 @@ pt: &pt
   profile_details: Detalhes do perfil
   sign_up_with_google: Inscrever-se com Google
   sign_up_with_microsoft: Inscrever-se com Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.co/terms">Termos de Serviço</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.com/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.com/terms">Termos de Serviço</a>.'
   enter_email_to_continue: Insira o e-mail para continuar
   account: Conta
   preferences: Preferências
@@ -3056,6 +3065,7 @@ pt: &pt
   document_template_has_been_moved: O modelo de documento foi movido.
   unable_to_move_template_into_folder: Não foi possível mover o modelo para a pasta.
   template_has_been_unarchived: O modelo foi desarquivado.
+  submission_has_been_unarchived: A submissao foi desarquivada.
   unable_to_update_file: Não foi possível atualizar o arquivo.
   user_has_been_updated: O usuário foi atualizado.
   unable_to_remove_user: Não foi possível remover o usuário.
@@ -3215,6 +3225,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  unarchive: Wiederherstellen
   awaiting_completion_by_the_other_party: "Warten auf die Fertigstellung durch die andere Partei"
   enforce_recipients_order: 'Empfängerreihenfolge durchsetzen'
   first_party: 'Erste Partei'
@@ -3316,7 +3327,7 @@ de: &de
   profile_details: Profildetails
   sign_up_with_google: Mit Google registrieren
   sign_up_with_microsoft: Mit Microsoft registrieren
-  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.docuseal.co/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.docuseal.co/terms">Nutzungsbedingungen</a> zu.'
+  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.docuseal.com/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.docuseal.com/terms">Nutzungsbedingungen</a> zu.'
   enter_email_to_continue: E-Mail eingeben, um fortzufahren
   account: Konto
   preferences: Einstellungen
@@ -3695,6 +3706,7 @@ de: &de
   document_template_has_been_moved: Die Dokumentvorlage wurde verschoben.
   unable_to_move_template_into_folder: Vorlage konnte nicht in den Ordner verschoben werden.
   template_has_been_unarchived: Die Vorlage wurde entarchiviert.
+  submission_has_been_unarchived: Die Einreichung wurde wiederhergestellt.
   unable_to_update_file: Datei konnte nicht hochgeladen werden.
   user_has_been_updated: Der Benutzer wurde aktualisiert.
   unable_to_remove_user: Benutzer konnte nicht entfernt werden.
@@ -3904,7 +3916,7 @@ pl:
   profile_details: Szczegóły profilu
   sign_up_with_google: Zarejestruj się przez Google
   sign_up_with_microsoft: Zarejestruj się przez Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.co/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.co/terms">Regulamin</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.com/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.com/terms">Regulamin</a>.'
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
 
 uk:
@@ -3958,7 +3970,7 @@ uk:
   profile_details: Дані профілю
   sign_up_with_google: Зареєструватися через Google
   sign_up_with_microsoft: Зареєструватися через Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.co/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.co/terms">Умовами надання послуг</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.com/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.com/terms">Умовами надання послуг</a>.'
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
 
 cs:
@@ -4012,7 +4024,7 @@ cs:
   profile_details: Detaily profilu
   sign_up_with_google: Zaregistrovat se pomocí Googlu
   sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
-  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.co/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.co/terms">Podmínkami služby</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.com/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.com/terms">Podmínkami služby</a>.'
   enter_email_to_continue: Zadejte e-mail pro pokračování
 
 he:
@@ -4066,7 +4078,7 @@ he:
   profile_details: פרטי הפרופיל
   sign_up_with_google: הירשם עם גוגל
   sign_up_with_microsoft: הירשם עם מיקרוסופט
-  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.co/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.co/terms">תנאי השירות</a> שלנו.'
+  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.com/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.com/terms">תנאי השירות</a> שלנו.'
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
 
 nl:
@@ -4120,7 +4132,7 @@ nl:
   profile_details: Profielgegevens
   sign_up_with_google: Aanmelden met Google
   sign_up_with_microsoft: Aanmelden met Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.co/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.co/terms">Gebruiksvoorwaarden</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.com/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.com/terms">Gebruiksvoorwaarden</a>.'
   enter_email_to_continue: Voer e-mail in om door te gaan
 
 ar:
@@ -4174,7 +4186,7 @@ ar:
   profile_details: تفاصيل الملف الشخصي
   sign_up_with_google: الاشتراك باستخدام جوجل
   sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
-  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.co/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.co/terms">شروط الخدمة</a> الخاصة بنا.'
+  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.com/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.com/terms">شروط الخدمة</a> الخاصة بنا.'
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
 
 ko:
@@ -4228,7 +4240,7 @@ ko:
   profile_details: 프로필 세부 정보
   sign_up_with_google: Google로 가입
   sign_up_with_microsoft: Microsoft로 가입
-  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.co/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.co/terms">서비스 약관</a>에 동의하는 것입니다.'
+  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.com/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.com/terms">서비스 약관</a>에 동의하는 것입니다.'
   enter_email_to_continue: 계속하려면 이메일을 입력하세요
 
 en-US:

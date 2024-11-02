@@ -145,6 +145,10 @@
           {{ t('clear') }}
         </a>
       </div>
+      <div
+        v-if="isTextSignature"
+        class="absolute top-0 right-0 left-0 bottom-0"
+      />
       <canvas
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
@@ -255,7 +259,7 @@
       class="text-base-content/60 text-xs text-center w-full mt-1"
     >
       {{ t('by_clicking_you_agree_to_the').replace('{button}', buttonText.charAt(0).toUpperCase() + buttonText.slice(1)) }} <a
-        href="https://www.docuseal.co/esign-disclosure"
+        href="https://www.docuseal.com/esign-disclosure"
         target="_blank"
       >
         <span class="inline md:hidden">
