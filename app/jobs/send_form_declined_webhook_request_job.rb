@@ -5,7 +5,7 @@ class SendFormDeclinedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  USER_AGENT = 'DocuSeal.co Webhook'
+  USER_AGENT = 'DocuSeal.com Webhook'
 
   MAX_ATTEMPTS = 10
 
