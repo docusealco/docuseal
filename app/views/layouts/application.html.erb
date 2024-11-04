@@ -11,6 +11,9 @@
     <% else %>
       <%= javascript_pack_tag 'application', defer: true %>
     <% end %>
+    <% if canonical_url = content_for(:canonical_url) %>
+      <link href="<%= canonical_url %>" rel="canonical">
+    <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
     <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
