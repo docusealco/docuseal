@@ -38,7 +38,10 @@ class StartFormController < ApplicationController
 
       if @submitter.save
         if is_new_record
-          SendSubmissionCreatedWebhookRequestJob.perform_async({ 'submission_id' => @submitter.submission.id })
+          WebhookUrls.for_account_id(@submitter.account_id, 'submission.created').each do |webhook_url|
+            SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => @submitter.submission_id,
+                                                                 'webhook_url_id' => webhook_url.id)
+          end
         end
 
         redirect_to submit_form_path(@submitter.slug)

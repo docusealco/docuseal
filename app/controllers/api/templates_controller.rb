@@ -65,7 +65,10 @@ module Api
 
       @template.update!(template_params)
 
-      SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id)
+      WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
+        SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
+                                                           'webhook_url_id' => webhook_url.id)
+      end
 
       render json: @template.as_json(only: %i[id updated_at])
     end

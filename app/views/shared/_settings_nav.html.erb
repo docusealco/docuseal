@@ -56,7 +56,7 @@
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::WEBHOOK_URL_KEY, account: current_account)) %>
+        <% if can?(:read, WebhookUrl) %>
           <li>
             <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
           </li>
@@ -72,13 +72,13 @@
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.testing?) %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/api") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premise", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
           <% end %>
         </li>
         <% if Docuseal.multitenant? %>
           <li>
-            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
+            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
               <%= t('embedding') %>
             <% end %>
           </li>

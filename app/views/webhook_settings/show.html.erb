@@ -7,34 +7,35 @@
     </div>
     <div class="card bg-base-200">
       <div class="card-body p-6">
-        <%= form_for @encrypted_config, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' } do |f| %>
-          <%= f.label :value, 'Webhook URL', class: 'text-sm font-semibold' %>
+        <%= form_for @webhook_url, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' } do |f| %>
+          <%= f.label :url, 'Webhook URL', class: 'text-sm font-semibold' %>
           <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-2 mt-2">
-            <%= f.url_field :value, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
+            <%= f.url_field :url, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
             <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button w-full md:w-32' %>
-            <a href="<%= webhook_secret_index_path %>" data-turbo-frame="modal" class="white-button w-full md:w-auto">
-              <%= t('add_secret') %>
-            </a>
-          </div>
-        <% end %>
-        <% preference = current_account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)&.value || {} %>
-        <% WebhookPreferencesController::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
-          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-y-2">
-            <% events.each do |event| %>
-              <%= form_for '', url: webhook_preferences_path, method: :post do |f| %>
-                <%= f.hidden_field :event, value: event %>
-                <% uuid = SecureRandom.uuid %>
-                <div class="flex">
-                  <label for="<%= uuid %>" class="flex items-center space-x-2">
-                    <%= f.check_box :value, class: 'base-checkbox', checked: preference[event] || (!preference.key?(event) && event.starts_with?('form.')), onchange: 'this.form.requestSubmit()', id: uuid %>
-                    <span>
-                      <%= event %>
-                    </span>
-                  </label>
-                </div>
-              <% end %>
+            <% if @webhook_url.persisted? %>
+              <a href="<%= webhook_secret_path(@webhook_url) %>" data-turbo-frame="modal" class="white-button w-full md:w-auto">
+                <%= @webhook_url.secret.present? ? t('edit_secret') : t('add_secret') %>
+              </a>
             <% end %>
           </div>
+        <% end %>
+        <%= form_for @webhook_url, url: @webhook_url.url.present? ? webhook_preference_path(@webhook_url) : '', method: :put, html: { autocomplete: 'off' } do |f| %>
+          <% WebhookUrl::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-4 gap-y-2">
+              <% events.each do |event| %>
+                <%= f.fields_for :events do |ff| %>
+                  <div class="flex">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                      <%= ff.check_box event, class: 'base-checkbox', checked: @webhook_url.events.include?(event), onchange: 'this.form.requestSubmit()', disabled: @webhook_url.url.blank? %>
+                      <span>
+                        <%= event %>
+                      </span>
+                    </label>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -47,7 +48,7 @@
               <span>
                 <%= t('submission_example_payload') %>
               </span>
-              <% if @encrypted_config.value.present? %>
+              <% if @webhook_url.url.present? && @webhook_url.events.include?('form.completed') %>
                 <%= button_to button_title(title: 'Test Webhook', disabled_with: t('sending'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), settings_webhooks_path, class: 'btn btn-neutral btn-outline btn-sm', method: :put %>
               <% end %>
             </div>

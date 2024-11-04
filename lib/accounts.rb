@@ -78,30 +78,6 @@ module Accounts
     new_template
   end
 
-  def load_webhook_url(account)
-    load_webhook_config(account)&.value.presence
-  end
-
-  def load_webhook_config(account)
-    configs = account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
-
-    if !configs && !Docuseal.multitenant? && !account.testing?
-      configs = Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
-    end
-
-    configs
-  end
-
-  def load_webhook_preferences(account)
-    configs = account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
-
-    unless Docuseal.multitenant?
-      configs ||= Account.order(:id).first.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
-    end
-
-    configs&.value.presence || {}
-  end
-
   def load_signing_pkcs(account)
     cert_data =
       if Docuseal.multitenant?

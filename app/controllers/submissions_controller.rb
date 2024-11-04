@@ -50,9 +50,7 @@ class SubmissionsController < ApplicationController
                                            params: params.merge('send_completed_email' => true))
       end
 
-    submissions.each do |submission|
-      SendSubmissionCreatedWebhookRequestJob.perform_async({ 'submission_id' => submission.id })
-    end
+    enqueue_submission_created_webhooks(@template, submissions)
 
     Submissions.send_signature_requests(submissions)
 
@@ -68,7 +66,10 @@ class SubmissionsController < ApplicationController
       else
         @submission.update!(archived_at: Time.current)
 
-        SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id)
+        WebhookUrls.for_account_id(@submission.account_id, 'submission.archived').each do |webhook_url|
+          SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id,
+                                                                'webhook_url_id' => webhook_url.id)
+        end
 
         I18n.t('submission_has_been_archived')
       end
@@ -83,6 +84,15 @@ class SubmissionsController < ApplicationController
     template.preferences['request_email_body'] = params[:body] if params[:body].present?
 
     template.save!
+  end
+
+  def enqueue_submission_created_webhooks(template, submissions)
+    WebhookUrls.for_account_id(template.account_id, 'submission.created').each do |webhook_url|
+      submissions.each do |submission|
+        SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => submission.id,
+                                                             'webhook_url_id' => webhook_url.id)
+      end
+    end
   end
 
   def submissions_params

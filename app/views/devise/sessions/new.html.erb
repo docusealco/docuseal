@@ -1,3 +1,4 @@
+<%= content_for(:canonical_url, new_user_session_url) %>
 <div class="max-w-lg mx-auto px-2">
   <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
   <h1 class="text-4xl font-bold text-center mt-8"><%= t('sign_in') %></h1>

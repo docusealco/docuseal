@@ -68,7 +68,7 @@ module Api
       end
 
       if @submitter.completed_at?
-        ProcessSubmitterCompletionJob.perform_async({ 'submitter_id' => @submitter.id })
+        ProcessSubmitterCompletionJob.perform_async('submitter_id' => @submitter.id)
       elsif normalized_params[:send_email] || normalized_params[:send_sms]
         Submitters.send_signature_requests([@submitter])
       end

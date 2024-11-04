@@ -1,37 +1,22 @@
 # frozen_string_literal: true
 
 class WebhookPreferencesController < ApplicationController
-  EVENTS = %w[
-    form.viewed
-    form.started
-    form.completed
-    form.declined
-    template.created
-    template.updated
-    submission.created
-    submission.archived
-  ].freeze
+  load_and_authorize_resource :webhook_url, parent: false
 
-  before_action :load_account_config
-  authorize_resource :account_config, parent: false
+  def update
+    webhook_preferences_params[:events].each do |event, val|
+      @webhook_url.events.delete(event) if val == '0'
+      @webhook_url.events.push(event) if val == '1' && @webhook_url.events.exclude?(event)
+    end
 
-  def create
-    @account_config.value[account_config_params[:event]] = account_config_params[:value] == '1'
-
-    @account_config.save!
+    @webhook_url.save!
 
     head :ok
   end
 
   private
 
-  def load_account_config
-    @account_config =
-      current_account.account_configs.find_or_initialize_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
-    @account_config.value ||= {}
-  end
-
-  def account_config_params
-    params.permit(:event, :value)
+  def webhook_preferences_params
+    params.require(:webhook_url).permit(events: {})
   end
 end

@@ -35,7 +35,6 @@ class AccountConfig < ApplicationRecord
   FORM_WITH_CONFETTI_KEY = 'form_with_confetti'
   FORM_PREFILL_SIGNATURE_KEY = 'form_prefill_signature'
   ESIGNING_PREFERENCE_KEY = 'esigning_preference'
-  WEBHOOK_PREFERENCES_KEY = 'webhook_preferences'
   DOWNLOAD_LINKS_AUTH_KEY = 'download_links_auth'
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
