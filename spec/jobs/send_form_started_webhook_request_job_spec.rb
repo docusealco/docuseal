@@ -26,11 +26,11 @@ RSpec.describe SendFormStartedWebhookRequestJob do
       described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'form.started',
-          'timestamp' => Time.current,
-          'data' => Submitters::SerializeForWebhook.call(submitter.reload)
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(Submitters::SerializeForWebhook.call(submitter.reload).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook'
@@ -43,11 +43,11 @@ RSpec.describe SendFormStartedWebhookRequestJob do
       described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'form.started',
-          'timestamp' => Time.current,
-          'data' => Submitters::SerializeForWebhook.call(submitter.reload)
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(Submitters::SerializeForWebhook.call(submitter.reload).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook',
