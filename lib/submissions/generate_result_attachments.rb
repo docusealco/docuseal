@@ -68,7 +68,7 @@ module Submissions
                                name: item['name'])
         end
 
-      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
+      return ApplicationRecord.no_touching { result_attachments.map { |e| e.tap(&:save!) } } if image_pdfs.size < 2
 
       images_pdf =
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
@@ -87,7 +87,9 @@ module Submissions
           name: template.name
         )
 
-      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+      ApplicationRecord.no_touching do
+        (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+      end
     end
 
     def generate_pdfs(submitter)
