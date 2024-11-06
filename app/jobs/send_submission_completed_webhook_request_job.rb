@@ -24,9 +24,9 @@ class SendSubmissionCompletedWebhookRequestJob
                      timestamp: Time.current,
                      data: Submissions::SerializeForApi.call(submission)
                    }.to_json,
-                   **webhook_url.secret.to_h,
                    'Content-Type' => 'application/json',
-                   'User-Agent' => USER_AGENT)
+                   'User-Agent' => USER_AGENT,
+                   **webhook_url.secret.to_h)
     rescue Faraday::Error
       nil
     end
