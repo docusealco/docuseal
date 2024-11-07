@@ -39,7 +39,6 @@
       </template>
     </div>
     <div
-      v-if="isActive"
       ref="scrollToElem"
       class="absolute"
       :style="{ top: scrollPadding }"

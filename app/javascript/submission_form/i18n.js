@@ -1,5 +1,6 @@
 const en = {
   complete: 'Complete',
+  fill_all_required_fields_to_complete: 'Fill all required fields to complete',
   sign_and_complete: 'Sign and Complete',
   text: 'Text',
   by_clicking_you_agree_to_the: 'By clicking "{button}", you agree to the',
@@ -93,6 +94,7 @@ const en = {
 
 const es = {
   complete: 'Completar',
+  fill_all_required_fields_to_complete: 'Complete todos los campos requeridos para finalizar',
   sign_and_complete: 'Firmar y Completar',
   invite: 'Invitar',
   email: 'Correo electrónico',
@@ -185,6 +187,7 @@ const es = {
 
 const it = {
   complete: 'Completa',
+  fill_all_required_fields_to_complete: 'Compila tutti i campi obbligatori per completare',
   sign_and_complete: 'Firma e Completa',
   invite: 'Invita',
   email: 'Email',
@@ -277,6 +280,7 @@ const it = {
 
 const de = {
   complete: 'Abschließen',
+  fill_all_required_fields_to_complete: 'Alle erforderlichen Felder ausfüllen, um abzuschließen',
   sign_and_complete: 'Signieren und Abschließen',
   invite: 'Einladen',
   email: 'E-Mail',
@@ -369,6 +373,7 @@ const de = {
 
 const fr = {
   complete: 'Terminer',
+  fill_all_required_fields_to_complete: 'Veuillez remplir tous les champs obligatoires pour compléter',
   sign_and_complete: 'Signer et Terminer',
   invite: 'Inviter',
   email: 'Courriel',
@@ -461,6 +466,7 @@ const fr = {
 
 const pl = {
   complete: 'Zakończ',
+  fill_all_required_fields_to_complete: 'Uzupełnij wszystkie wymagane pola, aby zakończyć',
   sign_and_complete: 'Podpisz i zakończ',
   invite: 'Zaproś',
   email: 'E-mail',
@@ -553,6 +559,7 @@ const pl = {
 
 const uk = {
   complete: 'Завершити',
+  fill_all_required_fields_to_complete: "Заповніть всі обов'язкові поля для завершення",
   sign_and_complete: 'Підписати і завершити',
   invite: 'Запросити',
   email: 'Електронна пошта',
@@ -645,6 +652,7 @@ const uk = {
 
 const cs = {
   complete: 'Dokončit',
+  fill_all_required_fields_to_complete: 'Please complete all mandatory fields',
   sign_and_complete: 'Podepsat a dokončit',
   invite: 'Pozvat',
   email: 'E-mail',
@@ -737,6 +745,7 @@ const cs = {
 
 const pt = {
   complete: 'Completar',
+  preencher_todos_os_campos_obrigatórios_para_concluir: 'Preencher todos os campos obrigatórios para concluir',
   sign_and_complete: 'Assinar e Completar',
   invite: 'Convidar',
   email: 'E-mail',
@@ -829,6 +838,7 @@ const pt = {
 
 const he = {
   complete: 'השלם',
+  fill_all_required_fields_to_complete: 'נא למלא את כל השדות הנדרשים להשלמה',
   sign_and_complete: 'חתום והשלם',
   invite: 'הזמן',
   email: 'דוא"ל',
@@ -922,6 +932,7 @@ const he = {
 
 const nl = {
   complete: 'Voltooien',
+  vul_alle_verplichte_velden_in_om_te_voltooien: 'Vul alle verplichte velden in om te voltooien',
   sign_and_complete: 'Ondertekenen en voltooien',
   invite: 'Uitnodigen',
   email: 'E-mail',
@@ -1015,6 +1026,7 @@ const nl = {
 
 const ar = {
   complete: 'اكتمال',
+  fill_all_required_fields_to_complete: 'يرجى ملء جميع الحقول المطلوبة لإكمال',
   sign_and_complete: 'التوقيع والاكتمال',
   invite: 'دعوة',
   email: 'البريد الإلكتروني',
@@ -1107,6 +1119,7 @@ const ar = {
 
 const ko = {
   complete: '완료',
+  fill_all_required_fields_to_complete: '모든 필수 필드를 작성하여 완료하세요',
   sign_and_complete: '서명하고 완료하기',
   invite: '초대하기',
   email: '이메일',

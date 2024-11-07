@@ -24,6 +24,44 @@
     :fields="formulaFields"
     :values="values"
   />
+  <Teleport
+    v-if="completeButtonToRef"
+    :to="completeButtonToRef"
+  >
+    <span
+      v-if="(emptyValueRequiredStep && ((stepFields.length - 1) !== currentStep || currentStepFields !== emptyValueRequiredStep)) || isCompleted"
+      class="tooltip-left"
+      :class="{ tooltip: !isCompleted }"
+      :data-tip="t('fill_all_required_fields_to_complete')"
+    >
+      <button
+        class="btn btn-sm btn-neutral text-white px-4 w-full flex justify-center btn-disabled pointer-events-auto"
+        @click="[isFormVisible = true, !isCompleted && goToStep(stepFields.indexOf(emptyValueRequiredStep), true, false)]"
+      >
+        {{ t('complete') }}
+      </button>
+    </span>
+    <button
+      v-else
+      id="complete_form_button"
+      class="btn btn-sm btn-neutral text-white px-4 w-full flex justify-center"
+      form="steps_form"
+      type="submit"
+      name="completed"
+      value="true"
+      :disabled="isSubmittingComplete"
+    >
+      <span class="flex items-center">
+        <IconInnerShadowTop
+          v-if="isSubmittingComplete"
+          class="mr-1 animate-spin w-5 h-5"
+        />
+        <span>
+          {{ t('complete') }}
+        </span>
+      </span>
+    </button>
+  </Teleport>
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
@@ -74,6 +112,7 @@
     >
       <form
         v-if="!isCompleted && !isInvite"
+        id="steps_form"
         ref="form"
         :action="submitPath"
         method="post"
@@ -592,6 +631,11 @@ export default {
       required: false,
       default: false
     },
+    completeButtonToRef: {
+      type: Object,
+      required: false,
+      default: null
+    },
     attachments: {
       type: Array,
       required: false,
@@ -772,6 +816,7 @@ export default {
       phoneVerifiedValues: {},
       orientation: screen?.orientation?.type,
       isSubmitting: false,
+      isSubmittingComplete: false,
       submittedValues: {},
       recalculateButtonDisabledKey: ''
     }
@@ -779,6 +824,13 @@ export default {
   computed: {
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
+    emptyValueRequiredStep () {
+      return this.stepFields.find((fields, index) => {
+        return fields.some((f) => {
+          return f.required && isEmpty(this.values[f.uuid])
+        })
+      })
     },
     submitButtonText () {
       if (this.alwaysMinimize) {
@@ -1146,8 +1198,14 @@ export default {
     scrollIntoArea (area) {
       return this.$refs.areas.scrollIntoArea(area)
     },
-    async submitStep () {
+    async submitStep (e) {
       this.isSubmitting = true
+
+      const forceComplete = e.submitter?.getAttribute('name') === 'completed'
+
+      if (forceComplete) {
+        this.isSubmittingComplete = true
+      }
 
       const submitStep = this.currentStep
 
@@ -1157,7 +1215,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          if (index >= submitStep) {
+          if (forceComplete ? index === submitStep : index >= submitStep) {
             return false
           }
 
@@ -1167,7 +1225,7 @@ export default {
         })
 
         const formData = new FormData(this.$refs.form)
-        const isLastStep = submitStep === this.stepFields.length - 1
+        const isLastStep = (submitStep === this.stepFields.length - 1) || forceComplete
 
         if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length) {
           formData.append('completed', 'true')
@@ -1192,7 +1250,7 @@ export default {
             return Promise.reject(new Error(data.error))
           }
 
-          const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[submitStep + 1]
+          const nextStep = (isLastStep && emptyRequiredField) || (forceComplete ? null : this.stepFields[submitStep + 1])
 
           if (nextStep) {
             if (this.alwaysMinimize) {
@@ -1213,6 +1271,7 @@ export default {
           console.error(error)
         }).finally(() => {
           this.isSubmitting = false
+          this.isSubmittingComplete = false
         })
       }).catch(error => {
         if (error?.message === 'Image too small') {
@@ -1222,6 +1281,7 @@ export default {
         }
       }).finally(() => {
         this.isSubmitting = false
+        this.isSubmittingComplete = false
       })
     },
     minimizeForm () {
