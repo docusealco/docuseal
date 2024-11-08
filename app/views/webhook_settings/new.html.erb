@@ -1,0 +1,29 @@
+<%= render 'shared/turbo_modal', title: t('new_webhook') do %>
+  <%= form_for @webhook_url, url: settings_webhooks_path, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+    <div class="space-y-4">
+      <div class="form-control">
+        <%= f.label :url, 'Webhook URL', class: 'label' %>
+        <%= f.url_field :url, class: 'base-input', placeholder: 'https://example.com/hook', required: true %>
+      </div>
+      <div class="space-y-4">
+        <% WebhookUrl::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2">
+            <%= f.collection_check_boxes(:events, events, :to_s, :to_s, include_hidden: false) do |b| %>
+              <div class="flex">
+                <label class="flex items-center space-x-2">
+                  <%= b.check_box class: 'base-checkbox', checked: @webhook_url.events.include?(b.value) %>
+                  <span>
+                    <%= b.label %>
+                  </span>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-control pt-2">
+      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>

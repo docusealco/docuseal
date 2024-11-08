@@ -10,7 +10,8 @@ class WebhookSecretController < ApplicationController
       webhook_secret_params[:key] => webhook_secret_params[:value]
     }.compact_blank)
 
-    redirect_back(fallback_location: settings_webhooks_path, notice: I18n.t('webhook_secret_has_been_saved'))
+    redirect_back(fallback_location: settings_webhook_path(@webhook_url),
+                  notice: I18n.t('webhook_secret_has_been_saved'))
   end
 
   private
