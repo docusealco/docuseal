@@ -168,7 +168,7 @@ Rails.application.routes.draw do
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     resources :api, only: %i[index create], controller: 'api_settings'
-    resources :webhooks, except: %i[edit], controller: 'webhook_settings' do
+    resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
     end
     resource :account, only: %i[show update destroy]

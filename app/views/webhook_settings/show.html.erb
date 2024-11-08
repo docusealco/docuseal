@@ -33,7 +33,7 @@
             </div>
           <% end %>
         </div>
-        <%= form_for @webhook_url, url: @webhook_url.persisted? ? settings_webhook_path(@webhook_url) : settings_webhooks_path, html: { autocomplete: 'off' }, data: { turbo: false } do |f| %>
+        <%= form_for @webhook_url, url: @webhook_url.persisted? ? settings_webhook_path(@webhook_url) : settings_webhooks_path, html: { autocomplete: 'off' } do |f| %>
           <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-2">
             <%= f.url_field :url, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook', required: true %>
             <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button w-full md:w-32' %>

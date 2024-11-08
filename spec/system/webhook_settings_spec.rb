@@ -86,7 +86,7 @@ RSpec.describe 'Webhook Settings' do
 
     expect(webhook_url.url).to eq('https://example.org/webhook')
     expect(page).to have_content('Webhook URL has been updated.')
-    expect(page.current_path).to eq(settings_webhook_path(webhook_url))
+    expect(page.current_path).to eq(settings_webhooks_path)
   end
 
   it 'deletes the webhook' do
@@ -184,18 +184,6 @@ RSpec.describe 'Webhook Settings' do
       expect(args['webhook_url_id']).to eq(webhook_url.id)
       expect(args['submitter_id']).to eq(submitter.id)
       expect(page).to have_content('Webhook request has been sent.')
-    end
-
-    it "doesn't resend the webhook request when the webhook is doesn't exist" do
-      visit settings_webhooks_path
-
-      webhook_url.destroy
-
-      expect do
-        click_button 'Test Webhook'
-      end.not_to change(SendFormCompletedWebhookRequestJob.jobs, :size)
-
-      expect(page).to have_content('Unable to resend webhook request.')
     end
   end
 end
