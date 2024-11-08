@@ -138,9 +138,11 @@ class SubmitterMailer < ApplicationMailer
   private
 
   def build_submitter_reply_to(submitter)
-    reply_to =
-      submitter.preferences['reply_to'].presence ||
-      (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+    reply_to = submitter.preferences['reply_to'].presence
+
+    if reply_to.blank? && (submitter.submission.created_by_user || submitter.template.author)&.email != submitter.email
+      reply_to = (submitter.submission.created_by_user || submitter.template.author)&.friendly_name&.sub(/\+\w+@/, '@')
+    end
 
     return nil if reply_to.to_s.match?(NO_REPLY_REGEXP)
 
