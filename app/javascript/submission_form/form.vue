@@ -1201,7 +1201,7 @@ export default {
     async submitStep (e) {
       this.isSubmitting = true
 
-      const forceComplete = e.submitter?.getAttribute('name') === 'completed'
+      const forceComplete = e?.submitter?.getAttribute('name') === 'completed'
 
       if (forceComplete) {
         this.isSubmittingComplete = true
