@@ -408,6 +408,10 @@ export default {
         style.lineHeight = `clamp(6pt, 2.0vw, ${parseInt(this.field.preferences.font_size) + 3}pt)`
       }
 
+      if (this.field.preferences?.color) {
+        style.color = this.field.preferences.color
+      }
+
       return style
     }
   },
