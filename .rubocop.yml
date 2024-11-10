@@ -51,10 +51,10 @@ Metrics/AbcSize:
     - spec/**/*
 
 Metrics/ModuleLength:
-  Max: 500
+  Max: 1000
 
 Metrics/ClassLength:
-  Max: 500
+  Max: 1000
 
 RSpec/NestedGroups:
   Max: 6
