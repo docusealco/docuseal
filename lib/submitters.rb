@@ -94,12 +94,16 @@ module Submitters
     preferences
   end
 
-  def send_signature_requests(submitters)
-    submitters.each do |submitter|
+  def send_signature_requests(submitters, delay_seconds: nil)
+    submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
       next if submitter.preferences['send_email'] == false
 
-      SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
+      if delay_seconds
+        SendSubmitterInvitationEmailJob.perform_in((delay_seconds + index).seconds, 'submitter_id' => submitter.id)
+      else
+        SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
+      end
     end
   end
 
