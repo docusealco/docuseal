@@ -1,5 +1,6 @@
 <% align = field.dig('preferences', 'align') %>
-<field-value dir="auto" class="flex absolute text-[1.6vw] lg:text-base <%= 'font-serif' if field.dig('preferences', 'font') == 'Times' %> <%= align == 'right' ? 'justify-end' : (align == 'center' ? 'justify-center' : '') %>" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: clamp(4pt, 1.6vw, #{field['preferences']['font_size']}pt); line-height: `clamp(6pt, 2.0vw, #{field['preferences']['font_size'].to_i + 3}pt)`" if field.dig('preferences', 'font_size') %>">
+<% color = field.dig('preferences', 'color') %>
+<field-value dir="auto" class="flex absolute text-[1.6vw] lg:text-base <%= 'font-serif' if field.dig('preferences', 'font') == 'Times' %> <%= align == 'right' ? 'justify-end' : (align == 'center' ? 'justify-center' : '') %>" style="<%= "color: #{color}; " if color.present? %>width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: clamp(4pt, 1.6vw, #{field['preferences']['font_size'].to_i * 1.23}pt); line-height: `clamp(6pt, 2.0vw, #{(field['preferences']['font_size'].to_i * 1.23) + 3}pt)`" if field.dig('preferences', 'font_size') %>">
   <% if field['type'] == 'signature' %>
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <div class="flex-grow flex overflow-hidden" style="min-height: 50%">

@@ -175,6 +175,7 @@
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
+            :style="{ color: field.preferences?.color }"
             :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
           >
             <IconCheck

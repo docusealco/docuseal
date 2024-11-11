@@ -68,7 +68,7 @@ module Submissions
                                name: item['name'])
         end
 
-      return result_attachments.map { |e| e.tap(&:save!) } if image_pdfs.size < 2
+      return ApplicationRecord.no_touching { result_attachments.map { |e| e.tap(&:save!) } } if image_pdfs.size < 2
 
       images_pdf =
         image_pdfs.each_with_object(HexaPDF::Document.new) do |pdf, doc|
@@ -87,7 +87,9 @@ module Submissions
           name: template.name
         )
 
-      (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+      ApplicationRecord.no_touching do
+        (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
+      end
     end
 
     def generate_pdfs(submitter)
@@ -176,6 +178,8 @@ module Submissions
 
           font_size   = preferences_font_size
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+
+          fill_color = field.dig('preferences', 'color').presence
 
           font = pdf.fonts.add(field.dig('preferences', 'font').presence || FONT_NAME)
 
@@ -378,6 +382,7 @@ module Submissions
               next if char.blank?
 
               text = HexaPDF::Layout::TextFragment.create(char, font:,
+                                                                fill_color:,
                                                                 font_size:)
 
               line_height = layouter.fit([text], cell_width, height).lines.first.height
@@ -385,6 +390,7 @@ module Submissions
               if preferences_font_size.blank? && line_height > (area['h'] * height)
                 text = HexaPDF::Layout::TextFragment.create(char,
                                                             font:,
+                                                            fill_color:,
                                                             font_size: (font_size / 1.4).to_i)
 
                 line_height = layouter.fit([text], cell_width, height).lines.first.height
@@ -393,6 +399,7 @@ module Submissions
               if preferences_font_size.blank? && line_height > (area['h'] * height)
                 text = HexaPDF::Layout::TextFragment.create(char,
                                                             font:,
+                                                            fill_color:,
                                                             font_size: (font_size / 1.9).to_i)
 
                 line_height = layouter.fit([text], cell_width, height).lines.first.height
@@ -412,6 +419,7 @@ module Submissions
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
 
             text = HexaPDF::Layout::TextFragment.create(value, font:,
+                                                               fill_color:,
                                                                font_size:)
 
             lines = layouter.fit([text], area['w'] * width, height).lines
@@ -420,6 +428,7 @@ module Submissions
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
                                                           font:,
+                                                          fill_color:,
                                                           font_size: (font_size / 1.4).to_i)
 
               lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines
@@ -430,6 +439,7 @@ module Submissions
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text = HexaPDF::Layout::TextFragment.create(value,
                                                           font:,
+                                                          fill_color:,
                                                           font_size: (font_size / 1.9).to_i)
 
               lines = layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width, height).lines

@@ -511,13 +511,17 @@ en: &en
   webhook_secret_has_been_saved: Webhook Secret has been saved.
   webhook_url_has_been_saved: Webhook URL has been saved.
   webhook_request_has_been_sent: Webhook request has been sent.
+  webhook_url_has_been_updated: Webhook URL has been updated.
+  webhook_url_has_been_deleted: Webhook URL has been deleted.
+  unable_to_resend_webhook_request: Unable to resend webhook request.
+  new_webhook: New Webhook
+  delete_webhook: Delete webhook
   count_submissions_have_been_created: '%{count} submissions have been created.'
   gmail_has_been_connected: Gmail has been connected
   microsoft_account_has_been_connected: Microsoft Account has been connected
   sms_length_cant_be_longer_than_120_bytes: SMS length can't be longer than 120 bytes
   connected_successfully: Connected successfully.
   user_nameid_not_found: 'User %{nameid} not found.'
-  webhook_request_has_been_sent: Webhook request has been sent.
   sso_settings_have_been_updated: SSO settings have been updated.
   sms_has_been_sent: SMS has been sent.
   account_has_been_created: Account has been created.
@@ -1156,13 +1160,17 @@ es: &es
   webhook_secret_has_been_saved: El secreto del Webhook ha sido guardado.
   webhook_url_has_been_saved: La URL del Webhook ha sido guardada.
   webhook_request_has_been_sent: La solicitud del Webhook ha sido enviada.
+  webhook_url_has_been_updated: La URL del Webhook ha sido actualizada.
+  webhook_url_has_been_deleted: La URL del Webhook ha sido eliminada.
+  unable_to_resend_webhook_request: No se pudo reenviar la solicitud del webhook.
+  new_webhook: Nuevo Webhook
+  delete_webhook: Eliminar webhook
   count_submissions_have_been_created: '%{count} envíos han sido creados.'
   gmail_has_been_connected: Gmail ha sido conectado.
   microsoft_account_has_been_connected: La cuenta de Microsoft ha sido conectada.
   sms_length_cant_be_longer_than_120_bytes: La longitud del SMS no puede ser mayor a 120 bytes.
   connected_successfully: Conectado con éxito.
   user_nameid_not_found: 'Usuario %{nameid} no encontrado.'
-  webhook_request_has_been_sent: La solicitud del Webhook ha sido enviada.
   sso_settings_have_been_updated: La configuración de SSO ha sido actualizada.
   sms_has_been_sent: El SMS ha sido enviado.
   account_has_been_created: La cuenta ha sido creada.
@@ -1801,13 +1809,17 @@ it: &it
   webhook_secret_has_been_saved: Il segreto del Webhook è stato salvato.
   webhook_url_has_been_saved: "L'URL del Webhook è stato salvato."
   webhook_request_has_been_sent: La richiesta del Webhook è stata inviata.
+  webhook_url_has_been_updated: "L'URL del Webhook è stata aggiornata."
+  webhook_url_has_been_deleted: "L'URL del Webhook è stata eliminata."
+  unable_to_resend_webhook_request: Impossibile reinviare la richiesta del webhook.
+  new_webhook: Nuovo Webhook
+  delete_webhook: Elimina webhook
   count_submissions_have_been_created: '%{count} invii sono stati creati.'
   gmail_has_been_connected: Gmail è stato connesso.
   microsoft_account_has_been_connected: "L'account Microsoft è stato connesso."
   sms_length_cant_be_longer_than_120_bytes: "La lunghezza dell'SMS non può superare i 120 byte."
   connected_successfully: Collegamento avvenuto con successo.
   user_nameid_not_found: 'Utente %{nameid} non trovato.'
-  webhook_request_has_been_sent: La richiesta del Webhook è stata inviata.
   sso_settings_have_been_updated: Le impostazioni SSO sono state aggiornate.
   sms_has_been_sent: "L'SMS è stato inviato."
   account_has_been_created: "L'account è stato creato."
@@ -2447,13 +2459,17 @@ fr: &fr
   webhook_secret_has_been_saved: Le secret du Webhook a été enregistré.
   webhook_url_has_been_saved: "L'URL du Webhook a été enregistrée."
   webhook_request_has_been_sent: La demande du Webhook a été envoyée.
+  webhook_url_has_been_updated: "L'URL du Webhook a été mise à jour."
+  webhook_url_has_been_deleted: "L'URL du Webhook a été supprimée."
+  unable_to_resend_webhook_request: Impossible de renvoyer la requête du webhook.
+  new_webhook: Nouveau Webhook
+  delete_webhook: Supprimer le webhook
   count_submissions_have_been_created: '%{count} soumissions ont été créées.'
   gmail_has_been_connected: Gmail a été connecté.
   microsoft_account_has_been_connected: Le compte Microsoft a été connecté.
   sms_length_cant_be_longer_than_120_bytes: La longueur du SMS ne peut pas dépasser 120 octets.
   connected_successfully: Connecté avec succès.
   user_nameid_not_found: 'Utilisateur %{nameid} introuvable.'
-  webhook_request_has_been_sent: La demande du Webhook a été envoyée.
   sso_settings_have_been_updated: Les paramètres de SSO ont été mis à jour.
   sms_has_been_sent: Le SMS a été envoyé.
   account_has_been_created: Le compte a été créé.
@@ -3092,13 +3108,17 @@ pt: &pt
   webhook_secret_has_been_saved: O segredo do Webhook foi salvo.
   webhook_url_has_been_saved: A URL do Webhook foi salva.
   webhook_request_has_been_sent: A solicitação do Webhook foi enviada.
+  webhook_url_has_been_updated: URL do Webhook foi atualizada.
+  webhook_url_has_been_deleted: URL do Webhook foi excluída.
+  unable_to_resend_webhook_request: Não foi possível reenviar a solicitação do webhook.
+  new_webhook: Novo Webhook
+  delete_webhook: Excluir webhook
   count_submissions_have_been_created: '%{count} submissões foram criadas.'
   gmail_has_been_connected: O Gmail foi conectado
   microsoft_account_has_been_connected: A conta da Microsoft foi conectada
   sms_length_cant_be_longer_than_120_bytes: O comprimento do SMS não pode ultrapassar 120 bytes
   connected_successfully: Conectado com sucesso.
   user_nameid_not_found: 'Usuário %{nameid} não encontrado.'
-  webhook_request_has_been_sent: A solicitação do Webhook foi enviada.
   sso_settings_have_been_updated: As configurações de SSO foram atualizadas.
   sms_has_been_sent: O SMS foi enviado.
   account_has_been_created: A conta foi criada.
@@ -3699,8 +3719,8 @@ de: &de
   api_key: API-Schlüssel
   logo: Logo
   back: Zurück
-  add_secret: Geheimnis hinzufügen
-  edit_secret: Geheimnis bearbeiten
+  add_secret: Geheimnis hinzuf
+  edit_secret: Geheimnis bearb
   submission_example_payload: Beispiel-Payload für Einreichung
   there_are_no_signatures: Es gibt keine Unterschriften
   signed_with_trusted_certificate: Signiert mit vertrauenswürdigem Zertifikat
@@ -3737,13 +3757,17 @@ de: &de
   webhook_secret_has_been_saved: Das Webhook-Geheimnis wurde gespeichert.
   webhook_url_has_been_saved: Die Webhook-URL wurde gespeichert.
   webhook_request_has_been_sent: Die Webhook-Anfrage wurde gesendet.
+  webhook_url_has_been_updated: Webhook-URL wurde aktualisiert.
+  webhook_url_has_been_deleted: Webhook-URL wurde gelöscht.
+  unable_to_resend_webhook_request: Webhook-Anfrage konnte nicht erneut gesendet werden.
+  new_webhook: Neuer Webhook
+  delete_webhook: Webhook löschen
   count_submissions_have_been_created: '%{count} Einreichungen wurden erstellt.'
   gmail_has_been_connected: Gmail wurde verbunden.
   microsoft_account_has_been_connected: Microsoft-Konto wurde verbunden.
   sms_length_cant_be_longer_than_120_bytes: Die SMS-Länge darf 120 Bytes nicht überschreiten.
   connected_successfully: Erfolgreich verbunden.
   user_nameid_not_found: 'Benutzer %{nameid} nicht gefunden.'
-  webhook_request_has_been_sent: Die Webhook-Anfrage wurde gesendet.
   sso_settings_have_been_updated: Die SSO-Einstellungen wurden aktualisiert.
   sms_has_been_sent: Die SMS wurde gesendet.
   account_has_been_created: Das Konto wurde erstellt.

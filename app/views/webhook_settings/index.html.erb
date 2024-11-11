@@ -1,0 +1,34 @@
+<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
+  <%= render 'shared/settings_nav' %>
+  <div class="flex-grow min-w-0">
+    <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center mb-4">
+      <h1 class="text-4xl font-bold">Webhooks</h1>
+      <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
+        <%= render 'shared/test_mode_toggle' %>
+        <% if @webhook_url.persisted? %>
+          <%= link_to new_settings_webhook_path, class: 'md:ml-3 btn bg-white btn-outline btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6') %>
+            <span><%= t('new_webhook') %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="space-y-4">
+      <% @webhook_urls.each do |webhook_url| %>
+        <%= link_to settings_webhook_path(webhook_url), class: 'card bg-base-200' do %>
+          <div class="card-body p-6 min-w-0">
+            <p class="flex items-center space-x-1">
+              <%= svg_icon('world', class: 'w-6 h-6 shrink-0') %>
+              <span class="text-xl font-semibold truncate"><%= webhook_url.url %></span>
+            </p>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <% webhook_url.events.each do |event| %>
+                <span class="badge badge-outline"><%= event %></span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

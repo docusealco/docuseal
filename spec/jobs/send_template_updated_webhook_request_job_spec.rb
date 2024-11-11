@@ -22,11 +22,11 @@ RSpec.describe SendTemplateUpdatedWebhookRequestJob do
       described_class.new.perform('template_id' => template.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'template.updated',
-          'timestamp' => Time.current,
-          'data' => Templates::SerializeForApi.call(template.reload)
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(Templates::SerializeForApi.call(template.reload).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook'
@@ -39,11 +39,11 @@ RSpec.describe SendTemplateUpdatedWebhookRequestJob do
       described_class.new.perform('template_id' => template.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'template.updated',
-          'timestamp' => Time.current,
-          'data' => Templates::SerializeForApi.call(template.reload)
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(Templates::SerializeForApi.call(template.reload).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook',

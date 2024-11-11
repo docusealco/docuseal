@@ -23,11 +23,11 @@ RSpec.describe SendSubmissionArchivedWebhookRequestJob do
       described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'submission.archived',
-          'timestamp' => Time.current,
-          'data' => submission.reload.as_json(only: %i[id archived_at])
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(submission.reload.as_json(only: %i[id archived_at]).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook'
@@ -40,11 +40,11 @@ RSpec.describe SendSubmissionArchivedWebhookRequestJob do
       described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
-        body: replace_timestamps({
+        body: {
           'event_type' => 'submission.archived',
-          'timestamp' => Time.current,
-          'data' => submission.reload.as_json(only: %i[id archived_at])
-        }.deep_stringify_keys),
+          'timestamp' => /.*/,
+          'data' => JSON.parse(submission.reload.as_json(only: %i[id archived_at]).to_json)
+        },
         headers: {
           'Content-Type' => 'application/json',
           'User-Agent' => 'DocuSeal.com Webhook',

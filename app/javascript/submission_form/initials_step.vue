@@ -226,6 +226,10 @@ export default {
     if (this.$refs.canvas) {
       this.pad = new SignaturePad(this.$refs.canvas)
 
+      if (this.field.preferences?.color) {
+        this.pad.penColor = this.field.preferences.color
+      }
+
       this.pad.addEventListener('beginStroke', () => {
         this.isInitialsStarted = true
 

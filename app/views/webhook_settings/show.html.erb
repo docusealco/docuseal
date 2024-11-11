@@ -1,38 +1,78 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow">
-    <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-end mb-4">
-      <h1 class="text-4xl font-bold">Webhooks</h1>
-      <%= render 'shared/test_mode_toggle' %>
+    <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center mb-4">
+      <h1 class="text-4xl font-bold">Webhook</h1>
+      <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
+        <% if params[:action] == 'index' %>
+          <%= render 'shared/test_mode_toggle' %>
+        <% end %>
+        <% if @webhook_url.persisted? && params[:action] == 'index' %>
+          <%= link_to new_settings_webhook_path, class: 'md:ml-3 btn bg-white btn-outline btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6') %>
+            <span><%= t('new_webhook') %></span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="card bg-base-200">
       <div class="card-body p-6">
-        <%= form_for @webhook_url, url: settings_webhooks_path, method: :post, html: { autocomplete: 'off' } do |f| %>
-          <%= f.label :url, 'Webhook URL', class: 'text-sm font-semibold' %>
-          <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-2 mt-2">
-            <%= f.url_field :url, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook' %>
-            <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button w-full md:w-32' %>
-            <% if @webhook_url.persisted? %>
-              <a href="<%= webhook_secret_path(@webhook_url) %>" data-turbo-frame="modal" class="white-button w-full md:w-auto">
-                <%= @webhook_url.secret.present? ? t('edit_secret') : t('add_secret') %>
-              </a>
-            <% end %>
-          </div>
-        <% end %>
-        <%= form_for @webhook_url, url: @webhook_url.url.present? ? webhook_preference_path(@webhook_url) : '', method: :put, html: { autocomplete: 'off' } do |f| %>
-          <% WebhookUrl::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-4 gap-y-2">
-              <% events.each do |event| %>
-                <%= f.fields_for :events do |ff| %>
-                  <div class="flex">
-                    <label class="flex items-center space-x-2 cursor-pointer">
-                      <%= ff.check_box event, class: 'base-checkbox', checked: @webhook_url.events.include?(event), onchange: 'this.form.requestSubmit()', disabled: @webhook_url.url.blank? %>
-                      <span>
-                        <%= event %>
-                      </span>
-                    </label>
-                  </div>
+        <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-end md:relative">
+          <%= label_tag :url, 'Webhook URL', class: 'text-sm font-semibold' %>
+          <% if @webhook_url.persisted? %>
+            <div class="flex items-center space-x-2 md:absolute md:right-0">
+              <%= link_to webhook_secret_path(@webhook_url), class: 'btn btn-outline btn-sm bg-white', data: { turbo_frame: 'modal' } do %>
+                <%= svg_icon('lock', class: 'w-4 h-4') %>
+                <span><%= @webhook_url.secret.present? ? t('edit_secret') : t('add_secret') %></span>
+              <% end %>
+              <div class="tooltip tooltip-left md:tooltip-top" data-tip="<%= t('delete_webhook') %>">
+                <%= button_to settings_webhook_path(@webhook_url), class: 'btn btn-warning btn-sm', method: :delete, data: { turbo_confirm: t('are_you_sure_') } do %>
+                  <span><%= t('delete') %></span>
                 <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <%= form_for @webhook_url, url: @webhook_url.persisted? ? settings_webhook_path(@webhook_url) : settings_webhooks_path, html: { autocomplete: 'off' } do |f| %>
+          <div class="flex flex-row flex-wrap space-y-2 md:space-y-0 md:flex-nowrap md:space-x-2">
+            <%= f.url_field :url, class: 'input font-mono input-bordered w-full', placeholder: 'https://example.com/hook', required: true %>
+            <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button w-full md:w-32' %>
+          </div>
+          <% unless @webhook_url.persisted? %>
+            <div class="space-y-4 mt-4">
+              <% WebhookUrl::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-2">
+                  <%= f.collection_check_boxes(:events, events, :to_s, :to_s, include_hidden: false) do |b| %>
+                    <div class="flex">
+                      <label class="flex items-center space-x-2">
+                        <%= b.check_box class: 'base-checkbox', checked: @webhook_url.events.include?(b.value) %>
+                        <span>
+                          <%= b.label %>
+                        </span>
+                      </label>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @webhook_url.persisted? %>
+          <%= form_for @webhook_url, url: webhook_preference_path(@webhook_url), method: :put, html: { autocomplete: 'off', class: 'mt-2' } do |f| %>
+            <div class="space-y-4">
+              <% WebhookUrl::EVENTS.group_by { |e| e.include?('form') }.each do |_, events| %>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4">
+                  <% events.each do |event| %>
+                    <%= f.fields_for :events do |ff| %>
+                      <div class="flex">
+                        <label class="flex items-center cursor-pointer">
+                          <%= ff.check_box event, class: 'base-checkbox', checked: @webhook_url.events.include?(event), onchange: 'this.form.requestSubmit()' %>
+                          <span class="ml-2"><%= event %></span>
+                        </label>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -44,12 +84,12 @@
       <div class="space-y-4 mt-4">
         <div class="collapse collapse-open bg-base-200 px-1">
           <div class="p-4 text-xl font-medium">
-            <div class="flex items-center justify-between gap-2">
+            <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center md:h-8">
               <span>
                 <%= t('submission_example_payload') %>
               </span>
               <% if @webhook_url.url.present? && @webhook_url.events.include?('form.completed') %>
-                <%= button_to button_title(title: 'Test Webhook', disabled_with: t('sending'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), settings_webhooks_path, class: 'btn btn-neutral btn-outline btn-sm', method: :put %>
+                <%= button_to button_title(title: 'Test Webhook', disabled_with: t('sending'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), settings_webhook_resend_path(@webhook_url), class: 'btn btn-neutral btn-outline btn-sm', method: :post %>
               <% end %>
             </div>
           </div>

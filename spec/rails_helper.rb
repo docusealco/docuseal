@@ -67,19 +67,3 @@ RSpec.configure do |config|
     Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
   end
 end
-
-def replace_timestamps(data, replace = /.*/)
-  timestamp_fields = %w[created_at updated_at completed_at sent_at opened_at timestamp]
-
-  data.each do |key, value|
-    if timestamp_fields.include?(key) && (value.is_a?(String) || value.is_a?(Time))
-      data[key] = replace
-    elsif value.is_a?(Hash)
-      replace_timestamps(value)
-    elsif value.is_a?(Array)
-      value.each { |item| replace_timestamps(item) if item.is_a?(Hash) }
-    end
-  end
-
-  data
-end

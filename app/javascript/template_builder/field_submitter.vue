@@ -79,7 +79,7 @@
                 :stroke-width="1.6"
               />
               <span class="py-1">
-                {{ t('add') }} {{ names[submitters.length] }}
+                {{ t('add') }} {{ names[lastPartyIndex] }}
               </span>
             </a>
           </li>
@@ -202,7 +202,7 @@
             :stroke-width="1.6"
           />
           <span class="py-1">
-            {{ t('add') }} {{ names[submitters.length] }}
+            {{ t('add') }} {{ names[lastPartyIndex] }}
           </span>
         </a>
       </li>
@@ -321,6 +321,15 @@ export default {
         this.t('twentieth_party')
       ]
     },
+    lastPartyIndex () {
+      const index = Math.max(...this.submitters.map((s) => this.names.indexOf(s.name)))
+
+      if (index !== -1) {
+        return index + 1
+      } else {
+        return this.submitters.length
+      }
+    },
     selectedSubmitter () {
       return this.submitters.find((e) => e.uuid === this.modelValue)
     }
@@ -353,7 +362,7 @@ export default {
     },
     addSubmitter () {
       const newSubmitter = {
-        name: this.names[this.submitters.length],
+        name: this.names[this.lastPartyIndex],
         uuid: v4()
       }
 

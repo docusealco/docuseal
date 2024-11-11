@@ -12,6 +12,10 @@ window.customElements.define('draw-signature', class extends HTMLElement {
 
     this.pad = new SignaturePad(this.canvas)
 
+    if (this.dataset.color) {
+      this.pad.penColor = this.dataset.color
+    }
+
     this.pad.addEventListener('endStroke', () => {
       this.updateSubmitButtonVisibility()
     })

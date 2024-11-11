@@ -122,6 +122,15 @@ module Templates
 
       io = StringIO.new
 
+      pdf.acro_form.each_field do |field|
+        next if field.field_type != :Ch ||
+                field[:Opt].blank? ||
+                %i[combo_box editable_combo_box].exclude?(field.concrete_field_type) ||
+                !field.field_value.to_s.match?(FindAcroFields::SELECT_PLACEHOLDER_REGEXP)
+
+        field[:V] = ''
+      end
+
       pdf.acro_form.create_appearances(force: true) if pdf.acro_form[:NeedAppearances]
       pdf.acro_form.flatten
 
