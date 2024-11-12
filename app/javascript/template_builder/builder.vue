@@ -1342,7 +1342,9 @@ export default {
       }
 
       this.$nextTick(() => {
-        this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
+        if (this.$refs.previews) {
+          this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
+        }
 
         this.scrollIntoDocument(data.schema[0])
       })
