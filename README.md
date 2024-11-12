@@ -20,6 +20,9 @@
   <a href="https://twitter.com/intent/follow?screen_name=docusealco">
     <img src="https://img.shields.io/twitter/follow/docusealco?style=social" alt="Follow @docusealco" />
   </a>
+  <a href="https://gurubase.io/g/docuseal">
+    <img src="https://img.shields.io/badge/Gurubase-Ask%20DocuSeal%20Guru-006BFF" alt="Ask DocuSeal Guru" />
+  </a>
 </p>
 <p>
 DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
