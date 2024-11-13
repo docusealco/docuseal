@@ -7,8 +7,6 @@ class SubmitFormController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
-  before_action :maybe_redirect_com, only: %i[show completed]
-
   CONFIG_KEYS = [].freeze
 
   def show
