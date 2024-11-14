@@ -67,3 +67,5 @@ RSpec.configure do |config|
     Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
   end
 end
+
+ActiveSupport.run_load_hooks(:rails_specs, self)
