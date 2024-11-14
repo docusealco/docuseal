@@ -114,7 +114,9 @@ export default {
         const area = this.field.areas?.[0]
 
         if (area) {
-          return parseInt(area.w / area.cell_w) + 1
+          const num = area.w / area.cell_w
+
+          return (num % 1) > 0.2 ? parseInt(num) + 1 : parseInt(num)
         } else {
           return null
         }
