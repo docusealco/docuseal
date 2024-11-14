@@ -300,7 +300,7 @@ export default {
         })
 
         if (Object.keys(submittersIndex).length !== 0) {
-          submissions.push({ submitters: Object.values(submittersIndex) })
+          submissions.push({ submitters: this.submitters.map((s) => submittersIndex[s.uuid]).filter(Boolean) })
         }
       })
 
