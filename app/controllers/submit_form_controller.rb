@@ -15,7 +15,9 @@ class SubmitFormController < ApplicationController
     submission = @submitter.submission
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
-    return render :archived if submission.template.archived_at? || submission.archived_at?
+    return render :archived if submission.template.archived_at? ||
+                               submission.archived_at? ||
+                               @submitter.account.archived_at?
     return render :expired if submission.expired?
     return render :declined if @submitter.declined_at?
     return render :awaiting if submission.template.preferences['submitters_order'] == 'preserved' &&
@@ -25,8 +27,7 @@ class SubmitFormController < ApplicationController
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
-    @attachments_index = ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
-                                                  .preload(:blob).index_by(&:uuid)
+    @attachments_index = build_attachments_index(submission)
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
@@ -78,4 +79,11 @@ class SubmitFormController < ApplicationController
   end
 
   def success; end
+
+  private
+
+  def build_attachments_index(submission)
+    ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
+                             .preload(:blob).index_by(&:uuid)
+  end
 end

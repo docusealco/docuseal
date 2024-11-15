@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <% unless @template.archived_at? %>
+    <% if !@template.archived_at? && !@template.account.archived_at? %>
       <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
         <div dir="auto" class="form-control !mt-0">
           <%= f.label :email, t('email'), class: 'label' %>
