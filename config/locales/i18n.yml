@@ -344,7 +344,7 @@ en: &en
   edit_message: Edit message
   smtp_not_configured: SMTP not Configured
   configure_smtp_settings_in_order_to_send_emails_: 'Configure SMTP settings in order to send emails:'
-  go_to_smtp_setting: Go to SMTP setting
+  go_to_smtp_settings: Go to SMTP settings
   save_as_default_template_message: Save as default template message
   re_send_sms: Re-send SMS
   send_sms: Send SMS
@@ -993,7 +993,7 @@ es: &es
   edit_message: Editar mensaje
   smtp_not_configured: SMTP no configurado
   configure_smtp_settings_in_order_to_send_emails_: 'Configura los ajustes de SMTP para enviar correos electrónicos:'
-  go_to_smtp_setting: Ir a la configuración de SMTP
+  go_to_smtp_settings: Ir a la configuración de SMTP
   save_as_default_template_message: Guardar como mensaje de plantilla predeterminado
   re_send_sms: Reenviar SMS
   send_sms: Enviar SMS
@@ -1642,7 +1642,7 @@ it: &it
   edit_message: Modifica messaggio
   smtp_not_configured: SMTP non configurato
   configure_smtp_settings_in_order_to_send_emails_: 'Configura le impostazioni SMTP per inviare email:'
-  go_to_smtp_setting: Vai alle impostazioni SMTP
+  go_to_smtp_settings: Vai alle impostazioni SMTP
   save_as_default_template_message: Salva come messaggio modello predefinito
   re_send_sms: Reinvio SMS
   send_sms: Invia SMS
@@ -2292,7 +2292,7 @@ fr: &fr
   edit_message: Modifier le message
   smtp_not_configured: SMTP non configuré
   configure_smtp_settings_in_order_to_send_emails_: 'Configurez les paramètres SMTP pour envoyer des e-mails:'
-  go_to_smtp_setting: Aller aux paramètres SMTP
+  go_to_smtp_settings: Aller aux paramètres SMTP
   save_as_default_template_message: Enregistrer comme modèle de message par défaut
   re_send_sms: Renvoyer le SMS
   send_sms: Envoyer SMS
@@ -2941,7 +2941,7 @@ pt: &pt
   edit_message: Editar mensagem
   smtp_not_configured: SMTP não configurado
   configure_smtp_settings_in_order_to_send_emails_: 'Configure as configurações de SMTP para enviar e-mails:'
-  go_to_smtp_setting: Ir para a configuração de SMTP
+  go_to_smtp_settings: Ir para a configuração de SMTP
   save_as_default_template_message: Salvar como mensagem de modelo padrão
   re_send_sms: Reenviar SMS
   send_sms: Enviar SMS
@@ -3590,7 +3590,7 @@ de: &de
   edit_message: Nachricht bearbeiten
   smtp_not_configured: SMTP nicht konfiguriert
   configure_smtp_settings_in_order_to_send_emails_: 'Konfiguriere die SMTP-Einstellungen, um E-Mails zu senden:'
-  go_to_smtp_setting: Zu den SMTP-Einstellungen gehen
+  go_to_smtp_settings: Zu den SMTP-Einstellungen gehen
   save_as_default_template_message: Als Standardvorlage speichern
   re_send_sms: SMS erneut senden
   send_sms: SMS senden
