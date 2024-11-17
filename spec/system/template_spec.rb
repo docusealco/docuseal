@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Template' do
   let!(:account) { create(:account) }
   let!(:user) { create(:user, account:) }
-  let!(:template) { create(:template, account:, author: user) }
+  let!(:template) { create(:template, account:, author: user, except_field_types: %w[phone payment]) }
 
   before do
     sign_in(user)

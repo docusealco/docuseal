@@ -65,11 +65,15 @@
         v-show="!isCodeSent"
         class="flex w-full rounded-full outline-neutral-content outline-2 outline-offset-2 focus-within:outline"
       >
-        <div class="relative inline-block">
+        <div
+          id="country_code"
+          class="relative inline-block"
+        >
           <div class="btn bg-base-200 border border-neutral-300 text-2xl whitespace-nowrap font-normal rounded-l-full">
             {{ selectedCountry.flag }} +{{ selectedCountry.dial }}
           </div>
           <select
+            id="country_code_select"
             class="absolute top-0 bottom-0 right-0 left-0 opacity-0 w-full h-full cursor-pointer"
             :disabled="!!defaultValue"
             @change="onCountrySelect(countries.find((country) => country.flag === $event.target.value))"

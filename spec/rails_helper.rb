@@ -10,6 +10,7 @@ require 'capybara/cuprite'
 require 'capybara/rspec'
 require 'webmock/rspec'
 require 'sidekiq/testing'
+require 'signing_form_helper'
 
 Sidekiq::Testing.fake!
 
@@ -50,6 +51,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers
+  config.include SigningFormHelper
 
   config.before(:each, type: :system) do
     if ENV['HEADLESS'] == 'false'

@@ -1,5 +1,6 @@
 <template>
   <div
+    id="dropzone"
     class="flex h-32 w-full"
     @dragover.prevent
     @drop.prevent="onDropFiles"
