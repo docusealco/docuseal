@@ -207,7 +207,7 @@ module Submitters
     end
 
     def replace_default_variables(value, attrs, submission, with_time: false)
-      return value if value.in?([true, false])
+      return value if value.in?([true, false]) || value.is_a?(Numeric)
       return if value.blank?
 
       value.to_s.gsub(VARIABLE_REGEXP) do |e|
