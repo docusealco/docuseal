@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :button_title,
                 :current_account,
+                :form_link_host,
                 :svg_icon
 
   impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
@@ -103,6 +104,10 @@ class ApplicationController < ActionController::Base
 
   def svg_icon(icon_name, class: '')
     render_to_string(partial: "icons/#{icon_name}", locals: { class: })
+  end
+
+  def form_link_host
+    Docuseal.default_url_options[:host]
   end
 
   def maybe_redirect_com
