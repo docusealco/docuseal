@@ -22,6 +22,8 @@ en: &en
   thanks: Thanks
   unarchive: Unarchive
   first_party: 'First Party'
+  document_download_filename_format: Document download filename format
+  document_name: Document Name
   docuseal_trusted_signature: DocuSeal Trusted Signature
   hello_name: Hello %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
@@ -667,6 +669,8 @@ en: &en
       read: Read your data
 
 es: &es
+  document_download_filename_format: Formato del nombre del archivo de descarga del documento
+  document_name: Nombre del documento
   unarchive: Desarchivar
   awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
   enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
@@ -1316,6 +1320,8 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  document_download_filename_format: Formato del nome file scaricato
+  document_name: Nome del Documento
   unarchive: Ripristina
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
   enforce_recipients_order: Aplicar el orden de los destinatarios
@@ -1965,6 +1971,8 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  document_download_filename_format: Format du nom de fichier du téléchargement de document
+  document_name: Nom du document
   unarchive: Désarchiver
   awaiting_completion_by_the_other_party: "En attente de la complétion par l'autre partie"
   enforce_recipients_order: "Respecter l'ordre des destinataires"
@@ -2615,6 +2623,8 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  document_download_filename_format: Formato do nome do arquivo de download do documento
+  document_name: Nome do documento
   unarchive: Desarquivar
   awaiting_completion_by_the_other_party: "Aguardando a conclusão pela outra parte"
   enforce_recipients_order: 'Forçar a ordem dos recipientes'
@@ -3264,6 +3274,8 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  document_download_filename_format: Format des Dateinamens beim Herunterladen von Dokumenten
+  document_name: Dokumentname
   unarchive: Wiederherstellen
   awaiting_completion_by_the_other_party: "Warten auf die Fertigstellung durch die andere Partei"
   enforce_recipients_order: 'Empfängerreihenfolge durchsetzen'
