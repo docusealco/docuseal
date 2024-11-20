@@ -30,6 +30,7 @@ import ToggleAttribute from './elements/toggle_attribute'
 import LinkedInput from './elements/linked_input'
 import CheckboxGroup from './elements/checkbox_group'
 import MaskedInput from './elements/masked_input'
+import SetDateButton from './elements/set_date_button'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -97,6 +98,7 @@ safeRegisterElement('toggle-attribute', ToggleAttribute)
 safeRegisterElement('linked-input', LinkedInput)
 safeRegisterElement('checkbox-group', CheckboxGroup)
 safeRegisterElement('masked-input', MaskedInput)
+safeRegisterElement('set-date-button', SetDateButton)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

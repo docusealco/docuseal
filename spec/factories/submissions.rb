@@ -17,7 +17,8 @@ FactoryBot.define do
         submission.template_submitters.each do |template_submitter|
           create(:submitter, submission:,
                              account_id: submission.account_id,
-                             uuid: template_submitter['uuid'])
+                             uuid: template_submitter['uuid'],
+                             created_at: submission.created_at)
         end
       end
     end

@@ -115,4 +115,21 @@ class ApplicationController < ActionController::Base
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently
   end
+
+  def date_range(key)
+    p = params.permit(key => %i[from to]).fetch(key, {})
+    timezone = ActiveSupport::TimeZone[current_account.timezone] || Time.zone
+    start_date = timezone.parse(p[:from]) if p[:from].present?
+    end_date = timezone.parse(p[:to]) if p[:to].present?
+
+    if start_date.present? && end_date.present? && start_date < end_date
+      start_date..end_date
+    elsif start_date.present? && end_date.present? && start_date == end_date
+      start_date.beginning_of_day..end_date.end_of_day
+    elsif start_date.present?
+      start_date..
+    elsif end_date.present?
+      ..end_date
+    end
+  end
 end

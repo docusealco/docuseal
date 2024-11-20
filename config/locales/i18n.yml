@@ -633,6 +633,18 @@ en: &en
   key: Key
   value: Value
   webhook_secret: Webhook Secret
+  author: Author
+  to: To
+  created_at: Created At
+  remove_condition: Remove condition
+  apply: Apply
+  applying: Applying
+  today: Today
+  this_week: This Week
+  last_week: Last Week
+  this_month: This Month
+  last_month: Last Month
+  this_year: This Year
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1284,6 +1296,18 @@ es: &es
   key: Clave
   value: Valor
   webhook_secret: Secreto del Webhook
+  author: Autor
+  to: A
+  created_at: Creado el
+  remove_condition: Eliminar condición
+  apply: Aplicar
+  applying: Aplicando
+  today: Hoy
+  this_week: Esta Semana
+  last_week: La Semana Pasada
+  this_month: Este Mes
+  last_month: El Mes Pasado
+  this_year: Este Año
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1935,6 +1959,18 @@ it: &it
   key: Chiave
   value: Valore
   webhook_secret: Segreto del Webhook
+  author: Autore
+  to: A
+  created_at: Creato il
+  remove_condition: Rimuovi condizione
+  apply: Applica
+  applying: Applicazione
+  today: Oggi
+  this_week: Questa Settimana
+  last_week: Settimana Scorsa
+  this_month: Questo Mese
+  last_month: Mese Scorso
+  this_year: "Quest'Anno"
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2587,6 +2623,18 @@ fr: &fr
   key: Clé
   value: Valeur
   webhook_secret: Secret du Webhook
+  author: Auteur
+  to: À
+  created_at: Créé le
+  remove_condition: Supprimer la condition
+  apply: Appliquer
+  applying: Application en cours
+  today: "Aujourd'hui"
+  this_week: Cette Semaine
+  last_week: La Semaine Dernière
+  this_month: Ce Mois-ci
+  last_month: Le Mois Dernier
+  this_year: Cette Année
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3238,6 +3286,18 @@ pt: &pt
   key: Chave
   value: Valor
   webhook_secret: Segredo do Webhook
+  author: Autor
+  to: Para
+  created_at: Criado em
+  remove_condition: Remover condição
+  apply: Aplicar
+  applying: Aplicando
+  today: Hoje
+  this_week: Esta Semana
+  last_week: Semana Passada
+  this_month: Este Mês
+  last_month: Mês Passado
+  this_year: Este Ano
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3889,6 +3949,18 @@ de: &de
   key: Schlüssel
   value: Wert
   webhook_secret: Webhook-Geheimnis
+  author: Autor
+  to: An
+  created_at: Erstellt am
+  remove_condition: Bedingung entfernen
+  apply: Anwenden
+  applying: Anwenden
+  today: Heute
+  this_week: Diese Woche
+  last_week: Letzte Woche
+  this_month: Dieser Monat
+  last_month: Letzter Monat
+  this_year: Dieses Jahr
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

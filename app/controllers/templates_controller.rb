@@ -4,6 +4,7 @@ class TemplatesController < ApplicationController
   load_and_authorize_resource :template
 
   before_action :load_base_template, only: %i[new create]
+  helper_method :created_at_range, :completed_at_range
 
   def show
     submissions = @template.submissions.accessible_by(current_ability)
@@ -14,10 +15,38 @@ class TemplatesController < ApplicationController
 
     submissions = submissions.pending if params[:status] == 'pending'
     submissions = submissions.completed if params[:status] == 'completed'
+    submissions = submissions.where(created_at: created_at_range) if created_at_range.present?
+
+    if completed_at_range.present?
+      submissions =
+        Submission.from(submissions.completed
+                                   .joins(:submitters)
+                                   .select('submissions.*, max(completed_at) AS last_completed_at')
+                                   .group('submissions.id'), :submissions)
+                  .where(last_completed_at: completed_at_range)
+    end
+
+    if params[:author].present?
+      submissions =
+        submissions.joins(:created_by_user)
+                   .where("concat_ws(' ',  NULLIF(users.first_name, ''),  NULLIF(last_name, '')) = ?", params[:author])
+    end
 
     @pagy, @submissions = pagy(submissions.preload(submitters: :start_form_submission_events).order(id: :desc))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  def filter
+    return unless params[:filter] == 'author'
+
+    submissions = @template.submissions.accessible_by(current_ability)
+    submissions = submissions.active if @template.archived_at.blank?
+    @creator_names = submissions.includes(:created_by_user)
+                                .filter_map(&:created_by_user)
+                                .map(&:full_name)
+                                .uniq
+                                .sort
   end
 
   def new
@@ -146,5 +175,13 @@ class TemplatesController < ApplicationController
     return if params[:base_template_id].blank?
 
     @base_template = Template.accessible_by(current_ability).find_by(id: params[:base_template_id])
+  end
+
+  def created_at_range
+    @created_at_range ||= date_range(:created_at)
+  end
+
+  def completed_at_range
+    @completed_at_range ||= date_range(:completed_at)
   end
 end
