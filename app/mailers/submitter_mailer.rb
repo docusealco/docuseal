@@ -152,6 +152,9 @@ class SubmitterMailer < ApplicationMailer
   def add_completed_email_attachments!(submitter, with_audit_log: true, with_documents: true)
     documents = with_documents ? Submitters.select_attachments_for_download(submitter) : []
 
+    filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
+                                                          key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
+
     total_size = 0
     audit_trail_data = nil
 
@@ -161,9 +164,14 @@ class SubmitterMailer < ApplicationMailer
       total_size = audit_trail_data.size
     end
 
-    total_size = add_attachments_with_size_limit(documents, total_size)
+    total_size = add_attachments_with_size_limit(submitter, documents, total_size, filename_format)
 
-    attachments[submitter.submission.audit_trail.filename.to_s.tr('"', "'")] = audit_trail_data if audit_trail_data
+    if audit_trail_data
+      audit_trail_filename =
+        Submitters.build_document_filename(submitter, submitter.submission.audit_trail.blob, filename_format)
+
+      attachments[audit_trail_filename.tr('"', "'")] = audit_trail_data
+    end
 
     if with_documents
       file_fields = submitter.submission.template_fields.select { |e| e['type'].in?(%w[file payment]) }
@@ -172,7 +180,7 @@ class SubmitterMailer < ApplicationMailer
         storage_attachments =
           submitter.attachments.where(uuid: submitter.values.values_at(*file_fields.pluck('uuid')).flatten)
 
-        add_attachments_with_size_limit(storage_attachments, total_size)
+        add_attachments_with_size_limit(submitter, storage_attachments, total_size)
       end
     end
 
@@ -183,7 +191,7 @@ class SubmitterMailer < ApplicationMailer
     user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name
   end
 
-  def add_attachments_with_size_limit(storage_attachments, current_size)
+  def add_attachments_with_size_limit(submitter, storage_attachments, current_size, filename_format = nil)
     total_size = current_size
 
     storage_attachments.each do |attachment|
@@ -191,7 +199,8 @@ class SubmitterMailer < ApplicationMailer
 
       break if total_size >= MAX_ATTACHMENTS_SIZE
 
-      attachments[attachment.filename.to_s.tr('"', "'")] = attachment.download
+      filename = Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+      attachments[filename.to_s.tr('"', "'")] = attachment.download
     end
 
     total_size

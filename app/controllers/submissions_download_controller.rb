@@ -57,9 +57,11 @@ class SubmissionsDownloadController < ApplicationController
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
     Submitters.select_attachments_for_download(submitter).map do |attachment|
-      ActiveStorage::Blob.proxy_url(attachment.blob,
-                                    expires_at: FILES_TTL.from_now.to_i,
-                                    filename: build_filename(submitter, attachment.blob, filename_format))
+      ActiveStorage::Blob.proxy_url(
+        attachment.blob,
+        expires_at: FILES_TTL.from_now.to_i,
+        filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+      )
     end
   end
 
@@ -73,23 +75,10 @@ class SubmissionsDownloadController < ApplicationController
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    ActiveStorage::Blob.proxy_url(attachment.blob,
-                                  expires_at: FILES_TTL.from_now.to_i,
-                                  filename: build_filename(submitter, attachment.blob, filename_format))
-  end
-
-  def build_filename(submitter, blob, filename_format)
-    return blob.filename if filename_format.blank?
-
-    filename = ReplaceEmailVariables.call(filename_format, submitter:)
-
-    filename = filename.gsub('{document.name}', blob.filename.base)
-
-    filename = filename.gsub(
-      '{submission.completed_at}',
-      I18n.l(submitter.completed_at.beginning_of_year.in_time_zone(submitter.account.timezone), format: :short)
+    ActiveStorage::Blob.proxy_url(
+      attachment.blob,
+      expires_at: FILES_TTL.from_now.to_i,
+      filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
     )
-
-    "#{filename}.#{blob.filename.extension}"
   end
 end

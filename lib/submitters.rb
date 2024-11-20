@@ -116,4 +116,19 @@ module Submitters
       acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
     end
   end
+
+  def build_document_filename(submitter, blob, filename_format)
+    return blob.filename if filename_format.blank?
+
+    filename = ReplaceEmailVariables.call(filename_format, submitter:)
+
+    filename = filename.gsub('{document.name}', blob.filename.base)
+
+    filename = filename.gsub(
+      '{submission.completed_at}',
+      I18n.l(submitter.completed_at.beginning_of_year.in_time_zone(submitter.account.timezone), format: :short)
+    )
+
+    "#{filename}.#{blob.filename.extension}"
+  end
 end
