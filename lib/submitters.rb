@@ -118,7 +118,7 @@ module Submitters
   end
 
   def build_document_filename(submitter, blob, filename_format)
-    return blob.filename if filename_format.blank?
+    return blob.filename.to_s if filename_format.blank?
 
     filename = ReplaceEmailVariables.call(filename_format, submitter:)
 
