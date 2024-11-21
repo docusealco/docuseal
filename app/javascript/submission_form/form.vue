@@ -1039,10 +1039,14 @@ export default {
           } else if (['not_empty', 'checked'].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid])
           } else if (['equal', 'contains'].includes(c.action) && field) {
-            const option = field.options.find((o) => o.uuid === c.value)
-            const values = [this.values[c.field_uuid]].flat()
+            if (field.options) {
+              const option = field.options.find((o) => o.uuid === c.value)
+              const values = [this.values[c.field_uuid]].flat()
 
-            return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
+              return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
+            } else {
+              return acc && [this.values[c.field_uuid]].flat().includes(c.value)
+            }
           } else if (['not_equal', 'does_not_contain'].includes(c.action) && field) {
             const option = field.options.find((o) => o.uuid === c.value)
             const values = [this.values[c.field_uuid]].flat()
