@@ -13,10 +13,11 @@ end
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
-  def self.proxy_url(blob, expires_at: nil, filename: nil)
+  def self.proxy_url(blob, expires_at: nil, filename: nil, host: nil)
     Rails.application.routes.url_helpers.blobs_proxy_url(
       signed_uuid: blob.signed_uuid(expires_at:), filename: filename || blob.filename,
-      **Docuseal.default_url_options
+      **Docuseal.default_url_options,
+      **{ host: }.compact
     )
   end
 
