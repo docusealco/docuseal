@@ -1,0 +1,18 @@
+<%= render 'shared/turbo_modal', title: local_assigns[:title] do %>
+  <%= form_for '', url: params[:path], method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
+    <%= hidden_field_tag :status, params[:status] if params[:status].present? %>
+    <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
+    <% local_assigns[:default_params].each do |key, value| %>
+      <%= hidden_field_tag(key, value) if value.present? %>
+    <% end %>
+    <%= yield %>
+    <div class="form-control mt-4">
+      <%= f.button button_title(title: t('apply'), disabled_with: t('applying')), name: nil, class: 'base-button' %>
+    </div>
+    <% if params[:with_remove] %>
+      <div class="text-center w-full mt-4">
+        <%= link_to t('remove_filter'), "#{params[:path]}?#{params.to_unsafe_h.slice(:q, :status).to_query}", class: 'link', data: { turbo_frame: :_top } %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

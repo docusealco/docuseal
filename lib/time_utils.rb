@@ -22,6 +22,8 @@ module TimeUtils
   DEFAULT_DATE_FORMAT_US = 'MM/DD/YYYY'
   DEFAULT_DATE_FORMAT = 'DD/MM/YYYY'
 
+  US_TIMEZONES = %w[EST CST MST PST HST AKDT].freeze
+
   module_function
 
   def timezone_abbr(timezone, time = Time.current)

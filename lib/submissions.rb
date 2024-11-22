@@ -26,7 +26,7 @@ module Submissions
       arel = arel.or(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
     end
 
-    submissions.joins(:submitters).where(arel).distinct
+    submissions.joins(:submitters).where(arel).group(:id)
   end
 
   def update_template_fields!(submission)

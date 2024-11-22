@@ -1,3 +1,5 @@
+<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% with_filters = @pagy.pages > 1 || params[:q].present? || filter_params.present? %>
 <%= render 'templates/title', template: @template %>
 <div>
   <%= link_to template_path(@template) do %>
@@ -5,23 +7,33 @@
     <span><%= t('back_to_active') %></span>
   <% end %>
 </div>
-<div class="flex justify-between mb-6 md:items-end flex-col md:flex-row">
-  <div>
-    <h1 class="text-3xl font-bold md:block"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+<div class="flex flex-col md:flex-row md:items-center mb-6 gap-3">
+  <div class="flex w-full justify-between md:items-end items-center">
+    <div>
+      <h1 class="text-3xl font-bold md:block"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+    </div>
+    <div class="flex space-x-2 justify-end">
+      <% if with_filters %>
+        <%= render 'shared/search_input' %>
+      <% end %>
+      <%= link_to new_template_submissions_export_path(@template), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+        <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
+        <span><%= t('export') %></span>
+      <% end %>
+    </div>
   </div>
-  <div class="flex space-x-2 mt-3 md:mt-0 justify-end">
-    <%= render 'shared/search_input' %>
-    <%= link_to new_template_submissions_export_path(@template), class: 'order-3 md:order-1 btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
-      <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
-      <span><%= t('export') %></span>
-    <% end %>
-  </div>
+  <% if with_filters %>
+    <div class="flex flex-col items-end md:flex-row gap-2">
+      <%= render 'submissions_filters/applied_filters', filter_params: %>
+      <%= render 'submissions_filters/filter_button', filter_params: %>
+    </div>
+  <% end %>
 </div>
 <% if @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { template: @template, archived: true } %>
   </div>
-<% elsif params[:q].present? %>
+<% elsif params[:q].present? || filter_params.present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
       <%= t('submissions_not_found') %>

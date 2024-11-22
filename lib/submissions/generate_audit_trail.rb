@@ -23,7 +23,7 @@ module Submissions
     RTL_REGEXP = TextUtils::RTL_REGEXP
     MAX_IMAGE_HEIGHT = 100
 
-    US_TIMEZONES = %w[EST CST MST PST HST AKDT].freeze
+    US_TIMEZONES = TimeUtils::US_TIMEZONES
 
     module_function
 

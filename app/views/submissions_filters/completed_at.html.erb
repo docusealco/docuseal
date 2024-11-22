@@ -1,0 +1,15 @@
+<%= render 'filter_modal', title: t('completed_at'), default_params: params.permit(*(Submissions::Filter::ALLOWED_PARAMS - %w[completed_at_to completed_at_from])) do %>
+  <div class="space-y-3">
+    <div class="flex flex-col md:flex-row gap-2">
+      <div class="form-control w-full">
+        <%= label_tag 'completed_at_from', t('from'), for: 'date_from', class: 'label text-sm' %>
+        <%= date_field_tag 'completed_at_from', params[:completed_at_from], id: 'date_from', class: 'base-input !h-10', autocomplete: 'off' %>
+      </div>
+      <div class="form-control w-full">
+        <%= label_tag 'completed_at_to', t('to'), for: 'date_to', class: 'label text-sm' %>
+        <%= date_field_tag 'completed_at_to', params[:completed_at_to], id: 'date_to', class: 'base-input !h-10', autocomplete: 'off' %>
+      </div>
+    </div>
+    <%= render 'date_buttons' %>
+  </div>
+<% end %>

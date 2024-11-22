@@ -183,7 +183,7 @@ RSpec.describe 'Template' do
       end
 
       page.find('.dropdown', text: 'Filter').click
-      click_link 'Created At'
+      click_link 'Created at'
       within '#modal' do
         fill_in 'From', with: I18n.l(10.days.ago, format: '%Y-%m-%d')
         fill_in 'To', with: I18n.l(6.days.ago, format: '%Y-%m-%d')
@@ -218,7 +218,7 @@ RSpec.describe 'Template' do
       end
 
       page.find('.dropdown', text: 'Filter').click
-      click_link 'Completed At'
+      click_link 'Completed at'
       within '#modal' do
         fill_in 'From', with: I18n.l(5.days.ago, format: '%Y-%m-%d')
         fill_in 'To', with: I18n.l(1.day.ago, format: '%Y-%m-%d')

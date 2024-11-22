@@ -62,8 +62,11 @@ class Submission < ApplicationRecord
            through: :template, source: :documents_attachments
 
   scope :active, -> { where(archived_at: nil) }
-  scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).distinct }
-  scope :completed, -> { where.not(id: pending.select(:submission_id)) }
+  scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).group(:id) }
+  scope :completed, lambda {
+    where.not(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
+     .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
+  }
 
   enum :source, {
     invite: 'invite',

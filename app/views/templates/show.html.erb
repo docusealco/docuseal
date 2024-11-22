@@ -1,7 +1,7 @@
 <%= render 'title', template: @template %>
-<% is_filter_active = params.slice(:author, :created_at, :completed_at).to_unsafe_h.any?(&:present?) %>
-<% is_show_tabs = @pagy.pages > 1 || params[:q].present? || params[:status].present? || is_filter_active %>
-<% if !@pagy.count.zero? || params[:q].present? || params[:status].present? || is_filter_active %>
+<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% is_show_tabs = @pagy.pages > 1 || params[:q].present? || params[:status].present? || filter_params.present? %>
+<% if !@pagy.count.zero? || params[:q].present? || params[:status].present? || filter_params.present? %>
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
       <div>
@@ -10,7 +10,7 @@
         </h2>
       </div>
       <div class="flex justify-end space-x-2">
-        <% if params[:q].present? || params[:status].present? || is_filter_active || @pagy.pages > 1 %>
+        <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
           <%= render 'shared/search_input', title_selector: 'h2' %>
         <% end %>
         <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
@@ -36,7 +36,7 @@
           <span class="font-normal"><%= t('all') %></span>
         </div>
         <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status].blank? ? @pagy.count : @base_submissions.count %>
+          <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.unscope(:group, :order).count %>
         </div>
       </a>
       <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
@@ -45,7 +45,7 @@
           <span class="font-normal"><%= t('pending') %></span>
         </div>
         <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status] == 'pending' ? @pagy.count : @base_submissions.pending.count %>
+          <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.unscope(:group, :order).count %>
         </div>
       </a>
       <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
@@ -54,86 +54,13 @@
           <span class="font-normal"><%= t('completed') %></span>
         </div>
         <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status] == 'completed' ? @pagy.count : @base_submissions.completed.count %>
+          <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.unscope(:group, :order).count %>
         </div>
       </a>
     </div>
     <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">
-      <% if completed_at_range.present? %>
-        <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('completed_at') %>">
-          <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'completed_at')), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1' do %>
-            <%= svg_icon('calendar_check', class: 'w-5 h-5 shrink-0') %>
-            <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
-              <% if completed_at_range.begin&.to_date == completed_at_range.end&.to_date %>
-                <span><%= l(completed_at_range.begin.to_date, locale: current_account.locale) %></span>
-              <% else %>
-                <span><%= completed_at_range.begin ? l(completed_at_range.begin.to_date, locale: current_account.locale) : '∞' %></span>
-                <span class="px-1 md:px-0 md:hidden">-</span>
-                <span><%= completed_at_range.end ? l(completed_at_range.end.to_date, locale: current_account.locale) : t('today') %></span>
-              <% end %>
-            </span>
-          <% end %>
-          <%= link_to url_for(params.to_unsafe_h.except(:completed_at)), class: 'rounded-lg ml-1 hover:bg-neutral-700 hover:text-white' do %>
-            <%= svg_icon('x', class: 'w-5 h-5') %>
-          <% end %>
-        </div>
-      <% end %>
-      <% if @created_at_range.present? %>
-        <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('created_at') %>">
-          <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'created_at')), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1' do %>
-            <%= svg_icon('calendar', class: 'w-5 h-5 shrink-0') %>
-            <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
-              <% if created_at_range.begin&.to_date == created_at_range.end&.to_date %>
-                <span><%= l(created_at_range.begin.to_date, locale: current_account.locale) %></span>
-              <% else %>
-                <span><%= created_at_range.begin ? l(created_at_range.begin.to_date, locale: current_account.locale) : '∞' %></span>
-                <span class="px-1 md:px-0 md:hidden">-</span>
-                <span><%= created_at_range.end ? l(created_at_range.end.to_date, locale: current_account.locale) : t('today') %></span>
-              <% end %>
-            </span>
-          <% end %>
-          <%= link_to url_for(params.to_unsafe_h.except(:created_at)), class: 'rounded-lg ml-1 hover:bg-neutral-700 hover:text-white' do %>
-            <%= svg_icon('x', class: 'w-5 h-5') %>
-          <% end %>
-        </div>
-      <% end %>
-      <% if params[:author].present? %>
-        <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('author') %>">
-          <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'author')), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full md:w-36' do %>
-            <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
-            <span class="font-normal truncate"><%= params[:author] %></span>
-          <% end %>
-          <%= link_to url_for(params.to_unsafe_h.except(:author)), class: 'rounded-lg ml-1 hover:bg-neutral-700 hover:text-white' do %>
-            <%= svg_icon('x', class: 'w-5 h-5') %>
-          <% end %>
-        </div>
-      <% end %>
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="flex h-10 px-2 py-1 space-x-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl border-neutral-300 hover:border-neutral-700">
-          <%= svg_icon('filter', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-          <span class="<%= is_filter_active ? 'md:hidden' : '' %>">Filter</span>
-        </label>
-        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px] text-right">
-          <li class="flex">
-            <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'author')), data: { turbo_frame: 'modal' } do %>
-              <%= svg_icon('user', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-              <span><%= t('author') %></span>
-            <% end %>
-          </li>
-          <li class="flex">
-            <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'created_at')), data: { turbo_frame: 'modal' } do %>
-              <%= svg_icon('calendar', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-              <span><%= t('created_at') %></span>
-            <% end %>
-          </li>
-          <li class="flex">
-            <%= link_to filter_templates_path(params.to_unsafe_h.except(:controller, :action).merge(filter: 'completed_at')), data: { turbo_frame: 'modal' } do %>
-              <%= svg_icon('calendar_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-              <span><%= t('completed_at') %></span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+      <%= render 'submissions_filters/applied_filters', filter_params: %>
+      <%= render 'submissions_filters/filter_button', filter_params: %>
     </div>
   </div>
 <% end %>
@@ -148,7 +75,7 @@
         <p class="text-3xl font-bold text-base-content">
           <%= t('there_are_no_submissions') %>
         </p>
-        <% if @template.archived_at.blank? && params[:q].blank? %>
+        <% if @template.archived_at.blank? && params[:q].blank? && filter_params.blank? %>
           <div class="mt-4">
             <p><%= t('send_an_invitation_to_fill_and_complete_the_form') %></p>
             <div class="space-y-2 flex flex-col">
@@ -169,7 +96,7 @@
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>
                 <% end %>
               <% end %>
-            </did>
+            </div>
           </div>
         <% end %>
       </div>

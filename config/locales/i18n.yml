@@ -22,6 +22,7 @@ en: &en
   thanks: Thanks
   unarchive: Unarchive
   first_party: 'First Party'
+  remove_filter: Remove filter
   document_download_filename_format: Document download filename format
   document_name: Document Name
   docuseal_trusted_signature: DocuSeal Trusted Signature
@@ -621,7 +622,7 @@ en: &en
   verified: Verified
   unverified: Unverified
   document: Document
-  completed_at: Completed At
+  completed_at: Completed at
   edit_recipient: Edit Recipient
   update_recipient: Update Recipient
   use_international_format_1xxx_: 'Use internatioanl format: +1xxx...'
@@ -635,16 +636,16 @@ en: &en
   webhook_secret: Webhook Secret
   author: Author
   to: To
-  created_at: Created At
-  remove_condition: Remove condition
+  created_at: Created at
   apply: Apply
   applying: Applying
   today: Today
-  this_week: This Week
-  last_week: Last Week
-  this_month: This Month
-  last_month: Last Month
-  this_year: This Year
+  yesterday: Yesterday
+  this_week: This week
+  last_week: Last week
+  this_month: This month
+  last_month: Last month
+  this_year: This year
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -681,6 +682,7 @@ en: &en
       read: Read your data
 
 es: &es
+  remove_filter: Eliminar filtro
   document_download_filename_format: Formato del nombre del archivo de descarga del documento
   document_name: Nombre del documento
   unarchive: Desarchivar
@@ -1299,10 +1301,10 @@ es: &es
   author: Autor
   to: A
   created_at: Creado el
-  remove_condition: Eliminar condición
   apply: Aplicar
   applying: Aplicando
   today: Hoy
+  yesterday: Ayer
   this_week: Esta Semana
   last_week: La Semana Pasada
   this_month: Este Mes
@@ -1344,6 +1346,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  remove_filter: Rimuovi filtro
   document_download_filename_format: Formato del nome file scaricato
   document_name: Nome del Documento
   unarchive: Ripristina
@@ -1962,10 +1965,10 @@ it: &it
   author: Autore
   to: A
   created_at: Creato il
-  remove_condition: Rimuovi condizione
   apply: Applica
   applying: Applicazione
   today: Oggi
+  yesterday: Ieri
   this_week: Questa Settimana
   last_week: Settimana Scorsa
   this_month: Questo Mese
@@ -2007,6 +2010,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  remove_filter: Supprimer le filtre
   document_download_filename_format: Format du nom de fichier du téléchargement de document
   document_name: Nom du document
   unarchive: Désarchiver
@@ -2626,10 +2630,10 @@ fr: &fr
   author: Auteur
   to: À
   created_at: Créé le
-  remove_condition: Supprimer la condition
   apply: Appliquer
   applying: Application en cours
   today: "Aujourd'hui"
+  yesterday: Hier
   this_week: Cette Semaine
   last_week: La Semaine Dernière
   this_month: Ce Mois-ci
@@ -2671,6 +2675,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  remove_filter: Remover filtro
   document_download_filename_format: Formato do nome do arquivo de download do documento
   document_name: Nome do documento
   unarchive: Desarquivar
@@ -3289,10 +3294,10 @@ pt: &pt
   author: Autor
   to: Para
   created_at: Criado em
-  remove_condition: Remover condição
   apply: Aplicar
   applying: Aplicando
   today: Hoje
+  yesterday: Ontem
   this_week: Esta Semana
   last_week: Semana Passada
   this_month: Este Mês
@@ -3334,6 +3339,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  remove_filter: Filter entfernen
   document_download_filename_format: Format des Dateinamens beim Herunterladen von Dokumenten
   document_name: Dokumentname
   unarchive: Wiederherstellen
@@ -3952,10 +3958,10 @@ de: &de
   author: Autor
   to: An
   created_at: Erstellt am
-  remove_condition: Bedingung entfernen
   apply: Anwenden
   applying: Anwenden
   today: Heute
+  yesterday: Gestern
   this_week: Diese Woche
   last_week: Letzte Woche
   this_month: Dieser Monat

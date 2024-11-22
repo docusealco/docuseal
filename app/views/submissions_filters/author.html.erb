@@ -1,0 +1,7 @@
+<%= render 'filter_modal', title: t('author'), default_params: params.permit(*(Submissions::Filter::ALLOWED_PARAMS - ['author'])) do %>
+  <div class="space-y-2">
+    <div class="form-control mt-6">
+      <%= select_tag :author, options_for_select(current_account.users.accessible_by(current_ability).where.not(role: :integration).where(account: current_account).map { |u| [u.full_name, u.email] }, params[:author].presence || current_user.email), required: true, class: 'base-select' %>
+    </div>
+  </div>
+<% end %>

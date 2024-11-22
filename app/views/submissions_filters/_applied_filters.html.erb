@@ -1,0 +1,50 @@
+<% query_params = params.permit(:q, :status).merge(filter_params) %>
+<% if query_params[:completed_at_from].present? || query_params[:completed_at_to].present? %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('completed_at') %>">
+    <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+      <%= svg_icon('calendar_check', class: 'w-5 h-5 shrink-0') %>
+      <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
+        <% if query_params[:completed_at_from] == query_params[:completed_at_to] %>
+          <span><%= l(Date.parse(query_params[:completed_at_from]), locale: current_account.locale) %></span>
+        <% else %>
+          <span><%= query_params[:completed_at_from].present? ? l(Date.parse(query_params[:completed_at_from]), locale: current_account.locale) : '∞' %></span>
+          <span class="px-1 md:px-0 md:hidden">-</span>
+          <span><%= query_params[:completed_at_to].present? ? l(Date.parse(query_params[:completed_at_to]), locale: current_account.locale) : t('today') %></span>
+        <% end %>
+      </span>
+    <% end %>
+    <%= link_to url_for(params.to_unsafe_h.except(:completed_at_from, :completed_at_to)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+      <%= svg_icon('x', class: 'w-5 h-5') %>
+    <% end %>
+  </div>
+<% end %>
+<% if query_params[:created_at_from].present? || query_params[:created_at_to].present? %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('created_at') %>">
+    <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+      <%= svg_icon('calendar', class: 'w-5 h-5 shrink-0') %>
+      <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
+        <% if query_params[:created_at_from] == query_params[:created_at_to] %>
+          <span><%= l(Date.parse(query_params[:created_at_from]), locale: current_account.locale) %></span>
+        <% else %>
+          <span><%= query_params[:created_at_from].present? ? l(Date.parse(query_params[:created_at_from]), locale: current_account.locale) : '∞' %></span>
+          <span class="px-1 md:px-0 md:hidden">-</span>
+          <span><%= query_params[:created_at_to].present? ? l(Date.parse(query_params[:created_at_to]), locale: current_account.locale) : t('today') %></span>
+        <% end %>
+      </span>
+    <% end %>
+    <%= link_to url_for(params.to_unsafe_h.except(:created_at_to, :created_at_from)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+      <%= svg_icon('x', class: 'w-5 h-5') %>
+    <% end %>
+  </div>
+<% end %>
+<% if params[:author].present? %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('author') %>">
+    <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+      <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
+      <span class="font-normal truncate"><%= current_account.users.accessible_by(current_ability).where(account: current_account).find_by(email: params[:author])&.full_name || 'NA' %></span>
+    <% end %>
+    <%= link_to url_for(params.to_unsafe_h.except(:author)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+      <%= svg_icon('x', class: 'w-5 h-5') %>
+    <% end %>
+  </div>
+<% end %>
