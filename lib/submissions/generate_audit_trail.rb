@@ -64,7 +64,10 @@ module Submissions
 
     def build_audit_trail(submission)
       account = submission.account
-      verify_url = Rails.application.routes.url_helpers.settings_esign_url(**Docuseal.default_url_options)
+      verify_url = Rails.application.routes.url_helpers.settings_esign_url(
+        **Docuseal.default_url_options, host: ENV.fetch('EMAIL_HOST', Docuseal.default_url_options[:host])
+      )
+
       page_size =
         if TimeUtils.timezone_abbr(account.timezone, Time.current.beginning_of_year).in?(US_TIMEZONES)
           :Letter
@@ -411,7 +414,7 @@ module Submissions
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
       column.formatted_text([{ text: 'DocuSeal',
-                               link: Docuseal::PRODUCT_URL }],
+                               link: Docuseal::PRODUCT_EMAIL_URL }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],
                             width: 100,

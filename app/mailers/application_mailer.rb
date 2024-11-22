@@ -16,7 +16,7 @@ class ApplicationMailer < ActionMailer::Base
   after_action :set_message_uuid
 
   def default_url_options
-    Docuseal.default_url_options
+    Docuseal.default_url_options.merge(host: ENV.fetch('EMAIL_HOST', Docuseal.default_url_options[:host]))
   end
 
   def set_message_metadata
