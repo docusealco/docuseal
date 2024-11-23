@@ -1247,9 +1247,13 @@ export default {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
-            const i18nError = data.error ? this.t(data.error.replace(/\s+/g, '_').toLowerCase()) : ''
+            if (data.error) {
+              const i18nKey = data.error.replace(/\s+/g, '_').toLowerCase()
 
-            alert(i18nError !== data.error ? i18nError : (data.error || this.t('value_is_invalid')))
+              alert(this.t(i18nKey) !== i18nKey ? this.t(i18nKey) : data.error)
+            } else {
+              alert(this.t('value_is_invalid'))
+            }
 
             return Promise.reject(new Error(data.error))
           }
