@@ -26,7 +26,7 @@ module Submissions
       arel = arel.or(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
     end
 
-    submissions.joins(:submitters).where(arel).distinct
+    submissions.joins(:submitters).where(arel).group(:id)
   end
 
   def update_template_fields!(submission)
@@ -88,17 +88,19 @@ module Submissions
     )
   end
 
-  def send_signature_requests(submissions)
-    submissions.each do |submission|
+  def send_signature_requests(submissions, delay: nil)
+    submissions.each_with_index do |submission, index|
+      delay_seconds = (delay + index).seconds if delay
+
       submitters = submission.submitters.reject(&:completed_at?)
 
       if submission.submitters_order_preserved?
         first_submitter =
           submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
 
-        Submitters.send_signature_requests([first_submitter]) if first_submitter
+        Submitters.send_signature_requests([first_submitter], delay_seconds:) if first_submitter
       else
-        Submitters.send_signature_requests(submitters)
+        Submitters.send_signature_requests(submitters, delay_seconds:)
       end
     end
   end

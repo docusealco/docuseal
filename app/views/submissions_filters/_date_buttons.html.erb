@@ -1,0 +1,39 @@
+<% current_time = Time.current.in_time_zone(current_account.timezone) %>
+<% week_start = TimeUtils.timezone_abbr(current_account.timezone, current_time).in?(TimeUtils::US_TIMEZONES) ? :sunday : :monday %>
+<div class="flex flex-wrap gap-2 mt-4 md:mt-2">
+  <set-date-button data-from-value="<%= current_time.to_date %>" data-to-value="<%= current_time.to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('today') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= (current_time - 1.day).to_date %>" data-to-value="<%= (current_time - 1.day).to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('yesterday') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= current_time.beginning_of_week(week_start).to_date %>" data-to-value="<%= current_time.end_of_week(week_start).to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('this_week') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= (current_time - 1.week).beginning_of_week(week_start).to_date %>" data-to-value="<%= (current_time - 1.week).end_of_week(week_start).to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('last_week') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= current_time.beginning_of_month.to_date %>" data-to-value="<%= current_time.end_of_month.to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('this_month') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= (current_time - 1.month).beginning_of_month.to_date %>" data-to-value="<%= (current_time - 1.month).end_of_month.to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('last_month') %>
+    </button>
+  </set-date-button>
+  <set-date-button data-from-value="<%= current_time.beginning_of_year.to_date %>" data-to-value="<%= current_time.end_of_year.to_date %>" data-from-id="date_from" data-to-id="date_to">
+    <button class="btn btn-xs btn-primary font-medium normal-case" data-turbo="false" type="button">
+      <%= t('this_year') %>
+    </button>
+  </set-date-button>
+</div>

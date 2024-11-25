@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Template' do
   let!(:account) { create(:account) }
   let!(:user) { create(:user, account:) }
-  let!(:template) { create(:template, account:, author: user) }
+  let!(:template) { create(:template, account:, author: user, except_field_types: %w[phone payment]) }
 
   before do
     sign_in(user)
@@ -137,6 +137,100 @@ RSpec.describe 'Template' do
 
         expect(template_folder.name).to eq('New Folder Name')
         expect(page).to have_current_path(template_path(template), ignore_query: true)
+      end
+    end
+  end
+
+  context 'when filtering submissions' do
+    let(:second_user) { create(:user, account:) }
+
+    it 'displays only submissions by the selected author' do
+      first_user_submissions = create_list(:submission, 5, :with_submitters, template:, created_by_user: user)
+      second_user_submissions = create_list(:submission, 6, :with_submitters, template:, created_by_user: second_user)
+
+      visit template_path(template)
+
+      (first_user_submissions + second_user_submissions).map(&:submitters).flatten.last(10).uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      page.find('.dropdown', text: 'Filter').click
+      click_link 'Author'
+      within '#modal' do
+        select second_user.full_name, from: 'author'
+        click_button 'Apply'
+      end
+
+      second_user_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      first_user_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).not_to have_content(submitter.name)
+      end
+    end
+
+    it 'displays submissions created within the selected date range' do
+      last_week_submissions = create_list(:submission, 5, :with_submitters, template:, created_by_user: user,
+                                                                            created_at: 9.days.ago)
+      this_week_submissions = create_list(:submission, 6, :with_submitters, template:, created_by_user: user,
+                                                                            created_at: 5.days.ago)
+
+      visit template_path(template)
+
+      (last_week_submissions + this_week_submissions).map(&:submitters).flatten.last(10).uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      page.find('.dropdown', text: 'Filter').click
+      click_link 'Created at'
+      within '#modal' do
+        fill_in 'From', with: I18n.l(10.days.ago, format: '%Y-%m-%d')
+        fill_in 'To', with: I18n.l(6.days.ago, format: '%Y-%m-%d')
+        click_button 'Apply'
+      end
+
+      last_week_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      this_week_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).not_to have_content(submitter.name)
+      end
+    end
+
+    it 'displays submissions completed within the selected date range' do
+      last_week_submissions = create_list(:submission, 5, :with_submitters, template:, created_by_user: user)
+      this_week_submissions = create_list(:submission, 6, :with_submitters, template:, created_by_user: user)
+
+      last_week_submissions.map(&:submitters).flatten.each do |submitter|
+        submitter.update!(completed_at: rand(6..10).days.ago)
+      end
+
+      this_week_submissions.map(&:submitters).flatten.each do |submitter|
+        submitter.update!(completed_at: rand(2..5).days.ago)
+      end
+
+      visit template_path(template)
+
+      (last_week_submissions + this_week_submissions).map(&:submitters).flatten.last(10).uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      page.find('.dropdown', text: 'Filter').click
+      click_link 'Completed at'
+      within '#modal' do
+        fill_in 'From', with: I18n.l(5.days.ago, format: '%Y-%m-%d')
+        fill_in 'To', with: I18n.l(1.day.ago, format: '%Y-%m-%d')
+        click_button 'Apply'
+      end
+
+      this_week_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).to have_content(submitter.name)
+      end
+
+      last_week_submissions.map(&:submitters).flatten.uniq.each do |submitter|
+        expect(page).not_to have_content(submitter.name)
       end
     end
   end

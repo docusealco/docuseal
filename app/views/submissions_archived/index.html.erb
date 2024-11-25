@@ -1,22 +1,31 @@
+<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <div>
   <%= link_to root_path do %>
     &larr;
     <span><%= t('back_to_active') %></span>
   <% end %>
 </div>
-<div class="flex justify-between mb-4 items-center">
-  <div>
-    <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+<div class="flex flex-col md:flex-row md:items-center mb-4 gap-3">
+  <div class="flex w-full justify-between">
+    <div>
+      <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+    </div>
+    <div>
+      <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
+        <%= render 'shared/search_input', placeholder: "#{t('search')}..." %>
+      <% end %>
+    </div>
   </div>
-  <% if params[:q].present? || @pagy.pages > 1 %>
-    <%= render 'shared/search_input', placeholder: "#{t('search')}..." %>
-  <% end %>
+  <div class="flex flex-col items-end md:flex-row gap-2">
+    <%= render 'submissions_filters/applied_filters', filter_params: %>
+    <%= render 'submissions_filters/filter_button', filter_params: %>
+  </div>
 </div>
 <% if @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true, archived: true } %>
   </div>
-<% elsif params[:q].present? %>
+<% elsif params[:q].present? || filter_params.present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
       <%= t('submissions_not_found') %>

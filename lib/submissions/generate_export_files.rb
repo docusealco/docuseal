@@ -110,6 +110,10 @@ module Submissions
         {
           name: column_name(I18n.t('completed_at'), submitter_name, submitters_count),
           value: submitter.completed_at.to_s
+        },
+        {
+          name: column_name(I18n.t('link'), submitter_name, submitters_count),
+          value: submitter.completed_at? ? nil : r.submit_form_url(slug: submitter.slug, **Docuseal.default_url_options)
         }
       ].reject { |e| e[:value].blank? }
     end
@@ -149,6 +153,10 @@ module Submissions
 
         { name: template_field_name, uuid: template_field['uuid'], value: }
       end
+    end
+
+    def r
+      Rails.application.routes.url_helpers
     end
   end
 end

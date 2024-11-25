@@ -94,12 +94,16 @@ module Submitters
     preferences
   end
 
-  def send_signature_requests(submitters)
-    submitters.each do |submitter|
+  def send_signature_requests(submitters, delay_seconds: nil)
+    submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
       next if submitter.preferences['send_email'] == false
 
-      SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
+      if delay_seconds
+        SendSubmitterInvitationEmailJob.perform_in((delay_seconds + index).seconds, 'submitter_id' => submitter.id)
+      else
+        SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
+      end
     end
   end
 
@@ -111,5 +115,20 @@ module Submitters
     before_items.reduce(true) do |acc, item|
       acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
     end
+  end
+
+  def build_document_filename(submitter, blob, filename_format)
+    return blob.filename.to_s if filename_format.blank?
+
+    filename = ReplaceEmailVariables.call(filename_format, submitter:)
+
+    filename = filename.gsub('{document.name}', blob.filename.base)
+
+    filename = filename.gsub(
+      '{submission.completed_at}',
+      I18n.l(submitter.completed_at.beginning_of_year.in_time_zone(submitter.account.timezone), format: :short)
+    )
+
+    "#{filename}.#{blob.filename.extension}"
   end
 end

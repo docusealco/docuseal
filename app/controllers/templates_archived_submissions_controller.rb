@@ -7,8 +7,15 @@ class TemplatesArchivedSubmissionsController < ApplicationController
   def index
     @submissions = @submissions.where.not(archived_at: nil)
     @submissions = Submissions.search(@submissions, params[:q], search_values: true)
+    @submissions = Submissions::Filter.call(@submissions, current_user, params)
 
-    @pagy, @submissions = pagy(@submissions.preload(:submitters).order(id: :desc))
+    @submissions = if params[:completed_at_from].present? || params[:completed_at_to].present?
+                     @submissions.order(Submitter.arel_table[:completed_at].maximum.desc)
+                   else
+                     @submissions.order(id: :desc)
+                   end
+
+    @pagy, @submissions = pagy(@submissions.preload(submitters: :start_form_submission_events))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

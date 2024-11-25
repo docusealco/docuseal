@@ -92,7 +92,7 @@
             </div>
           <% else %>
             <div class="flex-1 md:flex-none">
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'btn btn-sm btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('copy'), copied_title_md: t('copied') %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('copy'), copied_title_md: t('copied') %>
             </div>
           <% end %>
         <% end %>
@@ -176,7 +176,7 @@
                         </span>
                       </a>
                     <% else %>
-                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug), class: 'absolute md:relative top-0 right-0 btn btn-xs text-xs btn-neutral text-white w-28 md:w-36 flex z-[1]', icon_class: 'w-4 h-4 text-white', copy_title: t('copy_link'), copy_title_md: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copied_title_md: t('copied') %>
+                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'absolute md:relative top-0 right-0 btn btn-xs text-xs btn-neutral text-white w-28 md:w-36 flex z-[1]', icon_class: 'w-4 h-4 text-white', copy_title: t('copy_link'), copy_title_md: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copied_title_md: t('copied') %>
                     <% end %>
                   </div>
                 <% end %>

@@ -37,6 +37,7 @@
     <AppearsOn :field="field" />
     <div class="text-center">
       <input
+        :id="field.uuid"
         ref="input"
         v-model="value"
         class="base-input !text-2xl text-center w-full"

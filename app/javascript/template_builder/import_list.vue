@@ -279,7 +279,11 @@ export default {
 
         this.mappings.forEach((mapping) => {
           if (mapping.field_name && mapping.column_index != null) {
-            submittersIndex[mapping.submitter_uuid] ||= { uuid: mapping.submitter_uuid, fields: [] }
+            submittersIndex[mapping.submitter_uuid] ||= {
+              uuid: mapping.submitter_uuid,
+              role: this.submitters.find((s) => s.uuid === mapping.submitter_uuid).name,
+              fields: []
+            }
 
             if (['name', 'email', 'phone', 'external_id'].includes(mapping.field_name.toLowerCase())) {
               submittersIndex[mapping.submitter_uuid][mapping.field_name.toLowerCase()] = row[mapping.column_index]
@@ -296,7 +300,7 @@ export default {
         })
 
         if (Object.keys(submittersIndex).length !== 0) {
-          submissions.push({ submitters: Object.values(submittersIndex) })
+          submissions.push({ submitters: this.submitters.map((s) => submittersIndex[s.uuid]).filter(Boolean) })
         }
       })
 

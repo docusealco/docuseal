@@ -53,8 +53,15 @@ class SubmissionsDownloadController < ApplicationController
   end
 
   def build_urls(submitter)
+    filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
+                                                          key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
+
     Submitters.select_attachments_for_download(submitter).map do |attachment|
-      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
+      ActiveStorage::Blob.proxy_url(
+        attachment.blob,
+        expires_at: FILES_TTL.from_now.to_i,
+        filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+      )
     end
   end
 
@@ -65,6 +72,13 @@ class SubmissionsDownloadController < ApplicationController
     attachment = submitter.submission.combined_document_attachment
     attachment ||= Submissions::GenerateCombinedAttachment.call(submitter)
 
-    ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
+    filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
+                                                          key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
+
+    ActiveStorage::Blob.proxy_url(
+      attachment.blob,
+      expires_at: FILES_TTL.from_now.to_i,
+      filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+    )
   end
 end

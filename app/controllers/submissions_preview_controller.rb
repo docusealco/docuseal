@@ -4,7 +4,7 @@ class SubmissionsPreviewController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
-  before_action :maybe_redirect_com, only: %i[show completed]
+  prepend_before_action :maybe_redirect_com, only: %i[show completed]
 
   TTL = 40.minutes
 
@@ -20,7 +20,7 @@ class SubmissionsPreviewController < ApplicationController
 
     @submission ||= Submission.find_by!(slug: params[:slug])
 
-    if !@submission.submitters.all?(&:completed_at?) && current_user.blank?
+    if @submission.account.archived_at? || (!@submission.submitters.all?(&:completed_at?) && current_user.blank?)
       raise ActionController::RoutingError, I18n.t('not_found')
     end
 

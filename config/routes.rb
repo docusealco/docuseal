@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :template_sharings_testing, only: %i[create]
   resources :templates, only: %i[index], controller: 'templates_dashboard'
+  resources :submissions_filters, only: %i[show], param: 'name'
   resources :templates, only: %i[new create edit update show destroy] do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[create], controller: 'template_documents'

@@ -4,7 +4,7 @@
     class="mx-auto pl-3 md:pl-4 h-full"
   >
     <div
-      v-if="pendingFieldAttachmentUuids.length"
+      v-if="pendingFieldAttachmentUuids.length && editable"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
       <div class="alert border-base-content/30 py-2 px-2.5">
@@ -1342,7 +1342,9 @@ export default {
       }
 
       this.$nextTick(() => {
-        this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
+        if (this.$refs.previews) {
+          this.$refs.previews.scrollTop = this.$refs.previews.scrollHeight
+        }
 
         this.scrollIntoDocument(data.schema[0])
       })

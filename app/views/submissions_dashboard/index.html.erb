@@ -1,4 +1,5 @@
-<% is_show_tabs = @pagy.count >= 5 || params[:status].present? %>
+<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% is_show_tabs = @pagy.count >= 5 || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0">
@@ -10,7 +11,7 @@
     </h1>
   </div>
   <div class="flex space-x-2">
-    <% if params[:q].present? || @pagy.pages > 1 %>
+    <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
       <%= render 'shared/search_input' %>
     <% end %>
     <% if can?(:create, ::Template) %>
@@ -32,25 +33,31 @@
   <% end %>
 <% end %>
 <% if is_show_tabs %>
-  <div class="flex items-center md:items-end flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2 mb-4">
-    <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
-      <div class="flex items-center space-x-1">
-        <%= svg_icon('list', class: 'w-5 h-5') %>
-        <span class="font-normal"><%= t('all') %></span>
-      </div>
-    </a>
-    <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
-      <div class="flex items-center space-x-1">
-        <%= svg_icon('clock', class: 'w-5 h-5') %>
-        <span class="font-normal"><%= t('pending') %></span>
-      </div>
-    </a>
-    <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
-      <div class="flex items-center space-x-1">
-        <%= svg_icon('circle_check', class: 'w-5 h-5') %>
-        <span class="font-normal"><%= t('completed') %></span>
-      </div>
-    </a>
+  <div class="flex items-center flex-col md:flex-row md:flex-wrap gap-2 mb-4">
+    <div class="flex items-center md:items-end flex-col md:flex-row gap-2 w-full md:w-fit">
+      <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+        <div class="flex items-center space-x-1">
+          <%= svg_icon('list', class: 'w-5 h-5') %>
+          <span class="font-normal"><%= t('all') %></span>
+        </div>
+      </a>
+      <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+        <div class="flex items-center space-x-1">
+          <%= svg_icon('clock', class: 'w-5 h-5') %>
+          <span class="font-normal"><%= t('pending') %></span>
+        </div>
+      </a>
+      <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+        <div class="flex items-center space-x-1">
+          <%= svg_icon('circle_check', class: 'w-5 h-5') %>
+          <span class="font-normal"><%= t('completed') %></span>
+        </div>
+      </a>
+    </div>
+    <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">
+      <%= render 'submissions_filters/applied_filters', filter_params: %>
+      <%= render 'submissions_filters/filter_button', filter_params: %>
+    </div>
   </div>
 <% end %>
 <% if @pagy.count > 0 %>
@@ -58,10 +65,10 @@
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
   </div>
 <% end %>
-<% if params[:q].blank? && params[:status].blank? && @pagy.count < 5 %>
+<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count < 5 %>
   <%= render 'templates/dropzone' %>
 <% end %>
-<% if @submissions.present? || params[:q].blank? %>
+<% if @submissions.present? || (params[:q].blank? && filter_params.blank?) %>
   <% if @pagy.pages > 1 %>
     <%= render 'shared/pagination', pagy: @pagy, items_name: 'submissions', left_additional_html: view_archived_html %>
   <% else %>
@@ -69,7 +76,7 @@
       <%= view_archived_html %>
     </div>
   <% end %>
-<% elsif params[:q].present? %>
+<% elsif params[:q].present? || filter_params.present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">
       <%= t('submissions_not_found') %>

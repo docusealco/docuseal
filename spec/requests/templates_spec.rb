@@ -176,33 +176,7 @@ describe 'Templates API', type: :request do
       id: template.id,
       slug: template.slug,
       name: template.name,
-      fields: [
-        {
-          'uuid' => template.fields[0]['uuid'],
-          'submitter_uuid' => template.submitters[0]['uuid'],
-          'name' => 'First Name',
-          'type' => 'text',
-          'required' => true,
-          'areas' => [
-            {
-              'x' => 0.09027777777777778,
-              'y' => 0.1197252208047105,
-              'w' => 0.3069444444444444,
-              'h' => 0.03336604514229637,
-              'attachment_uuid' => template_attachment_uuid,
-              'page' => 0
-            }
-          ]
-        },
-        {
-          'uuid' => template.fields[1]['uuid'],
-          'submitter_uuid' => template.submitters[0]['uuid'],
-          'name' => '',
-          'type' => 'signature',
-          'required' => true,
-          'areas' => []
-        }
-      ],
+      fields: template.fields,
       submitters: [
         {
           name: 'First Party',
