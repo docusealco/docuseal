@@ -29,15 +29,26 @@
           >{{ t('available_in_pro') }}</a>
         </div>
         <form @submit.prevent="validateSaveAndClose">
-          <div class="my-4 space-y-5">
+          <div class="my-4">
             <div
               v-for="(condition, cindex) in conditions"
               :key="cindex"
               class="space-y-4 relative"
             >
               <div
+                v-if="cindex > 0"
+                class="divider -mb-2 mx-1"
+              >
+                <button
+                  class="btn btn-xs btn-primary w-24"
+                  @click.prevent="condition.operation === 'or' ? delete condition.operation : condition.operation = 'or'"
+                >
+                  {{ condition.operation === 'or' ? t('or') : t('and') }}
+                </button>
+              </div>
+              <div
                 v-if="conditions.length > 1"
-                class="flex justify-between border-b mx-1 -mb-1 pb-1"
+                class="flex justify-between mx-1"
               >
                 <span class="text-sm">
                   {{ t('condition') }} {{ cindex + 1 }}

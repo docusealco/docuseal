@@ -148,7 +148,9 @@ const en = {
   preferences: 'Preferences',
   available_in_pro: 'Available in Pro',
   some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
-  learn_more: 'Learn more'
+  learn_more: 'Learn more',
+  and: 'and',
+  or: 'or'
 }
 
 const es = {
@@ -301,7 +303,9 @@ const es = {
   preferences: 'Preferencias',
   available_in_pro: 'Disponible en Pro',
   some_fields_are_missing_in_the_formula: 'Faltan algunos campos en la fórmula.',
-  learn_more: 'Aprende más'
+  learn_more: 'Aprende más',
+  and: 'y',
+  or: 'o'
 }
 
 const it = {
@@ -454,7 +458,9 @@ const it = {
   preferences: 'Preferenze',
   available_in_pro: 'Disponibile in Pro',
   some_fields_are_missing_in_the_formula: 'Alcuni campi mancano nella formula.',
-  learn_more: 'Scopri di più'
+  learn_more: 'Scopri di più',
+  and: 'e',
+  or: 'o'
 }
 
 const pt = {
@@ -607,7 +613,9 @@ const pt = {
   preferences: 'Preferências',
   available_in_pro: 'Disponível no Pro',
   some_fields_are_missing_in_the_formula: 'Faltam alguns campos na fórmula.',
-  learn_more: 'Saiba mais'
+  learn_more: 'Saiba mais',
+  and: 'e',
+  or: 'ou'
 }
 
 const fr = {
@@ -760,7 +768,9 @@ const fr = {
   preferences: 'Préférences',
   available_in_pro: 'Disponible en version Pro',
   some_fields_are_missing_in_the_formula: 'Certains champs manquent dans la formule.',
-  learn_more: 'En savoir plus'
+  learn_more: 'En savoir plus',
+  and: 'et',
+  or: 'ou'
 }
 
 const de = {
@@ -913,7 +923,9 @@ const de = {
   preferences: 'Einstellungen',
   available_in_pro: 'In Pro verfügbar',
   some_fields_are_missing_in_the_formula: 'Einige Felder fehlen in der Formel.',
-  learn_more: 'Erfahren Sie mehr'
+  learn_more: 'Erfahren Sie mehr',
+  and: 'und',
+  or: 'oder'
 }
 
 export { en, es, it, pt, fr, de }

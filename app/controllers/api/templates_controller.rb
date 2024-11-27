@@ -105,7 +105,7 @@ module Api
                     :required, :readonly, :default_value,
                     :title, :description,
                     { preferences: {},
-                      conditions: [%i[field_uuid value action]],
+                      conditions: [%i[field_uuid value action operation]],
                       options: [%i[value uuid]],
                       validation: %i[message pattern],
                       areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]

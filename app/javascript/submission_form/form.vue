@@ -1027,35 +1027,46 @@ export default {
     },
     checkFieldConditions (field) {
       if (field.conditions?.length) {
-        return field.conditions.reduce((acc, c) => {
-          const field = this.fieldsUuidIndex[c.field_uuid]
-
-          if (['not_empty', 'checked', 'equal', 'contains'].includes(c.action) && field && !this.checkFieldConditions(field)) {
-            return false
-          }
-
-          if (['empty', 'unchecked'].includes(c.action)) {
-            return acc && isEmpty(this.values[c.field_uuid])
-          } else if (['not_empty', 'checked'].includes(c.action)) {
-            return acc && !isEmpty(this.values[c.field_uuid])
-          } else if (['equal', 'contains'].includes(c.action) && field) {
-            if (field.options) {
-              const option = field.options.find((o) => o.uuid === c.value)
-              const values = [this.values[c.field_uuid]].flat()
-
-              return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
-            } else {
-              return acc && [this.values[c.field_uuid]].flat().includes(c.value)
-            }
-          } else if (['not_equal', 'does_not_contain'].includes(c.action) && field) {
-            const option = field.options.find((o) => o.uuid === c.value)
-            const values = [this.values[c.field_uuid]].flat()
-
-            return acc && !values.includes(this.optionValue(option, field.options.indexOf(option)))
+        const result = field.conditions.reduce((acc, cond) => {
+          if (cond.operation === 'or') {
+            acc.push(acc.pop() || this.checkFieldCondition(cond))
           } else {
-            return acc
+            acc.push(this.checkFieldCondition(cond))
           }
-        }, true)
+
+          return acc
+        }, [])
+
+        return !result.includes(false)
+      } else {
+        return true
+      }
+    },
+    checkFieldCondition (condition) {
+      const field = this.fieldsUuidIndex[condition.field_uuid]
+
+      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field)) {
+        return false
+      }
+
+      if (['empty', 'unchecked'].includes(condition.action)) {
+        return isEmpty(this.values[condition.field_uuid])
+      } else if (['not_empty', 'checked'].includes(condition.action)) {
+        return !isEmpty(this.values[condition.field_uuid])
+      } else if (['equal', 'contains'].includes(condition.action) && field) {
+        if (field.options) {
+          const option = field.options.find((o) => o.uuid === condition.value)
+          const values = [this.values[condition.field_uuid]].flat()
+
+          return values.includes(this.optionValue(option, field.options.indexOf(option)))
+        } else {
+          return [this.values[condition.field_uuid]].flat().includes(condition.value)
+        }
+      } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
+        const option = field.options.find((o) => o.uuid === condition.value)
+        const values = [this.values[condition.field_uuid]].flat()
+
+        return !values.includes(this.optionValue(option, field.options.indexOf(option)))
       } else {
         return true
       }
