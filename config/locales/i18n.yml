@@ -646,6 +646,9 @@ en: &en
   this_month: This month
   last_month: Last month
   this_year: This year
+  policy_links: Policy Links
+  markdown_content_e_g: Markdown content, e.g.
+  privacy_policy: Privacy Policy
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1310,6 +1313,9 @@ es: &es
   this_month: Este Mes
   last_month: El Mes Pasado
   this_year: Este Año
+  policy_links: Enlaces de Políticas
+  markdown_content_e_g: Contenido Markdown, por ej.
+  privacy_policy: Política de Privacidad
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1974,6 +1980,9 @@ it: &it
   this_month: Questo Mese
   last_month: Mese Scorso
   this_year: "Quest'Anno"
+  policy_links: Collegamenti alle Politiche
+  markdown_content_e_g: Contenuto Markdown, ad es.
+  privacy_policy: Politica sulla Privacy
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2639,6 +2648,9 @@ fr: &fr
   this_month: Ce Mois-ci
   last_month: Le Mois Dernier
   this_year: Cette Année
+  policy_links: Liens des Politiques
+  markdown_content_e_g: Contenu Markdown, par ex.
+  privacy_policy: Politique de Confidentialité
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3303,6 +3315,9 @@ pt: &pt
   this_month: Este Mês
   last_month: Mês Passado
   this_year: Este Ano
+  policy_links: Links de Políticas
+  markdown_content_e_g: Conteúdo Markdown, ex.
+  privacy_policy: Política de Privacidade
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3967,6 +3982,9 @@ de: &de
   this_month: Dieser Monat
   last_month: Letzter Monat
   this_year: Dieses Jahr
+  policy_links: Richtlinien-Links
+  markdown_content_e_g: Markdown-Inhalt, z. B.
+  privacy_policy: Datenschutzrichtlinie
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
