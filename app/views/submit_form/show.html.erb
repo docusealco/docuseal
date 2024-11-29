@@ -4,7 +4,6 @@
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
-<% policy_links_config = AccountConfigs.find_for_account(@submitter.account, AccountConfig::POLICY_LINKS_KEY) unless Docuseal.multitenant? %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
@@ -64,10 +63,10 @@
         <% end %>
       <% end %>
       <%= render 'shared/attribution', link_path: '/start', account: @submitter.account, with_style: false %>
-      <% if policy_links_config %>
+      <% if @form_configs[:policy_links].present? %>
         <div class="text-center md:text-neutral-500 md:pr-3 md:pb-3 md:text-sm md:text-left mt-2 md:mt-0 md:fixed md:bottom-0 md:right-0">
           <div class="md:max-w-[8rem] flex flex-wrap md:flex-col justify-center md:justify-start md:items-start space-x-2 md:space-x-0">
-            <%= auto_link(MarkdownToHtml.call(policy_links_config.value)) %>
+            <%= auto_link(MarkdownToHtml.call(@form_configs[:policy_links])) %>
           </div>
         </div>
       <% end %>
