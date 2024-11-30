@@ -97,6 +97,23 @@ button[disabled] .enabled {
   bottom: auto;
 }
 
+.tooltip-bottom-start:before {
+  transform: translateX(-31%);
+  top: var(--tooltip-offset);
+  left: 100%;
+  right: auto;
+  bottom: auto;
+}
+
+.tooltip-bottom-start:after {
+  transform: translateX(-25%);
+  border-color: transparent transparent var(--tooltip-color) transparent;
+  top: var(--tooltip-tail-offset);
+  left: 50%;
+  right: auto;
+  bottom: auto;
+}
+
 .autocomplete {
   background: white;
   z-index: 1000;

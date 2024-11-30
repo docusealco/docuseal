@@ -209,7 +209,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconId } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -311,7 +311,8 @@ export default {
         cells: this.t('cells'),
         stamp: this.t('stamp'),
         payment: this.t('payment'),
-        phone: this.t('phone')
+        phone: this.t('phone'),
+        verification: this.t('verify_id')
       }
     },
     alignClasses () {
@@ -340,7 +341,8 @@ export default {
         cells: IconColumns3,
         multiple: IconChecks,
         phone: IconPhoneCheck,
-        payment: IconCreditCard
+        payment: IconCreditCard,
+        verification: IconId
       }
     },
     image () {

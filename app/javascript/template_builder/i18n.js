@@ -1,4 +1,6 @@
 const en = {
+  verify_id: 'Verify ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtain qualified electronic signature (QeS) with the trusted provider. Click to learn more.',
   editable: 'Editable',
   recurrent: 'Recurrent',
   one_off: 'One-off',
@@ -154,6 +156,8 @@ const en = {
 }
 
 const es = {
+  verify_id: 'Verificar ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenga una firma electrónica cualificada (QeS) con el proveedor de confianza. Haga clic para obtener más información.',
   recurrent: 'Recurrente',
   one_off: 'Único',
   editable: 'Editable',
@@ -309,6 +313,8 @@ const es = {
 }
 
 const it = {
+  verify_id: 'Verifica ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Ottieni una firma elettronica qualificata (QeS) con il fornitore di fiducia. Clicca per saperne di più.',
   ricorrente: 'Ricorrente',
   una_volta: 'Una volta',
   editable: 'Modificabile',
@@ -464,6 +470,8 @@ const it = {
 }
 
 const pt = {
+  verify_id: 'Verificar ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenha a assinatura eletrônica qualificada (QeS) com o provedor confiável. Clique para saber mais.',
   recurrent: 'Recurrente',
   one_off: 'Único',
   editable: 'Editável',
@@ -619,6 +627,8 @@ const pt = {
 }
 
 const fr = {
+  verify_id: "Vérifier l'ID",
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenez une signature électronique qualifiée (QeS) avec le fournisseur de confiance. Cliquez pour en savoir plus.',
   recurrent: 'Récurrent',
   one_off: 'Ponctuel',
   editable: 'Éditable',
@@ -774,6 +784,8 @@ const fr = {
 }
 
 const de = {
+  verify_id: 'ID überprüfen',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Erhalten Sie eine qualifizierte elektronische Signatur (QeS) beim vertrauenswürdigen Anbieter. Klicken Sie hier, um mehr zu erfahren.',
   wiederkehrend: 'Wiederkehrend',
   einmalig: 'Einmalig',
   editable: 'Bearbeitbar',

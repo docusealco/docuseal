@@ -55,7 +55,7 @@
           v-for="(icon, type) in fieldIconsSorted"
           :key="type"
         >
-          <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
+          <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')">
             <a
               href="#"
               class="text-sm py-1 px-2"
@@ -85,7 +85,7 @@ export default {
     IconPlus,
     IconX
   },
-  inject: ['withPhone', 'withPayment', 'backgroundColor', 't'],
+  inject: ['withPhone', 'withPayment', 'withVerification', 'backgroundColor', 't'],
   props: {
     modelValue: {
       type: String,

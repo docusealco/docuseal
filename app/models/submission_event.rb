@@ -46,6 +46,8 @@ class SubmissionEvent < ApplicationRecord
     click_sms: 'click_sms',
     phone_verified: 'phone_verified',
     start_form: 'start_form',
+    start_verification: 'start_verification',
+    complete_verification: 'complete_verification',
     view_form: 'view_form',
     invite_party: 'invite_party',
     complete_form: 'complete_form',

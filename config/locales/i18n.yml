@@ -618,6 +618,8 @@ en: &en
   stamp_field: Stamp Field
   payment_field: Payment Field
   phone_field: Phone Field
+  verification_field: Identity Verification
+  identity_verification: Identity verification
   paid_price: 'Paid %{price}'
   verified: Verified
   unverified: Unverified
@@ -662,6 +664,8 @@ en: &en
     view_form_by_html: '<b>Form viewed</b> by %{submitter_name}'
     invite_party_by_html: '<b>Invited</b> %{invited_submitter_name} by %{submitter_name}'
     complete_form_by_html: '<b>Submission completed</b> by %{submitter_name}'
+    start_verification_by_html: '<b>Identity verification started</b> by %{submitter_name}'
+    complete_verification_by_html: '<b>Identity verification completed</b> by %{submitter_name} with %{provider}'
     api_complete_form_by_html: '<b>Submission completed via API</b> by %{submitter_name}'
   import_list:
     select_worksheet: Select Worksheet
@@ -1285,6 +1289,8 @@ es: &es
   stamp_field: Campo de Sello
   payment_field: Campo de Pago
   phone_field: Campo de Teléfono
+  verification_field: Verificación de Identidad
+  identity_verification: Verificación de Identidad
   paid_price: 'Pagado %{price}'
   verified: Verificado
   unverified: No verificado
@@ -1330,6 +1336,8 @@ es: &es
     invite_party_by_html: '<b>Invitado</b> %{invited_submitter_name} por %{submitter_name}'
     complete_form_by_html: '<b>Envío completado</b> por %{submitter_name}'
     api_complete_form_by_html: '<b>Envío completado vía API</b> por %{submitter_name}'
+    start_verification_by_html: '<b>Verificación de identidad iniciada</b> por %{submitter_name}'
+    complete_verification_by_html: '<b>Verificación de identidad completada</b> por %{submitter_name} con %{provider}'
   import_list:
     select_worksheet: Seleccionar hoja de cálculo
     open: Abrir
@@ -1952,6 +1960,8 @@ it: &it
   stamp_field: Campo Timbro
   payment_field: Campo Pagamento
   phone_field: Campo Telefono
+  verification_field: "Verifica dell'identità"
+  identity_verification: "Verifica dell'identità"
   paid_price: 'Pagato %{price}'
   verified: Verificato
   unverified: Non verificato
@@ -1997,6 +2007,8 @@ it: &it
     invite_party_by_html: '<b>Invitato</b> %{invited_submitter_name} da %{submitter_name}'
     complete_form_by_html: '<b>Invio completato</b> da %{submitter_name}'
     api_complete_form_by_html: '<b>Invio completato tramite API</b> da %{submitter_name}'
+    start_verification_by_html: "<b>Verifica dell'identità iniziata</b> da %{submitter_name}"
+    complete_verification_by_html: "<b>Verifica dell'identità completata</b> da %{submitter_name} con %{provider}"
   import_list:
     select_worksheet: Seleziona il foglio di lavoro
     open: Apri
@@ -2620,6 +2632,8 @@ fr: &fr
   stamp_field: Champ de Tampon
   payment_field: Champ de Paiement
   phone_field: Champ de Téléphone
+  verification_field: "Vérification d'Identité"
+  identity_verification: "Vérification d'identité"
   paid_price: 'Payé %{price}'
   verified: Vérifié
   unverified: Non vérifié
@@ -2664,6 +2678,8 @@ fr: &fr
     view_form_by_html: '<b>Formulaire consulté</b> par %{submitter_name}'
     invite_party_by_html: '<b>Invité</b> %{invited_submitter_name} par %{submitter_name}'
     complete_form_by_html: '<b>Soumission terminée</b> par %{submitter_name}'
+    start_verification_by_html: "<b>Vérification d'identité commencée</b> par %{submitter_name}"
+    complete_verification_by_html: "<b>Vérification d'identité terminée</b> par %{submitter_name} avec %{provider}"
     api_complete_form_by_html: "<b>Soumission terminée via l'API</b> par %{submitter_name}"
   import_list:
     select_worksheet: Sélectionner la feuille de calcul
@@ -3287,6 +3303,8 @@ pt: &pt
   stamp_field: Campo de Carimbo
   payment_field: Campo de Pagamento
   phone_field: Campo de Telefone
+  verification_field: "Verificação de Identidade"
+  identity_verification: "Verificação de identidade"
   paid_price: 'Pago %{price}'
   verified: Verificado
   unverified: Não verificado
@@ -3331,6 +3349,8 @@ pt: &pt
     view_form_by_html: '<b>Formulário visualizado</b> por %{submitter_name}'
     invite_party_by_html: '<b>Convidado</b> %{invited_submitter_name} por %{submitter_name}'
     complete_form_by_html: '<b>Submissão concluída</b> por %{submitter_name}'
+    start_verification_by_html: '<b>Verificação de identidade iniciada</b> por %{submitter_name}'
+    complete_verification_by_html: '<b>Verificação de identidade concluída</b> por %{submitter_name} com %{provider}'
     api_complete_form_by_html: '<b>Submissão concluída via API</b> por %{submitter_name}'
   import_list:
     select_worksheet: Selecionar planilha
@@ -3954,6 +3974,8 @@ de: &de
   stamp_field: Stempelfeld
   payment_field: Zahlungsfeld
   phone_field: Telefonfeld
+  verification_field: Identitätsüberprüfung
+  identity_verification: Identitätsüberprüfung
   paid_price: 'Bezahlt %{price}'
   verified: Verifiziert
   unverified: Nicht verifiziert
@@ -3998,6 +4020,8 @@ de: &de
     view_form_by_html: '<b>Formular angesehen</b> von %{submitter_name}'
     invite_party_by_html: '<b>Eingeladen</b> %{invited_submitter_name} von %{submitter_name}'
     complete_form_by_html: '<b>Einreichung abgeschlossen</b> von %{submitter_name}'
+    start_verification_by_html: '<b>Identitätsüberprüfung gestartet</b> von %{submitter_name}'
+    complete_verification_by_html: '<b>Identitätsüberprüfung abgeschlossen</b> von %{submitter_name} mit %{provider}'
     api_complete_form_by_html: '<b>Einreichung über API abgeschlossen</b> von %{submitter_name}'
   import_list:
     select_worksheet: Arbeitsblatt auswählen

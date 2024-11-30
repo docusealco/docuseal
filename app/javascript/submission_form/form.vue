@@ -448,9 +448,22 @@
             @focus="scrollIntoField(currentField)"
             @submit="!isSubmitting && submitStep()"
           />
+          <VerificationStep
+            v-else-if="currentField.type === 'verification'"
+            ref="currentStep"
+            :key="currentField.uuid"
+            :locale="language?.toLowerCase() || browserLanguage"
+            :submitter="submitter"
+            :empty-value-required-step="emptyValueRequiredStep"
+            :field="currentField"
+            :submitter-slug="submitterSlug"
+            :values="values"
+            @focus="scrollIntoField(currentField)"
+            @submit="!isSubmitting && submitStep()"
+          />
         </div>
         <div
-          v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
+          v-if="(currentField.type !== 'payment' && currentField.type !== 'verification') || submittedValues[currentField.uuid]"
           :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
         >
           <button
@@ -537,6 +550,7 @@ import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import PaymentStep from './payment_step'
+import VerificationStep from './verification_step'
 import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
@@ -579,6 +593,7 @@ export default {
     IconWritingSign,
     AttachmentStep,
     InitialsStep,
+    VerificationStep,
     InviteForm,
     MultiSelectStep,
     IconInnerShadowTop,
@@ -908,7 +923,23 @@ export default {
       return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f))
     },
     stepFields () {
-      return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
+      const verificationFields = []
+
+      const sortedFields = this.fields.reduce((acc, f) => {
+        if (f.type === 'verification') {
+          verificationFields.push(f)
+        } else if (!f.readonly) {
+          acc.push(f)
+        }
+
+        return acc
+      }, [])
+
+      if (verificationFields.length) {
+        sortedFields.push(verificationFields.pop())
+      }
+
+      return sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (this.checkFieldConditions(f)) {
@@ -1224,7 +1255,7 @@ export default {
 
       const submitStep = this.currentStep
 
-      const stepPromise = ['signature', 'phone', 'initials', 'payment'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 

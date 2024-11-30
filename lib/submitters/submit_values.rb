@@ -128,6 +128,17 @@ module Submitters
           next
         end
 
+        if field['type'] == 'verification'
+          acc[field['uuid']] =
+            if submitter.submission_events.exists?(event_type: :complete_verification)
+              I18n.t(:verified, locale: :en)
+            elsif field['required']
+              raise ValidationError, 'ID Not Verified'
+            end
+
+          next
+        end
+
         value = field['default_value']
 
         next if value.blank?
