@@ -77,14 +77,18 @@ module Submissions
     end
 
     def build_values_hash(submission)
-      submission.submitters.reduce({}) { |acc, s| acc.merge(s.values) }.hash
+      Digest::MD5.hexdigest(
+        submission.submitters.reduce({}) { |acc, s| acc.merge(s.values) }.to_json
+      )
     end
 
     def build_submitter_values_hash(submitter)
       submission = submitter.submission
 
-      submission.submitters.where.not(completed_at: nil).or(submission.submitters.where(id: submitter.id))
-                .reduce({}) { |acc, s| acc.merge(s.values) }.hash
+      Digest::MD5.hexdigest(
+        submission.submitters.where.not(completed_at: nil).or(submission.submitters.where(id: submitter.id))
+                  .reduce({}) { |acc, s| acc.merge(s.values) }.to_json
+      )
     end
 
     def build_pdf_attachment(pdf:, submission:, submitter:, uuid:, name:, values_hash:)
