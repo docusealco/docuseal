@@ -1,0 +1,23 @@
+<% unless Docuseal.multitenant? %>
+  <div class="collapse collapse-plus bg-base-200 mt-4">
+    <input type="checkbox">
+    <div class="collapse-title text-xl font-medium">
+      <div>
+        <%= t('policy_links') %>
+      </div>
+    </div>
+    <div class="collapse-content">
+      <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::POLICY_LINKS_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+        <%= f.hidden_field :key %>
+        <div class="form-control">
+          <autoresize-textarea>
+            <%= f.text_area :value, class: 'base-input w-full py-2 font-mono', placeholder: "#{t('markdown_content_e_g')}\n[#{t('privacy_policy')}](https://example.com/privacy)" %>
+          </autoresize-textarea>
+        </div>
+        <div class="form-control pt-2">
+          <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

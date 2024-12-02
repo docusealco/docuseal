@@ -1,4 +1,7 @@
 const en = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
+  verify_id: 'Verify ID',
+  identity_verification: 'Identity verification',
   complete: 'Complete',
   fill_all_required_fields_to_complete: 'Fill all required fields to complete',
   sign_and_complete: 'Sign and Complete',
@@ -94,6 +97,9 @@ const en = {
 }
 
 const es = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Complete todos los campos requeridos para continuar con la verificación de identidad.',
+  verify_id: 'Verificar ID',
+  identity_verification: 'Verificación de identidad',
   complete: 'Completar',
   fill_all_required_fields_to_complete: 'Complete todos los campos requeridos para finalizar',
   sign_and_complete: 'Firmar y Completar',
@@ -188,6 +194,9 @@ const es = {
 }
 
 const it = {
+  complete_all_required_fields_to_proceed_with_identity_verification: "Compila tutti i campi obbligatori per procedere con la verifica dell'identità.",
+  verify_id: 'Verifica ID',
+  identity_verification: "Verifica dell'identità",
   complete: 'Completa',
   fill_all_required_fields_to_complete: 'Compila tutti i campi obbligatori per completare',
   sign_and_complete: 'Firma e Completa',
@@ -282,6 +291,9 @@ const it = {
 }
 
 const de = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Vervollständigen Sie alle erforderlichen Felder, um mit der Identitätsverifizierung fortzufahren.',
+  verify_id: 'ID überprüfen',
+  identity_verification: 'Identitätsüberprüfung',
   complete: 'Abschließen',
   fill_all_required_fields_to_complete: 'Alle erforderlichen Felder ausfüllen, um abzuschließen',
   sign_and_complete: 'Signieren und Abschließen',
@@ -376,6 +388,9 @@ const de = {
 }
 
 const fr = {
+  complete_all_required_fields_to_proceed_with_identity_verification: "Veuillez remplir tous les champs obligatoires pour continuer la vérification de l'identité.",
+  verif_id: "Vérification de l'ID",
+  verif_identite: "Vérification de l'identité",
   complete: 'Terminer',
   fill_all_required_fields_to_complete: 'Veuillez remplir tous les champs obligatoires pour compléter',
   sign_and_complete: 'Signer et Terminer',
@@ -470,6 +485,9 @@ const fr = {
 }
 
 const pl = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Uzupełnij wszystkie wymagane pola, aby kontynuować weryfikację tożsamości.',
+  verify_id: 'Zweryfikuj ID',
+  identity_verification: 'Weryfikacja tożsamości',
   complete: 'Zakończ',
   fill_all_required_fields_to_complete: 'Uzupełnij wszystkie wymagane pola, aby zakończyć',
   sign_and_complete: 'Podpisz i zakończ',
@@ -564,6 +582,9 @@ const pl = {
 }
 
 const uk = {
+  complete_all_required_fields_to_proceed_with_identity_verification: "Заповніть всі обов'язкові поля, щоб продовжити перевірку особи.",
+  verify_id: 'Підтвердження ідентичності',
+  identity_verification: 'Ідентифікація особи',
   complete: 'Завершити',
   fill_all_required_fields_to_complete: "Заповніть всі обов'язкові поля для завершення",
   sign_and_complete: 'Підписати і завершити',
@@ -658,6 +679,9 @@ const uk = {
 }
 
 const cs = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Vyplňte všechna povinná pole, abyste mohli pokračovat v ověření identity.',
+  verify_id: 'Ověřit ID',
+  identity_verification: 'Ověření identity',
   complete: 'Dokončit',
   fill_all_required_fields_to_complete: 'Please complete all mandatory fields',
   sign_and_complete: 'Podepsat a dokončit',
@@ -752,6 +776,9 @@ const cs = {
 }
 
 const pt = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Preencha todos os campos obrigatórios para prosseguir com a verificação de identidade.',
+  verify_id: 'Verificar ID',
+  identity_verification: 'Verificação de identidade',
   complete: 'Completar',
   preencher_todos_os_campos_obrigatórios_para_concluir: 'Preencher todos os campos obrigatórios para concluir',
   sign_and_complete: 'Assinar e Completar',
@@ -846,6 +873,9 @@ const pt = {
 }
 
 const he = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'מלא את כל השדות הנדרשים כדי להמשיך עם אימות זהות.',
+  verify_id: 'אמת מזהה',
+  identity_verification: 'אימות זהות',
   complete: 'השלם',
   fill_all_required_fields_to_complete: 'נא למלא את כל השדות הנדרשים להשלמה',
   sign_and_complete: 'חתום והשלם',
@@ -941,6 +971,9 @@ const he = {
 }
 
 const nl = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'Vul alle verplichte velden in om door te gaan met de identiteitsverificatie.',
+  verify_id: 'Verifiëren ID',
+  identity_verification: 'Identiteitsverificatie',
   complete: 'Voltooien',
   vul_alle_verplichte_velden_in_om_te_voltooien: 'Vul alle verplichte velden in om te voltooien',
   sign_and_complete: 'Ondertekenen en voltooien',
@@ -1036,6 +1069,9 @@ const nl = {
 }
 
 const ar = {
+  complete_all_required_fields_to_proceed_with_identity_verification: 'أكمل جميع الحقول المطلوبة للمتابعة في التحقق من الهوية.',
+  verify_id: 'تحقق من الهوية',
+  identity_verification: 'التحقق من الهوية',
   complete: 'اكتمال',
   fill_all_required_fields_to_complete: 'يرجى ملء جميع الحقول المطلوبة لإكمال',
   sign_and_complete: 'التوقيع والاكتمال',
@@ -1130,6 +1166,9 @@ const ar = {
 }
 
 const ko = {
+  complete_all_required_fields_to_proceed_with_identity_verification: '신원 확인을 진행하려면 모든 필수 필드를 작성하십시오.',
+  verify_id: '아이디 확인',
+  identity_verification: '신원 확인',
   complete: '완료',
   fill_all_required_fields_to_complete: '모든 필수 필드를 작성하여 완료하세요',
   sign_and_complete: '서명하고 완료하기',

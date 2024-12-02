@@ -455,6 +455,7 @@ export default {
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
+      withVerification: this.withVerification,
       withPayment: this.withPayment,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
@@ -634,6 +635,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withVerification: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     withPayment: {
       type: Boolean,
@@ -1075,7 +1081,7 @@ export default {
       } else if (type === 'image') {
         area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
-      } else if (type === 'signature' || type === 'stamp') {
+      } else if (type === 'signature' || type === 'stamp' || type === 'verification') {
         area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight) / 2
       } else if (type === 'initials') {
@@ -1239,7 +1245,7 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (field.type === 'signature' || field.type === 'stamp') {
+        } else if (field.type === 'signature' || field.type === 'stamp' || field.type === 'verification') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2

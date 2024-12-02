@@ -128,6 +128,17 @@ module Submitters
           next
         end
 
+        if field['type'] == 'verification'
+          acc[field['uuid']] =
+            if submitter.submission_events.exists?(event_type: :complete_verification)
+              I18n.t(:verified, locale: :en)
+            elsif field['required']
+              raise ValidationError, 'ID Not Verified'
+            end
+
+          next
+        end
+
         value = field['default_value']
 
         next if value.blank?
@@ -175,38 +186,46 @@ module Submitters
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
-        submitter.values.delete(field['uuid']) unless check_field_condition(submitter, field, fields_uuid_index)
+        submitter.values.delete(field['uuid']) unless check_field_conditions(submitter, field, fields_uuid_index)
       end
 
       submitter.values
     end
 
-    def check_field_condition(submitter, field, fields_uuid_index)
+    def check_field_conditions(submitter, field, fields_uuid_index)
       return true if field['conditions'].blank?
 
       submitter_values = submitter.values
 
-      field['conditions'].reduce(true) do |acc, c|
-        case c['action']
-        when 'empty', 'unchecked'
-          acc && submitter_values[c['field_uuid']].blank?
-        when 'not_empty', 'checked'
-          acc && submitter_values[c['field_uuid']].present?
-        when 'equal', 'contains'
-          field = fields_uuid_index[c['field_uuid']]
-          option = field['options'].find { |o| o['uuid'] == c['value'] }
-          values = Array.wrap(submitter_values[c['field_uuid']])
-
-          acc && values.include?(option['value'].presence || "Option #{field['options'].index(option)}")
-        when 'not_equal', 'does_not_contain'
-          field = fields_uuid_index[c['field_uuid']]
-          option = field['options'].find { |o| o['uuid'] == c['value'] }
-          values = Array.wrap(submitter_values[c['field_uuid']])
-
-          acc && values.exclude?(option['value'].presence || "Option #{field['options'].index(option)}")
+      field['conditions'].each_with_object([]) do |c, acc|
+        if c['operation'] == 'or'
+          acc.push(acc.pop || check_field_condition(c, submitter_values, fields_uuid_index))
         else
-          acc
+          acc.push(check_field_condition(c, submitter_values, fields_uuid_index))
         end
+      end.exclude?(false)
+    end
+
+    def check_field_condition(condition, submitter_values, fields_uuid_index)
+      case condition['action']
+      when 'empty', 'unchecked'
+        submitter_values[condition['field_uuid']].blank?
+      when 'not_empty', 'checked'
+        submitter_values[condition['field_uuid']].present?
+      when 'equal', 'contains'
+        field = fields_uuid_index[condition['field_uuid']]
+        option = field['options'].find { |o| o['uuid'] == condition['value'] }
+        values = Array.wrap(submitter_values[condition['field_uuid']])
+
+        values.include?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option)}")
+      when 'not_equal', 'does_not_contain'
+        field = fields_uuid_index[condition['field_uuid']]
+        option = field['options'].find { |o| o['uuid'] == condition['value'] }
+        values = Array.wrap(submitter_values[condition['field_uuid']])
+
+        values.exclude?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option)}")
+      else
+        true
       end
     end
 

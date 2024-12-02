@@ -10,7 +10,8 @@ module Submitters
                     AccountConfig::ALLOW_TO_DECLINE_KEY,
                     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
                     AccountConfig::REUSE_SIGNATURE_KEY,
-                    AccountConfig::ALLOW_TYPED_SIGNATURE].freeze
+                    AccountConfig::ALLOW_TYPED_SIGNATURE,
+                    *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
 
     module_function
 
@@ -26,6 +27,7 @@ module Submitters
       with_decline = find_safe_value(configs, AccountConfig::ALLOW_TO_DECLINE_KEY) != false
       with_signature_id = find_safe_value(configs, AccountConfig::WITH_SIGNATURE_ID) == true
       require_signing_reason = find_safe_value(configs, AccountConfig::REQUIRE_SIGNING_REASON_KEY) == true
+      policy_links = find_safe_value(configs, AccountConfig::POLICY_LINKS_KEY)
 
       attrs = {
         completed_button:,
@@ -33,6 +35,7 @@ module Submitters
         with_confetti:,
         reuse_signature:,
         with_decline:,
+        policy_links:,
         completed_message:,
         require_signing_reason:,
         prefill_signature:,

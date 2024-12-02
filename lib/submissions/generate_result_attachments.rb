@@ -42,6 +42,8 @@ module Submissions
 
     # rubocop:disable Metrics
     def call(submitter)
+      return generate_detached_signature_attachments(submitter) if detached_signature?(submitter)
+
       pdfs_index = generate_pdfs(submitter)
 
       template = submitter.submission.template
@@ -673,6 +675,14 @@ module Submissions
 
     def info_creator
       "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
+    end
+
+    def detached_signature?(_submitter)
+      false
+    end
+
+    def generate_detached_signature_attachments(_submitter)
+      []
     end
 
     def h

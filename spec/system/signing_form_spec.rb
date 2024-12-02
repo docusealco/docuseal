@@ -579,6 +579,199 @@ RSpec.describe 'Signing Form', type: :system do
     end
   end
 
+  context 'when the field with conditions' do
+    let(:template) { create(:template, account:, author:, only_field_types: ['text']) }
+    let(:submission) { create(:submission, :with_submitters, template:) }
+    let(:template_attachment) { template.schema.first }
+    let(:template_submitter) { submission.template_submitters.first }
+    let(:submitter) { submission.submitters.first }
+    let(:fields) do
+      [
+        {
+          'uuid' => 'da7e0d56-fdb0-441a-bbed-d0f6f2e10fd6',
+          'submitter_uuid' => submitter.uuid,
+          'name' => 'Full Name',
+          'type' => 'text',
+          'required' => false,
+          'preferences' => {},
+          'conditions' => [],
+          'areas' => [
+            {
+              'x' => 0.1117351575121163,
+              'y' => 0.08950650415231329,
+              'w' => 0.2,
+              'h' => 0.02857142857142857,
+              'attachment_uuid' => template_attachment['attachment_uuid'],
+              'page' => 0
+            }
+          ]
+        },
+        {
+          'uuid' => 'd32ad52a-8f6b-4e32-b0d6-6258fb47440b',
+          'submitter_uuid' => submitter.uuid,
+          'name' => 'Email',
+          'type' => 'text',
+          'required' => false,
+          'preferences' => {},
+          'conditions' => [],
+          'validation' => { 'pattern' => '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$' },
+          'areas' => [
+            {
+              'x' => 0.1097914983844911,
+              'y' => 0.1417641720258019,
+              'w' => 0.2,
+              'h' => 0.02857142857142857,
+              'attachment_uuid' => template_attachment['attachment_uuid'],
+              'page' => 0
+            }
+          ]
+        },
+        {
+          'uuid' => 'c6e013ae-f9f6-4b3a-ad33-b7e772a0a49f',
+          'submitter_uuid' => submitter.uuid,
+          'name' => 'Phone',
+          'type' => 'text',
+          'required' => false,
+          'preferences' => {},
+          'areas' => [
+            {
+              'x' => 0.1100060581583199,
+              'y' => 0.2553160344676159,
+              'w' => 0.2,
+              'h' => 0.02857142857142857,
+              'attachment_uuid' => template_attachment['attachment_uuid'],
+              'page' => 0
+            }
+          ]
+        },
+        {
+          'uuid' => '64523936-22fd-41f8-b997-ede8fbe467cc',
+          'submitter_uuid' => submitter.uuid,
+          'name' => 'Comment',
+          'type' => 'text',
+          'required' => false,
+          'preferences' => {},
+          'conditions' => [
+            { 'field_uuid' => 'da7e0d56-fdb0-441a-bbed-d0f6f2e10fd6', 'action' => 'not_empty' },
+            { 'field_uuid' => 'd32ad52a-8f6b-4e32-b0d6-6258fb47440b', 'action' => 'not_empty' },
+            { 'field_uuid' => 'c6e013ae-f9f6-4b3a-ad33-b7e772a0a49f', 'action' => 'not_empty', 'operation' => 'or' }
+          ],
+          'areas' => [
+            {
+              'x' => 0.1145875403877221,
+              'y' => 0.1982961365432846,
+              'w' => 0.2,
+              'h' => 0.02857142857142857,
+              'attachment_uuid' => template_attachment['attachment_uuid'],
+              'page' => 0
+            }
+          ]
+        }
+      ]
+    end
+
+    before do
+      template.update(fields:)
+      submission.update(template_fields: fields)
+    end
+
+    it 'completes the form and saves the conditional field when all required fields are filled' do
+      visit submit_form_path(slug: submitter.slug)
+      fill_in 'Full Name (optional)', with: 'John Doe'
+      click_button 'next'
+
+      fill_in 'Email (optional)', with: 'john.due@example.com'
+      click_button 'next'
+
+      fill_in 'Phone (optional)', with: '+1 (773) 229-8825'
+      click_button 'next'
+
+      fill_in 'Comment', with: 'This is a comment'
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'Full Name')).to eq 'John Doe'
+      expect(field_value(submitter, 'Email')).to eq 'john.due@example.com'
+      expect(field_value(submitter, 'Phone')).to eq '+1 (773) 229-8825'
+      expect(field_value(submitter, 'Comment')).to eq 'This is a comment'
+    end
+
+    it 'completes the form and saves the conditional field when minimum required fields are filled' do
+      visit submit_form_path(slug: submitter.slug)
+      fill_in 'Full Name (optional)', with: 'John Doe'
+      click_button 'next'
+
+      fill_in 'Email (optional)', with: 'john.due@example.com'
+      click_button 'next'
+
+      fill_in 'Phone (optional)', with: ''
+      click_button 'next'
+
+      fill_in 'Comment', with: 'This is a comment'
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'Full Name')).to eq 'John Doe'
+      expect(field_value(submitter, 'Email')).to eq 'john.due@example.com'
+      expect(field_value(submitter, 'Phone')).to be_empty
+      expect(field_value(submitter, 'Comment')).to eq 'This is a comment'
+    end
+
+    it 'completes the form without saving the conditional field when not enough fields are filled' do
+      visit submit_form_path(slug: submitter.slug)
+
+      fill_in 'Full Name (optional)', with: 'Jane Doe'
+      click_button 'next'
+
+      fill_in 'Email (optional)', with: ''
+      click_button 'next'
+
+      fill_in 'Phone (optional)', with: ''
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'Full Name')).to eq 'Jane Doe'
+      expect(field_value(submitter, 'Email')).to be_empty
+      expect(field_value(submitter, 'Phone')).to be_empty
+      expect(field_value(submitter, 'Comment')).to be_nil
+    end
+
+    it 'completes the form without saving the conditional field when only partial fields are filled' do
+      visit submit_form_path(slug: submitter.slug)
+
+      fill_in 'Full Name (optional)', with: ''
+      click_button 'next'
+
+      fill_in 'Email (optional)', with: 'john.due@example.com'
+      click_button 'next'
+
+      fill_in 'Phone (optional)', with: '+1 (773) 229-8825'
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'Full Name')).to be_empty
+      expect(field_value(submitter, 'Email')).to eq 'john.due@example.com'
+      expect(field_value(submitter, 'Phone')).to eq '+1 (773) 229-8825'
+      expect(field_value(submitter, 'Comment')).to be_nil
+    end
+  end
+
   it 'sends completed email' do
     template = create(:template, account:, author:, only_field_types: %w[text signature])
     submission = create(:submission, template:)

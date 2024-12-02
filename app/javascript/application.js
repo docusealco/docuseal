@@ -113,6 +113,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       backgroundColor: '#faf7f5',
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
+      withVerification: ['true', 'false'].includes(this.dataset.withVerification) ? this.dataset.withVerification === 'true' : null,
       withLogo: this.dataset.withLogo !== 'false',
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,

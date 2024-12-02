@@ -87,7 +87,7 @@ module Api
 
     def filter_templates(templates, params)
       templates = Templates.search(templates, params[:q])
-      templates = params[:archived] ? templates.archived : templates.active
+      templates = params[:archived].in?(['true', true]) ? templates.archived : templates.active
       templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
       templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?
       templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
@@ -105,7 +105,7 @@ module Api
                     :required, :readonly, :default_value,
                     :title, :description,
                     { preferences: {},
-                      conditions: [%i[field_uuid value action]],
+                      conditions: [%i[field_uuid value action operation]],
                       options: [%i[value uuid]],
                       validation: %i[message pattern],
                       areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]

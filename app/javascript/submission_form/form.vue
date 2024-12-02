@@ -448,9 +448,22 @@
             @focus="scrollIntoField(currentField)"
             @submit="!isSubmitting && submitStep()"
           />
+          <VerificationStep
+            v-else-if="currentField.type === 'verification'"
+            ref="currentStep"
+            :key="currentField.uuid"
+            :locale="language?.toLowerCase() || browserLanguage"
+            :submitter="submitter"
+            :empty-value-required-step="emptyValueRequiredStep"
+            :field="currentField"
+            :submitter-slug="submitterSlug"
+            :values="values"
+            @focus="scrollIntoField(currentField)"
+            @submit="!isSubmitting && submitStep()"
+          />
         </div>
         <div
-          v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
+          v-if="(currentField.type !== 'payment' && currentField.type !== 'verification') || submittedValues[currentField.uuid]"
           :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
         >
           <button
@@ -537,6 +550,7 @@ import AttachmentStep from './attachment_step'
 import MultiSelectStep from './multi_select_step'
 import PhoneStep from './phone_step'
 import PaymentStep from './payment_step'
+import VerificationStep from './verification_step'
 import TextStep from './text_step'
 import NumberStep from './number_step'
 import DateStep from './date_step'
@@ -579,6 +593,7 @@ export default {
     IconWritingSign,
     AttachmentStep,
     InitialsStep,
+    VerificationStep,
     InviteForm,
     MultiSelectStep,
     IconInnerShadowTop,
@@ -908,7 +923,23 @@ export default {
       return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f))
     },
     stepFields () {
-      return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
+      const verificationFields = []
+
+      const sortedFields = this.fields.reduce((acc, f) => {
+        if (f.type === 'verification') {
+          verificationFields.push(f)
+        } else if (!f.readonly) {
+          acc.push(f)
+        }
+
+        return acc
+      }, [])
+
+      if (verificationFields.length) {
+        sortedFields.push(verificationFields.pop())
+      }
+
+      return sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (this.checkFieldConditions(f)) {
@@ -1027,35 +1058,46 @@ export default {
     },
     checkFieldConditions (field) {
       if (field.conditions?.length) {
-        return field.conditions.reduce((acc, c) => {
-          const field = this.fieldsUuidIndex[c.field_uuid]
-
-          if (['not_empty', 'checked', 'equal', 'contains'].includes(c.action) && field && !this.checkFieldConditions(field)) {
-            return false
-          }
-
-          if (['empty', 'unchecked'].includes(c.action)) {
-            return acc && isEmpty(this.values[c.field_uuid])
-          } else if (['not_empty', 'checked'].includes(c.action)) {
-            return acc && !isEmpty(this.values[c.field_uuid])
-          } else if (['equal', 'contains'].includes(c.action) && field) {
-            if (field.options) {
-              const option = field.options.find((o) => o.uuid === c.value)
-              const values = [this.values[c.field_uuid]].flat()
-
-              return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
-            } else {
-              return acc && [this.values[c.field_uuid]].flat().includes(c.value)
-            }
-          } else if (['not_equal', 'does_not_contain'].includes(c.action) && field) {
-            const option = field.options.find((o) => o.uuid === c.value)
-            const values = [this.values[c.field_uuid]].flat()
-
-            return acc && !values.includes(this.optionValue(option, field.options.indexOf(option)))
+        const result = field.conditions.reduce((acc, cond) => {
+          if (cond.operation === 'or') {
+            acc.push(acc.pop() || this.checkFieldCondition(cond))
           } else {
-            return acc
+            acc.push(this.checkFieldCondition(cond))
           }
-        }, true)
+
+          return acc
+        }, [])
+
+        return !result.includes(false)
+      } else {
+        return true
+      }
+    },
+    checkFieldCondition (condition) {
+      const field = this.fieldsUuidIndex[condition.field_uuid]
+
+      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field)) {
+        return false
+      }
+
+      if (['empty', 'unchecked'].includes(condition.action)) {
+        return isEmpty(this.values[condition.field_uuid])
+      } else if (['not_empty', 'checked'].includes(condition.action)) {
+        return !isEmpty(this.values[condition.field_uuid])
+      } else if (['equal', 'contains'].includes(condition.action) && field) {
+        if (field.options) {
+          const option = field.options.find((o) => o.uuid === condition.value)
+          const values = [this.values[condition.field_uuid]].flat()
+
+          return values.includes(this.optionValue(option, field.options.indexOf(option)))
+        } else {
+          return [this.values[condition.field_uuid]].flat().includes(condition.value)
+        }
+      } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
+        const option = field.options.find((o) => o.uuid === condition.value)
+        const values = [this.values[condition.field_uuid]].flat()
+
+        return !values.includes(this.optionValue(option, field.options.indexOf(option)))
       } else {
         return true
       }
@@ -1213,7 +1255,7 @@ export default {
 
       const submitStep = this.currentStep
 
-      const stepPromise = ['signature', 'phone', 'initials', 'payment'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 

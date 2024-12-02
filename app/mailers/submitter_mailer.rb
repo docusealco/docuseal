@@ -106,8 +106,11 @@ class SubmitterMailer < ApplicationMailer
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
-    @documents = add_completed_email_attachments!(
-      submitter, with_audit_log: @submitter.template.preferences['documents_copy_email_attach_audit'] != false &&
+    add_completed_email_attachments!(
+      submitter,
+      with_documents: @submitter.template.preferences['documents_copy_email_attach_documents'] != false &&
+                                 (@email_config.nil? || @email_config.value['attach_documents'] != false),
+      with_audit_log: @submitter.template.preferences['documents_copy_email_attach_audit'] != false &&
                                  (@email_config.nil? || @email_config.value['attach_audit_log'] != false)
     )
 

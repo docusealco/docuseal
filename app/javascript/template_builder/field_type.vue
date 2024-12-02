@@ -30,7 +30,7 @@
         v-for="(icon, type) in fieldIconsSorted"
         :key="type"
       >
-        <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
+        <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -51,11 +51,11 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading, IconId } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone', 'withPayment', 't', 'fieldTypes'],
+  inject: ['withPhone', 'withPayment', 'withVerification', 't', 'fieldTypes'],
   props: {
     modelValue: {
       type: String,
@@ -111,7 +111,8 @@ export default {
         cells: this.t('cells'),
         stamp: this.t('stamp'),
         payment: this.t('payment'),
-        phone: this.t('phone')
+        phone: this.t('phone'),
+        verification: this.t('verify_id')
       }
     },
     fieldLabels () {
@@ -130,7 +131,8 @@ export default {
         cells: this.t('cells_field'),
         stamp: this.t('stamp_field'),
         payment: this.t('payment_field'),
-        phone: this.t('phone_field')
+        phone: this.t('phone_field'),
+        verification: this.t('verify_id')
       }
     },
     fieldIcons () {
@@ -150,7 +152,8 @@ export default {
         cells: IconColumns3,
         stamp: IconRubberStamp,
         payment: IconCreditCard,
-        phone: IconPhoneCheck
+        phone: IconPhoneCheck,
+        verification: IconId
       }
     },
     fieldIconsSorted () {

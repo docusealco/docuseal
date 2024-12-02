@@ -55,11 +55,12 @@ class TemplatesUploadsController < ApplicationController
     tempfile.write(DownloadUtils.call(params[:url]).body)
     tempfile.rewind
 
+    filename = URI.decode_www_form_component(params[:filename]) if params[:filename].present?
+    filename ||= File.basename(URI.decode_www_form_component(params[:url]))
+
     file = ActionDispatch::Http::UploadedFile.new(
       tempfile:,
-      filename: File.basename(
-        URI.decode_www_form_component(params[:filename].presence || params[:url]), '.*'
-      ),
+      filename:,
       type: Marcel::MimeType.for(tempfile)
     )
 

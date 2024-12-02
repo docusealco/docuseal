@@ -12,6 +12,7 @@ end
 
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
+  attribute :io_data, :string, default: ''
 
   def self.proxy_url(blob, expires_at: nil, filename: nil, host: nil)
     Rails.application.routes.url_helpers.blobs_proxy_url(

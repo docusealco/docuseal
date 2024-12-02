@@ -1,4 +1,6 @@
 const en = {
+  verify_id: 'Verify ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtain qualified electronic signature (QeS) with the trusted provider. Click to learn more.',
   editable: 'Editable',
   recurrent: 'Recurrent',
   one_off: 'One-off',
@@ -148,10 +150,14 @@ const en = {
   preferences: 'Preferences',
   available_in_pro: 'Available in Pro',
   some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
-  learn_more: 'Learn more'
+  learn_more: 'Learn more',
+  and: 'and',
+  or: 'or'
 }
 
 const es = {
+  verify_id: 'Verificar ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenga una firma electrónica cualificada (QeS) con el proveedor de confianza. Haga clic para obtener más información.',
   recurrent: 'Recurrente',
   one_off: 'Único',
   editable: 'Editable',
@@ -301,10 +307,14 @@ const es = {
   preferences: 'Preferencias',
   available_in_pro: 'Disponible en Pro',
   some_fields_are_missing_in_the_formula: 'Faltan algunos campos en la fórmula.',
-  learn_more: 'Aprende más'
+  learn_more: 'Aprende más',
+  and: 'y',
+  or: 'o'
 }
 
 const it = {
+  verify_id: 'Verifica ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Ottieni una firma elettronica qualificata (QeS) con il fornitore di fiducia. Clicca per saperne di più.',
   ricorrente: 'Ricorrente',
   una_volta: 'Una volta',
   editable: 'Modificabile',
@@ -454,10 +464,14 @@ const it = {
   preferences: 'Preferenze',
   available_in_pro: 'Disponibile in Pro',
   some_fields_are_missing_in_the_formula: 'Alcuni campi mancano nella formula.',
-  learn_more: 'Scopri di più'
+  learn_more: 'Scopri di più',
+  and: 'e',
+  or: 'o'
 }
 
 const pt = {
+  verify_id: 'Verificar ID',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenha a assinatura eletrônica qualificada (QeS) com o provedor confiável. Clique para saber mais.',
   recurrent: 'Recurrente',
   one_off: 'Único',
   editable: 'Editável',
@@ -607,10 +621,14 @@ const pt = {
   preferences: 'Preferências',
   available_in_pro: 'Disponível no Pro',
   some_fields_are_missing_in_the_formula: 'Faltam alguns campos na fórmula.',
-  learn_more: 'Saiba mais'
+  learn_more: 'Saiba mais',
+  and: 'e',
+  or: 'ou'
 }
 
 const fr = {
+  verify_id: "Vérifier l'ID",
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenez une signature électronique qualifiée (QeS) avec le fournisseur de confiance. Cliquez pour en savoir plus.',
   recurrent: 'Récurrent',
   one_off: 'Ponctuel',
   editable: 'Éditable',
@@ -760,10 +778,14 @@ const fr = {
   preferences: 'Préférences',
   available_in_pro: 'Disponible en version Pro',
   some_fields_are_missing_in_the_formula: 'Certains champs manquent dans la formule.',
-  learn_more: 'En savoir plus'
+  learn_more: 'En savoir plus',
+  and: 'et',
+  or: 'ou'
 }
 
 const de = {
+  verify_id: 'ID überprüfen',
+  obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Erhalten Sie eine qualifizierte elektronische Signatur (QeS) beim vertrauenswürdigen Anbieter. Klicken Sie hier, um mehr zu erfahren.',
   wiederkehrend: 'Wiederkehrend',
   einmalig: 'Einmalig',
   editable: 'Bearbeitbar',
@@ -913,7 +935,9 @@ const de = {
   preferences: 'Einstellungen',
   available_in_pro: 'In Pro verfügbar',
   some_fields_are_missing_in_the_formula: 'Einige Felder fehlen in der Formel.',
-  learn_more: 'Erfahren Sie mehr'
+  learn_more: 'Erfahren Sie mehr',
+  and: 'und',
+  or: 'oder'
 }
 
 export { en, es, it, pt, fr, de }

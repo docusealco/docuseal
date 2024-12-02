@@ -1,7 +1,6 @@
 <template>
   <label
     v-if="!modelValue && !sessionId"
-    :for="field.uuid"
     class="label text-2xl mb-2"
   >
     <MarkdownContent
