@@ -95,7 +95,7 @@ export default {
     countryCode () {
       const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
       const browserTz = browserTimeZone.split('/')[1]
-      const country = phoneData.find(([a, b, c, tz]) => tz.includes(browserTz))
+      const country = phoneData.find(([a, b, c, e, tz]) => tz.includes(browserTz))
 
       return country[0]
     },
