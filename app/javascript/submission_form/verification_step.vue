@@ -107,7 +107,7 @@ export default {
         clientId: this.eidEasyData.client_id,
         docId: this.eidEasyData.doc_id,
         language: this.locale,
-        countryCode: this.browserCountry,
+        countryCode: this.countryCode,
         enabledMethods: {
           signature: this.eidEasyData.available_methods
         },
