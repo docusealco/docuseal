@@ -15,8 +15,9 @@
   />
   <FieldAreas
     :steps="readonlyConditionalFields.map((e) => [e])"
-    :values="readonlyConditionalFields.reduce((acc, f) => { acc[f.uuid] = f.default_value; return acc }, {})"
+    :values="readonlyConditionalFields.reduce((acc, f) => { acc[f.uuid] = (values[f.uuid] || f.default_value); return acc }, {})"
     :submitter="submitter"
+    :attachments-index="attachmentsIndex"
     :submittable="false"
   />
   <FormulaFieldAreas
