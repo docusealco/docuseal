@@ -92,6 +92,6 @@ module ReplaceEmailVariables
   end
 
   def build_submission_submitters(submission)
-    submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.join(', ')
+    submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.uniq.join(', ')
   end
 end
