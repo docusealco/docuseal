@@ -236,7 +236,7 @@
       :to="modalContainerEl"
     >
       <ConditionsModal
-        :field="field"
+        :item="field"
         :build-default-name="buildDefaultName"
         @close="isShowConditionsModal = false"
       />
@@ -365,7 +365,7 @@ export default {
       } else {
         const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
 
-        if (this.field.type === 'heading') {
+        if (field.type === 'heading') {
           return `${this.fieldNames[field.type]} ${typeIndex + 1}`
         } else {
           return `${this.fieldLabels[field.type]} ${typeIndex + 1}`

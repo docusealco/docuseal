@@ -362,6 +362,7 @@
             :default-submitters="defaultSubmitters"
             :draw-field-type="drawFieldType"
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
+            :template="template"
             :default-required-fields="defaultRequiredFields"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
@@ -1023,6 +1024,22 @@ export default {
 
       if (!field.areas.length) {
         this.template.fields.splice(this.template.fields.indexOf(field), 1)
+
+        this.template.fields.forEach((f) => {
+          (f.conditions || []).forEach((c) => {
+            if (c.field_uuid === field.uuid) {
+              f.conditions.splice(f.conditions.indexOf(c), 1)
+            }
+          })
+        })
+
+        this.template.schema.forEach((item) => {
+          (item.conditions || []).forEach((c) => {
+            if (c.field_uuid === field.uuid) {
+              item.conditions.splice(item.conditions.indexOf(c), 1)
+            }
+          })
+        })
       }
 
       this.save()

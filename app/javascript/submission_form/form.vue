@@ -652,6 +652,11 @@ export default {
       required: false,
       default: null
     },
+    schema: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     attachments: {
       type: Array,
       required: false,
@@ -841,6 +846,21 @@ export default {
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
     },
+    attachmentConditionsIndex () {
+      return this.schema.reduce((acc, item) => {
+        if (item.conditions?.length) {
+          if (item.conditions.every((c) => this.fieldsUuidIndex[c.field_uuid])) {
+            acc[item.attachment_uuid] = this.checkFieldConditions(item)
+          } else {
+            acc[item.attachment_uuid] = true
+          }
+        } else {
+          acc[item.attachment_uuid] = true
+        }
+
+        return acc
+      }, {})
+    },
     emptyValueRequiredStep () {
       return this.stepFields.find((fields, index) => {
         return fields.some((f) => {
@@ -921,7 +941,7 @@ export default {
       return this.currentStepFields[0]
     },
     readonlyConditionalFields () {
-      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f))
+      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
     },
     stepFields () {
       const verificationFields = []
@@ -943,7 +963,7 @@ export default {
       return sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
-        if (this.checkFieldConditions(f)) {
+        if (this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f)) {
           if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
             prevStep.push(f)
           } else {
@@ -975,6 +995,23 @@ export default {
     currentStepFields (value) {
       if (isEmpty(value) && this.currentStep > 0) {
         this.currentStep -= 1
+      }
+    },
+    attachmentConditionsIndex: {
+      deep: true,
+      immediate: true,
+      handler (value) {
+        this.$nextTick(() => {
+          const root = this.$root.$el.parentNode.getRootNode()
+
+          for (const key in value) {
+            const doc = root.querySelector(`[id="document-${key}"`)
+
+            if (doc) {
+              doc.classList.toggle('hidden', !value[key])
+            }
+          }
+        })
       }
     }
   },
@@ -1056,6 +1093,15 @@ export default {
     },
     onOrientationChange (event) {
       this.orientation = event.target.type
+    },
+    checkFieldDocumentsConditions (field) {
+      if (field.areas?.length) {
+        return field.areas.some((area) => {
+          return this.attachmentConditionsIndex[area.attachment_uuid]
+        })
+      } else {
+        return true
+      }
     },
     checkFieldConditions (field) {
       if (field.conditions?.length) {

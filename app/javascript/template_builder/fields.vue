@@ -229,6 +229,10 @@ export default {
       type: Array,
       required: true
     },
+    template: {
+      type: Object,
+      required: true
+    },
     withHelp: {
       type: Boolean,
       required: false,
@@ -376,6 +380,14 @@ export default {
         (f.conditions || []).forEach((c) => {
           if (c.field_uuid === field.uuid) {
             f.conditions.splice(f.conditions.indexOf(c), 1)
+          }
+        })
+      })
+
+      this.template.schema.forEach((item) => {
+        (item.conditions || []).forEach((c) => {
+          if (c.field_uuid === field.uuid) {
+            item.conditions.splice(item.conditions.indexOf(c), 1)
           }
         })
       })

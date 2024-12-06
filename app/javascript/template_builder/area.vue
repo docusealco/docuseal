@@ -257,7 +257,7 @@
       :to="modalContainerEl"
     >
       <ConditionsModal
-        :field="field"
+        :item="field"
         :build-default-name="buildDefaultName"
         @close="isShowConditionsModal = false"
       />

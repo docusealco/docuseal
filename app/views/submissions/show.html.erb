@@ -65,7 +65,9 @@
   </div>
   <div class="flex md:max-h-[calc(100vh-60px)]">
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5">
-      <% (@submission.template_schema || @submission.template.schema).each do |item| %>
+      <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+      <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
+      <% schema.each do |item| %>
         <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
           <img src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, 0].join(':'), expires_in: 10.minutes) { document.preview_images.first.url } %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
@@ -79,10 +81,9 @@
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
-        <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
-        <% (@submission.template_schema || @submission.template.schema).each do |item| %>
+        <% schema.each do |item| %>
           <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>

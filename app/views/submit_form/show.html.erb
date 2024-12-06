@@ -4,6 +4,7 @@
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
+<% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
@@ -35,32 +36,34 @@
           </div>
         </div>
       <% end %>
-      <% (@submitter.submission.template_schema || @submitter.submission.template.schema).each do |item| %>
+      <% schema.each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
-        <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
-        <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-        <% lazyload_metadata = document.preview_images.last.metadata %>
-        <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
-          <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
-          <div class="relative my-4 shadow-md">
-            <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
-            <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
-              <% document_annots_index[index]&.each do |annot| %>
-                <%= render 'submissions/annotation', annot: %>
-              <% end %>
-              <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                <% value = values[field['uuid']].presence || (field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
-                <% next if value.blank? %>
-                <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
-                <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
-                <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
-                <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
-                <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
-              <% end %>
+        <div id="document-<%= document.uuid %>">
+          <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
+          <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
+          <% lazyload_metadata = document.preview_images.last.metadata %>
+          <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
+            <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
+            <div class="relative my-4 shadow-md">
+              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
+              <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
+                <% document_annots_index[index]&.each do |annot| %>
+                  <%= render 'submissions/annotation', annot: %>
+                <% end %>
+                <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
+                  <% value = values[field['uuid']].presence || (field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
+                  <% next if value.blank? %>
+                  <% next if !field['readonly'] && field['submitter_uuid'] == @submitter.uuid %>
+                  <% next if value == '{{date}}' && field['submitter_uuid'] != @submitter.uuid %>
+                  <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
+                  <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
+                  <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
+                  <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value:, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
       <%= render 'shared/attribution', link_path: '/start', account: @submitter.account, with_style: false %>
       <% if @form_configs[:policy_links].present? %>
@@ -76,7 +79,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns.fetch(:scroll_padding, '-110px') %>
+      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns.fetch(:scroll_padding, '-110px'), schema: %>
     </div>
   </div>
 </div>

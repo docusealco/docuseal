@@ -109,7 +109,7 @@ class TemplatesController < ApplicationController
   def template_params
     params.require(:template).permit(
       :name,
-      { schema: [%i[attachment_uuid name]],
+      { schema: [[:attachment_uuid, :name, { conditions: [%i[field_uuid value action operation]] }]],
         submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid email]],
         fields: [[:uuid, :submitter_uuid, :name, :type,
                   :required, :readonly, :default_value,

@@ -37,8 +37,10 @@ module Submissions
       original_documents = template.documents.preload(:blob)
 
       result_attachments =
-        (submission.template_schema || template.schema).map do |item|
+        (submission.template_schema || template.schema).filter_map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
+
+          next if pdf.nil?
 
           if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
             pdf = GenerateResultAttachments.normalize_image_pdf(pdf)
