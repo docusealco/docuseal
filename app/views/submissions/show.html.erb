@@ -196,6 +196,7 @@
             <% submitter_field_counters[field['type']] += 1 %>
             <% value = values[field['uuid']] %>
             <% next if value.blank? %>
+            <% next if field['type'] == 'heading' %>
             <div class="pt-2.5 border-b border-base-300">
               <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                 <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>
