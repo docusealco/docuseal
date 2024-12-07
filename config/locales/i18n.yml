@@ -23,6 +23,15 @@ en: &en
   unarchive: Unarchive
   first_party: 'First Party'
   remove_filter: Remove filter
+  add: Add
+  adding: Adding
+  owner: Owner
+  select_user: Select user
+  team_member_permissions: Team member permissions
+  entire_team: Entire team
+  admin_only: Admin only
+  accessiable_by: Accessiable by
+  team_access: Team access
   document_download_filename_format: Document download filename format
   document_name: Document Name
   docuseal_trusted_signature: DocuSeal Trusted Signature
@@ -689,6 +698,15 @@ en: &en
       read: Read your data
 
 es: &es
+  add: Agregar
+  adding: Agregando
+  owner: Propietario
+  select_user: Seleccionar usuario
+  team_member_permissions: Permisos de miembros del equipo
+  entire_team: Todo el equipo
+  admin_only: Solo administrador
+  accessiable_by: Accesible por
+  team_access: Acceso del equipo
   remove_filter: Eliminar filtro
   document_download_filename_format: Formato del nombre del archivo de descarga del documento
   document_name: Nombre del documento
@@ -1360,6 +1378,15 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  add: Aggiungi
+  adding: Aggiungendo
+  owner: Proprietario
+  select_user: Seleziona utente
+  team_member_permissions: Permessi membri del team
+  entire_team: Intero team
+  admin_only: Solo amministratore
+  accessiable_by: Accessibile da
+  team_access: Accesso al team
   remove_filter: Rimuovi filtro
   document_download_filename_format: Formato del nome file scaricato
   document_name: Nome del Documento
@@ -2031,6 +2058,15 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  add: Ajouter
+  adding: Ajout
+  owner: Propriétaire
+  select_user: Sélectionner un utilisateur
+  team_member_permissions: Permissions des membres de l'équipe
+  entire_team: Équipe entière
+  admin_only: Administrateur uniquement
+  accessiable_by: Accessible par
+  team_access: Accès à l'équipe
   remove_filter: Supprimer le filtre
   document_download_filename_format: Format du nom de fichier du téléchargement de document
   document_name: Nom du document
@@ -2703,6 +2739,15 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  add: Adicionar
+  adding: Adicionando
+  owner: Proprietário
+  select_user: Selecionar usuário
+  team_member_permissions: Permissões de membro da equipe
+  entire_team: Toda a equipe
+  admin_only: Somente administrador
+  accessiable_by: Acessível por
+  team_access: Acesso à equipe
   remove_filter: Remover filtro
   document_download_filename_format: Formato do nome do arquivo de download do documento
   document_name: Nome do documento
@@ -3374,6 +3419,15 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  add: Hinzufügen
+  adding: Hinzufügen
+  owner: Eigentümer
+  select_user: Benutzer auswählen
+  team_member_permissions: Berechtigungen für Teammitglieder
+  entire_team: Gesamtes Team
+  admin_only: Nur Administratoren
+  accessiable_by: Zugänglich für
+  team_access: Teamzugang
   remove_filter: Filter entfernen
   document_download_filename_format: Format des Dateinamens beim Herunterladen von Dokumenten
   document_name: Dokumentname

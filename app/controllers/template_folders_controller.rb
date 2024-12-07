@@ -4,7 +4,7 @@ class TemplateFoldersController < ApplicationController
   load_and_authorize_resource :template_folder
 
   def show
-    @templates = @template_folder.templates.active.preload(:author).order(id: :desc)
+    @templates = @template_folder.templates.active.preload(:author, :template_accesses).order(id: :desc)
     @templates = Templates.search(@templates, params[:q])
 
     @pagy, @templates = pagy(@templates, limit: 12)

@@ -22,6 +22,8 @@ class TemplatesController < ApplicationController
                     submissions.order(id: :desc)
                   end
 
+    submissions = submissions.preload(:template_accesses) unless current_user.role.in?(%w[admin superadmin])
+
     @pagy, @submissions = pagy(submissions.preload(submitters: :start_form_submission_events))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path

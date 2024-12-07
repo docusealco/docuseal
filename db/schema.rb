@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_192232) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_07_172237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -275,6 +275,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_192232) do
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
   end
 
+  create_table "template_accesses", force: :cascade do |t|
+    t.bigint "template_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id", "user_id"], name: "index_template_accesses_on_template_id_and_user_id", unique: true
+  end
+
   create_table "template_folders", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "author_id", null: false
@@ -393,6 +401,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_192232) do
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitters", "submissions"
+  add_foreign_key "template_accesses", "templates"
   add_foreign_key "template_folders", "accounts"
   add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "template_sharings", "templates"

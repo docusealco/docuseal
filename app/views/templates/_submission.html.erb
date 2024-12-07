@@ -51,7 +51,7 @@
               <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
                 <%= submitter.name || submitter.email || submitter.phone %>
               </a>
-              <% if can?(:update, submitter) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
+              <% if can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
                 <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
                   <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
@@ -144,7 +144,7 @@
                     <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
                       <%= submitter.name || submitter.email || submitter.phone %>
                     </a>
-                    <% if can?(:update, submitter) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
+                    <% if can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
                       <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
                         <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
                           <%= svg_icon('pencil', class: 'w-5 h-5') %>

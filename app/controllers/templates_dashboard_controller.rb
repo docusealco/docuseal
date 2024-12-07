@@ -45,7 +45,7 @@ class TemplatesDashboardController < ApplicationController
   end
 
   def filter_templates(templates)
-    rel = templates.active.preload(:author).order(id: :desc)
+    rel = templates.active.preload(:author, :template_accesses).order(id: :desc)
 
     if params[:q].blank?
       if Docuseal.multitenant? && !current_account.testing?
