@@ -10,10 +10,6 @@ class ProcessSubmitterCompletionJob
 
     is_all_completed = !submitter.submission.submitters.exists?(completed_at: nil)
 
-    if !is_all_completed && submitter.submission.submitters_order_preserved?
-      enqueue_next_submitter_request_notification(submitter)
-    end
-
     Submissions::EnsureResultGenerated.call(submitter)
 
     if is_all_completed && submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
@@ -27,6 +23,10 @@ class ProcessSubmitterCompletionJob
     end
 
     create_completed_documents!(submitter)
+
+    if !is_all_completed && submitter.submission.submitters_order_preserved? && params['send_invitation_email'] != false
+      enqueue_next_submitter_request_notification(submitter)
+    end
 
     enqueue_completed_webhooks(submitter, is_all_completed:)
   end
