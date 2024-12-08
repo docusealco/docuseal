@@ -122,7 +122,7 @@
                   <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
                 </span>
               </div>
-              <% if signed_in? && can?(:update, @submission) && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
+              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
                 <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
                   <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
