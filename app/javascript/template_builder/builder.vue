@@ -1,7 +1,8 @@
 <template>
   <div
     style="max-width: 1600px"
-    class="mx-auto pl-3 md:pl-4 h-full"
+    class="mx-auto pl-3 h-full"
+    :class="isMobile ? 'pl-4' : 'md:pl-4'"
   >
     <div
       v-if="pendingFieldAttachmentUuids.length && editable"
@@ -163,7 +164,7 @@
     <div
       id="main_container"
       class="flex"
-      :class="$slots.buttons || withTitle ? 'md:max-h-[calc(100%_-_60px)]' : 'md:max-h-[100%]'"
+      :class="$slots.buttons || withTitle ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
         v-if="withDocumentsList"
@@ -219,7 +220,8 @@
       </div>
       <div
         id="pages_container"
-        class="w-full overflow-y-hidden md:overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5"
+        class="w-full overflow-y-hidden overflow-x-hidden mt-0.5 pt-0.5"
+        :class="isMobile ? 'overflow-y-auto' : 'md:overflow-y-auto'"
       >
         <div
           ref="documents"
@@ -320,7 +322,7 @@
         </div>
       </div>
       <div
-        v-if="withFieldsList"
+        v-if="withFieldsList && !isMobile"
         id="fields_list_container"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
         :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
@@ -379,14 +381,14 @@
         </div>
       </div>
     </div>
-    <div class="sticky bottom-0">
+    <div class="sticky bottom-0 z-10">
       <MobileDrawField
-        v-if="drawField && isBreakpointLg"
+        v-if="drawField && (isBreakpointLg || isMobile)"
         :draw-field="drawField"
         :fields="template.fields"
         :submitters="template.submitters"
         :selected-submitter="selectedSubmitter"
-        class="md:hidden"
+        :class="{ 'md:hidden': !isMobile }"
         :editable="editable"
         @cancel="[drawField = null, drawOption = null]"
         @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
@@ -397,6 +399,7 @@
         :default-fields="[...defaultRequiredFields, ...defaultFields]"
         :default-required-fields="defaultRequiredFields"
         :field-types="fieldTypes"
+        :class="{ 'md:hidden': !isMobile }"
         :selected-submitter="selectedSubmitter"
         @select="startFieldDraw($event)"
       />
@@ -695,6 +698,9 @@ export default {
     fieldsDragFieldRef: () => ref(),
     language () {
       return this.locale.split('-')[0].toLowerCase()
+    },
+    isMobile () {
+      return /android|iphone|ipad/i.test(navigator.userAgent)
     },
     defaultDateFormat () {
       const isUsBrowser = Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US')
