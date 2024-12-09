@@ -1,6 +1,6 @@
 <template>
   <span
-    class="dropdown dropdown-top dropdown-end absolute bottom-4 right-4 z-10 md:hidden"
+    class="dropdown dropdown-top dropdown-end absolute bottom-4 right-4 z-10"
   >
     <label
       class="btn btn-neutral text-white btn-circle btn-lg group"
@@ -12,9 +12,10 @@
         height="28"
       />
       <IconX
-        class="hidden group-focus:inline"
-        width="28"
-        height="28"
+        class="hidden group-focus:inline p-3"
+        width="64"
+        height="50"
+        @click="closeDropdown"
       />
     </label>
     <ul

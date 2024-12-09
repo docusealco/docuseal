@@ -56,8 +56,10 @@ module Submissions
       original_documents = template.documents.preload(:blob)
 
       result_attachments =
-        submitter.submission.template_schema.map do |item|
+        submitter.submission.template_schema.filter_map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
+
+          next if pdf.nil?
 
           if original_documents.find { |a| a.uuid == item['attachment_uuid'] }.image?
             pdf = normalize_image_pdf(pdf)
@@ -545,7 +547,15 @@ module Submissions
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
       documents ||= submission.template_schema_documents.preload(:blob)
 
-      documents.to_h do |attachment|
+      attachment_uuids = Submissions.filtered_conditions_schema(submission).pluck('attachment_uuid')
+      attachments_index = documents.index_by { |a| a.metadata['original_uuid'] || a.uuid }
+
+      attachment_uuids.each_with_object({}) do |uuid, acc|
+        attachment = attachments_index[uuid]
+        attachment ||= submission.template_schema_documents.preload(:blob).find { |a| a.uuid == uuid }
+
+        next unless attachment
+
         pdf =
           if attachment.image?
             build_pdf_from_image(attachment)
@@ -555,21 +565,21 @@ module Submissions
 
         pdf = maybe_rotate_pdf(pdf)
 
-        if flatten
-          begin
-            pdf.acro_form.create_appearances(force: true) if pdf.acro_form && pdf.acro_form[:NeedAppearances]
-            pdf.acro_form&.flatten
-          rescue HexaPDF::MissingGlyphError
-            nil
-          rescue StandardError => e
-            Rollbar.error(e) if defined?(Rollbar)
-          end
-        end
+        maybe_flatten_pdf(pdf) if flatten
 
         pdf.config['font.on_missing_glyph'] = method(:on_missing_glyph).to_proc
 
-        [attachment.metadata['original_uuid'] || attachment.uuid, pdf]
+        acc[uuid] = pdf
       end
+    end
+
+    def maybe_flatten_pdf(pdf)
+      pdf.acro_form.create_appearances(force: true) if pdf.acro_form && pdf.acro_form[:NeedAppearances]
+      pdf.acro_form&.flatten
+    rescue HexaPDF::MissingGlyphError
+      nil
+    rescue StandardError => e
+      Rollbar.error(e) if defined?(Rollbar)
     end
 
     def maybe_rotate_pdf(pdf)

@@ -49,6 +49,8 @@ module Submissions
       submitter.submission.template_schema.each do |item|
         pdf = pdfs_index[item['attachment_uuid']]
 
+        next unless pdf
+
         pdf.dispatch_message(:complete_objects)
 
         pdf.pages.each { |page| result.pages << result.import(page) }

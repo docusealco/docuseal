@@ -183,10 +183,17 @@ module Submitters
     def maybe_remove_condition_values(submitter)
       fields_uuid_index = submitter.submission.template_fields.index_by { |e| e['uuid'] }
 
+      attachments_index =
+        Submissions.filtered_conditions_schema(submitter.submission).index_by { |i| i['attachment_uuid'] }
+
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
         submitter.values.delete(field['uuid']) unless check_field_conditions(submitter, field, fields_uuid_index)
+
+        if field['areas'].present? && field['areas'].none? { |area| attachments_index[area['attachment_uuid']] }
+          submitter.values.delete(field['uuid'])
+        end
       end
 
       submitter.values

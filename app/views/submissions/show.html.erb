@@ -65,7 +65,9 @@
   </div>
   <div class="flex md:max-h-[calc(100vh-60px)]">
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5">
-      <% (@submission.template_schema || @submission.template.schema).each do |item| %>
+      <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+      <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
+      <% schema.each do |item| %>
         <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
           <img src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, 0].join(':'), expires_in: 10.minutes) { document.preview_images.first.url } %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
@@ -79,10 +81,9 @@
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
-        <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
-        <% (@submission.template_schema || @submission.template.schema).each do |item| %>
+        <% schema.each do |item| %>
           <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
@@ -121,7 +122,7 @@
                   <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
                 </span>
               </div>
-              <% if signed_in? && can?(:update, submitter) && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
+              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
                 <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
                   <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
@@ -173,15 +174,15 @@
                 </span>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, submitter) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
-            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, submitter) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && can?(:create, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   <%= t('sign_in_person') %>
@@ -195,6 +196,7 @@
             <% submitter_field_counters[field['type']] += 1 %>
             <% value = values[field['uuid']] %>
             <% next if value.blank? %>
+            <% next if field['type'] == 'heading' %>
             <div class="pt-2.5 border-b border-base-300">
               <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                 <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>

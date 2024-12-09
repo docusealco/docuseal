@@ -9,7 +9,8 @@ class SubmittersAutocompleteController < ApplicationController
   def index
     submitters = search_submitters(@submitters)
 
-    values = submitters.limit(LIMIT).group(SELECT_COLUMNS.join(', ')).pluck(SELECT_COLUMNS.join(', '))
+    arel_columns = SELECT_COLUMNS.map { |col| Submitter.arel_table[col] }
+    values = submitters.limit(LIMIT).group(arel_columns).pluck(arel_columns)
 
     attrs = values.map { |row| SELECT_COLUMNS.zip(row).to_h }
     attrs = attrs.uniq { |e| e[params[:field]] } if params[:field].present?

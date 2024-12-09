@@ -180,8 +180,8 @@ export default {
   },
   computed: {
     countries () {
-      return phoneData.map(([name, dial, flag, tz]) => {
-        return { name, dial, flag, tz }
+      return phoneData.map(([iso, name, dial, flag, tz]) => {
+        return { iso, name, dial, flag, tz }
       })
     },
     countriesDialIndex () {

@@ -19,6 +19,9 @@ production:
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
   database: <%= ENV['DATABASE_NAME'] %>
+  <% if !ENV['DATABASE_SEARCH_PATH'].to_s.empty? %>
+  search_path: <%= ENV['DATABASE_SEARCH_PATH'] %>
+  <% end %>
 <% elsif ENV['DATABASE_URL'].to_s.empty? %>
   adapter: sqlite3
   database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3

@@ -95,7 +95,7 @@ export default {
     countryCode () {
       const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
       const browserTz = browserTimeZone.split('/')[1]
-      const country = phoneData.find(([a, b, c, tz]) => tz.includes(browserTz))
+      const country = phoneData.find(([a, b, c, e, tz]) => tz.includes(browserTz))
 
       return country[0]
     },
@@ -107,7 +107,7 @@ export default {
         clientId: this.eidEasyData.client_id,
         docId: this.eidEasyData.doc_id,
         language: this.locale,
-        countryCode: this.browserCountry,
+        countryCode: this.countryCode,
         enabledMethods: {
           signature: this.eidEasyData.available_methods
         },

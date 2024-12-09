@@ -78,7 +78,9 @@ module Api
 
       submissions.each do |submission|
         submission.submitters.each do |submitter|
-          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id) if submitter.completed_at?
+          next unless submitter.completed_at?
+
+          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'send_invitation_email' => false)
         end
       end
 

@@ -54,6 +54,7 @@ class Submitter < ApplicationRecord
   has_many_attached :documents
   has_many_attached :attachments
   has_many_attached :preview_documents
+  has_many :template_accesses, through: :template
 
   has_many :document_generation_events, dependent: :destroy
   has_many :submission_events, dependent: :destroy

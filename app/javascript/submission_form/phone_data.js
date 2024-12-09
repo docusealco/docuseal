@@ -1,5 +1,6 @@
 export default [
   [
+    'US',
     'United States',
     '1',
     '🇺🇸',
@@ -14,60 +15,70 @@ export default [
     ]
   ],
   [
+    'AF',
     'Afghanistan',
     '93',
     '🇦🇫',
     ['Kabul']
   ],
   [
+    'AX',
     'Aland Islands',
     '358',
     '🇦🇽',
     ['Mariehamn']
   ],
   [
+    'AL',
     'Albania',
     '355',
     '🇦🇱',
     ['Tirane']
   ],
   [
+    'DZ',
     'Algeria',
     '213',
     '🇩🇿',
     ['Algiers']
   ],
   [
+    'AS',
     'American Samoa',
     '1684',
     '🇦🇸',
     ['Pago_Pago']
   ],
   [
+    'AD',
     'Andorra',
     '376',
     '🇦🇩',
     ['Andorra']
   ],
   [
+    'AO',
     'Angola',
     '244',
     '🇦🇴',
     ['Luanda']
   ],
   [
+    'AI',
     'Anguilla',
     '1264',
     '🇦🇮',
     ['Anguilla']
   ],
   [
+    'AG',
     'Antigua and Barbuda',
     '1268',
     '🇦🇬',
     ['Antigua']
   ],
   [
+    'AR',
     'Argentina',
     '54',
     '🇦🇷',
@@ -87,18 +98,21 @@ export default [
     ]
   ],
   [
+    'AM',
     'Armenia',
     '374',
     '🇦🇲',
     ['Yerevan']
   ],
   [
+    'AW',
     'Aruba',
     '297',
     '🇦🇼',
     ['Aruba']
   ],
   [
+    'AU',
     'Australia',
     '61',
     '🇦🇺',
@@ -118,90 +132,105 @@ export default [
     ]
   ],
   [
+    'AT',
     'Austria',
     '43',
     '🇦🇹',
     ['Vienna']
   ],
   [
+    'AZ',
     'Azerbaijan',
     '994',
     '🇦🇿',
     ['Baku']
   ],
   [
+    'BS',
     'Bahamas',
     '1242',
     '🇧🇸',
     ['Nassau']
   ],
   [
+    'BH',
     'Bahrain',
     '973',
     '🇧🇭',
     ['Bahrain']
   ],
   [
+    'BD',
     'Bangladesh',
     '880',
     '🇧🇩',
     ['Dhaka']
   ],
   [
+    'BB',
     'Barbados',
     '1246',
     '🇧🇧',
     ['Barbados']
   ],
   [
+    'BE',
     'Belgium',
     '32',
     '🇧🇪',
     ['Brussels']
   ],
   [
+    'BZ',
     'Belize',
     '501',
     '🇧🇿',
     ['Belize']
   ],
   [
+    'BJ',
     'Benin',
     '229',
     '🇧🇯',
     ['Porto-Novo']
   ],
   [
+    'BM',
     'Bermuda',
     '1441',
     '🇧🇲',
     ['Bermuda']
   ],
   [
+    'BT',
     'Bhutan',
     '975',
     '🇧🇹',
     ['Thimphu']
   ],
   [
+    'BO',
     'Bolivia',
     '591',
     '🇧🇴',
     ['La_Paz']
   ],
   [
+    'BA',
     'Bosnia and Herzegovina',
     '387',
     '🇧🇦',
     ['Sarajevo']
   ],
   [
+    'BW',
     'Botswana',
     '267',
     '🇧🇼',
     ['Gaborone']
   ],
   [
+    'BR',
     'Brazil',
     '55',
     '🇧🇷',
@@ -225,48 +254,56 @@ export default [
     ]
   ],
   [
+    'IO',
     'British Indian Ocean Territory',
     '246',
     '🇮🇴',
     ['Chagos']
   ],
   [
+    'BN',
     'Brunei Darussalam',
     '673',
     '🇧🇳',
     ['Brunei']
   ],
   [
+    'BG',
     'Bulgaria',
     '359',
     '🇧🇬',
     ['Sofia']
   ],
   [
+    'BF',
     'Burkina Faso',
     '226',
     '🇧🇫',
     ['Ouagadougou']
   ],
   [
+    'BI',
     'Burundi',
     '257',
     '🇧🇮',
     ['Bujumbura']
   ],
   [
+    'KH',
     'Cambodia',
     '855',
     '🇰🇭',
     ['Phnom_Penh']
   ],
   [
+    'CM',
     'Cameroon',
     '237',
     '🇨🇲',
     ['Douala']
   ],
   [
+    'CA',
     'Canada',
     '1',
     '🇨🇦',
@@ -302,252 +339,294 @@ export default [
     ]
   ],
   [
+    'CV',
     'Cape Verde',
     '238',
     '🇨🇻',
     ['Cape_Verde']
   ],
   [
+    'KY',
     'Cayman Islands',
     '1345',
     '🇰🇾',
     ['Cayman']
   ],
   [
+    'TD',
     'Chad',
     '235',
     '🇹🇩',
     ['Ndjamena']
   ],
   [
+    'CL',
     'Chile',
     '56',
     '🇨🇱',
     ['Punta_Arenas', 'Santiago', 'Easter']
   ],
   [
+    'CN',
     'China',
     '86',
     '🇨🇳',
     ['Shanghai', 'Urumqi']
   ],
   [
+    'CX',
     'Christmas Island',
     '61',
     '🇨🇽',
     ['Christmas']
   ],
   [
+    'CC',
     'Cocos (Keeling) Islands',
     '61',
     '🇨🇨',
     ['Cocos']
   ],
   [
+    'CO',
     'Colombia',
     '57',
     '🇨🇴',
     ['Bogota']
   ],
   [
+    'KM',
     'Comoros',
     '269',
     '🇰🇲',
     ['Comoro']
   ],
   [
+    'CD',
     'Congo, The Democratic Republic of the',
     '243',
     '🇨🇩',
     ['Kinshasa', 'Lubumbashi']
   ],
   [
+    'CK',
     'Cook Islands',
     '682',
     '🇨🇰',
     ['Rarotonga']
   ],
   [
+    'CR',
     'Costa Rica',
     '506',
     '🇨🇷',
     ['Costa_Rica']
   ],
   [
+    'CI',
     "Côte d'Ivoire",
     '225',
     '🇨🇮',
     ['Abidjan']
   ],
   [
+    'HR',
     'Croatia',
     '385',
     '🇭🇷',
     ['Zagreb']
   ],
   [
+    'CY',
     'Cyprus',
     '357',
     '🇨🇾',
     ['Nicosia', 'Famagusta']
   ],
   [
+    'CZ',
     'Czech Republic',
     '420',
     '🇨🇿',
     ['Prague']
   ],
   [
+    'DK',
     'Denmark',
     '45',
     '🇩🇰',
     ['Copenhagen']
   ],
   [
+    'DJ',
     'Djibouti',
     '253',
     '🇩🇯',
     ['Djibouti']
   ],
   [
+    'DM',
     'Dominica',
     '1767',
     '🇩🇲',
     ['Dominica']
   ],
   [
+    'DO',
     'Dominican Republic',
     '1849',
     '🇩🇴',
     ['Santo_Domingo']
   ],
   [
+    'EC',
     'Ecuador',
     '593',
     '🇪🇨',
     ['Guayaquil', 'Galapagos']
   ],
   [
+    'EG',
     'Egypt',
     '20',
     '🇪🇬',
     ['Cairo']
   ],
   [
+    'SV',
     'El Salvador',
     '503',
     '🇸🇻',
     ['El_Salvador']
   ],
   [
+    'GQ',
     'Equatorial Guinea',
     '240',
     '🇬🇶',
     ['Malabo']
   ],
   [
+    'ER',
     'Eritrea',
     '291',
     '🇪🇷',
     ['Asmara']
   ],
   [
+    'EE',
     'Estonia',
     '372',
     '🇪🇪',
     ['Tallinn']
   ],
   [
+    'ET',
     'Ethiopia',
     '251',
     '🇪🇹',
     ['Addis_Ababa']
   ],
   [
+    'FK',
     'Falkland Islands (Malvinas)',
     '500',
     '🇫🇰',
     ['Stanley']
   ],
   [
+    'FO',
     'Faroe Islands',
     '298',
     '🇫🇴',
     ['Faroe']
   ],
   [
+    'FJ',
     'Fiji',
     '679',
     '🇫🇯',
     ['Fiji']
   ],
   [
+    'FI',
     'Finland',
     '358',
     '🇫🇮',
     ['Helsinki']
   ],
   [
+    'FR',
     'France',
     '33',
     '🇫🇷',
     ['Paris']
   ],
   [
+    'GF',
     'French Guiana',
     '594',
     '🇬🇫',
     ['Cayenne']
   ],
   [
+    'PF',
     'French Polynesia',
     '689',
     '🇵🇫',
     ['Tahiti', 'Marquesas', 'Gambier']
   ],
   [
+    'GA',
     'Gabon',
     '241',
     '🇬🇦',
     ['Libreville']
   ],
   [
+    'GM',
     'Gambia',
     '220',
     '🇬🇲',
     ['Banjul']
   ],
   [
+    'GE',
     'Georgia',
     '995',
     '🇬🇪',
     ['Tbilisi']
   ],
   [
+    'DE',
     'Germany',
     '49',
     '🇩🇪',
     ['Berlin', 'Busingen']
   ],
   [
+    'GH',
     'Ghana',
     '233',
     '🇬🇭',
     ['Accra']
   ],
   [
+    'GI',
     'Gibraltar',
     '350',
     '🇬🇮',
     ['Gibraltar']
   ],
   [
+    'GR',
     'Greece',
     '30',
     '🇬🇷',
     ['Athens']
   ],
   [
+    'GL',
     'Greenland',
     '299',
     '🇬🇱',
@@ -559,85 +638,98 @@ export default [
     ]
   ],
   [
+    'GD',
     'Grenada',
     '1473',
     '🇬🇩',
     ['Grenada']
   ],
   [
+    'GP',
     'Guadeloupe',
     '590',
     '🇬🇵',
     ['Guadeloupe']
   ],
   [
+    'GU',
     'Guam',
     '1671',
     '🇬🇺',
     ['Guam']
   ],
   [
+    'GT',
     'Guatemala',
     '502',
     '🇬🇹',
     ['Guatemala']
   ],
   [
+    'GN',
     'Guinea',
     '224',
     '🇬🇳',
     ['Conakry']
   ],
   [
+    'GW',
     'Guinea-Bissau',
     '245',
     '🇬🇼',
     ['Bissau']
   ],
   [
+    'GY',
     'Guyana',
     '592',
     '🇬🇾',
     ['Guyana']
   ],
   [
+    'HT',
     'Haiti',
     '509',
     '🇭🇹',
     ['Port-au-Prince']
   ],
   [
+    'HN',
     'Honduras',
     '504',
     '🇭🇳',
     ['Tegucigalpa']
   ],
   [
+    'HK',
     'Hong Kong',
     '852',
     '🇭🇰',
     ['Hong_Kong']
   ],
   [
+    'HU',
     'Hungary',
     '36',
     '🇭🇺',
     ['Budapest']
   ],
-
   [
+    'IS',
     'Iceland',
     '354',
     '🇮🇸',
     ['Reykjavik']
   ],
   [
+    'IN',
     'India',
     '91',
     '🇮🇳',
     ['Kolkata']
   ],
   [
+    'ID',
     'Indonesia',
     '62',
     '🇮🇩',
@@ -649,60 +741,70 @@ export default [
     ]
   ],
   [
+    'IQ',
     'Iraq',
     '964',
     '🇮🇶',
     ['Baghdad']
   ],
   [
+    'IE',
     'Ireland',
     '353',
     '🇮🇪',
     ['Dublin']
   ],
   [
+    'IM',
     'Isle of Man',
     '44',
     '🇮🇲',
     ['Isle_of_Man']
   ],
   [
+    'IL',
     'Israel',
     '972',
     '🇮🇱',
     ['Jerusalem']
   ],
   [
+    'IT',
     'Italy',
     '39',
     '🇮🇹',
     ['Rome']
   ],
   [
+    'JM',
     'Jamaica',
     '1876',
     '🇯🇲',
     ['Jamaica']
   ],
   [
+    'JP',
     'Japan',
     '81',
     '🇯🇵',
     ['Tokyo']
   ],
   [
+    'JE',
     'Jersey',
     '44',
     '🇯🇪',
     ['Jersey']
   ],
   [
+    'JO',
     'Jordan',
     '962',
     '🇯🇴',
     ['Amman']
   ],
   [
+    'KZ',
     'Kazakhstan',
     '7',
     '🇰🇿',
@@ -715,162 +817,190 @@ export default [
     ]
   ],
   [
+    'KE',
     'Kenya',
     '254',
     '🇰🇪',
     ['Nairobi']
   ],
   [
+    'KI',
     'Kiribati',
     '686',
     '🇰🇮',
     ['Tarawa', 'Enderbury', 'Kiritimati']
   ],
   [
+    'KR',
     'South Korea',
     '82',
     '🇰🇷',
     ['Seoul']
   ],
   [
+    'KW',
     'Kuwait',
     '965',
     '🇰🇼',
     ['Kuwait']
   ],
   [
+    'KG',
     'Kyrgyzstan',
     '996',
     '🇰🇬',
     ['Bishkek']
   ],
   [
+    'LA',
     'Laos',
     '856',
     '🇱🇦',
     ['Vientiane']
   ],
   [
+    'LV',
     'Latvia',
     '371',
     '🇱🇻',
     ['Riga']
   ],
   [
+    'LB',
     'Lebanon',
     '961',
     '🇱🇧',
     ['Beirut']
   ],
   [
+    'LS',
     'Lesotho',
     '266',
     '🇱🇸',
     ['Maseru']
   ],
   [
+    'LR',
     'Liberia',
     '231',
     '🇱🇷',
     ['Monrovia']
   ],
   [
+    'LI',
     'Liechtenstein',
     '423',
     '🇱🇮',
     ['Vaduz']
   ],
   [
+    'LT',
     'Lithuania',
     '370',
     '🇱🇹',
     ['Vilnius']
   ],
   [
+    'LU',
     'Luxembourg',
     '352',
     '🇱🇺',
     ['Luxembourg']
   ],
   [
+    'MO',
     'Macao',
     '853',
     '🇲🇴',
     ['Macau']
   ],
   [
+    'MK',
     'North Macedonia',
     '389',
     '🇲🇰',
     ['Skopje']
   ],
   [
+    'MG',
     'Madagascar',
     '261',
     '🇲🇬',
     ['Antananarivo']
   ],
   [
+    'MW',
     'Malawi',
     '265',
     '🇲🇼',
     ['Blantyre']
   ],
   [
+    'MY',
     'Malaysia',
     '60',
     '🇲🇾',
     ['Kuala_Lumpur', 'Kuching']
   ],
   [
+    'MV',
     'Maldives',
     '960',
     '🇲🇻',
     ['Maldives']
   ],
+
   [
+    'ML',
     'Mali',
     '223',
     '🇲🇱',
     ['Bamako']
   ],
   [
+    'MT',
     'Malta',
     '356',
     '🇲🇹',
     ['Malta']
   ],
   [
+    'MH',
     'Marshall Islands',
     '692',
     '🇲🇭',
     ['Majuro', 'Kwajalein']
   ],
   [
+    'MQ',
     'Martinique',
     '596',
     '🇲🇶',
     ['Martinique']
   ],
   [
+    'MR',
     'Mauritania',
     '222',
     '🇲🇷',
     ['Nouakchott']
   ],
   [
+    'MU',
     'Mauritius',
     '230',
     '🇲🇺',
     ['Mauritius']
   ],
   [
+    'YT',
     'Mayotte',
     '262',
     '🇾🇹',
     ['Mayotte']
   ],
   [
+    'MX',
     'Mexico',
     '52',
     '🇲🇽',
@@ -889,476 +1019,553 @@ export default [
     ]
   ],
   [
+    'FM',
     'Micronesia, Federated States of',
     '691',
     '🇫🇲',
     ['Chuuk', 'Pohnpei', 'Kosrae']
   ],
-
   [
+    'MD',
     'Moldova',
     '373',
     '🇲🇩',
     ['Chisinau']
   ],
   [
+    'MC',
     'Monaco',
     '377',
     '🇲🇨',
     ['Monaco']
   ],
   [
+    'MN',
     'Mongolia',
     '976',
     '🇲🇳',
     ['Ulaanbaatar', 'Hovd', 'Choibalsan']
   ],
   [
+    'ME',
     'Montenegro',
     '382',
     '🇲🇪',
     ['Podgorica']
   ],
   [
+    'MS',
     'Montserrat',
     '1664',
     '🇲🇸',
     ['Montserrat']
   ],
   [
+    'MA',
     'Morocco',
     '212',
     '🇲🇦',
     ['Casablanca']
   ],
   [
+    'MZ',
     'Mozambique',
     '258',
     '🇲🇿',
     ['Maputo']
   ],
   [
+    'NA',
     'Namibia',
     '264',
     '🇳🇦',
     ['Windhoek']
   ],
   [
+    'NR',
     'Nauru',
     '674',
     '🇳🇷',
     ['Nauru']
   ],
   [
+    'NP',
     'Nepal',
     '977',
     '🇳🇵',
     ['Kathmandu']
   ],
   [
+    'NL',
     'Netherlands',
     '31',
     '🇳🇱',
     ['Amsterdam']
   ],
   [
+    'NC',
     'New Caledonia',
     '687',
     '🇳🇨',
     ['Noumea']
   ],
   [
+    'NZ',
     'New Zealand',
     '64',
     '🇳🇿',
     ['Auckland', 'Chatham']
   ],
   [
+    'NE',
     'Niger',
     '227',
     '🇳🇪',
     ['Niamey']
   ],
   [
+    'NG',
     'Nigeria',
     '234',
     '🇳🇬',
     ['Lagos']
   ],
   [
+    'NU',
     'Niue',
     '683',
     '🇳🇺',
     ['Niue']
   ],
   [
+    'NF',
     'Norfolk Island',
     '672',
     '🇳🇫',
     ['Norfolk']
   ],
   [
+    'MP',
     'Northern Mariana Islands',
     '1670',
     '🇲🇵',
     ['Saipan']
   ],
   [
+    'NO',
     'Norway',
     '47',
     '🇳🇴',
     ['Oslo']
   ],
   [
+    'OM',
     'Oman',
     '968',
     '🇴🇲',
     ['Muscat']
   ],
   [
+    'PK',
     'Pakistan',
     '92',
     '🇵🇰',
     ['Karachi']
   ],
   [
+    'PW',
     'Palau',
     '680',
     '🇵🇼',
     ['Palau']
   ],
   [
+    'PA',
     'Panama',
     '507',
     '🇵🇦',
     ['Panama']
   ],
   [
+    'PG',
     'Papua New Guinea',
     '675',
     '🇵🇬',
     ['Port_Moresby', 'Bougainville']
   ],
   [
+    'PY',
     'Paraguay',
     '595',
     '🇵🇾',
     ['Asuncion']
   ],
   [
+    'PE',
     'Peru',
     '51',
     '🇵🇪',
     ['Lima']
   ],
   [
+    'PH',
     'Philippines',
     '63',
     '🇵🇭',
     ['Manila']
   ],
   [
+    'PN',
     'Pitcairn',
     '872',
     '🇵🇳',
     ['Pitcairn']
   ],
   [
+    'PL',
     'Poland',
     '48',
     '🇵🇱',
     ['Warsaw']
   ],
   [
+    'PT',
     'Portugal',
     '351',
     '🇵🇹',
     ['Lisbon', 'Madeira', 'Azores']
   ],
   [
+    'PR',
     'Puerto Rico',
     '1939',
     '🇵🇷',
     ['Puerto_Rico']
   ],
   [
+    'QA',
     'Qatar',
     '974',
     '🇶🇦',
     ['Qatar']
   ],
   [
+    'RO',
     'Romania',
     '40',
     '🇷🇴',
     ['Bucharest']
   ],
   [
+    'RW',
     'Rwanda',
     '250',
     '🇷🇼',
     ['Kigali']
   ],
   [
+    'RE',
     'Reunion',
     '262',
     '🇷🇪',
     ['Reunion']
   ],
   [
+    'BL',
     'Saint Barthelemy',
     '590',
     '🇧🇱',
     ['St_Barthelemy']
   ],
   [
+    'SH',
     'Saint Helena, Ascension and Tristan Da Cunha',
     '290',
     '🇸🇭',
     ['St_Helena']
   ],
   [
+    'KN',
     'Saint Kitts and Nevis',
     '1869',
     '🇰🇳',
     ['St_Kitts']
   ],
   [
+    'LC',
     'Saint Lucia',
     '1758',
     '🇱🇨',
     ['St_Lucia']
   ],
   [
+    'MF',
     'Saint Martin',
     '590',
     '🇲🇫',
     ['Marigot']
   ],
   [
+    'PM',
     'Saint Pierre and Miquelon',
     '508',
     '🇵🇲',
     ['Miquelon']
   ],
   [
+    'VC',
     'Saint Vincent and the Grenadines',
     '1784',
     '🇻🇨',
     ['St_Vincent']
   ],
   [
+    'WS',
     'Samoa',
     '685',
     '🇼🇸',
     ['Apia']
   ],
   [
+    'SM',
     'San Marino',
     '378',
     '🇸🇲',
     ['San_Marino']
   ],
   [
+    'ST',
     'Sao Tome and Principe',
     '239',
     '🇸🇹',
     ['Sao_Tome']
   ],
   [
+    'SA',
     'Saudi Arabia',
     '966',
     '🇸🇦',
     ['Riyadh']
   ],
   [
+    'SN',
     'Senegal',
     '221',
     '🇸🇳',
     ['Dakar']
   ],
   [
+    'RS',
     'Serbia',
     '381',
     '🇷🇸',
     ['Belgrade']
   ],
   [
+    'SC',
     'Seychelles',
     '248',
     '🇸🇨',
     ['Mahe']
   ],
-
   [
+    'SL',
     'Sierra Leone',
     '232',
     '🇸🇱',
     ['Freetown']
   ],
   [
+    'SG',
     'Singapore',
     '65',
     '🇸🇬',
     ['Singapore']
   ],
   [
+    'SK',
     'Slovakia',
     '421',
     '🇸🇰',
     ['Bratislava']
   ],
   [
+    'SI',
     'Slovenia',
     '386',
     '🇸🇮',
     ['Ljubljana']
   ],
   [
+    'SB',
     'Solomon Islands',
     '677',
     '🇸🇧',
     ['Guadalcanal']
   ],
   [
+    'ZA',
     'South Africa',
     '27',
     '🇿🇦',
     ['Johannesburg']
   ],
   [
+    'ES',
     'Spain',
     '34',
     '🇪🇸',
     ['Madrid', 'Ceuta', 'Canary']
   ],
   [
+    'LK',
     'Sri Lanka',
     '94',
     '🇱🇰',
     ['Colombo']
   ],
   [
+    'SR',
     'Suriname',
     '597',
     '🇸🇷',
     ['Paramaribo']
   ],
   [
+    'SJ',
     'Svalbard and Jan Mayen',
     '47',
     '🇸🇯',
     ['Longyearbyen']
   ],
   [
+    'SZ',
     'Eswatini',
     '268',
     '🇸🇿',
     ['Mbabane']
   ],
   [
+    'SE',
     'Sweden',
     '46',
     '🇸🇪',
     ['Stockholm']
   ],
   [
+    'CH',
     'Switzerland',
     '41',
     '🇨🇭',
     ['Zurich']
   ],
   [
+    'TW',
     'Taiwan',
     '886',
     '🇹🇼',
     ['Taipei']
   ],
   [
+    'TJ',
     'Tajikistan',
     '992',
     '🇹🇯',
     ['Dushanbe']
   ],
   [
+    'TZ',
     'Tanzania, United Republic of',
     '255',
     '🇹🇿',
     ['Dar_es_Salaam']
   ],
   [
+    'TH',
     'Thailand',
     '66',
     '🇹🇭',
     ['Bangkok']
   ],
   [
+    'TL',
     'Timor-Leste',
     '670',
     '🇹🇱',
     ['Dili']
   ],
   [
+    'TG',
     'Togo',
     '228',
     '🇹🇬',
     ['Lome']
   ],
   [
+    'TK',
     'Tokelau',
     '690',
     '🇹🇰',
     ['Fakaofo']
   ],
   [
+    'TO',
     'Tonga',
     '676',
     '🇹🇴',
     ['Tongatapu']
   ],
   [
+    'TT',
     'Trinidad and Tobago',
     '1868',
     '🇹🇹',
     ['Port_of_Spain']
   ],
   [
+    'TN',
     'Tunisia',
     '216',
     '🇹🇳',
     ['Tunis']
   ],
   [
+    'TR',
     'Turkey',
     '90',
     '🇹🇷',
     ['Istanbul']
   ],
   [
+    'TM',
     'Turkmenistan',
     '993',
     '🇹🇲',
     ['Ashgabat']
   ],
   [
+    'TC',
     'Turks and Caicos Islands',
     '1649',
     '🇹🇨',
     ['Grand_Turk']
   ],
   [
+    'TV',
     'Tuvalu',
     '688',
     '🇹🇻',
     ['Funafuti']
   ],
   [
+    'UG',
     'Uganda',
     '256',
     '🇺🇬',
     ['Kampala']
   ],
   [
+    'UA',
     'Ukraine',
     '380',
     '🇺🇦',
@@ -1370,66 +1577,77 @@ export default [
     ]
   ],
   [
+    'AE',
     'United Arab Emirates',
     '971',
     '🇦🇪',
     ['Dubai']
   ],
   [
+    'GB',
     'United Kingdom',
     '44',
     '🇬🇧',
     ['London']
   ],
   [
+    'UY',
     'Uruguay',
     '598',
     '🇺🇾',
     ['Montevideo']
   ],
   [
+    'UZ',
     'Uzbekistan',
     '998',
     '🇺🇿',
     ['Samarkand', 'Tashkent']
   ],
   [
+    'VU',
     'Vanuatu',
     '678',
     '🇻🇺',
     ['Efate']
   ],
   [
+    'VN',
     'Vietnam',
     '84',
     '🇻🇳',
     ['Ho_Chi_Minh']
   ],
   [
+    'VG',
     'Virgin Islands, British',
     '1284',
     '🇻🇬',
     ['Tortola']
   ],
   [
+    'VI',
     'Virgin Islands, U.S.',
     '1340',
     '🇻🇮',
     ['St_Thomas']
   ],
   [
+    'WF',
     'Wallis and Futuna',
     '681',
     '🇼🇫',
     ['Wallis']
   ],
   [
+    'YE',
     'Yemen',
     '967',
     '🇾🇪',
     ['Aden']
   ],
   [
+    'ZM',
     'Zambia',
     '260',
     '🇿🇲',

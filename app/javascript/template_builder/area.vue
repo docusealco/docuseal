@@ -237,7 +237,7 @@
     />
     <span
       v-if="field?.type && editable"
-      class="h-4 w-4 md:h-2.5 md:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
+      class="h-4 w-4 lg:h-2.5 lg:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
       @mousedown.stop="startResize"
       @touchstart="startTouchResize"
     />
@@ -257,7 +257,7 @@
       :to="modalContainerEl"
     >
       <ConditionsModal
-        :field="field"
+        :item="field"
         :build-default-name="buildDefaultName"
         @close="isShowConditionsModal = false"
       />
