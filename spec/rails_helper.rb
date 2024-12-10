@@ -68,6 +68,10 @@ RSpec.configure do |config|
   config.before do |example|
     Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
   end
+
+  config.before(multitenant: true) do
+    allow(Docuseal).to receive(:multitenant?).and_return(true)
+  end
 end
 
 ActiveSupport.run_load_hooks(:rails_specs, self)
