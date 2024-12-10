@@ -12,7 +12,16 @@ module Templates
       template.preferences = original_template.preferences.deep_dup
       template.name = name.presence || "#{original_template.name} (#{I18n.t('clone')})"
 
-      template.assign_attributes(original_template.slice(:folder_id, :schema).deep_dup)
+      if folder_name.present?
+        template.folder = TemplateFolders.find_or_create_by_name(author, folder_name)
+      else
+        template.folder_id = original_template.folder_id
+      end
+
+      template.submitters, template.fields, template.schema =
+        update_submitters_and_fields_and_schema(original_template.submitters.deep_dup,
+                                                original_template.fields.deep_dup,
+                                                original_template.schema.deep_dup)
 
       if name.present? && template.schema.size == 1 &&
          original_template.schema.first['name'] == original_template.name &&
@@ -20,19 +29,12 @@ module Templates
         template.schema.first['name'] = template.name
       end
 
-      template.folder = TemplateFolders.find_or_create_by_name(author, folder_name) if folder_name.present?
-
-      template.submitters, template.fields = clone_submitters_and_fields(original_template)
-
       template
     end
 
-    def clone_submitters_and_fields(original_template)
+    def update_submitters_and_fields_and_schema(cloned_submitters, cloned_fields, cloned_schema)
       submitter_uuids_replacements = {}
       field_uuids_replacements = {}
-
-      cloned_submitters = original_template['submitters'].deep_dup
-      cloned_fields = original_template['fields'].deep_dup
 
       cloned_submitters.each do |submitter|
         new_submitter_uuid = SecureRandom.uuid
@@ -50,20 +52,28 @@ module Templates
         field['submitter_uuid'] = submitter_uuids_replacements[field['submitter_uuid']]
       end
 
-      replace_fields_regexp = Regexp.union(field_uuids_replacements.keys)
+      replace_fields_regexp = nil
 
       cloned_fields.each do |field|
         Array.wrap(field['conditions']).each do |condition|
           condition['field_uuid'] = field_uuids_replacements[condition['field_uuid']]
         end
 
-        if field.dig('preferences', 'formula').present?
-          field['preferences']['formula'] =
-            field['preferences']['formula'].gsub(replace_fields_regexp, field_uuids_replacements)
+        next if field.dig('preferences', 'formula').blank?
+
+        replace_fields_regexp ||= Regexp.union(field_uuids_replacements.keys)
+
+        field['preferences']['formula'] =
+          field['preferences']['formula'].gsub(replace_fields_regexp, field_uuids_replacements)
+      end
+
+      cloned_schema.each do |field|
+        Array.wrap(field['conditions']).each do |condition|
+          condition['field_uuid'] = field_uuids_replacements[condition['field_uuid']]
         end
       end
 
-      [cloned_submitters, cloned_fields]
+      [cloned_submitters, cloned_fields, cloned_schema]
     end
   end
 end
