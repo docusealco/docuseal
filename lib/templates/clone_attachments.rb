@@ -7,10 +7,7 @@ module Templates
     def call(template:, original_template:, documents: [])
       schema_uuids_replacements = {}
 
-      cloned_schema = original_template.schema.deep_dup
-      cloned_fields = template.fields.deep_dup
-
-      cloned_schema.each_with_index do |schema_item, index|
+      template.schema.each_with_index do |schema_item, index|
         new_schema_item_uuid = SecureRandom.uuid
 
         schema_uuids_replacements[schema_item['attachment_uuid']] = new_schema_item_uuid
@@ -21,7 +18,7 @@ module Templates
         schema_item['name'] = new_name if new_name.present?
       end
 
-      cloned_fields.each do |field|
+      template.fields.each do |field|
         next if field['areas'].blank?
 
         field['areas'].each do |area|
@@ -29,7 +26,7 @@ module Templates
         end
       end
 
-      template.update!(schema: cloned_schema, fields: cloned_fields)
+      template.save!
 
       original_template.schema_documents.map do |document|
         new_document =

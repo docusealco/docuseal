@@ -12,7 +12,13 @@ module Templates
       template.preferences = original_template.preferences.deep_dup
       template.name = name.presence || "#{original_template.name} (#{I18n.t('clone')})"
 
-      template.assign_attributes(original_template.slice(:folder_id, :schema))
+      template.assign_attributes(original_template.slice(:folder_id, :schema).deep_dup)
+
+      if name.present? && template.schema.size == 1 &&
+         original_template.schema.first['name'] == original_template.name &&
+         template.name != "#{original_template.name} (#{I18n.t('clone')})"
+        template.schema.first['name'] = template.name
+      end
 
       template.folder = TemplateFolders.find_or_create_by_name(author, folder_name) if folder_name.present?
 
