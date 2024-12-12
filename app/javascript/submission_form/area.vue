@@ -74,7 +74,7 @@
           ID: {{ signature.uuid }}
         </div>
         <div>
-          {{ t('reason') }}: {{ values[field.preferences?.reason_field_uuid] || t('digitally_signed_by') }} {{ submitter.name }}
+          <span v-if="values[field.preferences?.reason_field_uuid]">{{ t('reason') }}: </span>{{ values[field.preferences?.reason_field_uuid] || t('digitally_signed_by') }} {{ submitter.name }}
           <template v-if="submitter.email">
             &lt;{{ submitter.email }}&gt;
           </template>

@@ -236,7 +236,7 @@ module Submissions
 
             reason_string =
               I18n.with_locale(submitter.account.locale) do
-                "#{I18n.t('reason')}: #{reason_value || I18n.t('digitally_signed_by')} " \
+                "#{reason_value ? "#{I18n.t('reason')}: " : ''}#{reason_value || I18n.t('digitally_signed_by')} " \
                   "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
                   "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone), format: :long)} " \
                   "#{TimeUtils.timezone_abbr(submitter.account.timezone, attachment.created_at)}"

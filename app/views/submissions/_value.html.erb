@@ -12,7 +12,8 @@
             ID: <%= attachment.uuid %>
           </div>
           <div>
-            <%= t('reason') %>: <%= submitter.values[field.dig('preferences', 'reason_field_uuid')].presence || t('digitally_signed_by') %> <%= submitter.name %>
+            <% reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence %>
+            <% if reason_value %><%= t('reason') %>: <% end %><%= reason_value || t('digitally_signed_by') %> <%= submitter.name %>
             <% if submitter.email %>
               &lt;<%= submitter.email %>&gt;
             <% end %>
