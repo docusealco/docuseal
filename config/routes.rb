@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resources :form_events, only: %i[index], path: 'form/:type'
       resources :submission_events, only: %i[index], path: 'submission/:type'
     end
+    get 'version', to: 'version#show'
   end
 
   resources :verify_pdf_signature, only: %i[create]
