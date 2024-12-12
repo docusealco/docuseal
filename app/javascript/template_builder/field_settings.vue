@@ -27,7 +27,7 @@
     </label>
   </div>
   <div
-    v-if="['number'].includes(field.type)"
+    v-if="['number', 'cells'].includes(field.type)"
     class="py-1.5 px-1 relative"
     @click.stop
   >
@@ -36,7 +36,7 @@
       @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
     >
       <option
-        v-for="value in ['left', 'right', 'center']"
+        v-for="value in ['left', 'right', field.type === 'cells' ? null : 'center'].filter(Boolean)"
         :key="value"
         :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
         :value="value"

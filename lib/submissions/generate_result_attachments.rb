@@ -382,7 +382,10 @@ module Submissions
           when ->(type) { type == 'cells' && !area['cell_w'].to_f.zero? }
             cell_width = area['cell_w'] * width
 
-            TextUtils.maybe_rtl_reverse(value).chars.each_with_index do |char, index|
+            chars = TextUtils.maybe_rtl_reverse(value).chars
+            chars = chars.reverse if field.dig('preferences', 'align') == 'right'
+
+            chars.each_with_index do |char, index|
               next if char.blank?
 
               text = HexaPDF::Layout::TextFragment.create(char, font:,
@@ -409,9 +412,15 @@ module Submissions
                 line_height = layouter.fit([text], cell_width, height).lines.first.height
               end
 
+              x =
+                if field.dig('preferences', 'align') == 'right'
+                  ((area['x'] + area['w']) * width) - (cell_width * (index + 1))
+                else
+                  (area['x'] * width) + (cell_width * index)
+                end
+
               cell_layouter.fit([text], cell_width, [line_height, area['h'] * height].max)
-                           .draw(canvas, ((area['x'] * width) + (cell_width * index)),
-                                 height - (area['y'] * height))
+                           .draw(canvas, x, height - (area['y'] * height))
             end
           else
             if field['type'] == 'date'

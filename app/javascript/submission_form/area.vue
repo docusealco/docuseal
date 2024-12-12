@@ -168,6 +168,7 @@
     <div
       v-else-if="field.type === 'cells'"
       class="w-full flex items-center"
+      :class="{ 'justify-end': field.preferences?.align === 'right' }"
     >
       <div
         v-for="(char, index) in modelValue"
