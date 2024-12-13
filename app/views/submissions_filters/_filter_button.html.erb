@@ -1,8 +1,8 @@
-<% query_params = params.permit(:q, :status).merge(filter_params) %>
+<% query_params = params.permit(:q).merge(filter_params) %>
 <div class="dropdown dropdown-end">
   <label tabindex="0" class="cursor-pointer flex h-10 px-3 py-1 space-x-1 text-lg items-center justify-between border text-center text-neutral rounded-xl border-neutral-300 hover:border-neutral-700">
     <%= svg_icon('filter', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-    <span class="<%= filter_params.present? ? 'md:hidden' : '' %>">Filter</span>
+    <span class="<%= filter_params.then { |f| f[:status].in?(%w[pending completed]) ? f.except(:status) : f }.present? ? 'md:hidden' : '' %>">Filter</span>
   </label>
   <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px] text-right">
     <li class="flex">
@@ -15,6 +15,12 @@
       <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('calendar', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('created_at') %></span>
+      <% end %>
+    </li>
+    <li class="flex">
+      <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+        <%= svg_icon('info_circle', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
+        <span><%= t('status') %></span>
       <% end %>
     </li>
     <li class="flex">

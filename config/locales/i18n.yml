@@ -20,6 +20,8 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  pending_by_me: Pending by me
+  partially_completed: Partially completed
   unarchive: Unarchive
   first_party: 'First Party'
   remove_filter: Remove filter
@@ -699,6 +701,8 @@ en: &en
       read: Read your data
 
 es: &es
+  partially_completed: Parcialmente completado
+  pending_by_me: Pendiente por mi
   add: Agregar
   adding: Agregando
   owner: Propietario
@@ -1380,6 +1384,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
   owner: Proprietario
@@ -2061,6 +2066,8 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  partially_completed: Partiellement complété
+  pending_by_me: En attente par moi
   add: Ajouter
   adding: Ajout
   owner: Propriétaire
@@ -2743,6 +2750,8 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  partially_completed: Parcialmente concluído
+  pending_by_me: Pendente por mim
   add: Adicionar
   adding: Adicionando
   owner: Proprietário
@@ -3424,6 +3433,8 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  partially_completed: Teilweise abgeschlossen
+  pending_by_me: Ausstehend von mir
   add: Hinzufügen
   adding: Hinzufügen
   owner: Eigentümer
