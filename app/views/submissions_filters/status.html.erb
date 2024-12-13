@@ -1,16 +1,13 @@
 <%= render 'filter_modal', title: t('status'), default_params: params.permit(*(Submissions::Filter::ALLOWED_PARAMS - %w[status])) do %>
-  <div class="space-y-3">
-    <div class="flex flex-col md:flex-row gap-2">
-      <div class="form-control w-full">
-        <%= label_tag 'status', t('status'), class: 'label text-sm' %>
-        <div id="status" class="radio-select grid grid-cols-2 gap-2 px-1">
-          <% ['', 'pending', 'completed', 'declined', 'expired', 'partially_completed'].each do |status| %>
-            <label class="radio-label cursor-pointer inline-flex items-center space-x-2">
-              <%= radio_button_tag 'status', status, params[:status] == status || (status == '' && params[:status].blank?), class: 'base-radio' %>
-              <span><%= t(status.presence || 'all') %></span>
-            </label>
-          <% end %>
-        </div>
+  <div class="flex flex-col md:flex-row gap-2 mt-5">
+    <div class="form-control w-full">
+      <div id="status" class="radio-select grid grid-cols-2 gap-2 px-1">
+        <% ['', 'pending', 'completed', 'partially_completed', 'declined', 'expired'].each do |status| %>
+          <label class="radio-label cursor-pointer inline-flex items-center space-x-2">
+            <%= radio_button_tag 'status', status, params[:status] == status || (status == '' && params[:status].blank?), class: 'base-radio' %>
+            <span><%= t(status.presence || 'all') %></span>
+          </label>
+        <% end %>
       </div>
     </div>
   </div>
