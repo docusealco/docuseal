@@ -93,7 +93,7 @@ module Api
     end
 
     def destroy
-      if params[:permanently] == 'true'
+      if params[:permanently].in?(['true', true])
         @submission.destroy!
       else
         @submission.update!(archived_at: Time.current)

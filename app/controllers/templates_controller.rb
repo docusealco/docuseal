@@ -93,7 +93,7 @@ class TemplatesController < ApplicationController
 
   def destroy
     notice =
-      if params[:permanently].present?
+      if params[:permanently].in?(['true', true])
         @template.destroy!
 
         I18n.t('template_has_been_removed')
