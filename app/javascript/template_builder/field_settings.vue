@@ -240,7 +240,7 @@
       <input
         v-model="field.required"
         type="checkbox"
-        :disabled="!editable || defaultField"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
         class="toggle toggle-xs"
         @update:model-value="save"
       >
