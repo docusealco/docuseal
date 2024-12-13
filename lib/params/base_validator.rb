@@ -89,12 +89,13 @@ module Params
       raise_error(message || "#{key} must be unique")
     end
 
-    def in_path(params, path = [])
+    def in_path(params, path = [], skip_blank: false)
       old_path = @current_path
 
       @current_path = [old_path, *path].compact_blank.map(&:to_s).join('.')
 
       param = params.dig(*path)
+      param = nil if skip_blank && param.blank?
 
       yield params.dig(*path) if param
 

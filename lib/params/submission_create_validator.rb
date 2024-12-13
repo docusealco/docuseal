@@ -49,7 +49,7 @@ module Params
       type(params, :message, Hash)
       type(params, :submitters, Array)
 
-      in_path(params, :message) do |message_params|
+      in_path(params, :message, skip_blank: true) do |message_params|
         type(message_params, :subject, String)
         type(message_params, :body, String)
 
