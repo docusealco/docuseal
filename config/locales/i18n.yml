@@ -20,6 +20,8 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  pending_by_me: Pending by me
+  partially_completed: Partially completed
   unarchive: Unarchive
   first_party: 'First Party'
   remove_filter: Remove filter
@@ -660,6 +662,7 @@ en: &en
   policy_links: Policy Links
   markdown_content_e_g: Markdown content, e.g.
   privacy_policy: Privacy Policy
+  use_the_edit_form_to_move_it_to_another_team: Use the edit form to move it to another team.
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -698,6 +701,8 @@ en: &en
       read: Read your data
 
 es: &es
+  partially_completed: Parcialmente completado
+  pending_by_me: Pendiente por mi
   add: Agregar
   adding: Agregando
   owner: Propietario
@@ -1340,6 +1345,7 @@ es: &es
   policy_links: Enlaces de Políticas
   markdown_content_e_g: Contenido Markdown, por ej.
   privacy_policy: Política de Privacidad
+  use_the_edit_form_to_move_it_to_another_team: Usa el formulario de edición para moverlo a otro equipo.
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1378,6 +1384,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
   owner: Proprietario
@@ -2020,6 +2027,7 @@ it: &it
   policy_links: Collegamenti alle Politiche
   markdown_content_e_g: Contenuto Markdown, ad es.
   privacy_policy: Politica sulla Privacy
+  use_the_edit_form_to_move_it_to_another_team: Usa il modulo di modifica per spostarlo in un altro team.
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2058,6 +2066,8 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  partially_completed: Partiellement complété
+  pending_by_me: En attente par moi
   add: Ajouter
   adding: Ajout
   owner: Propriétaire
@@ -2701,6 +2711,7 @@ fr: &fr
   policy_links: Liens des Politiques
   markdown_content_e_g: Contenu Markdown, par ex.
   privacy_policy: Politique de Confidentialité
+  use_the_edit_form_to_move_it_to_another_team: Utilisez le formulaire de modification pour le déplacer vers une autre équipe.
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2739,6 +2750,8 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  partially_completed: Parcialmente concluído
+  pending_by_me: Pendente por mim
   add: Adicionar
   adding: Adicionando
   owner: Proprietário
@@ -3381,6 +3394,7 @@ pt: &pt
   policy_links: Links de Políticas
   markdown_content_e_g: Conteúdo Markdown, ex.
   privacy_policy: Política de Privacidade
+  use_the_edit_form_to_move_it_to_another_team: Use o formulário de edição para movê-lo para outra equipe.
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3419,6 +3433,8 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  partially_completed: Teilweise abgeschlossen
+  pending_by_me: Ausstehend von mir
   add: Hinzufügen
   adding: Hinzufügen
   owner: Eigentümer
@@ -4061,6 +4077,7 @@ de: &de
   policy_links: Richtlinien-Links
   markdown_content_e_g: Markdown-Inhalt, z. B.
   privacy_policy: Datenschutzrichtlinie
+  use_the_edit_form_to_move_it_to_another_team: Verwenden Sie das Bearbeitungsformular, um ihn in ein anderes Team zu verschieben.
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

@@ -61,7 +61,7 @@ class SubmissionsController < ApplicationController
 
   def destroy
     notice =
-      if params[:permanently].present?
+      if params[:permanently].in?(['true', true])
         @submission.destroy!
 
         I18n.t('submission_has_been_removed')

@@ -23,7 +23,9 @@ module Api
       cloned_template.source = :api
       cloned_template.save!
 
-      schema_documents = Templates::CloneAttachments.call(template: cloned_template, original_template: @template)
+      schema_documents = Templates::CloneAttachments.call(template: cloned_template,
+                                                          original_template: @template,
+                                                          documents: params[:documents])
 
       WebhookUrls.for_account_id(cloned_template.account_id, 'template.created').each do |webhook_url|
         SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => cloned_template.id,

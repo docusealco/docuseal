@@ -24,14 +24,10 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
-    existing_user = User.accessible_by(current_ability).find_by(email: @user.email)
+    if User.accessible_by(current_ability).exists?(email: @user.email)
+      @user.errors.add(:email, I18n.t('already_exists'))
 
-    if existing_user
-      existing_user.archived_at = nil
-      existing_user.assign_attributes(user_params)
-      existing_user.account = current_account
-
-      @user = existing_user
+      return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
     end
 
     @user.role = User::ADMIN_ROLE unless role_valid?(@user.role)
@@ -83,14 +79,7 @@ class UsersController < ApplicationController
   end
 
   def build_user
-    @user = current_account.users.find_by(email: user_params[:email])&.tap do |user|
-      user.assign_attributes(user_params)
-      user.archived_at = nil
-    end
-
-    @user ||= current_account.users.new(user_params)
-
-    @user
+    @user = current_account.users.new(user_params)
   end
 
   def user_params

@@ -1304,6 +1304,16 @@ export default {
         fieldArea.h = lastArea.h
       }
 
+      if (field.width) {
+        fieldArea.w = field.width / area.maskW
+        delete field.width
+      }
+
+      if (field.height) {
+        fieldArea.h = field.height / area.maskH
+        delete field.height
+      }
+
       field.areas.push(fieldArea)
 
       this.selectedAreaRef.value = fieldArea

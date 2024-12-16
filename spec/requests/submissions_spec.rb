@@ -89,6 +89,21 @@ describe 'Submission API', type: :request do
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
     end
 
+    it 'creates a submission when the message is empty' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }],
+        message: {}
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submission = Submission.last
+
+      expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
+    end
+
     it 'creates a submission when some submitter roles are not provided' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: multiple_submitters_template.id,
@@ -167,6 +182,22 @@ describe 'Submission API', type: :request do
 
       expect(response).to have_http_status(:unprocessable_entity)
       expect(response.parsed_body).to eq({ 'error' => 'Defined more signing parties than in template' })
+    end
+
+    it 'returns an error if the message has no body value' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        send_email: true,
+        submitters: [
+          { role: 'First Party', email: 'john.doe@example.com' }
+        ],
+        message: {
+          subject: 'Custom Email Subject'
+        }
+      }.to_json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq({ 'error' => 'body is required in `message`.' })
     end
   end
 

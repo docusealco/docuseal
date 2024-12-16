@@ -9,12 +9,11 @@ class TemplatesController < ApplicationController
     submissions = @template.submissions.accessible_by(current_ability)
     submissions = submissions.active if @template.archived_at.blank?
     submissions = Submissions.search(submissions, params[:q], search_values: true)
-    submissions = Submissions::Filter.call(submissions, current_user, params)
+    submissions = Submissions::Filter.call(submissions, current_user, params.except(:status))
 
     @base_submissions = submissions
 
-    submissions = submissions.pending if params[:status] == 'pending'
-    submissions = submissions.completed if params[:status] == 'completed'
+    submissions = Submissions::Filter.filter_by_status(submissions, params)
 
     submissions = if params[:completed_at_from].present? || params[:completed_at_to].present?
                     submissions.order(Submitter.arel_table[:completed_at].maximum.desc)
@@ -93,7 +92,7 @@ class TemplatesController < ApplicationController
 
   def destroy
     notice =
-      if params[:permanently].present?
+      if params[:permanently].in?(['true', true])
         @template.destroy!
 
         I18n.t('template_has_been_removed')

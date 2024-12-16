@@ -9,7 +9,9 @@ class TemplatesDashboardController < ApplicationController
   FOLDERS_PER_PAGE = 18
 
   def index
-    @template_folders = filter_template_folders(@template_folders)
+    @template_folders = @template_folders.where(id: @templates.active.select(:folder_id)).order(id: :desc)
+
+    @template_folders = TemplateFolders.search(@template_folders, params[:q])
 
     @pagy, @template_folders = pagy(
       @template_folders,
@@ -35,14 +37,6 @@ class TemplatesDashboardController < ApplicationController
   end
 
   private
-
-  def filter_template_folders(template_folders)
-    rel = template_folders.joins(:active_templates)
-                          .order(id: :desc)
-                          .distinct
-
-    TemplateFolders.search(rel, params[:q])
-  end
 
   def filter_templates(templates)
     rel = templates.active.preload(:author, :template_accesses).order(id: :desc)

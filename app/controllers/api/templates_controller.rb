@@ -74,7 +74,7 @@ module Api
     end
 
     def destroy
-      if params[:permanently] == 'true'
+      if params[:permanently].in?(['true', true])
         @template.destroy!
       else
         @template.update!(archived_at: Time.current)

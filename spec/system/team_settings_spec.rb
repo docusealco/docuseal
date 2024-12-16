@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Team Settings' do
   let(:account) { create(:account) }
+  let(:second_account) { create(:account) }
   let(:current_user) { create(:user, account:) }
 
   before do
@@ -53,6 +54,43 @@ RSpec.describe 'Team Settings' do
         expect(user.last_name).to eq('Smith')
         expect(user.email).to eq('joseph.smith@example.com')
         expect(user.account).to eq(account)
+      end
+    end
+
+    it "doesn't create a new user if a user already exists" do
+      click_link 'New User'
+
+      within '#modal' do
+        fill_in 'First name', with: 'Michael'
+        fill_in 'Last name', with: 'Jordan'
+        fill_in 'Email', with: users.first.email
+        fill_in 'Password', with: 'password'
+
+        expect do
+          click_button 'Submit'
+        end.not_to change(User, :count)
+      end
+
+      expect(page).to have_content('Email already exists')
+    end
+
+    it "doesn't create a new user if a user belongs to another account" do
+      user = create(:user, account: second_account)
+      visit settings_users_path
+
+      click_link 'New User'
+
+      within '#modal' do
+        fill_in 'First name', with: 'Michael'
+        fill_in 'Last name', with: 'Jordan'
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: 'password'
+
+        expect do
+          click_button 'Submit'
+        end.not_to change(User, :count)
+
+        expect(page).to have_content('Email has already been taken')
       end
     end
 

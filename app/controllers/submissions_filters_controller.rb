@@ -4,6 +4,7 @@ class SubmissionsFiltersController < ApplicationController
   ALLOWED_NAMES = %w[
     author
     completed_at
+    status
     created_at
   ].freeze
 
