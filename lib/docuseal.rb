@@ -64,6 +64,8 @@ module Docuseal
   end
 
   def default_pkcs
+    return if Docuseal::CERTS['enabled'] == false
+
     @default_pkcs ||= GenerateCertificate.load_pkcs(Docuseal::CERTS)
   end
 

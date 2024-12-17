@@ -43,12 +43,16 @@ module Submissions
 
         last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
-        sign_params = {
-          reason: sign_reason,
-          **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
-        }
+        if pkcs
+          sign_params = {
+            reason: sign_reason,
+            **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
+          }
 
-        document.sign(io, **sign_params)
+          document.sign(io, **sign_params)
+        else
+          document.write(io)
+        end
 
         Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
 
