@@ -17,12 +17,16 @@ module Submissions
 
       pdf.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
-      sign_params = {
-        reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),
-        **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
-      }
+      if pkcs
+        sign_params = {
+          reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),
+          **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
+        }
 
-      pdf.sign(io, **sign_params)
+        pdf.sign(io, **sign_params)
+      else
+        pdf.write(io)
+      end
 
       Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
 

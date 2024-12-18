@@ -25,7 +25,8 @@ Capybara.register_driver(:headless_cuprite) do |app|
   Capybara::Cuprite::Driver.new(app, window_size: [1200, 800],
                                      process_timeout: 20,
                                      timeout: 20,
-                                     js_errors: true)
+                                     js_errors: true,
+                                     browser_options: { 'no-sandbox' => nil })
 end
 
 Capybara.register_driver(:headful_cuprite) do |app|
@@ -33,7 +34,8 @@ Capybara.register_driver(:headful_cuprite) do |app|
                                      headless: false,
                                      process_timeout: 20,
                                      timeout: 20,
-                                     js_errors: true)
+                                     js_errors: true,
+                                     browser_options: { 'no-sandbox' => nil })
 end
 
 Rails.root.glob('spec/support/**/*.rb').each { |f| require f }

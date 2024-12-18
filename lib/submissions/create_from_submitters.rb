@@ -77,7 +77,7 @@ module Submissions
       if template_fields != (submission.template_fields || submission.template.fields) ||
          submitters_attrs.any? { |e| e[:completed].present? }
         submission.template_fields = template_fields
-        submission.template_schema = submission.template.schema
+        submission.template_schema = submission.template.schema if submission.template_schema.blank?
       end
 
       submission

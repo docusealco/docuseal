@@ -487,7 +487,7 @@ module Submissions
 
       sign_reason = fetch_sign_reason(submitter)
 
-      if sign_reason
+      if sign_reason && pkcs
         sign_params = {
           reason: sign_reason,
           **build_signing_params(submitter, pkcs, tsa_url)
