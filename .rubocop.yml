@@ -69,7 +69,7 @@ RSpec/MultipleMemoizedHelpers:
   Max: 9
 
 Metrics/BlockNesting:
-  Max: 4
+  Max: 5
 
 Rails/I18nLocaleTexts:
   Enabled: false

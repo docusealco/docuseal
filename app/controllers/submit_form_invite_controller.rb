@@ -9,13 +9,15 @@ class SubmitFormInviteController < ApplicationController
 
     return head :unprocessable_entity unless can_invite?(submitter)
 
-    invite_submitters = filter_invite_submitters(submitter)
+    invite_submitters = filter_invite_submitters(submitter, 'invite_by_uuid')
+    optional_invite_submitters = filter_invite_submitters(submitter, 'optional_invite_by_uuid')
 
     ApplicationRecord.transaction do
-      invite_submitters.each do |item|
+      (invite_submitters + optional_invite_submitters).each do |item|
         attrs = submitters_attributes.find { |e| e[:uuid] == item['uuid'] }
 
         next unless attrs
+        next if attrs[:email].blank?
 
         submitter.submission.submitters.create!(**attrs, account_id: submitter.account_id)
 
@@ -46,9 +48,9 @@ class SubmitFormInviteController < ApplicationController
       !submitter.submission.template.archived_at?
   end
 
-  def filter_invite_submitters(submitter)
+  def filter_invite_submitters(submitter, key = 'invite_by_uuid')
     (submitter.submission.template_submitters || submitter.submission.template.submitters).select do |s|
-      s['invite_by_uuid'] == submitter.uuid && submitter.submission.submitters.none? { |e| e.uuid == s['uuid'] }
+      s[key] == submitter.uuid && submitter.submission.submitters.none? { |e| e.uuid == s['uuid'] }
     end
   end
 

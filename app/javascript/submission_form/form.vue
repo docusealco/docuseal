@@ -498,6 +498,7 @@
       <InviteForm
         v-else-if="isInvite"
         :submitters="inviteSubmitters"
+        :optional-submitters="optionalInviteSubmitters"
         :submitter-slug="submitterSlug"
         :authenticity-token="authenticityToken"
         :url="baseUrl + submitPath + '/invite'"
@@ -623,6 +624,11 @@ export default {
       required: true
     },
     inviteSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    optionalInviteSubmitters: {
       type: Array,
       required: false,
       default: () => []
@@ -1320,7 +1326,7 @@ export default {
         const formData = new FormData(this.$refs.form)
         const isLastStep = (submitStep === this.stepFields.length - 1) || forceComplete
 
-        if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length) {
+        if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length && !this.optionalInviteSubmitters.length) {
           formData.append('completed', 'true')
         }
 
@@ -1359,7 +1365,7 @@ export default {
             if (emptyRequiredField === nextStep) {
               this.showFillAllRequiredFields = true
             }
-          } else if (this.inviteSubmitters.length) {
+          } else if (this.inviteSubmitters.length || this.optionalInviteSubmitters.length) {
             this.isInvite = true
           } else {
             this.performComplete(response)

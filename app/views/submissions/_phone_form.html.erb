@@ -1,5 +1,5 @@
 <%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
-  <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? } %>
+  <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? } %>
   <dynamic-list class="space-y-4">
     <div class="space-y-4">
       <div class="card card-compact bg-base-300/40" data-targets="dynamic-list.items">
