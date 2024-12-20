@@ -20,6 +20,7 @@ module Templates
       Selecionar  |
       Escolher
     )\b/ix
+
     FIELD_ALIGNMENT = {
       0 => 'left',
       1 => 'center',
