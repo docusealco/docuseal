@@ -643,6 +643,11 @@ export default {
       required: false,
       default: '-80px'
     },
+    orderAsOnPage: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     requireSigningReason: {
       type: Boolean,
       required: false,
@@ -961,6 +966,38 @@ export default {
 
         return acc
       }, [])
+
+      if (this.orderAsOnPage) {
+        const fieldAreasIndex = {}
+        const attachmentUuids = Object.keys(this.attachmentConditionsIndex)
+
+        const sortArea = (aArea, bArea) => {
+          if (aArea.attachment_uuid === bArea.attachment_uuid) {
+            if (aArea.page === bArea.page) {
+              if (Math.abs(aArea.y - bArea.y) < 0.01) {
+                if (aArea.x === bArea.x) {
+                  return 0
+                } else {
+                  return aArea.x - bArea.x
+                }
+              } else {
+                return aArea.y - bArea.y
+              }
+            } else {
+              return aArea.page - bArea.page
+            }
+          } else {
+            return attachmentUuids.indexOf(aArea.attachment_uuid) - attachmentUuids.indexOf(bArea.attachment_uuid)
+          }
+        }
+
+        sortedFields.sort((aField, bField) => {
+          const aArea = (fieldAreasIndex[aField.uuid] ||= [...(aField.areas || [])].sort(sortArea)[0])
+          const bArea = (fieldAreasIndex[bField.uuid] ||= [...(bField.areas || [])].sort(sortArea)[0])
+
+          return sortArea(aArea, bArea)
+        })
+      }
 
       if (verificationFields.length) {
         sortedFields.push(verificationFields.pop())
