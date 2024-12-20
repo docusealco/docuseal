@@ -20,7 +20,7 @@
                 <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
                 <submitters-autocomplete data-field="name">
                   <linked-input data-target-id="<%= "detailed_name_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                    <%= tag.input type: 'text', name: 'submission[1][submitters][][name]', autocomplete: 'off', class: 'base-input !h-10 w-full', placeholder: t('name'), required: index.zero?, value: (params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.full_name : '', dir: 'auto', id: "detailed_name_#{item['uuid']}" %>
+                    <%= tag.input type: 'text', name: 'submission[1][submitters][][name]', autocomplete: 'off', class: 'base-input !h-10 w-full', placeholder: t('name'), required: index.zero?, value: item['email'].present? ? current_account.submitters.accessible_by(current_ability).where.not(name: nil).order(id: :desc).find_by(email: item['email'])&.name : ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.full_name : ''), dir: 'auto', id: "detailed_name_#{item['uuid']}" %>
                   </linked-input>
                 </submitters-autocomplete>
                 <div class="grid <%= 'md:grid-cols-2 gap-1' if submitters.size == 1 %>">
