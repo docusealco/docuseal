@@ -47,11 +47,11 @@ Puma::Plugin.create do
         ActiveSupport.run_load_hooks(:sidekiq_config, config)
       end.instance_variable_get(:@config)
 
+      fire_event(configs, :startup)
+
       @sidekiq = Sidekiq::Launcher.new(configs, embedded: true)
 
       @sidekiq.run
-
-      fire_event(configs, :startup)
     end
   end
 
