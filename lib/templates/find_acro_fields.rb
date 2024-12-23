@@ -21,6 +21,12 @@ module Templates
       Escolher
     )\b/ix
 
+    FIELD_ALIGNMENT = {
+      0 => 'left',
+      1 => 'center',
+      2 => 'right'
+    }.freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -32,6 +38,8 @@ module Templates
       fields.filter_map do |field|
         areas = Array.wrap(field[:Kids] || field).filter_map do |child_field|
           page = annots_index[child_field.hash]
+
+          next unless page
 
           media_box = page[:CropBox] || page[:MediaBox]
           crop_box = page[:CropBox] || media_box
@@ -123,6 +131,11 @@ module Templates
       attrs[:description] = field[:TU] if field[:TU].present? &&
                                           field[:TU] != field.full_field_name &&
                                           !field[:TU].in?(SKIP_FIELD_DESCRIPTION)
+
+      if field[:Q].present? && field.field_type == :Tx
+        attrs[:preferences] ||= {}
+        attrs[:preferences][:align] = FIELD_ALIGNMENT.fetch(field[:Q], 'left')
+      end
 
       if field.field_type == :Btn && field.concrete_field_type == :radio_button && field[:Opt].present?
         selected_option_index = (field.allowed_values || []).find_index(field.field_value)

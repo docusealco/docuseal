@@ -93,7 +93,8 @@ const en = {
   reupload: 'Reupload',
   upload: 'Upload',
   files: 'Files',
-  signature_is_too_small_please_redraw: 'Signature is too small. Please redraw.'
+  signature_is_too_small_please_redraw: 'Signature is too small. Please redraw.',
+  wait_countdown_seconds: 'Wait {countdown} seconds'
 }
 
 const es = {
@@ -190,7 +191,8 @@ const es = {
   reupload: 'Volver a subir',
   upload: 'Subir',
   files: 'Archivos',
-  signature_is_too_small_please_redraw: 'La firma es demasiado pequeña. Por favor, dibújala de nuevo.'
+  signature_is_too_small_please_redraw: 'La firma es demasiado pequeña. Por favor, dibújala de nuevo.',
+  wait_countdown_seconds: 'Espera {countdown} segundos'
 }
 
 const it = {
@@ -287,7 +289,8 @@ const it = {
   reupload: 'Ricarica',
   upload: 'Carica',
   files: 'File',
-  signature_is_too_small_please_redraw: 'La firma è troppo piccola. Ridisegnala per favore.'
+  signature_is_too_small_please_redraw: 'La firma è troppo piccola. Ridisegnala per favore.',
+  wait_countdown_seconds: 'Attendi {countdown} secondi'
 }
 
 const de = {
@@ -384,7 +387,8 @@ const de = {
   reupload: 'Erneut hochladen',
   upload: 'Hochladen',
   files: 'Dateien',
-  signature_is_too_small_please_redraw: 'Die Unterschrift ist zu klein. Bitte erneut zeichnen.'
+  signature_is_too_small_please_redraw: 'Die Unterschrift ist zu klein. Bitte erneut zeichnen.',
+  wait_countdown_seconds: 'Warte {countdown} Sekunden'
 }
 
 const fr = {
@@ -481,7 +485,8 @@ const fr = {
   reupload: 'Recharger',
   upload: 'Télécharger',
   files: 'Fichiers',
-  signature_is_too_small_please_redraw: 'La signature est trop petite. Veuillez la redessiner.'
+  signature_is_too_small_please_redraw: 'La signature est trop petite. Veuillez la redessiner.',
+  wait_countdown_seconds: 'Attendez {countdown} secondes'
 }
 
 const pl = {
@@ -675,7 +680,8 @@ const uk = {
   reupload: 'Перезавантажити',
   upload: 'Завантажити',
   files: 'Файли',
-  signature_is_too_small_please_redraw: 'Підпис занадто малий. Будь ласка, перемалюйте його.'
+  signature_is_too_small_please_redraw: 'Підпис занадто малий. Будь ласка, перемалюйте його.',
+  wait_countdown_seconds: 'Зачекайте {countdown} секунд'
 }
 
 const cs = {
@@ -772,7 +778,8 @@ const cs = {
   reupload: 'Znovu nahrát',
   upload: 'Nahrát',
   files: 'Soubory',
-  signature_is_too_small_please_redraw: 'Podpis je příliš malý. Prosím, překreslete ho.'
+  signature_is_too_small_please_redraw: 'Podpis je příliš malý. Prosím, překreslete ho.',
+  wait_countdown_seconds: 'Počkejte {countdown} sekund'
 }
 
 const pt = {
@@ -869,7 +876,8 @@ const pt = {
   reupload: 'Reenviar',
   upload: 'Carregar',
   files: 'Arquivos',
-  signature_is_too_small_please_redraw: 'A assinatura é muito pequena. Por favor, redesenhe-a.'
+  signature_is_too_small_please_redraw: 'A assinatura é muito pequena. Por favor, redesenhe-a.',
+  wait_countdown_seconds: 'Aguarde {countdown} segundos'
 }
 
 const he = {
@@ -967,7 +975,8 @@ const he = {
   reupload: 'העלה שוב',
   upload: 'העלאה',
   files: 'קבצים',
-  signature_is_too_small_please_redraw: 'החתימה קטנה מדי. אנא צייר מחדש.'
+  signature_is_too_small_please_redraw: 'החתימה קטנה מדי. אנא צייר מחדש.',
+  wait_countdown_seconds: 'המתן {countdown} שניות'
 }
 
 const nl = {
@@ -1065,7 +1074,8 @@ const nl = {
   reupload: 'Opnieuw uploaden',
   upload: 'Uploaden',
   files: 'Bestanden',
-  signature_is_too_small_please_redraw: 'De handtekening is te klein. Teken deze opnieuw, alstublieft.'
+  signature_is_too_small_please_redraw: 'De handtekening is te klein. Teken deze opnieuw, alstublieft.',
+  wait_countdown_seconds: 'Wacht {countdown} seconden'
 }
 
 const ar = {
@@ -1162,7 +1172,8 @@ const ar = {
   reupload: 'إعادة التحميل',
   upload: 'تحميل',
   files: 'الملفات',
-  signature_is_too_small_please_redraw: 'التوقيع صغير جدًا. يرجى إعادة الرسم.'
+  signature_is_too_small_please_redraw: 'التوقيع صغير جدًا. يرجى إعادة الرسم.',
+  wait_countdown_seconds: 'انتظر {countdown} ثانية'
 }
 
 const ko = {
@@ -1258,7 +1269,8 @@ const ko = {
   reupload: '다시 업로드',
   upload: '업로드',
   files: '파일',
-  signature_is_too_small_please_redraw: '서명이 너무 작습니다. 다시 그려주세요.'
+  signature_is_too_small_please_redraw: '서명이 너무 작습니다. 다시 그려주세요.',
+  wait_countdown_seconds: '{countdown}초 기다리세요'
 }
 
 const i18n = { en, es, it, de, fr, pl, uk, cs, pt, he, nl, ar, ko }

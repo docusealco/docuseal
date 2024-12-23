@@ -52,7 +52,14 @@
           >
             {{ t('change_phone_number') }}
           </a>
+          <span
+            v-if="resendCodeCountdown > 0"
+            class="link"
+          >
+            {{ t('wait_countdown_seconds').replace('{countdown}', resendCodeCountdown) }}
+          </span>
           <a
+            v-else
             href="#"
             class="link"
             @click.prevent="resendCode"
@@ -173,6 +180,8 @@ export default {
   data () {
     return {
       isCodeSent: false,
+      codeSentAt: null,
+      resendCodeCountdown: 0,
       isResendLoading: false,
       phoneValue: this.modelValue || this.defaultValue || '',
       selectedCountry: {}
@@ -220,6 +229,11 @@ export default {
       this.selectedCountry = this.countries.find((country) => country.tz.includes(tz)) || this.countries[0]
     }
   },
+  beforeUnmount () {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  },
   methods: {
     emitSubmit: throttle(function (e) {
       this.$emit('submit')
@@ -246,13 +260,28 @@ export default {
       }
     },
     resendCode () {
-      this.isResendLoading = true
+      if (this.codeSentAt && Date.now() - this.codeSentAt < 15000) {
+        this.startResendCodeCountdown()
+      } else {
+        this.isResendLoading = true
 
-      this.sendVerificationCode().finally(() => {
-        alert(this.t('verification_code_has_been_resent'))
+        this.sendVerificationCode().then(() => {
+          alert(this.t('verification_code_has_been_resent'))
+        }).finally(() => {
+          this.isResendLoading = false
+        })
+      }
+    },
+    startResendCodeCountdown () {
+      this.resendCodeCountdown = 15 - parseInt((Date.now() - this.codeSentAt) / 1000)
 
-        this.isResendLoading = false
-      })
+      this.interval = setInterval(() => {
+        this.resendCodeCountdown--
+
+        if (this.resendCodeCountdown <= 0) {
+          clearInterval(this.interval)
+        }
+      }, 1000)
     },
     sendVerificationCode () {
       return fetch(this.baseUrl + '/api/send_phone_verification_code', {
@@ -264,12 +293,20 @@ export default {
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {
-        if (resp.status === 422) {
+        if ([422, 429].includes(resp.status)) {
           const data = await resp.json()
 
-          alert(this.t('number_phone_is_invalid').replace('{number}', this.fullInternationalPhoneValue))
+          if (resp.status === 422) {
+            alert(this.t('number_phone_is_invalid').replace('{number}', this.fullInternationalPhoneValue))
+          } else if (resp.status === 429) {
+            alert(data.error)
+          }
 
           return Promise.reject(new Error(data.error))
+        } else if (resp.ok) {
+          this.codeSentAt = Date.now()
+
+          return resp
         }
       })
     },

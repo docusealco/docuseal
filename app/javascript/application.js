@@ -31,6 +31,7 @@ import LinkedInput from './elements/linked_input'
 import CheckboxGroup from './elements/checkbox_group'
 import MaskedInput from './elements/masked_input'
 import SetDateButton from './elements/set_date_button'
+import IndeterminateCheckbox from './elements/indeterminate_checkbox'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -99,6 +100,7 @@ safeRegisterElement('linked-input', LinkedInput)
 safeRegisterElement('checkbox-group', CheckboxGroup)
 safeRegisterElement('masked-input', MaskedInput)
 safeRegisterElement('set-date-button', SetDateButton)
+safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

@@ -62,7 +62,7 @@ RUN apk add --no-cache build-base && bundle install && apk del --no-cache build-
 COPY ./bin ./bin
 COPY ./app ./app
 COPY ./config ./config
-COPY ./db ./db
+COPY ./db/migrate ./db/migrate
 COPY ./log ./log
 COPY ./lib ./lib
 COPY ./public ./public

@@ -45,7 +45,7 @@ ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.productio
 
 Rails.configuration.to_prepare do
   ActiveStorage::DiskController.after_action do
-    response.set_header('Cache-Control', 'public, max-age=31536000') if action_name == 'show'
+    response.set_header('cache-control', 'public, max-age=31536000') if action_name == 'show'
   end
 
   ActiveStorage::Blobs::ProxyController.before_action do

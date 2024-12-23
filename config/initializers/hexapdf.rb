@@ -63,6 +63,12 @@ module HexaPDF
           # rubocop:enable Rails/Blank
         end
       end
+
+      class AppearanceGenerator
+        def create_push_button_appearances
+          nil
+        end
+      end
     end
 
     # comparison of Integer with HexaPDF::PDFArray failed

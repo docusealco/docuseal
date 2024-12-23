@@ -98,6 +98,7 @@
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']] %>
+                  <% value ||= field['default_value'] if field['type'] == 'heading' %>
                   <% next if value.blank? %>
                   <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                 <% end %>

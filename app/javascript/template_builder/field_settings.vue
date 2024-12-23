@@ -212,16 +212,12 @@
         {{ t('any') }}
       </option>
       <option
-        value="drawn"
-        :selected="field.preferences?.format === 'drawn'"
+        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'upload']"
+        :key="type"
+        :value="type"
+        :selected="field.preferences?.format === type"
       >
-        {{ t('drawn') }}
-      </option>
-      <option
-        value="typed"
-        :selected="field.preferences?.format === 'typed'"
-      >
-        {{ t('typed') }}
+        {{ t(type) }}
       </option>
     </select>
     <label

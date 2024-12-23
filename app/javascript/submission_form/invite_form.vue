@@ -12,7 +12,7 @@
       :value="authenticityToken"
     >
     <div
-      v-for="(submitter, index) in submitters"
+      v-for="(submitter, index) in [...submitters, ...optionalSubmitters]"
       :key="submitter.uuid"
       :class="{ 'mt-4': index !== 0 }"
     >
@@ -26,7 +26,7 @@
         dir="auto"
         class="label text-2xl"
       >
-        {{ t('invite') }} {{ submitter.name }}
+        {{ t('invite') }} {{ submitter.name }} <template v-if="!submitters.includes(submitter)">({{ t('optional') }})</template>
       </label>
       <input
         :id="submitter.uuid"
@@ -34,7 +34,7 @@
         class="base-input !text-2xl w-full"
         :placeholder="t('email')"
         type="email"
-        required
+        :required="submitters.includes(submitter)"
         autofocus="true"
         name="submission[submitters][][email]"
       >
@@ -53,7 +53,7 @@
             class="mr-1 animate-spin"
           />
           <span>
-            {{ t('submit') }}
+            {{ t('complete') }}
           </span><span
             v-if="isSubmitting"
             class="w-6 flex justify-start mr-1"
@@ -77,6 +77,11 @@ export default {
     submitters: {
       type: Array,
       required: true
+    },
+    optionalSubmitters: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     url: {
       type: String,

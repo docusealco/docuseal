@@ -20,7 +20,7 @@
       </label>
       <div class="space-x-2 flex">
         <span
-          v-if="isTextSignature && field.preferences?.format !== 'typed'"
+          v-if="isTextSignature && format !== 'typed' && format !== 'upload'"
           class="tooltip"
           :data-tip="t('draw_signature')"
         >
@@ -37,7 +37,7 @@
           </a>
         </span>
         <span
-          v-else-if="withTypedSignature && field.preferences?.format !== 'typed' && field.preferences?.format !== 'drawn'"
+          v-else-if="withTypedSignature && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="tooltip ml-2"
           :data-tip="t('type_text')"
         >
@@ -54,7 +54,7 @@
           </a>
         </span>
         <span
-          v-if="field.preferences?.format !== 'typed' && field.preferences?.format !== 'drawn'"
+          v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
           class="tooltip"
           :data-tip="t('take_photo')"
         >
@@ -81,10 +81,10 @@
           @click.prevent="remove"
         >
           <IconReload :width="16" />
-          {{ t('redraw') }}
+          {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
         </a>
         <span
-          v-if="withQrButton && !modelValue && !computedPreviousValue && field.preferences?.format !== 'typed'"
+          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed' && format !== 'upload'"
           class=" tooltip"
           :data-tip="t('drawn_signature_on_a_touchscreen_device')"
         >
@@ -131,7 +131,18 @@
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
-    <div class="relative">
+    <FileDropzone
+      v-if="format === 'upload' && !modelValue"
+      :message="`${t('upload')} ${field.name || t('signature')}`"
+      :submitter-slug="submitterSlug"
+      :dry-run="dryRun"
+      :accept="'image/*'"
+      @upload="[$emit('attached', $event[0]), $emit('update:model-value', $event[0].uuid)]"
+    />
+    <div
+      v-else
+      class="relative"
+    >
       <div
         v-if="!modelValue && !computedPreviousValue && !isShowQr && !isTextSignature && isSignatureStarted"
         class="absolute top-0.5 right-0.5"
@@ -282,6 +293,7 @@ import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonal
 import { cropCanvasAndExportToPNG } from './crop_canvas'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
+import FileDropzone from './dropzone'
 import MarkdownContent from './markdown_content'
 import { v4 } from 'uuid'
 
@@ -294,6 +306,7 @@ export default {
   components: {
     AppearsOn,
     IconReload,
+    FileDropzone,
     IconCamera,
     IconQrcode,
     MarkdownContent,
@@ -387,6 +400,9 @@ export default {
   computed: {
     submitterSlug () {
       return this.submitter.slug
+    },
+    format () {
+      return this.field.preferences?.format
     },
     defaultReasons () {
       return {
