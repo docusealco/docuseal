@@ -147,15 +147,18 @@ module Submissions
       fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:)
     end
 
-    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:)
+    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
 
       return pdfs_index if submitter.submission.template_fields.blank?
 
+      with_headings = find_last_submitter(submitter.submission, submitter:).blank? if with_headings.nil?
+
       submitter.submission.template_fields.each do |field|
-        next if field['submitter_uuid'] != submitter.uuid
+        next if field['type'] == 'heading' && !with_headings
+        next if field['submitter_uuid'] != submitter.uuid && field['type'] != 'heading'
 
         field.fetch('areas', []).each do |area|
           pdf = pdfs_index[area['attachment_uuid']]
@@ -188,6 +191,7 @@ module Submissions
           font = pdf.fonts.add(field.dig('preferences', 'font').presence || FONT_NAME)
 
           value = submitter.values[field['uuid']]
+          value = field['default_value'] if field['type'] == 'heading'
 
           text_align = field.dig('preferences', 'align').to_s.to_sym.presence ||
                        (value.to_s.match?(RTL_REGEXP) ? :right : :left)
