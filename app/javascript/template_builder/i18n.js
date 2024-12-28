@@ -155,7 +155,7 @@ const en = {
   learn_more: 'Learn more',
   and: 'and',
   or: 'or',
-  only_camera: 'Only with camera'
+  only_with_camera: 'Only with camera'
 }
 
 const es = {
