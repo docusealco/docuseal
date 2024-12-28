@@ -39,7 +39,7 @@
         ref="input"
         :multiple="multiple"
         :accept="accept"
-        :capture="onlyUseCamera == true ? `camera` : false"
+        :capture="onlyWithCamera == true ? `camera` : false"
         type="file"
         class="hidden"
         @change="onSelectFiles"
@@ -72,7 +72,7 @@ export default {
       required: false,
       default: false
     },
-    onlyUseCamera: {
+    onlyWithCamera: {
       type: Boolean,
       required: false,
       default: false
