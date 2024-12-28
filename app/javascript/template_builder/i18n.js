@@ -154,7 +154,8 @@ const en = {
   some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
   learn_more: 'Learn more',
   and: 'and',
-  or: 'or'
+  or: 'or',
+  only_camera: 'Only with camera'
 }
 
 const es = {
