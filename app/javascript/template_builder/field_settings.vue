@@ -266,7 +266,7 @@
         :checked="field.preferences?.only_with_camera != false"
         type="checkbox"
         class="toggle toggle-xs"
-        @change="[field.preferences ||= {}, field.preferences.only_with_camera = field.preferences.only_with_camera == true, save()]"
+        @change="[field.preferences ||= {}, field.preferences.only_with_camera = field.preferences.only_with_camera == false, save()]"
       >
       <span class="label-text">{{ t('only_with_camera') }}</span>
     </label>
