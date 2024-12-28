@@ -39,6 +39,7 @@
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
       :accept="'image/*'"
+      :camera="field.preferences?.only_with_camera == true"
       @upload="onImageUpload"
     />
   </div>
