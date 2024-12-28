@@ -39,6 +39,7 @@
         ref="input"
         :multiple="multiple"
         :accept="accept"
+        :capture="onlyUseCamera == true ? `camera` : false"
         type="file"
         class="hidden"
         @change="onSelectFiles"
@@ -71,6 +72,11 @@ export default {
       required: false,
       default: false
     },
+    onlyUseCamera: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     accept: {
       type: String,
       required: false,
@@ -95,7 +101,9 @@ export default {
   },
   methods: {
     onDropFiles (e) {
-      this.uploadFiles(e.dataTransfer.files)
+      if(!this.onlyUseCamera){
+        this.uploadFiles(e.dataTransfer.files)
+      }
     },
     onSelectFiles (e) {
       e.preventDefault()
