@@ -7,7 +7,7 @@ class SendFormCompletedWebhookRequestJob
 
   USER_AGENT = 'DocuSeal.com Webhook'
 
-  MAX_ATTEMPTS = 10
+  MAX_ATTEMPTS = 20
 
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
