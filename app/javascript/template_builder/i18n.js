@@ -314,7 +314,8 @@ const es = {
   some_fields_are_missing_in_the_formula: 'Faltan algunos campos en la fórmula.',
   learn_more: 'Aprende más',
   and: 'y',
-  or: 'o'
+  or: 'o',
+  only_with_camera: 'Sólo con cámara'
 }
 
 const it = {
@@ -473,7 +474,8 @@ const it = {
   some_fields_are_missing_in_the_formula: 'Alcuni campi mancano nella formula.',
   learn_more: 'Scopri di più',
   and: 'e',
-  or: 'o'
+  or: 'o',
+  only_with_camera: 'Solo con fotocamera'
 }
 
 const pt = {
@@ -632,7 +634,8 @@ const pt = {
   some_fields_are_missing_in_the_formula: 'Faltam alguns campos na fórmula.',
   learn_more: 'Saiba mais',
   and: 'e',
-  or: 'ou'
+  or: 'ou',
+  only_with_camera: 'Somente com câmera'
 }
 
 const fr = {
@@ -791,7 +794,8 @@ const fr = {
   some_fields_are_missing_in_the_formula: 'Certains champs manquent dans la formule.',
   learn_more: 'En savoir plus',
   and: 'et',
-  or: 'ou'
+  or: 'ou',
+  only_with_camera: 'Uniquement avec la caméra'
 }
 
 const de = {
@@ -950,7 +954,8 @@ const de = {
   some_fields_are_missing_in_the_formula: 'Einige Felder fehlen in der Formel.',
   learn_more: 'Erfahren Sie mehr',
   and: 'und',
-  or: 'oder'
+  or: 'oder',
+  only_with_camera: 'Nur mit Kamera'
 }
 
 export { en, es, it, pt, fr, de }
