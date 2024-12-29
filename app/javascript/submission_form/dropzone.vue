@@ -1,7 +1,8 @@
 <template>
   <div
     id="dropzone"
-    class="flex h-32 w-full"
+    class="flex w-full"
+    :class="{'h-20': onlyWithCamera, 'h-32': !onlyWithCamera}"
     @dragover.prevent
     @drop.prevent="onDropFiles"
   >
@@ -13,10 +14,15 @@
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
         <div class="flex flex-col items-center">
           <IconInnerShadowTop
-            v-if="isLoading"
-            class="animate-spin"
-            :width="30"
-            :height="30"
+                  v-if="isLoading"
+                  class="animate-spin"
+                  :width="30"
+                  :height="30"
+          />
+          <IconCamera
+                  v-else-if="onlyWithCamera"
+                  :width="30"
+                  :height="30"
           />
           <IconCloudUpload
             v-else
@@ -29,7 +35,7 @@
           >
             {{ message }}
           </div>
-          <div class="text-xs">
+          <div class="text-xs" v-if="!onlyWithCamera">
             <span class="font-medium">{{ t('click_to_upload') }}</span> {{ t('or_drag_and_drop_files') }}
           </div>
         </div>
@@ -39,7 +45,7 @@
         ref="input"
         :multiple="multiple"
         :accept="accept"
-        :capture="onlyWithCamera == true ? `camera` : false"
+        :capture="onlyWithCamera === true ? `camera` : null"
         type="file"
         class="hidden"
         @change="onSelectFiles"
@@ -49,11 +55,13 @@
 </template>
 
 <script>
-import { IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconCamera, IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
+import field from "../template_builder/field.vue";
 
 export default {
   name: 'FileDropzone',
   components: {
+    IconCamera,
     IconCloudUpload,
     IconInnerShadowTop
   },
@@ -95,13 +103,16 @@ export default {
     }
   },
   computed: {
+      field() {
+          return field
+      },
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
     }
   },
   methods: {
     onDropFiles (e) {
-      if(!this.onlyUseCamera){
+      if(!this.onlyWithCamera){
         this.uploadFiles(e.dataTransfer.files)
       }
     },

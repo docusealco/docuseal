@@ -94,7 +94,11 @@ const en = {
   upload: 'Upload',
   files: 'Files',
   signature_is_too_small_please_redraw: 'Signature is too small. Please redraw.',
-  wait_countdown_seconds: 'Wait {countdown} seconds'
+  wait_countdown_seconds: 'Wait {countdown} seconds',
+  photo: 'Photo',
+  take: 'Take',
+  retake: 'Retake',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scan the QR code with your mobile camera app to open the form and take a photo',
 }
 
 const es = {
@@ -486,7 +490,11 @@ const fr = {
   upload: 'Télécharger',
   files: 'Fichiers',
   signature_is_too_small_please_redraw: 'La signature est trop petite. Veuillez la redessiner.',
-  wait_countdown_seconds: 'Attendez {countdown} secondes'
+  wait_countdown_seconds: 'Attendez {countdown} secondes',
+  photo: 'Photo',
+  take: 'Prendre',
+  retake: 'Reprendre',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scannez le code QR avec l\'application de l\'appareil photo pour ouvrir le formulaire et prendre une photo',
 }
 
 const pl = {

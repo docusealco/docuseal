@@ -391,6 +391,7 @@ en: &en
   draw_signature: Draw Signature
   clear: Clear
   signature_uploaded: Signature Uploaded
+  photo_uploaded: Photo Uploaded
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Return back to your desktop device to complete the form or <a class="link" href="%{link}">continue on mobile</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?
