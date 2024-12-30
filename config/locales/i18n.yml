@@ -164,7 +164,7 @@ en: &en
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 weeks. Please contact us if you want to keep your account.
-  test_environment: Test Environment
+  test_mode: Test mode
   copy: Copy
   copied: Copied
   rotate: Rotate
@@ -321,7 +321,6 @@ en: &en
   embedding: Embedding
   background_jobs: Background Jobs
   need_help_ask_a_question_: 'Need help? Ask a question:'
-  testing_environment: Testing Environment
   exit: Exit
   leave: Leave
   impersonated_as: Impersonated as
@@ -426,7 +425,7 @@ en: &en
   api_and_embedding: API and Embedding
   template_id: Template ID
   embedding_url: Embedding URL
-  share_template_with_test_environment: Share template with Test Environment
+  share_template_with_test_mode: Share template with Test mode
   share_template_with_all_tenants: Share template with all Tenants
   use_following_placeholders_text_: 'Use following placeholders text:'
   upgrade_plan_to_add_more_users: Upgrade plan to add more users
@@ -663,6 +662,8 @@ en: &en
   markdown_content_e_g: Markdown content, e.g.
   privacy_policy: Privacy Policy
   use_the_edit_form_to_move_it_to_another_team: Use the edit form to move it to another team.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Too many SMS attempts. Try again in a few seconds.
+  number_phone_number_is_invalid: "+%{number} phone number is invalid"
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -847,7 +848,7 @@ es: &es
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 semanas. Por favor contáctanos si deseas mantener tu cuenta.
-  test_environment: Entorno de prueba
+  test_mode: Modo de prueba
   copy: Copiar
   copied: Copiado
   rotate: Rotar
@@ -1004,7 +1005,6 @@ es: &es
   embedding: Integración
   background_jobs: Trabajos asíncronos
   need_help_ask_a_question_: '¿Necesitas ayuda? Haz una pregunta:'
-  testing_environment: Entorno de pruebas
   exit: Salir
   leave: Salir
   impersonated_as: Impersonado como
@@ -1109,7 +1109,7 @@ es: &es
   api_and_embedding: API e Integración
   template_id: ID de plantilla
   embedding_url: URL de integración
-  share_template_with_test_environment: Compartir plantilla con el entorno de pruebas
+  share_template_with_test_mode: Compartir plantilla con el modo de prueba
   share_template_with_all_tenants: Compartir plantilla con todos los inquilinos
   use_following_placeholders_text_: 'Usa los siguientes marcadores de posición:'
   upgrade_plan_to_add_more_users: Actualiza el plan para agregar más usuarios
@@ -1346,6 +1346,8 @@ es: &es
   markdown_content_e_g: Contenido Markdown, por ej.
   privacy_policy: Política de Privacidad
   use_the_edit_form_to_move_it_to_another_team: Usa el formulario de edición para moverlo a otro equipo.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Demasiados intentos de SMS. Intenta de nuevo en unos segundos.
+  number_phone_number_is_invalid: "El número de teléfono +%{number} no es válido"
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1529,7 +1531,7 @@ it: &it
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 settimane. Contattaci se desideri mantenere il tuo account."
-  test_environment: Ambiente di test
+  test_mode: Modalità di test
   copy: Copia
   copied: Copiato
   rotate: Ruota
@@ -1686,7 +1688,6 @@ it: &it
   embedding: Incorporazione
   background_jobs: Attività in background
   need_help_ask_a_question_: 'Hai bisogno di aiuto? Fai una domanda:'
-  testing_environment: Ambiente di test
   exit: Esci
   leave: Lascia
   impersonated_as: Impersonato come
@@ -1791,7 +1792,7 @@ it: &it
   api_and_embedding: API e Incorporazione
   template_id: ID modello
   embedding_url: URL di incorporazione
-  share_template_with_test_environment: "Condividi il modello con l'ambiente di test"
+  share_template_with_test_mode: Condividi modello con la modalità di test
   share_template_with_all_tenants: Condividi il modello con tutti i tenant
   use_following_placeholders_text_: 'Usa i seguenti segnaposto:'
   upgrade_plan_to_add_more_users: Aggiorna il piano per aggiungere più utenti
@@ -2028,6 +2029,8 @@ it: &it
   markdown_content_e_g: Contenuto Markdown, ad es.
   privacy_policy: Politica sulla Privacy
   use_the_edit_form_to_move_it_to_another_team: Usa il modulo di modifica per spostarlo in un altro team.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Troppi tentativi di SMS. Riprova tra qualche secondo.
+  number_phone_number_is_invalid: "Il numero di telefono +%{number} non è valido"
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2213,7 +2216,7 @@ fr: &fr
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 semaines. Veuillez nous contacter si vous souhaitez conserver votre compte.
-  test_environment: Mode de test
+  test_mode: Mode test
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -2370,7 +2373,6 @@ fr: &fr
   embedding: Intégration
   background_jobs: Tâches en arrière-plan
   need_help_ask_a_question_: "Besoin d'aide? Posez une question:"
-  testing_environment: Environnement de test
   exit: Quitter
   leave: Partir
   impersonated_as: Usurpé comme
@@ -2475,7 +2477,7 @@ fr: &fr
   api_and_embedding: API et intégration
   template_id: ID du modèle
   embedding_url: "URL d'intégration"
-  share_template_with_test_environment: "Partager le modèle avec l'environnement de test"
+  share_template_with_test_mode: Partager le modèle avec le mode test
   share_template_with_all_tenants: Partager le modèle avec tous les locataires
   use_following_placeholders_text_: 'Utilisez les espaces réservés suivants:'
   upgrade_plan_to_add_more_users: "Mettez à jour le plan pour ajouter plus d'utilisateurs"
@@ -2712,6 +2714,8 @@ fr: &fr
   markdown_content_e_g: Contenu Markdown, par ex.
   privacy_policy: Politique de Confidentialité
   use_the_edit_form_to_move_it_to_another_team: Utilisez le formulaire de modification pour le déplacer vers une autre équipe.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Trop de tentatives de SMS. Réessayez dans quelques secondes.
+  number_phone_number_is_invalid: "Le numéro de téléphone +%{number} est invalide"
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2896,7 +2900,7 @@ pt: &pt
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 semanas. Entre em contato conosco se você quiser manter sua conta.
-  test_environment: Ambiente de teste
+  test_mode: Modo de teste
   copy: Copiar
   copied: Copiado
   rotate: Girar
@@ -3053,7 +3057,6 @@ pt: &pt
   embedding: Incorporação
   background_jobs: Trabalhos assíncronos
   need_help_ask_a_question_: 'Precisa de ajuda? Faça uma pergunta:'
-  testing_environment: Ambiente de teste
   exit: Sair
   leave: Deixar
   impersonated_as: Impersonado como
@@ -3158,7 +3161,7 @@ pt: &pt
   api_and_embedding: API e Incorporação
   template_id: ID do modelo
   embedding_url: URL de incorporação
-  share_template_with_test_environment: Compartilhar modelo com ambiente de teste
+  share_template_with_test_mode: Compartilhar modelo com o modo de teste
   share_template_with_all_tenants: Compartilhar modelo com todos os locatários
   use_following_placeholders_text_: 'Use os seguintes textos de substituição:'
   upgrade_plan_to_add_more_users: Faça upgrade do plano para adicionar mais usuários
@@ -3395,6 +3398,8 @@ pt: &pt
   markdown_content_e_g: Conteúdo Markdown, ex.
   privacy_policy: Política de Privacidade
   use_the_edit_form_to_move_it_to_another_team: Use o formulário de edição para movê-lo para outra equipe.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Muitas tentativas de SMS. Tente novamente em alguns segundos.
+  number_phone_number_is_invalid: "O número de telefone +%{number} é inválido"
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3579,7 +3584,7 @@ de: &de
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Wochen bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
-  test_environment: Testumgebung
+  test_mode: Testmodus
   copy: Kopieren
   copied: Kopiert
   rotate: Drehen
@@ -3736,7 +3741,6 @@ de: &de
   embedding: Einbettung
   background_jobs: Hintergrundaufgaben
   need_help_ask_a_question_: 'Brauchen Sie Hilfe? Stellen Sie eine Frage:'
-  testing_environment: Testumgebung
   exit: Beenden
   leave: Verlassen
   impersonated_as: Angemeldet als
@@ -3841,7 +3845,7 @@ de: &de
   api_and_embedding: API und Einbettung
   template_id: Vorlagen-ID
   embedding_url: Einbettungs-URL
-  share_template_with_test_environment: Vorlage mit Testumgebung teilen
+  share_template_with_test_mode: Vorlage mit dem Testmodus teilen
   share_template_with_all_tenants: Vorlage mit allen Mietern teilen
   use_following_placeholders_text_: 'Verwende die folgenden Platzhaltertexte:'
   upgrade_plan_to_add_more_users: Upgrade des Plans, um weitere Benutzer hinzuzufügen
@@ -4078,6 +4082,8 @@ de: &de
   markdown_content_e_g: Markdown-Inhalt, z. B.
   privacy_policy: Datenschutzrichtlinie
   use_the_edit_form_to_move_it_to_another_team: Verwenden Sie das Bearbeitungsformular, um ihn in ein anderes Team zu verschieben.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Zu viele SMS-Versuche. Versuchen Sie es in ein paar Sekunden erneut.
+  number_phone_number_is_invalid: "Die Telefonnummer +%{number} ist ungültig"
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
