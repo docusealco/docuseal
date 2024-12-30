@@ -83,7 +83,7 @@ RSpec.describe SendSubmissionCompletedWebhookRequestJob do
 
       expect do
         described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
-                                    'attempt' => 11)
+                                    'attempt' => 21)
       end.not_to change(described_class.jobs, :size)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once
