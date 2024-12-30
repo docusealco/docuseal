@@ -26,9 +26,9 @@ module Submissions
                      submission.submitters.where(completed_at: nil)
                    end
 
-      submitters.preload(attachments_attachments: :blob).each do |s|
+      submitters.preload(attachments_attachments: :blob).each_with_index do |s, index|
         GenerateResultAttachments.fill_submitter_fields(s, submission.account, pdfs_index,
-                                                        with_signature_id:, is_flatten:)
+                                                        with_signature_id:, is_flatten:, with_headings: index.zero?)
       end
 
       template = submission.template

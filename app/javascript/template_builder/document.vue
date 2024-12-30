@@ -16,6 +16,7 @@
       :draw-field="drawField"
       :draw-field-type="drawFieldType"
       :selected-submitter="selectedSubmitter"
+      :total-pages="sortedPreviewImages.length"
       :image="image"
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"

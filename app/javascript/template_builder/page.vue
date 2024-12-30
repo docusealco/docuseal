@@ -27,6 +27,7 @@
         :with-field-placeholder="withFieldPlaceholder"
         :default-field="defaultFields.find((f) => f.name === item.field.name)"
         :default-submitters="defaultSubmitters"
+        :max-page="totalPages - 1"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @remove="$emit('remove-area', item.area)"
@@ -87,6 +88,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    totalPages: {
+      type: Number,
+      required: true
     },
     drawFieldType: {
       type: String,

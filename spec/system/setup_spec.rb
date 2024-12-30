@@ -32,7 +32,7 @@ RSpec.describe 'App Setup' do
 
       expect do
         click_button 'Submit'
-        sleep 2
+        page.driver.wait_for_network_idle
       end.to change(Account, :count).by(1).and change(User, :count).by(1).and change(EncryptedConfig, :count).by(2)
 
       user = User.last
