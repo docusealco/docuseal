@@ -661,6 +661,16 @@ en: &en
   policy_links: Policy Links
   markdown_content_e_g: Markdown content, e.g.
   privacy_policy: Privacy Policy
+  the_code_has_been_sent_to_your_email: The code has been sent to your email.
+  enter_the_verification_code_from_your_email: Enter the verification code from your email.
+  too_many_attempts: Too many attempts.
+  verification_code: Verification Code
+  resend_code: Resend Code
+  verify_new_sign_in: Verify new sign in
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Use <b>%{code}</b> code to sign in or click the link below:'
+  complete_sign_in: Complete Sign In
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Please reply to this email if you don't recognize this sign in attempt.
+  docuseal_support: DocuSeal Support
   use_the_edit_form_to_move_it_to_another_team: Use the edit form to move it to another team.
   too_many_sms_attempts_try_again_in_a_few_seconds: Too many SMS attempts. Try again in a few seconds.
   number_phone_number_is_invalid: "+%{number} phone number is invalid"
@@ -1345,6 +1355,16 @@ es: &es
   policy_links: Enlaces de Políticas
   markdown_content_e_g: Contenido Markdown, por ej.
   privacy_policy: Política de Privacidad
+  the_code_has_been_sent_to_your_email: El código ha sido enviado a tu correo electrónico.
+  enter_the_verification_code_from_your_email: Ingresa el código de verificación de tu correo electrónico.
+  too_many_attempts: Demasiados intentos.
+  verification_code: Código de Verificación
+  resend_code: Reenviar Código
+  verify_new_sign_in: Verificar nuevo inicio de sesión
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Usa el código <b>%{code}</b> para iniciar sesión o haz clic en el enlace a continuación:'
+  complete_sign_in: Completar Inicio de Sesión
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Responde a este correo electrónico si no reconoces este intento de inicio de sesión.
+  docuseal_support: Soporte DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Usa el formulario de edición para moverlo a otro equipo.
   too_many_sms_attempts_try_again_in_a_few_seconds: Demasiados intentos de SMS. Intenta de nuevo en unos segundos.
   number_phone_number_is_invalid: "El número de teléfono +%{number} no es válido"
@@ -2028,6 +2048,16 @@ it: &it
   policy_links: Collegamenti alle Politiche
   markdown_content_e_g: Contenuto Markdown, ad es.
   privacy_policy: Politica sulla Privacy
+  the_code_has_been_sent_to_your_email: Il codice è stato inviato alla tua e-mail.
+  enter_the_verification_code_from_your_email: Inserisci il codice di verifica dalla tua e-mail.
+  too_many_attempts: Troppe tentativi.
+  verification_code: Codice di Verifica
+  resend_code: Reinvia Codice
+  verify_new_sign_in: Verifica nuovo accesso
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Usa il codice <b>%{code}</b> per accedere o clicca sul link qui sotto:'
+  complete_sign_in: "Completa l'Accesso"
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Rispondi a questa e-mail se non riconosci questo tentativo di accesso.
+  docuseal_support: Supporto DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Usa il modulo di modifica per spostarlo in un altro team.
   too_many_sms_attempts_try_again_in_a_few_seconds: Troppi tentativi di SMS. Riprova tra qualche secondo.
   number_phone_number_is_invalid: "Il numero di telefono +%{number} non è valido"
@@ -2713,6 +2743,16 @@ fr: &fr
   policy_links: Liens des Politiques
   markdown_content_e_g: Contenu Markdown, par ex.
   privacy_policy: Politique de Confidentialité
+  the_code_has_been_sent_to_your_email: Le code a été envoyé à votre e-mail.
+  enter_the_verification_code_from_your_email: Entrez le code de vérification de votre e-mail.
+  too_many_attempts: Trop de tentatives.
+  verification_code: Code de Vérification
+  resend_code: Renvoyer le Code
+  verify_new_sign_in: Vérifier la nouvelle connexion
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Utilisez le code <b>%{code}</b> pour vous connecter ou cliquez sur le lien ci-dessous :'
+  complete_sign_in: Terminer la Connexion
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Veuillez répondre à cet e-mail si vous ne reconnaissez pas cette tentative de connexion.
+  docuseal_support: Support DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Utilisez le formulaire de modification pour le déplacer vers une autre équipe.
   too_many_sms_attempts_try_again_in_a_few_seconds: Trop de tentatives de SMS. Réessayez dans quelques secondes.
   number_phone_number_is_invalid: "Le numéro de téléphone +%{number} est invalide"
@@ -3397,6 +3437,16 @@ pt: &pt
   policy_links: Links de Políticas
   markdown_content_e_g: Conteúdo Markdown, ex.
   privacy_policy: Política de Privacidade
+  the_code_has_been_sent_to_your_email: O código foi enviado para seu e-mail.
+  enter_the_verification_code_from_your_email: Insira o código de verificação do seu e-mail.
+  too_many_attempts: Muitas tentativas.
+  verification_code: Código de Verificação
+  resend_code: Reenviar Código
+  verify_new_sign_in: Verificar novo login
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Use o código <b>%{code}</b> para entrar ou clique no link abaixo:'
+  complete_sign_in: Concluir Login
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Responda a este e-mail se você não reconhecer esta tentativa de login.
+  docuseal_support: Suporte DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Use o formulário de edição para movê-lo para outra equipe.
   too_many_sms_attempts_try_again_in_a_few_seconds: Muitas tentativas de SMS. Tente novamente em alguns segundos.
   number_phone_number_is_invalid: "O número de telefone +%{number} é inválido"
@@ -4081,6 +4131,16 @@ de: &de
   policy_links: Richtlinien-Links
   markdown_content_e_g: Markdown-Inhalt, z. B.
   privacy_policy: Datenschutzrichtlinie
+  the_code_has_been_sent_to_your_email: Der Code wurde an Ihre E-Mail gesendet.
+  enter_the_verification_code_from_your_email: Geben Sie den Verifizierungscode aus Ihrer E-Mail ein.
+  too_many_attempts: Zu viele Versuche.
+  verification_code: Verifizierungscode
+  resend_code: Code erneut senden
+  verify_new_sign_in: Neue Anmeldung überprüfen
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Verwenden Sie den Code <b>%{code}</b>, um sich anzumelden, oder klicken Sie auf den untenstehenden Link:'
+  complete_sign_in: Anmeldung abschließen
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Bitte antworten Sie auf diese E-Mail, wenn Sie diesen Anmeldeversuch nicht erkennen.
+  docuseal_support: DocuSeal Support
   use_the_edit_form_to_move_it_to_another_team: Verwenden Sie das Bearbeitungsformular, um ihn in ein anderes Team zu verschieben.
   too_many_sms_attempts_try_again_in_a_few_seconds: Zu viele SMS-Versuche. Versuchen Sie es in ein paar Sekunden erneut.
   number_phone_number_is_invalid: "Die Telefonnummer +%{number} ist ungültig"
@@ -4174,6 +4234,11 @@ pl:
   sign_up_with_microsoft: Zarejestruj się przez Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.com/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.com/terms">Regulamin</a>.'
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
+  the_code_has_been_sent_to_your_email: Kod został wysłany na Twój e-mail.
+  enter_the_verification_code_from_your_email: Wprowadź kod weryfikacyjny z Twojego e-maila.
+  too_many_attempts: Zbyt wiele prób.
+  verification_code: Kod Weryfikacyjny
+  resend_code: Wyślij Kod Ponownie
 
 uk:
   awaiting_completion_by_the_other_party: "Очікує завершення з боку іншої сторони"
@@ -4228,6 +4293,11 @@ uk:
   sign_up_with_microsoft: Зареєструватися через Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.com/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.com/terms">Умовами надання послуг</a>.'
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
+  the_code_has_been_sent_to_your_email: Код було надіслано на вашу електронну пошту.
+  enter_the_verification_code_from_your_email: Введіть код перевірки з вашої електронної пошти.
+  too_many_attempts: Забагато спроб.
+  verification_code: Код перевірки
+  resend_code: Відправити код знову
 
 cs:
   awaiting_completion_by_the_other_party: "Čeká se na dokončení druhou stranou"
@@ -4282,6 +4352,11 @@ cs:
   sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
   by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.com/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.com/terms">Podmínkami služby</a>.'
   enter_email_to_continue: Zadejte e-mail pro pokračování
+  the_code_has_been_sent_to_your_email: Kód byl odeslán na váš e-mail.
+  enter_the_verification_code_from_your_email: Zadejte ověřovací kód z vašeho e-mailu.
+  too_many_attempts: Příliš mnoho pokusů.
+  verification_code: Ověřovací Kód
+  resend_code: Znovu Odeslat Kód
 
 he:
   awaiting_completion_by_the_other_party: "המתנה להשלמה מצד הצד השני"
@@ -4336,6 +4411,11 @@ he:
   sign_up_with_microsoft: הירשם עם מיקרוסופט
   by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.com/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.com/terms">תנאי השירות</a> שלנו.'
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
+  the_code_has_been_sent_to_your_email: הקוד נשלח לדוא"ל שלך.
+  enter_the_verification_code_from_your_email: הזן את קוד האימות מדוא"ל שלך.
+  too_many_attempts: יותר מדי ניסיונות.
+  verification_code: קוד אימות
+  resend_code: שלח קוד מחדש
 
 nl:
   awaiting_completion_by_the_other_party: "In afwachting van voltooiing door de andere partij"
@@ -4390,6 +4470,11 @@ nl:
   sign_up_with_microsoft: Aanmelden met Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.com/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.com/terms">Gebruiksvoorwaarden</a>.'
   enter_email_to_continue: Voer e-mail in om door te gaan
+  the_code_has_been_sent_to_your_email: De code is naar uw e-mail verzonden.
+  enter_the_verification_code_from_your_email: Voer de verificatiecode uit uw e-mail in.
+  too_many_attempts: Te veel pogingen.
+  verification_code: Verificatiecode
+  resend_code: Code Opnieuw Verzenden
 
 ar:
   awaiting_completion_by_the_other_party: "في انتظار إكتمال الطرف الآخر"
@@ -4444,6 +4529,11 @@ ar:
   sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
   by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.com/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.com/terms">شروط الخدمة</a> الخاصة بنا.'
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
+  the_code_has_been_sent_to_your_email: تم إرسال الرمز إلى بريدك الإلكتروني.
+  enter_the_verification_code_from_your_email: أدخل رمز التحقق من بريدك الإلكتروني.
+  too_many_attempts: عدد المحاولات كبير جدًا.
+  verification_code: رمز التحقق
+  resend_code: إعادة إرسال الرمز
 
 ko:
   awaiting_completion_by_the_other_party: "다른 당사자의 완료를 기다리고 있습니다"
@@ -4498,6 +4588,11 @@ ko:
   sign_up_with_microsoft: Microsoft로 가입
   by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.com/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.com/terms">서비스 약관</a>에 동의하는 것입니다.'
   enter_email_to_continue: 계속하려면 이메일을 입력하세요
+  the_code_has_been_sent_to_your_email: 코드가 이메일로 전송되었습니다.
+  enter_the_verification_code_from_your_email: 이메일에서 인증 코드를 입력하세요.
+  too_many_attempts: 시도 횟수가 너무 많습니다.
+  verification_code: 인증 코드
+  resend_code: 코드 재전송
 
 en-US:
   <<: *en
