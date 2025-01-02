@@ -674,6 +674,11 @@ en: &en
   use_the_edit_form_to_move_it_to_another_team: Use the edit form to move it to another team.
   too_many_sms_attempts_try_again_in_a_few_seconds: Too many SMS attempts. Try again in a few seconds.
   number_phone_number_is_invalid: "+%{number} phone number is invalid"
+  make_com_integration: Make.com Integration
+  zapier_integration: Zapier Integration
+  seamlessly_automate_your_document_signing_process_with_make_com: Seamlessly automate your document signing process with Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
+  get_started: Get started
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1368,6 +1373,11 @@ es: &es
   use_the_edit_form_to_move_it_to_another_team: Usa el formulario de edición para moverlo a otro equipo.
   too_many_sms_attempts_try_again_in_a_few_seconds: Demasiados intentos de SMS. Intenta de nuevo en unos segundos.
   number_phone_number_is_invalid: "El número de teléfono +%{number} no es válido"
+  make_com_integration: Integración con Make.com
+  zapier_integration: Integración con Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatiza sin problemas tu proceso de firma de documentos con Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Encuentra plantillas de Zapier adecuadas para automatizar tu flujo de trabajo.
+  get_started: Comenzar
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -2061,6 +2071,11 @@ it: &it
   use_the_edit_form_to_move_it_to_another_team: Usa il modulo di modifica per spostarlo in un altro team.
   too_many_sms_attempts_try_again_in_a_few_seconds: Troppi tentativi di SMS. Riprova tra qualche secondo.
   number_phone_number_is_invalid: "Il numero di telefono +%{number} non è valido"
+  make_com_integration: Integrazione con Make.com
+  zapier_integration: Integrazione con Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatizza senza problemi il tuo processo di firma dei documenti con Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Trova modelli Zapier adatti per automatizzare il tuo flusso di lavoro.
+  get_started: Inizia
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2756,6 +2771,11 @@ fr: &fr
   use_the_edit_form_to_move_it_to_another_team: Utilisez le formulaire de modification pour le déplacer vers une autre équipe.
   too_many_sms_attempts_try_again_in_a_few_seconds: Trop de tentatives de SMS. Réessayez dans quelques secondes.
   number_phone_number_is_invalid: "Le numéro de téléphone +%{number} est invalide"
+  make_com_integration: Intégration avec Make.com
+  zapier_integration: Intégration avec Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatisez facilement votre processus de signature de documents avec Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Trouvez des modèles Zapier adaptés pour automatiser votre flux de travail.
+  get_started: Commencer
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3450,6 +3470,11 @@ pt: &pt
   use_the_edit_form_to_move_it_to_another_team: Use o formulário de edição para movê-lo para outra equipe.
   too_many_sms_attempts_try_again_in_a_few_seconds: Muitas tentativas de SMS. Tente novamente em alguns segundos.
   number_phone_number_is_invalid: "O número de telefone +%{number} é inválido"
+  make_com_integration: Integração com Make.com
+  zapier_integration: Integração com Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatize perfeitamente seu processo de assinatura de documentos com o Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Encontre modelos Zapier adequados para automatizar seu fluxo de trabalho.
+  get_started: Começar
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -4144,6 +4169,11 @@ de: &de
   use_the_edit_form_to_move_it_to_another_team: Verwenden Sie das Bearbeitungsformular, um ihn in ein anderes Team zu verschieben.
   too_many_sms_attempts_try_again_in_a_few_seconds: Zu viele SMS-Versuche. Versuchen Sie es in ein paar Sekunden erneut.
   number_phone_number_is_invalid: "Die Telefonnummer +%{number} ist ungültig"
+  make_com_integration: Make.com-Integration
+  zapier_integration: Zapier-Integration
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatisieren Sie Ihren Dokumentenunterzeichnungsprozess nahtlos mit Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Finden Sie passende Zapier-Vorlagen, um Ihren Workflow zu automatisieren.
+  get_started: Loslegen
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
