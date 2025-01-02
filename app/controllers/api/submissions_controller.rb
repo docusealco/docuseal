@@ -116,7 +116,19 @@ module Api
         end
       end
 
-      json = { submitters: json } if request.path.ends_with?('/init')
+      if request.path.ends_with?('/init')
+        json =
+          if submissions.size == 1
+            {
+              id: submissions.first.id,
+              submitters: json,
+              expire_at: submissions.first.expire_at,
+              created_at: submissions.first.created_at
+            }
+          else
+            { submitters: json }
+          end
+      end
 
       json
     end
