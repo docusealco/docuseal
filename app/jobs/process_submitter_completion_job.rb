@@ -120,6 +120,8 @@ class ProcessSubmitterCompletionJob
       submitter.submission.template_submitters.find do |e|
         sub = submitter.submission.submitters.find { |s| s.uuid == e['uuid'] }
 
+        next unless sub
+
         sub.completed_at.blank? && sub.sent_at.blank?
       end
 
