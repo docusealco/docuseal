@@ -178,7 +178,7 @@ module Api
         key = params.key?(:submission) ? :submission : :submissions
 
         params.permit(
-          key => [permitted_attrs]
+          { key => [permitted_attrs] }, { key => permitted_attrs }
         ).fetch(key, [])
       end
     end

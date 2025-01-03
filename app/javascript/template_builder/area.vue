@@ -2,6 +2,7 @@
   <div
     class="absolute overflow-visible group"
     :style="positionStyle"
+    :class="{ 'z-[1]': isMoved || isDragged }"
     @pointerdown.stop
     @mousedown="startMouseMove"
     @touchstart="startTouchDrag"
@@ -315,6 +316,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    maxPage: {
+      type: Number,
+      required: false,
+      default: null
     },
     defaultField: {
       type: Object,
@@ -720,11 +726,17 @@ export default {
       const rect = page.getBoundingClientRect()
 
       this.area.x = Math.min(Math.max((this.dragFrom.x + e.touches[0].clientX - rect.left) / rect.width, 0), 1 - this.area.w)
-      this.area.y = Math.min(Math.max((this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height, 0), 1 - this.area.h)
+      this.area.y = (this.dragFrom.y + e.touches[0].clientY - rect.top) / rect.height
+
+      if ((this.area.page === 0 && this.area.y < 0) || (this.area.page === this.maxPage && this.area.y > 1 - this.area.h)) {
+        this.area.y = Math.min(Math.max(this.area.y, 0), 1 - this.area.h)
+      }
     },
     stopTouchDrag () {
       this.$el.getRootNode().removeEventListener('touchmove', this.touchDrag)
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
+
+      this.maybeChangeAreaPage(this.area)
 
       if (this.isDragged) {
         this.save()
@@ -773,11 +785,17 @@ export default {
       const rect = page.getBoundingClientRect()
 
       this.area.x = Math.min(Math.max((this.dragFrom.x + e.clientX - rect.left) / rect.width, 0), 1 - this.area.w)
-      this.area.y = Math.min(Math.max((this.dragFrom.y + e.clientY - rect.top) / rect.height, 0), 1 - this.area.h)
+      this.area.y = (this.dragFrom.y + e.clientY - rect.top) / rect.height
+
+      if ((this.area.page === 0 && this.area.y < 0) || (this.area.page === this.maxPage && this.area.y > 1 - this.area.h)) {
+        this.area.y = Math.min(Math.max(this.area.y, 0), 1 - this.area.h)
+      }
     },
     stopMouseMove (e) {
       this.$el.getRootNode().removeEventListener('mousemove', this.mouseMove)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopMouseMove)
+
+      this.maybeChangeAreaPage(this.area)
 
       if (this.isMoved) {
         this.save()
@@ -787,6 +805,15 @@ export default {
       this.isMoved = false
 
       this.$emit('stop-drag')
+    },
+    maybeChangeAreaPage (area) {
+      if (area.y < -(area.h / 2)) {
+        area.page -= 1
+        area.y = 1 + area.y + (16.0 / this.$parent.$refs.mask.previousSibling.offsetHeight)
+      } else if (area.y > 1 - (area.h / 2)) {
+        area.page += 1
+        area.y = area.y - 1 - (16.0 / this.$parent.$refs.mask.previousSibling.offsetHeight)
+      }
     },
     stopDrag () {
       this.$el.getRootNode().removeEventListener('mousemove', this.drag)

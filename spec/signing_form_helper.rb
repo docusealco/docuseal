@@ -19,7 +19,7 @@ module SigningFormHelper
       ctx.lineTo(150, 150);
       ctx.stroke();
     JS
-    sleep 1
+    sleep 0.5
   end
 
   def field_value(submitter, field_name)
