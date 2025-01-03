@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-theme="docuseal" lang="en">
+  <head>
+    <%= render 'layouts/head_tags' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
+      <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
+      <%= javascript_pack_tag 'rollbar', 'photo', defer: true %>
+    <% else %>
+      <%= javascript_pack_tag 'photo', defer: true %>
+    <% end %>
+    <%= stylesheet_pack_tag 'form', media: 'all' %>
+    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
+  </head>
+  <body>
+    <% field = (@submitter.submission.template_fields || @submitter.template.fields).find { |f| f['type'] == 'image' && f['uuid'].starts_with?(params[:f]) } %>
+    <file-photo data-slug="<%= params[:slug] %>" class="flex items-center h-screen p-2 justify-center">
+      <%= form_for '', url: submit_form_path(params[:slug]), html: { style: 'max-width: 900px; width: 100%; margin-bottom: 120px' }, method: :put do |f| %>
+        <input value="" type="hidden" name="values[<%= field['uuid'] %>]">
+        <% if field['description'] %>
+          <div class="w-full mb-2">
+            <%= field['description'] %>
+          </div>
+        <% end %>
+        <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">
+            <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2">
+              <div class="flex flex-col items-center text-center">
+              <span id="file-photo-icon">
+                <%= svg_icon('camera', class: 'w-10 h-10') %>
+              </span>
+                <span id="file-photo-loading" class="hidden">
+                <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+              </span>
+                <div class="font-medium mb-1">
+                  <%= t('take_photo') %>
+                </div>
+              </div>
+              <button aria-label="Clear" class="hidden btn btn-ghost btn-sm font-medium top-0 right-0 absolute mt-1 mr-1">
+                <%= svg_icon('reload', class: 'w-5 h-5') %>
+                <span class="inline"><%= t('clear') %></span>
+              </button>
+              <input id="file" class="hidden" name="files[]" type="file" accept="image/*" capture="camera">
+            </div>
+          </label>
+        <div class="mt-4">
+          <button disabled class="base-button w-full">
+            <%= t('submit') %>
+          </button>
+          <%= f.button button_title(title: t('submit')), class: 'base-button w-full', style: 'display: none' %>
+        </div>
+      <% end %>
+      <div id="success" class="text-center p-2 hidden" style="margin-bottom: 100px">
+        <div class="flex items-center space-x-1 items-center justify-center text-2xl font-semibold mb-2">
+          <%= svg_icon('circle_check', class: 'text-green-600') %>
+          <span>
+            <%= t('photo_uploaded') %>
+          </span>
+        </div>
+        <div>
+          <%= t('return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html', link: submit_form_path(params[:slug])) %>
+        </div>
+      </div>
+    </file-photo>
+  </body>
+</html>
