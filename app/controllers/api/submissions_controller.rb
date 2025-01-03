@@ -17,6 +17,8 @@ module Api
         submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
       end
 
+      submissions = Submissions::Filter.call(submissions, current_user, params)
+
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
                                                  template: :folder,
                                                  combined_document_attachment: :blob,
