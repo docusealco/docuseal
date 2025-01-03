@@ -679,6 +679,7 @@ en: &en
   seamlessly_automate_your_document_signing_process_with_make_com: Seamlessly automate your document signing process with Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
   get_started: Get started
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1378,6 +1379,7 @@ es: &es
   seamlessly_automate_your_document_signing_process_with_make_com: Automatiza sin problemas tu proceso de firma de documentos con Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Encuentra plantillas de Zapier adecuadas para automatizar tu flujo de trabajo.
   get_started: Comenzar
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Haz clic aquí</a> para obtener más información sobre los roles y permisos de usuario.'
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -2076,6 +2078,7 @@ it: &it
   seamlessly_automate_your_document_signing_process_with_make_com: Automatizza senza problemi il tuo processo di firma dei documenti con Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Trova modelli Zapier adatti per automatizzare il tuo flusso di lavoro.
   get_started: Inizia
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Fai clic qui</a> per saperne di più sui ruoli e le autorizzazioni degli utenti.'
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2776,6 +2779,7 @@ fr: &fr
   seamlessly_automate_your_document_signing_process_with_make_com: Automatisez facilement votre processus de signature de documents avec Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Trouvez des modèles Zapier adaptés pour automatiser votre flux de travail.
   get_started: Commencer
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et les autorisations des utilisateurs.'
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3475,6 +3479,7 @@ pt: &pt
   seamlessly_automate_your_document_signing_process_with_make_com: Automatize perfeitamente seu processo de assinatura de documentos com o Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Encontre modelos Zapier adequados para automatizar seu fluxo de trabalho.
   get_started: Começar
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Clique aqui</a> para saber mais sobre os papéis e permissões dos usuários.'
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -4174,6 +4179,7 @@ de: &de
   seamlessly_automate_your_document_signing_process_with_make_com: Automatisieren Sie Ihren Dokumentenunterzeichnungsprozess nahtlos mit Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Finden Sie passende Zapier-Vorlagen, um Ihren Workflow zu automatisieren.
   get_started: Loslegen
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klicken Sie hier</a>, um mehr über Benutzerrollen und -berechtigungen zu erfahren.'
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
