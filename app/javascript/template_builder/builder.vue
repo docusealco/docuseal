@@ -187,6 +187,7 @@
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
+          @reorder="reorderFields"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -818,6 +819,89 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    reorderFields (item) {
+      const itemFields = []
+      const fields = []
+      const fieldAreasIndex = {}
+
+      const attachmentUuids = this.template.schema.map((e) => e.attachment_uuid)
+
+      this.template.fields.forEach((f) => {
+        if (f.areas?.length) {
+          const firstArea = f.areas.reduce((min, a) => {
+            return attachmentUuids.indexOf(a.attachment_uuid) < attachmentUuids.indexOf(min.attachment_uuid) ? a : min
+          }, f.areas[0])
+
+          if (firstArea.attachment_uuid === item.attachment_uuid) {
+            itemFields.push(f)
+          } else {
+            fields.push(f)
+          }
+        } else {
+          fields.push(f)
+        }
+      })
+
+      const sortArea = (aArea, bArea) => {
+        if (aArea.attachment_uuid === bArea.attachment_uuid) {
+          if (aArea.page === bArea.page) {
+            if (Math.abs(aArea.y - bArea.y) < 0.01) {
+              if (aArea.x === bArea.x) {
+                return 0
+              } else {
+                return aArea.x - bArea.x
+              }
+            } else {
+              return aArea.y - bArea.y
+            }
+          } else {
+            return aArea.page - bArea.page
+          }
+        } else {
+          return attachmentUuids.indexOf(aArea.attachment_uuid) - attachmentUuids.indexOf(bArea.attachment_uuid)
+        }
+      }
+
+      itemFields.sort((aField, bField) => {
+        const aArea = (fieldAreasIndex[aField.uuid] ||= [...(aField.areas || [])].sort(sortArea)[0])
+        const bArea = (fieldAreasIndex[bField.uuid] ||= [...(bField.areas || [])].sort(sortArea)[0])
+
+        return sortArea(aArea, bArea)
+      })
+
+      const insertBeforeAttachmentUuids = attachmentUuids.slice(this.template.schema.indexOf(item) + 1)
+
+      let sortedFields = []
+
+      if (insertBeforeAttachmentUuids.length) {
+        const insertAfterField = fields.find((f) => {
+          if (f.areas?.length) {
+            return f.areas.find((a) => insertBeforeAttachmentUuids.includes(a.attachment_uuid))
+          } else {
+            return false
+          }
+        })
+
+        if (insertAfterField) {
+          fields.splice(fields.indexOf(insertAfterField), 0, ...itemFields)
+
+          sortedFields = fields
+        } else {
+          sortedFields = fields.concat(itemFields)
+        }
+      } else {
+        if (fields.length && itemFields.length && this.template.fields.indexOf(fields[0]) > this.template.fields.indexOf(itemFields[0])) {
+          sortedFields = itemFields.concat(fields)
+        } else {
+          sortedFields = fields.concat(itemFields)
+        }
+      }
+
+      if (this.template.fields.length === sortedFields.length) {
+        this.template.fields = sortedFields
+        this.save()
+      }
+    },
     closeDropdown () {
       document.activeElement.blur()
     },
