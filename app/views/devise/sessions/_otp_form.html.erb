@@ -1,0 +1,4 @@
+<div class="form-control">
+  <%= label_tag 'user[otp_attempt]', t('two_factor_code_from_authenticator_app'), class: 'label' %>
+  <%= text_field_tag 'user[otp_attempt]', nil, autofocus: true, autocomplete: 'off', placeholder: 'XXX-XXX', required: true, class: 'base-input' %>
+</div>

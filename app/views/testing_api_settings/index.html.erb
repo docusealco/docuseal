@@ -1,7 +1,7 @@
-<%= render 'shared/turbo_modal', title: t('testing_environment') do %>
+<%= render 'shared/turbo_modal', title: t('test_mode') do %>
   <div>
     <label class="text-sm font-semibold" for="api_key">
-      x-Auth-Token
+      X-Auth-Token
     </label>
     <div class="flex gap-2 mb-4 mt-2">
       <input id="api_key" type="text" value="<%= current_user.access_token.token %>" class="base-input w-full" autocomplete="off" readonly>

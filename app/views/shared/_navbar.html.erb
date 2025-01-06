@@ -49,6 +49,16 @@
               <% end %>
             </li>
           <% end %>
+          <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
+            <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full py-1' } do |f| %>
+              <label class="flex items-center pl-6 pr-4 py-2 border-y border-base-300 -ml-2 -mr-2" for="testing_toggle">
+                <%= f.check_box :testing_toggle, class: 'toggle', checked: current_account.testing?, onchange: 'this.form.requestSubmit()', style: 'height: 0.885rem; width: 1.35rem; --handleoffset: 0.395rem; margin-left: -2px; margin-right: 8px' %>
+                <span class="whitespace-nowrap">
+                  <%= t('test_mode') %>
+                </span>
+              </label>
+            <% end %>
+          <% end %>
           <li>
             <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>
               <%= svg_icon('logout', class: 'w-5 h-5 flex-shrink-0 stroke-2 mr-2 inline') %>

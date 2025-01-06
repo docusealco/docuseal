@@ -308,7 +308,7 @@
           <%= f.hidden_field :template_id, value: @template.id %>
           <div class="flex items-center justify-between">
             <span>
-              <%= t('share_template_with_test_environment') %>
+              <%= t('share_template_with_test_mode') %>
             </span>
             <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
           </div>

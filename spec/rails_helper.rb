@@ -71,6 +71,10 @@ RSpec.configure do |config|
     Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
   end
 
+  config.after do |example|
+    Sidekiq::Testing.fake! if example.metadata[:sidekiq] == :inline
+  end
+
   config.before(multitenant: true) do
     allow(Docuseal).to receive(:multitenant?).and_return(true)
   end

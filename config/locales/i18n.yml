@@ -164,7 +164,7 @@ en: &en
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 weeks. Please contact us if you want to keep your account.
-  test_environment: Test Environment
+  test_mode: Test mode
   copy: Copy
   copied: Copied
   rotate: Rotate
@@ -321,7 +321,6 @@ en: &en
   embedding: Embedding
   background_jobs: Background Jobs
   need_help_ask_a_question_: 'Need help? Ask a question:'
-  testing_environment: Testing Environment
   exit: Exit
   leave: Leave
   impersonated_as: Impersonated as
@@ -426,7 +425,7 @@ en: &en
   api_and_embedding: API and Embedding
   template_id: Template ID
   embedding_url: Embedding URL
-  share_template_with_test_environment: Share template with Test Environment
+  share_template_with_test_mode: Share template with Test mode
   share_template_with_all_tenants: Share template with all Tenants
   use_following_placeholders_text_: 'Use following placeholders text:'
   upgrade_plan_to_add_more_users: Upgrade plan to add more users
@@ -662,7 +661,27 @@ en: &en
   policy_links: Policy Links
   markdown_content_e_g: Markdown content, e.g.
   privacy_policy: Privacy Policy
+  the_code_has_been_sent_to_your_email: The code has been sent to your email.
+  enter_the_verification_code_from_your_email: Enter the verification code from your email.
+  too_many_attempts: Too many attempts.
+  verification_code: Verification Code
+  resend_code: Resend Code
+  verify_new_sign_in: Verify new sign in
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Use <b>%{code}</b> code to sign in or click the link below:'
+  complete_sign_in: Complete Sign In
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Please reply to this email if you don't recognize this sign in attempt.
+  docuseal_support: DocuSeal Support
   use_the_edit_form_to_move_it_to_another_team: Use the edit form to move it to another team.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Too many SMS attempts. Try again in a few seconds.
+  number_phone_number_is_invalid: "+%{number} phone number is invalid"
+  make_com_integration: Make.com Integration
+  zapier_integration: Zapier Integration
+  seamlessly_automate_your_document_signing_process_with_make_com: Seamlessly automate your document signing process with Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
+  get_started: Get started
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request email.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: Test mode emails limit will be reset within 24 hours.
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -847,7 +866,7 @@ es: &es
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 semanas. Por favor contáctanos si deseas mantener tu cuenta.
-  test_environment: Entorno de prueba
+  test_mode: Modo de prueba
   copy: Copiar
   copied: Copiado
   rotate: Rotar
@@ -1004,7 +1023,6 @@ es: &es
   embedding: Integración
   background_jobs: Trabajos asíncronos
   need_help_ask_a_question_: '¿Necesitas ayuda? Haz una pregunta:'
-  testing_environment: Entorno de pruebas
   exit: Salir
   leave: Salir
   impersonated_as: Impersonado como
@@ -1109,7 +1127,7 @@ es: &es
   api_and_embedding: API e Integración
   template_id: ID de plantilla
   embedding_url: URL de integración
-  share_template_with_test_environment: Compartir plantilla con el entorno de pruebas
+  share_template_with_test_mode: Compartir plantilla con el modo de prueba
   share_template_with_all_tenants: Compartir plantilla con todos los inquilinos
   use_following_placeholders_text_: 'Usa los siguientes marcadores de posición:'
   upgrade_plan_to_add_more_users: Actualiza el plan para agregar más usuarios
@@ -1345,7 +1363,27 @@ es: &es
   policy_links: Enlaces de Políticas
   markdown_content_e_g: Contenido Markdown, por ej.
   privacy_policy: Política de Privacidad
+  the_code_has_been_sent_to_your_email: El código ha sido enviado a tu correo electrónico.
+  enter_the_verification_code_from_your_email: Ingresa el código de verificación de tu correo electrónico.
+  too_many_attempts: Demasiados intentos.
+  verification_code: Código de Verificación
+  resend_code: Reenviar Código
+  verify_new_sign_in: Verificar nuevo inicio de sesión
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Usa el código <b>%{code}</b> para iniciar sesión o haz clic en el enlace a continuación:'
+  complete_sign_in: Completar Inicio de Sesión
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Responde a este correo electrónico si no reconoces este intento de inicio de sesión.
+  docuseal_support: Soporte DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Usa el formulario de edición para moverlo a otro equipo.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Demasiados intentos de SMS. Intenta de nuevo en unos segundos.
+  number_phone_number_is_invalid: "El número de teléfono +%{number} no es válido"
+  make_com_integration: Integración con Make.com
+  zapier_integration: Integración con Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatiza sin problemas tu proceso de firma de documentos con Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Encuentra plantillas de Zapier adecuadas para automatizar tu flujo de trabajo.
+  get_started: Comenzar
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Haz clic aquí</a> para obtener más información sobre los roles y permisos de usuario.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 correos electrónicos de solicitud de firma enviados este mes. Mejora a Pro para enviar solicitudes de firma ilimitadas.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: El límite de correos electrónicos en modo de prueba se restablecerá en 24 horas.
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1529,7 +1567,7 @@ it: &it
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 settimane. Contattaci se desideri mantenere il tuo account."
-  test_environment: Ambiente di test
+  test_mode: Modalità di test
   copy: Copia
   copied: Copiato
   rotate: Ruota
@@ -1686,7 +1724,6 @@ it: &it
   embedding: Incorporazione
   background_jobs: Attività in background
   need_help_ask_a_question_: 'Hai bisogno di aiuto? Fai una domanda:'
-  testing_environment: Ambiente di test
   exit: Esci
   leave: Lascia
   impersonated_as: Impersonato come
@@ -1791,7 +1828,7 @@ it: &it
   api_and_embedding: API e Incorporazione
   template_id: ID modello
   embedding_url: URL di incorporazione
-  share_template_with_test_environment: "Condividi il modello con l'ambiente di test"
+  share_template_with_test_mode: Condividi modello con la modalità di test
   share_template_with_all_tenants: Condividi il modello con tutti i tenant
   use_following_placeholders_text_: 'Usa i seguenti segnaposto:'
   upgrade_plan_to_add_more_users: Aggiorna il piano per aggiungere più utenti
@@ -2027,7 +2064,27 @@ it: &it
   policy_links: Collegamenti alle Politiche
   markdown_content_e_g: Contenuto Markdown, ad es.
   privacy_policy: Politica sulla Privacy
+  the_code_has_been_sent_to_your_email: Il codice è stato inviato alla tua e-mail.
+  enter_the_verification_code_from_your_email: Inserisci il codice di verifica dalla tua e-mail.
+  too_many_attempts: Troppe tentativi.
+  verification_code: Codice di Verifica
+  resend_code: Reinvia Codice
+  verify_new_sign_in: Verifica nuovo accesso
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Usa il codice <b>%{code}</b> per accedere o clicca sul link qui sotto:'
+  complete_sign_in: "Completa l'Accesso"
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Rispondi a questa e-mail se non riconosci questo tentativo di accesso.
+  docuseal_support: Supporto DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Usa il modulo di modifica per spostarlo in un altro team.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Troppi tentativi di SMS. Riprova tra qualche secondo.
+  number_phone_number_is_invalid: "Il numero di telefono +%{number} non è valido"
+  make_com_integration: Integrazione con Make.com
+  zapier_integration: Integrazione con Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatizza senza problemi il tuo processo di firma dei documenti con Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Trova modelli Zapier adatti per automatizzare il tuo flusso di lavoro.
+  get_started: Inizia
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Fai clic qui</a> per saperne di più sui ruoli e le autorizzazioni degli utenti.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mail di richiesta di firma inviati questo mese. Passa a Pro per inviare richieste di firma illimitate.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: Il limite di e-mail in modalità di test verrà ripristinato entro 24 ore.
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2213,7 +2270,7 @@ fr: &fr
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 semaines. Veuillez nous contacter si vous souhaitez conserver votre compte.
-  test_environment: Mode de test
+  test_mode: Mode test
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -2370,7 +2427,6 @@ fr: &fr
   embedding: Intégration
   background_jobs: Tâches en arrière-plan
   need_help_ask_a_question_: "Besoin d'aide? Posez une question:"
-  testing_environment: Environnement de test
   exit: Quitter
   leave: Partir
   impersonated_as: Usurpé comme
@@ -2475,7 +2531,7 @@ fr: &fr
   api_and_embedding: API et intégration
   template_id: ID du modèle
   embedding_url: "URL d'intégration"
-  share_template_with_test_environment: "Partager le modèle avec l'environnement de test"
+  share_template_with_test_mode: Partager le modèle avec le mode test
   share_template_with_all_tenants: Partager le modèle avec tous les locataires
   use_following_placeholders_text_: 'Utilisez les espaces réservés suivants:'
   upgrade_plan_to_add_more_users: "Mettez à jour le plan pour ajouter plus d'utilisateurs"
@@ -2711,7 +2767,27 @@ fr: &fr
   policy_links: Liens des Politiques
   markdown_content_e_g: Contenu Markdown, par ex.
   privacy_policy: Politique de Confidentialité
+  the_code_has_been_sent_to_your_email: Le code a été envoyé à votre e-mail.
+  enter_the_verification_code_from_your_email: Entrez le code de vérification de votre e-mail.
+  too_many_attempts: Trop de tentatives.
+  verification_code: Code de Vérification
+  resend_code: Renvoyer le Code
+  verify_new_sign_in: Vérifier la nouvelle connexion
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Utilisez le code <b>%{code}</b> pour vous connecter ou cliquez sur le lien ci-dessous :'
+  complete_sign_in: Terminer la Connexion
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Veuillez répondre à cet e-mail si vous ne reconnaissez pas cette tentative de connexion.
+  docuseal_support: Support DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Utilisez le formulaire de modification pour le déplacer vers une autre équipe.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Trop de tentatives de SMS. Réessayez dans quelques secondes.
+  number_phone_number_is_invalid: "Le numéro de téléphone +%{number} est invalide"
+  make_com_integration: Intégration avec Make.com
+  zapier_integration: Intégration avec Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatisez facilement votre processus de signature de documents avec Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Trouvez des modèles Zapier adaptés pour automatiser votre flux de travail.
+  get_started: Commencer
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et les autorisations des utilisateurs.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mails de demande de signature envoyés ce mois-ci. Passez à Pro pour envoyer des demandes de signature illimitées.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: La limite d'e-mails en mode test sera réinitialisée dans les 24 heures.
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2896,7 +2972,7 @@ pt: &pt
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 semanas. Entre em contato conosco se você quiser manter sua conta.
-  test_environment: Ambiente de teste
+  test_mode: Modo de teste
   copy: Copiar
   copied: Copiado
   rotate: Girar
@@ -3053,7 +3129,6 @@ pt: &pt
   embedding: Incorporação
   background_jobs: Trabalhos assíncronos
   need_help_ask_a_question_: 'Precisa de ajuda? Faça uma pergunta:'
-  testing_environment: Ambiente de teste
   exit: Sair
   leave: Deixar
   impersonated_as: Impersonado como
@@ -3158,7 +3233,7 @@ pt: &pt
   api_and_embedding: API e Incorporação
   template_id: ID do modelo
   embedding_url: URL de incorporação
-  share_template_with_test_environment: Compartilhar modelo com ambiente de teste
+  share_template_with_test_mode: Compartilhar modelo com o modo de teste
   share_template_with_all_tenants: Compartilhar modelo com todos os locatários
   use_following_placeholders_text_: 'Use os seguintes textos de substituição:'
   upgrade_plan_to_add_more_users: Faça upgrade do plano para adicionar mais usuários
@@ -3394,7 +3469,27 @@ pt: &pt
   policy_links: Links de Políticas
   markdown_content_e_g: Conteúdo Markdown, ex.
   privacy_policy: Política de Privacidade
+  the_code_has_been_sent_to_your_email: O código foi enviado para seu e-mail.
+  enter_the_verification_code_from_your_email: Insira o código de verificação do seu e-mail.
+  too_many_attempts: Muitas tentativas.
+  verification_code: Código de Verificação
+  resend_code: Reenviar Código
+  verify_new_sign_in: Verificar novo login
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Use o código <b>%{code}</b> para entrar ou clique no link abaixo:'
+  complete_sign_in: Concluir Login
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Responda a este e-mail se você não reconhecer esta tentativa de login.
+  docuseal_support: Suporte DocuSeal
   use_the_edit_form_to_move_it_to_another_team: Use o formulário de edição para movê-lo para outra equipe.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Muitas tentativas de SMS. Tente novamente em alguns segundos.
+  number_phone_number_is_invalid: "O número de telefone +%{number} é inválido"
+  make_com_integration: Integração com Make.com
+  zapier_integration: Integração com Zapier
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatize perfeitamente seu processo de assinatura de documentos com o Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Encontre modelos Zapier adequados para automatizar seu fluxo de trabalho.
+  get_started: Começar
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Clique aqui</a> para saber mais sobre os papéis e permissões dos usuários.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mails de solicitação de assinatura enviados este mês. Faça upgrade para Pro para enviar solicitações de assinatura ilimitadas.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: O limite de e-mails no modo de teste será redefinido em 24 horas.
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3579,7 +3674,7 @@ de: &de
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Wochen bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
-  test_environment: Testumgebung
+  test_mode: Testmodus
   copy: Kopieren
   copied: Kopiert
   rotate: Drehen
@@ -3736,7 +3831,6 @@ de: &de
   embedding: Einbettung
   background_jobs: Hintergrundaufgaben
   need_help_ask_a_question_: 'Brauchen Sie Hilfe? Stellen Sie eine Frage:'
-  testing_environment: Testumgebung
   exit: Beenden
   leave: Verlassen
   impersonated_as: Angemeldet als
@@ -3841,7 +3935,7 @@ de: &de
   api_and_embedding: API und Einbettung
   template_id: Vorlagen-ID
   embedding_url: Einbettungs-URL
-  share_template_with_test_environment: Vorlage mit Testumgebung teilen
+  share_template_with_test_mode: Vorlage mit dem Testmodus teilen
   share_template_with_all_tenants: Vorlage mit allen Mietern teilen
   use_following_placeholders_text_: 'Verwende die folgenden Platzhaltertexte:'
   upgrade_plan_to_add_more_users: Upgrade des Plans, um weitere Benutzer hinzuzufügen
@@ -4077,7 +4171,27 @@ de: &de
   policy_links: Richtlinien-Links
   markdown_content_e_g: Markdown-Inhalt, z. B.
   privacy_policy: Datenschutzrichtlinie
+  the_code_has_been_sent_to_your_email: Der Code wurde an Ihre E-Mail gesendet.
+  enter_the_verification_code_from_your_email: Geben Sie den Verifizierungscode aus Ihrer E-Mail ein.
+  too_many_attempts: Zu viele Versuche.
+  verification_code: Verifizierungscode
+  resend_code: Code erneut senden
+  verify_new_sign_in: Neue Anmeldung überprüfen
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Verwenden Sie den Code <b>%{code}</b>, um sich anzumelden, oder klicken Sie auf den untenstehenden Link:'
+  complete_sign_in: Anmeldung abschließen
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Bitte antworten Sie auf diese E-Mail, wenn Sie diesen Anmeldeversuch nicht erkennen.
+  docuseal_support: DocuSeal Support
   use_the_edit_form_to_move_it_to_another_team: Verwenden Sie das Bearbeitungsformular, um ihn in ein anderes Team zu verschieben.
+  too_many_sms_attempts_try_again_in_a_few_seconds: Zu viele SMS-Versuche. Versuchen Sie es in ein paar Sekunden erneut.
+  number_phone_number_is_invalid: "Die Telefonnummer +%{number} ist ungültig"
+  make_com_integration: Make.com-Integration
+  zapier_integration: Zapier-Integration
+  seamlessly_automate_your_document_signing_process_with_make_com: Automatisieren Sie Ihren Dokumentenunterzeichnungsprozess nahtlos mit Make.com.
+  find_suitable_zapier_templates_to_automate_your_workflow: Finden Sie passende Zapier-Vorlagen, um Ihren Workflow zu automatisieren.
+  get_started: Loslegen
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klicken Sie hier</a>, um mehr über Benutzerrollen und -berechtigungen zu erfahren.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 Signaturanfrage-E-Mails wurden diesen Monat gesendet. Upgraden Sie zu Pro, um unbegrenzte Signaturanfragen zu senden.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: Das Limit für E-Mails im Testmodus wird innerhalb von 24 Stunden zurückgesetzt.
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
@@ -4168,6 +4282,11 @@ pl:
   sign_up_with_microsoft: Zarejestruj się przez Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.com/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.com/terms">Regulamin</a>.'
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
+  the_code_has_been_sent_to_your_email: Kod został wysłany na Twój e-mail.
+  enter_the_verification_code_from_your_email: Wprowadź kod weryfikacyjny z Twojego e-maila.
+  too_many_attempts: Zbyt wiele prób.
+  verification_code: Kod Weryfikacyjny
+  resend_code: Wyślij Kod Ponownie
 
 uk:
   awaiting_completion_by_the_other_party: "Очікує завершення з боку іншої сторони"
@@ -4222,6 +4341,11 @@ uk:
   sign_up_with_microsoft: Зареєструватися через Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.com/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.com/terms">Умовами надання послуг</a>.'
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
+  the_code_has_been_sent_to_your_email: Код було надіслано на вашу електронну пошту.
+  enter_the_verification_code_from_your_email: Введіть код перевірки з вашої електронної пошти.
+  too_many_attempts: Забагато спроб.
+  verification_code: Код перевірки
+  resend_code: Відправити код знову
 
 cs:
   awaiting_completion_by_the_other_party: "Čeká se na dokončení druhou stranou"
@@ -4276,6 +4400,11 @@ cs:
   sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
   by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.com/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.com/terms">Podmínkami služby</a>.'
   enter_email_to_continue: Zadejte e-mail pro pokračování
+  the_code_has_been_sent_to_your_email: Kód byl odeslán na váš e-mail.
+  enter_the_verification_code_from_your_email: Zadejte ověřovací kód z vašeho e-mailu.
+  too_many_attempts: Příliš mnoho pokusů.
+  verification_code: Ověřovací Kód
+  resend_code: Znovu Odeslat Kód
 
 he:
   awaiting_completion_by_the_other_party: "המתנה להשלמה מצד הצד השני"
@@ -4330,6 +4459,11 @@ he:
   sign_up_with_microsoft: הירשם עם מיקרוסופט
   by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.com/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.com/terms">תנאי השירות</a> שלנו.'
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
+  the_code_has_been_sent_to_your_email: הקוד נשלח לדוא"ל שלך.
+  enter_the_verification_code_from_your_email: הזן את קוד האימות מדוא"ל שלך.
+  too_many_attempts: יותר מדי ניסיונות.
+  verification_code: קוד אימות
+  resend_code: שלח קוד מחדש
 
 nl:
   awaiting_completion_by_the_other_party: "In afwachting van voltooiing door de andere partij"
@@ -4384,6 +4518,11 @@ nl:
   sign_up_with_microsoft: Aanmelden met Microsoft
   by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.com/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.com/terms">Gebruiksvoorwaarden</a>.'
   enter_email_to_continue: Voer e-mail in om door te gaan
+  the_code_has_been_sent_to_your_email: De code is naar uw e-mail verzonden.
+  enter_the_verification_code_from_your_email: Voer de verificatiecode uit uw e-mail in.
+  too_many_attempts: Te veel pogingen.
+  verification_code: Verificatiecode
+  resend_code: Code Opnieuw Verzenden
 
 ar:
   awaiting_completion_by_the_other_party: "في انتظار إكتمال الطرف الآخر"
@@ -4438,6 +4577,11 @@ ar:
   sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
   by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.com/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.com/terms">شروط الخدمة</a> الخاصة بنا.'
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
+  the_code_has_been_sent_to_your_email: تم إرسال الرمز إلى بريدك الإلكتروني.
+  enter_the_verification_code_from_your_email: أدخل رمز التحقق من بريدك الإلكتروني.
+  too_many_attempts: عدد المحاولات كبير جدًا.
+  verification_code: رمز التحقق
+  resend_code: إعادة إرسال الرمز
 
 ko:
   awaiting_completion_by_the_other_party: "다른 당사자의 완료를 기다리고 있습니다"
@@ -4492,6 +4636,11 @@ ko:
   sign_up_with_microsoft: Microsoft로 가입
   by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.com/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.com/terms">서비스 약관</a>에 동의하는 것입니다.'
   enter_email_to_continue: 계속하려면 이메일을 입력하세요
+  the_code_has_been_sent_to_your_email: 코드가 이메일로 전송되었습니다.
+  enter_the_verification_code_from_your_email: 이메일에서 인증 코드를 입력하세요.
+  too_many_attempts: 시도 횟수가 너무 많습니다.
+  verification_code: 인증 코드
+  resend_code: 코드 재전송
 
 en-US:
   <<: *en
