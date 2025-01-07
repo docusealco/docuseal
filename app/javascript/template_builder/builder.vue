@@ -770,13 +770,17 @@ export default {
       }
     })
 
+    const defineSubmittersUuids = this.defineSubmitters.map((name) => {
+      return this.template.submitters.find(e => e.name === name)?.uuid
+    })
+
     this.defineSubmitters.forEach((name, index) => {
       const submitter = (this.template.submitters[index] ||= {})
 
       submitter.name = name || this.submitterDefaultNames[index]
 
-      if (existingSubmittersUuids.filter(Boolean).length) {
-        submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
+      if (defineSubmittersUuids.filter(Boolean).length || existingSubmittersUuids.filter(Boolean).length) {
+        submitter.uuid = defineSubmittersUuids[index] || existingSubmittersUuids[index] || submitter.uuid || v4()
       } else {
         submitter.uuid ||= v4()
       }
