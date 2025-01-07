@@ -70,7 +70,7 @@
         @keydown.enter.prevent="onNameEnter"
         @focus="onNameFocus"
         @blur="onNameBlur"
-      >{{ optionIndexText }} {{ (defaultField ? (field.title || field.name) : field.name) || defaultName }}</span>
+      >{{ optionIndexText }} {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || defaultName }}</span>
       <div
         v-if="isSettingsFocus || (isValueInput && field.type !== 'heading') || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
         class="flex items-center ml-1.5"
@@ -212,7 +212,7 @@
               :contenteditable="isValueInput"
               class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-gray-400"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="withFieldPlaceholder && !isValueInput ? field.name || defaultName : t('type_value')"
+              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : t('type_value')"
               @blur="onDefaultValueBlur"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
