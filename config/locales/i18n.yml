@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
   unarchive: Unarchive
@@ -720,6 +721,7 @@ en: &en
       read: Read your data
 
 es: &es
+  reply_to: Responder a
   partially_completed: Parcialmente completado
   pending_by_me: Pendiente por mi
   add: Agregar
@@ -1422,6 +1424,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  reply_to: Rispondi a
   pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
@@ -2123,6 +2126,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  reply_to: Répondre à
   partially_completed: Partiellement complété
   pending_by_me: En attente par moi
   add: Ajouter
@@ -2826,6 +2830,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  reply_to: Responder a
   partially_completed: Parcialmente concluído
   pending_by_me: Pendente por mim
   add: Adicionar
@@ -3528,6 +3533,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  reply_to: Antworten auf
   partially_completed: Teilweise abgeschlossen
   pending_by_me: Ausstehend von mir
   add: Hinzufügen
