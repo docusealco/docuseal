@@ -31,7 +31,8 @@ module Submissions
           next if uuid.blank?
           next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
 
-          submission.template_submitters << template.submitters.find { |e| e['uuid'] == uuid }
+          template_submitter = template.submitters.find { |e| e['uuid'] == uuid }
+          submission.template_submitters << template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
 
           is_order_sent = submitters_order == 'random' || index.zero?
 
@@ -54,11 +55,17 @@ module Submissions
     # rubocop:enable Metrics/BlockLength
 
     def maybe_add_invite_submitters(submission, template)
-      template.submitters.each do |item|
+      template.submitters.each_with_index do |item, index|
         next if item['invite_by_uuid'].blank? && item['optional_invite_by_uuid'].blank?
         next if submission.template_submitters.any? { |e| e['uuid'] == item['uuid'] }
 
-        submission.template_submitters << item
+        if index.zero?
+          submission.template_submitters.insert(1, item)
+        elsif submission.template_submitters.size > index
+          submission.template_submitters.insert(index, item)
+        else
+          submission.template_submitters << item
+        end
       end
     end
 
