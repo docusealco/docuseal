@@ -1440,7 +1440,7 @@ it: &it
   document_name: Nome del Documento
   unarchive: Ripristina
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
-  enforce_recipients_order: Aplicar el orden de los destinatarios
+  enforce_recipients_order: "Applicare l'ordine dei destinatari"
   first_party: 'Prima parte'
   docuseal_trusted_signature: "Firma Fiduciaria DocuSeal"
   hello_name: Ciao %{name}
@@ -2745,11 +2745,11 @@ fr: &fr
   unverified: Non vérifié
   document: Document
   completed_at: Terminé le
-  edit_recipient: Modifica Destinatario
-  update_recipient: Aggiorna Destinatario
-  use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
-  submitter_cannot_be_updated: Il mittente non può essere aggiornato.
-  at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
+  edit_recipient: Modifier le destinataire
+  update_recipient: Mettre à jour le destinataire
+  use_international_format_1xxx_: 'Utilisez un format international : +1xxx...'
+  submitter_cannot_be_updated: Le soumissionnaire ne peut pas être mis à jour.
+  at_least_one_field_must_be_filled: Au moins un champ doit être rempli.
   archived_users: Utilisateurs Archivés
   embedding_users: Utilisateurs Intégrés
   view_embedding_users: Voir les Utilisateurs Intégrés
