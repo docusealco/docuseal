@@ -15,7 +15,7 @@
   />
   <FieldAreas
     :steps="readonlyConditionalFields.map((e) => [e])"
-    :values="readonlyConditionalFields.reduce((acc, f) => { acc[f.uuid] = (values[f.uuid] || f.default_value); return acc }, {})"
+    :values="readonlyConditionalFieldValues"
     :submitter="submitter"
     :attachments-index="attachmentsIndex"
     :submittable="false"
@@ -23,6 +23,7 @@
   <FormulaFieldAreas
     v-if="formulaFields.length"
     :fields="formulaFields"
+    :readonly-values="readonlyConditionalFieldValues"
     :values="values"
   />
   <Teleport
@@ -856,6 +857,13 @@ export default {
   computed: {
     isMobile () {
       return /android|iphone|ipad/i.test(navigator.userAgent)
+    },
+    readonlyConditionalFieldValues () {
+      return this.readonlyConditionalFields.reduce((acc, f) => {
+        acc[f.uuid] = (this.values[f.uuid] || f.default_value)
+
+        return acc
+      }, {})
     },
     attachmentConditionsIndex () {
       return this.schema.reduce((acc, item) => {

@@ -38,6 +38,11 @@ export default {
       required: false,
       default: () => []
     },
+    readonlyValues: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     values: {
       type: Object,
       required: false,
@@ -87,7 +92,7 @@ export default {
     },
     calculateFormula (field) {
       const transformedFormula = field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
-        return this.values[uuid] || 0.0
+        return this.readonlyValues[uuid] || this.values[uuid] || 0.0
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
