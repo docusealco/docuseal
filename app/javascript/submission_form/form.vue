@@ -856,7 +856,9 @@ export default {
   },
   computed: {
     isMobile () {
-      return /android|iphone|ipad/i.test(navigator.userAgent)
+      const isMobileSafariIos = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && /AppleWebKit/i.test(navigator.userAgent)
+
+      return isMobileSafariIos || /android|iphone|ipad/i.test(navigator.userAgent)
     },
     readonlyConditionalFieldValues () {
       return this.readonlyConditionalFields.reduce((acc, f) => {
@@ -1111,7 +1113,9 @@ export default {
       this.minimizeForm()
     }
 
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    const isMobileSafariIos = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && /AppleWebKit/i.test(navigator.userAgent)
+
+    if (isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode()
         const scrollbox = root.getElementById('scrollbox')
