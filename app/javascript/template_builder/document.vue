@@ -7,6 +7,7 @@
       :input-mode="inputMode"
       :number="index"
       :editable="editable"
+      :data-page="index"
       :areas="areasIndex[index]"
       :allow-draw="allowDraw"
       :is-drag="isDrag"
