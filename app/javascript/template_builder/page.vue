@@ -1,6 +1,7 @@
 <template>
   <div
-    class="relative cursor-crosshair select-none"
+    class="relative select-none"
+    :class="{ 'cursor-crosshair': allowDraw }"
     :style="drawField ? 'touch-action: none' : ''"
   >
     <img
