@@ -856,7 +856,7 @@ export default {
   },
   computed: {
     isMobile () {
-      const isMobileSafariIos = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && /AppleWebKit/i.test(navigator.userAgent)
+      const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
 
       return isMobileSafariIos || /android|iphone|ipad/i.test(navigator.userAgent)
     },
@@ -1113,7 +1113,7 @@ export default {
       this.minimizeForm()
     }
 
-    const isMobileSafariIos = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && /AppleWebKit/i.test(navigator.userAgent)
+    const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
 
     if (isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
