@@ -139,6 +139,8 @@ Rails.application.routes.draw do
 
   resources :submit_form_draw_signature, only: %i[show], path: 'p', param: 'slug'
 
+  resources :submit_form_take_photo, only: %i[show], path: 't', param: 'slug'
+
   resources :submissions_preview, only: %i[show], path: 'e', param: 'slug' do
     get :completed
   end
