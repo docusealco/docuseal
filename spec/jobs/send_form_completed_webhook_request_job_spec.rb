@@ -85,7 +85,7 @@ RSpec.describe SendFormCompletedWebhookRequestJob do
       stub_request(:post, webhook_url.url).to_return(status: 401)
 
       expect do
-        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id, 'attempt' => 11)
+        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id, 'attempt' => 21)
       end.not_to change(described_class.jobs, :size)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once

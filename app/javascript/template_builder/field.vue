@@ -23,7 +23,7 @@
           />
           <Contenteditable
             ref="name"
-            :model-value="(defaultField ? (field.title || field.name) : field.name) || defaultName"
+            :model-value="(defaultField ? (defaultField.title || field.title || field.name) : field.name) || defaultName"
             :editable="editable && !defaultField && field.type != 'heading'"
             :icon-inline="true"
             :icon-width="18"

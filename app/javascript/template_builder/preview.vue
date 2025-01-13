@@ -56,23 +56,39 @@
               </button>
             </div>
             <div
-              v-if="withArrows"
               class="flex flex-col space-y-1"
             >
-              <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
-                style="width: 24px; height: 24px"
-                @click.stop="$emit('up', item)"
+              <span
+                :data-tip="t('reorder_fields')"
+                class="tooltip tooltip-left before:text-xs"
               >
-                &uarr;
-              </button>
-              <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
-                style="width: 24px; height: 24px"
-                @click.stop="$emit('down', item)"
-              >
-                &darr;
-              </button>
+                <button
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0"
+                  @click.stop="$emit('reorder', item)"
+                >
+                  <IconSortDescending2
+                    :width="18"
+                    :height="18"
+                    :stroke-width="1.6"
+                  />
+                </button>
+              </span>
+              <template v-if="withArrows">
+                <button
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+                  style="width: 24px; height: 24px"
+                  @click.stop="$emit('up', item)"
+                >
+                  &uarr;
+                </button>
+                <button
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+                  style="width: 24px; height: 24px"
+                  @click.stop="$emit('down', item)"
+                >
+                  &darr;
+                </button>
+              </template>
             </div>
           </div>
         </div>
@@ -88,23 +104,23 @@
         @update:model-value="onUpdateName"
       />
     </div>
+    <Teleport
+      v-if="isShowConditionsModal"
+      :to="modalContainerEl"
+    >
+      <ConditionsModal
+        :item="item"
+        :build-default-name="buildDefaultName"
+        @close="isShowConditionsModal = false"
+      />
+    </Teleport>
   </div>
-  <Teleport
-    v-if="isShowConditionsModal"
-    :to="modalContainerEl"
-  >
-    <ConditionsModal
-      :item="item"
-      :build-default-name="buildDefaultName"
-      @close="isShowConditionsModal = false"
-    />
-  </Teleport>
 </template>
 
 <script>
 import Contenteditable from './contenteditable'
 import Upload from './upload'
-import { IconRouteAltLeft } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconSortDescending2 } from '@tabler/icons-vue'
 import ConditionsModal from './conditions_modal'
 import ReplaceButton from './replace'
 import Field from './field'
@@ -116,7 +132,8 @@ export default {
     Contenteditable,
     IconRouteAltLeft,
     ConditionsModal,
-    ReplaceButton
+    ReplaceButton,
+    IconSortDescending2
   },
   inject: ['t'],
   props: {
@@ -153,7 +170,7 @@ export default {
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'reorder'],
   data () {
     return {
       isShowConditionsModal: false

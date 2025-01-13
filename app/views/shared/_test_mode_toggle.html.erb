@@ -2,7 +2,7 @@
   <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'flex' } do |f| %>
     <label class="flex items-center justify-between" for="testing_toggle">
       <span class="mr-2 text-lg">
-        <%= t('test_environment') %>
+        <%= t('test_mode') %>
       </span>
       <%= f.check_box :testing_toggle, class: 'toggle', checked: current_account.testing?, onchange: 'this.form.requestSubmit()' %>
     </label>

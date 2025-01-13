@@ -20,7 +20,8 @@ export default targetable(class extends HTMLElement {
     fetch(this.dataset.src).then(async (response) => {
       if (response.ok) {
         const urls = await response.json()
-        const isSafariIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+        const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+        const isSafariIos = isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
         if (isSafariIos && urls.length > 1) {
           this.downloadSafariIos(urls)

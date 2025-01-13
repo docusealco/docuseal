@@ -179,6 +179,7 @@
           :with-arrows="template.schema.length > 1"
           :item="item"
           :document="sortedDocuments[index]"
+          :data-document-uuid="item.attachment_uuid"
           :accept-file-types="acceptFileTypes"
           :with-replace-button="withUploadButton"
           :editable="editable"
@@ -187,6 +188,7 @@
           @remove="onDocumentRemove"
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
+          @reorder="reorderFields"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -265,6 +267,7 @@
                 :input-mode="inputMode"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields"
+                :data-document-uuid="document.uuid"
                 :default-submitters="defaultSubmitters"
                 :with-field-placeholder="withFieldPlaceholder"
                 :draw-field="drawField"
@@ -700,7 +703,9 @@ export default {
       return this.locale.split('-')[0].toLowerCase()
     },
     isMobile () {
-      return /android|iphone|ipad/i.test(navigator.userAgent)
+      const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+
+      return isMobileSafariIos || /android|iphone|ipad/i.test(navigator.userAgent)
     },
     defaultDateFormat () {
       const isUsBrowser = Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US')
@@ -769,13 +774,17 @@ export default {
       }
     })
 
+    const defineSubmittersUuids = this.defineSubmitters.map((name) => {
+      return this.template.submitters.find(e => e.name === name)?.uuid
+    })
+
     this.defineSubmitters.forEach((name, index) => {
       const submitter = (this.template.submitters[index] ||= {})
 
       submitter.name = name || this.submitterDefaultNames[index]
 
-      if (existingSubmittersUuids.filter(Boolean).length) {
-        submitter.uuid = existingSubmittersUuids[index] || submitter.uuid || v4()
+      if (defineSubmittersUuids.filter(Boolean).length || existingSubmittersUuids.filter(Boolean).length) {
+        submitter.uuid = defineSubmittersUuids[index] || existingSubmittersUuids[index] || submitter.uuid || v4()
       } else {
         submitter.uuid ||= v4()
       }
@@ -818,6 +827,89 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    reorderFields (item) {
+      const itemFields = []
+      const fields = []
+      const fieldAreasIndex = {}
+
+      const attachmentUuids = this.template.schema.map((e) => e.attachment_uuid)
+
+      this.template.fields.forEach((f) => {
+        if (f.areas?.length) {
+          const firstArea = f.areas.reduce((min, a) => {
+            return attachmentUuids.indexOf(a.attachment_uuid) < attachmentUuids.indexOf(min.attachment_uuid) ? a : min
+          }, f.areas[0])
+
+          if (firstArea.attachment_uuid === item.attachment_uuid) {
+            itemFields.push(f)
+          } else {
+            fields.push(f)
+          }
+        } else {
+          fields.push(f)
+        }
+      })
+
+      const sortArea = (aArea, bArea) => {
+        if (aArea.attachment_uuid === bArea.attachment_uuid) {
+          if (aArea.page === bArea.page) {
+            if (Math.abs(aArea.y - bArea.y) < 0.01) {
+              if (aArea.x === bArea.x) {
+                return 0
+              } else {
+                return aArea.x - bArea.x
+              }
+            } else {
+              return aArea.y - bArea.y
+            }
+          } else {
+            return aArea.page - bArea.page
+          }
+        } else {
+          return attachmentUuids.indexOf(aArea.attachment_uuid) - attachmentUuids.indexOf(bArea.attachment_uuid)
+        }
+      }
+
+      itemFields.sort((aField, bField) => {
+        const aArea = (fieldAreasIndex[aField.uuid] ||= [...(aField.areas || [])].sort(sortArea)[0])
+        const bArea = (fieldAreasIndex[bField.uuid] ||= [...(bField.areas || [])].sort(sortArea)[0])
+
+        return sortArea(aArea, bArea)
+      })
+
+      const insertBeforeAttachmentUuids = attachmentUuids.slice(this.template.schema.indexOf(item) + 1)
+
+      let sortedFields = []
+
+      if (insertBeforeAttachmentUuids.length) {
+        const insertAfterField = fields.find((f) => {
+          if (f.areas?.length) {
+            return f.areas.find((a) => insertBeforeAttachmentUuids.includes(a.attachment_uuid))
+          } else {
+            return false
+          }
+        })
+
+        if (insertAfterField) {
+          fields.splice(fields.indexOf(insertAfterField), 0, ...itemFields)
+
+          sortedFields = fields
+        } else {
+          sortedFields = fields.concat(itemFields)
+        }
+      } else {
+        if (fields.length && itemFields.length && this.template.fields.indexOf(fields[0]) > this.template.fields.indexOf(itemFields[0])) {
+          sortedFields = itemFields.concat(fields)
+        } else {
+          sortedFields = fields.concat(itemFields)
+        }
+      }
+
+      if (this.template.fields.length === sortedFields.length) {
+        this.template.fields = sortedFields
+        this.save()
+      }
+    },
     closeDropdown () {
       document.activeElement.blur()
     },
