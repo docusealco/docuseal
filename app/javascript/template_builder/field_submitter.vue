@@ -9,7 +9,7 @@
         <div class="flex items-center space-x-2">
           <span
             class="w-3 h-3 flex-shrink-0 rounded-full"
-            :class="colors[submitters.indexOf(selectedSubmitter)]"
+            :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
           />
           <Contenteditable
             v-model="selectedSubmitter.name"
@@ -53,7 +53,7 @@
               <span class="py-1 flex items-center">
                 <span
                   class="rounded-full w-3 h-3 ml-1 mr-3"
-                  :class="colors[index]"
+                  :class="colors[index % colors.length]"
                 />
                 <span>
                   {{ submitter.name }}
@@ -101,7 +101,7 @@
     >
       <button
         class="mx-1 w-3 h-3 rounded-full"
-        :class="colors[submitters.indexOf(selectedSubmitter)]"
+        :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
       />
     </label>
     <label
@@ -113,7 +113,7 @@
       <div class="flex items-center space-x-2">
         <span
           class="w-3 h-3 rounded-full"
-          :class="colors[submitters.indexOf(selectedSubmitter)]"
+          :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
         />
         <Contenteditable
           v-model="selectedSubmitter.name"
@@ -153,7 +153,7 @@
           <span class="py-1 flex items-center">
             <span
               class="rounded-full w-3 h-3 ml-1 mr-3"
-              :class="colors[index]"
+              :class="colors[index % colors.length]"
             />
             <span>
               {{ submitter.name }}
@@ -275,16 +275,6 @@ export default {
   computed: {
     colors () {
       return [
-        'bg-red-500',
-        'bg-sky-500',
-        'bg-emerald-500',
-        'bg-yellow-300',
-        'bg-purple-600',
-        'bg-pink-500',
-        'bg-cyan-500',
-        'bg-orange-500',
-        'bg-lime-500',
-        'bg-indigo-500',
         'bg-red-500',
         'bg-sky-500',
         'bg-emerald-500',

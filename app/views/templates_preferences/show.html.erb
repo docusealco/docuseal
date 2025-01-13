@@ -118,7 +118,7 @@
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
             <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
             <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value %>
-            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_subject'].presence || configs['subject'], @template.preferences['documents_copy_email_body'].presence || configs['body'], @template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
+            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_reply_to, :documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_reply_to'].presence || configs['reply_to'], @template.preferences['documents_copy_email_subject'].presence || configs['subject'], @template.preferences['documents_copy_email_body'].presence || configs['body'], @template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
               <div class="form-control">
                 <%= ff.label :documents_copy_email_subject, t('email_subject'), class: 'label' %>
                 <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -134,6 +134,12 @@
                   <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
                 </autoresize-textarea>
               </div>
+              <% if can?(:manage, :reply_to) %>
+                <div class="form-control">
+                  <%= ff.label :documents_copy_email_reply_to, t('reply_to'), class: 'label' %>
+                  <%= ff.email_field :documents_copy_email_reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
+                </div>
+              <% end %>
               <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
                 <span>
                   <%= t('attach_documents_to_the_email') %>

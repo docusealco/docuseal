@@ -54,8 +54,8 @@ module Submitters
       submitter.ip = request.remote_ip
       submitter.ua = request.user_agent
       submitter.values = merge_default_values(submitter)
-      submitter.values = merge_formula_values(submitter)
       submitter.values = maybe_remove_condition_values(submitter)
+      submitter.values = merge_formula_values(submitter)
       submitter.values = submitter.values.transform_values do |v|
         v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
       end

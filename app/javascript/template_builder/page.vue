@@ -1,6 +1,7 @@
 <template>
   <div
-    class="relative cursor-crosshair select-none"
+    class="relative select-none"
+    :class="{ 'cursor-crosshair': allowDraw }"
     :style="drawField ? 'touch-action: none' : ''"
   >
     <img
@@ -25,7 +26,7 @@
         :field="item.field"
         :editable="editable"
         :with-field-placeholder="withFieldPlaceholder"
-        :default-field="defaultFields.find((f) => f.name === item.field.name)"
+        :default-field="defaultFieldsIndex[item.field.name]"
         :default-submitters="defaultSubmitters"
         :max-page="totalPages - 1"
         @start-resize="resizeDirection = $event"
@@ -142,6 +143,13 @@ export default {
     }
   },
   computed: {
+    defaultFieldsIndex () {
+      return this.defaultFields.reduce((acc, field) => {
+        acc[field.name] = field
+
+        return acc
+      }, {})
+    },
     defaultFieldType () {
       if (this.drawFieldType) {
         return this.drawFieldType
@@ -154,7 +162,9 @@ export default {
       }
     },
     isMobile () {
-      return /android|iphone|ipad/i.test(navigator.userAgent)
+      const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+
+      return isMobileSafariIos || /android|iphone|ipad/i.test(navigator.userAgent)
     },
     resizeDirectionClasses () {
       return {

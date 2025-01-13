@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
   unarchive: Unarchive
@@ -682,6 +683,10 @@ en: &en
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request email.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Test mode emails limit will be reset within 24 hours.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: On a scale of 1 to 10, how satisfied are you with the DocuSeal product?
+  tell_us_more_about_your_experience: Tell us more about your experience
+  extremely_dissatisfied: Extremely Dissatisfied
+  extremely_satisfied: Extremely Satisfied
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -720,6 +725,7 @@ en: &en
       read: Read your data
 
 es: &es
+  reply_to: Responder a
   partially_completed: Parcialmente completado
   pending_by_me: Pendiente por mi
   add: Agregar
@@ -1384,6 +1390,10 @@ es: &es
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Haz clic aquí</a> para obtener más información sobre los roles y permisos de usuario.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 correos electrónicos de solicitud de firma enviados este mes. Mejora a Pro para enviar solicitudes de firma ilimitadas.'
   test_mode_emails_limit_will_be_reset_within_24_hours: El límite de correos electrónicos en modo de prueba se restablecerá en 24 horas.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'En una escala del 1 al 10, ¿qué tan satisfecho estás con el producto DocuSeal?'
+  tell_us_more_about_your_experience: Cuéntanos más sobre tu experiencia
+  extremely_dissatisfied: Extremadamente insatisfecho
+  extremely_satisfied: Extremadamente satisfecho
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1422,6 +1432,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  reply_to: Rispondi a
   pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
@@ -1437,7 +1448,7 @@ it: &it
   document_name: Nome del Documento
   unarchive: Ripristina
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
-  enforce_recipients_order: Aplicar el orden de los destinatarios
+  enforce_recipients_order: "Applicare l'ordine dei destinatari"
   first_party: 'Prima parte'
   docuseal_trusted_signature: "Firma Fiduciaria DocuSeal"
   hello_name: Ciao %{name}
@@ -2085,6 +2096,10 @@ it: &it
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Fai clic qui</a> per saperne di più sui ruoli e le autorizzazioni degli utenti.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mail di richiesta di firma inviati questo mese. Passa a Pro per inviare richieste di firma illimitate.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Il limite di e-mail in modalità di test verrà ripristinato entro 24 ore.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Su una scala da 1 a 10, quanto sei soddisfatto del prodotto DocuSeal?'
+  tell_us_more_about_your_experience: Raccontaci di più sulla tua esperienza
+  extremely_dissatisfied: Estremamente insoddisfatto
+  extremely_satisfied: Estremamente soddisfatto
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2123,6 +2138,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  reply_to: Répondre à
   partially_completed: Partiellement complété
   pending_by_me: En attente par moi
   add: Ajouter
@@ -2741,11 +2757,11 @@ fr: &fr
   unverified: Non vérifié
   document: Document
   completed_at: Terminé le
-  edit_recipient: Modifica Destinatario
-  update_recipient: Aggiorna Destinatario
-  use_international_format_1xxx_: 'Utilizza il formato internazionale: +1xxx...'
-  submitter_cannot_be_updated: Il mittente non può essere aggiornato.
-  at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
+  edit_recipient: Modifier le destinataire
+  update_recipient: Mettre à jour le destinataire
+  use_international_format_1xxx_: 'Utilisez un format international : +1xxx...'
+  submitter_cannot_be_updated: Le soumissionnaire ne peut pas être mis à jour.
+  at_least_one_field_must_be_filled: Au moins un champ doit être rempli.
   archived_users: Utilisateurs Archivés
   embedding_users: Utilisateurs Intégrés
   view_embedding_users: Voir les Utilisateurs Intégrés
@@ -2788,6 +2804,10 @@ fr: &fr
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et les autorisations des utilisateurs.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mails de demande de signature envoyés ce mois-ci. Passez à Pro pour envoyer des demandes de signature illimitées.'
   test_mode_emails_limit_will_be_reset_within_24_hours: La limite d'e-mails en mode test sera réinitialisée dans les 24 heures.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Sur une échelle de 1 à 10, à quel point êtes-vous satisfait du produit DocuSeal?'
+  tell_us_more_about_your_experience: Parlez-nous davantage de votre expérience
+  extremely_dissatisfied: Extrêmement insatisfait
+  extremely_satisfied: Extrêmement satisfait
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2826,6 +2846,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  reply_to: Responder a
   partially_completed: Parcialmente concluído
   pending_by_me: Pendente por mim
   add: Adicionar
@@ -3490,6 +3511,10 @@ pt: &pt
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Clique aqui</a> para saber mais sobre os papéis e permissões dos usuários.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mails de solicitação de assinatura enviados este mês. Faça upgrade para Pro para enviar solicitações de assinatura ilimitadas.'
   test_mode_emails_limit_will_be_reset_within_24_hours: O limite de e-mails no modo de teste será redefinido em 24 horas.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Em uma escala de 1 a 10, quão satisfeito você está com o produto DocuSeal?'
+  tell_us_more_about_your_experience: Conte-nos mais sobre sua experiência
+  extremely_dissatisfied: Extremamente insatisfeito
+  extremely_satisfied: Extremamente satisfeito
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3528,6 +3553,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  reply_to: Antworten auf
   partially_completed: Teilweise abgeschlossen
   pending_by_me: Ausstehend von mir
   add: Hinzufügen
@@ -4192,6 +4218,10 @@ de: &de
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klicken Sie hier</a>, um mehr über Benutzerrollen und -berechtigungen zu erfahren.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 Signaturanfrage-E-Mails wurden diesen Monat gesendet. Upgraden Sie zu Pro, um unbegrenzte Signaturanfragen zu senden.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Das Limit für E-Mails im Testmodus wird innerhalb von 24 Stunden zurückgesetzt.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Auf einer Skala von 1 bis 10, wie zufrieden sind Sie mit dem DocuSeal-Produkt?'
+  tell_us_more_about_your_experience: Erzählen Sie uns mehr über Ihre Erfahrung
+  extremely_dissatisfied: Extrem unzufrieden
+  extremely_satisfied: Extrem zufrieden
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

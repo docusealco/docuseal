@@ -104,17 +104,17 @@
         @update:model-value="onUpdateName"
       />
     </div>
+    <Teleport
+      v-if="isShowConditionsModal"
+      :to="modalContainerEl"
+    >
+      <ConditionsModal
+        :item="item"
+        :build-default-name="buildDefaultName"
+        @close="isShowConditionsModal = false"
+      />
+    </Teleport>
   </div>
-  <Teleport
-    v-if="isShowConditionsModal"
-    :to="modalContainerEl"
-  >
-    <ConditionsModal
-      :item="item"
-      :build-default-name="buildDefaultName"
-      @close="isShowConditionsModal = false"
-    />
-  </Teleport>
 </template>
 
 <script>

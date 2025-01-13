@@ -22,7 +22,7 @@ class TemplatesPreferencesController < ApplicationController
       preferences: %i[bcc_completed request_email_subject request_email_body
                       documents_copy_email_subject documents_copy_email_body
                       documents_copy_email_enabled documents_copy_email_attach_audit
-                      documents_copy_email_attach_documents
+                      documents_copy_email_attach_documents documents_copy_email_reply_to
                       completed_notification_email_attach_documents
                       completed_redirect_url
                       submitters_order

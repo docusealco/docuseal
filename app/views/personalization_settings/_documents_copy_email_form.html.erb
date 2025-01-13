@@ -8,7 +8,7 @@
   <div class="collapse-content">
     <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.hidden_field :key %>
-      <%= f.fields_for :value, Struct.new(:subject, :body, :attach_audit_log, :attach_documents).new(*f.object.value.values_at('subject', 'body', 'attach_audit_log', 'attach_documents')) do |ff| %>
+      <%= f.fields_for :value, Struct.new(:subject, :body, :reply_to, :attach_audit_log, :attach_documents).new(*f.object.value.values_at('subject', 'body', 'reply_to', 'attach_audit_log', 'attach_documents')) do |ff| %>
         <div class="form-control">
           <%= ff.label :subject, t('subject'), class: 'label' %>
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -24,6 +24,12 @@
             <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
         </div>
+        <% if can?(:manage, :reply_to) %>
+          <div class="form-control">
+            <%= ff.label :reply_to, t('reply_to'), class: 'label' %>
+            <%= ff.email_field :reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
+          </div>
+        <% end %>
         <div class="flex items-center justify-between pt-2.5 mx-1">
           <span>
             <%= t('attach_documents') %>

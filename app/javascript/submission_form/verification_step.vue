@@ -125,12 +125,16 @@ export default {
   async mounted () {
     this.isLoading = true
 
-    Promise.all([
-      import('@eid-easy/eideasy-widget'),
-      this.start()
-    ]).finally(() => {
-      this.isLoading = false
-    })
+    if (new URLSearchParams(window.location.search).get('submit') === 'true') {
+      this.$emit('submit')
+    } else {
+      Promise.all([
+        import('@eid-easy/eideasy-widget'),
+        this.start()
+      ]).finally(() => {
+        this.isLoading = false
+      })
+    }
   },
   methods: {
     start () {

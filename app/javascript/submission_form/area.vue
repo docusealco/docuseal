@@ -197,7 +197,10 @@
       <span v-else-if="field.type === 'date'">
         {{ formattedDate }}
       </span>
-      <span v-else-if="field.type === 'number'">
+      <span
+        v-else-if="field.type === 'number'"
+        class="w-full"
+      >
         {{ formatNumber(modelValue, field.preferences?.format) }}
       </span>
       <span

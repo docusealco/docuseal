@@ -26,7 +26,7 @@
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
       :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
-      :default-field="defaultFields.find((f) => f.name === field.name)"
+      :default-field="defaultFieldsIndex[field.name]"
       :draggable="editable"
       @dragstart="fieldsDragFieldRef.value = field"
       @dragend="fieldsDragFieldRef.value = null"
@@ -298,6 +298,13 @@ export default {
     fieldIcons: FieldType.computed.fieldIcons,
     isShowFieldSearch () {
       return this.submitterDefaultFields.length > 15
+    },
+    defaultFieldsIndex () {
+      return this.defaultFields.reduce((acc, field) => {
+        acc[field.name] = field
+
+        return acc
+      }, {})
     },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
