@@ -392,7 +392,7 @@ export default {
       return this.sortedAreas[0] && this.$emit('scroll-to', this.sortedAreas[0])
     },
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     },
     addOption () {
       this.field.options.push({ value: '', uuid: v4() })

@@ -479,7 +479,7 @@ export default {
   methods: {
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     },
     maybeToggleDefaultValue () {
       if (['text', 'number'].includes(this.field.type)) {

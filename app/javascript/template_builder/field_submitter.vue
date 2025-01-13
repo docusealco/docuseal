@@ -362,7 +362,7 @@ export default {
       this.$emit('new-submitter', newSubmitter)
     },
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     }
   }
 }
