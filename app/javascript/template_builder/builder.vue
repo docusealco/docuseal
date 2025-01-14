@@ -222,8 +222,8 @@
       </div>
       <div
         id="pages_container"
-        class="w-full overflow-y-hidden overflow-x-hidden mt-0.5 pt-0.5"
-        :class="isMobile ? 'overflow-y-auto' : 'md:overflow-y-auto'"
+        class="w-full overflow-x-hidden mt-0.5 pt-0.5"
+        :class="isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto'"
       >
         <div
           ref="documents"
