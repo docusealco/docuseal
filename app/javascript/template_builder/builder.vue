@@ -1320,7 +1320,11 @@ export default {
 
       if (!this.fieldsDragFieldRef.value) {
         if (['select', 'multiple', 'radio'].includes(field.type)) {
-          field.options = [{ value: '', uuid: v4() }]
+          if (this.dragField?.options?.length) {
+            field.options = this.dragField.options.map(option => ({ value: option, uuid: v4() }))
+          } else {
+            field.options = [{ value: '', uuid: v4() }]
+          }
         }
 
         if (['stamp', 'heading'].includes(field.type)) {
