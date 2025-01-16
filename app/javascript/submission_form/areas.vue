@@ -157,13 +157,15 @@ export default {
       const formContainer = root.getElementById('form_container')
       const container = root.body || root.querySelector('div')
 
-      const padding = 64
+      const isAndroid = /android/i.test(navigator.userAgent)
+      const padding = isAndroid ? 128 : 64
+      const scrollboxTop = isAndroid ? scrollbox.getBoundingClientRect().top : 0
       const boxRect = scrollbox.children[0].getBoundingClientRect()
       const targetRect = target.getBoundingClientRect()
 
       const targetTopRelativeToBox = targetRect.top - boxRect.top
 
-      scrollbox.scrollTo({ top: targetTopRelativeToBox - container.offsetHeight + formContainer.offsetHeight + target.offsetHeight + padding, behavior: 'smooth' })
+      scrollbox.scrollTo({ top: targetTopRelativeToBox + scrollboxTop - container.offsetHeight + formContainer.offsetHeight + target.offsetHeight + padding, behavior: 'smooth' })
     },
     setAreaRef (el) {
       if (el) {

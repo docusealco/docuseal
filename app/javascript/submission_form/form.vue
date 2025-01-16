@@ -1113,9 +1113,9 @@ export default {
       this.minimizeForm()
     }
 
-    const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+    const isMobile = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit|android/i.test(navigator.userAgent)
 
-    if (isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    if (isMobile || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode()
         const scrollbox = root.getElementById('scrollbox')
