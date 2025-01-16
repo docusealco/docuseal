@@ -126,7 +126,7 @@ module Submitters
 
     filename = filename.gsub(
       '{submission.completed_at}',
-      I18n.l(submitter.completed_at.beginning_of_year.in_time_zone(submitter.account.timezone), format: :short)
+      I18n.l(submitter.completed_at.in_time_zone(submitter.account.timezone), format: :short)
     )
 
     "#{filename}.#{blob.filename.extension}"
