@@ -1514,24 +1514,24 @@ export default {
     onDocumentRemove (item) {
       if (window.confirm(this.t('are_you_sure_'))) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
-      }
 
-      const removedFieldUuids = []
+        const removedFieldUuids = []
 
-      this.template.fields.forEach((field) => {
-        [...(field.areas || [])].forEach((area) => {
-          if (area.attachment_uuid === item.attachment_uuid) {
-            field.areas.splice(field.areas.indexOf(area), 1)
+        this.template.fields.forEach((field) => {
+          [...(field.areas || [])].forEach((area) => {
+            if (area.attachment_uuid === item.attachment_uuid) {
+              field.areas.splice(field.areas.indexOf(area), 1)
 
-            removedFieldUuids.push(field.uuid)
-          }
+              removedFieldUuids.push(field.uuid)
+            }
+          })
         })
-      })
 
-      this.template.fields =
-        this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+        this.template.fields =
+          this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
 
-      this.save()
+        this.save()
+      }
     },
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
