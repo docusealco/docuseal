@@ -1536,7 +1536,7 @@ export default {
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
 
-      Object.assign(replaceSchemaItem, schema[0])
+      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, schema[0])
       this.template.documents.push(...documents)
 
       if (data.fields) {
