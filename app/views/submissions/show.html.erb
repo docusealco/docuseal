@@ -222,6 +222,8 @@
                   </div>
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
+                <% elsif field['type'] == 'number' %>
+                  <%= NumberUtils.format_number(value, field.dig('preferences', 'format')) %>
                 <% elsif field['type'] == 'date' %>
                   <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                 <% else %>
