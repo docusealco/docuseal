@@ -27,6 +27,33 @@
     </label>
   </div>
   <div
+    v-if="field.type === 'verification'"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('method')"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, save()]"
+    >
+      <option
+        v-for="method in ['QeS', 'AeS']"
+        :key="method"
+        :value="method.toLowerCase()"
+        :selected="method.toLowerCase() === field.preferences?.method || (method === 'QeS' && !field.preferences?.method)"
+      >
+        {{ method }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('method') }}
+    </label>
+  </div>
+  <div
     v-if="['number', 'cells'].includes(field.type)"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -229,7 +256,7 @@
     </label>
   </div>
   <li
-    v-if="withRequired && field.type != 'phone' && field.type != 'stamp'"
+    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
