@@ -153,6 +153,7 @@
         <% end %>
       </div>
     <% end %>
+    <%= render 'compliances' %>
     <%= render 'integrations' %>
     <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
       <div class="px-1 mt-8">
