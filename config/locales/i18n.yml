@@ -24,6 +24,7 @@ en: &en
   pending_by_me: Pending by me
   partially_completed: Partially completed
   unarchive: Unarchive
+  signed: Signed
   first_party: 'First Party'
   remove_filter: Remove filter
   add: Add
@@ -725,6 +726,7 @@ en: &en
       read: Read your data
 
 es: &es
+  signed: Firmado
   reply_to: Responder a
   partially_completed: Parcialmente completado
   pending_by_me: Pendiente por mi
@@ -1432,6 +1434,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  signed: Firmato
   reply_to: Rispondi a
   pending_by_me: In sospeso da me
   add: Aggiungi
@@ -2138,6 +2141,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  signed: Signé
   reply_to: Répondre à
   partially_completed: Partiellement complété
   pending_by_me: En attente par moi
@@ -2846,6 +2850,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  signed: Assinado
   reply_to: Responder a
   partially_completed: Parcialmente concluído
   pending_by_me: Pendente por mim
@@ -3553,6 +3558,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  signed: Unterschrieben
   reply_to: Antworten auf
   partially_completed: Teilweise abgeschlossen
   pending_by_me: Ausstehend von mir

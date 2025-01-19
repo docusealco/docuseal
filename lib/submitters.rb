@@ -123,6 +123,18 @@ module Submitters
     filename = ReplaceEmailVariables.call(filename_format, submitter:)
 
     filename = filename.gsub('{document.name}', blob.filename.base)
+    filename = filename.gsub(' - {submission.status}') do
+      if submitter.submission.submitters.all?(&:completed_at?)
+        status =
+          if submitter.submission.template_fields.any? { |f| f['type'] == 'signature' }
+            I18n.t(:signed)
+          else
+            I18n.t(:completed)
+          end
+
+        " - #{status}"
+      end
+    end
 
     filename = filename.gsub(
       '{submission.completed_at}',
