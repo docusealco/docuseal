@@ -175,7 +175,7 @@ module Submissions
                                                                   padding: [15, 0, 8, 0],
                                                                   position: :float)
 
-        unless submission.source.in?(%w[embed api])
+        if show_verify?(submission)
           column.formatted_text([{ link: verify_url, text: I18n.t('verify'), style: :link }],
                                 font_size: 9, padding: [15, 0, 10, 0], position: :float, text_align: :right)
         end
@@ -424,6 +424,10 @@ module Submissions
     end
 
     def maybe_add_background(_canvas, _submission, _page_size); end
+
+    def show_verify?(submission)
+      !submission.source.in?(%w[embed api])
+    end
 
     def add_logo(column, _submission = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)

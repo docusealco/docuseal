@@ -1,4 +1,5 @@
 const en = {
+  method: 'Method',
   reorder_fields: 'Reorder fields',
   verify_id: 'Verify ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtain qualified electronic signature (QeS) with the trusted provider. Click to learn more.',
@@ -159,6 +160,7 @@ const en = {
 }
 
 const es = {
+  method: 'Método',
   reorder_fields: 'Reordenar campos',
   verify_id: 'Verificar ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenga una firma electrónica cualificada (QeS) con el proveedor de confianza. Haga clic para obtener más información.',
@@ -319,6 +321,7 @@ const es = {
 }
 
 const it = {
+  method: 'Metodo',
   reorder_fields: 'Riordina i campi',
   verify_id: 'Verifica ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Ottieni una firma elettronica qualificata (QeS) con il fornitore di fiducia. Clicca per saperne di più.',
@@ -479,6 +482,7 @@ const it = {
 }
 
 const pt = {
+  method: 'Método',
   reorder_fields: 'Reorganizar campos',
   verify_id: 'Verificar ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenha a assinatura eletrônica qualificada (QeS) com o provedor confiável. Clique para saber mais.',
@@ -639,6 +643,7 @@ const pt = {
 }
 
 const fr = {
+  method: 'Méthode',
   reorder_fields: 'Réorganiser les champs',
   verify_id: "Vérifier l'ID",
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenez une signature électronique qualifiée (QeS) avec le fournisseur de confiance. Cliquez pour en savoir plus.',
@@ -799,6 +804,7 @@ const fr = {
 }
 
 const de = {
+  method: 'Verfahren',
   reorder_fields: 'Felder neu anordnen',
   verify_id: 'ID überprüfen',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Erhalten Sie eine qualifizierte elektronische Signatur (QeS) beim vertrauenswürdigen Anbieter. Klicken Sie hier, um mehr zu erfahren.',

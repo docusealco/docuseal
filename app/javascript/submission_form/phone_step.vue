@@ -297,7 +297,7 @@ export default {
           const data = await resp.json()
 
           if (resp.status === 422) {
-            alert(this.t('number_phone_is_invalid').replace('{number}', this.fullInternationalPhoneValue))
+            alert(data.error || this.t('number_phone_is_invalid').replace('{number}', this.fullInternationalPhoneValue))
           } else if (resp.status === 429) {
             alert(data.error)
           }
