@@ -327,7 +327,7 @@ export default {
     },
     filteredSubmitterDefaultFields () {
       if (this.defaultFieldsSearch) {
-        return this.submitterDefaultFields.filter((f) => f.name.toLowerCase().includes(this.defaultFieldsSearch.toLowerCase()))
+        return this.submitterDefaultFields.filter((f) => (f.title || f.name).toLowerCase().includes(this.defaultFieldsSearch.toLowerCase()))
       } else {
         return this.submitterDefaultFields
       }
