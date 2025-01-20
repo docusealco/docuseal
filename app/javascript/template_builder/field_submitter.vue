@@ -143,6 +143,7 @@
       <li
         v-for="(submitter, index) in submitters"
         :key="submitter.uuid"
+        class="w-full"
       >
         <a
           href="#"
@@ -191,7 +192,10 @@
           </div>
         </a>
       </li>
-      <li v-if="submitters.length < names.length && editable && allowAddNew">
+      <li
+        v-if="submitters.length < names.length && editable && allowAddNew"
+        class="w-full"
+      >
         <a
           href="#"
           class="flex px-2"
@@ -308,8 +312,20 @@ export default {
         this.t('seventeenth_party'),
         this.t('eighteenth_party'),
         this.t('nineteenth_party'),
-        this.t('twentieth_party')
+        this.t('twentieth_party'),
+        ...this.generatedNames
       ]
+    },
+    generatedNames () {
+      const names = []
+
+      for (let i = 21; i < 101; i++) {
+        const suffix = this.getOrdinalSuffix(i)
+
+        names.push(`${i}${suffix} ${this.t('party')}`)
+      }
+
+      return names
     },
     lastPartyIndex () {
       const index = Math.max(...this.submitters.map((s) => this.names.indexOf(s.name)))
@@ -327,6 +343,13 @@ export default {
   methods: {
     selectSubmitter (submitter) {
       this.$emit('update:model-value', submitter.uuid)
+    },
+    getOrdinalSuffix (num) {
+      if (num % 10 === 1 && num % 100 !== 11) return 'st'
+      if (num % 10 === 2 && num % 100 !== 12) return 'nd'
+      if (num % 10 === 3 && num % 100 !== 13) return 'rd'
+
+      return 'th'
     },
     remove (submitter) {
       if (window.confirm(this.t('are_you_sure_'))) {

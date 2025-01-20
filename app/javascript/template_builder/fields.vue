@@ -5,7 +5,7 @@
       class="roles-dropdown w-full rounded-lg"
       :style="withStickySubmitters ? { backgroundColor } : {}"
       :submitters="submitters"
-      :menu-style="{ backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
+      :menu-style="{ overflow: 'auto', display: 'flex', flexDirection: 'row', maxHeight: 'calc(100vh - 120px)', backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
       :editable="editable && !defaultSubmitters.length"
       @new-submitter="save"
       @remove="removeSubmitter"
