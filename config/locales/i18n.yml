@@ -165,7 +165,7 @@ en: &en
   schedule_account_for_deletion_: Schedule account for deletion?
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 weeks. Please contact us if you want to keep your account.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
   copy: Copy
   copied: Copied
@@ -875,7 +875,7 @@ es: &es
   schedule_account_for_deletion_: ¿Programar la eliminación de la cuenta?
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 semanas. Por favor contáctanos si deseas mantener tu cuenta.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
   copy: Copiar
   copied: Copiado
@@ -1584,7 +1584,7 @@ it: &it
   schedule_account_for_deletion_: "Programmare l'eliminazione dell'account?"
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 settimane. Contattaci se desideri mantenere il tuo account."
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
   copy: Copia
   copied: Copiato
@@ -2295,7 +2295,7 @@ fr: &fr
   schedule_account_for_deletion_: Programmer la suppression du compte?
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 semaines. Veuillez nous contacter si vous souhaitez conserver votre compte.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
   copy: Copier
   copied: Copié
@@ -3005,7 +3005,7 @@ pt: &pt
   schedule_account_for_deletion_: Agendar exclusão da conta?
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 semanas. Entre em contato conosco se você quiser manter sua conta.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
   copy: Copiar
   copied: Copiado
@@ -3715,7 +3715,7 @@ de: &de
   schedule_account_for_deletion_: Konto zur Löschung einplanen?
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Wochen bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
   test_mode: Testmodus
   copy: Kopieren
   copied: Kopiert
