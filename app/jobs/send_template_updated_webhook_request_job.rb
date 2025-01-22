@@ -5,8 +5,6 @@ class SendTemplateUpdatedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  USER_AGENT = 'DocuSeal.com Webhook'
-
   MAX_ATTEMPTS = 10
 
   def perform(params = {})
@@ -17,19 +15,8 @@ class SendTemplateUpdatedWebhookRequestJob
 
     return if webhook_url.url.blank? || webhook_url.events.exclude?('template.updated')
 
-    resp = begin
-      Faraday.post(webhook_url.url,
-                   {
-                     event_type: 'template.updated',
-                     timestamp: Time.current,
-                     data: Templates::SerializeForApi.call(template)
-                   }.to_json,
-                   **webhook_url.secret.to_h,
-                   'Content-Type' => 'application/json',
-                   'User-Agent' => USER_AGENT)
-    rescue Faraday::Error
-      nil
-    end
+    resp = SendWebhookRequest.call(webhook_url, event_type: 'template.updated',
+                                                data: Templates::SerializeForApi.call(template))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || template.account.account_configs.exists?(key: :plan))
