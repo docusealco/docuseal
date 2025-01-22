@@ -107,20 +107,24 @@ module Submissions
 
   def normalize_email(email)
     return if email.blank?
-    return email.downcase if email.to_s.include?(',')
-    return email.downcase if email.to_s.include?('.gob')
-    return email.downcase if email.to_s.include?('.om')
-    return email.downcase if email.to_s.include?('.mm')
-    return email.downcase if email.to_s.include?('.cm')
-    return email.downcase if email.to_s.include?('.et')
-    return email.downcase if email.to_s.include?('.mo')
-    return email.downcase if email.to_s.include?('.nz')
-    return email.downcase if email.to_s.include?('.za')
-    return email.downcase unless email.to_s.include?('.')
+
+    return email.downcase if email.to_s.include?(',') ||
+                             email.to_s.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
+                             email.to_s.exclude?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
 
-    Rails.logger.info("Fixed email #{email.split('@').last}") if fixed_email != email.downcase.delete_prefix('<').strip
+    return fixed_email if fixed_email == email
+
+    domain = email.to_s.split('@').last.to_s.downcase
+
+    if DidYouMean::Levenshtein.distance(domain, fixed_email.to_s.split('@').last) > 3
+      Rails.logger.info("Skipped email fix #{domain}")
+
+      return email.downcase
+    end
+
+    Rails.logger.info("Fixed email #{domain}") if fixed_email != email.downcase.delete_prefix('<').strip
 
     fixed_email
   end
