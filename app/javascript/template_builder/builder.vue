@@ -1427,6 +1427,8 @@ export default {
           const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
           const areaRef = documentRef.pageRefs[area.page].areaRefs.find((ref) => ref.area === this.selectedAreaRef.value)
 
+          areaRef.isHeadingSelected = true
+
           areaRef.focusValueInput()
         })
       }
