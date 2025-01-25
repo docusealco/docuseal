@@ -190,6 +190,11 @@
                 </a>
               </div>
             <% end %>
+            <% if signed_in? && submitter && submitter.completed_at? && submitter.email == current_user.email && submitter.completed_at > 1.month.ago && can?(:update, @submission) %>
+              <div class="mt-2 mb-1">
+                <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="px-1.5 mb-4">
