@@ -690,6 +690,9 @@ en: &en
   extremely_satisfied: Extremely Satisfied
   your_pro_plan_payment_is_overdue: Your Pro plan payment is overdue.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Click here</a> to update your payment details and clear the invoice to ensure uninterrupted service.
+  overdue_payment: Overdue Payment
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
+  manage_subscription: Manage Subscription
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -1400,6 +1403,9 @@ es: &es
   extremely_satisfied: Extremadamente satisfecho
   your_pro_plan_payment_is_overdue: El pago de tu plan Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Haz clic aquí</a> para actualizar tus datos de pago y liquidar la factura para garantizar un servicio ininterrumpido.'
+  overdue_payment: Pago Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
+  manage_subscription: Gestionar Suscripción
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -2109,6 +2115,9 @@ it: &it
   extremely_satisfied: Estremamente soddisfatto
   your_pro_plan_payment_is_overdue: Il pagamento del tuo piano Pro è in ritardo.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Fai clic qui</a> per aggiornare i tuoi dati di pagamento e saldare la fattura per garantire un servizio ininterrotto.'
+  overdue_payment: Pagamento Scaduto
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
+  manage_subscription: Gestisci Abbonamento
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2820,6 +2829,9 @@ fr: &fr
   extremely_satisfied: Extrêmement satisfait
   your_pro_plan_payment_is_overdue: Le paiement de votre plan Pro est en retard.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Cliquez ici</a> pour mettre à jour vos informations de paiement et régler la facture afin de garantir un service ininterrompu.'
+  overdue_payment: Paiement En Retard
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal ou annuler votre abonnement.
+  manage_subscription: Gérer l'Abonnement
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -3530,6 +3542,9 @@ pt: &pt
   extremely_satisfied: Extremamente satisfeito
   your_pro_plan_payment_is_overdue: O pagamento do seu plano Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Clique aqui</a> para atualizar seus dados de pagamento e quitar a fatura para garantir um serviço ininterrupto.'
+  overdue_payment: Pagamento Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
+  manage_subscription: Gerenciar Assinatura
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -4240,6 +4255,9 @@ de: &de
   extremely_satisfied: Extrem zufrieden
   your_pro_plan_payment_is_overdue: Ihre Zahlung für den Pro-Plan ist überfällig.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Klicken Sie hier</a>, um Ihre Zahlungsdaten zu aktualisieren und die Rechnung zu begleichen, um einen unterbrechungsfreien Service sicherzustellen.'
+  overdue_payment: Überfällige Zahlung
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
+  manage_subscription: Abonnement Verwalten
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
