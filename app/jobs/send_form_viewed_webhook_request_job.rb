@@ -5,8 +5,6 @@ class SendFormViewedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  USER_AGENT = 'DocuSeal.com Webhook'
-
   MAX_ATTEMPTS = 10
 
   def perform(params = {})
@@ -19,19 +17,8 @@ class SendFormViewedWebhookRequestJob
 
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
-    resp = begin
-      Faraday.post(webhook_url.url,
-                   {
-                     event_type: 'form.viewed',
-                     timestamp: Time.current,
-                     data: Submitters::SerializeForWebhook.call(submitter)
-                   }.to_json,
-                   **webhook_url.secret.to_h,
-                   'Content-Type' => 'application/json',
-                   'User-Agent' => USER_AGENT)
-    rescue Faraday::Error
-      nil
-    end
+    resp = SendWebhookRequest.call(webhook_url, event_type: 'form.viewed',
+                                                data: Submitters::SerializeForWebhook.call(submitter))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))

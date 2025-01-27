@@ -361,6 +361,7 @@ export default {
       isMoved: false,
       renderDropdown: false,
       isNameFocus: false,
+      isHeadingSelected: false,
       textOverflowChars: 0,
       dragFrom: { x: 0, y: 0 }
     }
@@ -377,7 +378,7 @@ export default {
       }
     },
     isValueInput () {
-      return (this.field.type === 'heading' && this.isSelected) || this.isContenteditable || (this.inputMode && ['text', 'number', 'date'].includes(this.field.type))
+      return (this.field.type === 'heading' && this.isHeadingSelected) || this.isContenteditable || (this.inputMode && ['text', 'number', 'date'].includes(this.field.type))
     },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
@@ -485,7 +486,7 @@ export default {
       if (['text', 'number'].includes(this.field.type)) {
         this.isContenteditable = true
 
-        this.$nextTick(() => this.focusValueInput())
+        this.focusValueInput()
       } else if (this.field.type === 'checkbox') {
         this.field.readonly = !this.field.readonly
         this.field.default_value === true ? delete this.field.default_value : this.field.default_value = true
@@ -507,16 +508,18 @@ export default {
       }
     },
     focusValueInput (e) {
-      if (this.$refs.defaultValue !== document.activeElement) {
-        this.$refs.defaultValue.focus()
+      this.$nextTick(() => {
+        if (this.$refs.defaultValue && this.$refs.defaultValue !== document.activeElement) {
+          this.$refs.defaultValue.focus()
 
-        if (this.$refs.defaultValue.innerText.length && this.$refs.defaultValue !== e?.target) {
-          window.getSelection().collapse(
-            this.$refs.defaultValue.firstChild,
-            this.$refs.defaultValue.innerText.length
-          )
+          if (this.$refs.defaultValue.innerText.length && this.$refs.defaultValue !== e?.target) {
+            window.getSelection().collapse(
+              this.$refs.defaultValue.firstChild,
+              this.$refs.defaultValue.innerText.length
+            )
+          }
         }
-      }
+      })
     },
     formatNumber (number, format) {
       if (format === 'comma') {
@@ -632,6 +635,7 @@ export default {
       const text = this.$refs.defaultValue.innerText.trim()
 
       this.isContenteditable = false
+      this.isHeadingSelected = false
 
       if (text) {
         if (this.field.type === 'number') {
@@ -749,10 +753,6 @@ export default {
 
       this.selectedAreaRef.value = this.area
 
-      if (this.field.type === 'heading') {
-        this.$nextTick(() => this.focusValueInput())
-      }
-
       this.dragFrom = { x: rect.left - e.clientX, y: rect.top - e.clientY }
 
       this.$el.getRootNode().addEventListener('mousemove', this.mouseMove)
@@ -785,6 +785,12 @@ export default {
 
       if (this.isMoved) {
         this.save()
+      }
+
+      if (this.field.type === 'heading') {
+        this.isHeadingSelected = !this.isMoved
+
+        this.focusValueInput()
       }
 
       this.isDragged = false

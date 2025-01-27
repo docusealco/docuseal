@@ -1,4 +1,5 @@
 const en = {
+  party: 'Party',
   method: 'Method',
   reorder_fields: 'Reorder fields',
   verify_id: 'Verify ID',
@@ -160,6 +161,7 @@ const en = {
 }
 
 const es = {
+  party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reordenar campos',
   verify_id: 'Verificar ID',
@@ -321,6 +323,7 @@ const es = {
 }
 
 const it = {
+  party: 'Parte',
   method: 'Metodo',
   reorder_fields: 'Riordina i campi',
   verify_id: 'Verifica ID',
@@ -482,6 +485,7 @@ const it = {
 }
 
 const pt = {
+  party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reorganizar campos',
   verify_id: 'Verificar ID',
@@ -643,6 +647,7 @@ const pt = {
 }
 
 const fr = {
+  party: 'Partie',
   method: 'Méthode',
   reorder_fields: 'Réorganiser les champs',
   verify_id: "Vérifier l'ID",
@@ -804,6 +809,7 @@ const fr = {
 }
 
 const de = {
+  party: 'Partei',
   method: 'Verfahren',
   reorder_fields: 'Felder neu anordnen',
   verify_id: 'ID überprüfen',

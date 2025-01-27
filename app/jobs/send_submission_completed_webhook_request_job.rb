@@ -5,8 +5,6 @@ class SendSubmissionCompletedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  USER_AGENT = 'DocuSeal.com Webhook'
-
   MAX_ATTEMPTS = 10
 
   def perform(params = {})
@@ -17,19 +15,8 @@ class SendSubmissionCompletedWebhookRequestJob
 
     return if webhook_url.url.blank? || webhook_url.events.exclude?('submission.completed')
 
-    resp = begin
-      Faraday.post(webhook_url.url,
-                   {
-                     event_type: 'submission.completed',
-                     timestamp: Time.current,
-                     data: Submissions::SerializeForApi.call(submission)
-                   }.to_json,
-                   'Content-Type' => 'application/json',
-                   'User-Agent' => USER_AGENT,
-                   **webhook_url.secret.to_h)
-    rescue Faraday::Error
-      nil
-    end
+    resp = SendWebhookRequest.call(webhook_url, event_type: 'submission.completed',
+                                                data: Submissions::SerializeForApi.call(submission))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submission.account.account_configs.exists?(key: :plan))
