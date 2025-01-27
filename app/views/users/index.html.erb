@@ -60,7 +60,7 @@
                 </span>
               </td>
               <td>
-                <%= user.last_sign_in_at ? l(user.last_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
+                <%= user.current_sign_in_at ? l(user.current_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
                 <% if params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
