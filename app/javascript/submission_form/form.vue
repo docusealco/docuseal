@@ -164,7 +164,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl"
+              class="label text-lg sm:text-2xl"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -173,7 +173,11 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
+              <template v-if="!currentField.required">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 24 }">
+                  ({{ t('optional') }})
+                </span>
               </template>
             </label>
             <div
@@ -221,7 +225,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl"
+              class="label text-lg sm:text-2xl"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -230,7 +234,11 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
+              <template v-if="!currentField.required">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 24 }">
+                  ({{ t('optional') }})
+                </span>
               </template>
             </label>
             <div

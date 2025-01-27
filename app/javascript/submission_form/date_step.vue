@@ -5,18 +5,24 @@
       :class="{ 'mb-2': !field.description }"
     >
       <label
+        v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-2xl"
+        class="label text-lg sm:text-2xl"
       >
         <MarkdownContent
           v-if="field.title"
           :string="field.title"
         />
         <template v-else>
-          {{ field.name && showFieldNames ? field.name : t('date') }}
-          <template v-if="!field.required">
+          {{ field.name || t('date') }}
+        </template>
+        <template v-if="!field.required">
+          <span
+            class="ml-1"
+            :class="{ 'hidden sm:inline': (field.title || field.name || t('date') ).length > 10 }"
+          >
             ({{ t('optional') }})
-          </template>
+          </span>
         </template>
       </label>
       <button

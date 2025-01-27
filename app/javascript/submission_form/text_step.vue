@@ -3,15 +3,18 @@
     v-if="showFieldNames && (field.name || field.title)"
     :for="field.uuid"
     dir="auto"
-    class="label text-2xl"
+    class="label text-lg sm:text-2xl"
     :class="{ 'mb-2': !field.description }"
-  ><MarkdownContent
-     v-if="field.title"
-     :string="field.title"
-   />
+  >
+    <MarkdownContent
+      v-if="field.title"
+      :string="field.title"
+    />
     <template v-else>{{ field.name }}</template>
     <template v-if="!field.required">
-      ({{ t('optional') }})
+      <span :class="{ 'hidden sm:inline': (field.title || field.name).length > 24 }">
+        ({{ t('optional') }})
+      </span>
     </template>
   </label>
   <div

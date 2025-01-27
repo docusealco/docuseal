@@ -8,17 +8,18 @@
       :class="{ 'mb-2': !field.description }"
     >
       <label
-        class="label text-2xl"
+        v-if="showFieldNames"
+        class="label text-lg sm:text-2xl"
       >
         <MarkdownContent
           v-if="field.title"
           :string="field.title"
         />
         <template v-else>
-          {{ showFieldNames && field.name ? field.name : t('signature') }}
+          {{ field.name || t('signature') }}
         </template>
       </label>
-      <div class="space-x-2 flex">
+      <div class="space-x-2 flex flex-none">
         <span
           v-if="isTextSignature && format !== 'typed' && format !== 'upload'"
           class="tooltip"
