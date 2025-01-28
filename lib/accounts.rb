@@ -153,6 +153,10 @@ module Accounts
     EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY)
   end
 
+  def can_send_invitation_emails?(_account)
+    true
+  end
+
   def normalize_timezone(timezone)
     tzinfo = TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[timezone] || timezone)
 
