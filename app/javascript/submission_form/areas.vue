@@ -31,7 +31,7 @@
             :with-label="withLabel && !withFieldPlaceholder && step.length < 2"
             :is-value-set="step.some((f) => f.uuid in values)"
             :attachments-index="attachmentsIndex"
-            @click="$emit('focus-step', stepIndex)"
+            @click="[$emit('focus-step', stepIndex), maybeScrollOnClick(field, area)]"
           />
         </Teleport>
       </template>
@@ -109,6 +109,14 @@ export default {
       areaRefs: []
     }
   },
+  computed: {
+    isMobileContainer () {
+      const root = this.$root.$el.parentNode.getRootNode()
+      const container = root.body || root.querySelector('div')
+
+      return container.style.overflow === 'hidden'
+    }
+  },
   beforeUpdate () {
     this.areaRefs = []
   },
@@ -121,14 +129,16 @@ export default {
         this.scrollIntoArea(field.areas[0])
       }
     },
+    maybeScrollOnClick (field, area) {
+      if (['text', 'number', 'cells'].includes(field.type) && this.isMobileContainer) {
+        this.scrollIntoArea(area)
+      }
+    },
     scrollIntoArea (area) {
       const areaRef = this.areaRefs.find((a) => a.area === area)
 
       if (areaRef) {
-        const root = this.$root.$el.parentNode.getRootNode()
-        const container = root.body || root.querySelector('div')
-
-        if (container.style.overflow === 'hidden') {
+        if (this.isMobileContainer) {
           this.scrollInContainer(areaRef.$el)
         } else {
           const targetRect = areaRef.$refs.scrollToElem.getBoundingClientRect()
