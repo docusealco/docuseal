@@ -42,7 +42,7 @@ en: &en
   hello_name: Hello %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
-  sent_using_product_name_via_developer_sandbox_html: 'Sent using <a href="%{product_url}">%{product_name}</a> via Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in Testing Mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
@@ -756,7 +756,7 @@ es: &es
   hello_name: Hola %{name}
   you_are_invited_to_product_name: Estás invitado a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
-  sent_using_product_name_via_developer_sandbox_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> a través de Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
@@ -1469,7 +1469,7 @@ it: &it
   hello_name: Ciao %{name}
   you_are_invited_to_product_name: Sei stato invitato a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
-  sent_using_product_name_via_developer_sandbox_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> tramite Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
@@ -2183,7 +2183,7 @@ fr: &fr
   hello_name: Bonjour %{name}
   you_are_invited_to_product_name: Vous êtes invité à %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous:'
-  sent_using_product_name_via_developer_sandbox_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> via Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> en Mode Test'
   sent_using_product_name_free_document_signing_html: 'Envoyé en utilisant la signature de documents gratuite de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
@@ -2898,7 +2898,7 @@ pt: &pt
   hello_name: Olá %{name}
   you_are_invited_to_product_name: Você está convidado para %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
-  sent_using_product_name_via_developer_sandbox_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> via Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
@@ -3612,7 +3612,7 @@ de: &de
   hello_name: Hallo %{name}
   you_are_invited_to_product_name: Sie sind eingeladen zu %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
-  sent_using_product_name_via_developer_sandbox_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> via Developer Sandbox'
+  sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
