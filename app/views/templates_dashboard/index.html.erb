@@ -34,6 +34,11 @@
     </div>
   <% end %>
 <% end %>
+<% templates_order_select_html = capture do %>
+  <% if params[:q].blank? && @pagy.pages > 1 %>
+    <%= render('shared/templates_order_select') %>
+  <% end %>
+<% end %>
 <% if @template_folders.present? %>
   <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
     <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
@@ -71,7 +76,7 @@
 <% end %>
 <% if @templates.present? || params[:q].blank? %>
   <% if @pagy.pages > 1 %>
-    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html, right_additional_html: templates_order_select_html %>
   <% else %>
     <div class="mt-2">
       <%= view_archived_html %>

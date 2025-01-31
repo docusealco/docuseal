@@ -712,6 +712,9 @@ en: &en
   welcome_to_docuseal: Welcome to DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
   start_tour: Start Tour
+  name_a_z: Name A-Z
+  recently_used: Recently Used
+  creation_date: Creation Date
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1490,6 +1493,9 @@ es: &es
   welcome_to_docuseal: Bienvenido a DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
   start_tour: Iniciar guía
+  name_a_z: Nombre A-Z
+  recently_used: Usado recientemente
+  creation_date: Fecha de creación
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2267,6 +2273,9 @@ it: &it
   welcome_to_docuseal: Benvenuto in DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
   start_tour: Inizia il tour
+  name_a_z: Nome A-Z
+  recently_used: Usato di recente
+  creation_date: Data di creazione
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3046,6 +3055,9 @@ fr: &fr
   welcome_to_docuseal: Bienvenue sur DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.
   start_tour: Démarrer
+  name_a_z: Nom A-Z
+  recently_used: Récemment utilisé
+  creation_date: Date de création
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3824,6 +3836,9 @@ pt: &pt
   welcome_to_docuseal: Bem-vindo ao DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
   start_tour: Iniciar tour
+  name_a_z: Nome A-Z
+  recently_used: Usado recentemente
+  creation_date: Data de criação
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4603,6 +4618,9 @@ de: &de
   welcome_to_docuseal: Willkommen bei DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Starte eine kurze Tour, um zu lernen, wie du dein erstes Dokument erstellst und versendest.
   start_tour: Starten
+  name_a_z: Name A-Z
+  recently_used: Kürzlich verwendet
+  creation_date: Erstellungsdatum
   submission_sources:
     api: API
     bulk: Massenversand
