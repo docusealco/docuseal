@@ -40,6 +40,7 @@
         <span
           v-else-if="withTypedSignature && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="tooltip ml-2"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('type_text')"
         >
           <a
@@ -57,6 +58,7 @@
         <span
           v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
           class="tooltip"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
           <label
