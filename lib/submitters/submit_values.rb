@@ -186,10 +186,21 @@ module Submitters
       attachments_index =
         Submissions.filtered_conditions_schema(submitter.submission).index_by { |i| i['attachment_uuid'] }
 
+      submitter_values = nil
+      is_other_submitter_conditions = submitter.submission.template_submitters.size > 1
+
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
-        submitter.values.delete(field['uuid']) unless check_field_conditions(submitter, field, fields_uuid_index)
+        submitter_values ||= submitter.values
+
+        is_other_submitter_conditions &&= field_conditions_other_submitter?(submitter, field, fields_uuid_index)
+
+        if is_other_submitter_conditions
+          submitter_values = submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
+        end
+
+        submitter.values.delete(field['uuid']) unless check_field_conditions(submitter_values, field, fields_uuid_index)
 
         if field['areas'].present? && field['areas'].none? { |area| attachments_index[area['attachment_uuid']] }
           submitter.values.delete(field['uuid'])
@@ -199,10 +210,14 @@ module Submitters
       submitter.values
     end
 
-    def check_field_conditions(submitter, field, fields_uuid_index)
-      return true if field['conditions'].blank?
+    def field_conditions_other_submitter?(submitter, field, fields_uuid_index)
+      field['conditions'].to_a.any? do |c|
+        fields_uuid_index.dig(c['field_uuid'], 'submitter_uuid') != submitter.uuid
+      end
+    end
 
-      submitter_values = submitter.values
+    def check_field_conditions(submitter_values, field, fields_uuid_index)
+      return true if field['conditions'].blank?
 
       field['conditions'].each_with_object([]) do |c, acc|
         if c['operation'] == 'or'
