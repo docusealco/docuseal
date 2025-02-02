@@ -1,10 +1,10 @@
 <template>
   <div v-if="modelValue">
-    <div class="flex justify-between items-center w-full mb-2">
+    <div class="flex justify-between items-end w-full mb-3.5 md:mb-4">
       <label
         v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-lg sm:text-2xl"
+        class="label text-xl sm:text-2xl py-0"
       >
         <MarkdownContent
           v-if="field.title"

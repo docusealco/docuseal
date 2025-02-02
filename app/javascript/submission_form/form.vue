@@ -164,7 +164,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-lg sm:text-2xl"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -175,7 +175,7 @@
                 {{ currentField.name }}
               </template>
               <template v-if="!currentField.required">
-                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 24 }">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 20 }">
                   ({{ t('optional') }})
                 </span>
               </template>
@@ -225,7 +225,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-lg sm:text-2xl"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -236,7 +236,7 @@
                 {{ currentField.name }}
               </template>
               <template v-if="!currentField.required">
-                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 24 }">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 20 }">
                   ({{ t('optional') }})
                 </span>
               </template>
@@ -474,7 +474,7 @@
         </div>
         <div
           v-if="(currentField.type !== 'payment' && currentField.type !== 'verification') || submittedValues[currentField.uuid]"
-          :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
+          :class="currentField.type === 'signature' ? 'mt-2' : 'mt-4 md:mt-6'"
         >
           <button
             id="submit_form_button"
@@ -530,9 +530,9 @@
       />
       <div
         v-if="stepFields.length < 80"
-        class="flex justify-center"
+        class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1"
       >
-        <div class="flex items-center mt-4 mb-1 flex-wrap">
+        <div class="flex items-center flex-wrap">
           <a
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"

@@ -3,7 +3,7 @@
     <label
       v-if="showFieldNames"
       :for="isCodeSent ? 'one_time_code' : field.uuid"
-      class="label text-lg sm:text-2xl"
+      class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
       :class="{ 'mb-2': !field.description }"
     >
       <MarkdownContent

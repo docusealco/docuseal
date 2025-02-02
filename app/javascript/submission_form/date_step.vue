@@ -1,13 +1,13 @@
 <template>
   <div dir="auto">
     <div
-      class="flex justify-between items-center w-full"
+      class="flex justify-between items-end w-full mb-3.5 sm:mb-4"
       :class="{ 'mb-2': !field.description }"
     >
       <label
         v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-lg sm:text-2xl"
+        class="label text-xl sm:text-2xl py-0"
       >
         <MarkdownContent
           v-if="field.title"
