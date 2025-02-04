@@ -1,9 +1,19 @@
 <template>
   <div v-if="modelValue">
-    <div class="flex justify-between items-center w-full mb-2">
+    <div class="flex justify-between items-end w-full mb-3.5 md:mb-4">
       <label
-        class="label text-2xl"
-      >{{ showFieldNames && field.name ? field.name : t('image') }}</label>
+        v-if="showFieldNames"
+        :for="field.uuid"
+        class="label text-xl sm:text-2xl py-0"
+      >
+        <MarkdownContent
+          v-if="field.title"
+          :string="field.title"
+        />
+        <template v-else>
+          {{ field.name || t('image') }}
+        </template>
+      </label>
       <button
         class="btn btn-outline btn-sm"
         @click.prevent="remove"
@@ -35,7 +45,7 @@
       <MarkdownContent :string="field.description" />
     </div>
     <FileDropzone
-      :message="`${t('upload')} ${field.name || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
+      :message="`${t('upload')} ${(field.title || field.name) || t('image')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
       :accept="'image/*'"

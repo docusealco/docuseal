@@ -1,21 +1,22 @@
 <template>
   <div dir="auto">
     <div
-      class="flex justify-between items-center w-full"
+      class="flex justify-between items-end w-full mb-3.5 md:mb-4"
       :class="{ 'mb-2': !field.description }"
     >
       <label
-        class="label text-2xl"
+        v-if="showFieldNames"
+        class="label text-xl sm:text-2xl py-0"
       >
         <MarkdownContent
           v-if="field.title"
           :string="field.title"
         />
         <template v-else>
-          {{ showFieldNames && field.name ? field.name : t('initials') }}
+          {{ field.name || t('initials') }}
         </template>
       </label>
-      <div class="space-x-2 flex">
+      <div class="space-x-2 flex flex-none">
         <span
           v-if="isDrawInitials"
           class="tooltip"

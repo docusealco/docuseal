@@ -366,6 +366,7 @@
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :draw-field-type="drawFieldType"
+            :with-fields-search="withFieldsSearch"
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
             :template="template"
             :default-required-fields="defaultRequiredFields"
@@ -622,6 +623,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withFieldsSearch: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     withFieldsList: {
       type: Boolean,

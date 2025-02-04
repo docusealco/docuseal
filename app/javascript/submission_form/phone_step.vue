@@ -1,8 +1,9 @@
 <template>
   <div>
     <label
+      v-if="showFieldNames"
       :for="isCodeSent ? 'one_time_code' : field.uuid"
-      class="label text-2xl"
+      class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
       :class="{ 'mb-2': !field.description }"
     >
       <MarkdownContent
@@ -10,10 +11,7 @@
         :string="field.title"
       />
       <template v-else>
-        {{ showFieldNames && field.name ? field.name : t('verified_phone_number') }}
-        <template v-if="!field.required">
-          ({{ t('optional') }})
-        </template>
+        {{ field.name || t('verified_phone_number') }}
       </template>
     </label>
     <div

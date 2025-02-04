@@ -2,6 +2,9 @@
 <html data-theme="docuseal" lang="<%= I18n.locale %>">
   <head>
     <%= render 'layouts/head_tags' %>
+    <% if Docuseal.enable_pwa? %>
+      <link rel="manifest" href="/manifest.json">
+    <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

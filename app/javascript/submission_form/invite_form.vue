@@ -40,7 +40,7 @@
       >
     </div>
     <div
-      class="mt-6 md:mt-8"
+      class="mt-4 md:mt-6"
     >
       <button
         type="submit"

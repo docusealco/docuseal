@@ -1,6 +1,6 @@
 <template>
   <label
-    class="label text-2xl mb-2"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
   >
     <MarkdownContent
       v-if="field.title"
@@ -30,6 +30,15 @@
         width="40"
         class="animate-spin h-10"
       />
+    </div>
+    <div v-else-if="redirectUrl">
+      <a
+        :href="redirectUrl"
+        target="_blank"
+        class="white-button w-full"
+      >
+        {{ t('verify_id') }}
+      </a>
     </div>
     <div
       ref="widgetContainer"
@@ -87,6 +96,7 @@ export default {
     return {
       isCreatingCheckout: false,
       isMathLoaded: false,
+      redirectUrl: '',
       isLoading: false,
       eidEasyData: {}
     }
@@ -147,14 +157,26 @@ export default {
       }).then(async (resp) => {
         this.eidEasyData = await resp.json()
 
-        const eidEasyWidget = document.createElement('eideasy-widget')
+        if (this.eidEasyData.available_methods[0] === 'itsme-qes-signature' &&
+            this.eidEasyData.available_methods.length === 1) {
+          const redirectUrl = new URL('https://id.eideasy.com/sign_contract_external')
 
-        for (const key in this.widgetSettings) {
-          eidEasyWidget[key] = this.widgetSettings[key]
+          redirectUrl.searchParams.append('client_id', this.eidEasyData.client_id)
+          redirectUrl.searchParams.append('doc_id', this.eidEasyData.doc_id)
+          redirectUrl.searchParams.append('country', this.countryCode)
+          redirectUrl.searchParams.append('lang', this.locale)
+
+          this.redirectUrl = redirectUrl.toString()
+        } else {
+          const eidEasyWidget = document.createElement('eideasy-widget')
+
+          for (const key in this.widgetSettings) {
+            eidEasyWidget[key] = this.widgetSettings[key]
+          }
+
+          this.$refs.widgetContainer.innerHTML = ''
+          this.$refs.widgetContainer.appendChild(eidEasyWidget)
         }
-
-        this.$refs.widgetContainer.innerHTML = ''
-        this.$refs.widgetContainer.appendChild(eidEasyWidget)
       })
     },
     async submit () {

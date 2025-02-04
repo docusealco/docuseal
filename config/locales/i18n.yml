@@ -42,6 +42,7 @@ en: &en
   hello_name: Hello %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
+  sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
@@ -690,6 +691,9 @@ en: &en
   extremely_satisfied: Extremely Satisfied
   your_pro_plan_payment_is_overdue: Your Pro plan payment is overdue.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Click here</a> to update your payment details and clear the invoice to ensure uninterrupted service.
+  overdue_payment: Overdue Payment
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
+  manage_subscription: Manage Subscription
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -752,6 +756,7 @@ es: &es
   hello_name: Hola %{name}
   you_are_invited_to_product_name: Estás invitado a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
@@ -1400,6 +1405,9 @@ es: &es
   extremely_satisfied: Extremadamente satisfecho
   your_pro_plan_payment_is_overdue: El pago de tu plan Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Haz clic aquí</a> para actualizar tus datos de pago y liquidar la factura para garantizar un servicio ininterrumpido.'
+  overdue_payment: Pago Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
+  manage_subscription: Gestionar Suscripción
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1461,6 +1469,7 @@ it: &it
   hello_name: Ciao %{name}
   you_are_invited_to_product_name: Sei stato invitato a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
+  sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
@@ -2109,6 +2118,9 @@ it: &it
   extremely_satisfied: Estremamente soddisfatto
   your_pro_plan_payment_is_overdue: Il pagamento del tuo piano Pro è in ritardo.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Fai clic qui</a> per aggiornare i tuoi dati di pagamento e saldare la fattura per garantire un servizio ininterrotto.'
+  overdue_payment: Pagamento Scaduto
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
+  manage_subscription: Gestisci Abbonamento
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2171,6 +2183,7 @@ fr: &fr
   hello_name: Bonjour %{name}
   you_are_invited_to_product_name: Vous êtes invité à %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous:'
+  sent_using_product_name_in_testing_mode_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> en Mode Test'
   sent_using_product_name_free_document_signing_html: 'Envoyé en utilisant la signature de documents gratuite de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
@@ -2820,6 +2833,9 @@ fr: &fr
   extremely_satisfied: Extrêmement satisfait
   your_pro_plan_payment_is_overdue: Le paiement de votre plan Pro est en retard.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Cliquez ici</a> pour mettre à jour vos informations de paiement et régler la facture afin de garantir un service ininterrompu.'
+  overdue_payment: Paiement En Retard
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal ou annuler votre abonnement.
+  manage_subscription: Gérer l'Abonnement
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2882,6 +2898,7 @@ pt: &pt
   hello_name: Olá %{name}
   you_are_invited_to_product_name: Você está convidado para %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
@@ -3530,6 +3547,9 @@ pt: &pt
   extremely_satisfied: Extremamente satisfeito
   your_pro_plan_payment_is_overdue: O pagamento do seu plano Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Clique aqui</a> para atualizar seus dados de pagamento e quitar a fatura para garantir um serviço ininterrupto.'
+  overdue_payment: Pagamento Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
+  manage_subscription: Gerenciar Assinatura
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3592,6 +3612,7 @@ de: &de
   hello_name: Hallo %{name}
   you_are_invited_to_product_name: Sie sind eingeladen zu %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
+  sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
@@ -4240,6 +4261,9 @@ de: &de
   extremely_satisfied: Extrem zufrieden
   your_pro_plan_payment_is_overdue: Ihre Zahlung für den Pro-Plan ist überfällig.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Klicken Sie hier</a>, um Ihre Zahlungsdaten zu aktualisieren und die Rechnung zu begleichen, um einen unterbrechungsfreien Service sicherzustellen.'
+  overdue_payment: Überfällige Zahlung
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
+  manage_subscription: Abonnement Verwalten
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

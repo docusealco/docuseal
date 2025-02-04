@@ -229,6 +229,11 @@ export default {
       type: Array,
       required: true
     },
+    withFieldsSearch: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
     template: {
       type: Object,
       required: true
@@ -297,7 +302,11 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
     isShowFieldSearch () {
-      return this.submitterDefaultFields.length > 15
+      if (this.withFieldsSearch === false) {
+        return false
+      } else {
+        return this.submitterDefaultFields.length > 15
+      }
     },
     defaultFieldsIndex () {
       return this.defaultFields.reduce((acc, field) => {

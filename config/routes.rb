@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get 'up' => 'rails/health#show'
+  get 'manifest' => 'pwa#manifest'
 
   devise_for :users,
              path: '/', only: %i[sessions passwords omniauth_callbacks],
