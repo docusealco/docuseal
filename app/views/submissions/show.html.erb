@@ -232,7 +232,7 @@
                 <% elsif field['type'] == 'date' %>
                   <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                 <% else %>
-                  <%= Array.wrap(value).join(', ') %>
+                  <div class="whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
                 <% end %>
               </div>
             </div>
