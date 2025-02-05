@@ -191,10 +191,16 @@
         class="whitespace-pre-wrap text-gray-400"
         :class="{ 'w-full': field.preferences?.align }"
       >{{ field.name }}</span>
-      <span v-else-if="Array.isArray(modelValue)">
+      <span
+        v-else-if="Array.isArray(modelValue)"
+        :class="{ 'w-full': field.preferences?.align }"
+      >
         {{ modelValue.join(', ') }}
       </span>
-      <span v-else-if="field.type === 'date'">
+      <span
+        v-else-if="field.type === 'date'"
+        :class="{ 'w-full': field.preferences?.align }"
+      >
         {{ formattedDate }}
       </span>
       <span
