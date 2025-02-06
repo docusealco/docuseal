@@ -100,7 +100,8 @@
     <button
       v-if="!isCompleted"
       id="minimize_form_button"
-      class="absolute right-0 mr-2 mt-2 top-0 hidden md:block"
+      class="absolute right-0 top-0"
+      :class="currentField?.description?.length > 100 ? 'mr-1 mt-1 md:mr-2 md:mt-2': 'mr-2 mt-2 hidden md:block'"
       :title="t('minimize')"
       @click.prevent="minimizeForm"
     >
