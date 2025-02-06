@@ -40,6 +40,7 @@ class SubmissionsPreviewController < ApplicationController
 
   def completed
     @submission = Submission.find_by!(slug: params[:submissions_preview_slug])
+    @template = @submission.template
 
     render :completed, layout: 'form'
   end
