@@ -1401,7 +1401,6 @@ export default {
       const lastArea = field.areas[field.areas.length - 1]
 
       if (lastArea) {
-        fieldArea.x -= lastArea.w / 2
         fieldArea.w = lastArea.w
         fieldArea.h = lastArea.h
       }
