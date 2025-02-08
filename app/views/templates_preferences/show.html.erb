@@ -83,21 +83,71 @@
         <div class="collapse-content">
           <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
             <toggle-on-submit data-element-id="email_saved_alert1"></toggle-on-submit>
-            <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
-              <div class="form-control">
-                <%= ff.label :request_email_subject, t('email_subject'), class: 'label' %>
-                <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-              </div>
-              <div class="form-control">
-                <div class="flex items-center">
-                  <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                  </span>
+            <%= tag.input id: 'request_email_per_submitter', value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: @template.preferences['submitters'].to_a.size > 1 %>
+            <div class="peer-checked:hidden">
+              <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
+                <div class="form-control">
+                  <div class="flex justify-between">
+                    <%= ff.label :request_email_subject, t('email_subject'), class: 'label' %>
+                    <% if @template.submitters.size > 1 && @template.submitters.size < 5 %>
+                      <label for="request_email_per_submitter" class="label underline">
+                        <%= t('edit_per_party') %>
+                      </label>
+                    <% end %>
+                  </div>
+                  <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
                 </div>
-                <autoresize-textarea>
-                  <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                </autoresize-textarea>
+                <div class="form-control">
+                  <div class="flex items-center">
+                    <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
+                    <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
+                      <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                    </span>
+                  </div>
+                  <autoresize-textarea>
+                    <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+                  </autoresize-textarea>
+                </div>
+              <% end %>
+            </div>
+            <% if @template.submitters.size > 1 && @template.submitters.size < 5 %>
+              <div class="hidden peer-checked:block">
+                <% options = @template.submitters.map { |e| [e['name'], "request_email_#{e['uuid']}"] } %>
+                <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
+                  <ul class="tabs w-full flex flex-nowrap mb-2">
+                    <% options.each_with_index do |(label, val), index| %>
+                      <div class="w-full">
+                        <%= f.radio_button :selected, val, checked: index.zero?, id: "#{val}_radio", data: { action: 'click:toggle-visible#trigger' }, class: 'hidden peer' %>
+                        <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active' %>
+                      </div>
+                    <% end %>
+                  </ul>
+                </toggle-visible>
+                <%= f.fields_for :preferences do |ff| %>
+                  <% @template.submitters.each_with_index do |submitter, index| %>
+                    <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
+                      <% submitter_preferences = f.object.preferences['submitters'].to_a.find { |e| e['uuid'] == submitter['uuid'] } || {} %>
+                      <%= ff.fields_for :submitters, Struct.new(:request_email_subject, :request_email_body).new(*(submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || @template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))), index: nil do |fff| %>
+                        <%= fff.hidden_field :uuid, value: submitter['uuid'] %>
+                        <div class="form-control">
+                          <%= fff.label :request_email_subject, t('email_subject'), class: 'label' %>
+                          <%= fff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+                        </div>
+                        <div class="form-control">
+                          <div class="flex items-center">
+                            <%= fff.label :request_email_body, t('email_body'), class: 'label' %>
+                            <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
+                              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                            </span>
+                          </div>
+                          <autoresize-textarea>
+                            <%= fff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+                          </autoresize-textarea>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
               </div>
             <% end %>
             <div class="form-control pt-2">
