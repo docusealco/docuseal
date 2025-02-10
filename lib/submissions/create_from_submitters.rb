@@ -36,8 +36,8 @@ module Submissions
 
           is_order_sent = submitters_order == 'random' || index.zero?
 
-          build_submitter(submission:, attrs: submitter_attrs, uuid:,
-                          is_order_sent:, user:,
+          build_submitter(submission:, attrs: submitter_attrs,
+                          uuid:, is_order_sent:, user:, params:,
                           preferences: preferences.merge(submission_preferences))
         end
 
@@ -67,6 +67,16 @@ module Submissions
           submission.template_submitters << item
         end
       end
+    end
+
+    def submitter_message_preferences(uuid, params)
+      return {} if params[:request_email_per_submitter] != '1'
+      return {} if params[:is_custom_message] != '1'
+
+      {
+        'subject' => params.dig('submitter_preferences', uuid, 'subject'),
+        'body' => params.dig('submitter_preferences', uuid, 'body')
+      }.compact_blank
     end
 
     def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil)
@@ -175,9 +185,10 @@ module Submissions
       uuid || template.submitters[index]&.dig('uuid')
     end
 
-    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, user:, preferences:)
+    def build_submitter(submission:, attrs:, uuid:, is_order_sent:, user:, preferences:, params:)
       email = Submissions.normalize_email(attrs[:email])
-      submitter_preferences = Submitters.normalize_preferences(submission.account, user, attrs)
+      submitter_preferences = Submitters.normalize_preferences(submission.account, user,
+                                                               attrs.merge(submitter_message_preferences(uuid, params)))
       values = attrs[:values] || {}
 
       phone_field_uuid = find_phone_field(submission, values)&.dig('uuid')

@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  edit_per_party: Edit per party
   reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
@@ -732,6 +733,7 @@ en: &en
       read: Read your data
 
 es: &es
+  edit_per_party: Editar por parte
   signed: Firmado
   reply_to: Responder a
   partially_completed: Parcialmente completado
@@ -1446,6 +1448,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  edit_per_party: Modifica per partito
   signed: Firmato
   reply_to: Rispondi a
   pending_by_me: In sospeso da me
@@ -2159,6 +2162,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  edit_per_party: Éditer par partie
   signed: Signé
   reply_to: Répondre à
   partially_completed: Partiellement complété
@@ -2874,6 +2878,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  edit_per_party: Edita por festa
   signed: Assinado
   reply_to: Responder a
   partially_completed: Parcialmente concluído
@@ -3588,6 +3593,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  edit_per_party: Bearbeiten pro Partei
   signed: Unterschrieben
   reply_to: Antworten auf
   partially_completed: Teilweise abgeschlossen

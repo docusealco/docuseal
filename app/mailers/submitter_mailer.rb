@@ -14,8 +14,20 @@ class SubmitterMailer < ApplicationMailer
       @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
     end
 
-    @body = @email_message&.body.presence || @submitter.template.preferences['request_email_body'].presence
-    @subject = @email_message&.subject.presence || @submitter.template.preferences['request_email_subject'].presence
+    template_submitters_index =
+      if @email_message.blank?
+        build_submitter_preferences_index(@submitter)
+      else
+        {}
+      end
+
+    @body = @email_message&.body.presence ||
+            template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence ||
+            @submitter.template.preferences['request_email_body'].presence
+
+    @subject = @email_message&.subject.presence ||
+               template_submitters_index.dig(@submitter.uuid, 'request_email_subject').presence ||
+               @submitter.template.preferences['request_email_subject'].presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
@@ -24,14 +36,7 @@ class SubmitterMailer < ApplicationMailer
     reply_to = build_submitter_reply_to(@submitter)
 
     I18n.with_locale(@current_account.locale) do
-      subject =
-        if @email_config || @subject
-          ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
-        elsif @submitter.with_signature_fields?
-          I18n.t(:you_are_invited_to_sign_a_document)
-        else
-          I18n.t(:you_are_invited_to_submit_a_form)
-        end
+      subject = build_invite_subject(@subject, @email_config, submitter)
 
       mail(
         to: @submitter.friendly_name,
@@ -194,6 +199,20 @@ class SubmitterMailer < ApplicationMailer
 
   def normalize_user_email(user)
     user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name
+  end
+
+  def build_invite_subject(subject, email_config, submitter)
+    if email_config || subject
+      ReplaceEmailVariables.call(subject || email_config.value['subject'], submitter:)
+    elsif submitter.with_signature_fields?
+      I18n.t(:you_are_invited_to_sign_a_document)
+    else
+      I18n.t(:you_are_invited_to_submit_a_form)
+    end
+  end
+
+  def build_submitter_preferences_index(submitter)
+    submitter.template.preferences['submitters'].to_a.index_by { |e| e['uuid'] }
   end
 
   def add_attachments_with_size_limit(submitter, storage_attachments, current_size, filename_format = nil)

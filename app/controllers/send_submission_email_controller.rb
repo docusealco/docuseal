@@ -9,8 +9,6 @@ class SendSubmissionEmailController < ApplicationController
 
   SEND_DURATION = 30.minutes
 
-  def success; end
-
   def create
     @submitter =
       if params[:template_slug]
@@ -31,7 +29,7 @@ class SendSubmissionEmailController < ApplicationController
     end
 
     respond_to do |f|
-      f.html { redirect_to success_send_submission_email_index_path }
+      f.html { render :success }
       f.json { head :ok }
     end
   end

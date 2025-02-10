@@ -1,5 +1,5 @@
 <% query_params = params.permit(:q).merge(filter_params) %>
-<% if icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit' }[params[:status]] %>
+<% if icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
   <div class="flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700">
     <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
       <%= svg_icon(icon, class: 'w-5 h-5 shrink-0') %>
