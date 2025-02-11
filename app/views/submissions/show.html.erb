@@ -19,6 +19,11 @@
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
+      <% else %>
+        <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
+          <%= svg_icon('logs', class: 'w-6 h-6') %>
+          <span class="hidden md:block"><%= t('event_log') %></span>
+        <% end %>
       <% end %>
       <% if last_submitter %>
         <% if is_all_completed || !is_combined_enabled %>

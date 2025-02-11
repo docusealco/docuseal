@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   resources :submissions, only: %i[index], controller: 'submissions_dashboard'
   resources :submissions, only: %i[show destroy] do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
+    resources :events, only: %i[index], controller: 'submission_events'
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
