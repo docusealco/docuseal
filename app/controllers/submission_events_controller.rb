@@ -24,9 +24,10 @@ class SubmissionEventsController < ApplicationController
   # rubocop:disable Metrics
   def index
     submitters = @submission.submitters
+
     submitters_uuids = (@submission.template_submitters || @submission.template.submitters).pluck('uuid')
 
-    @events_data = @submission.submission_events.sort_by(&:event_timestamp).map do |event|
+    @events_data = @submission.submission_events.order(:event_timestamp).map do |event|
       submitter = submitters.find { |e| e.id == event.submitter_id }
       submitter_name =
         if event.event_type.include?('sms') || event.event_type.include?('phone')

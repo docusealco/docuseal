@@ -1,15 +1,15 @@
-<% event_colors = %w[bg-red-200 bg-sky-200 bg-emerald-200 bg-yellow-300 bg-purple-200 bg-pink-200 bg-cyan-200 bg-orange-200 bg-lime-200 bg-indigo-200] %>
+<% event_colors = %w[bg-red-200 bg-sky-200 bg-emerald-200 bg-yellow-200 bg-purple-200 bg-pink-200 bg-cyan-200 bg-orange-200 bg-lime-200 bg-indigo-200] %>
 <%= render 'shared/turbo_modal_large', title: t('event_log') do %>
   <div class="pl-8 pr-4 py-4">
-    <ol class="relative border-s border-neutral-300 space-y-10">
-      <li class="ml-6">
-        <span class="absolute flex items-center justify-center w-6 h-6 rounded-full -start-3 ring-8 ring-base-100 text-base-content bg-gray-200">
+    <ol class="relative border-s border-base-300 space-y-6">
+      <li class="ml-7">
+        <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content bg-gray-200">
           <%= svg_icon('file_text', class: 'w-3.5 h-3.5') %>
         </span>
-        <p class="text-sm leading-none text-base-content/60 pt-1">
+        <p class="text-sm leading-none text-base-content/60 pt-1.5">
           <%= l(@submission.created_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
         </p>
-        <p class="text-base-content/80 mt-2">
+        <p class="text-base-content/80 mt-1">
           <% if @submission.source == 'invite' %>
             <%= t('submission_created_by_email_invite_html', email: @submission.created_by_user.email) %>
           <% elsif @submission.created_by_user %>
@@ -21,14 +21,14 @@
       </li>
       <% @events_data.each do |row| %>
         <% bg_class = event_colors[row[:submitter_index] % event_colors.length] %>
-        <li class="ml-6">
-          <span class="absolute flex items-center justify-center w-6 h-6 rounded-full -start-3 ring-8 ring-base-100 text-base-content <%= bg_class %>">
-            <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(row[:event_type], 'circle_dot'), class: 'w-3.5 h-3.5') %>
+        <li class="ml-7">
+          <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content <%= bg_class %>">
+            <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(row[:event_type], 'circle_dot'), class: 'w-4 h-4') %>
           </span>
-          <p class="text-sm leading-none text-base-content/60 pt-1">
+          <p class="text-sm leading-none text-base-content/60 pt-1.5">
             <%= l(row[:timestamp], format: :long, locale: current_account.locale) %>
           </p>
-          <p class="text-base-content/80 mt-2">
+          <p class="text-base-content/80 mt-1">
             <%= row[:text] %>
           </p>
         </li>
