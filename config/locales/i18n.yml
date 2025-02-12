@@ -695,9 +695,11 @@ en: &en
   overdue_payment: Overdue Payment
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
   manage_subscription: Manage Subscription
-  submission_created_by_email_invite_html: '<b>Submission created</b> by %{email}'
+  submission_created_by_email_html: '<b>Submission created</b> by %{email}'
   submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
+  pro_user_seats_used: Pro user seats used
+  manage_plan: Manage plan
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1419,9 +1421,11 @@ es: &es
   overdue_payment: Pago Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
   manage_subscription: Gestionar Suscripción
-  submission_created_by_email_invite_html: '<b>Envío creado</b> por invitación de %{email}'
+  submission_created_by_email_html: '<b>Envío creado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
+  pro_user_seats_used: Plazas de usuario Pro en uso
+  manage_plan: Gestionar plan
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2142,9 +2146,11 @@ it: &it
   overdue_payment: Pagamento Scaduto
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
   manage_subscription: Gestisci Abbonamento
-  submission_created_by_email_invite_html: '<b>Invio creato</b> tramite invito di %{email}'
+  submission_created_by_email_html: '<b>Invio creato</b> da %{email}'
   submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
+  pro_user_seats_used: Posti utente Pro in uso
+  manage_plan: Gestisci piano
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2867,9 +2873,11 @@ fr: &fr
   overdue_payment: Paiement En Retard
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal ou annuler votre abonnement.
   manage_subscription: Gérer l'Abonnement
-  submission_created_by_email_invite_html: "<b>Soumission créée</b> par l'invitation de %{email}"
+  submission_created_by_email_html: '<b>Soumission créée</b> par %{email}'
   submission_created_by_email_via_source_html: '<b>Soumission créée</b> par %{email} via %{source}'
   submission_created_via_source_html: '<b>Soumission créée</b> via %{source}'
+  pro_user_seats_used: Places utilisateur Pro en cours d'utilisation
+  manage_plan: Gérer le plan
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3591,9 +3599,11 @@ pt: &pt
   overdue_payment: Pagamento Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
   manage_subscription: Gerenciar Assinatura
-  submission_created_by_email_invite_html: '<b>Envio criado</b> por convite de %{email}'
+  submission_created_by_email_html: '<b>Envio criado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
+  pro_user_seats_used: Lugares de usuário Pro em uso
+  manage_plan: Gerenciar plano
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4315,9 +4325,11 @@ de: &de
   overdue_payment: Überfällige Zahlung
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
   manage_subscription: Abonnement Verwalten
-  submission_created_by_email_invite_html: '<b>Übermittlung erstellt</b> durch Einladung von %{email}'
+  submission_created_by_email_html: '<b>Übermittlung erstellt</b> von %{email}'
   submission_created_by_email_via_source_html: '<b>Übermittlung erstellt</b> durch %{email} über %{source}'
   submission_created_via_source_html: '<b>Übermittlung erstellt</b> über %{source}'
+  pro_user_seats_used: Verwendete Pro-Benutzerplätze
+  manage_plan: Plan verwalten
   submission_sources:
     api: API
     bulk: Massenversand

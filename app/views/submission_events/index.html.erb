@@ -11,7 +11,7 @@
         </p>
         <p class="text-base-content/80 mt-1">
           <% if @submission.source == 'invite' %>
-            <%= t('submission_created_by_email_invite_html', email: @submission.created_by_user.email) %>
+            <%= t('submission_created_by_email_html', email: @submission.created_by_user.email) %>
           <% elsif @submission.created_by_user %>
             <%= t('submission_created_by_email_via_source_html', email: @submission.created_by_user.email, source: t("submission_sources.#{@submission.source}")) %>
           <% else %>
