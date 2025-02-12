@@ -23,6 +23,7 @@ module Submissions
     A4_SIZE = [595, 842].freeze
 
     TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
+    DEFAULT_FONTS = %w[Times Helvetica Courier].freeze
 
     MISSING_GLYPH_REPLACE = {
       '▪' => '-',
@@ -190,7 +191,8 @@ module Submissions
 
           fill_color = field.dig('preferences', 'color').presence
 
-          font_name = field.dig('preferences', 'font').presence || FONT_NAME
+          font_name = field.dig('preferences', 'font')
+          font_name = FONT_NAME unless font_name.in?(DEFAULT_FONTS)
           font = pdf.fonts.add(font_name)
 
           value = submitter.values[field['uuid']]
