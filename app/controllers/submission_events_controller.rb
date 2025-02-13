@@ -42,7 +42,7 @@ class SubmissionEventsController < ApplicationController
                                                                             submitter_name:)
         elsif event.event_type == 'invite_party' &&
               (invited_submitter = submitters.find { |e| e.uuid == event.data['uuid'] }) &&
-              (name = submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
+              (name = @submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
           invited_submitter_name = [invited_submitter.name || invited_submitter.email || invited_submitter.phone,
                                     name].join(' ')
           helpers.t('submission_event_names.invite_party_by_html', invited_submitter_name:,
