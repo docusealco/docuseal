@@ -1,10 +1,11 @@
 <% event_colors = %w[bg-red-200 bg-sky-200 bg-emerald-200 bg-yellow-200 bg-purple-200 bg-pink-200 bg-cyan-200 bg-orange-200 bg-lime-200 bg-indigo-200] %>
+<% submitters_uuids = (@submission.template_submitters || @submission.template.submitters).pluck('uuid') %>
 <%= render 'shared/turbo_modal_large', title: t('event_log') do %>
   <div class="pl-8 pr-4 py-4">
     <ol class="relative border-s border-base-300 space-y-6">
       <li class="ml-7">
         <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content bg-gray-200">
-          <%= svg_icon('file_text', class: 'w-3.5 h-3.5') %>
+          <%= svg_icon('file_text', class: 'w-4 h-4') %>
         </span>
         <p class="text-sm leading-none text-base-content/60 pt-1.5">
           <%= l(@submission.created_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
@@ -19,17 +20,27 @@
           <% end %>
         </p>
       </li>
-      <% @events_data.each do |row| %>
-        <% bg_class = event_colors[row[:submitter_index] % event_colors.length] %>
+      <% @submission.submission_events.order(:event_timestamp).each do |event| %>
+        <% submitter = @submission.submitters.find { |e| e.id == event.submitter_id } %>
+        <% bg_class = event_colors[submitters_uuids.index(submitter.uuid) % event_colors.length] %>
+        <% submitter_name = event.event_type.include?('sms') || event.event_type.include?('phone') ? (event.data['phone'] || submitter.phone) : (submitter.name || submitter.email || submitter.phone) %>
         <li class="ml-7">
           <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content <%= bg_class %>">
-            <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(row[:event_type], 'circle_dot'), class: 'w-4 h-4') %>
+            <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(event.event_type, 'circle_dot'), class: 'w-4 h-4') %>
           </span>
           <p class="text-sm leading-none text-base-content/60 pt-1.5">
-            <%= l(row[:timestamp], format: :long, locale: current_account.locale) %>
+            <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
           </p>
           <p class="text-base-content/80 mt-1">
-            <%= row[:text] %>
+            <% if event.event_type == 'complete_verification' %>
+              <%= t('submission_event_names.complete_verification_by_html', provider: event.data['method'], submitter_name:) %>
+            <% elsif event.event_type == 'invite_party' && (invited_submitter = @submission.submitters.find { |e| e.uuid == event.data['uuid'] }) && (name = @submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name')) %>
+              <%= t('submission_event_names.invite_party_by_html', invited_submitter_name: [invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' '), submitter_name:) %>
+            <% elsif event.event_type.include?('send_') %>
+              <%= t("submission_event_names.#{event.event_type}_to_html", submitter_name:) %>
+            <% else %>
+              <%= t("submission_event_names.#{event.event_type}_by_html", submitter_name:) %>
+            <% end %>
           </p>
         </li>
       <% end %>
