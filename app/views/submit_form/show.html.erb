@@ -47,8 +47,8 @@
             <div class="relative my-4 shadow-md">
               <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
               <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
-                <% document_annots_index[index]&.each do |annot| %>
-                  <%= render 'submissions/annotation', annot: %>
+                <% if annots = document_annots_index[index] %>
+                  <%= render 'submit_form/annotations', annots: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']].presence || (field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submitter.submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
