@@ -49,7 +49,7 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 4
       - name: Run Erblint
-        run: bundle exec erblint ./app
+        run: bundle exec erb_lint ./app
 
   eslint:
     name: ESLint

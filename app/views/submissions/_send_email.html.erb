@@ -37,13 +37,13 @@
 <% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
 <div id="message_field" class="card card-compact bg-base-300/40 hidden">
   <div class="card-body">
-    <%= tag.input id: 'request_email_per_submitter', value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template.preferences['submitters'].to_a.size > 1 %>
+    <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template.preferences['submitters'].to_a.size > 1 %>
     <div class="peer-checked:hidden form-control space-y-2">
       <div class="form-control">
         <div class="flex justify-between">
           <%= f.label :subject, t('subject'), class: 'label' %>
           <% if template.submitters.size > 1 && template.submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
-            <label for="request_email_per_submitter" class="label underline">
+            <label for="<%= toggle_uuid %>" class="label underline">
               <%= t('edit_per_party') %>
             </label>
           <% end %>
@@ -71,7 +71,8 @@
     </div>
     <% if template.submitters.size > 1 && template.submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
       <div class="hidden peer-checked:block form-control space-y-2">
-        <% options = template.submitters.map { |e| [e['name'], "request_email_#{e['uuid']}"] } %>
+        <% uuid = SecureRandom.uuid %>
+        <% options = template.submitters.map { |e| [e['name'], "request_email_#{uuid}_#{e['uuid']}"] } %>
         <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
           <ul class="tabs w-full flex flex-nowrap">
             <% options.each_with_index do |(label, val), index| %>
@@ -84,7 +85,7 @@
         </toggle-visible>
         <% template.submitters.each_with_index do |submitter, index| %>
           <%= fields_for :submitter_preferences, nil, index: submitter['uuid'] do |ff| %>
-            <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
+            <div id="request_email_<%= uuid %>_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
               <div class="form-control">
                 <div class="flex justify-between">
                   <%= ff.label :subject, t('subject'), class: 'label' %>
