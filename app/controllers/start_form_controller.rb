@@ -34,6 +34,8 @@ class StartFormController < ApplicationController
         assign_submission_attributes(@submitter, @template)
 
         Submissions::AssignDefinedSubmitters.call(@submitter.submission)
+      else
+        @submitter.assign_attributes(ip: request.remote_ip, ua: request.user_agent)
       end
 
       if @submitter.save
@@ -65,8 +67,9 @@ class StartFormController < ApplicationController
              .order(id: :desc)
              .where(declined_at: nil)
              .where(external_id: nil)
+             .where(ip: [nil, request.remote_ip])
              .then { |rel| params[:resubmit].present? ? rel.where(completed_at: nil) : rel }
-             .find_or_initialize_by(**submitter_params.compact_blank)
+             .find_or_initialize_by(email: submitter_params[:email], **submitter_params.compact_blank)
   end
 
   def assign_submission_attributes(submitter, template)
