@@ -37,7 +37,7 @@
       <FieldArea
         v-if="newArea"
         :is-draw="true"
-        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || defaultFieldType }"
+        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || dragFieldPlaceholder?.type || defaultFieldType }"
         :area="newArea"
       />
     </div>
@@ -49,7 +49,9 @@
       :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
-      @dragover.prevent
+      @dragover.prevent="onDragover"
+      @dragenter="onDragenter"
+      @dragleave="newArea = null"
       @drop="onDrop"
       @pointerup="onPointerup"
     />
@@ -64,11 +66,16 @@ export default {
   components: {
     FieldArea
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize'],
   props: {
     image: {
       type: Object,
       required: true
+    },
+    dragFieldPlaceholder: {
+      type: Object,
+      required: false,
+      default: null
     },
     areas: {
       type: Array,
@@ -192,7 +199,24 @@ export default {
         this.areaRefs.push(el)
       }
     },
+    onDragenter (e) {
+      this.newArea = {}
+
+      this.assignDropAreaSize(this.newArea, this.dragFieldPlaceholder, {
+        maskW: this.$refs.mask.clientWidth,
+        maskH: this.$refs.mask.clientHeight
+      })
+
+      this.newArea.x = (e.offsetX - 6) / this.$refs.mask.clientWidth
+      this.newArea.y = e.offsetY / this.$refs.mask.clientHeight - this.newArea.h / 2
+    },
+    onDragover (e) {
+      this.newArea.x = (e.offsetX - 6) / this.$refs.mask.clientWidth
+      this.newArea.y = e.offsetY / this.$refs.mask.clientHeight - this.newArea.h / 2
+    },
     onDrop (e) {
+      this.newArea = null
+
       this.$emit('drop-field', {
         x: e.offsetX,
         y: e.offsetY,

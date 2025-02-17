@@ -13,6 +13,7 @@
       :is-drag="isDrag"
       :with-field-placeholder="withFieldPlaceholder"
       :default-fields="defaultFields"
+      :drag-field-placeholder="dragFieldPlaceholder"
       :default-submitters="defaultSubmitters"
       :draw-field="drawField"
       :draw-field-type="drawFieldType"
@@ -38,6 +39,11 @@ export default {
     document: {
       type: Object,
       required: true
+    },
+    dragFieldPlaceholder: {
+      type: Object,
+      required: false,
+      default: null
     },
     inputMode: {
       type: Boolean,

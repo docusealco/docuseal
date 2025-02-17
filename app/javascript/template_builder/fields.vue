@@ -25,11 +25,11 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
+      :editable="editable"
       :default-field="defaultFieldsIndex[field.name]"
       :draggable="editable"
-      @dragstart="fieldsDragFieldRef.value = field"
-      @dragend="fieldsDragFieldRef.value = null"
+      @dragstart="[fieldsDragFieldRef.value = field, removeDragOverlay($event), setDragPlaceholder($event)]"
+      @dragend="[fieldsDragFieldRef.value = null, $emit('set-drag-placeholder', null)]"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
@@ -74,8 +74,8 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
-          class="border border-base-300 rounded rounded-tr-none relative group mb-2 default-field fields-list-item"
-          @dragstart="onDragstart({ type: 'text', ...field })"
+          class="border border-base-300 rounded relative group mb-2 default-field fields-list-item"
+          @dragstart="onDragstart($event, field)"
           @dragend="$emit('drag-end')"
         >
           <div class="flex items-center justify-between relative cursor-grab">
@@ -116,7 +116,7 @@
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
-        @dragstart="onDragstart({ type: type })"
+        @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
         @click="['file', 'payment', 'verification'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
@@ -292,7 +292,7 @@ export default {
       required: true
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder'],
   data () {
     return {
       defaultFieldsSearch: ''
@@ -343,22 +343,53 @@ export default {
     }
   },
   methods: {
-    onDragstart (field) {
+    onDragstart (event, field) {
+      this.removeDragOverlay(event)
+
+      this.setDragPlaceholder(event)
+
       this.$emit('set-drag', field)
     },
+    setDragPlaceholder (event) {
+      this.$emit('set-drag-placeholder', {
+        offsetX: event.offsetX,
+        offsetY: event.offsetY,
+        x: event.clientX - event.offsetX,
+        y: event.clientY - event.offsetY,
+        w: event.currentTarget.clientWidth + 2,
+        h: event.currentTarget.clientHeight + 2
+      })
+    },
+    removeDragOverlay (event) {
+      const root = this.$el.getRootNode()
+      const hiddenEl = document.createElement('div')
+
+      hiddenEl.style.width = '1px'
+      hiddenEl.style.height = '1px'
+      hiddenEl.style.opacity = '0'
+      hiddenEl.style.position = 'fixed'
+
+      root.querySelector('#docuseal_modal_container').appendChild(hiddenEl)
+
+      event.dataTransfer.setDragImage(hiddenEl, 0, 0)
+
+      setTimeout(() => { hiddenEl.remove() }, 1000)
+    },
     onFieldDragover (e) {
-      const targetField = e.target.closest('[data-uuid]')
-      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
+      if (this.fieldsDragFieldRef.value) {
+        const targetField = e.target.closest('[data-uuid]')
+        const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
 
-      if (dragField && targetField && targetField !== dragField) {
-        const fields = Array.from(this.$refs.fields.children)
-        const currentIndex = fields.indexOf(dragField)
-        const targetIndex = fields.indexOf(targetField)
+        if (dragField && targetField && targetField !== dragField) {
+          const fields = Array.from(this.$refs.fields.children)
+          const currentIndex = fields.indexOf(dragField)
+          const targetIndex = fields.indexOf(targetField)
 
-        if (currentIndex < targetIndex) {
-          targetField.after(dragField)
-        } else {
-          targetField.before(dragField)
+          if (currentIndex < targetIndex) {
+            targetField.after(dragField)
+          } else {
+            targetField.before(dragField)
+          }
         }
       }
     },
