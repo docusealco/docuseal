@@ -10,7 +10,7 @@ module Api
           last_submitter = @submission.submitters.max_by(&:completed_at)
 
           if last_submitter.documents_attachments.blank?
-            last_submitter.documents_attachments = Submissions::EnsureResultGenerated.call(submitter)
+            last_submitter.documents_attachments = Submissions::EnsureResultGenerated.call(last_submitter)
           end
 
           last_submitter.documents_attachments
