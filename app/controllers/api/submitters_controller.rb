@@ -146,8 +146,14 @@ module Api
 
       if attrs[:completed]
         submitter.values = Submitters::SubmitValues.merge_default_values(submitter)
-        submitter.values = Submitters::SubmitValues.merge_formula_values(submitter)
         submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
+
+        formula_values = Submitters::SubmitValues.build_formula_values(submitter)
+
+        if formula_values.present?
+          submitter.values = submitter.values.merge(formula_values)
+          submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
+        end
 
         submitter.values = submitter.values.transform_values do |v|
           v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
