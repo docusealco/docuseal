@@ -18,7 +18,7 @@
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
-          <%= link_to new_template_submission_path(@template), class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+          <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
             <%= t('add_recipients_html') %>
           <% end %>
@@ -80,18 +80,18 @@
             <p><%= t('send_an_invitation_to_fill_and_complete_the_form') %></p>
             <div class="space-y-2 flex flex-col">
               <% if can?(:create, Submission) %>
-                <%= link_to new_template_submission_path(@template, with_link: true), class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+                <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
                   <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
                   <span class="mr-1"><%= t('send_to_recipients') %></span>
                 <% end %>
               <% end %>
               <% if @template.submitters.size == 1 %>
-                <%= link_to start_form_url(slug: @template.slug), class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
+                <%= link_to start_form_url(slug: @template.slug), id: 'sign_yourself_button', class: 'white-button mt-6', target: '_blank', rel: 'noopener' do %>
                   <%= svg_icon('writing', class: 'w-6 h-6') %>
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>
                 <% end %>
               <% else %>
-                <%= link_to new_template_submission_path(@template, selfsign: true), class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
+                <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
                   <%= svg_icon('writing', class: 'w-6 h-6') %>
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>
                 <% end %>
@@ -117,3 +117,4 @@
     <%= view_archived_html %>
   </div>
 <% end %>
+<%= render 'shared/app_tour', type: 'template', next_page_path: settings_account_path(params.permit(:tour)) %>

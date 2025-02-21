@@ -69,6 +69,7 @@
         <template v-else>
           <a
             v-if="withSignYourselfButton"
+            id="sign_yourself_button"
             :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
             class="btn btn-primary btn-ghost text-base hidden md:flex"
             :target="template.submitters.length > 1 ? '' : '_blank'"
@@ -85,6 +86,7 @@
           </a>
           <a
             v-if="withSendButton"
+            id="send_button"
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
@@ -100,6 +102,7 @@
           </a>
           <span
             v-if="editable"
+            id="save_button_container"
             class="flex"
           >
             <button
@@ -384,6 +387,7 @@
             :with-sticky-submitters="withStickySubmitters"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
+            :show-tour-start-form="showTourStartForm"
             @add-field="addField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
@@ -700,6 +704,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({ headers: {} })
+    },
+    showTourStartForm: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {

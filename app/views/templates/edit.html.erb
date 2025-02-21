@@ -1,1 +1,9 @@
-<template-builder class="grid" data-template="<%= @template_data %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-locale="<%= I18n.locale %>"></template-builder>
+<% if current_user.created_at > 2.weeks.ago || params[:tour] == 'true' %>
+  <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
+  <% @show_tour_start_form = user_config.new_record? && !params.key?(:tour) %>
+  <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
+    <app-tour data-show-tour="<%= params[:tour] == 'true' || user_config.value %>" data-type="builder" data-next-page-path="<%= template_path(@template, params.permit(:tour)) %>" data-i18n="<%= t('app_tour').to_json %>"></app-tour>
+    <%= button_to nil, user_configs_path, method: :post, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: true } }, class: 'hidden', id: 'start_tour_button' %>
+  <% end %>
+<% end %>
+<template-builder class="grid" data-template="<%= @template_data %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-locale="<%= I18n.locale %>" data-show-tour-start-form="<%= @show_tour_start_form %>"></template-builder>

@@ -1,6 +1,6 @@
 <div class="block w-full md:w-52 flex-none">
   <menu-active>
-    <ul class="menu px-0">
+    <ul id="account_settings_menu" class="menu px-0">
       <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium">&larr; <%= t('back') %></a></li>
       <li class="menu-title py-0 !bg-transparent">
         <span class="!bg-transparent"><%= t('settings') %></span>
@@ -105,7 +105,7 @@
     </ul>
   </menu-active>
   <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
-    <div class="mx-4 border-t border-base-300 hidden md:block">
+    <div id="support_channels" class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
         <%= t('need_help_ask_a_question_') %>
       </div>

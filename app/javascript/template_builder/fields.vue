@@ -104,6 +104,7 @@
   </div>
   <div
     v-if="editable && !onlyDefinedFields"
+    id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
     <template
@@ -112,6 +113,7 @@
     >
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')"
+        :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
@@ -189,7 +191,7 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4 && editable && withHelp"
+    v-if="fields.length < 4 && editable && withHelp && !showTourStartForm"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
@@ -203,6 +205,23 @@
         {{ t('click_on_the_field_type_above_to_start_drawing_it') }}
       </li>
     </ul>
+  </div>
+  <div
+    v-show="fields.length < 4 && editable && withHelp && showTourStartForm"
+    class="rounded py-2 px-4 w-full border border-dashed border-base-300"
+  >
+    <div class="text-center text-sm">
+      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
+    </div>
+    <div class="flex justify-center">
+      <label
+        for="start_tour_button"
+        class="btn btn-sm btn-warning w-40 mt-2"
+        @click="startTour"
+      >
+        {{ t('start_tour') }}
+      </label>
+    </div>
   </div>
 </template>
 
@@ -290,6 +309,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    showTourStartForm: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder'],
@@ -374,6 +398,9 @@ export default {
       event.dataTransfer.setDragImage(hiddenEl, 0, 0)
 
       setTimeout(() => { hiddenEl.remove() }, 1000)
+    },
+    startTour () {
+      document.querySelector('app-tour').start()
     },
     onFieldDragover (e) {
       if (this.fieldsDragFieldRef.value) {
