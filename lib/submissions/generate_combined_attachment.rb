@@ -23,9 +23,15 @@ module Submissions
           **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
         }
 
-        pdf.sign(io, **sign_params)
+        begin
+          pdf.sign(io, **sign_params)
+        rescue HexaPDF::MalformedPDFError => e
+          Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.sign(io, write_options: { incremental: false }, **sign_params)
+        end
       else
-        pdf.write(io)
+        pdf.write(io, incremental: true, validate: false)
       end
 
       Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)

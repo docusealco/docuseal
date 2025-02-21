@@ -2,7 +2,7 @@
   <div class="flex flex-col md:flex-row gap-2 mt-5">
     <div class="form-control w-full">
       <div id="status" class="radio-select grid grid-cols-2 gap-2 px-1">
-        <% ['', 'pending', 'completed', 'partially_completed', 'declined', 'expired'].each do |status| %>
+        <% ['', 'pending', 'completed', 'partially_completed', 'sent', 'opened', 'declined', 'expired'].each do |status| %>
           <label class="radio-label cursor-pointer inline-flex items-center space-x-2">
             <%= radio_button_tag 'status', status, params[:status] == status || (status == '' && params[:status].blank?), class: 'base-radio' %>
             <span><%= t(status.presence || 'all') %></span>

@@ -107,20 +107,27 @@ module Submissions
 
   def normalize_email(email)
     return if email.blank?
-    return email.downcase if email.to_s.include?(',')
-    return email.downcase if email.to_s.include?('.gob')
-    return email.downcase if email.to_s.include?('.om')
-    return email.downcase if email.to_s.include?('.mm')
-    return email.downcase if email.to_s.include?('.cm')
-    return email.downcase if email.to_s.include?('.et')
-    return email.downcase if email.to_s.include?('.mo')
-    return email.downcase if email.to_s.include?('.nz')
-    return email.downcase if email.to_s.include?('.za')
-    return email.downcase unless email.to_s.include?('.')
+
+    return email.downcase if email.to_s.include?(',') ||
+                             email.to_s.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
+                             email.to_s.exclude?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
 
-    Rails.logger.info("Fixed email #{email.split('@').last}") if fixed_email != email.downcase.delete_prefix('<').strip
+    return fixed_email if fixed_email == email
+
+    domain = email.to_s.split('@').last.to_s.downcase
+    fixed_domain = fixed_email.to_s.split('@').last
+
+    return email.downcase if domain == fixed_domain
+
+    if DidYouMean::Levenshtein.distance(domain, fixed_domain) > 3
+      Rails.logger.info("Skipped email fix #{domain}")
+
+      return email.downcase
+    end
+
+    Rails.logger.info("Fixed email #{domain}") if fixed_email != email.downcase.delete_prefix('<').strip
 
     fixed_email
   end
@@ -135,31 +142,57 @@ module Submissions
 
         values ||= submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
 
-        next unless check_document_conditions(item, values, fields_uuid_index, include_submitter_uuid:)
+        next unless check_item_conditions(item, values, fields_uuid_index, include_submitter_uuid:)
       end
 
       item
     end
   end
 
-  def check_document_conditions(item, values, fields_index, include_submitter_uuid: nil)
+  def filtered_conditions_fields(submitter, only_submitter_fields: true)
+    fields = submitter.submission.template_fields || submitter.submission.template.fields
+
+    fields_uuid_index = nil
+    values = nil
+
+    fields.filter_map do |field|
+      next if field['submitter_uuid'] != submitter.uuid && only_submitter_fields
+
+      if field['conditions'].present?
+        fields_uuid_index ||= fields.index_by { |f| f['uuid'] }
+        values ||= submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
+
+        submitter_conditions = []
+
+        next unless check_item_conditions(field, values, fields_uuid_index,
+                                          include_submitter_uuid: submitter.uuid,
+                                          submitter_conditions_acc: submitter_conditions)
+
+        field = field.merge('conditions' => submitter_conditions) if submitter_conditions != field['conditions']
+      end
+
+      field
+    end
+  end
+
+  def check_item_conditions(item, values, fields_index, include_submitter_uuid: nil, submitter_conditions_acc: nil)
     return true if item['conditions'].blank?
 
-    item['conditions'].all? do |condition|
+    item['conditions'].each_with_object([]) do |condition, acc|
       result =
         if fields_index[condition['field_uuid']]['submitter_uuid'] == include_submitter_uuid
+          submitter_conditions_acc << condition if submitter_conditions_acc
+
           true
         else
           Submitters::SubmitValues.check_field_condition(condition, values, fields_index)
         end
 
-      item['conditions'].each_with_object([]) do |c, acc|
-        if c['operation'] == 'or'
-          acc.push(acc.pop || result)
-        else
-          acc.push(result)
-        end
-      end.exclude?(false)
-    end
+      if condition['operation'] == 'or'
+        acc.push(acc.pop || result)
+      else
+        acc.push(result)
+      end
+    end.exclude?(false)
   end
 end

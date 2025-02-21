@@ -143,6 +143,7 @@
       <li
         v-for="(submitter, index) in submitters"
         :key="submitter.uuid"
+        class="w-full"
       >
         <a
           href="#"
@@ -191,7 +192,10 @@
           </div>
         </a>
       </li>
-      <li v-if="submitters.length < names.length && editable && allowAddNew">
+      <li
+        v-if="submitters.length < names.length && editable && allowAddNew"
+        class="w-full"
+      >
         <a
           href="#"
           class="flex px-2"
@@ -214,6 +218,14 @@
 import { IconUserPlus, IconTrashX, IconPlus, IconChevronUp, IconChevronDown } from '@tabler/icons-vue'
 import Contenteditable from './contenteditable'
 import { v4 } from 'uuid'
+
+function getOrdinalSuffix (num) {
+  if (num % 10 === 1 && num % 100 !== 11) return 'st'
+  if (num % 10 === 2 && num % 100 !== 12) return 'nd'
+  if (num % 10 === 3 && num % 100 !== 13) return 'rd'
+
+  return 'th'
+}
 
 export default {
   name: 'FieldSubmitter',
@@ -288,6 +300,14 @@ export default {
       ]
     },
     names () {
+      const generatedNames = []
+
+      for (let i = 21; i < 101; i++) {
+        const suffix = getOrdinalSuffix(i)
+
+        generatedNames.push(`${i}${suffix} ${this.t('party')}`)
+      }
+
       return [
         this.t('first_party'),
         this.t('second_party'),
@@ -308,7 +328,8 @@ export default {
         this.t('seventeenth_party'),
         this.t('eighteenth_party'),
         this.t('nineteenth_party'),
-        this.t('twentieth_party')
+        this.t('twentieth_party'),
+        ...generatedNames
       ]
     },
     lastPartyIndex () {
@@ -362,7 +383,7 @@ export default {
       this.$emit('new-submitter', newSubmitter)
     },
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     }
   }
 }

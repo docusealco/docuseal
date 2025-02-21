@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer, alert: 'Too many requests', status: :too_many_requests
   end
 
-  if Rails.env.production?
+  if Rails.env.production? || Rails.env.test?
     rescue_from CanCan::AccessDenied do |e|
       Rollbar.warning(e) if defined?(Rollbar)
 

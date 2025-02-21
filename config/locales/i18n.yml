@@ -20,10 +20,12 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  edit_per_party: Edit per party
   reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
   unarchive: Unarchive
+  signed: Signed
   first_party: 'First Party'
   remove_filter: Remove filter
   add: Add
@@ -41,6 +43,7 @@ en: &en
   hello_name: Hello %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
+  sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
@@ -164,7 +167,7 @@ en: &en
   schedule_account_for_deletion_: Schedule account for deletion?
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 weeks. Please contact us if you want to keep your account.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
   copy: Copy
   copied: Copied
@@ -688,6 +691,22 @@ en: &en
   tell_us_more_about_your_experience: Tell us more about your experience
   extremely_dissatisfied: Extremely Dissatisfied
   extremely_satisfied: Extremely Satisfied
+  your_pro_plan_payment_is_overdue: Your Pro plan payment is overdue.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Click here</a> to update your payment details and clear the invoice to ensure uninterrupted service.
+  overdue_payment: Overdue Payment
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
+  manage_subscription: Manage Subscription
+  submission_created_by_email_html: '<b>Submission created</b> by %{email}'
+  submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
+  submission_created_via_source_html: '<b>Submission created</b> via %{source}'
+  pro_user_seats_used: Pro user seats used
+  manage_plan: Manage plan
+  submission_sources:
+    api: API
+    bulk: Bulk Send
+    embed: Embedding
+    invie: Invite
+    link: Link
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
@@ -726,6 +745,8 @@ en: &en
       read: Read your data
 
 es: &es
+  edit_per_party: Editar por parte
+  signed: Firmado
   reply_to: Responder a
   partially_completed: Parcialmente completado
   pending_by_me: Pendiente por mi
@@ -749,6 +770,7 @@ es: &es
   hello_name: Hola %{name}
   you_are_invited_to_product_name: Estás invitado a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
@@ -872,7 +894,7 @@ es: &es
   schedule_account_for_deletion_: ¿Programar la eliminación de la cuenta?
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 semanas. Por favor contáctanos si deseas mantener tu cuenta.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
   copy: Copiar
   copied: Copiado
@@ -1396,6 +1418,22 @@ es: &es
   tell_us_more_about_your_experience: Cuéntanos más sobre tu experiencia
   extremely_dissatisfied: Extremadamente insatisfecho
   extremely_satisfied: Extremadamente satisfecho
+  your_pro_plan_payment_is_overdue: El pago de tu plan Pro está atrasado.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Haz clic aquí</a> para actualizar tus datos de pago y liquidar la factura para garantizar un servicio ininterrumpido.'
+  overdue_payment: Pago Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
+  manage_subscription: Gestionar Suscripción
+  submission_created_by_email_html: '<b>Envío creado</b> por %{email}'
+  submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
+  submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
+  pro_user_seats_used: Plazas de usuario Pro en uso
+  manage_plan: Gestionar plan
+  submission_sources:
+    api: API
+    bulk: Envío masivo
+    embed: Integración
+    invite: Invitación
+    link: Enlace
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
@@ -1434,6 +1472,8 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  edit_per_party: Modifica per partito
+  signed: Firmato
   reply_to: Rispondi a
   pending_by_me: In sospeso da me
   add: Aggiungi
@@ -1456,6 +1496,7 @@ it: &it
   hello_name: Ciao %{name}
   you_are_invited_to_product_name: Sei stato invitato a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
+  sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
@@ -1579,7 +1620,7 @@ it: &it
   schedule_account_for_deletion_: "Programmare l'eliminazione dell'account?"
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 settimane. Contattaci se desideri mantenere il tuo account."
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
   copy: Copia
   copied: Copiato
@@ -2103,6 +2144,22 @@ it: &it
   tell_us_more_about_your_experience: Raccontaci di più sulla tua esperienza
   extremely_dissatisfied: Estremamente insoddisfatto
   extremely_satisfied: Estremamente soddisfatto
+  your_pro_plan_payment_is_overdue: Il pagamento del tuo piano Pro è in ritardo.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Fai clic qui</a> per aggiornare i tuoi dati di pagamento e saldare la fattura per garantire un servizio ininterrotto.'
+  overdue_payment: Pagamento Scaduto
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
+  manage_subscription: Gestisci Abbonamento
+  submission_created_by_email_html: '<b>Invio creato</b> da %{email}'
+  submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
+  submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
+  pro_user_seats_used: Posti utente Pro in uso
+  manage_plan: Gestisci piano
+  submission_sources:
+    api: API
+    bulk: Invio massivo
+    embed: Incorporamento
+    invite: Invito
+    link: Link
   submission_event_names:
     send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
@@ -2141,6 +2198,8 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  edit_per_party: Éditer par partie
+  signed: Signé
   reply_to: Répondre à
   partially_completed: Partiellement complété
   pending_by_me: En attente par moi
@@ -2164,6 +2223,7 @@ fr: &fr
   hello_name: Bonjour %{name}
   you_are_invited_to_product_name: Vous êtes invité à %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous:'
+  sent_using_product_name_in_testing_mode_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> en Mode Test'
   sent_using_product_name_free_document_signing_html: 'Envoyé en utilisant la signature de documents gratuite de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
@@ -2288,7 +2348,7 @@ fr: &fr
   schedule_account_for_deletion_: Programmer la suppression du compte?
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 semaines. Veuillez nous contacter si vous souhaitez conserver votre compte.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
   copy: Copier
   copied: Copié
@@ -2812,6 +2872,22 @@ fr: &fr
   tell_us_more_about_your_experience: Parlez-nous davantage de votre expérience
   extremely_dissatisfied: Extrêmement insatisfait
   extremely_satisfied: Extrêmement satisfait
+  your_pro_plan_payment_is_overdue: Le paiement de votre plan Pro est en retard.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Cliquez ici</a> pour mettre à jour vos informations de paiement et régler la facture afin de garantir un service ininterrompu.'
+  overdue_payment: Paiement En Retard
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal ou annuler votre abonnement.
+  manage_subscription: Gérer l'Abonnement
+  submission_created_by_email_html: '<b>Soumission créée</b> par %{email}'
+  submission_created_by_email_via_source_html: '<b>Soumission créée</b> par %{email} via %{source}'
+  submission_created_via_source_html: '<b>Soumission créée</b> via %{source}'
+  pro_user_seats_used: Places utilisateur Pro en cours d'utilisation
+  manage_plan: Gérer le plan
+  submission_sources:
+    api: API
+    bulk: Envoi en masse
+    embed: Intégration
+    invite: Invitation
+    link: Lien
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
@@ -2850,6 +2926,8 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  edit_per_party: Edita por festa
+  signed: Assinado
   reply_to: Responder a
   partially_completed: Parcialmente concluído
   pending_by_me: Pendente por mim
@@ -2873,6 +2951,7 @@ pt: &pt
   hello_name: Olá %{name}
   you_are_invited_to_product_name: Você está convidado para %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
+  sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
@@ -2996,7 +3075,7 @@ pt: &pt
   schedule_account_for_deletion_: Agendar exclusão da conta?
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 semanas. Entre em contato conosco se você quiser manter sua conta.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
   copy: Copiar
   copied: Copiado
@@ -3520,6 +3599,22 @@ pt: &pt
   tell_us_more_about_your_experience: Conte-nos mais sobre sua experiência
   extremely_dissatisfied: Extremamente insatisfeito
   extremely_satisfied: Extremamente satisfeito
+  your_pro_plan_payment_is_overdue: O pagamento do seu plano Pro está atrasado.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Clique aqui</a> para atualizar seus dados de pagamento e quitar a fatura para garantir um serviço ininterrupto.'
+  overdue_payment: Pagamento Atrasado
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
+  manage_subscription: Gerenciar Assinatura
+  submission_created_by_email_html: '<b>Envio criado</b> por %{email}'
+  submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
+  submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
+  pro_user_seats_used: Lugares de usuário Pro em uso
+  manage_plan: Gerenciar plano
+  submission_sources:
+    api: API
+    bulk: Envio em massa
+    embed: Incorporação
+    invite: Convite
+    link: Link
   submission_event_names:
     send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
@@ -3558,6 +3653,8 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  edit_per_party: Bearbeiten pro Partei
+  signed: Unterschrieben
   reply_to: Antworten auf
   partially_completed: Teilweise abgeschlossen
   pending_by_me: Ausstehend von mir
@@ -3581,6 +3678,7 @@ de: &de
   hello_name: Hallo %{name}
   you_are_invited_to_product_name: Sie sind eingeladen zu %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
+  sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
@@ -3704,7 +3802,7 @@ de: &de
   schedule_account_for_deletion_: Konto zur Löschung einplanen?
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
-  your_account_removal_request_will_be_processed_within_2_weeks_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Wochen bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
   test_mode: Testmodus
   copy: Kopieren
   copied: Kopiert
@@ -4228,6 +4326,22 @@ de: &de
   tell_us_more_about_your_experience: Erzählen Sie uns mehr über Ihre Erfahrung
   extremely_dissatisfied: Extrem unzufrieden
   extremely_satisfied: Extrem zufrieden
+  your_pro_plan_payment_is_overdue: Ihre Zahlung für den Pro-Plan ist überfällig.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Klicken Sie hier</a>, um Ihre Zahlungsdaten zu aktualisieren und die Rechnung zu begleichen, um einen unterbrechungsfreien Service sicherzustellen.'
+  overdue_payment: Überfällige Zahlung
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
+  manage_subscription: Abonnement Verwalten
+  submission_created_by_email_html: '<b>Übermittlung erstellt</b> von %{email}'
+  submission_created_by_email_via_source_html: '<b>Übermittlung erstellt</b> durch %{email} über %{source}'
+  submission_created_via_source_html: '<b>Übermittlung erstellt</b> über %{source}'
+  pro_user_seats_used: Verwendete Pro-Benutzerplätze
+  manage_plan: Plan verwalten
+  submission_sources:
+    api: API
+    bulk: Massenversand
+    embed: Einbettung
+    invite: Einladung
+    link: Link
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'

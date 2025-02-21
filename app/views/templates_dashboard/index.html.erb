@@ -2,7 +2,7 @@
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0">
-    <% if has_archived || @pagy.count > 0 %>
+    <% if has_archived || @pagy.count > 0 || @template_folders.present? %>
       <div class="mr-2">
         <%= render 'dashboard/toggle_view', selected: 'templates' %>
       </div>

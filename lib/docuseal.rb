@@ -69,6 +69,10 @@ module Docuseal
     @default_pkcs ||= GenerateCertificate.load_pkcs(Docuseal::CERTS)
   end
 
+  def enable_pwa?
+    true
+  end
+
   def trusted_certs
     @trusted_certs ||=
       ENV['TRUSTED_CERTS'].to_s.gsub('\\n', "\n").split("\n\n").map do |base64|

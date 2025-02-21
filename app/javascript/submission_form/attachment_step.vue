@@ -49,7 +49,7 @@
       <MarkdownContent :string="field.description" />
     </div>
     <FileDropzone
-      :message="`${t('upload')} ${field.name || t('files')}${field.required ? '' : ` (${t('optional')})`}`"
+      :message="`${t('upload')} ${(field.title || field.name) || t('files')}${field.required ? '' : ` (${t('optional')})`}`"
       :submitter-slug="submitterSlug"
       :multiple="true"
       :dry-run="dryRun"
