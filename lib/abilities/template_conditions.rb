@@ -25,7 +25,7 @@ module Abilities
       account_ids = [user.account_id, TemplateSharing::ALL_ID]
 
       template.template_sharings.any? do |e|
-        e.account_id.in?(account_ids) && (ability.nil? || e.ability == ability)
+        e.account_id.in?(account_ids) && (ability.nil? || e.ability == 'manage' || e.ability == ability)
       end
     end
   end

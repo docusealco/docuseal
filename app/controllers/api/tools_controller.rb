@@ -34,6 +34,8 @@ module Api
           }
         end
       }
+    rescue HexaPDF::MalformedPDFError
+      render json: { error: 'Malformed PDF' }, status: :unprocessable_entity
     end
   end
 end

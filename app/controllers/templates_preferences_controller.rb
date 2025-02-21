@@ -28,8 +28,10 @@ class TemplatesPreferencesController < ApplicationController
                       submitters_order
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit] +
-                      [completed_message: %i[title body]]
+                      [completed_message: %i[title body],
+                       submitters: [%i[uuid request_email_subject request_email_body]]]
     ).tap do |attrs|
+      attrs[:preferences].delete(:submitters) if params[:request_email_per_submitter] != '1'
       attrs[:preferences] = attrs[:preferences].transform_values do |value|
         if %w[true false].include?(value)
           value == 'true'

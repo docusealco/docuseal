@@ -223,9 +223,12 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
-    ffi (1.17.0)
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-aarch64-linux-musl)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.1-x86_64-linux-musl)
     geom2d (0.4.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -324,7 +327,7 @@ GEM
     mysql2 (0.5.6)
     net-http-persistent (4.0.5)
       connection_pool (~> 2.2)
-    net-imap (0.5.3)
+    net-imap (0.5.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -334,12 +337,18 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.17.2)
+    nokogiri (1.18.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.17.2-aarch64-linux)
+    nokogiri (1.18.2-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.17.2-x86_64-linux)
+    nokogiri (1.18.2-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.2-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.2-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.2-x86_64-linux-musl)
       racc (~> 1.4)
     oj (3.16.8)
       bigdecimal (>= 3.0)
@@ -377,7 +386,7 @@ GEM
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.8)
+    rack (3.1.10)
     rack-proxy (0.7.7)
       rack
     rack-session (2.0.0)
@@ -520,10 +529,13 @@ GEM
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
     smart_properties (1.17.0)
-    sqlite3 (2.4.1)
+    sqlite3 (2.5.0)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (2.4.1-aarch64-linux-gnu)
-    sqlite3 (2.4.1-x86_64-linux-gnu)
+    sqlite3 (2.5.0-aarch64-linux-gnu)
+    sqlite3 (2.5.0-aarch64-linux-musl)
+    sqlite3 (2.5.0-arm64-darwin)
+    sqlite3 (2.5.0-x86_64-linux-gnu)
+    sqlite3 (2.5.0-x86_64-linux-musl)
     stringio (3.1.2)
     strip_attributes (1.14.1)
       activemodel (>= 3.0, < 9.0)
@@ -569,8 +581,11 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  aarch64-linux-musl
+  arm64-darwin
   ruby
   x86_64-linux
+  x86_64-linux-musl
 
 DEPENDENCIES
   annotate

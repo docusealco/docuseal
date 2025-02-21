@@ -4,21 +4,22 @@
     class="relative"
   >
     <div
-      class="flex justify-between items-center w-full"
+      class="flex justify-between items-end w-full mb-3.5 md:mb-4"
       :class="{ 'mb-2': !field.description }"
     >
       <label
-        class="label text-2xl"
+        v-if="showFieldNames"
+        class="label text-xl sm:text-2xl py-0"
       >
         <MarkdownContent
           v-if="field.title"
           :string="field.title"
         />
         <template v-else>
-          {{ showFieldNames && field.name ? field.name : t('signature') }}
+          {{ field.name || t('signature') }}
         </template>
       </label>
-      <div class="space-x-2 flex">
+      <div class="space-x-2 flex flex-none">
         <span
           v-if="isTextSignature && format !== 'typed' && format !== 'upload'"
           class="tooltip"
@@ -39,6 +40,7 @@
         <span
           v-else-if="withTypedSignature && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="tooltip ml-2"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('type_text')"
         >
           <a
@@ -56,6 +58,7 @@
         <span
           v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
           class="tooltip"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
           <label

@@ -100,7 +100,8 @@
     <button
       v-if="!isCompleted"
       id="minimize_form_button"
-      class="absolute right-0 mr-2 mt-2 top-0 hidden md:block"
+      class="absolute right-0 top-0"
+      :class="currentField?.description?.length > 100 ? 'mr-1 mt-1 md:mr-2 md:mt-2': 'mr-2 mt-2 hidden md:block'"
       :title="t('minimize')"
       @click.prevent="minimizeForm"
     >
@@ -164,7 +165,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -173,7 +174,11 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
+              <template v-if="!currentField.required">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 20 }">
+                  ({{ t('optional') }})
+                </span>
               </template>
             </label>
             <div
@@ -221,7 +226,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-2xl"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -230,7 +235,11 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+              </template>
+              <template v-if="!currentField.required">
+                <span :class="{ 'hidden sm:inline': (currentField.title || currentField.name).length > 20 }">
+                  ({{ t('optional') }})
+                </span>
               </template>
             </label>
             <div
@@ -466,7 +475,7 @@
         </div>
         <div
           v-if="(currentField.type !== 'payment' && currentField.type !== 'verification') || submittedValues[currentField.uuid]"
-          :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
+          :class="currentField.type === 'signature' ? 'mt-2' : 'mt-4 md:mt-6'"
         >
           <button
             id="submit_form_button"
@@ -522,9 +531,9 @@
       />
       <div
         v-if="stepFields.length < 80"
-        class="flex justify-center"
+        class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1"
       >
-        <div class="flex items-center mt-4 mb-1 flex-wrap">
+        <div class="flex items-center flex-wrap">
           <a
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
@@ -1113,9 +1122,9 @@ export default {
       this.minimizeForm()
     }
 
-    const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+    const isMobile = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit|android/i.test(navigator.userAgent)
 
-    if (isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    if (isMobile || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode()
         const scrollbox = root.getElementById('scrollbox')

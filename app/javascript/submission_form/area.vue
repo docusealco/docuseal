@@ -3,7 +3,7 @@
     class="field-area flex absolute lg:text-base -outline-offset-1"
     dir="auto"
     :style="computedStyle"
-    :class="{ 'font-serif': field.preferences?.font === 'Times', 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'field-area-active outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :class="{ 'font-mono': field.preferences?.font === 'Courier', 'font-serif': field.preferences?.font === 'Times', 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'field-area-active outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -191,10 +191,16 @@
         class="whitespace-pre-wrap text-gray-400"
         :class="{ 'w-full': field.preferences?.align }"
       >{{ field.name }}</span>
-      <span v-else-if="Array.isArray(modelValue)">
+      <span
+        v-else-if="Array.isArray(modelValue)"
+        :class="{ 'w-full': field.preferences?.align }"
+      >
         {{ modelValue.join(', ') }}
       </span>
-      <span v-else-if="field.type === 'date'">
+      <span
+        v-else-if="field.type === 'date'"
+        :class="{ 'w-full': field.preferences?.align }"
+      >
         {{ formattedDate }}
       </span>
       <span
@@ -450,8 +456,18 @@ export default {
       }
     },
     formatNumber (number, format) {
+      if (!number && number !== 0) {
+        return ''
+      }
+
       if (format === 'comma') {
         return new Intl.NumberFormat('en-US').format(number)
+      } else if (format === 'usd') {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)
+      } else if (format === 'gbp') {
+        return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)
+      } else if (format === 'eur') {
+        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)
       } else if (format === 'dot') {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {

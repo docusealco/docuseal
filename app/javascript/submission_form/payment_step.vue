@@ -1,7 +1,7 @@
 <template>
   <label
     v-if="!modelValue && !sessionId"
-    class="label text-2xl mb-2"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
   >
     <MarkdownContent
       v-if="field.title"

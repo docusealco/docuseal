@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get 'up' => 'rails/health#show'
+  get 'manifest' => 'pwa#manifest'
 
   devise_for :users,
              path: '/', only: %i[sessions passwords omniauth_callbacks],
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
   resources :submissions, only: %i[index], controller: 'submissions_dashboard'
   resources :submissions, only: %i[show destroy] do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
+    resources :events, only: %i[index], controller: 'submission_events'
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
@@ -79,6 +81,7 @@ Rails.application.routes.draw do
   resource :testing_account, only: %i[show destroy]
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
+  resources :submitters_resubmit, only: %i[update]
   resources :template_folders_autocomplete, only: %i[index]
   resources :webhook_secret, only: %i[show update]
   resources :webhook_preferences, only: %i[update]
@@ -145,9 +148,7 @@ Rails.application.routes.draw do
     get :completed
   end
 
-  resources :send_submission_email, only: %i[create] do
-    get :success, on: :collection
-  end
+  resources :send_submission_email, only: %i[create]
 
   resources :submitters, only: %i[], param: 'slug' do
     resources :download, only: %i[index], controller: 'submissions_download'

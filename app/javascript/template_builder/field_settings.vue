@@ -27,6 +27,33 @@
         </label>
     </div>
     <div
+            v-if="field.type === 'verification'"
+            class="py-1.5 px-1 relative"
+            @click.stop
+    >
+        <select
+                :placeholder="t('method')"
+                class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+                @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, save()]"
+        >
+            <option
+                    v-for="method in ['QeS', 'AeS']"
+                    :key="method"
+                    :value="method.toLowerCase()"
+                    :selected="method.toLowerCase() === field.preferences?.method || (method === 'QeS' && !field.preferences?.method)"
+            >
+                {{ method }}
+            </option>
+        </select>
+        <label
+                :style="{ backgroundColor }"
+                class="absolute -top-1 left-2.5 px-1 h-4"
+                style="font-size: 8px"
+        >
+            {{ t('method') }}
+        </label>
+    </div>
+    <div
             v-if="['number', 'cells'].includes(field.type)"
             class="py-1.5 px-1 relative"
             @click.stop
@@ -485,6 +512,9 @@ export default {
         numberFormats() {
             return [
                 'none',
+                'usd',
+                'eur',
+                'gbp',
                 'comma',
                 'dot',
                 'space'
@@ -565,6 +595,27 @@ export default {
         formatNumber(number, format) {
             if (format === 'comma') {
                 return new Intl.NumberFormat('en-US').format(number)
+            } else if (format === 'usd') {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(number)
+            } else if (format === 'gbp') {
+                return new Intl.NumberFormat('en-GB', {
+                    style: 'currency',
+                    currency: 'GBP',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(number)
+            } else if (format === 'eur') {
+                return new Intl.NumberFormat('fr-FR', {
+                    style: 'currency',
+                    currency: 'EUR',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(number)
             } else if (format === 'dot') {
                 return new Intl.NumberFormat('de-DE').format(number)
             } else if (format === 'space') {

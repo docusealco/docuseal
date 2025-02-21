@@ -18,7 +18,7 @@ module Submitters
 
     def find_or_create_signature_from_value(submitter, value, attachments)
       _, attachment = Submitters::NormalizeValues.normalize_attachment_value(value,
-                                                                             'signature',
+                                                                             { 'type' => 'signature' },
                                                                              submitter.account,
                                                                              attachments,
                                                                              submitter)

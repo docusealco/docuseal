@@ -222,8 +222,8 @@
       </div>
       <div
         id="pages_container"
-        class="w-full overflow-y-hidden overflow-x-hidden mt-0.5 pt-0.5"
-        :class="isMobile ? 'overflow-y-auto' : 'md:overflow-y-auto'"
+        class="w-full overflow-x-hidden mt-0.5 pt-0.5"
+        :class="isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto'"
       >
         <div
           ref="documents"
@@ -366,6 +366,7 @@
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :draw-field-type="drawFieldType"
+            :with-fields-search="withFieldsSearch"
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
             :template="template"
             :default-required-fields="defaultRequiredFields"
@@ -622,6 +623,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withFieldsSearch: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     withFieldsList: {
       type: Boolean,
@@ -1320,7 +1326,11 @@ export default {
 
       if (!this.fieldsDragFieldRef.value) {
         if (['select', 'multiple', 'radio'].includes(field.type)) {
-          field.options = [{ value: '', uuid: v4() }]
+          if (this.dragField?.options?.length) {
+            field.options = this.dragField.options.map(option => ({ value: option, uuid: v4() }))
+          } else {
+            field.options = [{ value: '', uuid: v4() }]
+          }
         }
 
         if (['stamp', 'heading'].includes(field.type)) {
@@ -1391,7 +1401,6 @@ export default {
       const lastArea = field.areas[field.areas.length - 1]
 
       if (lastArea) {
-        fieldArea.x -= lastArea.w / 2
         fieldArea.w = lastArea.w
         fieldArea.h = lastArea.h
       }
@@ -1422,6 +1431,8 @@ export default {
         this.$nextTick(() => {
           const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
           const areaRef = documentRef.pageRefs[area.page].areaRefs.find((ref) => ref.area === this.selectedAreaRef.value)
+
+          areaRef.isHeadingSelected = true
 
           areaRef.focusValueInput()
         })
@@ -1510,29 +1521,29 @@ export default {
     onDocumentRemove (item) {
       if (window.confirm(this.t('are_you_sure_'))) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
-      }
 
-      const removedFieldUuids = []
+        const removedFieldUuids = []
 
-      this.template.fields.forEach((field) => {
-        [...(field.areas || [])].forEach((area) => {
-          if (area.attachment_uuid === item.attachment_uuid) {
-            field.areas.splice(field.areas.indexOf(area), 1)
+        this.template.fields.forEach((field) => {
+          [...(field.areas || [])].forEach((area) => {
+            if (area.attachment_uuid === item.attachment_uuid) {
+              field.areas.splice(field.areas.indexOf(area), 1)
 
-            removedFieldUuids.push(field.uuid)
-          }
+              removedFieldUuids.push(field.uuid)
+            }
+          })
         })
-      })
 
-      this.template.fields =
-        this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+        this.template.fields =
+          this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
 
-      this.save()
+        this.save()
+      }
     },
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
 
-      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, schema[0])
+      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...replaceSchemaItem, ...schema[0] })
       this.template.documents.push(...documents)
 
       if (data.fields) {

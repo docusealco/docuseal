@@ -147,7 +147,7 @@ export default {
               }
             })
           } else {
-            if (file.type === 'image/bmp') {
+            if (file.type === 'image/bmp' || file.type === 'image/vnd.microsoft.icon') {
               file = await this.convertBmpToPng(file)
             }
 

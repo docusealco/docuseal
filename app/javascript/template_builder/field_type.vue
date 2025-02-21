@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     }
   }
 }

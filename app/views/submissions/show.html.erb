@@ -19,6 +19,11 @@
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
+      <% else %>
+        <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
+          <%= svg_icon('logs', class: 'w-6 h-6') %>
+          <span class="hidden md:block"><%= t('event_log') %></span>
+        <% end %>
       <% end %>
       <% if last_submitter %>
         <% if is_all_completed || !is_combined_enabled %>
@@ -118,7 +123,7 @@
           <div class="group border border-base-300 rounded-md px-2 py-1 mb-1">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-1">
-                <span class="mx-1 w-3 h-3 shrink-0 rounded-full <%= colors[index] %>"></span>
+                <span class="mx-1 w-3 h-3 shrink-0 rounded-full <%= colors[index % 10] %>"></span>
                 <span class="text-lg" dir="auto">
                   <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
                 </span>
@@ -190,6 +195,11 @@
                 </a>
               </div>
             <% end %>
+            <% if signed_in? && submitter && submitter.completed_at? && submitter.email == current_user.email && submitter.completed_at > 1.month.ago && can?(:update, @submission) %>
+              <div class="mt-2 mb-1">
+                <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="px-1.5 mb-4">
@@ -222,10 +232,12 @@
                   </div>
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
+                <% elsif field['type'] == 'number' %>
+                  <%= NumberUtils.format_number(value, field.dig('preferences', 'format')) %>
                 <% elsif field['type'] == 'date' %>
                   <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                 <% else %>
-                  <%= Array.wrap(value).join(', ') %>
+                  <div class="whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
                 <% end %>
               </div>
             </div>

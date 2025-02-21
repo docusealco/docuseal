@@ -177,7 +177,7 @@ export default {
     fields () {
       if (this.item.submitter_uuid) {
         return this.template.fields.reduce((acc, f) => {
-          if (f !== this.item && f.submitter_uuid === this.item.submitter_uuid) {
+          if (f !== this.item) {
             acc.push(f)
           }
 

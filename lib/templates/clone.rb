@@ -32,6 +32,7 @@ module Templates
       template
     end
 
+    # rubocop:disable Metrics, Style/CombinableLoops
     def update_submitters_and_fields_and_schema(cloned_submitters, cloned_fields, cloned_schema)
       submitter_uuids_replacements = {}
       field_uuids_replacements = {}
@@ -41,6 +42,20 @@ module Templates
 
         submitter_uuids_replacements[submitter['uuid']] = new_submitter_uuid
         submitter['uuid'] = new_submitter_uuid
+      end
+
+      cloned_submitters.each do |submitter|
+        if submitter['optional_invite_by_uuid'].present?
+          submitter['optional_invite_by_uuid'] = submitter_uuids_replacements[submitter['optional_invite_by_uuid']]
+        end
+
+        if submitter['invite_by_uuid'].present?
+          submitter['invite_by_uuid'] = submitter_uuids_replacements[submitter['invite_by_uuid']]
+        end
+
+        if submitter['linked_to_uuid'].present?
+          submitter['linked_to_uuid'] = submitter_uuids_replacements[submitter['linked_to_uuid']]
+        end
       end
 
       cloned_fields.each do |field|
@@ -75,5 +90,6 @@ module Templates
 
       [cloned_submitters, cloned_fields, cloned_schema]
     end
+    # rubocop:enable Metrics, Style/CombinableLoops
   end
 end

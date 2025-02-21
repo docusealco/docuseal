@@ -37,30 +37,45 @@ module Submissions
       submissions.where(created_by_user_id: user&.id || -1)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def filter_by_status(submissions, filters)
-      submissions = submissions.pending if filters[:status] == 'pending'
-      submissions = submissions.completed if filters[:status] == 'completed'
-      submissions = submissions.declined if filters[:status] == 'declined'
-      submissions = submissions.expired if filters[:status] == 'expired'
-
-      if filters[:status] == 'partially_completed'
-        submissions =
-          submissions.joins(:submitters)
-                     .group(:id)
-                     .having(Arel::Nodes::NamedFunction.new(
-                       'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
-                                                                [Submitter.arel_table[:completed_at].eq(nil),
-                                                                 Arel::Nodes.build_quoted(false)])]
-                     ).gt(0))
-                     .having(Arel::Nodes::NamedFunction.new(
-                       'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
-                                                                [Submitter.arel_table[:completed_at].not_eq(nil),
-                                                                 Arel::Nodes.build_quoted(false)])]
-                     ).gt(0))
+      case filters[:status]
+      when 'pending'
+        submissions.pending
+      when 'completed'
+        submissions.completed
+      when 'declined'
+        submissions.declined
+      when 'expired'
+        submissions.expired
+      when 'sent'
+        submissions.joins(:submitters)
+                   .where(submitters: { opened_at: nil, completed_at: nil, declined_at: nil })
+                   .where.not(submitters: { sent_at: nil })
+                   .group(:id)
+      when 'opened'
+        submissions.joins(:submitters)
+                   .where(submitters: { completed_at: nil, declined_at: nil })
+                   .where.not(submitters: { opened_at: nil })
+                   .group(:id)
+      when 'partially_completed'
+        submissions.joins(:submitters)
+                   .group(:id)
+                   .having(Arel::Nodes::NamedFunction.new(
+                     'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
+                                                              [Submitter.arel_table[:completed_at].eq(nil),
+                                                               Arel::Nodes.build_quoted(false)])]
+                   ).gt(0))
+                   .having(Arel::Nodes::NamedFunction.new(
+                     'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
+                                                              [Submitter.arel_table[:completed_at].not_eq(nil),
+                                                               Arel::Nodes.build_quoted(false)])]
+                   ).gt(0))
+      else
+        submissions
       end
-
-      submissions
     end
+    # rubocop:enable Metrics/MethodLength
 
     def filter_by_created_at(submissions, filters)
       submissions = submissions.where(created_at: filters[:created_at_from]..) if filters[:created_at_from].present?

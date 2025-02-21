@@ -192,14 +192,14 @@
             class="w-full input input-primary input-xs text-sm bg-transparent"
             :placeholder="`${t('option')} ${index + 1}`"
             type="text"
-            :readonly="!editable"
+            :readonly="!editable || defaultField"
             required
             dir="auto"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
           <button
-            v-if="editable"
+            v-if="editable && !defaultField"
             class="text-sm w-3.5"
             tabindex="-1"
             @click="removeOption(option)"
@@ -208,11 +208,11 @@
           </button>
         </div>
         <div
-          v-if="field.options && !editable"
+          v-if="field.options && (!editable || defaultField)"
           class="pb-1"
         />
         <button
-          v-else-if="field.options && editable"
+          v-else-if="field.options && editable && !defaultField"
           class="text-center text-sm w-full pb-1"
           @click="addOption"
         >
@@ -392,7 +392,7 @@ export default {
       return this.sortedAreas[0] && this.$emit('scroll-to', this.sortedAreas[0])
     },
     closeDropdown () {
-      document.activeElement.blur()
+      this.$el.getRootNode().activeElement.blur()
     },
     addOption () {
       this.field.options.push({ value: '', uuid: v4() })
