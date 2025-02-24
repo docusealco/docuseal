@@ -120,6 +120,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (7.0.0)
+      racc
     builder (3.3.0)
     bullet (8.0.0)
       activesupport (>= 3.0.0)
@@ -229,6 +231,7 @@ GEM
     ffi (1.17.1-arm64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
     ffi (1.17.1-x86_64-linux-musl)
+    foreman (0.88.1)
     geom2d (0.4.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -595,6 +598,7 @@ DEPENDENCIES
   azure-storage-blob
   better_html
   bootsnap
+  brakeman
   bullet
   cancancan
   capybara
@@ -610,6 +614,7 @@ DEPENDENCIES
   faker
   faraday
   faraday-follow_redirects
+  foreman
   google-cloud-storage
   hexapdf
   image_processing
