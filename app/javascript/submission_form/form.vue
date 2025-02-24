@@ -1037,7 +1037,7 @@ export default {
       }, [])
     },
     formulaFields () {
-      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment')
+      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {

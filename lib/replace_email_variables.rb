@@ -15,7 +15,10 @@ module ReplaceEmailVariables
   SUBMITTER_SLUG = /\{+submitter\.slug\}+/i
   SUBMISSION_LINK = /\{+submission\.link\}+/i
   SUBMISSION_ID = /\{+submission\.id\}+/i
-  SUBMISSION_SUBMITTERS = /\{+submission\.submitters\}+/i
+  SUBMITTERS = /\{+(?:submission\.)?submitters\}+/i
+  SUBMITTERS_N_EMAIL = /\{+submitters\[(?<index>\d+)\]\.email\}+/i
+  SUBMITTERS_N_NAME = /\{+submitters\[(?<index>\d+)\]\.name\}+/i
+  SUBMITTERS_N_FIRST_NAME = /\{+submitters\[(?<index>\d+)\]\.first_name\}+/i
   DOCUMENTS_LINKS = /\{+documents\.links\}+/i
   DOCUMENTS_LINK = /\{+documents\.link\}+/i
 
@@ -37,12 +40,24 @@ module ReplaceEmailVariables
     text = replace(text, SUBMISSION_LINK, html_escape:) do
       submitter.submission ? build_submission_link(submitter.submission) : ''
     end
-    text = replace(text, SUBMISSION_SUBMITTERS, html_escape:) { build_submission_submitters(submitter.submission) }
+    text = replace(text, SUBMITTERS, html_escape:) { build_submission_submitters(submitter.submission) }
     text = replace(text, DOCUMENTS_LINKS, html_escape:) { build_documents_links_text(submitter, sig) }
     text = replace(text, DOCUMENTS_LINK, html_escape:) { build_documents_links_text(submitter, sig) }
     text = replace(text, ACCOUNT_NAME, html_escape:) { submitter.submission.account.name }
     text = replace(text, SENDER_NAME, html_escape:) { submitter.submission.created_by_user&.full_name }
     text = replace(text, SENDER_FIRST_NAME, html_escape:) { submitter.submission.created_by_user&.first_name }
+
+    text = replace(text, SUBMITTERS_N_NAME, html_escape:) do |match|
+      build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :name)
+    end
+
+    text = replace(text, SUBMITTERS_N_EMAIL, html_escape:) do |match|
+      build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :email)
+    end
+
+    text = replace(text, SUBMITTERS_N_FIRST_NAME, html_escape:) do |match|
+      build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :first_name)
+    end
 
     replace(text, SENDER_EMAIL, html_escape:) { submitter.submission.created_by_user&.email.to_s.sub(/\+\w+@/, '@') }
   end
@@ -54,12 +69,18 @@ module ReplaceEmailVariables
     )
   end
 
+  def build_submitters_n_field(submission, index, field_name)
+    uuid = (submission.template_submitters || submission.template.submitters).dig(index, 'uuid')
+
+    submission.submitters.find { |s| s.uuid == uuid }.try(field_name)
+  end
+
   def replace(text, var, html_escape: false)
     text.gsub(var) do
       if html_escape
-        ERB::Util.html_escape(yield)
+        ERB::Util.html_escape(yield(Regexp.last_match))
       else
-        yield
+        yield(Regexp.last_match)
       end
     end
   end

@@ -9,7 +9,6 @@ module Templates
 
       template.external_id = external_id
       template.author = author
-      template.preferences = original_template.preferences.deep_dup
       template.name = name.presence || "#{original_template.name} (#{I18n.t('clone')})"
 
       if folder_name.present?
@@ -18,10 +17,11 @@ module Templates
         template.folder_id = original_template.folder_id
       end
 
-      template.submitters, template.fields, template.schema =
+      template.submitters, template.fields, template.schema, template.preferences =
         update_submitters_and_fields_and_schema(original_template.submitters.deep_dup,
                                                 original_template.fields.deep_dup,
-                                                original_template.schema.deep_dup)
+                                                original_template.schema.deep_dup,
+                                                original_template.preferences.deep_dup)
 
       if name.present? && template.schema.size == 1 &&
          original_template.schema.first['name'] == original_template.name &&
@@ -33,7 +33,7 @@ module Templates
     end
 
     # rubocop:disable Metrics, Style/CombinableLoops
-    def update_submitters_and_fields_and_schema(cloned_submitters, cloned_fields, cloned_schema)
+    def update_submitters_and_fields_and_schema(cloned_submitters, cloned_fields, cloned_schema, cloned_preferences)
       submitter_uuids_replacements = {}
       field_uuids_replacements = {}
 
@@ -56,6 +56,10 @@ module Templates
         if submitter['linked_to_uuid'].present?
           submitter['linked_to_uuid'] = submitter_uuids_replacements[submitter['linked_to_uuid']]
         end
+      end
+
+      cloned_preferences['submitters'].to_a.each do |submitter|
+        submitter['uuid'] = submitter_uuids_replacements[submitter['uuid']]
       end
 
       cloned_fields.each do |field|
@@ -88,7 +92,7 @@ module Templates
         end
       end
 
-      [cloned_submitters, cloned_fields, cloned_schema]
+      [cloned_submitters, cloned_fields, cloned_schema, cloned_preferences]
     end
     # rubocop:enable Metrics, Style/CombinableLoops
   end

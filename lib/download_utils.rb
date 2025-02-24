@@ -8,19 +8,20 @@ module DownloadUtils
   module_function
 
   def call(url)
-    uri = Addressable::URI.parse(url)
-
-    if Docuseal.multitenant?
-      raise UnableToDownload, "Error loading: #{uri.display_uri}. Only HTTPS is allowed." if uri.scheme != 'https'
-
-      if uri.host.in?(LOCALHOSTS)
-        raise UnableToDownload, "Error loading: #{uri.display_uri}. Can't download from localhost."
-      end
+    uri = begin
+      URI(url)
+    rescue URI::Error
+      Addressable::URI.parse(url).normalize
     end
 
-    resp = conn.get(uri.display_uri.to_s)
+    if Docuseal.multitenant?
+      raise UnableToDownload, "Error loading: #{uri}. Only HTTPS is allowed." if uri.scheme != 'https'
+      raise UnableToDownload, "Error loading: #{uri}. Can't download from localhost." if uri.host.in?(LOCALHOSTS)
+    end
 
-    raise UnableToDownload, "Error loading: #{uri.display_uri}" if resp.status >= 400
+    resp = conn.get(uri)
+
+    raise UnableToDownload, "Error loading: #{uri}" if resp.status >= 400
 
     resp
   end
