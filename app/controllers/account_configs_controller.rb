@@ -39,7 +39,7 @@ class AccountConfigsController < ApplicationController
   end
 
   def account_config_params
-    params.required(:account_config).permit!.tap do |attrs|
+    params.required(:account_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
       attrs[:value] = attrs[:value] == '1' if attrs[:value].in?(%w[1 0])
     end
   end
