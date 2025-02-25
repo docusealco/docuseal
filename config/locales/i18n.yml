@@ -18,6 +18,7 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  language_ja: 日本語
   hi_there: Hi there
   thanks: Thanks
   edit_per_party: Edit per party
@@ -4786,6 +4787,731 @@ ko:
   verification_code: 인증 코드
   resend_code: 코드 재전송
 
+hi_there: やあ
+  thanks: ありがとう
+  edit_per_party: パーティーごとの編集
+  reply_to: 返信
+  pending_by_me: 保留中
+  partially_completed: 一部完了しました
+  unarchive: 展開
+  signed: 署名済み
+  first_party: 'ファーストパーティ'
+  remove_filter: フィルターを外す
+  add: 追加
+  adding: 追加中
+  owner: 所有者
+  select_user: ユーザーを選択
+  team_member_permissions: チームメンバーの権限
+  entire_team: チーム全体
+  admin_only: 管理者のみ
+  accessiable_by: アクセス可能
+  team_access: チームアクセス
+  document_download_filename_format: ドキュメント ダウンロード ファイル名 形式
+  document_name: ドキュメント名
+  docuseal_trusted_signature: DocuSeal 信頼された署名
+  hello_name: こんにちは%{name}
+  you_are_invited_to_product_name: あなたは%{product_name}に招待されました
+  you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: '%{Account_name}%{product_name}に招待されています。以下のリンクを使用してサインアップしてください:'
+  sent_using_product_name_in_testing_mode_html: 'テストモードで<a href = "%{product_url}">%{product_name} </a>を使用して送信されます'
+  sent_using_product_name_free_document_signing_html: '<a href = "%{product_url}">%{product_name} </a>無料のドキュメント署名を使用して送信されます。'
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Docusealが提供する信頼できる証明書を備えた文書。あなたの文書とデータはDocusealと共有されることはありません。PDFチェックサムは、信頼できる署名を生成するために提供されます。
+  you_have_been_invited_to_submit_the_name_form: '%{name}フォームを提出するよう招待されました。'
+  you_have_been_invited_to_sign_the_name: '"%{name}"に署名するように招待されました。'
+  alternatively_you_can_review_and_download_your_copy_using_the_link_below: "または、以下のリンクを使用してコピーを確認およびダウンロードすることもできます。"
+  please_check_the_copy_of_your_name_in_the_email_attachments: '電子メールの添付ファイルで"%{name}"のコピーを確認してください。'
+  awaiting_completion_by_the_other_party: "相手による完成を待っています"
+  review_and_sign: レビューとサイン
+  review_and_submit: レビューして送信します
+  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "ご質問がある場合は、このメールに返信してお問い合わせください。"
+  submitter_invitation_sms_body_sign: '{account.name}はドキュメントに署名するように招待しました:{submitter.link}'
+  verification_code_sms_body: '検証コード:{code}'
+  you_are_invited_to_submit_a_form: 'フォームを提出するよう招待されています'
+  you_are_invited_to_sign_a_document: 'ドキュメントに署名するよう招待されています'
+  you_are_invited_to_sign_documents: 'ドキュメントに署名するよう招待されています'
+  your_document_copy: 'あなたのドキュメントコピー'
+  name_has_been_completed_by_submitters: '"%"{name}"は%{submitters}によって完了しました。'
+  template_name_has_been_completed_by_submitters: '{template.name}は{submission.submitters}によって完了しました'
+  submitter_invitation_email_sign_body: |
+    こんにちは、
+
+    "{template.name}"に署名するように招待されています。
+
+    [レビューとサイン]({submitter.link})
+
+    ご質問がある場合は、このメールに返信してお問い合わせください。
+
+    ありがとう、
+    {account.name}
+  submitter_completed_email_body: |
+    こんにちは,
+
+    "{template.name}"は{submission.submitters}によって完了しました
+
+    {submission.link}
+  submitter_documents_copy_email_body: |
+    こんにちは、
+
+    電子メールの添付ファイルで"{template.name}"のコピーを確認してください。
+    または以下のリンクを使用して、コピーを確認およびダウンロードすることもできます。
+
+    [{template.name}]({documents.link})
+
+    Thanks,
+    {account.name}
+  view: ビュー
+  email: メール
+  form_expired_at_html: 'フォームは<span class="font-semibold">%{time}</span>で有効期限が切れます'
+  verification_code_code: '検証コード: %{code}'
+  digitally_signed_by: デジタル署名
+  role: 役割
+  reason: 理由
+  provide_your_email_to_start: 開始するためにあなたのメールを提供してください
+  start: 開始
+  enforce_recipients_order: 受信者の注文を強制します
+  starting: 起動中
+  invited_by_html: '<span class="font-semibold">%{name}</span>によって招待されました'
+  you_have_been_invited_to_submit_a_form: フォームを提出するよう招待されました
+  signed_on_time: '%{time}に署名されました'
+  completed_on_time: '%{time}に完了しました'
+  document_has_been_signed_already: ドキュメントはすでに署名されています
+  form_has_been_submitted_already: フォームはすでに提出されています
+  send_copy_to_email: コピーをメールで送信します
+  sending: 送信
+  resubmit: 再送信
+  form_has_been_deleted_by_html: 'フォームは<span class="font-semibold">%{name}</span>によって削除されました。'
+  or: または
+  download_documents: ドキュメントをダウンロード
+  downloading: ダウンロード中
+  download: ダウンロード
+  decline: 拒否
+  declined: 拒否しました
+  decline_reason: 拒否理由
+  provide_a_reason: 理由を通知
+  notify_the_sender_with_the_reason_you_declined: あなたが拒否した理由を送信者に通知します
+  form_has_been_declined_on_html: 'フォームは、<span class="font-semibold">%{time}</span>に拒否されました'
+  name_declined_by_submitter: '"%{name}"は%{submitter}のため拒否しました'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}"は、次の理由で%{submitter}によって拒否されました:'
+  completed_successfully: 正常に完了しました
+  password: パスワード
+  sign_in: サインイン
+  signing_in: サインイン中
+  sign_in_with_microsoft: Microsoftでサインインします
+  sign_in_with_google: Googleでサインインします
+  forgot_your_password_: パスワードを忘れましたか？
+  create_free_account: 無料アカウントを作成します
+  already_have_an_account: すでにアカウントを持っていますか？
+  first_name: 名前
+  last_name: 名字
+  sign_up: 登録
+  signing_up: 登録中
+  profile_details: プロフィールの詳細
+  sign_up_with_google: Googleで登録
+  sign_up_with_microsoft: Microsoftで登録
+  by_creating_an_account_you_agree_to_our_html: 'アカウントを作成することにより、<a target="_blank"href="https://www.docuseal.com/privacy">プライバシーポリシー</a>および<a target="_blank"href="https://www.docuseal.com/terms ">サービス</a>に同意したことになります。'
+  enter_email_to_continue: 続行するには電子メールを入力してください
+  account: アカウント
+  preferences: 設定
+  company_name: 会社名
+  time_zone: タイムゾーン
+  language: 言語
+  app_url: アプリURL
+  update: 更新
+  updating: 更新中
+  force_2fa_with_authenticator_app: Authenticatorアプリを使用して2FAを強制する
+  add_signature_id_to_the_documents: ドキュメントに署名IDを追加する
+  require_signing_reason: 署名理由が必要
+  allow_typed_text_signatures: 入力されたテキスト署名を許可
+  allow_to_resubmit_completed_forms: 完成したフォームの再提出を許可
+  allow_to_decline_documents: ドキュメントの拒否を許可
+  remember_and_pre_fill_signatures: 署名を記憶して事前に入力する
+  require_authentication_for_file_download_links: ファイルのダウンロードリンクに認証を要求する
+  combine_completed_documents_and_audit_log: 完成したドキュメントと監査ログを結合する
+  salesforce_integration: Salesforce Integration
+  salesforce_has_been_connected: Salesforceは接続されています。
+  connect_salesforce_account_to_integrate_with_docuseal: Salesforceアカウントを接続してDocusealと統合します
+  re_connect_salesforce: Salesforceに再接続
+  connect_salesforce: Salesforceに接続
+  danger_zone: 危険地帯
+  delete_my_account: アカウントを削除
+  schedule_account_for_deletion_: アカウントの削除を予定しますか?
+  account_information_has_been_updated: アカウント情報が更新されました。
+  should_be_a_valid_url: 有効なURLである必要があります
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: アカウントの削除リクエストは2か月以内に処理されます。アカウントを保管したい場合はお問い合わせください。
+  test_mode: テストモード
+  copy: コピー
+  copied: コピーしました
+  rotate: 回転
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: 既存のAPIトークンを削除し新しいAPIトークンを生成します。よろしいですか？
+  request_signature_multiple_submitters_with_default_values: デフォルト値を持つ複数の提出者を要求します
+  request_signature_single_submitter: 署名、単一の提出者を要求します
+  template_details: テンプレートの詳細
+  open_full_api_reference: 完全なAPIリファレンスを開きます
+  api_token_has_been_updated: APIトークンが更新されました。
+  change_your_password: パスワードの変更
+  new_password: 新しいパスワード
+  minimum_password_length_characters_minimum: '最小%{minimum_password_length}文字'
+  confirm_new_password: 新しいパスワードの確認
+  change_my_password: パスワードを変更
+  changing_password: パスワードを変更中
+  reset_password: パスワードをリセット
+  resetting_password: パスワードをリセット中
+  sign_in_with_name_account: '%{name}アカウントでサインインします'
+  two_factor_code_from_authenticator_app: Authenticatorアプリの2要素コード
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Docusealコンソールに登録してアップグレードします。オンプレミスアプリは完全にスタンドアロンで、コンソールはライセンスの管理にのみ使用されます。
+  send_from_email: メールから送信
+  optional: オプション
+  save: 保存
+  saving: 保存中
+  changes_have_been_saved: 変更は保存されています。
+  unlock_with_docuseal_pro: Docuseal Proでロックを解除します
+  use_your_own_certificates_to_sign_and_verify_pdf_files: 独自の証明書を使用して、PDFファイルに署名および検証します。
+  upload_certificate: 証明書をアップロード
+  name: 名前
+  file: ファイル
+  use_a_valid_der_p12_or_pfx_file: 有効な.der、.p12または.pfxファイルを使用します。
+  submit: 提出
+  submitting: 提出中
+  pdf_signature: PDF署名
+  upload_signed_pdf_file_to_validate_its_signature_: '署名されたPDFファイルをアップロードして署名を検証します:'
+  analyzing: 分析
+  verify_signed_pdf: 署名されたPDFを確認します
+  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">クリックしてアップロード</span>またはドラッグアンドドロップ'
+  click_to_upload_or_drag_and_drop_files_html: 'ファイルを<span class="font-medium">クリックしてアップロード</span>またはドラッグアンドドロップ'
+  signing_certificates: 署名証明書
+  upload_cert: 証明書をアップロード
+  valid_to: 有効
+  status: ステータス
+  make_default: デフォルトにする
+  remove: 削除
+  removing: 削除中
+  delete: 削除
+  default: デフォルト
+  are_you_sure_: 本当によろしいですか？
+  timestamp_server: タイムスタンプサーバー
+  timeserver_url: タイムサーバーURL
+  url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: タイムスタンプの署名を生成するために使用される信頼できるRFC 3161のタイムサーバーURL。
+  apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer: 各署名者ごとにドキュメントに複数のPDFデジタル署名を適用する
+  remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form: 署名されたPDFからPDFフォームの記入可能なフィールドを削除します（フォームのフラット化）
+  certificate_has_been_successfully_added: 証明書が正常に追加されました。
+  default_certificate_has_been_selected: デフォルトの証明書が選択されました。
+  certificate_has_been_removed: 証明書が削除されました。
+  already_exists: すでに存在します。
+  welcome_to_product_name: 'ようこそ%{product_name}へ'
+  set_password: パスワードを設定
+  confirm_password: 新しいパスワードを確認
+  save_password_and_sign_in: パスワードを保存してサインイン
+  use_an_authenticator_mobile_app_like_google_authenticator_or_1password_to_scan_the_qr_code_below: Google Authenticatorや1PasswordなどのAuthenticator Mobileアプリを使用して、以下のQRコードをスキャンします。
+  remove_2fa: 2FAを削除
+  setup_2fa: 2FAをセットアップ
+  2fa_has_been_configured: 2FAは構成されています。
+  code_is_invalid: コードは無効です
+  2fa_has_been_removed: 2FAは削除されました。
+  2fa_has_been_set_up_already: 2FAはすでにセットアップされています。
+  developer_newsletters: 開発者のニュースレター
+  skip: スキップ
+  email_notifications: メール通知
+  receive_notification_emails_on_completed_submission: 提出が完了時に通知メールを受け取る
+  completed_documents_notification_bcc_address: ドキュメント完了通知BCCアドレス
+  sign_request_email_reminders: サイン リクエスト メール リマインダー
+  send_automatic_email_reminders_to_your_recipients: 受信者に自動メールリマインダーを送信します。
+  first_reminder_in: 最初のリマインダー
+  second_reminder_in: 2回目のリマインダー
+  third_reminder_in: 3回目のリマインダー
+  learn_more: もっと詳しく
+  unable_to_save: 保存できません。
+  invalid_timeserver: 無効なタイムサーバーです
+  email_templates: メールテンプレート
+  signature_request_email: 署名依頼メール
+  signature_request_sms: 署名依頼SMS
+  verification_code_sms: 検証コードSMS
+  completed_notification_email: 完了通知メール
+  company_logo: 会社ロゴ
+  submission_form: 提出フォーム
+  completed_form_message: 記入済みフォームのメッセージ
+  completed_form_redirect_button: 完了したフォームのリダイレクトボタン
+  documents_copy_email: ドキュメントのコピーメール
+  form_custom_css: フォームカスタムCSS
+  subject: 件名
+  body: 本文
+  text_message: テキストメッセージ
+  title: タイトル
+  button_title: ボタンタイトル
+  button_url: ボタンURL
+  upload_logo: ロゴをアップロード
+  show_confetti_on_successful_completion: 正常に完了したら紙吹雪を表示する
+  attach_audit_log_pdf: 監査ログPDFを添付
+  attach_documents: ドキュメントを添付する
+  settings_have_been_saved: 設定が保存されました。
+  display_your_company_name_and_logo_when_signing_documents: ドキュメントに署名するときに会社名とロゴを表示します。
+  profile: プロフィール
+  signature: 署名
+  update_signature: 署名を更新
+  unable_to_save_signature: 署名を保存できません。
+  signature_has_been_saved: 署名が保存されました。
+  signature_has_been_removed: 署名が削除されました。
+  initials: イニシャル
+  update_initials: イニシャルを更新
+  unable_to_save_initials: イニシャルを保存できません。
+  initials_has_been_saved: イニシャルが保存されました。
+  initials_has_been_removed: イニシャルが削除されました。
+  change_password: パスワードの変更
+  two_factor_authentication: 二要素認証
+  2fa_is_not_configured: 2FAは構成されていません
+  set_up_2fa: 2FAのセットアップ
+  contact_information_has_been_update: 連絡先情報が更新されました。
+  password_has_been_changed: パスワードが変更されました。
+  email_integration: メール統合
+  send_via_connected_email: 接続されたメール経由で送信
+  activate_with_docuseal_pro: Docuseal Proでアクティブ化します
+  send_signature_request_to_your_recipients_directly_from_your_email: メールから直接受信者に署名リクエストを送信する
+  connect_gmail: Gmailに接続
+  re_connect_gmail: Gmailに再接続
+  connect_microsoft: Microsoftに接続
+  re_connect_microsoft: Microsoftに再接続
+  gmail_has_been_connected: Gmailに接続されました。
+  microsoft_account_has_been_connected: Microsoft Accountに接続されました。
+  but_not_activated: しかしアクティブ化されていません
+  email_has_been_sent: メールが送信されました。
+  email_has_been_sent_already: メールはすでに送信されています。
+  initial_setup: 初期セットアップ
+  demo_environment: デモ環境
+  close: 閉じる
+  upgrade: アップグレード
+  settings: 設定
+  console: コンソール
+  verify_pdf: PDFを確認
+  sign_out: サインアウト
+  page_number: '%{number}ページ'
+  powered_by: Powered by
+  count_documents_signed_with_html: '<b>%{count}</b>の署名されたドキュメント'
+  storage: ストレージ
+  notifications: 通知
+  e_signature: 電子署名
+  personalization: パーソナライズ
+  users: ユーザー
+  plans: プラン
+  new: New
+  embedding: 埋め込み
+  background_jobs: バックグラウンドジョブ
+  need_help_ask_a_question_: '助けが必要ですか？質問してください:'
+  exit: 退出
+  leave: 離れる
+  impersonated_as: 代筆
+  ask_ai: AIに尋ねる
+  ai_assistant: AIアシスタント
+  discord_community: Discordコミュニティ
+  integrations: 統合
+  teams: Teams
+  tenants: Tenants
+  send_signature_requests_via_sms: SMSを介して署名リクエストを送信します
+  twilio_settings: Twilio設定
+  webhook_settings: Webhook設定
+  sending_sms: SMSを送信
+  from: From
+  account_sid: SIDアカウント
+  send_sms_via_webhook: webhookを介してSMSを送信します
+  webhook_integration_allows_to_send_sms_using_any_provider: webhook統合を使用すると任意のプロバイダーを使用してSMSを送信できます
+  test: テスト
+  single_sign_on_with_saml_2_0: SAML2.0でのシングルサインオン
+  force_sso_disable_login_with_email_and_password: 強制SSO（メールとパスワードでのログインを無効にする）
+  for_aws_s3_compatible_apis_like_minio: MinioのようなAWS S3互換API用。
+  store_all_files_on_disk: すべてのファイルをディスクに保存
+  no_configs_are_needed_but_make_sure_your_disk_is_persistent: 構成は必要ありませんが、ディスクが永続的であることを確認してください
+  not_suitable_for_heroku_and_other_paas: Herokuやその他のPaaSには適していません
+  bulk_send_from_excel_xlsx_or_csv: Excel XLSXまたはCSVから一括送信
+  add_new: 新規追加
+  add_recipients: 受信者を追加
+  add_new_recipients: 新しい受信者を追加
+  add_recipients_html: <span>受信者<span class="hidden md:inline"></span></span>を追加する
+  type_emails_here: ここにメールを入力
+  or_embed_on_your_website: またはウェブサイトに埋め込む
+  phone: 電話
+  send_emails: メールを送信
+  edit_message: メッセージを編集
+  smtp_not_configured: SMTPが構成されていません
+  configure_smtp_settings_in_order_to_send_emails_: 'メールを送信するためにSMTP設定を構成します:'
+  go_to_smtp_settings: SMTP設定に移動
+  save_as_default_template_message: デフォルトのテンプレートメッセージとして保存
+  re_send_sms: SMSを再送信
+  send_sms: SMSを送信
+  preserve_order: 順序を保持
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: チェックすると前の当事者によってフォームが完成したあと通知が2番目の当事者に送信されます。チェックを外すとすぐにすべての当事者に同時に通知を送信します。
+  upgrade_to_send_unlimited_signature_requests: アップグレードして無制限の署名依頼を送信
+  add_without_sending: 送信せずに追加
+  upgade_now: 今すぐアップグレード
+  send_signature_request_emails_without_limits_with_docuseal_pro: Docuseal Proで制限なしに署名依頼メールを送信
+  count_emails_used: '%{count}メールが使用されています'
+  has_been_connected: 接続されています
+  but_not_activated: がアクティブ化されていません
+  sms_not_configured: SMSは構成されていません
+  configure_sms_settings_in_order_to_send_text_messages_: 'テキストメッセージを送信するためにSMS設定を構成します:'
+  go_to_sms_settings: SMSの設定に移動
+  back_to_active: アクティブに戻る
+  submissions: 提出
+  templates: テンプレート
+  document_templates_html: <span class="hidden md:inline">ドキュメント</span>テンプレート
+  archived: アーカイブ
+  search: 検索
+  submissions_not_found: 提出する物が見つかりません
+  create: 作成する
+  view_archived: アーカイブを表示
+  all: All
+  pending: 保留中
+  completed: 完了しました
+  primarily_opened_with_microsoft_excel_other_options_include_google_sheets_libreoffice_calc_and_openoffice_calc: 主にMicrosoft Excelで開きます。その他のオプションには、Googleシート、LibreOffice Calc、OpenOffice Calcがあります。
+  can_be_opened_with_microsoft_excel_google_sheets_or_any_text_editor_like_notepad: Microsoft Excel、Googleシート、またはNotepadのようなテキストエディターで開くことができます。
+  draw_signature: 署名を描く
+  clear: クリア
+  signature_uploaded: アップロードされた署名
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: '提出削除は不可逆的であり、関連するすべての署名されたドキュメントを永久に削除します。よろしいですか？'
+  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'デスクトップデバイスに戻ってフォームまたは<a class="link" href="%{link}">モバイルで続行</a>'
+  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: テンプレートの削除は不可逆的であり、関連するすべての署名されたドキュメントを永久に削除します。よろしいですか？
+  rename_folder: フォルダーの名前を変更
+  folder_name: フォルダー名
+  rename: 名前変更
+  home: ホーム
+  templates_not_found: テンプレートが見つかりません
+  upload_new_document: 新しいドキュメントをアップロード
+  uploading: アップロード中
+  expired: 期限切れ
+  sign_now: 今すぐサイン
+  archive: アーカイブ
+  archiving: アーカイブ中
+  restore: 復元
+  restoring: 復元中
+  clone: 複製
+  edit: 編集
+  move: 移動
+  moving: 移動中
+  preview: プレビュー
+  upload: アップロード
+  clone_template: テンプレートを複製
+  new_document_template: 新しいドキュメントテンプレート
+  document_name: ドキュメント名
+  change_folder: フォルダー変更
+  shared: 共有
+  export: エクスポート
+  there_are_no_submissions: 提出はありません
+  send_an_invitation_to_fill_and_complete_the_form: フォームに記入して完了するよう招待状を送る
+  send_to_recipients: 受信者へ送信
+  sign_it_yourself: 自分で署名する
+  api_and_embedding: APIと埋め込み
+  template_id: テンプレートID
+  embedding_url: 埋め込みURL
+  share_template_with_test_mode: テストモードでテンプレートを共有します
+  share_template_with_all_tenants: すべてのテナントとテンプレートを共有します
+  use_following_placeholders_text_: '次のプレースホルダーテキストを使用します:'
+  upgrade_plan_to_add_more_users: より多くのユーザーを追加するためのプランをアップグレードします
+  move_into_folder: フォルダに移動
+  new_folder_name: 新しいフォルダー名
+  exit_preview: プレビューを終了
+  general: 一般
+  recipients: 受信者
+  form_preferences: フォーム設定
+  redirect_on_completion_url: 完了時にリダイレクトされるURL
+  completion_message: 完了メッセージ
+  email_subject: メールの件名
+  email_body: メールの本文
+  attach_audit_log_pdf_to_the_email: 監査ログのPDFをメールに添付
+  send_emails_automatically_on_completion: 完了時に自動的にメールを送信
+  attach_documents_to_the_email: メールにドキュメントを添付
+  not_specified: 指定なし
+  submission_requester: 提出の依頼者
+  specified_email: 指定されたメール
+  invite_by_name: '%{name}で招待します'
+  same_as_name: '%{name}と同じ'
+  default_email: デフォルトのメール
+  processing: 処理中
+  upload_initials: イニシャルをアップロード
+  draw: 描く
+  upload_signature: 署名をアップロード
+  admin: 管理者
+  editor: 編集者
+  viewer: 閲覧者
+  member: メンバー
+  agent: 代理人
+  superadmin: スーパー管理者
+  edit_user: ユーザーの編集
+  new_user: 新しいユーザー
+  unarchive: アーカイブ解除
+  role: 役割
+  last_session: 前回のセッション
+  unlock_more_user_roles_with_docuseal_pro: Docuseal Proでより多くのユーザーロールのロックを解除します。
+  view_active: アーカイブを表示
+  team_account: チームアカウント
+  team_accounts: チームアカウント
+  tenant_account: テナントアカウント
+  tenant_accounts: テナントアカウント
+  upgrade_plan: アップグレードプラン
+  add_user: ユーザーの追加
+  impersonate: 代筆
+  loading: ロード中
+  documents: ドキュメント
+  accounts: アカウント
+  edit_account: アカウントの編集
+  new_team: 新しいチーム
+  new_tenant: 新しいテナント
+  remove_team: チームを削除
+  remove_tenant: テナントを削除
+  replace: 置き換える
+  allow_tenant_admins_to_invite_new_users: テナント管理者が新しいユーザーを招待できるようにする
+  manage_multiple_teams: 複数のチームを管理する
+  api_key: APIキー
+  logo: ロゴ
+  back: 戻る
+  add_secret: シークレットの追加
+  edit_secret: シークレットの編集
+  submission_example_payload: 提出のペイロード例
+  there_are_no_signatures: 署名はありません
+  signed_with_trusted_certificate: 信頼できる証明書で署名
+  signed_with_external_certificate: 外部証明書で署名
+  setup_2fa_to_continue: 続行するには2FAを設定します。
+  create_a_new_account: 新しいアカウントを作成します。
+  you_are_already_signed_in: あなたはすでにサインインしています。
+  please_sign_in: サインインしてください。
+  not_found: 見つかりません
+  new_recipients_have_been_added: 新しい受信者が追加されました。
+  submission_has_been_removed: 提出は削除されました。
+  submission_has_been_archived: 提出はアーカイブされています。
+  form_has_been_completed_already: フォームはすでに完了しています。
+  form_has_been_archived: フォームはアーカイブされています。
+  form_has_been_expired: フォームの有効期限が切れています。
+  form_has_been_declined: フォームは拒否されました。
+  file_is_missing: ファイルがありません
+  folder_name_has_been_updated: フォルダー名が更新されました。
+  unable_to_rename_folder: フォルダーの名前を変更できません。
+  template_has_been_removed: テンプレートは削除されました。
+  template_has_been_archived: テンプレートはアーカイブされています。
+  template_has_been_cloned: テンプレートは複製されました。
+  document_template_has_been_moved: ドキュメントテンプレートは移動されました。
+  unable_to_move_template_into_folder: テンプレートをフォルダーに移動できません。
+  template_has_been_unarchived: テンプレートはアーカイブ解除されています。
+  submission_has_been_unarchived: 提出はアーカイブ解除されています。
+  unable_to_update_file: ファイルをアップロードできません。
+  user_has_been_invited: ユーザーは招待されています。
+  unable_to_update_user: ユーザーを更新できません。
+  user_has_been_updated: ユーザーは更新されました。
+  unable_to_remove_user: ユーザーを削除できません。
+  user_has_been_removed: ユーザーは削除されました。
+  invalid_pdf: 無効なPDF
+  webhook_secret_has_been_saved: WebHookシークレットが保存されました。
+  webhook_url_has_been_saved: WebHook URLは保存されています。
+  webhook_request_has_been_sent: WebHookリクエストは送信されました。
+  webhook_url_has_been_updated: WebHook URLは更新されました。
+  webhook_url_has_been_deleted: WebHook URLは削除されました。
+  unable_to_resend_webhook_request: Webhookリクエストを再送信できません。
+  new_webhook: 新しいWebhook
+  delete_webhook: webhookを削除
+  count_submissions_have_been_created: '%{count}の提出物が作成されました。'
+  gmail_has_been_connected: Gmailは接続されています
+  microsoft_account_has_been_connected: Microsoftアカウントは接続されています
+  sms_length_cant_be_longer_than_120_bytes: SMSの長さは120バイトを超えることはできません
+  connected_successfully: 正常に接続されました。
+  user_nameid_not_found: 'ユーザー%{nameId}が見つかりません。'
+  sso_settings_have_been_updated: SSO設定が更新されました。
+  sms_has_been_sent: SMSが送信されました。
+  account_has_been_created: アカウントが作成されました。
+  account_has_been_updated: アカウントが更新されました。
+  account_has_been_removed: アカウントが削除されました。
+  logo_has_been_uploaded: ロゴがアップロードされました。
+  invalid_file_type: 無効なファイルタイプ
+  upload_file: ファイルをアップロード
+  upgrade_your_plan_to_invite_more_users_contact_email: 'より多くのユーザーを招待するには、プランをアップグレードしてください（%{email}にご連絡ください）。'
+  contact_your_admin_email_to_invite_more_users: 'より多くのユーザーを招待するには、管理者%{email}に連絡してください。'
+  contact_your_administrator_to_add_new_users: 管理者に連絡して新しいユーザーを追加してください
+  one_hour: 1時間
+  two_hours: 2時間
+  four_hours: 4時間
+  eight_hours: 8時間
+  twelve_hours: 12時間
+  twenty_four_hours: 24時間
+  two_days: 2日
+  four_days: 4日
+  eight_days: 8日
+  fifteen_days: 15日
+  free: 無期限
+  unlimited_documents_storage: 無制限のドキュメントストレージ
+  users_management: ユーザー管理
+  ten_filed_types: 10個のフィールドタイプ
+  multiple_signers: 複数の署名者
+  automatic_esignature: 自動電子署名
+  ten_signature_request_emails_per_month: 毎月10通の署名依頼メール
+  unlimited_sign_yourself: 無制限のサイン
+  free_developer_testing_sandbox: 無料の開発者テスト用サンドボックス
+  continue_with_free_basic: 無料のベーシックを続ける
+  unlimited_signature_request_emails: 無制限の署名要求メール
+  your_company_logo: あなたの会社のロゴ
+  connect_own_email_address: 独自のメールアドレスを接続します
+  personalize_email_content: メールコンテンツのパーソナライズ
+  automated_reminders: 自動リマインダー
+  bulk_send_from_spreadsheet: スプレッドシートからの一括送信
+  identify_verification_via_sms: SMSによる本人確認
+  start_with_pro: Proを始める
+  user_month: ユーザー / 毎月
+  developer_sandbox: 開発者サンドボックス。
+  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">アップグレード</a>して本番環境での使用を開始します。'
+  download_combined_pdf: 結合したPDFをダウンロード
+  audit_log: 監査ログ
+  signers: 署名者
+  not_invited_yet:  まだ招待されていません
+  not_completed_yet: まだ完了していません
+  declined_on_time: '%{time}に拒否されました'
+  sign_in_person: 直接署名
+  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">新しいテンプレートを作成</a>または<a href="%{start_form_link}" target="_blank" class="inline underline font-medium">既存のテンプレートを送信</a>する
+  send_email_copy_with_completed_documents_to_a_specified_bcc_address: 指定されたBCCアドレスに完成した書類を添付したメールのコピーを送信する。
+  re_send_email: メールを再送信
+  send_email: メールを送信
+  copy_share_link: 共有リンクをコピー
+  copied_to_clipboard: クリップボードにコピーされました
+  link: リンク
+  via_email: メールで
+  via_phone: 電話で
+  detailed: 詳細
+  upload_list: リストをアップロード
+  creating: 作成中
+  open_source_documents_software: オープンソースドキュメントソフトウェア
+  copy_link: リンクをコピー
+  opened: オープン
+  sent: 送信済
+  awaiting: 待機中
+  document_id: ドキュメントID
+  envelope_id: エンベロープID
+  event_log: イベントログ
+  verify: 確認
+  testing_log_not_for_production_use: テスト・ログ - 本番用ではありません
+  original_sha256: オリジナルSHA256
+  result_sha256: SHA256結果
+  generated_at: 生成されます
+  email_verification: メールの確認
+  phone_verification: 電話の確認
+  session_id: セッションID
+  option: オプション
+  text_field: テキストフィールド
+  signature_field: 署名フィールド
+  initials_field: イニシャルフィールド
+  date_field: 日付フィールド
+  number_field: 数値フィールド
+  image_field: 画像フィールド
+  file_field: ファイルフィールド
+  select_field: 選択フィールド
+  checkbox_field: チェックボックスフィールド
+  multiple_field: 複数選択フィールド
+  radio_field: ラジオグループフィールド
+  cells_field: セルフィールド
+  stamp_field: スタンプフィールド
+  payment_field: 支払いフィールド
+  phone_field: 電話フィールド
+  verification_field: 本人確認
+  identity_verification: 本人確認
+  paid_price: '%{price}支払済'
+  verified: 確認済
+  unverified: 未確認
+  document: ドキュメント
+  completed_at: 完了
+  edit_recipient: 受信者の編集
+  update_recipient: 受信者の更新
+  use_international_format_1xxx_: '国際フォーマットを使用する: +1xxx...'
+  submitter_cannot_be_updated: 提出者は更新できません。
+  at_least_one_field_must_be_filled: 少なくとも1つのフィールドを埋める必要があります。
+  archived_users: アーカイブされたユーザー
+  embedding_users: ユーザーの埋め込み
+  view_embedding_users: 埋め込みユーザーを表示
+  key: キー
+  value: 値
+  webhook_secret: Webhookシークレット
+  author: 著者
+  to: To
+  created_at: 作成
+  apply: 適用
+  applying: 適用中
+  today: 今日
+  yesterday: 昨日
+  this_week: 今週
+  last_week: 先週
+  this_month: 今月
+  last_month: 先月
+  this_year: 今年
+  policy_links: ポリシーリンク
+  markdown_content_e_g: Markdownコンテンツ、例
+  privacy_policy: プライバシーポリシー
+  the_code_has_been_sent_to_your_email: コードはメールに送信されました。
+  enter_the_verification_code_from_your_email: Eメールに記載されている認証コードを入力してください。
+  too_many_attempts: 試行回数が多すぎます。
+  verification_code: 認証コード
+  resend_code: コードを再送信
+  verify_new_sign_in: 新規サインインの確認
+  use_otp_code_to_sign_in_or_click_the_link_below_html: '<b>%{code}</b>コードを使用してサインインするか、以下のリンクをクリックしてください。:'
+  complete_sign_in: サインイン成功
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: このサインインに覚えのない方はこのメールに返信してください。
+  docuseal_support: DocuSealサポート
+  use_the_edit_form_to_move_it_to_another_team: 編集フォームを使って他のチームに移動します。
+  too_many_sms_attempts_try_again_in_a_few_seconds: SMSの試行回数が多すぎます。少ししてからもう一度やり直してください。
+  number_phone_number_is_invalid: "+%{number}電話番号は無効です"
+  make_com_integration: Make.com統合
+  zapier_integration: Zapier統合
+  seamlessly_automate_your_document_signing_process_with_make_com: Make.comでドキュメント署名プロセスをシームレスに自動化します。
+  find_suitable_zapier_templates_to_automate_your_workflow: ワークフローを自動化するための適切なZapierテンプレートを見つけてください。
+  get_started: 始める
+  click_here_to_learn_more_about_user_roles_and_permissions_html: 'ユーザーの役割と権限についての詳細は<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">こちらをクリック</a>してください。'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '％%{count} / 10 の署名依頼メールが今月送信されました。Proにアップグレードすると署名依頼メールを無制限に送信できます。'
+  test_mode_emails_limit_will_be_reset_within_24_hours: テストモードのメール制限は24時間以内にリセットされます。
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: DocuSeal製品への満足度を10段階でお答えください。
+  tell_us_more_about_your_experience: あなたの経験について教えてください
+  extremely_dissatisfied: 非常に不満
+  extremely_satisfied: 非常に満足
+  your_pro_plan_payment_is_overdue: あなたのProプランの支払期限が過ぎています。
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">こちらをクリック</a>して、お支払いの詳細を更新しサービスが中断しないように請求書をクリアします。
+  overdue_payment: 支払期限切れ
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: 請求書の未払いによりProプランが停止されました。お支払いの詳細を更新して請求書を決済しDocuSealの使用を継続するか、サブスクリプションをキャンセルすることができます。
+  manage_subscription: サブスクリプションの管理
+  submission_created_by_email_html: '%{email}によって<b>提出が作成されました</b>'
+  submission_created_by_email_via_source_html: ' %{source}を介して%{email}によって<b>提出が作成されました</b>'
+  submission_created_via_source_html: '%{source}を介して<b>提出が作成されました</b>'
+  pro_user_seats_used: Proユーザーシートが使われています
+  manage_plan: プランの管理
+  submission_sources:
+    api: API
+    bulk: 一括送信
+    embed: 埋め込み
+    invie: 招待
+    link: リンク
+  submission_event_names:
+    send_email_to_html: '%{submitter_name}へ<b>メールを送信しました</b>'
+    send_reminder_email_to_html: '%{submitter_name}へ<b>リマインダーメールの送信しました</b>'
+    send_sms_to_html: '%{submitter_name}へ<b>SMSの送信しました</b>'
+    send_2fa_sms_to_html: '%{submitter_name}へ<b>認証用SMSの送信しました</b>'
+    open_email_by_html: '%{submitter_name}が<b>メールを開封しました</b>'
+    click_email_by_html: '%{submitter_name}が<b>メールリンクをクリックしました</b>'
+    click_sms_by_html: '%{submitter_name}が<b>SMSリンクをクリックしました</b>'
+    phone_verified_by_html: '%{submitter_name}が<b>電話認証しました</b>'
+    start_form_by_html: '%{submitter_name}が<b>提出を開始しました</b>'
+    view_form_by_html: '%{submitter_name}<b>フォームを閲覧しました</b>'
+    invite_party_by_html: '%{invited_submitter_name}が%{submitter_name}によって<b>招待されました</b>'
+    complete_form_by_html: '%{submitter_name}によって<b>提出が完了しました</b>'
+    start_verification_by_html: '%{submitter_name}が<b>本人確認を開始しました</b>'
+    complete_verification_by_html: '%{submitter_name}によって%{provider}で<b>本人確認が完了しました</b>'
+    api_complete_form_by_html: '%{submitter_name}によって<b>API経由で送信完了しました</b>'
+  import_list:
+    select_worksheet: ワークシートを選択
+    open: 開く
+    remove: 削除
+    recipient_field: 受信フィールド
+    spreadsheet_column: スプレッドシート列
+    select_field: フィールドを選択
+    select_column: 列を選択
+    new_field_mapping: 新しいフィールドマッピング
+    total_entries: 総エントリ
+    upload_csv_or_xlsx_spreadsheet: CSVまたはXLSXスプレッドシートをアップロード
+    click_to_upload: クリックしてアップロード
+    or_drag_and_drop_files: またはファイルをドラッグアンドドロップ
+    or: または
+    download: ダウンロード
+    a_sample_spreadsheet_to_fill_and_import: 記入とインポートのためのサンプル・スプレッドシート
+  doorkeeper:
+    scopes:
+      write: データの更新
+      read: データの読み込み
+
 en-US:
   <<: *en
   date:
@@ -4812,3 +5538,6 @@ de-DE:
 
 it-IT:
   <<: *it
+
+ja-JP:
+  <<: *ja
