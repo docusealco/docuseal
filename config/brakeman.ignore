@@ -1,0 +1,8 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "25f4ce5fee1e1180fa1919dc4ee78db3ab3457a956e4679503aa745771a43836",
+      "note": "Permitted parameters are necessary for creating submitters via API"
+    }
+  ]
+}
