@@ -107,6 +107,7 @@ module Submissions
 
   def normalize_email(email)
     return if email.blank?
+    return if email.is_a?(Numeric)
 
     return email.downcase if email.to_s.include?(',') ||
                              email.to_s.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
