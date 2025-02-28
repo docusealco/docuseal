@@ -55,6 +55,7 @@ class Submitter < ApplicationRecord
   has_many_attached :attachments
   has_many_attached :preview_documents
   has_many :template_accesses, through: :template
+  has_many :email_events, as: :emailable, dependent: (Docuseal.multitenant? ? nil : :destroy)
 
   has_many :document_generation_events, dependent: :destroy
   has_many :submission_events, dependent: :destroy
@@ -62,6 +63,8 @@ class Submitter < ApplicationRecord
            class_name: 'SubmissionEvent', dependent: :destroy, inverse_of: :submitter
 
   scope :completed, -> { where.not(completed_at: nil) }
+
+  after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
 
   def status
     if declined_at?
@@ -106,6 +109,14 @@ class Submitter < ApplicationRecord
       fields = submission.template_fields || template.fields
       signature_field_types = %w[signature initials]
       fields.any? { |f| f['submitter_uuid'] == uuid && signature_field_types.include?(f['type']) }
+    end
+  end
+
+  private
+
+  def anonymize_email_events
+    email_events.each do |event|
+      event.update!(email: Digest::MD5.base64digest(event.email))
     end
   end
 end
