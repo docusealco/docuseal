@@ -77,6 +77,33 @@ jobs:
         run: |
           ./node_modules/eslint/bin/eslint.js "app/javascript/**/*.js"
 
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.1
+      - name: Cache gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install gems
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 4
+          yarn install
+          sudo apt-get update
+          sudo apt-get install libvips
+      - name: Run Brakeman
+        run: bundle exec brakeman -q --exit-on-warn
+
   rspec:
     name: RSpec
     runs-on: ubuntu-latest

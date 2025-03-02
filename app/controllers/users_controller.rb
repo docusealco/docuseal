@@ -45,17 +45,16 @@ class UsersController < ApplicationController
     return redirect_to settings_users_path, notice: I18n.t('unable_to_update_user') if Docuseal.demo?
 
     attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
-    attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
 
     if params.dig(:user, :account_id).present?
-      account = Account.accessible_by(current_ability).find(params[:user][:account_id])
+      account = Account.accessible_by(current_ability).find(params.dig(:user, :account_id))
 
       authorize!(:manage, account)
 
       @user.account = account
     end
 
-    if @user.update(attrs)
+    if @user.update(attrs.except(current_user == @user ? :role : nil))
       redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity
@@ -84,8 +83,11 @@ class UsersController < ApplicationController
 
   def user_params
     if params.key?(:user)
-      params.require(:user).permit(:email, :first_name, :last_name, :password,
-                                   :role, :archived_at, :account_id)
+      permitted_params = %i[email first_name last_name password archived_at]
+
+      permitted_params << :role if role_valid?(params.dig(:user, :role))
+
+      params.require(:user).permit(permitted_params)
     else
       {}
     end
