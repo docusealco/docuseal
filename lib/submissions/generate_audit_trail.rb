@@ -366,6 +366,8 @@ module Submissions
 
               value = value.join(', ') if value.is_a?(Array)
 
+              value = TextUtils.mask_value(value) if field.dig('preferences', 'mask').present?
+
               composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
                                           text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,
                                           padding: [0, 0, 10, 0])

@@ -2,6 +2,8 @@
 
 module TextUtils
   RTL_REGEXP = /[\p{Hebrew}\p{Arabic}]/
+  MASK_REGEXP = /[^\s\-_\[\]\(\)\+\?\.\,]/
+  MASK_SYMBOL = 'X'
 
   module_function
 
@@ -11,6 +13,10 @@ module TextUtils
     text.match?(TextUtils::RTL_REGEXP)
   rescue Encoding::CompatibilityError
     false
+  end
+
+  def mask_value(text)
+    text.to_s.gsub(MASK_REGEXP, MASK_SYMBOL)
   end
 
   def maybe_rtl_reverse(text)
