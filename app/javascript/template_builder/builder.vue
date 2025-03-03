@@ -1338,9 +1338,8 @@ export default {
         }
 
         if (field.type === 'date') {
-          field.preferences = {
-            format: this.defaultDateFormat
-          }
+          field.preferences ||= {}
+          field.preferences.format ||= this.defaultDateFormat
         }
       }
 
