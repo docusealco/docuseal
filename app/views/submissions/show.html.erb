@@ -105,17 +105,17 @@
                   <% value = values[field['uuid']] %>
                   <% value ||= field['default_value'] if field['type'] == 'heading' %>
                   <% next if value.blank? %>
-                  <% if field.dig('preferences', 'mask').present? && signed_in? && can?(:read, @submission) %>
+                  <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
                     <span class="group">
                       <span class="hidden group-hover:inline">
                         <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                       </span>
                       <span class="group-hover:hidden">
-                        <%= render 'submissions/value', area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                        <%= render 'submissions/value', area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                       </span>
                     </span>
                   <% else %>
-                    <%= render 'submissions/value', area:, field:, attachments_index:, value: field.dig('preferences', 'mask').present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                    <%= render 'submissions/value', area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                   <% end %>
                 <% end %>
               </div>
@@ -249,11 +249,11 @@
                   <% elsif field['type'] == 'date' %>
                     <% value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                   <% end %>
-                  <% if field.dig('preferences', 'mask').present? %>
+                  <% if (mask = field.dig('preferences', 'mask').presence) %>
                     <% if signed_in? && can?(:read, @submission) %>
-                      <div class="[&:not(:hover)]:after:content-[attr(data-value)] block whitespace-pre-wrap group" data-value="<%= Array.wrap(value).map { |e| TextUtils.mask_value(e) }.join(', ') %>"><span class="hidden group-hover:block"><%= Array.wrap(value).join(', ') %></span></div>
+                      <div class="[&:not(:hover)]:after:content-[attr(data-value)] block whitespace-pre-wrap group" data-value="<%= Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') %>"><span class="hidden group-hover:block"><%= Array.wrap(value).join(', ') %></span></div>
                     <% else %>
-                      <div class="whitespace-pre-wrap"><%= Array.wrap(value).map { |e| TextUtils.mask_value(e) }.join(', ') %></div>
+                      <div class="whitespace-pre-wrap"><%= Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') %></div>
                     <% end %>
                   <% else %>
                     <div class="whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>

@@ -359,14 +359,13 @@ module Submissions
                 value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
               end
 
-              if field['type'] == 'number'
-                value = NumberUtils.format_number(value,
-                                                  field.dig('preferences', 'format'))
-              end
+              value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'
 
               value = value.join(', ') if value.is_a?(Array)
 
-              value = TextUtils.mask_value(value) if field.dig('preferences', 'mask').present?
+              if (mask = field.dig('preferences', 'mask').presence)
+                value = TextUtils.mask_value(value, mask)
+              end
 
               composer.formatted_text_box([{ text: TextUtils.maybe_rtl_reverse(value.to_s.presence || 'n/a') }],
                                           text_align: value.to_s.match?(RTL_REGEXP) ? :right : :left,

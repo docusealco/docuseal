@@ -391,7 +391,9 @@ module Submissions
           when ->(type) { type == 'cells' && !area['cell_w'].to_f.zero? }
             cell_width = area['cell_w'] * width
 
-            value = TextUtils.mask_value(value) if field.dig('preferences', 'mask').present?
+            if (mask = field.dig('preferences', 'mask').presence)
+              value = TextUtils.mask_value(value, mask)
+            end
 
             chars = TextUtils.maybe_rtl_reverse(value).chars
             chars = chars.reverse if field.dig('preferences', 'align') == 'right'
@@ -442,7 +444,9 @@ module Submissions
 
             value = TextUtils.maybe_rtl_reverse(Array.wrap(value).join(', '))
 
-            value = TextUtils.mask_value(value) if field.dig('preferences', 'mask').present?
+            if (mask = field.dig('preferences', 'mask').presence)
+              value = TextUtils.mask_value(value, mask)
+            end
 
             text_params = { font:, fill_color:, font_size: }
             text_params[:line_height] = text_params[:font_size] * 1.6 if font_name == COURIER_FONT

@@ -15,8 +15,22 @@ module TextUtils
     false
   end
 
-  def mask_value(text)
-    text.to_s.gsub(MASK_REGEXP, MASK_SYMBOL)
+  def mask_value(text, unmask_size = 0)
+    if unmask_size.is_a?(Numeric) && !unmask_size.zero?
+      if unmask_size.negative?
+        [
+          text.first(text.length + unmask_size).gsub(MASK_REGEXP, MASK_SYMBOL),
+          text.last(-unmask_size)
+        ].join
+      elsif unmask_size.positive?
+        [
+          text.first(unmask_size),
+          text.last(text.length - unmask_size).gsub(MASK_REGEXP, MASK_SYMBOL)
+        ].join
+      end
+    else
+      text.to_s.gsub(MASK_REGEXP, MASK_SYMBOL)
+    end
   end
 
   def maybe_rtl_reverse(text)
