@@ -63,7 +63,7 @@
               <span>
                 <%= t('add_signature_id_to_the_documents') %>
               </span>
-              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()', disabled: can?(:manage, :cfr) %>
             </div>
           <% end %>
         <% end %>
@@ -75,7 +75,7 @@
               <span>
                 <%= t('require_signing_reason') %>
               </span>
-              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()' %>
+              <%= f.check_box :value, class: 'toggle', checked: account_config.value, onchange: 'this.form.requestSubmit()', disabled: can?(:manage, :cfr) %>
             </div>
           <% end %>
         <% end %>
