@@ -483,6 +483,10 @@ export default {
       this.$el.getRootNode().activeElement.blur()
     },
     maybeToggleDefaultValue () {
+      if (!this.editable) {
+        return
+      }
+
       if (['text', 'number'].includes(this.field.type)) {
         this.isContenteditable = true
 

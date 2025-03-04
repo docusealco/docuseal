@@ -1316,6 +1316,10 @@ export default {
       }
     },
     onDropfield (area) {
+      if (!this.editable) {
+        return
+      }
+
       const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
