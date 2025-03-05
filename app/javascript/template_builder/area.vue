@@ -161,7 +161,7 @@
       ref="touchValueTarget"
       class="flex items-center h-full w-full"
       dir="auto"
-      :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? (alignClasses[field.preferences?.align] || '') : 'justify-center']"
+      :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center']"
       @click="focusValueInput"
     >
       <span
@@ -386,11 +386,19 @@ export default {
     defaultName () {
       return this.buildDefaultName(this.field, this.template.fields)
     },
-    alignClasses () {
+    fontClasses () {
+      if (!this.field.preferences) {
+        return {}
+      }
+
       return {
-        center: 'justify-center',
-        left: 'justify-start',
-        right: 'justify-end'
+        'justify-center': this.field.preferences.align === 'center',
+        'justify-start': this.field.preferences.align === 'left',
+        'justify-end': this.field.preferences.align === 'right',
+        'font-mono': this.field.preferences.font === 'Courier',
+        'font-serif': this.field.preferences.font === 'Times',
+        'font-bold': ['bold_italic', 'bold'].includes(this.field.preferences.font_type),
+        italic: ['bold_italic', 'italic'].includes(this.field.preferences.font_type)
       }
     },
     optionIndexText () {

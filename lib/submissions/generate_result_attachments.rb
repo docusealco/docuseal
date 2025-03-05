@@ -4,11 +4,28 @@ module Submissions
   module GenerateResultAttachments
     FONT_SIZE = 11
     FONT_PATH = '/fonts/GoNotoKurrent-Regular.ttf'
+    FONT_BOLD_PATH = '/fonts/GoNotoKurrent-Bold.ttf'
     FONT_NAME = if File.exist?(FONT_PATH)
                   FONT_PATH
                 else
                   'Helvetica'
                 end
+
+    FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
+                       FONT_BOLD_PATH
+                     else
+                       'Helvetica'
+                     end
+
+    FONT_ITALIC_NAME = 'Helvetica'
+    FONT_BOLD_ITALIC_NAME = 'Helvetica'
+
+    FONT_VARIANS = {
+      none: FONT_NAME,
+      bold: FONT_BOLD_NAME,
+      italic: FONT_ITALIC_NAME,
+      bold_italic: FONT_BOLD_ITALIC_NAME
+    }.freeze
 
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.com'
 
@@ -18,12 +35,15 @@ module Submissions
     TEXT_TOP_MARGIN = 1
     MAX_PAGE_ROTATE = 20
 
-    COURIER_FONT = 'Courier'
-
     A4_SIZE = [595, 842].freeze
 
     TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
     DEFAULT_FONTS = %w[Times Helvetica Courier].freeze
+    FONTS_LINE_HEIGHT = {
+      'Times' => 1.4,
+      'Helvetica' => 1.4,
+      'Courier' => 1.6
+    }.freeze
 
     MISSING_GLYPH_REPLACE = {
       '▪' => '-',
@@ -192,8 +212,16 @@ module Submissions
           fill_color = field.dig('preferences', 'color').presence
 
           font_name = field.dig('preferences', 'font')
+          font_variant = (field.dig('preferences', 'font_type').presence || 'none').to_sym
+
           font_name = FONT_NAME unless font_name.in?(DEFAULT_FONTS)
-          font = pdf.fonts.add(font_name)
+
+          if font_variant != :none && font_name == FONT_NAME
+            font_name = FONT_VARIANS[font_variant]
+            font_variant = nil unless font_name.in?(DEFAULT_FONTS)
+          end
+
+          font = pdf.fonts.add(font_name, variant: font_variant)
 
           value = submitter.values[field['uuid']]
           value = field['default_value'] if field['type'] == 'heading'
@@ -449,7 +477,7 @@ module Submissions
             end
 
             text_params = { font:, fill_color:, font_size: }
-            text_params[:line_height] = text_params[:font_size] * 1.6 if font_name == COURIER_FONT
+            text_params[:line_height] = text_params[:font_size] * (FONTS_LINE_HEIGHT[font_name] || 1)
 
             text = HexaPDF::Layout::TextFragment.create(value, **text_params)
 
@@ -458,7 +486,7 @@ module Submissions
 
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text_params[:font_size] = (font_size / 1.4).to_i
-              text_params[:line_height] = text_params[:font_size] * 1.6 if font_name == COURIER_FONT
+              text_params[:line_height] = text_params[:font_size] * (FONTS_LINE_HEIGHT[font_name] || 1)
 
               text = HexaPDF::Layout::TextFragment.create(value, **text_params)
 
@@ -469,7 +497,7 @@ module Submissions
 
             if preferences_font_size.blank? && box_height > (area['h'] * height) + 1
               text_params[:font_size] = (font_size / 1.9).to_i
-              text_params[:line_height] = text_params[:font_size] * 1.6 if font_name == COURIER_FONT
+              text_params[:line_height] = text_params[:font_size] * (FONTS_LINE_HEIGHT[font_name] || 1)
 
               text = HexaPDF::Layout::TextFragment.create(value, **text_params)
 
