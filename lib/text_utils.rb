@@ -16,7 +16,7 @@ module TextUtils
   end
 
   def mask_value(text, unmask_size = 0)
-    if unmask_size.is_a?(Numeric) && !unmask_size.zero?
+    if unmask_size.is_a?(Numeric) && !unmask_size.zero? && unmask_size.abs < text.length
       if unmask_size.negative?
         [
           text.first(text.length + unmask_size).gsub(MASK_REGEXP, MASK_SYMBOL),
