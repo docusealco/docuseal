@@ -26,7 +26,7 @@ class UserConfigsController < ApplicationController
   end
 
   def user_config_params
-    params.required(:user_config).permit!.tap do |attrs|
+    params.required(:user_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
       attrs[:value] = attrs[:value] == '1' if attrs[:value].in?(%w[1 0])
     end
   end

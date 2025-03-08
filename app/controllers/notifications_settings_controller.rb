@@ -39,7 +39,7 @@ class NotificationsSettingsController < ApplicationController
   end
 
   def email_config_params
-    params.require(:account_config).permit!.tap do |attrs|
+    params.require(:account_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
       attrs[:key] = nil unless attrs[:key].in?([AccountConfig::BCC_EMAILS, AccountConfig::SUBMITTER_REMINDERS])
     end
   end

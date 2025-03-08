@@ -101,7 +101,7 @@ module Templates
 
         {
           uuid: SecureRandom.uuid,
-          required: false,
+          required: field.flags.include?(:required),
           preferences: {},
           areas:,
           **field_properties

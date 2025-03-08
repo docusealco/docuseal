@@ -53,9 +53,17 @@ module Submitters
       submitter.completed_at = Time.current
       submitter.ip = request.remote_ip
       submitter.ua = request.user_agent
+
       submitter.values = merge_default_values(submitter)
       submitter.values = maybe_remove_condition_values(submitter)
-      submitter.values = merge_formula_values(submitter)
+
+      formula_values = build_formula_values(submitter)
+
+      if formula_values.present?
+        submitter.values = submitter.values.merge(formula_values)
+        submitter.values = maybe_remove_condition_values(submitter)
+      end
+
       submitter.values = submitter.values.transform_values do |v|
         v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
       end
@@ -149,7 +157,7 @@ module Submitters
       default_values.compact_blank.merge(submitter.values)
     end
 
-    def merge_formula_values(submitter)
+    def build_formula_values(submitter)
       computed_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
         next if field['type'] == 'payment'
@@ -161,7 +169,7 @@ module Submitters
         acc[field['uuid']] = calculate_formula_value(formula, submitter.values.merge(acc.compact_blank))
       end
 
-      submitter.values.merge(computed_values.compact_blank)
+      computed_values.compact_blank
     end
 
     def calculate_formula_value(_formula, _values)

@@ -50,7 +50,7 @@ class PersonalizationSettingsController < ApplicationController
   end
 
   def account_config_params
-    attrs = params.require(:account_config).permit!
+    attrs = params.require(:account_config).permit(:key, :value, { value: {} }, { value: [] })
 
     return attrs if attrs[:value].is_a?(String)
 
