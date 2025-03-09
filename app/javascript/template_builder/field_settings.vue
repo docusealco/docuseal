@@ -330,6 +330,19 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
+  <li v-if="field.type == 'text'">
+    <label
+      class="label-text cursor-pointer text-center w-full flex items-center"
+      @click="$emit('click-font')"
+    >
+      <IconTypography
+        width="18"
+      />
+      <span class="text-sm">
+        {{ t('font') }}
+      </span>
+    </label>
+  </li>
   <li
     v-if="field.type != 'stamp'"
   >
@@ -427,7 +440,7 @@
 </template>
 
 <script>
-import { IconRouteAltLeft, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconTypography, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldSettings',
@@ -438,6 +451,7 @@ export default {
     IconRouteAltLeft,
     IconCopy,
     IconNewSection,
+    IconTypography,
     IconX
   },
   inject: ['template', 'save', 't'],
@@ -472,7 +486,7 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'remove-area'],
+  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area'],
   data () {
     return {
     }

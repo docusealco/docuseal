@@ -141,6 +141,7 @@
               :with-required="false"
               :with-areas="false"
               @click-formula="isShowFormulaModal = true"
+              @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
               @click-condition="isShowConditionsModal = true"
               @scroll-to="[selectedAreaRef.value = $event, $emit('scroll-to', $event)]"
@@ -254,6 +255,17 @@
       />
     </Teleport>
     <Teleport
+      v-if="isShowFontModal"
+      :to="modalContainerEl"
+    >
+      <FontModal
+        :field="field"
+        :editable="editable && !defaultField"
+        :build-default-name="buildDefaultName"
+        @close="isShowFontModal = false"
+      />
+    </Teleport>
+    <Teleport
       v-if="isShowConditionsModal"
       :to="modalContainerEl"
     >
@@ -283,6 +295,7 @@ import FieldType from './field_type'
 import Field from './field'
 import FieldSettings from './field_settings'
 import FormulaModal from './formula_modal'
+import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
 import { IconX, IconCheck, IconDotsVertical } from '@tabler/icons-vue'
@@ -295,6 +308,7 @@ export default {
     IconCheck,
     FieldSettings,
     FormulaModal,
+    FontModal,
     IconDotsVertical,
     DescriptionModal,
     ConditionsModal,
@@ -352,6 +366,7 @@ export default {
   data () {
     return {
       isShowFormulaModal: false,
+      isShowFontModal: false,
       isShowConditionsModal: false,
       isContenteditable: false,
       isSettingsFocus: false,
