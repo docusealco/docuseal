@@ -6,11 +6,11 @@ module Submissions
 
     module_function
 
-    # rubocop:disable Metrics/BlockLength
+    # rubocop:disable Metrics
     def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {})
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
-      Array.wrap(submissions_attrs).filter_map do |attrs|
+      submissions = Array.wrap(submissions_attrs).filter_map do |attrs|
         submission_preferences = Submitters.normalize_preferences(user.account, user, attrs)
         submission_preferences = preferences.merge(submission_preferences)
 
@@ -51,8 +51,20 @@ module Submissions
 
         submission.tap(&:save!)
       end
+
+      maybe_enqueue_expire_at(submissions)
+
+      submissions
     end
-    # rubocop:enable Metrics/BlockLength
+    # rubocop:enable Metrics
+
+    def maybe_enqueue_expire_at(submissions)
+      submissions.each do |submission|
+        next unless submission.expire_at?
+
+        ProcessSubmissionExpiredJob.perform_in(submission.expire_at, 'submission_id' => submission.id)
+      end
+    end
 
     def maybe_add_invite_submitters(submission, template)
       template.submitters.each_with_index do |item, index|
