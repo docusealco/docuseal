@@ -3,7 +3,7 @@
     class="field-area flex absolute lg:text-base -outline-offset-1"
     dir="auto"
     :style="computedStyle"
-    :class="{ 'font-mono': field.preferences?.font === 'Courier', 'font-serif': field.preferences?.font === 'Times', 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'field-area-active outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :class="{ 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'field-area-active outline-red-500 outline-dashed outline-2 z-10': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -168,7 +168,7 @@
     <div
       v-else-if="field.type === 'cells'"
       class="w-full flex items-center"
-      :class="{ 'justify-end': field.preferences?.align === 'right' }"
+      :class="{ 'justify-end': field.preferences?.align === 'right', ...fontClasses }"
     >
       <div
         v-for="(char, index) in modelValue"
@@ -184,7 +184,7 @@
       ref="textContainer"
       dir="auto"
       class="flex items-center px-0.5 w-full"
-      :class="alignClasses[field.preferences?.align]"
+      :class="{ ...alignClasses, ...fontClasses }"
     >
       <span
         v-if="field && field.name && withFieldPlaceholder && !modelValue && modelValue !== 0"
@@ -326,10 +326,26 @@ export default {
       }
     },
     alignClasses () {
+      if (!this.field.preferences) {
+        return {}
+      }
+
       return {
-        center: 'text-center',
-        left: 'text-left',
-        right: 'text-right'
+        'text-center': this.field.preferences.align === 'center',
+        'text-left': this.field.preferences.align === 'left',
+        'text-right': this.field.preferences.align === 'right'
+      }
+    },
+    fontClasses () {
+      if (!this.field.preferences) {
+        return {}
+      }
+
+      return {
+        'font-mono': this.field.preferences.font === 'Courier',
+        'font-serif': this.field.preferences.font === 'Times',
+        'font-bold': ['bold_italic', 'bold'].includes(this.field.preferences.font_type),
+        italic: ['bold_italic', 'italic'].includes(this.field.preferences.font_type)
       }
     },
     option () {

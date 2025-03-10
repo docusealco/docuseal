@@ -772,6 +772,30 @@ RSpec.describe 'Signing Form', type: :system do
     end
   end
 
+  context 'when the masked field' do
+    let(:template) { create(:template, submitter_count: 2, account:, author:, only_field_types: %w[text]) }
+    let(:submission) { create(:submission, template: template) }
+    let!(:first_submitter) { create(:submitter, submission:, uuid: template.submitters[0]['uuid'], account:) }
+    let!(:second_submitter) { create(:submitter, submission:, uuid: template.submitters[1]['uuid'], account:) }
+
+    it 'shows the masked value instead of the real value' do
+      field = submission.template_fields.find do |f|
+        f['name'] == 'First Name' && f['submitter_uuid'] == first_submitter.uuid
+      end
+      field['preferences']['mask'] = true
+      submission.save!
+
+      visit submit_form_path(slug: first_submitter.slug)
+
+      fill_in 'First Name', with: 'Jahn'
+      click_button 'Complete'
+
+      visit submit_form_path(slug: second_submitter.slug)
+
+      expect(page).to have_content('XXXX')
+    end
+  end
+
   it 'sends completed email' do
     template = create(:template, account:, author:, only_field_types: %w[text signature])
     submission = create(:submission, template:)

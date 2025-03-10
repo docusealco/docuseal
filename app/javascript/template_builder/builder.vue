@@ -1316,6 +1316,10 @@ export default {
       }
     },
     onDropfield (area) {
+      if (!this.editable) {
+        return
+      }
+
       const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
@@ -1338,9 +1342,8 @@ export default {
         }
 
         if (field.type === 'date') {
-          field.preferences = {
-            format: this.defaultDateFormat
-          }
+          field.preferences ||= {}
+          field.preferences.format ||= this.defaultDateFormat
         }
       }
 
