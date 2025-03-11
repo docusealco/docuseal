@@ -62,7 +62,7 @@ module Submissions
       submissions.each do |submission|
         next unless submission.expire_at?
 
-        ProcessSubmissionExpiredJob.perform_in(submission.expire_at, 'submission_id' => submission.id)
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
       end
     end
 
