@@ -25,7 +25,7 @@ class StartFormController < ApplicationController
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
-        @error_message = I18n.t('not_found')
+        @error_message = multiple_submitters_error_message
 
         return render :show
       end
@@ -117,4 +117,14 @@ class StartFormController < ApplicationController
 
     @template = Template.find_by!(slug:)
   end
+
+  # rubocop:disable Layout/LineLength
+  def multiple_submitters_error_message
+    if current_user&.account_id == @template.account_id
+      helpers.t('this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html')
+    else
+      I18n.t('not_found')
+    end
+  end
+  # rubocop:enable Layout/LineLength
 end
