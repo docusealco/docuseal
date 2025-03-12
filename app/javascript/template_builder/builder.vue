@@ -266,7 +266,7 @@
                 :is-drag="!!dragField"
                 :input-mode="inputMode"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
-                :allow-draw="!onlyDefinedFields"
+                :allow-draw="!onlyDefinedFields || drawField"
                 :data-document-uuid="document.uuid"
                 :default-submitters="defaultSubmitters"
                 :with-field-placeholder="withFieldPlaceholder"
