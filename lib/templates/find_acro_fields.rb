@@ -21,6 +21,8 @@ module Templates
       Escolher
     )\b/ix
 
+    DATE_FORMAT_REGEXP = %r{[myd]{2,4}[-\\/\s.][myd]{2,4}[-\\/\s.][myd]{2,4}}i
+
     FIELD_ALIGNMENT = {
       0 => 'left',
       1 => 'center',
@@ -187,15 +189,29 @@ module Templates
           default_value: field.field_value
         }
       elsif field.field_type == :Tx
-        {
-          **attrs,
-          type: 'text',
-          default_value: field.field_value
-        }
+        if field[:AA] && ((field[:AA][:F] && field[:AA][:F][:JS].include?('AFDate_')) ||
+            (field[:AA][:K] && field[:AA][:F][:JS].include?('AFDate_')))
+          if (format = field[:AA][:F][:JS][DATE_FORMAT_REGEXP])
+            attrs[:preferences] ||= {}
+            attrs[:preferences][:format] = format.upcase
+          end
+
+          {
+            **attrs,
+            type: 'date',
+            default_value: field.field_value
+          }
+        else
+          {
+            **attrs,
+            type: 'text',
+            default_value: field.field_value
+          }
+        end
       elsif field.field_type == :Sig
         {
           **attrs,
-          type: 'signature'
+          type: field.try(:field_name).to_s.downcase.include?('initials') ? 'initials' : 'signature'
         }
       else
         {}
