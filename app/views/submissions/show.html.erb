@@ -19,7 +19,7 @@
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
           <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
-      <% else %>
+      <% elsif signed_in? %>
         <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
           <%= svg_icon('logs', class: 'w-6 h-6') %>
           <span class="hidden md:block"><%= t('event_log') %></span>
@@ -105,7 +105,18 @@
                   <% value = values[field['uuid']] %>
                   <% value ||= field['default_value'] if field['type'] == 'heading' %>
                   <% next if value.blank? %>
-                  <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                  <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
+                    <span class="group">
+                      <span class="hidden group-hover:inline">
+                        <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                      </span>
+                      <span class="group-hover:hidden">
+                        <%= render 'submissions/value', area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                      </span>
+                    </span>
+                  <% else %>
+                    <%= render 'submissions/value', area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -232,12 +243,21 @@
                   </div>
                 <% elsif field['type'] == 'checkbox' %>
                   <%= svg_icon('check', class: 'w-6 h-6') %>
-                <% elsif field['type'] == 'number' %>
-                  <%= NumberUtils.format_number(value, field.dig('preferences', 'format')) %>
-                <% elsif field['type'] == 'date' %>
-                  <%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
                 <% else %>
-                  <div class="whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
+                  <% if field['type'] == 'number' %>
+                    <% value = NumberUtils.format_number(value, field.dig('preferences', 'format')) %>
+                  <% elsif field['type'] == 'date' %>
+                    <% value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
+                  <% end %>
+                  <% if (mask = field.dig('preferences', 'mask').presence) %>
+                    <% if signed_in? && can?(:read, @submission) %>
+                      <div class="[&:not(:hover)]:after:content-[attr(data-value)] block whitespace-pre-wrap group" data-value="<%= Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') %>"><span class="hidden group-hover:block"><%= Array.wrap(value).join(', ') %></span></div>
+                    <% else %>
+                      <div class="whitespace-pre-wrap"><%= Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') %></div>
+                    <% end %>
+                  <% else %>
+                    <div class="whitespace-pre-wrap"><%= Array.wrap(value).join(', ') %></div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

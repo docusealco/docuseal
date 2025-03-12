@@ -127,6 +127,7 @@
                 :editable="editable"
                 :background-color="dropdownBgColor"
                 @click-formula="isShowFormulaModal = true"
+                @click-font="isShowFontModal = true"
                 @click-description="isShowDescriptionModal = true"
                 @click-condition="isShowConditionsModal = true"
                 @set-draw="$emit('set-draw', $event)"
@@ -232,6 +233,17 @@
       />
     </Teleport>
     <Teleport
+      v-if="isShowFontModal"
+      :to="modalContainerEl"
+    >
+      <FontModal
+        :field="field"
+        :editable="editable && !defaultField"
+        :build-default-name="buildDefaultName"
+        @close="isShowFontModal = false"
+      />
+    </Teleport>
+    <Teleport
       v-if="isShowConditionsModal"
       :to="modalContainerEl"
     >
@@ -261,6 +273,7 @@ import FieldType from './field_type'
 import PaymentSettings from './payment_settings'
 import FieldSettings from './field_settings'
 import FormulaModal from './formula_modal'
+import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
 import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings } from '@tabler/icons-vue'
@@ -275,6 +288,7 @@ export default {
     PaymentSettings,
     IconNewSection,
     FormulaModal,
+    FontModal,
     DescriptionModal,
     ConditionsModal,
     IconRouteAltLeft,
@@ -305,6 +319,7 @@ export default {
       isNameFocus: false,
       showPaymentModal: false,
       isShowFormulaModal: false,
+      isShowFontModal: false,
       isShowConditionsModal: false,
       isShowDescriptionModal: false,
       renderDropdown: false

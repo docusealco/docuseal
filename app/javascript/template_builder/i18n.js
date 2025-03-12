@@ -1,4 +1,5 @@
 const en = {
+  font: 'Font',
   party: 'Party',
   method: 'Method',
   reorder_fields: 'Reorder fields',
@@ -162,6 +163,7 @@ const en = {
 }
 
 const es = {
+  fuente: 'Fuente',
   party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reordenar campos',
@@ -325,6 +327,7 @@ const es = {
 }
 
 const it = {
+  font: 'Carattere',
   party: 'Parte',
   method: 'Metodo',
   reorder_fields: 'Riordina i campi',
@@ -488,6 +491,7 @@ const it = {
 }
 
 const pt = {
+  fonte: 'Fonte',
   party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reorganizar campos',
@@ -651,6 +655,7 @@ const pt = {
 }
 
 const fr = {
+  font: 'Police',
   party: 'Partie',
   method: 'Méthode',
   reorder_fields: 'Réorganiser les champs',
@@ -814,6 +819,7 @@ const fr = {
 }
 
 const de = {
+  font: 'Schriftart',
   party: 'Partei',
   method: 'Verfahren',
   reorder_fields: 'Felder neu anordnen',
