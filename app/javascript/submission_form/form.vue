@@ -1316,7 +1316,7 @@ export default {
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
       const currentFieldType = this.currentField.type
 
-      if (!formData && !this.$refs.form.checkValidity()) {
+      if (!formData && !this.$refs.form.checkValidity() && currentFieldUuids.every((fieldUuid) => isEmpty(this.submittedValues[fieldUuid]) || !isEmpty(this.values[fieldUuid]))) {
         return
       }
 
