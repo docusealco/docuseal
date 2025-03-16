@@ -33,6 +33,7 @@ module Submissions
                                          default_values,
                                          submitter_name: submitter_params[:role] ||
                                                          template.submitters.dig(index, 'name'),
+                                         role_names: submitter_params[:roles],
                                          for_submitter:,
                                          throw_errors: true)
 
