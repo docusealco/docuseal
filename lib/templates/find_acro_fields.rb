@@ -149,7 +149,7 @@ module Templates
           options: build_options(field[:Opt], 'radio'),
           default_value: selected_option
         }
-      elsif field.field_type == :Btn && field.concrete_field_type == :check_box &&
+      elsif field.field_type == :Btn && %i[check_box radio_button].include?(field.concrete_field_type) &&
             field[:Kids].present? && field[:Kids].size > 1 && field.allowed_values.size > 1
         selected_option = (field.allowed_values || []).find { |v| v == field.field_value }
 
