@@ -700,7 +700,7 @@ en: &en
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
   pro_user_seats_used: Pro user seats used
   manage_plan: Manage plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1427,7 +1427,7 @@ es: &es
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
   pro_user_seats_used: Plazas de usuario Pro en uso
   manage_plan: Gestionar plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2153,7 +2153,7 @@ it: &it
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
   pro_user_seats_used: Posti utente Pro in uso
   manage_plan: Gestisci piano
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2881,7 +2881,7 @@ fr: &fr
   submission_created_via_source_html: '<b>Soumission créée</b> via %{source}'
   pro_user_seats_used: Places utilisateur Pro en cours d'utilisation
   manage_plan: Gérer le plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage, car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage, car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3608,7 +3608,7 @@ pt: &pt
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
   pro_user_seats_used: Lugares de usuário Pro em uso
   manage_plan: Gerenciar plano
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4335,7 +4335,7 @@ de: &de
   submission_created_via_source_html: '<b>Übermittlung erstellt</b> über %{source}'
   pro_user_seats_used: Verwendete Pro-Benutzerplätze
   manage_plan: Plan verwalten
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html: 'Diese Übermittlung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Übermittlung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
   submission_sources:
     api: API
     bulk: Massenversand

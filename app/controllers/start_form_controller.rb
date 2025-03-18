@@ -118,13 +118,11 @@ class StartFormController < ApplicationController
     @template = Template.find_by!(slug:)
   end
 
-  # rubocop:disable Layout/LineLength
   def multiple_submitters_error_message
     if current_user&.account_id == @template.account_id
-      helpers.t('this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_as_its_unclear_which_signer_is_responsible_for_specific_fields_to_resolve_this_follow_this_guide_to_define_the_default_signer_details_html')
+      helpers.t('this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html')
     else
       I18n.t('not_found')
     end
   end
-  # rubocop:enable Layout/LineLength
 end
