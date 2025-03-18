@@ -1,7 +1,7 @@
 <template>
   <div
     id="form_completed"
-    class="mx-auto max-w-md flex flex-col"
+    class="mx-auto max-w-md flex flex-col completed-form"
     dir="auto"
   >
     <div class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
@@ -10,13 +10,13 @@
         :width="30"
         :height="30"
       />
-      <span>
+      <span class="completed-form-message-title">
         {{ completedMessage.title || (hasSignatureFields ? (hasMultipleDocuments ? t('documents_have_been_signed') : t('document_has_been_signed')) : t('form_has_been_completed')) }}
       </span>
     </div>
     <div
       v-if="completedMessage.body"
-      class="mt-2"
+      class="mt-2 completed-form-message-body"
     >
       <MarkdownContent
         :string="completedMessage.body"
@@ -27,7 +27,7 @@
         v-if="completedButton.url"
         :href="sanitizeHref(completedButton.url)"
         rel="noopener noreferrer nofollow"
-        class="white-button flex items-center w-full"
+        class="white-button flex items-center w-full completed-form-completed-button"
       >
         <span>
           {{ completedButton.title || 'Back to Website' }}
@@ -35,7 +35,7 @@
       </a>
       <button
         v-if="canSendEmail && !isDemo && withSendCopyButton"
-        class="white-button !h-auto flex items-center space-x-1 w-full"
+        class="white-button !h-auto flex items-center space-x-1 w-full completed-form-send-copy-button"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"
       >
@@ -50,7 +50,7 @@
       </button>
       <button
         v-if="!isWebView && withDownloadButton"
-        class="base-button flex items-center space-x-1 w-full"
+        class="base-button flex items-center space-x-1 w-full completed-form-download-button"
         :disabled="isDownloading"
         @click.prevent="download"
       >

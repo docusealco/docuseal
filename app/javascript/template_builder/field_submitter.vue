@@ -5,7 +5,7 @@
     @touchstart="renderDropdown = true"
   >
     <div class="flex space-x-2 items-end">
-      <div class="group/contenteditable-container bg-base-100 rounded-md p-2 border border-base-300 w-full flex justify-between items-end">
+      <div class="group/contenteditable-container bg-base-100 rounded-md p-2 border border-base-300 w-full flex justify-between items-end roles-dropdown-label-mobile">
         <div class="flex items-center space-x-2">
           <span
             class="w-3 h-3 flex-shrink-0 rounded-full"
@@ -22,7 +22,7 @@
           />
         </div>
       </div>
-      <div class="dropdown dropdown-top dropdown-end">
+      <div class="dropdown dropdown-top dropdown-end roles-dropdown-mobile">
         <label
           tabindex="0"
           class="bg-base-100 cursor-pointer rounded-md p-2 border border-base-300 w-full flex justify-center"

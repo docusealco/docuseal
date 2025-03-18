@@ -6,7 +6,7 @@
     >
       <label
         v-if="showFieldNames"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -25,7 +25,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline font-medium btn-sm"
+            class="btn btn-outline font-medium btn-sm type_text_button type-text-button"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
@@ -42,7 +42,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline font-medium btn-sm"
+            class="btn btn-outline font-medium btn-sm type-text-button"
             @click.prevent="toggleTextInput"
           >
             <IconSignature :width="16" />
@@ -55,9 +55,7 @@
           class="tooltip"
           :data-tip="t('click_to_upload')"
         >
-          <label
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
-          >
+          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
             <IconUpload :width="16" />
             <input
               :key="uploadImageInputKey"
@@ -74,7 +72,7 @@
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn font-medium btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
@@ -83,7 +81,7 @@
         <a
           v-else
           href="#"
-          class="btn font-medium btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -105,7 +103,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>
@@ -123,7 +121,7 @@
     <canvas
       v-show="!modelValue && !computedPreviousValue"
       ref="canvas"
-      class="bg-white border border-base-300 rounded-2xl w-full"
+      class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
     />
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"

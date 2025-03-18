@@ -7,7 +7,7 @@
       <label
         v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -26,7 +26,7 @@
         </template>
       </label>
       <button
-        class="btn btn-outline btn-sm !normal-case font-normal"
+        class="btn btn-outline btn-sm !normal-case font-normal set-current-date-button"
         @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
         <IconCalendarCheck :width="16" />
@@ -35,7 +35,7 @@
     </div>
     <div
       v-if="field.description"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
       dir="auto"
     >
       <MarkdownContent :string="field.description" />

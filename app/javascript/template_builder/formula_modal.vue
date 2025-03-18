@@ -8,12 +8,12 @@
     />
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-        <span>
+        <span class="modal-title">
           {{ t('formula') }} - {{ field.name || buildDefaultName(field, template.fields) }}
         </span>
         <a
           href="#"
-          class="text-xl"
+          class="text-xl modal-close-button"
           @click.prevent="$emit('close')"
         >&times;</a>
       </div>
@@ -111,7 +111,7 @@
           </div>
         </div>
         <button
-          class="base-button w-full"
+          class="base-button w-full modal-save-button"
           @click.prevent="validateSaveAndClose"
         >
           {{ t('save') }}

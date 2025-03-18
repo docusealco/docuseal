@@ -3,7 +3,7 @@
     <label
       id="add_document_button"
       :for="inputId"
-      class="btn btn-outline w-full"
+      class="btn btn-outline w-full add-document-button"
       :class="{ 'btn-disabled': isLoading || isProcessing }"
     >
       <IconInnerShadowTop

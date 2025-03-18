@@ -3,7 +3,7 @@
     v-if="showFieldNames && (field.name || field.title)"
     :for="field.uuid"
     dir="auto"
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
     :class="{ 'mb-2': !field.description }"
   >
     <MarkdownContent
@@ -24,7 +24,7 @@
   <div
     v-if="field.description"
     dir="auto"
-    class="mb-3 px-1"
+    class="mb-3 px-1 field-description-text"
   >
     <MarkdownContent :string="field.description" />
   </div>

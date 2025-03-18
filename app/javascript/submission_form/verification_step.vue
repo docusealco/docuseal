@@ -1,7 +1,5 @@
 <template>
-  <label
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
-  >
+  <label class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label">
     <MarkdownContent
       v-if="field.title"
       :string="field.title"
@@ -11,13 +9,13 @@
   <div
     v-if="field.description"
     dir="auto"
-    class="mb-4 px-1"
+    class="mb-4 px-1 field-description-text"
   >
     <MarkdownContent :string="field.description" />
   </div>
   <div
     v-if="emptyValueRequiredStep && emptyValueRequiredStep[0] !== field"
-    class="px-1"
+    class="px-1 field-description-text"
   >
     {{ t('complete_all_required_fields_to_proceed_with_identity_verification') }}
   </div>

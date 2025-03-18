@@ -32,7 +32,7 @@
     <div
       v-if="$slots.buttons || withTitle"
       id="title_container"
-      class="flex justify-between py-1.5 items-center pr-4 top-0 z-10"
+      class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
       :class="{ sticky: withStickySubmitters || isBreakpointLg }"
       :style="{ backgroundColor }"
     >
@@ -47,7 +47,7 @@
           v-if="withTitle"
           :model-value="template.name"
           :editable="editable"
-          class="text-xl md:text-3xl font-semibold focus:text-clip"
+          class="text-xl md:text-3xl font-semibold focus:text-clip template-name"
           :icon-stroke-width="2.3"
           @update:model-value="updateName"
         />
@@ -163,7 +163,7 @@
     </div>
     <div
       id="main_container"
-      class="flex"
+      class="flex main-container"
       :class="$slots.buttons || withTitle ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
@@ -205,7 +205,7 @@
           <button
             v-if="sortedDocuments.length && editable && withAddPageButton"
             id="add_blank_page_button"
-            class="btn btn-outline w-full"
+            class="btn btn-outline w-full add-blank-page-button"
             @click.prevent="addBlankPage"
           >
             <IconInnerShadowTop
@@ -239,7 +239,7 @@
             <button
               v-if="withAddPageButton"
               id="add_blank_page_button"
-              class="btn btn-outline w-full mt-4"
+              class="btn btn-outline w-full mt-4 add-blank-page-button"
               @click.prevent="addBlankPage"
             >
               <IconInnerShadowTop
@@ -307,7 +307,7 @@
               <button
                 v-if="withAddPageButton"
                 id="add_blank_page_button"
-                class="btn btn-outline w-full mt-4"
+                class="btn btn-outline w-full mt-4 add-blank-page-button"
                 @click.prevent="addBlankPage"
               >
                 <IconInnerShadowTop
@@ -327,7 +327,7 @@
       <div
         v-if="withFieldsList && !isMobile"
         id="fields_list_container"
-        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block"
+        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
         :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
@@ -335,13 +335,13 @@
           class="sticky inset-0 h-full z-20"
           :style="{ backgroundColor }"
         >
-          <div class="bg-base-200 rounded-lg p-5 text-center space-y-4">
+          <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
             <p>
               {{ t('draw_field_on_the_document') }}
             </p>
             <div>
               <button
-                class="base-button"
+                class="base-button cancel-draw-button"
                 @click="clearDrawField"
               >
                 {{ t('cancel') }}
@@ -408,7 +408,10 @@
         @select="startFieldDraw($event)"
       />
     </div>
-    <div id="docuseal_modal_container" />
+    <div
+      id="docuseal_modal_container"
+      class="modal-container"
+    />
   </div>
 </template>
 
