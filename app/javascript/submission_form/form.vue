@@ -1191,22 +1191,24 @@ export default {
         return false
       }
 
+      const defaultValue = !field || isEmpty(field.default_value) ? null : field.default_value
+
       if (['empty', 'unchecked'].includes(condition.action)) {
-        return isEmpty(this.values[condition.field_uuid])
+        return isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
-        return !isEmpty(this.values[condition.field_uuid])
+        return !isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['equal', 'contains'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)
-          const values = [this.values[condition.field_uuid]].flat()
+          const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
 
           return values.includes(this.optionValue(option, field.options.indexOf(option)))
         } else {
-          return [this.values[condition.field_uuid]].flat().includes(condition.value)
+          return [this.values[condition.field_uuid] ?? defaultValue].flat().includes(condition.value)
         }
       } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
         const option = field.options.find((o) => o.uuid === condition.value)
-        const values = [this.values[condition.field_uuid]].flat()
+        const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
 
         return !values.includes(this.optionValue(option, field.options.indexOf(option)))
       } else {
