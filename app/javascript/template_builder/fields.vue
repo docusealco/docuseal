@@ -74,7 +74,7 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
-          class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
+          class="border border-base-300 rounded rounded-tr-none relative group mb-2 default-field fields-list-item"
           @dragstart="onDragstart({ type: 'text', ...field })"
           @dragend="$emit('drag-end')"
         >
