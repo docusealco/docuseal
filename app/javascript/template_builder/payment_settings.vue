@@ -1,6 +1,6 @@
 <template>
   <span
-    class="dropdown dropdown-end field-payment-dropdown"
+    class="dropdown dropdown-end field-settings-dropdown"
     :class="{ 'dropdown-open': ((!field.preferences?.price && !field.preferences?.formula) || !isConnected) && !isLoading }"
   >
     <label

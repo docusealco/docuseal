@@ -25,7 +25,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline font-medium btn-sm type_text_button type-text-button"
+            class="btn btn-outline font-medium btn-sm type-text-button"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
