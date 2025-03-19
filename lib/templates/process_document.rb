@@ -85,6 +85,8 @@ module Templates
         end
 
       Concurrent::Promise.zip(*promises).value!.each do |blob|
+        next unless blob
+
         ApplicationRecord.no_touching do
           ActiveStorage::Attachment.create!(
             blob:,
@@ -114,6 +116,10 @@ module Templates
       blob.upload(io)
 
       blob
+    rescue Vips::Error => e
+      Rollbar.warning(e) if defined?(Rollbar)
+
+      nil
     end
 
     def maybe_flatten_form(data, pdf)
