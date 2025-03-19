@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute overflow-visible group"
+    class="absolute overflow-visible group field-area-container"
     :style="positionStyle"
     :class="{ 'z-[1]': isMoved || isDragged }"
     @pointerdown.stop
@@ -33,7 +33,7 @@
     </div>
     <div
       v-if="field?.type && (isSelected || isNameFocus)"
-      class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10"
+      class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
       style="top: -25px; height: 25px"
       @mousedown.stop
       @pointerdown.stop
@@ -41,7 +41,7 @@
       <FieldSubmitter
         v-if="field.type != 'heading'"
         v-model="field.submitter_uuid"
-        class="border-r"
+        class="border-r roles-dropdown"
         :compact="true"
         :editable="editable && (!defaultField || defaultField.role !== submitter?.name)"
         :allow-add-new="!defaultSubmitters.length"
@@ -108,7 +108,7 @@
         >{{ t('editable') }}</label>
         <span
           v-if="field.type !== 'payment' && !isValueInput"
-          class="dropdown dropdown-end"
+          class="dropdown dropdown-end field-area-settings-dropdown"
           @mouseenter="renderDropdown = true"
           @touchstart="renderDropdown = true"
         >
@@ -160,7 +160,7 @@
     </div>
     <div
       ref="touchValueTarget"
-      class="flex items-center h-full w-full"
+      class="flex items-center h-full w-full field-area"
       dir="auto"
       :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center']"
       @click="focusValueInput"

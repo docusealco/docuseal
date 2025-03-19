@@ -24,7 +24,7 @@
               <div class="dropdown modal-field-font-dropdown">
                 <label
                   tabindex="0"
-                  class="base-input flex items-center justify-between items-center"
+                  class="base-input flex items-center justify-between"
                   style="height: 32px; padding-right: 0; width: 120px"
                   :class="fonts.find((f) => f.value === preferences.font)?.class"
                 >
@@ -76,7 +76,7 @@
                 </option>
               </select>
               <span
-                class="border-l pl-1.5 absolute bg-white absolute bottom-0 pointer-events-none text-sm h-5"
+                class="border-l pl-1.5 absolute bg-white bottom-0 pointer-events-none text-sm h-5"
                 style="right: 13px; top: 7px"
               >
                 pt
