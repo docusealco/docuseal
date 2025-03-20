@@ -1301,7 +1301,9 @@ export default {
 
         if (!this.isCompleted) {
           if (scrollToArea) {
-            this.scrollIntoField(this.currentField)
+            this.$nextTick(() => {
+              setTimeout(() => this.scrollIntoField(this.currentField), 1)
+            })
           }
 
           this.enableScrollIntoField = false
