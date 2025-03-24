@@ -32,8 +32,8 @@ module Templates
     module_function
 
     # rubocop:disable Metrics
-    def call(pdf, attachment)
-      return [] unless pdf.acro_form
+    def call(pdf, attachment, data)
+      return [] if pdf.acro_form.blank? && data.exclude?('/Form')
 
       fields, annots_index = build_fields_with_pages(pdf)
 

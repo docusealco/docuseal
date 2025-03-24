@@ -22,7 +22,7 @@ module Templates
         if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
           pdf = HexaPDF::Document.new(io: StringIO.new(data))
 
-          fields = Templates::FindAcroFields.call(pdf, attachment)
+          fields = Templates::FindAcroFields.call(pdf, attachment, data)
         end
 
         generate_pdf_preview_images(attachment, data, pdf, max_pages:)
