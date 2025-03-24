@@ -7,7 +7,7 @@
   >
     <label
       :for="inputId"
-      class="w-full relative bg-base-300 hover:bg-base-200 rounded-md border border-base-content border-dashed"
+      class="w-full relative bg-base-300 hover:bg-base-200 rounded-md border border-base-content border-dashed file-dropzone"
       :class="{ 'opacity-50': isLoading }"
     >
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">

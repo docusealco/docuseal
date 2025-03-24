@@ -6,11 +6,11 @@ module Submissions
 
     module_function
 
-    # rubocop:disable Metrics/BlockLength
+    # rubocop:disable Metrics
     def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {})
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
-      Array.wrap(submissions_attrs).filter_map do |attrs|
+      submissions = Array.wrap(submissions_attrs).filter_map do |attrs|
         submission_preferences = Submitters.normalize_preferences(user.account, user, attrs)
         submission_preferences = preferences.merge(submission_preferences)
 
@@ -23,15 +23,33 @@ module Submissions
                                               expire_at: attrs[:expire_at],
                                               template_submitters: [], submitters_order:)
 
-        maybe_set_template_fields(submission, attrs[:submitters])
+        template_submitters = template.submitters.deep_dup
 
         attrs[:submitters].each_with_index do |submitter_attrs, index|
-          uuid = find_submitter_uuid(template, submitter_attrs, index)
+          if submitter_attrs[:roles].present? && submitter_attrs[:roles].size > 1
+            template_submitter, template_submitters, submission.template_fields =
+              merge_submitters_and_fields(submitter_attrs, template_submitters,
+                                          submission.template_fields || submission.template.fields)
 
-          next if uuid.blank?
-          next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
+            submission.template_schema = submission.template.schema if submission.template_schema.blank?
 
-          template_submitter = template.submitters.find { |e| e['uuid'] == uuid }
+            uuid = template_submitter['uuid']
+          else
+            if submitter_attrs[:roles].present? && submitter_attrs[:roles].size == 1
+              submitter_attrs[:role] = submitter_attrs[:roles].first
+            end
+
+            uuid = find_submitter_uuid(template_submitters, submitter_attrs, index)
+
+            next if uuid.blank?
+            next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
+
+            submission.template_fields = submission.template.fields if submitter_attrs[:completed].present? &&
+                                                                       submission.template_fields.blank?
+
+            template_submitter = template_submitters.find { |e| e['uuid'] == uuid }
+          end
+
           submission.template_submitters << template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
 
           is_order_sent = submitters_order == 'random' || index.zero?
@@ -40,6 +58,8 @@ module Submissions
                           uuid:, is_order_sent:, user:, params:,
                           preferences: preferences.merge(submission_preferences))
         end
+
+        maybe_set_template_fields(submission, attrs[:submitters])
 
         if submission.submitters.size > template.submitters.size
           raise BaseError, 'Defined more signing parties than in template'
@@ -51,8 +71,20 @@ module Submissions
 
         submission.tap(&:save!)
       end
+
+      maybe_enqueue_expire_at(submissions)
+
+      submissions
     end
-    # rubocop:enable Metrics/BlockLength
+    # rubocop:enable Metrics
+
+    def maybe_enqueue_expire_at(submissions)
+      submissions.each do |submission|
+        next unless submission.expire_at?
+
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
+      end
+    end
 
     def maybe_add_invite_submitters(submission, template)
       template.submitters.each_with_index do |item, index|
@@ -82,8 +114,10 @@ module Submissions
     def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil)
       template_fields = (submission.template_fields || submission.template.fields).deep_dup
 
+      submitters = submission.template_submitters || submission.template.submitters
+
       submitters_attrs.each_with_index do |submitter_attrs, index|
-        submitter_uuid = default_submitter_uuid || find_submitter_uuid(submission.template, submitter_attrs, index)
+        submitter_uuid = default_submitter_uuid || find_submitter_uuid(submitters, submitter_attrs, index)
 
         process_readonly_fields_param(submitter_attrs[:readonly_fields], template_fields, submitter_uuid)
         process_field_values_param(submitter_attrs[:values], template_fields, submitter_uuid)
@@ -98,6 +132,65 @@ module Submissions
       end
 
       submission
+    end
+
+    def merge_submitters_and_fields(submitter_attrs, template_submitters, template_fields)
+      selected_submitters = submitter_attrs[:roles].map do |role|
+        template_submitters.find { |e| e['name'].to_s.casecmp(role).zero? } ||
+          raise(BaseError, "#{role} role doesn't exist")
+      end
+
+      merge_role_uuids = selected_submitters.pluck('uuid')
+      old_role_uuids = template_submitters.pluck('uuid')
+      name = submitter_attrs[:role].presence || selected_submitters.pluck('name').join(' / ')
+
+      merged_submitter, template_submitters =
+        build_merged_submitter(template_submitters, role_uuids: merge_role_uuids, name:)
+
+      field_names_index = {}
+
+      sorted_fields = template_fields.sort_by { |e| old_role_uuids.index(e['submitter_uuid']) }
+
+      sorted_fields.each do |field|
+        next unless merge_role_uuids.include?(field['submitter_uuid'])
+
+        if (existing_field = field_names_index[field['name']])
+          existing_field['areas'] ||= []
+          existing_field['areas'].push(*field['areas'])
+          template_fields.delete(field)
+        else
+          field['submitter_uuid'] = merged_submitter['uuid']
+          field_names_index[field['name']] = field if field['name'].present?
+        end
+      end
+
+      [merged_submitter, template_submitters, template_fields]
+    end
+
+    def build_merged_submitter(submitters, role_uuids:, name:)
+      new_uuid = Digest::UUID.uuid_v5(Digest::UUID::OID_NAMESPACE, role_uuids.sort.join(':'))
+
+      merged_submitter = nil
+
+      submitters =
+        submitters.filter_map do |submitter|
+          submitter['optional_invite_by_uuid'] = new_uuid if role_uuids.include?(submitter['optional_invite_by_uuid'])
+          submitter['invite_by_uuid'] = new_uuid if role_uuids.include?(submitter['invite_by_uuid'])
+          submitter['linked_to_uuid'] = new_uuid if role_uuids.include?(submitter['linked_to_uuid'])
+
+          if role_uuids.include?(submitter['uuid'])
+            next if merged_submitter
+
+            merged_submitter = submitter.deep_dup
+            merged_submitter['uuid'] = new_uuid
+            merged_submitter['name'] = name
+            merged_submitter.delete('linked_to_uuid')
+          end
+
+          submitter
+        end
+
+      [merged_submitter, submitters]
     end
 
     def process_readonly_fields_param(readonly_fields, template_fields, submitter_uuid)
@@ -178,11 +271,11 @@ module Submissions
       field
     end
 
-    def find_submitter_uuid(template, attrs, index)
+    def find_submitter_uuid(submitters, attrs, index)
       uuid = attrs[:uuid].presence
-      uuid ||= template.submitters.find { |e| e['name'].to_s.casecmp(attrs[:role].to_s).zero? }&.dig('uuid')
+      uuid ||= submitters.find { |e| e['name'].to_s.casecmp(attrs[:role].to_s).zero? }&.dig('uuid')
 
-      uuid || template.submitters[index]&.dig('uuid')
+      uuid || submitters[index]&.dig('uuid')
     end
 
     def build_submitter(submission:, attrs:, uuid:, is_order_sent:, user:, preferences:, params:)

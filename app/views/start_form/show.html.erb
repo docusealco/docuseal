@@ -30,7 +30,9 @@
         <div dir="auto" class="form-control !mt-0">
           <%= f.label :email, t('email'), class: 'label' %>
           <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: t('provide_your_email_to_start') %>
-          <%= @error_message %>
+          <% if @error_message %>
+            <span class="label-text-alt text-red-400 mt-1"><%= @error_message %></span>
+          <% end %>
         </div>
         <toggle-submit dir="auto" class="form-control">
           <%= f.button button_title(title: t('start'), disabled_with: t('starting')), class: 'base-button' %>

@@ -1,7 +1,7 @@
 <template>
   <label
     v-if="!modelValue && !sessionId"
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
   >
     <MarkdownContent
       v-if="field.title"
@@ -34,7 +34,7 @@
       <button
         v-if="sessionId"
         disabled
-        class="base-button w-full"
+        class="base-button w-full modal-save-button"
       >
         <IconLoader
           width="22"

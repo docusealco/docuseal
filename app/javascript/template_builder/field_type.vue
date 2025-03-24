@@ -1,6 +1,6 @@
 <template>
   <span
-    class="dropdown"
+    class="dropdown field-types-dropdown"
     @mouseenter="renderDropdown = true"
     @touchstart="renderDropdown = true"
   >

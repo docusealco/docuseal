@@ -8,12 +8,12 @@
     />
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-        <span>
+        <span class="modal-title">
           {{ t('condition') }} - {{ item.name || buildDefaultName(item, template.fields) }}
         </span>
         <a
           href="#"
-          class="text-xl"
+          class="text-xl modal-close-button"
           @click.prevent="$emit('close')"
         >&times;</a>
       </div>
@@ -50,9 +50,9 @@
                 v-if="conditions.length > 1"
                 class="flex justify-between mx-1"
               >
-                <span class="text-sm">
+                <label class="text-sm">
                   {{ t('condition') }} {{ cindex + 1 }}
-                </span>
+                </label>
                 <a
                   href="#"
                   class="link text-sm"
@@ -131,9 +131,7 @@
             class="inline float-right link text-right mb-3 px-2"
             @click.prevent="conditions.push({})"
           > + {{ t('add_condition') }}</a>
-          <button
-            class="base-button w-full mt-2"
-          >
+          <button class="base-button w-full mt-2 modal-save-button">
             {{ t('save') }}
           </button>
         </form>

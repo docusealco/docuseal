@@ -6,9 +6,10 @@ class TemplatesDebugController < ApplicationController
   def show
     attachment = @template.documents.first
 
-    pdf = HexaPDF::Document.new(io: StringIO.new(attachment.download))
+    data = attachment.download
+    pdf = HexaPDF::Document.new(io: StringIO.new(data))
 
-    fields = Templates::FindAcroFields.call(pdf, attachment)
+    fields = Templates::FindAcroFields.call(pdf, attachment, data)
 
     attachment.metadata['pdf'] ||= {}
     attachment.metadata['pdf']['fields'] = fields

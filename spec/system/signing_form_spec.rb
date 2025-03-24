@@ -796,6 +796,40 @@ RSpec.describe 'Signing Form', type: :system do
     end
   end
 
+  context 'when the template requires multiple submitters' do
+    let(:template) { create(:template, submitter_count: 2, account:, author:, only_field_types: %w[text]) }
+
+    context 'when default signer details are not defined' do
+      it 'shows an explanation error message if a logged-in user associated with the template account opens the link' do
+        sign_in author
+        visit start_form_path(slug: template.slug)
+        fill_in 'Email', with: author.email
+        click_button 'Start'
+
+        expect(page).to have_content('This submission has multiple signers, which prevents the use of a sharing link ' \
+                                     "as it's unclear which signer is responsible for specific fields. " \
+                                     'To resolve this, follow this guide to define the default signer details.')
+        expect(page).to have_link('guide', href: 'https://www.docuseal.com/resources/pre-filling-recipients')
+      end
+
+      it 'shows a "Not found" error message if a logged-out user associated with the template account opens the link' do
+        visit start_form_path(slug: template.slug)
+        fill_in 'Email', with: author.email
+        click_button 'Start'
+
+        expect(page).to have_content('Not found')
+      end
+
+      it 'shows a "Not found" error message if an unrelated user opens the link' do
+        visit start_form_path(slug: template.slug)
+        fill_in 'Email', with: 'john.doe@example.com'
+        click_button 'Start'
+
+        expect(page).to have_content('Not found')
+      end
+    end
+  end
+
   it 'sends completed email' do
     template = create(:template, account:, author:, only_field_types: %w[text signature])
     submission = create(:submission, template:)

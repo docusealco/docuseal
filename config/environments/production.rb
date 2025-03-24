@@ -49,7 +49,7 @@ Rails.application.configure do
     end
 
   config.active_storage.resolve_model_to_route = :rails_storage_proxy if ENV['ACTIVE_STORAGE_PUBLIC'] != 'true'
-  config.active_storage.service_urls_expire_in = 4.hours
+  config.active_storage.service_urls_expire_in = ENV.fetch('PRESIGNED_URLS_EXPIRE_MINUTES', '240').to_i.minutes
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

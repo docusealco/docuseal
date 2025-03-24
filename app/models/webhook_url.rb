@@ -28,10 +28,12 @@ class WebhookUrl < ApplicationRecord
     form.started
     form.completed
     form.declined
+    submission.created
+    submission.completed
+    submission.expired
+    submission.archived
     template.created
     template.updated
-    submission.created
-    submission.archived
   ].freeze
 
   belongs_to :account

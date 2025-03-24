@@ -23,7 +23,7 @@
           >
             <div>
               <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0"
+                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
                 @click.stop="isShowConditionsModal = true"
               >
                 <IconRouteAltLeft
@@ -48,7 +48,7 @@
           >
             <div>
               <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                 style="width: 24px; height: 24px"
                 @click.stop="$emit('remove', item)"
               >
@@ -63,7 +63,7 @@
                 class="tooltip tooltip-left before:text-xs"
               >
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0"
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
                   @click.stop="$emit('reorder', item)"
                 >
                   <IconSortDescending2
@@ -75,14 +75,14 @@
               </span>
               <template v-if="withArrows">
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                   style="width: 24px; height: 24px"
                   @click.stop="$emit('up', item)"
                 >
                   &uarr;
                 </button>
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                   style="width: 24px; height: 24px"
                   @click.stop="$emit('down', item)"
                 >
@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="flex pb-2 pt-1.5">
+    <div class="flex pb-2 pt-1.5 document-preview-name">
       <Contenteditable
         :model-value="item.name"
         :icon-width="16"

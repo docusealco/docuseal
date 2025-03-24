@@ -5,7 +5,7 @@ class SendFormCompletedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  MAX_ATTEMPTS = 20
+  MAX_ATTEMPTS = 12
 
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])

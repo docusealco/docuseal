@@ -25,7 +25,7 @@ class StartFormController < ApplicationController
       redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
     else
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
-        @error_message = I18n.t('not_found')
+        @error_message = multiple_submitters_error_message
 
         return render :show
       end
@@ -116,5 +116,13 @@ class StartFormController < ApplicationController
     slug = params[:slug] || params[:start_form_slug]
 
     @template = Template.find_by!(slug:)
+  end
+
+  def multiple_submitters_error_message
+    if current_user&.account_id == @template.account_id
+      helpers.t('this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html')
+    else
+      I18n.t('not_found')
+    end
   end
 end

@@ -8,12 +8,12 @@
     />
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-        <span>
+        <span class="modal-title">
           {{ t('font') }} - {{ field.name || buildDefaultName(field, template.fields) }}
         </span>
         <a
           href="#"
-          class="text-xl"
+          class="text-xl modal-close-button"
           @click.prevent="$emit('close')"
         >&times;</a>
       </div>
@@ -21,10 +21,10 @@
         <div>
           <div class="flex items-center space-x-1.5">
             <span>
-              <div class="dropdown">
+              <div class="dropdown modal-field-font-dropdown">
                 <label
                   tabindex="0"
-                  class="base-input flex items-center justify-between items-center"
+                  class="base-input flex items-center justify-between"
                   style="height: 32px; padding-right: 0; width: 120px"
                   :class="fonts.find((f) => f.value === preferences.font)?.class"
                 >
@@ -76,7 +76,7 @@
                 </option>
               </select>
               <span
-                class="border-l pl-1.5 absolute bg-white absolute bottom-0 pointer-events-none text-sm h-5"
+                class="border-l pl-1.5 absolute bg-white bottom-0 pointer-events-none text-sm h-5"
                 style="right: 13px; top: 7px"
               >
                 pt
@@ -134,7 +134,7 @@
         </div>
         <div class="mt-4">
           <div
-            class="flex items-center border border-base-content/20 rounded-xl bg-white px-4 h-16"
+            class="flex items-center border border-base-content/20 rounded-xl bg-white px-4 h-16 modal-field-font-preview"
             :style="{
               color: preferences.color || 'black',
               fontSize: (preferences.font_size || 12) + 'pt',
@@ -151,7 +151,7 @@
         </div>
         <div class="mt-4">
           <button
-            class="base-button w-full"
+            class="base-button w-full modal-save-button"
             @click.prevent="saveAndClose"
           >
             {{ t('save') }}

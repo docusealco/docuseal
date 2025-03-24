@@ -54,7 +54,7 @@
     </label>
   </div>
   <div
-    v-if="['number', 'cells'].includes(field.type)"
+    v-if="['cells'].includes(field.type)"
     class="py-1.5 px-1 relative"
     @click.stop
   >
@@ -330,7 +330,7 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="field.type == 'text'">
+  <li v-if="['text', 'number', 'date'].includes(field.type)">
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"

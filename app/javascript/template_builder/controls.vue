@@ -1,7 +1,7 @@
 <template>
   <div class="flex space-x-2">
     <Contenteditable
-      class="w-full block mr-6"
+      class="w-full block mr-6 document-preview-name"
       :model-value="item.name"
       :icon-width="16"
       @update:model-value="onUpdateName"
@@ -15,7 +15,7 @@
     />
     <button
       v-if="withArrows"
-      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
       @click.stop="$emit('up', item)"
     >
@@ -23,14 +23,14 @@
     </button>
     <button
       v-if="withArrows"
-      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
       @click.stop="$emit('down', item)"
     >
       &darr;
     </button>
     <button
-      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors"
+      class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
       @click.stop="$emit('remove', item)"
     >

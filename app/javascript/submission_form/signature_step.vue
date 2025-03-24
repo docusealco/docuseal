@@ -9,7 +9,7 @@
     >
       <label
         v-if="showFieldNames"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -28,7 +28,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium type-text-button"
             @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconSignature :width="16" />
@@ -46,7 +46,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap type-text-button"
             @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconTextSize :width="16" />
@@ -61,9 +61,7 @@
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
-          <label
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
-          >
+          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
             <IconCamera :width="16" />
             <input
               :key="uploadImageInputKey"
@@ -80,7 +78,7 @@
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="btn btn-outline btn-sm font-medium reupload-button"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
@@ -119,7 +117,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>
@@ -167,7 +165,7 @@
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
         style="padding: 1px; 0"
-        class="bg-white border border-base-300 rounded-2xl w-full"
+        class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
       />
       <div
         v-if="isShowQr"

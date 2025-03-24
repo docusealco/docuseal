@@ -2,7 +2,7 @@
   <div :class="withStickySubmitters ? 'sticky top-0 z-[1]' : ''">
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
-      class="roles-dropdown w-full rounded-lg"
+      class="roles-dropdown w-full rounded-lg roles-dropdown"
       :style="withStickySubmitters ? { backgroundColor } : {}"
       :submitters="submitters"
       :menu-style="{ overflow: 'auto', display: 'flex', flexDirection: 'row', maxHeight: 'calc(100vh - 120px)', backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
@@ -74,7 +74,7 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
-          class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
+          class="border border-base-300 rounded rounded-tr-none relative group mb-2 default-field fields-list-item"
           @dragstart="onDragstart({ type: 'text', ...field })"
           @dragend="$emit('drag-end')"
         >
@@ -104,7 +104,7 @@
   </div>
   <div
     v-if="editable && !onlyDefinedFields"
-    class="grid grid-cols-3 gap-1 pb-2"
+    class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
     <template
       v-for="(icon, type) in fieldIconsSorted"
@@ -113,7 +113,7 @@
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')"
         draggable="true"
-        class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative"
+        class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
         @dragstart="onDragstart({ type: type })"
@@ -142,7 +142,7 @@
         <a
           href="https://www.docuseal.com/pricing"
           target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
         >
           <div class="w-0 absolute left-0">
@@ -168,7 +168,7 @@
         <a
           href="https://www.docuseal.com/contact"
           target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
         >
           <div class="w-0 absolute left-0">
