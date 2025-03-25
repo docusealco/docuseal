@@ -7,11 +7,15 @@ module Submissions
     CHECK_COMPLETE_TIMEOUT = 90.seconds
 
     WaitForCompleteTimeout = Class.new(StandardError)
+    NotCompletedYet = Class.new(StandardError)
 
     module_function
 
     def call(submitter)
       return [] unless submitter
+
+      raise NotCompletedYet unless submitter.completed_at?
+
       return submitter.documents if ApplicationRecord.uncached { submitter.document_generation_events.complete.exists? }
 
       events =

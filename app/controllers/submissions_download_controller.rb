@@ -23,9 +23,9 @@ class SubmissionsDownloadController < ApplicationController
 
     last_submitter = submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
 
-    Submissions::EnsureResultGenerated.call(last_submitter)
+    return head :not_found unless last_submitter
 
-    return head :not_found unless last_submitter.completed_at?
+    Submissions::EnsureResultGenerated.call(last_submitter)
 
     if last_submitter.completed_at < TTL.ago && !signature_valid && !current_user_submitter?(last_submitter)
       Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)
