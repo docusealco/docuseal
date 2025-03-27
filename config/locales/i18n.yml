@@ -21,6 +21,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   bcc_recipients: BCC recipients
+  always_enforce_signing_order: Always enforce the signing order
   edit_per_party: Edit per party
   reply_to: Reply to
   pending_by_me: Pending by me
@@ -746,6 +747,7 @@ en: &en
       read: Read your data
 
 es: &es
+  always_enforce_signing_order: Siempre imponer el orden de firma
   bcc_recipients: Destinatarios CCO
   edit_per_party: Editar por parte
   signed: Firmado
@@ -1474,6 +1476,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  always_enforce_signing_order: Applicare sempre l'ordine di firma
   bcc_recipients: Destinatari BCC
   edit_per_party: Modifica per partito
   signed: Firmato
@@ -2201,6 +2204,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  always_enforce_signing_order: Toujours appliquer l'ordre de signature
   bcc_recipients: Destinataires en CCI
   edit_per_party: Éditer par partie
   signed: Signé
@@ -2930,6 +2934,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  always_enforce_signing_order: Sempre impor a ordem de assinatura
   bcc_recipients: Destinatários BCC
   edit_per_party: Edita por festa
   signed: Assinado
@@ -3658,6 +3663,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  always_enforce_signing_order: Immer die Reihenfolge der Unterschriften erzwingen
   bcc_recipients: BCC-Empfänger
   edit_per_party: Bearbeiten pro Partei
   signed: Unterschrieben

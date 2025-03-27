@@ -30,6 +30,7 @@ class AccountConfig < ApplicationRecord
   ALLOW_TO_RESUBMIT = 'allow_to_resubmit'
   ALLOW_TO_DECLINE_KEY = 'allow_to_decline'
   SUBMITTER_REMINDERS = 'submitter_reminders'
+  ENFORCE_SIGNING_ORDER_KEY = 'enforce_signing_order'
   FORM_COMPLETED_BUTTON_KEY = 'form_completed_button'
   FORM_COMPLETED_MESSAGE_KEY = 'form_completed_message'
   FORM_WITH_CONFETTI_KEY = 'form_with_confetti'

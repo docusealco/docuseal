@@ -322,15 +322,17 @@
           <% end %>
         </div>
       <% end %>
-      <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
-        <div class="flex items-center pt-4 mt-4 justify-between border-t w-full">
-          <span>
-            <%= t('enforce_recipients_order') %>
-          </span>
-          <%= f.fields_for :preferences, Struct.new(:submitters_order).new(@template.preferences['submitters_order']) do |ff| %>
-            <%= ff.check_box :submitters_order, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'preserved', '' %>
-          <% end %>
-        </div>
+      <% unless current_account.account_configs.exists?(key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY, value: true) %>
+        <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
+          <div class="flex items-center pt-4 mt-4 justify-between border-t w-full">
+            <span>
+              <%= t('enforce_recipients_order') %>
+            </span>
+            <%= f.fields_for :preferences, Struct.new(:submitters_order).new(@template.preferences['submitters_order']) do |ff| %>
+              <%= ff.check_box :submitters_order, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'preserved', '' %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
       <div class="form-control mt-5 pb-2">
         <%= button_tag button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button', form: :submitters_form %>
