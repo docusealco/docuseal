@@ -206,7 +206,7 @@
                 <span>
                   <%= t('send_emails_automatically_on_completion') %>
                 </span>
-                <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+                <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false && configs['enabled'] != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['enabled'] == false }, 'true', 'false' %>
               </div>
             <% end %>
             <div class="form-control pt-2">

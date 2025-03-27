@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   hi_there: Hi there
   thanks: Thanks
+  bcc_recipients: BCC recipients
   edit_per_party: Edit per party
   reply_to: Reply to
   pending_by_me: Pending by me
@@ -745,6 +746,7 @@ en: &en
       read: Read your data
 
 es: &es
+  bcc_recipients: Destinatarios CCO
   edit_per_party: Editar por parte
   signed: Firmado
   reply_to: Responder a
@@ -1472,6 +1474,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  bcc_recipients: Destinatari BCC
   edit_per_party: Modifica per partito
   signed: Firmato
   reply_to: Rispondi a
@@ -2198,6 +2201,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  bcc_recipients: Destinataires en CCI
   edit_per_party: Éditer par partie
   signed: Signé
   reply_to: Répondre à
@@ -2926,6 +2930,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  bcc_recipients: Destinatários BCC
   edit_per_party: Edita por festa
   signed: Assinado
   reply_to: Responder a
@@ -3653,6 +3658,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  bcc_recipients: BCC-Empfänger
   edit_per_party: Bearbeiten pro Partei
   signed: Unterschrieben
   reply_to: Antworten auf

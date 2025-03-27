@@ -94,11 +94,27 @@ class ProcessSubmitterCompletionJob
       end
     end
 
-    to = build_to_addresses(submitter)
+    maybe_enqueue_copy_emails(submitter)
+  end
 
-    return if to.blank? || submitter.template.preferences['documents_copy_email_enabled'] == false
+  def maybe_enqueue_copy_emails(submitter)
+    return if submitter.template.preferences['documents_copy_email_enabled'] == false
 
-    SubmitterMailer.documents_copy_email(submitter, to:).deliver_later!
+    configs = AccountConfigs.find_or_initialize_for_key(submitter.account,
+                                                        AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
+
+    return if configs.value['enabled'] == false
+
+    to = submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
+                  .sort_by(&:completed_at).select(&:email?).map(&:friendly_name)
+
+    return if to.blank?
+
+    if configs.value['bcc_recipients'] == true
+      to.each { |to| SubmitterMailer.documents_copy_email(submitter, to:).deliver_later! }
+    else
+      SubmitterMailer.documents_copy_email(submitter, to: to.join(', ')).deliver_later!
+    end
   end
 
   def build_bcc_addresses(submission)
@@ -108,11 +124,6 @@ class ProcessSubmitterCompletionJob
                     .find_by(key: AccountConfig::BCC_EMAILS)&.value
 
     bcc.to_s.scan(User::EMAIL_REGEXP)
-  end
-
-  def build_to_addresses(submitter)
-    submitter.submission.submitters.reject { |e| e.preferences['send_email'] == false }
-             .sort_by(&:completed_at).select(&:email?).map(&:friendly_name).join(', ')
   end
 
   def enqueue_next_submitter_request_notification(submitter)
