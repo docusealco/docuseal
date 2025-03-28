@@ -1404,7 +1404,13 @@ export default {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
-            if (data.error) {
+            if (data.field_uuid) {
+              const field = this.fieldsUuidIndex[data.field_uuid]
+
+              this.goToStep(this.stepFields.findIndex((fields) => fields.includes(field)), this.autoscrollFields)
+
+              this.showFillAllRequiredFields = true
+            } else if (data.error) {
               const i18nKey = data.error.replace(/\s+/g, '_').toLowerCase()
 
               alert(this.t(i18nKey) !== i18nKey ? this.t(i18nKey) : data.error)

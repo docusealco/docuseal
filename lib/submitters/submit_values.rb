@@ -3,6 +3,7 @@
 module Submitters
   module SubmitValues
     ValidationError = Class.new(StandardError)
+    RequiredFieldError = Class.new(StandardError)
 
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
 
@@ -55,17 +56,24 @@ module Submitters
       submitter.ua = request.user_agent
 
       submitter.values = merge_default_values(submitter)
-      submitter.values = maybe_remove_condition_values(submitter)
+
+      required_field_uuids_acc = Set.new
+
+      submitter.values = maybe_remove_condition_values(submitter, required_field_uuids_acc:)
 
       formula_values = build_formula_values(submitter)
 
       if formula_values.present?
         submitter.values = submitter.values.merge(formula_values)
-        submitter.values = maybe_remove_condition_values(submitter)
+        submitter.values = maybe_remove_condition_values(submitter, required_field_uuids_acc:)
       end
 
       submitter.values = submitter.values.transform_values do |v|
         v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
+      end
+
+      required_field_uuids_acc.each do |uuid|
+        raise RequiredFieldError, uuid if submitter.values[uuid].blank?
       end
 
       submitter
@@ -188,37 +196,59 @@ module Submitters
                                 with_time:)
     end
 
-    def maybe_remove_condition_values(submitter)
+    def maybe_remove_condition_values(submitter, required_field_uuids_acc: nil)
       fields_uuid_index = submitter.submission.template_fields.index_by { |e| e['uuid'] }
 
-      attachments_index =
-        Submissions.filtered_conditions_schema(submitter.submission).index_by { |i| i['attachment_uuid'] }
+      submitters_values = nil
+      has_other_submitters = submitter.submission.template_submitters.size > 1
+      has_document_conditions = submitter.submission.template_schema.any? { |e| e['conditions'].present? }
 
-      submitter_values = nil
-      is_other_submitter_conditions = submitter.submission.template_submitters.size > 1
+      attachments_index =
+        if has_document_conditions
+          Submissions.filtered_conditions_schema(submitter.submission).index_by { |i| i['attachment_uuid'] }
+        end
 
       submitter.submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
-        submitter_values ||= submitter.values
+        required_field_uuids_acc.add(field['uuid']) if required_field_uuids_acc && required_editable_field?(field)
 
-        is_other_submitter_conditions &&= field_conditions_other_submitter?(submitter, field, fields_uuid_index)
-
-        if is_other_submitter_conditions
-          submitter_values = submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
+        if has_document_conditions && check_field_areas_attachments(field, attachments_index)
+          submitter.values.delete(field['uuid'])
+          required_field_uuids_acc.delete(field['uuid'])
         end
 
-        submitter.values.delete(field['uuid']) unless check_field_conditions(submitter_values, field, fields_uuid_index)
+        if has_other_submitters && !submitters_values &&
+           field_conditions_other_submitter?(submitter, field, fields_uuid_index)
+          submitters_values = merge_submitters_values(submitter)
+        end
 
-        if field['areas'].present? && field['areas'].none? { |area| attachments_index[area['attachment_uuid']] }
+        unless check_field_conditions(submitters_values || submitter.values, field, fields_uuid_index)
           submitter.values.delete(field['uuid'])
+          required_field_uuids_acc.delete(field['uuid'])
         end
       end
 
       submitter.values
     end
 
+    def required_editable_field?(field)
+      field['required'].present? && field['readonly'].blank?
+    end
+
+    def check_field_areas_attachments(field, attachments_index)
+      field['areas'].present? && field['areas'].none? { |area| attachments_index[area['attachment_uuid']] }
+    end
+
+    def merge_submitters_values(submitter)
+      submitter.submission.submitters
+               .reduce({}) { |acc, sub| acc.merge(sub.values) }
+               .merge(submitter.values)
+    end
+
     def field_conditions_other_submitter?(submitter, field, fields_uuid_index)
+      return false if field['conditions'].blank?
+
       field['conditions'].to_a.any? do |c|
         fields_uuid_index.dig(c['field_uuid'], 'submitter_uuid') != submitter.uuid
       end
