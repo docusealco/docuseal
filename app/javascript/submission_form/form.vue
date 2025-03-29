@@ -1407,9 +1407,17 @@ export default {
             if (data.field_uuid) {
               const field = this.fieldsUuidIndex[data.field_uuid]
 
-              this.goToStep(this.stepFields.findIndex((fields) => fields.includes(field)), this.autoscrollFields)
+              if (field) {
+                const step = this.stepFields.findIndex((fields) => fields.includes(field))
 
-              this.showFillAllRequiredFields = true
+                if (step !== -1) {
+                  this.goToStep(step, this.autoscrollFields)
+
+                  this.showFillAllRequiredFields = true
+                }
+              }
+
+              return Promise.reject(new Error('Required field: ' + data.field_uuid))
             } else if (data.error) {
               const i18nKey = data.error.replace(/\s+/g, '_').toLowerCase()
 

@@ -6,10 +6,11 @@ module Submitters
     RequiredFieldError = Class.new(StandardError)
 
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
+    NONEDITABLE_FIELD_TYPES = %w[stamp heading].freeze
 
     module_function
 
-    def call(submitter, params, request)
+    def call(submitter, params, request, validate_required: true)
       Submissions.update_template_fields!(submitter.submission) if submitter.submission.template_fields.blank?
 
       unless submitter.submission_events.exists?(event_type: 'start_form')
@@ -21,7 +22,7 @@ module Submitters
         end
       end
 
-      update_submitter!(submitter, params, request)
+      update_submitter!(submitter, params, request, validate_required:)
 
       submitter.submission.save!
 
@@ -30,13 +31,13 @@ module Submitters
       submitter
     end
 
-    def update_submitter!(submitter, params, request)
+    def update_submitter!(submitter, params, request, validate_required: true)
       values = normalized_values(params)
 
       submitter.values.merge!(values)
       submitter.opened_at ||= Time.current
 
-      assign_completed_attributes(submitter, request) if params[:completed] == 'true'
+      assign_completed_attributes(submitter, request, validate_required:) if params[:completed] == 'true'
 
       ApplicationRecord.transaction do
         maybe_set_signature_reason!(values, submitter, params)
@@ -50,7 +51,7 @@ module Submitters
       submitter
     end
 
-    def assign_completed_attributes(submitter, request)
+    def assign_completed_attributes(submitter, request, validate_required: true)
       submitter.completed_at = Time.current
       submitter.ip = request.remote_ip
       submitter.ua = request.user_agent
@@ -73,7 +74,11 @@ module Submitters
       end
 
       required_field_uuids_acc.each do |uuid|
-        raise RequiredFieldError, uuid if submitter.values[uuid].blank?
+        next if submitter.values[uuid].present?
+
+        raise RequiredFieldError, uuid if validate_required
+
+        Rollbar.warning("Required field #{submitter.id}: #{uuid}") if defined?(Rollbar)
       end
 
       submitter
@@ -197,23 +202,27 @@ module Submitters
     end
 
     def maybe_remove_condition_values(submitter, required_field_uuids_acc: nil)
-      fields_uuid_index = submitter.submission.template_fields.index_by { |e| e['uuid'] }
+      submission = submitter.submission
+
+      fields_uuid_index = submission.template_fields.index_by { |e| e['uuid'] }
 
       submitters_values = nil
-      has_other_submitters = submitter.submission.template_submitters.size > 1
-      has_document_conditions = submitter.submission.template_schema.any? { |e| e['conditions'].present? }
+      has_other_submitters = submission.template_submitters.size > 1
+
+      has_document_conditions =
+        (submission.template_schema || submission.template.schema).any? { |e| e['conditions'].present? }
 
       attachments_index =
         if has_document_conditions
-          Submissions.filtered_conditions_schema(submitter.submission).index_by { |i| i['attachment_uuid'] }
+          Submissions.filtered_conditions_schema(submission).index_by { |i| i['attachment_uuid'] }
         end
 
-      submitter.submission.template_fields.each do |field|
+      submission.template_fields.each do |field|
         next if field['submitter_uuid'] != submitter.uuid
 
         required_field_uuids_acc.add(field['uuid']) if required_field_uuids_acc && required_editable_field?(field)
 
-        if has_document_conditions && check_field_areas_attachments(field, attachments_index)
+        if has_document_conditions && !check_field_areas_attachments(field, attachments_index)
           submitter.values.delete(field['uuid'])
           required_field_uuids_acc.delete(field['uuid'])
         end
@@ -233,11 +242,15 @@ module Submitters
     end
 
     def required_editable_field?(field)
+      return false if NONEDITABLE_FIELD_TYPES.include?(field['type'])
+
       field['required'].present? && field['readonly'].blank?
     end
 
     def check_field_areas_attachments(field, attachments_index)
-      field['areas'].present? && field['areas'].none? { |area| attachments_index[area['attachment_uuid']] }
+      return true if field['areas'].blank?
+
+      field['areas'].any? { |area| attachments_index[area['attachment_uuid']] }
     end
 
     def merge_submitters_values(submitter)
