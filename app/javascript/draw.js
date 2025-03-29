@@ -1,5 +1,6 @@
 import SignaturePad from 'signature_pad'
 import { cropCanvasAndExportToPNG } from './submission_form/crop_canvas'
+import { isValidSignatureCanvas } from './submission_form/validate_signature'
 
 window.customElements.define('draw-signature', class extends HTMLElement {
   connectedCallback () {
@@ -43,6 +44,8 @@ window.customElements.define('draw-signature', class extends HTMLElement {
 
           return response
         })
+      }).catch(error => {
+        console.log(error)
       }).finally(() => {
         this.submitButton.disabled = false
       })
@@ -65,26 +68,26 @@ window.customElements.define('draw-signature', class extends HTMLElement {
   }
 
   async submitImage () {
-    return new Promise((resolve, reject) => {
-      cropCanvasAndExportToPNG(this.canvas, { errorOnTooSmall: true }).then(async (blob) => {
-        const file = new File([blob], 'signature.png', { type: 'image/png' })
+    if (!isValidSignatureCanvas(this.pad.toData())) {
+      alert('Signature is too small or simple. Please redraw.')
 
-        const formData = new FormData()
+      return Promise.reject(new Error('Image too small or simple'))
+    }
 
-        formData.append('file', file)
-        formData.append('submitter_slug', this.dataset.slug)
-        formData.append('name', 'attachments')
-        formData.append('remember_signature', 'true')
+    return cropCanvasAndExportToPNG(this.canvas).then(async (blob) => {
+      const file = new File([blob], 'signature.png', { type: 'image/png' })
 
-        return fetch('/api/attachments', {
-          method: 'POST',
-          body: formData
-        }).then((resp) => resp.json()).then((attachment) => {
-          return resolve(attachment)
-        })
-      }).catch((error) => {
-        return reject(error)
-      })
+      const formData = new FormData()
+
+      formData.append('file', file)
+      formData.append('submitter_slug', this.dataset.slug)
+      formData.append('name', 'attachments')
+      formData.append('remember_signature', 'true')
+
+      return fetch('/api/attachments', {
+        method: 'POST',
+        body: formData
+      }).then(resp => resp.json())
     })
   }
 

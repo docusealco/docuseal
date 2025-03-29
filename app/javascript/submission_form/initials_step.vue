@@ -118,11 +118,17 @@
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
-    <canvas
-      v-show="!modelValue && !computedPreviousValue"
-      ref="canvas"
-      class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
-    />
+    <div class="relative">
+      <div
+        v-if="!isDrawInitials"
+        class="absolute top-0 right-0 left-0 bottom-0"
+      />
+      <canvas
+        v-show="!modelValue && !computedPreviousValue"
+        ref="canvas"
+        class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+      />
+    </div>
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
       id="initials_text_input"

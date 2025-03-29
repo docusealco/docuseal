@@ -292,6 +292,7 @@
 <script>
 import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2, IconQrcode, IconX } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
+import { isValidSignatureCanvas } from './validate_signature'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
 import FileDropzone from './dropzone'
@@ -680,8 +681,14 @@ export default {
         return Promise.resolve({})
       }
 
-      return new Promise((resolve, reject) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
+      if (this.isSignatureStarted && this.pad.toData().length > 0 && !isValidSignatureCanvas(this.pad.toData())) {
+        alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+
+        return Promise.reject(new Error('Image too small or simple'))
+      }
+
+      return new Promise((resolve) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
 
           if (this.dryRun) {
@@ -716,12 +723,6 @@ export default {
 
               return resolve(attachment)
             })
-          }
-        }).catch((error) => {
-          if (error.message === 'Image too small' && this.field.required === false) {
-            return resolve({})
-          } else {
-            return reject(error)
           }
         })
       })

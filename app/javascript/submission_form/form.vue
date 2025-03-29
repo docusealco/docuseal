@@ -1445,11 +1445,7 @@ export default {
           this.isSubmittingComplete = false
         })
       }).catch(error => {
-        if (error?.message === 'Image too small') {
-          alert(this.t('signature_is_too_small_please_redraw'))
-        } else {
-          console.log(error)
-        }
+        console.log(error)
       }).finally(() => {
         this.isSubmitting = false
         this.isSubmittingComplete = false
