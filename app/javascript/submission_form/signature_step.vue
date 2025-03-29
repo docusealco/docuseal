@@ -599,6 +599,7 @@ export default {
     },
     drawImage (event) {
       this.remove()
+      this.clear()
       this.isSignatureStarted = true
 
       this.drawOnCanvas(event.target.files[0], this.$refs.canvas)
