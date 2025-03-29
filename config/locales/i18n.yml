@@ -434,7 +434,7 @@ en: &en
   share_template_with_test_mode: Share template with Test mode
   share_template_with_all_tenants: Share template with all Tenants
   use_following_placeholders_text_: 'Use following placeholders text:'
-  upgrade_plan_to_add_more_users: Upgrade plan to add more users
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: '%{users_count}/%{total_users_count} Pro users limit was reached. To invite additional users, please purchase more Pro user seats via the "Manage plan" button.'
   move_into_folder: Move Into Folder
   new_folder_name: New Folder Name
   exit_preview: Exit Preview
@@ -475,8 +475,6 @@ en: &en
   team_accounts: Team Accounts
   tenant_account: Tenant account
   tenant_accounts: Tenant Accounts
-  upgrade_plan: Upgrade Plan
-  add_user: Add User
   impersonate: Impersonate
   loading: Loading
   documents: Documents
@@ -1163,7 +1161,7 @@ es: &es
   share_template_with_test_mode: Compartir plantilla con el modo de prueba
   share_template_with_all_tenants: Compartir plantilla con todos los inquilinos
   use_following_placeholders_text_: 'Usa los siguientes marcadores de posición:'
-  upgrade_plan_to_add_more_users: Actualiza el plan para agregar más usuarios
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'Se alcanzó el límite de %{users_count}/%{total_users_count} usuarios Pro. Para invitar a más usuarios, compra más plazas Pro usando el botón "Gestionar plan".'
   move_into_folder: Mover a la carpeta
   new_folder_name: Nuevo nombre de la carpeta
   exit_preview: Salir de la vista previa
@@ -1204,8 +1202,6 @@ es: &es
   team_accounts: Cuentas de equipo
   tenant_account: Cuenta de inquilino
   tenant_accounts: Cuentas de inquilino
-  upgrade_plan: Actualizar plan
-  add_user: Agregar usuario
   impersonate: Suplantar
   loading: Cargando
   documents: Documentos
@@ -1891,7 +1887,7 @@ it: &it
   share_template_with_test_mode: Condividi modello con la modalità di test
   share_template_with_all_tenants: Condividi il modello con tutti i tenant
   use_following_placeholders_text_: 'Usa i seguenti segnaposto:'
-  upgrade_plan_to_add_more_users: Aggiorna il piano per aggiungere più utenti
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'È stato raggiunto il limite di %{users_count}/%{total_users_count} utenti Pro. Per invitare altri utenti, acquista più posti Pro tramite il pulsante "Gestisci piano".'
   move_into_folder: Sposta nella cartella
   new_folder_name: Nuovo nome della cartella
   exit_preview: "Esci dall'anteprima"
@@ -1932,8 +1928,6 @@ it: &it
   team_accounts: Account di squadra
   tenant_account: Account tenant
   tenant_accounts: Account tenant
-  upgrade_plan: Aggiorna piano
-  add_user: Aggiungi utente
   impersonate: Impersona
   loading: Caricamento in corso
   documents: Documenti
@@ -2621,7 +2615,7 @@ fr: &fr
   share_template_with_test_mode: Partager le modèle avec le mode test
   share_template_with_all_tenants: Partager le modèle avec tous les locataires
   use_following_placeholders_text_: 'Utilisez les espaces réservés suivants:'
-  upgrade_plan_to_add_more_users: "Mettez à jour le plan pour ajouter plus d'utilisateurs"
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'La limite de %{users_count}/%{total_users_count} utilisateurs Pro a été atteinte. Pour inviter d''autres utilisateurs, veuillez acheter plus de places Pro via le bouton "Gérer le plan".'
   move_into_folder: Déplacer dans le dossier
   new_folder_name: Nouveau nom du dossier
   exit_preview: "Quitter l'aperçu"
@@ -2662,8 +2656,6 @@ fr: &fr
   team_accounts: "Comptes d'équipe"
   tenant_account: Compte locataire
   tenant_accounts: Comptes locataires
-  upgrade_plan: Mettre à jour le plan
-  add_user: Ajouter un utilisateur
   impersonate: Usurper
   loading: Chargement en cours
   documents: Documents
@@ -3350,7 +3342,7 @@ pt: &pt
   share_template_with_test_mode: Compartilhar modelo com o modo de teste
   share_template_with_all_tenants: Compartilhar modelo com todos os locatários
   use_following_placeholders_text_: 'Use os seguintes textos de substituição:'
-  upgrade_plan_to_add_more_users: Faça upgrade do plano para adicionar mais usuários
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'O limite de %{users_count}/%{total_users_count} usuários Pro foi atingido. Para convidar mais usuários, adquira mais licenças Pro através do botão "Gerenciar plano".'
   move_into_folder: Mover para pasta
   new_folder_name: Novo nome da pasta
   exit_preview: Sair da pré-visualização
@@ -3391,8 +3383,6 @@ pt: &pt
   team_accounts: Contas de equipe
   tenant_account: Conta de locatário
   tenant_accounts: Contas de locatário
-  upgrade_plan: Fazer upgrade do plano
-  add_user: Adicionar usuário
   impersonate: Usurpar
   loading: Carregando
   documents: Documentos
@@ -4079,7 +4069,7 @@ de: &de
   share_template_with_test_mode: Vorlage mit dem Testmodus teilen
   share_template_with_all_tenants: Vorlage mit allen Mietern teilen
   use_following_placeholders_text_: 'Verwende die folgenden Platzhaltertexte:'
-  upgrade_plan_to_add_more_users: Upgrade des Plans, um weitere Benutzer hinzuzufügen
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'Das Limit von %{users_count}/%{total_users_count} Pro-Benutzern wurde erreicht. Um weitere Benutzer einzuladen, kaufen Sie bitte zusätzliche Pro-Benutzerplätze über die Schaltfläche "Plan verwalten".'
   move_into_folder: In Ordner verschieben
   new_folder_name: Neuer Ordnername
   exit_preview: Vorschau beenden
@@ -4120,8 +4110,6 @@ de: &de
   team_accounts: Teamkonten
   tenant_account: Mieterkonto
   tenant_accounts: Mieterkonten
-  upgrade_plan: Plan upgraden
-  add_user: Benutzer hinzufügen
   impersonate: Nachahmen
   loading: Wird geladen
   documents: Dokumente

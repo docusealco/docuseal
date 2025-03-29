@@ -1,7 +1,7 @@
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
-    <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4 min-h-12">
+    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
       <h1 class="text-4xl font-bold">
         <% if params[:status] == 'archived' %>
           <%= t('archived_users') %>
