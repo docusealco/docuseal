@@ -190,7 +190,7 @@ module Templates
         }
       elsif field.field_type == :Tx
         if field[:AA] && ((field[:AA][:F] && field[:AA][:F][:JS].include?('AFDate_')) ||
-            (field[:AA][:K] && field[:AA][:F][:JS].include?('AFDate_')))
+            (field[:AA][:K] && field[:AA][:K][:JS].include?('AFDate_')))
           if (format = field[:AA][:F][:JS][DATE_FORMAT_REGEXP])
             attrs[:preferences] ||= {}
             attrs[:preferences][:format] = format.upcase
