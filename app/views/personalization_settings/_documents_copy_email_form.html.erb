@@ -8,7 +8,7 @@
   <div class="collapse-content">
     <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.hidden_field :key %>
-      <%= f.fields_for :value, Struct.new(:subject, :body, :reply_to, :attach_audit_log, :attach_documents).new(*f.object.value.values_at('subject', 'body', 'reply_to', 'attach_audit_log', 'attach_documents')) do |ff| %>
+      <%= f.fields_for :value, Struct.new(:subject, :body, :reply_to, :attach_audit_log, :attach_documents, :bcc_recipients, :enabled).new(*f.object.value.values_at('subject', 'body', 'reply_to', 'attach_audit_log', 'attach_documents', 'bcc_recipients', 'enabled')) do |ff| %>
         <div class="form-control">
           <%= ff.label :subject, t('subject'), class: 'label' %>
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
@@ -24,23 +24,41 @@
             <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
           </autoresize-textarea>
         </div>
-        <% if can?(:manage, :reply_to) %>
+        <% if can?(:manage, :reply_to) || can?(:manage, :personalization_advanced) %>
           <div class="form-control">
             <%= ff.label :reply_to, t('reply_to'), class: 'label' %>
             <%= ff.email_field :reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
           </div>
         <% end %>
-        <div class="flex items-center justify-between pt-2.5 mx-1">
-          <span>
-            <%= t('attach_documents') %>
-          </span>
-          <%= ff.check_box :attach_documents, { checked: ff.object.attach_documents != false, class: 'toggle' }, 'true', 'false' %>
-        </div>
-        <div class="flex items-center justify-between pb-2.5 mx-1">
-          <span>
-            <%= t('attach_audit_log_pdf') %>
-          </span>
-          <%= ff.check_box :attach_audit_log, { checked: ff.object.attach_audit_log != false, class: 'toggle' }, 'true', 'false' %>
+        <div class="space-y-3.5">
+          <div class="flex items-center justify-between mx-1">
+            <span>
+              <%= t('attach_documents') %>
+            </span>
+            <%= ff.check_box :attach_documents, { checked: ff.object.attach_documents != false, class: 'toggle' }, 'true', 'false' %>
+          </div>
+          <div class="flex items-center justify-between mx-1">
+            <span>
+              <%= t('attach_audit_log_pdf') %>
+            </span>
+            <%= ff.check_box :attach_audit_log, { checked: ff.object.attach_audit_log != false, class: 'toggle' }, 'true', 'false' %>
+          </div>
+          <% unless Docuseal.multitenant? %>
+            <div class="flex items-center justify-between mx-1">
+              <span>
+                <%= t('bcc_recipients') %>
+              </span>
+              <%= ff.check_box :bcc_recipients, { checked: ff.object.bcc_recipients == true, class: 'toggle' }, 'true', 'false' %>
+            </div>
+          <% end %>
+          <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+            <div class="flex items-center justify-between mx-1">
+              <span>
+                <%= t('send_emails_automatically_on_completion') %>
+              </span>
+              <%= ff.check_box :enabled, { checked: ff.object.enabled != false, class: 'toggle' }, 'true', 'false' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
       <div class="form-control pt-2">

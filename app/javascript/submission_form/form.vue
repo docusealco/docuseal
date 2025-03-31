@@ -1404,7 +1404,21 @@ export default {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
-            if (data.error) {
+            if (data.field_uuid) {
+              const field = this.fieldsUuidIndex[data.field_uuid]
+
+              if (field) {
+                const step = this.stepFields.findIndex((fields) => fields.includes(field))
+
+                if (step !== -1) {
+                  this.goToStep(step, this.autoscrollFields)
+
+                  this.showFillAllRequiredFields = true
+                }
+              }
+
+              return Promise.reject(new Error('Required field: ' + data.field_uuid))
+            } else if (data.error) {
               const i18nKey = data.error.replace(/\s+/g, '_').toLowerCase()
 
               alert(this.t(i18nKey) !== i18nKey ? this.t(i18nKey) : data.error)
@@ -1439,11 +1453,7 @@ export default {
           this.isSubmittingComplete = false
         })
       }).catch(error => {
-        if (error?.message === 'Image too small') {
-          alert(this.t('signature_is_too_small_please_redraw'))
-        } else {
-          console.log(error)
-        }
+        console.log(error)
       }).finally(() => {
         this.isSubmitting = false
         this.isSubmittingComplete = false

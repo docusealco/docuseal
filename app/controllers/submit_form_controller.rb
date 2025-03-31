@@ -20,7 +20,11 @@ class SubmitFormController < ApplicationController
                                @submitter.account.archived_at?
     return render :expired if submission.expired?
     return render :declined if @submitter.declined_at?
-    return render :awaiting if submission.template.preferences['submitters_order'] == 'preserved' &&
+
+    @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
+
+    return render :awaiting if (@form_configs[:enforce_signing_order] ||
+                                submission.template.preferences['submitters_order'] == 'preserved') &&
                                !Submitters.current_submitter_order?(@submitter)
 
     Submitters.preload_with_pages(@submitter)
@@ -28,8 +32,6 @@ class SubmitFormController < ApplicationController
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
     @attachments_index = build_attachments_index(submission)
-
-    @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
     return unless @form_configs[:prefill_signature]
 
@@ -70,6 +72,10 @@ class SubmitFormController < ApplicationController
     Submitters::SubmitValues.call(submitter, params, request)
 
     head :ok
+  rescue Submitters::SubmitValues::RequiredFieldError => e
+    Rollbar.warning("Required field #{submitter.id}: #{e.message}") if defined?(Rollbar)
+
+    render json: { field_uuid: e.message }, status: :unprocessable_entity
   rescue Submitters::SubmitValues::ValidationError => e
     render json: { error: e.message }, status: :unprocessable_entity
   end

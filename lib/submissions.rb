@@ -196,4 +196,20 @@ module Submissions
       end
     end.exclude?(false)
   end
+
+  def regenerate_documents(submission)
+    submitters = submission.submitters.where.not(completed_at: nil).preload(:documents_attachments)
+
+    submitters.each { |submitter| submitter.documents.each(&:destroy!) }
+
+    submission.submitters.where.not(completed_at: nil).order(:completed_at).each do |submitter|
+      GenerateResultAttachments.call(submitter)
+    end
+
+    return if submission.combined_document_attachment.blank?
+
+    submission.combined_document_attachment.destroy!
+
+    Submissions::GenerateCombinedAttachment.call(submission.submitters.completed.order(:completed_at).last)
+  end
 end

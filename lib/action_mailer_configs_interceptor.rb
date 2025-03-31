@@ -28,7 +28,7 @@ module ActionMailerConfigsInterceptor
     end
 
     unless Docuseal.multitenant?
-      email_configs = EncryptedConfig.find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
+      email_configs = EncryptedConfig.order(:account_id).find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
 
       if email_configs
         message.delivery_method(:smtp, build_smtp_configs_hash(email_configs))

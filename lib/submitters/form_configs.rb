@@ -8,6 +8,7 @@ module Submitters
                     AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
                     AccountConfig::WITH_SIGNATURE_ID,
                     AccountConfig::ALLOW_TO_DECLINE_KEY,
+                    AccountConfig::ENFORCE_SIGNING_ORDER_KEY,
                     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
                     AccountConfig::REUSE_SIGNATURE_KEY,
                     AccountConfig::ALLOW_TYPED_SIGNATURE,
@@ -27,6 +28,7 @@ module Submitters
       with_decline = find_safe_value(configs, AccountConfig::ALLOW_TO_DECLINE_KEY) != false
       with_signature_id = find_safe_value(configs, AccountConfig::WITH_SIGNATURE_ID) == true
       require_signing_reason = find_safe_value(configs, AccountConfig::REQUIRE_SIGNING_REASON_KEY) == true
+      enforce_signing_order = find_safe_value(configs, AccountConfig::ENFORCE_SIGNING_ORDER_KEY) == true
       policy_links = find_safe_value(configs, AccountConfig::POLICY_LINKS_KEY)
 
       attrs = {
@@ -36,6 +38,7 @@ module Submitters
         reuse_signature:,
         with_decline:,
         policy_links:,
+        enforce_signing_order:,
         completed_message:,
         require_signing_reason:,
         prefill_signature:,

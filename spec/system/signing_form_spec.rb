@@ -360,6 +360,19 @@ RSpec.describe 'Signing Form', type: :system do
       expect(field_value(submitter, 'Signature')).to be_present
     end
 
+    it 'shows an error message if the canvas is not drawn or too simple' do
+      visit submit_form_path(slug: submitter.slug)
+
+      find('#expand_form_button').click
+      page.find('canvas').click([], { x: 150, y: 100 })
+
+      alert_text = page.accept_alert do
+        click_button 'Sign and Complete'
+      end
+
+      expect(alert_text).to eq 'Signature is too small or simple. Please redraw.'
+    end
+
     it 'completes the form if the canvas is typed' do
       visit submit_form_path(slug: submitter.slug)
 
