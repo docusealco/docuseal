@@ -64,6 +64,7 @@ class Submission < ApplicationRecord
            through: :template, source: :documents_attachments
 
   scope :active, -> { where(archived_at: nil) }
+  scope :archived, -> { where.not(archived_at: nil) }
   scope :pending, -> { joins(:submitters).where(submitters: { completed_at: nil }).group(:id) }
   scope :completed, lambda {
     where.not(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
