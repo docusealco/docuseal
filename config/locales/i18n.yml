@@ -166,7 +166,7 @@ en: &en
   connect_salesforce: Connect Salesforce
   danger_zone: Danger Zone
   delete_my_account: Delete my account
-  schedule_account_for_deletion_: Schedule account for deletion?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "You are scheduling your account for deletion. After deletion, your data will be permanently removed and cannot be recovered.\n\nClick OK if you would like to continue."
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 months. Please contact us if you want to keep your account.
@@ -893,7 +893,7 @@ es: &es
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de peligro
   delete_my_account: Eliminar mi cuenta
-  schedule_account_for_deletion_: ¿Programar la eliminación de la cuenta?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Estás programando la eliminación de tu cuenta. Después de la eliminación, tus datos se eliminarán permanentemente y no podrán recuperarse.\n\nHaz clic en OK si deseas continuar."
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
@@ -1619,7 +1619,7 @@ it: &it
   connect_salesforce: Connetti Salesforce
   danger_zone: Zona di pericolo
   delete_my_account: Elimina il mio account
-  schedule_account_for_deletion_: "Programmare l'eliminazione dell'account?"
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Stai programmando l'eliminazione del tuo account. Dopo l'eliminazione, i tuoi dati saranno rimossi in modo permanente e non potranno essere recuperati.\n\nFai clic su OK se desideri continuare."
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
@@ -2347,7 +2347,7 @@ fr: &fr
   connect_salesforce: Connecter Salesforce
   danger_zone: Zone dangereuse
   delete_my_account: Supprimer mon compte
-  schedule_account_for_deletion_: Programmer la suppression du compte?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Vous programmez la suppression de votre compte. Après suppression, vos données seront définitivement supprimées et ne pourront pas être récupérées.\n\nCliquez sur OK si vous souhaitez continuer."
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
@@ -3074,7 +3074,7 @@ pt: &pt
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de perigo
   delete_my_account: Excluir minha conta
-  schedule_account_for_deletion_: Agendar exclusão da conta?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Você está agendando a exclusão da sua conta. Após a exclusão, seus dados serão permanentemente removidos e não poderão ser recuperados.\n\nClique em OK se desejar continuar."
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
@@ -3801,7 +3801,7 @@ de: &de
   connect_salesforce: Salesforce verbinden
   danger_zone: Gefahrenzone
   delete_my_account: Mein Konto löschen
-  schedule_account_for_deletion_: Konto zur Löschung einplanen?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Du planst die Löschung deines Kontos. Nach der Löschung werden deine Daten dauerhaft entfernt und können nicht wiederhergestellt werden.\n\nKlicke auf OK, wenn du fortfahren möchtest."
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
