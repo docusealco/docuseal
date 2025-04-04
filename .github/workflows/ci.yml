@@ -11,7 +11,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -35,7 +35,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -85,7 +85,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -127,7 +127,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
