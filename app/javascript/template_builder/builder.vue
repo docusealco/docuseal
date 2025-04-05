@@ -1476,7 +1476,6 @@ export default {
 
       fieldArea.w = baseArea.w
       fieldArea.h = baseArea.h
-      fieldArea.y = fieldArea.y - baseArea.h / 2
 
       if (fieldType === 'cells') {
         fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
@@ -1498,6 +1497,8 @@ export default {
       if (field.height) {
         fieldArea.h = field.height / area.maskH
       }
+
+      fieldArea.y = fieldArea.y - fieldArea.h / 2
     },
     addBlankPage () {
       this.isLoadingBlankPage = true
