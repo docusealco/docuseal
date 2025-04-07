@@ -1,9 +1,18 @@
 <template>
   <div
+    ref="dragContainer"
     style="max-width: 1600px"
     class="mx-auto pl-3 h-full"
     :class="isMobile ? 'pl-4' : 'md:pl-4'"
+    @dragover="onDragover"
   >
+    <DragPlaceholder
+      ref="dragPlaceholder"
+      :field="fieldsDragFieldRef.value || toRaw(dragField)"
+      :is-field="template.fields.includes(fieldsDragFieldRef.value)"
+      :is-default="defaultFields.includes(toRaw(dragField))"
+      :is-required="defaultRequiredFields.includes(toRaw(dragField))"
+    />
     <div
       v-if="pendingFieldAttachmentUuids.length && editable"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
@@ -60,6 +69,7 @@
         <template v-else>
           <a
             v-if="withSignYourselfButton"
+            id="sign_yourself_button"
             :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
             class="btn btn-primary btn-ghost text-base hidden md:flex"
             :target="template.submitters.length > 1 ? '' : '_blank'"
@@ -76,6 +86,7 @@
           </a>
           <a
             v-if="withSendButton"
+            id="send_button"
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
@@ -91,6 +102,7 @@
           </a>
           <span
             v-if="editable"
+            id="save_button_container"
             class="flex"
           >
             <button
@@ -269,6 +281,7 @@
                 :allow-draw="!onlyDefinedFields || drawField"
                 :data-document-uuid="document.uuid"
                 :default-submitters="defaultSubmitters"
+                :drag-field-placeholder="fieldsDragFieldRef.value || dragField"
                 :with-field-placeholder="withFieldPlaceholder"
                 :draw-field="drawField"
                 :draw-field-type="drawFieldType"
@@ -374,12 +387,14 @@
             :with-sticky-submitters="withStickySubmitters"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
+            :show-tour-start-form="showTourStartForm"
             @add-field="addField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
             @set-drag="dragField = $event"
+            @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
             @change-submitter="selectedSubmitter = $event"
-            @drag-end="dragField = null"
+            @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
             @scroll-to-area="scrollToArea"
           />
         </div>
@@ -418,6 +433,7 @@
 <script>
 import Upload from './upload'
 import Dropzone from './dropzone'
+import DragPlaceholder from './drag_placeholder'
 import Fields from './fields'
 import MobileDrawField from './mobile_draw_field'
 import Document from './document'
@@ -429,13 +445,14 @@ import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
-import { ref, computed } from 'vue'
+import { ref, computed, toRaw } from 'vue'
 import * as i18n from './i18n'
 
 export default {
   name: 'TemplateBuilder',
   components: {
     Upload,
+    DragPlaceholder,
     Document,
     Fields,
     IconInfoCircle,
@@ -460,6 +477,7 @@ export default {
       template: this.template,
       save: this.save,
       t: this.t,
+      assignDropAreaSize: this.assignDropAreaSize,
       currencies: this.currencies,
       locale: this.locale,
       baseFetch: this.baseFetch,
@@ -686,6 +704,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({ headers: {} })
+    },
+    showTourStartForm: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -836,6 +859,17 @@ export default {
     this.documentRefs = []
   },
   methods: {
+    toRaw,
+    onDragover (e) {
+      if (this.$refs.dragPlaceholder?.dragPlaceholder) {
+        this.$refs.dragPlaceholder.isMask = e.target.id === 'mask'
+
+        const ref = this.$refs.dragPlaceholder.dragPlaceholder
+
+        ref.x = e.clientX - ref.offsetX
+        ref.y = e.clientY - ref.offsetY
+      }
+    },
     reorderFields (item) {
       const itemFields = []
       const fields = []
@@ -1319,6 +1353,10 @@ export default {
       }
     },
     onDropfield (area) {
+      if (this.$refs.dragPlaceholder) {
+        this.$refs.dragPlaceholder.dragPlaceholder = null
+      }
+
       if (!this.editable) {
         return
       }
@@ -1329,6 +1367,10 @@ export default {
         submitter_uuid: this.selectedSubmitter.uuid,
         required: this.dragField.type !== 'checkbox',
         ...this.dragField
+      }
+
+      if (!field.type) {
+        field.type = 'text'
       }
 
       if (!this.fieldsDragFieldRef.value) {
@@ -1357,69 +1399,17 @@ export default {
         attachment_uuid: area.attachment_uuid
       }
 
-      const previousField = [...this.template.fields].reverse().find((f) => f.type === field.type)
-
-      let baseArea
-
-      if (this.selectedField?.type === field.type) {
-        baseArea = this.selectedAreaRef.value
-      } else if (previousField?.areas?.length) {
-        baseArea = previousField.areas[previousField.areas.length - 1]
-      } else {
-        if (['checkbox'].includes(field.type)) {
-          baseArea = {
-            w: area.maskW / 30 / area.maskW,
-            h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
-          }
-        } else if (field.type === 'image') {
-          baseArea = {
-            w: area.maskW / 5 / area.maskW,
-            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
-          }
-        } else if (field.type === 'signature' || field.type === 'stamp' || field.type === 'verification') {
-          baseArea = {
-            w: area.maskW / 5 / area.maskW,
-            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
-          }
-        } else if (field.type === 'initials') {
-          baseArea = {
-            w: area.maskW / 10 / area.maskW,
-            h: area.maskW / 35 / area.maskW
-          }
-        } else {
-          baseArea = {
-            w: area.maskW / 5 / area.maskW,
-            h: area.maskW / 35 / area.maskW
-          }
-        }
-      }
-
-      fieldArea.w = baseArea.w
-      fieldArea.h = baseArea.h
-      fieldArea.y = fieldArea.y - baseArea.h / 2
-
-      if (field.type === 'cells') {
-        fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
-      }
-
-      field.areas ||= []
-
-      const lastArea = field.areas[field.areas.length - 1]
-
-      if (lastArea) {
-        fieldArea.w = lastArea.w
-        fieldArea.h = lastArea.h
-      }
+      this.assignDropAreaSize(fieldArea, field, area)
 
       if (field.width) {
-        fieldArea.w = field.width / area.maskW
         delete field.width
       }
 
       if (field.height) {
-        fieldArea.h = field.height / area.maskH
         delete field.height
       }
+
+      field.areas ||= []
 
       field.areas.push(fieldArea)
 
@@ -1443,6 +1433,72 @@ export default {
           areaRef.focusValueInput()
         })
       }
+    },
+    assignDropAreaSize (fieldArea, field, area) {
+      const fieldType = field.type || 'text'
+
+      const previousField = [...this.template.fields].reverse().find((f) => f.type === fieldType)
+
+      let baseArea
+
+      if (this.selectedField?.type === fieldType) {
+        baseArea = this.selectedAreaRef.value
+      } else if (previousField?.areas?.length) {
+        baseArea = previousField.areas[previousField.areas.length - 1]
+      } else {
+        if (['checkbox'].includes(fieldType)) {
+          baseArea = {
+            w: area.maskW / 30 / area.maskW,
+            h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
+          }
+        } else if (fieldType === 'image') {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
+          }
+        } else if (fieldType === 'signature' || fieldType === 'stamp' || fieldType === 'verification') {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2
+          }
+        } else if (fieldType === 'initials') {
+          baseArea = {
+            w: area.maskW / 10 / area.maskW,
+            h: area.maskW / 35 / area.maskW
+          }
+        } else {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: area.maskW / 35 / area.maskW
+          }
+        }
+      }
+
+      fieldArea.w = baseArea.w
+      fieldArea.h = baseArea.h
+
+      if (fieldType === 'cells') {
+        fieldArea.cell_w = baseArea.cell_w || (baseArea.w / 5)
+      }
+
+      if (field.areas?.length) {
+        const lastArea = field.areas[field.areas.length - 1]
+
+        if (lastArea) {
+          fieldArea.w = lastArea.w
+          fieldArea.h = lastArea.h
+        }
+      }
+
+      if (field.width) {
+        fieldArea.w = field.width / area.maskW
+      }
+
+      if (field.height) {
+        fieldArea.h = field.height / area.maskH
+      }
+
+      fieldArea.y = fieldArea.y - fieldArea.h / 2
     },
     addBlankPage () {
       this.isLoadingBlankPage = true

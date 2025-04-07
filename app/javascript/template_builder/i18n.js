@@ -158,7 +158,9 @@ const en = {
   some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
   learn_more: 'Learn more',
   and: 'and',
-  or: 'or'
+  or: 'or',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start a quick tour to learn how to create an send your first document',
+  start_tour: 'Start Tour'
 }
 
 const es = {
@@ -321,7 +323,9 @@ const es = {
   some_fields_are_missing_in_the_formula: 'Faltan algunos campos en la fórmula.',
   learn_more: 'Aprende más',
   and: 'y',
-  or: 'o'
+  or: 'o',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inicia una guía rápida para aprender a crear y enviar tu primer documento.',
+  start_tour: 'Iniciar guía'
 }
 
 const it = {
@@ -484,7 +488,9 @@ const it = {
   some_fields_are_missing_in_the_formula: 'Alcuni campi mancano nella formula.',
   learn_more: 'Scopri di più',
   and: 'e',
-  or: 'o'
+  or: 'o',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.',
+  start_tour: 'Inizia il tour'
 }
 
 const pt = {
@@ -647,7 +653,9 @@ const pt = {
   some_fields_are_missing_in_the_formula: 'Faltam alguns campos na fórmula.',
   learn_more: 'Saiba mais',
   and: 'e',
-  or: 'ou'
+  or: 'ou',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Comece um tour rápido para aprender a criar e enviar seu primeiro documento.',
+  start_tour: 'Iniciar tour'
 }
 
 const fr = {
@@ -810,7 +818,9 @@ const fr = {
   some_fields_are_missing_in_the_formula: 'Certains champs manquent dans la formule.',
   learn_more: 'En savoir plus',
   and: 'et',
-  or: 'ou'
+  or: 'ou',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.',
+  start_tour: 'Démarrer'
 }
 
 const de = {
@@ -973,7 +983,9 @@ const de = {
   some_fields_are_missing_in_the_formula: 'Einige Felder fehlen in der Formel.',
   learn_more: 'Erfahren Sie mehr',
   and: 'und',
-  or: 'oder'
+  or: 'oder',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Starte eine kurze Tour, um zu lernen, wie du dein erstes Dokument erstellst und versendest.',
+  start_tour: 'Starten'
 }
 
 export { en, es, it, pt, fr, de }

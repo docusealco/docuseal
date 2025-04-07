@@ -17,6 +17,10 @@ module Api
         submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
       end
 
+      if params.key?(:archived)
+        submissions = params[:archived].in?(['true', true]) ? submissions.archived : submissions.active
+      end
+
       submissions = Submissions::Filter.call(submissions, current_user, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,

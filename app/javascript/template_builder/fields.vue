@@ -25,11 +25,11 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
+      :editable="editable"
       :default-field="defaultFieldsIndex[field.name]"
       :draggable="editable"
-      @dragstart="fieldsDragFieldRef.value = field"
-      @dragend="fieldsDragFieldRef.value = null"
+      @dragstart="[fieldsDragFieldRef.value = field, removeDragOverlay($event), setDragPlaceholder($event)]"
+      @dragend="[fieldsDragFieldRef.value = null, $emit('set-drag-placeholder', null)]"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
@@ -74,8 +74,8 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
-          class="border border-base-300 rounded rounded-tr-none relative group mb-2 default-field fields-list-item"
-          @dragstart="onDragstart({ type: 'text', ...field })"
+          class="border border-base-300 rounded relative group mb-2 default-field fields-list-item"
+          @dragstart="onDragstart($event, field)"
           @dragend="$emit('drag-end')"
         >
           <div class="flex items-center justify-between relative cursor-grab">
@@ -104,6 +104,7 @@
   </div>
   <div
     v-if="editable && !onlyDefinedFields"
+    id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
     <template
@@ -112,11 +113,12 @@
     >
       <button
         v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')"
+        :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
-        @dragstart="onDragstart({ type: type })"
+        @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
         @click="['file', 'payment', 'verification'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
@@ -189,7 +191,7 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4 && editable && withHelp"
+    v-if="fields.length < 4 && editable && withHelp && !showTourStartForm"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
@@ -203,6 +205,23 @@
         {{ t('click_on_the_field_type_above_to_start_drawing_it') }}
       </li>
     </ul>
+  </div>
+  <div
+    v-show="fields.length < 4 && editable && withHelp && showTourStartForm"
+    class="rounded py-2 px-4 w-full border border-dashed border-base-300"
+  >
+    <div class="text-center text-sm">
+      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
+    </div>
+    <div class="flex justify-center">
+      <label
+        for="start_tour_button"
+        class="btn btn-sm btn-warning w-40 mt-2"
+        @click="startTour"
+      >
+        {{ t('start_tour') }}
+      </label>
+    </div>
   </div>
 </template>
 
@@ -290,9 +309,14 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    showTourStartForm: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder'],
   data () {
     return {
       defaultFieldsSearch: ''
@@ -343,22 +367,56 @@ export default {
     }
   },
   methods: {
-    onDragstart (field) {
+    onDragstart (event, field) {
+      this.removeDragOverlay(event)
+
+      this.setDragPlaceholder(event)
+
       this.$emit('set-drag', field)
     },
+    setDragPlaceholder (event) {
+      this.$emit('set-drag-placeholder', {
+        offsetX: event.offsetX,
+        offsetY: event.offsetY,
+        x: event.clientX - event.offsetX,
+        y: event.clientY - event.offsetY,
+        w: event.currentTarget.clientWidth + 2,
+        h: event.currentTarget.clientHeight + 2
+      })
+    },
+    removeDragOverlay (event) {
+      const root = this.$el.getRootNode()
+      const hiddenEl = document.createElement('div')
+
+      hiddenEl.style.width = '1px'
+      hiddenEl.style.height = '1px'
+      hiddenEl.style.opacity = '0'
+      hiddenEl.style.position = 'fixed'
+
+      root.querySelector('#docuseal_modal_container').appendChild(hiddenEl)
+
+      event.dataTransfer.setDragImage(hiddenEl, 0, 0)
+
+      setTimeout(() => { hiddenEl.remove() }, 1000)
+    },
+    startTour () {
+      document.querySelector('app-tour').start()
+    },
     onFieldDragover (e) {
-      const targetField = e.target.closest('[data-uuid]')
-      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
+      if (this.fieldsDragFieldRef.value) {
+        const targetField = e.target.closest('[data-uuid]')
+        const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
 
-      if (dragField && targetField && targetField !== dragField) {
-        const fields = Array.from(this.$refs.fields.children)
-        const currentIndex = fields.indexOf(dragField)
-        const targetIndex = fields.indexOf(targetField)
+        if (dragField && targetField && targetField !== dragField) {
+          const fields = Array.from(this.$refs.fields.children)
+          const currentIndex = fields.indexOf(dragField)
+          const targetIndex = fields.indexOf(targetField)
 
-        if (currentIndex < targetIndex) {
-          targetField.after(dragField)
-        } else {
-          targetField.before(dragField)
+          if (currentIndex < targetIndex) {
+            targetField.after(dragField)
+          } else {
+            targetField.before(dragField)
+          }
         }
       }
     },

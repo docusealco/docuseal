@@ -35,7 +35,7 @@ export default actionable(targetable(class extends HTMLElement {
   }
 
   toggleLoading = (e) => {
-    if (e && e.target && !e.target.contains(this)) {
+    if (e && e.target && (!e.target.contains(this) || !e.detail?.formSubmission?.formElement?.contains(this))) {
       return
     }
 

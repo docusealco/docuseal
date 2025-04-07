@@ -3,7 +3,7 @@
     class="list-field group mb-2"
   >
     <div
-      class="border border-base-300 rounded rounded-tr-none relative group fields-list-item"
+      class="border border-base-300 rounded relative group fields-list-item"
       :style="{ backgroundColor: backgroundColor }"
     >
       <div class="flex items-center justify-between relative group/contenteditable-container">
@@ -149,7 +149,7 @@
         </div>
       </div>
       <div
-        v-if="field.options"
+        v-if="field.options && withOptions"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
         draggable="true"
@@ -301,6 +301,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withOptions: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     defaultField: {
       type: Object,

@@ -174,9 +174,10 @@
         <h2 class="text-2xl font-bold mb-2">
           <%= t('danger_zone') %>
         </h2>
-        <%= button_to button_title(title: t('delete_my_account')), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: t('schedule_account_for_deletion_') }, method: :delete, id: :account_delete_button %>
+        <%= button_to button_title(title: t('delete_my_account')), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: t('you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue') }, method: :delete, id: :account_delete_button %>
       </div>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>
+<%= render 'shared/app_tour', type: 'account' %>

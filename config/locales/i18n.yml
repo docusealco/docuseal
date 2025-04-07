@@ -166,7 +166,7 @@ en: &en
   connect_salesforce: Connect Salesforce
   danger_zone: Danger Zone
   delete_my_account: Delete my account
-  schedule_account_for_deletion_: Schedule account for deletion?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "You are scheduling your account for deletion. After deletion, your data will be permanently removed and cannot be recovered.\n\nClick OK if you would like to continue."
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 months. Please contact us if you want to keep your account.
@@ -701,6 +701,9 @@ en: &en
   pro_user_seats_used: Pro user seats used
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
+  welcome_to_docuseal: Welcome to DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
+  start_tour: Start Tour
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -739,6 +742,46 @@ en: &en
     or: Or
     download: download
     a_sample_spreadsheet_to_fill_and_import: a sample spreadsheet to fill and import
+  app_tour:
+    start: Start
+    previous: Previous
+    next: Next
+    template_and_submissions: 'Templates and Submissions'
+    template_and_submissions_description: "You can select the view that best suits your workflow. Choose the 'Templates' view if you create reusable document templates, or the 'Submissions' view when you sign individual documents or review the status of each signing request."
+    upload_a_pdf_file: 'Upload a PDF file'
+    upload_a_pdf_file_description: 'Upload a document to use it for creating a signing form template.'
+    select_a_signer_party: 'Select a signer party'
+    select_a_signer_party_description: 'This dropdown allows you to select a signing party role or add a new party to the document when it needs to be signed by two or more parties.'
+    available_parties: 'Available parties'
+    available_parties_description: 'This list contains all available parties with their role names. Once selected, you can add and configure fields for the signer party.'
+    available_field_types: 'Available field types'
+    available_field_types_description: 'This section contains all available field types that can be added to the document for data input or signature collection.'
+    text_input_field: 'Text input field'
+    text_input_field_description: 'This field allows users to enter text-based information, such as names or emails.'
+    signature_field: 'Signature field'
+    signature_field_description: 'This field allows for collecting signatures from the signers.'
+    added_fields: 'Added fields'
+    added_fields_description: 'This list displays all fields added to the document. You can reorder, edit, or remove them.'
+    open_field_settings: 'Open field settings'
+    open_field_settings_description: 'On the right, next to the field name, there is a settings icon that opens the field settings.'
+    field_settings: 'Field settings'
+    field_settings_description: 'Each field can be customized through settings to meet your requirements, such as adjusting the font size, making it a required field, or adding a description.'
+    send_document: 'Send document for signing'
+    send_document_description: 'Before sending the document for signing, you can configure recipients, add their email addresses or phone numbers, and customize the email content.'
+    sign_yourself: 'Sign the document yourself'
+    sign_yourself_description: 'This button allows you to add your signature to the documents that require your signature.'
+    copy_and_share_link: 'Copy & share link'
+    copy_and_share_link_description: 'Copy this link to share the document. Anyone with the link can sign it after entering their email.'
+    sign_the_document: 'Sign the document'
+    sign_the_document_description: 'If you are one of the signers signer, this button allows you to sign the document yourself.'
+    send_for_signing: 'Send for signing'
+    add_recipients: 'Add recipients'
+    add_recipients_description: 'Add new recipients for the document to be signed. You can enter their email addresses or phone numbers.'
+    settings: 'Settings'
+    settings_account_description: 'With comprehensive account settings, you can customize the eSigning experience and invite more users.'
+    support: 'Support'
+    support_description: 'You can use our self-service AI assistant or email us at support@docuseal.com if you have any questions.'
+    settings_template_description: 'Use this button to access your account settings page.'
   doorkeeper:
     scopes:
       write: Update your data
@@ -893,7 +936,7 @@ es: &es
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de peligro
   delete_my_account: Eliminar mi cuenta
-  schedule_account_for_deletion_: ¿Programar la eliminación de la cuenta?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Estás programando la eliminación de tu cuenta. Después de la eliminación, tus datos se eliminarán permanentemente y no podrán recuperarse.\n\nHaz clic en OK si deseas continuar."
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
@@ -1428,6 +1471,9 @@ es: &es
   pro_user_seats_used: Plazas de usuario Pro en uso
   manage_plan: Gestionar plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
+  welcome_to_docuseal: Bienvenido a DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
+  start_tour: Iniciar guía
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1466,6 +1512,46 @@ es: &es
     or: O
     download: descarga
     a_sample_spreadsheet_to_fill_and_import: una hoja de cálculo de ejemplo para completar e importar.
+  app_tour:
+    start: Comenzar
+    previous: Anterior
+    next: Siguiente
+    template_and_submissions: 'Plantillas y Envíos'
+    template_and_submissions_description: "Puedes seleccionar la vista que mejor se adapte a tu flujo de trabajo. Elige la vista de 'Plantillas' si creas plantillas reutilizables de documentos, o la vista de 'Envíos' cuando firmas documentos individuales o revisas el estado de cada solicitud de firma."
+    upload_a_pdf_file: 'Subir un archivo PDF'
+    upload_a_pdf_file_description: 'Sube un documento para usarlo como plantilla de formulario de firma.'
+    select_a_signer_party: 'Seleccionar parte firmante'
+    select_a_signer_party_description: 'Este menú desplegable te permite seleccionar un rol de firmante o agregar una nueva parte al documento cuando debe ser firmado por dos o más partes.'
+    available_parties: 'Partes disponibles'
+    available_parties_description: 'Esta lista contiene todas las partes disponibles con sus roles. Una vez seleccionada, puedes añadir y configurar campos para esa parte.'
+    available_field_types: 'Tipos de campo disponibles'
+    available_field_types_description: 'Esta sección contiene todos los tipos de campo que se pueden añadir al documento para entrada de datos o recolección de firmas.'
+    text_input_field: 'Campo de texto'
+    text_input_field_description: 'Este campo permite a los usuarios introducir información de texto, como nombres o correos electrónicos.'
+    signature_field: 'Campo de firma'
+    signature_field_description: 'Este campo permite recopilar firmas de los firmantes.'
+    added_fields: 'Campos añadidos'
+    added_fields_description: 'Esta lista muestra todos los campos añadidos al documento. Puedes reordenarlos, editarlos o eliminarlos.'
+    open_field_settings: 'Abrir configuración del campo'
+    open_field_settings_description: 'A la derecha del nombre del campo, hay un icono de ajustes que abre la configuración del campo.'
+    field_settings: 'Configuración del campo'
+    field_settings_description: 'Cada campo puede personalizarse según tus necesidades, como ajustar el tamaño de fuente, hacerlo obligatorio o añadir una descripción.'
+    send_document: 'Enviar documento para firmar'
+    send_document_description: 'Antes de enviar el documento para firmar, puedes configurar destinatarios, añadir correos electrónicos o teléfonos, y personalizar el contenido del correo.'
+    sign_yourself: 'Firma el documento tú mismo'
+    sign_yourself_description: 'Este botón te permite añadir tu firma a documentos que requieren tu firma.'
+    copy_and_share_link: 'Copiar y compartir enlace'
+    copy_and_share_link_description: 'Copia este enlace para compartir el documento. Cualquiera con el enlace puede firmarlo tras ingresar su correo electrónico.'
+    sign_the_document: 'Firmar el documento'
+    sign_the_document_description: 'Si eres uno de los firmantes, este botón te permite firmar el documento tú mismo.'
+    send_for_signing: 'Enviar para firma'
+    add_recipients: 'Agregar destinatarios'
+    add_recipients_description: 'Agrega nuevos destinatarios para que el documento sea firmado. Puedes ingresar sus correos electrónicos o números de teléfono.'
+    settings: 'Configuración'
+    settings_account_description: 'Con una configuración completa de la cuenta, puedes personalizar la experiencia de firma y añadir más usuarios.'
+    support: 'Soporte'
+    support_description: 'Puedes usar nuestro asistente de IA o escribirnos a support@docuseal.com si tienes preguntas.'
+    settings_template_description: 'Usa este botón para acceder a la configuración de tu cuenta.'
   doorkeeper:
     scopes:
       write: Actualizar tus datos
@@ -1619,7 +1705,7 @@ it: &it
   connect_salesforce: Connetti Salesforce
   danger_zone: Zona di pericolo
   delete_my_account: Elimina il mio account
-  schedule_account_for_deletion_: "Programmare l'eliminazione dell'account?"
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Stai programmando l'eliminazione del tuo account. Dopo l'eliminazione, i tuoi dati saranno rimossi in modo permanente e non potranno essere recuperati.\n\nFai clic su OK se desideri continuare."
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
@@ -2154,6 +2240,9 @@ it: &it
   pro_user_seats_used: Posti utente Pro in uso
   manage_plan: Gestisci piano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
+  welcome_to_docuseal: Benvenuto in DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
+  start_tour: Inizia il tour
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2192,6 +2281,46 @@ it: &it
     or: Oppure
     download: scarica
     a_sample_spreadsheet_to_fill_and_import: un foglio di calcolo di esempio da compilare e importare.
+  app_tour:
+    start: Inizia
+    previous: Precedente
+    next: Successivo
+    template_and_submissions: 'Modelli e Invii'
+    template_and_submissions_description: "Puoi selezionare la vista che meglio si adatta al tuo flusso di lavoro. Scegli la vista 'Modelli' se crei modelli riutilizzabili di documenti, oppure la vista 'Invii' quando firmi documenti singoli o controlli lo stato di ogni richiesta di firma."
+    upload_a_pdf_file: 'Carica un file PDF'
+    upload_a_pdf_file_description: 'Carica un documento da utilizzare per creare un modello di modulo di firma.'
+    select_a_signer_party: 'Seleziona una parte firmataria'
+    select_a_signer_party_description: 'Questo menu a discesa consente di selezionare un ruolo di firmatario o aggiungere una nuova parte al documento quando deve essere firmato da due o più parti.'
+    available_parties: 'Parti disponibili'
+    available_parties_description: 'Questo elenco contiene tutte le parti disponibili con i relativi ruoli. Una volta selezionata, puoi aggiungere e configurare i campi per la parte firmataria.'
+    available_field_types: 'Tipi di campo disponibili'
+    available_field_types_description: "Questa sezione contiene tutti i tipi di campo disponibili che possono essere aggiunti al documento per l'inserimento di dati o la raccolta delle firme."
+    text_input_field: 'Campo di testo'
+    text_input_field_description: 'Questo campo consente agli utenti di inserire informazioni testuali, come nomi o email.'
+    signature_field: 'Campo firma'
+    signature_field_description: 'Questo campo consente di raccogliere firme dai firmatari.'
+    added_fields: 'Campi aggiunti'
+    added_fields_description: 'Questo elenco mostra tutti i campi aggiunti al documento. Puoi riordinarli, modificarli o rimuoverli.'
+    open_field_settings: 'Apri le impostazioni del campo'
+    open_field_settings_description: "A destra del nome del campo c'è un'icona delle impostazioni che apre il menu di configurazione."
+    field_settings: 'Impostazioni del campo'
+    field_settings_description: 'Ogni campo può essere personalizzato tramite le impostazioni per soddisfare le tue esigenze, come modificare la dimensione del testo, renderlo obbligatorio o aggiungere una descrizione.'
+    send_document: 'Invia documento per la firma'
+    send_document_description: "Prima di inviare il documento per la firma, puoi configurare i destinatari, aggiungere email o numeri di telefono e personalizzare il contenuto dell'email."
+    sign_yourself: 'Firma il documento personalmente'
+    sign_yourself_description: 'Questo pulsante ti consente di aggiungere la tua firma ai documenti che richiedono la tua firma.'
+    copy_and_share_link: 'Copia e condividi il link'
+    copy_and_share_link_description: 'Copia questo link per condividere il documento. Chiunque abbia il link potrà firmarlo dopo aver inserito la propria email.'
+    sign_the_document: 'Firma il documento'
+    sign_the_document_description: 'Se sei uno dei firmatari, questo pulsante ti consente di firmare il documento personalmente.'
+    send_for_signing: 'Invia per la firma'
+    add_recipients: 'Aggiungi destinatari'
+    add_recipients_description: 'Aggiungi nuovi destinatari per la firma del documento. Puoi inserire il loro indirizzo email o numero di telefono.'
+    settings: 'Impostazioni'
+    settings_account_description: "Con impostazioni complete dell'account, puoi personalizzare l'esperienza di firma elettronica e invitare altri utenti."
+    support: 'Supporto'
+    support_description: 'Puoi usare il nostro assistente AI oppure scriverci a support@docuseal.com se hai domande.'
+    settings_template_description: "Usa questo pulsante per accedere alla pagina delle impostazioni dell'account."
   doorkeeper:
     scopes:
       write: Aggiorna i tuoi dati
@@ -2347,7 +2476,7 @@ fr: &fr
   connect_salesforce: Connecter Salesforce
   danger_zone: Zone dangereuse
   delete_my_account: Supprimer mon compte
-  schedule_account_for_deletion_: Programmer la suppression du compte?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Vous programmez la suppression de votre compte. Après suppression, vos données seront définitivement supprimées et ne pourront pas être récupérées.\n\nCliquez sur OK si vous souhaitez continuer."
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression du compte sera traitée dans un délai de 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
@@ -2882,6 +3011,9 @@ fr: &fr
   pro_user_seats_used: Places utilisateur Pro en cours d'utilisation
   manage_plan: Gérer le plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage, car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
+  welcome_to_docuseal: Bienvenue sur DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.
+  start_tour: Démarrer
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -2920,6 +3052,46 @@ fr: &fr
     or: Un
     download: téléchargez
     a_sample_spreadsheet_to_fill_and_import: un modèle de feuille de calcul à remplir et importer.
+  app_tour:
+    start: Démarrer
+    previous: Précédent
+    next: Suivant
+    template_and_submissions: 'Modèles et Soumissions'
+    template_and_submissions_description: "Vous pouvez sélectionner la vue qui correspond le mieux à votre flux de travail. Choisissez la vue 'Modèles' si vous créez des modèles de documents réutilisables, ou la vue 'Soumissions' lorsque vous signez des documents individuels ou vérifiez l'état de chaque demande de signature."
+    upload_a_pdf_file: 'Téléverser un fichier PDF'
+    upload_a_pdf_file_description: "Téléversez un document pour l'utiliser comme modèle de formulaire de signature."
+    select_a_signer_party: 'Sélectionner une partie signataire'
+    select_a_signer_party_description: "Ce menu déroulant vous permet de sélectionner un rôle de signataire ou d'ajouter une nouvelle partie au document lorsqu'il doit être signé par deux parties ou plus."
+    available_parties: 'Parties disponibles'
+    available_parties_description: 'Cette liste contient toutes les parties disponibles avec leurs rôles. Une fois sélectionnée, vous pouvez ajouter et configurer les champs pour cette partie.'
+    available_field_types: 'Types de champs disponibles'
+    available_field_types_description: 'Cette section contient tous les types de champs pouvant être ajoutés au document pour la saisie de données ou la collecte de signatures.'
+    text_input_field: 'Champ de texte'
+    text_input_field_description: 'Ce champ permet aux utilisateurs de saisir des informations textuelles telles que des noms ou des adresses e-mail.'
+    signature_field: 'Champ de signature'
+    signature_field_description: 'Ce champ permet de collecter les signatures des signataires.'
+    added_fields: 'Champs ajoutés'
+    added_fields_description: 'Cette liste affiche tous les champs ajoutés au document. Vous pouvez les réorganiser, les modifier ou les supprimer.'
+    open_field_settings: 'Ouvrir les paramètres du champ'
+    open_field_settings_description: "À droite du nom du champ se trouve une icône permettant d'ouvrir les paramètres du champ."
+    field_settings: 'Paramètres du champ'
+    field_settings_description: "Chaque champ peut être personnalisé à l'aide des paramètres pour répondre à vos besoins, comme ajuster la taille de la police, le rendre obligatoire ou ajouter une description."
+    send_document: 'Envoyer le document pour signature'
+    send_document_description: "Avant d'envoyer le document pour signature, vous pouvez configurer les destinataires, ajouter leurs e-mails ou numéros de téléphone et personnaliser le contenu de l'e-mail."
+    sign_yourself: 'Signer le document vous-même'
+    sign_yourself_description: "Ce bouton vous permet d'ajouter votre propre signature aux documents qui en nécessitent une."
+    copy_and_share_link: 'Copier et partager le lien'
+    copy_and_share_link_description: 'Copiez ce lien pour partager le document. Toute personne disposant du lien pourra le signer après avoir saisi son e-mail.'
+    sign_the_document: 'Signer le document'
+    sign_the_document_description: 'Si vous êtes l’un des signataires, ce bouton vous permet de signer le document vous-même.'
+    send_for_signing: 'Envoyer pour signature'
+    add_recipients: 'Ajouter des destinataires'
+    add_recipients_description: 'Ajoutez de nouveaux destinataires pour que le document soit signé. Vous pouvez saisir leur adresse e-mail ou leur numéro de téléphone.'
+    settings: 'Paramètres'
+    settings_account_description: "Grâce à des paramètres de compte complets, vous pouvez personnaliser l'expérience de signature électronique et inviter d'autres utilisateurs."
+    support: 'Assistance'
+    support_description: 'Vous pouvez utiliser notre assistant IA ou nous écrire à support@docuseal.com si vous avez des questions.'
+    settings_template_description: 'Utilisez ce bouton pour accéder à la page des paramètres de votre compte.'
   doorkeeper:
     scopes:
       write: Mettre à jour vos données
@@ -3074,7 +3246,7 @@ pt: &pt
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de perigo
   delete_my_account: Excluir minha conta
-  schedule_account_for_deletion_: Agendar exclusão da conta?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Você está agendando a exclusão da sua conta. Após a exclusão, seus dados serão permanentemente removidos e não poderão ser recuperados.\n\nClique em OK se desejar continuar."
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
@@ -3609,6 +3781,9 @@ pt: &pt
   pro_user_seats_used: Lugares de usuário Pro em uso
   manage_plan: Gerenciar plano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
+  welcome_to_docuseal: Bem-vindo ao DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
+  start_tour: Iniciar tour
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -3647,6 +3822,47 @@ pt: &pt
     or: Ou
     download: baixe
     a_sample_spreadsheet_to_fill_and_import: uma planilha de exemplo para preencher e importar.
+  app_tour:
+    start: Iniciar
+    previous: Anterior
+    next: Próximo
+    template_and_submissions: 'Modelos e Envios'
+    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' se criar modelos de documentos reutilizáveis, ou 'Envios' ao assinar documentos individuais ou revisar o status de cada solicitação de assinatura."
+    upload_a_pdf_file: 'Enviar um arquivo PDF'
+    upload_a_pdf_file_description: 'Envie um documento para usá-lo como modelo de formulário de assinatura.'
+    select_a_signer_party: 'Selecionar parte assinante'
+    select_a_signer_party_description: 'Este menu suspenso permite selecionar um papel de assinante ou adicionar uma nova parte ao documento quando ele precisa ser assinado por duas ou mais partes.'
+    available_parties: 'Partes disponíveis'
+    available_parties_description: 'Esta lista contém todas as partes disponíveis com seus respectivos papéis. Após selecionar, você poderá adicionar e configurar os campos para essa parte.'
+    available_field_types: 'Tipos de campo disponíveis'
+    available_field_types_description: 'Esta seção contém todos os tipos de campos que podem ser adicionados ao documento para entrada de dados ou coleta de assinaturas.'
+    text_input_field: 'Campo de texto'
+    text_input_field_description: 'Este campo permite que os usuários insiram informações baseadas em texto, como nomes ou e-mails.'
+    signature_field: 'Campo de assinatura'
+    signature_field_description: 'Este campo permite coletar assinaturas dos signatários.'
+    added_fields: 'Campos adicionados'
+    added_fields_description: 'Esta lista exibe todos os campos adicionados ao documento. Você pode reordená-los, editá-los ou removê-los.'
+    open_field_settings: 'Abrir configurações do campo'
+    open_field_settings_description: 'À direita do nome do campo há um ícone de configurações que abre as configurações do campo.'
+    field_settings: 'Configurações do campo'
+    field_settings_description: 'Cada campo pode ser personalizado de acordo com suas necessidades, como ajustar o tamanho da fonte, torná-lo obrigatório ou adicionar uma descrição.'
+    send_document: 'Enviar documento para assinatura'
+    send_document_description: 'Antes de enviar o documento para assinatura, você pode configurar os destinatários, adicionar e-mails ou números de telefone e personalizar o conteúdo do e-mail.'
+    sign_yourself: 'Assinar o documento você mesmo'
+    sign_yourself_description: 'Este botão permite que você adicione sua própria assinatura aos documentos que exigem sua assinatura.'
+    copy_and_share_link: 'Copiar e compartilhar link'
+    copy_and_share_link_description: 'Copie este link para compartilhar o documento. Qualquer pessoa com o link pode assiná-lo após inserir seu e-mail.'
+    sign_the_document: 'Assinar o documento'
+    sign_the_document_description: 'Se você for um dos signatários, este botão permite que você assine o documento.'
+    send_for_signing: 'Enviar para assinatura'
+    add_recipients: 'Adicionar destinatários'
+    add_recipients_description: 'Adicione novos destinatários para que o documento seja assinado. Você pode inserir seus e-mails ou números de telefone.'
+    settings: 'Configurações'
+    settings_account_description: 'Com configurações completas de conta, você pode personalizar a experiência de assinatura eletrônica e convidar mais usuários.'
+    support: 'Suporte'
+    support_description: 'Você pode usar nosso assistente de IA ou nos escrever para support@docuseal.com se tiver dúvidas.'
+    settings: 'Configurações'
+    settings_template_description: 'Use este botão para acessar a página de configurações da sua conta.'
   doorkeeper:
     scopes:
       write: Atualizar seus dados
@@ -3801,7 +4017,7 @@ de: &de
   connect_salesforce: Salesforce verbinden
   danger_zone: Gefahrenzone
   delete_my_account: Mein Konto löschen
-  schedule_account_for_deletion_: Konto zur Löschung einplanen?
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Du planst die Löschung deines Kontos. Nach der Löschung werden deine Daten dauerhaft entfernt und können nicht wiederhergestellt werden.\n\nKlicke auf OK, wenn du fortfahren möchtest."
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Deine Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktiere uns, wenn du dein Konto behalten möchtest.
@@ -4336,6 +4552,9 @@ de: &de
   pro_user_seats_used: Verwendete Pro-Benutzerplätze
   manage_plan: Plan verwalten
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Übermittlung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
+  welcome_to_docuseal: Willkommen bei DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Starte eine kurze Tour, um zu lernen, wie du dein erstes Dokument erstellst und versendest.
+  start_tour: Starten
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4374,6 +4593,46 @@ de: &de
     or: Oder
     download: laden
     a_sample_spreadsheet_to_fill_and_import: Sie eine Beispieltabelle herunter, um sie auszufüllen und zu importieren.
+  app_tour:
+    start: Start
+    previous: Zurück
+    next: Weiter
+    template_and_submissions: 'Vorlagen und Übermittlungen'
+    template_and_submissions_description: "Du kannst die Ansicht wählen, die am besten zu deinem Arbeitsablauf passt. Wähle die Ansicht 'Vorlagen', wenn du wiederverwendbare Dokumentenvorlagen erstellst, oder 'Übermittlungen', wenn du einzelne Dokumente unterschreibst oder den Status jeder Signaturanfrage überprüfen möchtest."
+    upload_a_pdf_file: 'PDF-Datei hochladen'
+    upload_a_pdf_file_description: 'Lade ein Dokument hoch, um es als Vorlage für ein Signaturformular zu verwenden.'
+    select_a_signer_party: 'Signaturpartei auswählen'
+    select_a_signer_party_description: 'Dieses Dropdown-Menü ermöglicht es dir, eine Signaturrolle auszuwählen oder eine neue Partei zum Dokument hinzuzufügen, wenn es von zwei oder mehr Parteien unterzeichnet werden muss.'
+    available_parties: 'Verfügbare Parteien'
+    available_parties_description: 'Diese Liste enthält alle verfügbaren Parteien mit ihren Rollennamen. Nach der Auswahl kannst du Felder für die Partei hinzufügen und konfigurieren.'
+    available_field_types: 'Verfügbare Feldtypen'
+    available_field_types_description: 'Dieser Bereich enthält alle verfügbaren Feldtypen, die dem Dokument für Dateneingabe oder Signaturerfassung hinzugefügt werden können.'
+    text_input_field: 'Textfeld'
+    text_input_field_description: 'Dieses Feld ermöglicht es Benutzern, textbasierte Informationen wie Namen oder E-Mails einzugeben.'
+    signature_field: 'Signaturfeld'
+    signature_field_description: 'Dieses Feld dient der Erfassung von Signaturen der Unterzeichner.'
+    added_fields: 'Hinzugefügte Felder'
+    added_fields_description: 'Diese Liste zeigt alle dem Dokument hinzugefügten Felder. Du kannst sie neu anordnen, bearbeiten oder entfernen.'
+    open_field_settings: 'Feld-Einstellungen öffnen'
+    open_field_settings_description: 'Rechts neben dem Feldnamen befindet sich ein Zahnradsymbol, um die Einstellungen des Feldes zu öffnen.'
+    field_settings: 'Feld-Einstellungen'
+    field_settings_description: 'Jedes Feld kann individuell angepasst werden, z. B. durch Schriftgröße, Pflichtfeld-Option oder Beschreibung.'
+    send_document: 'Dokument zum Unterschreiben senden'
+    send_document_description: 'Bevor du das Dokument zum Unterschreiben sendest, kannst du Empfänger hinzufügen, ihre E-Mail-Adressen oder Telefonnummern eingeben und den E-Mail-Inhalt anpassen.'
+    sign_yourself: 'Dokument selbst unterschreiben'
+    sign_yourself_description: 'Mit diesem Button kannst du deine eigene Unterschrift zu Dokumenten hinzufügen, die deine Signatur erfordern.'
+    copy_and_share_link: 'Link kopieren und teilen'
+    copy_and_share_link_description: 'Kopiere diesen Link, um das Dokument zu teilen. Jeder mit dem Link kann es unterschreiben, nachdem er seine E-Mail-Adresse eingegeben hat.'
+    sign_the_document: 'Dokument unterschreiben'
+    sign_the_document_description: 'Wenn du einer der Unterzeichner bist, kannst du das Dokument mit diesem Button selbst unterschreiben.'
+    send_for_signing: 'Zum Unterschreiben senden'
+    add_recipients: 'Empfänger hinzufügen'
+    add_recipients_description: 'Füge neue Empfänger hinzu, damit das Dokument unterschrieben werden kann. Du kannst deren E-Mail-Adressen oder Telefonnummern eingeben.'
+    settings: 'Einstellungen'
+    settings_account_description: 'Mit umfangreichen Kontoeinstellungen kannst du das Signiererlebnis anpassen und weitere Benutzer einladen.'
+    support: 'Support'
+    support_description: 'Du kannst unseren KI-Assistenten nutzen oder uns bei Fragen an support@docuseal.com schreiben.'
+    settings_template_description: 'Mit diesem Button gelangst du zu den Kontoeinstellungen.'
   doorkeeper:
     scopes:
       write: Aktualisiere deine Daten

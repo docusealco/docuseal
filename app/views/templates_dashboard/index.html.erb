@@ -1,4 +1,5 @@
 <% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
+<% show_dropzone = params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0">
@@ -41,9 +42,31 @@
 <% if @templates.present? %>
   <div class="grid gap-4 md:grid-cols-3">
     <%= render partial: 'templates/template', collection: @templates %>
+    <% if show_dropzone && current_user.created_at > 2.weeks.ago || params[:tour] == 'true' %>
+      <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
+      <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
+        <div class="hidden md:block">
+          <app-tour id="app_tour" data-show-tour="<%= params[:tour] == 'true' || user_config.value %>" data-type="dashboard" data-next-page-path="<%= @templates.first && can?(:edit, @templates.first) ? edit_template_path(@templates.first, params.permit(:tour)) : settings_account_path %>" data-i18n="<%= t('app_tour').to_json %>"></app-tour>
+          <% if user_config.new_record? && !params.key?(:tour) %>
+            <div class="h-36 rounded-2xl pt-3 px-7 w-full border border-dashed border-base-300">
+              <div class="text-xl text-center font-semibold text-base-content">
+                <%= t('welcome_to_docuseal') %>
+              </div>
+              <div class="my-2 text-center text-xs text-base-content/70">
+                <%= t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') %>
+              </div>
+              <div class="flex gap-2 mt-3 w-full">
+                <%= button_to button_title(title: t('skip'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: false } }, class: 'btn btn-sm btn-outline w-full', form_class: 'flex-1', method: :post, form: { onsubmit: 'window.app_tour.parentNode.remove()' } %>
+                <%= button_to t('start_tour'), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: true } }, class: 'btn btn-sm btn-warning  w-full', form_class: 'flex-1', method: :post, form: { onsubmit: 'window.app_tour.start()' } %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 <% end %>
-<% if params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
+<% if show_dropzone %>
   <%= render 'templates/dropzone' %>
 <% end %>
 <% if @templates.present? || params[:q].blank? %>

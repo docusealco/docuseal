@@ -21,6 +21,7 @@
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^5.0.0",
     "daisyui": "^3.9.4",
+    "driver.js": "^1.3.5",
     "mathjs": "^12.4.0",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss": "^8.4.31",

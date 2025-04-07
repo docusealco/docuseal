@@ -95,6 +95,23 @@ describe 'Submitter API', type: :request do
       expect(submitter.email).to eq('john.doe+updated@example.com')
       expect(response.parsed_body).to eq(JSON.parse(update_submitter_body(submitter).to_json))
     end
+
+    it 'marks a submitter as completed' do
+      submitter = create(:submission, :with_submitters, :with_events,
+                         template: templates[0],
+                         created_by_user: author).submitters.first
+
+      put "/api/submitters/#{submitter.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        completed: true
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submitter.reload
+
+      expect(submitter.status).to eq('completed')
+      expect(submitter.completed_at).not_to be_nil
+    end
   end
 
   private
@@ -134,8 +151,8 @@ describe 'Submitter API', type: :request do
           data: event.data.slice(:reason)
         }
       end,
-      values: [],
-      documents: [],
+      values: Submitters::SerializeForWebhook.build_values_array(submitter),
+      documents: Submitters::SerializeForWebhook.build_documents_array(submitter),
       role: submitter.template.submitters.find { |s| s['uuid'] == submitter.uuid }['name']
     }
   end

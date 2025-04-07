@@ -143,7 +143,7 @@
           >
             <span
               contenteditable="true"
-              class="outline-none"
+              class="outline-none whitespace-nowrap truncate"
             >
               {{ field.default_value || field.name || buildDefaultName(field, template.fields) }}
             </span>

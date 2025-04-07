@@ -32,6 +32,7 @@ import CheckboxGroup from './elements/checkbox_group'
 import MaskedInput from './elements/masked_input'
 import SetDateButton from './elements/set_date_button'
 import IndeterminateCheckbox from './elements/indeterminate_checkbox'
+import AppTour from './elements/app_tour'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -99,6 +100,7 @@ safeRegisterElement('checkbox-group', CheckboxGroup)
 safeRegisterElement('masked-input', MaskedInput)
 safeRegisterElement('set-date-button', SetDateButton)
 safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
+safeRegisterElement('app-tour', AppTour)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
@@ -124,7 +126,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
-      acceptFileTypes: this.dataset.acceptFileTypes
+      acceptFileTypes: this.dataset.acceptFileTypes,
+      showTourStartForm: this.dataset.showTourStartForm === 'true'
     })
 
     this.component = this.app.mount(this.appElem)
