@@ -51,7 +51,7 @@
         <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
           <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
           <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
-          <%= f.fields_for :preferences, Struct.new(:completed_redirect_url, :completed_message).new(@template.preferences['completed_redirect_url'].presence, Struct.new(:title, :body).new(*(@template.preferences['completed_message'] || {}).values_at('title', 'body'))) do |ff| %>
+          <%= f.fields_for :preferences, Struct.new(:completed_redirect_url, :completed_message, :require_phone_2fa).new(@template.preferences['completed_redirect_url'].presence, Struct.new(:title, :body).new(*(@template.preferences['completed_message'] || {}).values_at('title', 'body')), @template.preferences['require_phone_2fa'] == true) do |ff| %>
             <div class="form-control mb-2">
               <%= ff.label :completed_redirect_url, t('redirect_on_completion_url'), class: 'label' %>
               <%= ff.url_field :completed_redirect_url, required: false, class: 'base-input', dir: 'auto' %>
@@ -64,6 +64,7 @@
                 </autoresize-textarea>
               </div>
             <% end %>
+            <%= render 'templates_preferences/form_fields', ff: %>
           <% end %>
           <div class="form-control pt-2">
             <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>

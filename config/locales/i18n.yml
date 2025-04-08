@@ -26,6 +26,11 @@ en: &en
   reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
+  require_phone_2fa_to_open: Require phone 2FA to open
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: The sender has requested a two factor authentication via one time password sent to your <b>%{phone}</b> phone number.
+  send_verification_code: Send verification code
+  code_has_been_resent: Code has been re-sent
+  invalid_code: Invalid code
   unarchive: Unarchive
   signed: Signed
   first_party: 'First Party'
@@ -788,6 +793,11 @@ en: &en
       read: Read your data
 
 es: &es
+  require_phone_2fa_to_open: Requiere 2FA por teléfono para abrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: El remitente ha solicitado una autenticación de dos factores mediante una contraseña de un solo uso enviada a su número de teléfono <b>%{phone}</b>.
+  send_verification_code: Enviar código de verificación
+  code_has_been_resent: El código ha sido reenviado
+  invalid_code: Código inválido
   always_enforce_signing_order: Siempre imponer el orden de firma
   bcc_recipients: Destinatarios CCO
   edit_per_party: Editar por parte
@@ -1558,6 +1568,11 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  require_phone_2fa_to_open: Richiedi l'autenticazione a due fattori tramite telefono per aprire
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Il mittente ha richiesto un'autenticazione a due fattori tramite una password monouso inviata al tuo numero di telefono <b>%{phone}</b>.
+  send_verification_code: Invia codice di verifica
+  code_has_been_resent: Il codice è stato inviato di nuovo
+  invalid_code: Codice non valido
   always_enforce_signing_order: Applicare sempre l'ordine di firma
   bcc_recipients: Destinatari BCC
   edit_per_party: Modifica per partito
@@ -2327,6 +2342,11 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  require_phone_2fa_to_open: Requiert une 2FA par téléphone pour ouvrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: L'expéditeur a demandé une authentification à deux facteurs via un mot de passe à usage unique envoyé à votre numéro de téléphone <b>%{phone}</b>.
+  send_verification_code: Envoyer le code de vérification
+  code_has_been_resent: Le code a été renvoyé
+  invalid_code: Code invalide
   always_enforce_signing_order: Toujours appliquer l'ordre de signature
   bcc_recipients: Destinataires en CCI
   edit_per_party: Éditer par partie
@@ -3098,6 +3118,11 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  require_phone_2fa_to_open: Necessário autenticação de dois fatores via telefone para abrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: O remetente solicitou uma autenticação de dois fatores via senha de uso único enviada para seu número <b>%{phone}</b>.
+  send_verification_code: Enviar código de verificação
+  code_has_been_resent: Código foi reenviado
+  invalid_code: Código inválido
   always_enforce_signing_order: Sempre impor a ordem de assinatura
   bcc_recipients: Destinatários BCC
   edit_per_party: Edita por festa
@@ -3869,6 +3894,11 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  require_phone_2fa_to_open: Telefon-2FA zum Öffnen erforderlich
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Der Absender hat eine Zwei-Faktor-Authentifizierung per Einmalpasswort angefordert, das an Ihre <b>%{phone}</b>-Telefonnummer gesendet wurde.
+  send_verification_code: Bestätigungscode senden
+  code_has_been_resent: Code wurde erneut gesendet
+  invalid_code: Ungültiger Code
   always_enforce_signing_order: Immer die Reihenfolge der Unterschriften erzwingen
   bcc_recipients: BCC-Empfänger
   edit_per_party: Bearbeiten pro Partei
@@ -4639,6 +4669,11 @@ de: &de
       read: Lese deine Daten
 
 pl:
+  require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Nadawca zażądał uwierzytelnienia dwuetapowego poprzez jednorazowe hasło wysłane na Twój <b>%{phone}</b> numer telefonu.
+  send_verification_code: Wyślij kod weryfikacyjny
+  code_has_been_resent: Kod został wysłany ponownie
+  invalid_code: Niepoprawny kod
   awaiting_completion_by_the_other_party: "Oczekuje na dokończenie przez drugą stronę"
   view: Widok
   hi_there: Cześć,
@@ -4698,6 +4733,11 @@ pl:
   resend_code: Wyślij Kod Ponownie
 
 uk:
+  require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Відправник запросив двофакторну автентифікацію за допомогою одноразового пароля, відправленого на ваш номер телефону <b>%{phone}</b>.
+  send_verification_code: Надіслати код підтвердження
+  code_has_been_resent: Код повторно надіслано
+  invalid_code: Невірний код
   awaiting_completion_by_the_other_party: "Очікує завершення з боку іншої сторони"
   view: Переглянути
   hi_there: Привіт,
@@ -4757,6 +4797,11 @@ uk:
   resend_code: Відправити код знову
 
 cs:
+  require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Odesílatel požádal o dvoufaktorové ověření pomocí jednorázového hesla zaslaného na vaše telefonní číslo <b>%{phone}</b>.
+  send_verification_code: Odeslat ověřovací kód
+  code_has_been_resent: Kód byl znovu odeslán
+  invalid_code: Neplatný kód
   awaiting_completion_by_the_other_party: "Čeká se na dokončení druhou stranou"
   view: Zobrazit
   hi_there: Ahoj,
@@ -4816,6 +4861,11 @@ cs:
   resend_code: Znovu Odeslat Kód
 
 he:
+  require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: השולח ביקש אימות דו-שלבי באמצעות סיסמה חד פעמית שנשלחה למספר הטלפון שלך <b>%{phone}</b>.
+  send_verification_code: שלח קוד אימות
+  code_has_been_resent: הקוד נשלח מחדש
+  invalid_code: קוד שגוי
   awaiting_completion_by_the_other_party: "המתנה להשלמה מצד הצד השני"
   view: תצוגה
   hi_there: שלום,
@@ -4875,6 +4925,11 @@ he:
   resend_code: שלח קוד מחדש
 
 nl:
+  require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: De afzender heeft gevraagd om tweefactorauthenticatie via een eenmalig wachtwoord, verzonden naar uw <b>%{phone}</b> telefoonnummer.
+  send_verification_code: Verificatiecode verzenden
+  code_has_been_resent: Code is opnieuw verzonden
+  invalid_code: Invalid code
   awaiting_completion_by_the_other_party: "In afwachting van voltooiing door de andere partij"
   view: Bekijken
   hi_there: Hallo,
@@ -4934,6 +4989,11 @@ nl:
   resend_code: Code Opnieuw Verzenden
 
 ar:
+  require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: "المرسل طلب تحقق ذو عاملين عبر كلمة مرور لمرة واحدة مرسل إلى رقم هاتفك <b>%{phone}</b>."
+  send_verification_code: "إرسال رمز التحقق"
+  code_has_been_resent: "تم إعادة إرسال الرمز"
+  invalid_code: "رمز غير صالح"
   awaiting_completion_by_the_other_party: "في انتظار إكتمال الطرف الآخر"
   view: عرض
   hi_there: مرحبا,
@@ -4993,6 +5053,11 @@ ar:
   resend_code: إعادة إرسال الرمز
 
 ko:
+  require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: 발신자가 <b>%{phone}</b> 전화번호로 보내진 일회용 비밀번호를 통해 이중 인증을 요청했습니다.
+  send_verification_code: 인증 코드 보내기
+  code_has_been_resent: 코드가 재전송되었습니다.
+  invalid_code: 잘못된 코드
   awaiting_completion_by_the_other_party: "다른 당사자의 완료를 기다리고 있습니다"
   view: 보기
   hi_there: 안녕하세요,

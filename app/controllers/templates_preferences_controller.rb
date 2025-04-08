@@ -25,7 +25,7 @@ class TemplatesPreferencesController < ApplicationController
                       documents_copy_email_attach_documents documents_copy_email_reply_to
                       completed_notification_email_attach_documents
                       completed_redirect_url
-                      submitters_order
+                      submitters_order require_phone_2fa
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit] +
                       [completed_message: %i[title body],
