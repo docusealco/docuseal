@@ -28,6 +28,7 @@
     <div id="list" class="hidden">
       <%= render 'list_form', template: @template %>
     </div>
+    <%= render 'submissions/error' %>
   </div>
   <%= content_for(:modal_extra) %>
 <% end %>

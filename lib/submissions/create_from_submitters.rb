@@ -65,6 +65,12 @@ module Submissions
           raise BaseError, 'Defined more signing parties than in template'
         end
 
+        if template.preferences['validate_unique_submitters'] == true
+          submission_emails = submission.submitters.filter_map(&:email)
+
+          raise BaseError, 'Recipient emails should differ' if submission_emails.uniq.size != submission_emails.size
+        end
+
         next if submission.submitters.blank?
 
         maybe_add_invite_submitters(submission, template)

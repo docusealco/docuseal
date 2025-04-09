@@ -57,6 +57,11 @@ class SubmissionsController < ApplicationController
     Submissions.send_signature_requests(submissions)
 
     redirect_to template_path(@template), notice: I18n.t('new_recipients_have_been_added')
+  rescue Submissions::CreateFromSubmitters::BaseError => e
+    render turbo_stream: turbo_stream.replace(:submitters_error,
+                                              partial: 'submissions/error',
+                                              locals: { error: e.message }),
+           status: :unprocessable_entity
   end
 
   def destroy
