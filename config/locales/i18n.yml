@@ -54,7 +54,7 @@ en: &en
   sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
   sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">DocuSeal Pro</a>'
-  show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <a href="%{product_url}" class="link">DocuSeal Pro</a>" attribution in emails
+  show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <span class="link">DocuSeal Pro</span>" attribution in emails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
@@ -832,7 +832,7 @@ es: &es
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Enviado con <a href="%{product_url}">DocuSeal Pro</a>'
-  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <a href="%{product_url}" class="link">DocuSeal Pro</a>" en los correos electrónicos
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <span class="link">DocuSeal Pro</span>" en los correos electrónicos
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
@@ -1609,7 +1609,7 @@ it: &it
   sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Inviato con <a href="%{product_url}">DocuSeal Pro</a>'
-  show_send_with_docuseal_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <a href="%{product_url}" class="link">DocuSeal Pro</a>" nelle email
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <span class="link">DocuSeal Pro</span>" nelle email
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
@@ -2387,7 +2387,7 @@ fr: &fr
   sent_using_product_name_in_testing_mode_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> en Mode Test'
   sent_using_product_name_free_document_signing_html: 'Envoyé en utilisant la signature de documents gratuite de <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Envoyé avec <a href="%{product_url}">DocuSeal Pro</a>'
-  show_send_with_docuseal_pro_attribution_in_emails_html: Afficher "Envoyé avec <a href="%{product_url}" class="link">DocuSeal Pro</a>" dans les e-mails
+  show_send_with_docuseal_pro_attribution_in_emails_html: Afficher "Envoyé avec <span class="link">DocuSeal Pro</span>" dans les e-mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
@@ -3166,7 +3166,7 @@ pt: &pt
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Enviado com <a href="%{product_url}">DocuSeal Pro</a>'
-  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar "Enviado com <a href="%{product_url}" class="link">DocuSeal Pro</a>" nos e-mails
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar "Enviado com <span class="link">DocuSeal Pro</span>" nos e-mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
@@ -3945,7 +3945,7 @@ de: &de
   sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: Gesendet mit <a href="%{product_url}">DocuSeal Pro</a>
-  show_send_with_docuseal_pro_attribution_in_emails_html: '"Gesendet mit <a href="%{product_url}" class="link">DocuSeal Pro</a>" in E-Mails anzeigen'
+  show_send_with_docuseal_pro_attribution_in_emails_html: '"Gesendet mit <span class="link">DocuSeal Pro</span>" in E-Mails anzeigen'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
   thanks: Danke
