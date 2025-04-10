@@ -221,7 +221,7 @@ module Submissions
             font_variant = nil unless font_name.in?(DEFAULT_FONTS)
           end
 
-          font = pdf.fonts.add(font_name, variant: font_variant)
+          font = pdf.fonts.add(font_name, variant: font_variant, custom_encoding: font_name.in?(DEFAULT_FONTS))
 
           value = submitter.values[field['uuid']]
           value = field['default_value'] if field['type'] == 'heading'
