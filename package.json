@@ -57,7 +57,7 @@
     ]
   },
   "browserslist": [
-    "last 3 years"
+    "last 5 years"
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",
