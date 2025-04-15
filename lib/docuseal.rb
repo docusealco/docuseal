@@ -12,7 +12,7 @@ module Docuseal
   DISCORD_URL = 'https://discord.gg/qygYCDGck9'
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
-  CHATGPT_URL = 'https://chatgpt.com/g/g-9hg8AAw0r-docuseal'
+  CHATGPT_URL = "#{PRODUCT_URL}/chat".freeze
   SUPPORT_EMAIL = 'support@docuseal.com'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'docuseal_aatl'
