@@ -7,15 +7,7 @@ module Api
     def index
       submitters = Submitters.search(@submitters, params[:q])
 
-      submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
-      submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
-      submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
-
-      if params[:template_id].present?
-        submitters = submitters.joins(:submission).where(submission: { template_id: params[:template_id] })
-      end
-
-      submitters = maybe_filder_by_completed_at(submitters, params)
+      submitters = filter_submitters(submitters, params)
 
       submitters = paginate(
         submitters.preload(:template, :submission, :submission_events,
@@ -161,6 +153,19 @@ module Api
       end
 
       submitter
+    end
+
+    def filter_submitters(submitters, params)
+      submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
+      submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
+      submitters = submitters.where(slug: params[:slug]) if params[:slug].present?
+      submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
+
+      if params[:template_id].present?
+        submitters = submitters.joins(:submission).where(submission: { template_id: params[:template_id] })
+      end
+
+      maybe_filder_by_completed_at(submitters, params)
     end
 
     def assign_external_id(submitter, attrs)

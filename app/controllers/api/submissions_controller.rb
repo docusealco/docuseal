@@ -11,17 +11,7 @@ module Api
 
     def index
       submissions = Submissions.search(@submissions, params[:q])
-      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
-
-      if params[:template_folder].present?
-        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
-      end
-
-      if params.key?(:archived)
-        submissions = params[:archived].in?(['true', true]) ? submissions.archived : submissions.active
-      end
-
-      submissions = Submissions::Filter.call(submissions, current_user, params)
+      submissions = filter_submissions(submissions, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
                                                  template: :folder,
@@ -114,6 +104,21 @@ module Api
     end
 
     private
+
+    def filter_submissions(submissions, params)
+      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
+      submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
+
+      if params[:template_folder].present?
+        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
+      end
+
+      if params.key?(:archived)
+        submissions = params[:archived].in?(['true', true]) ? submissions.archived : submissions.active
+      end
+
+      Submissions::Filter.call(submissions, current_user, params)
+    end
 
     def build_create_json(submissions)
       json = submissions.flat_map do |submission|
