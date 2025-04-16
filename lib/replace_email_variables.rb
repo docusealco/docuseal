@@ -19,6 +19,7 @@ module ReplaceEmailVariables
   SUBMITTERS_N_EMAIL = /\{+submitters\[(?<index>\d+)\]\.email\}+/i
   SUBMITTERS_N_NAME = /\{+submitters\[(?<index>\d+)\]\.name\}+/i
   SUBMITTERS_N_FIRST_NAME = /\{+submitters\[(?<index>\d+)\]\.first_name\}+/i
+  SUBMITTERS_N_FIELD_VALUE = /\{+submitters\[(?<index>\d+)\]\.(?<field_name>[^}]+)\}+/i
   DOCUMENTS_LINKS = /\{+documents\.links\}+/i
   DOCUMENTS_LINK = /\{+documents\.link\}+/i
 
@@ -59,6 +60,10 @@ module ReplaceEmailVariables
       build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :first_name)
     end
 
+    text = replace(text, SUBMITTERS_N_FIELD_VALUE, html_escape:) do |match|
+      build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :values, match[:field_name].to_s.strip)
+    end
+
     replace(text, SENDER_EMAIL, html_escape:) { submitter.submission.created_by_user&.email.to_s.sub(/\+\w+@/, '@') }
   end
   # rubocop:enable Metrics
@@ -69,10 +74,33 @@ module ReplaceEmailVariables
     )
   end
 
-  def build_submitters_n_field(submission, index, field_name)
+  def build_submitters_n_field(submission, index, field_name, value_name = nil)
     uuid = (submission.template_submitters || submission.template.submitters).dig(index, 'uuid')
 
-    submission.submitters.find { |s| s.uuid == uuid }.try(field_name)
+    submitter = submission.submitters.find { |s| s.uuid == uuid }
+
+    return unless submitter
+
+    value = submitter.try(field_name)
+
+    if value_name
+      field = submission.template_fields.find { |e| e['name'] == value_name }
+
+      return unless field
+
+      value =
+        if field['type'].in?(%w[image signature initials stamp payment file])
+          attachment_uuid = Array.wrap(value[field['uuid']]).first
+
+          attachment = submitter.attachments.find { |e| e.uuid == attachment_uuid }
+
+          ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
+        else
+          value[field&.dig('uuid')]
+        end
+    end
+
+    value
   end
 
   def replace(text, var, html_escape: false)
