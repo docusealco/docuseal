@@ -1,4 +1,4 @@
-function cropCanvasAndExportToPNG (canvas) {
+function cropCanvasAndExportToPNG (canvas, { errorOnTooSmall } = { errorOnTooSmall: false }) {
   const ctx = canvas.getContext('2d')
 
   const width = canvas.width
@@ -32,6 +32,10 @@ function cropCanvasAndExportToPNG (canvas) {
   croppedCanvas.width = croppedWidth
   croppedCanvas.height = croppedHeight
   const croppedCtx = croppedCanvas.getContext('2d')
+
+  if (errorOnTooSmall && (croppedWidth < 20 || croppedHeight < 20)) {
+    return Promise.reject(new Error('Image too small'))
+  }
 
   croppedCtx.drawImage(canvas, leftmost, topmost, croppedWidth, croppedHeight, 0, 0, croppedWidth, croppedHeight)
 

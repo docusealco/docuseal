@@ -506,6 +506,9 @@ RSpec.describe 'Signing Form', type: :system do
       find('#expand_form_button').click
       find('span[data-tip="Click to upload"]').click
       find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
+
+      sleep 0.1
+
       click_button 'Complete'
 
       expect(page).to have_content('Document has been signed!')

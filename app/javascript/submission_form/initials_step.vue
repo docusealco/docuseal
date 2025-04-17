@@ -339,8 +339,8 @@ export default {
         return Promise.resolve({})
       }
 
-      return new Promise((resolve) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+      return new Promise((resolve, reject) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'initials.png', { type: 'image/png' })
 
           if (this.dryRun) {
@@ -372,6 +372,14 @@ export default {
 
               return resolve(attachment)
             })
+          }
+        }).catch((error) => {
+          if (this.field.required === true) {
+            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+
+            return reject(error)
+          } else {
+            return resolve({})
           }
         })
       })
