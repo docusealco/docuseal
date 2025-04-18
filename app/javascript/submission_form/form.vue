@@ -11,7 +11,7 @@
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
     :scroll-padding="scrollPadding"
-    @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
+    @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
   <FieldAreas
     :steps="readonlyConditionalFields.map((e) => [e])"
