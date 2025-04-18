@@ -5,7 +5,9 @@ export default class extends HTMLElement {
     window.addEventListener('scroll', this.onScroll.bind(this))
     window.addEventListener('resize', this.onResize.bind(this))
 
-    this.onResize()
+    if (!this.isNarrow() && this.isHeaderNotVisible()) {
+      this.showButtons({ animate: false })
+    }
   }
 
   disconnectedCallback () {
@@ -22,7 +24,7 @@ export default class extends HTMLElement {
   }
 
   isNarrow () {
-    return window.innerWidth < 1366
+    return window.innerWidth < 1230
   }
 
   onScroll () {
@@ -38,7 +40,11 @@ export default class extends HTMLElement {
     return rect.bottom <= 0 || rect.top >= window.innerHeight
   }
 
-  showButtons () {
+  showButtons ({ animate } = { animate: true }) {
+    if (animate) {
+      this.classList.add('transition-transform', 'duration-300')
+    }
+
     this.classList.remove('hidden', '-translate-y-10', 'opacity-0')
     this.classList.add('translate-y-0', 'opacity-100')
   }
