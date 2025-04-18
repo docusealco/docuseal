@@ -193,9 +193,9 @@ export default {
       })
     }
 
-    if (window.decline_button) {
-      window.decline_button.setAttribute('disabled', 'true')
-    }
+    document.querySelectorAll('#decline_button').forEach((button) => {
+      button.setAttribute('disabled', 'true')
+    })
   },
   methods: {
     sendCopyToEmail () {

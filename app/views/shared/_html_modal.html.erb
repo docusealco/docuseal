@@ -1,4 +1,4 @@
-<% uuid = SecureRandom.uuid %>
+<% uuid = local_assigns[:uuid] || SecureRandom.uuid %>
 <label id="<%= local_assigns[:button_id] %>" for="<%= uuid %>" class="<%= local_assigns[:btn_class] %>"><%= local_assigns[:btn_text] %></label>
 <input type="checkbox" id="<%= uuid %>" class="modal-toggle">
 <div id="<%= local_assigns[:id] %>" class="modal items-start !animate-none overflow-y-auto">

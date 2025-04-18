@@ -11,14 +11,15 @@
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 %>
       <%= local_assigns[:banner_html] || capture do %>
         <%= render('submit_form/banner') %>
-        <div class="sticky top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
+        <div id="signing_form_header" class="sticky min-[1366px]:static top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
           <div class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
             <%= @submitter.submission.template.name %>
           </div>
           <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
             <% if @form_configs[:with_decline] %>
+              <% decline_modal_checkbox_uuid = SecureRandom.uuid %>
               <div>
-                <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5', button_id: 'decline_button' do %>
+                <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5', button_id: 'decline_button', uuid: decline_modal_checkbox_uuid do %>
                   <%= render 'submit_form/decline_form', submitter: @submitter %>
                 <% end %>
               </div>
@@ -35,6 +36,19 @@
             </download-button>
           </div>
         </div>
+        <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 transition-transform duration-300 ease-in-out opacity-0 -translate-y-10">
+          <% if @form_configs[:with_decline] %>
+            <label id="decline_button" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-2"><%= t(:decline) %></label>
+          <% end %>
+          <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2">
+            <span data-target="download-button.defaultButton">
+              <%= svg_icon('download', class: 'w-6 h-6') %>
+            </span>
+            <span class="hidden" data-target="download-button.loadingButton">
+              <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+            </span>
+          </download-button>
+        </scroll-buttons>
       <% end %>
       <% schema.each do |item| %>
         <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
