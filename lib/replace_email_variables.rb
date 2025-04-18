@@ -84,7 +84,7 @@ module ReplaceEmailVariables
     value = submitter.try(field_name)
 
     if value_name
-      field = submission.template_fields.find { |e| e['name'] == value_name }
+      field = (submission.template_fields || submission.template.fields).find { |e| e['name'] == value_name }
 
       return unless field
 
