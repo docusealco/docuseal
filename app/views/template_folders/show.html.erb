@@ -35,7 +35,12 @@
   <div class="grid gap-4 md:grid-cols-3">
     <%= render partial: 'templates/template', collection: @templates %>
   </div>
-  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
+  <% templates_order_select_html = capture do %>
+    <% if params[:q].blank? && @pagy.pages > 1 %>
+      <%= render('shared/templates_order_select') %>
+    <% end %>
+  <% end %>
+  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', right_additional_html: templates_order_select_html %>
 <% elsif params[:q].present? %>
   <div class="text-center">
     <div class="mt-16 text-3xl font-semibold">

@@ -713,8 +713,8 @@ en: &en
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
   start_tour: Start Tour
   name_a_z: Name A-Z
-  recently_used: Recently Used
-  creation_date: Creation Date
+  recently_used: Recently used
+  newest_first: Newest first
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1495,7 +1495,7 @@ es: &es
   start_tour: Iniciar guía
   name_a_z: Nombre A-Z
   recently_used: Usado recientemente
-  creation_date: Fecha de creación
+  newest_first: Más reciente primero
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2274,8 +2274,8 @@ it: &it
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
   start_tour: Inizia il tour
   name_a_z: Nome A-Z
-  recently_used: Usato di recente
-  creation_date: Data di creazione
+  recently_used: Recentemente usato
+  newest_first: Più recenti prima
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3057,7 +3057,7 @@ fr: &fr
   start_tour: Démarrer
   name_a_z: Nom A-Z
   recently_used: Récemment utilisé
-  creation_date: Date de création
+  newest_first: Le plus récent d'abord
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3837,8 +3837,8 @@ pt: &pt
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
   start_tour: Iniciar tour
   name_a_z: Nome A-Z
-  recently_used: Usado recentemente
-  creation_date: Data de criação
+  recently_used: Recentemente usado
+  newest_first: Mais recente primeiro
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4620,7 +4620,7 @@ de: &de
   start_tour: Starten
   name_a_z: Name A-Z
   recently_used: Kürzlich verwendet
-  creation_date: Erstellungsdatum
+  newest_first: Neueste zuerst
   submission_sources:
     api: API
     bulk: Massenversand
