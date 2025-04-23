@@ -2,8 +2,8 @@ export default class extends HTMLElement {
   connectedCallback () {
     this.header = document.querySelector('#signing_form_header')
 
-    window.addEventListener('scroll', this.onScroll.bind(this))
-    window.addEventListener('resize', this.onResize.bind(this))
+    window.addEventListener('scroll', this.onScroll)
+    window.addEventListener('resize', this.onResize)
 
     if (!this.isNarrow() && this.isHeaderNotVisible()) {
       this.showButtons({ animate: false })
@@ -11,11 +11,11 @@ export default class extends HTMLElement {
   }
 
   disconnectedCallback () {
-    window.removeEventListener('scroll', this.onScroll.bind(this))
-    window.removeEventListener('resize', this.onResize.bind(this))
+    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('resize', this.onResize)
   }
 
-  onResize () {
+  onResize = () => {
     if (this.isNarrow()) {
       this.hideButtons(true)
     } else if (this.isHeaderNotVisible()) {
@@ -27,7 +27,7 @@ export default class extends HTMLElement {
     return window.innerWidth < 1230
   }
 
-  onScroll () {
+  onScroll = () => {
     if (this.isHeaderNotVisible() && !this.isNarrow()) {
       this.showButtons()
     } else {
