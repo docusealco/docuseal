@@ -37,7 +37,7 @@
   </div>
   <% templates_order_select_html = capture do %>
     <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render('shared/templates_order_select') %>
+      <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
     <% end %>
   <% end %>
   <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', right_additional_html: templates_order_select_html %>

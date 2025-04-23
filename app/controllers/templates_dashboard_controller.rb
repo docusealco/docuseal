@@ -12,7 +12,8 @@ class TemplatesDashboardController < ApplicationController
     @template_folders = @template_folders.where(id: @templates.active.select(:folder_id))
 
     @template_folders = TemplateFolders.search(@template_folders, params[:q])
-    @template_folders = sort_template_folders(@template_folders, cookies.permanent[:dashboard_templates_order])
+    @template_folders = sort_template_folders(@template_folders, current_user,
+                                              cookies.permanent[:dashboard_templates_order])
 
     @pagy, @template_folders = pagy(
       @template_folders,
@@ -25,7 +26,7 @@ class TemplatesDashboardController < ApplicationController
     else
       @template_folders = @template_folders.reject { |e| e.name == TemplateFolder::DEFAULT_NAME }
       @templates = filter_templates(@templates)
-      @templates = Templates::Order.call(@templates, cookies.permanent[:dashboard_templates_order])
+      @templates = Templates::Order.call(@templates, current_user, cookies.permanent[:dashboard_templates_order])
 
       limit =
         if @template_folders.size < 4
@@ -57,12 +58,13 @@ class TemplatesDashboardController < ApplicationController
     Templates.search(rel, params[:q])
   end
 
-  def sort_template_folders(template_folders, order)
+  def sort_template_folders(template_folders, current_user, order)
     case order
     when 'used_at'
       subquery =
         Template.left_joins(:submissions)
                 .group(:folder_id)
+                .where(account_id: current_user.account_id)
                 .select(
                   :folder_id,
                   Template.arel_table[:updated_at].maximum.as('updated_at_max'),

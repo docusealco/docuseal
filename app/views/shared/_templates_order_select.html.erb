@@ -12,14 +12,16 @@
         </button>
       </li>
     </toggle-cookies>
-    <toggle-cookies data-value="used_at" data-key="dashboard_templates_order">
-      <li>
-        <button class="<%= 'bg-base-200' if dashboard_templates_order == 'used_at' %>">
-          <%= svg_icon('sort_descending_small_big', class: 'w-4 h-4') %>
-          <span class="whitespace-nowrap"><%= t('recently_used') %></span>
-        </button>
-      </li>
-    </toggle-cookies>
+    <% if local_assigns[:with_recently_used] != false %>
+      <toggle-cookies data-value="used_at" data-key="dashboard_templates_order">
+        <li>
+          <button class="<%= 'bg-base-200' if dashboard_templates_order == 'used_at' %>">
+            <%= svg_icon('sort_descending_small_big', class: 'w-4 h-4') %>
+            <span class="whitespace-nowrap"><%= t('recently_used') %></span>
+          </button>
+        </li>
+      </toggle-cookies>
+    <% end %>
     <toggle-cookies data-value="name" data-key="dashboard_templates_order">
       <li>
         <button class="<%= 'bg-base-200' if dashboard_templates_order == 'name' %>">

@@ -36,7 +36,7 @@
 <% end %>
 <% templates_order_select_html = capture do %>
   <% if params[:q].blank? && @pagy.pages > 1 %>
-    <%= render('shared/templates_order_select') %>
+    <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
   <% end %>
 <% end %>
 <% if @template_folders.present? %>
