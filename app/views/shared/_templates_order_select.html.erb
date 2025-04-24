@@ -1,5 +1,5 @@
 <% dashboard_templates_order = cookies.permanent[:dashboard_templates_order] || 'created_at' %>
-<form action="<%= url_for %>" method="get" class="dropdown dropdown-top">
+<form action="<%= url_for %>" method="get" class="dropdown dropdown-top hidden md:inline">
   <label tabindex="0" class="btn btn-sm h-10">
     <%= svg_icon('arrow_sort', class: 'w-5 h-5') %>
   </label>
