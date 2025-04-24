@@ -57,7 +57,7 @@
             <span class="relative">
               <select
                 class="select input-bordered bg-white select-sm text-center pl-2"
-                style="font-size: 16px; width: 86px; text-align-last: center;"
+                style="font-size: 16px; line-height: 12px; width: 86px; text-align-last: center;"
                 @change="$event.target.value ? preferences.font_size = parseInt($event.target.value) : delete preferences.font_size"
               >
                 <option
@@ -77,12 +77,12 @@
               </select>
               <span
                 class="border-l pl-1.5 absolute bg-white bottom-0 pointer-events-none text-sm h-5"
-                style="right: 13px; top: 7px"
+                style="right: 13px; top: 6px"
               >
                 pt
               </span>
             </span>
-            <span>
+            <span class="flex">
               <div
                 class="join"
                 style="height: 32px"
@@ -98,7 +98,7 @@
                 </button>
               </div>
             </span>
-            <span>
+            <span class="flex">
               <div
                 class="join"
                 style="height: 32px"
@@ -112,6 +112,32 @@
                 >
                   <component :is="align.icon" />
                 </button>
+              </div>
+            </span>
+            <span class="flex">
+              <div class="dropdown modal-field-font-dropdown">
+                <label
+                  tabindex="0"
+                  class="cursor-pointer flex bg-white border input-bordered rounded-md h-8 items-center justify-center px-1"
+                  style="-webkit-appearance: none; -moz-appearance: none;"
+                >
+                  <component :is="valigns.find((v) => v.value === (preferences.valign || 'center'))?.icon" />
+                </label>
+                <div
+                  tabindex="0"
+                  class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-white border border-base-300 rounded-md"
+                >
+                  <div
+                    v-for="(valign, index) in valigns"
+                    :key="index"
+                    :value="valign.value"
+                    :class="{ 'bg-base-300': preferences.valign == valign.value }"
+                    class="hover:bg-base-300 px-2 py-1.5 cursor-pointer"
+                    @click="[valign.value ? preferences.valign = valign.value : delete preferences.valign, closeDropdown()]"
+                  >
+                    <component :is="valign.icon" />
+                  </div>
+                </div>
               </div>
             </span>
             <span>
@@ -134,7 +160,7 @@
         </div>
         <div class="mt-4">
           <div
-            class="flex items-center border border-base-content/20 rounded-xl bg-white px-4 h-16 modal-field-font-preview"
+            class="flex border border-base-content/20 rounded-xl bg-white px-4 h-16 modal-field-font-preview"
             :style="{
               color: preferences.color || 'black',
               fontSize: (preferences.font_size || 12) + 'pt',
@@ -163,7 +189,7 @@
 </template>
 
 <script>
-import { IconChevronDown, IconBold, IconItalic, IconAlignLeft, IconAlignRight, IconAlignCenter } from '@tabler/icons-vue'
+import { IconChevronDown, IconBold, IconItalic, IconAlignLeft, IconAlignRight, IconAlignCenter, IconAlignBoxCenterTop, IconAlignBoxCenterBottom, IconAlignBoxCenterMiddle } from '@tabler/icons-vue'
 
 export default {
   name: 'FontModal',
@@ -213,6 +239,13 @@ export default {
         { icon: IconAlignRight, value: 'right' }
       ]
     },
+    valigns () {
+      return [
+        { icon: IconAlignBoxCenterTop, value: 'top' },
+        { icon: IconAlignBoxCenterMiddle, value: 'center' },
+        { icon: IconAlignBoxCenterBottom, value: 'bottom' }
+      ]
+    },
     sizes () {
       return [...Array(23).keys()].map(i => i + 6)
     },
@@ -230,12 +263,15 @@ export default {
         'justify-center': this.preferences.align === 'center',
         'justify-start': this.preferences.align === 'left',
         'justify-end': this.preferences.align === 'right',
+        'items-center': !this.preferences.valign || this.preferences.valign === 'center',
+        'items-start': this.preferences.valign === 'top',
+        'items-end': this.preferences.valign === 'bottom',
         'font-bold': ['bold_italic', 'bold'].includes(this.preferences.font_type),
         italic: ['bold_italic', 'italic'].includes(this.preferences.font_type)
       }
     },
     keys () {
-      return ['font_type', 'font_size', 'color', 'align', 'font']
+      return ['font_type', 'font_size', 'color', 'align', 'valign', 'font']
     }
   },
   created () {
