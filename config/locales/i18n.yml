@@ -18,6 +18,7 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  language_ja: 日本語
   hi_there: Hi there
   thanks: Thanks
   bcc_recipients: BCC recipients
@@ -3447,7 +3448,7 @@ pt: &pt
   verify_pdf: Verificar PDF
   sign_out: Sair
   page_number: 'Página %{number}'
-  powered_by: Oferecido por
+  powered_by: Desenvolvido por
   count_documents_signed_with_html: '<b>%{count}</b> documentos assinados com'
   storage: Armazenamento
   notifications: Notificações
@@ -4767,6 +4768,9 @@ pl:
   too_many_attempts: Zbyt wiele prób.
   verification_code: Kod Weryfikacyjny
   resend_code: Wyślij Kod Ponownie
+  powered_by: 'Napędzany prze'
+  count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
+  open_source_documents_software: 'oprogramowanie do dokumentów open source'
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -4831,6 +4835,9 @@ uk:
   too_many_attempts: Забагато спроб.
   verification_code: Код перевірки
   resend_code: Відправити код знову
+  powered_by: 'Працює на базі'
+  count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
+  open_source_documents_software: 'відкрите програмне забезпечення для документів'
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -4895,6 +4902,9 @@ cs:
   too_many_attempts: Příliš mnoho pokusů.
   verification_code: Ověřovací Kód
   resend_code: Znovu Odeslat Kód
+  powered_by: 'Poháněno'
+  count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
+  open_source_documents_software: 'open source software pro dokumenty'
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -4959,6 +4969,9 @@ he:
   too_many_attempts: יותר מדי ניסיונות.
   verification_code: קוד אימות
   resend_code: שלח קוד מחדש
+  powered_by: 'מופעל על ידי'
+  count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
+  open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5023,6 +5036,9 @@ nl:
   too_many_attempts: Te veel pogingen.
   verification_code: Verificatiecode
   resend_code: Code Opnieuw Verzenden
+  powered_by: 'Aangedreven door'
+  count_documents_signed_with_html: '<b>%{count}</b> documenten ondertekend met'
+  open_source_documents_software: 'open source documenten software'
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5087,6 +5103,9 @@ ar:
   too_many_attempts: عدد المحاولات كبير جدًا.
   verification_code: رمز التحقق
   resend_code: إعادة إرسال الرمز
+  powered_by: 'مشغل بواسطة'
+  count_documents_signed_with_html: '<b>%{count}</b> مستندات تم توقيعها باستخدام'
+  open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5151,6 +5170,76 @@ ko:
   too_many_attempts: 시도 횟수가 너무 많습니다.
   verification_code: 인증 코드
   resend_code: 코드 재전송
+  powered_by: '제공:'
+  count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
+  open_source_documents_software: '오픈소스 문서 소프트웨어'
+
+ja:
+  require_phone_2fa_to_open: 電話による2段階認証が必要です
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: 送信者は、<b>%{phone}</b> に送信されたワンタイムパスワードによる2段階認証を要求しました。
+  send_verification_code: 認証コードを送信
+  code_has_been_resent: コードが再送信されました
+  invalid_code: 無効なコードです
+  awaiting_completion_by_the_other_party: 他の当事者による完了を待機中
+  view: 表示
+  hi_there: こんにちは
+  download: ダウンロード
+  decline: 辞退
+  declined: 辞退済み
+  decline_reason: 辞退の理由
+  provide_a_reason: 理由を入力してください
+  notify_the_sender_with_the_reason_you_declined: 辞退理由を送信者に通知してください
+  form_has_been_declined_on_html: '<span class="font-semibold">%{time}</span> にフォームが辞退されました'
+  name_declined_by_submitter: '"%{name}" は %{submitter} により辞退されました'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" は %{submitter} により次の理由で辞退されました:'
+  email: メール
+  digitally_signed_by: 電子署名者
+  role: 役割
+  provide_your_email_to_start: 開始するにはメールアドレスを入力してください
+  start: 開始
+  reason: 理由
+  starting: 開始中
+  form_expired_at_html: '<span class="font-semibold">%{time}</span> にフォームの有効期限が切れました'
+  invited_by_html: '<span class="font-semibold">%{name}</span> により招待されました'
+  you_have_been_invited_to_submit_a_form: フォームの提出に招待されました
+  verification_code_code: '認証コード: %{code}'
+  signed_on_time: '%{time} に署名済み'
+  completed_on_time: '%{time} に完了'
+  document_has_been_signed_already: ドキュメントはすでに署名されています
+  form_has_been_submitted_already: フォームはすでに送信されています
+  send_copy_to_email: メールにコピーを送信
+  sending: 送信中
+  resubmit: 再送信
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span> によりフォームが削除されました。'
+  or: または
+  download_documents: ドキュメントをダウンロード
+  downloading: ダウンロード中
+  completed_successfully: 正常に完了しました
+  password: パスワード
+  sign_in: サインイン
+  signing_in: サインイン中
+  sign_in_with_microsoft: Microsoftでサインイン
+  sign_in_with_google: Googleでサインイン
+  forgot_your_password_: パスワードをお忘れですか？
+  create_free_account: 無料アカウントを作成
+  already_have_an_account: すでにアカウントをお持ちですか？
+  first_name: 名
+  last_name: 姓
+  sign_up: 登録
+  signing_up: 登録中
+  profile_details: プロフィールの詳細
+  sign_up_with_google: Googleで登録
+  sign_up_with_microsoft: Microsoftで登録
+  by_creating_an_account_you_agree_to_our_html: '<a target="_blank" href="https://www.docuseal.com/privacy">プライバシーポリシー</a>および<a target="_blank" href="https://www.docuseal.com/terms">利用規約</a>に同意の上、アカウントを作成します。'
+  enter_email_to_continue: 続行するにはメールを入力してください
+  the_code_has_been_sent_to_your_email: コードがあなたのメールに送信されました
+  enter_the_verification_code_from_your_email: メールに記載された認証コードを入力してください
+  too_many_attempts: 試行回数が多すぎます
+  verification_code: 認証コード
+  resend_code: コードを再送信
+  powered_by: '提供元：'
+  count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
+  open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
 
 en-US:
   <<: *en
