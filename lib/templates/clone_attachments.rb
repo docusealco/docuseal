@@ -4,10 +4,12 @@ module Templates
   module CloneAttachments
     module_function
 
-    def call(template:, original_template:, documents: [])
+    def call(template:, original_template:, documents: [], excluded_attachment_uuids: [])
       schema_uuids_replacements = {}
 
       template.schema.each_with_index do |schema_item, index|
+        next if excluded_attachment_uuids.include?(schema_item['attachment_uuid'])
+
         new_schema_item_uuid = SecureRandom.uuid
 
         schema_uuids_replacements[schema_item['attachment_uuid']] = new_schema_item_uuid
@@ -22,17 +24,22 @@ module Templates
         next if field['areas'].blank?
 
         field['areas'].each do |area|
-          area['attachment_uuid'] = schema_uuids_replacements[area['attachment_uuid']]
+          new_attachment_uuid = schema_uuids_replacements[area['attachment_uuid']]
+          area['attachment_uuid'] = new_attachment_uuid if new_attachment_uuid
         end
       end
 
       template.save!
 
-      original_template.schema_documents.map do |document|
+      original_template.schema_documents.filter_map do |document|
+        new_attachment_uuid = schema_uuids_replacements[document.uuid]
+
+        next unless new_attachment_uuid
+
         new_document =
           ApplicationRecord.no_touching do
             template.documents_attachments.create!(
-              uuid: schema_uuids_replacements[document.uuid],
+              uuid: new_attachment_uuid,
               blob_id: document.blob_id
             )
           end

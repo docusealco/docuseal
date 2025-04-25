@@ -1,12 +1,15 @@
 <% is_long = folder.name.size > 32 %>
-<a href="<%= folder_path(folder) %>" class="flex h-full flex-col justify-between rounded-2xl py-5 px-6 w-full bg-base-200">
-  <% if !is_long %>
-    <%= svg_icon('folder', class: 'w-6 h-6') %>
-  <% end %>
-  <div class="text-lg font-semibold mt-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
-    <% if is_long %>
-      <%= svg_icon('folder', class: 'w-6 h-6 inline') %>
+<dashboard-dropzone class="relative rounded-2xl bg-base-200 border-2 border-transparent">
+  <a href="<%= folder_path(folder) %>" class="flex h-full flex-col justify-between py-5 px-6 w-full">
+    <% if !is_long %>
+      <%= svg_icon('folder', class: 'w-6 h-6') %>
     <% end %>
-    <%= folder.name %>
-  </div>
-</a>
+    <div class="text-lg font-semibold mt-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
+      <% if is_long %>
+        <%= svg_icon('folder', class: 'w-6 h-6 inline') %>
+      <% end %>
+      <%= folder.name %>
+    </div>
+  </a>
+  <%= render 'templates/dashboard_dropzone_form', url: templates_upload_path(folder_name: folder.name) %>
+</dashboard-dropzone>

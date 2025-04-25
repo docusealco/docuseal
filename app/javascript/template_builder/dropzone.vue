@@ -2,15 +2,17 @@
   <div
     class="flex h-60 w-full"
     @dragover.prevent
+    @dragenter="isDragEntering = true"
+    @dragleave="isDragEntering = false"
     @drop.prevent="onDropFiles"
   >
     <label
       id="document_dropzone"
-      class="w-full relative hover:bg-base-200/30 rounded-md border border-2 border-base-content/10 border-dashed"
+      class="w-full relative rounded-md border-2 border-base-content/10 border-dashed"
       :for="inputId"
-      :class="{ 'opacity-50': isLoading || isProcessing }"
+      :class="[{ 'opacity-50': isLoading || isProcessing, 'hover:bg-base-200': !hoverClass }, isDragEntering && hoverClass ? hoverClass : '']"
     >
-      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center pointer-events-none">
         <div class="flex flex-col items-center">
           <IconInnerShadowTop
             v-if="isLoading || isProcessing"
@@ -18,7 +20,8 @@
             :width="40"
             :height="40"
           />
-          <IconCloudUpload
+          <component
+            :is="icon"
             v-else
             :width="40"
             :height="40"
@@ -29,7 +32,10 @@
           >
             {{ message }}
           </div>
-          <div class="text-sm">
+          <div
+            v-if="withDescription"
+            class="text-sm"
+          >
             <span class="font-medium">{{ t('click_to_upload') }}</span> {{ t('or_drag_and_drop_files') }}
           </div>
         </div>
@@ -54,13 +60,16 @@
 
 <script>
 import Upload from './upload'
-import { IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconCloudUpload, IconFilePlus, IconFileSymlink, IconFiles, IconInnerShadowTop } from '@tabler/icons-vue'
 
 export default {
   name: 'FileDropzone',
   components: {
+    IconFilePlus,
     IconCloudUpload,
-    IconInnerShadowTop
+    IconInnerShadowTop,
+    IconFileSymlink,
+    IconFiles
   },
   inject: ['baseFetch', 't'],
   props: {
@@ -68,22 +77,55 @@ export default {
       type: [Number, String],
       required: true
     },
+    icon: {
+      type: String,
+      required: false,
+      default: 'IconCloudUpload'
+    },
+    hoverClass: {
+      type: String,
+      required: false,
+      default: null
+    },
+    cloneTemplateOnUpload: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withDescription: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    header: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     acceptFileTypes: {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
     }
   },
-  emits: ['success'],
+  emits: ['success', 'error', 'loading', 'processing'],
   data () {
     return {
       isLoading: false,
-      isProcessing: false
+      isProcessing: false,
+      isDragEntering: false
     }
   },
   computed: {
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
+    },
+    uploadUrl () {
+      if (this.cloneTemplateOnUpload) {
+        return `/templates/${this.templateId}/replace_documents`
+      } else {
+        return `/templates/${this.templateId}/documents`
+      }
     },
     message () {
       if (this.isLoading) {
@@ -91,10 +133,18 @@ export default {
       } else if (this.isProcessing) {
         return this.t('processing_')
       } else if (this.acceptFileTypes === 'image/*, application/pdf') {
-        return this.t('add_pdf_documents_or_images')
+        return this.header.pdf_documents_or_images || this.header.documents_or_images || this.t('add_pdf_documents_or_images')
       } else {
-        return this.t('add_documents_or_images')
+        return this.header.documents_or_images || this.t('add_documents_or_images')
       }
+    }
+  },
+  watch: {
+    isLoading (value) {
+      this.$emit('loading', value)
+    },
+    isProcessing (value) {
+      this.$emit('processing', value)
     }
   },
   methods: {

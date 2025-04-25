@@ -1,7 +1,12 @@
 <% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
 <% show_dropzone = params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<div class="flex justify-between items-center w-full mb-4">
+<div class="flex justify-between items-center w-full mb-4 relative">
+  <% unless show_dropzone %>
+    <dashboard-dropzone data-show-only-on-window-hover="true" class="absolute bottom-0 w-full rounded-xl bg-base-200 border-2 border-dashed z-10 hidden" style="height: 7.5rem;">
+      <%= render 'templates/dashboard_dropzone_form', title: t('upload_new_document'), icon: 'cloud_upload' %>
+    </dashboard-dropzone>
+  <% end %>
   <div class="flex items-center flex-grow min-w-0">
     <% if has_archived || @pagy.count > 0 || @template_folders.present? %>
       <div class="mr-2">

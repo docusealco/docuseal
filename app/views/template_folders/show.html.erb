@@ -4,7 +4,10 @@
     <span><%= t('home') %></span>
   <% end %>
 </div>
-<div class="flex justify-between items-center w-full mb-4">
+<div class="relative flex justify-between items-center w-full mb-4">
+  <dashboard-dropzone data-show-only-on-window-hover="true" class="absolute bottom-0 h-36 w-full rounded-xl bg-base-200 border-2 border-dashed z-10 hidden">
+    <%= render 'templates/dashboard_dropzone_form', url: templates_upload_path(folder_name: @template_folder.name), title: t('upload_new_document'), icon: 'cloud_upload' %>
+  </dashboard-dropzone>
   <h1 class="text-4xl font-bold flex flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
     <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
     <span class="peer truncate">

@@ -97,6 +97,7 @@ Rails.application.routes.draw do
   resources :templates, only: %i[new create edit update show destroy] do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[create], controller: 'template_documents'
+    resources :replace_documents, only: %i[create], controller: 'template_replace_documents'
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]

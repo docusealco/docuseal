@@ -63,7 +63,7 @@ export default {
       default: 'image/*, application/pdf'
     }
   },
-  emits: ['success'],
+  emits: ['success', 'error'],
   data () {
     return {
       isLoading: false,
@@ -73,14 +73,18 @@ export default {
   computed: {
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
+    },
+    uploadUrl () {
+      return `/templates/${this.templateId}/documents`
     }
   },
   methods: {
     async upload () {
       this.isLoading = true
 
-      this.baseFetch(`/templates/${this.templateId}/documents`, {
+      this.baseFetch(this.uploadUrl, {
         method: 'POST',
+        headers: { Accept: 'application/json' },
         body: new FormData(this.$refs.form)
       }).then((resp) => {
         if (resp.ok) {
@@ -95,7 +99,7 @@ export default {
 
               formData.append('password', prompt(this.t('enter_pdf_password')))
 
-              this.baseFetch(`/templates/${this.templateId}/documents`, {
+              this.baseFetch(this.uploadUrl, {
                 method: 'POST',
                 body: formData
               }).then(async (resp) => {
@@ -104,9 +108,17 @@ export default {
                   this.$refs.input.value = ''
                 } else {
                   alert(this.t('wrong_password'))
+
+                  this.$emit('error', await resp.json().error)
                 }
               })
+            } else {
+              this.$emit('error', data.error)
             }
+          })
+        } else {
+          resp.json().then((data) => {
+            this.$emit('error', data.error)
           })
         }
       }).finally(() => {

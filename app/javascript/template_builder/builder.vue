@@ -1,10 +1,23 @@
 <template>
+  <HoverDropzone
+    v-if="sortedDocuments.length && (withUploadButton || withAddPageButton)"
+    :is-dragging="isDragging"
+    :template-id="template.id"
+    :accept-file-types="acceptFileTypes"
+    :with-replace-and-clone="withReplaceAndCloneUpload"
+    hover-class="bg-base-200/50"
+    @add="[updateFromUpload($event), isDragging = false]"
+    @replace="[onDocumentsReplace($event), isDragging = false]"
+    @replace-and-clone="[onDocumentsReplaceAndTemplateClone($event), isDragging = false]"
+    @error="onUploadFailed"
+  />
   <div
     ref="dragContainer"
     style="max-width: 1600px"
     class="mx-auto pl-3 h-full"
     :class="isMobile ? 'pl-4' : 'md:pl-4'"
     @dragover="onDragover"
+    @drop="isDragging = false"
   >
     <DragPlaceholder
       ref="dragPlaceholder"
@@ -433,6 +446,7 @@
 <script>
 import Upload from './upload'
 import Dropzone from './dropzone'
+import HoverDropzone from './hover_dropzone'
 import DragPlaceholder from './drag_placeholder'
 import Fields from './fields'
 import MobileDrawField from './mobile_draw_field'
@@ -462,6 +476,7 @@ export default {
     MobileFields,
     Logo,
     Dropzone,
+    HoverDropzone,
     DocumentPreview,
     DocumentControls,
     IconInnerShadowTop,
@@ -665,6 +680,11 @@ export default {
       required: false,
       default: true
     },
+    withReplaceAndCloneUpload: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     withPhone: {
       type: Boolean,
       required: false,
@@ -724,7 +744,8 @@ export default {
       copiedArea: null,
       drawFieldType: null,
       drawOption: null,
-      dragField: null
+      dragField: null,
+      isDragging: false
     }
   },
   computed: {
@@ -836,6 +857,7 @@ export default {
     window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
+    window.addEventListener('dragleave', this.onWindowDragLeave)
 
     this.$nextTick(() => {
       if (document.location.search?.includes('stripe_connect_success')) {
@@ -854,6 +876,7 @@ export default {
     window.removeEventListener('keydown', this.onKeyDown)
 
     window.removeEventListener('resize', this.onWindowResize)
+    window.removeEventListener('dragleave', this.onWindowDragLeave)
   },
   beforeUpdate () {
     this.documentRefs = []
@@ -868,6 +891,13 @@ export default {
 
         ref.x = e.clientX - ref.offsetX
         ref.y = e.clientY - ref.offsetY
+      } else if (e.dataTransfer?.types?.includes('Files')) {
+        this.isDragging = true
+      }
+    },
+    onWindowDragLeave (event) {
+      if (event.clientX <= 0 || event.clientY <= 0 || event.clientX >= window.innerWidth || event.clientY >= window.innerHeight) {
+        this.isDragging = false
       }
     },
     reorderFields (item) {
@@ -1529,6 +1559,11 @@ export default {
         })
       }, 'image/png')
     },
+    onUploadFailed (error) {
+      this.isDragging = false
+
+      if (error) alert(error)
+    },
     updateFromUpload (data) {
       this.template.schema.push(...data.schema)
       this.template.documents.push(...data.documents)
@@ -1648,6 +1683,29 @@ export default {
       }
 
       this.save()
+    },
+    onDocumentsReplace (data) {
+      data.schema.forEach((schemaItem , index) => {
+        const existingSchemaItem = this.template.schema[index]
+
+        if (this.template.schema[index]) {
+          this.onDocumentReplace({
+            replaceSchemaItem: existingSchemaItem,
+            schema: [schemaItem],
+            documents: [data.documents.find((doc) => doc.uuid === schemaItem.attachment_uuid)]
+          })
+        } else {
+          this.updateFromUpload({
+            schema: [schemaItem],
+            documents: [data.documents.find((doc) => doc.uuid === schemaItem.attachment_uuid)],
+            fields: data.fields,
+            submitters: data.submitters
+          })
+        }
+      })
+    },
+    onDocumentsReplaceAndTemplateClone (template) {
+      window.Turbo.visit(`/templates/${template.id}/edit`)
     },
     moveDocument (item, direction) {
       const currentIndex = this.template.schema.indexOf(item)
