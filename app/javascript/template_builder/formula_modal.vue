@@ -154,7 +154,7 @@ export default {
   computed: {
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && f.submitter_uuid === this.field.submitter_uuid && ['number'].includes(f.type) && !f.preferences?.formula) {
+        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || f.submitter_uuid !== this.field.submitter_uuid)) {
           acc.push(f)
         }
 

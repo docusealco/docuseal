@@ -134,16 +134,11 @@ module Submissions
   end
 
   def filtered_conditions_schema(submission, values: nil, include_submitter_uuid: nil)
-    fields_uuid_index = nil
-
     (submission.template_schema || submission.template.schema).filter_map do |item|
       if item['conditions'].present?
-        fields_uuid_index ||=
-          (submission.template_fields || submission.template.fields).index_by { |f| f['uuid'] }
-
         values ||= submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
 
-        next unless check_item_conditions(item, values, fields_uuid_index, include_submitter_uuid:)
+        next unless check_item_conditions(item, values, submission.fields_uuid_index, include_submitter_uuid:)
       end
 
       item
@@ -151,21 +146,21 @@ module Submissions
   end
 
   def filtered_conditions_fields(submitter, only_submitter_fields: true)
-    fields = submitter.submission.template_fields || submitter.submission.template.fields
+    submission = submitter.submission
 
-    fields_uuid_index = nil
+    fields = submission.template_fields || submission.template.fields
+
     values = nil
 
     fields.filter_map do |field|
       next if field['submitter_uuid'] != submitter.uuid && only_submitter_fields
 
       if field['conditions'].present?
-        fields_uuid_index ||= fields.index_by { |f| f['uuid'] }
-        values ||= submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
+        values ||= submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
 
         submitter_conditions = []
 
-        next unless check_item_conditions(field, values, fields_uuid_index,
+        next unless check_item_conditions(field, values, submission.fields_uuid_index,
                                           include_submitter_uuid: submitter.uuid,
                                           submitter_conditions_acc: submitter_conditions)
 
