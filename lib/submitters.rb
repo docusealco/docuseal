@@ -97,6 +97,7 @@ module Submitters
   def send_signature_requests(submitters, delay_seconds: nil)
     submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
+      next if submitter.declined_at?
       next if submitter.preferences['send_email'] == false
 
       if delay_seconds

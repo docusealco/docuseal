@@ -22,6 +22,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   bcc_recipients: BCC recipients
+  resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
   ensure_unique_recipients: Ensure unique recipients
   edit_per_party: Edit per party
@@ -800,6 +801,7 @@ en: &en
       read: Read your data
 
 es: &es
+  resend_pending: Reenviar pendiente
   ensure_unique_recipients: Asegurar destinatarios únicos
   require_phone_2fa_to_open: Requiere 2FA por teléfono para abrir
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: El remitente ha solicitado una autenticación de dos factores mediante una contraseña de un solo uso enviada a su número de teléfono <b>%{phone}</b>.
@@ -1581,6 +1583,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  resend_pending: Reinvia in sospeso
   ensure_unique_recipients: Assicurarsi destinatari unici
   require_phone_2fa_to_open: Richiedi l'autenticazione a due fattori tramite telefono per aprire
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Il mittente ha richiesto un'autenticazione a due fattori tramite una password monouso inviata al tuo numero di telefono <b>%{phone}</b>.
@@ -2361,6 +2364,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  resend_pending: Renvoyer en attente
   ensure_unique_recipients: Assurer l'unicité des destinataires
   require_phone_2fa_to_open: Requiert une 2FA par téléphone pour ouvrir
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: L'expéditeur a demandé une authentification à deux facteurs via un mot de passe à usage unique envoyé à votre numéro de téléphone <b>%{phone}</b>.
@@ -3143,6 +3147,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  resend_pending: Re-enviar pendente
   ensure_unique_recipients: Garantir destinatários únicos
   require_phone_2fa_to_open: Necessário autenticação de dois fatores via telefone para abrir
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: O remetente solicitou uma autenticação de dois fatores via senha de uso único enviada para seu número <b>%{phone}</b>.
@@ -3925,6 +3930,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  resend_pending: Ausstehende erneut senden
   ensure_unique_recipients: Stellen Sie einzigartige Empfänger sicher
   require_phone_2fa_to_open: Telefon-2FA zum Öffnen erforderlich
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Der Absender hat eine Zwei-Faktor-Authentifizierung per Einmalpasswort angefordert, das an Ihre <b>%{phone}</b>-Telefonnummer gesendet wurde.
