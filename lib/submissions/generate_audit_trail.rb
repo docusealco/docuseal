@@ -50,11 +50,11 @@ module Submissions
           }
 
           document.sign(io, **sign_params)
+
+          Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
         else
           document.write(io)
         end
-
-        Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
 
         ActiveStorage::Attachment.create!(
           blob: ActiveStorage::Blob.create_and_upload!(

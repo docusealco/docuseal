@@ -45,7 +45,7 @@ class AccountsController < ApplicationController
   def destroy
     authorize!(:manage, current_account)
 
-    true_user.update!(locked_at: Time.current)
+    true_user.update!(locked_at: Time.current, email: true_user.email.sub('@', '+removed@'))
 
     # rubocop:disable Layout/LineLength
     render turbo_stream: turbo_stream.replace(

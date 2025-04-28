@@ -5,20 +5,23 @@
       <%= @pagy.from %>-<%= local_assigns.fetch(:to, @pagy.to) %> of <%= local_assigns.fetch(:count, @pagy.count) %> <%= local_assigns[:items_name] || 'items' %>
       <%= local_assigns[:left_additional_html] %>
     </div>
-    <div class="join">
-      <% if @pagy.prev %>
-        <%== link.call(@pagy.prev, '«', classes: 'join-item btn min-h-full h-10') %>
-      <% else %>
-        <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
-      <% end %>
-      <span class="join-item btn uppercase min-h-full h-10">
-        <%= t('page_number', number: @pagy.page) %>
-      </span>
-      <% if @pagy.next %>
-        <%== link.call(@pagy.next, '»', classes: 'join-item btn min-h-full h-10') %>
-      <% else %>
-        <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
-      <% end %>
+    <div class="flex items-center space-x-1.5">
+      <%= local_assigns[:right_additional_html] %>
+      <div class="join">
+        <% if @pagy.prev %>
+          <%== link.call(@pagy.prev, '«', classes: 'join-item btn min-h-full h-10') %>
+        <% else %>
+          <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
+        <% end %>
+        <span class="join-item btn font-medium uppercase min-h-full h-10">
+          <%= t('page_number', number: @pagy.page) %>
+        </span>
+        <% if @pagy.next %>
+          <%== link.call(@pagy.next, '»', classes: 'join-item btn min-h-full h-10') %>
+        <% else %>
+          <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

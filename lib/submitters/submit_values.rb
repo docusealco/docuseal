@@ -171,6 +171,8 @@ module Submitters
     end
 
     def build_formula_values(submitter)
+      submission_values = nil
+
       computed_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
         next if field['type'] == 'payment'
@@ -179,7 +181,14 @@ module Submitters
 
         next if formula.blank?
 
-        acc[field['uuid']] = calculate_formula_value(formula, submitter.values.merge(acc.compact_blank))
+        submission_values ||=
+          if submitter.submission.template_submitters.size > 1
+            merge_submitters_values(submitter)
+          else
+            submitter.values
+          end
+
+        acc[field['uuid']] = calculate_formula_value(formula, submission_values.merge(acc.compact_blank))
       end
 
       computed_values.compact_blank
@@ -204,8 +213,6 @@ module Submitters
     def maybe_remove_condition_values(submitter, required_field_uuids_acc: nil)
       submission = submitter.submission
 
-      fields_uuid_index = submission.template_fields.index_by { |e| e['uuid'] }
-
       submitters_values = nil
       has_other_submitters = submission.template_submitters.size > 1
 
@@ -228,11 +235,11 @@ module Submitters
         end
 
         if has_other_submitters && !submitters_values &&
-           field_conditions_other_submitter?(submitter, field, fields_uuid_index)
+           field_conditions_other_submitter?(submitter, field, submission.fields_uuid_index)
           submitters_values = merge_submitters_values(submitter)
         end
 
-        unless check_field_conditions(submitters_values || submitter.values, field, fields_uuid_index)
+        unless check_field_conditions(submitters_values || submitter.values, field, submission.fields_uuid_index)
           submitter.values.delete(field['uuid'])
           required_field_uuids_acc.delete(field['uuid'])
         end

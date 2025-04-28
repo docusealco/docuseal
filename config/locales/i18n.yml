@@ -18,14 +18,22 @@ en: &en
   language_nl: Nederlands
   language_ar: العربية
   language_ko: 한국어
+  language_ja: 日本語
   hi_there: Hi there
   thanks: Thanks
   bcc_recipients: BCC recipients
+  resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
+  ensure_unique_recipients: Ensure unique recipients
   edit_per_party: Edit per party
   reply_to: Reply to
   pending_by_me: Pending by me
   partially_completed: Partially completed
+  require_phone_2fa_to_open: Require phone 2FA to open
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: The sender has requested a two factor authentication via one time password sent to your <b>%{phone}</b> phone number.
+  send_verification_code: Send verification code
+  code_has_been_resent: Code has been re-sent
+  invalid_code: Invalid code
   unarchive: Unarchive
   signed: Signed
   first_party: 'First Party'
@@ -47,6 +55,8 @@ en: &en
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
   sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
+  sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">DocuSeal Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <span class="link">DocuSeal Pro</span>" attribution in emails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
@@ -704,6 +714,9 @@ en: &en
   welcome_to_docuseal: Welcome to DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
   start_tour: Start Tour
+  name_a_z: Name A-Z
+  recently_used: Recently used
+  newest_first: Newest first
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -788,6 +801,13 @@ en: &en
       read: Read your data
 
 es: &es
+  resend_pending: Reenviar pendiente
+  ensure_unique_recipients: Asegurar destinatarios únicos
+  require_phone_2fa_to_open: Requiere 2FA por teléfono para abrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: El remitente ha solicitado una autenticación de dos factores mediante una contraseña de un solo uso enviada a su número de teléfono <b>%{phone}</b>.
+  send_verification_code: Enviar código de verificación
+  code_has_been_resent: El código ha sido reenviado
+  invalid_code: Código inválido
   always_enforce_signing_order: Siempre imponer el orden de firma
   bcc_recipients: Destinatarios CCO
   edit_per_party: Editar por parte
@@ -817,6 +837,8 @@ es: &es
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
+  sent_with_docuseal_pro_html: 'Enviado con <a href="%{product_url}">DocuSeal Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <span class="link">DocuSeal Pro</span>" en los correos electrónicos
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
@@ -1474,6 +1496,9 @@ es: &es
   welcome_to_docuseal: Bienvenido a DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
   start_tour: Iniciar guía
+  name_a_z: Nombre A-Z
+  recently_used: Usado recientemente
+  newest_first: Más reciente primero
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1558,6 +1583,13 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  resend_pending: Reinvia in sospeso
+  ensure_unique_recipients: Assicurarsi destinatari unici
+  require_phone_2fa_to_open: Richiedi l'autenticazione a due fattori tramite telefono per aprire
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Il mittente ha richiesto un'autenticazione a due fattori tramite una password monouso inviata al tuo numero di telefono <b>%{phone}</b>.
+  send_verification_code: Invia codice di verifica
+  code_has_been_resent: Il codice è stato inviato di nuovo
+  invalid_code: Codice non valido
   always_enforce_signing_order: Applicare sempre l'ordine di firma
   bcc_recipients: Destinatari BCC
   edit_per_party: Modifica per partito
@@ -1586,6 +1618,8 @@ it: &it
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
   sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
+  sent_with_docuseal_pro_html: 'Inviato con <a href="%{product_url}">DocuSeal Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <span class="link">DocuSeal Pro</span>" nelle email
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
@@ -2243,6 +2277,9 @@ it: &it
   welcome_to_docuseal: Benvenuto in DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
   start_tour: Inizia il tour
+  name_a_z: Nome A-Z
+  recently_used: Recentemente usato
+  newest_first: Più recenti prima
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2327,6 +2364,13 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  resend_pending: Renvoyer en attente
+  ensure_unique_recipients: Assurer l'unicité des destinataires
+  require_phone_2fa_to_open: Requiert une 2FA par téléphone pour ouvrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: L'expéditeur a demandé une authentification à deux facteurs via un mot de passe à usage unique envoyé à votre numéro de téléphone <b>%{phone}</b>.
+  send_verification_code: Envoyer le code de vérification
+  code_has_been_resent: Le code a été renvoyé
+  invalid_code: Code invalide
   always_enforce_signing_order: Toujours appliquer l'ordre de signature
   bcc_recipients: Destinataires en CCI
   edit_per_party: Éditer par partie
@@ -2356,6 +2400,8 @@ fr: &fr
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous:'
   sent_using_product_name_in_testing_mode_html: 'Envoyé en utilisant <a href="%{product_url}">%{product_name}</a> en Mode Test'
   sent_using_product_name_free_document_signing_html: 'Envoyé en utilisant la signature de documents gratuite de <a href="%{product_url}">%{product_name}</a>.'
+  sent_with_docuseal_pro_html: 'Envoyé avec <a href="%{product_url}">DocuSeal Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Afficher "Envoyé avec <span class="link">DocuSeal Pro</span>" dans les e-mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
@@ -3014,6 +3060,9 @@ fr: &fr
   welcome_to_docuseal: Bienvenue sur DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.
   start_tour: Démarrer
+  name_a_z: Nom A-Z
+  recently_used: Récemment utilisé
+  newest_first: Le plus récent d'abord
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3098,6 +3147,13 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  resend_pending: Re-enviar pendente
+  ensure_unique_recipients: Garantir destinatários únicos
+  require_phone_2fa_to_open: Necessário autenticação de dois fatores via telefone para abrir
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: O remetente solicitou uma autenticação de dois fatores via senha de uso único enviada para seu número <b>%{phone}</b>.
+  send_verification_code: Enviar código de verificação
+  code_has_been_resent: Código foi reenviado
+  invalid_code: Código inválido
   always_enforce_signing_order: Sempre impor a ordem de assinatura
   bcc_recipients: Destinatários BCC
   edit_per_party: Edita por festa
@@ -3127,6 +3183,8 @@ pt: &pt
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
+  sent_with_docuseal_pro_html: 'Enviado com <a href="%{product_url}">DocuSeal Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar "Enviado com <span class="link">DocuSeal Pro</span>" nos e-mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
@@ -3395,7 +3453,7 @@ pt: &pt
   verify_pdf: Verificar PDF
   sign_out: Sair
   page_number: 'Página %{number}'
-  powered_by: Oferecido por
+  powered_by: Desenvolvido por
   count_documents_signed_with_html: '<b>%{count}</b> documentos assinados com'
   storage: Armazenamento
   notifications: Notificações
@@ -3784,6 +3842,9 @@ pt: &pt
   welcome_to_docuseal: Bem-vindo ao DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
   start_tour: Iniciar tour
+  name_a_z: Nome A-Z
+  recently_used: Recentemente usado
+  newest_first: Mais recente primeiro
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -3869,6 +3930,13 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  resend_pending: Ausstehende erneut senden
+  ensure_unique_recipients: Stellen Sie einzigartige Empfänger sicher
+  require_phone_2fa_to_open: Telefon-2FA zum Öffnen erforderlich
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Der Absender hat eine Zwei-Faktor-Authentifizierung per Einmalpasswort angefordert, das an Ihre <b>%{phone}</b>-Telefonnummer gesendet wurde.
+  send_verification_code: Bestätigungscode senden
+  code_has_been_resent: Code wurde erneut gesendet
+  invalid_code: Ungültiger Code
   always_enforce_signing_order: Immer die Reihenfolge der Unterschriften erzwingen
   bcc_recipients: BCC-Empfänger
   edit_per_party: Bearbeiten pro Partei
@@ -3898,6 +3966,8 @@ de: &de
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
   sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
+  sent_with_docuseal_pro_html: Gesendet mit <a href="%{product_url}">DocuSeal Pro</a>
+  show_send_with_docuseal_pro_attribution_in_emails_html: '"Gesendet mit <span class="link">DocuSeal Pro</span>" in E-Mails anzeigen'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
   thanks: Danke
@@ -4555,6 +4625,9 @@ de: &de
   welcome_to_docuseal: Willkommen bei DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Starte eine kurze Tour, um zu lernen, wie du dein erstes Dokument erstellst und versendest.
   start_tour: Starten
+  name_a_z: Name A-Z
+  recently_used: Kürzlich verwendet
+  newest_first: Neueste zuerst
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4639,6 +4712,11 @@ de: &de
       read: Lese deine Daten
 
 pl:
+  require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Nadawca zażądał uwierzytelnienia dwuetapowego poprzez jednorazowe hasło wysłane na Twój <b>%{phone}</b> numer telefonu.
+  send_verification_code: Wyślij kod weryfikacyjny
+  code_has_been_resent: Kod został wysłany ponownie
+  invalid_code: Niepoprawny kod
   awaiting_completion_by_the_other_party: "Oczekuje na dokończenie przez drugą stronę"
   view: Widok
   hi_there: Cześć,
@@ -4696,8 +4774,16 @@ pl:
   too_many_attempts: Zbyt wiele prób.
   verification_code: Kod Weryfikacyjny
   resend_code: Wyślij Kod Ponownie
+  powered_by: 'Napędzany prze'
+  count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
+  open_source_documents_software: 'oprogramowanie do dokumentów open source'
 
 uk:
+  require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Відправник запросив двофакторну автентифікацію за допомогою одноразового пароля, відправленого на ваш номер телефону <b>%{phone}</b>.
+  send_verification_code: Надіслати код підтвердження
+  code_has_been_resent: Код повторно надіслано
+  invalid_code: Невірний код
   awaiting_completion_by_the_other_party: "Очікує завершення з боку іншої сторони"
   view: Переглянути
   hi_there: Привіт,
@@ -4755,8 +4841,16 @@ uk:
   too_many_attempts: Забагато спроб.
   verification_code: Код перевірки
   resend_code: Відправити код знову
+  powered_by: 'Працює на базі'
+  count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
+  open_source_documents_software: 'відкрите програмне забезпечення для документів'
 
 cs:
+  require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Odesílatel požádal o dvoufaktorové ověření pomocí jednorázového hesla zaslaného na vaše telefonní číslo <b>%{phone}</b>.
+  send_verification_code: Odeslat ověřovací kód
+  code_has_been_resent: Kód byl znovu odeslán
+  invalid_code: Neplatný kód
   awaiting_completion_by_the_other_party: "Čeká se na dokončení druhou stranou"
   view: Zobrazit
   hi_there: Ahoj,
@@ -4814,8 +4908,16 @@ cs:
   too_many_attempts: Příliš mnoho pokusů.
   verification_code: Ověřovací Kód
   resend_code: Znovu Odeslat Kód
+  powered_by: 'Poháněno'
+  count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
+  open_source_documents_software: 'open source software pro dokumenty'
 
 he:
+  require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: השולח ביקש אימות דו-שלבי באמצעות סיסמה חד פעמית שנשלחה למספר הטלפון שלך <b>%{phone}</b>.
+  send_verification_code: שלח קוד אימות
+  code_has_been_resent: הקוד נשלח מחדש
+  invalid_code: קוד שגוי
   awaiting_completion_by_the_other_party: "המתנה להשלמה מצד הצד השני"
   view: תצוגה
   hi_there: שלום,
@@ -4873,8 +4975,16 @@ he:
   too_many_attempts: יותר מדי ניסיונות.
   verification_code: קוד אימות
   resend_code: שלח קוד מחדש
+  powered_by: 'מופעל על ידי'
+  count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
+  open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
 
 nl:
+  require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: De afzender heeft gevraagd om tweefactorauthenticatie via een eenmalig wachtwoord, verzonden naar uw <b>%{phone}</b> telefoonnummer.
+  send_verification_code: Verificatiecode verzenden
+  code_has_been_resent: Code is opnieuw verzonden
+  invalid_code: Invalid code
   awaiting_completion_by_the_other_party: "In afwachting van voltooiing door de andere partij"
   view: Bekijken
   hi_there: Hallo,
@@ -4932,8 +5042,16 @@ nl:
   too_many_attempts: Te veel pogingen.
   verification_code: Verificatiecode
   resend_code: Code Opnieuw Verzenden
+  powered_by: 'Aangedreven door'
+  count_documents_signed_with_html: '<b>%{count}</b> documenten ondertekend met'
+  open_source_documents_software: 'open source documenten software'
 
 ar:
+  require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: "المرسل طلب تحقق ذو عاملين عبر كلمة مرور لمرة واحدة مرسل إلى رقم هاتفك <b>%{phone}</b>."
+  send_verification_code: "إرسال رمز التحقق"
+  code_has_been_resent: "تم إعادة إرسال الرمز"
+  invalid_code: "رمز غير صالح"
   awaiting_completion_by_the_other_party: "في انتظار إكتمال الطرف الآخر"
   view: عرض
   hi_there: مرحبا,
@@ -4991,8 +5109,16 @@ ar:
   too_many_attempts: عدد المحاولات كبير جدًا.
   verification_code: رمز التحقق
   resend_code: إعادة إرسال الرمز
+  powered_by: 'مشغل بواسطة'
+  count_documents_signed_with_html: '<b>%{count}</b> مستندات تم توقيعها باستخدام'
+  open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
 
 ko:
+  require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: 발신자가 <b>%{phone}</b> 전화번호로 보내진 일회용 비밀번호를 통해 이중 인증을 요청했습니다.
+  send_verification_code: 인증 코드 보내기
+  code_has_been_resent: 코드가 재전송되었습니다.
+  invalid_code: 잘못된 코드
   awaiting_completion_by_the_other_party: "다른 당사자의 완료를 기다리고 있습니다"
   view: 보기
   hi_there: 안녕하세요,
@@ -5050,6 +5176,76 @@ ko:
   too_many_attempts: 시도 횟수가 너무 많습니다.
   verification_code: 인증 코드
   resend_code: 코드 재전송
+  powered_by: '제공:'
+  count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
+  open_source_documents_software: '오픈소스 문서 소프트웨어'
+
+ja:
+  require_phone_2fa_to_open: 電話による2段階認証が必要です
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: 送信者は、<b>%{phone}</b> に送信されたワンタイムパスワードによる2段階認証を要求しました。
+  send_verification_code: 認証コードを送信
+  code_has_been_resent: コードが再送信されました
+  invalid_code: 無効なコードです
+  awaiting_completion_by_the_other_party: 他の当事者による完了を待機中
+  view: 表示
+  hi_there: こんにちは
+  download: ダウンロード
+  decline: 辞退
+  declined: 辞退済み
+  decline_reason: 辞退の理由
+  provide_a_reason: 理由を入力してください
+  notify_the_sender_with_the_reason_you_declined: 辞退理由を送信者に通知してください
+  form_has_been_declined_on_html: '<span class="font-semibold">%{time}</span> にフォームが辞退されました'
+  name_declined_by_submitter: '"%{name}" は %{submitter} により辞退されました'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" は %{submitter} により次の理由で辞退されました:'
+  email: メール
+  digitally_signed_by: 電子署名者
+  role: 役割
+  provide_your_email_to_start: 開始するにはメールアドレスを入力してください
+  start: 開始
+  reason: 理由
+  starting: 開始中
+  form_expired_at_html: '<span class="font-semibold">%{time}</span> にフォームの有効期限が切れました'
+  invited_by_html: '<span class="font-semibold">%{name}</span> により招待されました'
+  you_have_been_invited_to_submit_a_form: フォームの提出に招待されました
+  verification_code_code: '認証コード: %{code}'
+  signed_on_time: '%{time} に署名済み'
+  completed_on_time: '%{time} に完了'
+  document_has_been_signed_already: ドキュメントはすでに署名されています
+  form_has_been_submitted_already: フォームはすでに送信されています
+  send_copy_to_email: メールにコピーを送信
+  sending: 送信中
+  resubmit: 再送信
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span> によりフォームが削除されました。'
+  or: または
+  download_documents: ドキュメントをダウンロード
+  downloading: ダウンロード中
+  completed_successfully: 正常に完了しました
+  password: パスワード
+  sign_in: サインイン
+  signing_in: サインイン中
+  sign_in_with_microsoft: Microsoftでサインイン
+  sign_in_with_google: Googleでサインイン
+  forgot_your_password_: パスワードをお忘れですか？
+  create_free_account: 無料アカウントを作成
+  already_have_an_account: すでにアカウントをお持ちですか？
+  first_name: 名
+  last_name: 姓
+  sign_up: 登録
+  signing_up: 登録中
+  profile_details: プロフィールの詳細
+  sign_up_with_google: Googleで登録
+  sign_up_with_microsoft: Microsoftで登録
+  by_creating_an_account_you_agree_to_our_html: '<a target="_blank" href="https://www.docuseal.com/privacy">プライバシーポリシー</a>および<a target="_blank" href="https://www.docuseal.com/terms">利用規約</a>に同意の上、アカウントを作成します。'
+  enter_email_to_continue: 続行するにはメールを入力してください
+  the_code_has_been_sent_to_your_email: コードがあなたのメールに送信されました
+  enter_the_verification_code_from_your_email: メールに記載された認証コードを入力してください
+  too_many_attempts: 試行回数が多すぎます
+  verification_code: 認証コード
+  resend_code: コードを再送信
+  powered_by: '提供元：'
+  count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
+  open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
 
 en-US:
   <<: *en

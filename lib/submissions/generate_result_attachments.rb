@@ -221,7 +221,7 @@ module Submissions
             font_variant = nil unless font_name.in?(DEFAULT_FONTS)
           end
 
-          font = pdf.fonts.add(font_name, variant: font_variant)
+          font = pdf.fonts.add(font_name, variant: font_variant, custom_encoding: font_name.in?(DEFAULT_FONTS))
 
           value = submitter.values[field['uuid']]
           value = field['default_value'] if field['type'] == 'heading'
@@ -229,8 +229,9 @@ module Submissions
           text_align = field.dig('preferences', 'align').to_s.to_sym.presence ||
                        (value.to_s.match?(RTL_REGEXP) ? :right : :left)
 
-          layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align:,
-                                                       font:, font_size:)
+          text_valign = (field.dig('preferences', 'valign').to_s.presence || 'center').to_sym
+
+          layouter = HexaPDF::Layout::TextLayouter.new(text_valign:, text_align:, font:, font_size:)
 
           next if Array.wrap(value).compact_blank.blank?
 
@@ -515,10 +516,19 @@ module Submissions
                 0
               end
 
+            align_y_diff =
+              if text_valign == :top
+                0
+              elsif text_valign == :bottom
+                height_diff + TEXT_TOP_MARGIN
+              else
+                height_diff / 2
+              end
+
             layouter.fit([text], field['type'].in?(%w[date number]) ? width : area['w'] * width,
                          height_diff.positive? ? box_height : area['h'] * height)
                     .draw(canvas, (area['x'] * width) - right_align_x_adjustment + TEXT_LEFT_MARGIN,
-                          height - (area['y'] * height) + height_diff - TEXT_TOP_MARGIN)
+                          height - (area['y'] * height) + align_y_diff - TEXT_TOP_MARGIN)
           end
         end
       end

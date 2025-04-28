@@ -1,0 +1,34 @@
+<% dashboard_templates_order = cookies.permanent[:dashboard_templates_order] || 'created_at' %>
+<form action="<%= url_for %>" method="get" class="dropdown dropdown-top hidden md:inline">
+  <label tabindex="0" class="btn btn-sm h-10">
+    <%= svg_icon('arrow_sort', class: 'w-5 h-5') %>
+  </label>
+  <ul tabindex="0" class="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box mb-1 min-w-48">
+    <toggle-cookies data-value="created_at" data-key="dashboard_templates_order">
+      <li>
+        <button class="<%= 'bg-base-200' if dashboard_templates_order == 'created_at' %>">
+          <%= svg_icon('sort_descending_numbers', class: 'w-4 h-4') %>
+          <span class="whitespace-nowrap"><%= t('newest_first') %></span>
+        </button>
+      </li>
+    </toggle-cookies>
+    <% if local_assigns[:with_recently_used] != false %>
+      <toggle-cookies data-value="used_at" data-key="dashboard_templates_order">
+        <li>
+          <button class="<%= 'bg-base-200' if dashboard_templates_order == 'used_at' %>">
+            <%= svg_icon('sort_descending_small_big', class: 'w-4 h-4') %>
+            <span class="whitespace-nowrap"><%= t('recently_used') %></span>
+          </button>
+        </li>
+      </toggle-cookies>
+    <% end %>
+    <toggle-cookies data-value="name" data-key="dashboard_templates_order">
+      <li>
+        <button class="<%= 'bg-base-200' if dashboard_templates_order == 'name' %>">
+          <%= svg_icon('sort_ascending_letters', class: 'w-4 h-4') %>
+          <span class="whitespace-nowrap"><%= t('name_a_z') %></span>
+        </button>
+      </li>
+    </toggle-cookies>
+  </ul>
+</form>

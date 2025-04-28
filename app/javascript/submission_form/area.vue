@@ -183,7 +183,7 @@
       v-else
       ref="textContainer"
       dir="auto"
-      class="flex items-center px-0.5 w-full"
+      class="flex px-0.5 w-full"
       :class="{ ...alignClasses, ...fontClasses }"
     >
       <span
@@ -327,13 +327,16 @@ export default {
     },
     alignClasses () {
       if (!this.field.preferences) {
-        return {}
+        return { 'items-center': true }
       }
 
       return {
         'text-center': this.field.preferences.align === 'center',
         'text-left': this.field.preferences.align === 'left',
-        'text-right': this.field.preferences.align === 'right'
+        'text-right': this.field.preferences.align === 'right',
+        'items-center': !this.field.preferences.valign || this.field.preferences.valign === 'center',
+        'items-start': this.field.preferences.valign === 'top',
+        'items-end': this.field.preferences.valign === 'bottom'
       }
     },
     fontClasses () {

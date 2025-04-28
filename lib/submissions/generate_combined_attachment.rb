@@ -24,11 +24,11 @@ module Submissions
         }
 
         sign_pdf(io, pdf, sign_params)
+
+        Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
       else
         pdf.write(io, incremental: true, validate: true)
       end
-
-      Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(

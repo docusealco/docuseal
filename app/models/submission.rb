@@ -90,6 +90,10 @@ class Submission < ApplicationRecord
     expire_at && expire_at <= Time.current
   end
 
+  def fields_uuid_index
+    @fields_uuid_index ||= (template_fields || template.fields).index_by { |f| f['uuid'] }
+  end
+
   def audit_trail_url
     return if audit_trail.blank?
 

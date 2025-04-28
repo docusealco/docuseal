@@ -50,6 +50,14 @@
               <% end %>
             </li>
           <% end %>
+          <% if Docuseal.multitenant? || current_user.role == 'superadmin' %>
+            <li>
+              <%= link_to Docuseal::CHATGPT_URL, target: 'blank', class: 'flex items-center' do %>
+                <%= svg_icon('sparkles', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
+                <span class="mr-1 whitespace-nowrap"><%= t('ask_ai') %></span>
+              <% end %>
+            </li>
+          <% end %>
           <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full py-1' } do |f| %>
               <label class="flex items-center pl-6 pr-4 py-2 border-y border-base-300 -ml-2 -mr-2" for="testing_toggle">
