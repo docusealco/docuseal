@@ -2,7 +2,7 @@
 
 module Submissions
   class TimestampHandler
-    HASH_ALGORITHM = 'SHA512'
+    HASH_ALGORITHM = 'SHA256'
 
     TimestampError = Class.new(StandardError)
 
