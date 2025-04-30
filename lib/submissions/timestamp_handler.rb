@@ -52,6 +52,7 @@ module Submissions
       OpenSSL::Timestamp::Response.new(response.body).token.to_der
     rescue StandardError => e
       Rollbar.error(e) if defined?(Rollbar)
+      Rails.logger.error(e)
 
       OpenSSL::ASN1::GeneralizedTime.new(Time.now.utc).to_der
     end
