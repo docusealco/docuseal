@@ -760,11 +760,11 @@ en: &en
     previous: Previous
     next: Next
     template_and_submissions: 'Templates and Submissions'
-    template_and_submissions_description: "You can select the view that best suits your workflow. Choose the 'Templates' view if you create reusable document templates, or the 'Submissions' view when you sign individual documents or review the status of each signing request."
+    template_and_submissions_description: "You can select the view that best suits your workflow. Choose the 'Templates' view to create reusable document templates, or the 'Submissions' view to sign individual documents or review the status of each signature request."
     upload_a_pdf_file: 'Upload a PDF file'
-    upload_a_pdf_file_description: 'Upload a document to use it for creating a signing form template.'
+    upload_a_pdf_file_description: 'Upload a PDF document to create a signing form template.'
     select_a_signer_party: 'Select a signer party'
-    select_a_signer_party_description: 'This dropdown allows you to select a signing party role or add a new party to the document when it needs to be signed by two or more parties.'
+    select_a_signer_party_description: 'This dropdown allows you to select a signing party role or add a new party to the document if it requires 2 or more signatures.'
     available_parties: 'Available parties'
     available_parties_description: 'This list contains all available parties with their role names. Once selected, you can add and configure fields for the signer party.'
     available_field_types: 'Available field types'
@@ -772,7 +772,7 @@ en: &en
     text_input_field: 'Text input field'
     text_input_field_description: 'This field allows users to enter text-based information, such as names or emails.'
     signature_field: 'Signature field'
-    signature_field_description: 'This field allows for collecting signatures from the signers.'
+    signature_field_description: 'This field is used to collect signatures from the signers.'
     added_fields: 'Added fields'
     added_fields_description: 'This list displays all fields added to the document. You can reorder, edit, or remove them.'
     open_field_settings: 'Open field settings'
@@ -786,10 +786,10 @@ en: &en
     copy_and_share_link: 'Copy & share link'
     copy_and_share_link_description: 'Copy this link to share the document. Anyone with the link can sign it after entering their email.'
     sign_the_document: 'Sign the document'
-    sign_the_document_description: 'If you are one of the signers signer, this button allows you to sign the document yourself.'
+    sign_the_document_description: 'If you are one of the signers, this button allows you to sign the document.'
     send_for_signing: 'Send for signing'
     add_recipients: 'Add recipients'
-    add_recipients_description: 'Add new recipients for the document to be signed. You can enter their email addresses or phone numbers.'
+    add_recipients_description: 'Add new recipients for the document to be signed by entering their email addresses or phone numbers.'
     settings: 'Settings'
     settings_account_description: 'With comprehensive account settings, you can customize the eSigning experience and invite more users.'
     support: 'Support'
@@ -1542,11 +1542,11 @@ es: &es
     previous: Anterior
     next: Siguiente
     template_and_submissions: 'Plantillas y Envíos'
-    template_and_submissions_description: "Puedes seleccionar la vista que mejor se adapte a tu flujo de trabajo. Elige la vista de 'Plantillas' si creas plantillas reutilizables de documentos, o la vista de 'Envíos' cuando firmas documentos individuales o revisas el estado de cada solicitud de firma."
+    template_and_submissions_description: "Puedes seleccionar la vista que mejor se adapte a tu flujo de trabajo. Elige la vista 'Plantillas' para crear plantillas reutilizables de documentos, o la vista 'Envíos' para firmar documentos individuales o revisar el estado de cada solicitud de firma."
     upload_a_pdf_file: 'Subir un archivo PDF'
-    upload_a_pdf_file_description: 'Sube un documento para usarlo como plantilla de formulario de firma.'
+    upload_a_pdf_file_description: 'Sube un documento PDF para crear una plantilla de formulario de firma.'
     select_a_signer_party: 'Seleccionar parte firmante'
-    select_a_signer_party_description: 'Este menú desplegable te permite seleccionar un rol de firmante o agregar una nueva parte al documento cuando debe ser firmado por dos o más partes.'
+    select_a_signer_party_description: 'Este menú desplegable te permite seleccionar un rol de firmante o agregar una nueva parte al documento si requiere 2 o más firmas.'
     available_parties: 'Partes disponibles'
     available_parties_description: 'Esta lista contiene todas las partes disponibles con sus roles. Una vez seleccionada, puedes añadir y configurar campos para esa parte.'
     available_field_types: 'Tipos de campo disponibles'
@@ -1554,7 +1554,7 @@ es: &es
     text_input_field: 'Campo de texto'
     text_input_field_description: 'Este campo permite a los usuarios introducir información de texto, como nombres o correos electrónicos.'
     signature_field: 'Campo de firma'
-    signature_field_description: 'Este campo permite recopilar firmas de los firmantes.'
+    signature_field_description: 'Este campo se utiliza para recopilar las firmas de los firmantes.'
     added_fields: 'Campos añadidos'
     added_fields_description: 'Esta lista muestra todos los campos añadidos al documento. Puedes reordenarlos, editarlos o eliminarlos.'
     open_field_settings: 'Abrir configuración del campo'
@@ -1568,10 +1568,10 @@ es: &es
     copy_and_share_link: 'Copiar y compartir enlace'
     copy_and_share_link_description: 'Copia este enlace para compartir el documento. Cualquiera con el enlace puede firmarlo tras ingresar su correo electrónico.'
     sign_the_document: 'Firmar el documento'
-    sign_the_document_description: 'Si eres uno de los firmantes, este botón te permite firmar el documento tú mismo.'
+    sign_the_document_description: 'Si eres uno de los firmantes, este botón te permite firmar el documento.'
     send_for_signing: 'Enviar para firma'
     add_recipients: 'Agregar destinatarios'
-    add_recipients_description: 'Agrega nuevos destinatarios para que el documento sea firmado. Puedes ingresar sus correos electrónicos o números de teléfono.'
+    add_recipients_description: 'Agrega nuevos destinatarios para que firmen el documento ingresando sus correos electrónicos o números de teléfono.'
     settings: 'Configuración'
     settings_account_description: 'Con una configuración completa de la cuenta, puedes personalizar la experiencia de firma y añadir más usuarios.'
     support: 'Soporte'
@@ -2323,11 +2323,11 @@ it: &it
     previous: Precedente
     next: Successivo
     template_and_submissions: 'Modelli e Invii'
-    template_and_submissions_description: "Puoi selezionare la vista che meglio si adatta al tuo flusso di lavoro. Scegli la vista 'Modelli' se crei modelli riutilizzabili di documenti, oppure la vista 'Invii' quando firmi documenti singoli o controlli lo stato di ogni richiesta di firma."
+    template_and_submissions_description: "Puoi selezionare la visualizzazione più adatta al tuo flusso di lavoro. Scegli la visualizzazione 'Modelli' per creare modelli di documenti riutilizzabili o 'Invii' per firmare documenti singoli o controllare lo stato di ciascuna richiesta di firma."
     upload_a_pdf_file: 'Carica un file PDF'
-    upload_a_pdf_file_description: 'Carica un documento da utilizzare per creare un modello di modulo di firma.'
+    upload_a_pdf_file_description: 'Carica un documento PDF per creare un modello di modulo di firma.'
     select_a_signer_party: 'Seleziona una parte firmataria'
-    select_a_signer_party_description: 'Questo menu a discesa consente di selezionare un ruolo di firmatario o aggiungere una nuova parte al documento quando deve essere firmato da due o più parti.'
+    select_a_signer_party_description: 'Questo menu a discesa consente di selezionare un ruolo di firmatario o aggiungere una nuova parte al documento se richiede 2 o più firme.'
     available_parties: 'Parti disponibili'
     available_parties_description: 'Questo elenco contiene tutte le parti disponibili con i relativi ruoli. Una volta selezionata, puoi aggiungere e configurare i campi per la parte firmataria.'
     available_field_types: 'Tipi di campo disponibili'
@@ -2335,7 +2335,7 @@ it: &it
     text_input_field: 'Campo di testo'
     text_input_field_description: 'Questo campo consente agli utenti di inserire informazioni testuali, come nomi o email.'
     signature_field: 'Campo firma'
-    signature_field_description: 'Questo campo consente di raccogliere firme dai firmatari.'
+    signature_field_description: 'Questo campo viene utilizzato per raccogliere le firme dei firmatari.'
     added_fields: 'Campi aggiunti'
     added_fields_description: 'Questo elenco mostra tutti i campi aggiunti al documento. Puoi riordinarli, modificarli o rimuoverli.'
     open_field_settings: 'Apri le impostazioni del campo'
@@ -2349,10 +2349,10 @@ it: &it
     copy_and_share_link: 'Copia e condividi il link'
     copy_and_share_link_description: 'Copia questo link per condividere il documento. Chiunque abbia il link potrà firmarlo dopo aver inserito la propria email.'
     sign_the_document: 'Firma il documento'
-    sign_the_document_description: 'Se sei uno dei firmatari, questo pulsante ti consente di firmare il documento personalmente.'
+    sign_the_document_description: 'Se sei uno dei firmatari, questo pulsante ti consente di firmare il documento.'
     send_for_signing: 'Invia per la firma'
     add_recipients: 'Aggiungi destinatari'
-    add_recipients_description: 'Aggiungi nuovi destinatari per la firma del documento. Puoi inserire il loro indirizzo email o numero di telefono.'
+    add_recipients_description: 'Aggiungi nuovi destinatari inserendo i loro indirizzi email o numeri di telefono per far firmare il documento.'
     settings: 'Impostazioni'
     settings_account_description: "Con impostazioni complete dell'account, puoi personalizzare l'esperienza di firma elettronica e invitare altri utenti."
     support: 'Supporto'
@@ -3056,7 +3056,7 @@ fr: &fr
   submission_created_via_source_html: '<b>Soumission créée</b> via %{source}'
   pro_user_seats_used: Places utilisateur Pro en cours d'utilisation
   manage_plan: Gérer le plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage, car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Cette soumission comporte plusieurs signataires, ce qui empêche l'utilisation d'un lien de partage, car il n'est pas clair quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guide</a> pour définir les détails du signataire par défaut."
   welcome_to_docuseal: Bienvenue sur DocuSeal
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.
   start_tour: Démarrer
@@ -3106,11 +3106,11 @@ fr: &fr
     previous: Précédent
     next: Suivant
     template_and_submissions: 'Modèles et Soumissions'
-    template_and_submissions_description: "Vous pouvez sélectionner la vue qui correspond le mieux à votre flux de travail. Choisissez la vue 'Modèles' si vous créez des modèles de documents réutilisables, ou la vue 'Soumissions' lorsque vous signez des documents individuels ou vérifiez l'état de chaque demande de signature."
+    template_and_submissions_description: "Vous pouvez sélectionner la vue qui correspond le mieux à votre flux de travail. Choisissez la vue 'Modèles' pour créer des modèles de documents réutilisables ou la vue 'Soumissions' pour signer des documents individuels ou vérifier l'état de chaque demande de signature."
     upload_a_pdf_file: 'Téléverser un fichier PDF'
-    upload_a_pdf_file_description: "Téléversez un document pour l'utiliser comme modèle de formulaire de signature."
+    upload_a_pdf_file_description: 'Téléversez un document PDF pour créer un modèle de formulaire de signature.'
     select_a_signer_party: 'Sélectionner une partie signataire'
-    select_a_signer_party_description: "Ce menu déroulant vous permet de sélectionner un rôle de signataire ou d'ajouter une nouvelle partie au document lorsqu'il doit être signé par deux parties ou plus."
+    select_a_signer_party_description: "Ce menu déroulant vous permet de sélectionner un rôle de signataire ou d'ajouter une nouvelle partie au document s'il nécessite 2 signatures ou plus."
     available_parties: 'Parties disponibles'
     available_parties_description: 'Cette liste contient toutes les parties disponibles avec leurs rôles. Une fois sélectionnée, vous pouvez ajouter et configurer les champs pour cette partie.'
     available_field_types: 'Types de champs disponibles'
@@ -3118,7 +3118,7 @@ fr: &fr
     text_input_field: 'Champ de texte'
     text_input_field_description: 'Ce champ permet aux utilisateurs de saisir des informations textuelles telles que des noms ou des adresses e-mail.'
     signature_field: 'Champ de signature'
-    signature_field_description: 'Ce champ permet de collecter les signatures des signataires.'
+    signature_field_description: 'Ce champ est utilisé pour recueillir les signatures des signataires.'
     added_fields: 'Champs ajoutés'
     added_fields_description: 'Cette liste affiche tous les champs ajoutés au document. Vous pouvez les réorganiser, les modifier ou les supprimer.'
     open_field_settings: 'Ouvrir les paramètres du champ'
@@ -3132,10 +3132,10 @@ fr: &fr
     copy_and_share_link: 'Copier et partager le lien'
     copy_and_share_link_description: 'Copiez ce lien pour partager le document. Toute personne disposant du lien pourra le signer après avoir saisi son e-mail.'
     sign_the_document: 'Signer le document'
-    sign_the_document_description: 'Si vous êtes l’un des signataires, ce bouton vous permet de signer le document vous-même.'
+    sign_the_document_description: "Si vous êtes l'n des signataires, ce bouton vous permet de signer le document."
     send_for_signing: 'Envoyer pour signature'
     add_recipients: 'Ajouter des destinataires'
-    add_recipients_description: 'Ajoutez de nouveaux destinataires pour que le document soit signé. Vous pouvez saisir leur adresse e-mail ou leur numéro de téléphone.'
+    add_recipients_description: "Ajoutez de nouveaux destinataires en saisissant leurs adresses e-mail ou numéros de téléphone pour faire signer le document."
     settings: 'Paramètres'
     settings_account_description: "Grâce à des paramètres de compte complets, vous pouvez personnaliser l'expérience de signature électronique et inviter d'autres utilisateurs."
     support: 'Assistance'
@@ -3888,11 +3888,11 @@ pt: &pt
     previous: Anterior
     next: Próximo
     template_and_submissions: 'Modelos e Envios'
-    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' se criar modelos de documentos reutilizáveis, ou 'Envios' ao assinar documentos individuais ou revisar o status de cada solicitação de assinatura."
+    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' para criar modelos reutilizáveis de documentos ou 'Envios' para assinar documentos individuais ou verificar o status de cada solicitação de assinatura."
     upload_a_pdf_file: 'Enviar um arquivo PDF'
-    upload_a_pdf_file_description: 'Envie um documento para usá-lo como modelo de formulário de assinatura.'
+    upload_a_pdf_file_description: 'Envie um documento PDF para criar um modelo de formulário de assinatura.'
     select_a_signer_party: 'Selecionar parte assinante'
-    select_a_signer_party_description: 'Este menu suspenso permite selecionar um papel de assinante ou adicionar uma nova parte ao documento quando ele precisa ser assinado por duas ou mais partes.'
+    select_a_signer_party_description: 'Este menu suspenso permite selecionar um papel de assinante ou adicionar uma nova parte ao documento, se forem necessárias 2 ou mais assinaturas.'
     available_parties: 'Partes disponíveis'
     available_parties_description: 'Esta lista contém todas as partes disponíveis com seus respectivos papéis. Após selecionar, você poderá adicionar e configurar os campos para essa parte.'
     available_field_types: 'Tipos de campo disponíveis'
@@ -3900,7 +3900,7 @@ pt: &pt
     text_input_field: 'Campo de texto'
     text_input_field_description: 'Este campo permite que os usuários insiram informações baseadas em texto, como nomes ou e-mails.'
     signature_field: 'Campo de assinatura'
-    signature_field_description: 'Este campo permite coletar assinaturas dos signatários.'
+    signature_field_description: 'Este campo é usado para coletar assinaturas dos signatários.'
     added_fields: 'Campos adicionados'
     added_fields_description: 'Esta lista exibe todos os campos adicionados ao documento. Você pode reordená-los, editá-los ou removê-los.'
     open_field_settings: 'Abrir configurações do campo'
@@ -3917,7 +3917,7 @@ pt: &pt
     sign_the_document_description: 'Se você for um dos signatários, este botão permite que você assine o documento.'
     send_for_signing: 'Enviar para assinatura'
     add_recipients: 'Adicionar destinatários'
-    add_recipients_description: 'Adicione novos destinatários para que o documento seja assinado. Você pode inserir seus e-mails ou números de telefone.'
+    add_recipients_description: 'Adicione novos destinatários inserindo seus endereços de e-mail ou números de telefone para assinar o documento.'
     settings: 'Configurações'
     settings_account_description: 'Com configurações completas de conta, você pode personalizar a experiência de assinatura eletrônica e convidar mais usuários.'
     support: 'Suporte'
@@ -4671,11 +4671,11 @@ de: &de
     previous: Zurück
     next: Weiter
     template_and_submissions: 'Vorlagen und Übermittlungen'
-    template_and_submissions_description: "Du kannst die Ansicht wählen, die am besten zu deinem Arbeitsablauf passt. Wähle die Ansicht 'Vorlagen', wenn du wiederverwendbare Dokumentenvorlagen erstellst, oder 'Übermittlungen', wenn du einzelne Dokumente unterschreibst oder den Status jeder Signaturanfrage überprüfen möchtest."
+    template_and_submissions_description: "Du kannst die Ansicht wählen, die am besten zu deinem Arbeitsablauf passt. Wähle die Ansicht 'Vorlagen', um wiederverwendbare Dokumentvorlagen zu erstellen, oder 'Übermittlungen', um einzelne Dokumente zu unterschreiben oder den Status jeder Signaturanfrage zu überprüfen."
     upload_a_pdf_file: 'PDF-Datei hochladen'
-    upload_a_pdf_file_description: 'Lade ein Dokument hoch, um es als Vorlage für ein Signaturformular zu verwenden.'
+    upload_a_pdf_file_description: 'Lade ein PDF-Dokument hoch, um eine Vorlage für ein Signaturformular zu erstellen.'
     select_a_signer_party: 'Signaturpartei auswählen'
-    select_a_signer_party_description: 'Dieses Dropdown-Menü ermöglicht es dir, eine Signaturrolle auszuwählen oder eine neue Partei zum Dokument hinzuzufügen, wenn es von zwei oder mehr Parteien unterzeichnet werden muss.'
+    select_a_signer_party_description: 'Dieses Dropdown-Menü ermöglicht es dir, eine Signaturrolle auszuwählen oder eine neue Partei zum Dokument hinzuzufügen, wenn es 2 oder mehr Unterschriften erfordert.'
     available_parties: 'Verfügbare Parteien'
     available_parties_description: 'Diese Liste enthält alle verfügbaren Parteien mit ihren Rollennamen. Nach der Auswahl kannst du Felder für die Partei hinzufügen und konfigurieren.'
     available_field_types: 'Verfügbare Feldtypen'
@@ -4683,7 +4683,7 @@ de: &de
     text_input_field: 'Textfeld'
     text_input_field_description: 'Dieses Feld ermöglicht es Benutzern, textbasierte Informationen wie Namen oder E-Mails einzugeben.'
     signature_field: 'Signaturfeld'
-    signature_field_description: 'Dieses Feld dient der Erfassung von Signaturen der Unterzeichner.'
+    signature_field_description: 'Dieses Feld wird verwendet, um die Unterschriften der Unterzeichner zu erfassen.'
     added_fields: 'Hinzugefügte Felder'
     added_fields_description: 'Diese Liste zeigt alle dem Dokument hinzugefügten Felder. Du kannst sie neu anordnen, bearbeiten oder entfernen.'
     open_field_settings: 'Feld-Einstellungen öffnen'
@@ -4697,10 +4697,10 @@ de: &de
     copy_and_share_link: 'Link kopieren und teilen'
     copy_and_share_link_description: 'Kopiere diesen Link, um das Dokument zu teilen. Jeder mit dem Link kann es unterschreiben, nachdem er seine E-Mail-Adresse eingegeben hat.'
     sign_the_document: 'Dokument unterschreiben'
-    sign_the_document_description: 'Wenn du einer der Unterzeichner bist, kannst du das Dokument mit diesem Button selbst unterschreiben.'
+    sign_the_document_description: 'Wenn du einer der Unterzeichner bist, kannst du das Dokument mit diesem Button unterschreiben.'
     send_for_signing: 'Zum Unterschreiben senden'
     add_recipients: 'Empfänger hinzufügen'
-    add_recipients_description: 'Füge neue Empfänger hinzu, damit das Dokument unterschrieben werden kann. Du kannst deren E-Mail-Adressen oder Telefonnummern eingeben.'
+    add_recipients_description: 'Füge neue Empfänger hinzu, indem du ihre E-Mail-Adressen oder Telefonnummern eingibst, damit sie das Dokument unterschreiben können.'
     settings: 'Einstellungen'
     settings_account_description: 'Mit umfangreichen Kontoeinstellungen kannst du das Signiererlebnis anpassen und weitere Benutzer einladen.'
     support: 'Support'
