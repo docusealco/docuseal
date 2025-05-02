@@ -55,6 +55,10 @@ module Docuseal
     ENV['MULTITENANT'] == 'true'
   end
 
+  def advanced_formats?
+    multitenant?
+  end
+
   def demo?
     ENV['DEMO'] == 'true'
   end
