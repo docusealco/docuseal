@@ -1097,17 +1097,18 @@
   resolved "https://registry.yarnpkg.com/@github/catalyst/-/catalyst-2.0.0-beta.tgz#a0aef206cee56902d9354d12ff1e92925b5f9063"
   integrity sha512-E2avZZ+rcbm7E3ou7lXrB8SfcaA+3CQs3YwoYzoOyfsLOr+57N6N+KJcU/ESUsZqC4ve1PKvdG5TrOK8Q9MB6w==
 
-"@hotwired/turbo-rails@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.3.0.tgz#422c21752509f3edcd6c7b2725bbe9e157815f51"
-  integrity sha512-fvhO64vp/a2UVQ3jue9WTc2JisMv9XilIC7ViZmXAREVwiQ2S4UC7Go8f9A1j4Xu7DBI6SbFdqILk5ImqVoqyA==
+"@hotwired/turbo-rails@^8.0.13":
+  version "8.0.13"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.13.tgz#7016651f7144053992ce5096bb95495f8faa5854"
+  integrity sha512-6SCnnOSzhtaJ0pNkAjncZxjtKsK3sP/vPEkCnTXBXSHkr+vF7DTZkOlwjhms1DbbQNTsjCsBoKvzSMbh/omSCQ==
   dependencies:
-    "@hotwired/turbo" "^7.3.0"
+    "@hotwired/turbo" "^8.0.13"
     "@rails/actioncable" "^7.0"
 
-"@hotwired/turbo@^7.3.0", "@hotwired/turbo@https://github.com/docusealco/turbo#main":
-  version "7.3.0"
-  resolved "https://github.com/docusealco/turbo#64d286a14b0d11383719a9a09852a775863d621a"
+"@hotwired/turbo@^8.0.13":
+  version "8.0.13"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.13.tgz#ab35fda9d358432c8a872a833844b38cccb8c25b"
+  integrity sha512-M7qXUqcGab6G5PKOiwhgbByTtrPgKPFCTMNQ52QhzUEXEqmp0/ApEguUesh/FPiUjrmFec+3lq98KsWnYY2C7g==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"

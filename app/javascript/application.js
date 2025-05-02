@@ -1,5 +1,5 @@
 import '@hotwired/turbo'
-import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascript/turbo/fetch_requests'
+import { FetchRequest } from '@hotwired/turbo';
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -48,7 +48,7 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
+document.addEventListener('turbo:before-fetch-request', FetchRequest.encodeMethodIntoRequestBody)
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
 
