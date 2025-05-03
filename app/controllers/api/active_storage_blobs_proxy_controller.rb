@@ -21,7 +21,11 @@ module Api
 
       blob = ActiveStorage::Blob.find_by!(uuid: blob_uuid)
 
-      authorization_check!(blob) if exp.blank?
+      attachment = blob.attachments.take
+
+      @record = attachment.record
+
+      authorization_check!(attachment) if exp.blank?
 
       if request.headers['Range'].present?
         send_blob_byte_range_data blob, request.headers['Range']
@@ -37,9 +41,7 @@ module Api
 
     private
 
-    def authorization_check!(blob)
-      attachment = blob.attachments.take
-
+    def authorization_check!(attachment)
       is_authorized = attachment.name.in?(%w[logo preview_images]) ||
                       (current_user && attachment.record.account.id == current_user.account_id) ||
                       (current_user && !Docuseal.multitenant? && current_user.role == 'superadmin') ||

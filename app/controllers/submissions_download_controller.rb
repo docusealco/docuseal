@@ -8,20 +8,20 @@ class SubmissionsDownloadController < ApplicationController
   FILES_TTL = 5.minutes
 
   def index
-    submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
+    @submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
 
     signature_valid =
-      if submitter&.slug == params[:submitter_slug]
+      if @submitter&.slug == params[:submitter_slug]
         true
       else
-        submitter = nil
+        @submitter = nil
       end
 
-    submitter ||= Submitter.find_by!(slug: params[:submitter_slug])
+    @submitter ||= Submitter.find_by!(slug: params[:submitter_slug])
 
-    Submissions::EnsureResultGenerated.call(submitter)
+    Submissions::EnsureResultGenerated.call(@submitter)
 
-    last_submitter = submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+    last_submitter = @submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
 
     return head :not_found unless last_submitter
 
@@ -34,7 +34,7 @@ class SubmissionsDownloadController < ApplicationController
     end
 
     if params[:combined] == 'true'
-      url = build_combined_url(submitter)
+      url = build_combined_url(@submitter)
 
       if url
         render json: [url]

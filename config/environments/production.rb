@@ -134,7 +134,15 @@ Rails.application.configure do
         {}
       end
 
+    resource = controller.instance_variable_get(:@submitter) ||
+               controller.instance_variable_get(:@submission) ||
+               controller.instance_variable_get(:@template) ||
+               controller.instance_variable_get(:@record)
+
+    current_user = controller.instance_variable_get(:@current_user)
+
     {
+      host: controller.request.host,
       fwd: controller.request.remote_ip,
       params: {
         id: params[:id],
@@ -148,8 +156,10 @@ Rails.application.configure do
                params[:submit_form_slug] ||
                params[:template_slug]).to_s.first(5)
       }.compact_blank,
-      host: controller.request.host,
-      uid: controller.instance_variable_get(:@current_user).try(:id)
+      uid: current_user.try(:id),
+      aid: current_user.try(:account_id),
+      rid: resource.try(:id),
+      raid: resource.try(:account_id)
     }
   end
 end
