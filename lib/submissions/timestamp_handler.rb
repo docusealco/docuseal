@@ -35,7 +35,7 @@ module Submissions
         c.basic_auth(uri.user, uri.password) if uri.password.present?
       end
 
-      response = conn.post(uri.path, build_payload(digest.digest),
+      response = conn.post(uri.request_uri, build_payload(digest.digest),
                            'content-type' => 'application/timestamp-query')
 
       if response.status != 200 || response.body.blank?
