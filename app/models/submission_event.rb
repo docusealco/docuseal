@@ -38,6 +38,8 @@ class SubmissionEvent < ApplicationRecord
 
   enum :event_type, {
     send_email: 'send_email',
+    bounce_email: 'bounce_email',
+    complaint_email: 'complaint_email',
     send_reminder_email: 'send_reminder_email',
     send_sms: 'send_sms',
     send_2fa_sms: 'send_2fa_sms',

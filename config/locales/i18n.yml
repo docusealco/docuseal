@@ -725,6 +725,8 @@ en: &en
     link: Link
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
+    bounce_email_html: '<b>Email bounced</b> %{submitter_name}'
+    complaint_email_html: '<b>Spam complaint</b> %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
     send_sms_to_html: '<b>SMS sent</b> to %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verification SMS sent</b> to %{submitter_name}'
@@ -1507,6 +1509,8 @@ es: &es
     link: Enlace
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
+    bounce_email_html: '<b>Correo electrónico rebotado</b> %{submitter_name}'
+    complaint_email_html: '<b>Queja de spam</b> %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificación enviado</b> a %{submitter_name}'
@@ -2287,7 +2291,9 @@ it: &it
     invite: Invito
     link: Link
   submission_event_names:
-    send_email_to_html: '<b>E-mail inviato</b> a %{submitter_name}'
+    send_email_to_html: '<b>Email inviata</b> a %{submitter_name}'
+    bounce_email_html: '<b>Email respinta</b> %{submitter_name}'
+    complaint_email_html: '<b>Segnalazione spam</b> %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS inviato</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS di verifica inviato</b> a %{submitter_name}'
@@ -3071,6 +3077,8 @@ fr: &fr
     link: Lien
   submission_event_names:
     send_email_to_html: '<b>E-mail envoyé</b> à %{submitter_name}'
+    bounce_email_html: '<b>Email non distribué</b> %{submitter_name}'
+    complaint_email_html: '<b>Réclamation de spam</b> %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail de rappel envoyé</b> à %{submitter_name}'
     send_sms_to_html: '<b>SMS envoyé</b> à %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de vérification envoyé</b> à %{submitter_name}'
@@ -3852,8 +3860,10 @@ pt: &pt
     invite: Convite
     link: Link
   submission_event_names:
-    send_email_to_html: '<b>E-mail enviado</b> para %{submitter_name}'
-    send_reminder_email_to_html: '<b>E-mail de lembrete enviado</b> para %{submitter_name}'
+    send_email_to_html: '<b>Email enviado</b> para %{submitter_name}'
+    bounce_email_html: '<b>Email não entregue</b> %{submitter_name}'
+    complaint_email_html: '<b>Reclamação de spam</b> %{submitter_name}'
+    send_reminder_email_to_html: '<b>Email de lembrete enviado</b> para %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> para %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificação enviado</b> para %{submitter_name}'
     open_email_by_html: '<b>E-mail aberto</b> por %{submitter_name}'
@@ -4636,6 +4646,8 @@ de: &de
     link: Link
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
+    bounce_email_html: '<b>E-Mail zurückgesendet</b> %{submitter_name}'
+    complaint_email_html: '<b>Spam-Beschwerde</b> %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
     send_sms_to_html: '<b>SMS gesendet</b> an %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verifizierungs-SMS gesendet</b> an %{submitter_name}'
