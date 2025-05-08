@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-class TemplateReplaceDocumentsController < ApplicationController
+class TemplatesCloneAndReplaceController < ApplicationController
   load_and_authorize_resource :template
 
   def create
-    if params[:blobs].blank? && params[:files].blank?
-      return respond_to do |f|
-        f.html { redirect_back fallback_location: template_path(@template), alert: I18n.t('file_is_missing') }
-        f.json { render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_entity }
-      end
-    end
+    return head :unprocessable_entity if params[:files].blank?
 
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
@@ -17,6 +12,7 @@ class TemplateReplaceDocumentsController < ApplicationController
     ).call
 
     cloned_template = Templates::Clone.call(@template, author: current_user)
+    cloned_template.name = File.basename(params[:files].first.original_filename, '.*')
     cloned_template.save!
 
     documents = Templates::ReplaceAttachments.call(cloned_template, params, extract_fields: true)
@@ -31,6 +27,9 @@ class TemplateReplaceDocumentsController < ApplicationController
       f.json { render json: { id: cloned_template.id } }
     end
   rescue Templates::CreateAttachments::PdfEncrypted
-    render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_entity
+    respond_to do |f|
+      f.html { render turbo_stream: turbo_stream.append(params[:form_id], html: helpers.tag.prompt_password) }
+      f.json { render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_entity }
+    end
   end
 end

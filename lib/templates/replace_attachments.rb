@@ -27,7 +27,7 @@ module Templates
         end
 
         next if template.fields.any? { |f| f['areas']&.any? { |a| a['attachment_uuid'] == document.uuid } }
-        next unless submitter && document.metadata.dig('pdf', 'fields').present?
+        next if submitter.blank? || document.metadata.dig('pdf', 'fields').blank?
 
         pdf_fields = document.metadata['pdf'].delete('fields').to_a
         pdf_fields.each { |f| f['submitter_uuid'] = submitter['uuid'] }

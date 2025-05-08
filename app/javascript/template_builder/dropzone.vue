@@ -10,12 +10,12 @@
       id="document_dropzone"
       class="w-full relative rounded-md border-2 border-base-content/10 border-dashed"
       :for="inputId"
-      :class="[{ 'opacity-50': isLoading || isProcessing, 'hover:bg-base-200': !hoverClass }, isDragEntering && hoverClass ? hoverClass : '']"
+      :class="[{ 'opacity-50': isLoading, 'hover:bg-base-200/30': !hoverClass }, isDragEntering && hoverClass ? hoverClass : '']"
     >
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center pointer-events-none">
         <div class="flex flex-col items-center">
           <IconInnerShadowTop
-            v-if="isLoading || isProcessing"
+            v-if="isLoading"
             class="animate-spin"
             :width="40"
             :height="40"
@@ -29,6 +29,7 @@
           <div
             v-if="message"
             class="font-medium text-lg mb-1"
+            :class="{ 'mt-1': !withDescription }"
           >
             {{ message }}
           </div>
@@ -97,10 +98,10 @@ export default {
       required: false,
       default: true
     },
-    header: {
-      type: Object,
+    title: {
+      type: String,
       required: false,
-      default: () => ({})
+      default: ''
     },
     acceptFileTypes: {
       type: String,
@@ -108,11 +109,10 @@ export default {
       default: 'image/*, application/pdf'
     }
   },
-  emits: ['success', 'error', 'loading', 'processing'],
+  emits: ['success', 'error', 'loading'],
   data () {
     return {
       isLoading: false,
-      isProcessing: false,
       isDragEntering: false
     }
   },
@@ -122,7 +122,7 @@ export default {
     },
     uploadUrl () {
       if (this.cloneTemplateOnUpload) {
-        return `/templates/${this.templateId}/replace_documents`
+        return `/templates/${this.templateId}/clone_and_replace`
       } else {
         return `/templates/${this.templateId}/documents`
       }
@@ -130,21 +130,16 @@ export default {
     message () {
       if (this.isLoading) {
         return this.t('uploading')
-      } else if (this.isProcessing) {
-        return this.t('processing_')
       } else if (this.acceptFileTypes === 'image/*, application/pdf') {
-        return this.header.pdf_documents_or_images || this.header.documents_or_images || this.t('add_pdf_documents_or_images')
+        return this.title || this.t('add_pdf_documents_or_images')
       } else {
-        return this.header.documents_or_images || this.t('add_documents_or_images')
+        return this.title || this.t('add_documents_or_images')
       }
     }
   },
   watch: {
     isLoading (value) {
       this.$emit('loading', value)
-    },
-    isProcessing (value) {
-      this.$emit('processing', value)
     }
   },
   methods: {

@@ -4,50 +4,56 @@
     <span><%= t('home') %></span>
   <% end %>
 </div>
-<div class="relative flex justify-between items-center w-full mb-4">
-  <dashboard-dropzone data-show-only-on-window-hover="true" class="absolute bottom-0 h-36 w-full rounded-xl bg-base-200 border-2 border-dashed z-10 hidden">
-    <%= render 'templates/dashboard_dropzone_form', url: templates_upload_path(folder_name: @template_folder.name), title: t('upload_new_document'), icon: 'cloud_upload' %>
-  </dashboard-dropzone>
-  <h1 class="text-4xl font-bold flex flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
-    <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
-    <span class="peer truncate">
-      <%= @template_folder.name %>
-    </span>
-    <% if can?(:update, @template_folder) && @template_folder.name != TemplateFolder::DEFAULT_NAME %>
-      <span class="pl-1 opacity-0 hover:opacity-100 peer-hover:opacity-100">
-        <a href="<%= edit_folder_path(@template_folder) %>" data-turbo-frame="modal">
-          <%= svg_icon('pencil', class: 'w-7 h-7') %>
-        </a>
+<dashboard-dropzone>
+  <div class="relative flex justify-between items-center w-full mb-4">
+    <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>
+      <input name="form_id" value="<%= form_id %>">
+      <input name="folder_name" value="<%= @template_folder.name %>">
+      <button type="submit"></button>
+      <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
+    <% end %>
+    <%= render 'templates/dashboard_dropzone', style: 'height: 137px' %>
+    <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
+      <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
+      <span class="peer truncate">
+        <%= @template_folder.name %>
       </span>
-    <% end %>
-  </h1>
-  <div class="flex space-x-2">
-    <% if params[:q].present? || @pagy.pages > 1 %>
-      <%= render 'shared/search_input' %>
-    <% end %>
-    <% if can?(:create, ::Template) %>
-      <%= render 'templates/upload_button', folder_name: @template_folder.name %>
-      <%= link_to new_template_path(folder_name: @template_folder.name), class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
-        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block"><%= t('create') %></span>
+      <% if can?(:update, @template_folder) && @template_folder.name != TemplateFolder::DEFAULT_NAME %>
+        <span class="opacity-0 hover:opacity-100 peer-hover:opacity-100">
+          <a href="<%= edit_folder_path(@template_folder) %>" data-turbo-frame="modal">
+            <%= svg_icon('pencil', class: 'w-7 h-7') %>
+          </a>
+        </span>
       <% end %>
-    <% end %>
-  </div>
-</div>
-<% if @pagy.count > 0 %>
-  <div class="grid gap-4 md:grid-cols-3">
-    <%= render partial: 'templates/template', collection: @templates %>
-  </div>
-  <% templates_order_select_html = capture do %>
-    <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
-    <% end %>
-  <% end %>
-  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', right_additional_html: templates_order_select_html %>
-<% elsif params[:q].present? %>
-  <div class="text-center">
-    <div class="mt-16 text-3xl font-semibold">
-      <%= t('templates_not_found') %>
+    </h1>
+    <div class="flex space-x-2">
+      <% if params[:q].present? || @pagy.pages > 1 %>
+        <%= render 'shared/search_input' %>
+      <% end %>
+      <% if can?(:create, ::Template) %>
+        <%= render 'templates/upload_button', folder_name: @template_folder.name %>
+        <%= link_to new_template_path(folder_name: @template_folder.name), class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+          <span class="hidden md:block"><%= t('create') %></span>
+        <% end %>
+      <% end %>
     </div>
   </div>
-<% end %>
+  <% if @pagy.count > 0 %>
+    <div class="grid gap-4 md:grid-cols-3">
+      <%= render partial: 'templates/template', collection: @templates %>
+    </div>
+    <% templates_order_select_html = capture do %>
+      <% if params[:q].blank? && @pagy.pages > 1 %>
+        <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
+      <% end %>
+    <% end %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', right_additional_html: templates_order_select_html %>
+  <% elsif params[:q].present? %>
+    <div class="text-center">
+      <div class="mt-16 text-3xl font-semibold">
+        <%= t('templates_not_found') %>
+      </div>
+    </div>
+  <% end %>
+</dashboard-dropzone>

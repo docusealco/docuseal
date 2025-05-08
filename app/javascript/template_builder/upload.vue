@@ -4,10 +4,10 @@
       id="add_document_button"
       :for="inputId"
       class="btn btn-outline w-full add-document-button"
-      :class="{ 'btn-disabled': isLoading || isProcessing }"
+      :class="{ 'btn-disabled': isLoading }"
     >
       <IconInnerShadowTop
-        v-if="isLoading || isProcessing"
+        v-if="isLoading"
         width="20"
         class="animate-spin"
       />
@@ -17,9 +17,6 @@
       />
       <span v-if="isLoading">
         {{ t('uploading_') }}
-      </span>
-      <span v-else-if="isProcessing">
-        {{ t('processing_') }}
       </span>
       <span v-else>
         {{ t('add_document') }}
@@ -66,8 +63,7 @@ export default {
   emits: ['success', 'error'],
   data () {
     return {
-      isLoading: false,
-      isProcessing: false
+      isLoading: false
     }
   },
   computed: {
@@ -91,6 +87,7 @@ export default {
           resp.json().then((data) => {
             this.$emit('success', data)
             this.$refs.input.value = ''
+            this.isLoading = false
           })
         } else if (resp.status === 422) {
           resp.json().then((data) => {
@@ -106,22 +103,26 @@ export default {
                 if (resp.ok) {
                   this.$emit('success', await resp.json())
                   this.$refs.input.value = ''
+                  this.isLoading = false
                 } else {
                   alert(this.t('wrong_password'))
 
                   this.$emit('error', await resp.json().error)
+                  this.isLoading = false
                 }
               })
             } else {
               this.$emit('error', data.error)
+              this.isLoading = false
             }
           })
         } else {
           resp.json().then((data) => {
             this.$emit('error', data.error)
+            this.isLoading = false
           })
         }
-      }).finally(() => {
+      }).catch(() => {
         this.isLoading = false
       })
     }

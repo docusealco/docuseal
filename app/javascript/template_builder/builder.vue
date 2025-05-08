@@ -1,24 +1,24 @@
 <template>
-  <HoverDropzone
-    v-if="sortedDocuments.length && (withUploadButton || withAddPageButton)"
-    :is-dragging="isDragging"
-    :template-id="template.id"
-    :accept-file-types="acceptFileTypes"
-    :with-replace-and-clone="withReplaceAndCloneUpload"
-    hover-class="bg-base-200/50"
-    @add="[updateFromUpload($event), isDragging = false]"
-    @replace="[onDocumentsReplace($event), isDragging = false]"
-    @replace-and-clone="[onDocumentsReplaceAndTemplateClone($event), isDragging = false]"
-    @error="onUploadFailed"
-  />
   <div
     ref="dragContainer"
     style="max-width: 1600px"
     class="mx-auto pl-3 h-full"
     :class="isMobile ? 'pl-4' : 'md:pl-4'"
     @dragover="onDragover"
-    @drop="isDragging = false"
+    @drop="isDragFile = false"
   >
+    <HoverDropzone
+      v-if="sortedDocuments.length && withUploadButton && editable"
+      :is-dragging="isDragFile"
+      :template-id="template.id"
+      :accept-file-types="acceptFileTypes"
+      :with-replace-and-clone="withReplaceAndCloneUpload"
+      hover-class="bg-base-200/50"
+      @add="[updateFromUpload($event), isDragFile = false]"
+      @replace="[onDocumentsReplace($event), isDragFile = false]"
+      @replace-and-clone="onDocumentsReplaceAndTemplateClone($event)"
+      @error="[onUploadFailed($event), isDragFile = false]"
+    />
     <DragPlaceholder
       ref="dragPlaceholder"
       :field="fieldsDragFieldRef.value || toRaw(dragField)"
@@ -683,7 +683,7 @@ export default {
     withReplaceAndCloneUpload: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     withPhone: {
       type: Boolean,
@@ -745,7 +745,7 @@ export default {
       drawFieldType: null,
       drawOption: null,
       dragField: null,
-      isDragging: false
+      isDragFile: false
     }
   },
   computed: {
@@ -892,12 +892,12 @@ export default {
         ref.x = e.clientX - ref.offsetX
         ref.y = e.clientY - ref.offsetY
       } else if (e.dataTransfer?.types?.includes('Files')) {
-        this.isDragging = true
+        this.isDragFile = true
       }
     },
     onWindowDragLeave (event) {
       if (event.clientX <= 0 || event.clientY <= 0 || event.clientX >= window.innerWidth || event.clientY >= window.innerHeight) {
-        this.isDragging = false
+        this.isDragFile = false
       }
     },
     reorderFields (item) {
@@ -1560,8 +1560,6 @@ export default {
       }, 'image/png')
     },
     onUploadFailed (error) {
-      this.isDragging = false
-
       if (error) alert(error)
     },
     updateFromUpload (data) {
@@ -1685,7 +1683,7 @@ export default {
       this.save()
     },
     onDocumentsReplace (data) {
-      data.schema.forEach((schemaItem , index) => {
+      data.schema.forEach((schemaItem, index) => {
         const existingSchemaItem = this.template.schema[index]
 
         if (this.template.schema[index]) {

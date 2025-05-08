@@ -1,74 +1,106 @@
-import { actionable } from '@github/catalyst/lib/actionable'
 import { target, targets, targetable } from '@github/catalyst/lib/targetable'
 
-export default actionable(targetable(class extends HTMLElement {
-  static [targets.static] = ['hiddenOnHover']
+export default targetable(class extends HTMLElement {
+  static [targets.static] = [
+    'hiddenOnDrag',
+    'folderCards',
+    'templateCards'
+  ]
+
   static [target.static] = [
-    'loading',
-    'icon',
-    'input',
-    'fileDropzone'
+    'form',
+    'fileDropzone',
+    'fileDropzoneLoading'
   ]
 
   connectedCallback () {
-    this.showOnlyOnWindowHover = this.dataset.showOnlyOnWindowHover === 'true'
-
     document.addEventListener('drop', this.onWindowDragdrop)
     document.addEventListener('dragover', this.onWindowDropover)
+
     window.addEventListener('dragleave', this.onWindowDragleave)
 
-    this.addEventListener('dragover', this.onDragover)
-    this.addEventListener('dragleave', this.onDragleave)
+    this.fileDropzone?.addEventListener('drop', this.onDropFile)
 
-    this.fileDropzone.addEventListener('drop', this.onDrop)
-    this.fileDropzone.addEventListener('turbo:submit-start', this.showDraghover)
-    this.fileDropzone.addEventListener('turbo:submit-end', this.hideDraghover)
+    this.folderCards.forEach((el) => el.addEventListener('drop', this.onDropFolder))
+    this.templateCards.forEach((el) => el.addEventListener('drop', this.onDropTemplate))
+
+    return [this.fileDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
+      el?.addEventListener('dragover', this.onDragover)
+      el?.addEventListener('dragleave', this.onDragleave)
+    })
   }
 
   disconnectedCallback () {
     document.removeEventListener('drop', this.onWindowDragdrop)
     document.removeEventListener('dragover', this.onWindowDropover)
+
     window.removeEventListener('dragleave', this.onWindowDragleave)
 
-    this.removeEventListener('dragover', this.onDragover)
-    this.removeEventListener('dragleave', this.onDragleave)
+    this.fileDropzone?.removeEventListener('drop', this.onDropFile)
 
-    this.fileDropzone.removeEventListener('drop', this.onDrop)
-    this.fileDropzone.removeEventListener('turbo:submit-start', this.showDraghover)
-    this.fileDropzone.removeEventListener('turbo:submit-end', this.hideDraghover)
+    this.folderCards.forEach((el) => el.removeEventListener('drop', this.onDropFolder))
+    this.templateCards.forEach((el) => el.removeEventListener('drop', this.onDropTemplate))
+
+    return [this.fileDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
+      el?.removeEventListener('dragover', this.onDragover)
+      el?.removeEventListener('dragleave', this.onDragleave)
+    })
   }
 
-  onDrop = (e) => {
+  onDropFile = (e) => {
     e.preventDefault()
 
-    this.input.files = e.dataTransfer.files
+    this.fileDropzoneLoading.classList.remove('hidden')
+    this.fileDropzoneLoading.previousElementSibling.classList.add('hidden')
+    this.fileDropzoneLoading.classList.add('opacity-50')
 
-    this.uploadFiles(e.dataTransfer.files)
+    this.uploadFiles(e.dataTransfer.files, '/templates_upload')
+  }
+
+  onDropFolder = (e) => {
+    e.preventDefault()
+
+    const loading = document.createElement('div')
+    const svg = e.target.querySelector('svg')
+
+    loading.innerHTML = this.loadingIconHtml
+    loading.children[0].classList.add(...svg.classList)
+
+    e.target.replaceChild(loading.children[0], svg)
+    e.target.classList.add('opacity-50')
+
+    const params = new URLSearchParams({ folder_name: e.target.innerText }).toString()
+
+    this.uploadFiles(e.dataTransfer.files, `/templates_upload?${params}`)
+  }
+
+  onDropTemplate = (e) => {
+    e.preventDefault()
+
+    const loading = document.createElement('div')
+    loading.classList.add('bottom-5', 'left-0', 'flex', 'justify-center', 'w-full', 'absolute')
+    loading.innerHTML = this.loadingIconHtml
+
+    e.target.appendChild(loading)
+    e.target.classList.add('opacity-50')
+
+    const id = e.target.href.split('/').pop()
+
+    this.uploadFiles(e.dataTransfer.files, `/templates/${id}/clone_and_replace`)
   }
 
   onWindowDragdrop = () => {
-    if (!this.hovered) this.hideDraghover()
+    if (!this.isLoading) this.hideDraghover()
   }
 
-  onSelectFiles (e) {
-    e.preventDefault()
+  uploadFiles (files, url) {
+    this.isLoading = true
 
-    this.uploadFiles(this.input.files)
-  }
+    this.form.action = url
 
-  toggleLoading = (e) => {
-    if (e && e.target && (!e.target.contains(this) || !e.detail?.formSubmission?.formElement?.contains(this))) {
-      return
-    }
+    this.form.querySelector('[type="file"]').files = files
 
-    this.loading?.classList?.toggle('hidden')
-    this.icon?.classList?.toggle('hidden')
-  }
-
-  uploadFiles () {
-    this.toggleLoading()
-
-    this.fileDropzone.querySelector('button[type="submit"]').click()
+    this.form.querySelector('[type="submit"]').click()
   }
 
   onWindowDropover = (e) => {
@@ -79,45 +111,50 @@ export default actionable(targetable(class extends HTMLElement {
     }
   }
 
+  onDragover () {
+    this.style.backgroundColor = '#F7F3F0'
+  }
+
+  onDragleave () {
+    this.style.backgroundColor = null
+  }
+
   onWindowDragleave = (e) => {
     if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
       this.hideDraghover()
     }
   }
 
-  onDragover (e) {
-    e.preventDefault()
-
-    this.hovered = true
-    this.style.backgroundColor = '#F7F3F0'
-  }
-
-  onDragleave (e) {
-    e.preventDefault()
-
-    this.hovered = false
-    this.style.backgroundColor = null
-  }
-
   showDraghover = () => {
-    if (this.showOnlyOnWindowHover) {
-      this.classList.remove('hidden')
-    }
+    if (this.isDrag) return
 
-    this.classList.remove('bg-base-200', 'border-transparent')
-    this.classList.add('bg-base-100', 'border-base-300', 'border-dashed')
-    this.fileDropzone.classList.remove('hidden')
-    this.hiddenOnHover.forEach((el) => { el.style.display = 'none' })
+    this.isDrag = true
+
+    this.fileDropzone?.classList?.remove('hidden')
+
+    this.hiddenOnDrag.forEach((el) => { el.style.display = 'none' })
+
+    return [...this.folderCards, ...this.templateCards].forEach((el) => {
+      el.classList.remove('bg-base-200', 'before:hidden')
+    })
   }
 
   hideDraghover = () => {
-    if (this.showOnlyOnWindowHover) {
-      this.classList.add('hidden')
-    }
+    this.isDrag = false
 
-    this.classList.add('bg-base-200', 'border-transparent')
-    this.classList.remove('bg-base-100', 'border-base-300', 'border-dashed')
-    this.fileDropzone.classList.add('hidden')
-    this.hiddenOnHover.forEach((el) => { el.style.display = null })
+    this.fileDropzone?.classList?.add('hidden')
+
+    this.hiddenOnDrag.forEach((el) => { el.style.display = null })
+
+    return [...this.folderCards, ...this.templateCards].forEach((el) => {
+      el.classList.add('bg-base-200', 'before:hidden')
+    })
   }
-}))
+
+  get loadingIconHtml () {
+    return `<svg xmlns="http://www.w3.org/2000/svg" class="animate-spin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12 3a9 9 0 1 0 9 9" />
+</svg>`
+  }
+})
