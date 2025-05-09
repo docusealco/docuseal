@@ -717,7 +717,6 @@ en: &en
   name_a_z: Name A-Z
   recently_used: Recently used
   newest_first: Newest first
-  create_base_on_template: Create based on template
   submission_sources:
     api: API
     bulk: Bulk Send
