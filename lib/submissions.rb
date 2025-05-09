@@ -63,6 +63,7 @@ module Submissions
       submission = template.submissions.new(created_by_user: user,
                                             account_id: user.account_id,
                                             source:,
+                                            expire_at: params[:expire_at].presence || build_default_expire_at(template),
                                             template_submitters: template.submitters)
 
       submission.submitters.new(email: normalize_email(email),
@@ -206,5 +207,18 @@ module Submissions
     submission.combined_document_attachment.destroy!
 
     Submissions::GenerateCombinedAttachment.call(submission.submitters.completed.order(:completed_at).last)
+  end
+
+  def build_default_expire_at(template)
+    default_expire_at_duration = template.preferences['default_expire_at_duration'].presence
+    default_expire_at = template.preferences['default_expire_at'].presence
+
+    return if default_expire_at_duration.blank?
+
+    if default_expire_at_duration == 'specified_date' && default_expire_at.present?
+      Time.zone.parse(default_expire_at)
+    elsif Template::EXPIRATION_DURATIONS[default_expire_at_duration]
+      Time.current.in_time_zone(template.account.timezone) + Template::EXPIRATION_DURATIONS[default_expire_at_duration]
+    end
   end
 end

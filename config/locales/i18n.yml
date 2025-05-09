@@ -717,6 +717,25 @@ en: &en
   name_a_z: Name A-Z
   recently_used: Recently used
   newest_first: Newest first
+  none: None
+  default_expiration: Default expiration
+  specified_date: Specified date
+  one_day: 1 day
+  two_days: 2 days
+  three_days: 3 days
+  four_days: 4 days
+  five_days: 5 days
+  six_days: 6 days
+  seven_days: 7 days
+  eight_days: 8 days
+  nine_days: 9 days
+  ten_days: 10 days
+  two_weeks: 2 weeks
+  three_weeks: 3 weeks
+  four_weeks: 4 weeks
+  one_month: 1 month
+  two_months: 2 months
+  three_months: 3 months
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1501,6 +1520,25 @@ es: &es
   name_a_z: Nombre A-Z
   recently_used: Usado recientemente
   newest_first: Más reciente primero
+  none: Ninguno
+  default_expiration: Vencimiento predeterminado
+  specified_date: Fecha especificada
+  one_day: 1 día
+  two_days: 2 días
+  three_days: 3 días
+  four_days: 4 días
+  five_days: 5 días
+  six_days: 6 días
+  seven_days: 7 días
+  eight_days: 8 días
+  nine_days: 9 días
+  ten_days: 10 días
+  two_weeks: 2 semanas
+  three_weeks: 3 semanas
+  four_weeks: 4 semanas
+  one_month: 1 mes
+  two_months: 2 meses
+  three_months: 3 meses
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2284,6 +2322,25 @@ it: &it
   name_a_z: Nome A-Z
   recently_used: Recentemente usato
   newest_first: Più recenti prima
+  none: Nessuno
+  default_expiration: Scadenza predefinita
+  specified_date: Data specificata
+  one_day: 1 giorno
+  two_days: 2 giorni
+  three_days: 3 giorni
+  four_days: 4 giorni
+  five_days: 5 giorni
+  six_days: 6 giorni
+  seven_days: 7 giorni
+  eight_days: 8 giorni
+  nine_days: 9 giorni
+  ten_days: 10 giorni
+  two_weeks: 2 settimane
+  three_weeks: 3 settimane
+  four_weeks: 4 settimane
+  one_month: 1 mese
+  two_months: 2 mesi
+  three_months: 3 mesi
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3069,6 +3126,25 @@ fr: &fr
   name_a_z: Nom A-Z
   recently_used: Récemment utilisé
   newest_first: Le plus récent d'abord
+  none: Aucun
+  default_expiration: Expiration par défaut
+  specified_date: Date spécifiée
+  one_day: 1 jour
+  two_days: 2 jours
+  three_days: 3 jours
+  four_days: 4 jours
+  five_days: 5 jours
+  six_days: 6 jours
+  seven_days: 7 jours
+  eight_days: 8 jours
+  nine_days: 9 jours
+  ten_days: 10 jours
+  two_weeks: 2 semaines
+  three_weeks: 3 semaines
+  four_weeks: 4 semaines
+  one_month: 1 mois
+  two_months: 2 mois
+  three_months: 3 mois
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3853,6 +3929,25 @@ pt: &pt
   name_a_z: Nome A-Z
   recently_used: Recentemente usado
   newest_first: Mais recente primeiro
+  none: Nenhum
+  default_expiration: Expiração padrão
+  specified_date: Data especificada
+  one_day: 1 dia
+  two_days: 2 dias
+  three_days: 3 dias
+  four_days: 4 dias
+  five_days: 5 dias
+  six_days: 6 dias
+  seven_days: 7 dias
+  eight_days: 8 dias
+  nine_days: 9 dias
+  ten_days: 10 dias
+  two_weeks: 2 semanas
+  three_weeks: 3 semanas
+  four_weeks: 4 semanas
+  one_month: 1 mês
+  two_months: 2 meses
+  three_months: 3 meses
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4638,6 +4733,25 @@ de: &de
   name_a_z: Name A-Z
   recently_used: Kürzlich verwendet
   newest_first: Neueste zuerst
+  none: Keine
+  default_expiration: Standardablauf
+  specified_date: Angegebenes Datum
+  one_day: 1 Tag
+  two_days: 2 Tage
+  three_days: 3 Tage
+  four_days: 4 Tage
+  five_days: 5 Tage
+  six_days: 6 Tage
+  seven_days: 7 Tage
+  eight_days: 8 Tage
+  nine_days: 9 Tage
+  ten_days: 10 Tage
+  two_weeks: 2 Wochen
+  three_weeks: 3 Wochen
+  four_weeks: 4 Wochen
+  one_month: 1 Monat
+  two_months: 2 Monate
+  three_months: 3 Monate
   submission_sources:
     api: API
     bulk: Massenversand
