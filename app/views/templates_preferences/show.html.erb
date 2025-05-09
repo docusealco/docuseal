@@ -31,7 +31,7 @@
               </span>
             </span>
           <% end %>
-          <%= tag.input type: 'email', multiple: true, name: 'template[preferences][bcc_completed]', autocomplete: 'off', class: 'base-input', value: ff.object.bcc_completed %>
+          <%= tag.input type: 'email', multiple: true, name: 'template[preferences][bcc_completed]', autocomplete: 'off', class: 'base-input', value: ff.object.bcc_completed, id: ff.field_id(:bcc_completed) %>
         </div>
       <% end %>
       <div class="form-control pt-3">
