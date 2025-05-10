@@ -54,16 +54,18 @@ export default targetable(class extends HTMLElement {
       const dragPreview = e.target.cloneNode(true)
       const rect = e.target.getBoundingClientRect()
 
+      const height = e.target.children[0].getBoundingClientRect().height + 50
+
       dragPreview.children[1].remove()
       dragPreview.style.width = `${rect.width}px`
-      dragPreview.style.height = `${e.target.children[0].getBoundingClientRect().height + 50}px`
+      dragPreview.style.height = `${height}px`
       dragPreview.style.position = 'absolute'
       dragPreview.style.pointerEvents = 'none'
       dragPreview.style.opacity = '0.9'
 
       document.body.appendChild(dragPreview)
 
-      e.dataTransfer.setDragImage(dragPreview, rect.width / 2, rect.height / 2)
+      e.dataTransfer.setDragImage(dragPreview, rect.width / 2, height / 2)
 
       setTimeout(() => document.body.removeChild(dragPreview), 0)
     }
@@ -111,6 +113,7 @@ export default targetable(class extends HTMLElement {
             'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
           }
         }).finally(() => {
+          window.Turbo.cache.clear()
           window.Turbo.visit(location.href)
         })
       }
