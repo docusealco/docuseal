@@ -1,5 +1,10 @@
 import { target, targets, targetable } from '@github/catalyst/lib/targetable'
 
+const loadingIconHtml = `<svg xmlns="http://www.w3.org/2000/svg" class="animate-spin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12 3a9 9 0 1 0 9 9" />
+</svg>`
+
 export default targetable(class extends HTMLElement {
   static [targets.static] = [
     'hiddenOnDrag',
@@ -21,8 +26,9 @@ export default targetable(class extends HTMLElement {
 
     this.fileDropzone?.addEventListener('drop', this.onDropFile)
 
-    this.folderCards.forEach((el) => el.addEventListener('drop', this.onDropFolder))
+    this.folderCards.forEach((el) => el.addEventListener('drop', (e) => this.onDropFolder(e, el)))
     this.templateCards.forEach((el) => el.addEventListener('drop', this.onDropTemplate))
+    this.templateCards.forEach((el) => el.addEventListener('dragstart', this.onTemplateDragStart))
 
     return [this.fileDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
       el?.addEventListener('dragover', this.onDragover)
@@ -35,16 +41,32 @@ export default targetable(class extends HTMLElement {
     document.removeEventListener('dragover', this.onWindowDropover)
 
     window.removeEventListener('dragleave', this.onWindowDragleave)
+  }
 
-    this.fileDropzone?.removeEventListener('drop', this.onDropFile)
+  onTemplateDragStart = (e) => {
+    const id = e.target.href.split('/').pop()
 
-    this.folderCards.forEach((el) => el.removeEventListener('drop', this.onDropFolder))
-    this.templateCards.forEach((el) => el.removeEventListener('drop', this.onDropTemplate))
+    e.dataTransfer.effectAllowed = 'move'
 
-    return [this.fileDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
-      el?.removeEventListener('dragover', this.onDragover)
-      el?.removeEventListener('dragleave', this.onDragleave)
-    })
+    if (id) {
+      e.dataTransfer.setData('template_id', id)
+
+      const dragPreview = e.target.cloneNode(true)
+      const rect = e.target.getBoundingClientRect()
+
+      dragPreview.children[1].remove()
+      dragPreview.style.width = `${rect.width}px`
+      dragPreview.style.height = `${e.target.children[0].getBoundingClientRect().height + 50}px`
+      dragPreview.style.position = 'absolute'
+      dragPreview.style.pointerEvents = 'none'
+      dragPreview.style.opacity = '0.9'
+
+      document.body.appendChild(dragPreview)
+
+      e.dataTransfer.setDragImage(dragPreview, rect.width / 2, rect.height / 2)
+
+      setTimeout(() => document.body.removeChild(dragPreview), 0)
+    }
   }
 
   onDropFile = (e) => {
@@ -57,39 +79,65 @@ export default targetable(class extends HTMLElement {
     this.uploadFiles(e.dataTransfer.files, '/templates_upload')
   }
 
-  onDropFolder = (e) => {
+  onDropFolder = (e, el) => {
     e.preventDefault()
 
-    const loading = document.createElement('div')
-    const svg = e.target.querySelector('svg')
+    const templateId = e.dataTransfer.getData('template_id')
 
-    loading.innerHTML = this.loadingIconHtml
-    loading.children[0].classList.add(...svg.classList)
+    if (e.dataTransfer.files.length || templateId) {
+      const loading = document.createElement('div')
+      const svg = el.querySelector('svg')
 
-    e.target.replaceChild(loading.children[0], svg)
-    e.target.classList.add('opacity-50')
+      loading.innerHTML = loadingIconHtml
+      loading.children[0].classList.add(...svg.classList)
 
-    const params = new URLSearchParams({ folder_name: e.target.innerText }).toString()
+      el.replaceChild(loading.children[0], svg)
+      el.classList.add('opacity-50')
 
-    this.uploadFiles(e.dataTransfer.files, `/templates_upload?${params}`)
+      if (e.dataTransfer.files.length) {
+        const params = new URLSearchParams({ folder_name: el.innerText }).toString()
+
+        this.uploadFiles(e.dataTransfer.files, `/templates_upload?${params}`)
+      } else {
+        const formData = new FormData()
+
+        formData.append('name', el.innerText)
+
+        fetch(`/templates/${templateId}/folder`, {
+          method: 'PUT',
+          redirect: 'manual',
+          body: formData,
+          headers: {
+            Accept: 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+          }
+        }).finally(() => {
+          window.Turbo.visit(location.href)
+        })
+      }
+    }
   }
 
   onDropTemplate = (e) => {
     e.preventDefault()
 
-    const loading = document.createElement('div')
-    loading.classList.add('bottom-5', 'left-0', 'flex', 'justify-center', 'w-full', 'absolute')
-    loading.innerHTML = this.loadingIconHtml
+    if (e.dataTransfer.files.length) {
+      const loading = document.createElement('div')
+      loading.classList.add('bottom-5', 'left-0', 'flex', 'justify-center', 'w-full', 'absolute')
+      loading.innerHTML = loadingIconHtml
 
-    e.target.appendChild(loading)
-    e.target.classList.add('opacity-50')
+      e.target.appendChild(loading)
+      e.target.classList.add('opacity-50')
 
-    const id = e.target.href.split('/').pop()
+      const id = e.target.href.split('/').pop()
 
-    this.uploadFiles(e.dataTransfer.files, `/templates/${id}/clone_and_replace`)
+      this.uploadFiles(e.dataTransfer.files, `/templates/${id}/clone_and_replace`)
+    }
   }
 
-  onWindowDragdrop = () => {
+  onWindowDragdrop = (e) => {
+    e.preventDefault()
+
     if (!this.isLoading) this.hideDraghover()
   }
 
@@ -111,8 +159,10 @@ export default targetable(class extends HTMLElement {
     }
   }
 
-  onDragover () {
-    this.style.backgroundColor = '#F7F3F0'
+  onDragover (e) {
+    if (e.dataTransfer?.types?.includes('Files') || this.dataset.targets !== 'dashboard-dropzone.templateCards') {
+      this.style.backgroundColor = '#F7F3F0'
+    }
   }
 
   onDragleave () {
@@ -149,12 +199,5 @@ export default targetable(class extends HTMLElement {
     return [...this.folderCards, ...this.templateCards].forEach((el) => {
       el.classList.add('bg-base-200', 'before:hidden')
     })
-  }
-
-  get loadingIconHtml () {
-    return `<svg xmlns="http://www.w3.org/2000/svg" class="animate-spin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-  <path d="M12 3a9 9 0 1 0 9 9" />
-</svg>`
   }
 })
