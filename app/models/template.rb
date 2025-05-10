@@ -36,24 +36,6 @@
 #
 class Template < ApplicationRecord
   DEFAULT_SUBMITTER_NAME = 'First Party'
-  EXPIRATION_DURATIONS = {
-    one_day: 1.day,
-    two_days: 2.days,
-    three_days: 3.days,
-    four_days: 4.days,
-    five_days: 5.days,
-    six_days: 6.days,
-    seven_days: 7.days,
-    eight_days: 8.days,
-    nine_days: 9.days,
-    ten_days: 10.days,
-    two_weeks: 14.days,
-    three_weeks: 21.days,
-    four_weeks: 28.days,
-    one_month: 1.month,
-    two_months: 2.months,
-    three_months: 3.months
-  }.with_indifferent_access.freeze
 
   belongs_to :author, class_name: 'User'
   belongs_to :account

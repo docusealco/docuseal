@@ -597,6 +597,7 @@ en: &en
   not_invited_yet:  Not invited yet
   not_completed_yet: Not completed yet
   declined_on_time: 'Declined on %{time}'
+  expire_on_time: 'Expire on %{time}'
   sign_in_person: Sign In-person
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
@@ -1400,6 +1401,7 @@ es: &es
   not_invited_yet: Aún no invitado
   not_completed_yet: Aún no completado
   declined_on_time: 'Rechazado el %{time}'
+  expire_on_time: 'Expira el %{time}'
   sign_in_person: Firma en persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">enviar el existente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Enviar una copia del correo electrónico con los documentos completados a una dirección BCC especificada.
@@ -2202,6 +2204,7 @@ it: &it
   not_invited_yet: Non ancora invitato
   not_completed_yet: Non ancora completato
   declined_on_time: 'Rifiutato il %{time}'
+  expire_on_time: 'Scade il %{time}'
   sign_in_person: Firma di persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">invia quello esistente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Invia una copia dell'email con i documenti completati a un indirizzo BCC specificato.
@@ -3006,6 +3009,7 @@ fr: &fr
   not_invited_yet: Pas encore invité
   not_completed_yet: Pas encore terminé
   declined_on_time: 'Refusé le %{time}'
+  expire_on_time: 'Expire le %{time}'
   sign_in_person: Signature en personne
   create_a_new_template_document_form_or_submit_the_existing_one_html: "<a href=\"%{new_template_link}\" data-turbo-frame=\"modal\" class=\"inline underline font-medium\">Créer un nouveau modèle</a> de document ou <a href=\"%{start_form_link}\" target=\"_blank\" class=\"inline underline font-medium\">soumettre l'existant</a>"
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envoyer une copie de l'e-mail avec les documents complétés à une adresse BCC spécifiée.
@@ -3809,6 +3813,7 @@ pt: &pt
   not_invited_yet: Ainda não convidado
   not_completed_yet: Ainda não concluído
   declined_on_time: 'Recusado em %{time}'
+  expire_on_time: 'Expira em %{time}'
   sign_in_person: Assinar pessoalmente
   create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submeter o existente</a>'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envie uma cópia do e-mail com documentos concluídos para um endereço BCC especificado.
@@ -4613,6 +4618,7 @@ de: &de
   not_invited_yet: Noch nicht eingeladen
   not_completed_yet: Noch nicht abgeschlossen
   declined_on_time: 'Abgelehnt am %{time}'
+  expire_on_time: 'Ablauf am %{time}'
   sign_in_person: Persönlich unterschreiben
   create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a> oder <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">vorhandene einreichen</a>'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Senden Sie eine E-Mail-Kopie mit abgeschlossenen Dokumenten an eine angegebene BCC-Adresse.

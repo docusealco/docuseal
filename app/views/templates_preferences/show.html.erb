@@ -41,25 +41,18 @@
         </div>
       </div>
     <% end %>
-    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mb-2' }, data: { close_on_submit: false } do |f| %>
-      <toggle-on-submit data-element-id="default_expiration_form_saved_alert"></toggle-on-submit>
-      <%= f.fields_for :preferences, Struct.new(:default_expire_at_duration, :default_expire_at).new(*@template.preferences.values_at('default_expire_at_duration', 'default_expire_at').compact_blank) do |ff| %>
+    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mb-5' }, data: { close_on_submit: false } do |f| %>
+      <%= f.fields_for :preferences, Struct.new(:default_expire_at_duration, :default_expire_at).new(@template.preferences['default_expire_at_duration'], @template.preferences['default_expire_at'] ? Time.zone.parse(@template.preferences['default_expire_at']).in_time_zone(current_account.timezone) : nil) do |ff| %>
         <div class="form-control">
-          <% duration_options = ::Template::EXPIRATION_DURATIONS.keys.map { |duration| [t(duration), duration] } + [[t('specified_date'), 'specified_date']] %>
-          <%= ff.label :default_expire_at_duration, t('default_expiration'), class: 'label' %>
+          <% duration_options = Templates::EXPIRATION_DURATIONS.keys.map { |duration| [t(duration), duration] } + [[t('specified_date'), 'specified_date']] %>
+          <%= ff.label :default_expire_at_duration, t('default_expiration'), class: 'label pt-0' %>
           <div class="flex items-center gap-2">
             <%= ff.select :default_expire_at_duration, duration_options, { include_blank: t('none') }, required: false, class: 'base-select flex-1', dir: 'auto', autocomplete: 'off', onchange: "this.value == 'specified_date' ? window.template_preferences_default_expire_at.classList.remove('hidden') : [window.template_preferences_default_expire_at.classList.add('hidden'), window.template_preferences_default_expire_at.value = '', this.form.requestSubmit()]" %>
             <%= ff.datetime_field :default_expire_at, required: false, class: ['base-input flex-1', ff.object.default_expire_at.blank? && 'hidden'].compact_blank.join(' '), dir: 'auto', autocomplete: 'off', onchange: 'this.value && this.form.requestSubmit()' %>
           </div>
         </div>
-        <div class="form-control">
-          <div class="flex justify-center">
-            <span id="default_expiration_form_saved_alert" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
-          </div>
-        </div>
       <% end %>
     <% end %>
-    <%= render 'templates_code_modal/preferences' %>
     <div class="collapse collapse-arrow join-item border border-base-300 mb-2">
       <input type="checkbox" name="accordion">
       <div class="collapse-title text-xl font-medium">
@@ -291,6 +284,7 @@
         </div>
       </div>
     </div>
+    <%= render 'templates_code_modal/preferences', class: 'pt-2' %>
   </div>
   <% if show_recipients %>
     <div id="recipients" class="hidden mt-2 mb-4 px-5">

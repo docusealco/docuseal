@@ -97,6 +97,7 @@ class StartFormController < ApplicationController
     submitter.submission ||= Submission.new(template:,
                                             account_id: template.account_id,
                                             template_submitters: template.submitters,
+                                            expire_at: Templates.build_default_expire_at(template),
                                             submitters: [submitter],
                                             source: :link)
 

@@ -15,6 +15,7 @@ module ReplaceEmailVariables
   SUBMITTER_SLUG = /\{+submitter\.slug\}+/i
   SUBMISSION_LINK = /\{+submission\.link\}+/i
   SUBMISSION_ID = /\{+submission\.id\}+/i
+  SUBMISSION_EXPIRE_AT = /\{+submission\.expire_at\}+/i
   SUBMITTERS = /\{+(?:submission\.)?submitters\}+/i
   SUBMITTERS_N_EMAIL = /\{+submitters\[(?<index>\d+)\]\.email\}+/i
   SUBMITTERS_N_NAME = /\{+submitters\[(?<index>\d+)\]\.name\}+/i
@@ -47,6 +48,13 @@ module ReplaceEmailVariables
     text = replace(text, ACCOUNT_NAME, html_escape:) { submitter.submission.account.name }
     text = replace(text, SENDER_NAME, html_escape:) { submitter.submission.created_by_user&.full_name }
     text = replace(text, SENDER_FIRST_NAME, html_escape:) { submitter.submission.created_by_user&.first_name }
+
+    text = replace(text, SUBMISSION_EXPIRE_AT, html_escape:) do
+      if submitter.submission.expire_at
+        I18n.l(submitter.submission.expire_at.in_time_zone(submitter.submission.account.timezone),
+               format: :short, locale: submitter.submission.account.locale)
+      end
+    end
 
     text = replace(text, SUBMITTERS_N_NAME, html_escape:) do |match|
       build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :name)

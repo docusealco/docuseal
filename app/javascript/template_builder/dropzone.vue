@@ -23,13 +23,14 @@
           <component
             :is="icon"
             v-else
+            class="stroke-[1.5px]"
             :width="40"
             :height="40"
           />
           <div
             v-if="message"
-            class="font-medium text-lg mb-1"
-            :class="{ 'mt-1': !withDescription }"
+            class="text-lg mb-1"
+            :class="{ 'mt-1': !withDescription, 'font-medium': withDescription }"
           >
             {{ message }}
           </div>

@@ -108,7 +108,6 @@ export default targetable(class extends HTMLElement {
           redirect: 'manual',
           body: formData,
           headers: {
-            Accept: 'application/json',
             'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
           }
         }).finally(() => {

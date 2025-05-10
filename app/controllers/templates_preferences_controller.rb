@@ -34,6 +34,12 @@ class TemplatesPreferencesController < ApplicationController
                        submitters: [%i[uuid request_email_subject request_email_body]]]
     ).tap do |attrs|
       attrs[:preferences].delete(:submitters) if params[:request_email_per_submitter] != '1'
+
+      if (default_expire_at = attrs.dig(:preferences, :default_expire_at).presence)
+        attrs[:preferences][:default_expire_at] =
+          (ActiveSupport::TimeZone[current_account.timezone] || Time.zone).parse(default_expire_at).utc
+      end
+
       attrs[:preferences] = attrs[:preferences].transform_values do |value|
         if %w[true false].include?(value)
           value == 'true'
