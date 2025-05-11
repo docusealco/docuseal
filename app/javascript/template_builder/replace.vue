@@ -48,6 +48,9 @@ export default {
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
     },
+    uploadUrl () {
+      return `/templates/${this.templateId}/documents`
+    },
     message () {
       if (this.isLoading) {
         return this.t('uploading_')
