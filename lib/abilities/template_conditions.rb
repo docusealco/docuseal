@@ -5,26 +5,31 @@ module Abilities
     module_function
 
     def collection(user, ability: nil)
-      template_ids = Template.where(account_id: user.account_id).select(:id)
+      templates = Template.where(account_id: user.account_id)
+
+      return templates unless user.account.testing?
 
       shared_ids =
-        TemplateSharing.where({ ability:,
-                                account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
+        TemplateSharing.where({ ability:, account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
                        .select(:template_id)
 
-      join_query = Template.arel_table
-                           .join(Arel::Nodes::TableAlias.new(template_ids.arel.union(shared_ids.arel), 'union_ids'))
-                           .on(Template.arel_table[:id].eq(Arel::Table.new(:union_ids)[:id]))
+      join_query =
+        Template.arel_table
+                .join(Arel::Nodes::TableAlias.new(templates.select(:id).arel.union(shared_ids.arel), 'union_ids'))
+                .on(Template.arel_table[:id].eq(Arel::Table.new(:union_ids)[:id]))
 
       Template.joins(join_query.join_sources.first)
     end
 
     def entity(template, user:, ability: nil)
+      return true if template.account_id.blank?
       return true if template.account_id == user.account_id
+      return false unless user.account.linked_account_account
+      return false if template.template_sharings.to_a.blank?
 
       account_ids = [user.account_id, TemplateSharing::ALL_ID]
 
-      template.template_sharings.any? do |e|
+      template.template_sharings.to_a.any? do |e|
         e.account_id.in?(account_ids) && (ability.nil? || e.ability == 'manage' || e.ability == ability)
       end
     end

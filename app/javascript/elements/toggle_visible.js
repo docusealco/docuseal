@@ -5,7 +5,7 @@ export default actionable(class extends HTMLElement {
     const elementIds = JSON.parse(this.dataset.elementIds)
 
     elementIds.forEach((elementId) => {
-      document.getElementById(elementId).classList.toggle('hidden', event.target.value !== elementId)
+      document.getElementById(elementId).classList.toggle('hidden', (event.target.dataset.toggleId || event.target.value) !== elementId)
     })
   }
 })

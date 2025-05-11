@@ -45,13 +45,15 @@ class TemplatesDashboardController < ApplicationController
     rel = templates.active.preload(:author, :template_accesses)
 
     if params[:q].blank?
-      if Docuseal.multitenant? && !current_account.testing?
-        rel = rel.where(folder_id: current_account.default_template_folder.id)
-      else
-        shared_template_ids =
-          TemplateSharing.where(account_id: [current_account.id, TemplateSharing::ALL_ID]).select(:template_id)
+      if Docuseal.multitenant? ? current_account.testing? : current_account.linked_account_account
+        shared_account_ids = [current_user.account_id]
+        shared_account_ids << TemplateSharing::ALL_ID if !Docuseal.multitenant? && !current_account.testing?
+
+        shared_template_ids = TemplateSharing.where(account_id: shared_account_ids).select(:template_id)
 
         rel = rel.where(folder_id: current_account.default_template_folder.id).or(rel.where(id: shared_template_ids))
+      else
+        rel = rel.where(folder_id: current_account.default_template_folder.id)
       end
     end
 

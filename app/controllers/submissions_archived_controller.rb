@@ -7,9 +7,7 @@ class SubmissionsArchivedController < ApplicationController
     @submissions = @submissions.joins(:template)
     @submissions = @submissions.where.not(archived_at: nil)
                                .or(@submissions.where.not(templates: { archived_at: nil }))
-                               .preload(:created_by_user, template: :author)
-
-    @submissions = @submissions.preload(:template_accesses) unless current_user.role.in?(%w[admin superadmin])
+                               .preload(:template_accesses, :created_by_user, template: :author)
 
     @submissions = Submissions.search(@submissions, params[:q], search_template: true)
     @submissions = Submissions::Filter.call(@submissions, current_user, params)

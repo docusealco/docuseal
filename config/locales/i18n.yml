@@ -21,6 +21,7 @@ en: &en
   language_ja: 日本語
   hi_there: Hi there
   thanks: Thanks
+  private: Private
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
@@ -823,6 +824,7 @@ en: &en
       read: Read your data
 
 es: &es
+  private: Privado
   resend_pending: Reenviar pendiente
   ensure_unique_recipients: Asegurar destinatarios únicos
   require_phone_2fa_to_open: Requiere 2FA por teléfono para abrir
@@ -1627,6 +1629,7 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  private: Privato
   resend_pending: Reinvia in sospeso
   ensure_unique_recipients: Assicurarsi destinatari unici
   require_phone_2fa_to_open: Richiedi l'autenticazione a due fattori tramite telefono per aprire
@@ -2430,6 +2433,7 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  private: Privé
   resend_pending: Renvoyer en attente
   ensure_unique_recipients: Assurer l'unicité des destinataires
   require_phone_2fa_to_open: Requiert une 2FA par téléphone pour ouvrir
@@ -3235,6 +3239,7 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  private: Privado
   resend_pending: Re-enviar pendente
   ensure_unique_recipients: Garantir destinatários únicos
   require_phone_2fa_to_open: Necessário autenticação de dois fatores via telefone para abrir
@@ -4040,6 +4045,7 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  private: Privat
   resend_pending: Ausstehende erneut senden
   ensure_unique_recipients: Stellen Sie einzigartige Empfänger sicher
   require_phone_2fa_to_open: Telefon-2FA zum Öffnen erforderlich

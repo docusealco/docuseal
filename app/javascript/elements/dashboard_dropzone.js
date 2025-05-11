@@ -60,6 +60,7 @@ export default targetable(class extends HTMLElement {
       dragPreview.style.width = `${rect.width}px`
       dragPreview.style.height = `${height}px`
       dragPreview.style.position = 'absolute'
+      dragPreview.style.top = '-1000px'
       dragPreview.style.pointerEvents = 'none'
       dragPreview.style.opacity = '0.9'
 
