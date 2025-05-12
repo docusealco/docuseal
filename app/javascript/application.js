@@ -33,6 +33,7 @@ import MaskedInput from './elements/masked_input'
 import SetDateButton from './elements/set_date_button'
 import IndeterminateCheckbox from './elements/indeterminate_checkbox'
 import AppTour from './elements/app_tour'
+import DashboardDropzone from './elements/dashboard_dropzone'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -101,6 +102,7 @@ safeRegisterElement('masked-input', MaskedInput)
 safeRegisterElement('set-date-button', SetDateButton)
 safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
 safeRegisterElement('app-tour', AppTour)
+safeRegisterElement('dashboard-dropzone', DashboardDropzone)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
@@ -125,6 +127,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withSendButton: this.dataset.withSendButton !== 'false',
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
+      withReplaceAndCloneUpload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true'

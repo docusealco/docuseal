@@ -2,7 +2,7 @@
 
 module Submissions
   class TimestampHandler
-    HASH_ALGORITHM = 'SHA512'
+    HASH_ALGORITHM = 'SHA256'
 
     TimestampError = Class.new(StandardError)
 
@@ -20,6 +20,7 @@ module Submissions
       signature[:SubFilter] = :'ETSI.RFC3161'
     end
 
+    # rubocop:disable Metrics
     def sign(io, byte_range)
       digest = OpenSSL::Digest.new(HASH_ALGORITHM)
 
@@ -34,7 +35,7 @@ module Submissions
         c.basic_auth(uri.user, uri.password) if uri.password.present?
       end
 
-      response = conn.post(uri.path, build_payload(digest.digest),
+      response = conn.post(uri.request_uri, build_payload(digest.digest),
                            'content-type' => 'application/timestamp-query')
 
       if response.status != 200 || response.body.blank?
@@ -49,7 +50,13 @@ module Submissions
       end
 
       OpenSSL::Timestamp::Response.new(response.body).token.to_der
+    rescue StandardError => e
+      Rollbar.error(e) if defined?(Rollbar)
+      Rails.logger.error(e)
+
+      OpenSSL::ASN1::GeneralizedTime.new(Time.now.utc).to_der
     end
+    # rubocop:enable Metrics
 
     def build_payload(digest)
       req = OpenSSL::Timestamp::Request.new

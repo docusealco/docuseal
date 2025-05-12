@@ -112,7 +112,7 @@
       :key="type"
     >
       <button
-        v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')"
+        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))"
         :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
@@ -168,7 +168,7 @@
         :data-tip="t('obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more')"
       >
         <a
-          href="https://www.docuseal.com/contact"
+          href="https://www.docuseal.com/qualified-electronic-signature"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"

@@ -387,7 +387,7 @@ GEM
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.12)
+    rack (3.1.14)
     rack-proxy (0.7.7)
       rack
     rack-session (2.0.0)

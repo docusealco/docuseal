@@ -7,19 +7,19 @@
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
           <%= ff.label :first_duration, t('first_reminder_in'), class: 'label truncate' %>
-          <%= ff.select :first_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
+          <%= ff.select :first_duration, durations, { include_blank: t('none') }, class: 'base-select' %>
         <% end %>
       </div>
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
           <%= ff.label :second_duration, t('second_reminder_in'), class: 'label truncate' %>
-          <%= ff.select :second_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
+          <%= ff.select :second_duration, durations, { include_blank: t('none') }, class: 'base-select' %>
         <% end %>
       </div>
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>
           <%= ff.label :third_duration, t('third_reminder_in'), class: 'label truncate' %>
-          <%= ff.select :third_duration, durations, { include_blank: 'None' }, class: 'base-select' %>
+          <%= ff.select :third_duration, durations, { include_blank: t('none') }, class: 'base-select' %>
         <% end %>
       </div>
     </div>

@@ -31,7 +31,7 @@
               </span>
             </span>
           <% end %>
-          <%= tag.input type: 'email', multiple: true, name: 'template[preferences][bcc_completed]', autocomplete: 'off', class: 'base-input', value: ff.object.bcc_completed %>
+          <%= tag.input type: 'email', multiple: true, name: 'template[preferences][bcc_completed]', autocomplete: 'off', class: 'base-input', value: ff.object.bcc_completed, id: ff.field_id(:bcc_completed) %>
         </div>
       <% end %>
       <div class="form-control pt-3">
@@ -41,7 +41,18 @@
         </div>
       </div>
     <% end %>
-    <%= render 'templates_code_modal/preferences' %>
+    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mb-5' }, data: { close_on_submit: false } do |f| %>
+      <%= f.fields_for :preferences, Struct.new(:default_expire_at_duration, :default_expire_at).new(@template.preferences['default_expire_at_duration'], @template.preferences['default_expire_at'] ? Time.zone.parse(@template.preferences['default_expire_at']).in_time_zone(current_account.timezone) : nil) do |ff| %>
+        <div class="form-control">
+          <% duration_options = Templates::EXPIRATION_DURATIONS.keys.map { |duration| [t(duration), duration] } + [[t('specified_date'), 'specified_date']] %>
+          <%= ff.label :default_expire_at_duration, t('default_expiration'), class: 'label pt-0' %>
+          <div class="flex items-center gap-2">
+            <%= ff.select :default_expire_at_duration, duration_options, { include_blank: t('none') }, required: false, class: 'base-select flex-1', dir: 'auto', autocomplete: 'off', onchange: "this.value == 'specified_date' ? window.template_preferences_default_expire_at.classList.remove('hidden') : [window.template_preferences_default_expire_at.classList.add('hidden'), window.template_preferences_default_expire_at.value = '', this.form.requestSubmit()]" %>
+            <%= ff.datetime_field :default_expire_at, required: false, class: ['base-input flex-1', ff.object.default_expire_at.blank? && 'hidden'].compact_blank.join(' '), dir: 'auto', autocomplete: 'off', onchange: 'this.value && this.form.requestSubmit()' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
     <div class="collapse collapse-arrow join-item border border-base-300 mb-2">
       <input type="checkbox" name="accordion">
       <div class="collapse-title text-xl font-medium">
@@ -273,6 +284,7 @@
         </div>
       </div>
     </div>
+    <%= render 'templates_code_modal/preferences', class: 'pt-2' %>
   </div>
   <% if show_recipients %>
     <div id="recipients" class="hidden mt-2 mb-4 px-5">

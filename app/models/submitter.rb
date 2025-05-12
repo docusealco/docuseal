@@ -54,7 +54,7 @@ class Submitter < ApplicationRecord
   has_many_attached :documents
   has_many_attached :attachments
   has_many_attached :preview_documents
-  has_many :template_accesses, through: :template
+  has_many :template_accesses, through: :submission
   has_many :email_events, as: :emailable, dependent: (Docuseal.multitenant? ? nil : :destroy)
 
   has_many :document_generation_events, dependent: :destroy

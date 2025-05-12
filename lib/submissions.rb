@@ -59,10 +59,13 @@ module Submissions
   def create_from_emails(template:, user:, emails:, source:, mark_as_sent: false, params: {})
     preferences = Submitters.normalize_preferences(user.account, user, params)
 
+    expire_at = params[:expire_at].presence || Templates.build_default_expire_at(template)
+
     parse_emails(emails, user).uniq.map do |email|
       submission = template.submissions.new(created_by_user: user,
                                             account_id: user.account_id,
                                             source:,
+                                            expire_at:,
                                             template_submitters: template.submitters)
 
       submission.submitters.new(email: normalize_email(email),

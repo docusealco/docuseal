@@ -47,7 +47,7 @@ module SigningFormHelper
       drawStep();
     JS
 
-    sleep 0.5
+    sleep 0.1
   end
 
   def field_value(submitter, field_name)

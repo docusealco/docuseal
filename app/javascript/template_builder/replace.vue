@@ -2,7 +2,7 @@
   <label
     :for="inputId"
     class="btn btn-neutral btn-xs text-white transition-none replace-document-button"
-    :class="{ 'opacity-100': isLoading || isProcessing }"
+    :class="{ 'opacity-100': isLoading }"
   >
     {{ message }}
     <form
@@ -41,19 +41,19 @@ export default {
   emits: ['success'],
   data () {
     return {
-      isLoading: false,
-      isProcessing: false
+      isLoading: false
     }
   },
   computed: {
     inputId () {
       return 'el' + Math.random().toString(32).split('.')[1]
     },
+    uploadUrl () {
+      return `/templates/${this.templateId}/documents`
+    },
     message () {
       if (this.isLoading) {
         return this.t('uploading_')
-      } else if (this.isProcessing) {
-        return this.t('processing_')
       } else {
         return this.t('replace')
       }

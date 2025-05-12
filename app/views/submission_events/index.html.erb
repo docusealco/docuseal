@@ -38,6 +38,8 @@
               <%= t('submission_event_names.invite_party_by_html', invited_submitter_name: [invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' '), submitter_name:) %>
             <% elsif event.event_type.include?('send_') %>
               <%= t("submission_event_names.#{event.event_type}_to_html", submitter_name:) %>
+            <% elsif event.event_type.start_with?('bounce_') ||  event.event_type.start_with?('complaint_') %>
+              <%= t("submission_event_names.#{event.event_type}_html", submitter_name:) %>
             <% else %>
               <%= t("submission_event_names.#{event.event_type}_by_html", submitter_name:) %>
             <% end %>

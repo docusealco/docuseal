@@ -1,12 +1,12 @@
 <div class="h-36 relative group">
-  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 peer">
-    <div class="pb-4 text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl" data-targets="dashboard-dropzone.templateCards">
+    <div class="text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
       <% if template.template_accesses.present? %>
         <%= svg_icon('lock', class: 'w-6 h-6 inline -translate-y-[4px]') %>
       <% end %>
       <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
     </div>
-    <div class="pb-6 pt-1 space-y-1">
+    <div class="pb-6 pt-1 space-y-1" data-targets="dashboard-dropzone.hiddenOnDrag">
       <p class="flex items-center space-x-1 text-xs text-base-content/60">
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
@@ -28,7 +28,7 @@
       </p>
     </div>
   </a>
-  <div class="absolute top-0 bottom-0 w-0 flex items-center hidden md:group-hover:flex" style="right: 37px">
+  <div class="absolute top-0 bottom-0 w-0 items-center hidden md:group-hover:flex" style="right: 37px" data-targets="dashboard-dropzone.hiddenOnDrag">
     <div class="space-y-1">
       <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
         <span class="tooltip tooltip-left" data-tip="<%= t('move') %>">

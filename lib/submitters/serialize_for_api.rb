@@ -27,6 +27,10 @@ module Submitters
         additional_attrs['fields'] = SerializeForWebhook.build_fields_array(submitter)
       end
 
+      if with_template
+        additional_attrs['template'] = submitter.submission.template.as_json(only: %i[id name created_at updated_at])
+      end
+
       additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter) if with_values
       additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter) if with_documents
       additional_attrs['preferences'] = submitter.preferences.except('default_values')
@@ -41,10 +45,7 @@ module Submitters
           Rails.application.routes.url_helpers.submit_form_url(slug: submitter.slug, **Docuseal.default_url_options)
       end
 
-      include_params = {}
-      include_params[:template] = { only: %i[id name created_at updated_at] } if with_template
-
-      submitter.as_json(SERIALIZE_PARAMS.merge(include: include_params)).merge(additional_attrs)
+      submitter.as_json(SERIALIZE_PARAMS).merge(additional_attrs)
     end
 
     def serialize_events(events)

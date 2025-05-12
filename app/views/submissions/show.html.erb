@@ -172,12 +172,26 @@
               </div>
             <% end %>
             <div class="flex items-center space-x-1 mt-1">
-              <%= svg_icon('writing', class: 'w-5 h-5') %>
+              <% if @submission.expire_at? && submitter && !submitter.completed_at? %>
+                <%= svg_icon('clock_exclamation', class: 'w-5 h-5') %>
+              <% else %>
+                <%= svg_icon('writing', class: 'w-5 h-5') %>
+              <% end %>
               <span>
                 <% if submitter&.declined_at? %>
                   <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
                 <% elsif submitter %>
-                  <%= submitter.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : t('not_completed_yet') %>
+                  <% if submitter.completed_at? %>
+                    <%= l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) %>
+                  <% elsif @submission.expire_at? %>
+                    <% if @submission.expired? %>
+                      <%= t(:expired) %>
+                    <% else %>
+                      <%= t('expire_on_time', time: l(@submission.expire_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                    <% end %>
+                  <% else %>
+                    <%= t('not_completed_yet') %>
+                  <% end %>
                 <% else %>
                   <%= t('not_invited_yet') %>
                 <% end %>

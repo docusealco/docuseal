@@ -16,11 +16,12 @@ module Submissions
 
         set_submission_preferences = submission_preferences.slice('send_email', 'bcc_completed')
         set_submission_preferences['send_email'] = true if params['send_completed_email']
+        expire_at = attrs[:expire_at] || Templates.build_default_expire_at(template)
 
         submission = template.submissions.new(created_by_user: user, source:,
                                               account_id: user.account_id,
                                               preferences: set_submission_preferences,
-                                              expire_at: attrs[:expire_at],
+                                              expire_at:,
                                               template_submitters: [], submitters_order:)
 
         template_submitters = template.submitters.deep_dup

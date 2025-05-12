@@ -4,6 +4,7 @@ module Templates
   module Clone
     module_function
 
+    # rubocop:disable Metrics, Style/CombinableLoops
     def call(original_template, author:, external_id: nil, name: nil, folder_name: nil)
       template = original_template.account.templates.new
 
@@ -29,10 +30,13 @@ module Templates
         template.schema.first['name'] = template.name
       end
 
+      original_template.template_accesses.each do |template_access|
+        template.template_accesses.new(user_id: template_access.user_id)
+      end
+
       template
     end
 
-    # rubocop:disable Metrics, Style/CombinableLoops
     def update_submitters_and_fields_and_schema(cloned_submitters, cloned_fields, cloned_schema, cloned_preferences)
       submitter_uuids_replacements = {}
       field_uuids_replacements = {}

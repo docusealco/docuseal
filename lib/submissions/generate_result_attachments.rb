@@ -209,7 +209,7 @@ module Submissions
           font_size   = preferences_font_size
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
-          fill_color = field.dig('preferences', 'color').presence
+          fill_color = field.dig('preferences', 'color').to_s.delete_prefix('#').presence
 
           font_name = field.dig('preferences', 'font')
           font_variant = (field.dig('preferences', 'font_type').presence || 'none').to_sym

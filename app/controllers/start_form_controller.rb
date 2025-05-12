@@ -14,7 +14,8 @@ class StartFormController < ApplicationController
     raise ActionController::RoutingError, I18n.t('not_found') if @template.preferences['require_phone_2fa'] == true
 
     @submitter = @template.submissions.new(account_id: @template.account_id)
-                          .submitters.new(uuid: (filter_undefined_submitters(@template).first ||
+                          .submitters.new(account_id: @template.account_id,
+                                          uuid: (filter_undefined_submitters(@template).first ||
                                                  @template.submitters.first)['uuid'])
   end
 
@@ -96,6 +97,7 @@ class StartFormController < ApplicationController
     submitter.submission ||= Submission.new(template:,
                                             account_id: template.account_id,
                                             template_submitters: template.submitters,
+                                            expire_at: Templates.build_default_expire_at(template),
                                             submitters: [submitter],
                                             source: :link)
 

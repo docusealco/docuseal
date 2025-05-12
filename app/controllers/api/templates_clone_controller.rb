@@ -5,7 +5,7 @@ module Api
     load_and_authorize_resource :template
 
     def create
-      authorize!(:manage, @template)
+      authorize!(:create, @template)
 
       ActiveRecord::Associations::Preloader.new(
         records: [@template],

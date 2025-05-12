@@ -161,7 +161,7 @@ module Templates
           options: build_options(field.allowed_values, 'radio'),
           default_value: selected_option
         }
-      elsif field.field_type == :Btn && field.concrete_field_type == :check_box
+      elsif field.field_type == :Btn && %i[check_box radio_button].include?(field.concrete_field_type)
         {
           **attrs,
           type: 'checkbox',

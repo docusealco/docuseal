@@ -141,7 +141,7 @@
             <%= t('preferences') %>
           </h2>
         </div>
-        <% if can?(:manage, account_config) %>
+        <% if can?(:manage, account_config) && (can?(:manage, :personalization_advanced) || !Docuseal.multitenant?) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between py-2.5">
