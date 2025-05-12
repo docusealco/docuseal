@@ -74,7 +74,13 @@ module Submissions
                                 preferences:,
                                 sent_at: mark_as_sent ? Time.current : nil)
 
-      submission.tap(&:save!)
+      submission.save!
+
+      if submission.expire_at?
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
+      end
+
+      submission
     end
   end
 
