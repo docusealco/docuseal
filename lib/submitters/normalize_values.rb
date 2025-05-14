@@ -52,10 +52,10 @@ module Submitters
 
             attachments.push(*new_attachments)
 
-            value = new_value
+            acc[field['uuid']] = normalize_value(field, new_value)
+          else
+            acc[field['uuid']] = normalize_value(field, value)
           end
-
-          acc[field['uuid']] = normalize_value(field, value)
         end
       end
 
