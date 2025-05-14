@@ -845,7 +845,7 @@ es: &es
   select_user: Seleccionar usuario
   team_member_permissions: Permisos de miembros del equipo
   entire_team: Todo el equipo
-  admin_only: Solo administrador
+  admin_only: Solo admin
   accessiable_by: Accesible por
   team_access: Acceso del equipo
   remove_filter: Eliminar filtro
@@ -1649,7 +1649,7 @@ it: &it
   select_user: Seleziona utente
   team_member_permissions: Permessi membri del team
   entire_team: Intero team
-  admin_only: Solo amministratore
+  admin_only: Solo admin
   accessiable_by: Accessibile da
   team_access: Accesso al team
   remove_filter: Rimuovi filtro
@@ -2454,7 +2454,7 @@ fr: &fr
   select_user: Sélectionner un utilisateur
   team_member_permissions: Permissions des membres de l'équipe
   entire_team: Équipe entière
-  admin_only: Administrateur uniquement
+  admin_only: Admin seul
   accessiable_by: Accessible par
   team_access: Accès à l'équipe
   remove_filter: Supprimer le filtre
@@ -3260,7 +3260,7 @@ pt: &pt
   select_user: Selecionar usuário
   team_member_permissions: Permissões de membro da equipe
   entire_team: Toda a equipe
-  admin_only: Somente administrador
+  admin_only: Somente admin
   accessiable_by: Acessível por
   team_access: Acesso à equipe
   remove_filter: Remover filtro
@@ -4066,7 +4066,7 @@ de: &de
   select_user: Benutzer auswählen
   team_member_permissions: Berechtigungen für Teammitglieder
   entire_team: Gesamtes Team
-  admin_only: Nur Administratoren
+  admin_only: Nur Admins
   accessiable_by: Zugänglich für
   team_access: Teamzugang
   remove_filter: Filter entfernen
