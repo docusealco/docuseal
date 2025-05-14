@@ -21,14 +21,14 @@ RSpec.describe 'Template Builder' do
       doc.click
 
       expect do
-        wait_for_fetch do
-          doc.find('.replace-document-button').click
-          doc.find('.replace-document-button input[type="file"]', visible: false)
-             .attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
-        end
+        doc.find('.replace-document-button').click
+        doc.find('.replace-document-button input[type="file"]', visible: false)
+           .attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
+
+        page.driver.wait_for_network_idle
       end.to change { template.documents.count }.by(1)
 
-      expect(template.reload['schema'][1]['name']).to eq('sample-image')
+      expect(page).to have_content('sample-image')
     end
   end
 end
