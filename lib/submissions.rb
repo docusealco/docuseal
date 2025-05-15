@@ -132,6 +132,7 @@ module Submissions
     fixed_domain = fixed_email.to_s.split('@').last
 
     return email.downcase if domain == fixed_domain
+    return email.downcase if fixed_domain.match?(/\Agmail\.(?!com\z)/i)
 
     if DidYouMean::Levenshtein.distance(domain, fixed_domain) > 3
       Rails.logger.info("Skipped email fix #{domain}")
