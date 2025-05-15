@@ -1,0 +1,21 @@
+<script>
+  customElements.define('server-selector', class extends HTMLElement {
+    connectedCallback() {
+      const usServerSelector = this.querySelector('#us_server_selector');
+      const globalServerSelector = this.querySelector('#global_server_selector');
+      const euServerAlert = this.querySelector('#eu_server_alert');
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+      const usTimezones = /^(?:America\/(?:New_York|Detroit|Kentucky\/(?:Louisville|Monticello)|Indiana\/(?:Indianapolis|Vincennes|Winamac|Marengo|Petersburg|Vevay|Tell_City|Knox)|Chicago|Menominee|North_Dakota\/(?:Center|New_Salem|Beulah)|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak)|Pacific\/Honolulu)$/;
+      const euTimezones = /^Europe\/(?:Vienna|Brussels|Sofia|Zagreb|Nicosia|Prague|Copenhagen|Tallinn|Helsinki|Paris|Berlin|Athens|Budapest|Dublin|Rome|Riga|Vilnius|Luxembourg|Valletta|Amsterdam|Warsaw|Lisbon|Bratislava|Ljubljana|Madrid|Stockholm|Bucharest)$/;
+
+      if (usTimezones.test(timezone)) {
+        usServerSelector.classList.remove('hidden');
+      } else if (euTimezones.test(timezone)) {
+        globalServerSelector.classList.remove('hidden');
+        euServerAlert.classList.remove('hidden');
+      } else {
+        globalServerSelector.classList.remove('hidden');
+      }
+    }
+  });
+</script>

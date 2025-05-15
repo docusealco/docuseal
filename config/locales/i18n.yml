@@ -738,6 +738,7 @@ en: &en
   one_month: 1 month
   two_months: 2 months
   three_months: 3 months
+  eu_data_residency: EU data residency
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1543,6 +1544,7 @@ es: &es
   one_month: 1 mes
   two_months: 2 meses
   three_months: 3 meses
+  eu_data_residency: Datos alojados UE
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2347,6 +2349,7 @@ it: &it
   one_month: 1 mese
   two_months: 2 mesi
   three_months: 3 mesi
+  eu_data_residency: "Dati nell'UE"
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3153,6 +3156,7 @@ fr: &fr
   one_month: 1 mois
   two_months: 2 mois
   three_months: 3 mois
+  eu_data_residency: "Données dans l'UE"
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3958,6 +3962,7 @@ pt: &pt
   one_month: 1 mês
   two_months: 2 meses
   three_months: 3 meses
+  eu_data_residency: Dados na UE
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4764,6 +4769,7 @@ de: &de
   one_month: 1 Monat
   two_months: 2 Monate
   three_months: 3 Monate
+  eu_data_residency: EU-Datenspeicher
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4915,6 +4921,7 @@ pl:
   powered_by: 'Napędzany prze'
   count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
+  eu_data_residency: Dane w UE
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -4982,6 +4989,7 @@ uk:
   powered_by: 'Працює на базі'
   count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
+  eu_data_residency: 'Зберігання даних в ЄС'
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5049,6 +5057,7 @@ cs:
   powered_by: 'Poháněno'
   count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
   open_source_documents_software: 'open source software pro dokumenty'
+  eu_data_residency: 'Uložení dat v EU'
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5116,6 +5125,7 @@ he:
   powered_by: 'מופעל על ידי'
   count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
+  eu_data_residency: 'נתונים באיחוד האירופי	'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5183,6 +5193,7 @@ nl:
   powered_by: 'Aangedreven door'
   count_documents_signed_with_html: '<b>%{count}</b> documenten ondertekend met'
   open_source_documents_software: 'open source documenten software'
+  eu_data_residency: Gegevens EU
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5250,6 +5261,7 @@ ar:
   powered_by: 'مشغل بواسطة'
   count_documents_signed_with_html: '<b>%{count}</b> مستندات تم توقيعها باستخدام'
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
+  eu_data_residency: 'بيانات في الاتحاد الأوروبي'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5317,6 +5329,7 @@ ko:
   powered_by: '제공:'
   count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
   open_source_documents_software: '오픈소스 문서 소프트웨어'
+  eu_data_residency: 'EU 데이터 보관'
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5384,6 +5397,7 @@ ja:
   powered_by: '提供元：'
   count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
+  eu_data_residency: 'EU データ居住'
 
 en-US:
   <<: *en
