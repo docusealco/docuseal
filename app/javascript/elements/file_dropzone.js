@@ -28,13 +28,13 @@ export default actionable(targetable(class extends HTMLElement {
     if (e.dataTransfer?.types?.includes('Files')) {
       this.style.backgroundColor = '#F7F3F0'
       this.classList.remove('border-base-300', 'hover:bg-base-200/30')
-      this.classList.add('border-base-content/50')
+      this.classList.add('border-base-content/30')
     }
   }
 
   onDragleave () {
     this.style.backgroundColor = null
-    this.classList.remove('border-base-content/50')
+    this.classList.remove('border-base-content/30')
     this.classList.add('border-base-300', 'hover:bg-base-200/30')
   }
 

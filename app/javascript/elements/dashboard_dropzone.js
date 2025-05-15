@@ -168,10 +168,10 @@ export default targetable(class extends HTMLElement {
 
       if (this.classList.contains('before:border-base-300')) {
         this.classList.remove('before:border-base-300')
-        this.classList.add('before:border-base-content/50')
+        this.classList.add('before:border-base-content/30')
       } else if (this.classList.contains('border-base-300')) {
         this.classList.remove('border-base-300')
-        this.classList.add('border-base-content/50')
+        this.classList.add('border-base-content/30')
       }
     }
   }
@@ -179,11 +179,11 @@ export default targetable(class extends HTMLElement {
   onDragleave () {
     this.style.backgroundColor = null
 
-    if (this.classList.contains('before:border-base-content/50')) {
-      this.classList.remove('before:border-base-content/50')
+    if (this.classList.contains('before:border-base-content/30')) {
+      this.classList.remove('before:border-base-content/30')
       this.classList.add('before:border-base-300')
-    } else if (this.classList.contains('border-base-content/50')) {
-      this.classList.remove('border-base-content/50')
+    } else if (this.classList.contains('border-base-content/30')) {
+      this.classList.remove('border-base-content/30')
       this.classList.add('border-base-300')
     }
   }
