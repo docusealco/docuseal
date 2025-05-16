@@ -93,7 +93,7 @@
   <div
     v-show="isFormVisible"
     id="form_container"
-    class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded form-container"
+    class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded form-container overflow-hidden"
     :class="{ 'md:bottom-4': isBreakpointMd }"
     :style="{ backgroundColor: backgroundColor }"
   >
@@ -1133,7 +1133,7 @@ export default {
         parent.style.overflow = 'hidden'
 
         scrollbox.classList.add('h-full', 'overflow-y-auto')
-        scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
+        scrollbox.parentNode.classList.add('h-screen', 'h-[100dvh]', 'overflow-y-auto')
         scrollbox.parentNode.style.maxHeight = '-webkit-fill-available'
       })
     }
