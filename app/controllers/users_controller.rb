@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         @users.active.where.not(role: 'integration')
       end
 
-    @pagy, @users = pagy(@users.where(account: current_account).order(id: :desc))
+    @pagy, @users = pagy(@users.preload(account: :account_accesses).where(account: current_account).order(id: :desc))
   end
 
   def new; end

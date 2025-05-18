@@ -33,6 +33,7 @@ class Account < ApplicationRecord
   has_many :account_linked_accounts, dependent: :destroy
   has_many :email_events, dependent: :destroy
   has_many :webhook_urls, dependent: :destroy
+  has_many :account_accesses, dependent: :destroy
   has_many :account_testing_accounts, -> { testing }, dependent: :destroy,
                                                       class_name: 'AccountLinkedAccount',
                                                       inverse_of: :account

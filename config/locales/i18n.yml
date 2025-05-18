@@ -469,7 +469,9 @@ en: &en
   upload_initials: Upload Initials
   draw: Draw
   upload_signature: Upload Signature
+  integration: Integration
   admin: Admin
+  tenant_admin: Tenant Admin
   editor: Editor
   viewer: Viewer
   member: Member
@@ -1275,7 +1277,9 @@ es: &es
   upload_initials: Subir iniciales
   draw: Dibujar
   upload_signature: Subir firma
+  integration: Integración
   admin: Administrador
+  tenant_admin: Tenant Administrador
   editor: Editor
   viewer: Visor
   member: Miembro
@@ -2080,6 +2084,7 @@ it: &it
   upload_initials: Carica iniziali
   draw: Disegna
   upload_signature: Carica firma
+  integration: Integrazione
   admin: Amministratore
   editor: Editor
   viewer: Visualizzatore
@@ -2887,7 +2892,9 @@ fr: &fr
   upload_initials: Télécharger les initiales
   draw: Dessiner
   upload_signature: Télécharger la signature
+  integration: Intégration
   admin: Administrateur
+  tenant_admin: Tenant Administrateur
   editor: Éditeur
   viewer: Lecteur
   member: Membre
@@ -3693,7 +3700,9 @@ pt: &pt
   upload_initials: Enviar iniciais
   draw: Desenhar
   upload_signature: Enviar assinatura
+  integration: Integração
   admin: Administrador
+  tenant_admin: Tenant Administrador
   editor: Editor
   viewer: Visualizador
   member: Membro
@@ -4500,7 +4509,9 @@ de: &de
   upload_initials: Initialen hochladen
   draw: Zeichnen
   upload_signature: Unterschrift hochladen
+  integration: Integration
   admin: Administrator
+  tenant_admin: Tenant Administrator
   editor: Redakteur
   viewer: Betrachter
   member: Mitglied
