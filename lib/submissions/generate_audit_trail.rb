@@ -309,7 +309,7 @@ module Submissions
 
               image =
                 begin
-                  Vips::Image.new_from_buffer(attachment.download, '').autorot
+                  Submissions::GenerateResultAttachments.load_vips_image(attachment).autorot
                 rescue Vips::Error
                   next unless attachment.content_type.starts_with?('image/')
                   next if attachment.byte_size.zero?

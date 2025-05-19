@@ -11,6 +11,9 @@ module Submissions
                   'Helvetica'
                 end
 
+    ICO_REGEXP = %r{\Aimage/(?:x-icon|vnd\.microsoft\.icon)\z}
+    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
+
     FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
                        FONT_BOLD_PATH
                      else
@@ -250,9 +253,7 @@ module Submissions
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            attachments_data_cache[attachment.uuid] ||= attachment.download
-
-            image = Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
+            image = load_vips_image(attachment, attachments_data_cache).autorot
 
             reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
 
@@ -360,11 +361,9 @@ module Submissions
           when 'image', 'signature', 'initials', 'stamp'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            attachments_data_cache[attachment.uuid] ||= attachment.download
-
             image =
               begin
-                Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
+                load_vips_image(attachment, attachments_data_cache).autorot
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -802,6 +801,24 @@ module Submissions
 
     def generate_detached_signature_attachments(_submitter)
       []
+    end
+
+    def load_vips_image(attachment, cache = {})
+      cache[attachment.uuid] ||= attachment.download
+
+      data = cache[attachment.uuid]
+
+      if ICO_REGEXP.match?(attachment.content_type)
+        Rollbar.error("Load ICO: #{attachment.uuid}") if defined?(Rollbar)
+
+        LoadIco.call(data)
+      elsif BMP_REGEXP.match?(attachment.content_type)
+        Rollbar.error("Load BMP: #{attachment.uuid}") if defined?(Rollbar)
+
+        LoadBmp.call(data)
+      else
+        Vips::Image.new_from_buffer(data, '')
+      end
     end
 
     def h
