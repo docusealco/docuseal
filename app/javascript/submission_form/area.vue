@@ -55,10 +55,12 @@
     >
     <div
       v-else-if="field.type === 'signature' && signature"
-      class="flex flex-col justify-between h-full overflow-hidden"
+      class="flex justify-between h-full gap-1 overflow-hidden"
+      :class="isNarrow ? 'flex-row' : 'flex-col'"
     >
       <div
-        class="flex-grow flex overflow-hidden"
+        class="flex overflow-hidden"
+        :class="isNarrow ? 'w-1/2' : 'flex-grow'"
         style="min-height: 50%"
       >
         <img
@@ -68,7 +70,8 @@
       </div>
       <div
         v-if="withSignatureId"
-        class="w-full mt-1 text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]"
+        class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]"
+        :class="isNarrow ? 'w-1/2' : 'w-full'"
       >
         <div class="truncate uppercase">
           ID: {{ signature.uuid }}
@@ -444,6 +447,9 @@ export default {
       }
 
       return style
+    },
+    isNarrow () {
+      return this.area.h > 0 && (this.area.w / this.area.h) > 6
     }
   },
   watch: {

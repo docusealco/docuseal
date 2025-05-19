@@ -162,7 +162,7 @@ module Api
       submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
 
       if params[:template_id].present?
-        submitters = submitters.joins(:submission).where(submission: { template_id: params[:template_id] })
+        submitters = submitters.joins(:submission).where(submissions: { template_id: params[:template_id] })
       end
 
       maybe_filder_by_completed_at(submitters, params)

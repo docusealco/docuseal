@@ -5,12 +5,13 @@
 <% font_type = field.dig('preferences', 'font_type') %>
 <field-value dir="auto" class="flex absolute text-[1.6vw] lg:text-base <%= 'font-mono' if font == 'Courier' %> <%= 'font-serif' if font == 'Times' %> <%= 'font-bold' if font_type == 'bold' || font_type == 'bold_italic' %> <%= 'italic' if font_type == 'italic' || font_type == 'bold_italic' %> <%= align == 'right' ? 'text-right' : (align == 'center' ? 'text-center' : '') %>" style="<%= "color: #{color}; " if color.present? %>width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; <%= "font-size: clamp(4pt, 1.6vw, #{field['preferences']['font_size'].to_i * 1.23}pt); line-height: `clamp(6pt, 2.0vw, #{(field['preferences']['font_size'].to_i * 1.23) + 3}pt)`" if field.dig('preferences', 'font_size') %>">
   <% if field['type'] == 'signature' %>
-    <div class="flex flex-col justify-between h-full overflow-hidden">
-      <div class="flex-grow flex overflow-hidden" style="min-height: 50%">
+    <% is_narrow = area['h']&.positive? && (area['w'].to_f / area['h']) > 6 %>
+    <div class="flex justify-between w-full h-full gap-1 <%= is_narrow ? 'flex-row' : 'flex-col' %>">
+      <div class="flex overflow-hidden <%= is_narrow ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
         <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>">
       </div>
       <% if local_assigns[:with_signature_id] && attachment = attachments_index[value] %>
-        <div class="w-full mt-1 text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]">
+        <div class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem] <%= is_narrow ? 'w-1/2' : 'w-full' %>">
           <div class="truncate uppercase">
             ID: <%= attachment.uuid %>
           </div>

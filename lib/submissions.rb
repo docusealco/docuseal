@@ -74,7 +74,13 @@ module Submissions
                                 preferences:,
                                 sent_at: mark_as_sent ? Time.current : nil)
 
-      submission.tap(&:save!)
+      submission.save!
+
+      if submission.expire_at?
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
+      end
+
+      submission
     end
   end
 
@@ -112,18 +118,21 @@ module Submissions
     return if email.blank?
     return if email.is_a?(Numeric)
 
-    return email.downcase if email.to_s.include?(',') ||
-                             email.to_s.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
-                             email.to_s.exclude?('.')
+    email = email.to_s.tr('/', ',')
+
+    return email.downcase if email.include?(',') ||
+                             email.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
+                             email.exclude?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
 
     return fixed_email if fixed_email == email
 
-    domain = email.to_s.split('@').last.to_s.downcase
+    domain = email.split('@').last.to_s.downcase
     fixed_domain = fixed_email.to_s.split('@').last
 
     return email.downcase if domain == fixed_domain
+    return email.downcase if fixed_domain.match?(/\Agmail\.(?!com\z)/i)
 
     if DidYouMean::Levenshtein.distance(domain, fixed_domain) > 3
       Rails.logger.info("Skipped email fix #{domain}")

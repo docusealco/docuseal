@@ -254,22 +254,6 @@ module Submissions
 
             image = Vips::Image.new_from_buffer(attachments_data_cache[attachment.uuid], '').autorot
 
-            id_string = "ID: #{attachment.uuid}".upcase
-
-            while true
-              text = HexaPDF::Layout::TextFragment.create(id_string,
-                                                          font:,
-                                                          font_size: (font_size / 1.8).to_i)
-
-              result = layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
-
-              break if result.status == :success
-
-              id_string = "#{id_string.delete_suffix('...')[0..-2]}..."
-
-              break if id_string.length < 8
-            end
-
             reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
 
             reason_string =
@@ -284,35 +268,95 @@ module Submissions
                                                                font:,
                                                                font_size: (font_size / 1.8).to_i)
 
-            reason_result = layouter.fit([reason_text], area['w'] * width, height)
+            if area['h']&.positive? && (area['w'].to_f / area['h']) > 6
+              area_x = area['x'] * width
+              area_y = area['y'] * height
+              area_w = area['w'] * width
+              area_h = area['h'] * height
 
-            text_height = result.lines.sum(&:height) + reason_result.lines.sum(&:height)
+              half_width = area_w / 2.0
+              scale = [half_width / image.width, area_h / image.height].min
+              image_width = image.width * scale
+              image_height = image.height * scale
+              image_x = area_x + ((half_width - image_width) / 2.0)
+              image_y = height - area_y - image_height
 
-            image_height = (area['h'] * height) - text_height
-            image_height = (area['h'] * height) / 2 if image_height < (area['h'] * height) / 2
+              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
 
-            scale = [(area['w'] * width) / image.width, image_height / image.height].min
+              canvas.image(io, at: [image_x, image_y], width: image_width, height: image_height)
 
-            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              id_string = "ID: #{attachment.uuid}".upcase
 
-            layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
-                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
-                          height - (area['y'] * height) - TEXT_TOP_MARGIN - image_height)
+              while true
+                text = HexaPDF::Layout::TextFragment.create(id_string,
+                                                            font:,
+                                                            font_size: (font_size / 1.8).to_i)
 
-            layouter.fit([reason_text], area['w'] * width, reason_result.lines.sum(&:height))
-                    .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
-                          height - (area['y'] * height) - TEXT_TOP_MARGIN -
-                          result.lines.sum(&:height) - image_height)
+                result = layouter.fit([text], half_width, (font_size / 1.8) / 0.65)
 
-            canvas.image(
-              io,
-              at: [
-                (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
-                height - (area['y'] * height) - (image.height * scale / 2) - (image_height / 2)
-              ],
-              width: image.width * scale,
-              height: image.height * scale
-            )
+                break if result.status == :success
+
+                id_string = "#{id_string.delete_suffix('...')[0..-2]}..."
+
+                break if id_string.length < 8
+              end
+
+              text_x = area_x + half_width
+              text_y = height - area_y
+
+              reason_result = layouter.fit([reason_text], half_width, height)
+
+              layouter.fit([text], half_width, (font_size / 1.8) / 0.65)
+                      .draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y)
+
+              layouter.fit([reason_text], half_width, reason_result.lines.sum(&:height))
+                      .draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y - TEXT_TOP_MARGIN - result.lines.sum(&:height))
+            else
+              id_string = "ID: #{attachment.uuid}".upcase
+
+              loop do
+                text = HexaPDF::Layout::TextFragment.create(id_string,
+                                                            font:,
+                                                            font_size: (font_size / 1.8).to_i)
+
+                result = layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
+
+                break if result.status == :success
+
+                id_string = "#{id_string.delete_suffix('...')[0..-2]}..."
+
+                break if id_string.length < 8
+              end
+
+              reason_result = layouter.fit([reason_text], area['w'] * width, height)
+              text_height = result.lines.sum(&:height) + reason_result.lines.sum(&:height)
+
+              image_height = (area['h'] * height) - text_height
+              image_height = (area['h'] * height) / 2 if image_height < (area['h'] * height) / 2
+
+              scale = [(area['w'] * width) / image.width, image_height / image.height].min
+
+              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+
+              layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
+                      .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+                            height - (area['y'] * height) - TEXT_TOP_MARGIN - image_height)
+
+              layouter.fit([reason_text], area['w'] * width, reason_result.lines.sum(&:height))
+                      .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
+                            height - (area['y'] * height) - TEXT_TOP_MARGIN -
+                            result.lines.sum(&:height) - image_height)
+
+              canvas.image(
+                io,
+                at: [
+                  (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
+                  height - (area['y'] * height) - (image.height * scale / 2) - (image_height / 2)
+                ],
+                width: image.width * scale,
+                height: image.height * scale
+              )
+            end
           when 'image', 'signature', 'initials', 'stamp'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 

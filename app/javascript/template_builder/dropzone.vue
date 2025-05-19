@@ -10,7 +10,7 @@
       id="document_dropzone"
       class="w-full relative rounded-md border-2 border-base-content/10 border-dashed"
       :for="inputId"
-      :class="[{ 'opacity-50': isLoading, 'hover:bg-base-200/30': !hoverClass }, isDragEntering && hoverClass ? hoverClass : '']"
+      :class="{ 'opacity-50': isLoading, 'hover:bg-base-200/50': withHoverClass && !isDragEntering, 'bg-base-200/50 border-base-content/30': isDragEntering }"
     >
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center pointer-events-none">
         <div class="flex flex-col items-center">
@@ -79,15 +79,15 @@ export default {
       type: [Number, String],
       required: true
     },
+    withHoverClass: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     icon: {
       type: String,
       required: false,
       default: 'IconCloudUpload'
-    },
-    hoverClass: {
-      type: String,
-      required: false,
-      default: null
     },
     cloneTemplateOnUpload: {
       type: Boolean,

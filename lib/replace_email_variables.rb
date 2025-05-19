@@ -13,6 +13,7 @@ module ReplaceEmailVariables
   SUBMITTER_FIRST_NAME = /\{+submitter\.first_name\}+/i
   SUBMITTER_ID = /\{+submitter\.id\}+/i
   SUBMITTER_SLUG = /\{+submitter\.slug\}+/i
+  SUBMITTER_FIELD_VALUE = /\{+submitter\.(?<field_name>[^}]+)\}+/i
   SUBMISSION_LINK = /\{+submission\.link\}+/i
   SUBMISSION_ID = /\{+submission\.id\}+/i
   SUBMISSION_EXPIRE_AT = /\{+submission\.expire_at\}+/i
@@ -70,6 +71,13 @@ module ReplaceEmailVariables
 
     text = replace(text, SUBMITTERS_N_FIELD_VALUE, html_escape:) do |match|
       build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :values, match[:field_name].to_s.strip)
+    end
+
+    text = replace(text, SUBMITTER_FIELD_VALUE, html_escape:) do |match|
+      submitters = submitter.submission.template_submitters || submitter.submission.template.submitters
+      index = submitters.find_index { |e| e['uuid'] == submitter.uuid }
+
+      build_submitters_n_field(submitter.submission, index, :values, match[:field_name].to_s.strip)
     end
 
     replace(text, SENDER_EMAIL, html_escape:) { submitter.submission.created_by_user&.email.to_s.sub(/\+\w+@/, '@') }

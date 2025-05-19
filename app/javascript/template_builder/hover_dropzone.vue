@@ -6,12 +6,12 @@
     <div class="flex flex-col gap-2 p-4 items-center bg-base-100 h-full max-h-[85vh] max-w-6xl rounded-2xl w-full">
       <Dropzone
         class="flex-1 h-full"
-        hover-class="bg-base-200/50"
         icon="IconFilePlus"
         :template-id="templateId"
         :accept-file-types="acceptFileTypes"
+        :with-hover-class="false"
         :with-description="false"
-        :title="t('upload_a_new_document')"
+        :title="t('add_a_new_document')"
         type="add_files"
         @loading="isLoading = $event"
         @success="$emit('add', $event)"
@@ -20,10 +20,10 @@
       <div class="flex-1 flex gap-2 w-full">
         <Dropzone
           class="flex-1 h-full"
-          hover-class="bg-base-200/50"
           icon="IconFileSymlink"
           :template-id="templateId"
           :accept-file-types="acceptFileTypes"
+          :with-hover-class="false"
           :with-description="false"
           :title="t('replace_existing_document')"
           @loading="isLoading = $event"
@@ -33,10 +33,10 @@
         <Dropzone
           v-if="withReplaceAndClone"
           class="flex-1 h-full"
-          hover-class="bg-base-200/50"
           icon="IconFiles"
           :template-id="templateId"
           :accept-file-types="acceptFileTypes"
+          :with-hover-class="false"
           :with-description="false"
           :clone-template-on-upload="true"
           :title="t('clone_and_replace_documents')"

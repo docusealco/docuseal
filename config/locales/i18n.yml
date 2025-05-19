@@ -469,7 +469,9 @@ en: &en
   upload_initials: Upload Initials
   draw: Draw
   upload_signature: Upload Signature
+  integration: Integration
   admin: Admin
+  tenant_admin: Tenant Admin
   editor: Editor
   viewer: Viewer
   member: Member
@@ -738,6 +740,7 @@ en: &en
   one_month: 1 month
   two_months: 2 months
   three_months: 3 months
+  eu_data_residency: EU data residency
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -845,7 +848,7 @@ es: &es
   select_user: Seleccionar usuario
   team_member_permissions: Permisos de miembros del equipo
   entire_team: Todo el equipo
-  admin_only: Solo administrador
+  admin_only: Solo admin
   accessiable_by: Accesible por
   team_access: Acceso del equipo
   remove_filter: Eliminar filtro
@@ -1274,7 +1277,9 @@ es: &es
   upload_initials: Subir iniciales
   draw: Dibujar
   upload_signature: Subir firma
+  integration: Integración
   admin: Administrador
+  tenant_admin: Tenant Administrador
   editor: Editor
   viewer: Visor
   member: Miembro
@@ -1543,6 +1548,7 @@ es: &es
   one_month: 1 mes
   two_months: 2 meses
   three_months: 3 meses
+  eu_data_residency: Datos alojados UE
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1649,7 +1655,7 @@ it: &it
   select_user: Seleziona utente
   team_member_permissions: Permessi membri del team
   entire_team: Intero team
-  admin_only: Solo amministratore
+  admin_only: Solo admin
   accessiable_by: Accessibile da
   team_access: Accesso al team
   remove_filter: Rimuovi filtro
@@ -2078,6 +2084,7 @@ it: &it
   upload_initials: Carica iniziali
   draw: Disegna
   upload_signature: Carica firma
+  integration: Integrazione
   admin: Amministratore
   editor: Editor
   viewer: Visualizzatore
@@ -2347,6 +2354,7 @@ it: &it
   one_month: 1 mese
   two_months: 2 mesi
   three_months: 3 mesi
+  eu_data_residency: "Dati nell'UE"
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2454,7 +2462,7 @@ fr: &fr
   select_user: Sélectionner un utilisateur
   team_member_permissions: Permissions des membres de l'équipe
   entire_team: Équipe entière
-  admin_only: Administrateur uniquement
+  admin_only: Admin seul
   accessiable_by: Accessible par
   team_access: Accès à l'équipe
   remove_filter: Supprimer le filtre
@@ -2884,7 +2892,9 @@ fr: &fr
   upload_initials: Télécharger les initiales
   draw: Dessiner
   upload_signature: Télécharger la signature
+  integration: Intégration
   admin: Administrateur
+  tenant_admin: Tenant Administrateur
   editor: Éditeur
   viewer: Lecteur
   member: Membre
@@ -3153,6 +3163,7 @@ fr: &fr
   one_month: 1 mois
   two_months: 2 mois
   three_months: 3 mois
+  eu_data_residency: "Données dans l'UE"
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3260,7 +3271,7 @@ pt: &pt
   select_user: Selecionar usuário
   team_member_permissions: Permissões de membro da equipe
   entire_team: Toda a equipe
-  admin_only: Somente administrador
+  admin_only: Somente admin
   accessiable_by: Acessível por
   team_access: Acesso à equipe
   remove_filter: Remover filtro
@@ -3689,7 +3700,9 @@ pt: &pt
   upload_initials: Enviar iniciais
   draw: Desenhar
   upload_signature: Enviar assinatura
+  integration: Integração
   admin: Administrador
+  tenant_admin: Tenant Administrador
   editor: Editor
   viewer: Visualizador
   member: Membro
@@ -3958,6 +3971,7 @@ pt: &pt
   one_month: 1 mês
   two_months: 2 meses
   three_months: 3 meses
+  eu_data_residency: Dados na UE
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4066,7 +4080,7 @@ de: &de
   select_user: Benutzer auswählen
   team_member_permissions: Berechtigungen für Teammitglieder
   entire_team: Gesamtes Team
-  admin_only: Nur Administratoren
+  admin_only: Nur Admins
   accessiable_by: Zugänglich für
   team_access: Teamzugang
   remove_filter: Filter entfernen
@@ -4495,7 +4509,9 @@ de: &de
   upload_initials: Initialen hochladen
   draw: Zeichnen
   upload_signature: Unterschrift hochladen
+  integration: Integration
   admin: Administrator
+  tenant_admin: Tenant Administrator
   editor: Redakteur
   viewer: Betrachter
   member: Mitglied
@@ -4764,6 +4780,7 @@ de: &de
   one_month: 1 Monat
   two_months: 2 Monate
   three_months: 3 Monate
+  eu_data_residency: EU-Datenspeicher
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4915,6 +4932,7 @@ pl:
   powered_by: 'Napędzany prze'
   count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
+  eu_data_residency: Dane w UE
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -4982,6 +5000,7 @@ uk:
   powered_by: 'Працює на базі'
   count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
+  eu_data_residency: 'Зберігання даних в ЄС'
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5049,6 +5068,7 @@ cs:
   powered_by: 'Poháněno'
   count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
   open_source_documents_software: 'open source software pro dokumenty'
+  eu_data_residency: 'Uložení dat v EU'
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5116,6 +5136,7 @@ he:
   powered_by: 'מופעל על ידי'
   count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
+  eu_data_residency: 'נתונים באיחוד האירופי	'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5183,6 +5204,7 @@ nl:
   powered_by: 'Aangedreven door'
   count_documents_signed_with_html: '<b>%{count}</b> documenten ondertekend met'
   open_source_documents_software: 'open source documenten software'
+  eu_data_residency: Gegevens EU
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5250,6 +5272,7 @@ ar:
   powered_by: 'مشغل بواسطة'
   count_documents_signed_with_html: '<b>%{count}</b> مستندات تم توقيعها باستخدام'
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
+  eu_data_residency: 'بيانات في الاتحاد الأوروبي'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5317,6 +5340,7 @@ ko:
   powered_by: '제공:'
   count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
   open_source_documents_software: '오픈소스 문서 소프트웨어'
+  eu_data_residency: 'EU 데이터 보관'
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5384,6 +5408,7 @@ ja:
   powered_by: '提供元：'
   count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
+  eu_data_residency: 'EU データ居住'
 
 en-US:
   <<: *en

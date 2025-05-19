@@ -165,11 +165,27 @@ export default targetable(class extends HTMLElement {
   onDragover (e) {
     if (e.dataTransfer?.types?.includes('Files') || this.dataset.targets !== 'dashboard-dropzone.templateCards') {
       this.style.backgroundColor = '#F7F3F0'
+
+      if (this.classList.contains('before:border-base-300')) {
+        this.classList.remove('before:border-base-300')
+        this.classList.add('before:border-base-content/30')
+      } else if (this.classList.contains('border-base-300')) {
+        this.classList.remove('border-base-300')
+        this.classList.add('border-base-content/30')
+      }
     }
   }
 
   onDragleave () {
     this.style.backgroundColor = null
+
+    if (this.classList.contains('before:border-base-content/30')) {
+      this.classList.remove('before:border-base-content/30')
+      this.classList.add('before:border-base-300')
+    } else if (this.classList.contains('border-base-content/30')) {
+      this.classList.remove('border-base-content/30')
+      this.classList.add('border-base-300')
+    }
   }
 
   onWindowDragleave = (e) => {

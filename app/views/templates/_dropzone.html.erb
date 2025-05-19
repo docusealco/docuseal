@@ -2,8 +2,8 @@
   <input type="hidden" name="form_id" value="<%= form_id %>">
   <button type="submit" class="hidden"></button>
   <file-dropzone data-submit-on-upload="true" class="w-full">
-    <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border border-2 border-base-300 border-dashed">
-      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2">
+    <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border-2 border-base-300 border-dashed" data-target="file-dropzone.area">
+      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2 pointer-events-none">
         <div class="flex flex-col items-center text-center">
           <span data-target="file-dropzone.icon" class="flex flex-col items-center">
             <span>

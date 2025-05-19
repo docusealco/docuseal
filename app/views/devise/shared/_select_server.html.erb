@@ -1,12 +1,52 @@
-<div class="text-center">
-  <div class="join">
-    <a href="https://docuseal.com<%= request.fullpath.gsub('docuseal.eu', 'docuseal.com') %>" class="btn bg-base-200 join-item w-32  <%= 'bg-base-300' if request.host == 'docuseal.com' %>">
-      <%= svg_icon 'world', class: 'w-5 h-5' %>
-      Global
-    </a>
-    <a href="https://docuseal.eu<%= request.fullpath.gsub('docuseal.com', 'docuseal.eu') %>" class="btn bg-base-200 join-item w-32 <%= 'bg-base-300' if request.host == 'docuseal.eu' %>">
-      <%= svg_icon 'eu_flag', class: 'w-5 h-5' %>
-      Europe
-    </a>
+<% eu_server = request.host == 'docuseal.eu' %>
+<server-selector>
+  <div id="global_server_selector" class="text-center hidden">
+    <div class="join">
+      <a href="https://docuseal.com<%= request.fullpath.gsub('docuseal.eu', 'docuseal.com') %>" class="btn bg-base-200 join-item w-40 <%= 'bg-base-300' unless eu_server %>">
+        <%= svg_icon 'world', class: 'w-5 h-5' %>
+        Global
+      </a>
+      <a href="https://docuseal.eu<%= request.fullpath.gsub('docuseal.com', 'docuseal.eu') %>" class="relative btn bg-base-200 join-item w-40 <%= 'bg-base-300' if eu_server %>">
+        <%= svg_icon 'eu_flag', class: 'w-5 h-5' %>
+        Europe
+        <% unless eu_server %>
+          <span id="eu_server_alert" class="absolute flex space-x-0.5 hidden" style="top: -1.5rem;">
+            <span class="text-xs font-normal leading-none text-base-content normal-case">
+              <%= t('eu_data_residency') %>
+            </span>
+            <%= svg_icon 'corner_right_down', class: 'w-4 h-5 stroke-1 shrink-0 pt-1' %>
+          </span>
+        <% end %>
+      </a>
+    </div>
   </div>
-</div>
+  <div id="us_server_selector" class="flex justify-center hidden">
+    <div class="dropdown">
+      <label tabindex="0" class="relative btn btn-sm bg-transparent font-medium normal-case border-base-content/20 justify-start" style="width: 141px; padding: 0 20px">
+        <% if eu_server %>
+          <%= svg_icon 'eu_flag', class: 'w-5 h-5' %>
+          <span>EU Cloud</span>
+        <% else %>
+          <%= svg_icon 'usa_flag', class: 'w-5 h-5' %>
+          <span>US Cloud</span>
+        <% end %>
+        <%= svg_icon 'chevron_down', class: 'mr-1 w-4 h-4 absolute right-1' %>
+      </label>
+      <ul tabindex="0" class="dropdown-content z-[1] menu border border-base-content/20 mt-1 bg-base-100 rounded-box w-36">
+        <li>
+          <a href="https://docuseal.com<%= request.fullpath.gsub('docuseal.eu', 'docuseal.com') %>" class="flex items-center space-x-2 <%= 'bg-base-300' unless eu_server %>">
+            <%= svg_icon 'usa_flag', class: 'w-5 h-5' %>
+            US Cloud
+          </a>
+        </li>
+        <li>
+          <a href="https://docuseal.eu<%= request.fullpath.gsub('docuseal.com', 'docuseal.eu') %>" class="flex items-center space-x-2 <%= 'bg-base-300' if eu_server %>">
+            <%= svg_icon 'eu_flag', class: 'w-5 h-5' %>
+            EU Cloud
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</server-selector>
+<%= render 'scripts/server_selector' %>

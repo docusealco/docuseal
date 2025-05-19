@@ -13,7 +13,6 @@
       :template-id="template.id"
       :accept-file-types="acceptFileTypes"
       :with-replace-and-clone="withReplaceAndCloneUpload"
-      hover-class="bg-base-200/50"
       @add="[updateFromUpload($event), isDragFile = false]"
       @replace="[onDocumentsReplace($event), isDragFile = false]"
       @replace-and-clone="onDocumentsReplaceAndTemplateClone($event)"

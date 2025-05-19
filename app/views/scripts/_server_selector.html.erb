@@ -1,0 +1,22 @@
+<script>
+  if (!window.customElements.get('server-selector')) {
+    customElements.define('server-selector', class extends HTMLElement {
+      connectedCallback() {
+        const usServerSelector = this.querySelector('#us_server_selector');
+        const globalServerSelector = this.querySelector('#global_server_selector');
+        const euServerAlert = this.querySelector('#eu_server_alert');
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const usTimezones = /^(?:America\/(?:New_York|Detroit|Kentucky|Indiana|Chicago|Menominee|North_Dakota|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak)|Pacific\/Honolulu)/;
+
+        if (usTimezones.test(timezone)) {
+          usServerSelector.classList.remove('hidden');
+        } else if (timezone.includes('Europe')) {
+          globalServerSelector.classList.remove('hidden');
+          euServerAlert?.classList?.remove('hidden');
+        } else {
+          globalServerSelector.classList.remove('hidden');
+        }
+      }
+    });
+  }
+</script>

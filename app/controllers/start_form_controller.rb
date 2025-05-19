@@ -43,9 +43,11 @@ class StartFormController < ApplicationController
 
       if @submitter.save
         if is_new_record
-          WebhookUrls.for_account_id(@submitter.account_id, 'submission.created').each do |webhook_url|
-            SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => @submitter.submission_id,
-                                                                 'webhook_url_id' => webhook_url.id)
+          enqueue_submission_create_webhooks(@submitter)
+
+          if @submitter.submission.expire_at?
+            ProcessSubmissionExpiredJob.perform_at(@submitter.submission.expire_at,
+                                                   'submission_id' => @submitter.submission_id)
           end
         end
 
@@ -63,6 +65,13 @@ class StartFormController < ApplicationController
   end
 
   private
+
+  def enqueue_submission_create_webhooks(submitter)
+    WebhookUrls.for_account_id(submitter.account_id, 'submission.created').each do |webhook_url|
+      SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => submitter.submission_id,
+                                                           'webhook_url_id' => webhook_url.id)
+    end
+  end
 
   def find_or_initialize_submitter(template, submitter_params)
     Submitter.where(submission: template.submissions.where(expire_at: Time.current..)
