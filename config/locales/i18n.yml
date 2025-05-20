@@ -22,6 +22,9 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  stripe_integration: Stripe Integration
+  stripe_account_has_been_connected: Stripe account has been connected.
+  re_connect_stripe: Re-connect Stripe
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
@@ -827,6 +830,9 @@ en: &en
       read: Read your data
 
 es: &es
+  stripe_integration: Integración con Stripe
+  stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
+  re_connect_stripe: Volver a conectar Stripe
   private: Privado
   resend_pending: Reenviar pendiente
   ensure_unique_recipients: Asegurar destinatarios únicos
@@ -1635,6 +1641,9 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  stripe_integration: Integrazione Stripe
+  stripe_account_has_been_connected: L'account Stripe è stato collegato.
+  re_connect_stripe: Ricollega Stripe
   private: Privato
   resend_pending: Reinvia in sospeso
   ensure_unique_recipients: Assicurarsi destinatari unici
@@ -2441,6 +2450,9 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  stripe_integration: Intégration Stripe
+  stripe_account_has_been_connected: Le compte Stripe a été connecté.
+  re_connect_stripe: Reconnecter Stripe
   private: Privé
   resend_pending: Renvoyer en attente
   ensure_unique_recipients: Assurer l'unicité des destinataires
@@ -3250,6 +3262,9 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  stripe_integration: Integração com Stripe
+  stripe_account_has_been_connected: Conta Stripe foi conectada.
+  re_connect_stripe: Reconectar Stripe
   private: Privado
   resend_pending: Re-enviar pendente
   ensure_unique_recipients: Garantir destinatários únicos
@@ -4059,6 +4074,9 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  stripe_integration: Stripe-Integration
+  stripe_account_has_been_connected: Stripe-Konto wurde verbunden.
+  re_connect_stripe: Stripe erneut verbinden
   private: Privat
   resend_pending: Ausstehende erneut senden
   ensure_unique_recipients: Stellen Sie einzigartige Empfänger sicher
