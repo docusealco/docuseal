@@ -46,7 +46,7 @@ en: &en
   team_member_permissions: Team member permissions
   entire_team: Entire team
   admin_only: Admin only
-  accessiable_by: Accessiable by
+  accessiable_by: Accessible by
   team_access: Team access
   document_download_filename_format: Document download filename format
   document_name: Document Name
@@ -655,7 +655,7 @@ en: &en
   completed_at: Completed at
   edit_recipient: Edit Recipient
   update_recipient: Update Recipient
-  use_international_format_1xxx_: 'Use internatioanl format: +1xxx...'
+  use_international_format_1xxx_: 'Use international format: +1xxx...'
   submitter_cannot_be_updated: Submitter cannot be updated.
   at_least_one_field_must_be_filled: At least one field must be filled.
   archived_users: Archived Users
@@ -745,7 +745,7 @@ en: &en
     api: API
     bulk: Bulk Send
     embed: Embedding
-    invie: Invite
+    invite: Invite
     link: Link
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
