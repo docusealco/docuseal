@@ -120,6 +120,8 @@ module Submissions
 
     email = email.to_s.tr('/', ',')
 
+    return email.downcase.sub(/@gmail?\z/i, '@gmail.com') if email.match?(/@gmail?\z/i)
+
     return email.downcase if email.include?(',') ||
                              email.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
                              email.exclude?('.')
