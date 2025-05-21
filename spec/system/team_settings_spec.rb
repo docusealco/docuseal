@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Team Settings' do
   let(:account) { create(:account) }
   let(:second_account) { create(:account) }

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Params::BaseValidator do
   let(:validator) { described_class.new({}) }
 

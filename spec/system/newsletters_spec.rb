@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Newsletter' do
   let(:user) { create(:user, account: create(:account)) }
 

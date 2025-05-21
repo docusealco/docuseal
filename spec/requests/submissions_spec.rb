@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-describe 'Submission API', type: :request do
+describe 'Submission API' do
   let(:account) { create(:account, :with_testing_account) }
   let(:testing_account) { account.testing_accounts.first }
   let(:author) { create(:user, account:) }
