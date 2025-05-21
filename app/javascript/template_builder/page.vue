@@ -290,7 +290,12 @@ export default {
           area.cell_w = this.newArea.cell_w
         }
 
-        this.$emit('draw', area)
+        const dx = Math.abs(e.offsetX - this.$refs.mask.clientWidth * this.newArea.initialX)
+        const dy = Math.abs(e.offsetY - this.$refs.mask.clientHeight * this.newArea.initialY)
+
+        const isTooSmall = dx < 8 && dy < 8
+
+        this.$emit('draw', { area, isTooSmall })
       }
 
       this.showMask = false

@@ -1279,7 +1279,7 @@ export default {
         area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
       }
     },
-    onDraw (area) {
+    onDraw ({ area, isTooSmall }) {
       if (this.drawField) {
         if (this.drawOption) {
           const areaWithoutOption = this.drawField.areas?.find((a) => !a.option_uuid)
@@ -1374,7 +1374,7 @@ export default {
           area.y -= area.h / 2
         }
 
-        if (area.w) {
+        if (area.w && (type !== 'checkbox' || this.drawFieldType || !isTooSmall)) {
           this.addField(type, area)
 
           this.selectedAreaRef.value = area

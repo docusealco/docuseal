@@ -23,7 +23,7 @@
       @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
       @scroll-to="scrollToArea"
-      @draw="$emit('draw', {...$event, attachment_uuid: document.uuid })"
+      @draw="$emit('draw', { area: {...$event.area, attachment_uuid: document.uuid }, isTooSmall: $event.isTooSmall })"
     />
   </div>
 </template>
