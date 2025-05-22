@@ -809,12 +809,8 @@ module Submissions
       data = cache[attachment.uuid]
 
       if ICO_REGEXP.match?(attachment.content_type)
-        Rollbar.error("Load ICO: #{attachment.uuid}") if defined?(Rollbar)
-
         LoadIco.call(data)
       elsif BMP_REGEXP.match?(attachment.content_type)
-        Rollbar.error("Load BMP: #{attachment.uuid}") if defined?(Rollbar)
-
         LoadBmp.call(data)
       else
         Vips::Image.new_from_buffer(data, '')
