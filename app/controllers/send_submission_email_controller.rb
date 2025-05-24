@@ -10,16 +10,17 @@ class SendSubmissionEmailController < ApplicationController
   SEND_DURATION = 30.minutes
 
   def create
-    @submitter =
-      if params[:template_slug]
-        Submitter.joins(submission: :template).find_by!(email: params[:email].to_s.downcase,
-                                                        template: { slug: params[:template_slug] })
-      elsif params[:submission_slug]
-        Submitter.joins(:submission).find_by!(email: params[:email].to_s.downcase,
-                                              submission: { slug: params[:submission_slug] })
-      else
-        Submitter.find_by!(slug: params[:submitter_slug])
-      end
+    if params[:template_slug]
+      @submitter = Submitter.joins(submission: :template).find_by!(email: params[:email].to_s.downcase,
+                                                                   template: { slug: params[:template_slug] })
+    elsif params[:submission_slug]
+      @submitter = Submitter.joins(:submission).find_by(email: params[:email].to_s.downcase,
+                                                        submission: { slug: params[:submission_slug] })
+
+      return redirect_to submissions_preview_completed_path(params[:submission_slug], status: :error) unless @submitter
+    else
+      @submitter = Submitter.find_by!(slug: params[:submitter_slug])
+    end
 
     RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 
