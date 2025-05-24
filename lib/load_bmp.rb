@@ -36,16 +36,12 @@ module LoadBmp
 
     image_rgb =
       if bands == 3
-        Vips::Image.bandjoin([image[2], image[1], image[0]])
+        image.recomb(band3_recomb)
       elsif bands == 4
-        Vips::Image.bandjoin([image[2], image[1], image[0], image[3]])
-      else
-        image
+        image.recomb(band4_recomb)
       end
 
-    if image_rgb.interpretation == :multiband || image_rgb.interpretation == :'b-w'
-      image_rgb = image_rgb.copy(interpretation: :srgb)
-    end
+    image_rgb = image_rgb.copy(interpretation: :srgb) if image_rgb.interpretation != :srgb
 
     image_rgb
   end
@@ -165,6 +161,27 @@ module LoadBmp
     end
 
     unpadded_rows.join
+  end
+
+  def band3_recomb
+    @band3_recomb ||=
+      Vips::Image.new_from_array(
+        [
+          [0, 0, 1],
+          [0, 1, 0],
+          [1, 0, 0]
+        ]
+      )
+  end
+
+  def band4_recomb
+    @band4_recomb ||= Vips::Image.new_from_array(
+      [
+        [0, 0, 1, 0],
+        [0, 1, 0, 0],
+        [1, 0, 0, 0]
+      ]
+    )
   end
   # rubocop:enable Metrics
 end
