@@ -118,10 +118,10 @@ module Templates
 
       page = page.copy(interpretation: :srgb)
 
-      bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
-
       data =
         if format == FORMAT
+          bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+
           page.write_to_buffer(format, compression: 7, filter: 0, bitdepth:,
                                        palette: true, Q: bitdepth == 8 ? Q : 5, dither: 0)
         else
