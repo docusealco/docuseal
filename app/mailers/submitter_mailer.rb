@@ -233,9 +233,17 @@ class SubmitterMailer < ApplicationMailer
   def from_address_for_submitter(submitter)
     if submitter.submission.source.in?(%w[api embed]) &&
        (from_email = AccountConfig.find_by(account: submitter.account, key: 'integration_from_email')&.value.presence)
+      user = submitter.account.users.find_by(email: from_email)
+
+      put_metadata('from_user_id' => user.id)
+
       from_email
     else
-      (submitter.submission.created_by_user || submitter.submission.template.author).friendly_name
+      user = submitter.submission.created_by_user || submitter.submission.template.author
+
+      put_metadata('from_user_id' => user.id)
+
+      user.friendly_name
     end
   end
 end
