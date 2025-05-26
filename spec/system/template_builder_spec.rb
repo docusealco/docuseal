@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Template Builder' do
   let(:account) { create(:account) }
   let(:author) { create(:user, account:) }

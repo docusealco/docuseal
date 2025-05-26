@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class AccountConfigsController < ApplicationController
-  before_action :load_account_config
-  authorize_resource :account_config
+  before_action :load_account_config, only: :create
+  authorize_resource :account_config, only: :create
+
+  load_and_authorize_resource :account_config, only: :destroy
 
   ALLOWED_KEYS = [
     AccountConfig::ALLOW_TYPED_SIGNATURE,
@@ -28,6 +30,14 @@ class AccountConfigsController < ApplicationController
     @account_config.update!(account_config_params)
 
     head :ok
+  end
+
+  def destroy
+    raise InvalidKey unless ALLOWED_KEYS.include?(@account_config.key)
+
+    @account_config.destroy!
+
+    redirect_back(fallback_location: root_path)
   end
 
   private

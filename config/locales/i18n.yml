@@ -22,6 +22,9 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  stripe_integration: Stripe Integration
+  stripe_account_has_been_connected: Stripe account has been connected.
+  re_connect_stripe: Re-connect Stripe
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
@@ -46,7 +49,7 @@ en: &en
   team_member_permissions: Team member permissions
   entire_team: Entire team
   admin_only: Admin only
-  accessiable_by: Accessiable by
+  accessiable_by: Accessible by
   team_access: Team access
   document_download_filename_format: Document download filename format
   document_name: Document Name
@@ -655,7 +658,7 @@ en: &en
   completed_at: Completed at
   edit_recipient: Edit Recipient
   update_recipient: Update Recipient
-  use_international_format_1xxx_: 'Use internatioanl format: +1xxx...'
+  use_international_format_1xxx_: 'Use international format: +1xxx...'
   submitter_cannot_be_updated: Submitter cannot be updated.
   at_least_one_field_must_be_filled: At least one field must be filled.
   archived_users: Archived Users
@@ -741,11 +744,12 @@ en: &en
   two_months: 2 months
   three_months: 3 months
   eu_data_residency: EU data residency
+  please_enter_your_email_address_associated_with_the_completed_submission: Please enter your email address associated with the completed submission.
   submission_sources:
     api: API
     bulk: Bulk Send
     embed: Embedding
-    invie: Invite
+    invite: Invite
     link: Link
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
@@ -827,6 +831,9 @@ en: &en
       read: Read your data
 
 es: &es
+  stripe_integration: Integración con Stripe
+  stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
+  re_connect_stripe: Volver a conectar Stripe
   private: Privado
   resend_pending: Reenviar pendiente
   ensure_unique_recipients: Asegurar destinatarios únicos
@@ -1549,6 +1556,7 @@ es: &es
   two_months: 2 meses
   three_months: 3 meses
   eu_data_residency: Datos alojados UE
+  please_enter_your_email_address_associated_with_the_completed_submission: Por favor, introduce tu dirección de correo electrónico asociada con el envío completado.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1635,6 +1643,9 @@ es: &es
       read: Leer tus datos
 
 it: &it
+  stripe_integration: Integrazione Stripe
+  stripe_account_has_been_connected: L'account Stripe è stato collegato.
+  re_connect_stripe: Ricollega Stripe
   private: Privato
   resend_pending: Reinvia in sospeso
   ensure_unique_recipients: Assicurarsi destinatari unici
@@ -2355,6 +2366,7 @@ it: &it
   two_months: 2 mesi
   three_months: 3 mesi
   eu_data_residency: "Dati nell'UE"
+  please_enter_your_email_address_associated_with_the_completed_submission: "Inserisci il tuo indirizzo email associato all'invio completato."
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2441,6 +2453,9 @@ it: &it
       read: Leggi i tuoi dati
 
 fr: &fr
+  stripe_integration: Intégration Stripe
+  stripe_account_has_been_connected: Le compte Stripe a été connecté.
+  re_connect_stripe: Reconnecter Stripe
   private: Privé
   resend_pending: Renvoyer en attente
   ensure_unique_recipients: Assurer l'unicité des destinataires
@@ -3164,6 +3179,7 @@ fr: &fr
   two_months: 2 mois
   three_months: 3 mois
   eu_data_residency: "Données dans l'UE"
+  please_enter_your_email_address_associated_with_the_completed_submission: "Veuillez saisir l'adresse e-mail associée à l'envoi complété."
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3250,6 +3266,9 @@ fr: &fr
       read: Lire vos données
 
 pt: &pt
+  stripe_integration: Integração com Stripe
+  stripe_account_has_been_connected: Conta Stripe foi conectada.
+  re_connect_stripe: Reconectar Stripe
   private: Privado
   resend_pending: Re-enviar pendente
   ensure_unique_recipients: Garantir destinatários únicos
@@ -3972,6 +3991,7 @@ pt: &pt
   two_months: 2 meses
   three_months: 3 meses
   eu_data_residency: Dados na UE
+  please_enter_your_email_address_associated_with_the_completed_submission: Por favor, insira seu e-mail associado ao envio concluído.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4059,6 +4079,9 @@ pt: &pt
       read: Ler seus dados
 
 de: &de
+  stripe_integration: Stripe-Integration
+  stripe_account_has_been_connected: Stripe-Konto wurde verbunden.
+  re_connect_stripe: Stripe erneut verbinden
   private: Privat
   resend_pending: Ausstehende erneut senden
   ensure_unique_recipients: Stellen Sie einzigartige Empfänger sicher
@@ -4164,9 +4187,9 @@ de: &de
   sending: Senden
   resubmit: Erneut einreichen
   or: oder
-  download_documents: Dokumente herunterladen
+  download_documents: Dokumente downloaden
   downloading: Lädt herunter
-  download: Laden
+  download: Download
   decline: Ablehnen
   declined: Abgelehnt
   decline_reason: Ablehnungsgrund
@@ -4781,6 +4804,7 @@ de: &de
   two_months: 2 Monate
   three_months: 3 Monate
   eu_data_residency: EU-Datenspeicher
+  please_enter_your_email_address_associated_with_the_completed_submission: Bitte gib deine E-Mail-Adresse ein, die mit der abgeschlossenen Übermittlung verknüpft ist.
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4933,6 +4957,7 @@ pl:
   count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
   eu_data_residency: Dane w UE
+  please_enter_your_email_address_associated_with_the_completed_submission: Wprowadź adres e-mail powiązany z ukończonym zgłoszeniem.
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5001,6 +5026,7 @@ uk:
   count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
   eu_data_residency: 'Зберігання даних в ЄС'
+  please_enter_your_email_address_associated_with_the_completed_submission: "Введіть адресу електронної пошти, пов'язану із завершеним поданням."
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5069,6 +5095,7 @@ cs:
   count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
   open_source_documents_software: 'open source software pro dokumenty'
   eu_data_residency: 'Uložení dat v EU'
+  please_enter_your_email_address_associated_with_the_completed_submission: Zadejte e-mailovou adresu spojenou s dokončeným odesláním.
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5137,6 +5164,7 @@ he:
   count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
   eu_data_residency: 'נתונים באיחוד האירופי	'
+  please_enter_your_email_address_associated_with_the_completed_submission: 'אנא הזן את כתובת הדוא"ל המשויכת למשלוח שהושלם.'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5205,6 +5233,7 @@ nl:
   count_documents_signed_with_html: '<b>%{count}</b> documenten ondertekend met'
   open_source_documents_software: 'open source documenten software'
   eu_data_residency: Gegevens EU
+  please_enter_your_email_address_associated_with_the_completed_submission: Voer het e-mailadres in dat is gekoppeld aan de voltooide indiening.
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5273,6 +5302,7 @@ ar:
   count_documents_signed_with_html: '<b>%{count}</b> مستندات تم توقيعها باستخدام'
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
   eu_data_residency: 'بيانات في الاتحاد الأوروبي'
+  please_enter_your_email_address_associated_with_the_completed_submission: 'يرجى إدخال عنوان البريد الإلكتروني المرتبط بالإرسال المكتمل.'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5341,6 +5371,7 @@ ko:
   count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
   open_source_documents_software: '오픈소스 문서 소프트웨어'
   eu_data_residency: 'EU 데이터 보관'
+  please_enter_your_email_address_associated_with_the_completed_submission: '완료된 제출과 연결된 이메일 주소를 입력하세요.'
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5409,6 +5440,7 @@ ja:
   count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
   eu_data_residency: 'EU データ居住'
+  please_enter_your_email_address_associated_with_the_completed_submission: '完了した提出に関連付けられたメールアドレスを入力してください。'
 
 en-US:
   <<: *en

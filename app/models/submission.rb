@@ -71,7 +71,7 @@ class Submission < ApplicationRecord
      .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
   }
   scope :declined, -> { joins(:submitters).where.not(submitters: { declined_at: nil }).group(:id) }
-  scope :expired, -> { where(expire_at: ..Time.current) }
+  scope :expired, -> { pending.where(expire_at: ..Time.current) }
 
   enum :source, {
     invite: 'invite',

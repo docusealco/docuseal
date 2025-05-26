@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Signing Form', type: :system do
+RSpec.describe 'Signing Form' do
   let(:account) { create(:account) }
   let(:author) { create(:user, account:) }
 
@@ -13,7 +11,7 @@ RSpec.describe 'Signing Form', type: :system do
       visit start_form_path(slug: template.slug)
     end
 
-    it 'shows the email step', type: :system do
+    it 'shows the email step' do
       expect(page).to have_content('You have been invited to submit a form')
       expect(page).to have_content("Invited by #{account.name}")
       expect(page).to have_field('Email', type: 'email')

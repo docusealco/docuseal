@@ -157,7 +157,10 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install libvips
+          sudo apt-get install -y libvips
+          wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz"
+          sudo tar -xzf pdfium-linux.tgz --strip-components=1 -C /usr/lib lib/libpdfium.so
+          rm -f pdfium-linux.tgz
       - name: Run
         env:
           RAILS_ENV: test

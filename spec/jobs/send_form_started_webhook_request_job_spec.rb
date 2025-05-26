@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe SendFormStartedWebhookRequestJob do
   let(:account) { create(:account) }
   let(:user) { create(:user, account:) }

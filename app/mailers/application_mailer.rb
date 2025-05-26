@@ -20,7 +20,7 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def set_message_metadata
-    message.instance_variable_set(:@message_metadata, @message_metadata)
+    message.instance_variable_set(:@message_metadata, @message_metadata || {})
   end
 
   def set_message_uuid
@@ -28,10 +28,14 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def assign_message_metadata(tag, record)
-    @message_metadata = {
+    @message_metadata = (@message_metadata || {}).merge(
       'tag' => tag,
       'record_id' => record.id,
       'record_type' => record.class.name
-    }
+    )
+  end
+
+  def put_metadata(attrs)
+    @message_metadata = (@message_metadata || {}).merge(attrs)
   end
 end

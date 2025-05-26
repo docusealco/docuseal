@@ -28,6 +28,11 @@
           <%= f.hidden_field :submission_slug, value: @submission.slug %>
           <%= f.label :email, t('email'), class: 'label' %>
           <%= f.email_field :email, value: current_user&.email || params[:email], required: true, class: 'base-input', placeholder: t('send_copy_to_email') %>
+          <% if params[:status] == 'error' %>
+            <span class="label-text-alt text-red-400 mt-1">
+              <%= t('please_enter_your_email_address_associated_with_the_completed_submission') %>
+            </span>
+          <% end %>
         </div>
         <toggle-submit dir="auto" class="form-control">
           <%= f.button button_title(title: t('send_copy_to_email'), disabled_with: t('starting')), class: 'base-button' %>
