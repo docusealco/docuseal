@@ -1,0 +1,28 @@
+<% content_for(:html_title, "#{@template.name} | DocuSeal") %>
+<% content_for(:html_description, t('share_link_is_currently_disabled')) %>
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="text-center w-full space-y-6">
+        <%= render 'banner' %>
+        <p class="text-xl font-semibold text-center">
+          <%= t('share_link_is_currently_disabled') %>
+        </p>
+      </div>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
+          </div>
+          <div>
+            <p class="text-lg font-bold mb-1"><%= @template.name %></p>
+            <% if @template.archived_at? %>
+              <p dir="auto" class="text-sm"><%= t('form_has_been_deleted_by_html', name: @template.account.name) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/attribution', link_path: '/start', account: @template.account %>

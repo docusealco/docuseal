@@ -10,6 +10,7 @@
 #  name        :string           not null
 #  preferences :text             not null
 #  schema      :text             not null
+#  shared_link :boolean          default(FALSE), not null
 #  slug        :string           not null
 #  source      :text             not null
 #  submitters  :text             not null

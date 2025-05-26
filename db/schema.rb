@@ -361,6 +361,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.bigint "folder_id", null: false
     t.string "external_id"
     t.text "preferences", null: false
+    t.boolean "shared_link", default: false, null: false
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
     t.index ["external_id"], name: "index_templates_on_external_id"

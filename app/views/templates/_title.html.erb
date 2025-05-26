@@ -49,7 +49,12 @@
             <% end %>
           </div>
         <% end %>
-        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), id: 'share_link_clipboard', class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', icon_class: 'w-4 h-4 md:w-6 md:h-6 text-white', copy_title: t('link'), copied_title: t('copied'), copy_title_md: t('link'), copied_title_md: t('copied') %>
+        <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', data: { turbo_frame: :modal } do %>
+          <span class="flex items-center justify-center space-x-2">
+            <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6 text-white') %>
+            <span><%= t('link') %></span>
+          </span>
+        <% end %>
       </div>
     <% end %>
   </div>

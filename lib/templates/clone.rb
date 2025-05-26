@@ -9,6 +9,7 @@ module Templates
       template = original_template.account.templates.new
 
       template.external_id = external_id
+      template.shared_link = original_template.shared_link
       template.author = author
       template.name = name.presence || "#{original_template.name} (#{I18n.t('clone')})"
 

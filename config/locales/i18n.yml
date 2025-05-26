@@ -746,6 +746,9 @@ en: &en
   eu_data_residency: EU data residency
   please_enter_your_email_address_associated_with_the_completed_submission: Please enter your email address associated with the completed submission.
   esignature_disclosure: eSignature Disclosure
+  share_link: Share link
+  enable_shared_link: Enable shared link
+  share_link_is_currently_disabled: Share link is currently disabled
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1575,6 +1578,9 @@ es: &es
   eu_data_residency: Datos alojados UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, introduce tu dirección de correo electrónico asociada con el envío completado.
   esignature_disclosure: Uso de firma electrónica
+  share_link: Enlace para compartir
+  enable_shared_link: Habilitar enlace compartido
+  share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2402,6 +2408,9 @@ it: &it
   eu_data_residency: "Dati nell'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Inserisci il tuo indirizzo email associato all'invio completato."
   esignature_disclosure: Uso della firma elettronica
+  share_link: Link di condivisione
+  enable_shared_link: Abilita link condiviso
+  share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3232,6 +3241,9 @@ fr: &fr
   eu_data_residency: "Données dans l'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Veuillez saisir l'adresse e-mail associée à l'envoi complété."
   esignature_disclosure: Divulgation de Signature Électronique
+  share_link: Lien de partage
+  enable_shared_link: Activer le lien de partage
+  share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4061,6 +4073,9 @@ pt: &pt
   eu_data_residency: Dados na UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, insira seu e-mail associado ao envio concluído.
   esignature_disclosure: Uso de assinatura eletrônica
+  share_link: Link de compartilhamento
+  enable_shared_link: Ativar link compartilhado
+  share_link_is_currently_disabled: O link compartilhado está desativado no momento
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4891,6 +4906,9 @@ de: &de
   eu_data_residency: EU-Datenspeicher
   please_enter_your_email_address_associated_with_the_completed_submission: Bitte gib deine E-Mail-Adresse ein, die mit der abgeschlossenen Übermittlung verknüpft ist.
   esignature_disclosure: Nutzung der E-Signatur
+  share_link: Freigabelink
+  enable_shared_link: 'Freigabelink aktivieren'
+  share_link_is_currently_disabled: 'Freigabelink ist derzeit deaktiviert'
   submission_sources:
     api: API
     bulk: Massenversand

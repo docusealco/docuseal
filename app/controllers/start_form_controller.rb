@@ -11,14 +11,22 @@ class StartFormController < ApplicationController
   before_action :load_template
 
   def show
-    raise ActionController::RoutingError, I18n.t('not_found') if @template.preferences['require_phone_2fa'] == true
+    raise ActionController::RoutingError, I18n.t('not_found') if @template.preferences['require_phone_2fa']
 
-    @submitter = @template.submissions.new(account_id: @template.account_id)
-                          .submitters.new(account_id: @template.account_id,
-                                          uuid: (filter_undefined_submitters(@template).first ||
-                                                 @template.submitters.first)['uuid'])
+    if @template.shared_link?
+      @submitter = @template.submissions.new(account_id: @template.account_id)
+                            .submitters.new(account_id: @template.account_id,
+                                            uuid: (filter_undefined_submitters(@template).first ||
+                                                  @template.submitters.first)['uuid'])
 
-    @form_configs = Submitters::FormConfigs.call(@submitter) unless Docuseal.multitenant?
+      @form_configs = Submitters::FormConfigs.call(@submitter) unless Docuseal.multitenant?
+
+      render :show
+    elsif current_user && current_ability.can?(:read, @template)
+      render :private
+    else
+      raise ActionController::RoutingError, I18n.t('not_found')
+    end
   end
 
   def update

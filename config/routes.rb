@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create], controller: 'templates_preferences'
+    resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resources :recipients, only: %i[create], controller: 'templates_recipients'
     resources :submissions_export, only: %i[index new]
   end

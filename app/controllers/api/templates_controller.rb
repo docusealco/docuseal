@@ -100,6 +100,7 @@ module Api
       permitted_params = [
         :name,
         :external_id,
+        :shared_link,
         {
           submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email]],
           fields: [[:uuid, :submitter_uuid, :name, :type,

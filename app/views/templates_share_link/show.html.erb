@@ -1,0 +1,16 @@
+<%= render 'shared/turbo_modal_large', title: t('share_link') do %>
+  <div class="mt-2 mb-4 px-5">
+    <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
+      <div class="flex items-center justify-between gap-1 px-1">
+        <span><%= t('enable_shared_link') %></span>
+        <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+      </div>
+      <div class="flex gap-2 mt-3">
+        <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
+        <check-on-click data-element-id="template_shared_link">
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+        </check-on-click>
+      </div>
+    <% end %>
+  </div>
+<% end %>
