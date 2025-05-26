@@ -735,14 +735,16 @@ module Submissions
 
       page = pdf.pages.add
 
-      scale = [A4_SIZE.first / attachment.metadata['width'].to_f,
-               A4_SIZE.last / attachment.metadata['height'].to_f].min
+      image = attachment.preview_images.first
 
-      page.box.width = attachment.metadata['width'] * scale
-      page.box.height = attachment.metadata['height'] * scale
+      scale = [A4_SIZE.first / image.metadata['width'].to_f,
+               A4_SIZE.last / image.metadata['height'].to_f].min
+
+      page.box.width = image.metadata['width'] * scale
+      page.box.height = image.metadata['height'] * scale
 
       page.canvas.image(
-        StringIO.new(attachment.preview_images.first.download),
+        StringIO.new(image.download),
         at: [0, 0],
         width: page.box.width,
         height: page.box.height
