@@ -23,7 +23,7 @@
     </div>
     <div
       v-if="isActive && withLabel && (!area.option_uuid || !option.value)"
-      class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap pointer-events-none"
+      class="absolute -top-7 rounded bg-base-content text-base-100 px-2 text-sm whitespace-nowrap pointer-events-none field-area-active-label"
     >
       <template v-if="area.option_uuid && !option.value">
         {{ optionValue(option) }}
