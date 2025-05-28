@@ -73,6 +73,8 @@ class User < ApplicationRecord
   scope :archived, -> { where.not(archived_at: nil) }
   scope :admins, -> { where(role: ADMIN_ROLE) }
 
+  validates :email, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\z/ }
+
   def access_token
     super || build_access_token.tap(&:save!)
   end
