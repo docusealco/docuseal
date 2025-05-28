@@ -829,6 +829,19 @@ en: &en
     scopes:
       write: Update your data
       read: Read your data
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} of %{count} submissions"
+      range_without_total: "%{from}-%{to} submissions"
+    templates:
+      range_with_total: "%{from}-%{to} of %{count} templates"
+      range_without_total: "%{from}-%{to} templates"
+    users:
+      range_with_total: "%{from}-%{to} of %{count} users"
+      range_without_total: "%{from}-%{to} users"
+    items:
+      range_with_total: "%{from}-%{to} of %{count} items"
+      range_without_total: "%{from}-%{to} items"
 
 es: &es
   stripe_integration: Integración con Stripe
@@ -1641,6 +1654,19 @@ es: &es
     scopes:
       write: Actualizar tus datos
       read: Leer tus datos
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} de %{count} envíos"
+      range_without_total: "%{from}-%{to} envíos"
+    templates:
+      range_with_total: "%{from}-%{to} de %{count} plantillas"
+      range_without_total: "%{from}-%{to} plantillas"
+    users:
+      range_with_total: "%{from}-%{to} de %{count} usuarios"
+      range_without_total: "%{from}-%{to} usuarios"
+    items:
+      range_with_total: "%{from}-%{to} de %{count} elementos"
+      range_without_total: "%{from}-%{to} elementos"
 
 it: &it
   stripe_integration: Integrazione Stripe
@@ -2451,6 +2477,19 @@ it: &it
     scopes:
       write: Aggiorna i tuoi dati
       read: Leggi i tuoi dati
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} di %{count} invii"
+      range_without_total: "%{from}-%{to} invii"
+    templates:
+      range_with_total: "%{from}-%{to} di %{count} modelli"
+      range_without_total: "%{from}-%{to} modelli"
+    users:
+      range_with_total: "%{from}-%{to} di %{count} utenti"
+      range_without_total: "%{from}-%{to} utenti"
+    items:
+      range_with_total: "%{from}-%{to} di %{count} elementi"
+      range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
   stripe_integration: Intégration Stripe
@@ -3264,6 +3303,19 @@ fr: &fr
     scopes:
       write: Mettre à jour vos données
       read: Lire vos données
+  pagination:
+    submissions:
+      range_with_total: "%{from} à %{to} sur %{count} soumissions"
+      range_without_total: "%{from} à %{to} soumissions"
+    templates:
+      range_with_total: "%{from} à %{to} sur %{count} modèles"
+      range_without_total: "%{from} à %{to} modèles"
+    users:
+      range_with_total: "%{from} à %{to} sur %{count} utilisateurs"
+      range_without_total: "%{from} à %{to} utilisateurs"
+    items:
+      range_with_total: "%{from} à %{to} sur %{count} éléments"
+      range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
   stripe_integration: Integração com Stripe
@@ -4036,8 +4088,8 @@ pt: &pt
     start: Iniciar
     previous: Anterior
     next: Próximo
-    template_and_submissions: 'Modelos e Envios'
-    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' para criar modelos reutilizáveis de documentos ou 'Envios' para assinar documentos individuais ou verificar o status de cada solicitação de assinatura."
+    template_and_submissions: 'Modelos e Submissões'
+    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' para criar modelos reutilizáveis de documentos ou 'Submissões' para assinar documentos individuais ou verificar o status de cada solicitação de assinatura."
     upload_a_pdf_file: 'Enviar um arquivo PDF'
     upload_a_pdf_file_description: 'Envie um documento PDF para criar um modelo de formulário de assinatura.'
     select_a_signer_party: 'Selecionar parte assinante'
@@ -4077,6 +4129,19 @@ pt: &pt
     scopes:
       write: Atualizar seus dados
       read: Ler seus dados
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} de %{count} submissões"
+      range_without_total: "%{from}-%{to} submissões"
+    templates:
+      range_with_total: "%{from}-%{to} de %{count} modelos"
+      range_without_total: "%{from}-%{to} modelos"
+    users:
+      range_with_total: "%{from}-%{to} de %{count} usuários"
+      range_without_total: "%{from}-%{to} usuários"
+    items:
+      range_with_total: "%{from}-%{to} de %{count} itens"
+      range_without_total: "%{from}-%{to} itens"
 
 de: &de
   stripe_integration: Stripe-Integration
@@ -4889,6 +4954,19 @@ de: &de
     scopes:
       write: Aktualisiere deine Daten
       read: Lese deine Daten
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} von %{count} Einreichungen"
+      range_without_total: "%{from}-%{to} Einreichungen"
+    templates:
+      range_with_total: "%{from}-%{to} von %{count} Vorlagen"
+      range_without_total: "%{from}-%{to} Vorlagen"
+    users:
+      range_with_total: "%{from}-%{to} von %{count} Benutzern"
+      range_without_total: "%{from}-%{to} Benutzer"
+    items:
+      range_with_total: "%{from}-%{to} von %{count} Elementen"
+      range_without_total: "%{from}-%{to} Elemente"
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
