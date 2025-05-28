@@ -211,7 +211,7 @@ export default {
   },
   computed: {
     computedPreviousValue () {
-      if (this.isUsePreviousValue) {
+      if (this.isUsePreviousValue && this.field.required === true) {
         return this.previousValue
       } else {
         return null
