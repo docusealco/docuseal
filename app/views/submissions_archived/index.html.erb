@@ -21,7 +21,7 @@
     <%= render 'submissions_filters/filter_button', filter_params: %>
   </div>
 </div>
-<% if @pagy.count > 0 %>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true, archived: true } %>
   </div>

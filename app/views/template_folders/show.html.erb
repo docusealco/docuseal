@@ -39,13 +39,13 @@
       <% end %>
     </div>
   </div>
-  <% if @pagy.count > 0 %>
+  <% if @pagy.count.nil? || @pagy.count > 0 %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
     </div>
     <% templates_order_select_html = capture do %>
       <% if params[:q].blank? && @pagy.pages > 1 %>
-        <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
+        <%= render('shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000) %>
       <% end %>
     <% end %>
     <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', right_additional_html: templates_order_select_html %>

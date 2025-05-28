@@ -1,7 +1,7 @@
 <%= render 'title', template: @template %>
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% is_show_tabs = @pagy.pages > 1 || params[:q].present? || params[:status].present? || filter_params.present? %>
-<% if !@pagy.count.zero? || params[:q].present? || params[:status].present? || filter_params.present? %>
+<% if @pagy.count.nil? || !@pagy.count.zero? || params[:q].present? || params[:status].present? || filter_params.present? %>
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
     <div class="flex justify-between items-center md:items-end">
       <div>
@@ -35,27 +35,33 @@
           <%= svg_icon('list', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('all') %></span>
         </div>
-        <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.unscope(:group, :order).select(:id).distinct.count %>
-        </div>
+        <% unless can?(:manage, :countless) %>
+          <div class="badge badge-neutral badge-outline font-medium">
+            <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.unscope(:group, :order).select(:id).distinct.count %>
+          </div>
+        <% end %>
       </a>
       <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
         <div class="flex items-center space-x-1">
           <%= svg_icon('clock', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('pending') %></span>
         </div>
-        <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.unscope(:group, :order).select(:id).distinct.count %>
-        </div>
+        <% unless can?(:manage, :countless) %>
+          <div class="badge badge-neutral badge-outline font-medium">
+            <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.unscope(:group, :order).select(:id).distinct.count %>
+          </div>
+        <% end %>
       </a>
       <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
         <div class="flex items-center space-x-1">
           <%= svg_icon('circle_check', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('completed') %></span>
         </div>
-        <div class="badge badge-neutral badge-outline font-medium">
-          <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.unscope(:group, :order).select(:id).distinct.count %>
-        </div>
+        <% unless can?(:manage, :countless) %>
+          <div class="badge badge-neutral badge-outline font-medium">
+            <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.unscope(:group, :order).select(:id).distinct.count %>
+          </div>
+        <% end %>
       </a>
     </div>
     <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">

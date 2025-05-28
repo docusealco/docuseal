@@ -836,6 +836,9 @@ en: &en
     templates:
       range_with_total: "%{from}-%{to} of %{count} templates"
       range_without_total: "%{from}-%{to} templates"
+    template_folders:
+      range_with_total: "%{from}-%{to} of %{count} folders"
+      range_without_total: "%{from}-%{to} folders"
     users:
       range_with_total: "%{from}-%{to} of %{count} users"
       range_without_total: "%{from}-%{to} users"
@@ -1661,6 +1664,9 @@ es: &es
     templates:
       range_with_total: "%{from}-%{to} de %{count} plantillas"
       range_without_total: "%{from}-%{to} plantillas"
+    template_folders:
+      range_with_total: "%{from}-%{to} de %{count} carpetas"
+      range_without_total: "%{from}-%{to} carpetas"
     users:
       range_with_total: "%{from}-%{to} de %{count} usuarios"
       range_without_total: "%{from}-%{to} usuarios"
@@ -2484,6 +2490,9 @@ it: &it
     templates:
       range_with_total: "%{from}-%{to} di %{count} modelli"
       range_without_total: "%{from}-%{to} modelli"
+    template_folders:
+      range_with_total: "%{from}-%{to} di %{count} cartelle"
+      range_without_total: "%{from}-%{to} cartelle"
     users:
       range_with_total: "%{from}-%{to} di %{count} utenti"
       range_without_total: "%{from}-%{to} utenti"
@@ -3310,6 +3319,9 @@ fr: &fr
     templates:
       range_with_total: "%{from} à %{to} sur %{count} modèles"
       range_without_total: "%{from} à %{to} modèles"
+    template_folders:
+      range_with_total: "%{from} à %{to} sur %{count} dossiers"
+      range_without_total: "%{from} à %{to} dossiers"
     users:
       range_with_total: "%{from} à %{to} sur %{count} utilisateurs"
       range_without_total: "%{from} à %{to} utilisateurs"
@@ -4136,6 +4148,9 @@ pt: &pt
     templates:
       range_with_total: "%{from}-%{to} de %{count} modelos"
       range_without_total: "%{from}-%{to} modelos"
+    template_folders:
+      range_with_total: "%{from}-%{to} de %{count} pastas"
+      range_without_total: "%{from}-%{to} pastas"
     users:
       range_with_total: "%{from}-%{to} de %{count} usuários"
       range_without_total: "%{from}-%{to} usuários"
@@ -4961,6 +4976,9 @@ de: &de
     templates:
       range_with_total: "%{from}-%{to} von %{count} Vorlagen"
       range_without_total: "%{from}-%{to} Vorlagen"
+    template_folders:
+      range_with_total: "%{from}-%{to} von %{count} Ordnern"
+      range_without_total: "%{from}-%{to} Ordner"
     users:
       range_with_total: "%{from}-%{to} von %{count} Benutzern"
       range_without_total: "%{from}-%{to} Benutzer"

@@ -1,5 +1,5 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
-<% is_show_tabs = @pagy.count >= 5 || params[:status].present? || filter_params.present? %>
+<% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0">
@@ -61,12 +61,12 @@
     </div>
   </div>
 <% end %>
-<% if @pagy.count > 0 %>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
   </div>
 <% end %>
-<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count < 5 %>
+<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count.present? && @pagy.count < 5 %>
   <%= render 'templates/dropzone' %>
 <% end %>
 <% if @submissions.present? || (params[:q].blank? && filter_params.blank?) %>

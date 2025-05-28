@@ -29,7 +29,7 @@
     </div>
   <% end %>
 </div>
-<% if @pagy.count > 0 %>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { template: @template, archived: true } %>
   </div>

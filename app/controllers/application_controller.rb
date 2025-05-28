@@ -55,6 +55,14 @@ class ApplicationController < ActionController::Base
     request.session[:impersonated_user_id] = user.uuid
   end
 
+  def pagy_auto(collection, **keyword_args)
+    if current_ability.can?(:manage, :countless)
+      pagy_countless(collection, **keyword_args)
+    else
+      pagy(collection, **keyword_args)
+    end
+  end
+
   private
 
   def with_locale(&)
