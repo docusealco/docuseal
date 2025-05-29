@@ -55,12 +55,12 @@
     >
     <div
       v-else-if="field.type === 'signature' && signature"
-      class="flex justify-between h-full gap-1 overflow-hidden"
-      :class="isNarrow ? 'flex-row' : 'flex-col'"
+      class="flex justify-between h-full gap-1 overflow-hidden w-full"
+      :class="isNarrow && withSignatureId ? 'flex-row' : 'flex-col'"
     >
       <div
         class="flex overflow-hidden"
-        :class="isNarrow ? 'w-1/2' : 'flex-grow'"
+        :class="isNarrow && withSignatureId ? 'w-1/2' : 'flex-grow'"
         style="min-height: 50%"
       >
         <img
