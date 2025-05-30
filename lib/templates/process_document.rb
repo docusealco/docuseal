@@ -138,6 +138,8 @@ module Templates
       blob
     rescue Vips::Error, Pdfium::PdfiumError => e
       Rollbar.warning(e) if defined?(Rollbar)
+
+      nil
     ensure
       doc_page&.close
     end
