@@ -151,8 +151,10 @@ export default {
     resizeTextarea () {
       const textarea = this.$refs.textarea
 
-      textarea.style.height = 'auto'
-      textarea.style.height = Math.min(250, textarea.scrollHeight) + 'px'
+      if (textarea) {
+        textarea.style.height = 'auto'
+        textarea.style.height = Math.min(250, textarea.scrollHeight) + 'px'
+      }
     },
     toggleTextArea () {
       this.isTextArea = true
