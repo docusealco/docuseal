@@ -17,6 +17,8 @@ class StartFormController < ApplicationController
                           .submitters.new(account_id: @template.account_id,
                                           uuid: (filter_undefined_submitters(@template).first ||
                                                  @template.submitters.first)['uuid'])
+
+    @form_configs = Submitters::FormConfigs.call(@submitter) unless Docuseal.multitenant?
   end
 
   def update

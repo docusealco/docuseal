@@ -745,6 +745,7 @@ en: &en
   three_months: 3 months
   eu_data_residency: EU data residency
   please_enter_your_email_address_associated_with_the_completed_submission: Please enter your email address associated with the completed submission.
+  esignature_disclosure: eSignature Disclosure
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1573,6 +1574,7 @@ es: &es
   three_months: 3 meses
   eu_data_residency: Datos alojados UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, introduce tu dirección de correo electrónico asociada con el envío completado.
+  esignature_disclosure: Uso de firma electrónica
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2399,6 +2401,7 @@ it: &it
   three_months: 3 mesi
   eu_data_residency: "Dati nell'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Inserisci il tuo indirizzo email associato all'invio completato."
+  esignature_disclosure: Uso della firma elettronica
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3228,6 +3231,7 @@ fr: &fr
   three_months: 3 mois
   eu_data_residency: "Données dans l'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Veuillez saisir l'adresse e-mail associée à l'envoi complété."
+  esignature_disclosure: Divulgation de Signature Électronique
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4056,6 +4060,7 @@ pt: &pt
   three_months: 3 meses
   eu_data_residency: Dados na UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, insira seu e-mail associado ao envio concluído.
+  esignature_disclosure: Uso de assinatura eletrônica
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4885,6 +4890,7 @@ de: &de
   three_months: 3 Monate
   eu_data_residency: EU-Datenspeicher
   please_enter_your_email_address_associated_with_the_completed_submission: Bitte gib deine E-Mail-Adresse ein, die mit der abgeschlossenen Übermittlung verknüpft ist.
+  esignature_disclosure: Nutzung der E-Signatur
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5054,6 +5060,8 @@ pl:
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
   eu_data_residency: Dane w UE
   please_enter_your_email_address_associated_with_the_completed_submission: Wprowadź adres e-mail powiązany z ukończonym zgłoszeniem.
+  privacy_policy: Polityka Prywatności
+  esignature_disclosure: Użycie e-podpisu
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5123,6 +5131,8 @@ uk:
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
   eu_data_residency: 'Зберігання даних в ЄС'
   please_enter_your_email_address_associated_with_the_completed_submission: "Введіть адресу електронної пошти, пов'язану із завершеним поданням."
+  privacy_policy: Політика конфіденційності
+  esignature_disclosure: Використання e-підпису
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5192,6 +5202,8 @@ cs:
   open_source_documents_software: 'open source software pro dokumenty'
   eu_data_residency: 'Uložení dat v EU'
   please_enter_your_email_address_associated_with_the_completed_submission: Zadejte e-mailovou adresu spojenou s dokončeným odesláním.
+  privacy_policy: Zásady Ochrany Osobních Údajů
+  esignature_disclosure: Použití e-podpisu
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5261,6 +5273,8 @@ he:
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
   eu_data_residency: 'נתונים באיחוד האירופי	'
   please_enter_your_email_address_associated_with_the_completed_submission: 'אנא הזן את כתובת הדוא"ל המשויכת למשלוח שהושלם.'
+  privacy_policy: 'מדיניות פרטיות'
+  esignature_disclosure: 'גילוי חתימה אלקטרונית'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5330,6 +5344,8 @@ nl:
   open_source_documents_software: 'open source documenten software'
   eu_data_residency: Gegevens EU
   please_enter_your_email_address_associated_with_the_completed_submission: Voer het e-mailadres in dat is gekoppeld aan de voltooide indiening.
+  privacy_policy: Privacybeleid
+  esignature_disclosure: Gebruik van e-handtekening
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5399,6 +5415,8 @@ ar:
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
   eu_data_residency: 'بيانات في الاتحاد الأوروبي'
   please_enter_your_email_address_associated_with_the_completed_submission: 'يرجى إدخال عنوان البريد الإلكتروني المرتبط بالإرسال المكتمل.'
+  privacy_policy: 'سياسة الخصوصية'
+  esignature_disclosure: 'إفصاح التوقيع الإلكتروني'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5468,6 +5486,8 @@ ko:
   open_source_documents_software: '오픈소스 문서 소프트웨어'
   eu_data_residency: 'EU 데이터 보관'
   please_enter_your_email_address_associated_with_the_completed_submission: '완료된 제출과 연결된 이메일 주소를 입력하세요.'
+  privacy_policy: 개인정보 처리방침
+  esignature_disclosure: 전자서명 공개
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5537,6 +5557,8 @@ ja:
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
   eu_data_residency: 'EU データ居住'
   please_enter_your_email_address_associated_with_the_completed_submission: '完了した提出に関連付けられたメールアドレスを入力してください。'
+  privacy_policy: プライバシーポリシー
+  esignature_disclosure: 電子署名に関する開示
 
 en-US:
   <<: *en
