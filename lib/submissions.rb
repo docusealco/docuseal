@@ -21,7 +21,7 @@ module Submissions
     arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
 
     if search_template
-      submissions = submissions.joins(:template)
+      submissions = submissions.left_joins(:template)
 
       arel = arel.or(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
     end
@@ -40,15 +40,17 @@ module Submissions
   def preload_with_pages(submission)
     ActiveRecord::Associations::Preloader.new(
       records: [submission],
-      associations: [:template, { template_schema_documents: :blob }]
+      associations: [
+        submission.template_id? ? { template_schema_documents: :blob } : { documents_attachments: :blob }
+      ]
     ).call
 
     total_pages =
-      submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
+      submission.schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
 
     if total_pages < PRELOAD_ALL_PAGES_AMOUNT
       ActiveRecord::Associations::Preloader.new(
-        records: submission.template_schema_documents,
+        records: submission.schema_documents,
         associations: [:blob, { preview_images_attachments: :blob }]
       ).call
     end
@@ -90,10 +92,10 @@ module Submissions
     emails
   end
 
-  def create_from_submitters(template:, user:, submissions_attrs:, source:,
+  def create_from_submitters(template:, user:, submissions_attrs:, source:, with_template: true,
                              submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {})
     Submissions::CreateFromSubmitters.call(
-      template:, user:, submissions_attrs:, source:, submitters_order:, params:
+      template:, user:, submissions_attrs:, source:, submitters_order:, params:, with_template:
     )
   end
 

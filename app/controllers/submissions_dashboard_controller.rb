@@ -4,7 +4,7 @@ class SubmissionsDashboardController < ApplicationController
   load_and_authorize_resource :submission, parent: false
 
   def index
-    @submissions = @submissions.joins(:template)
+    @submissions = @submissions.left_joins(:template)
 
     @submissions = @submissions.where(archived_at: nil)
                                .where(templates: { archived_at: nil })

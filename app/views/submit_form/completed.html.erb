@@ -10,7 +10,7 @@
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
           </div>
           <div>
-            <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
+            <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
             <p dir="auto" class="text-sm">
               <%= t(@submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(@submitter.completed_at.to_date, format: :long)) %>
             </p>
@@ -23,7 +23,7 @@
         <toggle-submit>
           <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, class: 'white-button w-full' %>
         </toggle-submit>
-        <% if Templates.filter_undefined_submitters(@submitter.submission.template).size != 1 %>
+        <% if Templates.filter_undefined_submitters(@submitter.submission.template_submitters).size != 1 %>
           <div class="divider uppercase"><%= t('or') %></div>
         <% else %>
           <div class="py-2"></div>
@@ -42,8 +42,8 @@
         </download-button>
       <% end %>
     </div>
-    <% undefined_submitters = Templates.filter_undefined_submitters(@submitter.submission.template) %>
-    <% if undefined_submitters.size == 1 && undefined_submitters.first['uuid'] == @submitter.uuid && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false %>
+    <% undefined_submitters = Templates.filter_undefined_submitters(@submitter.submission.template_submitters) %>
+    <% if undefined_submitters.size == 1 && undefined_submitters.first['uuid'] == @submitter.uuid && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false && @submitter.template && !@submitter.template.archived_at? %>
       <div class="divider uppercase"><%= t('or') %></div>
       <toggle-submit class="block">
         <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), resubmit_form_path, params: { resubmit: @submitter.slug }, method: :put, class: 'white-button w-full' %>

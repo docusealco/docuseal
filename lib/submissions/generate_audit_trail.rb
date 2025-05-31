@@ -58,7 +58,8 @@ module Submissions
 
         ActiveStorage::Attachment.create!(
           blob: ActiveStorage::Blob.create_and_upload!(
-            io: io.tap(&:rewind), filename: "#{I18n.t('audit_log')} - #{submission.template.name}.pdf"
+            io: io.tap(&:rewind), filename: "#{I18n.t('audit_log')} - " \
+                                            "#{submission.name || submission.template.name}.pdf"
           ),
           name: 'audit_trail',
           record: submission
@@ -186,7 +187,7 @@ module Submissions
       last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
-        original_documents = submission.template.documents.select do |e|
+        original_documents = submission.schema_documents.select do |e|
           e.uuid == (document.metadata['original_uuid'] || document.uuid)
         end.presence
 

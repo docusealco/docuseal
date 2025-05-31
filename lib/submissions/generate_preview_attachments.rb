@@ -70,7 +70,7 @@ module Submissions
           submitter:,
           uuid: GenerateResultAttachments.images_pdf_uuid(original_documents.select(&:image?)),
           values_hash:,
-          name: template.name
+          name: submission.name || template.name
         )
 
       ApplicationRecord.no_touching do

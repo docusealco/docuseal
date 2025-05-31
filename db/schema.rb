@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_31_085328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.bigint "submitter_id", null: false
     t.bigint "submission_id", null: false
     t.bigint "account_id", null: false
-    t.bigint "template_id", null: false
+    t.bigint "template_id"
     t.string "source", null: false
     t.integer "sms_count", null: false
     t.datetime "completed_at", null: false
@@ -270,7 +270,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.bigint "template_id", null: false
+    t.bigint "template_id"
     t.bigint "created_by_user_id"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
@@ -284,6 +284,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.text "preferences", null: false
     t.bigint "account_id", null: false
     t.datetime "expire_at"
+    t.text "name"
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true

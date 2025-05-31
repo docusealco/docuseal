@@ -10,7 +10,7 @@
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
           </div>
           <div dir="auto">
-            <p class="text-lg font-bold mb-1"><%= @submitter.submission.template.name %></p>
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
             <p class="text-sm"><%= t('form_expired_at_html', time: l(@submitter.submission.expire_at, format: :long)) %></p>
           </div>
         </div>

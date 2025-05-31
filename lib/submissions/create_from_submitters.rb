@@ -7,7 +7,7 @@ module Submissions
     module_function
 
     # rubocop:disable Metrics
-    def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {})
+    def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {}, with_template: true)
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
       submissions = Array.wrap(submissions_attrs).filter_map do |attrs|
@@ -21,6 +21,7 @@ module Submissions
         submission = template.submissions.new(created_by_user: user, source:,
                                               account_id: user.account_id,
                                               preferences: set_submission_preferences,
+                                              name: with_template ? attrs[:name] : (attrs[:name] || template.name),
                                               expire_at:,
                                               template_submitters: [], submitters_order:)
 
@@ -60,7 +61,7 @@ module Submissions
                           preferences: preferences.merge(submission_preferences))
         end
 
-        maybe_set_template_fields(submission, attrs[:submitters])
+        maybe_set_template_fields(submission, attrs[:submitters], with_template:)
 
         if submission.submitters.size > template.submitters.size
           raise BaseError, 'Defined more signing parties than in template'
@@ -75,6 +76,8 @@ module Submissions
         next if submission.submitters.blank?
 
         maybe_add_invite_submitters(submission, template)
+
+        submission.template = nil unless with_template
 
         submission.tap(&:save!)
       end
@@ -118,7 +121,7 @@ module Submissions
       }.compact_blank
     end
 
-    def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil)
+    def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil, with_template: true)
       template_fields = (submission.template_fields || submission.template.fields).deep_dup
 
       submitters = submission.template_submitters || submission.template.submitters
@@ -133,7 +136,7 @@ module Submissions
       end
 
       if template_fields != (submission.template_fields || submission.template.fields) ||
-         submitters_attrs.any? { |e| e[:completed].present? }
+         submitters_attrs.any? { |e| e[:completed].present? } || !with_template
         submission.template_fields = template_fields
         submission.template_schema = submission.template.schema if submission.template_schema.blank?
       end

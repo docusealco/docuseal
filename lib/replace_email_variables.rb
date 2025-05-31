@@ -2,6 +2,7 @@
 
 module ReplaceEmailVariables
   TEMPLATE_NAME = /\{+template\.name\}+/i
+  SUBMISSION_NAME = /\{+submission\.name\}+/i
   TEMPLATE_ID = /\{+template\.id\}+/i
   SUBMITTER_LINK = /\{+submitter\.link\}+/i
   ACCOUNT_NAME = /\{+account\.name\}+/i
@@ -31,7 +32,10 @@ module ReplaceEmailVariables
 
   # rubocop:disable Metrics
   def call(text, submitter:, tracking_event_type: 'click_email', html_escape: false, sig: nil)
-    text = replace(text, TEMPLATE_NAME, html_escape:) { (submitter.template || submitter.submission.template).name }
+    text = replace(text, TEMPLATE_NAME, html_escape:) do
+      (submitter.template || submitter.submission.template || submitter.submission).name
+    end
+    text = replace(text, SUBMISSION_NAME, html_escape:) { submitter.submission.name }
     text = replace(text, TEMPLATE_ID, html_escape:) { submitter.template.id }
     text = replace(text, SUBMITTER_ID, html_escape:) { submitter.id }
     text = replace(text, SUBMITTER_SLUG, html_escape:) { submitter.slug }

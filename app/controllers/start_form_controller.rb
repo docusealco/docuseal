@@ -142,7 +142,7 @@ class StartFormController < ApplicationController
   end
 
   def filter_undefined_submitters(template)
-    Templates.filter_undefined_submitters(template)
+    Templates.filter_undefined_submitters(template.submitters)
   end
 
   def submitter_params

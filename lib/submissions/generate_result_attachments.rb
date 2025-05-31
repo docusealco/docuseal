@@ -72,17 +72,17 @@ module Submissions
 
       pdfs_index = generate_pdfs(submitter)
 
-      template = submitter.submission.template
       account = submitter.account
+      submission = submitter.submission
 
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
 
       image_pdfs = []
-      original_documents = template.documents.preload(:blob)
+      original_documents = submission.schema_documents.preload(:blob)
 
       result_attachments =
-        submitter.submission.template_schema.filter_map do |item|
+        submission.template_schema.filter_map do |item|
           pdf = pdfs_index[item['attachment_uuid']]
 
           next if pdf.nil?
@@ -114,7 +114,7 @@ module Submissions
           tsa_url:,
           pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
-          name: template.name
+          name: submission.name || template.name
         )
 
       ApplicationRecord.no_touching do
@@ -656,14 +656,14 @@ module Submissions
       Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
 
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submission.template_schema_documents.preload(:blob)
+      documents ||= submission.schema_documents.preload(:blob)
 
       attachment_uuids = Submissions.filtered_conditions_schema(submission).pluck('attachment_uuid')
       attachments_index = documents.index_by { |a| a.metadata['original_uuid'] || a.uuid }
 
       attachment_uuids.each_with_object({}) do |uuid, acc|
         attachment = attachments_index[uuid]
-        attachment ||= submission.template_schema_documents.preload(:blob).find { |a| a.uuid == uuid }
+        attachment ||= submission.schema_documents.preload(:blob).find { |a| a.uuid == uuid }
 
         next unless attachment
 

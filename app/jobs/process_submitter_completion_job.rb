@@ -82,7 +82,7 @@ class ProcessSubmitterCompletionJob
     user = submission.created_by_user || submitter.template.author
 
     if submitter.account.users.exists?(id: user.id) && submission.preferences['send_email'] != false &&
-       submitter.template.preferences['completed_notification_email_enabled'] != false
+       submitter.template&.preferences&.dig('completed_notification_email_enabled') != false
       if submission.submitters.map(&:email).exclude?(user.email) &&
          user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false &&
          user.role != 'integration'
@@ -98,7 +98,7 @@ class ProcessSubmitterCompletionJob
   end
 
   def maybe_enqueue_copy_emails(submitter)
-    return if submitter.template.preferences['documents_copy_email_enabled'] == false
+    return if submitter.template&.preferences&.dig('documents_copy_email_enabled') == false
 
     configs = AccountConfigs.find_or_initialize_for_key(submitter.account,
                                                         AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
@@ -119,7 +119,7 @@ class ProcessSubmitterCompletionJob
 
   def build_bcc_addresses(submission)
     bcc = submission.preferences['bcc_completed'].presence ||
-          submission.template.preferences['bcc_completed'].presence ||
+          submission.template&.preferences&.dig('bcc_completed').presence ||
           submission.account.account_configs
                     .find_by(key: AccountConfig::BCC_EMAILS)&.value
 

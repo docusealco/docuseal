@@ -23,11 +23,11 @@ class SubmitterMailer < ApplicationMailer
 
     @body = @email_message&.body.presence ||
             template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence ||
-            @submitter.template.preferences['request_email_body'].presence
+            @submitter.template&.preferences&.dig('request_email_body').presence
 
     @subject = @email_message&.subject.presence ||
                template_submitters_index.dig(@submitter.uuid, 'request_email_subject').presence ||
-               @submitter.template.preferences['request_email_subject'].presence
+               @submitter.template&.preferences&.dig('request_email_subject').presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
 
@@ -53,6 +53,8 @@ class SubmitterMailer < ApplicationMailer
     @submission = submitter.submission
     @user = user
 
+    template_preferences = @submission.template&.preferences || {}
+
     Submissions::EnsureResultGenerated.call(submitter)
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
@@ -60,15 +62,15 @@ class SubmitterMailer < ApplicationMailer
     add_completed_email_attachments!(
       submitter,
       with_documents: @email_config&.value&.dig('attach_documents') != false &&
-                      @submitter.template.preferences['completed_notification_email_attach_documents'] != false,
+                      template_preferences['completed_notification_email_attach_documents'] != false,
       with_audit_log: @email_config&.value&.dig('attach_audit_log') != false &&
-                      @submitter.template.preferences['completed_notification_email_attach_audit'] != false
+                      template_preferences['completed_notification_email_attach_audit'] != false
     )
 
-    @subject = @submitter.template.preferences['completed_notification_email_subject'].presence
+    @subject = template_preferences['completed_notification_email_subject'].presence
     @subject ||= @email_config.value['subject'] if @email_config
 
-    @body = @submitter.template.preferences['completed_notification_email_body'].presence
+    @body = template_preferences['completed_notification_email_body'].presence
     @body ||= @email_config.value['body'] if @email_config
 
     assign_message_metadata('submitter_completed', @submitter)
@@ -97,7 +99,7 @@ class SubmitterMailer < ApplicationMailer
            to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
            reply_to: @submitter.friendly_name,
            subject: I18n.t(:name_declined_by_submitter,
-                           name: @submission.template.name.truncate(20),
+                           name: (@submission.name || @submission.template.name).truncate(20),
                            submitter: @submitter.name || @submitter.email || @submitter.phone))
     end
   end
@@ -107,22 +109,24 @@ class SubmitterMailer < ApplicationMailer
     @submitter = submitter
     @sig = submitter.signed_id(expires_in: SIGN_TTL, purpose: :download_completed) if sig
 
+    template_preferences = @submitter.template&.preferences || {}
+
     Submissions::EnsureResultGenerated.call(@submitter)
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
     add_completed_email_attachments!(
       submitter,
-      with_documents: @submitter.template.preferences['documents_copy_email_attach_documents'] != false &&
-                                 (@email_config.nil? || @email_config.value['attach_documents'] != false),
-      with_audit_log: @submitter.template.preferences['documents_copy_email_attach_audit'] != false &&
-                                 (@email_config.nil? || @email_config.value['attach_audit_log'] != false)
+      with_documents: template_preferences['documents_copy_email_attach_documents'] != false &&
+                      (@email_config.nil? || @email_config.value['attach_documents'] != false),
+      with_audit_log: template_preferences['documents_copy_email_attach_audit'] != false &&
+                      (@email_config.nil? || @email_config.value['attach_audit_log'] != false)
     )
 
-    @subject = @submitter.template.preferences['documents_copy_email_subject'].presence
+    @subject = template_preferences['documents_copy_email_subject'].presence
     @subject ||= @email_config.value['subject'] if @email_config
 
-    @body = @submitter.template.preferences['documents_copy_email_body'].presence
+    @body = template_preferences['documents_copy_email_body'].presence
     @body ||= @email_config.value['body'] if @email_config
 
     assign_message_metadata('submitter_documents_copy', @submitter)
@@ -130,11 +134,7 @@ class SubmitterMailer < ApplicationMailer
 
     I18n.with_locale(@current_account.locale) do
       subject =
-        if @subject.present?
-          ReplaceEmailVariables.call(@subject, submitter:)
-        else
-          I18n.t(:your_document_copy)
-        end
+        @subject.present? ? ReplaceEmailVariables.call(@subject, submitter:) : I18n.t(:your_document_copy)
 
       mail(from: from_address_for_submitter(submitter),
            to: to || @submitter.friendly_name,
@@ -147,7 +147,7 @@ class SubmitterMailer < ApplicationMailer
 
   def build_submitter_reply_to(submitter, email_config: nil, documents_copy_email: nil)
     reply_to = submitter.preferences['reply_to'].presence
-    reply_to ||= submitter.template.preferences['documents_copy_email_reply_to'].presence if documents_copy_email
+    reply_to ||= submitter.template&.preferences&.dig('documents_copy_email_reply_to').presence if documents_copy_email
     reply_to ||= email_config.value['reply_to'].presence if email_config
 
     if reply_to.blank? && (submitter.submission.created_by_user || submitter.template.author)&.email != submitter.email
@@ -212,7 +212,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def build_submitter_preferences_index(submitter)
-    submitter.template.preferences['submitters'].to_a.index_by { |e| e['uuid'] }
+    submitter.template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] }
   end
 
   def add_attachments_with_size_limit(submitter, storage_attachments, current_size, filename_format = nil)

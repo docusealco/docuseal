@@ -7,6 +7,7 @@
 #  id                  :bigint           not null, primary key
 #  archived_at         :datetime
 #  expire_at           :datetime
+#  name                :text
 #  preferences         :text             not null
 #  slug                :string           not null
 #  source              :text             not null
@@ -18,7 +19,7 @@
 #  updated_at          :datetime         not null
 #  account_id          :bigint           not null
 #  created_by_user_id  :bigint
-#  template_id         :bigint           not null
+#  template_id         :bigint
 #
 # Indexes
 #
@@ -33,7 +34,7 @@
 #  fk_rails_...  (template_id => templates.id)
 #
 class Submission < ApplicationRecord
-  belongs_to :template
+  belongs_to :template, optional: true
   belongs_to :account
   belongs_to :created_by_user, class_name: 'User', optional: true
 
@@ -56,6 +57,7 @@ class Submission < ApplicationRecord
   has_one_attached :combined_document
 
   has_many_attached :preview_documents
+  has_many_attached :documents
 
   has_many :template_accesses, primary_key: :template_id, foreign_key: :template_id, dependent: nil, inverse_of: false
 
@@ -94,6 +96,14 @@ class Submission < ApplicationRecord
 
   def expired?
     expire_at && expire_at <= Time.current
+  end
+
+  def schema_documents
+    if template_id?
+      template_schema_documents
+    else
+      documents_attachments
+    end
   end
 
   def fields_uuid_index

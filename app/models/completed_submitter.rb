@@ -13,7 +13,7 @@
 #  account_id    :bigint           not null
 #  submission_id :bigint           not null
 #  submitter_id  :bigint           not null
-#  template_id   :bigint           not null
+#  template_id   :bigint
 #
 # Indexes
 #
@@ -24,7 +24,7 @@ class CompletedSubmitter < ApplicationRecord
   belongs_to :submitter
   belongs_to :submission
   belongs_to :account
-  belongs_to :template
+  belongs_to :template, optional: true
 
   has_many :completed_documents, dependent: :destroy,
                                  primary_key: :submitter_id,

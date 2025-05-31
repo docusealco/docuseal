@@ -4,7 +4,7 @@ class SubmissionsArchivedController < ApplicationController
   load_and_authorize_resource :submission, parent: false
 
   def index
-    @submissions = @submissions.joins(:template)
+    @submissions = @submissions.left_joins(:template)
     @submissions = @submissions.where.not(archived_at: nil)
                                .or(@submissions.where.not(templates: { archived_at: nil }))
                                .preload(:template_accesses, :created_by_user, template: :author)
