@@ -28,7 +28,7 @@ class StartFormController < ApplicationController
   end
 
   def update
-    return redirect_to start_form_path(@template.slug) if @template.archived_at?
+    return redirect_to start_form_path(@template.slug) if @template.archived_at? || !@template.shared_link?
 
     @submitter = find_or_initialize_submitter(@template, submitter_params)
 
