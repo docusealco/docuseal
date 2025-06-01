@@ -18,11 +18,11 @@ class StartFormController < ApplicationController
                             .submitters.new(account_id: @template.account_id,
                                             uuid: (filter_undefined_submitters(@template).first ||
                                                   @template.submitters.first)['uuid'])
-
-      render :show
-    elsif current_user && current_ability.can?(:read, @template)
-      render :private
     else
+      Rollbar.warning("Not shared template: #{@template.id}") if defined?(Rollbar)
+
+      return render :private if current_user && current_ability.can?(:read, @template)
+
       raise ActionController::RoutingError, I18n.t('not_found')
     end
   end
