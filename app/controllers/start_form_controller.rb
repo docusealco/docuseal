@@ -19,8 +19,6 @@ class StartFormController < ApplicationController
                                             uuid: (filter_undefined_submitters(@template).first ||
                                                   @template.submitters.first)['uuid'])
 
-      @form_configs = Submitters::FormConfigs.call(@submitter) unless Docuseal.multitenant?
-
       render :show
     elsif current_user && current_ability.can?(:read, @template)
       render :private

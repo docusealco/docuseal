@@ -1,6 +1,1 @@
 <%= render 'shared/powered_by', with_counter: local_assigns[:with_counter], link_path: local_assigns[:link_path] %>
-<% if @form_configs && @form_configs[:policy_links].present? %>
-  <div class="max-w-md mx-auto flex flex-wrap gap-1 justify-center text-sm text-base-content/60 mt-2">
-    <%= auto_link(MarkdownToHtml.call(@form_configs[:policy_links])) %>
-  </div>
-<% end %>
