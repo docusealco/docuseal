@@ -132,6 +132,8 @@ Rails.application.routes.draw do
     get :completed
   end
 
+  resource :resubmit_form, controller: 'start_form', only: :update
+
   resources :submit_form, only: %i[], path: '' do
     get :success, on: :collection
   end
