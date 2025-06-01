@@ -46,7 +46,6 @@ class Template < ApplicationRecord
 
   attribute :preferences, :string, default: -> { {} }
   attribute :fields, :string, default: -> { [] }
-  attribute :shared_link, :boolean, default: true
   attribute :schema, :string, default: -> { [] }
   attribute :submitters, :string, default: -> { [{ name: I18n.t(:first_party), uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }

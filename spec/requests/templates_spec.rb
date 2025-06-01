@@ -109,23 +109,23 @@ describe 'Templates API' do
       }.to_json))
     end
 
-    # it "enables the template's shared link" do
-    #   expect do
-    #     put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
-    #       shared_link: true
-    #     }.to_json
-    #   end.to change { template.reload.shared_link }.from(false).to(true)
-    # end
-    #
-    # it "disables the template's shared link" do
-    #   template.update(shared_link: true)
-    #
-    #   expect do
-    #     put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
-    #       shared_link: false
-    #     }.to_json
-    #   end.to change { template.reload.shared_link }.from(true).to(false)
-    # end
+    it "enables the template's shared link" do
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: true
+        }.to_json
+      end.to change { template.reload.shared_link }.from(false).to(true)
+    end
+
+    it "disables the template's shared link" do
+      template.update(shared_link: true)
+
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: false
+        }.to_json
+      end.to change { template.reload.shared_link }.from(true).to(false)
+    end
   end
 
   describe 'DELETE /api/templates/:id' do
