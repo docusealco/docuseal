@@ -67,6 +67,8 @@ class StartFormController < ApplicationController
   end
 
   def completed
+    return redirect_to start_form_path(@template.slug) if !@template.shared_link? || @template.archived_at?
+
     @submitter = Submitter.where(submission: @template.submissions)
                           .where.not(completed_at: nil)
                           .find_by!(email: params[:email])
