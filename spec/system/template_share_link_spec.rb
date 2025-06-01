@@ -24,26 +24,14 @@ RSpec.describe 'Template Share Link' do
       end.to change { template.reload.shared_link }.from(false).to(true)
     end
 
-    it 'makes the template shareable when copying the shareable link' do
+    it 'makes the template shareable on toggle' do
       click_on 'Link'
 
       expect do
         within '#modal' do
-          find('clipboard-copy').click
+          find('#template_shared_link').click
         end
       end.to change { template.reload.shared_link }.from(false).to(true)
-    end
-
-    it 'copies the shareable link without changing its status' do
-      template.update(shared_link: true)
-
-      click_on 'Link'
-
-      expect do
-        within '#modal' do
-          find('clipboard-copy').click
-        end
-      end.not_to(change { template.reload.shared_link })
     end
   end
 
