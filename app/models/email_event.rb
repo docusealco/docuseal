@@ -18,10 +18,10 @@
 #
 # Indexes
 #
-#  index_email_events_on_account_id  (account_id)
-#  index_email_events_on_email       (email)
-#  index_email_events_on_emailable   (emailable_type,emailable_id)
-#  index_email_events_on_message_id  (message_id)
+#  index_email_events_on_account_id_and_event_datetime  (account_id,event_datetime)
+#  index_email_events_on_email                          (email)
+#  index_email_events_on_emailable                      (emailable_type,emailable_id)
+#  index_email_events_on_message_id                     (message_id)
 #
 # Foreign Keys
 #

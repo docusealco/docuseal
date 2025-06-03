@@ -12,7 +12,7 @@
       <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
     <% end %>
     <div class="flex items-center flex-grow min-w-0">
-      <% if has_archived || @pagy.count > 0 || @template_folders.present? %>
+      <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <div class="mr-2">
           <%= render 'dashboard/toggle_view', selected: 'templates' %>
         </div>
@@ -45,7 +45,7 @@
   <% end %>
   <% templates_order_select_html = capture do %>
     <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render('shared/templates_order_select', with_recently_used: @pagy.count < 10_000) %>
+      <%= render('shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000) %>
     <% end %>
   <% end %>
   <% if @template_folders.present? %>
@@ -84,9 +84,9 @@
 <% if show_dropzone %>
   <%= render 'templates/dropzone' %>
 <% end %>
-<% if @templates.present? || params[:q].blank? %>
+<% if @templates.present? || @template_folders.present? || params[:q].blank? %>
   <% if @pagy.pages > 1 %>
-    <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html, right_additional_html: templates_order_select_html %>
+    <%= render 'shared/pagination', pagy: @pagy, items_name: @templates.present? ? 'templates' : 'template_folders', left_additional_html: view_archived_html, right_additional_html: templates_order_select_html %>
   <% else %>
     <div class="mt-2">
       <%= view_archived_html %>

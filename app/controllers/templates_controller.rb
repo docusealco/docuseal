@@ -21,7 +21,7 @@ class TemplatesController < ApplicationController
                     submissions.order(id: :desc)
                   end
 
-    @pagy, @submissions = pagy(submissions.preload(:template_accesses, submitters: :start_form_submission_events))
+    @pagy, @submissions = pagy_auto(submissions.preload(:template_accesses, submitters: :start_form_submission_events))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

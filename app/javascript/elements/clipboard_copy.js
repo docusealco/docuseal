@@ -3,8 +3,6 @@ export default class extends HTMLElement {
     this.clearChecked()
 
     this.addEventListener('click', (e) => {
-      e.stopPropagation()
-
       const text = this.dataset.text || this.innerText.trim()
 
       if (navigator.clipboard) {

@@ -24,6 +24,7 @@ import SubmitForm from './elements/submit_form'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleOnSubmit from './elements/toggle_on_submit'
+import CheckOnClick from './elements/check_on_click'
 import PasswordInput from './elements/password_input'
 import SearchInput from './elements/search_input'
 import ToggleAttribute from './elements/toggle_attribute'
@@ -103,6 +104,7 @@ safeRegisterElement('set-date-button', SetDateButton)
 safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
 safeRegisterElement('app-tour', AppTour)
 safeRegisterElement('dashboard-dropzone', DashboardDropzone)
+safeRegisterElement('check-on-click', CheckOnClick)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

@@ -79,13 +79,52 @@
           name="buttons"
         />
         <template v-else>
+          <form
+            v-if="withSignYourselfButton && template.submitters.length < 2"
+            target="_blank"
+            data-turbo="false"
+            class="inline"
+            method="post"
+            :action="`/d/${template.slug}`"
+            @submit="maybeShowErrorTemplateAlert"
+          >
+            <input
+              type="hidden"
+              name="_method"
+              value="put"
+              autocomplete="off"
+            >
+            <input
+              type="hidden"
+              name="authenticity_token"
+              :value="authenticityToken"
+              autocomplete="off"
+            >
+            <input
+              type="hidden"
+              name="selfsign"
+              value="true"
+              autocomplete="off"
+            >
+            <button
+              class="btn btn-primary btn-ghost text-base hidden md:flex"
+              type="submit"
+            >
+              <IconWritingSign
+                width="22"
+                class="inline"
+              />
+              <span class="hidden md:inline">
+                {{ t('sign_yourself') }}
+              </span>
+            </button>
+          </form>
           <a
-            v-if="withSignYourselfButton"
+            v-else-if="withSignYourselfButton"
             id="sign_yourself_button"
-            :href="template.submitters.length > 1 ? `/templates/${template.id}/submissions/new?selfsign=true` : `/d/${template.slug}`"
+            :href="`/templates/${template.id}/submissions/new?selfsign=true`"
             class="btn btn-primary btn-ghost text-base hidden md:flex"
-            :target="template.submitters.length > 1 ? '' : '_blank'"
-            :data-turbo-frame="template.submitters.length > 1 ? 'modal' : ''"
+            data-turbo-frame="modal"
             @click="maybeShowErrorTemplateAlert"
           >
             <IconWritingSign

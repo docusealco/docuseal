@@ -152,7 +152,8 @@ module Submissions
                   TESTING_FOOTER
                 end
               else
-                "#{I18n.t('document_id', locale: submitter.account.locale)}: #{document_id}"
+                "#{I18n.t('document_id',
+                          locale: submitter.metadata.fetch('lang', submitter.account.locale))}: #{document_id}"
               end
 
             text = HexaPDF::Layout::TextFragment.create(
@@ -181,6 +182,8 @@ module Submissions
       return pdfs_index if submitter.submission.template_fields.blank?
 
       with_headings = find_last_submitter(submitter.submission, submitter:).blank? if with_headings.nil?
+
+      locale = submitter.metadata.fetch('lang', account.locale)
 
       submitter.submission.template_fields.each do |field|
         next if field['type'] == 'heading' && !with_headings
@@ -258,7 +261,7 @@ module Submissions
             reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
 
             reason_string =
-              I18n.with_locale(submitter.account.locale) do
+              I18n.with_locale(locale) do
                 "#{reason_value ? "#{I18n.t('reason')}: " : ''}#{reason_value || I18n.t('digitally_signed_by')} " \
                   "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
                   "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone), format: :long)} " \
@@ -442,7 +445,7 @@ module Submissions
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
               option_name = option['value'].presence
-              option_name ||= "#{I18n.t('option', locale: account.locale)} #{field['options'].index(option) + 1}"
+              option_name ||= "#{I18n.t('option', locale: locale)} #{field['options'].index(option) + 1}"
 
               value = Array.wrap(value).include?(option_name)
             end
@@ -509,7 +512,7 @@ module Submissions
             end
           else
             if field['type'] == 'date'
-              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale)
             end
 
             value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'

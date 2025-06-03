@@ -5,7 +5,9 @@ RSpec.describe 'Signing Form' do
   let(:author) { create(:user, account:) }
 
   context 'when the template form link is opened' do
-    let(:template) { create(:template, account:, author:, except_field_types: %w[phone payment stamp]) }
+    let(:template) do
+      create(:template, shared_link: true, account:, author:, except_field_types: %w[phone payment stamp])
+    end
 
     before do
       visit start_form_path(slug: template.slug)
@@ -811,7 +813,9 @@ RSpec.describe 'Signing Form' do
   end
 
   context 'when the template requires multiple submitters' do
-    let(:template) { create(:template, submitter_count: 2, account:, author:, only_field_types: %w[text]) }
+    let(:template) do
+      create(:template, shared_link: true, submitter_count: 2, account:, author:, only_field_types: %w[text])
+    end
 
     context 'when default signer details are not defined' do
       it 'shows an explanation error message if a logged-in user associated with the template account opens the link' do

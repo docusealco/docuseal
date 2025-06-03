@@ -83,13 +83,15 @@ describe 'Templates API' do
   end
 
   describe 'PUT /api/templates' do
-    it 'update a template' do
-      template = create(:template, account:,
-                                   author:,
-                                   folder:,
-                                   external_id: SecureRandom.base58(10),
-                                   preferences: template_preferences)
+    let(:template) do
+      create(:template, account:,
+                        author:,
+                        folder:,
+                        external_id: SecureRandom.base58(10),
+                        preferences: template_preferences)
+    end
 
+    it 'updates a template' do
       put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
         name: 'Updated Template Name',
         external_id: '123456'
@@ -105,6 +107,24 @@ describe 'Templates API' do
         id: template.id,
         updated_at: template.updated_at
       }.to_json))
+    end
+
+    it "enables the template's shared link" do
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: true
+        }.to_json
+      end.to change { template.reload.shared_link }.from(false).to(true)
+    end
+
+    it "disables the template's shared link" do
+      template.update(shared_link: true)
+
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: false
+        }.to_json
+      end.to change { template.reload.shared_link }.from(true).to(false)
     end
   end
 
@@ -206,6 +226,7 @@ describe 'Templates API' do
           name: 'sample-document'
         }
       ],
+      shared_link: template.shared_link,
       author_id: author.id,
       archived_at: nil,
       created_at: template.created_at,

@@ -17,7 +17,7 @@ class TemplatesDashboardController < ApplicationController
 
     @pagy, @template_folders = pagy(
       @template_folders,
-      items: FOLDERS_PER_PAGE,
+      limit: FOLDERS_PER_PAGE,
       page: @template_folders.count > SHOW_TEMPLATES_FOLDERS_THRESHOLD ? params[:page] : 1
     )
 
@@ -35,7 +35,7 @@ class TemplatesDashboardController < ApplicationController
           (@template_folders.size < 7 ? 9 : 6)
         end
 
-      @pagy, @templates = pagy(@templates, limit:)
+      @pagy, @templates = pagy_auto(@templates, limit:)
     end
   end
 

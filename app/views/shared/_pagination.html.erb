@@ -2,7 +2,11 @@
 <% if @pagy.pages > 1 %>
   <div class="flex my-6 justify-center md:justify-between">
     <div class="hidden md:block text-sm">
-      <%= @pagy.from %>-<%= local_assigns.fetch(:to, @pagy.to) %> of <%= local_assigns.fetch(:count, @pagy.count) %> <%= local_assigns[:items_name] || 'items' %>
+      <% if @pagy.count.nil? %>
+        <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_without_total", from: local_assigns.fetch(:from, @pagy.from), to: local_assigns.fetch(:to, @pagy.to)) %>
+      <% else %>
+        <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_with_total", from: local_assigns.fetch(:from, @pagy.from), to: local_assigns.fetch(:to, @pagy.to), count: local_assigns.fetch(:count, @pagy.count)) %>
+      <% end %>
       <%= local_assigns[:left_additional_html] %>
     </div>
     <div class="flex items-center space-x-1.5">

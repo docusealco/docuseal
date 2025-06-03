@@ -51,6 +51,16 @@ RSpec.describe 'App Setup' do
   end
 
   context 'when invalid information' do
+    it 'does not setup the app if the email is invalid' do
+      fill_setup_form(form_data.merge(email: 'bob@example-com'))
+
+      expect do
+        click_button 'Submit'
+      end.not_to(change(User, :count))
+
+      expect(page).to have_content('Email is invalid')
+    end
+
     it 'does not setup the app if the password is too short' do
       fill_setup_form(form_data.merge(password: 'pass'))
 

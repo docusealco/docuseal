@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create], controller: 'templates_preferences'
+    resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resources :recipients, only: %i[create], controller: 'templates_recipients'
     resources :submissions_export, only: %i[index new]
   end
@@ -130,6 +131,8 @@ Rails.application.routes.draw do
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
   end
+
+  resource :resubmit_form, controller: 'start_form', only: :update
 
   resources :submit_form, only: %i[], path: '' do
     get :success, on: :collection

@@ -1,0 +1,5 @@
+<% if configs = account.account_configs.find_by(key: AccountConfig::POLICY_LINKS_KEY) %>
+  <div class="max-w-md mx-auto flex flex-wrap gap-1 justify-center text-sm text-base-content/60 mt-2">
+    <%= auto_link(MarkdownToHtml.call(configs.value)) %>
+  </div>
+<% end %>

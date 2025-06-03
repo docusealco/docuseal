@@ -92,6 +92,23 @@ RSpec.describe 'Team Settings' do
       end
     end
 
+    it 'does not allow to create a new user with an invalid email' do
+      click_link 'New User'
+
+      within '#modal' do
+        fill_in 'First name', with: 'Joseph'
+        fill_in 'Last name', with: 'Smith'
+        fill_in 'Email', with: 'joseph.smith@gmail'
+        fill_in 'Password', with: 'password'
+
+        expect do
+          click_button 'Submit'
+        end.not_to change(User, :count)
+
+        expect(page).to have_content('Email is invalid')
+      end
+    end
+
     it 'updates a user' do
       first(:link, 'Edit').click
 

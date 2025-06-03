@@ -6,7 +6,7 @@ module Templates
       only: %w[
         id archived_at fields name preferences schema
         slug source submitters created_at updated_at
-        author_id external_id folder_id
+        author_id external_id folder_id shared_link
       ],
       methods: %i[application_key folder_name],
       include: { author: { only: %i[id email first_name last_name] } }

@@ -745,6 +745,10 @@ en: &en
   three_months: 3 months
   eu_data_residency: EU data residency
   please_enter_your_email_address_associated_with_the_completed_submission: Please enter your email address associated with the completed submission.
+  esignature_disclosure: eSignature Disclosure
+  share_link: Share link
+  enable_shared_link: Enable shared link
+  share_link_is_currently_disabled: Share link is currently disabled
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -829,6 +833,22 @@ en: &en
     scopes:
       write: Update your data
       read: Read your data
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} of %{count} submissions"
+      range_without_total: "%{from}-%{to} submissions"
+    templates:
+      range_with_total: "%{from}-%{to} of %{count} templates"
+      range_without_total: "%{from}-%{to} templates"
+    template_folders:
+      range_with_total: "%{from}-%{to} of %{count} folders"
+      range_without_total: "%{from}-%{to} folders"
+    users:
+      range_with_total: "%{from}-%{to} of %{count} users"
+      range_without_total: "%{from}-%{to} users"
+    items:
+      range_with_total: "%{from}-%{to} of %{count} items"
+      range_without_total: "%{from}-%{to} items"
 
 es: &es
   stripe_integration: Integración con Stripe
@@ -1557,6 +1577,10 @@ es: &es
   three_months: 3 meses
   eu_data_residency: Datos alojados UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, introduce tu dirección de correo electrónico asociada con el envío completado.
+  esignature_disclosure: Uso de firma electrónica
+  share_link: Enlace para compartir
+  enable_shared_link: Habilitar enlace compartido
+  share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1641,6 +1665,22 @@ es: &es
     scopes:
       write: Actualizar tus datos
       read: Leer tus datos
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} de %{count} envíos"
+      range_without_total: "%{from}-%{to} envíos"
+    templates:
+      range_with_total: "%{from}-%{to} de %{count} plantillas"
+      range_without_total: "%{from}-%{to} plantillas"
+    template_folders:
+      range_with_total: "%{from}-%{to} de %{count} carpetas"
+      range_without_total: "%{from}-%{to} carpetas"
+    users:
+      range_with_total: "%{from}-%{to} de %{count} usuarios"
+      range_without_total: "%{from}-%{to} usuarios"
+    items:
+      range_with_total: "%{from}-%{to} de %{count} elementos"
+      range_without_total: "%{from}-%{to} elementos"
 
 it: &it
   stripe_integration: Integrazione Stripe
@@ -2367,6 +2407,10 @@ it: &it
   three_months: 3 mesi
   eu_data_residency: "Dati nell'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Inserisci il tuo indirizzo email associato all'invio completato."
+  esignature_disclosure: Uso della firma elettronica
+  share_link: Link di condivisione
+  enable_shared_link: Abilita link condiviso
+  share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2451,6 +2495,22 @@ it: &it
     scopes:
       write: Aggiorna i tuoi dati
       read: Leggi i tuoi dati
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} di %{count} invii"
+      range_without_total: "%{from}-%{to} invii"
+    templates:
+      range_with_total: "%{from}-%{to} di %{count} modelli"
+      range_without_total: "%{from}-%{to} modelli"
+    template_folders:
+      range_with_total: "%{from}-%{to} di %{count} cartelle"
+      range_without_total: "%{from}-%{to} cartelle"
+    users:
+      range_with_total: "%{from}-%{to} di %{count} utenti"
+      range_without_total: "%{from}-%{to} utenti"
+    items:
+      range_with_total: "%{from}-%{to} di %{count} elementi"
+      range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
   stripe_integration: Intégration Stripe
@@ -3180,6 +3240,10 @@ fr: &fr
   three_months: 3 mois
   eu_data_residency: "Données dans l'UE"
   please_enter_your_email_address_associated_with_the_completed_submission: "Veuillez saisir l'adresse e-mail associée à l'envoi complété."
+  esignature_disclosure: Divulgation de Signature Électronique
+  share_link: Lien de partage
+  enable_shared_link: Activer le lien de partage
+  share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3264,6 +3328,22 @@ fr: &fr
     scopes:
       write: Mettre à jour vos données
       read: Lire vos données
+  pagination:
+    submissions:
+      range_with_total: "%{from} à %{to} sur %{count} soumissions"
+      range_without_total: "%{from} à %{to} soumissions"
+    templates:
+      range_with_total: "%{from} à %{to} sur %{count} modèles"
+      range_without_total: "%{from} à %{to} modèles"
+    template_folders:
+      range_with_total: "%{from} à %{to} sur %{count} dossiers"
+      range_without_total: "%{from} à %{to} dossiers"
+    users:
+      range_with_total: "%{from} à %{to} sur %{count} utilisateurs"
+      range_without_total: "%{from} à %{to} utilisateurs"
+    items:
+      range_with_total: "%{from} à %{to} sur %{count} éléments"
+      range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
   stripe_integration: Integração com Stripe
@@ -3992,6 +4072,10 @@ pt: &pt
   three_months: 3 meses
   eu_data_residency: Dados na UE
   please_enter_your_email_address_associated_with_the_completed_submission: Por favor, insira seu e-mail associado ao envio concluído.
+  esignature_disclosure: Uso de assinatura eletrônica
+  share_link: Link de compartilhamento
+  enable_shared_link: Ativar link compartilhado
+  share_link_is_currently_disabled: O link compartilhado está desativado no momento
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4036,8 +4120,8 @@ pt: &pt
     start: Iniciar
     previous: Anterior
     next: Próximo
-    template_and_submissions: 'Modelos e Envios'
-    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' para criar modelos reutilizáveis de documentos ou 'Envios' para assinar documentos individuais ou verificar o status de cada solicitação de assinatura."
+    template_and_submissions: 'Modelos e Submissões'
+    template_and_submissions_description: "Você pode selecionar a visualização que melhor se adapta ao seu fluxo de trabalho. Escolha a visualização 'Modelos' para criar modelos reutilizáveis de documentos ou 'Submissões' para assinar documentos individuais ou verificar o status de cada solicitação de assinatura."
     upload_a_pdf_file: 'Enviar um arquivo PDF'
     upload_a_pdf_file_description: 'Envie um documento PDF para criar um modelo de formulário de assinatura.'
     select_a_signer_party: 'Selecionar parte assinante'
@@ -4077,6 +4161,22 @@ pt: &pt
     scopes:
       write: Atualizar seus dados
       read: Ler seus dados
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} de %{count} submissões"
+      range_without_total: "%{from}-%{to} submissões"
+    templates:
+      range_with_total: "%{from}-%{to} de %{count} modelos"
+      range_without_total: "%{from}-%{to} modelos"
+    template_folders:
+      range_with_total: "%{from}-%{to} de %{count} pastas"
+      range_without_total: "%{from}-%{to} pastas"
+    users:
+      range_with_total: "%{from}-%{to} de %{count} usuários"
+      range_without_total: "%{from}-%{to} usuários"
+    items:
+      range_with_total: "%{from}-%{to} de %{count} itens"
+      range_without_total: "%{from}-%{to} itens"
 
 de: &de
   stripe_integration: Stripe-Integration
@@ -4805,6 +4905,10 @@ de: &de
   three_months: 3 Monate
   eu_data_residency: EU-Datenspeicher
   please_enter_your_email_address_associated_with_the_completed_submission: Bitte gib deine E-Mail-Adresse ein, die mit der abgeschlossenen Übermittlung verknüpft ist.
+  esignature_disclosure: Nutzung der E-Signatur
+  share_link: Freigabelink
+  enable_shared_link: 'Freigabelink aktivieren'
+  share_link_is_currently_disabled: 'Freigabelink ist derzeit deaktiviert'
   submission_sources:
     api: API
     bulk: Massenversand
@@ -4889,6 +4993,22 @@ de: &de
     scopes:
       write: Aktualisiere deine Daten
       read: Lese deine Daten
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} von %{count} Einreichungen"
+      range_without_total: "%{from}-%{to} Einreichungen"
+    templates:
+      range_with_total: "%{from}-%{to} von %{count} Vorlagen"
+      range_without_total: "%{from}-%{to} Vorlagen"
+    template_folders:
+      range_with_total: "%{from}-%{to} von %{count} Ordnern"
+      range_without_total: "%{from}-%{to} Ordner"
+    users:
+      range_with_total: "%{from}-%{to} von %{count} Benutzern"
+      range_without_total: "%{from}-%{to} Benutzer"
+    items:
+      range_with_total: "%{from}-%{to} von %{count} Elementen"
+      range_without_total: "%{from}-%{to} Elemente"
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
@@ -4958,6 +5078,8 @@ pl:
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
   eu_data_residency: Dane w UE
   please_enter_your_email_address_associated_with_the_completed_submission: Wprowadź adres e-mail powiązany z ukończonym zgłoszeniem.
+  privacy_policy: Polityka Prywatności
+  esignature_disclosure: Użycie e-podpisu
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5027,6 +5149,8 @@ uk:
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
   eu_data_residency: 'Зберігання даних в ЄС'
   please_enter_your_email_address_associated_with_the_completed_submission: "Введіть адресу електронної пошти, пов'язану із завершеним поданням."
+  privacy_policy: Політика конфіденційності
+  esignature_disclosure: Використання e-підпису
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5096,6 +5220,8 @@ cs:
   open_source_documents_software: 'open source software pro dokumenty'
   eu_data_residency: 'Uložení dat v EU'
   please_enter_your_email_address_associated_with_the_completed_submission: Zadejte e-mailovou adresu spojenou s dokončeným odesláním.
+  privacy_policy: Zásady Ochrany Osobních Údajů
+  esignature_disclosure: Použití e-podpisu
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5165,6 +5291,8 @@ he:
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
   eu_data_residency: 'נתונים באיחוד האירופי	'
   please_enter_your_email_address_associated_with_the_completed_submission: 'אנא הזן את כתובת הדוא"ל המשויכת למשלוח שהושלם.'
+  privacy_policy: 'מדיניות פרטיות'
+  esignature_disclosure: 'גילוי חתימה אלקטרונית'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5234,6 +5362,8 @@ nl:
   open_source_documents_software: 'open source documenten software'
   eu_data_residency: Gegevens EU
   please_enter_your_email_address_associated_with_the_completed_submission: Voer het e-mailadres in dat is gekoppeld aan de voltooide indiening.
+  privacy_policy: Privacybeleid
+  esignature_disclosure: Gebruik van e-handtekening
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5303,6 +5433,8 @@ ar:
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
   eu_data_residency: 'بيانات في الاتحاد الأوروبي'
   please_enter_your_email_address_associated_with_the_completed_submission: 'يرجى إدخال عنوان البريد الإلكتروني المرتبط بالإرسال المكتمل.'
+  privacy_policy: 'سياسة الخصوصية'
+  esignature_disclosure: 'إفصاح التوقيع الإلكتروني'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5372,6 +5504,8 @@ ko:
   open_source_documents_software: '오픈소스 문서 소프트웨어'
   eu_data_residency: 'EU 데이터 보관'
   please_enter_your_email_address_associated_with_the_completed_submission: '완료된 제출과 연결된 이메일 주소를 입력하세요.'
+  privacy_policy: 개인정보 처리방침
+  esignature_disclosure: 전자서명 공개
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5441,6 +5575,8 @@ ja:
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
   eu_data_residency: 'EU データ居住'
   please_enter_your_email_address_associated_with_the_completed_submission: '完了した提出に関連付けられたメールアドレスを入力してください。'
+  privacy_policy: プライバシーポリシー
+  esignature_disclosure: 電子署名に関する開示
 
 en-US:
   <<: *en
