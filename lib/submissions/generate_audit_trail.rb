@@ -31,7 +31,9 @@ module Submissions
     def call(submission)
       account = submission.account
 
-      I18n.with_locale(account.locale) do
+      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
+
+      I18n.with_locale(last_submitter.metadata.fetch('lang', account.locale)) do
         document = build_audit_trail(submission)
 
         pkcs = Accounts.load_signing_pkcs(account)
@@ -40,8 +42,6 @@ module Submissions
         io = StringIO.new
 
         document.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
-
-        last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
         if pkcs
           sign_params = {
