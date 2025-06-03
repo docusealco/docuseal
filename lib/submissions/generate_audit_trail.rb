@@ -322,7 +322,7 @@ module Submissions
               resized_image = image.resize([scale, 1].min)
               io = StringIO.new(resized_image.write_to_buffer('.png'))
 
-              width = field['type'] == 'initials' ? 100 : 200
+              width = field['type'] == 'initials' ? 50 : 200
               height = resized_image.height * (width.to_f / resized_image.width)
 
               if height > MAX_IMAGE_HEIGHT
