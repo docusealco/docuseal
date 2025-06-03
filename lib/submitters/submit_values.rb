@@ -297,13 +297,13 @@ module Submitters
         option = field['options'].find { |o| o['uuid'] == condition['value'] }
         values = Array.wrap(submitter_values[condition['field_uuid']])
 
-        values.include?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option)}")
+        values.include?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option) + 1}")
       when 'not_equal', 'does_not_contain'
         field = fields_uuid_index[condition['field_uuid']]
         option = field['options'].find { |o| o['uuid'] == condition['value'] }
         values = Array.wrap(submitter_values[condition['field_uuid']])
 
-        values.exclude?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option)}")
+        values.exclude?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option) + 1}")
       else
         true
       end
