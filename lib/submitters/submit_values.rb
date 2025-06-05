@@ -48,6 +48,8 @@ module Submitters
         submitter.save!
       end
 
+      SearchEntries.enqueue_reindex(submitter) if submitter.completed_at?
+
       submitter
     end
 

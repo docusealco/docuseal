@@ -10,7 +10,7 @@ module Api
     end
 
     def index
-      submissions = Submissions.search(@submissions, params[:q])
+      submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
@@ -79,6 +79,8 @@ module Api
           ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'send_invitation_email' => false)
         end
       end
+
+      SearchEntries.enqueue_reindex(submissions)
 
       render json: build_create_json(submissions)
     rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,

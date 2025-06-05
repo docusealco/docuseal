@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_31_085328) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_03_105556) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
   enable_extension "plpgsql"
 
   create_table "access_tokens", force: :cascade do |t|
@@ -254,6 +255,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_31_085328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "search_entries", force: :cascade do |t|
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "account_id", null: false
+    t.tsvector "tsvector", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_template", where: "((record_type)::text = 'Template'::text)", using: :gin
+    t.index ["record_id", "record_type"], name: "index_search_entries_on_record_id_and_record_type", unique: true
   end
 
   create_table "submission_events", force: :cascade do |t|

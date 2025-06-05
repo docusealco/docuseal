@@ -26,7 +26,7 @@
   </div>
 </div>
 <% view_archived_html = capture do %>
-  <% if current_account.submissions.where.not(archived_at: nil).exists? %>
+  <% if can?(:manage, :countless) || current_account.submissions.where.not(archived_at: nil).exists? %>
     <div>
       <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>

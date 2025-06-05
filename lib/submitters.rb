@@ -4,9 +4,71 @@ module Submitters
   TRUE_VALUES = ['1', 'true', true].freeze
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
+  FIELD_NAME_WEIGHTS = {
+    'email' => 'A',
+    'phone' => 'B',
+    'name' => 'C',
+    'values' => 'D'
+  }.freeze
+
   module_function
 
-  def search(submitters, keyword)
+  def search(current_user, submitters, keyword)
+    if Docuseal.fulltext_search?(current_user)
+      fulltext_search(current_user, submitters, keyword)
+    else
+      plain_search(submitters, keyword)
+    end
+  end
+
+  def fulltext_search(current_user, submitters, keyword)
+    return submitters if keyword.blank?
+
+    submitters.where(
+      id: SearchEntry.where(record_type: 'Submitter')
+                     .where(account_id: current_user.account_id)
+                     .where(*SearchEntries.build_tsquery(keyword))
+                     .select(:record_id)
+    )
+  end
+
+  def fulltext_search_field(current_user, submitters, keyword, field_name)
+    return submitters if keyword.blank?
+
+    weight = FIELD_NAME_WEIGHTS[field_name]
+
+    return submitters if weight.blank?
+
+    query =
+      if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
+        number = keyword.gsub(/\D/, '')
+
+        ["tsvector @@ ((quote_literal(?) || ':*#{weight}')::tsquery || (quote_literal(?) || ':*#{weight}')::tsquery)",
+         number, number.length > 1 ? number.delete_prefix('0') : number]
+      elsif keyword.match?(/[^\p{L}\d&@._\-+]/)
+        terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
+
+        if terms.size > 1
+          SearchEntries.build_weights_tsquery(terms, weight)
+        else
+          [
+            SearchEntries::FIELD_SEARCH_QUERY_SQL,
+            { keyword: TextUtils.transliterate(keyword.downcase).squish, weight: }
+          ]
+        end
+      else
+        [SearchEntries::FIELD_SEARCH_QUERY_SQL, { keyword: TextUtils.transliterate(keyword.downcase).squish, weight: }]
+      end
+
+    submitters.where(
+      id: SearchEntry.where(record_type: 'Submitter')
+                     .where(account_id: current_user.account_id)
+                     .where(*query)
+                     .select(:record_id)
+    )
+  end
+
+  def plain_search(submitters, keyword)
     return submitters if keyword.blank?
 
     term = "%#{keyword.downcase}%"

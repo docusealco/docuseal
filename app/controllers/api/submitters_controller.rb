@@ -5,7 +5,7 @@ module Api
     load_and_authorize_resource :submitter
 
     def index
-      submitters = Submitters.search(@submitters, params[:q])
+      submitters = Submitters.search(current_user, @submitters, params[:q])
 
       submitters = filter_submitters(submitters, params)
 
@@ -64,6 +64,8 @@ module Api
       elsif normalized_params[:send_email] || normalized_params[:send_sms]
         Submitters.send_signature_requests([@submitter])
       end
+
+      SearchEntries.enqueue_reindex(@submitter)
 
       render json: Submitters::SerializeForApi.call(@submitter, with_template: false,
                                                                 with_urls: true,

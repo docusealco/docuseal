@@ -8,7 +8,7 @@ class TemplatesController < ApplicationController
   def show
     submissions = @template.submissions.accessible_by(current_ability)
     submissions = submissions.active if @template.archived_at.blank?
-    submissions = Submissions.search(submissions, params[:q], search_values: true)
+    submissions = Submissions.search(current_user, submissions, params[:q], search_values: true)
     submissions = Submissions::Filter.call(submissions, current_user, params.except(:status))
 
     @base_submissions = submissions
@@ -72,6 +72,8 @@ class TemplatesController < ApplicationController
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
+      SearchEntries.enqueue_reindex(@template)
+
       enqueue_template_created_webhooks(@template)
 
       maybe_redirect_to_template(@template)
@@ -81,7 +83,13 @@ class TemplatesController < ApplicationController
   end
 
   def update
-    @template.update!(template_params)
+    @template.assign_attributes(template_params)
+
+    is_name_changed = @template.name_changed?
+
+    @template.save!
+
+    SearchEntries.enqueue_reindex(@template) if is_name_changed
 
     enqueue_template_updated_webhooks(@template)
 

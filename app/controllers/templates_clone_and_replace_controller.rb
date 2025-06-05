@@ -22,6 +22,8 @@ class TemplatesCloneAndReplaceController < ApplicationController
     Templates::CloneAttachments.call(template: cloned_template, original_template: @template,
                                      excluded_attachment_uuids: documents.map(&:uuid))
 
+    SearchEntries.enqueue_reindex(cloned_template)
+
     respond_to do |f|
       f.html { redirect_to edit_template_path(cloned_template) }
       f.json { render json: { id: cloned_template.id } }

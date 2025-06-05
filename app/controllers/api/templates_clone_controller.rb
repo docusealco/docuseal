@@ -33,6 +33,8 @@ module Api
                                                            'webhook_url_id' => webhook_url.id)
       end
 
+      SearchEntries.enqueue_reindex(cloned_template)
+
       render json: Templates::SerializeForApi.call(cloned_template, schema_documents)
     end
   end

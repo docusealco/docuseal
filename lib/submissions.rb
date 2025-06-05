@@ -7,7 +7,15 @@ module Submissions
 
   module_function
 
-  def search(submissions, keyword, search_values: false, search_template: false)
+  def search(current_user, submissions, keyword, search_values: false, search_template: false)
+    if Docuseal.fulltext_search?(current_user)
+      fulltext_search(current_user, submissions, keyword, search_template:)
+    else
+      plain_search(submissions, keyword, search_values:, search_template:)
+    end
+  end
+
+  def plain_search(submissions, keyword, search_values: false, search_template: false)
     return submissions if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -27,6 +35,36 @@ module Submissions
     end
 
     submissions.joins(:submitters).where(arel).group(:id)
+  end
+
+  def fulltext_search(current_user, submissions, keyword, search_template: false)
+    return submissions if keyword.blank?
+
+    arel = SearchEntry.where(record_type: 'Submission')
+                      .where(account_id: current_user.account_id)
+                      .where(*SearchEntries.build_tsquery(keyword))
+                      .select(:record_id).arel
+
+    if search_template
+      arel = Arel::Nodes::Union.new(
+        arel,
+        Submission.where(
+          template_id: SearchEntry.where(record_type: 'Template')
+                                  .where(account_id: current_user.account_id)
+                                  .where(*SearchEntries.build_tsquery(keyword))
+                                  .select(:record_id)
+        ).select(:id).arel
+      )
+    end
+
+    arel = Arel::Nodes::Union.new(
+      arel, Submitter.joins(:search_entry)
+                     .where(search_entry: { account_id: current_user.account_id })
+                     .where(*SearchEntries.build_tsquery(keyword))
+                     .select(:submission_id).arel
+    )
+
+    submissions.where(Submission.arel_table[:id].in(arel))
   end
 
   def update_template_fields!(submission)

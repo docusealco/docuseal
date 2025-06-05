@@ -1,4 +1,4 @@
-<% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
+<% has_archived = can?(:manage, :countless) || current_account.templates.where.not(archived_at: nil).exists? %>
 <% show_dropzone = params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <dashboard-dropzone>
