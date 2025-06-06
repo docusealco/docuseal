@@ -73,6 +73,8 @@ module Accounts
 
     new_template.save!
 
+    SearchEntries.enqueue_reindex(new_template)
+
     Templates::CloneAttachments.call(template: new_template, original_template: template)
 
     new_template
