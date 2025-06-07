@@ -34,7 +34,7 @@ module Submissions
       template = submission.template
 
       image_pdfs = []
-      original_documents = template.documents.preload(:blob)
+      original_documents = submission.schema_documents.preload(:blob)
 
       result_attachments =
         (submission.template_schema || template.schema).filter_map do |item|
