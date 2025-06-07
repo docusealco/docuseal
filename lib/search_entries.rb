@@ -46,6 +46,8 @@ module SearchEntries
   end
 
   def build_tsquery(keyword)
+    keyword = keyword.delete("\0")
+
     if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
       number = keyword.gsub(/\D/, '')
 
@@ -86,10 +88,10 @@ module SearchEntries
       [
         "SELECT setweight(to_tsvector(?), 'A') || setweight(to_tsvector(?), 'B') ||
                 setweight(to_tsvector(?), 'C') || setweight(to_tsvector(?), 'D')".squish,
-        [submitter.email.to_s, submitter.email.to_s.split('@').last].join(' ').downcase,
+        [submitter.email.to_s, submitter.email.to_s.split('@').last].join(' ').downcase.delete("\0"),
         [submitter.phone.to_s.gsub(/\D/, ''),
-         submitter.phone.to_s.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')].uniq.join(' '),
-        TextUtils.transliterate(submitter.name.to_s.downcase),
+         submitter.phone.to_s.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')].uniq.join(' ').delete("\0"),
+        TextUtils.transliterate(submitter.name.to_s.downcase).delete("\0"),
         build_submitter_values_string(submitter)
       ]
     )
@@ -118,12 +120,12 @@ module SearchEntries
         TextUtils.transliterate(v)
       end
 
-    values.uniq.join(' ')
+    values.uniq.join(' ').downcase.delete("\0")
   end
 
   def index_template(template)
     sql = SearchEntry.sanitize_sql_array(
-      ['SELECT to_tsvector(?)', TextUtils.transliterate(template.name.to_s.downcase)]
+      ['SELECT to_tsvector(?)', TextUtils.transliterate(template.name.to_s.downcase).delete("\0")]
     )
 
     entry = template.search_entry || template.build_search_entry
@@ -146,7 +148,7 @@ module SearchEntries
     return if submission.name.blank?
 
     sql = SearchEntry.sanitize_sql_array(
-      ['SELECT to_tsvector(?)', TextUtils.transliterate(submission.name.to_s.downcase)]
+      ['SELECT to_tsvector(?)', TextUtils.transliterate(submission.name.to_s.downcase).delete("\0")]
     )
 
     entry = submission.search_entry || submission.build_search_entry

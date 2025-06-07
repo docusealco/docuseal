@@ -33,6 +33,8 @@ module Submitters
   end
 
   def fulltext_search_field(current_user, submitters, keyword, field_name)
+    keyword = keyword.delete("\0")
+
     return submitters if keyword.blank?
 
     weight = FIELD_NAME_WEIGHTS[field_name]
