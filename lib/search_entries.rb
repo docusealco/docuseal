@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module SearchEntries
-  TRANSLITERATIONS =
-    I18n::Backend::Transliterator::HashTransliterator::DEFAULT_APPROXIMATIONS.reject { |_, v| v.length > 1 }
-
   MAX_VALUE_LENGTH = 100
 
   UUID_REGEXP = /\A[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/i
