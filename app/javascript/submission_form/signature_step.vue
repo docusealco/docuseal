@@ -133,7 +133,7 @@
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <FileDropzone
-      v-if="format === 'upload' && !modelValue"
+      v-if="format === 'upload' && !modelValue && !computedPreviousValue"
       :message="`${t('upload')} ${field.name || t('signature')}`"
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
