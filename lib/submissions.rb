@@ -60,7 +60,7 @@ module Submissions
     arel = Arel::Nodes::Union.new(
       arel, Submitter.joins(:search_entry)
                      .where(search_entry: { account_id: current_user.account_id })
-                     .where(*SearchEntries.build_tsquery(keyword))
+                     .where(*SearchEntries.build_tsquery(keyword, with_or_vector: true))
                      .select(:submission_id).arel
     )
 

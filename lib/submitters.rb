@@ -45,21 +45,24 @@ module Submitters
       if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
         number = keyword.gsub(/\D/, '')
 
-        ["tsvector @@ ((quote_literal(?) || ':*#{weight}')::tsquery || (quote_literal(?) || ':*#{weight}')::tsquery)",
-         number, number.length > 1 ? number.delete_prefix('0') : number]
+        sql =
+          if number.length <= 2
+            "ngram @@ ((quote_literal(?) || ':' || ?)::tsquery || (quote_literal(?) || ':' || ?)::tsquery)"
+          else
+            "tsvector @@ ((quote_literal(?) || ':*' || ?)::tsquery || (quote_literal(?) || ':*' || ?)::tsquery)"
+          end
+
+        [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
       elsif keyword.match?(/[^\p{L}\d&@._\-+]/)
         terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
 
         if terms.size > 1
           SearchEntries.build_weights_tsquery(terms, weight)
         else
-          [
-            SearchEntries::FIELD_SEARCH_QUERY_SQL,
-            { keyword: TextUtils.transliterate(keyword.downcase).squish, weight: }
-          ]
+          SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
         end
       else
-        [SearchEntries::FIELD_SEARCH_QUERY_SQL, { keyword: TextUtils.transliterate(keyword.downcase).squish, weight: }]
+        SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
       end
 
     submitters.where(

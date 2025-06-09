@@ -42,21 +42,43 @@ module SearchEntries
     end
   end
 
-  def build_tsquery(keyword)
+  def build_tsquery(keyword, with_or_vector: false)
     keyword = keyword.delete("\0")
 
     if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
       number = keyword.gsub(/\D/, '')
 
-      ["tsvector @@ ((quote_literal(?) || ':*')::tsquery || (quote_literal(?) || ':*')::tsquery || plainto_tsquery(?))",
-       number, number.length > 1 ? number.delete_prefix('0') : number, keyword]
+      sql =
+        if number.length <= 2
+          <<~SQL.squish
+            ngram @@ (quote_literal(?)::tsquery || quote_literal(?)::tsquery) OR tsvector @@ plainto_tsquery(?)
+          SQL
+        else
+          <<~SQL.squish
+            tsvector @@ ((quote_literal(?) || ':*')::tsquery || (quote_literal(?) || ':*')::tsquery || plainto_tsquery(?))
+          SQL
+        end
+
+      [sql, number, number.length > 1 ? number.delete_prefix('0') : number, keyword]
     elsif keyword.match?(/[^\p{L}\d&@._\-+]/) || keyword.match?(/\A['"].*['"]\z/)
       ['tsvector @@ plainto_tsquery(?)', TextUtils.transliterate(keyword.downcase)]
     else
-      [
-        "tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*')::tsquery",
-        { keyword: TextUtils.transliterate(keyword.downcase).squish }
-      ]
+      keyword = TextUtils.transliterate(keyword.downcase).squish
+
+      sql =
+        if keyword.length <= 2
+          arel = Arel.sql(<<~SQL.squish)
+            ngram @@ quote_literal(:keyword)::tsquery
+          SQL
+
+          arel = Arel::Nodes::Or.new([arel, Arel.sql('tsvector @@ plainto_tsquery(:keyword)')]).to_sql if with_or_vector
+
+          arel
+        else
+          "tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*')::tsquery"
+        end
+
+      [sql, { keyword: }]
     end
   end
 
@@ -78,25 +100,51 @@ module SearchEntries
     ["tsvector @@ (#{query.to_sql})", terms.index_by.with_index { |_, index| :"term#{index}" }.merge(weight:)]
   end
 
+  def build_weights_wildcard_tsquery(keyword, weight)
+    keyword = TextUtils.transliterate(keyword.downcase).squish
+
+    sql =
+      if keyword.length <= 2
+        <<~SQL.squish
+          ngram @@ (quote_literal(:keyword) || ':' || :weight)::tsquery
+        SQL
+      else
+        <<~SQL.squish
+          tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*' || :weight)::tsquery
+        SQL
+      end
+
+    [sql, { keyword:, weight: }]
+  end
+
   def index_submitter(submitter)
     return if submitter.email.blank? && submitter.phone.blank? && submitter.name.blank?
+
+    email_phone_name = [
+      [submitter.email.to_s, submitter.email.to_s.split('@').last].join(' ').delete("\0"),
+      [submitter.phone.to_s.gsub(/\D/, ''),
+       submitter.phone.to_s.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')].uniq.join(' ').delete("\0"),
+      TextUtils.transliterate(submitter.name).delete("\0")
+    ]
 
     sql = SearchEntry.sanitize_sql_array(
       [
         "SELECT setweight(to_tsvector(?), 'A') || setweight(to_tsvector(?), 'B') ||
-                setweight(to_tsvector(?), 'C') || setweight(to_tsvector(?), 'D')".squish,
-        [submitter.email.to_s, submitter.email.to_s.split('@').last].join(' ').downcase.delete("\0"),
-        [submitter.phone.to_s.gsub(/\D/, ''),
-         submitter.phone.to_s.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')].uniq.join(' ').delete("\0"),
-        TextUtils.transliterate(submitter.name.to_s.downcase).delete("\0"),
-        build_submitter_values_string(submitter)
+                setweight(to_tsvector(?), 'C') || setweight(to_tsvector(?), 'D') as tsvector,
+                setweight(to_tsvector('simple', ?), 'A') ||
+                setweight(to_tsvector('simple', ?), 'B') ||
+                setweight(to_tsvector('simple', ?), 'C') as ngram".squish,
+        *email_phone_name,
+        build_submitter_values_string(submitter),
+        *email_phone_name
       ]
     )
 
     entry = submitter.search_entry || submitter.build_search_entry
 
     entry.account_id = submitter.account_id
-    entry.tsvector = SearchEntry.connection.select_value(sql)
+    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?
 
@@ -122,13 +170,15 @@ module SearchEntries
 
   def index_template(template)
     sql = SearchEntry.sanitize_sql_array(
-      ['SELECT to_tsvector(?)', TextUtils.transliterate(template.name.to_s.downcase).delete("\0")]
+      ["SELECT to_tsvector(:text), to_tsvector('simple', :text)",
+       { text: TextUtils.transliterate(template.name.to_s.downcase).delete("\0") }]
     )
 
     entry = template.search_entry || template.build_search_entry
 
     entry.account_id = template.account_id
-    entry.tsvector = SearchEntry.connection.select_value(sql)
+    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?
 
@@ -145,13 +195,15 @@ module SearchEntries
     return if submission.name.blank?
 
     sql = SearchEntry.sanitize_sql_array(
-      ['SELECT to_tsvector(?)', TextUtils.transliterate(submission.name.to_s.downcase).delete("\0")]
+      ["SELECT to_tsvector(:text), to_tsvector('simple', :text)",
+       { text: TextUtils.transliterate(submission.name.to_s.downcase).delete("\0") }]
     )
 
     entry = submission.search_entry || submission.build_search_entry
 
     entry.account_id = submission.account_id
-    entry.tsvector = SearchEntry.connection.select_value(sql)
+    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?
 
@@ -162,5 +214,15 @@ module SearchEntries
     submission.reload
 
     retry
+  end
+
+  def build_ngram(ngram)
+    ngrams =
+      ngram.split(/\s(?=')/).each_with_object([]) do |item, acc|
+        acc << item.sub(/'(.*?)':/) { "'#{Regexp.last_match(1).first(2)}':" }
+        acc << item.sub(/'(.*?)':/) { "'#{Regexp.last_match(1).first(1)}':" }
+      end
+
+    ngrams.uniq { |e| e.sub(/':[\d,]/, "':1") }.join(' ')
   end
 end
