@@ -1,4 +1,5 @@
 <% submitter_preferences_index = template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] } %>
+<% template_submitters = local_assigns[:submitter]&.submission&.template_submitters || template.submitters %>
 <div class="form-control">
   <% can_send_emails = Accounts.can_send_emails?(current_account) %>
   <div class="flex justify-between items-center">
@@ -42,7 +43,7 @@
       <div class="form-control">
         <div class="flex justify-between">
           <%= f.label :subject, t('subject'), class: 'label' %>
-          <% if template.submitters.size > 1 && template.submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+          <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
             <label for="<%= toggle_uuid %>" class="label underline">
               <%= t('edit_per_party') %>
             </label>
@@ -69,10 +70,10 @@
       </div>
       <%= render 'submissions/message_fields' %>
     </div>
-    <% if template.submitters.size > 1 && template.submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+    <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
       <div class="hidden peer-checked:block form-control space-y-2">
         <% uuid = SecureRandom.uuid %>
-        <% options = template.submitters.map { |e| [e['name'], "request_email_#{uuid}_#{e['uuid']}"] } %>
+        <% options = template_submitters.map { |e| [e['name'], "request_email_#{uuid}_#{e['uuid']}"] } %>
         <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
           <ul class="tabs w-full flex flex-nowrap">
             <% options.each_with_index do |(label, val), index| %>
@@ -83,7 +84,7 @@
             <% end %>
           </ul>
         </toggle-visible>
-        <% template.submitters.each_with_index do |submitter, index| %>
+        <% template_submitters.each_with_index do |submitter, index| %>
           <%= fields_for :submitter_preferences, nil, index: submitter['uuid'] do |ff| %>
             <div id="request_email_<%= uuid %>_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
               <div class="form-control">
