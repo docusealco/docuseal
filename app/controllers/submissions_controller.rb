@@ -85,7 +85,7 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: template_path(@submission.template), notice:)
+    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
   end
 
   private
