@@ -208,7 +208,7 @@
             <%= t('view') %>
           </a>
         </div>
-        <% if !submission.archived_at? && !template.archived_at? %>
+        <% if !submission.archived_at? && !template&.archived_at? %>
           <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
             <%= button_to button_title(title: nil, disabled_with: t(:archive).first(4), icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('archive'), method: :delete %>
           </span>
