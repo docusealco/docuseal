@@ -11,6 +11,10 @@
     {
       "fingerprint": "5bcf4e6426d17b0efd98e47fde7c012f09500b9595af9cff226cf09341c023be",
       "note": "Safe SQL"
+    },
+    {
+      "fingerprint": "5f52190d03ee922bba9792012d8fcbeb7d4736006bb899b3be9cc10d679e0af1",
+      "note": "Safe Param"
     }
   ]
 }
