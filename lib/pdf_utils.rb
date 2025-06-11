@@ -36,7 +36,8 @@ module PdfUtils
     end
 
     merged_content = StringIO.new
-    merged_pdf.write(merged_content)
+    merged_pdf.validate(auto_correct: true)
+    merged_pdf.write(merged_content, validate: false)
     merged_content.rewind
 
     merged_content
