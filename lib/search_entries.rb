@@ -63,9 +63,7 @@ module SearchEntries
 
       sql =
         if keyword.length <= 2
-          arel = Arel.sql(<<~SQL.squish)
-            ngram @@ quote_literal(:keyword)::tsquery
-          SQL
+          arel = Arel.sql('ngram @@ quote_literal(:keyword)::tsquery')
 
           arel = Arel::Nodes::Or.new([arel, Arel.sql('tsvector @@ plainto_tsquery(:keyword)')]).to_sql if with_or_vector
 
@@ -100,7 +98,7 @@ module SearchEntries
 
     query =
       if terms.last.length <= 2
-        query = Arel::Nodes::InfixOperation.new('@@', Arel.sql('tsvector'), query)
+        query = Arel::Nodes::InfixOperation.new('@@', Arel.sql('tsvector'), Arel::Nodes::Grouping.new(query))
 
         Arel::Nodes::And.new([query, last_query])
       else
