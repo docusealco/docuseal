@@ -37,14 +37,16 @@ module Api
         return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_entity
       end
 
-      role = @submitter.submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
+      submission = @submitter.submission
+      role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
 
-      normalized_params, new_attachments =
-        Submissions::NormalizeParamUtils.normalize_submitter_params!(submitter_params.merge(role:), @submitter.template,
-                                                                     for_submitter: @submitter)
+      normalized_params, new_attachments = Submissions::NormalizeParamUtils.normalize_submitter_params!(
+        submitter_params.merge(role:),
+        @submitter.template || Template.new(submitters: submission.template_submitters, account: @submitter.account),
+        for_submitter: @submitter
+      )
 
-      Submissions::CreateFromSubmitters.maybe_set_template_fields(@submitter.submission,
-                                                                  [normalized_params],
+      Submissions::CreateFromSubmitters.maybe_set_template_fields(submission, [normalized_params],
                                                                   default_submitter_uuid: @submitter.uuid)
 
       assign_submitter_attrs(@submitter, normalized_params)
@@ -67,10 +69,8 @@ module Api
 
       SearchEntries.enqueue_reindex(@submitter)
 
-      render json: Submitters::SerializeForApi.call(@submitter, with_template: false,
-                                                                with_urls: true,
-                                                                with_events: false,
-                                                                params:)
+      render json: Submitters::SerializeForApi.call(@submitter, with_template: false, with_urls: true,
+                                                                with_events: false, params:)
     rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
