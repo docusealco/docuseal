@@ -5,10 +5,6 @@ module SearchEntries
 
   UUID_REGEXP = /\A[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/i
 
-  FIELD_SEARCH_QUERY_SQL = <<~SQL.squish
-    tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*' || :weight)::tsquery
-  SQL
-
   module_function
 
   def reindex_all
@@ -83,21 +79,38 @@ module SearchEntries
   end
 
   def build_weights_tsquery(terms, weight)
-    last_query = Arel.sql(<<~SQL.squish)
-      (quote_literal(coalesce((ts_lexize('english_stem', :term#{terms.size - 1}))[1], :term#{terms.size - 1})) ||  ':*' || :weight)::tsquery
-    SQL
+    last_query =
+      if terms.last.length <= 2
+        Arel.sql("ngram @@ (quote_literal(:term#{terms.size - 1}) ||  ':' || :weight)::tsquery")
+      else
+        Arel.sql(<<~SQL.squish)
+          (quote_literal(coalesce((ts_lexize('english_stem', :term#{terms.size - 1}))[1], :term#{terms.size - 1})) ||  ':*' || :weight)::tsquery
+        SQL
+      end
 
-    query = terms[..-2].reduce(last_query) do |acc, term|
+    query = terms[..-2].reduce(nil) do |acc, term|
       index = terms.index(term)
 
       arel = Arel.sql(<<~SQL.squish)
         (quote_literal(coalesce((ts_lexize('english_stem', :term#{index}))[1], :term#{index})) ||  ':' || :weight)::tsquery
       SQL
 
-      Arel::Nodes::InfixOperation.new('&&', arel, acc)
+      acc ? Arel::Nodes::InfixOperation.new('&&', arel, acc) : arel
     end
 
-    ["tsvector @@ (#{query.to_sql})", terms.index_by.with_index { |_, index| :"term#{index}" }.merge(weight:)]
+    query =
+      if terms.last.length <= 2
+        query = Arel::Nodes::InfixOperation.new('@@', Arel.sql('tsvector'), query)
+
+        Arel::Nodes::And.new([query, last_query])
+      else
+        Arel::Nodes::InfixOperation.new(
+          '@@', Arel.sql('tsvector'),
+          Arel::Nodes::Grouping.new(Arel::Nodes::InfixOperation.new('&&', query, last_query))
+        )
+      end
+
+    [query.to_sql, terms.index_by.with_index { |_, index| :"term#{index}" }.merge(weight:)]
   end
 
   def build_weights_wildcard_tsquery(keyword, weight)
