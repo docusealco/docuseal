@@ -2,6 +2,8 @@
 
 class AddNgramToSearchIndex < ActiveRecord::Migration[8.0]
   def change
+    return unless adapter_name == 'PostgreSQL'
+
     add_column :search_entries, :ngram, :tsvector
 
     add_index :search_entries, %i[account_id ngram], using: :gin, where: "record_type = 'Submitter'",
