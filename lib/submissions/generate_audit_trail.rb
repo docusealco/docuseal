@@ -107,10 +107,18 @@ module Submissions
       )
 
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
-                                                               AccountConfig::WITH_SIGNATURE_ID])
+                                                               AccountConfig::WITH_SIGNATURE_ID,
+                                                               AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY])
+
+      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
+      with_audit_submitter_timezone =
+        configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY }&.value == true
+
+      timezone = account.timezone
+      timezone = last_submitter.timezone || account.timezone if with_audit_submitter_timezone
 
       composer.page_style(:default, page_size:) do |canvas, style|
         box = canvas.context.box(:media)
@@ -184,8 +192,6 @@ module Submissions
 
       composer.draw_box(divider)
 
-      last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
-
       documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
         original_documents = submission.schema_documents.select do |e|
           e.uuid == (document.metadata['original_uuid'] || document.uuid)
@@ -210,8 +216,8 @@ module Submissions
               document.metadata['sha256'] || document.checksum,
               "\n",
               { text: "#{I18n.t('generated_at')}: ", font: [FONT_NAME, { variant: :bold }] },
-              "#{I18n.l(document.created_at.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
-              "#{TimeUtils.timezone_abbr(account.timezone, document.created_at)}"
+              "#{I18n.l(document.created_at.in_time_zone(timezone), format: :long, locale: account.locale)} " \
+              "#{TimeUtils.timezone_abbr(timezone, document.created_at)}"
             ], line_spacing: 1.3
           )
         ]
@@ -272,6 +278,7 @@ module Submissions
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "#{I18n.t('session_id')}: #{completed_event.data['sid']}\n" },
                 completed_event.data['ua'] && { text: "User agent: #{completed_event.data['ua']}\n" },
+                submitter.timezone && { text: "Time zone: #{submitter.timezone.to_s.sub('Kiev', 'Kyiv')}\n" },
                 "\n"
               ].compact_blank, line_spacing: 1.3, padding: [10, 20, 20, 0]
             )
@@ -411,8 +418,8 @@ module Submissions
         bold_text, normal_text = text.match(%r{<b>(.*?)</b>(.*)}).captures
 
         [
-          "#{I18n.l(event.event_timestamp.in_time_zone(account.timezone), format: :long, locale: account.locale)} " \
-          "#{TimeUtils.timezone_abbr(account.timezone, event.event_timestamp)}",
+          "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: :long, locale: account.locale)} " \
+          "#{TimeUtils.timezone_abbr(timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box([{ text: bold_text, font: [FONT_NAME, { variant: :bold }] },
                                                        normal_text])
         ]
