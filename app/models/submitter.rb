@@ -16,6 +16,7 @@
 #  preferences   :text             not null
 #  sent_at       :datetime
 #  slug          :string           not null
+#  timezone      :string
 #  ua            :string
 #  uuid          :string           not null
 #  values        :text             not null
