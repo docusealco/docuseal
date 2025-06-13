@@ -28,7 +28,7 @@
     <% end %>
     <% if Templates.filter_undefined_submitters(@template.submitters).size == 1 && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false && @template.shared_link? %>
       <toggle-submit class="block">
-        <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@template.slug), params: { submitter: { email: params[:email] }, resubmit: true }, method: :put, class: 'white-button w-full' %>
+        <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), start_form_path(@template.slug), params: { submitter: params.permit(:name, :email, :phone).compact_blank, resubmit: true }, method: :put, class: 'white-button w-full' %>
       </toggle-submit>
     <% end %>
   </div>
