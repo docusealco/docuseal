@@ -28,11 +28,12 @@
 #
 # Indexes
 #
-#  index_submitters_on_account_id_and_id  (account_id,id)
-#  index_submitters_on_email              (email)
-#  index_submitters_on_external_id        (external_id)
-#  index_submitters_on_slug               (slug) UNIQUE
-#  index_submitters_on_submission_id      (submission_id)
+#  index_submitters_on_account_id_and_id            (account_id,id)
+#  index_submitters_on_completed_at_and_account_id  (completed_at,account_id)
+#  index_submitters_on_email                        (email)
+#  index_submitters_on_external_id                  (external_id)
+#  index_submitters_on_slug                         (slug) UNIQUE
+#  index_submitters_on_submission_id                (submission_id)
 #
 # Foreign Keys
 #

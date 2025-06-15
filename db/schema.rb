@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_13_160132) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_15_091654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -331,6 +331,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_13_160132) do
     t.datetime "declined_at"
     t.string "timezone"
     t.index ["account_id", "id"], name: "index_submitters_on_account_id_and_id"
+    t.index ["completed_at", "account_id"], name: "index_submitters_on_completed_at_and_account_id"
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["external_id"], name: "index_submitters_on_external_id"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
