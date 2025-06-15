@@ -8,6 +8,10 @@ class SubmissionsController < ApplicationController
 
   prepend_before_action :maybe_redirect_com, only: %i[show]
 
+  before_action only: :create do
+    authorize!(:create, Submission)
+  end
+
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
@@ -26,8 +30,6 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    authorize!(:create, Submission)
-
     save_template_message(@template, params) if params[:save_message] == '1'
 
     if params[:is_custom_message] != '1'
@@ -56,6 +58,8 @@ class SubmissionsController < ApplicationController
 
     Submissions.send_signature_requests(submissions)
 
+    SearchEntries.enqueue_reindex(submissions)
+
     redirect_to template_path(@template), notice: I18n.t('new_recipients_have_been_added')
   rescue Submissions::CreateFromSubmitters::BaseError => e
     render turbo_stream: turbo_stream.replace(:submitters_error,
@@ -81,7 +85,7 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: template_path(@submission.template), notice:)
+    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
   end
 
   private

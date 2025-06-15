@@ -6,7 +6,7 @@ class TemplatesArchivedSubmissionsController < ApplicationController
 
   def index
     @submissions = @submissions.where.not(archived_at: nil)
-    @submissions = Submissions.search(@submissions, params[:q], search_values: true)
+    @submissions = Submissions.search(current_user, @submissions, params[:q], search_values: true)
     @submissions = Submissions::Filter.call(@submissions, current_user, params)
 
     @submissions = if params[:completed_at_from].present? || params[:completed_at_to].present?

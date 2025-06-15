@@ -10,7 +10,7 @@ module Api
     end
 
     def index
-      submissions = Submissions.search(@submissions, params[:q])
+      submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
@@ -79,6 +79,8 @@ module Api
           ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'send_invitation_email' => false)
         end
       end
+
+      SearchEntries.enqueue_reindex(submissions)
 
       render json: build_create_json(submissions)
     rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,
@@ -183,14 +185,14 @@ module Api
     def submissions_params
       permitted_attrs = [
         :send_email, :send_sms, :bcc_completed, :completed_redirect_url, :reply_to, :go_to_last,
-        :expire_at,
+        :expire_at, :name,
         {
           message: %i[subject body],
           submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
                         :completed, :phone, :application_key, :external_id, :reply_to, :go_to_last,
                         { metadata: {}, values: {}, roles: [], readonly_fields: [], message: %i[subject body],
                           fields: [:name, :uuid, :default_value, :value, :title, :description,
-                                   :readonly, :validation_pattern, :invalid_message,
+                                   :readonly, :required, :validation_pattern, :invalid_message,
                                    { default_value: [], value: [], preferences: {} }] }]]
         }
       ]

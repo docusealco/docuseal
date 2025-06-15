@@ -36,7 +36,9 @@ export default class extends HTMLElement {
   }
 
   fetch = (text, resolve) => {
-    const q = text.split(/[;,\s]+/).pop().trim()
+    const q = this.dataset.field === 'email'
+      ? text.split(/[;,\s]+/).pop().trim()
+      : text
 
     if (q) {
       const queryParams = new URLSearchParams({ q, field: this.dataset.field })

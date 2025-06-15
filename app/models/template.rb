@@ -42,6 +42,8 @@ class Template < ApplicationRecord
   belongs_to :account
   belongs_to :folder, class_name: 'TemplateFolder'
 
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
+
   before_validation :maybe_set_default_folder, on: :create
 
   attribute :preferences, :string, default: -> { {} }

@@ -65,6 +65,8 @@ module Api
 
       @template.update!(template_params)
 
+      SearchEntries.enqueue_reindex(@template)
+
       WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
         SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
                                                            'webhook_url_id' => webhook_url.id)
@@ -86,7 +88,7 @@ module Api
     private
 
     def filter_templates(templates, params)
-      templates = Templates.search(templates, params[:q])
+      templates = Templates.search(current_user, templates, params[:q])
       templates = params[:archived].in?(['true', true]) ? templates.archived : templates.active
       templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
       templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?

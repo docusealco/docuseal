@@ -13,7 +13,7 @@ class TemplatesFormPreviewController < ApplicationController
 
     @submitter.submission.submitters = @template.submitters.map { |item| Submitter.new(uuid: item['uuid']) }
 
-    Submitters.preload_with_pages(@submitter)
+    Submissions.preload_with_pages(@submitter.submission)
 
     @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)
                                                   .preload(:blob).index_by(&:uuid)

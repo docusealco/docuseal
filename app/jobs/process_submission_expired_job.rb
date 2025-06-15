@@ -7,7 +7,7 @@ class ProcessSubmissionExpiredJob
     submission = Submission.find(params['submission_id'])
 
     return if submission.archived_at?
-    return if submission.template.archived_at?
+    return if submission.template&.archived_at?
     return if submission.submitters.where.not(declined_at: nil).exists?
     return unless submission.submitters.exists?(completed_at: nil)
 

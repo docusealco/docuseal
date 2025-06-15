@@ -1390,6 +1390,7 @@ export default {
 
         if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length && !this.optionalInviteSubmitters.length) {
           formData.append('completed', 'true')
+          formData.append('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
         }
 
         let saveStepRequest

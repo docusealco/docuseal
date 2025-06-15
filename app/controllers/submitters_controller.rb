@@ -38,6 +38,8 @@ class SubmittersController < ApplicationController
     if @submitter.save
       maybe_resend_email_sms(@submitter, params)
 
+      SearchEntries.enqueue_reindex(@submitter)
+
       redirect_back fallback_location: submission_path(submission), notice: I18n.t('changes_have_been_saved')
     else
       redirect_back fallback_location: submission_path(submission), alert: I18n.t('unable_to_save')

@@ -36,6 +36,24 @@ module Templates
       attachment
     end
 
+    def process(attachment, data, extract_fields: false)
+      if attachment.content_type == PDF_CONTENT_TYPE && extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
+        pdf = HexaPDF::Document.new(io: StringIO.new(data))
+
+        fields = Templates::FindAcroFields.call(pdf, attachment, data)
+      end
+
+      pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
+
+      number_of_pages = pdf.pages.size
+
+      attachment.metadata['pdf'] ||= {}
+      attachment.metadata['pdf']['number_of_pages'] = number_of_pages
+      attachment.metadata['pdf']['fields'] = fields if fields
+
+      attachment
+    end
+
     def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 

@@ -4,9 +4,76 @@ module Submitters
   TRUE_VALUES = ['1', 'true', true].freeze
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
+  FIELD_NAME_WEIGHTS = {
+    'email' => 'A',
+    'phone' => 'B',
+    'name' => 'C',
+    'values' => 'D'
+  }.freeze
+
   module_function
 
-  def search(submitters, keyword)
+  def search(current_user, submitters, keyword)
+    if Docuseal.fulltext_search?(current_user)
+      fulltext_search(current_user, submitters, keyword)
+    else
+      plain_search(submitters, keyword)
+    end
+  end
+
+  def fulltext_search(current_user, submitters, keyword)
+    return submitters if keyword.blank?
+
+    submitters.where(
+      id: SearchEntry.where(record_type: 'Submitter')
+                     .where(account_id: current_user.account_id)
+                     .where(*SearchEntries.build_tsquery(keyword))
+                     .select(:record_id)
+    )
+  end
+
+  def fulltext_search_field(current_user, submitters, keyword, field_name)
+    keyword = keyword.delete("\0")
+
+    return submitters if keyword.blank?
+
+    weight = FIELD_NAME_WEIGHTS[field_name]
+
+    return submitters if weight.blank?
+
+    query =
+      if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
+        number = keyword.gsub(/\D/, '')
+
+        sql =
+          if number.length <= 2
+            "ngram @@ ((quote_literal(?) || ':' || ?)::tsquery || (quote_literal(?) || ':' || ?)::tsquery)"
+          else
+            "tsvector @@ ((quote_literal(?) || ':*' || ?)::tsquery || (quote_literal(?) || ':*' || ?)::tsquery)"
+          end
+
+        [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
+      elsif keyword.match?(/[^\p{L}\d&@._\-+]/)
+        terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
+
+        if terms.size > 1
+          SearchEntries.build_weights_tsquery(terms, weight)
+        else
+          SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
+        end
+      else
+        SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
+      end
+
+    submitters.where(
+      id: SearchEntry.where(record_type: 'Submitter')
+                     .where(account_id: current_user.account_id)
+                     .where(*query)
+                     .select(:record_id)
+    )
+  end
+
+  def plain_search(submitters, keyword)
     return submitters if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -27,32 +94,13 @@ module Submitters
       return [submitter.submission.combined_document_attachment]
     end
 
-    original_documents = submitter.submission.template_schema_documents.preload(:blob)
+    original_documents = submitter.submission.schema_documents.preload(:blob)
     is_more_than_two_images = original_documents.count(&:image?) > 1
 
     submitter.documents.preload(:blob).reject do |attachment|
       is_more_than_two_images &&
         original_documents.find { |a| a.uuid == (attachment.metadata['original_uuid'] || attachment.uuid) }&.image?
     end
-  end
-
-  def preload_with_pages(submitter)
-    ActiveRecord::Associations::Preloader.new(
-      records: [submitter],
-      associations: [submission: [:template, { template_schema_documents: :blob }]]
-    ).call
-
-    total_pages =
-      submitter.submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
-
-    if total_pages < PRELOAD_ALL_PAGES_AMOUNT
-      ActiveRecord::Associations::Preloader.new(
-        records: submitter.submission.template_schema_documents,
-        associations: [:blob, { preview_images_attachments: :blob }]
-      ).call
-    end
-
-    submitter
   end
 
   def create_attachment!(submitter, params)

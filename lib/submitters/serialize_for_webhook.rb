@@ -46,7 +46,7 @@ module Submitters
     end
 
     def build_values_array(submitter)
-      fields = submitter.submission.template_fields.presence || submitter.submission.template.fields
+      fields = submitter.submission.template_fields.presence || submitter.submission&.template&.fields || []
       attachments_index = submitter.attachments.index_by(&:uuid)
       submitter_field_counters = Hash.new { 0 }
 
@@ -68,7 +68,7 @@ module Submitters
     end
 
     def build_fields_array(submitter)
-      fields = submitter.submission.template_fields.presence || submitter.submission.template.fields
+      fields = submitter.submission.template_fields.presence || submitter.submission&.template&.fields || []
       attachments_index = submitter.attachments.index_by(&:uuid)
       submitter_field_counters = Hash.new { 0 }
 

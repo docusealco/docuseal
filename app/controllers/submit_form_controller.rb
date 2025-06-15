@@ -8,6 +8,7 @@ class SubmitFormController < ApplicationController
   skip_authorization_check
 
   before_action :load_submitter, only: %i[show update completed]
+  before_action :maybe_render_locked_page, only: :show
 
   CONFIG_KEYS = [].freeze
 
@@ -15,19 +16,14 @@ class SubmitFormController < ApplicationController
     submission = @submitter.submission
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
-    return render :archived if submission.template.archived_at? ||
-                               submission.archived_at? ||
-                               @submitter.account.archived_at?
-    return render :expired if submission.expired?
-    return render :declined if @submitter.declined_at?
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
     return render :awaiting if (@form_configs[:enforce_signing_order] ||
-                                submission.template.preferences['submitters_order'] == 'preserved') &&
+                                submission.template&.preferences&.dig('submitters_order') == 'preserved') &&
                                !Submitters.current_submitter_order?(@submitter)
 
-    Submitters.preload_with_pages(@submitter)
+    Submissions.preload_with_pages(submission)
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
@@ -54,7 +50,7 @@ class SubmitFormController < ApplicationController
       return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_entity
     end
 
-    if @submitter.template.archived_at? || @submitter.submission.archived_at?
+    if @submitter.template&.archived_at? || @submitter.submission.archived_at?
       return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_entity
     end
 
@@ -83,6 +79,15 @@ class SubmitFormController < ApplicationController
   def success; end
 
   private
+
+  def maybe_render_locked_page
+    return render :archived if @submitter.submission.template&.archived_at? ||
+                               @submitter.submission.archived_at? ||
+                               @submitter.account.archived_at?
+    return render :expired if @submitter.submission.expired?
+
+    render :declined if @submitter.declined_at?
+  end
 
   def load_submitter
     @submitter = Submitter.find_by!(slug: params[:slug] || params[:submit_form_slug])

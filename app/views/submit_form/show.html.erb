@@ -1,4 +1,4 @@
-<% content_for(:html_title, "#{@submitter.submission.template.name} | DocuSeal") %>
+<% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
@@ -13,7 +13,7 @@
         <%= render('submit_form/banner') %>
         <div id="signing_form_header" class="sticky min-[1230px]:static top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
           <div class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            <%= @submitter.submission.template.name %>
+            <%= @submitter.submission.name || @submitter.submission.template.name %>
           </div>
           <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
             <% if @form_configs[:with_decline] %>
@@ -24,16 +24,18 @@
                 <% end %>
               </div>
             <% end %>
-            <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
-              <span class="flex items-center justify-center" data-target="download-button.defaultButton">
-                <%= svg_icon('download', class: 'w-6 h-6 inline md:hidden') %>
-                <span class="hidden md:inline"><%= t('download') %></span>
-              </span>
-              <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                <span class="hidden md:inline"><%= t('downloading') %></span>
-              </span>
-            </download-button>
+            <% if @form_configs[:with_partial_download] %>
+              <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
+                <span class="flex items-center justify-center" data-target="download-button.defaultButton">
+                  <%= svg_icon('download', class: 'w-6 h-6 inline md:hidden') %>
+                  <span class="hidden md:inline"><%= t('download') %></span>
+                </span>
+                <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                  <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                  <span class="hidden md:inline"><%= t('downloading') %></span>
+                </span>
+              </download-button>
+            <% end %>
           </div>
         </div>
         <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
@@ -58,11 +60,11 @@
         </scroll-buttons>
       <% end %>
       <% schema.each do |item| %>
-        <% document = @submitter.submission.template_schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+        <% document = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <div id="document-<%= document.uuid %>">
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-          <% lazyload_metadata = document.preview_images.last.metadata %>
+          <% lazyload_metadata = document.preview_images.last&.metadata || {} %>
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
             <div class="relative my-4 shadow-md">

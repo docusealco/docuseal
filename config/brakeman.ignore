@@ -3,6 +3,22 @@
     {
       "fingerprint": "25f4ce5fee1e1180fa1919dc4ee78db3ab3457a956e4679503aa745771a43836",
       "note": "Permitted parameters are necessary for creating submitters via API"
+    },
+    {
+      "fingerprint": "645f2f352a813105b8b2eeadc68101d2e7ea04b8e839aa1336616be56f1108ca",
+      "note": "Safe SQL"
+    },
+    {
+      "fingerprint": "5bcf4e6426d17b0efd98e47fde7c012f09500b9595af9cff226cf09341c023be",
+      "note": "Safe SQL"
+    },
+    {
+      "fingerprint": "8bf010d01d5cfabdc2124db1378ca14a24a675431047291488abc186d10ba314",
+      "note": "Safe SQL"
+    },
+    {
+      "fingerprint": "5f52190d03ee922bba9792012d8fcbeb7d4736006bb899b3be9cc10d679e0af1",
+      "note": "Safe Param"
     }
   ]
 }

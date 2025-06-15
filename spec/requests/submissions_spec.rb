@@ -288,6 +288,7 @@ describe 'Submission API' do
 
     {
       id: submission.id,
+      name: submission.name,
       source: 'link',
       submitters_order: 'random',
       slug: submission.slug,
@@ -346,6 +347,7 @@ describe 'Submission API' do
 
     {
       id: submission.id,
+      name: submission.name,
       source: 'link',
       status: 'pending',
       submitters_order: 'random',

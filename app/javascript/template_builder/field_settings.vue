@@ -424,7 +424,7 @@
       </a>
     </li>
   </template>
-  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
+  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
     <a
       href="#"
       class="text-sm py-1 px-2"

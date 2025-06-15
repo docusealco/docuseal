@@ -34,7 +34,7 @@ module Submissions
       template = submission.template
 
       image_pdfs = []
-      original_documents = template.documents.preload(:blob)
+      original_documents = submission.schema_documents.preload(:blob)
 
       result_attachments =
         (submission.template_schema || template.schema).filter_map do |item|
@@ -70,7 +70,7 @@ module Submissions
           submitter:,
           uuid: GenerateResultAttachments.images_pdf_uuid(original_documents.select(&:image?)),
           values_hash:,
-          name: template.name
+          name: submission.name || template.name
         )
 
       ApplicationRecord.no_touching do

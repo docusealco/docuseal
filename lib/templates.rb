@@ -37,14 +37,33 @@ module Templates
     hash
   end
 
-  def search(templates, keyword)
+  def search(current_user, templates, keyword)
+    if Docuseal.fulltext_search?(current_user)
+      fulltext_search(current_user, templates, keyword)
+    else
+      plain_search(templates, keyword)
+    end
+  end
+
+  def plain_search(templates, keyword)
     return templates if keyword.blank?
 
     templates.where(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
   end
 
-  def filter_undefined_submitters(template)
-    template.submitters.to_a.select do |item|
+  def fulltext_search(current_user, templates, keyword)
+    return templates if keyword.blank?
+
+    templates.where(
+      id: SearchEntry.where(record_type: 'Template')
+                     .where(account_id: current_user.account_id)
+                     .where(*SearchEntries.build_tsquery(keyword))
+                     .select(:record_id)
+    )
+  end
+
+  def filter_undefined_submitters(template_submitters)
+    template_submitters.to_a.select do |item|
       item['invite_by_uuid'].blank? && item['optional_invite_by_uuid'].blank? &&
         item['linked_to_uuid'].blank? && item['is_requester'].blank? && item['email'].blank?
     end

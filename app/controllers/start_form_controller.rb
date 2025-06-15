@@ -53,6 +53,8 @@ class StartFormController < ApplicationController
         if is_new_record
           enqueue_submission_create_webhooks(@submitter)
 
+          SearchEntries.enqueue_reindex(@submitter)
+
           if @submitter.submission.expire_at?
             ProcessSubmissionExpiredJob.perform_at(@submitter.submission.expire_at,
                                                    'submission_id' => @submitter.submission_id)
@@ -142,7 +144,7 @@ class StartFormController < ApplicationController
   end
 
   def filter_undefined_submitters(template)
-    Templates.filter_undefined_submitters(template)
+    Templates.filter_undefined_submitters(template.submitters)
   end
 
   def submitter_params

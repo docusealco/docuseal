@@ -7,7 +7,15 @@ module Submissions
 
   module_function
 
-  def search(submissions, keyword, search_values: false, search_template: false)
+  def search(current_user, submissions, keyword, search_values: false, search_template: false)
+    if Docuseal.fulltext_search?(current_user)
+      fulltext_search(current_user, submissions, keyword, search_template:)
+    else
+      plain_search(submissions, keyword, search_values:, search_template:)
+    end
+  end
+
+  def plain_search(submissions, keyword, search_values: false, search_template: false)
     return submissions if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -21,12 +29,42 @@ module Submissions
     arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
 
     if search_template
-      submissions = submissions.joins(:template)
+      submissions = submissions.left_joins(:template)
 
       arel = arel.or(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
     end
 
     submissions.joins(:submitters).where(arel).group(:id)
+  end
+
+  def fulltext_search(current_user, submissions, keyword, search_template: false)
+    return submissions if keyword.blank?
+
+    arel = SearchEntry.where(record_type: 'Submission')
+                      .where(account_id: current_user.account_id)
+                      .where(*SearchEntries.build_tsquery(keyword))
+                      .select(:record_id).arel
+
+    if search_template
+      arel = Arel::Nodes::Union.new(
+        arel,
+        Submission.where(
+          template_id: SearchEntry.where(record_type: 'Template')
+                                  .where(account_id: current_user.account_id)
+                                  .where(*SearchEntries.build_tsquery(keyword))
+                                  .select(:record_id)
+        ).select(:id).arel
+      )
+    end
+
+    arel = Arel::Nodes::Union.new(
+      arel, Submitter.joins(:search_entry)
+                     .where(search_entry: { account_id: current_user.account_id })
+                     .where(*SearchEntries.build_tsquery(keyword, with_or_vector: true))
+                     .select(:submission_id).arel
+    )
+
+    submissions.where(Submission.arel_table[:id].in(arel))
   end
 
   def update_template_fields!(submission)
@@ -40,15 +78,17 @@ module Submissions
   def preload_with_pages(submission)
     ActiveRecord::Associations::Preloader.new(
       records: [submission],
-      associations: [:template, { template_schema_documents: :blob }]
+      associations: [
+        submission.template_id? ? { template_schema_documents: :blob } : { documents_attachments: :blob }
+      ]
     ).call
 
     total_pages =
-      submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
+      submission.schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
 
     if total_pages < PRELOAD_ALL_PAGES_AMOUNT
       ActiveRecord::Associations::Preloader.new(
-        records: submission.template_schema_documents,
+        records: submission.schema_documents,
         associations: [:blob, { preview_images_attachments: :blob }]
       ).call
     end
@@ -90,10 +130,10 @@ module Submissions
     emails
   end
 
-  def create_from_submitters(template:, user:, submissions_attrs:, source:,
+  def create_from_submitters(template:, user:, submissions_attrs:, source:, with_template: true,
                              submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {})
     Submissions::CreateFromSubmitters.call(
-      template:, user:, submissions_attrs:, source:, submitters_order:, params:
+      template:, user:, submissions_attrs:, source:, submitters_order:, params:, with_template:
     )
   end
 

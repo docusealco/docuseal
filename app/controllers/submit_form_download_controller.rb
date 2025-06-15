@@ -14,7 +14,10 @@ class SubmitFormDownloadController < ApplicationController
     return head :unprocessable_entity if @submitter.declined_at? ||
                                          @submitter.submission.archived_at? ||
                                          @submitter.submission.expired? ||
-                                         @submitter.submission.template.archived_at?
+                                         @submitter.submission.template&.archived_at? ||
+                                         AccountConfig.exists?(account_id: @submitter.account_id,
+                                                               key: AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
+                                                               value: false)
 
     last_completed_submitter = @submitter.submission.submitters
                                          .where.not(id: @submitter.id)
@@ -25,7 +28,7 @@ class SubmitFormDownloadController < ApplicationController
       if last_completed_submitter
         Submitters.select_attachments_for_download(last_completed_submitter)
       else
-        @submitter.submission.template.schema_documents.preload(:blob)
+        @submitter.submission.schema_documents.preload(:blob)
       end
 
     urls = attachments.map do |attachment|

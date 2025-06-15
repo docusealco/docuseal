@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_15_091654) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
   enable_extension "plpgsql"
 
   create_table "access_tokens", force: :cascade do |t|
@@ -110,7 +111,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.bigint "submitter_id", null: false
     t.bigint "submission_id", null: false
     t.bigint "account_id", null: false
-    t.bigint "template_id", null: false
+    t.bigint "template_id"
     t.string "source", null: false
     t.integer "sms_count", null: false
     t.datetime "completed_at", null: false
@@ -256,6 +257,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "search_entries", force: :cascade do |t|
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "account_id", null: false
+    t.tsvector "tsvector", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.tsvector "ngram"
+    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
+    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
+    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_template", where: "((record_type)::text = 'Template'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_template", where: "((record_type)::text = 'Template'::text)", using: :gin
+    t.index ["record_id", "record_type"], name: "index_search_entries_on_record_id_and_record_type", unique: true
+  end
+
   create_table "submission_events", force: :cascade do |t|
     t.bigint "submission_id", null: false
     t.bigint "submitter_id"
@@ -270,7 +288,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.bigint "template_id", null: false
+    t.bigint "template_id"
     t.bigint "created_by_user_id"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
@@ -278,12 +296,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.text "template_fields"
     t.text "template_schema"
     t.text "template_submitters"
-    t.text "source", null: false
+    t.string "source", null: false
     t.string "submitters_order", null: false
     t.string "slug", null: false
     t.text "preferences", null: false
     t.bigint "account_id", null: false
     t.datetime "expire_at"
+    t.text "name"
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
@@ -310,7 +329,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.text "metadata", null: false
     t.bigint "account_id", null: false
     t.datetime "declined_at"
+    t.string "timezone"
     t.index ["account_id", "id"], name: "index_submitters_on_account_id_and_id"
+    t.index ["completed_at", "account_id"], name: "index_submitters_on_completed_at_and_account_id"
     t.index ["email"], name: "index_submitters_on_email"
     t.index ["external_id"], name: "index_submitters_on_external_id"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
@@ -400,7 +421,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_080846) do
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "uuid", null: false
+    t.string "uuid", null: false
     t.string "otp_secret"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false

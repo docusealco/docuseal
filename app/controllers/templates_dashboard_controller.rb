@@ -25,7 +25,7 @@ class TemplatesDashboardController < ApplicationController
       @templates = @templates.none
     else
       @template_folders = @template_folders.reject { |e| e.name == TemplateFolder::DEFAULT_NAME }
-      @templates = filter_templates(@templates)
+      @templates = filter_templates(@templates).preload(:author, :template_accesses)
       @templates = Templates::Order.call(@templates, current_user, cookies.permanent[:dashboard_templates_order])
 
       limit =
@@ -42,7 +42,7 @@ class TemplatesDashboardController < ApplicationController
   private
 
   def filter_templates(templates)
-    rel = templates.active.preload(:author, :template_accesses)
+    rel = templates.active
 
     if params[:q].blank?
       if Docuseal.multitenant? ? current_account.testing? : current_account.linked_account_account
@@ -51,13 +51,20 @@ class TemplatesDashboardController < ApplicationController
 
         shared_template_ids = TemplateSharing.where(account_id: shared_account_ids).select(:template_id)
 
-        rel = rel.where(folder_id: current_account.default_template_folder.id).or(rel.where(id: shared_template_ids))
+        rel = Template.where(
+          Template.arel_table[:id].in(
+            Arel::Nodes::Union.new(
+              rel.where(folder_id: current_account.default_template_folder.id).select(:id).arel,
+              shared_template_ids.arel
+            )
+          )
+        )
       else
         rel = rel.where(folder_id: current_account.default_template_folder.id)
       end
     end
 
-    Templates.search(rel, params[:q])
+    Templates.search(current_user, rel, params[:q])
   end
 
   def sort_template_folders(template_folders, current_user, order)
