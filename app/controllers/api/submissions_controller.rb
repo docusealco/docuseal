@@ -112,7 +112,9 @@ module Api
       submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:template_folder].present?
-        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
+        folder = TemplateFolder.find_by(name: params[:template_folder], account_id: current_user.account_id)
+
+        submissions = folder ? submissions.joins(:template).where(template: { folder_id: folder.id }) : submissions.none
       end
 
       if params.key?(:archived)
