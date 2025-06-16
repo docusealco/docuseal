@@ -195,6 +195,8 @@ module Submissions
             merged_submitter['uuid'] = new_uuid
             merged_submitter['name'] = name
             merged_submitter.delete('linked_to_uuid')
+
+            next merged_submitter
           end
 
           submitter
