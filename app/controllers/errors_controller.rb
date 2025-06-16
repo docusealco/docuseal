@@ -5,8 +5,12 @@ class ErrorsController < ActionController::Base
     'This feature is available in Pro Edition: https://www.docuseal.com/pricing'
 
   ENTERPRISE_PATHS = [
+    '/submissions/html',
+    '/api/submissions/html',
     '/templates/html',
     '/api/templates/html',
+    '/submissions/pdf',
+    '/api/submissions/pdf',
     '/templates/pdf',
     '/api/templates/pdf',
     '/templates/doc',
