@@ -23,6 +23,7 @@ en: &en
   thanks: Thanks
   private: Private
   stripe_integration: Stripe Integration
+  require_all_recipients: Require all recipients
   stripe_account_has_been_connected: Stripe account has been connected.
   re_connect_stripe: Re-connect Stripe
   bcc_recipients: BCC recipients
@@ -851,6 +852,7 @@ en: &en
       range_without_total: "%{from}-%{to} items"
 
 es: &es
+  require_all_recipients: Requerir a todos los destinatarios
   stripe_integration: Integración con Stripe
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
@@ -1683,6 +1685,7 @@ es: &es
       range_without_total: "%{from}-%{to} elementos"
 
 it: &it
+  require_all_recipients: Richiedi tutti i destinatari
   stripe_integration: Integrazione Stripe
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
@@ -2513,6 +2516,7 @@ it: &it
       range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
+  require_all_recipients: Exiger tous les destinataires
   stripe_integration: Intégration Stripe
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
@@ -3346,6 +3350,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
+  require_all_recipients: Exigir todos os destinatários
   stripe_integration: Integração com Stripe
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
@@ -4179,6 +4184,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} itens"
 
 de: &de
+  require_all_recipients: Alle Empfänger erforderlich
   stripe_integration: Stripe-Integration
   stripe_account_has_been_connected: Stripe-Konto wurde verbunden.
   re_connect_stripe: Stripe erneut verbinden
