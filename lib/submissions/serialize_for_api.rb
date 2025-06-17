@@ -36,18 +36,18 @@ module Submissions
         last_submitter = submitters.max_by(&:completed_at)
 
         if with_documents
-          json[:documents] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
+          json['documents'] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
         end
 
-        json[:status] = 'completed'
-        json[:completed_at] = last_submitter.completed_at
+        json['status'] = 'completed'
+        json['completed_at'] = last_submitter.completed_at
       else
-        json[:documents] = [] if with_documents
-        json[:status] = build_status(submission, submitters)
-        json[:completed_at] = nil
+        json['documents'] = [] if with_documents
+        json['status'] = build_status(submission, submitters)
+        json['completed_at'] = nil
       end
 
-      json[:submitters] = serialized_submitters
+      json['submitters'] = serialized_submitters
 
       json
     end
