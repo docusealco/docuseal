@@ -35,11 +35,11 @@ module Submitters
   def fulltext_search_field(current_user, submitters, keyword, field_name)
     keyword = keyword.delete("\0")
 
-    return submitters if keyword.blank?
+    return submitters.none if keyword.blank?
 
     weight = FIELD_NAME_WEIGHTS[field_name]
 
-    return submitters if weight.blank?
+    return submitters.none if weight.blank?
 
     query =
       if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
