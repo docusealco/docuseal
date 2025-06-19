@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading, IconId } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading, IconId, IconCalendarCheck } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -101,6 +101,7 @@ export default {
         signature: this.t('signature'),
         initials: this.t('initials'),
         date: this.t('date'),
+        datenow: this.t('date_signed'),
         number: this.t('number'),
         image: this.t('image'),
         file: this.t('file'),
@@ -142,6 +143,7 @@ export default {
         signature: IconWritingSign,
         initials: IconLetterCaseUpper,
         date: IconCalendarEvent,
+        datenow: IconCalendarCheck,
         number: IconSquareNumber1,
         image: IconPhoto,
         checkbox: IconCheckbox,
@@ -164,7 +166,7 @@ export default {
           return acc
         }, {})
       } else {
-        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading'))
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading' && key !== 'datenow'))
       }
     }
   },
