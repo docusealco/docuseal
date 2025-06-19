@@ -65,12 +65,13 @@ module Submitters
         SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
       end
 
-    submitters.where(
-      id: SearchEntry.where(record_type: 'Submitter')
-                     .where(account_id: current_user.account_id)
-                     .where(*query)
-                     .select(:record_id)
-    )
+    submitter_ids = SearchEntry.where(record_type: 'Submitter')
+                               .where(account_id: current_user.account_id)
+                               .where(*query)
+                               .limit(500)
+                               .pluck(:record_id)
+
+    submitters.where(id: submitter_ids.first(100))
   end
 
   def plain_search(submitters, keyword)
