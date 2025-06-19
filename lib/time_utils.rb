@@ -53,6 +53,8 @@ module TimeUtils
   def format_date_string(string, format, locale)
     date = Date.parse(string.to_s)
 
+    format = format.upcase if format
+
     format ||= locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT
 
     i18n_format = format.sub(/D+/, DAY_FORMATS[format[/D+/]])
