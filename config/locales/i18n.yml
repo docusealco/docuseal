@@ -750,6 +750,7 @@ en: &en
   share_link: Share link
   enable_shared_link: Enable shared link
   share_link_is_currently_disabled: Share link is currently disabled
+  select_data_residency: Select data residency
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1583,6 +1584,7 @@ es: &es
   share_link: Enlace para compartir
   enable_shared_link: Habilitar enlace compartido
   share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
+  select_data_residency: Seleccionar ubicación de datos
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2414,6 +2416,7 @@ it: &it
   share_link: Link di condivisione
   enable_shared_link: Abilita link condiviso
   share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
+  select_data_residency: Seleziona la residenza dei dati
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3248,6 +3251,7 @@ fr: &fr
   share_link: Lien de partage
   enable_shared_link: Activer le lien de partage
   share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
+  select_data_residency: Sélectionner la résidence des données
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4081,6 +4085,7 @@ pt: &pt
   share_link: Link de compartilhamento
   enable_shared_link: Ativar link compartilhado
   share_link_is_currently_disabled: O link compartilhado está desativado no momento
+  select_data_residency: Selecionar local dos dados
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4915,6 +4920,7 @@ de: &de
   share_link: Freigabelink
   enable_shared_link: 'Freigabelink aktivieren'
   share_link_is_currently_disabled: 'Freigabelink ist derzeit deaktiviert'
+  select_data_residency: Datenstandort auswählen
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5086,6 +5092,9 @@ pl:
   please_enter_your_email_address_associated_with_the_completed_submission: Wprowadź adres e-mail powiązany z ukończonym zgłoszeniem.
   privacy_policy: Polityka Prywatności
   esignature_disclosure: Użycie e-podpisu
+  select_data_residency: Wybierz lokalizację danych
+  company_name: Nazwa firmy
+  optional: opcjonalne
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5157,6 +5166,9 @@ uk:
   please_enter_your_email_address_associated_with_the_completed_submission: "Введіть адресу електронної пошти, пов'язану із завершеним поданням."
   privacy_policy: Політика конфіденційності
   esignature_disclosure: Використання e-підпису
+  select_data_residency: Виберіть місце зберігання даних
+  company_name: Назва компанії
+  optional: необов’язково
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5228,6 +5240,9 @@ cs:
   please_enter_your_email_address_associated_with_the_completed_submission: Zadejte e-mailovou adresu spojenou s dokončeným odesláním.
   privacy_policy: Zásady Ochrany Osobních Údajů
   esignature_disclosure: Použití e-podpisu
+  select_data_residency: Vyberte umístění dat
+  company_name: Název společnosti
+  optional: volitelné
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5299,6 +5314,9 @@ he:
   please_enter_your_email_address_associated_with_the_completed_submission: 'אנא הזן את כתובת הדוא"ל המשויכת למשלוח שהושלם.'
   privacy_policy: 'מדיניות פרטיות'
   esignature_disclosure: 'גילוי חתימה אלקטרונית'
+  select_data_residency: בחר מיקום נתונים
+  company_name: שם החברה
+  optional: אופציונלי
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5370,6 +5388,9 @@ nl:
   please_enter_your_email_address_associated_with_the_completed_submission: Voer het e-mailadres in dat is gekoppeld aan de voltooide indiening.
   privacy_policy: Privacybeleid
   esignature_disclosure: Gebruik van e-handtekening
+  select_data_residency: Selecteer gegevenslocatie
+  company_name: Bedrijfsnaam
+  optional: optioneel
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5441,6 +5462,9 @@ ar:
   please_enter_your_email_address_associated_with_the_completed_submission: 'يرجى إدخال عنوان البريد الإلكتروني المرتبط بالإرسال المكتمل.'
   privacy_policy: 'سياسة الخصوصية'
   esignature_disclosure: 'إفصاح التوقيع الإلكتروني'
+  select_data_residency: اختر موقع تخزين البيانات
+  company_name: اسم الشركة
+  optional: اختياري
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5512,6 +5536,9 @@ ko:
   please_enter_your_email_address_associated_with_the_completed_submission: '완료된 제출과 연결된 이메일 주소를 입력하세요.'
   privacy_policy: 개인정보 처리방침
   esignature_disclosure: 전자서명 공개
+  select_data_residency: 데이터 저장 위치 선택
+  company_name: 회사 이름
+  optional: 선택 사항
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5583,6 +5610,9 @@ ja:
   please_enter_your_email_address_associated_with_the_completed_submission: '完了した提出に関連付けられたメールアドレスを入力してください。'
   privacy_policy: プライバシーポリシー
   esignature_disclosure: 電子署名に関する開示
+  select_data_residency: データ保存場所を選択
+  company_name: 会社名
+  optional: 任意
 
 en-US:
   <<: *en
