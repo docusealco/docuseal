@@ -73,12 +73,15 @@ module Docuseal
     @default_pkcs ||= GenerateCertificate.load_pkcs(Docuseal::CERTS)
   end
 
-  def fulltext_search?(_user)
-    return false unless SearchEntry.table_exists?
-    return true if Docuseal.multitenant?
-    return true if Rails.env.local?
+  def fulltext_search?
+    return @fulltext_search unless @fulltext_search.nil?
 
-    false
+    @fulltext_search =
+      if SearchEntry.table_exists?
+        Docuseal.multitenant? ? true : AccountConfig.exists?(key: :fulltext_search, value: true)
+      else
+        false
+      end
   end
 
   def enable_pwa?
