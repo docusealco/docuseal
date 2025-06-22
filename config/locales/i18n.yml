@@ -22,6 +22,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
   require_all_recipients: Require all recipients
   stripe_account_has_been_connected: Stripe account has been connected.
@@ -853,6 +854,7 @@ en: &en
       range_without_total: "%{from}-%{to} items"
 
 es: &es
+  authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
   require_all_recipients: Requerir a todos los destinatarios
   stripe_integration: Integración con Stripe
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
@@ -1687,6 +1689,7 @@ es: &es
       range_without_total: "%{from}-%{to} elementos"
 
 it: &it
+  authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
   require_all_recipients: Richiedi tutti i destinatari
   stripe_integration: Integrazione Stripe
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
@@ -2519,6 +2522,7 @@ it: &it
       range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
+  authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
   require_all_recipients: Exiger tous les destinataires
   stripe_integration: Intégration Stripe
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
@@ -3354,6 +3358,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
+  authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
   require_all_recipients: Exigir todos os destinatários
   stripe_integration: Integração com Stripe
   stripe_account_has_been_connected: Conta Stripe foi conectada.
@@ -4189,6 +4194,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} itens"
 
 de: &de
+  authenticate_embedded_form_preview_with_token: Authentifizieren Sie die eingebettete Formularvorschau mit Token
   require_all_recipients: Alle Empfänger erforderlich
   stripe_integration: Stripe-Integration
   stripe_account_has_been_connected: Stripe-Konto wurde verbunden.
