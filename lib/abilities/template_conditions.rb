@@ -13,7 +13,7 @@ module Abilities
         TemplateSharing.where({ ability:, account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
                        .select(:template_id)
 
-      Template.where(Template.arel_table[:id].in(Arel::Nodes::Union.new(templates.select(:id).arel, shared_ids.arel)))
+      Template.where(Template.arel_table[:id].in(templates.select(:id).arel.union(shared_ids.arel)))
     end
 
     def entity(template, user:, ability: nil)
