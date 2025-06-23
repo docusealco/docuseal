@@ -848,6 +848,33 @@ RSpec.describe 'Signing Form' do
     end
   end
 
+  context 'when the template shared link is disabled' do
+    let(:template) do
+      create(:template, shared_link: false, account:, author:, only_field_types: %w[text])
+    end
+
+    context 'when user is logged in' do
+      before do
+        login_as author
+        visit start_form_path(slug: template.slug)
+      end
+
+      it 'shows a warning that the shared link is disabled and provides an option to enable it' do
+        expect(page).to have_content('Share link is currently disabled')
+        expect(page).to have_content(template.name)
+        expect(page).to have_button('Enable shared link')
+      end
+
+      it 'enables the shared link' do
+        expect do
+          click_button 'Enable shared link'
+        end.to change { template.reload.shared_link }.from(false).to(true)
+
+        expect(page).to have_content('You have been invited to submit a form')
+      end
+    end
+  end
+
   it 'sends completed email' do
     template = create(:template, account:, author:, only_field_types: %w[text signature])
     submission = create(:submission, template:)
