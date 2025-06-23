@@ -165,6 +165,15 @@
             <% end %>
           <% end %>
         <% end %>
+        <%= render 'extra_preferences' %>
+        <% if !Docuseal.multitenant? && SearchEntry.table_exists? && (!Docuseal.fulltext_search? || params[:reindex] == 'true') && can?(:manage, EncryptedConfig) %>
+          <div class="flex items-center justify-between py-2.5">
+            <span>
+              Efficient search with search index
+            </span>
+            <%= button_to params[:reindex] == 'true' ? 'Reindex' : 'Build Search Index', settings_search_entries_reindex_index_path, method: :post, class: 'btn btn-sm btn-neutral text-white px-4' %>
+          </div>
+        <% end %>
       </div>
     <% end %>
     <%= render 'compliances' %>

@@ -332,12 +332,8 @@ class Pdfium
 
       Pdfium.FPDF_RenderPageBitmap(bitmap_ptr, page_ptr, 0, 0, render_width, render_height, 0, flags)
 
-      Pdfium.check_last_error('Failed to render page to bitmap')
-
       unless form_handle.null?
         Pdfium.FPDF_FFLDraw(form_handle, bitmap_ptr, page_ptr, 0, 0, render_width, render_height, 0, flags)
-
-        Pdfium.check_last_error('Call to FPDF_FFLDraw completed (check for rendering issues if any)')
       end
 
       buffer_ptr = Pdfium.FPDFBitmap_GetBuffer(bitmap_ptr)

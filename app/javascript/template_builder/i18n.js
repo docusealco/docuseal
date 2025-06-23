@@ -1,6 +1,7 @@
 const en = {
   font: 'Font',
   party: 'Party',
+  date_signed: 'Date Signed',
   method: 'Method',
   reorder_fields: 'Reorder fields',
   verify_id: 'Verify ID',
@@ -167,6 +168,7 @@ const en = {
 }
 
 const es = {
+  date_signed: 'Fecha actual',
   fuente: 'Fuente',
   party: 'Parte',
   method: 'Método',
@@ -335,6 +337,7 @@ const es = {
 }
 
 const it = {
+  date_signed: 'Data attuale',
   font: 'Carattere',
   party: 'Parte',
   method: 'Metodo',
@@ -503,6 +506,7 @@ const it = {
 }
 
 const pt = {
+  date_signed: 'Data atual',
   fonte: 'Fonte',
   party: 'Parte',
   method: 'Método',
@@ -671,6 +675,7 @@ const pt = {
 }
 
 const fr = {
+  date_signed: 'Date actuelle',
   font: 'Police',
   party: 'Partie',
   method: 'Méthode',
@@ -839,6 +844,7 @@ const fr = {
 }
 
 const de = {
+  date_now: 'Akt. Datum',
   font: 'Schriftart',
   party: 'Partei',
   method: 'Verfahren',

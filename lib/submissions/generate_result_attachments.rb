@@ -256,7 +256,15 @@ module Submissions
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
-            image = load_vips_image(attachment, attachments_data_cache).autorot
+            image =
+              begin
+                load_vips_image(attachment, attachments_data_cache).autorot
+              rescue Vips::Error
+                next unless attachment.content_type.starts_with?('image/')
+                next if attachment.byte_size.zero?
+
+                raise
+              end
 
             reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
 

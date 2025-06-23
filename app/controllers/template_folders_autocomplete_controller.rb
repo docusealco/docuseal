@@ -6,7 +6,9 @@ class TemplateFoldersAutocompleteController < ApplicationController
   LIMIT = 100
 
   def index
-    template_folders = @template_folders.joins(:templates).where(templates: { archived_at: nil }).distinct
+    templates_query = Template.accessible_by(current_ability).where(archived_at: nil)
+
+    template_folders = @template_folders.where(id: templates_query.select(:folder_id))
     template_folders = TemplateFolders.search(template_folders, params[:q]).limit(LIMIT)
 
     render json: template_folders.as_json(only: %i[name archived_at])

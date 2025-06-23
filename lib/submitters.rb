@@ -14,7 +14,7 @@ module Submitters
   module_function
 
   def search(current_user, submitters, keyword)
-    if Docuseal.fulltext_search?(current_user)
+    if Docuseal.fulltext_search?
       fulltext_search(current_user, submitters, keyword)
     else
       plain_search(submitters, keyword)
@@ -35,11 +35,11 @@ module Submitters
   def fulltext_search_field(current_user, submitters, keyword, field_name)
     keyword = keyword.delete("\0")
 
-    return submitters if keyword.blank?
+    return submitters.none if keyword.blank?
 
     weight = FIELD_NAME_WEIGHTS[field_name]
 
-    return submitters if weight.blank?
+    return submitters.none if weight.blank?
 
     query =
       if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
@@ -53,7 +53,7 @@ module Submitters
           end
 
         [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
-      elsif keyword.match?(/[^\p{L}\d&@._\-+]/)
+      elsif keyword.match?(/[^\p{L}\d&@._\-]/)
         terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
 
         if terms.size > 1
@@ -65,12 +65,13 @@ module Submitters
         SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
       end
 
-    submitters.where(
-      id: SearchEntry.where(record_type: 'Submitter')
-                     .where(account_id: current_user.account_id)
-                     .where(*query)
-                     .select(:record_id)
-    )
+    submitter_ids = SearchEntry.where(record_type: 'Submitter')
+                               .where(account_id: current_user.account_id)
+                               .where(*query)
+                               .limit(500)
+                               .pluck(:record_id)
+
+    submitters.where(id: submitter_ids.first(100))
   end
 
   def plain_search(submitters, keyword)

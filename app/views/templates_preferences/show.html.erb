@@ -358,6 +358,16 @@
             <% end %>
           </div>
         <% end %>
+        <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
+          <div class="flex items-center mt-4 justify-between w-full">
+            <span>
+              <%= t('require_all_recipients') %>
+            </span>
+            <%= f.fields_for :preferences, Struct.new(:require_all_submitters).new(@template.preferences['require_all_submitters']) do |ff| %>
+              <%= ff.check_box :require_all_submitters, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', '' %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
       <div class="form-control mt-5 pb-2">
         <%= button_tag button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button', form: :submitters_form %>

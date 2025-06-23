@@ -56,7 +56,7 @@
   <% if @templates.present? %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
-      <% if show_dropzone && (current_user.created_at > 2.weeks.ago || params[:tour] == 'true') && current_user == true_user %>
+      <% if (show_dropzone && current_user.created_at > 2.weeks.ago && current_user == true_user) || params[:tour] == 'true' %>
         <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
         <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
           <div class="hidden md:block">
@@ -98,5 +98,14 @@
       <%= t('templates_not_found') %>
     </div>
   </div>
+  <% if @related_submissions.present? %>
+    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold mt-8 md:mt-4">
+      <%= t('submissions') %>
+    </h1>
+    <div class="space-y-4 mt-4">
+      <%= render partial: 'templates/submission', collection: @related_submissions, locals: { with_template: true } %>
+    </div>
+    <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions', next_page_path: submissions_path(q: params[:q]) %>
+  <% end %>
 <% end %>
 <%= render 'shared/review_form' %>

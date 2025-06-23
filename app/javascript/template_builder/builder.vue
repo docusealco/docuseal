@@ -1052,6 +1052,12 @@ export default {
         field.readonly = true
       }
 
+      if (type === 'datenow') {
+        field.type = 'date'
+        field.readonly = true
+        field.default_value = '{{date}}'
+      }
+
       if (type === 'date') {
         field.preferences = {
           format: this.defaultDateFormat
@@ -1448,6 +1454,12 @@ export default {
           } else {
             field.options = [{ value: '', uuid: v4() }]
           }
+        }
+
+        if (field.type === 'datenow') {
+          field.type = 'date'
+          field.readonly = true
+          field.default_value = '{{date}}'
         }
 
         if (['stamp', 'heading'].includes(field.type)) {

@@ -23,10 +23,12 @@
 #
 # Indexes
 #
-#  index_submissions_on_account_id_and_id   (account_id,id)
-#  index_submissions_on_created_by_user_id  (created_by_user_id)
-#  index_submissions_on_slug                (slug) UNIQUE
-#  index_submissions_on_template_id         (template_id)
+#  index_submissions_on_account_id_and_id                           (account_id,id)
+#  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
+#  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
+#  index_submissions_on_created_by_user_id                          (created_by_user_id)
+#  index_submissions_on_slug                                        (slug) UNIQUE
+#  index_submissions_on_template_id                                 (template_id)
 #
 # Foreign Keys
 #

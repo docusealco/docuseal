@@ -8,7 +8,7 @@ module Submissions
   module_function
 
   def search(current_user, submissions, keyword, search_values: false, search_template: false)
-    if Docuseal.fulltext_search?(current_user)
+    if Docuseal.fulltext_search?
       fulltext_search(current_user, submissions, keyword, search_template:)
     else
       plain_search(submissions, keyword, search_values:, search_template:)

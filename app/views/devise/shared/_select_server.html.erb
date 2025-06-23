@@ -20,7 +20,7 @@
       </a>
     </div>
   </div>
-  <div id="us_server_selector" class="flex justify-center hidden">
+  <div id="server_selector" class="flex justify-center <%= 'hidden' unless eu_server %>">
     <div class="dropdown">
       <label tabindex="0" class="relative btn btn-sm bg-transparent font-medium normal-case border-base-content/20 justify-start" style="width: 141px; padding: 0 20px">
         <% if eu_server %>

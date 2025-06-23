@@ -93,7 +93,12 @@ module Api
       templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
       templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?
       templates = templates.where(slug: params[:slug]) if params[:slug].present?
-      templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
+
+      if params[:folder].present?
+        folder = TemplateFolder.accessible_by(current_ability).find_by(name: params[:folder])
+
+        templates = folder ? templates.where(folder:) : templates.none
+      end
 
       templates
     end

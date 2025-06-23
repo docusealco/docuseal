@@ -34,6 +34,7 @@ class SetupController < ApplicationController
         { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call.transform_values(&:to_pem) }
       ]
       @account.encrypted_configs.create!(encrypted_configs)
+      @account.account_configs.create!(key: :fulltext_search, value: true) if SearchEntry.table_exists?
 
       Docuseal.refresh_default_url_options!
 
