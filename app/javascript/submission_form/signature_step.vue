@@ -716,11 +716,20 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
             formData.append('remember_signature', this.rememberSignature)
+            formData.append('type', 'signature')
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
-            }).then((resp) => resp.json()).then((attachment) => {
+            }).then(async (resp) => {
+              if (resp.status === 422 || resp.status === 500) {
+                const data = await resp.json()
+
+                return Promise.reject(new Error(data.error))
+              }
+
+              const attachment = await resp.json()
+
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)
 

@@ -9,7 +9,6 @@ module ImageUtils
 
     return true if min.all?(255) && max.all?(255)
     return true if min.all?(0) && max.all?(0)
-    return true if min.length >= 4 && min[-1].zero? && max[-1].zero?
 
     false
   end
