@@ -24,6 +24,7 @@ class Pdfium
   typedef :pointer, :FPDF_PAGE
   typedef :pointer, :FPDF_BITMAP
   typedef :pointer, :FPDF_FORMHANDLE
+  typedef :pointer, :FPDF_TEXTPAGE
 
   MAX_SIZE = 32_767
 
@@ -71,6 +72,11 @@ class Pdfium
   attach_function :FPDFBitmap_FillRect, %i[FPDF_BITMAP int int int int ulong], :void
 
   attach_function :FPDF_RenderPageBitmap, %i[FPDF_BITMAP FPDF_PAGE int int int int int int], :void
+
+  attach_function :FPDFText_LoadPage, [:FPDF_PAGE], :FPDF_TEXTPAGE
+  attach_function :FPDFText_ClosePage, [:FPDF_TEXTPAGE], :void
+  attach_function :FPDFText_CountChars, [:FPDF_TEXTPAGE], :int
+  attach_function :FPDFText_GetText, %i[FPDF_TEXTPAGE int int pointer], :int
 
   typedef :int, :FPDF_BOOL
   typedef :pointer, :IPDF_JSPLATFORM
@@ -344,6 +350,40 @@ class Pdfium
       [bitmap_data, render_width, render_height]
     ensure
       Pdfium.FPDFBitmap_Destroy(bitmap_ptr) if bitmap_ptr && !bitmap_ptr.null?
+    end
+
+    def text
+      return @text if @text
+
+      ensure_not_closed!
+
+      text_page = Pdfium.FPDFText_LoadPage(page_ptr)
+
+      if text_page.null?
+        Pdfium.check_last_error("Failed to load text page #{page_index}")
+
+        raise PdfiumError, "Failed to load text page #{page_index}, pointer is NULL."
+      end
+
+      char_count = Pdfium.FPDFText_CountChars(text_page)
+
+      return @text = '' if char_count.zero?
+
+      buffer_char_capacity = char_count + 1
+
+      buffer = FFI::MemoryPointer.new(:uint16, buffer_char_capacity)
+
+      chars_written = Pdfium.FPDFText_GetText(text_page, 0, buffer_char_capacity, buffer)
+
+      if chars_written <= 0
+        Pdfium.check_last_error("Failed to extract text from page #{page_index}")
+
+        return @text = ''
+      end
+
+      @text = buffer.read_bytes((chars_written * 2) - 2).force_encoding('UTF-16LE').encode('UTF-8')
+    ensure
+      Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
     end
 
     def close
