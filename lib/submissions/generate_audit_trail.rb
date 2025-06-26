@@ -312,8 +312,9 @@ module Submissions
               text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
               line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
-            if field['type'].in?(%w[image signature initials stamp])
-              attachment = submitter.attachments.find { |a| a.uuid == value }
+            if field['type'].in?(%w[image signature initials stamp]) &&
+               (attachment = submitter.attachments.find { |a| a.uuid == value }) &&
+               attachment.image?
 
               image =
                 begin
@@ -340,7 +341,7 @@ module Submissions
 
               composer.image(io, width:, height:, margin: [5, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
-            elsif field['type'].in?(%w[file payment])
+            elsif field['type'].in?(%w[file payment image])
               if field['type'] == 'payment'
                 unit = CURRENCY_SYMBOLS[field['preferences']['currency']] || field['preferences']['currency']
 

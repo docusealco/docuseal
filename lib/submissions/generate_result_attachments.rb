@@ -252,7 +252,11 @@ module Submissions
           canvas = page.canvas(type: :overlay)
           canvas.font(FONT_NAME, size: font_size)
 
-          case field['type']
+          field_type = field['type']
+          field_type = 'file' if field_type == 'image' &&
+                                 !submitter.attachments.find { |a| a.uuid == value }.image?
+
+          case field_type
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 

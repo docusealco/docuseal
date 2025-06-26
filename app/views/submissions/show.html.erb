@@ -244,9 +244,9 @@
                   <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>
-                <% elsif field['type'].in?(['image', 'stamp']) %>
+                <% elsif field['type'].in?(['image', 'stamp']) && attachments_index[value].image? %>
                   <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
-                <% elsif field['type'] == 'file' || field['type'] == 'payment' %>
+                <% elsif field['type'].in?(['file', 'payment', 'image']) %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
                       <a target="_blank" class="flex items-center space-x-1" href="<%= attachments_index[val].url %>">
