@@ -48,6 +48,41 @@ export class AppComponent {}
     "description": "The role name or title of the signer.",
     "example": "First Party"
   },
+  "token": {
+    "type": "string",
+    "doc_type": "object",
+    "description": "JSON Web Token (JWT HS256) with a payload signed using the API key. <b>JWT can be generated only on the backend.</b>.",
+    "required": false,
+    "properties": {
+      "slug": {
+        "type": "string",
+        "required": true,
+        "description": "Template or Submitter slug. When Submitter slug is used no need to pass additional email param."
+      },
+      "email": {
+        "type": "string",
+        "required": false,
+        "description": "Email address of the signer. Additional email form step will be displayed if the email attribute is not specified with Template slug."
+      },
+      "external_id": {
+        "type": "string",
+        "required": false,
+        "description": "Your application-specific unique string key to identify signer within your app."
+      },
+      "preview": {
+        "type": "boolean",
+        "required": false,
+        "default": false,
+        "description": "Show form in preview mode without ability to submit it."
+      }
+    }
+  },
+  "preview": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Show form in preview mode without ability to submit it. Completed documents embedded in preview mode require `data-token` authentication."
+  },
   "expand": {
     "type": "boolean",
     "required": false,
@@ -66,11 +101,6 @@ export class AppComponent {}
     "default": false,
     "description": "Order form fields based on their position on the pages."
   },
-  "externalId": {
-    "type": "string",
-    "required": false,
-    "description": "Your application-specific unique string key to identify signer within your app."
-  },
   "logo": {
     "type": "string",
     "required": false,
@@ -86,12 +116,6 @@ export class AppComponent {}
     "required": false,
     "default": "{}",
     "description": "Object that contains i18n keys to replace the default UI text with custom values. See <a href=\"https://github.com/docusealco/docuseal/blob/master/app/javascript/submission_form/i18n.js\" class=\"link\" target=\"_blank\" rel=\"nofollow\">submission_form/i18n.js</a> for available i18n keys."
-  },
-  "preview": {
-    "type": "boolean",
-    "required": false,
-    "default": false,
-    "description": "Show form in preview mode without ability to submit it."
   },
   "goToLast": {
     "type": "boolean",
@@ -241,6 +265,11 @@ export class AppComponent {}
     "required": false,
     "description": "Pre-assigned values for form fields.",
     "example": "{ 'First Name': 'Jon', 'Last Name': 'Doe' }"
+  },
+  "externalId": {
+    "type": "string",
+    "required": false,
+    "description": "Your application-specific unique string key to identify signer within your app."
   },
   "metadata": {
     "type": "object",

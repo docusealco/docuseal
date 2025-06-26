@@ -42,6 +42,41 @@
     "description": "The role name or title of the signer.",
     "example": "First Party"
   },
+  "data-token": {
+    "type": "string",
+    "doc_type": "object",
+    "description": "JSON Web Token (JWT HS256) with a payload signed using the API key. <b>JWT can be generated only on the backend.</b>.",
+    "required": false,
+    "properties": {
+      "slug": {
+        "type": "string",
+        "required": true,
+        "description": "Template or Submitter slug. When Submitter slug is used no need to pass additional email param."
+      },
+      "email": {
+        "type": "string",
+        "required": false,
+        "description": "Email address of the signer. Additional email form step will be displayed if the email attribute is not specified with Template slug."
+      },
+      "external_id": {
+        "type": "string",
+        "required": false,
+        "description": "Your application-specific unique string key to identify signer within your app."
+      },
+      "preview": {
+        "type": "boolean",
+        "required": false,
+        "default": false,
+        "description": "Show form in preview mode without ability to submit it."
+      }
+    }
+  },
+  "data-preview": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Show form in preview mode without ability to submit it. Completed documents embedded in preview mode require `data-token` authentication."
+  },
   "data-expand": {
     "type": "boolean",
     "required": false,
@@ -59,12 +94,6 @@
     "required": false,
     "default": false,
     "description": "Order form fields based on their position on the pages."
-  },
-  "data-preview": {
-    "type": "boolean",
-    "required": false,
-    "default": false,
-    "description": "Show form in preview mode without ability to submit it."
   },
   "data-logo": {
     "type": "string",

@@ -144,7 +144,27 @@ const token = jwt.sign({
   "field-types": {
     "type": "array",
     "required": false,
-    "description": "Field type names to be used in the form builder. All field types are used by default."
+    "description": "Field type names to be used in the form builder. All field types are used by default.",
+    "enum": [
+      "heading",
+      "text",
+      "signature",
+      "initials",
+      "date",
+      "datenow",
+      "number",
+      "image",
+      "checkbox",
+      "multiple",
+      "file",
+      "radio",
+      "select",
+      "cells",
+      "stamp",
+      "payment",
+      "phone",
+      "verification"
+    ]
   },
   "draw-field-type": {
     "type": "string",

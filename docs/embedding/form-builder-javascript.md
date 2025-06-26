@@ -317,7 +317,27 @@
     "type": "string",
     "required": false,
     "description": "Comma separated field type names to be used in the form builder. All field types are used by default.",
-    "example": "text,date"
+    "example": "text,date",
+    "enum": [
+      "heading",
+      "text",
+      "signature",
+      "initials",
+      "date",
+      "datenow",
+      "number",
+      "image",
+      "checkbox",
+      "multiple",
+      "file",
+      "radio",
+      "select",
+      "cells",
+      "stamp",
+      "payment",
+      "phone",
+      "verification"
+    ]
   },
   "data-draw-field-type": {
     "type": "string",
