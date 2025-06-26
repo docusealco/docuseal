@@ -45,7 +45,7 @@ class SubmitFormInviteController < ApplicationController
       !submitter.completed_at? &&
       !submitter.submission.archived_at? &&
       !submitter.submission.expired? &&
-      !submitter.submission.template.archived_at?
+      !submitter.submission.template&.archived_at?
   end
 
   def filter_invite_submitters(submitter, key = 'invite_by_uuid')
