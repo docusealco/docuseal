@@ -1,5 +1,7 @@
 <% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
-<% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
+<% I18n.with_locale(@submitter.account.locale) do %>
+  <% content_for(:html_description, t('account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution', account_name: @submitter.account.name)) %>
+<% end %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>

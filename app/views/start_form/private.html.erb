@@ -1,5 +1,7 @@
 <% content_for(:html_title, "#{@template.name} | DocuSeal") %>
-<% content_for(:html_description, t('share_link_is_currently_disabled')) %>
+<% I18n.with_locale(@template.account.locale) do %>
+  <% content_for(:html_description, t('share_link_is_currently_disabled')) %>
+<% end %>
 <div class="max-w-md mx-auto px-2 mt-12 mb-4">
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
