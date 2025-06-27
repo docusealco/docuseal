@@ -56,7 +56,7 @@ module SearchEntries
         end
 
       [sql, number, number.length > 1 ? number.delete_prefix('0') : number, keyword]
-    elsif keyword.match?(/[^\p{L}\d&@._\-]/) || keyword.match?(/\A['"].*['"]\z/)
+    elsif keyword.match?(/[^\p{L}\d&@.\-]/) || keyword.match?(/\A['"].*['"]\z/)
       ['tsvector @@ plainto_tsquery(?)', TextUtils.transliterate(keyword.downcase)]
     else
       keyword = TextUtils.transliterate(keyword.downcase).squish
@@ -180,15 +180,21 @@ module SearchEntries
   end
 
   def index_template(template)
-    sql = SearchEntry.sanitize_sql_array(
-      ["SELECT to_tsvector(:text), to_tsvector('simple', :text)",
-       { text: TextUtils.transliterate(template.name.to_s.downcase).delete("\0") }]
-    )
+    text = TextUtils.transliterate(template.name.to_s.downcase.squish).delete("\0")
+
+    sql = SearchEntry.sanitize_sql_array(["SELECT to_tsvector(:text), to_tsvector('simple', :text)", { text: }])
 
     entry = template.search_entry || template.build_search_entry
 
     entry.account_id = template.account_id
     entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+
+    hyphens = text.scan(/\b[^\s]*?\d-[^\s]+?\b/) + text.scan(/\b[^\s]+-\d[^\s]*?\b/)
+
+    hyphens.uniq.each_with_index do |item, index|
+      entry.tsvector += " '#{item.delete("'")}':#{index + 1}" unless entry.tsvector.include?(item)
+    end
+
     entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?
@@ -205,15 +211,21 @@ module SearchEntries
   def index_submission(submission)
     return if submission.name.blank?
 
-    sql = SearchEntry.sanitize_sql_array(
-      ["SELECT to_tsvector(:text), to_tsvector('simple', :text)",
-       { text: TextUtils.transliterate(submission.name.to_s.downcase).delete("\0") }]
-    )
+    text = TextUtils.transliterate(submission.name.to_s.downcase.squish).delete("\0")
+
+    sql = SearchEntry.sanitize_sql_array(["SELECT to_tsvector(:text), to_tsvector('simple', :text)", { text: }])
 
     entry = submission.search_entry || submission.build_search_entry
 
     entry.account_id = submission.account_id
     entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+
+    hyphens = text.scan(/\b[^\s]*?\d-[^\s]+?\b/) + text.scan(/\b[^\s]+-\d[^\s]*?\b/)
+
+    hyphens.uniq.each_with_index do |item, index|
+      entry.tsvector += " '#{item.delete("'")}':#{index + 1}" unless entry.tsvector.include?(item)
+    end
+
     entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?

@@ -53,7 +53,7 @@ module Submitters
           end
 
         [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
-      elsif keyword.match?(/[^\p{L}\d&@._\-]/)
+      elsif keyword.match?(/[^\p{L}\d&@.\-]/)
         terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
 
         if terms.size > 1
