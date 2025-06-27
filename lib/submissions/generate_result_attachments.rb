@@ -223,7 +223,7 @@ module Submissions
           font_name = FONT_NAME unless font_name.in?(DEFAULT_FONTS)
 
           if font_variant != :none && font_name == FONT_NAME
-            font_name = FONT_VARIANS[font_variant]
+            font_name = FONT_VARIANS[font_variant] if FONT_VARIANS[font_variant]
             font_variant = nil unless font_name.in?(DEFAULT_FONTS)
           end
 
