@@ -22,6 +22,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
   require_all_recipients: Require all recipients
@@ -761,7 +762,7 @@ en: &en
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Review or download completed documents. Fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.
   link_form_fields: Link form fields
   at_least_one_field_must_be_displayed_in_the_form: At least one field must be displayed in the form.
-  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: This template has multiple parties, which prevents the use of a sharing link as it's unclear which party is responsible for specific fields. To resolve this, define the default party details.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: This template has multiple parties, which prevents the use of a shared link as it's unclear which party is responsible for specific fields. To resolve this, define the default party details.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -864,6 +865,7 @@ en: &en
       range_without_total: "%{from}-%{to} items"
 
 es: &es
+  default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
   require_all_recipients: Requerir a todos los destinatarios
   stripe_integration: Integración con Stripe
@@ -1709,6 +1711,7 @@ es: &es
       range_without_total: "%{from}-%{to} elementos"
 
 it: &it
+  default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
   require_all_recipients: Richiedi tutti i destinatari
   stripe_integration: Integrazione Stripe
@@ -2552,6 +2555,7 @@ it: &it
       range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
+  default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
   require_all_recipients: Exiger tous les destinataires
   stripe_integration: Intégration Stripe
@@ -3398,6 +3402,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
+  default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
   require_all_recipients: Exigir todos os destinatários
   stripe_integration: Integração com Stripe
@@ -4244,6 +4249,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} itens"
 
 de: &de
+  default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Authentifizieren Sie die eingebettete Formularvorschau mit Token
   require_all_recipients: Alle Empfänger erforderlich
   stripe_integration: Stripe-Integration

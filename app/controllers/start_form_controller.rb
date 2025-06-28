@@ -38,7 +38,7 @@ class StartFormController < ApplicationController
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
         @error_message = multiple_submitters_error_message
 
-        return render :show
+        return render :show, status: :unprocessable_entity
       end
 
       if (is_new_record = @submitter.new_record?)
@@ -63,7 +63,7 @@ class StartFormController < ApplicationController
 
         redirect_to submit_form_path(@submitter.slug)
       else
-        render :show
+        render :show, status: :unprocessable_entity
       end
     end
   end
@@ -136,8 +136,10 @@ class StartFormController < ApplicationController
 
     submitter.name = required_params['name'] if submitter.new_record?
 
-    required_params.each do |key, value|
-      submitter.errors.add(key.to_sym, :blank) if value.blank?
+    unless @resubmit_submitter
+      required_params.each do |key, value|
+        submitter.errors.add(key.to_sym, :blank) if value.blank?
+      end
     end
 
     submitter
@@ -152,6 +154,8 @@ class StartFormController < ApplicationController
       preferences: @resubmit_submitter&.preferences.presence || { 'send_email' => true },
       metadata: @resubmit_submitter&.metadata.presence || {}
     )
+
+    submitter.assign_attributes(@resubmit_submitter.slice(:name, :email, :phone)) if @resubmit_submitter
 
     if submitter.values.present?
       @resubmit_submitter.attachments.each do |attachment|
