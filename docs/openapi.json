@@ -1773,6 +1773,11 @@
                           "type": "string",
                           "description": "Submitter specific URL to redirect to after the submission completion."
                         },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
+                        },
                         "message": {
                           "type": "object",
                           "properties": {
@@ -3422,6 +3427,11 @@
                           "type": "string",
                           "description": "Submitter specific URL to redirect to after the submission completion."
                         },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
+                        },
                         "fields": {
                           "type": "array",
                           "description": "A list of configurations for document form fields.",
@@ -4257,6 +4267,11 @@
                         "completed_redirect_url": {
                           "type": "string",
                           "description": "Submitter specific URL to redirect to after the submission completion."
+                        },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
                         },
                         "fields": {
                           "type": "array",
@@ -5303,10 +5318,6 @@
                     "type": "string",
                     "description": "Specify Reply-To address to use in the notification emails."
                   },
-                  "completed_redirect_url": {
-                    "type": "string",
-                    "description": "Submitter specific URL to redirect to after the submission completion."
-                  },
                   "completed": {
                     "type": "boolean",
                     "description": "Pass `true` to mark submitter as completed and auto-signed via API."
@@ -5315,6 +5326,15 @@
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
                     "example": "{ \"customField\": \"value\" }"
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "require_phone_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                    "default": false
                   },
                   "message": {
                     "type": "object",
