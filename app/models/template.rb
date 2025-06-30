@@ -44,7 +44,7 @@ class Template < ApplicationRecord
   belongs_to :account
   belongs_to :folder, class_name: 'TemplateFolder'
 
-  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 
   before_validation :maybe_set_default_folder, on: :create
 

@@ -43,7 +43,7 @@ class Submitter < ApplicationRecord
   belongs_to :submission
   belongs_to :account
   has_one :template, through: :submission
-  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 
   attribute :values, :string, default: -> { {} }
   attribute :preferences, :string, default: -> { {} }
