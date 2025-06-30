@@ -3,11 +3,13 @@
 class TemplateFoldersController < ApplicationController
   load_and_authorize_resource :template_folder
 
+  helper_method :selected_order
+
   def show
     @templates = @template_folder.templates.active.accessible_by(current_ability)
                                  .preload(:author, :template_accesses)
     @templates = Templates.search(current_user, @templates, params[:q])
-    @templates = Templates::Order.call(@templates, current_user, cookies.permanent[:dashboard_templates_order])
+    @templates = Templates::Order.call(@templates, current_user, selected_order)
 
     @pagy, @templates = pagy_auto(@templates, limit: 12)
   end
@@ -24,6 +26,16 @@ class TemplateFoldersController < ApplicationController
   end
 
   private
+
+  def selected_order
+    @selected_order ||=
+      if cookies.permanent[:dashboard_templates_order].blank? ||
+         (cookies.permanent[:dashboard_templates_order] == 'used_at' && can?(:manage, :countless))
+        'created_at'
+      else
+        cookies.permanent[:dashboard_templates_order]
+      end
+  end
 
   def template_folder_params
     params.require(:template_folder).permit(:name)
