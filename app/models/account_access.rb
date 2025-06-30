@@ -4,7 +4,7 @@
 #
 # Table name: account_accesses
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :integer          not null
@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
 #
 class AccountAccess < ApplicationRecord
   belongs_to :account

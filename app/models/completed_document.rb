@@ -4,7 +4,7 @@
 #
 # Table name: completed_documents
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  sha256       :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

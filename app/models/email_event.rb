@@ -4,7 +4,7 @@
 #
 # Table name: email_events
 #
-#  id             :integer          not null, primary key
+#  id             :bigint           not null, primary key
 #  data           :text             not null
 #  email          :string           not null
 #  emailable_type :string           not null
@@ -20,13 +20,13 @@
 #
 #  index_email_events_on_account_id_and_event_datetime  (account_id,event_datetime)
 #  index_email_events_on_email                          (email)
-#  index_email_events_on_email_event_types              (email) WHERE event_type IN ('bounce', 'soft_bounce', 'complaint', 'soft_complaint')
+#  index_email_events_on_email_event_types              (email) WHERE ((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))
 #  index_email_events_on_emailable                      (emailable_type,emailable_id)
 #  index_email_events_on_message_id                     (message_id)
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
 #
 class EmailEvent < ApplicationRecord
   belongs_to :emailable, polymorphic: true

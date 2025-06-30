@@ -4,7 +4,7 @@
 #
 # Table name: encrypted_user_configs
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  key        :string           not null
 #  value      :text             not null
 #  created_at :datetime         not null
@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class EncryptedUserConfig < ApplicationRecord
   belongs_to :user

@@ -4,7 +4,7 @@
 #
 # Table name: account_linked_accounts
 #
-#  id                :integer          not null, primary key
+#  id                :bigint           not null, primary key
 #  account_type      :text             not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -19,8 +19,8 @@
 #
 # Foreign Keys
 #
-#  account_id         (account_id => accounts.id)
-#  linked_account_id  (linked_account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
+#  fk_rails_...  (linked_account_id => accounts.id)
 #
 class AccountLinkedAccount < ApplicationRecord
   belongs_to :account

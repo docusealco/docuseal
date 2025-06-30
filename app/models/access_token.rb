@@ -4,7 +4,7 @@
 #
 # Table name: access_tokens
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  sha256     :string           not null
 #  token      :text             not null
 #  created_at :datetime         not null
@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class AccessToken < ApplicationRecord
   TOKEN_LENGTH = 43

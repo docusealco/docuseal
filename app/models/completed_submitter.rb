@@ -4,7 +4,7 @@
 #
 # Table name: completed_submitters
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  completed_at  :datetime         not null
 #  sms_count     :integer          not null
 #  source        :string           not null

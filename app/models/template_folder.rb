@@ -4,7 +4,7 @@
 #
 # Table name: template_folders
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  archived_at :datetime
 #  name        :string           not null
 #  created_at  :datetime         not null
@@ -19,8 +19,8 @@
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
-#  author_id   (author_id => users.id)
+#  fk_rails_...  (account_id => accounts.id)
+#  fk_rails_...  (author_id => users.id)
 #
 class TemplateFolder < ApplicationRecord
   DEFAULT_NAME = 'Default'

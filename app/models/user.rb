@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  archived_at            :datetime
 #  consumed_timestep      :integer
 #  current_sign_in_at     :datetime
@@ -40,7 +40,7 @@
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
 #
 class User < ApplicationRecord
   ROLES = [

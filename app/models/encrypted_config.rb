@@ -4,7 +4,7 @@
 #
 # Table name: encrypted_configs
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  key        :string           not null
 #  value      :text             not null
 #  created_at :datetime         not null
@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
 #
 class EncryptedConfig < ApplicationRecord
   CONFIG_KEYS = [

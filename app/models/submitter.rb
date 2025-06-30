@@ -4,7 +4,7 @@
 #
 # Table name: submitters
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  completed_at  :datetime
 #  declined_at   :datetime
 #  email         :string
@@ -37,7 +37,7 @@
 #
 # Foreign Keys
 #
-#  submission_id  (submission_id => submissions.id)
+#  fk_rails_...  (submission_id => submissions.id)
 #
 class Submitter < ApplicationRecord
   belongs_to :submission

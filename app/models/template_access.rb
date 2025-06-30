@@ -4,7 +4,7 @@
 #
 # Table name: template_accesses
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  template_id :integer          not null
@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  template_id  (template_id => templates.id)
+#  fk_rails_...  (template_id => templates.id)
 #
 class TemplateAccess < ApplicationRecord
   ADMIN_USER_ID = -1

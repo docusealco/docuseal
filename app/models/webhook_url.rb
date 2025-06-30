@@ -4,7 +4,7 @@
 #
 # Table name: webhook_urls
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  events     :text             not null
 #  secret     :text             not null
 #  sha1       :string           not null
@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  account_id  (account_id => accounts.id)
+#  fk_rails_...  (account_id => accounts.id)
 #
 class WebhookUrl < ApplicationRecord
   EVENTS = %w[

@@ -4,7 +4,7 @@
 #
 # Table name: submission_events
 #
-#  id              :integer          not null, primary key
+#  id              :bigint           not null, primary key
 #  data            :text             not null
 #  event_timestamp :datetime         not null
 #  event_type      :string           not null
@@ -21,8 +21,8 @@
 #
 # Foreign Keys
 #
-#  submission_id  (submission_id => submissions.id)
-#  submitter_id   (submitter_id => submitters.id)
+#  fk_rails_...  (submission_id => submissions.id)
+#  fk_rails_...  (submitter_id => submitters.id)
 #
 class SubmissionEvent < ApplicationRecord
   belongs_to :submission
