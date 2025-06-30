@@ -406,6 +406,10 @@
                             "type": "string",
                             "description": "Folder name where the template is placed."
                           },
+                          "shared_link": {
+                            "type": "boolean",
+                            "description": "Indicates if the template is accessible by link."
+                          },
                           "author": {
                             "type": "object",
                             "required": [
@@ -545,6 +549,7 @@
                       "folder_id": 1,
                       "folder_name": "Default",
                       "external_id": "c248ffba-ef81-48b7-8e17-e3cecda1c1c5",
+                      "shared_link": true,
                       "author": {
                         "id": 1,
                         "first_name": "John",
@@ -864,6 +869,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -974,6 +983,7 @@
                   "folder_id": 1,
                   "folder_name": "Default",
                   "external_id": "c248ffba-ef81-48b7-8e17-e3cecda1c1c5",
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",
@@ -1274,13 +1284,17 @@
                           "created_at",
                           "updated_at",
                           "submitters",
-                          "template",
                           "created_by_user"
                         ],
                         "properties": {
                           "id": {
                             "type": "integer",
                             "description": "Submission unique ID number."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the document submission",
+                            "example": "Test Submission Document"
                           },
                           "source": {
                             "type": "string",
@@ -1557,6 +1571,7 @@
                   "data": [
                     {
                       "id": 1,
+                      "name": null,
                       "source": "link",
                       "submitters_order": "random",
                       "slug": "VyL4szTwYoSvXq",
@@ -1757,6 +1772,11 @@
                         "completed_redirect_url": {
                           "type": "string",
                           "description": "Submitter specific URL to redirect to after the submission completion."
+                        },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
                         },
                         "message": {
                           "type": "object",
@@ -2216,7 +2236,6 @@
                     "updated_at",
                     "archived_at",
                     "submitters",
-                    "template",
                     "created_by_user",
                     "submission_events",
                     "documents",
@@ -2228,6 +2247,11 @@
                     "id": {
                       "type": "integer",
                       "description": "Submission unique ID number."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the document submission",
+                      "example": "Test Submission Document"
                     },
                     "slug": {
                       "type": "string",
@@ -2611,6 +2635,7 @@
                 },
                 "example": {
                   "id": 1,
+                  "name": null,
                   "source": "link",
                   "submitters_order": "random",
                   "slug": "VyL4szTwYoSvXq",
@@ -3135,6 +3160,1754 @@
         }
       }
     },
+    "/submissions/pdf": {
+      "post": {
+        "security": [
+          {
+            "AuthToken": []
+          }
+        ],
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Create a submission from PDF",
+        "description": "The API endpoint provides the functionality to create one-off submission request from a PDF or DOCX file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
+        "operationId": "createSubmissionFromPdf",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "documents",
+                  "submitters"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document submission.",
+                    "example": "Test Submission Document"
+                  },
+                  "send_email": {
+                    "type": "boolean",
+                    "description": "Set `false` to disable signature request emails sending.",
+                    "default": true
+                  },
+                  "send_sms": {
+                    "type": "boolean",
+                    "description": "Set `true` to send signature request via phone number and SMS.",
+                    "default": false
+                  },
+                  "order": {
+                    "type": "string",
+                    "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
+                    "default": "preserved",
+                    "enum": [
+                      "preserved",
+                      "random"
+                    ]
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Specify URL to redirect to after the submission completion."
+                  },
+                  "bcc_completed": {
+                    "type": "string",
+                    "description": "Specify BCC address to send signed documents to after the completion."
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description": "Specify Reply-To address to use in the notification emails."
+                  },
+                  "expire_at": {
+                    "type": "string",
+                    "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+                    "example": "2024-09-01 12:00:00 UTC"
+                  },
+                  "template_ids": {
+                    "type": "array",
+                    "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
+                    "items": {
+                      "type": "integer",
+                      "description": "The ID of the template to use for the submission."
+                    }
+                  },
+                  "documents": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "file"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the document."
+                        },
+                        "file": {
+                          "example": "base64",
+                          "type": "string",
+                          "format": "base64",
+                          "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL."
+                        },
+                        "fields": {
+                          "type": "array",
+                          "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Name of the field."
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Type of the field (e.g., text, signature, date, initials).",
+                                "enum": [
+                                  "heading",
+                                  "text",
+                                  "signature",
+                                  "initials",
+                                  "date",
+                                  "number",
+                                  "image",
+                                  "checkbox",
+                                  "multiple",
+                                  "file",
+                                  "radio",
+                                  "select",
+                                  "cells",
+                                  "stamp",
+                                  "payment",
+                                  "phone",
+                                  "verification"
+                                ]
+                              },
+                              "role": {
+                                "type": "string",
+                                "description": "Role name of the signer."
+                              },
+                              "required": {
+                                "type": "boolean",
+                                "description": "Indicates if the field is required."
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Field description displayed on the signing form. Supports Markdown."
+                              },
+                              "areas": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "x",
+                                    "y",
+                                    "w",
+                                    "h",
+                                    "page"
+                                  ],
+                                  "properties": {
+                                    "x": {
+                                      "type": "number",
+                                      "description": "X-coordinate of the field area."
+                                    },
+                                    "y": {
+                                      "type": "number",
+                                      "description": "Y-coordinate of the field area."
+                                    },
+                                    "w": {
+                                      "type": "number",
+                                      "description": "Width of the field area."
+                                    },
+                                    "h": {
+                                      "type": "number",
+                                      "description": "Height of the field area."
+                                    },
+                                    "page": {
+                                      "type": "integer",
+                                      "description": "Page number of the field area. Starts from 1.",
+                                      "example": 1
+                                    },
+                                    "option": {
+                                      "type": "string",
+                                      "description": "Option string value for 'radio' and 'multiple' select field types."
+                                    }
+                                  }
+                                }
+                              },
+                              "options": {
+                                "type": "array",
+                                "description": "An array of option values for 'select' field type.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "example": [
+                                  "Option A",
+                                  "Option B"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "position": {
+                          "type": "integer",
+                          "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                        }
+                      }
+                    }
+                  },
+                  "submitters": {
+                    "type": "array",
+                    "description": "The list of submitters for the submission.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "email"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the submitter."
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "The role name or title of the submitter.",
+                          "example": "First Party"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "The email address of the submitter.",
+                          "format": "email",
+                          "example": "john.doe@example.com"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "The phone number of the submitter, formatted according to the E.164 standard.",
+                          "example": "+1234567890"
+                        },
+                        "values": {
+                          "type": "object",
+                          "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
+                        },
+                        "external_id": {
+                          "type": "string",
+                          "description": "Your application-specific unique string key to identify this submitter within your app."
+                        },
+                        "completed": {
+                          "type": "boolean",
+                          "description": "Pass `true` to mark submitter as completed and auto-signed via API."
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "description": "Metadata object with additional submitter information.",
+                          "example": "{ \"customField\": \"value\" }"
+                        },
+                        "send_email": {
+                          "type": "boolean",
+                          "description": "Set `false` to disable signature request emails sending only for this submitter.",
+                          "default": true
+                        },
+                        "send_sms": {
+                          "type": "boolean",
+                          "description": "Set `true` to send signature request via phone number and SMS.",
+                          "default": false
+                        },
+                        "reply_to": {
+                          "type": "string",
+                          "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                        },
+                        "completed_redirect_url": {
+                          "type": "string",
+                          "description": "Submitter specific URL to redirect to after the submission completion."
+                        },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
+                        },
+                        "fields": {
+                          "type": "array",
+                          "description": "A list of configurations for document form fields.",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Document field name.",
+                                "example": "First Name"
+                              },
+                              "default_value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "oneOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "boolean"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
+                                "example": "Acme"
+                              },
+                              "readonly": {
+                                "type": "boolean",
+                                "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
+                                "default": false
+                              },
+                              "required": {
+                                "type": "boolean",
+                                "description": "Set `true` to make the field required."
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Field description displayed on the signing form. Supports Markdown."
+                              },
+                              "validation_pattern": {
+                                "type": "string",
+                                "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                                "example": "[A-Z]{4}"
+                              },
+                              "invalid_message": {
+                                "type": "string",
+                                "description": "A custom message to display on pattern validation failure."
+                              },
+                              "preferences": {
+                                "type": "object",
+                                "properties": {
+                                  "font_size": {
+                                    "type": "integer",
+                                    "description": "Font size of the field value in pixels.",
+                                    "example": 12
+                                  },
+                                  "font_type": {
+                                    "type": "string",
+                                    "description": "Font type of the field value.",
+                                    "enum": [
+                                      "bold",
+                                      "italic",
+                                      "bold_italic"
+                                    ]
+                                  },
+                                  "font": {
+                                    "type": "string",
+                                    "description": "Font family of the field value.",
+                                    "enum": [
+                                      "Times",
+                                      "Helvetica",
+                                      "Courier"
+                                    ]
+                                  },
+                                  "color": {
+                                    "type": "string",
+                                    "description": "Font color of the field value.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ],
+                                    "default": "black"
+                                  },
+                                  "align": {
+                                    "type": "string",
+                                    "description": "Horizontal alignment of the field text value.",
+                                    "enum": [
+                                      "left",
+                                      "center",
+                                      "right"
+                                    ],
+                                    "default": "left"
+                                  },
+                                  "valign": {
+                                    "type": "string",
+                                    "description": "Vertical alignment of the field text value.",
+                                    "enum": [
+                                      "top",
+                                      "center",
+                                      "bottom"
+                                    ],
+                                    "default": "center"
+                                  },
+                                  "format": {
+                                    "type": "string",
+                                    "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                                    "example": "DD/MM/YYYY"
+                                  },
+                                  "price": {
+                                    "type": "number",
+                                    "description": "Price value of the payment field. Only for payment fields.",
+                                    "example": 99.99
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "description": "Currency value of the payment field. Only for payment fields.",
+                                    "enum": [
+                                      "USD",
+                                      "EUR",
+                                      "GBP",
+                                      "CAD",
+                                      "AUD"
+                                    ],
+                                    "default": "USD"
+                                  },
+                                  "mask": {
+                                    "description": "Set `true` to make sensitive data masked on the document.",
+                                    "oneOf": [
+                                      {
+                                        "type": "integer"
+                                      },
+                                      {
+                                        "type": "boolean"
+                                      }
+                                    ],
+                                    "default": false
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "roles": {
+                          "type": "array",
+                          "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "object",
+                    "properties": {
+                      "subject": {
+                        "type": "string",
+                        "description": "Custom signature request email subject."
+                      },
+                      "body": {
+                        "type": "string",
+                        "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
+                      }
+                    }
+                  },
+                  "flatten": {
+                    "type": "boolean",
+                    "description": "Remove PDF form fields from the documents.",
+                    "default": false
+                  },
+                  "merge_documents": {
+                    "type": "boolean",
+                    "description": "Set `true` to merge the documents into a single PDF file.",
+                    "default": false
+                  },
+                  "remove_tags": {
+                    "type": "boolean",
+                    "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+                    "default": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "submitters",
+                    "source",
+                    "submitters_order",
+                    "status",
+                    "documents",
+                    "expire_at",
+                    "created_at"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Submission unique ID number."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Submission name."
+                    },
+                    "submitters": {
+                      "type": "array",
+                      "description": "The list of submitters.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "submission_id",
+                          "uuid",
+                          "email",
+                          "slug",
+                          "sent_at",
+                          "opened_at",
+                          "completed_at",
+                          "declined_at",
+                          "created_at",
+                          "updated_at",
+                          "name",
+                          "phone",
+                          "status",
+                          "role",
+                          "metadata",
+                          "preferences"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Submission unique ID number."
+                          },
+                          "uuid": {
+                            "type": "string",
+                            "description": "Submitter UUID."
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The email address of the submitter."
+                          },
+                          "slug": {
+                            "type": "string",
+                            "description": "Unique key to be used in the form signing link and embedded form."
+                          },
+                          "sent_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the signing request was sent to the submitter."
+                          },
+                          "opened_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter opened the signing form."
+                          },
+                          "completed_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter completed the signing form."
+                          },
+                          "declined_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter declined to complete the signing form."
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "description": "The date and time when the submitter was created."
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "description": "The date and time when the submitter was last updated."
+                          },
+                          "name": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Submitter name."
+                          },
+                          "phone": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Submitter phone number."
+                          },
+                          "external_id": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Your application-specific unique string key to identify this submitter within your app."
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The status of signing request for the submitter.",
+                            "enum": [
+                              "completed",
+                              "declined",
+                              "opened",
+                              "sent",
+                              "awaiting"
+                            ]
+                          },
+                          "role": {
+                            "type": "string",
+                            "description": "The role of the submitter."
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Metadata object with additional submitter information."
+                          },
+                          "preferences": {
+                            "type": "object",
+                            "description": "Object with submitter preferences."
+                          },
+                          "embed_src": {
+                            "type": "string",
+                            "description": "The `src` URL value to embed the signing form or sign via a link."
+                          }
+                        }
+                      }
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "The source of the submission.",
+                      "enum": [
+                        "invite",
+                        "bulk",
+                        "api",
+                        "embed",
+                        "link"
+                      ]
+                    },
+                    "submitters_order": {
+                      "type": "string",
+                      "description": "The order of submitters.",
+                      "enum": [
+                        "random",
+                        "preserved"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the submission.",
+                      "enum": [
+                        "completed",
+                        "declined",
+                        "expired",
+                        "pending"
+                      ]
+                    },
+                    "schema": {
+                      "type": "array",
+                      "description": "The one-off submission document files.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "attachment_uuid": {
+                            "type": "string",
+                            "description": "The attachment UUID."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The attachment name."
+                          }
+                        }
+                      }
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "List of fields to be filled in the one-off submission.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "uuid",
+                          "submitter_uuid",
+                          "name",
+                          "type",
+                          "required",
+                          "areas"
+                        ],
+                        "properties": {
+                          "uuid": {
+                            "type": "string",
+                            "description": "Unique identifier of the field."
+                          },
+                          "submitter_uuid": {
+                            "type": "string",
+                            "description": "Unique identifier of the submitter that filled the field."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Field name."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Type of the field (e.g., text, signature, date, initials).",
+                            "enum": [
+                              "heading",
+                              "text",
+                              "signature",
+                              "initials",
+                              "date",
+                              "number",
+                              "image",
+                              "checkbox",
+                              "multiple",
+                              "file",
+                              "radio",
+                              "select",
+                              "cells",
+                              "stamp",
+                              "payment",
+                              "phone",
+                              "verification"
+                            ]
+                          },
+                          "required": {
+                            "type": "boolean",
+                            "description": "Indicates if the field is required."
+                          },
+                          "preferences": {
+                            "type": "object",
+                            "properties": {
+                              "font_size": {
+                                "type": "integer",
+                                "description": "Font size of the field value in pixels."
+                              },
+                              "font_type": {
+                                "type": "string",
+                                "description": "Font type of the field value."
+                              },
+                              "font": {
+                                "type": "string",
+                                "description": "Font family of the field value."
+                              },
+                              "color": {
+                                "type": "string",
+                                "description": "Font color of the field value."
+                              },
+                              "align": {
+                                "type": "string",
+                                "description": "Horizontal alignment of the field text value."
+                              },
+                              "valign": {
+                                "type": "string",
+                                "description": "Vertical alignment of the field text value."
+                              },
+                              "format": {
+                                "type": "string",
+                                "description": "The data format for different field types."
+                              },
+                              "price": {
+                                "type": "number",
+                                "description": "Price value of the payment field. Only for payment fields."
+                              },
+                              "currency": {
+                                "type": "string",
+                                "description": "Currency value of the payment field. Only for payment fields."
+                              },
+                              "mask": {
+                                "type": "boolean",
+                                "description": "Indicates if the field is masked on the document."
+                              }
+                            }
+                          },
+                          "areas": {
+                            "type": "array",
+                            "description": "List of areas where the field is located in the document.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "x",
+                                "y",
+                                "w",
+                                "h",
+                                "attachment_uuid",
+                                "page"
+                              ],
+                              "properties": {
+                                "x": {
+                                  "type": "number",
+                                  "description": "X coordinate of the area where the field is located in the document."
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "description": "Y coordinate of the area where the field is located in the document."
+                                },
+                                "w": {
+                                  "type": "number",
+                                  "description": "Width of the area where the field is located in the document."
+                                },
+                                "h": {
+                                  "type": "number",
+                                  "description": "Height of the area where the field is located in the document."
+                                },
+                                "attachment_uuid": {
+                                  "type": "string",
+                                  "description": "Unique identifier of the attached document where the field is located."
+                                },
+                                "page": {
+                                  "type": "integer",
+                                  "description": "Page number of the attached document where the field is located."
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "documents": {
+                      "type": "array",
+                      "description": "List of documents attached to the one-off submission.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "attachment_uuid",
+                          "name"
+                        ],
+                        "properties": {
+                          "attachment_uuid": {
+                            "type": "string",
+                            "description": "Unique indentifier of attached document to the one-off submission."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the attached document to the one-off submission."
+                          }
+                        }
+                      }
+                    },
+                    "expire_at": {
+                      "type": "string",
+                      "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+                      "example": "2024-09-01 12:00:00 UTC"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "The date and time when the submission was created."
+                    }
+                  }
+                },
+                "example": {
+                  "id": 5,
+                  "name": "Test Submission",
+                  "submitters": [
+                    {
+                      "id": 1,
+                      "uuid": "884d545b-3396-49f1-8c07-05b8b2a78755",
+                      "email": "john.doe@example.com",
+                      "slug": "pAMimKcyrLjqVt",
+                      "sent_at": "2025-06-02T15:55:51.310Z",
+                      "opened_at": null,
+                      "completed_at": null,
+                      "declined_at": null,
+                      "created_at": "2025-06-02T15:55:50.320Z",
+                      "updated_at": "2025-06-02T15:55:50.320Z",
+                      "name": "string",
+                      "phone": "+1234567890",
+                      "external_id": "2321",
+                      "metadata": {
+                        "customData": "custom value"
+                      },
+                      "status": "sent",
+                      "values": [
+                        {
+                          "field": "Full Name",
+                          "value": "John Doe"
+                        }
+                      ],
+                      "preferences": {
+                        "send_email": true,
+                        "send_sms": false,
+                        "reply_to": "reply@example.com",
+                        "completed_redirect_url": "https://example.com/"
+                      },
+                      "role": "First Party",
+                      "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                    }
+                  ],
+                  "source": "api",
+                  "submitters_order": "preserved",
+                  "status": "pending",
+                  "schema": [
+                    {
+                      "name": "Demo PDF",
+                      "attachment_uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf"
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "Name",
+                      "type": "text",
+                      "required": true,
+                      "uuid": "d0bf3c0c-1928-40c8-80f9-d9f3c6ad4eff",
+                      "submitter_uuid": "0b0bff58-bc9a-475d-b4a9-2f3e5323faf7",
+                      "areas": [
+                        {
+                          "page": 1,
+                          "attachment_uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf",
+                          "x": 0.403158189124654,
+                          "y": 0.04211750189825361,
+                          "w": 0.100684625476058,
+                          "h": 0.01423690205011389
+                        }
+                      ]
+                    }
+                  ],
+                  "expire_at": null,
+                  "created_at": "2025-06-02T15:55:50.270Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submissions/html": {
+      "post": {
+        "security": [
+          {
+            "AuthToken": []
+          }
+        ],
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Create a submission from HTML",
+        "description": "This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">Create PDF document fillable form with HTML</a>",
+        "operationId": "createSubmissionFromHtml",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "documents",
+                  "submitters"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document submission",
+                    "example": "Test Submission Document"
+                  },
+                  "send_email": {
+                    "type": "boolean",
+                    "description": "Set `false` to disable signature request emails sending.",
+                    "default": true
+                  },
+                  "send_sms": {
+                    "type": "boolean",
+                    "description": "Set `true` to send signature request via phone number and SMS.",
+                    "default": false
+                  },
+                  "order": {
+                    "type": "string",
+                    "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
+                    "default": "preserved",
+                    "enum": [
+                      "preserved",
+                      "random"
+                    ]
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Specify URL to redirect to after the submission completion."
+                  },
+                  "bcc_completed": {
+                    "type": "string",
+                    "description": "Specify BCC address to send signed documents to after the completion."
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description": "Specify Reply-To address to use in the notification emails."
+                  },
+                  "expire_at": {
+                    "type": "string",
+                    "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+                    "example": "2024-09-01 12:00:00 UTC"
+                  },
+                  "template_ids": {
+                    "type": "array",
+                    "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
+                    "items": {
+                      "type": "integer",
+                      "description": "The ID of the template to use for the submission."
+                    }
+                  },
+                  "documents": {
+                    "type": "array",
+                    "description": "The list of documents built from HTML. Can be used to create a submission with multiple documents.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "html"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Document name. Random uuid will be assigned when not specified.",
+                          "example": "Test Document"
+                        },
+                        "html": {
+                          "type": "string",
+                          "description": "HTML document content with field tags.",
+                          "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                        },
+                        "html_header": {
+                          "type": "string",
+                          "description": "HTML document content of the header to be displayed on every page."
+                        },
+                        "html_footer": {
+                          "type": "string",
+                          "description": "HTML document content of the footer to be displayed on every page."
+                        },
+                        "size": {
+                          "type": "string",
+                          "default": "Letter",
+                          "description": "Page size. Letter 8.5 x 11 will be assigned when not specified.",
+                          "enum": [
+                            "Letter",
+                            "Legal",
+                            "Tabloid",
+                            "Ledger",
+                            "A0",
+                            "A1",
+                            "A2",
+                            "A3",
+                            "A4",
+                            "A5",
+                            "A6"
+                          ],
+                          "example": "A4"
+                        },
+                        "position": {
+                          "type": "integer",
+                          "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                        }
+                      }
+                    }
+                  },
+                  "submitters": {
+                    "type": "array",
+                    "description": "The list of submitters for the submission.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "email"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the submitter."
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "The role name or title of the submitter.",
+                          "example": "First Party"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "The email address of the submitter.",
+                          "format": "email",
+                          "example": "john.doe@example.com"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "The phone number of the submitter, formatted according to the E.164 standard.",
+                          "example": "+1234567890"
+                        },
+                        "values": {
+                          "type": "object",
+                          "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
+                        },
+                        "external_id": {
+                          "type": "string",
+                          "description": "Your application-specific unique string key to identify this submitter within your app."
+                        },
+                        "completed": {
+                          "type": "boolean",
+                          "description": "Pass `true` to mark submitter as completed and auto-signed via API."
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "description": "Metadata object with additional submitter information.",
+                          "example": "{ \"customField\": \"value\" }"
+                        },
+                        "send_email": {
+                          "type": "boolean",
+                          "description": "Set `false` to disable signature request emails sending only for this submitter.",
+                          "default": true
+                        },
+                        "send_sms": {
+                          "type": "boolean",
+                          "description": "Set `true` to send signature request via phone number and SMS.",
+                          "default": false
+                        },
+                        "reply_to": {
+                          "type": "string",
+                          "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                        },
+                        "completed_redirect_url": {
+                          "type": "string",
+                          "description": "Submitter specific URL to redirect to after the submission completion."
+                        },
+                        "require_phone_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                          "default": false
+                        },
+                        "fields": {
+                          "type": "array",
+                          "description": "A list of configurations for document form fields.",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "name"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Document field name.",
+                                "example": "First Name"
+                              },
+                              "default_value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "oneOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "boolean"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
+                                "example": "Acme"
+                              },
+                              "readonly": {
+                                "type": "boolean",
+                                "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
+                                "default": false
+                              },
+                              "required": {
+                                "type": "boolean",
+                                "description": "Set `true` to make the field required."
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Field description displayed on the signing form. Supports Markdown."
+                              },
+                              "validation_pattern": {
+                                "type": "string",
+                                "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                                "example": "[A-Z]{4}"
+                              },
+                              "invalid_message": {
+                                "type": "string",
+                                "description": "A custom message to display on pattern validation failure."
+                              },
+                              "preferences": {
+                                "type": "object",
+                                "properties": {
+                                  "font_size": {
+                                    "type": "integer",
+                                    "description": "Font size of the field value in pixels.",
+                                    "example": 12
+                                  },
+                                  "font_type": {
+                                    "type": "string",
+                                    "description": "Font type of the field value.",
+                                    "enum": [
+                                      "bold",
+                                      "italic",
+                                      "bold_italic"
+                                    ]
+                                  },
+                                  "font": {
+                                    "type": "string",
+                                    "description": "Font family of the field value.",
+                                    "enum": [
+                                      "Times",
+                                      "Helvetica",
+                                      "Courier"
+                                    ]
+                                  },
+                                  "color": {
+                                    "type": "string",
+                                    "description": "Font color of the field value.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ],
+                                    "default": "black"
+                                  },
+                                  "align": {
+                                    "type": "string",
+                                    "description": "Horizontal alignment of the field text value.",
+                                    "enum": [
+                                      "left",
+                                      "center",
+                                      "right"
+                                    ],
+                                    "default": "left"
+                                  },
+                                  "valign": {
+                                    "type": "string",
+                                    "description": "Vertical alignment of the field text value.",
+                                    "enum": [
+                                      "top",
+                                      "center",
+                                      "bottom"
+                                    ],
+                                    "default": "center"
+                                  },
+                                  "format": {
+                                    "type": "string",
+                                    "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                                    "example": "DD/MM/YYYY"
+                                  },
+                                  "price": {
+                                    "type": "number",
+                                    "description": "Price value of the payment field. Only for payment fields.",
+                                    "example": 99.99
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "description": "Currency value of the payment field. Only for payment fields.",
+                                    "enum": [
+                                      "USD",
+                                      "EUR",
+                                      "GBP",
+                                      "CAD",
+                                      "AUD"
+                                    ],
+                                    "default": "USD"
+                                  },
+                                  "mask": {
+                                    "description": "Set `true` to make sensitive data masked on the document.",
+                                    "oneOf": [
+                                      {
+                                        "type": "integer"
+                                      },
+                                      {
+                                        "type": "boolean"
+                                      }
+                                    ],
+                                    "default": false
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "roles": {
+                          "type": "array",
+                          "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "object",
+                    "properties": {
+                      "subject": {
+                        "type": "string",
+                        "description": "Custom signature request email subject."
+                      },
+                      "body": {
+                        "type": "string",
+                        "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
+                      }
+                    }
+                  },
+                  "merge_documents": {
+                    "type": "boolean",
+                    "description": "Set `true` to merge the documents into a single PDF file.",
+                    "default": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "submitters",
+                    "source",
+                    "submitters_order",
+                    "status",
+                    "documents",
+                    "expire_at",
+                    "created_at"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Submission unique ID number."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Submission name."
+                    },
+                    "submitters": {
+                      "type": "array",
+                      "description": "The list of submitters.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "submission_id",
+                          "uuid",
+                          "email",
+                          "slug",
+                          "sent_at",
+                          "opened_at",
+                          "completed_at",
+                          "declined_at",
+                          "created_at",
+                          "updated_at",
+                          "name",
+                          "phone",
+                          "status",
+                          "role",
+                          "metadata",
+                          "preferences"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Submission unique ID number."
+                          },
+                          "uuid": {
+                            "type": "string",
+                            "description": "Submitter UUID."
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The email address of the submitter."
+                          },
+                          "slug": {
+                            "type": "string",
+                            "description": "Unique key to be used in the form signing link and embedded form."
+                          },
+                          "sent_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the signing request was sent to the submitter."
+                          },
+                          "opened_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter opened the signing form."
+                          },
+                          "completed_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter completed the signing form."
+                          },
+                          "declined_at": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The date and time when the submitter declined to complete the signing form."
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "description": "The date and time when the submitter was created."
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "description": "The date and time when the submitter was last updated."
+                          },
+                          "name": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Submitter name."
+                          },
+                          "phone": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Submitter phone number."
+                          },
+                          "external_id": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Your application-specific unique string key to identify this submitter within your app."
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The status of signing request for the submitter.",
+                            "enum": [
+                              "completed",
+                              "declined",
+                              "opened",
+                              "sent",
+                              "awaiting"
+                            ]
+                          },
+                          "role": {
+                            "type": "string",
+                            "description": "The role of the submitter."
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Metadata object with additional submitter information."
+                          },
+                          "preferences": {
+                            "type": "object",
+                            "description": "Object with submitter preferences."
+                          },
+                          "embed_src": {
+                            "type": "string",
+                            "description": "The `src` URL value to embed the signing form or sign via a link."
+                          }
+                        }
+                      }
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "The source of the submission.",
+                      "enum": [
+                        "invite",
+                        "bulk",
+                        "api",
+                        "embed",
+                        "link"
+                      ]
+                    },
+                    "submitters_order": {
+                      "type": "string",
+                      "description": "The order of submitters.",
+                      "enum": [
+                        "random",
+                        "preserved"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the submission.",
+                      "enum": [
+                        "completed",
+                        "declined",
+                        "expired",
+                        "pending"
+                      ]
+                    },
+                    "schema": {
+                      "type": "array",
+                      "description": "The one-off submission document files.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "attachment_uuid": {
+                            "type": "string",
+                            "description": "The attachment UUID."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The attachment name."
+                          }
+                        }
+                      }
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "List of fields to be filled in the one-off submission.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "uuid",
+                          "submitter_uuid",
+                          "name",
+                          "type",
+                          "required",
+                          "areas"
+                        ],
+                        "properties": {
+                          "uuid": {
+                            "type": "string",
+                            "description": "Unique identifier of the field."
+                          },
+                          "submitter_uuid": {
+                            "type": "string",
+                            "description": "Unique identifier of the submitter that filled the field."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Field name."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Type of the field (e.g., text, signature, date, initials).",
+                            "enum": [
+                              "heading",
+                              "text",
+                              "signature",
+                              "initials",
+                              "date",
+                              "number",
+                              "image",
+                              "checkbox",
+                              "multiple",
+                              "file",
+                              "radio",
+                              "select",
+                              "cells",
+                              "stamp",
+                              "payment",
+                              "phone",
+                              "verification"
+                            ]
+                          },
+                          "required": {
+                            "type": "boolean",
+                            "description": "Indicates if the field is required."
+                          },
+                          "preferences": {
+                            "type": "object",
+                            "properties": {
+                              "font_size": {
+                                "type": "integer",
+                                "description": "Font size of the field value in pixels."
+                              },
+                              "font_type": {
+                                "type": "string",
+                                "description": "Font type of the field value."
+                              },
+                              "font": {
+                                "type": "string",
+                                "description": "Font family of the field value."
+                              },
+                              "color": {
+                                "type": "string",
+                                "description": "Font color of the field value."
+                              },
+                              "align": {
+                                "type": "string",
+                                "description": "Horizontal alignment of the field text value."
+                              },
+                              "valign": {
+                                "type": "string",
+                                "description": "Vertical alignment of the field text value."
+                              },
+                              "format": {
+                                "type": "string",
+                                "description": "The data format for different field types."
+                              },
+                              "price": {
+                                "type": "number",
+                                "description": "Price value of the payment field. Only for payment fields."
+                              },
+                              "currency": {
+                                "type": "string",
+                                "description": "Currency value of the payment field. Only for payment fields."
+                              },
+                              "mask": {
+                                "type": "boolean",
+                                "description": "Indicates if the field is masked on the document."
+                              }
+                            }
+                          },
+                          "areas": {
+                            "type": "array",
+                            "description": "List of areas where the field is located in the document.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "x",
+                                "y",
+                                "w",
+                                "h",
+                                "attachment_uuid",
+                                "page"
+                              ],
+                              "properties": {
+                                "x": {
+                                  "type": "number",
+                                  "description": "X coordinate of the area where the field is located in the document."
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "description": "Y coordinate of the area where the field is located in the document."
+                                },
+                                "w": {
+                                  "type": "number",
+                                  "description": "Width of the area where the field is located in the document."
+                                },
+                                "h": {
+                                  "type": "number",
+                                  "description": "Height of the area where the field is located in the document."
+                                },
+                                "attachment_uuid": {
+                                  "type": "string",
+                                  "description": "Unique identifier of the attached document where the field is located."
+                                },
+                                "page": {
+                                  "type": "integer",
+                                  "description": "Page number of the attached document where the field is located."
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "documents": {
+                      "type": "array",
+                      "description": "List of documents attached to the one-off submission.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "attachment_uuid",
+                          "name"
+                        ],
+                        "properties": {
+                          "attachment_uuid": {
+                            "type": "string",
+                            "description": "Unique indentifier of attached document to the one-off submission."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the attached document to the one-off submission."
+                          }
+                        }
+                      }
+                    },
+                    "expire_at": {
+                      "type": "string",
+                      "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+                      "example": "2024-09-01 12:00:00 UTC"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "The date and time when the submission was created."
+                    }
+                  }
+                },
+                "example": {
+                  "id": 5,
+                  "name": "Test Submission",
+                  "submitters": [
+                    {
+                      "id": 1,
+                      "uuid": "884d545b-3396-49f1-8c07-05b8b2a78755",
+                      "email": "john.doe@example.com",
+                      "slug": "pAMimKcyrLjqVt",
+                      "sent_at": "2025-06-02T15:55:51.310Z",
+                      "opened_at": null,
+                      "completed_at": null,
+                      "declined_at": null,
+                      "created_at": "2025-06-02T15:55:50.320Z",
+                      "updated_at": "2025-06-02T15:55:50.320Z",
+                      "name": "string",
+                      "phone": "+1234567890",
+                      "external_id": "2321",
+                      "metadata": {
+                        "customData": "custom value"
+                      },
+                      "status": "sent",
+                      "values": [
+                        {
+                          "field": "Full Name",
+                          "value": "John Doe"
+                        }
+                      ],
+                      "preferences": {
+                        "send_email": true,
+                        "send_sms": false,
+                        "reply_to": "reply@example.com",
+                        "completed_redirect_url": "https://example.com/"
+                      },
+                      "role": "First Party",
+                      "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                    }
+                  ],
+                  "source": "api",
+                  "submitters_order": "preserved",
+                  "status": "pending",
+                  "schema": [
+                    {
+                      "name": "Demo PDF",
+                      "attachment_uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf"
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "Name",
+                      "type": "text",
+                      "required": true,
+                      "uuid": "d0bf3c0c-1928-40c8-80f9-d9f3c6ad4eff",
+                      "submitter_uuid": "0b0bff58-bc9a-475d-b4a9-2f3e5323faf7",
+                      "areas": [
+                        {
+                          "page": 1,
+                          "attachment_uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf",
+                          "x": 0.403158189124654,
+                          "y": 0.04211750189825361,
+                          "w": 0.100684625476058,
+                          "h": 0.01423690205011389
+                        }
+                      ]
+                    }
+                  ],
+                  "expire_at": null,
+                  "created_at": "2025-06-02T15:55:50.270Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/submitters/{id}": {
       "get": {
         "security": [
@@ -3545,10 +5318,6 @@
                     "type": "string",
                     "description": "Specify Reply-To address to use in the notification emails."
                   },
-                  "completed_redirect_url": {
-                    "type": "string",
-                    "description": "Submitter specific URL to redirect to after the submission completion."
-                  },
                   "completed": {
                     "type": "boolean",
                     "description": "Pass `true` to mark submitter as completed and auto-signed via API."
@@ -3557,6 +5326,15 @@
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
                     "example": "{ \"customField\": \"value\" }"
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "require_phone_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                    "default": false
                   },
                   "message": {
                     "type": "object",
@@ -4736,6 +6514,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -5179,6 +6961,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -5287,6 +7073,7 @@
                   "folder_id": 2,
                   "folder_name": "Default",
                   "external_id": null,
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",
@@ -5377,6 +7164,11 @@
                   "folder_name": {
                     "type": "string",
                     "description": "The folder's name to which the template should be created."
+                  },
+                  "shared_link": {
+                    "type": "boolean",
+                    "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+                    "default": true
                   },
                   "documents": {
                     "type": "array",
@@ -5670,6 +7462,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -5778,6 +7574,7 @@
                   "folder_id": 1,
                   "folder_name": "Default",
                   "external_id": "f0b4714f-e44b-4993-905b-68b4451eef8c",
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",
@@ -5835,6 +7632,11 @@
                   "folder_name": {
                     "type": "string",
                     "description": "The folder's name to which the template should be created."
+                  },
+                  "shared_link": {
+                    "type": "boolean",
+                    "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+                    "default": true
                   },
                   "documents": {
                     "type": "array",
@@ -6315,6 +8117,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -6423,6 +8229,7 @@
                   "folder_id": 1,
                   "folder_name": "Default",
                   "external_id": "c248ffba-ef81-48b7-8e17-e3cecda1c1c5",
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",
@@ -6453,8 +8260,8 @@
         "tags": [
           "Templates"
         ],
-        "summary": "Create a template from existing PDF",
-        "description": "The API endpoint provides the functionality to create a fillable document template for existing PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
+        "summary": "Create a template from PDF",
+        "description": "The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
         "operationId": "createTemplateFromPdf",
         "parameters": [],
         "requestBody": {
@@ -6480,6 +8287,11 @@
                     "type": "string",
                     "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new PDF.",
                     "example": "unique-key"
+                  },
+                  "shared_link": {
+                    "type": "boolean",
+                    "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+                    "default": true
                   },
                   "documents": {
                     "type": "array",
@@ -6694,19 +8506,19 @@
                               }
                             }
                           }
-                        },
-                        "flatten": {
-                          "type": "boolean",
-                          "description": "Remove PDF form fields from the document.",
-                          "default": false
-                        },
-                        "remove_tags": {
-                          "type": "boolean",
-                          "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
-                          "default": true
                         }
                       }
                     }
+                  },
+                  "flatten": {
+                    "type": "boolean",
+                    "description": "Remove PDF form fields from the documents.",
+                    "default": false
+                  },
+                  "remove_tags": {
+                    "type": "boolean",
+                    "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+                    "default": true
                   }
                 }
               }
@@ -6978,6 +8790,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -7086,6 +8902,7 @@
                   "folder_id": 1,
                   "folder_name": "Default",
                   "external_id": "c248ffba-ef81-48b7-8e17-e3cecda1c1c5",
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",
@@ -7153,6 +8970,11 @@
                   "external_id": {
                     "type": "string",
                     "description": "Your application-specific unique string key to identify this template within your app."
+                  },
+                  "shared_link": {
+                    "type": "boolean",
+                    "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+                    "default": true
                   },
                   "roles": {
                     "type": "array",
@@ -7435,6 +9257,10 @@
                       "type": "string",
                       "description": "Folder name where the template is placed."
                     },
+                    "shared_link": {
+                      "type": "boolean",
+                      "description": "Indicates if the template is accessible by link."
+                    },
                     "author": {
                       "type": "object",
                       "required": [
@@ -7543,6 +9369,7 @@
                   "folder_id": 2,
                   "folder_name": "Default",
                   "external_id": null,
+                  "shared_link": true,
                   "author": {
                     "id": 1,
                     "first_name": "John",

@@ -33,12 +33,12 @@ class StartFormController < ApplicationController
     @submitter = find_or_initialize_submitter(@template, submitter_params)
 
     if @submitter.completed_at?
-      redirect_to start_form_completed_path(@template.slug, email: submitter_params[:email])
+      redirect_to start_form_completed_path(@template.slug, submitter_params.compact_blank)
     else
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
         @error_message = multiple_submitters_error_message
 
-        return render :show
+        return render :show, status: :unprocessable_entity
       end
 
       if (is_new_record = @submitter.new_record?)
@@ -49,7 +49,7 @@ class StartFormController < ApplicationController
         @submitter.assign_attributes(ip: request.remote_ip, ua: request.user_agent)
       end
 
-      if @submitter.save
+      if @submitter.errors.blank? && @submitter.save
         if is_new_record
           enqueue_submission_create_webhooks(@submitter)
 
@@ -63,7 +63,7 @@ class StartFormController < ApplicationController
 
         redirect_to submit_form_path(@submitter.slug)
       else
-        render :show
+        render :show, status: :unprocessable_entity
       end
     end
   end
@@ -71,9 +71,20 @@ class StartFormController < ApplicationController
   def completed
     return redirect_to start_form_path(@template.slug) if !@template.shared_link? || @template.archived_at?
 
+    submitter_params = params.permit(:name, :email, :phone).tap do |attrs|
+      attrs[:email] = Submissions.normalize_email(attrs[:email])
+    end
+
+    required_fields = @template.preferences.fetch('link_form_fields', ['email'])
+
+    required_params = required_fields.index_with { |key| submitter_params[key] }
+
+    raise ActionController::RoutingError, I18n.t('not_found') if required_params.any? { |_, v| v.blank? } ||
+                                                                 required_params.except('name').compact_blank.blank?
+
     @submitter = Submitter.where(submission: @template.submissions)
                           .where.not(completed_at: nil)
-                          .find_by!(email: params[:email])
+                          .find_by!(required_params)
   end
 
   private
@@ -104,7 +115,16 @@ class StartFormController < ApplicationController
   end
 
   def find_or_initialize_submitter(template, submitter_params)
-    Submitter
+    required_fields = template.preferences.fetch('link_form_fields', ['email'])
+
+    required_params = required_fields.index_with { |key| submitter_params[key] }
+
+    find_params = required_params.except('name')
+
+    submitter = Submitter.new if find_params.compact_blank.blank?
+
+    submitter ||=
+      Submitter
       .where(submission: template.submissions.where(expire_at: Time.current..)
                                  .or(template.submissions.where(expire_at: nil)).where(archived_at: nil))
       .order(id: :desc)
@@ -112,7 +132,17 @@ class StartFormController < ApplicationController
       .where(external_id: nil)
       .where(ip: [nil, request.remote_ip])
       .then { |rel| params[:resubmit].present? || params[:selfsign].present? ? rel.where(completed_at: nil) : rel }
-      .find_or_initialize_by(email: submitter_params[:email], **submitter_params.compact_blank)
+      .find_or_initialize_by(find_params)
+
+    submitter.name = required_params['name'] if submitter.new_record?
+
+    unless @resubmit_submitter
+      required_params.each do |key, value|
+        submitter.errors.add(key.to_sym, :blank) if value.blank?
+      end
+    end
+
+    submitter
   end
 
   def assign_submission_attributes(submitter, template)
@@ -124,6 +154,8 @@ class StartFormController < ApplicationController
       preferences: @resubmit_submitter&.preferences.presence || { 'send_email' => true },
       metadata: @resubmit_submitter&.metadata.presence || {}
     )
+
+    submitter.assign_attributes(@resubmit_submitter.slice(:name, :email, :phone)) if @resubmit_submitter
 
     if submitter.values.present?
       @resubmit_submitter.attachments.each do |attachment|

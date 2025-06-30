@@ -1,15 +1,44 @@
 <%= render 'shared/turbo_modal_large', title: t('share_link') do %>
   <div class="mt-2 mb-4 px-5">
     <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
-      <div class="flex items-center justify-between gap-1 px-1">
+      <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
         <span><%= t('enable_shared_link') %></span>
         <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
-      </div>
+      </label>
       <div class="flex gap-2 mt-3">
         <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
         <check-on-click data-element-id="template_shared_link">
           <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
         </check-on-click>
+      </div>
+    <% end %>
+    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4 mb-5' }, data: { close_on_submit: false } do |f| %>
+      <% link_form_fields = @template.preferences.fetch('link_form_fields', ['email']) %>
+      <label class="pl-1"><%= t('link_form_fields') %></label>
+      <required-checkbox-group class="flex flex-col md:flex-row items-center gap-2 w-full mt-2">
+        <% %w[name email phone].each do |field| %>
+          <%= label_tag "link_form_fields_#{field}", t(field), class: 'relative flex w-full md:w-1/3 items-center h-12 border-base-300 py-3.5 border rounded-xl' do %>
+            <%= check_box_tag 'template[preferences][link_form_fields][]', field, link_form_fields.include?(field), class: 'absolute !animate-none checkbox left-3', id: "link_form_fields_#{field}" %>
+            <span class="font-medium w-full text-center"><%= t(field) %></span>
+          <% end %>
+        <% end %>
+      </required-checkbox-group>
+    <% end %>
+    <% if Templates.filter_undefined_submitters(@template.submitters).size > 1 %>
+      <div class="alert items-start bg-base-100 border-base-300 mt-4">
+        <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6 mt-1') %>
+        <div><%= t('this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link') %></div>
+      </div>
+    <% end %>
+    <% if @template.submitters.to_a.length > 1 %>
+      <div class="collapse collapse-arrow join-item border border-base-300 mt-4 mb-5">
+        <input type="checkbox" name="accordion">
+        <div class="collapse-title text-xl font-medium">
+          <%= t('default_parties') %>
+        </div>
+        <div class="collapse-content !pb-0">
+          <%= render 'templates_preferences/recipients', template: @template, close_on_submit: false, with_toggles: false, with_submission_requester: false %>
+        </div>
       </div>
     <% end %>
   </div>

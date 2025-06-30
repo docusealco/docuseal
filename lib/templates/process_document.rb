@@ -69,7 +69,7 @@ module Templates
       bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 
       io = StringIO.new(image.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
-                                                      palette: true, Q: bitdepth == 8 ? Q : 5, dither: 0))
+                                                      palette: true, Q: Q, dither: 0))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -141,7 +141,7 @@ module Templates
           bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
 
           page.write_to_buffer(format, compression: 7, filter: 0, bitdepth:,
-                                       palette: true, Q: bitdepth == 8 ? Q : 5, dither: 0)
+                                       palette: true, Q: Q, dither: 0)
         else
           page.write_to_buffer(format, interlace: true, Q: JPEG_Q)
         end

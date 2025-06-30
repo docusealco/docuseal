@@ -6,7 +6,7 @@
     "@babel/plugin-transform-runtime": "7.21.4",
     "@babel/preset-env": "7.21.5",
     "@babel/runtime": "7.21.5",
-    "@eid-easy/eideasy-widget": "^2.132.1",
+    "@eid-easy/eideasy-widget": "^2.159.0",
     "@github/catalyst": "^2.0.0-beta",
     "@hotwired/turbo": "https://github.com/docusealco/turbo#main",
     "@hotwired/turbo-rails": "^7.3.0",

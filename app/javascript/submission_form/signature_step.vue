@@ -201,7 +201,7 @@
       </div>
     </div>
     <input
-      v-if="isTextSignature"
+      v-if="isTextSignature && !modelValue && !computedPreviousValue"
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
@@ -391,7 +391,7 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
   data () {
     return {
-      isSignatureStarted: !!this.previousValue,
+      isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
@@ -422,6 +422,8 @@ export default {
     }
   },
   created () {
+    this.isSignatureStarted = !!this.computedPreviousValue
+
     if (this.requireSigningReason) {
       this.field.preferences ||= {}
       this.field.preferences.reason_field_uuid ||= v4()
@@ -716,11 +718,20 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
             formData.append('remember_signature', this.rememberSignature)
+            formData.append('type', 'signature')
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
-            }).then((resp) => resp.json()).then((attachment) => {
+            }).then(async (resp) => {
+              if (resp.status === 422 || resp.status === 500) {
+                const data = await resp.json()
+
+                return Promise.reject(new Error(data.error))
+              }
+
+              const attachment = await resp.json()
+
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)
 

@@ -40,7 +40,7 @@ class Submission < ApplicationRecord
   belongs_to :account
   belongs_to :created_by_user, class_name: 'User', optional: true
 
-  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 
   has_many :submitters, dependent: :destroy
   has_many :submission_events, dependent: :destroy

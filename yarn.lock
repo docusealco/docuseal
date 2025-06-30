@@ -1035,22 +1035,22 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@eid-easy/eideasy-browser-client@2.104.1":
-  version "2.104.1"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.104.1.tgz#e492e0fc8ef1ff470c66522d530d5636264f30b3"
-  integrity sha512-d4fgqF5U+pWuPpfgbb/+BxI2CYThkbviAfl9NbLoKMOMO4bh7HZFxLdW5uU2O8yIeldGFunJWxEbMTLv/2PlTA==
+"@eid-easy/eideasy-browser-client@2.124.0":
+  version "2.124.0"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.124.0.tgz#940ccb9d4d853f0bd32e49cc455f2c7b13f3bbd1"
+  integrity sha512-hZuUeg0CcyvgJSseRBQixRStAIr58bulmNcikcASBo6z8wv+/R8nAnUoE7qdNW1l4ZyYxLmVOwDs6+W+FHy6hQ==
   dependencies:
-    axios "1.7.8"
+    axios "1.8.2"
     jsencrypt "3.2.1"
     lodash "^4.17.21"
     serialize-error "^9.1.1"
 
-"@eid-easy/eideasy-widget@^2.132.1":
-  version "2.132.1"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.132.1.tgz#634c077c55d7e582846dbeae47f6f37796b76bd6"
-  integrity sha512-bZNdKsxja4iIUm6B4x6pOyiBdoMNNUB3615oJgNUWallrfeiIbBQxLwG+m5nmivmHMgdaIQylmtfrhc6e7kgYA==
+"@eid-easy/eideasy-widget@^2.159.0":
+  version "2.159.0"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.159.0.tgz#f2291dad292bd5f7941496f0db0aa0a180226b6b"
+  integrity sha512-527uCNrN5MVY/PaOUoZ3J2XZ0C+xt6057sJ4xSO0/FPYj2cxOn+qyCJODQjOhjBL7GcnpShWPpYAfv1OIStYwQ==
   dependencies:
-    "@eid-easy/eideasy-browser-client" "2.104.1"
+    "@eid-easy/eideasy-browser-client" "2.124.0"
     core-js "^3.8.3"
     i18n-iso-countries "^6.7.0"
     lodash.defaultsdeep "^4.6.1"
@@ -1914,10 +1914,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-axios@1.7.8:
-  version "1.7.8"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.8.tgz#1997b1496b394c21953e68c14aaa51b7b5de3d6e"
-  integrity sha512-Uu0wb7KNqK2t5K+YQyVCLM76prD5sRFjKHbJYCP1J7JFGEQ6nN7HWn9+04LAeiJ3ji54lgS/gZCH1oxyrf1SPw==
+axios@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.2.tgz#fabe06e241dfe83071d4edfbcaa7b1c3a40f7979"
+  integrity sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"

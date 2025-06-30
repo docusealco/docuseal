@@ -9,18 +9,78 @@ RSpec.describe 'Signing Form' do
       create(:template, shared_link: true, account:, author:, except_field_types: %w[phone payment stamp])
     end
 
-    before do
+    it 'displays only the email step when only email is required' do
       visit start_form_path(slug: template.slug)
-    end
 
-    it 'shows the email step' do
       expect(page).to have_content('You have been invited to submit a form')
       expect(page).to have_content("Invited by #{account.name}")
-      expect(page).to have_field('Email', type: 'email')
+      expect(page).to have_field('Email', type: 'email', placeholder: 'Provide your email to start')
+      expect(page).not_to have_field('Phone', type: 'tel')
+      expect(page).not_to have_field('Name', type: 'text')
       expect(page).to have_button('Start')
     end
 
+    it 'displays name, email, and phone fields together when all are required' do
+      template.update(preferences: { link_form_fields: %w[email name phone] })
+
+      visit start_form_path(slug: template.slug)
+
+      expect(page).to have_content('You have been invited to submit a form')
+      expect(page).to have_content("Invited by #{account.name}")
+      expect(page).to have_field('Email', type: 'email', placeholder: 'Provide your email')
+      expect(page).to have_field('Name', type: 'text', placeholder: 'Provide your name')
+      expect(page).to have_field('Phone', type: 'tel', placeholder: 'Provide your phone in international format')
+      expect(page).to have_button('Start')
+    end
+
+    it 'displays only the name step when only name is required' do
+      template.update(preferences: { link_form_fields: %w[name] })
+
+      visit start_form_path(slug: template.slug)
+
+      expect(page).to have_content('You have been invited to submit a form')
+      expect(page).to have_content("Invited by #{account.name}")
+      expect(page).to have_field('Name', type: 'text', placeholder: 'Provide your name to start')
+      expect(page).not_to have_field('Phone', type: 'tel')
+      expect(page).not_to have_field('Email', type: 'email')
+      expect(page).to have_button('Start')
+    end
+
+    it 'displays only the phone step when only phone is required' do
+      template.update(preferences: { link_form_fields: %w[phone] })
+
+      visit start_form_path(slug: template.slug)
+
+      expect(page).to have_content('You have been invited to submit a form')
+      expect(page).to have_content("Invited by #{account.name}")
+      expect(page).to have_field('Phone', type: 'tel',
+                                          placeholder: 'Provide your phone in international format to start')
+      expect(page).not_to have_field('Name', type: 'text')
+      expect(page).not_to have_field('Email', type: 'email')
+      expect(page).to have_button('Start')
+    end
+
+    it 'prevents starting the form if phone is not in international format' do
+      template.update(preferences: { link_form_fields: %w[phone] })
+
+      visit start_form_path(slug: template.slug)
+
+      fill_in 'Phone', with: '12345'
+
+      expect { click_button 'Start' }.not_to(change { current_path })
+    end
+
+    it 'prevents starting the form if email is invali' do
+      visit start_form_path(slug: template.slug)
+
+      fill_in 'Email', with: 'invalid-email'
+
+      expect { click_button 'Start' }.not_to(change { current_path })
+    end
+
     it 'completes the form' do
+      visit start_form_path(slug: template.slug)
+
       # Submit's email step
       fill_in 'Email', with: 'john.dou@example.com'
       click_button 'Start'
@@ -100,6 +160,97 @@ RSpec.describe 'Signing Form' do
       expect(field_value(submitter, 'Attachment')).to be_present
       expect(field_value(submitter, 'Cell code')).to eq '123'
     end
+
+    # rubocop:disable RSpec/ExampleLength
+    it 'completes the form when name, email, and phone are required' do
+      template.update(preferences: { link_form_fields: %w[email name phone] })
+
+      visit start_form_path(slug: template.slug)
+
+      # Submit's name, email, and phone step
+      fill_in 'Email', with: 'john.dou@example.com'
+      fill_in 'Name', with: 'John Doe'
+      fill_in 'Phone', with: '+17732298825'
+      click_button 'Start'
+
+      # Text step
+      fill_in 'First Name', with: 'John'
+      click_button 'next'
+
+      # Date step
+      fill_in 'Birthday', with: I18n.l(20.years.ago, format: '%Y-%m-%d')
+      click_button 'next'
+
+      # Checkbox step
+      check 'Do you agree?'
+      click_button 'next'
+
+      # Radio step
+      choose 'Boy'
+      click_button 'next'
+
+      # Signature step
+      draw_canvas
+      click_button 'next'
+
+      # Number step
+      fill_in 'House number', with: '123'
+      click_button 'next'
+
+      # Multiple choice step
+      %w[Red Blue].each { |color| check color }
+      click_button 'next'
+
+      # Select step
+      select 'Male', from: 'Gender'
+      click_button 'next'
+
+      # Initials step
+      draw_canvas
+      click_button 'next'
+
+      # Image step
+      find('#dropzone').click
+      find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
+      click_button 'next'
+
+      # File step
+      find('#dropzone').click
+      find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-document.pdf'))
+      click_button 'next'
+
+      # Cell step
+      fill_in 'Cell code', with: '123'
+      click_on 'Complete'
+
+      expect(page).to have_button('Download')
+      expect(page).to have_content('Document has been signed!')
+
+      submitter = template.submissions.last.submitters.last
+
+      expect(submitter.email).to eq('john.dou@example.com')
+      expect(submitter.name).to eq('John Doe')
+      expect(submitter.phone).to eq('+17732298825')
+      expect(submitter.ip).to eq('127.0.0.1')
+      expect(submitter.ua).to be_present
+      expect(submitter.opened_at).to be_present
+      expect(submitter.completed_at).to be_present
+      expect(submitter.declined_at).to be_nil
+
+      expect(field_value(submitter, 'First Name')).to eq 'John'
+      expect(field_value(submitter, 'Birthday')).to eq 20.years.ago.strftime('%Y-%m-%d')
+      expect(field_value(submitter, 'Do you agree?')).to be_truthy
+      expect(field_value(submitter, 'First child')).to eq 'Boy'
+      expect(field_value(submitter, 'Signature')).to be_present
+      expect(field_value(submitter, 'House number')).to eq 123
+      expect(field_value(submitter, 'Colors')).to contain_exactly('Red', 'Blue')
+      expect(field_value(submitter, 'Gender')).to eq 'Male'
+      expect(field_value(submitter, 'Initials')).to be_present
+      expect(field_value(submitter, 'Avatar')).to be_present
+      expect(field_value(submitter, 'Attachment')).to be_present
+      expect(field_value(submitter, 'Cell code')).to eq '123'
+    end
+    # rubocop:enable RSpec/ExampleLength
   end
 
   context 'when the submitter form link is opened' do
@@ -844,6 +995,33 @@ RSpec.describe 'Signing Form' do
         click_button 'Start'
 
         expect(page).to have_content('Not found')
+      end
+    end
+  end
+
+  context 'when the template shared link is disabled' do
+    let(:template) do
+      create(:template, shared_link: false, account:, author:, only_field_types: %w[text])
+    end
+
+    context 'when user is logged in' do
+      before do
+        login_as author
+        visit start_form_path(slug: template.slug)
+      end
+
+      it 'shows a warning that the shared link is disabled and provides an option to enable it' do
+        expect(page).to have_content('Share link is currently disabled')
+        expect(page).to have_content(template.name)
+        expect(page).to have_button('Enable shared link')
+      end
+
+      it 'enables the shared link' do
+        expect do
+          click_button 'Enable shared link'
+        end.to change { template.reload.shared_link }.from(false).to(true)
+
+        expect(page).to have_content('You have been invited to submit a form')
       end
     end
   end

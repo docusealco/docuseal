@@ -223,7 +223,7 @@ module Submissions
           font_name = FONT_NAME unless font_name.in?(DEFAULT_FONTS)
 
           if font_variant != :none && font_name == FONT_NAME
-            font_name = FONT_VARIANS[font_variant]
+            font_name = FONT_VARIANS[font_variant] if FONT_VARIANS[font_variant]
             font_variant = nil unless font_name.in?(DEFAULT_FONTS)
           end
 
@@ -252,7 +252,11 @@ module Submissions
           canvas = page.canvas(type: :overlay)
           canvas.font(FONT_NAME, size: font_size)
 
-          case field['type']
+          field_type = field['type']
+          field_type = 'file' if field_type == 'image' &&
+                                 !submitter.attachments.find { |a| a.uuid == value }.image?
+
+          case field_type
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 

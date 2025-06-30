@@ -53,7 +53,7 @@ module Submitters
           end
 
         [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
-      elsif keyword.match?(/[^\p{L}\d&@._\-]/)
+      elsif keyword.match?(/[^\p{L}\d&@.\-]/)
         terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
 
         if terms.size > 1
@@ -135,6 +135,7 @@ module Submitters
     preferences['email_message_uuid'] = email_message.uuid if email_message
     preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
     preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
+    preferences['require_phone_2fa'] = params['require_phone_2fa'].in?(TRUE_VALUES) if params.key?('require_phone_2fa')
     preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
     preferences['reply_to'] = params['reply_to'] if params.key?('reply_to')
     preferences['go_to_last'] = params['go_to_last'] if params.key?('go_to_last')

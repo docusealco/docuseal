@@ -28,9 +28,9 @@
         </div>
       <% end %>
     </div>
-  <% elsif field['type'].in?(['image', 'initials', 'stamp']) %>
+  <% elsif field['type'].in?(['image', 'initials', 'stamp']) && attachments_index[value].image? %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
-  <% elsif field['type'].in?(['file', 'payment']) %>
+  <% elsif field['type'].in?(['file', 'payment', 'image']) %>
     <autosize-field></autosize-field>
     <div class="px-0.5 flex flex-col justify-center">
       <% Array.wrap(value).each do |val| %>

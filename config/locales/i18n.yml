@@ -22,6 +22,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
   require_all_recipients: Require all recipients
@@ -115,6 +116,11 @@ en: &en
   role: Role
   reason: Reason
   provide_your_email_to_start: Provide your email to start
+  provide_your_email: Provide your email
+  provide_your_name_to_start: Provide your name to start
+  provide_your_name: Provide your name
+  provide_your_phone_in_international_format_to_start: Provide your phone in international format to start
+  provide_your_phone_in_international_format: Provide your phone in international format
   start: Start
   enforce_recipients_order: Enforce recipients order
   starting: Starting
@@ -752,6 +758,11 @@ en: &en
   enable_shared_link: Enable shared link
   share_link_is_currently_disabled: Share link is currently disabled
   select_data_residency: Select data residency
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Review or download completed documents. Fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.
+  link_form_fields: Link form fields
+  at_least_one_field_must_be_displayed_in_the_form: At least one field must be displayed in the form.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: This template has multiple parties, which prevents the use of a shared link as it's unclear which party is responsible for specific fields. To resolve this, define the default party details.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -854,6 +865,7 @@ en: &en
       range_without_total: "%{from}-%{to} items"
 
 es: &es
+  default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
   require_all_recipients: Requerir a todos los destinatarios
   stripe_integration: Integración con Stripe
@@ -951,6 +963,11 @@ es: &es
   role: Rol
   reason: Razón
   provide_your_email_to_start: Proporciona tu correo electrónico para comenzar
+  provide_your_email: Proporciona tu correo electrónico
+  provide_your_name_to_start: Proporciona tu nombre para comenzar
+  provide_your_name: Proporciona tu nombre
+  provide_your_phone_in_international_format_to_start: Proporciona tu teléfono en formato internacional para comenzar
+  provide_your_phone_in_international_format: Proporciona tu teléfono en formato internacional
   start: Comenzar
   starting: Comenzando
   form_has_been_deleted_by_html: 'El formulario ha sido eliminado por <span class="font-semibold">%{name}</span>.'
@@ -1587,6 +1604,11 @@ es: &es
   enable_shared_link: Habilitar enlace compartido
   share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
   select_data_residency: Seleccionar ubicación de datos
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} te ha invitado a completar y firmar documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Revisa o descarga los documentos completados. Completa y firma documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.
+  link_form_fields: Vincular campos del formulario
+  at_least_one_field_must_be_displayed_in_the_form: Al menos un campo debe mostrarse en el formulario.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Esta plantilla tiene varias partes, lo que impide el uso de un enlace compartido porque no está claro qué parte es responsable de campos específicos. Para resolverlo, define los detalles predeterminados de la parte.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1689,6 +1711,7 @@ es: &es
       range_without_total: "%{from}-%{to} elementos"
 
 it: &it
+  default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
   require_all_recipients: Richiedi tutti i destinatari
   stripe_integration: Integrazione Stripe
@@ -1785,6 +1808,11 @@ it: &it
   role: Ruolo
   reason: Ragione
   provide_your_email_to_start: Fornisci la tua email per iniziare
+  provide_your_email: Fornisci la tua email
+  provide_your_name_to_start: Fornisci il tuo nome per iniziare
+  provide_your_name: Fornisci il tuo nome
+  provide_your_phone_in_international_format_to_start: Fornisci il tuo telefono in formato internazionale per iniziare
+  provide_your_phone_in_international_format: Fornisci il tuo telefono in formato internazionale
   start: Inizia
   starting: Iniziando
   form_has_been_deleted_by_html: 'Il modulo è stato eliminato da <span class="font-semibold">%{name}</span>.'
@@ -2420,6 +2448,11 @@ it: &it
   enable_shared_link: Abilita link condiviso
   share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
   select_data_residency: Seleziona la residenza dei dati
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} ti ha invitato a compilare e firmare documenti online con facilità utilizzando una soluzione di firma digitale sicura, veloce e facile da usare.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Rivedi o scarica i documenti completati. Compila e firma documenti online facilmente con una soluzione di firma digitale sicura, veloce e facile da usare.
+  link_form_fields: Collega i campi del modulo
+  at_least_one_field_must_be_displayed_in_the_form: Almeno un campo deve essere visualizzato nel modulo.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Questo modello ha più parti, il che impedisce l’uso di un link di condivisione perché non è chiaro quale parte sia responsabile di campi specifici. Per risolvere, definisci i dettagli predefiniti della parte.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2522,6 +2555,7 @@ it: &it
       range_without_total: "%{from}-%{to} elementi"
 
 fr: &fr
+  default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
   require_all_recipients: Exiger tous les destinataires
   stripe_integration: Intégration Stripe
@@ -2618,7 +2652,12 @@ fr: &fr
   digitally_signed_by: Signé numériquement par
   role: Rôle
   reason: Raison
-  provide_your_email_to_start: Entrez votre adresse email pour commencer
+  provide_your_email_to_start: Fournissez votre e-mail pour commencer
+  provide_your_email: Fournissez votre e-mail
+  provide_your_name_to_start: Fournissez votre nom pour commencer
+  provide_your_name: Fournissez votre nom
+  provide_your_phone_in_international_format_to_start: Fournissez votre téléphone au format international pour commencer
+  provide_your_phone_in_international_format: Fournissez votre téléphone au format international
   start: Démarrer
   starting: Démarrage
   form_has_been_deleted_by_html: 'Le formulaire a été supprimé par <span class="font-semibold">%{name}</span>.'
@@ -3256,6 +3295,11 @@ fr: &fr
   enable_shared_link: Activer le lien de partage
   share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
   select_data_residency: Sélectionner la résidence des données
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} vous a invité à remplir et signer des documents en ligne facilement avec une solution de signature numérique sécurisée, rapide et conviviale.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Consultez ou téléchargez les documents complétés. Remplissez et signez des documents en ligne facilement avec une solution de signature numérique sécurisée, rapide et conviviale.
+  link_form_fields: Lier les champs du formulaire
+  at_least_one_field_must_be_displayed_in_the_form: Au moins un champ doit être affiché dans le formulaire.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Ce modèle contient plusieurs parties, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quelle partie est responsable de certains champs. Pour résoudre cela, définissez les détails de la partie par défaut.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3358,6 +3402,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} éléments"
 
 pt: &pt
+  default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
   require_all_recipients: Exigir todos os destinatários
   stripe_integration: Integração com Stripe
@@ -3454,7 +3499,12 @@ pt: &pt
   digitally_signed_by: Assinado digitalmente por
   role: Função
   reason: Motivo
-  provide_your_email_to_start: Forneça o seu email para começar
+  provide_your_email_to_start: Informe seu e-mail para começar
+  provide_your_email: Informe seu e-mail
+  provide_your_name_to_start: Informe seu nome para começar
+  provide_your_name: Informe seu nome
+  provide_your_phone_in_international_format_to_start: Informe seu telefone no formato internacional para começar
+  provide_your_phone_in_international_format: Informe seu telefone no formato internacional
   start: Iniciar
   starting: Iniciando
   form_has_been_deleted_by_html: 'O formulário foi eliminado por <span class="font-semibold">%{name}</span>.'
@@ -4091,6 +4141,11 @@ pt: &pt
   enable_shared_link: Ativar link compartilhado
   share_link_is_currently_disabled: O link compartilhado está desativado no momento
   select_data_residency: Selecionar local dos dados
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} convidou você para preencher e assinar documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Reveja ou baixe os documentos concluídos. Preencha e assine documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.
+  link_form_fields: Vincular campos do formulário
+  at_least_one_field_must_be_displayed_in_the_form: Pelo menos um campo deve ser exibido no formulário.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Este modelo tem várias partes, o que impede o uso de um link de compartilhamento, pois não está claro qual parte é responsável por campos específicos. Para resolver isso, defina os detalhes padrão da parte.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4194,6 +4249,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} itens"
 
 de: &de
+  default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Authentifizieren Sie die eingebettete Formularvorschau mit Token
   require_all_recipients: Alle Empfänger erforderlich
   stripe_integration: Stripe-Integration
@@ -4290,7 +4346,12 @@ de: &de
   digitally_signed_by: Digital signiert von
   role: Rolle
   reason: Grund
-  provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
+  provide_your_email_to_start: Geben Sie Ihre E-Mail-Adresse ein, um zu starten
+  provide_your_email: Geben Sie Ihre E-Mail-Adresse ein
+  provide_your_name_to_start: Geben Sie Ihren Namen ein, um zu starten
+  provide_your_name: Geben Sie Ihren Namen ein
+  provide_your_phone_in_international_format_to_start: Geben Sie Ihre Telefonnummer im internationalen Format ein, um zu starten
+  provide_your_phone_in_international_format: Geben Sie Ihre Telefonnummer im internationalen Format ein
   start: Starten
   starting: Starten
   form_has_been_deleted_by_html: 'Das Formular wurde von <span class="font-semibold">%{name}</span> gelöscht.'
@@ -4927,6 +4988,11 @@ de: &de
   enable_shared_link: 'Freigabelink aktivieren'
   share_link_is_currently_disabled: 'Freigabelink ist derzeit deaktiviert'
   select_data_residency: Datenstandort auswählen
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} hat Sie eingeladen, Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung auszufüllen und zu unterschreiben.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Überprüfen oder laden Sie abgeschlossene Dokumente herunter. Füllen und unterschreiben Sie Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung.
+  link_form_fields: Formularfelder verknüpfen
+  at_least_one_field_must_be_displayed_in_the_form: Mindestens ein Feld muss im Formular angezeigt werden.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Diese Vorlage enthält mehrere Parteien, was die Verwendung eines Freigabelinks verhindert, da unklar ist, welche Partei für bestimmte Felder verantwortlich ist. Um dies zu beheben, definieren Sie die Standardparteidetails.
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5051,7 +5117,13 @@ pl:
   digitally_signed_by: Podpis cyfrowy przez
   form_expired_at_html: 'Formularz wygasł o <span class="font-semibold">%{time}</span>'
   role: Rola
-  provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
+  provide_your_email_to_start: Podaj swój e-mail, aby rozpocząć
+  provide_your_email: Podaj swój e-mail
+  provide_your_name_to_start: Podaj swoje imię, aby rozpocząć
+  provide_your_name: Podaj swoje imię
+  provide_your_phone_in_international_format_to_start: Podaj numer telefonu w formacie międzynarodowym, aby rozpocząć
+  provide_your_phone_in_international_format: Podaj numer telefonu w formacie międzynarodowym
+  use_international_format_1xxx_: 'Użyj formatu międzynarodowego: +1xxx...'
   start: Rozpocznij
   reason: Powód
   starting: Rozpoczynanie
@@ -5124,7 +5196,13 @@ uk:
   digitally_signed_by: Цифровий підпис від
   verification_code_code: 'Код підтвердження: %{code}'
   role: Роль
-  provide_your_email_to_start: Введіть свій email, щоб почати
+  provide_your_email_to_start: Введіть свій емейл, щоб почати
+  provide_your_email: Введіть свій емейл
+  provide_your_name_to_start: Введіть своє ім’я, щоб почати
+  provide_your_name: Введіть своє ім’я
+  provide_your_phone_in_international_format_to_start: Введіть номер телефону у міжнародному форматі, щоб почати
+  provide_your_phone_in_international_format: Введіть номер телефону у міжнародному форматі
+  use_international_format_1xxx_: 'Використовуйте міжнародний формат: +1xxx...'
   form_expired_at_html: 'Строк подачі завершився о <span class="font-semibold">%{time}</span>'
   start: Почати
   reason: Причина
@@ -5198,7 +5276,13 @@ cs:
   digitally_signed_by: Digitálně podepsáno uživatelem
   verification_code_code: 'Ověřovací kód: %{code}'
   role: Role
-  provide_your_email_to_start: Zadejte svůj email pro zahájení
+  provide_your_email_to_start: Zadejte svůj e-mail pro zahájení
+  provide_your_email: Zadejte svůj e-mail
+  provide_your_name_to_start: Zadejte své jméno pro zahájení
+  provide_your_name: Zadejte své jméno
+  provide_your_phone_in_international_format_to_start: Zadejte své telefonní číslo v mezinárodním formátu pro zahájení
+  provide_your_phone_in_international_format: Zadejte své telefonní číslo v mezinárodním formátu
+  use_international_format_1xxx_: 'Použijte mezinárodní formát: +1xxx...'
   reason: Důvod
   form_expired_at_html: 'Formulář vypršel <span class="font-semibold">%{time}</span>'
   start: Zahájit
@@ -5273,7 +5357,13 @@ he:
   role: תפקיד
   reason: סיבה
   verification_code_code: 'קוד אימות: %{code}'
-  provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
+  provide_your_email_to_start: הזן את האימייל שלך כדי להתחיל
+  provide_your_email: הזן את האימייל שלך
+  provide_your_name_to_start: הזן את שמך כדי להתחיל
+  provide_your_name: הזן את שמך
+  provide_your_phone_in_international_format_to_start: הזן את מספר הטלפון שלך בפורמט בינלאומי כדי להתחיל
+  provide_your_phone_in_international_format: הזן את מספר הטלפון שלך בפורמט בינלאומי
+  use_international_format_1xxx_: 'השתמש בפורמט בינלאומי: +1xxx...'
   start: התחל
   starting: מתחיל
   form_expired_at_html: 'הטופס פג תוקף ב- <span class="font-semibold">%{time}</span>'
@@ -5346,7 +5436,13 @@ nl:
   digitally_signed_by: Digitaal ondertekend door
   role: Rol
   verification_code_code: 'Verificatiecode: %{code}'
-  provide_your_email_to_start: Geef uw e-mailadres om te beginnen
+  provide_your_email_to_start: Voer je e-mailadres in om te beginnen
+  provide_your_email: Voer je e-mailadres in
+  provide_your_name_to_start: Voer je naam in om te beginnen
+  provide_your_name: Voer je naam in
+  provide_your_phone_in_international_format_to_start: Voer je telefoonnummer in internationaal formaat in om te beginnen
+  provide_your_phone_in_international_format: Voer je telefoonnummer in internationaal formaat in
+  use_international_format_1xxx_: 'Gebruik het internationale formaat: +1xxx...'
   start: Start
   reason: Reden
   form_expired_at_html: 'Formulier is verlopen op <span class="font-semibold">%{time}</span>'
@@ -5419,7 +5515,13 @@ ar:
   email: البريد الإلكتروني
   digitally_signed_by: تم التوقيع الرقمي بواسطة
   role: الدور
-  provide_your_email_to_start: قدم بريدك الإلكتروني للبدء
+  provide_your_email_to_start: أدخل بريدك الإلكتروني للبدء
+  provide_your_email: أدخل بريدك الإلكتروني
+  provide_your_name_to_start: أدخل اسمك للبدء
+  provide_your_name: أدخل اسمك
+  provide_your_phone_in_international_format_to_start: أدخل رقم هاتفك بصيغة دولية للبدء
+  provide_your_phone_in_international_format: أدخل رقم هاتفك بصيغة دولية
+  use_international_format_1xxx_: 'استخدم التنسيق الدولي: +1xxx...'
   start: بدء
   starting: بداية
   verification_code_code: 'رمز التحقق: %{code}'
@@ -5493,7 +5595,13 @@ ko:
   email: 이메일
   digitally_signed_by: 디지털로 서명됨
   role: 역할
-  provide_your_email_to_start: 시작하려면 이메일을 제공하세요
+  provide_your_email_to_start: 시작하려면 이메일을 입력하세요
+  provide_your_email: 이메일을 입력하세요
+  provide_your_name_to_start: 시작하려면 이름을 입력하세요
+  provide_your_name: 이름을 입력하세요
+  provide_your_phone_in_international_format_to_start: 시작하려면 국제 형식의 전화번호를 입력하세요
+  provide_your_phone_in_international_format: 국제 형식의 전화번호를 입력하세요
+  use_international_format_1xxx_: '국제 형식을 사용하세요: +1xxx...'
   start: 시작
   reason: 이유
   starting: 시작 중
@@ -5568,6 +5676,12 @@ ja:
   digitally_signed_by: 電子署名者
   role: 役割
   provide_your_email_to_start: 開始するにはメールアドレスを入力してください
+  provide_your_email: メールアドレスを入力してください
+  provide_your_name_to_start: 開始するには名前を入力してください
+  provide_your_name: 名前を入力してください
+  provide_your_phone_in_international_format_to_start: 開始するには国際形式の電話番号を入力してください
+  provide_your_phone_in_international_format: 国際形式の電話番号を入力してください
+  use_international_format_1xxx_: '国際形式を使用してください：+1xxx...'
   start: 開始
   reason: 理由
   starting: 開始中

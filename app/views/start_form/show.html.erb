@@ -1,5 +1,7 @@
 <% content_for(:html_title, "#{@template.name} | DocuSeal") %>
-<% content_for(:html_description, "#{@template.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
+<% I18n.with_locale(@template.account.locale) do %>
+  <% content_for(:html_description, t('account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution', account_name: @template.account.name)) %>
+<% end %>
 <div class="max-w-md mx-auto px-2 mt-12 mb-4">
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
@@ -27,13 +29,32 @@
     </div>
     <% if !@template.archived_at? && !@template.account.archived_at? %>
       <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
-        <div dir="auto" class="form-control !mt-0">
-          <%= f.label :email, t('email'), class: 'label' %>
-          <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: t('provide_your_email_to_start') %>
-          <% if @error_message %>
-            <span class="label-text-alt text-red-400 mt-1"><%= @error_message %></span>
-          <% end %>
-        </div>
+        <% if @error_message %>
+          <div class="alert items-start bg-base-100 border border-red-400 text-red-400">
+            <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6 mt-1') %>
+            <div class="text-sm"><%= @error_message %></div>
+          </div>
+        <% end %>
+        <% link_form_fields = @template.preferences.fetch('link_form_fields', ['email']) %>
+        <% multiple_fields = link_form_fields.size > 1 %>
+        <% if link_form_fields.include?('name') %>
+          <div dir="auto" class="form-control !mt-0">
+            <%= f.label :name, t('name'), class: 'label' %>
+            <%= f.text_field :name, value: current_user&.full_name || params[:name] || @submitter.name, required: true, class: 'base-input', placeholder: t(multiple_fields ? 'provide_your_name' : 'provide_your_name_to_start') %>
+          </div>
+        <% end %>
+        <% if link_form_fields.include?('email') %>
+          <div dir="auto" class="form-control !mt-0">
+            <%= f.label :email, t('email'), class: 'label' %>
+            <%= f.email_field :email, value: current_user&.email || params[:email] || @submitter.email, required: true, class: 'base-input', placeholder: t(multiple_fields ? 'provide_your_email' : 'provide_your_email_to_start') %>
+          </div>
+        <% end %>
+        <% if link_form_fields.include?('phone') %>
+          <div dir="auto" class="form-control !mt-0">
+            <%= f.label :phone, t('phone'), class: 'label' %>
+            <%= f.telephone_field :phone, value: params[:phone] || @submitter.phone, pattern: '^\+[0-9\s\-]+$', oninvalid: "this.value ? this.setCustomValidity('#{t('use_international_format_1xxx_')}') : ''", oninput: "this.setCustomValidity('')", required: true, class: 'base-input', placeholder: t(multiple_fields ? 'provide_your_phone_in_international_format' : 'provide_your_phone_in_international_format_to_start') %>
+          </div>
+        <% end %>
         <toggle-submit dir="auto" class="form-control">
           <%= f.button button_title(title: t('start'), disabled_with: t('starting')), class: 'base-button' %>
         </toggle-submit>

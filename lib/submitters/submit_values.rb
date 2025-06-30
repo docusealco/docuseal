@@ -219,8 +219,7 @@ module Submitters
       submitters_values = nil
       has_other_submitters = submission.template_submitters.size > 1
 
-      has_document_conditions =
-        (submission.template_schema || submission.template.schema).any? { |e| e['conditions'].present? }
+      has_document_conditions = submission_has_document_conditions?(submission)
 
       attachments_index =
         if has_document_conditions
@@ -234,7 +233,7 @@ module Submitters
 
         if has_document_conditions && !check_field_areas_attachments(field, attachments_index)
           submitter.values.delete(field['uuid'])
-          required_field_uuids_acc.delete(field['uuid'])
+          required_field_uuids_acc&.delete(field['uuid'])
         end
 
         if has_other_submitters && !submitters_values &&
@@ -244,11 +243,15 @@ module Submitters
 
         unless check_field_conditions(submitters_values || submitter.values, field, submission.fields_uuid_index)
           submitter.values.delete(field['uuid'])
-          required_field_uuids_acc.delete(field['uuid'])
+          required_field_uuids_acc&.delete(field['uuid'])
         end
       end
 
       submitter.values
+    end
+
+    def submission_has_document_conditions?(submission)
+      (submission.template_schema || submission.template.schema).any? { |e| e['conditions'].present? }
     end
 
     def required_editable_field?(field)

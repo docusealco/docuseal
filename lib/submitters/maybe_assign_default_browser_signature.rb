@@ -7,6 +7,8 @@ module Submitters
     module_function
 
     def call(submitter, params, cookies = nil, attachments = [])
+      attachments = attachments.select { |e| e.record_id == submitter.id && e.record_type == 'Submitter' }
+
       if (value = params[:signature_src].presence || params[:signature].presence)
         find_or_create_signature_from_value(submitter, value, attachments)
       elsif params[:signed_signature_uuids].present?

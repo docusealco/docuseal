@@ -35,6 +35,7 @@ import SetDateButton from './elements/set_date_button'
 import IndeterminateCheckbox from './elements/indeterminate_checkbox'
 import AppTour from './elements/app_tour'
 import DashboardDropzone from './elements/dashboard_dropzone'
+import RequiredCheckboxGroup from './elements/required_checkbox_group'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -105,6 +106,7 @@ safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
 safeRegisterElement('app-tour', AppTour)
 safeRegisterElement('dashboard-dropzone', DashboardDropzone)
 safeRegisterElement('check-on-click', CheckOnClick)
+safeRegisterElement('required-checkbox-group', RequiredCheckboxGroup)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

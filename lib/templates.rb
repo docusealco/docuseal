@@ -56,7 +56,8 @@ module Templates
 
     templates.where(
       id: SearchEntry.where(record_type: 'Template')
-                     .where(account_id: current_user.account_id)
+                     .where(account_id: [current_user.account_id,
+                                         current_user.account.linked_account_account&.account_id].compact)
                      .where(*SearchEntries.build_tsquery(keyword))
                      .select(:record_id)
     )

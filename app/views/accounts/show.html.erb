@@ -14,7 +14,10 @@
           <div class="form-control">
             <%= ff.label :timezone, t('time_zone'), class: 'label' %>
             <%= ff.select :timezone, nil, {}, class: 'base-select' do %>
-              <%= time_zone_options_for_select(current_account.timezone) %>
+              <% tzinfo = TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[current_account.timezone] || current_account.timezone) %>
+              <% items = ActiveSupport::TimeZone.all.map { |z| [z.to_s, z.name] } %>
+              <% items.unshift([tzinfo.to_s, current_account.timezone]) unless ActiveSupport::TimeZone.all.find { |e| e.tzinfo == tzinfo } %>
+              <%= options_for_select(items, current_account.timezone) %>
             <% end %>
           </div>
           <div class="form-control">
