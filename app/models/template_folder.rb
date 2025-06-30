@@ -4,13 +4,13 @@
 #
 # Table name: template_folders
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  archived_at :datetime
 #  name        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  account_id  :bigint           not null
-#  author_id   :bigint           not null
+#  account_id  :integer          not null
+#  author_id   :integer          not null
 #
 # Indexes
 #
@@ -19,8 +19,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (account_id => accounts.id)
-#  fk_rails_...  (author_id => users.id)
+#  account_id  (account_id => accounts.id)
+#  author_id   (author_id => users.id)
 #
 class TemplateFolder < ApplicationRecord
   DEFAULT_NAME = 'Default'

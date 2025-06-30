@@ -4,7 +4,7 @@
 #
 # Table name: submitters
 #
-#  id            :bigint           not null, primary key
+#  id            :integer          not null, primary key
 #  completed_at  :datetime
 #  declined_at   :datetime
 #  email         :string
@@ -22,9 +22,9 @@
 #  values        :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  account_id    :bigint           not null
+#  account_id    :integer          not null
 #  external_id   :string
-#  submission_id :bigint           not null
+#  submission_id :integer          not null
 #
 # Indexes
 #
@@ -37,7 +37,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (submission_id => submissions.id)
+#  submission_id  (submission_id => submissions.id)
 #
 class Submitter < ApplicationRecord
   belongs_to :submission

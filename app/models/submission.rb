@@ -4,36 +4,36 @@
 #
 # Table name: submissions
 #
-#  id                  :bigint           not null, primary key
+#  id                  :integer          not null, primary key
 #  archived_at         :datetime
 #  expire_at           :datetime
 #  name                :text
 #  preferences         :text             not null
 #  slug                :string           not null
-#  source              :text             not null
+#  source              :string           not null
 #  submitters_order    :string           not null
 #  template_fields     :text
 #  template_schema     :text
 #  template_submitters :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  account_id          :bigint           not null
-#  created_by_user_id  :bigint
-#  template_id         :bigint
+#  account_id          :integer          not null
+#  created_by_user_id  :integer
+#  template_id         :integer
 #
 # Indexes
 #
 #  index_submissions_on_account_id_and_id                           (account_id,id)
-#  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
-#  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
+#  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE archived_at IS NULL
+#  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE archived_at IS NOT NULL
 #  index_submissions_on_created_by_user_id                          (created_by_user_id)
 #  index_submissions_on_slug                                        (slug) UNIQUE
 #  index_submissions_on_template_id                                 (template_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (created_by_user_id => users.id)
-#  fk_rails_...  (template_id => templates.id)
+#  created_by_user_id  (created_by_user_id => users.id)
+#  template_id         (template_id => templates.id)
 #
 class Submission < ApplicationRecord
   belongs_to :template, optional: true

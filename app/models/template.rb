@@ -4,7 +4,7 @@
 #
 # Table name: templates
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  archived_at :datetime
 #  fields      :text             not null
 #  name        :string           not null
@@ -16,16 +16,16 @@
 #  submitters  :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  account_id  :bigint           not null
-#  author_id   :bigint           not null
+#  account_id  :integer          not null
+#  author_id   :integer          not null
 #  external_id :string
-#  folder_id   :bigint           not null
+#  folder_id   :integer          not null
 #
 # Indexes
 #
 #  index_templates_on_account_id                       (account_id)
-#  index_templates_on_account_id_and_folder_id_and_id  (account_id,folder_id,id) WHERE (archived_at IS NULL)
-#  index_templates_on_account_id_and_id_archived       (account_id,id) WHERE (archived_at IS NOT NULL)
+#  index_templates_on_account_id_and_folder_id_and_id  (account_id,folder_id,id) WHERE archived_at IS NULL
+#  index_templates_on_account_id_and_id_archived       (account_id,id) WHERE archived_at IS NOT NULL
 #  index_templates_on_author_id                        (author_id)
 #  index_templates_on_external_id                      (external_id)
 #  index_templates_on_folder_id                        (folder_id)
@@ -33,9 +33,9 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (account_id => accounts.id)
-#  fk_rails_...  (author_id => users.id)
-#  fk_rails_...  (folder_id => template_folders.id)
+#  account_id  (account_id => accounts.id)
+#  author_id   (author_id => users.id)
+#  folder_id   (folder_id => template_folders.id)
 #
 class Template < ApplicationRecord
   DEFAULT_SUBMITTER_NAME = 'First Party'

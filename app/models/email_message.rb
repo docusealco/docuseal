@@ -4,15 +4,15 @@
 #
 # Table name: email_messages
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  body       :text             not null
 #  sha1       :string           not null
 #  subject    :text             not null
 #  uuid       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :bigint           not null
-#  author_id  :bigint           not null
+#  account_id :integer          not null
+#  author_id  :integer          not null
 #
 # Indexes
 #
@@ -22,8 +22,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (account_id => accounts.id)
-#  fk_rails_...  (author_id => users.id)
+#  account_id  (account_id => accounts.id)
+#  author_id   (author_id => users.id)
 #
 class EmailMessage < ApplicationRecord
   belongs_to :author, class_name: 'User'

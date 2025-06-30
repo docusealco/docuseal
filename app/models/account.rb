@@ -4,7 +4,7 @@
 #
 # Table name: accounts
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  archived_at :datetime
 #  locale      :string           not null
 #  name        :string           not null

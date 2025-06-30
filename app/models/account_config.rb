@@ -4,12 +4,12 @@
 #
 # Table name: account_configs
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  key        :string           not null
 #  value      :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :bigint           not null
+#  account_id :integer          not null
 #
 # Indexes
 #
@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (account_id => accounts.id)
+#  account_id  (account_id => accounts.id)
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'

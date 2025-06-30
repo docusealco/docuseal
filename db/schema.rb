@@ -11,14 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "btree_gin"
-  enable_extension "plpgsql"
-
   create_table "access_tokens", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.text "token", null: false
-    t.text "sha256", null: false
+    t.string "sha256", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sha256"], name: "index_access_tokens_on_sha256", unique: true
@@ -26,15 +22,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "account_accesses", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "account_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "user_id"], name: "index_account_accesses_on_account_id_and_user_id", unique: true
   end
 
   create_table "account_configs", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "key", null: false
     t.text "value", null: false
     t.datetime "created_at", null: false
@@ -44,8 +40,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "account_linked_accounts", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "linked_account_id", null: false
+    t.integer "account_id", null: false
+    t.integer "linked_account_id", null: false
     t.text "account_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -123,8 +119,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
 
   create_table "console1984_commands", force: :cascade do |t|
     t.text "statements"
-    t.bigint "sensitive_access_id"
-    t.bigint "session_id", null: false
+    t.integer "sensitive_access_id"
+    t.integer "session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sensitive_access_id"], name: "index_console1984_commands_on_sensitive_access_id"
@@ -133,7 +129,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
 
   create_table "console1984_sensitive_accesses", force: :cascade do |t|
     t.text "justification"
-    t.bigint "session_id", null: false
+    t.integer "session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_console1984_sensitive_accesses_on_session_id"
@@ -141,7 +137,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
 
   create_table "console1984_sessions", force: :cascade do |t|
     t.text "reason"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_console1984_sessions_on_created_at"
@@ -156,18 +152,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "document_generation_events", force: :cascade do |t|
-    t.bigint "submitter_id", null: false
+    t.integer "submitter_id", null: false
     t.string "event_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
+    t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "event_name IN ('start', 'complete')"
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
   end
 
   create_table "email_events", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "emailable_type", null: false
-    t.bigint "emailable_id", null: false
+    t.integer "emailable_id", null: false
     t.string "message_id", null: false
     t.string "tag", null: false
     t.string "event_type", null: false
@@ -177,15 +173,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.datetime "created_at", null: false
     t.index ["account_id", "event_datetime"], name: "index_email_events_on_account_id_and_event_datetime"
     t.index ["email"], name: "index_email_events_on_email"
-    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
+    t.index ["email"], name: "index_email_events_on_email_event_types", where: "event_type IN ('bounce', 'soft_bounce', 'complaint', 'soft_complaint')"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
   end
 
   create_table "email_messages", force: :cascade do |t|
     t.string "uuid", null: false
-    t.bigint "author_id", null: false
-    t.bigint "account_id", null: false
+    t.integer "author_id", null: false
+    t.integer "account_id", null: false
     t.text "subject", null: false
     t.text "body", null: false
     t.string "sha1", null: false
@@ -197,7 +193,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "encrypted_configs", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "key", null: false
     t.text "value", null: false
     t.datetime "created_at", null: false
@@ -207,7 +203,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "encrypted_user_configs", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "key", null: false
     t.text "value", null: false
     t.datetime "created_at", null: false
@@ -217,8 +213,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
-    t.bigint "resource_owner_id", null: false
-    t.bigint "application_id", null: false
+    t.integer "resource_owner_id", null: false
+    t.integer "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
     t.text "redirect_uri", null: false
@@ -231,8 +227,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
-    t.bigint "resource_owner_id"
-    t.bigint "application_id", null: false
+    t.integer "resource_owner_id"
+    t.integer "application_id", null: false
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
@@ -258,26 +254,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "search_entries", force: :cascade do |t|
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "account_id", null: false
-    t.tsvector "tsvector", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.tsvector "ngram"
-    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
-    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
-    t.index ["account_id", "ngram"], name: "index_search_entries_on_account_id_ngram_template", where: "((record_type)::text = 'Template'::text)", using: :gin
-    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
-    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
-    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_template", where: "((record_type)::text = 'Template'::text)", using: :gin
-    t.index ["record_id", "record_type"], name: "index_search_entries_on_record_id_and_record_type", unique: true
-  end
-
   create_table "submission_events", force: :cascade do |t|
-    t.bigint "submission_id", null: false
-    t.bigint "submitter_id"
+    t.integer "submission_id", null: false
+    t.integer "submitter_id"
     t.text "data", null: false
     t.string "event_type", null: false
     t.datetime "event_timestamp", null: false
@@ -289,8 +268,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.bigint "template_id"
-    t.bigint "created_by_user_id"
+    t.integer "template_id"
+    t.integer "created_by_user_id"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -301,19 +280,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.string "submitters_order", null: false
     t.string "slug", null: false
     t.text "preferences", null: false
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "expire_at"
     t.text "name"
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
-    t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id", where: "(archived_at IS NULL)"
-    t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "(archived_at IS NOT NULL)"
+    t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id", where: "archived_at IS NULL"
+    t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "archived_at IS NOT NULL"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
     t.index ["template_id"], name: "index_submissions_on_template_id"
   end
 
   create_table "submitters", force: :cascade do |t|
-    t.bigint "submission_id", null: false
+    t.integer "submission_id", null: false
     t.string "uuid", null: false
     t.string "email"
     t.string "slug", null: false
@@ -330,7 +309,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.string "external_id"
     t.text "preferences", null: false
     t.text "metadata", null: false
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "declined_at"
     t.string "timezone"
     t.index ["account_id", "id"], name: "index_submitters_on_account_id_and_id"
@@ -342,8 +321,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "template_accesses", force: :cascade do |t|
-    t.bigint "template_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "template_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["template_id", "user_id"], name: "index_template_accesses_on_template_id_and_user_id", unique: true
@@ -351,8 +330,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
 
   create_table "template_folders", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "author_id", null: false
-    t.bigint "account_id", null: false
+    t.integer "author_id", null: false
+    t.integer "account_id", null: false
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -361,8 +340,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "template_sharings", force: :cascade do |t|
-    t.bigint "template_id", null: false
-    t.bigint "account_id", null: false
+    t.integer "template_id", null: false
+    t.integer "account_id", null: false
     t.string "ability", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -376,18 +355,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.text "schema", null: false
     t.text "fields", null: false
     t.text "submitters", null: false
-    t.bigint "author_id", null: false
-    t.bigint "account_id", null: false
+    t.integer "author_id", null: false
+    t.integer "account_id", null: false
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "source", null: false
-    t.bigint "folder_id", null: false
+    t.integer "folder_id", null: false
     t.string "external_id"
     t.text "preferences", null: false
     t.boolean "shared_link", default: false, null: false
-    t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
-    t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
+    t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "archived_at IS NULL"
+    t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "archived_at IS NOT NULL"
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
     t.index ["external_id"], name: "index_templates_on_external_id"
@@ -396,7 +375,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "user_configs", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "key", null: false
     t.text "value", null: false
     t.datetime "created_at", null: false
@@ -411,7 +390,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.string "email", null: false
     t.string "role", null: false
     t.string "encrypted_password", null: false
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -438,7 +417,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
   end
 
   create_table "webhook_urls", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.text "url", null: false
     t.text "events", null: false
     t.string "sha1", null: false

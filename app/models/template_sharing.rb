@@ -4,12 +4,12 @@
 #
 # Table name: template_sharings
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  ability     :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  account_id  :bigint           not null
-#  template_id :bigint           not null
+#  account_id  :integer          not null
+#  template_id :integer          not null
 #
 # Indexes
 #
@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (template_id => templates.id)
+#  template_id  (template_id => templates.id)
 #
 class TemplateSharing < ApplicationRecord
   ALL_ID = -1
