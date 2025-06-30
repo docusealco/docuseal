@@ -22,7 +22,6 @@ gem 'hexapdf'
 gem 'image_processing'
 gem 'jwt'
 gem 'lograge'
-gem 'mysql2', require: false
 gem 'oj'
 gem 'pagy'
 gem 'pg', require: false
