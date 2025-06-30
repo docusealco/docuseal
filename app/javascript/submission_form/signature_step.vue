@@ -201,7 +201,7 @@
       </div>
     </div>
     <input
-      v-if="isTextSignature"
+      v-if="isTextSignature && !modelValue && !computedPreviousValue"
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
@@ -391,7 +391,7 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
   data () {
     return {
-      isSignatureStarted: !!this.previousValue,
+      isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
@@ -422,6 +422,8 @@ export default {
     }
   },
   created () {
+    this.isSignatureStarted = !!this.computedPreviousValue
+
     if (this.requireSigningReason) {
       this.field.preferences ||= {}
       this.field.preferences.reason_field_uuid ||= v4()

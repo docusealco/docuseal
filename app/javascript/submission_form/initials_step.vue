@@ -203,7 +203,7 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'focus'],
   data () {
     return {
-      isInitialsStarted: !!this.previousValue,
+      isInitialsStarted: false,
       isUsePreviousValue: true,
       isDrawInitials: false,
       uploadImageInputKey: Math.random().toString()
@@ -217,6 +217,9 @@ export default {
         return null
       }
     }
+  },
+  created () {
+    this.isInitialsStarted = !!this.computedPreviousValue
   },
   async mounted () {
     this.$nextTick(() => {
