@@ -33,6 +33,9 @@ module DocuSeal
 
     config.action_view.frozen_string_literal = true
 
+    # Remove X-Frame-Options to allow iframe embedding
+    config.action_dispatch.default_headers.delete('X-Frame-Options')
+
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
     config.middleware.insert_before ActionDispatch::Static, NormalizeClientIpMiddleware
     config.middleware.insert_before ActionDispatch::Static, ApiPathConsiderJsonMiddleware
