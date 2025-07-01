@@ -57,7 +57,7 @@ class TemplatesDashboardController < ApplicationController
         rel = Template.where(
           Template.arel_table[:id].in(
             rel.where(folder_id: current_account.default_template_folder.id).select(:id).arel
-               .union(shared_template_ids.arel)
+               .union(:all, shared_template_ids.arel)
           )
         )
       else
