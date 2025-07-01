@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
+  skip_before_action :maybe_redirect_to_setup
+  skip_before_action :verify_authenticity_token
+
   load_and_authorize_resource :template
 
   before_action :load_base_template, only: %i[new create]

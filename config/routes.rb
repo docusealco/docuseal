@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'dashboard#index'
+  root 'templates_dashboard#index'
 
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'

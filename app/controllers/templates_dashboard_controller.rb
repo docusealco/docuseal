@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class TemplatesDashboardController < ApplicationController
+  before_action :ensure_demo_user_signed_in
+  skip_before_action :authenticate_user!
+  skip_before_action :maybe_redirect_to_setup
+
   load_and_authorize_resource :template_folder, parent: false
   load_and_authorize_resource :template, parent: false
 
@@ -44,29 +48,33 @@ class TemplatesDashboardController < ApplicationController
   private
 
   def filter_templates(templates)
-    rel = templates.active
+    # rel = templates.active
 
-    if params[:q].blank?
-      if Docuseal.multitenant? ? current_account.testing? : current_account.linked_account_account
-        shared_account_ids = [current_user.account_id]
-        shared_account_ids << TemplateSharing::ALL_ID if !Docuseal.multitenant? && !current_account.testing?
+    # if params[:q].blank?
+    #   if Docuseal.multitenant? ? current_account.testing? : current_account.linked_account_account
+    #     shared_account_ids = [current_user.account_id]
+    #     shared_account_ids << TemplateSharing::ALL_ID if !Docuseal.multitenant? && !current_account.testing?
 
-        shared_template_ids = TemplateSharing.where(account_id: shared_account_ids).select(:template_id)
+    #     shared_template_ids = TemplateSharing.where(account_id: shared_account_ids).select(:template_id)
 
-        rel = Template.where(
-          Template.arel_table[:id].in(
-            Arel::Nodes::Union.new(
-              rel.where(folder_id: current_account.default_template_folder.id).select(:id).arel,
-              shared_template_ids.arel
-            )
-          )
-        )
-      else
-        rel = rel.where(folder_id: current_account.default_template_folder.id)
-      end
-    end
+    #     rel = Template.where(
+    #       Template.arel_table[:id].in(
+    #         Arel::Nodes::Union.new(
+    #           rel.where(folder_id: current_account.default_template_folder.id).select(:id).arel,
+    #           shared_template_ids.arel
+    #         )
+    #       )
+    #     )
+    #   else
+    #     rel = rel.where(folder_id: current_account.default_template_folder.id)
+    #   end
+    # end
 
-    Templates.search(current_user, rel, params[:q])
+    # Templates.search(current_user, rel, params[:q])
+    templates = templates.active
+    templates = Templates.search(current_user, templates, params[:q])
+
+    templates
   end
 
   def sort_template_folders(template_folders, current_user, order)

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TemplatesUploadsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   load_and_authorize_resource :template, parent: false
 
   layout 'plain'

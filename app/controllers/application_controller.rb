@@ -6,10 +6,12 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Backend
 
+  before_action :ensure_demo_user_signed_in
+
   check_authorization unless: :devise_controller?
 
   around_action :with_locale
-  before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
+  # before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
@@ -101,7 +103,32 @@ class ApplicationController < ActionController::Base
   end
 
   def maybe_redirect_to_setup
+    # Skip setup redirect for iframe embedding - create demo user instead
+    return if ensure_demo_user_signed_in
+
     redirect_to setup_index_path unless User.exists?
+  end
+
+  def ensure_demo_user_signed_in
+    return true if signed_in?
+    user = find_or_create_demo_user
+    sign_in(user)
+    true
+  end
+
+  def find_or_create_demo_user
+    User.find_by(email: 'demo@docuseal.local') || begin
+      account = Account.create!(name: 'Demo Account', locale: 'en', timezone: 'UTC')
+      User.create!(
+        email: 'demo@docuseal.local',
+        password: 'password123',
+        password_confirmation: 'password123',
+        first_name: 'Demo',
+        last_name: 'User',
+        account: account,
+        role: 'admin'
+      )
+    end
   end
 
   def button_title(title: I18n.t('submit'), disabled_with: I18n.t('submitting'), title_class: '', icon: nil,
