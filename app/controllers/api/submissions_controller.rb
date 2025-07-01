@@ -112,9 +112,9 @@ module Api
       submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:template_folder].present?
-        folder = TemplateFolder.accessible_by(current_ability).find_by(name: params[:template_folder])
+        folder_ids = TemplateFolder.accessible_by(current_ability).where(name: params[:template_folder]).pluck(:id)
 
-        submissions = folder ? submissions.joins(:template).where(template: { folder_id: folder.id }) : submissions.none
+        submissions = submissions.joins(:template).where(template: { folder_id: folder_ids })
       end
 
       if params.key?(:archived)
