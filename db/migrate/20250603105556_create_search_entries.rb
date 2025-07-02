@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateSearchEnties < ActiveRecord::Migration[8.0]
+class CreateSearchEntries < ActiveRecord::Migration[8.0]
   def up
     return unless adapter_name == 'PostgreSQL'
 
