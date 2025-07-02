@@ -18,10 +18,6 @@
       <span class="hidden sm:block">
         <%= render 'templates/upload_button' %>
       </span>
-      <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
-        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block"><%= t('create') %></span>
-      <% end %>
     <% end %>
   </div>
 </div>

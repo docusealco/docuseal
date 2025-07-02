@@ -398,7 +398,7 @@ en: &en
   back_to_active: Back to Active
   submissions: Submissions
   templates: Templates
-  document_templates_html: <span class="hidden md:inline">Document</span> Templates
+  document_templates_html: <span class="hidden md:inline">Upload</span> Documents
   archived: Archived
   search: Search
   submissions_not_found: Submissions not Found

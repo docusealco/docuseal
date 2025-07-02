@@ -136,33 +136,6 @@
         </div>
       </button>
       <div
-        v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
-        class="tooltip tooltip-bottom flex"
-        :class="{'tooltip-bottom-end': withPayment, 'tooltip-bottom': !withPayment }"
-        :data-tip="t('unlock_sms_verified_phone_number_field_with_paid_plan_use_text_field_for_phone_numbers_without_verification')"
-      >
-        <a
-          href="https://www.docuseal.com/pricing"
-          target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
-          :style="{ backgroundColor }"
-        >
-          <div class="w-0 absolute left-0">
-            <IconLock
-              width="18"
-              height="18"
-              stroke-width="1.5"
-            />
-          </div>
-          <div class="flex items-center flex-col px-2 py-2">
-            <component :is="icon" />
-            <span class="text-xs mt-1">
-              {{ fieldNames[type] }}
-            </span>
-          </div>
-        </a>
-      </div>
-      <div
         v-else-if="withVerification === false && type == 'verification' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex tooltip-bottom-start"
         :data-tip="t('obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more')"
@@ -205,23 +178,6 @@
         {{ t('click_on_the_field_type_above_to_start_drawing_it') }}
       </li>
     </ul>
-  </div>
-  <div
-    v-show="fields.length < 4 && editable && withHelp && showTourStartForm"
-    class="rounded py-2 px-4 w-full border border-dashed border-base-300"
-  >
-    <div class="text-center text-sm">
-      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
-    </div>
-    <div class="flex justify-center">
-      <label
-        for="start_tour_button"
-        class="btn btn-sm btn-warning w-40 mt-2"
-        @click="startTour"
-      >
-        {{ t('start_tour') }}
-      </label>
-    </div>
   </div>
 </template>
 

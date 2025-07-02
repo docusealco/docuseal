@@ -58,12 +58,6 @@
       :style="{ backgroundColor }"
     >
       <div class="flex items-center space-x-3">
-        <a
-          v-if="withLogo"
-          href="/"
-        >
-          <Logo />
-        </a>
         <Contenteditable
           v-if="withTitle"
           :model-value="template.name"
@@ -79,78 +73,6 @@
           name="buttons"
         />
         <template v-else>
-          <form
-            v-if="withSignYourselfButton && template.submitters.length < 2"
-            target="_blank"
-            data-turbo="false"
-            class="inline"
-            method="post"
-            :action="`/d/${template.slug}`"
-            @submit="maybeShowErrorTemplateAlert"
-          >
-            <input
-              type="hidden"
-              name="_method"
-              value="put"
-              autocomplete="off"
-            >
-            <input
-              type="hidden"
-              name="authenticity_token"
-              :value="authenticityToken"
-              autocomplete="off"
-            >
-            <input
-              type="hidden"
-              name="selfsign"
-              value="true"
-              autocomplete="off"
-            >
-            <button
-              class="btn btn-primary btn-ghost text-base hidden md:flex"
-              type="submit"
-            >
-              <IconWritingSign
-                width="22"
-                class="inline"
-              />
-              <span class="hidden md:inline">
-                {{ t('sign_yourself') }}
-              </span>
-            </button>
-          </form>
-          <a
-            v-else-if="withSignYourselfButton"
-            id="sign_yourself_button"
-            :href="`/templates/${template.id}/submissions/new?selfsign=true`"
-            class="btn btn-primary btn-ghost text-base hidden md:flex"
-            data-turbo-frame="modal"
-            @click="maybeShowErrorTemplateAlert"
-          >
-            <IconWritingSign
-              width="22"
-              class="inline"
-            />
-            <span class="hidden md:inline">
-              {{ t('sign_yourself') }}
-            </span>
-          </a>
-          <a
-            v-if="withSendButton"
-            id="send_button"
-            :href="`/templates/${template.id}/submissions/new?with_link=true`"
-            data-turbo-frame="modal"
-            class="white-button md:!px-6"
-            @click="maybeShowErrorTemplateAlert"
-          >
-            <IconUsersPlus
-              width="20"
-              class="inline"
-            />
-            <span class="hidden md:inline">
-              {{ t('send') }}
-            </span>
-          </a>
           <span
             v-if="editable"
             id="save_button_container"
@@ -196,17 +118,6 @@
                   >
                     <IconEye class="w-6 h-6 flex-shrink-0" />
                     <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    :href="`/templates/${template.id}/preferences`"
-                    data-turbo-frame="modal"
-                    class="flex space-x-2"
-                    @click="closeDropdown"
-                  >
-                    <IconAdjustments class="w-6 h-6 flex-shrink-0" />
-                    <span class="whitespace-nowrap">{{ t('preferences') }}</span>
                   </a>
                 </li>
               </ul>
