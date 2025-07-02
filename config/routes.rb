@@ -55,6 +55,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :export, controller: 'export' do
+    collection do
+      put :export_template
+      put :export_template_by_id
+    end
+  end
+
   resources :verify_pdf_signature, only: %i[create]
   resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
   resources :account_configs, only: %i[create destroy]

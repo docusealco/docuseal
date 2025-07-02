@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_02_204317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -160,7 +160,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.string "event_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
+    t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY (ARRAY[('start'::character varying)::text, ('complete'::character varying)::text]))"
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
   end
 
@@ -177,7 +177,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.datetime "created_at", null: false
     t.index ["account_id", "event_datetime"], name: "index_email_events_on_account_id_and_event_datetime"
     t.index ["email"], name: "index_email_events_on_email"
-    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
+    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY (ARRAY[('bounce'::character varying)::text, ('soft_bounce'::character varying)::text, ('complaint'::character varying)::text, ('soft_complaint'::character varying)::text]))"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
   end
@@ -214,6 +214,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "key"], name: "index_encrypted_user_configs_on_user_id_and_key", unique: true
     t.index ["user_id"], name: "index_encrypted_user_configs_on_user_id"
+  end
+
+  create_table "export_locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "default_location", default: false, null: false
+    t.string "authorization_token"
+    t.string "api_base_url", null: false
+    t.string "templates_endpoint"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "extra_params", default: {}, null: false
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
