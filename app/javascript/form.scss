@@ -56,11 +56,45 @@ button[disabled] .enabled {
 }
 
 .base-button {
-  @apply btn btn-neutral text-white text-base;
+  @apply btn btn-primary text-white text-base;
+}
+
+.btn-outline {
+  border-color: #004FCC;
+  color: #004FCC;
+}
+
+.btn-outline:hover {
+  background-color: #004FCC;
+  border-color: #004FCC;
+  color: white;
+}
+
+.btn-ghost {
+  color: #004FCC;
+}
+
+.btn-ghost:hover {
+  background-color: #004FCC;
+  color: white;
+}
+
+.btn-neutral {
+  background-color: #004FCC;
+  border-color: #004FCC;
+  color: white;
+}
+
+.btn-neutral:hover {
+  background-color: #0063FF;
+  border-color: #0063FF;
+  color: white;
 }
 
 .white-button {
   @apply btn btn-outline text-base bg-white border-2;
+  border-color: #004FCC;
+  color: #004FCC;
 }
 
 .base-checkbox {
