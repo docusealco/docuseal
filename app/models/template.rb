@@ -6,7 +6,7 @@
 #
 #  id                   :bigint           not null, primary key
 #  archived_at          :datetime
-#  external_data_fields :string
+#  external_data_fields :text
 #  fields               :text             not null
 #  name                 :string           not null
 #  preferences          :text             not null
@@ -52,6 +52,7 @@ class Template < ApplicationRecord
   attribute :preferences, :string, default: -> { {} }
   attribute :fields, :string, default: -> { [] }
   attribute :schema, :string, default: -> { [] }
+  attribute :external_data_fields, :string, default: -> { {} }
   attribute :submitters, :string, default: -> { [{ name: I18n.t(:first_party), uuid: SecureRandom.uuid }] }
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
   attribute :source, :string, default: 'native'
@@ -60,6 +61,7 @@ class Template < ApplicationRecord
   serialize :fields, coder: JSON
   serialize :schema, coder: JSON
   serialize :submitters, coder: JSON
+  serialize :external_data_fields, coder: JSON
 
   has_many_attached :documents
 
@@ -77,12 +79,6 @@ class Template < ApplicationRecord
 
   def application_key
     external_id
-  end
-
-  def external_data_fields
-    return {} if self[:external_data_fields].blank?
-
-    JSON.parse(self[:external_data_fields])
   end
 
   private

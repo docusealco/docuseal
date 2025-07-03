@@ -393,7 +393,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_03_143236) do
     t.string "external_id"
     t.text "preferences", null: false
     t.boolean "shared_link", default: false, null: false
-    t.string "external_data_fields"
+    t.text "external_data_fields"
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["account_id"], name: "index_templates_on_account_id"

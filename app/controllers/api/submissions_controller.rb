@@ -193,7 +193,7 @@ module Api
           submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
                         :completed, :phone, :application_key, :external_id, :reply_to, :go_to_last,
                         { metadata: {}, values: {}, roles: [], readonly_fields: [], message: %i[subject body],
-                          fields: [:name, :uuid, :default_value, :value, :title, :description,
+                          fields: [:name, :uuid, :question_id, :default_value, :value, :title, :description,
                                    :readonly, :required, :validation_pattern, :invalid_message,
                                    { default_value: [], value: [], preferences: {} }] }]]
         }
