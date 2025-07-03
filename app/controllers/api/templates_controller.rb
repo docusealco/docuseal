@@ -98,48 +98,59 @@ module Api
       template.external_id = params[:external_id] if params[:external_id].present?
       template.source = :api
 
+      # Set submitters if provided
+      if params[:submitters].present?
+        template.submitters = params[:submitters]
+      end
+
+      # Set fields if provided
+      if params[:fields].present?
+        # We'll set fields after documents are processed to ensure correct attachment_uuid mapping
+        fields_from_request = params[:fields]
+      end
+
       template.save!
 
-            begin
-        puts "DEBUG: Starting document processing..."
+      begin
         documents = process_documents(template, params[:documents])
-        puts "DEBUG: Documents processed: #{documents.count}"
 
         schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
-        puts "DEBUG: Schema created: #{schema}"
 
         if template.fields.blank?
-          puts "DEBUG: Processing fields..."
-          template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
-          schema.each { |item| item['pending_fields'] = true } if template.fields.present?
-          puts "DEBUG: Fields processed: #{template.fields.count}"
+          if fields_from_request.present?
+            # Map the fields to use the correct attachment_uuid from the processed documents
+            mapped_fields = fields_from_request.map do |field|
+              field_copy = field.dup
+              if field_copy['areas'].present?
+                field_copy['areas'] = field_copy['areas'].map do |area|
+                  area_copy = area.dup
+                  # Use the first document's UUID since we're processing one document at a time
+                  area_copy['attachment_uuid'] = documents.first.uuid if documents.any?
+                  area_copy
+                end
+              end
+              field_copy
+            end
+            template.fields = mapped_fields
+          else
+            template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
+            schema.each { |item| item['pending_fields'] = true } if template.fields.present?
+          end
         end
 
-        puts "DEBUG: Updating template schema..."
         template.update!(schema: schema)
-        puts "DEBUG: Template schema updated"
 
-        puts "DEBUG: Enqueueing webhooks..."
         enqueue_template_created_webhooks(template)
-        puts "DEBUG: Webhooks enqueued"
 
-        puts "DEBUG: Enqueueing search reindex..."
         SearchEntries.enqueue_reindex(template)
-        puts "DEBUG: Search reindex enqueued"
 
         # Get the documents for serialization
-        puts "DEBUG: Getting template documents for serialization..."
         template_documents = template.documents.where(uuid: documents.map(&:uuid))
-        puts "DEBUG: Template documents found: #{template_documents.count}"
 
-        puts "DEBUG: Serializing template..."
         result = Templates::SerializeForApi.call(template, template_documents)
-        puts "DEBUG: Template serialized successfully"
 
         render json: result
       rescue StandardError => e
-        puts "DEBUG: ERROR OCCURRED: #{e.class} - #{e.message}"
-        puts "DEBUG: Backtrace: #{e.backtrace.first(5).join("\n")}"
         template.destroy!
         raise e
       end
@@ -152,39 +163,22 @@ module Api
 
     private
 
-        def process_documents(template, documents_params)
-      puts "DEBUG: process_documents called with #{documents_params&.count || 0} documents"
+    def process_documents(template, documents_params)
       return [] if documents_params.blank?
 
       documents_params.map.with_index do |doc_param, index|
-        puts "DEBUG: Processing document #{index + 1}: #{doc_param[:name]}"
-        puts "DEBUG: Base64 string length: #{doc_param[:file].length}"
-        puts "DEBUG: Base64 string first 100 chars: #{doc_param[:file][0..99]}"
-        puts "DEBUG: Base64 string last 100 chars: #{doc_param[:file][-100..-1]}"
-
-        # Check if the base64 string looks truncated
         expected_length = (doc_param[:file].length / 4.0 * 3).ceil
-        puts "DEBUG: Expected decoded size: #{expected_length} bytes"
-        puts "DEBUG: Base64 string ends with padding: #{doc_param[:file].end_with?('==') || doc_param[:file].end_with?('=')}"
-        puts "DEBUG: Base64 string length is multiple of 4: #{doc_param[:file].length % 4 == 0}"
-
         # Validate base64 string
         unless doc_param[:file].match?(/\A[A-Za-z0-9+\/]*={0,2}\z/)
-          puts "DEBUG: ERROR: Invalid base64 string format"
           raise ArgumentError, "Invalid base64 string format"
         end
 
         # Decode base64 file data
         file_data = Base64.decode64(doc_param[:file])
-        puts "DEBUG: File data decoded, size: #{file_data.size} bytes"
-        puts "DEBUG: First 50 bytes as hex: #{file_data[0..49].unpack('H*').first}"
-        puts "DEBUG: First 50 bytes as string: #{file_data[0..49].inspect}"
 
         # Check if the decoded data looks like a PDF
         if file_data.size >= 4
           pdf_header = file_data[0..3]
-          puts "DEBUG: PDF header: #{pdf_header.inspect}"
-          puts "DEBUG: Is PDF header valid: #{pdf_header == '%PDF'}"
         end
 
         # Create a temporary file-like object
@@ -197,10 +191,7 @@ module Api
         file.define_singleton_method(:original_filename) { doc_param[:name] }
         file.define_singleton_method(:content_type) { 'application/pdf' }
 
-        puts "DEBUG: Calling Templates::CreateAttachments.handle_pdf_or_image..."
-        # Process the document using the existing service
         result = Templates::CreateAttachments.handle_pdf_or_image(template, file, file_data, {}, extract_fields: true)
-        puts "DEBUG: Document processed successfully: #{result.class}"
         result
       ensure
         file&.close
