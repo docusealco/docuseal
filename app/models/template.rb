@@ -4,22 +4,23 @@
 #
 # Table name: templates
 #
-#  id          :bigint           not null, primary key
-#  archived_at :datetime
-#  fields      :text             not null
-#  name        :string           not null
-#  preferences :text             not null
-#  schema      :text             not null
-#  shared_link :boolean          default(FALSE), not null
-#  slug        :string           not null
-#  source      :text             not null
-#  submitters  :text             not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  account_id  :integer          not null
-#  author_id   :integer          not null
-#  external_id :string
-#  folder_id   :integer          not null
+#  id                   :bigint           not null, primary key
+#  archived_at          :datetime
+#  external_data_fields :string
+#  fields               :text             not null
+#  name                 :string           not null
+#  preferences          :text             not null
+#  schema               :text             not null
+#  shared_link          :boolean          default(FALSE), not null
+#  slug                 :string           not null
+#  source               :text             not null
+#  submitters           :text             not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  account_id           :integer          not null
+#  author_id            :integer          not null
+#  external_id          :string
+#  folder_id            :integer          not null
 #
 # Indexes
 #
@@ -76,6 +77,12 @@ class Template < ApplicationRecord
 
   def application_key
     external_id
+  end
+
+  def external_data_fields
+    return {} if self[:external_data_fields].blank?
+
+    JSON.parse(self[:external_data_fields])
   end
 
   private

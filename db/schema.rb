@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_02_204317) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_03_143236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -393,6 +393,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_02_204317) do
     t.string "external_id"
     t.text "preferences", null: false
     t.boolean "shared_link", default: false, null: false
+    t.string "external_data_fields"
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["account_id"], name: "index_templates_on_account_id"
