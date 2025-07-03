@@ -1824,8 +1824,9 @@ export default {
         method: 'PUT',
         body: JSON.stringify({
           template: {
+            id: this.template.id,
             name: this.template.name,
-            schema: this.template.schema,
+            schema: this.template.schema[0],
             submitters: this.template.submitters,
             fields: this.template.fields
           }
