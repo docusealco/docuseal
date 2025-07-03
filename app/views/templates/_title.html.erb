@@ -40,15 +40,6 @@
     </div>
     <% if !template.archived_at? %>
       <div class="flex items-center space-x-2">
-        <% if can?(:update, template) %>
-          <div class="tooltip" data-tip="<%= t('preferences') %>">
-            <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
-              <span class="flex items-center justify-center space-x-2">
-                <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
-              </span>
-            <% end %>
-          </div>
-        <% end %>
         <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', data: { turbo_frame: :modal } do %>
           <span class="flex items-center justify-center space-x-2">
             <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6 text-white') %>

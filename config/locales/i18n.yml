@@ -852,6 +852,11 @@ en: &en
     items:
       range_with_total: "%{from}-%{to} of %{count} items"
       range_without_total: "%{from}-%{to} items"
+  exports:
+    templates:
+      error: Error exporting template
+      api_error: Error with remote endpoint
+      success: Template exported successfully
 
 es: &es
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token

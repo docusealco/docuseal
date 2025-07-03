@@ -73,6 +73,25 @@
           name="buttons"
         />
         <template v-else>
+          <button
+            class="base-button"
+            :class="{ disabled: isExporting }"
+            v-bind="isExporting ? { disabled: true } : {}"
+            @click.prevent="onExportClick"
+          >
+            <IconInnerShadowTop
+              v-if="isExporting"
+              width="22"
+              class="animate-spin"
+            />
+            <IconDeviceFloppy
+              v-else
+              width="22"
+            />
+            <span class="hidden md:inline">
+              {{ t('Export') }}
+            </span>
+          </button>
           <span
             v-if="editable"
             id="save_button_container"
@@ -1739,6 +1758,14 @@ export default {
         }
       }
     },
+    onExportClick () {
+      this.isExporting = true
+      this.export().then(() => {
+        window.Turbo.visit(`/templates/${this.template.id}`)
+      }).finally(() => {
+        this.isExporting = false
+      })
+    },
     scrollToArea (area) {
       const documentRef = this.documentRefs.find((a) => a.document.uuid === area.attachment_uuid)
 
@@ -1790,6 +1817,26 @@ export default {
         if (this.onSave) {
           this.onSave(this.template)
         }
+      })
+    },
+    export () {
+      this.baseFetch(`/export/export_template`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          template: {
+            id: this.template.id,
+            name: this.template.name,
+            schema: this.template.schema[0],
+            submitters: this.template.submitters,
+            fields: this.template.fields
+          }
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(() => {
+        console.log('exported!');
+        // if (this.onSave) {
+        //   this.onSave(this.template)
+        // }
       })
     }
   }

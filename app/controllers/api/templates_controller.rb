@@ -237,15 +237,16 @@ module Api
         :external_id,
         :shared_link,
         {
+          external_data_fields: {},
           submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email]],
-          fields: [[:uuid, :submitter_uuid, :name, :type,
+          fields: [[:uuid, :question_id, :submitter_uuid, :name, :type,
                     :required, :readonly, :default_value,
                     :title, :description,
                     { preferences: {},
                       conditions: [%i[field_uuid value action operation]],
-                      options: [%i[value uuid]],
+                      options: [%i[value uuid answer_id]],
                       validation: %i[message pattern],
-                      areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
+                      areas: [%i[x y w h cell_w attachment_uuid option_uuid answer_id page]] }]]
         }
       ]
 
