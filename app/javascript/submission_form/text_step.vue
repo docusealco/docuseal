@@ -43,8 +43,8 @@
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       type="text"
       :name="`values[${field.uuid}]`"
-      @invalid="field.validation?.message ? $event.target.setCustomValidity(field.validation.message) : ''"
-      @input="field.validation?.message ? $event.target.setCustomValidity('') : ''"
+      @invalid="validationMessage ? $event.target.setCustomValidity(validationMessage) : ''"
+      @input="validationMessage ? $event.target.setCustomValidity('') : ''"
       @focus="$emit('focus')"
     >
     <textarea
@@ -125,6 +125,28 @@ export default {
         }
       } else {
         return null
+      }
+    },
+    lengthValidation () {
+      if (this.field.validation?.pattern) {
+        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+      } else {
+        return null
+      }
+    },
+    validationMessage () {
+      if (this.field.validation?.message) {
+        return this.field.validation.message
+      } else if (this.lengthValidation) {
+        const number =
+          [this.lengthValidation.min, this.lengthValidation.max]
+            .filter(Boolean)
+            .filter((v, i, a) => a.indexOf(v) === i)
+            .join('-')
+
+        return this.t('must_be_characters_length').replace('{number}', number)
+      } else {
+        return ''
       }
     },
     text: {

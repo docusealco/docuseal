@@ -1,4 +1,8 @@
 const en = {
+  error_message: 'Error message',
+  length: 'Length',
+  min: 'Min',
+  max: 'Max',
   font: 'Font',
   party: 'Party',
   date_signed: 'Date Signed',
@@ -168,6 +172,10 @@ const en = {
 }
 
 const es = {
+  error_message: 'Mensaje de error',
+  length: 'Longitud',
+  min: 'Mín',
+  max: 'Máx',
   date_signed: 'Fecha actual',
   fuente: 'Fuente',
   party: 'Parte',
@@ -337,6 +345,10 @@ const es = {
 }
 
 const it = {
+  error_message: 'Messaggio di errore',
+  length: 'Lunghezza',
+  min: 'Min',
+  max: 'Max',
   date_signed: 'Data attuale',
   font: 'Carattere',
   party: 'Parte',
@@ -506,6 +518,10 @@ const it = {
 }
 
 const pt = {
+  error_message: 'Mensagem de erro',
+  length: 'Comprimento',
+  min: 'Mín',
+  max: 'Máx',
   date_signed: 'Data atual',
   fonte: 'Fonte',
   party: 'Parte',
@@ -675,6 +691,10 @@ const pt = {
 }
 
 const fr = {
+  error_message: 'Message d\'erreur',
+  length: 'Longueur',
+  min: 'Min',
+  max: 'Max',
   date_signed: 'Date actuelle',
   font: 'Police',
   party: 'Partie',
@@ -844,6 +864,10 @@ const fr = {
 }
 
 const de = {
+  error_message: 'Fehlermeldung',
+  length: 'Länge',
+  min: 'Min',
+  max: 'Max',
   date_now: 'Akt. Datum',
   font: 'Schriftart',
   party: 'Partei',

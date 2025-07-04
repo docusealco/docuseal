@@ -1,4 +1,5 @@
 const en = {
+  must_be_characters_length: 'Must be {number} characters length',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
   verify_id: 'Verify ID',
   identity_verification: 'Identity verification',
@@ -98,6 +99,7 @@ const en = {
 }
 
 const es = {
+  must_be_characters_length: 'Debe tener {number} caracteres de longitud',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete todos los campos requeridos para continuar con la verificación de identidad.',
   verify_id: 'Verificar ID',
   identity_verification: 'Verificación de identidad',
@@ -197,6 +199,7 @@ const es = {
 }
 
 const it = {
+  must_be_characters_length: 'Deve essere lungo {number} caratteri',
   complete_all_required_fields_to_proceed_with_identity_verification: "Compila tutti i campi obbligatori per procedere con la verifica dell'identità.",
   verify_id: 'Verifica ID',
   identity_verification: "Verifica dell'identità",
@@ -296,6 +299,7 @@ const it = {
 }
 
 const de = {
+  must_be_characters_length: 'Muss {number} Zeichen lang sein',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vervollständigen Sie alle erforderlichen Felder, um mit der Identitätsverifizierung fortzufahren.',
   verify_id: 'ID überprüfen',
   identity_verification: 'Identitätsüberprüfung',
@@ -395,6 +399,7 @@ const de = {
 }
 
 const fr = {
+  must_be_characters_length: 'Doit contenir {number} caractères',
   complete_all_required_fields_to_proceed_with_identity_verification: "Veuillez remplir tous les champs obligatoires pour continuer la vérification de l'identité.",
   verify_id: "Vérification de l'ID",
   identity_verification: "Vérification de l'identité",
@@ -494,6 +499,7 @@ const fr = {
 }
 
 const pl = {
+  must_be_characters_length: 'Musi mieć długość {number} znaków',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Uzupełnij wszystkie wymagane pola, aby kontynuować weryfikację tożsamości.',
   verify_id: 'Zweryfikuj ID',
   identity_verification: 'Weryfikacja tożsamości',
@@ -593,6 +599,7 @@ const pl = {
 }
 
 const uk = {
+  must_be_characters_length: 'Має містити {number} символів',
   complete_all_required_fields_to_proceed_with_identity_verification: "Заповніть всі обов'язкові поля, щоб продовжити перевірку особи.",
   verify_id: 'Підтвердження ідентичності',
   identity_verification: 'Ідентифікація особи',
@@ -692,6 +699,7 @@ const uk = {
 }
 
 const cs = {
+  must_be_characters_length: 'Musí mít délku {number} znaků',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vyplňte všechna povinná pole, abyste mohli pokračovat v ověření identity.',
   verify_id: 'Ověřit ID',
   identity_verification: 'Ověření identity',
@@ -791,6 +799,7 @@ const cs = {
 }
 
 const pt = {
+  must_be_characters_length: 'Deve ter {number} caracteres',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Preencha todos os campos obrigatórios para prosseguir com a verificação de identidade.',
   verify_id: 'Verificar ID',
   identity_verification: 'Verificação de identidade',
@@ -890,6 +899,7 @@ const pt = {
 }
 
 const he = {
+  must_be_characters_length: 'חייב להיות באורך של {number} תווים',
   complete_all_required_fields_to_proceed_with_identity_verification: 'מלא את כל השדות הנדרשים כדי להמשיך עם אימות זהות.',
   verify_id: 'אמת מזהה',
   identity_verification: 'אימות זהות',
@@ -989,6 +999,7 @@ const he = {
 }
 
 const nl = {
+  must_be_characters_length: 'Moet {number} tekens lang zijn',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vul alle verplichte velden in om door te gaan met de identiteitsverificatie.',
   verify_id: 'Verifiëren ID',
   identity_verification: 'Identiteitsverificatie',
@@ -1088,6 +1099,7 @@ const nl = {
 }
 
 const ar = {
+  must_be_characters_length: 'يجب أن يكون الطول {number} حرفًا',
   complete_all_required_fields_to_proceed_with_identity_verification: 'أكمل جميع الحقول المطلوبة للمتابعة في التحقق من الهوية.',
   verify_id: 'تحقق من الهوية',
   identity_verification: 'التحقق من الهوية',
@@ -1187,6 +1199,7 @@ const ar = {
 }
 
 const ko = {
+  must_be_characters_length: '{number}자여야 합니다',
   complete_all_required_fields_to_proceed_with_identity_verification: '신원 확인을 진행하려면 모든 필수 필드를 작성하십시오.',
   verify_id: '아이디 확인',
   identity_verification: '신원 확인',
@@ -1286,6 +1299,7 @@ const ko = {
 }
 
 const ja = {
+  must_be_characters_length: '{number}文字でなければなりません',
   complete_all_required_fields_to_proceed_with_identity_verification: '本人確認を進めるには、すべての必須項目を入力してください。',
   verify_id: '本人確認',
   identity_verification: '本人確認',

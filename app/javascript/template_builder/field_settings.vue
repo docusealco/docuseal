@@ -153,13 +153,13 @@
       <option
         v-for="(key, value) in validations"
         :key="key"
-        :selected="field.validation?.pattern ? value === field.validation.pattern : value === 'none'"
-        :value="value"
+        :selected="lengthValidation ? key == 'length' : (field.validation?.pattern ? value === field.validation.pattern : key === 'none')"
+        :value="key"
       >
         {{ t(key) }}
       </option>
       <option
-        :selected="field.validation && !validations[field.validation.pattern]"
+        :selected="field.validation && !validations[field.validation.pattern] && !lengthValidation"
         :value="validations[field.validation?.pattern] || !field.validation?.pattern ? 'custom' : field.validation?.pattern"
       >
         {{ t('custom') }}
@@ -174,7 +174,51 @@
     </label>
   </div>
   <div
-    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern]"
+    v-if="['text', 'cells'].includes(field.type) && field.validation && lengthValidation"
+    class="py-1.5 px-1 relative flex space-x-1"
+    @click.stop
+  >
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('min')"
+        type="number"
+        min="0"
+        :value="lengthValidation.min"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        @input="field.validation.pattern = `.{${$event.target.value || 0},${lengthValidation.max || ''}}`"
+        @blur="save"
+      >
+      <label
+        v-if="lengthValidation.min"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('min') }}
+      </label>
+    </div>
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('max')"
+        type="number"
+        min="1"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        :value="lengthValidation.max"
+        @input="field.validation.pattern = `.{${lengthValidation.min},${$event.target.value || ''}}`"
+        @blur="save"
+      >
+      <label
+        v-if="lengthValidation.max"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('max') }}
+      </label>
+    </div>
+  </div>
+  <div
+    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
     class="py-1.5 px-1 relative"
     @click.stop
   >
@@ -193,6 +237,27 @@
       style="font-size: 8px"
     >
       {{ t('regexp_validation') }}
+    </label>
+  </div>
+  <div
+    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <input
+      v-model="field.validation.message"
+      :placeholder="t('error_message')"
+      dir="auto"
+      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      @blur="save"
+    >
+    <label
+      v-if="field.validation.message"
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('error_message') }}
     </label>
   </div>
   <div
@@ -489,6 +554,7 @@ export default {
   emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area'],
   data () {
     return {
+      selectedValidation: ''
     }
   },
   computed: {
@@ -533,8 +599,16 @@ export default {
 
       return formats
     },
+    lengthValidation () {
+      if (this.field.validation?.pattern && this.selectedValidation !== 'custom') {
+        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+      } else {
+        return null
+      }
+    },
     validations () {
       return {
+        '.{0,}': 'length',
         '^[0-9]{3}-[0-9]{2}-[0-9]{4}$': 'ssn',
         '^[0-9]{2}-[0-9]{7}$': 'ein',
         '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$': 'email',
@@ -553,13 +627,21 @@ export default {
   methods: {
     onChangeValidation (event) {
       if (event.target.value === 'custom') {
-        this.field.validation = { pattern: '' }
+        this.selectedValidation = 'custom'
+
+        this.field.validation = { pattern: '', message: '' }
 
         this.$nextTick(() => this.$refs.validationCustom.focus())
       } else if (event.target.value) {
         this.field.validation ||= {}
-        this.field.validation.pattern = event.target.value
+        this.field.validation.pattern =
+          Object.keys(this.validations).find(key => this.validations[key] === event.target.value)
+
+        this.selectedValidation = event.target.value
+        delete this.field.validation.message
       } else {
+        this.selectedValidation = ''
+
         delete this.field.validation
       }
 
