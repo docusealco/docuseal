@@ -36,7 +36,7 @@ module Submissions
 
     TEXT_LEFT_MARGIN = 1
     TEXT_TOP_MARGIN = 1
-    MAX_PAGE_ROTATE = 20
+    MAX_PAGE_ROTATE = 50
 
     A4_SIZE = [595, 842].freeze
 
