@@ -19,6 +19,10 @@
     {
       "fingerprint": "5f52190d03ee922bba9792012d8fcbeb7d4736006bb899b3be9cc10d679e0af1",
       "note": "Safe Param"
+    },
+    {
+      "fingerprint": "dbbfb4a4ace7f43d8247cbb44afa8b628e005e6194ca5552e029b200f725a2d5",
+      "message": "Unescaped find_by!(uuid: params[:id]) is not risky"
     }
   ]
 }

@@ -179,6 +179,10 @@ Rails.application.routes.draw do
     resources :api, only: %i[index create], controller: 'api_settings'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
+
+      resources :events, only: %i[show], controller: 'webhook_events' do
+        post :resend, on: :member
+      end
     end
     resource :account, only: %i[show update destroy]
     resources :profile, only: %i[index] do

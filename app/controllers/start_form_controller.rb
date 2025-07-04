@@ -51,7 +51,7 @@ class StartFormController < ApplicationController
 
       if @submitter.errors.blank? && @submitter.save
         if is_new_record
-          enqueue_submission_create_webhooks(@submitter)
+          WebhookUrls.enqueue_events(@submitter.submission, 'submission.created')
 
           SearchEntries.enqueue_reindex(@submitter)
 
@@ -105,13 +105,6 @@ class StartFormController < ApplicationController
     Rollbar.warning("Not shared template: #{@template.id}") if defined?(Rollbar)
 
     redirect_to start_form_path(@template.slug)
-  end
-
-  def enqueue_submission_create_webhooks(submitter)
-    WebhookUrls.for_account_id(submitter.account_id, 'submission.created').each do |webhook_url|
-      SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => submitter.submission_id,
-                                                           'webhook_url_id' => webhook_url.id)
-    end
   end
 
   def find_or_initialize_submitter(template, submitter_params)

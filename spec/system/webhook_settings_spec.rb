@@ -175,9 +175,9 @@ RSpec.describe 'Webhook Settings' do
 
       expect do
         click_button 'Test Webhook'
-      end.to change(SendFormCompletedWebhookRequestJob.jobs, :size).by(1)
+      end.to change(SendTestWebhookRequestJob.jobs, :size).by(1)
 
-      args = SendFormCompletedWebhookRequestJob.jobs.last['args'].first
+      args = SendTestWebhookRequestJob.jobs.last['args'].first
 
       expect(args['webhook_url_id']).to eq(webhook_url.id)
       expect(args['submitter_id']).to eq(submitter.id)

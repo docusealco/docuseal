@@ -74,7 +74,7 @@ class TemplatesController < ApplicationController
 
       SearchEntries.enqueue_reindex(@template)
 
-      enqueue_template_created_webhooks(@template)
+      WebhookUrls.enqueue_events(@template, 'template.created')
 
       maybe_redirect_to_template(@template)
     else
@@ -91,7 +91,7 @@ class TemplatesController < ApplicationController
 
     SearchEntries.enqueue_reindex(@template) if is_name_changed
 
-    enqueue_template_updated_webhooks(@template)
+    WebhookUrls.enqueue_events(@template, 'template.updated')
 
     head :ok
   end
@@ -139,20 +139,6 @@ class TemplatesController < ApplicationController
       redirect_to(edit_template_path(@template))
     else
       redirect_back(fallback_location: root_path, notice: I18n.t('template_has_been_cloned'))
-    end
-  end
-
-  def enqueue_template_created_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
-    end
-  end
-
-  def enqueue_template_updated_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.updated').each do |webhook_url|
-      SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
     end
   end
 

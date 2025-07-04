@@ -63,16 +63,24 @@ class ProcessSubmitterCompletionJob
   end
 
   def enqueue_completed_webhooks(submitter, is_all_completed: false)
+    event_uuids = {}
+
     WebhookUrls.for_account_id(submitter.account_id, %w[form.completed submission.completed]).each do |webhook|
       if webhook.events.include?('form.completed')
+        event_uuids['form.completed'] ||= SecureRandom.uuid
+
         SendFormCompletedWebhookRequestJob.perform_async('submitter_id' => submitter.id,
+                                                         'event_uuid' => event_uuids['form.completed'],
                                                          'webhook_url_id' => webhook.id)
       end
 
-      if webhook.events.include?('submission.completed') && is_all_completed
-        SendSubmissionCompletedWebhookRequestJob.perform_async('submission_id' => submitter.submission_id,
-                                                               'webhook_url_id' => webhook.id)
-      end
+      next unless webhook.events.include?('submission.completed') && is_all_completed
+
+      event_uuids['submission.completed'] ||= SecureRandom.uuid
+
+      SendSubmissionCompletedWebhookRequestJob.perform_async('submission_id' => submitter.submission_id,
+                                                             'event_uuid' => event_uuids['submission.completed'],
+                                                             'webhook_url_id' => webhook.id)
     end
   end
 

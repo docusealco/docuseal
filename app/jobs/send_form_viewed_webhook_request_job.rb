@@ -18,13 +18,15 @@ class SendFormViewedWebhookRequestJob
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'form.viewed',
+                                                event_uuid: params['event_uuid'],
+                                                record: submitter,
+                                                attempt:,
                                                 data: Submitters::SerializeForWebhook.call(submitter))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
       SendFormViewedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                   'submitter_id' => submitter.id,
-                                                   'webhook_url_id' => webhook_url.id,
+                                                   **params,
                                                    'attempt' => attempt + 1,
                                                    'last_status' => resp&.status.to_i
                                                  })

@@ -63,12 +63,7 @@ module Api
 
       submissions = create_submissions(@template, params)
 
-      WebhookUrls.for_account_id(@template.account_id, 'submission.created').each do |webhook_url|
-        submissions.each do |submission|
-          SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => submission.id,
-                                                               'webhook_url_id' => webhook_url.id)
-        end
-      end
+      WebhookUrls.enqueue_events(submissions, 'submission.created')
 
       Submissions.send_signature_requests(submissions)
 
@@ -96,10 +91,7 @@ module Api
       else
         @submission.update!(archived_at: Time.current)
 
-        WebhookUrls.for_account_id(@submission.account_id, 'submission.archived').each do |webhook_url|
-          SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id,
-                                                                'webhook_url_id' => webhook_url.id)
-        end
+        WebhookUrls.enqueue_events(@submission, 'submission.archived')
       end
 
       render json: @submission.as_json(only: %i[id archived_at])

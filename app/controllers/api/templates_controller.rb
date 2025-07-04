@@ -67,10 +67,7 @@ module Api
 
       SearchEntries.enqueue_reindex(@template)
 
-      WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
-        SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      WebhookUrls.enqueue_events(@template, 'template.updated')
 
       render json: @template.as_json(only: %i[id updated_at])
     end

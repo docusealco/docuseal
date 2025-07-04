@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe SendFormViewedWebhookRequestJob do
+RSpec.describe SendSubmissionExpiredWebhookRequestJob do
   let(:account) { create(:account) }
   let(:user) { create(:user, account:) }
   let(:template) { create(:template, account:, author: user) }
-  let(:submission) { create(:submission, template:, created_by_user: user) }
-  let(:submitter) do
-    create(:submitter, submission:, uuid: template.submitters.first['uuid'], completed_at: Time.current)
-  end
-  let(:webhook_url) { create(:webhook_url, account:, events: ['form.viewed']) }
+  let(:submission) { create(:submission, :with_submitters, template:, created_by_user: user, expire_at: 1.day.ago) }
+  let(:webhook_url) { create(:webhook_url, account:, events: ['submission.expired']) }
 
   before do
     create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
@@ -21,14 +18,14 @@ RSpec.describe SendFormViewedWebhookRequestJob do
     end
 
     it 'sends a webhook request' do
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+      described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
                                   'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
         body: {
-          'event_type' => 'form.viewed',
+          'event_type' => 'submission.expired',
           'timestamp' => /.*/,
-          'data' => JSON.parse(Submitters::SerializeForWebhook.call(submitter.reload).to_json)
+          'data' => JSON.parse(Submissions::SerializeForApi.call(submission.reload).to_json)
         },
         headers: {
           'Content-Type' => 'application/json',
@@ -39,14 +36,14 @@ RSpec.describe SendFormViewedWebhookRequestJob do
 
     it 'sends a webhook request with the secret' do
       webhook_url.update(secret: { 'X-Secret-Header' => 'secret_value' })
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+      described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
                                   'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
         body: {
-          'event_type' => 'form.viewed',
+          'event_type' => 'submission.expired',
           'timestamp' => /.*/,
-          'data' => JSON.parse(Submitters::SerializeForWebhook.call(submitter.reload).to_json)
+          'data' => JSON.parse(Submissions::SerializeForApi.call(submission.reload).to_json)
         },
         headers: {
           'Content-Type' => 'application/json',
@@ -57,9 +54,9 @@ RSpec.describe SendFormViewedWebhookRequestJob do
     end
 
     it "doesn't send a webhook request if the event is not in the webhook's events" do
-      webhook_url.update!(events: ['form.started'])
+      webhook_url.update!(events: ['submission.archived'])
 
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+      described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
                                   'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).not_to have_requested(:post, webhook_url.url)
@@ -71,7 +68,7 @@ RSpec.describe SendFormViewedWebhookRequestJob do
       event_uuid = SecureRandom.uuid
 
       expect do
-        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+        described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
                                     'event_uuid' => event_uuid)
       end.to change(described_class.jobs, :size).by(1)
 
@@ -83,15 +80,15 @@ RSpec.describe SendFormViewedWebhookRequestJob do
       expect(args['last_status']).to eq(401)
       expect(args['event_uuid']).to eq(event_uuid)
       expect(args['webhook_url_id']).to eq(webhook_url.id)
-      expect(args['submitter_id']).to eq(submitter.id)
+      expect(args['submission_id']).to eq(submission.id)
     end
 
     it "doesn't send again if the max attempts is reached" do
       stub_request(:post, webhook_url.url).to_return(status: 401)
 
       expect do
-        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
-                                    'event_uuid' => SecureRandom.uuid, 'attempt' => 11)
+        described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
+                                    'event_uuid' => SecureRandom.uuid, 'attempt' => 21)
       end.not_to change(described_class.jobs, :size)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once

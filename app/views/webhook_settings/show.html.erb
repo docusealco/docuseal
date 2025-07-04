@@ -79,8 +79,75 @@
         <% end %>
       </div>
     </div>
-    <% submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last %>
-    <% if submitter %>
+    <% if @webhook_events.present? || params[:status].present? %>
+      <div class="mt-6">
+        <h2 id="log" class="text-3xl font-bold"><%= t('events_log') %></h2>
+        <div class="tabs border-b mt-4">
+          <%= link_to t('all'), url_for(params.to_unsafe_h.except(:status)), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status].blank? ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('successed'), url_for(params.to_unsafe_h.merge(status: 'success')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'success' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('failed'), url_for(params.to_unsafe_h.merge(status: 'error')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'error' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+        </div>
+        <% if @webhook_events.present? %>
+          <div class="divide-y divide-base-300 rounded-lg">
+            <% @webhook_events.each do |event| %>
+              <div class="group relative hover:cursor-pointer hover:bg-base-200">
+                <a href="<%= settings_webhook_event_path(@webhook_url.id, event.uuid) %>" data-turbo-frame="drawer" class="top-0 bottom-0 left-0 right-0 absolute"></a>
+                <div class="min-h-12 flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-3 py-2">
+                  <div class="flex items-center gap-4">
+                    <% if event.status == 'success' %>
+                      <div class="btn btn-outline btn-xs btn-success bg-lime-50 gap-2">
+                        <%= svg_icon('check', class: 'w-4 h-4 shrink-0 stroke-2') %>
+                      </div>
+                    <% elsif event.status == 'pending' %>
+                      <div class="btn btn-outline btn-xs btn-info bg-blue-50 gap-2">
+                        <%= svg_icon('clock', class: 'w-4 h-4 shrink-0 stroke-2') %>
+                      </div>
+                    <% elsif event.status == 'error' %>
+                      <div class="btn btn-outline btn-xs btn-error bg-red-50 gap-2">
+                        <%= svg_icon('x', class: 'w-4 h-4 shrink-0') %>
+                      </div>
+                    <% end %>
+                    <div><%= event.event_type %></div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <%= button_to button_title(title: t('resend'), disabled_with: t('sending'), icon: svg_icon('rotate', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), resend_settings_webhook_event_path(@webhook_url.id, event.uuid), class: 'btn btn-neutral btn-xs h-2 text-white relative z-[1] hidden md:group-hover:inline-block', data: { turbo_frame: :drawer }, method: :post %>
+                    <span><%= l(event.created_at, locale: current_account.locale, format: :short) %></span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="text-center py-4">
+            <%= t('there_are_no_events') %>
+          </div>
+        <% end %>
+        <% if @pagy.pages > 1 %>
+          <div class="flex my-4 justify-center md:justify-between">
+            <div class="hidden md:block text-sm">
+              <%= "#{@pagy.from}-#{@pagy.to} events" %>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <div class="join">
+                <% if @pagy.prev %>
+                  <%= link_to '«', url_for(page: @pagy.prev, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                <% else %>
+                  <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
+                <% end %>
+                <span class="join-item btn font-medium uppercase min-h-full h-10">
+                  <%= "Page #{@pagy.page}" %>
+                </span>
+                <% if @pagy.next %>
+                  <%= link_to '»', url_for(page: @pagy.next, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                <% else %>
+                  <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% elsif submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last %>
       <div class="space-y-4 mt-4">
         <div class="collapse collapse-open bg-base-200 px-1">
           <div class="p-4 text-xl font-medium">
@@ -98,7 +165,7 @@
               <span class="top-0 right-0 absolute">
                 <%= render 'shared/clipboard_copy', icon: 'copy', text: code = JSON.pretty_generate({ event_type: 'form.completed', timestamp: Time.current.iso8601, data: Submitters::SerializeForWebhook.call(submitter) }).gsub(/^/, '  ').sub(/^\s+/, ''), class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
               </span>
-              <pre><code class="overflow-hidden w-full"><%= code %></code></pre>
+              <pre><code class="overflow-hidden w-full"><%== HighlightCode.call(code, 'JSON', theme: 'base16.dark') %></code></pre>
             </div>
           </div>
         </div>

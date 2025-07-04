@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_27_130628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -435,6 +435,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_085322) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
+  end
+
+  create_table "webhook_attempts", force: :cascade do |t|
+    t.bigint "webhook_event_id", null: false
+    t.text "response_body"
+    t.integer "response_status_code", null: false
+    t.integer "attempt", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["webhook_event_id"], name: "index_webhook_attempts_on_webhook_event_id"
+  end
+
+  create_table "webhook_events", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.bigint "webhook_url_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
+    t.string "event_type", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uuid", "webhook_url_id"], name: "index_webhook_events_on_uuid_and_webhook_url_id", unique: true
+    t.index ["webhook_url_id", "id"], name: "index_webhook_events_error", where: "((status)::text = 'error'::text)"
+    t.index ["webhook_url_id", "id"], name: "index_webhook_events_on_webhook_url_id_and_id"
   end
 
   create_table "webhook_urls", force: :cascade do |t|

@@ -28,10 +28,7 @@ module Api
 
       cloned_template.save!
 
-      WebhookUrls.for_account_id(cloned_template.account_id, 'template.created').each do |webhook_url|
-        SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => cloned_template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      WebhookUrls.enqueue_events(cloned_template, 'template.created')
 
       SearchEntries.enqueue_reindex(cloned_template)
 
