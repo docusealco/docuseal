@@ -69,14 +69,16 @@ module SendWebhookRequest
   def handle_response(webhook_event, response:, attempt:)
     return response unless webhook_event
 
+    is_error = response.status.to_i >= 400
+
     WebhookAttempt.create!(
       webhook_event:,
-      response_body: response.body&.truncate(100),
+      response_body: is_error ? response.body&.truncate(100) : nil,
       response_status_code: response.status,
       attempt:
     )
 
-    webhook_event.update!(status: response.status.to_i >= 400 ? 'error' : 'success')
+    webhook_event.update!(status: is_error ? 'error' : 'success')
 
     response
   rescue StandardError
