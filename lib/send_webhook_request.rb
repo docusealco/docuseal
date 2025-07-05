@@ -76,7 +76,7 @@ module SendWebhookRequest
       attempt:
     )
 
-    webhook_event.update!(status: response.success? ? 'success' : 'error')
+    webhook_event.update!(status: response.status.to_i >= 400 ? 'error' : 'success')
 
     response
   rescue StandardError

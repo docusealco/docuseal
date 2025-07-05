@@ -1,0 +1,28 @@
+<div id="<%= dom_id(webhook_event) %>" class="group relative hover:cursor-pointer hover:bg-base-200">
+  <a href="<%= settings_webhook_event_path(webhook_url.id, webhook_event.uuid) %>" data-turbo-frame="drawer" class="top-0 bottom-0 left-0 right-0 absolute"></a>
+  <div class="min-h-12 flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-3 py-2">
+    <div class="flex items-center gap-4">
+      <% if webhook_event.status == 'success' %>
+        <div class="btn btn-outline btn-xs btn-success bg-lime-50 gap-1">
+          <%= svg_icon('check', class: 'w-4 h-4 shrink-0 stroke-2') %>
+          <%= webhook_event.webhook_attempts.max_by(&:id)&.response_status_code if local_assigns[:with_status] %>
+        </div>
+      <% elsif webhook_event.status == 'pending' %>
+        <div class="btn btn-outline btn-xs btn-info bg-blue-50 gap-1">
+          <%= svg_icon('clock', class: 'w-4 h-4 shrink-0 stroke-2') %>
+          <%= webhook_event.webhook_attempts.max_by(&:id)&.response_status_code if local_assigns[:with_status] %>
+        </div>
+      <% elsif webhook_event.status == 'error' %>
+        <div class="btn btn-outline btn-xs btn-error bg-red-50 gap-1">
+          <%= svg_icon('x', class: 'w-4 h-4 shrink-0') %>
+          <%= webhook_event.webhook_attempts.max_by(&:id)&.response_status_code if local_assigns[:with_status] %>
+        </div>
+      <% end %>
+      <div><%= webhook_event.event_type %></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <%= button_to button_title(title: t('resend'), disabled_with: t('awaiting'), icon: svg_icon('rotate', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), resend_settings_webhook_event_path(webhook_url.id, webhook_event.uuid), form: { id: button_uuid = SecureRandom.uuid }, params: { button_id: button_uuid }, class: 'btn btn-neutral btn-xs h-2 text-white relative z-[1] hidden md:group-hover:inline-block', data: { turbo_frame: :drawer }, method: :post, onclick: "[this.form.requestSubmit(), this.disabled = true, this.classList.remove('hidden')]" %>
+      <span><%= l(webhook_event.created_at, locale: current_account.locale, format: :short) %></span>
+    </div>
+  </div>
+</div>

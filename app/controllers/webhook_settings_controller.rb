@@ -53,6 +53,8 @@ class WebhookSettingsController < ApplicationController
   def resend
     submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last
 
+    authorize!(:read, submitter)
+
     if submitter.blank? || @webhook_url.blank?
       return redirect_back(fallback_location: settings_webhooks_path,
                            alert: I18n.t('unable_to_resend_webhook_request'))

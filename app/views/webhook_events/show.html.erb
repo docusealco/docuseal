@@ -1,57 +1,6 @@
 <%= render 'shared/turbo_drawer', title: @webhook_event.event_type, close_after_submit: false do %>
   <div class="relative px-4 py-4">
-    <ol class="relative border-s border-base-300 space-y-6 ml-3">
-      <% if @webhook_event.status == 'error' %>
-        <% last_attempt = @webhook_attempts.select { |e| SendWebhookRequest::AUTOMATED_RETRY_RANGE.cover?(e.attempt) }.max_by(&:attempt) %>
-        <% if SendWebhookRequest::AUTOMATED_RETRY_RANGE.cover?(last_attempt&.attempt) %>
-          <li class="ml-7">
-            <span class="btn btn-outline btn-xs btn-circle pointer-events-none absolute justify-center border-base-content-/60 text-base-content/60 bg-base-100" style="left: -12px;">
-              <%= svg_icon('clock', class: 'w-4 h-4 shrink-0') %>
-            </span>
-            <p class="leading-none text-base-content/90 pt-1">
-              <%= t('next_attempt_in_time_in_words', time_in_words: distance_of_time_in_words(Time.current, last_attempt.created_at + (2**last_attempt.attempt).minutes)) %>
-            </p>
-          </li>
-        <% end %>
-      <% end %>
-      <% if @webhook_attempts.present? %>
-        <% @webhook_attempts.each do |webhook_attempt| %>
-          <li class="ml-7">
-            <span class="btn btn-outline btn-xs btn-circle pointer-events-none absolute justify-center <%= webhook_attempt.success? ? 'btn-success bg-lime-50' : 'btn-error bg-red-50' %>" style="left: -12px;">
-              <%= svg_icon(webhook_attempt.success? ? 'check' : 'x', class: 'w-4 h-4 shrink-0') %>
-            </span>
-            <p class="leading-none text-sm text-base-content/60 pt-1">
-              <%= l(webhook_attempt.created_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
-            </p>
-            <div class="mt-2">
-              <p class="text-sm font-bold text-base-content/80">
-                <span><%= Rack::Utils::HTTP_STATUS_CODES[webhook_attempt.response_status_code] %></span>
-                <% if webhook_attempt.response_status_code.positive? %>
-                  <span>(<%= webhook_attempt.response_status_code %>)</span>
-                <% end %>
-              </p>
-              <% unless webhook_attempt.success? %>
-                <p class="text-sm text-base-content/80 mt-1">
-                  <%= webhook_attempt.response_body.presence || Rack::Utils::HTTP_STATUS_CODES[webhook_attempt.response_status_code] %>
-                </p>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      <% else %>
-        <li class="ml-7">
-          <span class="btn btn-outline btn-xs btn-circle pointer-events-none absolute justify-center btn-info bg-blue-50" style="left: -12px;">
-            <%= svg_icon('clock', class: 'w-4 h-4 shrink-0') %>
-          </span>
-          <p class="leading-none text-base-content/60 pt-1">
-            <%= l(@webhook_event.created_at.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
-          </p>
-        </li>
-      <% end %>
-    </ol>
-    <% unless @webhook_event.status == 'pending' %>
-      <%= button_to button_title(title: t('resend'), disabled_with: 'sending', icon: svg_icon('rotate', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), resend_settings_webhook_event_path(@webhook_url.id, @webhook_event.uuid), class: 'absolute right-4 top-3 btn btn-neutral btn-sm text-white', method: :post %>
-    <% end %>
+    <%= render 'drawer_events', webhook_url: @webhook_url, webhook_event: @webhook_event %>
     <% if @data %>
       <div class="mockup-code overflow-hidden relative pb-0 mt-6">
         <% response = JSON.pretty_generate({ event_type: @webhook_event.event_type, timestamp: @webhook_event.created_at.as_json, data: @data }) %>

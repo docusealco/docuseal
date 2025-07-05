@@ -182,6 +182,7 @@ Rails.application.routes.draw do
 
       resources :events, only: %i[show], controller: 'webhook_events' do
         post :resend, on: :member
+        post :refresh, on: :member
       end
     end
     resource :account, only: %i[show update destroy]

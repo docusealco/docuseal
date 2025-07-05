@@ -20,6 +20,6 @@ class WebhookAttempt < ApplicationRecord
   belongs_to :webhook_event
 
   def success?
-    response_status_code.to_i / 100 == 2
+    [2, 3].include?(response_status_code.to_i / 100)
   end
 end
