@@ -52,7 +52,7 @@ class WebhookEventsController < ApplicationController
       turbo_stream.replace(helpers.dom_id(@webhook_event),
                            partial: 'event_row',
                            locals: { with_status: true, webhook_url: @webhook_url, webhook_event: @webhook_event }),
-      turbo_stream.replace("drawer_events_#{helpers.dom_id(@webhook_event)}",
+      turbo_stream.replace(helpers.dom_id(@webhook_event, :drawer_events),
                            partial: 'drawer_events',
                            locals: { webhook_url: @webhook_url, webhook_event: @webhook_event })
     ]
