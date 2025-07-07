@@ -67,10 +67,7 @@ module Api
 
       SearchEntries.enqueue_reindex(@template)
 
-      WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
-        SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      WebhookUrls.enqueue_events(@template, 'template.updated')
 
       render json: @template.as_json(only: %i[id updated_at])
     end
@@ -95,9 +92,9 @@ module Api
       templates = templates.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:folder].present?
-        folder = TemplateFolder.accessible_by(current_ability).find_by(name: params[:folder])
+        folder_ids = TemplateFolder.accessible_by(current_ability).where(name: params[:folder]).pluck(:id)
 
-        templates = folder ? templates.where(folder:) : templates.none
+        templates = templates.where(folder_id: folder_ids)
       end
 
       templates

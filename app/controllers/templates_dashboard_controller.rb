@@ -8,12 +8,13 @@ class TemplatesDashboardController < ApplicationController
   TEMPLATES_PER_PAGE = 12
   FOLDERS_PER_PAGE = 18
 
+  helper_method :selected_order
+
   def index
     @template_folders = @template_folders.where(id: @templates.active.select(:folder_id))
 
     @template_folders = TemplateFolders.search(@template_folders, params[:q])
-    @template_folders = sort_template_folders(@template_folders, current_user,
-                                              cookies.permanent[:dashboard_templates_order])
+    @template_folders = sort_template_folders(@template_folders, current_user, selected_order)
 
     @pagy, @template_folders = pagy(
       @template_folders,
@@ -26,7 +27,7 @@ class TemplatesDashboardController < ApplicationController
     else
       @template_folders = @template_folders.reject { |e| e.name == TemplateFolder::DEFAULT_NAME }
       @templates = filter_templates(@templates).preload(:author, :template_accesses)
-      @templates = Templates::Order.call(@templates, current_user, cookies.permanent[:dashboard_templates_order])
+      @templates = Templates::Order.call(@templates, current_user, selected_order)
 
       limit =
         if @template_folders.size < 4
@@ -56,7 +57,7 @@ class TemplatesDashboardController < ApplicationController
         rel = Template.where(
           Template.arel_table[:id].in(
             rel.where(folder_id: current_account.default_template_folder.id).select(:id).arel
-               .union(shared_template_ids.arel)
+               .union(:all, shared_template_ids.arel)
           )
         )
       else
@@ -99,6 +100,16 @@ class TemplatesDashboardController < ApplicationController
     else
       template_folders.order(id: :desc)
     end
+  end
+
+  def selected_order
+    @selected_order ||=
+      if cookies.permanent[:dashboard_templates_order].blank? ||
+         (cookies.permanent[:dashboard_templates_order] == 'used_at' && can?(:manage, :countless))
+        'created_at'
+      else
+        cookies.permanent[:dashboard_templates_order]
+      end
   end
 
   def load_related_submissions

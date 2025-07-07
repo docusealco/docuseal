@@ -56,7 +56,7 @@ module SearchEntries
         end
 
       [sql, number, number.length > 1 ? number.delete_prefix('0') : number, keyword]
-    elsif keyword.match?(/[^\p{L}\d&@.\-]/) || keyword.match?(/\A['"].*['"]\z/)
+    elsif keyword.match?(/[^\p{L}\d&@.\-]/) || keyword.match?(/\A['"].*['"]\z/) || keyword.match?(/[.\-]{2,}/)
       ['tsvector @@ plainto_tsquery(?)', TextUtils.transliterate(keyword.downcase)]
     else
       keyword = TextUtils.transliterate(keyword.downcase).squish

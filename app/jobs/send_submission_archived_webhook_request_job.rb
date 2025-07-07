@@ -16,13 +16,15 @@ class SendSubmissionArchivedWebhookRequestJob
     return if webhook_url.url.blank? || webhook_url.events.exclude?('submission.archived')
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'submission.archived',
+                                                event_uuid: params['event_uuid'],
+                                                record: submission,
+                                                attempt:,
                                                 data: submission.as_json(only: %i[id archived_at]))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || submission.account.account_configs.exists?(key: :plan))
       SendSubmissionArchivedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                           'submission_id' => submission.id,
-                                                           'webhook_url_id' => webhook_url.id,
+                                                           **params,
                                                            'attempt' => attempt + 1,
                                                            'last_status' => resp&.status.to_i
                                                          })

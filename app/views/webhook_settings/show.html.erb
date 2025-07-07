@@ -79,8 +79,49 @@
         <% end %>
       </div>
     </div>
-    <% submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last %>
-    <% if submitter %>
+    <% if @webhook_events.present? || params[:status].present? %>
+      <div class="mt-6">
+        <h2 id="log" class="text-3xl font-bold"><%= t('events_log') %></h2>
+        <div class="tabs border-b mt-4">
+          <%= link_to t('all'), url_for(params.to_unsafe_h.except(:status)), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status].blank? ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('successed'), url_for(params.to_unsafe_h.merge(status: 'success')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'success' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('failed'), url_for(params.to_unsafe_h.merge(status: 'error')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'error' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+        </div>
+        <% if @webhook_events.present? %>
+          <div class="divide-y divide-base-300 rounded-lg">
+            <%= render partial: 'webhook_events/event_row', collection: @webhook_events, as: :webhook_event, locals: { webhook_url: @webhook_url } %>
+          </div>
+        <% else %>
+          <div class="text-center py-4">
+            <%= t('there_are_no_events') %>
+          </div>
+        <% end %>
+        <% if @pagy.pages > 1 %>
+          <div class="flex my-4 justify-center md:justify-between">
+            <div class="hidden md:block text-sm">
+              <%= "#{@pagy.from}-#{@pagy.to} events" %>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <div class="join">
+                <% if @pagy.prev %>
+                  <%= link_to '«', url_for(page: @pagy.prev, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                <% else %>
+                  <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
+                <% end %>
+                <span class="join-item btn font-medium uppercase min-h-full h-10">
+                  <%= "Page #{@pagy.page}" %>
+                </span>
+                <% if @pagy.next %>
+                  <%= link_to '»', url_for(page: @pagy.next, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                <% else %>
+                  <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% elsif (submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last) && can?(:read, submitter) %>
       <div class="space-y-4 mt-4">
         <div class="collapse collapse-open bg-base-200 px-1">
           <div class="p-4 text-xl font-medium">
@@ -98,7 +139,7 @@
               <span class="top-0 right-0 absolute">
                 <%= render 'shared/clipboard_copy', icon: 'copy', text: code = JSON.pretty_generate({ event_type: 'form.completed', timestamp: Time.current.iso8601, data: Submitters::SerializeForWebhook.call(submitter) }).gsub(/^/, '  ').sub(/^\s+/, ''), class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
               </span>
-              <pre><code class="overflow-hidden w-full"><%= code %></code></pre>
+              <pre><code class="overflow-hidden w-full"><%== HighlightCode.call(code, 'JSON', theme: 'base16.dark') %></code></pre>
             </div>
           </div>
         </div>

@@ -1026,20 +1026,23 @@ RSpec.describe 'Signing Form' do
     end
   end
 
-  it 'sends completed email' do
-    template = create(:template, account:, author:, only_field_types: %w[text signature])
-    submission = create(:submission, template:)
-    submitter = create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:)
+  context 'when a form is completed' do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text signature]) }
+    let(:submission) { create(:submission, template:) }
+    let(:submitter) { create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:) }
 
-    visit submit_form_path(slug: submitter.slug)
+    before do
+      visit submit_form_path(slug: submitter.slug)
+    end
 
-    fill_in 'First Name', with: 'Adam'
-    click_on 'next'
-    click_link 'Type'
-    fill_in 'signature_text_input', with: 'Adam'
+    it 'sends completed email' do
+      fill_in 'First Name', with: 'Adam'
+      click_on 'next'
+      draw_canvas
 
-    expect do
-      click_on 'Sign and Complete'
-    end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
+      expect do
+        click_on 'Sign and Complete'
+      end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
+    end
   end
 end

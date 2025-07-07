@@ -8,10 +8,26 @@ class WebhookSettingsController < ApplicationController
     @webhook_urls = @webhook_urls.order(id: :desc)
     @webhook_url = @webhook_urls.first_or_initialize
 
-    render @webhook_urls.size > 1 ? 'index' : 'show'
+    if @webhook_urls.size > 1
+      render :index
+    else
+      @webhook_events = @webhook_url.webhook_events
+
+      @webhook_events = @webhook_events.where(status: params[:status]) if %w[success error].include?(params[:status])
+
+      @pagy, @webhook_events = pagy_countless(@webhook_events.order(id: :desc))
+
+      render :show
+    end
   end
 
-  def show; end
+  def show
+    @webhook_events = @webhook_url.webhook_events
+
+    @webhook_events = @webhook_events.where(status: params[:status]) if %w[success error].include?(params[:status])
+
+    @pagy, @webhook_events = pagy_countless(@webhook_events.order(id: :desc))
+  end
 
   def new; end
 
@@ -37,13 +53,18 @@ class WebhookSettingsController < ApplicationController
   def resend
     submitter = current_account.submitters.where.not(completed_at: nil).order(:id).last
 
+    authorize!(:read, submitter)
+
     if submitter.blank? || @webhook_url.blank?
       return redirect_back(fallback_location: settings_webhooks_path,
                            alert: I18n.t('unable_to_resend_webhook_request'))
     end
 
-    SendFormCompletedWebhookRequestJob.perform_async('submitter_id' => submitter.id,
-                                                     'webhook_url_id' => @webhook_url.id)
+    SendTestWebhookRequestJob.perform_async(
+      'submitter_id' => submitter.id,
+      'event_uuid' => SecureRandom.uuid,
+      'webhook_url_id' => @webhook_url.id
+    )
 
     redirect_back(fallback_location: settings_webhooks_path, notice: I18n.t('webhook_request_has_been_sent'))
   end

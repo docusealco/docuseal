@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
+    timeout-minutes: 20
 
     steps:
     - name: Checkout code

@@ -34,6 +34,7 @@ gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rotp'
+gem 'rouge', require: false
 gem 'rqrcode'
 gem 'ruby-vips'
 gem 'rubyXL'

@@ -16,6 +16,9 @@ class SendSubmissionCompletedWebhookRequestJob
     return if webhook_url.url.blank? || webhook_url.events.exclude?('submission.completed')
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'submission.completed',
+                                                event_uuid: params['event_uuid'],
+                                                record: submission,
+                                                attempt:,
                                                 data: Submissions::SerializeForApi.call(submission))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&

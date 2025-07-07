@@ -763,6 +763,12 @@ en: &en
   link_form_fields: Link form fields
   at_least_one_field_must_be_displayed_in_the_form: At least one field must be displayed in the form.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: This template has multiple parties, which prevents the use of a shared link as it's unclear which party is responsible for specific fields. To resolve this, define the default party details.
+  events_log: Events Log
+  successed: Successed
+  failed: Failed
+  there_are_no_events: There are no events
+  resend: Resend
+  next_attempt_in_time_in_words: Next attempt in %{time_in_words}
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -863,6 +869,9 @@ en: &en
     items:
       range_with_total: "%{from}-%{to} of %{count} items"
       range_without_total: "%{from}-%{to} items"
+    events:
+      range_with_total: "%{from}-%{to} of %{count} events"
+      range_without_total: "%{from}-%{to} events"
 
 es: &es
   default_parties: Partes predeterminadas
@@ -1609,6 +1618,12 @@ es: &es
   link_form_fields: Vincular campos del formulario
   at_least_one_field_must_be_displayed_in_the_form: Al menos un campo debe mostrarse en el formulario.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Esta plantilla tiene varias partes, lo que impide el uso de un enlace compartido porque no está claro qué parte es responsable de campos específicos. Para resolverlo, define los detalles predeterminados de la parte.
+  events_log: Registro de eventos
+  successed: Exitoso
+  failed: Fallido
+  there_are_no_events: No hay eventos
+  resend: Reenviar
+  next_attempt_in_time_in_words: Próximo intento en %{time_in_words}
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1709,6 +1724,9 @@ es: &es
     items:
       range_with_total: "%{from}-%{to} de %{count} elementos"
       range_without_total: "%{from}-%{to} elementos"
+    events:
+      range_with_total: "%{from}-%{to} de %{count} eventos"
+      range_without_total: "%{from}-%{to} eventos"
 
 it: &it
   default_parties: Parti predefiniti
@@ -2453,6 +2471,12 @@ it: &it
   link_form_fields: Collega i campi del modulo
   at_least_one_field_must_be_displayed_in_the_form: Almeno un campo deve essere visualizzato nel modulo.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Questo modello ha più parti, il che impedisce l’uso di un link di condivisione perché non è chiaro quale parte sia responsabile di campi specifici. Per risolvere, definisci i dettagli predefiniti della parte.
+  events_log: Registro eventi
+  successed: Riuscito
+  failed: Fallito
+  there_are_no_events: Nessun evento
+  resend: Invia di nuovo
+  next_attempt_in_time_in_words: Prossimo tentativo tra %{time_in_words}
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2553,6 +2577,9 @@ it: &it
     items:
       range_with_total: "%{from}-%{to} di %{count} elementi"
       range_without_total: "%{from}-%{to} elementi"
+    events:
+      range_with_total: "%{from}-%{to} di %{count} eventi"
+      range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
   default_parties: Parties par défaut
@@ -3300,6 +3327,12 @@ fr: &fr
   link_form_fields: Lier les champs du formulaire
   at_least_one_field_must_be_displayed_in_the_form: Au moins un champ doit être affiché dans le formulaire.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Ce modèle contient plusieurs parties, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quelle partie est responsable de certains champs. Pour résoudre cela, définissez les détails de la partie par défaut.
+  events_log: Journal des événements
+  successed: Réussi
+  failed: Échoué
+  there_are_no_events: Aucun événement
+  resend: Renvoyer
+  next_attempt_in_time_in_words: Nouvelle tentative dans %{time_in_words}
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3400,6 +3433,9 @@ fr: &fr
     items:
       range_with_total: "%{from} à %{to} sur %{count} éléments"
       range_without_total: "%{from} à %{to} éléments"
+    events:
+      range_with_total: "%{from} à %{to} sur %{count} événements"
+      range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
   default_parties: Partes padrão
@@ -4146,6 +4182,12 @@ pt: &pt
   link_form_fields: Vincular campos do formulário
   at_least_one_field_must_be_displayed_in_the_form: Pelo menos um campo deve ser exibido no formulário.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Este modelo tem várias partes, o que impede o uso de um link de compartilhamento, pois não está claro qual parte é responsável por campos específicos. Para resolver isso, defina os detalhes padrão da parte.
+  events_log: Registro de eventos
+  successed: Sucesso
+  failed: Falhou
+  there_are_no_events: Nenhum evento
+  resend: Reenviar
+  next_attempt_in_time_in_words: Próxima tentativa em %{time_in_words}
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4247,6 +4289,9 @@ pt: &pt
     items:
       range_with_total: "%{from}-%{to} de %{count} itens"
       range_without_total: "%{from}-%{to} itens"
+    events:
+      range_with_total: "%{from}-%{to} de %{count} eventos"
+      range_without_total: "%{from}-%{to} eventos"
 
 de: &de
   default_parties: Standardparteien
@@ -4993,6 +5038,12 @@ de: &de
   link_form_fields: Formularfelder verknüpfen
   at_least_one_field_must_be_displayed_in_the_form: Mindestens ein Feld muss im Formular angezeigt werden.
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Diese Vorlage enthält mehrere Parteien, was die Verwendung eines Freigabelinks verhindert, da unklar ist, welche Partei für bestimmte Felder verantwortlich ist. Um dies zu beheben, definieren Sie die Standardparteidetails.
+  events_log: Ereignisprotokoll
+  successed: Erfolgreich
+  failed: Fehlgeschlagen
+  there_are_no_events: Keine Ereignisse vorhanden
+  resend: Erneut senden
+  next_attempt_in_time_in_words: Nächster Versuch in %{time_in_words}
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5093,6 +5144,9 @@ de: &de
     items:
       range_with_total: "%{from}-%{to} von %{count} Elementen"
       range_without_total: "%{from}-%{to} Elemente"
+    events:
+      range_with_total: "%{from}-%{to} von %{count} Ereignissen"
+      range_without_total: "%{from}-%{to} Ereignisse"
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia

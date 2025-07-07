@@ -453,6 +453,7 @@ GEM
     retriable (3.1.2)
     rexml (3.4.0)
     rotp (6.3.0)
+    rouge (4.5.2)
     rqrcode (2.2.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -632,6 +633,7 @@ DEPENDENCIES
   rails-i18n
   rails_autolink
   rotp
+  rouge
   rqrcode
   rspec-rails
   rubocop

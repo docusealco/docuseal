@@ -6,6 +6,7 @@ jobs:
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
@@ -30,6 +31,7 @@ jobs:
   erblint:
     name: Erblint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
@@ -54,6 +56,7 @@ jobs:
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Node.js
@@ -80,6 +83,7 @@ jobs:
   brakeman:
     name: Brakeman
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
@@ -107,6 +111,7 @@ jobs:
   rspec:
     name: RSpec
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     services:
       postgres:

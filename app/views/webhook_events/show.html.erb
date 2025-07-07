@@ -1,0 +1,14 @@
+<%= render 'shared/turbo_drawer', title: @webhook_event.event_type, close_after_submit: false do %>
+  <div class="relative px-4 py-4">
+    <%= render 'drawer_events', webhook_url: @webhook_url, webhook_event: @webhook_event %>
+    <% if @data %>
+      <div class="mockup-code overflow-hidden relative pb-0 mt-6">
+        <% response = JSON.pretty_generate({ event_type: @webhook_event.event_type, timestamp: @webhook_event.created_at.as_json, data: @data }) %>
+        <span class="top-0 right-0 absolute">
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: response, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+        </span>
+        <pre class="before:!m-0 pl-4 pb-4"><code class="overflow-hidden text-sm w-full"><%== HighlightCode.call(response, 'JSON', theme: 'base16.dark') %></code></pre>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -11,9 +11,6 @@ class ProcessSubmissionExpiredJob
     return if submission.submitters.where.not(declined_at: nil).exists?
     return unless submission.submitters.exists?(completed_at: nil)
 
-    WebhookUrls.for_account_id(submission.account_id, %w[submission.expired]).each do |webhook|
-      SendSubmissionExpiredWebhookRequestJob.perform_async('submission_id' => submission.id,
-                                                           'webhook_url_id' => webhook.id)
-    end
+    WebhookUrls.enqueue_events(submission, 'submission.expired')
   end
 end

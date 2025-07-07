@@ -23,7 +23,7 @@ class TemplatesUploadsController < ApplicationController
 
     @template.update!(schema:)
 
-    enqueue_template_created_webhooks(@template)
+    WebhookUrls.enqueue_events(@template, 'template.created')
 
     SearchEntries.enqueue_reindex(@template)
 
@@ -67,12 +67,5 @@ class TemplatesUploadsController < ApplicationController
     )
 
     { files: [file] }
-  end
-
-  def enqueue_template_created_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
-    end
   end
 end

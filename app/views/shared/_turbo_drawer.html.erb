@@ -14,7 +14,7 @@
           &times;
         </span>
       <% end %>
-      <div class="w-full md:w-[620px] overflow-y-auto" style="max-height: calc(100vh - <%= local_assigns[:title] ? '45px' : '0px' %>)">
+      <div class="w-screen md:w-[620px] overflow-y-auto" style="max-height: calc(100vh - <%= local_assigns[:title] ? '45px' : '0px' %>)">
         <%= yield %>
       </div>
     </div>
