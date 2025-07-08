@@ -173,7 +173,7 @@ class StartFormController < ApplicationController
   end
 
   def submitter_params
-    return current_user.slice(:email) if params[:selfsign]
+    return { 'email' => current_user.email, 'name' => current_user.full_name } if params[:selfsign]
     return @resubmit_submitter.slice(:name, :phone, :email) if @resubmit_submitter.present?
 
     params.require(:submitter).permit(:email, :phone, :name).tap do |attrs|
