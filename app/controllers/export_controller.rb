@@ -32,6 +32,30 @@ class ExportController < ApplicationController
     head :internal_server_error
   end
 
+  def export_submission
+    submission = Submission.find(params[:id])
+    export_location = ExportLocation.default_location
+
+    unless export_location&.submissions_endpoint.present?
+      redirect_to submission, alert: 'Export failed: Submission export endpoint is not configured.'
+      return
+    end
+
+    payload = {
+      submission_id: submission.id,
+      template_name: submission.template&.name,
+      events: submission.submission_events.order(updated_at: :desc).limit(1)
+    }
+
+    response = post_to_api(payload, export_location.submissions_endpoint, export_location.extra_params)
+
+    if response&.success?
+      redirect_to submission, notice: "Submission ##{submission.id} events exported successfully."
+    else
+      redirect_to submission, alert: "Failed to export submission ##{submission.id} events."
+    end
+  end
+
   private
 
   def api_connection
