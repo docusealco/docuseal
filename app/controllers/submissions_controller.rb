@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :load_template, only: %i[new create]
   authorize_resource :template, only: %i[new create]
 

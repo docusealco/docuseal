@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class EmailSmtpSettingsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, only: :index
   authorize_resource :encrypted_config, parent: false, only: :create
