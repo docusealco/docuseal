@@ -88,6 +88,10 @@ module Docuseal
     true
   end
 
+  def pdf_format
+    @pdf_format ||= ENV['PDF_FORMAT'].to_s.downcase
+  end
+
   def trusted_certs
     @trusted_certs ||=
       ENV['TRUSTED_CERTS'].to_s.gsub('\\n', "\n").split("\n\n").map do |base64|

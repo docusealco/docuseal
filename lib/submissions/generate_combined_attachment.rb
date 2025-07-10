@@ -17,6 +17,11 @@ module Submissions
 
       pdf.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        pdf.task(:pdfa, level: '3b')
+        pdf.config['font.map'] = GenerateResultAttachments::PDFA_FONT_MAP
+      end
+
       if pkcs
         sign_params = {
           reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),

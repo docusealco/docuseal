@@ -30,6 +30,13 @@ module Submissions
       bold_italic: FONT_BOLD_ITALIC_NAME
     }.freeze
 
+    PDFA_FONT_VARIANS = {
+      none: FONT_NAME,
+      bold: FONT_BOLD_NAME,
+      italic: FONT_NAME,
+      bold_italic: FONT_BOLD_NAME
+    }.freeze
+
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.com'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
@@ -46,6 +53,13 @@ module Submissions
       'Times' => 1.4,
       'Helvetica' => 1.4,
       'Courier' => 1.6
+    }.freeze
+
+    PDFA_FONT_MAP = {
+      FONT_NAME => PDFA_FONT_VARIANS,
+      'Helvetica' => PDFA_FONT_VARIANS,
+      'Times' => PDFA_FONT_VARIANS,
+      'Courier' => PDFA_FONT_VARIANS
     }.freeze
 
     MISSING_GLYPH_REPLACE = {
@@ -598,6 +612,11 @@ module Submissions
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
+
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        pdf.task(:pdfa, level: '3b')
+        pdf.config['font.map'] = PDFA_FONT_MAP
+      end
 
       sign_reason = fetch_sign_reason(submitter)
 

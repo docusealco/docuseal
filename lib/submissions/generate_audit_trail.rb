@@ -81,7 +81,12 @@ module Submissions
         end
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
-      composer.document.task(:pdfa) if FONT_NAME == 'GoNotoKurrent'
+
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        composer.document.task(:pdfa, level: '3b')
+      elsif FONT_NAME == 'GoNotoKurrent'
+        composer.document.task(:pdfa)
+      end
 
       composer.document.config['font.map'] = {
         'Helvetica' => {
