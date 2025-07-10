@@ -132,11 +132,13 @@ module SearchEntries
     return if submitter.email.blank? && submitter.phone.blank? && submitter.name.blank?
 
     email_phone_name = [
-      [submitter.email.to_s, submitter.email.to_s.split('@').last].join(' ').delete("\0"),
-      [submitter.phone.to_s.gsub(/\D/, ''),
-       submitter.phone.to_s.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')].uniq.join(' ').delete("\0"),
+      submitter.email.to_s.then { |e| [e, e.split('@').last] }.join(' ').delete("\0"),
+      submitter.phone.to_s.then { |e| [e.gsub(/\D/, ''), e.gsub(PhoneCodes::REGEXP, '').gsub(/\D/, '')] }
+               .uniq.join(' ').delete("\0"),
       TextUtils.transliterate(submitter.name).delete("\0")
     ]
+
+    values_string = build_submitter_values_string(submitter)
 
     sql = SearchEntry.sanitize_sql_array(
       [
@@ -145,9 +147,7 @@ module SearchEntries
                 setweight(to_tsvector('simple', ?), 'A') ||
                 setweight(to_tsvector('simple', ?), 'B') ||
                 setweight(to_tsvector('simple', ?), 'C') as ngram".squish,
-        *email_phone_name,
-        build_submitter_values_string(submitter),
-        *email_phone_name
+        *email_phone_name, values_string, *email_phone_name
       ]
     )
 
@@ -155,6 +155,9 @@ module SearchEntries
 
     entry.account_id = submitter.account_id
     entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+
+    add_hyphens(entry, values_string)
+
     entry.ngram = build_ngram(ngram)
 
     return if entry.tsvector.blank?
@@ -189,11 +192,7 @@ module SearchEntries
     entry.account_id = template.account_id
     entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
 
-    hyphens = text.scan(/\b[^\s]*?\d-[^\s]+?\b/) + text.scan(/\b[^\s]+-\d[^\s]*?\b/)
-
-    hyphens.uniq.each_with_index do |item, index|
-      entry.tsvector += " '#{item.delete("'")}':#{index + 1}" unless entry.tsvector.include?(item)
-    end
+    add_hyphens(entry, text)
 
     entry.ngram = build_ngram(ngram)
 
@@ -220,11 +219,7 @@ module SearchEntries
     entry.account_id = submission.account_id
     entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
 
-    hyphens = text.scan(/\b[^\s]*?\d-[^\s]+?\b/) + text.scan(/\b[^\s]+-\d[^\s]*?\b/)
-
-    hyphens.uniq.each_with_index do |item, index|
-      entry.tsvector += " '#{item.delete("'")}':#{index + 1}" unless entry.tsvector.include?(item)
-    end
+    add_hyphens(entry, text)
 
     entry.ngram = build_ngram(ngram)
 
@@ -237,6 +232,16 @@ module SearchEntries
     submission.reload
 
     retry
+  end
+
+  def add_hyphens(entry, text)
+    hyphens = text.scan(/\b[^\s]*?\d-[^\s]+?\b/) + text.scan(/\b[^\s]+-\d[^\s]*?\b/)
+
+    hyphens.uniq.each_with_index do |item, index|
+      entry.tsvector += " '#{item.delete("'")}':#{index + 1}" unless entry.tsvector.include?(item)
+    end
+
+    entry
   end
 
   def build_ngram(ngram)
