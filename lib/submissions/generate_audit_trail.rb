@@ -113,17 +113,16 @@ module Submissions
 
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
-                                                               AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY])
+                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
-      with_audit_submitter_timezone =
-        configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY }&.value == true
+      with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
       timezone = account.timezone
-      timezone = last_submitter.timezone || account.timezone if with_audit_submitter_timezone
+      timezone = last_submitter.timezone || account.timezone if with_submitter_timezone
 
       composer.page_style(:default, page_size:) do |canvas, style|
         box = canvas.context.box(:media)

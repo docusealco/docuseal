@@ -138,10 +138,12 @@ module Submissions
 
     def generate_pdfs(submitter)
       configs = submitter.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
-                                                              AccountConfig::WITH_SIGNATURE_ID])
+                                                              AccountConfig::WITH_SIGNATURE_ID,
+                                                              AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
+      with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
       pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten)
 
@@ -185,10 +187,12 @@ module Submissions
         end
       end
 
-      fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:)
+      fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:,
+                                                                      with_submitter_timezone:)
     end
 
-    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil)
+    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
+                              with_submitter_timezone: false)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
@@ -288,10 +292,13 @@ module Submissions
 
             reason_string =
               I18n.with_locale(locale) do
+                timezone = submitter.account.timezone
+                timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
+
                 "#{reason_value ? "#{I18n.t('reason')}: " : ''}#{reason_value || I18n.t('digitally_signed_by')} " \
                   "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
-                  "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone), format: :long)} " \
-                  "#{TimeUtils.timezone_abbr(submitter.account.timezone, attachment.created_at)}"
+                  "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: :long)} " \
+                  "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
               end
 
             reason_text = HexaPDF::Layout::TextFragment.create(reason_string,
