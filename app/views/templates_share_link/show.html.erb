@@ -41,5 +41,15 @@
         </div>
       </div>
     <% end %>
+    <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
+      <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
+        <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
+          <label for="template_preferences_shared_link_2fa" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
+            <span><%= t('request_email_otp_verification_with_shared_link') %></span>
+            <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+          </label>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

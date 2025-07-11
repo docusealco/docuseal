@@ -769,6 +769,15 @@ en: &en
   there_are_no_events: There are no events
   resend: Resend
   next_attempt_in_time_in_words: Next attempt in %{time_in_words}
+  request_email_otp_verification_with_shared_link: Request email OTP verification with shared link
+  sms_rate_limit_exceeded: SMS rate limit exceeded
+  invalid_phone_number: Invalid phone number
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Please contact the requester to specify your phone number for two-factor authentication.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: We've sent a one-time verification code to your email address. Please enter the code below to continue.
+  re_send_code: Re-send Code
+  email_verification: Email verification
+  your_verification_code_to_access_the_name: 'Your verification code to access the "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Please reply to this email if you didn't request this.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -786,6 +795,7 @@ en: &en
     click_email_by_html: '<b>Email link clicked</b> by %{submitter_name}'
     click_sms_by_html: '<b>SMS link clicked</b> by %{submitter_name}'
     phone_verified_by_html: '<b>Phone verified</b> by %{submitter_name}'
+    email_verified_by_html: '<b>Email verified</b> by %{submitter_name}'
     start_form_by_html: '<b>Submission started</b> by %{submitter_name}'
     view_form_by_html: '<b>Form viewed</b> by %{submitter_name}'
     invite_party_by_html: '<b>Invited</b> %{invited_submitter_name} by %{submitter_name}'
@@ -1624,6 +1634,15 @@ es: &es
   there_are_no_events: No hay eventos
   resend: Reenviar
   next_attempt_in_time_in_words: Próximo intento en %{time_in_words}
+  request_email_otp_verification_with_shared_link: Solicitar verificación OTP por correo electrónico con enlace compartido
+  sms_rate_limit_exceeded: Límite de SMS excedido
+  invalid_phone_number: Número de teléfono inválido
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Contacte al solicitante para especificar su número para la autenticación de dos factores.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Enviamos un código de verificación único a su correo electrónico. Ingréselo a continuación para continuar.
+  re_send_code: Reenviar código
+  email_verification: Verificación por correo electrónico
+  your_verification_code_to_access_the_name: 'Su código de verificación para acceder a "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Por favor, responda este correo si no solicitó esto.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1641,6 +1660,7 @@ es: &es
     click_email_by_html: '<b>Enlace del correo electrónico clicado</b> por %{submitter_name}'
     click_sms_by_html: '<b>Enlace del SMS clicado</b> por %{submitter_name}'
     phone_verified_by_html: '<b>Teléfono verificado</b> por %{submitter_name}'
+    email_verified_by_html: '<b>Correo electrónico verificado</b> por %{submitter_name}'
     start_form_by_html: '<b>Envío iniciado</b> por %{submitter_name}'
     view_form_by_html: '<b>Formulario visto</b> por %{submitter_name}'
     invite_party_by_html: '<b>Invitado</b> %{invited_submitter_name} por %{submitter_name}'
@@ -2477,6 +2497,16 @@ it: &it
   there_are_no_events: Nessun evento
   resend: Invia di nuovo
   next_attempt_in_time_in_words: Prossimo tentativo tra %{time_in_words}
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: "Questo modello ha più parti, il che impedisce l'uso di un link di condivisione perché non è chiaro quale parte sia responsabile di campi specifici. Per risolvere, definisci i dettagli predefiniti della parte."
+  request_email_otp_verification_with_shared_link: "Richiedi la verifica OTP tramite email con link condiviso"
+  sms_rate_limit_exceeded: Limite SMS superato
+  invalid_phone_number: Numero di telefono non valido
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Contatta il richiedente per specificare il tuo numero per l'autenticazione a due fattori.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Abbiamo inviato un codice di verifica una tantum alla tua email. Inseriscilo qui sotto per continuare.
+  re_send_code: Invia di nuovo il codice
+  email_verification: Verifica email
+  your_verification_code_to_access_the_name: 'Il tuo codice per accedere a "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Rispondi a questa email se non hai richiesto questo.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2494,6 +2524,7 @@ it: &it
     click_email_by_html: "<b>Link dell'e-mail cliccato</b> da %{submitter_name}"
     click_sms_by_html: "<b>Link dell'SMS cliccato</b> da %{submitter_name}"
     phone_verified_by_html: '<b>Telefono verificato</b> da %{submitter_name}'
+    email_verified_by_html: '<b>Email verificata</b> da %{submitter_name}'
     start_form_by_html: '<b>Invio iniziato</b> da %{submitter_name}'
     view_form_by_html: '<b>Modulo visualizzato</b> da %{submitter_name}'
     invite_party_by_html: '<b>Invitato</b> %{invited_submitter_name} da %{submitter_name}'
@@ -3333,6 +3364,16 @@ fr: &fr
   there_are_no_events: Aucun événement
   resend: Renvoyer
   next_attempt_in_time_in_words: Nouvelle tentative dans %{time_in_words}
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: "Ce modèle contient plusieurs parties, ce qui empêche l'utilisation d'un lien de partage car il n'est pas clair quelle partie est responsable de certains champs. Pour résoudre cela, définissez les détails de la partie par défaut."
+  request_email_otp_verification_with_shared_link: "Demander une vérification OTP par e-mail avec un lien de partage"
+  sms_rate_limit_exceeded: Limite de SMS dépassée
+  invalid_phone_number: Numéro de téléphone invalide
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Veuillez contacter l'expéditeur pour spécifier votre numéro pour l'authentification à deux facteurs.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Un code de vérification unique a été envoyé à votre adresse email. Veuillez le saisir ci-dessous pour continuer.
+  re_send_code: Renvoyer le code
+  email_verification: Vérification de l'email
+  your_verification_code_to_access_the_name: 'Votre code pour accéder à "%{name}" :'
+  please_reply_to_this_email_if_you_didnt_request_this: Veuillez répondre à cet email si vous n'avez pas fait cette demande.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3350,6 +3391,7 @@ fr: &fr
     click_email_by_html: "<b>Lien de l'e-mail cliqué</b> par %{submitter_name}"
     click_sms_by_html: '<b>Lien du SMS cliqué</b> par %{submitter_name}'
     phone_verified_by_html: '<b>Téléphone vérifié</b> par %{submitter_name}'
+    email_verified_by_html: '<b>Email vérifié</b> par %{submitter_name}'
     start_form_by_html: '<b>Soumission commencée</b> par %{submitter_name}'
     view_form_by_html: '<b>Formulaire consulté</b> par %{submitter_name}'
     invite_party_by_html: '<b>Invité</b> %{invited_submitter_name} par %{submitter_name}'
@@ -4188,6 +4230,15 @@ pt: &pt
   there_are_no_events: Nenhum evento
   resend: Reenviar
   next_attempt_in_time_in_words: Próxima tentativa em %{time_in_words}
+  request_email_otp_verification_with_shared_link: Solicitar verificação de OTP por e-mail com link compartilhado
+  sms_rate_limit_exceeded: Limite de SMS excedido
+  invalid_phone_number: Número de telefone inválido
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Entre em contato com o solicitante para especificar seu número para autenticação de dois fatores.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Enviamos um código de verificação único para seu e-mail. Insira-o abaixo para continuar.
+  re_send_code: Reenviar código
+  email_verification: Verificação de e-mail
+  your_verification_code_to_access_the_name: 'Seu código de verificação para acessar "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Responda a este e-mail se você não solicitou isso.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4205,6 +4256,7 @@ pt: &pt
     click_email_by_html: '<b>Link do e-mail clicado</b> por %{submitter_name}'
     click_sms_by_html: '<b>Link do SMS clicado</b> por %{submitter_name}'
     phone_verified_by_html: '<b>Telefone verificado</b> por %{submitter_name}'
+    email_verified_by_html: '<b>Email verificado</b> por %{submitter_name}'
     start_form_by_html: '<b>Submissão iniciada</b> por %{submitter_name}'
     view_form_by_html: '<b>Formulário visualizado</b> por %{submitter_name}'
     invite_party_by_html: '<b>Convidado</b> %{invited_submitter_name} por %{submitter_name}'
@@ -5044,6 +5096,15 @@ de: &de
   there_are_no_events: Keine Ereignisse vorhanden
   resend: Erneut senden
   next_attempt_in_time_in_words: Nächster Versuch in %{time_in_words}
+  request_email_otp_verification_with_shared_link: Fordern Sie die E-Mail-OTP-Verifizierung mit Freigabelink an
+  sms_rate_limit_exceeded: SMS-Limit überschritten
+  invalid_phone_number: Ungültige Telefonnummer
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Kontaktieren Sie den Absender, um Ihre Telefonnummer für die Zwei-Faktor-Authentifizierung anzugeben.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Wir haben einen einmaligen Verifizierungscode an Ihre E-Mail-Adresse gesendet. Bitte geben Sie ihn unten ein, um fortzufahren.
+  re_send_code: Code erneut senden
+  email_verification: E-Mail-Verifizierung
+  your_verification_code_to_access_the_name: 'Ihr Verifizierungscode für den Zugriff auf "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Antworten Sie auf diese E-Mail, wenn Sie dies nicht angefordert haben.
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5061,6 +5122,7 @@ de: &de
     click_email_by_html: '<b>E-Mail-Link angeklickt</b> von %{submitter_name}'
     click_sms_by_html: '<b>SMS-Link angeklickt</b> von %{submitter_name}'
     phone_verified_by_html: '<b>Telefon verifiziert</b> von %{submitter_name}'
+    email_verified_by_html: '<b>Email verifiziert</b> von %{submitter_name}'
     start_form_by_html: '<b>Einreichung gestartet</b> von %{submitter_name}'
     view_form_by_html: '<b>Formular angesehen</b> von %{submitter_name}'
     invite_party_by_html: '<b>Eingeladen</b> %{invited_submitter_name} von %{submitter_name}'
@@ -5227,6 +5289,15 @@ pl:
   select_data_residency: Wybierz lokalizację danych
   company_name: Nazwa firmy
   optional: opcjonalne
+  submit: Prześlij
+  sms_rate_limit_exceeded: Przekroczono limit wiadomości SMS
+  invalid_phone_number: Nieprawidłowy numer telefonu
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Skontaktuj się z nadawcą, aby podać numer telefonu do uwierzytelniania dwuskładnikowego.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Wysłaliśmy jednorazowy kod weryfikacyjny na Twój adres e-mail. Wprowadź go poniżej, aby kontynuować.
+  re_send_code: Wyślij ponownie kod
+  email_verification: Weryfikacja e-mail
+  your_verification_code_to_access_the_name: 'Twój kod weryfikacyjny do uzyskania dostępu do "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Odpowiedz na ten e-mail, jeśli nie prosiłeś o to.
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5307,6 +5378,15 @@ uk:
   select_data_residency: Виберіть місце зберігання даних
   company_name: Назва компанії
   optional: необов’язково
+  submit: Надіслати
+  sms_rate_limit_exceeded: Перевищено ліміт SMS
+  invalid_phone_number: Невірний номер телефону
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Зв’яжіться з відправником, щоб вказати номер телефону для двофакторної автентифікації.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Ми надіслали одноразовий код підтвердження на вашу електронну пошту. Введіть його нижче, щоб продовжити.
+  re_send_code: Надіслати код повторно
+  email_verification: Підтвердження електронної пошти
+  your_verification_code_to_access_the_name: 'Ваш код доступу до "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Відповідайте на цей лист, якщо ви цього не запитували.
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5387,6 +5467,15 @@ cs:
   select_data_residency: Vyberte umístění dat
   company_name: Název společnosti
   optional: volitelné
+  submit: Odeslat
+  sms_rate_limit_exceeded: Překročena hranice SMS
+  invalid_phone_number: Neplatné telefonní číslo
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Kontaktujte odesílatele kvůli zadání vašeho čísla pro dvoufázové ověření.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: Poslali jsme jednorázový ověřovací kód na váš e-mail. Zadejte ho níže pro pokračování.
+  re_send_code: Znovu odeslat kód
+  email_verification: Ověření e-mailu
+  your_verification_code_to_access_the_name: 'Váš ověřovací kód pro přístup k "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Odpovězte na tento e-mail, pokud jste o to nežádali.
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5467,6 +5556,15 @@ he:
   select_data_residency: בחר מיקום נתונים
   company_name: שם החברה
   optional: אופציונלי
+  submit: 'שלח'
+  sms_rate_limit_exceeded: 'חריגה ממגבלת SMS'
+  invalid_phone_number: 'מספר טלפון לא תקין'
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: 'פנה לשולח כדי לציין את מספרך לאימות דו-שלבי.'
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: 'שלחנו קוד אימות חד-פעמי לדוא"ל שלך. הזן את הקוד למטה כדי להמשיך.'
+  re_send_code: 'שלח קוד מחדש'
+  email_verification: 'אימות דוא"ל'
+  your_verification_code_to_access_the_name: 'קוד האימות שלך לגישה ל-%{name}:'
+  please_reply_to_this_email_if_you_didnt_request_this: 'השב למייל זה אם לא ביקשת זאת.'
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5547,6 +5645,15 @@ nl:
   select_data_residency: Selecteer gegevenslocatie
   company_name: Bedrijfsnaam
   optional: optioneel
+  submit: Verzenden
+  sms_rate_limit_exceeded: SMS-limiet overschreden
+  invalid_phone_number: Ongeldig telefoonnummer
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: Neem contact op met de aanvrager om uw nummer voor twee-factor-authenticatie op te geven.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: We hebben een eenmalige verificatiecode naar je e-mailadres gestuurd. Voer de code hieronder in om verder te gaan.
+  re_send_code: Code opnieuw verzenden
+  email_verification: E-mailverificatie
+  your_verification_code_to_access_the_name: 'Je verificatiecode voor toegang tot "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: Reageer op deze e-mail als je dit niet hebt aangevraagd.
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5627,6 +5734,15 @@ ar:
   select_data_residency: اختر موقع تخزين البيانات
   company_name: اسم الشركة
   optional: اختياري
+  submit: 'إرسال'
+  sms_rate_limit_exceeded: 'تم تجاوز حد رسائل SMS'
+  invalid_phone_number: 'رقم الهاتف غير صالح'
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: 'يرجى الاتصال بالمرسل لتحديد رقم هاتفك للمصادقة الثنائية.'
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: 'أرسلنا رمز تحقق لمرة واحدة إلى بريدك الإلكتروني. الرجاء إدخاله أدناه للمتابعة.'
+  re_send_code: 'إعادة إرسال الرمز'
+  email_verification: 'التحقق من البريد الإلكتروني'
+  your_verification_code_to_access_the_name: 'رمز التحقق الخاص بك للوصول إلى "%{name}":'
+  please_reply_to_this_email_if_you_didnt_request_this: 'يرجى الرد على هذا البريد إذا لم تطلب ذلك.'
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -5707,6 +5823,15 @@ ko:
   select_data_residency: 데이터 저장 위치 선택
   company_name: 회사 이름
   optional: 선택 사항
+  submit: 제출
+  sms_rate_limit_exceeded: SMS 제한 초과
+  invalid_phone_number: 잘못된 전화번호입니다
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: 이중 인증을 위해 전화번호를 지정하려면 요청자에게 문의하세요.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: 일회용 인증 코드를 이메일로 보냈습니다. 계속하려면 아래에 입력하세요.
+  re_send_code: 코드 재전송
+  email_verification: 이메일 인증
+  your_verification_code_to_access_the_name: '"%{name}"에 액세스하기 위한 인증 코드:'
+  please_reply_to_this_email_if_you_didnt_request_this: 요청하지 않았다면 이 이메일에 회신하세요.
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -5787,6 +5912,15 @@ ja:
   select_data_residency: データ保存場所を選択
   company_name: 会社名
   optional: 任意
+  submit: 送信
+  sms_rate_limit_exceeded: SMSの送信制限を超えました
+  invalid_phone_number: 無効な電話番号です
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: 二要素認証のため、リクエスターに電話番号を指定してください。
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: ワンタイム認証コードをメールアドレスに送信しました。続行するには、以下にコードを入力してください。
+  re_send_code: コードを再送信
+  email_verification: メール認証
+  your_verification_code_to_access_the_name: '"%{name}"へのアクセスコード：'
+  please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
 
 en-US:
   <<: *en

@@ -244,10 +244,17 @@ module Submissions
 
         click_email_event =
           submission.submission_events.find { |e| e.submitter_id == submitter.id && e.click_email? }
+
+        verify_email_event =
+          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.phone_verified? }
+
         is_phone_verified =
           submission.template_fields.any? do |e|
             e['type'] == 'phone' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
           end
+
+        verify_phone_event =
+          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.phone_verified? }
 
         is_id_verified =
           submission.template_fields.any? do |e|
@@ -270,10 +277,10 @@ module Submissions
           [
             composer.document.layout.formatted_text_box(
               [
-                submitter.email && click_email_event && {
+                submitter.email && (click_email_event || verify_email_event) && {
                   text: "#{I18n.t('email_verification')}: #{I18n.t('verified')}\n"
                 },
-                submitter.phone && is_phone_verified && {
+                submitter.phone && (is_phone_verified || verify_phone_event) && {
                   text: "#{I18n.t('phone_verification')}: #{I18n.t('verified')}\n"
                 },
                 is_id_verified && {
