@@ -20,6 +20,7 @@ en: &en
   language_ko: 한국어
   language_ja: 日本語
   hi_there: Hi there
+  pro: Pro
   thanks: Thanks
   private: Private
   default_parties: Default parties
@@ -884,6 +885,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  pro: Pro
   default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
   require_all_recipients: Requerir a todos los destinatarios
@@ -1749,6 +1751,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  pro: Pro
   default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
   require_all_recipients: Richiedi tutti i destinatari
@@ -2613,6 +2616,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  pro: Pro
   default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
   require_all_recipients: Exiger tous les destinataires
@@ -3480,6 +3484,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  pro: Pro
   default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
   require_all_recipients: Exigir todos os destinatários
@@ -4346,6 +4351,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  pro: Pro
   default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Authentifizieren Sie die eingebettete Formularvorschau mit Token
   require_all_recipients: Alle Empfänger erforderlich

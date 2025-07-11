@@ -5,7 +5,7 @@
       <%= render 'shared/title' %>
     </a>
     <span class="hidden sm:inline">
-      <%= render 'shared/github' %>
+      <%= render 'shared/github' if request.path.starts_with?('/settings') %>
     </span>
   </div>
   <% if signed_in? %>
