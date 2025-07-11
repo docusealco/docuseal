@@ -1035,22 +1035,22 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@eid-easy/eideasy-browser-client@2.124.0":
-  version "2.124.0"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.124.0.tgz#940ccb9d4d853f0bd32e49cc455f2c7b13f3bbd1"
-  integrity sha512-hZuUeg0CcyvgJSseRBQixRStAIr58bulmNcikcASBo6z8wv+/R8nAnUoE7qdNW1l4ZyYxLmVOwDs6+W+FHy6hQ==
+"@eid-easy/eideasy-browser-client@2.127.0":
+  version "2.127.0"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.127.0.tgz#d1b09e3634e94d7e32f593209a63f962fd326731"
+  integrity sha512-2iosVqkF1C0hQWc6TVBe1SK7b/z8ZnvHnulGXfQf6VrrpEJMgnzK95h6LFDqDQyetfIwEGGoeOiUij2hYA1ZPA==
   dependencies:
     axios "1.8.2"
     jsencrypt "3.2.1"
     lodash "^4.17.21"
     serialize-error "^9.1.1"
 
-"@eid-easy/eideasy-widget@^2.159.0":
-  version "2.159.0"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.159.0.tgz#f2291dad292bd5f7941496f0db0aa0a180226b6b"
-  integrity sha512-527uCNrN5MVY/PaOUoZ3J2XZ0C+xt6057sJ4xSO0/FPYj2cxOn+qyCJODQjOhjBL7GcnpShWPpYAfv1OIStYwQ==
+"@eid-easy/eideasy-widget@^2.163.4":
+  version "2.163.4"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.163.4.tgz#4a8ada2c61f032527a08f9f8d9d1adf3fa7b5334"
+  integrity sha512-7OQ1bm+KSG99wUI6szXT25Icq67CEQRK38VGj8fynW0ctqJTiFXRop7dqgR9JXLlJ1s1Z++El7igYxph7Dq5Aw==
   dependencies:
-    "@eid-easy/eideasy-browser-client" "2.124.0"
+    "@eid-easy/eideasy-browser-client" "2.127.0"
     core-js "^3.8.3"
     i18n-iso-countries "^6.7.0"
     lodash.defaultsdeep "^4.6.1"
