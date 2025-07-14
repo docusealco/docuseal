@@ -8,6 +8,7 @@ module Rouge
 
   module Lexers
     autoload :JSON, 'rouge/lexers/json'
+    autoload :Shell, 'rouge/lexers/shell'
   end
 
   autoload :Formatter, 'rouge/formatter'
