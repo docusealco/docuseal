@@ -1,8 +1,8 @@
-<%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'hidden md:inline-flex btn btn-warning btn-sm', data: { prefetch: false } do %>
-  <%= t('upgrade') %>
-<% end %>
 <% if signed_in? && current_user != true_user %>
-  <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
   <%= render 'shared/test_alert' %>
+<% elsif request.path.starts_with?('/settings') %>
+  <%= link_to "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'hidden md:inline-flex btn btn-warning btn-sm', data: { prefetch: false } do %>
+    <%= t('upgrade') %>
+  <% end %>
+  <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
 <% end %>
-<span class="hidden md:inline-flex h-3 border-r border-base-content"></span>

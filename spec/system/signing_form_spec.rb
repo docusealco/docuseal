@@ -161,7 +161,6 @@ RSpec.describe 'Signing Form' do
       expect(field_value(submitter, 'Cell code')).to eq '123'
     end
 
-    # rubocop:disable RSpec/ExampleLength
     it 'completes the form when name, email, and phone are required' do
       template.update(preferences: { link_form_fields: %w[email name phone] })
 
@@ -250,7 +249,93 @@ RSpec.describe 'Signing Form' do
       expect(field_value(submitter, 'Attachment')).to be_present
       expect(field_value(submitter, 'Cell code')).to eq '123'
     end
-    # rubocop:enable RSpec/ExampleLength
+
+    it 'completes the form when identity verification with a 2FA code is enabled', sidekiq: :inline do
+      create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
+                                value: GenerateCertificate.call.transform_values(&:to_pem))
+
+      template.update(preferences: { link_form_fields: %w[email name], shared_link_2fa: true })
+
+      visit start_form_path(slug: template.slug)
+
+      fill_in 'Email', with: 'john.dou@example.com'
+      fill_in 'Name', with: 'John Doe'
+
+      expect do
+        click_button 'Start'
+      end.to change { ActionMailer::Base.deliveries.count }.by(1)
+
+      email = ActionMailer::Base.deliveries.last
+      code = email.body.encoded[%r{<b>(.*?)</b>}, 1]
+
+      fill_in 'one_time_code', with: code
+
+      click_button 'Submit'
+
+      fill_in 'First Name', with: 'John'
+      click_button 'next'
+
+      fill_in 'Birthday', with: I18n.l(20.years.ago, format: '%Y-%m-%d')
+      click_button 'next'
+
+      check 'Do you agree?'
+      click_button 'next'
+
+      choose 'Boy'
+      click_button 'next'
+
+      draw_canvas
+      click_button 'next'
+
+      fill_in 'House number', with: '123'
+      click_button 'next'
+
+      %w[Red Blue].each { |color| check color }
+      click_button 'next'
+
+      select 'Male', from: 'Gender'
+      click_button 'next'
+
+      draw_canvas
+      click_button 'next'
+
+      find('#dropzone').click
+      find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
+      click_button 'next'
+
+      find('#dropzone').click
+      find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-document.pdf'))
+      click_button 'next'
+
+      fill_in 'Cell code', with: '123'
+      click_on 'Complete'
+
+      expect(page).to have_button('Download')
+      expect(page).to have_content('Document has been signed!')
+
+      submitter = template.submissions.last.submitters.last
+
+      expect(submitter.email).to eq('john.dou@example.com')
+      expect(submitter.name).to eq('John Doe')
+      expect(submitter.ip).to eq('127.0.0.1')
+      expect(submitter.ua).to be_present
+      expect(submitter.opened_at).to be_present
+      expect(submitter.completed_at).to be_present
+      expect(submitter.declined_at).to be_nil
+
+      expect(field_value(submitter, 'First Name')).to eq 'John'
+      expect(field_value(submitter, 'Birthday')).to eq 20.years.ago.strftime('%Y-%m-%d')
+      expect(field_value(submitter, 'Do you agree?')).to be_truthy
+      expect(field_value(submitter, 'First child')).to eq 'Boy'
+      expect(field_value(submitter, 'Signature')).to be_present
+      expect(field_value(submitter, 'House number')).to eq 123
+      expect(field_value(submitter, 'Colors')).to contain_exactly('Red', 'Blue')
+      expect(field_value(submitter, 'Gender')).to eq 'Male'
+      expect(field_value(submitter, 'Initials')).to be_present
+      expect(field_value(submitter, 'Avatar')).to be_present
+      expect(field_value(submitter, 'Attachment')).to be_present
+      expect(field_value(submitter, 'Cell code')).to eq '123'
+    end
   end
 
   context 'when the submitter form link is opened' do

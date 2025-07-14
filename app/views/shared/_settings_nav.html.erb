@@ -66,7 +66,7 @@
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('new') %></span>
+            <span class="badge badge-warning"><%= t('pro') %></span>
           <% end %>
         </li>
       <% end %>

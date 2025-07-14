@@ -98,13 +98,13 @@ export default targetable(class extends HTMLElement {
       el.classList.add('opacity-50')
 
       if (e.dataTransfer.files.length) {
-        const params = new URLSearchParams({ folder_name: el.innerText }).toString()
+        const params = new URLSearchParams({ folder_name: el.innerText.trim() }).toString()
 
         this.uploadFiles(e.dataTransfer.files, `/templates_upload?${params}`)
       } else {
         const formData = new FormData()
 
-        formData.append('name', el.innerText)
+        formData.append('name', el.innerText.trim())
 
         fetch(`/templates/${templateId}/folder`, {
           method: 'PUT',

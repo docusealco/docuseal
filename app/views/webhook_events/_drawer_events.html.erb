@@ -1,4 +1,4 @@
-<div id="drawer_events_<%= dom_id(webhook_event) %>">
+<div id="<%= dom_id(webhook_event, :drawer_events) %>">
   <ol class="relative border-s border-base-300 space-y-6 ml-3">
     <% webhook_attempts = webhook_event.webhook_attempts.sort_by { |e| -e.id } %>
     <% if webhook_event.status == 'error' %>

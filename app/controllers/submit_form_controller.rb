@@ -9,6 +9,7 @@ class SubmitFormController < ApplicationController
 
   before_action :load_submitter, only: %i[show update completed]
   before_action :maybe_render_locked_page, only: :show
+  before_action :maybe_require_link_2fa, only: %i[show update]
 
   CONFIG_KEYS = [].freeze
 
@@ -50,7 +51,7 @@ class SubmitFormController < ApplicationController
       return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_entity
     end
 
-    if @submitter.template&.archived_at? || @submitter.submission.archived_at?
+    if @submitter.submission.template&.archived_at? || @submitter.submission.archived_at?
       return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_entity
     end
 
@@ -79,6 +80,15 @@ class SubmitFormController < ApplicationController
   def success; end
 
   private
+
+  def maybe_require_link_2fa
+    return if @submitter.submission.source != 'link'
+    return unless @submitter.submission.template&.preferences&.dig('shared_link_2fa') == true
+    return if cookies.encrypted[:email_2fa_slug] == @submitter.slug
+    return if @submitter.email == current_user&.email && current_user&.account_id == @submitter.account_id
+
+    redirect_to start_form_path(@submitter.submission.template.slug)
+  end
 
   def maybe_render_locked_page
     return render :archived if @submitter.submission.template&.archived_at? ||

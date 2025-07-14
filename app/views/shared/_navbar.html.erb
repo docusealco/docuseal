@@ -5,7 +5,7 @@
       <%= render 'shared/title' %>
     </a>
     <span class="hidden sm:inline">
-      <%= render 'shared/github' %>
+      <%= render 'shared/github' if request.path.starts_with?('/settings') %>
     </span>
   </div>
   <% if signed_in? %>
@@ -79,7 +79,7 @@
     </div>
   <% else %>
     <div class="flex space-x-2">
-      <% if request.path != new_user_session_path %>
+      <% if request.path != new_user_session_path && request.path != setup_index_path %>
         <%= link_to new_user_session_path({ lang: params[:lang] }.compact_blank), class: 'font-medium text-lg' do %>
           <span class="flex items-center justify-center space-x-1">
             <%= svg_icon('login', class: 'w-6 h-6') %>

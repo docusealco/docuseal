@@ -11,6 +11,9 @@ module Submitters
     'values' => 'D'
   }.freeze
 
+  UnableToSendCode = Class.new(StandardError)
+  InvalidOtp = Class.new(StandardError)
+
   module_function
 
   def search(current_user, submitters, keyword)
@@ -193,5 +196,28 @@ module Submitters
     )
 
     "#{filename}.#{blob.filename.extension}"
+  end
+
+  def send_shared_link_email_verification_code(submitter, request:)
+    RateLimit.call("send-otp-code-#{request.remote_ip}", limit: 2, ttl: 45.seconds, enabled: true)
+
+    TemplateMailer.otp_verification_email(submitter.submission.template, email: submitter.email).deliver_later!
+  rescue RateLimit::LimitApproached
+    Rollbar.warning("Limit verification code for template: #{submitter.submission.template.id}") if defined?(Rollbar)
+
+    raise UnableToSendCode, I18n.t('too_many_attempts')
+  end
+
+  def verify_link_otp!(otp, submitter)
+    return false if otp.blank?
+
+    RateLimit.call("verify-2fa-code-#{Digest::MD5.base64digest(submitter.email)}",
+                   limit: 2, ttl: 45.seconds, enabled: true)
+
+    link_2fa_key = [submitter.email.downcase.squish, submitter.submission.template.slug].join(':')
+
+    raise InvalidOtp, I18n.t(:invalid_code) unless EmailVerificationCodes.verify(otp, link_2fa_key)
+
+    true
   end
 end

@@ -15,6 +15,7 @@ module Templates
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 20.megabytes
     GENERATE_PREVIEW_SIZE_LIMIT = 50.megabytes
+    US_LETTER_SIZE = { 'width' => MAX_WIDTH, 'height' => 1812 }.freeze
 
     module_function
 

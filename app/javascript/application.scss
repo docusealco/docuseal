@@ -147,3 +147,11 @@ button[disabled] .enabled {
   outline-offset: 3px;
   outline-color: hsl(var(--bc) / 0.2);
 }
+
+.font-times {
+  font-family: "Times New Roman", Times, ui-serif, serif, Cambria, Georgia;
+}
+
+.font-courier {
+  font-family: "Courier New", Consolas, "Liberation Mono", monospace, ui-monospace, SFMono-Regular, Menlo, Monaco;
+}

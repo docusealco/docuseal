@@ -1,6 +1,7 @@
 <% if params[:controller] == 'submissions_preview' %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
+<% font_scale = 1040.0 / PdfUtils::US_LETTER_W %>
 <% with_signature_id, is_combined_enabled = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID], value: true).then { |configs| [configs.any? { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }, configs.any? { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }] } %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
@@ -94,11 +95,11 @@
           <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-          <% lazyload_metadata = document.preview_images.first&.metadata || {} %>
+          <% lazyload_metadata = document.preview_images.first&.metadata || Templates::ProcessDocument::US_LETTER_SIZE %>
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
-            <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img loading="lazy" src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, index].join(':'), expires_in: 10.minutes) { page.url } %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
+            <page-container id="<%= "page-#{document.uuid}-#{index}" %>" class="block before:border before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:rounded relative mb-4" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
+              <img loading="lazy" src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, index].join(':'), expires_in: 10.minutes) { page.url } %>" width="<%= width %>" class="rounded" height="<%= height %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
@@ -110,18 +111,18 @@
                   <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
                     <span class="group">
                       <span class="hidden group-hover:inline">
-                        <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                       </span>
                       <span class="group-hover:hidden">
-                        <%= render 'submissions/value', area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                       </span>
                     </span>
                   <% else %>
-                    <%= render 'submissions/value', area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                    <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
                   <% end %>
                 <% end %>
               </div>
-            </div>
+            </page-container>
           <% end %>
         <% end %>
       </div>

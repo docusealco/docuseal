@@ -172,7 +172,8 @@
       >
         <div
           v-if="isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
-          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type), 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars }"
+          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
+          :style="fontStyle"
         >
           <div
             ref="textContainer"
@@ -315,7 +316,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'selectedAreaRef', 'save', 't'],
+  inject: ['template', 'selectedAreaRef', 'save', 't', 'isInlineSize'],
   props: {
     area: {
       type: Object,
@@ -385,6 +386,37 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
+    fontStyle () {
+      let fontSize = ''
+
+      if (this.isInlineSize) {
+        if (this.textOverflowChars) {
+          fontSize = `${this.fontSizePx / 1.5 / 10}cqmin`
+        } else {
+          fontSize = `${this.fontSizePx / 10}cqmin`
+        }
+      } else {
+        if (this.textOverflowChars) {
+          fontSize = `clamp(1pt, ${this.fontSizePx / 1.5 / 10}vw, ${this.fontSizePx / 1.5}px)`
+        } else {
+          fontSize = `clamp(1pt, ${this.fontSizePx / 10}vw, ${this.fontSizePx}px)`
+        }
+      }
+
+      return { fontSize, lineHeight: `calc(${fontSize} * ${this.lineHeight})` }
+    },
+    fontSizePx () {
+      return parseInt(this.field?.preferences?.font_size || 11) * this.fontScale
+    },
+    lineHeight () {
+      return 1.3
+    },
+    fontScale () {
+      return 1040 / 612.0
+    },
+    ladscapeScale () {
+      return 8.5 / 11.0
+    },
     isDefaultValuePresent () {
       if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {
         return false
@@ -413,8 +445,8 @@ export default {
         'justify-center': this.field.preferences.align === 'center',
         'justify-start': this.field.preferences.align === 'left',
         'justify-end': this.field.preferences.align === 'right',
-        'font-mono': this.field.preferences.font === 'Courier',
-        'font-serif': this.field.preferences.font === 'Times',
+        'font-courier': this.field.preferences.font === 'Courier',
+        'font-times': this.field.preferences.font === 'Times',
         'font-bold': ['bold_italic', 'bold'].includes(this.field.preferences.font_type),
         italic: ['bold_italic', 'italic'].includes(this.field.preferences.font_type)
       }
@@ -491,7 +523,7 @@ export default {
     'field.default_value' () {
       this.$nextTick(() => {
         if (['date', 'text', 'number'].includes(this.field.type) && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.field.default_value}`.length)) {
-          this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
+          this.textOverflowChars = (this.$el.clientHeight + 1) < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
         }
       })
     }
@@ -499,7 +531,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       if (['date', 'text', 'number'].includes(this.field.type) && this.field.default_value && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.field.default_value}`.length)) {
-        this.textOverflowChars = this.$el.clientHeight < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
+        this.textOverflowChars = (this.$el.clientHeight + 1) < this.$refs.textContainer.clientHeight ? `${this.field.default_value}`.length : 0
       }
     })
   },

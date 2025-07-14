@@ -81,7 +81,12 @@ module Submissions
         end
 
       composer = HexaPDF::Composer.new(skip_page_creation: true)
-      composer.document.task(:pdfa) if FONT_NAME == 'GoNotoKurrent'
+
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        composer.document.task(:pdfa, level: '3b')
+      elsif FONT_NAME == 'GoNotoKurrent'
+        composer.document.task(:pdfa)
+      end
 
       composer.document.config['font.map'] = {
         'Helvetica' => {
@@ -108,17 +113,16 @@ module Submissions
 
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
-                                                               AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY])
+                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
-      with_audit_submitter_timezone =
-        configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SUBMITTER_TIMEZONE_KEY }&.value == true
+      with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
       timezone = account.timezone
-      timezone = last_submitter.timezone || account.timezone if with_audit_submitter_timezone
+      timezone = last_submitter.timezone || account.timezone if with_submitter_timezone
 
       composer.page_style(:default, page_size:) do |canvas, style|
         box = canvas.context.box(:media)
@@ -240,10 +244,17 @@ module Submissions
 
         click_email_event =
           submission.submission_events.find { |e| e.submitter_id == submitter.id && e.click_email? }
+
+        verify_email_event =
+          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.phone_verified? }
+
         is_phone_verified =
           submission.template_fields.any? do |e|
             e['type'] == 'phone' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
           end
+
+        verify_phone_event =
+          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.phone_verified? }
 
         is_id_verified =
           submission.template_fields.any? do |e|
@@ -266,10 +277,10 @@ module Submissions
           [
             composer.document.layout.formatted_text_box(
               [
-                submitter.email && click_email_event && {
+                submitter.email && (click_email_event || verify_email_event) && {
                   text: "#{I18n.t('email_verification')}: #{I18n.t('verified')}\n"
                 },
-                submitter.phone && is_phone_verified && {
+                submitter.phone && (is_phone_verified || verify_phone_event) && {
                   text: "#{I18n.t('phone_verification')}: #{I18n.t('verified')}\n"
                 },
                 is_id_verified && {

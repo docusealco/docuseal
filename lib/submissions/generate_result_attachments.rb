@@ -30,6 +30,13 @@ module Submissions
       bold_italic: FONT_BOLD_ITALIC_NAME
     }.freeze
 
+    PDFA_FONT_VARIANS = {
+      none: FONT_NAME,
+      bold: FONT_BOLD_NAME,
+      italic: FONT_NAME,
+      bold_italic: FONT_BOLD_NAME
+    }.freeze
+
     SIGN_REASON = 'Signed by %<name>s with DocuSeal.com'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
@@ -43,9 +50,16 @@ module Submissions
     TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
     DEFAULT_FONTS = %w[Times Helvetica Courier].freeze
     FONTS_LINE_HEIGHT = {
-      'Times' => 1.4,
-      'Helvetica' => 1.4,
+      'Times' => 1.5,
+      'Helvetica' => 1.5,
       'Courier' => 1.6
+    }.freeze
+
+    PDFA_FONT_MAP = {
+      FONT_NAME => PDFA_FONT_VARIANS,
+      'Helvetica' => PDFA_FONT_VARIANS,
+      'Times' => PDFA_FONT_VARIANS,
+      'Courier' => PDFA_FONT_VARIANS
     }.freeze
 
     MISSING_GLYPH_REPLACE = {
@@ -124,10 +138,12 @@ module Submissions
 
     def generate_pdfs(submitter)
       configs = submitter.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
-                                                              AccountConfig::WITH_SIGNATURE_ID])
+                                                              AccountConfig::WITH_SIGNATURE_ID,
+                                                              AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
+      with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
       pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten)
 
@@ -171,10 +187,12 @@ module Submissions
         end
       end
 
-      fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:)
+      fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:,
+                                                                      with_submitter_timezone:)
     end
 
-    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil)
+    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
+                              with_submitter_timezone: false)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
@@ -274,10 +292,13 @@ module Submissions
 
             reason_string =
               I18n.with_locale(locale) do
+                timezone = submitter.account.timezone
+                timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
+
                 "#{reason_value ? "#{I18n.t('reason')}: " : ''}#{reason_value || I18n.t('digitally_signed_by')} " \
                   "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
-                  "#{I18n.l(attachment.created_at.in_time_zone(submitter.account.timezone), format: :long)} " \
-                  "#{TimeUtils.timezone_abbr(submitter.account.timezone, attachment.created_at)}"
+                  "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: :long)} " \
+                  "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
               end
 
             reason_text = HexaPDF::Layout::TextFragment.create(reason_string,
@@ -598,6 +619,11 @@ module Submissions
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
+
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        pdf.task(:pdfa, level: '3b')
+        pdf.config['font.map'] = PDFA_FONT_MAP
+      end
 
       sign_reason = fetch_sign_reason(submitter)
 

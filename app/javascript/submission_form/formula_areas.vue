@@ -14,6 +14,7 @@
         <FieldArea
           v-if="isMathLoaded"
           :model-value="calculateFormula(field)"
+          :is-inline-size="isInlineSize"
           :field="field"
           :area="area"
           :submittable="false"
@@ -52,6 +53,11 @@ export default {
   data () {
     return {
       isMathLoaded: false
+    }
+  },
+  computed: {
+    isInlineSize () {
+      return CSS.supports('container-type: size')
     }
   },
   async mounted () {

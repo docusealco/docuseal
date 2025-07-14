@@ -1,4 +1,5 @@
 const en = {
+  please_upload_an_image_file: 'Please upload an image file',
   must_be_characters_length: 'Must be {number} characters length',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
   verify_id: 'Verify ID',
@@ -99,6 +100,7 @@ const en = {
 }
 
 const es = {
+  please_upload_an_image_file: 'Por favor, sube un archivo de imagen',
   must_be_characters_length: 'Debe tener {number} caracteres de longitud',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete todos los campos requeridos para continuar con la verificación de identidad.',
   verify_id: 'Verificar ID',
@@ -199,6 +201,7 @@ const es = {
 }
 
 const it = {
+  please_upload_an_image_file: 'Per favore carica un file immagine',
   must_be_characters_length: 'Deve essere lungo {number} caratteri',
   complete_all_required_fields_to_proceed_with_identity_verification: "Compila tutti i campi obbligatori per procedere con la verifica dell'identità.",
   verify_id: 'Verifica ID',
@@ -299,6 +302,7 @@ const it = {
 }
 
 const de = {
+  please_upload_an_image_file: 'Bitte laden Sie eine Bilddatei hoch',
   must_be_characters_length: 'Muss {number} Zeichen lang sein',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vervollständigen Sie alle erforderlichen Felder, um mit der Identitätsverifizierung fortzufahren.',
   verify_id: 'ID überprüfen',
@@ -399,6 +403,7 @@ const de = {
 }
 
 const fr = {
+  please_upload_an_image_file: 'Veuillez télécharger un fichier image',
   must_be_characters_length: 'Doit contenir {number} caractères',
   complete_all_required_fields_to_proceed_with_identity_verification: "Veuillez remplir tous les champs obligatoires pour continuer la vérification de l'identité.",
   verify_id: "Vérification de l'ID",
@@ -499,6 +504,7 @@ const fr = {
 }
 
 const pl = {
+  please_upload_an_image_file: 'Proszę przesłać plik obrazu',
   must_be_characters_length: 'Musi mieć długość {number} znaków',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Uzupełnij wszystkie wymagane pola, aby kontynuować weryfikację tożsamości.',
   verify_id: 'Zweryfikuj ID',
@@ -599,6 +605,7 @@ const pl = {
 }
 
 const uk = {
+  please_upload_an_image_file: 'Будь ласка, завантажте файл зображення',
   must_be_characters_length: 'Має містити {number} символів',
   complete_all_required_fields_to_proceed_with_identity_verification: "Заповніть всі обов'язкові поля, щоб продовжити перевірку особи.",
   verify_id: 'Підтвердження ідентичності',
@@ -699,6 +706,7 @@ const uk = {
 }
 
 const cs = {
+  please_upload_an_image_file: 'Nahrajte prosím obrázkový soubor',
   must_be_characters_length: 'Musí mít délku {number} znaků',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vyplňte všechna povinná pole, abyste mohli pokračovat v ověření identity.',
   verify_id: 'Ověřit ID',
@@ -799,6 +807,7 @@ const cs = {
 }
 
 const pt = {
+  please_upload_an_image_file: 'Por favor, envie um arquivo de imagem',
   must_be_characters_length: 'Deve ter {number} caracteres',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Preencha todos os campos obrigatórios para prosseguir com a verificação de identidade.',
   verify_id: 'Verificar ID',
@@ -899,6 +908,7 @@ const pt = {
 }
 
 const he = {
+  please_upload_an_image_file: 'אנא העלה קובץ תמונה',
   must_be_characters_length: 'חייב להיות באורך של {number} תווים',
   complete_all_required_fields_to_proceed_with_identity_verification: 'מלא את כל השדות הנדרשים כדי להמשיך עם אימות זהות.',
   verify_id: 'אמת מזהה',
@@ -999,6 +1009,7 @@ const he = {
 }
 
 const nl = {
+  please_upload_an_image_file: 'Upload alstublieft een afbeeldingsbestand',
   must_be_characters_length: 'Moet {number} tekens lang zijn',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vul alle verplichte velden in om door te gaan met de identiteitsverificatie.',
   verify_id: 'Verifiëren ID',
@@ -1099,6 +1110,7 @@ const nl = {
 }
 
 const ar = {
+  please_upload_an_image_file: 'يرجى تحميل ملف صورة',
   must_be_characters_length: 'يجب أن يكون الطول {number} حرفًا',
   complete_all_required_fields_to_proceed_with_identity_verification: 'أكمل جميع الحقول المطلوبة للمتابعة في التحقق من الهوية.',
   verify_id: 'تحقق من الهوية',
@@ -1199,6 +1211,7 @@ const ar = {
 }
 
 const ko = {
+  please_upload_an_image_file: '이미지 파일을 업로드해 주세요',
   must_be_characters_length: '{number}자여야 합니다',
   complete_all_required_fields_to_proceed_with_identity_verification: '신원 확인을 진행하려면 모든 필수 필드를 작성하십시오.',
   verify_id: '아이디 확인',
@@ -1299,6 +1312,7 @@ const ko = {
 }
 
 const ja = {
+  please_upload_an_image_file: '画像ファイルをアップロードしてください',
   must_be_characters_length: '{number}文字でなければなりません',
   complete_all_required_fields_to_proceed_with_identity_verification: '本人確認を進めるには、すべての必須項目を入力してください。',
   verify_id: '本人確認',

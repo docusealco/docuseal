@@ -42,7 +42,7 @@ class AccountConfig < ApplicationRecord
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
-  WITH_AUDIT_SUBMITTER_TIMEZONE_KEY = 'with_audit_submitter_timezone'
+  WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
   REUSE_SIGNATURE_KEY = 'reuse_signature'
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'

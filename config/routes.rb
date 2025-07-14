@@ -133,6 +133,7 @@ Rails.application.routes.draw do
   end
 
   resource :resubmit_form, controller: 'start_form', only: :update
+  resources :start_form_email_2fa_send, only: :create
 
   resources :submit_form, only: %i[], path: '' do
     get :success, on: :collection

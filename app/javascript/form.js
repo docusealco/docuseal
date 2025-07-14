@@ -5,6 +5,7 @@ import DownloadButton from './elements/download_button'
 import ToggleSubmit from './elements/toggle_submit'
 import FetchForm from './elements/fetch_form'
 import ScrollButtons from './elements/scroll_buttons'
+import PageContainer from './elements/page_container'
 
 const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options)
 
@@ -12,6 +13,7 @@ safeRegisterElement('download-button', DownloadButton)
 safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('fetch-form', FetchForm)
 safeRegisterElement('scroll-buttons', ScrollButtons)
+safeRegisterElement('page-container', PageContainer)
 safeRegisterElement('submission-form', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
