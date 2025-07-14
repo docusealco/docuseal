@@ -414,9 +414,6 @@ export default {
     fontScale () {
       return 1040 / 612.0
     },
-    ladscapeScale () {
-      return 8.5 / 11.0
-    },
     isDefaultValuePresent () {
       if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {
         return false

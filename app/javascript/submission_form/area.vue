@@ -460,9 +460,6 @@ export default {
     fontScale () {
       return 1000 / 612.0
     },
-    ladscapeScale () {
-      return 8.5 / 11.0
-    },
     computedStyle () {
       const { x, y, w, h } = this.area
 
