@@ -50,8 +50,8 @@ module Submissions
     TESTING_FOOTER = 'Testing Document - NOT LEGALLY BINDING'
     DEFAULT_FONTS = %w[Times Helvetica Courier].freeze
     FONTS_LINE_HEIGHT = {
-      'Times' => 1.4,
-      'Helvetica' => 1.4,
+      'Times' => 1.5,
+      'Helvetica' => 1.5,
       'Courier' => 1.6
     }.freeze
 

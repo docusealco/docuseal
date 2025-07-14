@@ -222,8 +222,8 @@ export default {
     fonts () {
       return [
         { value: null, label: 'Default' },
-        { value: 'Times', label: 'Times', class: 'font-serif' },
-        { value: 'Courier', label: 'Courier', class: 'font-mono' }
+        { value: 'Times', label: 'Times', class: 'font-times' },
+        { value: 'Courier', label: 'Courier', class: 'font-courier' }
       ]
     },
     types () {
@@ -258,8 +258,8 @@ export default {
     },
     textClasses () {
       return {
-        'font-mono': this.preferences.font === 'Courier',
-        'font-serif': this.preferences.font === 'Times',
+        'font-courier': this.preferences.font === 'Courier',
+        'font-times': this.preferences.font === 'Times',
         'justify-center': this.preferences.align === 'center',
         'justify-start': this.preferences.align === 'left',
         'justify-end': this.preferences.align === 'right',

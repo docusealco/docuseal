@@ -7,6 +7,7 @@
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
+<% font_scale = 1000.0 / PdfUtils::US_LETTER_W %>
 <div style="max-height: -webkit-fill-available;">
   <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
@@ -66,11 +67,11 @@
         <div id="document-<%= document.uuid %>">
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-          <% lazyload_metadata = document.preview_images.last&.metadata || {} %>
+          <% lazyload_metadata = document.preview_images.last&.metadata || Templates::ProcessDocument::US_LETTER_SIZE %>
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
-            <div class="relative my-4 shadow-md">
-              <img loading="lazy" src="<%= page.url %>" width="<%= page.metadata['width'] %>" height="<%= page.metadata['height'] %>">
+            <page-container class="block relative my-4 shadow-md" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
+              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" height="<%= height %>">
               <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
                 <% if annots = document_annots_index[index] %>
                   <%= render 'submit_form/annotations', annots: %>
@@ -83,10 +84,10 @@
                   <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
                   <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
                   <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                  <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
+                  <%= render 'submissions/value', font_scale:, area:, field:, attachments_index: @attachments_index, value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
                 <% end %>
               </div>
-            </div>
+            </page-container>
           <% end %>
         </div>
       <% end %>

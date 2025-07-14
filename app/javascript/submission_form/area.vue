@@ -2,8 +2,8 @@
   <div
     class="flex absolute lg:text-base -outline-offset-1 field-area"
     dir="auto"
-    :style="computedStyle"
-    :class="{ 'text-[1.6vw] lg:text-base': !textOverflowChars, 'text-[1.0vw] lg:text-xs': textOverflowChars, 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :style="[computedStyle, fontStyle]"
+    :class="{ 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
   >
     <div
       v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -236,6 +236,11 @@ export default {
       type: Object,
       required: true
     },
+    isInlineSize: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     submitter: {
       type: Object,
       required: false,
@@ -348,8 +353,8 @@ export default {
       }
 
       return {
-        'font-mono': this.field.preferences.font === 'Courier',
-        'font-serif': this.field.preferences.font === 'Times',
+        'font-courier': this.field.preferences.font === 'Courier',
+        'font-times': this.field.preferences.font === 'Times',
         'font-bold': ['bold_italic', 'bold'].includes(this.field.preferences.font_type),
         italic: ['bold_italic', 'italic'].includes(this.field.preferences.font_type)
       }
@@ -427,6 +432,37 @@ export default {
         return []
       }
     },
+    fontStyle () {
+      let fontSize = ''
+
+      if (this.isInlineSize) {
+        if (this.textOverflowChars) {
+          fontSize = `${this.fontSizePx / 1.5 / 10}cqmin`
+        } else {
+          fontSize = `${this.fontSizePx / 10}cqmin`
+        }
+      } else {
+        if (this.textOverflowChars) {
+          fontSize = `clamp(1pt, ${this.fontSizePx / 1.5 / 10}vw, ${this.fontSizePx / 1.5}px)`
+        } else {
+          fontSize = `clamp(1pt, ${this.fontSizePx / 10}vw, ${this.fontSizePx}px)`
+        }
+      }
+
+      return { fontSize, lineHeight: `calc(${fontSize} * ${this.lineHeight})` }
+    },
+    fontSizePx () {
+      return parseInt(this.field?.preferences?.font_size || 11) * this.fontScale
+    },
+    lineHeight () {
+      return 1.3
+    },
+    fontScale () {
+      return 1000 / 612.0
+    },
+    ladscapeScale () {
+      return 8.5 / 11.0
+    },
     computedStyle () {
       const { x, y, w, h } = this.area
 
@@ -435,11 +471,6 @@ export default {
         left: x * 100 + '%',
         width: w * 100 + '%',
         height: h * 100 + '%'
-      }
-
-      if (this.field.preferences?.font_size) {
-        style.fontSize = `clamp(4pt, 1.6vw, ${parseInt(this.field.preferences.font_size) * 1.23}pt)`
-        style.lineHeight = `clamp(6pt, 2.0vw, ${parseInt(this.field.preferences.font_size) * 1.23 + 3}pt)`
       }
 
       if (this.field.preferences?.color) {
@@ -456,7 +487,7 @@ export default {
     modelValue () {
       this.$nextTick(() => {
         if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer && (this.textOverflowChars === 0 || (this.textOverflowChars - 4) > `${this.modelValue}`.length)) {
-          this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
+          this.textOverflowChars = this.$refs.textContainer.scrollHeight > (this.$refs.textContainer.clientHeight + 1) ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
         }
       })
     }
@@ -464,7 +495,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       if (['date', 'text', 'number'].includes(this.field.type) && this.$refs.textContainer) {
-        this.textOverflowChars = this.$refs.textContainer.scrollHeight > this.$refs.textContainer.clientHeight ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
+        this.textOverflowChars = this.$refs.textContainer.scrollHeight > (this.$refs.textContainer.clientHeight + 1) ? `${this.modelValue || (this.withFieldPlaceholder ? this.field.name : '')}`.length : 0
       }
     })
   },

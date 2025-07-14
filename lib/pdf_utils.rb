@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module PdfUtils
+  DEFAULT_DPI = 72
+  US_LETTER_W = DEFAULT_DPI * 8.5
+
   module_function
 
   def encrypted?(data, password: nil)

@@ -67,7 +67,7 @@
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
-    class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3 expand-form-button"
+    class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3 expand-form-button text-base"
     style="width: 96%; margin-left: 2%"
     @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >

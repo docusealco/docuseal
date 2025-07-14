@@ -23,6 +23,7 @@
             :area="area"
             :submittable="submittable"
             :field-index="fieldIndex"
+            :is-inline-size="isInlineSize"
             :scroll-padding="scrollPadding"
             :submitter="submitter"
             :with-field-placeholder="withFieldPlaceholder"
@@ -110,6 +111,9 @@ export default {
     }
   },
   computed: {
+    isInlineSize () {
+      return CSS.supports('container-type: size')
+    },
     isMobileContainer () {
       const root = this.$root.$el.parentNode.getRootNode()
       const container = root.body || root.querySelector('div')

@@ -2,16 +2,15 @@
   if (!window.customElements.get('autosize-field')) {
     window.customElements.define('autosize-field', class extends HTMLElement {
       connectedCallback() {
+        const originalFontValue = this.field.style.fontSize
+
         if (this.field.scrollHeight > this.field.clientHeight) {
-          this.field.classList.remove('text-[1.6vw]', 'lg:text-base');
-          this.field.classList.add('text-[1.0vw]', 'lg:text-[0.70rem]');
+          this.field.style.fontSize = `calc(${originalFontValue} / 1.5)`;
+          this.field.style.lineHeight = `calc(${this.field.style.fontSize} * 1.3)`;
 
           if (this.field.scrollHeight > this.field.clientHeight) {
-            this.field.classList.add('text-[0.8vw]', 'lg:text-[0.50rem]');
-          }
-
-          if (this.field.scrollHeight > this.field.clientHeight) {
-            this.field.classList.add('text-[0.7vw]', 'lg:text-[0.45rem]');
+            this.field.style.fontSize = `calc(${originalFontValue} / 2.0)`;
+            this.field.style.lineHeight = `calc(${this.field.style.fontSize} * 1.3)`;
           }
         }
       }

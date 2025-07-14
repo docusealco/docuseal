@@ -542,6 +542,7 @@ export default {
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
+      isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
       selectedAreaRef: computed(() => this.selectedAreaRef),
       fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef)
@@ -792,6 +793,9 @@ export default {
     fieldsDragFieldRef: () => ref(),
     language () {
       return this.locale.split('-')[0].toLowerCase()
+    },
+    isInlineSize () {
+      return CSS.supports('container-type: size')
     },
     isMobile () {
       const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)

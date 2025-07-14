@@ -1,8 +1,9 @@
 <template>
   <div
-    class="relative select-none"
-    :class="{ 'cursor-crosshair': allowDraw }"
-    :style="drawField ? 'touch-action: none' : ''"
+    class="relative select-none mb-4 before:border before:rounded before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute"
+    :class="{ 'cursor-crosshair': allowDraw, 'touch-none': !!drawField }"
+    style="container-type: size"
+    :style="{ aspectRatio: `${width} / ${height}`}"
   >
     <img
       ref="image"
@@ -10,7 +11,7 @@
       :src="image.url"
       :width="width"
       :height="height"
-      class="border rounded mb-4"
+      class="rounded"
       @load="onImageLoad"
     >
     <div
@@ -191,8 +192,8 @@ export default {
   },
   methods: {
     onImageLoad (e) {
-      e.target.setAttribute('width', e.target.naturalWidth)
-      e.target.setAttribute('height', e.target.naturalHeight)
+      this.image.metadata.width = e.target.naturalWidth
+      this.image.metadata.height = e.target.naturalHeight
     },
     setAreaRefs (el) {
       if (el) {
