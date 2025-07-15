@@ -163,7 +163,7 @@
             class="flex border border-base-content/20 rounded-xl bg-white px-4 h-16 modal-field-font-preview"
             :style="{
               color: preferences.color || 'black',
-              fontSize: (preferences.font_size || 12) + 'pt',
+              fontSize: (preferences.font_size || 11) + 'pt',
             }"
             :class="textClasses"
           >
