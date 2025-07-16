@@ -160,57 +160,65 @@
       :class="$slots.buttons || withTitle ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
-        v-if="withDocumentsList"
-        id="documents_container"
-        ref="previews"
-        :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
-        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
+        v-if="withFieldsList && !isMobile"
+        id="fields_list_container"
+        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
+        :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
-        <DocumentPreview
-          v-for="(item, index) in template.schema"
-          :key="index"
-          :with-arrows="template.schema.length > 1"
-          :item="item"
-          :document="sortedDocuments[index]"
-          :data-document-uuid="item.attachment_uuid"
-          :accept-file-types="acceptFileTypes"
-          :with-replace-button="withUploadButton"
-          :editable="editable"
-          :template="template"
-          @scroll-to="scrollIntoDocument(item)"
-          @remove="onDocumentRemove"
-          @replace="onDocumentReplace"
-          @up="moveDocument(item, -1)"
-          @reorder="reorderFields"
-          @down="moveDocument(item, 1)"
-          @change="save"
-        />
         <div
-          class="sticky bottom-0 py-2 space-y-2"
+          v-if="showDrawField || drawField"
+          class="sticky inset-0 h-full z-20"
           :style="{ backgroundColor }"
         >
-          <Upload
-            v-if="sortedDocuments.length && editable && withUploadButton"
-            :accept-file-types="acceptFileTypes"
-            :template-id="template.id"
-            @success="updateFromUpload"
+          <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
+            <p>
+              {{ t('draw_field_on_the_document') }}
+            </p>
+            <div>
+              <button
+                class="base-button cancel-draw-button"
+                @click="clearDrawField"
+              >
+                {{ t('cancel') }}
+              </button>
+              <a
+                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading'].includes(drawField?.type || drawFieldType)"
+                href="#"
+                class="link block mt-3 text-sm"
+                @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
+              >
+                {{ t('or_add_field_without_drawing') }}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <Fields
+            ref="fields"
+            :fields="template.fields"
+            :submitters="template.submitters"
+            :selected-submitter="selectedSubmitter"
+            :with-help="withHelp"
+            :default-submitters="defaultSubmitters"
+            :draw-field-type="drawFieldType"
+            :with-fields-search="withFieldsSearch"
+            :default-fields="[...defaultRequiredFields, ...defaultFields]"
+            :template="template"
+            :default-required-fields="defaultRequiredFields"
+            :field-types="fieldTypes"
+            :with-sticky-submitters="withStickySubmitters"
+            :only-defined-fields="onlyDefinedFields"
+            :editable="editable"
+            :show-tour-start-form="showTourStartForm"
+            @add-field="addField"
+            @set-draw="[drawField = $event.field, drawOption = $event.option]"
+            @set-draw-type="[drawFieldType = $event, showDrawField = true]"
+            @set-drag="dragField = $event"
+            @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
+            @change-submitter="selectedSubmitter = $event"
+            @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
+            @scroll-to-area="scrollToArea"
           />
-          <button
-            v-if="sortedDocuments.length && editable && withAddPageButton"
-            id="add_blank_page_button"
-            class="btn btn-outline w-full add-blank-page-button"
-            @click.prevent="addBlankPage"
-          >
-            <IconInnerShadowTop
-              v-if="isLoadingBlankPage"
-              class="animate-spin w-5 h-5"
-            />
-            <IconPlus
-              v-else
-              class="w-5 h-5"
-            />
-            {{ t('add_blank_page') }}
-          </button>
         </div>
       </div>
       <div
@@ -220,7 +228,7 @@
       >
         <div
           ref="documents"
-          class="pr-3.5 pl-0.5"
+          class="pr-0.5 pl-0.5"
         >
           <template v-if="!sortedDocuments.length && (withUploadButton || withAddPageButton)">
             <Dropzone
@@ -319,65 +327,57 @@
         </div>
       </div>
       <div
-        v-if="withFieldsList && !isMobile"
-        id="fields_list_container"
-        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
-        :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
+        v-if="withDocumentsList"
+        id="documents_container"
+        ref="previews"
+        :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
+        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 pl-3 mt-0.5 pt-0.5 hidden lg:block"
       >
+        <DocumentPreview
+          v-for="(item, index) in template.schema"
+          :key="index"
+          :with-arrows="template.schema.length > 1"
+          :item="item"
+          :document="sortedDocuments[index]"
+          :data-document-uuid="item.attachment_uuid"
+          :accept-file-types="acceptFileTypes"
+          :with-replace-button="withUploadButton"
+          :editable="editable"
+          :template="template"
+          @scroll-to="scrollIntoDocument(item)"
+          @remove="onDocumentRemove"
+          @replace="onDocumentReplace"
+          @up="moveDocument(item, -1)"
+          @reorder="reorderFields"
+          @down="moveDocument(item, 1)"
+          @change="save"
+        />
         <div
-          v-if="showDrawField || drawField"
-          class="sticky inset-0 h-full z-20"
+          class="sticky bottom-0 py-2 space-y-2"
           :style="{ backgroundColor }"
         >
-          <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
-            <p>
-              {{ t('draw_field_on_the_document') }}
-            </p>
-            <div>
-              <button
-                class="base-button cancel-draw-button"
-                @click="clearDrawField"
-              >
-                {{ t('cancel') }}
-              </button>
-              <a
-                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading'].includes(drawField?.type || drawFieldType)"
-                href="#"
-                class="link block mt-3 text-sm"
-                @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
-              >
-                {{ t('or_add_field_without_drawing') }}
-              </a>
-            </div>
-          </div>
-        </div>
-        <div>
-          <Fields
-            ref="fields"
-            :fields="template.fields"
-            :submitters="template.submitters"
-            :selected-submitter="selectedSubmitter"
-            :with-help="withHelp"
-            :default-submitters="defaultSubmitters"
-            :draw-field-type="drawFieldType"
-            :with-fields-search="withFieldsSearch"
-            :default-fields="[...defaultRequiredFields, ...defaultFields]"
-            :template="template"
-            :default-required-fields="defaultRequiredFields"
-            :field-types="fieldTypes"
-            :with-sticky-submitters="withStickySubmitters"
-            :only-defined-fields="onlyDefinedFields"
-            :editable="editable"
-            :show-tour-start-form="showTourStartForm"
-            @add-field="addField"
-            @set-draw="[drawField = $event.field, drawOption = $event.option]"
-            @set-draw-type="[drawFieldType = $event, showDrawField = true]"
-            @set-drag="dragField = $event"
-            @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
-            @change-submitter="selectedSubmitter = $event"
-            @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
-            @scroll-to-area="scrollToArea"
+          <Upload
+            v-if="sortedDocuments.length && editable && withUploadButton"
+            :accept-file-types="acceptFileTypes"
+            :template-id="template.id"
+            @success="updateFromUpload"
           />
+          <button
+            v-if="sortedDocuments.length && editable && withAddPageButton"
+            id="add_blank_page_button"
+            class="btn btn-outline w-full add-blank-page-button"
+            @click.prevent="addBlankPage"
+          >
+            <IconInnerShadowTop
+              v-if="isLoadingBlankPage"
+              class="animate-spin w-5 h-5"
+            />
+            <IconPlus
+              v-else
+              class="w-5 h-5"
+            />
+            {{ t('add_blank_page') }}
+          </button>
         </div>
       </div>
     </div>
