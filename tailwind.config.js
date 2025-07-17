@@ -17,7 +17,7 @@ module.exports = {
           'base-300': '#e7e2df',
           'base-content': 'rgb(73, 75, 80)',
           'font-size': '16px',
-          '--rounded-btn': '4px',
+          '--rounded-btn': '5px',
           '--tab-border': '2px',
           '--tab-radius': '.5rem'
         }

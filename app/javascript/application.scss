@@ -4,6 +4,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 a[href],
 input[type='checkbox'],
 input[type='submit'],
@@ -45,6 +49,10 @@ button[disabled] .enabled {
 
 .btn {
   @apply no-animation;
+  height: 2.3rem;
+  min-height: 2.3rem;
+  text-transform: none;
+  font-weight: 400;
 }
 
 .base-input {
@@ -56,7 +64,19 @@ button[disabled] .enabled {
 }
 
 .base-button {
-  @apply btn btn-primary text-white text-base;
+  @apply btn btn-outline text-sm;
+  border-color: #004FCC;
+  color: #004FCC;
+  padding: 6px 12px;
+}
+
+.primary-button {
+  @apply btn btn-primary text-white text-sm;
+  padding: 6px 12px;
+}
+
+label.primary-button {
+  padding: 10px;
 }
 
 .btn-outline {

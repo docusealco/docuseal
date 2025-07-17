@@ -98,7 +98,7 @@
             class="flex"
           >
             <button
-              class="base-button !rounded-r-none !pr-2"
+              class="primary-button !rounded-r-none !pr-2"
               :class="{ disabled: isSaving }"
               v-bind="isSaving ? { disabled: true } : {}"
               @click.prevent="onSaveClick"
@@ -119,7 +119,7 @@
             <div class="dropdown dropdown-end">
               <label
                 tabindex="0"
-                class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500"
+                class="primary-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500"
               >
                 <span class="text-sm align-text-top">
                   <IconChevronDown class="w-5 h-5 flex-shrink-0" />
@@ -353,7 +353,7 @@
           @change="save"
         />
         <div
-          class="sticky bottom-0 py-2 space-y-2"
+          class="sticky bottom-0 py-1 space-y-2"
           :style="{ backgroundColor }"
         >
           <Upload
