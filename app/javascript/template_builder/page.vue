@@ -27,6 +27,7 @@
         :field="item.field"
         :editable="editable"
         :with-field-placeholder="withFieldPlaceholder"
+        :with-signature-id="withSignatureId"
         :default-field="defaultFieldsIndex[item.field.name]"
         :default-submitters="defaultSubmitters"
         :max-page="totalPages - 1"
@@ -75,6 +76,11 @@ export default {
     },
     dragFieldPlaceholder: {
       type: Object,
+      required: false,
+      default: null
+    },
+    withSignatureId: {
+      type: Boolean,
       required: false,
       default: null
     },

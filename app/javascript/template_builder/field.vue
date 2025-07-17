@@ -125,6 +125,7 @@
                 :field="field"
                 :default-field="defaultField"
                 :editable="editable"
+                :with-signature-id="withSignatureId"
                 :background-color="dropdownBgColor"
                 @click-formula="isShowFormulaModal = true"
                 @click-font="isShowFontModal = true"
@@ -301,6 +302,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     withOptions: {
       type: Boolean,

@@ -330,6 +330,7 @@
                 :input-mode="inputMode"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields || drawField"
+                :with-signature-id="withSignatureId"
                 :data-document-uuid="document.uuid"
                 :default-submitters="defaultSubmitters"
                 :drag-field-placeholder="fieldsDragFieldRef.value || dragField"
@@ -436,6 +437,7 @@
             :default-required-fields="defaultRequiredFields"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
+            :with-signature-id="withSignatureId"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
             :show-tour-start-form="showTourStartForm"
@@ -541,6 +543,7 @@ export default {
       withPayment: this.withPayment,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
+      withSignatureId: this.withSignatureId,
       withConditions: this.withConditions,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -562,6 +565,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     backgroundColor: {
       type: String,
@@ -1068,6 +1076,11 @@ export default {
         }
       }
 
+      if (type === 'signature' && [true, false].includes(this.withSignatureId)) {
+        field.preferences ||= {}
+        field.preferences.with_signature_id = this.withSignatureId
+      }
+
       this.template.fields.push(field)
 
       this.save()
@@ -1473,6 +1486,11 @@ export default {
         if (field.type === 'date') {
           field.preferences ||= {}
           field.preferences.format ||= this.defaultDateFormat
+        }
+
+        if (field.type === 'signature' && [true, false].includes(this.withSignatureId)) {
+          field.preferences ||= {}
+          field.preferences.with_signature_id = this.withSignatureId
         }
       }
 

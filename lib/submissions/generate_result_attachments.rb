@@ -274,6 +274,10 @@ module Submissions
           field_type = 'file' if field_type == 'image' &&
                                  !submitter.attachments.find { |a| a.uuid == value }.image?
 
+          if field_type == 'signature' && field.dig('preferences', 'with_signature_id').in?([true, false])
+            with_signature_id = field['preferences']['with_signature_id']
+          end
+
           case field_type
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }

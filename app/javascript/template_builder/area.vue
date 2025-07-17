@@ -140,6 +140,7 @@
               :background-color="'white'"
               :with-required="false"
               :with-areas="false"
+              :with-signature-id="withSignatureId"
               @click-formula="isShowFormulaModal = true"
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
@@ -346,6 +347,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     defaultSubmitters: {
       type: Array,
