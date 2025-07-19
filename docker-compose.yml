@@ -3,7 +3,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:latest
+    image: mbf/docuseal:latest
+    tty: true
+    stdin_open: true
     ports:
       - 3000:3000
     volumes:
