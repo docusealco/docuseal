@@ -20,18 +20,42 @@
   <% end %>
   <% if devise_mapping.omniauthable? %>
     <div class="space-y-4">
-      <% if User.omniauth_providers.include?(:google_oauth2) %>
-        <%= form_for '', url: omniauth_authorize_path(resource_name, :google_oauth2), data: { turbo: false }, method: :post do |f| %>
+      <% if User.omniauth_providers.include?(:google_oauth2) && Rails.application.credentials.google_client_id.present? && Rails.application.credentials.google_client_id != 'placeholder_client_id' %>
+        <%= form_for '', url: '/auth/google_oauth2', data: { turbo: false }, method: :post do |f| %>
           <set-timezone data-input-id="state" data-params="true"></set-timezone>
           <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query %>
           <%= f.button button_title(title: t('sign_in_with_google'), icon: svg_icon('brand_google', class: 'w-6 h-6')), class: 'white-button w-full mt-4' %>
         <% end %>
       <% end %>
-      <% if User.omniauth_providers.include?(:microsoft_office365) %>
-        <%= form_for '', url: omniauth_authorize_path(resource_name, :microsoft_office365), data: { turbo: false }, method: :post do |f| %>
+      <% if User.omniauth_providers.include?(:microsoft_graph) && Rails.application.credentials.microsoft_client_id.present? && Rails.application.credentials.microsoft_client_id != 'placeholder_client_id' %>
+        <%= form_for '', url: '/auth/microsoft_graph', data: { turbo: false }, method: :post do |f| %>
           <set-timezone data-input-id="state_microsoft" data-params="true"></set-timezone>
           <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query, id: 'state_microsoft' %>
           <%= f.button button_title(title: t('sign_in_with_microsoft'), icon: svg_icon('brand_microsoft', class: 'w-6 h-6')), class: 'white-button w-full' %>
+        <% end %>
+      <% end %>
+      <% 
+        # Check if SAML is configured (either in ENV or database)
+        saml_configured = false
+        if ENV['SAML_IDP_SSO_SERVICE_URL'].present? && ENV['SAML_IDP_CERT_FINGERPRINT'].present?
+          saml_configured = true
+        else
+          saml_config_record = EncryptedConfig.find_by(key: 'saml_configs')
+          if saml_config_record&.value.present?
+            begin
+              config = JSON.parse(saml_config_record.value)
+              saml_configured = config['idp_sso_service_url'].present? && config['idp_cert_fingerprint'].present?
+            rescue JSON::ParserError
+              # Invalid JSON, treat as not configured
+            end
+          end
+        end
+      %>
+      <% if User.omniauth_providers.include?(:saml) && saml_configured %>
+        <%= form_for '', url: '/auth/saml', data: { turbo: false }, method: :post do |f| %>
+          <set-timezone data-input-id="state_saml" data-params="true"></set-timezone>
+          <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query, id: 'state_saml' %>
+          <%= f.button button_title(title: 'Sign in with SAML SSO', icon: svg_icon('certificate', class: 'w-6 h-6')), class: 'white-button w-full' %>
         <% end %>
       <% end %>
     </div>

@@ -16,13 +16,15 @@ Rails.application.routes.draw do
 
   devise_for :users,
              path: '/', only: %i[sessions passwords omniauth_callbacks],
-             controllers: begin
-               options = { sessions: 'sessions', passwords: 'passwords' }
-               options[:omniauth_callbacks] = 'omniauth_callbacks' if User.devise_modules.include?(:omniauthable)
-               options
-             end
+             controllers: {
+               sessions: 'sessions',
+               passwords: 'passwords',
+               omniauth_callbacks: 'users/omniauth_callbacks'
+             }
 
   devise_scope :user do
+    # SAML metadata endpoint
+    match '/auth/saml/metadata', to: 'users/omniauth_callbacks#metadata', via: [:get, :head]
     resource :invitation, only: %i[update] do
       get '' => :edit
     end
@@ -168,7 +170,7 @@ Rails.application.routes.draw do
       resources :sms, only: %i[index], controller: 'sms_settings'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sso, only: %i[index], controller: 'sso_settings'
+    resource :sso, only: %i[show update], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]

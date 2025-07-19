@@ -330,5 +330,84 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
+  # ==> Omniauth
+  # Add a new line here for each provider that your app supports.
+  
+  # SAML Configuration
+  # Dynamic configuration that loads from database or environment at runtime
+  config.omniauth :saml,
+    setup: lambda { |env|
+      begin
+        # Load SAML configuration dynamically for each request
+        request = ActionDispatch::Request.new(env)
+        
+        # Try to get account context from session or other means
+        account = nil
+        if request.session && request.session['warden.user.user.key']
+          user_id = request.session['warden.user.user.key'][0][0]
+          user = User.find_by(id: user_id) if user_id
+          account = user&.account
+        end
+        
+        # If no account from session, try to get any account with SAML config
+        unless account
+          saml_config_record = EncryptedConfig.find_by(key: 'saml_configs')
+          account = saml_config_record&.account if saml_config_record
+        end
+        
+        # Load SAML config from database or environment
+        saml_config = SamlConfigService.load_config(account)
+        
+        Rails.logger.info "SAML Setup: Account=#{account&.id}, SSO_URL=#{saml_config[:idp_sso_service_url]}, Cert=#{saml_config[:idp_cert_fingerprint].present?}"
+        
+        # Set the omniauth strategy options
+        env['omniauth.strategy'].options.merge!({
+          assertion_consumer_service_url: "#{ENV.fetch('APP_URL', 'http://localhost:3000')}/auth/saml/callback",
+          sp_entity_id: saml_config[:sp_entity_id] || ENV.fetch('SAML_SP_ENTITY_ID', 'docuseal'),
+          idp_sso_service_url: saml_config[:idp_sso_service_url] || ENV['SAML_IDP_SSO_SERVICE_URL'],
+          idp_cert_fingerprint: saml_config[:idp_cert_fingerprint] || ENV['SAML_IDP_CERT_FINGERPRINT'],
+          name_identifier_format: saml_config[:name_identifier_format] || 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+          attribute_statements: {
+            email: [saml_config[:email_attribute] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
+            first_name: [saml_config[:first_name_attribute] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'],
+            last_name: [saml_config[:last_name_attribute] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'],
+            name: [saml_config[:name_attribute] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
+          }
+        })
+        
+        # If no valid configuration is found, set error
+        unless saml_config[:idp_sso_service_url].present? && saml_config[:idp_cert_fingerprint].present?
+          Rails.logger.error "SAML Setup Failed: Missing SSO URL or certificate"
+          env['omniauth.error'] = 'SAML is not configured'
+          env['omniauth.error.type'] = :setup_failed
+        end
+      rescue => e
+        Rails.logger.error "SAML Setup Error: #{e.message}"
+        env['omniauth.error'] = "SAML setup failed: #{e.message}"
+        env['omniauth.error.type'] = :setup_failed
+      end
+    }
+  
+  # Google OAuth2 Configuration
+  # Always configure (will use placeholder if credentials not set)
+  config.omniauth :google_oauth2,
+    Rails.application.credentials.google_client_id || 'placeholder_client_id',
+    Rails.application.credentials.google_client_secret || 'placeholder_client_secret',
+    {
+      scope: 'email,profile',
+      prompt: 'select_account',
+      image_aspect_ratio: 'square',
+      image_size: 50
+    }
+  
+  # Microsoft Graph Configuration  
+  # Always configure (will use placeholder if credentials not set)
+  config.omniauth :microsoft_graph,
+    Rails.application.credentials.microsoft_client_id || 'placeholder_client_id',
+    Rails.application.credentials.microsoft_client_secret || 'placeholder_client_secret',
+    {
+      scope: 'openid email profile'
+    }
+
   ActiveSupport.run_load_hooks(:devise_config, config)
 end

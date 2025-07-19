@@ -1,0 +1,91 @@
+FROM ruby:3.4.2-alpine AS download
+
+WORKDIR /fonts
+
+RUN apk --no-cache add fontforge wget && \
+    wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf && \
+    wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Bold.ttf && \
+    wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && \
+    wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansSymbols2/hinted/ttf/NotoSansSymbols2-Regular.ttf && \
+    wget https://github.com/Maxattax97/gnu-freefont/raw/master/ttf/FreeSans.ttf && \
+    wget https://github.com/impallari/DancingScript/raw/master/OFL.txt && \
+    wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
+    mkdir -p /pdfium-linux && \
+    tar -xzf pdfium-linux.tgz -C /pdfium-linux
+
+RUN fontforge -lang=py -c 'font1 = fontforge.open("FreeSans.ttf"); font2 = fontforge.open("NotoSansSymbols2-Regular.ttf"); font1.mergeFonts(font2); font1.generate("FreeSans.ttf")'
+
+FROM ruby:3.4.2-alpine AS app
+
+# Development environment settings
+ENV RAILS_ENV=development
+ENV NODE_ENV=development
+ENV BUNDLE_WITHOUT=""
+ENV LD_PRELOAD=/lib/libgcompat.so.0
+ENV OPENSSL_CONF=/app/openssl_legacy.cnf
+
+WORKDIR /app
+
+# Install system dependencies including nodejs and yarn for development
+RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
+    apk add --no-cache \
+    sqlite-dev \
+    libpq-dev \
+    mariadb-dev \
+    vips-dev@edge \
+    redis \
+    libheif@edge \
+    vips-heif@edge \
+    gcompat \
+    ttf-freefont \
+    nodejs \
+    yarn \
+    git \
+    build-base && \
+    mkdir /fonts && \
+    rm /usr/share/fonts/freefont/FreeSans.otf
+
+# Copy fonts from download stage
+COPY --from=download /fonts /fonts
+COPY --from=download /pdfium-linux /pdfium-linux
+
+# Install PDFium library
+RUN cp /pdfium-linux/lib/libpdfium.so /usr/local/lib/ && \
+    chmod +x /usr/local/lib/libpdfium.so
+
+# OpenSSL legacy configuration for compatibility
+RUN echo $'.include = /etc/ssl/openssl.cnf\n\
+\n\
+[provider_sect]\n\
+default = default_sect\n\
+legacy = legacy_sect\n\
+\n\
+[default_sect]\n\
+activate = 1\n\
+\n\
+[legacy_sect]\n\
+activate = 1' >> /app/openssl_legacy.cnf
+
+# Copy Gemfile and package.json for dependency installation
+COPY ./Gemfile ./Gemfile.lock ./
+COPY ./package.json ./yarn.lock ./
+
+# Install Ruby gems and Node packages
+RUN bundle install && \
+    yarn install --network-timeout 1000000
+
+# Install shakapacker for asset compilation
+RUN gem install shakapacker
+
+# Create necessary directories
+RUN mkdir -p log tmp/pids tmp/cache tmp/sockets public/assets
+
+# Set up the application
+COPY ./bin ./bin
+RUN chmod +x ./bin/*
+
+# Expose port 3000
+EXPOSE 3000
+
+# Default command for development
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

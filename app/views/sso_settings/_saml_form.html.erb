@@ -1,0 +1,160 @@
+<%= form_with model: @encrypted_config, url: settings_sso_path, method: :patch, local: true, multipart: true, class: "space-y-4" do |f| %>
+  <div class="space-y-6">
+    <div class="alert alert-info">
+      <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+      <div>
+        <p class="font-bold">SAML SSO Configuration</p>
+        <p class="text-gray-700">
+          Configure SAML 2.0 Single Sign-On for your organization. Users will be able to sign in using your identity provider.
+        </p>
+      </div>
+    </div>
+
+    <% saml_config = @encrypted_config.value.present? ? JSON.parse(@encrypted_config.value) : {} %>
+
+    <!-- IdP Metadata Upload Section -->
+    <div class="card bg-base-100 border border-base-300">
+      <div class="card-body">
+        <h3 class="card-title text-lg">Quick Setup: Upload IdP Metadata</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Upload your Identity Provider's metadata XML file to automatically populate the configuration below.
+        </p>
+        
+        <div class="form-control">
+          <%= label_tag 'idp_metadata_file', 'IdP Metadata XML File', class: 'label' %>
+          <%= file_field_tag 'idp_metadata_file', 
+                             accept: '.xml,application/xml,text/xml', 
+                             class: 'file-input file-input-bordered w-full' %>
+          <div class="label">
+            <span class="label-text-alt">Select your IdP's metadata.xml file to auto-configure SAML settings</span>
+          </div>
+        </div>
+        
+        <div class="card-actions justify-end mt-4">
+          <%= submit_tag 'Parse Metadata', class: 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">OR configure manually</div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[idp_sso_service_url]', 'Identity Provider SSO URL', class: 'label' %>
+      <%= text_field_tag 'saml_config[idp_sso_service_url]', saml_config['idp_sso_service_url'], 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'https://your-idp.com/sso/saml',
+                         required: true %>
+      <div class="label">
+        <span class="label-text-alt">The URL where users will be redirected to authenticate</span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[idp_cert_fingerprint]', 'Identity Provider Certificate Fingerprint', class: 'label' %>
+      <%= text_field_tag 'saml_config[idp_cert_fingerprint]', saml_config['idp_cert_fingerprint'], 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD',
+                         required: true %>
+      <div class="label">
+        <span class="label-text-alt">SHA1 fingerprint of your IdP's certificate</span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[sp_entity_id]', 'Service Provider Entity ID', class: 'label' %>
+      <%= text_field_tag 'saml_config[sp_entity_id]', saml_config['sp_entity_id'] || 'docuseal', 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'docuseal',
+                         required: true %>
+      <div class="label">
+        <span class="label-text-alt">Unique identifier for this DocuSeal instance</span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[name_identifier_format]', 'Name ID Format', class: 'label' %>
+      <%= select_tag 'saml_config[name_identifier_format]', 
+                     options_for_select([
+                       ['Email Address', 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'],
+                       ['Persistent', 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'],
+                       ['Transient', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient']
+                     ], saml_config['name_identifier_format'] || 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'),
+                     class: 'select select-bordered w-full' %>
+      <div class="label">
+        <span class="label-text-alt">Format for the user identifier sent by your IdP</span>
+      </div>
+    </div>
+
+    <div class="divider">Attribute Mapping</div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[email_attribute]', 'Email Attribute', class: 'label' %>
+      <%= text_field_tag 'saml_config[email_attribute]', 
+                         saml_config['email_attribute'] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress', 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress' %>
+      <div class="label">
+        <span class="label-text-alt">SAML attribute name that contains the user's email</span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[first_name_attribute]', 'First Name Attribute', class: 'label' %>
+      <%= text_field_tag 'saml_config[first_name_attribute]', 
+                         saml_config['first_name_attribute'] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname', 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname' %>
+      <div class="label">
+        <span class="label-text-alt">SAML attribute name that contains the user's first name</span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <%= label_tag 'saml_config[last_name_attribute]', 'Last Name Attribute', class: 'label' %>
+      <%= text_field_tag 'saml_config[last_name_attribute]', 
+                         saml_config['last_name_attribute'] || 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname', 
+                         class: 'input input-bordered w-full', 
+                         placeholder: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname' %>
+      <div class="label">
+        <span class="label-text-alt">SAML attribute name that contains the user's last name</span>
+      </div>
+    </div>
+
+    <div class="divider">Service Provider Information</div>
+    
+    <div class="alert">
+      <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+      <div>
+        <p class="font-bold">Configuration URLs for your Identity Provider</p>
+        <div class="mt-2 space-y-1 text-sm">
+          <p><strong>Assertion Consumer Service URL:</strong></p>
+          <code class="bg-base-200 px-2 py-1 rounded text-xs"><%= "#{request.base_url}/auth/saml/callback" %></code>
+          
+          <p class="mt-2"><strong>SP Metadata URL:</strong></p>
+          <div class="flex items-center gap-2">
+            <code class="bg-base-200 px-2 py-1 rounded text-xs flex-1"><%= "#{request.base_url}/auth/saml/metadata" %></code>
+            <a href="<%= "#{request.base_url}/auth/saml/metadata" %>" 
+               class="btn btn-sm btn-outline" 
+               target="_blank"
+               title="Download SAML Metadata">
+              Download
+            </a>
+          </div>
+          
+          <p class="mt-2"><strong>SP Entity ID:</strong></p>
+          <code class="bg-base-200 px-2 py-1 rounded text-xs"><%= saml_config['sp_entity_id'] || 'docuseal' %></code>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-2">
+      <%= f.submit 'Save SAML Configuration', class: 'btn btn-primary' %>
+      <% if @encrypted_config.persisted? && @encrypted_config.value.present? %>
+        <%= link_to 'Test SAML Login', user_saml_omniauth_authorize_path, 
+                    method: :post, 
+                    class: 'btn btn-outline',
+                    data: { turbo: false } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

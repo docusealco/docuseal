@@ -1,0 +1,89 @@
+services:
+  app:
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    tty: true
+    stdin_open: true
+    ports:
+      - 3000:3000
+    volumes:
+      # Mount the entire codebase for live development
+      - .:/app
+      # Preserve node_modules and bundle cache
+      - /app/node_modules
+      - bundle_cache:/usr/local/bundle
+      # Mount data directory
+      - ./docuseal:/data/docuseal
+    environment:
+      - RAILS_ENV=development
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal_development
+      - REDIS_URL=redis://redis:6379/0
+      - FORCE_SSL=false
+      - SECRET_KEY_BASE=development_secret_key_base_change_in_production
+    command: >
+      sh -c "
+        bundle install &&
+        yarn install &&
+        bundle exec rails db:create db:migrate &&
+        rm -f /app/tmp/pids/server.pid &&
+        bundle exec rails server -b 0.0.0.0
+      "
+
+  postgres:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: docuseal_development
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Optional: Sidekiq for background jobs
+  sidekiq:
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal_development
+      - REDIS_URL=redis://redis:6379/0
+    command: >
+      sh -c "
+        bundle install &&
+        bundle exec sidekiq
+      "
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:

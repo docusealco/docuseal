@@ -19,13 +19,15 @@
 #  locked_at              :datetime
 #  otp_required_for_login :boolean          default(FALSE), not null
 #  otp_secret             :string
+#  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
+#  uid                    :string
 #  unlock_token           :string
-#  uuid                   :text             not null
+#  uuid                   :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  account_id             :bigint           not null
@@ -34,6 +36,7 @@
 #
 #  index_users_on_account_id            (account_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_provider_and_uid      (provider,uid) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_uuid                  (uuid) UNIQUE
@@ -64,7 +67,7 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable, :omniauthable, omniauth_providers: %i[saml google_oauth2 microsoft_graph]
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -115,5 +118,57 @@ class User < ApplicationRecord
     else
       email
     end
+  end
+
+  # Omniauth callback method
+  def self.from_omniauth(auth)
+    # Find existing user by provider and uid
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+    
+    if user
+      # Update user info from provider if needed
+      user.update(
+        email: auth.info.email,
+        first_name: auth.info.first_name || auth.info.name&.split&.first,
+        last_name: auth.info.last_name || auth.info.name&.split&.last
+      ) if auth.info.email.present?
+      return user
+    end
+
+    # Try to find user by email if no provider/uid match
+    existing_user = User.find_by(email: auth.info.email) if auth.info.email.present?
+    
+    if existing_user
+      # Link existing account with omniauth provider
+      existing_user.update(
+        provider: auth.provider,
+        uid: auth.uid
+      )
+      return existing_user
+    end
+
+    # Create new user from omniauth data
+    # For multitenant setups, we need to determine the account
+    account = if Docuseal.multitenant?
+                # In multitenant mode, create account from domain or use default logic
+                Account.find_or_create_by(name: auth.info.email&.split('@')&.last || 'SSO Account')
+              else
+                # In single-tenant mode, use the first account or create one
+                Account.first || Account.create!(name: 'Default Account')
+              end
+
+    User.create!(
+      email: auth.info.email,
+      first_name: auth.info.first_name || auth.info.name&.split&.first,
+      last_name: auth.info.last_name || auth.info.name&.split&.last,
+      provider: auth.provider,
+      uid: auth.uid,
+      account: account,
+      # Skip password validation for omniauth users
+      password: Devise.friendly_token[0, 20]
+    )
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error "Failed to create user from omniauth: #{e.message}"
+    nil
   end
 end
