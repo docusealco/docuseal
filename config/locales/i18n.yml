@@ -298,6 +298,10 @@ en: &en
   attach_audit_log_pdf: Attach audit log PDF
   attach_documents: Attach documents
   settings_have_been_saved: Settings have been saved.
+  personalization_settings:
+    logo_form:
+      remove_logo: Remove logo
+      logo_help_html: The logo will be displayed in emails and on the signing page. Use a transparent PNG for best results.
   display_your_company_name_and_logo_when_signing_documents: Display your company name and logo when signing documents.
   profile: Profile
   signature: Signature

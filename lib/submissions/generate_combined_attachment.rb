@@ -22,9 +22,27 @@ module Submissions
         pdf.config['font.map'] = GenerateResultAttachments::PDFA_FONT_MAP
       end
 
+      # Always create a custom signature field to replace the default watermark, regardless of formal signing
+      sig_field = pdf.acro_form(create: true).create_signature_field("DocuSealSignature-#{SecureRandom.hex(4)}")
+      # The widget is placed on the page, but the appearance stream is what matters.
+      # We make it very small and out of the way.
+      widget = sig_field.create_widget(pdf.pages.first, Rect: [0, 0, 5, 5])
+      appearance = widget.create_appearance
+      canvas = appearance.canvas
+      logo = submitter.account.logo
+
+      if logo.attached?
+        logo.blob.open do |tempfile|
+          canvas.image(tempfile.path, at: [2, 1], height: 38)
+        end
+      end
+
+      pdf.pages.first[:Annots] = [] unless pdf.pages.first[:Annots].respond_to?(:<<)
+
       if pkcs
         sign_params = {
           reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),
+          signature: sig_field,
           **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
         }
 
@@ -32,7 +50,14 @@ module Submissions
 
         Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
       else
-        pdf.write(io, incremental: true, validate: true)
+        # Even without formal signing, use the custom signature field to prevent default watermark
+        begin
+          pdf.sign(io, signature: sig_field)
+        rescue StandardError => e
+          # Fallback to regular write if signing fails
+          Rollbar.error(e) if defined?(Rollbar)
+          pdf.write(io, incremental: true, validate: true)
+        end
       end
 
       ActiveStorage::Attachment.create!(

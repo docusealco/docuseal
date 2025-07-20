@@ -1,1 +1,51 @@
-<%= render 'logo_placeholder' %>
+<div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+  <%= form.label :logo, class: 'block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2' %>
+
+  <div class="mt-1 sm:mt-0 sm:col-span-2">
+    <div class="collapse collapse-plus bg-base-200">
+      <input type="checkbox">
+      <div class="collapse-title text-xl font-medium">
+        <div>
+          <%= t('company_logo') %>
+        </div>
+      </div>
+      <div class="collapse-content">
+        <div class="space-y-4">
+          <% if @account.logo.attached? %>
+            <div class="flex items-center space-x-4">
+              <div class="flex-shrink-0">
+                <%= image_tag @account.logo.variant(:thumb), class: "w-16 h-16 object-contain border border-gray-300 rounded" %>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">Current logo</p>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="form-control">
+            <%= form.label :logo, "Upload Logo", class: "label" %>
+            <%= form.file_field :logo, accept: "image/png,image/jpeg,image/gif,image/svg+xml", class: "file-input file-input-bordered w-full" %>
+            <div class="label">
+              <span class="label-text-alt text-gray-500">
+                <%= t('personalization_settings.logo_form.logo_help_html').html_safe %>
+              </span>
+            </div>
+          </div>
+
+          <% if @account.logo.attached? %>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-start space-x-2">
+                <%= form.check_box :remove_logo, class: "checkbox" %>
+                <span class="label-text"><%= t('personalization_settings.logo_form.remove_logo') %></span>
+              </label>
+            </div>
+          <% end %>
+
+          <div class="form-control pt-2">
+            <%= form.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -627,13 +627,29 @@ module Submissions
 
       sign_reason = fetch_sign_reason(submitter)
 
+      # Always create a custom signature field to replace the default watermark, regardless of formal signing
+      sig_field = pdf.acro_form(create: true).create_signature_field("DocuSealSignature-#{SecureRandom.hex(4)}")
+      # The widget is placed on the page, but the appearance stream is what matters.
+      # We make it very small and out of the way.
+      widget = sig_field.create_widget(pdf.pages.first, Rect: [0, 0, 5, 5])
+      appearance = widget.create_appearance
+      canvas = appearance.canvas
+      logo = submitter.account.logo
+
+      if logo.attached?
+        logo.blob.open do |tempfile|
+          canvas.image(tempfile.path, at: [2, 1], height: 38)
+        end
+      end
+
+      pdf.pages.first[:Annots] = [] unless pdf.pages.first[:Annots].respond_to?(:<<)
+
       if sign_reason && pkcs
         sign_params = {
           reason: sign_reason,
+          signature: sig_field,
           **build_signing_params(submitter, pkcs, tsa_url)
         }
-
-        pdf.pages.first[:Annots] = [] unless pdf.pages.first[:Annots].respond_to?(:<<)
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
@@ -645,12 +661,24 @@ module Submissions
 
         maybe_enable_ltv(io, sign_params)
       else
+        # Even without formal signing, use the custom signature field to prevent default watermark
         begin
-          pdf.write(io, incremental: true, validate: false)
+          pdf.sign(io, signature: sig_field, write_options: { validate: false })
         rescue HexaPDF::MalformedPDFError => e
           Rollbar.error(e) if defined?(Rollbar)
 
-          pdf.write(io, incremental: false, validate: false)
+          pdf.sign(io, signature: sig_field, write_options: { validate: false, incremental: false })
+        rescue StandardError => e
+          # Fallback to regular write if signing fails
+          Rollbar.error(e) if defined?(Rollbar)
+          
+          begin
+            pdf.write(io, incremental: true, validate: false)
+          rescue HexaPDF::MalformedPDFError => e
+            Rollbar.error(e) if defined?(Rollbar)
+
+            pdf.write(io, incremental: false, validate: false)
+          end
         end
       end
 

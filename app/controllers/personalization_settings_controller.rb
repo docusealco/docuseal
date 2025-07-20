@@ -16,6 +16,24 @@ class PersonalizationSettingsController < ApplicationController
 
   def show
     authorize!(:read, AccountConfig)
+    @account = current_account
+  end
+
+  def update
+    authorize!(:update, current_account)
+    @account = current_account
+
+    if @account.update(account_params)
+      redirect_to '/settings/personalization', notice: 'Logo has been updated successfully.'
+    else
+      render :show
+    end
+  end
+
+  private
+
+  def account_params
+    params.require(:account).permit(:logo, :remove_logo)
   end
 
   def create

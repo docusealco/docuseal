@@ -21,6 +21,21 @@ class Account < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   has_many :users, dependent: :destroy
+  has_one_attached :logo do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
+
+  attr_accessor :remove_logo
+
+  after_save :purge_logo, if: :remove_logo?
+
+  def remove_logo?
+    remove_logo.to_s == '1'
+  end
+
+  def purge_logo
+    logo.purge
+  end
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
   has_many :email_messages, dependent: :destroy
