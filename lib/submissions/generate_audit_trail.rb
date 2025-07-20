@@ -261,8 +261,6 @@ module Submissions
             e['type'] == 'verification' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
           end
 
-        submitter_field_counters = Hash.new { 0 }
-
         info_rows = [
           [
             composer.document.layout.formatted_text_box(
@@ -298,25 +296,53 @@ module Submissions
 
         composer.table(info_rows, cell_style: { padding: [0, 0, 0, 0], border: { width: 0 } })
 
+        submitter_field_counters = Hash.new { 0 }
+        grouped_value_field_names = {}
+        skip_grouped_field_uuids = {}
+
+        submission.template_fields.each do |field|
+          next unless field['type'].in?(%w[signature initials])
+
+          submitter_field_counters[field['type']] += 1
+
+          next if field['submitter_uuid'] != submitter.uuid
+
+          value = submitter.values[field['uuid']]
+
+          field_name = field['title'].presence || field['name'].presence ||
+                       "#{I18n.t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}"
+
+          if grouped_value_field_names[value]
+            skip_grouped_field_uuids[field['uuid']] = true
+
+            grouped_value_field_names[value] += ", #{field_name}"
+          else
+            grouped_value_field_names[value] = field_name
+          end
+        end
+
+        submitter_field_counters = Hash.new { 0 }
+
         submission.template_fields.filter_map do |field|
+          submitter_field_counters[field['type']] += 1
+
           next if field['submitter_uuid'] != submitter.uuid
           next if field['type'] == 'heading'
           next if !with_audit_values && !field['type'].in?(%w[signature initials])
-
-          submitter_field_counters[field['type']] += 1
+          next if skip_grouped_field_uuids[field['uuid']]
 
           value = submitter.values[field['uuid']]
 
           next if Array.wrap(value).compact_blank.blank?
 
-          field_name = field['title'].presence || field['name'].to_s
+          field_name = grouped_value_field_names[value].presence || field['title'].presence || field['name'].to_s
 
           [
             composer.formatted_text_box(
               [
                 {
                   text: TextUtils.maybe_rtl_reverse(field_name).upcase.presence ||
-                        "#{I18n.t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}\n".upcase,
+                        "#{I18n.t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}".upcase,
                   font_size: 6
                 }
               ].compact_blank,
