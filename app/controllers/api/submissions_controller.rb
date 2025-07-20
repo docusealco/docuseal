@@ -14,7 +14,7 @@ module Api
       submissions = filter_submissions(submissions, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
-                                                 template: :folder,
+                                                 template: { folder: :parent_folder },
                                                  combined_document_attachment: :blob,
                                                  audit_trail_attachment: :blob))
 
@@ -104,9 +104,10 @@ module Api
       submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:template_folder].present?
-        folder_ids = TemplateFolder.accessible_by(current_ability).where(name: params[:template_folder]).pluck(:id)
+        folders =
+          TemplateFolders.filter_by_full_name(TemplateFolder.accessible_by(current_ability), params[:template_folder])
 
-        submissions = submissions.joins(:template).where(template: { folder_id: folder_ids })
+        submissions = submissions.joins(:template).where(template: { folder_id: folders.pluck(:id) })
       end
 
       if params.key?(:archived)

@@ -1,7 +1,39 @@
+<% with_subfolder = @template.folder.name != TemplateFolder::DEFAULT_NAME && params[:subfolder] != 'false' %>
 <%= render 'shared/turbo_modal', title: t('move_into_folder') do %>
-  <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
-    <div class="form-control my-6">
-      <folder-autocomplete class="block" data-submit-on-select="true">
+  <% if with_subfolder %>
+    <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'subfolder_form', autocomplete: :off } do |f| %>
+      <%= f.hidden_field :parent_name, value: @template.folder.parent_folder&.name || @template.folder.name %>
+      <toggle-visible data-element-ids="<%= %w[folder_form subfolder_form].to_json %>" class="block relative">
+        <div class="flex items-center justify-between mb-2.5">
+          <label for="is_root_folder" class="flex items-center">
+            <%= check_box_tag :is_root_folder, 'folder_form', data: { action: 'change:toggle-visible#trigger' }, class: 'hidden' %>
+            <span class="flex items-center space-x-0.5 mt-1 peer">
+              <%= svg_icon('folder', class: 'w-6 h-5 flex-shrink-0') %>
+              <span class="text-md">
+                <%= @template.folder.parent_folder&.name || @template.folder.name %>
+              </span>
+            </span>
+            <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('change_parent_folder') %>">
+              <span href="<%= edit_template_folder_path(@template.id) %>" data-turbo-frame="modal">
+                <%= svg_icon('pencil', class: 'w-5 h-5') %>
+              </span>
+            </span>
+          </label>
+        </div>
+      </toggle-visible>
+      <div class="form-control mb-6">
+        <folder-autocomplete class="block" data-submit-on-select="true" data-parent-name="<%= @template.folder.parent_folder&.name || @template.folder.name %>" data-enabled="<%= params[:autocomplete] != 'false' %>">
+          <%= f.text_field :name, required: true, placeholder: "#{t('new_subfolder_name')}...", class: 'base-input w-full', autofocus: true %>
+        </folder-autocomplete>
+      </div>
+      <div class="form-control">
+        <%= f.button button_title(title: t('move'), disabled_with: t('moving')), class: 'base-button' %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'folder_form', autocomplete: :off, class: "mt-6 #{'hidden' if with_subfolder}" } do |f| %>
+    <div class="form-control mb-6">
+      <folder-autocomplete class="block" data-submit-on-select="true" data-enabled="<%= params[:autocomplete] != 'false' %>">
         <%= f.text_field :name, required: true, placeholder: "#{t('new_folder_name')}...", class: 'base-input w-full', autofocus: true %>
       </folder-autocomplete>
     </div>

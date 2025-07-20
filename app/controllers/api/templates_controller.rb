@@ -7,7 +7,7 @@ module Api
     def index
       templates = filter_templates(@templates, params)
 
-      templates = paginate(templates.preload(:author, :folder))
+      templates = paginate(templates.preload(:author, folder: :parent_folder))
 
       schema_documents =
         ActiveStorage::Attachment.where(record_id: templates.map(&:id),
@@ -92,9 +92,9 @@ module Api
       templates = templates.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:folder].present?
-        folder_ids = TemplateFolder.accessible_by(current_ability).where(name: params[:folder]).pluck(:id)
+        folders = TemplateFolders.filter_by_full_name(TemplateFolder.accessible_by(current_ability), params[:folder])
 
-        templates = templates.where(folder_id: folder_ids)
+        templates = templates.where(folder_id: folders.pluck(:id))
       end
 
       templates

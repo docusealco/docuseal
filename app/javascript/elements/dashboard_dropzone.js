@@ -15,6 +15,7 @@ export default targetable(class extends HTMLElement {
   static [target.static] = [
     'form',
     'fileDropzone',
+    'folderDropzone',
     'fileDropzoneLoading'
   ]
 
@@ -25,12 +26,13 @@ export default targetable(class extends HTMLElement {
     window.addEventListener('dragleave', this.onWindowDragleave)
 
     this.fileDropzone?.addEventListener('drop', this.onDropFile)
+    this.folderDropzone?.addEventListener('drop', this.onDropNewFolder)
 
     this.folderCards.forEach((el) => el.addEventListener('drop', (e) => this.onDropFolder(e, el)))
     this.templateCards.forEach((el) => el.addEventListener('drop', this.onDropTemplate))
     this.templateCards.forEach((el) => el.addEventListener('dragstart', this.onTemplateDragStart))
 
-    return [this.fileDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
+    return [this.fileDropzone, this.folderDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
       el?.addEventListener('dragover', this.onDragover)
       el?.addEventListener('dragleave', this.onDragleave)
     })
@@ -45,6 +47,10 @@ export default targetable(class extends HTMLElement {
 
   onTemplateDragStart = (e) => {
     const id = e.target.href.split('/').pop()
+
+    this.folderCards.forEach((el) => el.classList.remove('bg-base-200', 'before:hidden'))
+    this.folderDropzone?.classList?.remove('hidden')
+    window.flash?.remove()
 
     e.dataTransfer.effectAllowed = 'move'
 
@@ -104,7 +110,7 @@ export default targetable(class extends HTMLElement {
       } else {
         const formData = new FormData()
 
-        formData.append('name', el.innerText.trim())
+        formData.append('name', el.dataset.fullName)
 
         fetch(`/templates/${templateId}/folder`, {
           method: 'PUT',
@@ -176,6 +182,24 @@ export default targetable(class extends HTMLElement {
     }
   }
 
+  onDropNewFolder (e) {
+    e.preventDefault()
+
+    const templateId = e.dataTransfer.getData('template_id')
+
+    const a = document.createElement('a')
+
+    a.href = `/templates/${templateId}/folder/edit?autocomplete=false`
+    a.dataset.turboFrame = 'modal'
+    a.classList.add('hidden')
+
+    document.body.append(a)
+
+    a.click()
+
+    a.remove()
+  }
+
   onDragleave () {
     this.style.backgroundColor = null
 
@@ -199,6 +223,7 @@ export default targetable(class extends HTMLElement {
 
     this.isDrag = true
 
+    window.flash?.remove()
     this.fileDropzone?.classList?.remove('hidden')
 
     this.hiddenOnDrag.forEach((el) => { el.style.display = 'none' })
@@ -212,6 +237,7 @@ export default targetable(class extends HTMLElement {
     this.isDrag = false
 
     this.fileDropzone?.classList?.add('hidden')
+    this.folderDropzone?.classList?.add('hidden')
 
     this.hiddenOnDrag.forEach((el) => { el.style.display = null })
 

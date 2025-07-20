@@ -11,10 +11,11 @@ class TemplatesDashboardController < ApplicationController
   helper_method :selected_order
 
   def index
-    @template_folders = @template_folders.where(id: @templates.active.select(:folder_id))
+    @template_folders =
+      TemplateFolders.filter_active_folders(@template_folders.where(parent_folder_id: nil), @templates)
 
     @template_folders = TemplateFolders.search(@template_folders, params[:q])
-    @template_folders = sort_template_folders(@template_folders, current_user, selected_order)
+    @template_folders = TemplateFolders.sort(@template_folders, current_user, selected_order)
 
     @pagy, @template_folders = pagy(
       @template_folders,
@@ -66,40 +67,6 @@ class TemplatesDashboardController < ApplicationController
     end
 
     Templates.search(current_user, rel, params[:q])
-  end
-
-  def sort_template_folders(template_folders, current_user, order)
-    case order
-    when 'used_at'
-      subquery =
-        Template.left_joins(:submissions)
-                .group(:folder_id)
-                .where(account_id: current_user.account_id)
-                .select(
-                  :folder_id,
-                  Template.arel_table[:updated_at].maximum.as('updated_at_max'),
-                  Submission.arel_table[:created_at].maximum.as('submission_created_at_max')
-                )
-
-      template_folders = template_folders.joins(
-        Template.arel_table
-                .join(subquery.arel.as('templates'), Arel::Nodes::OuterJoin)
-                .on(TemplateFolder.arel_table[:id].eq(Template.arel_table[:folder_id]))
-                .join_sources
-      )
-
-      template_folders.order(
-        Arel::Nodes::Case.new
-                         .when(Template.arel_table[:submission_created_at_max].gt(Template.arel_table[:updated_at_max]))
-                         .then(Template.arel_table[:submission_created_at_max])
-                         .else(Template.arel_table[:updated_at_max])
-                         .desc
-      )
-    when 'name'
-      template_folders.order(name: :asc)
-    else
-      template_folders.order(id: :desc)
-    end
   end
 
   def selected_order

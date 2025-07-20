@@ -1,6 +1,6 @@
 <div class="h-36 relative group">
   <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl" data-targets="dashboard-dropzone.templateCards">
-    <div class="text-xl font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+    <div class="text-xl font-semibold" style="line-height: 1.6rem; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
       <% if template.template_accesses.present? %>
         <%= svg_icon('lock', class: 'w-6 h-6 inline -translate-y-[4px]') %>
       <% end %>
@@ -22,7 +22,7 @@
         <% if template.archived_at? %>
           <span class="flex items-center space-x-1 w-1/2">
             <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
-            <span class="truncate"><%= template.folder.name %></span>
+            <span class="truncate"><%= template.folder.full_name %></span>
           </span>
         <% end %>
       </p>

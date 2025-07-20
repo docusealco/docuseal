@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_27_130628) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_18_121133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -356,8 +356,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_130628) do
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_folder_id"
     t.index ["account_id"], name: "index_template_folders_on_account_id"
     t.index ["author_id"], name: "index_template_folders_on_author_id"
+    t.index ["parent_folder_id"], name: "index_template_folders_on_parent_folder_id"
   end
 
   create_table "template_sharings", force: :cascade do |t|
@@ -498,6 +500,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_130628) do
   add_foreign_key "submitters", "submissions"
   add_foreign_key "template_accesses", "templates"
   add_foreign_key "template_folders", "accounts"
+  add_foreign_key "template_folders", "template_folders", column: "parent_folder_id"
   add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "template_sharings", "templates"
   add_foreign_key "templates", "accounts"

@@ -11,6 +11,7 @@
     <% unless show_dropzone %>
       <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
     <% end %>
+    <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
     <div class="flex items-center flex-grow min-w-0">
       <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <div class="mr-2">

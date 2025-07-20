@@ -16,12 +16,12 @@
             <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
               <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
               <span class="text-sm">
-                <%= @template.folder.name %>
+                <%= @template.folder.full_name %>
               </span>
             </a>
             <% if can?(:update, template) %>
               <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
-                <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
+                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
               </span>
