@@ -122,53 +122,37 @@ class User < ApplicationRecord
 
   # Omniauth callback method
   def self.from_omniauth(auth)
-    # Find existing user by provider and uid
+    # Find an existing user by provider and uid
     user = User.find_by(provider: auth.provider, uid: auth.uid)
-    
-    if user
-      # Update user info from provider if needed
-      user.update(
+    return user if user
+
+    # IMPORTANT: The following section has been removed to prevent account takeover vulnerabilities.
+    # Automatic linking of accounts based on email is not secure.
+    # A user should link their SSO provider only when they are already logged in.
+
+    # If the user does not exist, create a new one.
+    # NOTE: This account provisioning logic may need to be customized based on your application's needs.
+    begin
+      account = if Docuseal.multitenant?
+                  # This logic is potentially insecure and should be reviewed.
+                  # It is recommended to have a more robust way of assigning accounts.
+                  Account.find_or_create_by(name: auth.info.email&.split('@')&.last || 'SSO Account')
+                else
+                  Account.first_or_create!(name: 'Default Account')
+                end
+
+      User.create!(
         email: auth.info.email,
         first_name: auth.info.first_name || auth.info.name&.split&.first,
-        last_name: auth.info.last_name || auth.info.name&.split&.last
-      ) if auth.info.email.present?
-      return user
-    end
-
-    # Try to find user by email if no provider/uid match
-    existing_user = User.find_by(email: auth.info.email) if auth.info.email.present?
-    
-    if existing_user
-      # Link existing account with omniauth provider
-      existing_user.update(
+        last_name: auth.info.last_name || auth.info.name&.split&.last,
         provider: auth.provider,
-        uid: auth.uid
+        uid: auth.uid,
+        account: account,
+        password: Devise.friendly_token[0, 20]
       )
-      return existing_user
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error "Failed to create user from omniauth: #{e.message}"
+      nil
     end
-
-    # Create new user from omniauth data
-    # For multitenant setups, we need to determine the account
-    account = if Docuseal.multitenant?
-                # In multitenant mode, create account from domain or use default logic
-                Account.find_or_create_by(name: auth.info.email&.split('@')&.last || 'SSO Account')
-              else
-                # In single-tenant mode, use the first account or create one
-                Account.first || Account.create!(name: 'Default Account')
-              end
-
-    User.create!(
-      email: auth.info.email,
-      first_name: auth.info.first_name || auth.info.name&.split&.first,
-      last_name: auth.info.last_name || auth.info.name&.split&.last,
-      provider: auth.provider,
-      uid: auth.uid,
-      account: account,
-      # Skip password validation for omniauth users
-      password: Devise.friendly_token[0, 20]
-    )
-  rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.error "Failed to create user from omniauth: #{e.message}"
-    nil
   end
 end

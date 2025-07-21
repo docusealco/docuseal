@@ -37,18 +37,30 @@
       <% 
         # Check if SAML is configured (either in ENV or database)
         saml_configured = false
-        if ENV['SAML_IDP_SSO_SERVICE_URL'].present? && ENV['SAML_IDP_CERT_FINGERPRINT'].present?
-          saml_configured = true
-        else
-          saml_config_record = EncryptedConfig.find_by(key: 'saml_configs')
-          if saml_config_record&.value.present?
-            begin
-              config = JSON.parse(saml_config_record.value)
-              saml_configured = config['idp_sso_service_url'].present? && config['idp_cert_fingerprint'].present?
-            rescue JSON::ParserError
-              # Invalid JSON, treat as not configured
+        begin
+          if ENV['SAML_IDP_SSO_SERVICE_URL'].present? && ENV['SAML_IDP_CERT_FINGERPRINT'].present?
+            saml_configured = true
+            Rails.logger.info "SAML Login Page: Using ENV configuration"
+          else
+            # Try to find SAML config in any account (not just current_account)
+            saml_config_record = EncryptedConfig.where(key: 'saml_configs').first
+            Rails.logger.info "SAML Login Page: Config record found: #{saml_config_record.present?}"
+            
+            if saml_config_record&.value.present?
+              begin
+                config = JSON.parse(saml_config_record.value)
+                saml_configured = config['idp_sso_service_url'].present? && config['idp_cert_fingerprint'].present?
+                Rails.logger.info "SAML Login Page: Valid JSON: Yes, SSO URL: #{config['idp_sso_service_url'].present?}, Cert: #{config['idp_cert_fingerprint'].present?}"
+              rescue JSON::ParserError => e
+                Rails.logger.error "SAML Login Page: JSON parse error: #{e.message}"
+                # Invalid JSON, treat as not configured
+              end
+            else
+              Rails.logger.info "SAML Login Page: Config value is empty or nil"
             end
           end
+        rescue => e
+          Rails.logger.error "SAML Login Page: Error checking config: #{e.message}"
         end
       %>
       <% if User.omniauth_providers.include?(:saml) && saml_configured %>
