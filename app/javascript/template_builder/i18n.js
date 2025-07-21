@@ -1,4 +1,5 @@
 const en = {
+  signature_id: 'Signature ID',
   error_message: 'Error message',
   length: 'Length',
   min: 'Min',
@@ -172,6 +173,7 @@ const en = {
 }
 
 const es = {
+  signature_id: 'ID de Firma',
   error_message: 'Mensaje de error',
   length: 'Longitud',
   min: 'Mín',
@@ -345,6 +347,7 @@ const es = {
 }
 
 const it = {
+  signature_id: 'ID firma',
   error_message: 'Messaggio di errore',
   length: 'Lunghezza',
   min: 'Min',
@@ -518,6 +521,7 @@ const it = {
 }
 
 const pt = {
+  signature_id: 'ID da Assinatura',
   error_message: 'Mensagem de erro',
   length: 'Comprimento',
   min: 'Mín',
@@ -691,6 +695,7 @@ const pt = {
 }
 
 const fr = {
+  signature_id: 'ID de signature',
   error_message: 'Message d\'erreur',
   length: 'Longueur',
   min: 'Min',
@@ -864,6 +869,7 @@ const fr = {
 }
 
 const de = {
+  signature_id: 'Signatur-ID',
   error_message: 'Fehlermeldung',
   length: 'Länge',
   min: 'Min',

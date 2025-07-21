@@ -321,6 +321,21 @@
     </label>
   </div>
   <li
+    v-if="[true, false].includes(withSignatureId) && field.type === 'signature'"
+    @click.stop
+  >
+    <label class="cursor-pointer py-1.5">
+      <input
+        :checked="field.preferences?.with_signature_id"
+        type="checkbox"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
+        class="toggle toggle-xs"
+        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, save()]"
+      >
+      <span class="label-text">{{ t('signature_id') }}</span>
+    </label>
+  </li>
+  <li
     v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
     @click.stop
   >
@@ -524,6 +539,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     backgroundColor: {
       type: String,

@@ -10,6 +10,17 @@
     <% end %>
   </div>
 <% end %>
+<% if params[:folder].present? %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('folder') %>">
+    <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+      <%= svg_icon('folder', class: 'w-5 h-5 shrink-0') %>
+      <span class="font-normal truncate"><%= params[:folder] %></span>
+    <% end %>
+    <%= link_to url_for(params.to_unsafe_h.except(:folder)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+      <%= svg_icon('x', class: 'w-5 h-5') %>
+    <% end %>
+  </div>
+<% end %>
 <% if params[:author].present? %>
   <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('author') %>">
     <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>

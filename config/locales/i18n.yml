@@ -460,6 +460,10 @@ en: &en
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: '%{users_count}/%{total_users_count} Pro users limit was reached. To invite additional users, please purchase more Pro user seats via the "Manage plan" button.'
   move_into_folder: Move Into Folder
   new_folder_name: New Folder Name
+  new_subfolder_name: New Subfolder Name
+  change_parent_folder: Change Parent Folder
+  folder: Folder
+  create_a_new_folder: Create a New Folder
   exit_preview: Exit Preview
   general: General
   recipients: Recipients
@@ -1326,6 +1330,10 @@ es: &es
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'Se alcanzó el límite de %{users_count}/%{total_users_count} usuarios Pro. Para invitar a más usuarios, compra más plazas Pro usando el botón "Gestionar plan".'
   move_into_folder: Mover a la carpeta
   new_folder_name: Nuevo nombre de la carpeta
+  new_subfolder_name: Nuevo nombre de subcarpeta
+  change_parent_folder: Cambiar carpeta principal
+  folder: Carpeta
+  create_a_new_folder: Crear una nueva carpeta
   exit_preview: Salir de la vista previa
   general: General
   recipients: Destinatarios
@@ -2191,6 +2199,10 @@ it: &it
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'È stato raggiunto il limite di %{users_count}/%{total_users_count} utenti Pro. Per invitare altri utenti, acquista più posti Pro tramite il pulsante "Gestisci piano".'
   move_into_folder: Sposta nella cartella
   new_folder_name: Nuovo nome della cartella
+  new_subfolder_name: Nuovo nome della sottocartella
+  change_parent_folder: Cambia cartella principale
+  folder: Cartella
+  create_a_new_folder: Crea una nuova cartella
   exit_preview: "Esci dall'anteprima"
   general: Generale
   recipients: Destinatari
@@ -3058,6 +3070,10 @@ fr: &fr
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'La limite de %{users_count}/%{total_users_count} utilisateurs Pro a été atteinte. Pour inviter d''autres utilisateurs, veuillez acheter plus de places Pro via le bouton "Gérer le plan".'
   move_into_folder: Déplacer dans le dossier
   new_folder_name: Nouveau nom du dossier
+  new_subfolder_name: Nouveau nom du sous-dossier
+  change_parent_folder: Changer le dossier parent
+  folder: Dossier
+  create_a_new_folder: Créer un nouveau dossier
   exit_preview: "Quitter l'aperçu"
   general: Général
   recipients: Destinataires
@@ -3925,6 +3941,10 @@ pt: &pt
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'O limite de %{users_count}/%{total_users_count} usuários Pro foi atingido. Para convidar mais usuários, adquira mais licenças Pro através do botão "Gerenciar plano".'
   move_into_folder: Mover para pasta
   new_folder_name: Novo nome da pasta
+  new_subfolder_name: Novo nome da subpasta
+  change_parent_folder: Alterar pasta pai
+  folder: Pasta
+  create_a_new_folder: Criar uma nova pasta
   exit_preview: Sair da pré-visualização
   general: Geral
   recipients: Destinatários
@@ -4792,6 +4812,10 @@ de: &de
   users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: 'Das Limit von %{users_count}/%{total_users_count} Pro-Benutzern wurde erreicht. Um weitere Benutzer einzuladen, kaufen Sie bitte zusätzliche Pro-Benutzerplätze über die Schaltfläche "Plan verwalten".'
   move_into_folder: In Ordner verschieben
   new_folder_name: Neuer Ordnername
+  new_subfolder_name: Neuer Unterordnername
+  change_parent_folder: Übergeordneten Ordner ändern
+  folder: Ordner
+  create_a_new_folder: Neuen Ordner erstellen
   exit_preview: Vorschau beenden
   general: Allgemein
   recipients: Empfänger

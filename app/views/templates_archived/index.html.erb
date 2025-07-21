@@ -1,12 +1,12 @@
 <div>
-  <%= link_to root_path do %>
-    &larr;
-    <span><%= t('back_to_active') %></span>
+  <%= link_to root_path, class: 'flex items-center' do %>
+    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+    <span style="margin-left: 3px"><%= t('back_to_active') %></span>
   <% end %>
 </div>
 <div class="flex justify-between mb-4 items-center">
   <div>
-  <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('document_templates_html') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+    <h1 class="text-2xl md:text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('document_templates_html') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
   </div>
   <% if params[:q].present? || @pagy.pages > 1 %>
     <%= render 'shared/search_input', placeholder: "#{t('search')}..." %>
@@ -22,5 +22,14 @@
       <%= t('templates_not_found') %>
     </div>
   </div>
+  <% if @related_submissions.present? %>
+    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold mt-8 md:mt-4">
+      <%= t('submissions') %>
+    </h1>
+    <div class="space-y-4 mt-4">
+      <%= render partial: 'templates/submission', collection: @related_submissions, locals: { with_template: true } %>
+    </div>
+    <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions', next_page_path: submissions_archived_index_path(q: params[:q]) %>
+  <% end %>
 <% end %>
 <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>

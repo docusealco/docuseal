@@ -53,7 +53,7 @@
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
-            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
+            <pre data-prefix="$"><code class="overflow-hidden w-full"><%== HighlightCode.call(text, 'Shell', theme: 'base16.dark') %></code></pre>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
-            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
+            <pre data-prefix="$"><code class="overflow-hidden w-full"><%== HighlightCode.call(text, 'Shell', theme: 'base16.dark') %></code></pre>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
-            <pre data-prefix="$"><code class="overflow-hidden w-full"><%= text %></code></pre>
+            <pre data-prefix="$"><code class="overflow-hidden w-full"><%== HighlightCode.call(text, 'Shell', theme: 'base16.dark') %></code></pre>
           </div>
         </div>
       </div>

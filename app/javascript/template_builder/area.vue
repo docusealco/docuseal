@@ -140,6 +140,7 @@
               :background-color="'white'"
               :with-required="false"
               :with-areas="false"
+              :with-signature-id="withSignatureId"
               @click-formula="isShowFormulaModal = true"
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
@@ -347,6 +348,11 @@ export default {
       required: false,
       default: false
     },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
     defaultSubmitters: {
       type: Array,
       required: false,
@@ -413,9 +419,6 @@ export default {
     },
     fontScale () {
       return 1040 / 612.0
-    },
-    ladscapeScale () {
-      return 8.5 / 11.0
     },
     isDefaultValuePresent () {
       if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {

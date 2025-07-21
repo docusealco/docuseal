@@ -149,7 +149,8 @@ export default {
       return fetch(this.baseUrl + `/api/identity_verification/${this.field.uuid}`, {
         method: 'PUT',
         body: JSON.stringify({
-          submitter_slug: this.submitterSlug
+          submitter_slug: this.submitterSlug,
+          redirect_url: document.location.href
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {

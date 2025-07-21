@@ -10,6 +10,7 @@
       :data-page="index"
       :areas="areasIndex[index]"
       :allow-draw="allowDraw"
+      :with-signature-id="withSignatureId"
       :is-drag="isDrag"
       :with-field-placeholder="withFieldPlaceholder"
       :default-fields="defaultFields"
@@ -65,6 +66,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     drawFieldType: {
       type: String,

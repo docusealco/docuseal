@@ -56,11 +56,11 @@
     <div
       v-else-if="field.type === 'signature' && signature"
       class="flex justify-between h-full gap-1 overflow-hidden w-full"
-      :class="isNarrow && (withSignatureId || field.preferences?.reason_field_uuid) ? 'flex-row' : 'flex-col'"
+      :class="isNarrow && (isShowSignatureId || field.preferences?.reason_field_uuid) ? 'flex-row' : 'flex-col'"
     >
       <div
         class="flex overflow-hidden"
-        :class="isNarrow && (withSignatureId || field.preferences?.reason_field_uuid) ? 'w-1/2' : 'flex-grow'"
+        :class="isNarrow && (isShowSignatureId || field.preferences?.reason_field_uuid) ? 'w-1/2' : 'flex-grow'"
         style="min-height: 50%"
       >
         <img
@@ -69,7 +69,7 @@
         >
       </div>
       <div
-        v-if="withSignatureId || field.preferences?.reason_field_uuid"
+        v-if="isShowSignatureId || field.preferences?.reason_field_uuid"
         class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]"
         :class="isNarrow ? 'w-1/2' : 'w-full'"
       >
@@ -333,6 +333,13 @@ export default {
         verification: this.t('verify_id')
       }
     },
+    isShowSignatureId () {
+      if ([true, false].includes(this.field.preferences?.with_signature_id)) {
+        return this.field.preferences.with_signature_id
+      } else {
+        return this.withSignatureId
+      }
+    },
     alignClasses () {
       if (!this.field.preferences) {
         return { 'items-center': true }
@@ -459,9 +466,6 @@ export default {
     },
     fontScale () {
       return 1000 / 612.0
-    },
-    ladscapeScale () {
-      return 8.5 / 11.0
     },
     computedStyle () {
       const { x, y, w, h } = this.area
