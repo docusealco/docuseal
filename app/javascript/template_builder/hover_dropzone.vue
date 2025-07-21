@@ -2,6 +2,8 @@
   <div
     v-if="isDragging || isLoading"
     class="modal modal-open"
+    @dragover.prevent
+    @drop.prevent="$emit('error')"
   >
     <div class="flex flex-col gap-2 p-4 items-center bg-base-100 h-full max-h-[85vh] max-w-6xl rounded-2xl w-full">
       <Dropzone
