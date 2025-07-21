@@ -1,0 +1,39 @@
+sudo yum install -y ec2-instance-connect
+cat >/home/ec2-user/.bashrc <<'EOF'
+ # .bashrc
+
+  # Source global definitions
+  if [ -f /etc/bashrc ]; then
+          . /etc/bashrc
+  fi
+
+  # User specific aliases and functions
+  function setContainer {
+    CONTAINER_ID=`sudo docker ps | grep "rails/bin" | awk '{ print $1; }' | head -1`
+  }
+  function execDocker {
+    setContainer
+    sudo docker exec -u rails -i -t $CONTAINER_ID $@
+  }
+  function copy_from {
+    setContainer
+    sudo docker cp "$CONTAINER_ID:/rails/$1" "$2"
+  }
+  function copy_to {
+    setContainer
+    sudo docker cp "$1" "$CONTAINER_ID:/rails/$2"
+    sudo docker exec -u root -t $CONTAINER_ID /bin/sh -c 'chown rails:rails /rails/$2'
+  }
+
+  function dangerConsole {
+    echo
+    echo "********** Accessing the WRITE & READ console **********"
+    echo "********** THIS IS DANGEROUS AND CHANGES YOU MAKE WILL IMPACT THE DATABASE **********"
+    echo
+    sleep 3
+    execDocker bin/rails console
+  }
+
+  alias console='dangerConsole'
+  alias shell='execDocker /bin/bash'
+EOF
