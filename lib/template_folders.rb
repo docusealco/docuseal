@@ -4,7 +4,9 @@ module TemplateFolders
   module_function
 
   def filter_by_full_name(template_folders, name)
-    parent_name, name = name.split(' / ', 2).map(&:squish)
+    return template_folders.none if name.blank?
+
+    parent_name, name = name.to_s.split(' / ', 2).map(&:squish)
 
     if name.present?
       parent_folder = template_folders.where(parent_folder_id: nil).find_by(name: parent_name)
@@ -75,7 +77,7 @@ module TemplateFolders
   def find_or_create_by_name(author, name)
     return author.account.default_template_folder if name.blank? || name == TemplateFolder::DEFAULT_NAME
 
-    parent_name, name = name.split(' / ', 2).map(&:squish)
+    parent_name, name = name.to_s.split(' / ', 2).map(&:squish)
 
     if name.present?
       parent_folder = author.account.template_folders.create_with(author:)
