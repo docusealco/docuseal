@@ -783,6 +783,7 @@ en: &en
   email_verification: Email verification
   your_verification_code_to_access_the_name: 'Your verification code to access the "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Please reply to this email if you didn't request this.
+  advanced_settings: Advanced settings
   text: Text
   code: Code
   custom_html_emails: Custom HTML emails
@@ -1665,6 +1666,7 @@ es: &es
   email_verification: Verificación por correo electrónico
   your_verification_code_to_access_the_name: 'Su código de verificación para acceder a "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Por favor, responda este correo si no solicitó esto.
+  advanced_settings: Configuración avanzada
   text: Texto
   code: Código
   custom_html_emails: Correos electrónicos HTML personalizados
@@ -2546,6 +2548,7 @@ it: &it
   email_verification: Verifica email
   your_verification_code_to_access_the_name: 'Il tuo codice per accedere a "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Rispondi a questa email se non hai richiesto questo.
+  advanced_settings: Impostazioni avanzate
   text: Testo
   code: Codice
   custom_html_emails: Email HTML personalizzate
@@ -3430,6 +3433,7 @@ fr: &fr
   email_verification: Vérification de l'email
   your_verification_code_to_access_the_name: 'Votre code pour accéder à "%{name}" :'
   please_reply_to_this_email_if_you_didnt_request_this: Veuillez répondre à cet email si vous n'avez pas fait cette demande.
+  advanced_settings: Paramètres avancés
   text: Texte
   code: Code
   custom_html_emails: E-mails HTML personnalisés
@@ -4312,6 +4316,7 @@ pt: &pt
   email_verification: Verificação de e-mail
   your_verification_code_to_access_the_name: 'Seu código de verificação para acessar "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Responda a este e-mail se você não solicitou isso.
+  advanced_settings: Configurações avançadas
   text: Texto
   code: Código
   custom_html_emails: E-mails HTML personalizados
@@ -5195,6 +5200,7 @@ de: &de
   email_verification: E-Mail-Verifizierung
   your_verification_code_to_access_the_name: 'Ihr Verifizierungscode für den Zugriff auf "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Antworten Sie auf diese E-Mail, wenn Sie dies nicht angefordert haben.
+  advanced_settings: Erweiterte Einstellungen
   text: Text
   code: Code
   custom_html_emails: Benutzerdefinierte HTML-E-Mails
