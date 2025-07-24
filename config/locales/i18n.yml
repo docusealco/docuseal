@@ -73,7 +73,7 @@ en: &en
   awaiting_completion_by_the_other_party: "Awaiting completion by the other party"
   review_and_sign: Review and Sign
   review_and_submit: Review and Submit
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Please contact us by replying to this email if you have any questions."
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Please contact us by replying to this email if you have any questions."
   submitter_invitation_sms_body_sign: '{account.name} has invited you to sign a document: {submitter.link}'
   verification_code_sms_body: 'Verification code: {code}'
   you_are_invited_to_submit_a_form: 'You are invited to submit a form'
@@ -783,6 +783,18 @@ en: &en
   email_verification: Email verification
   your_verification_code_to_access_the_name: 'Your verification code to access the "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Please reply to this email if you didn't request this.
+  text: Text
+  code: Code
+  custom_html_emails: Custom HTML emails
+  connect_your_email_to_send_html_emails: Connect your email to send HTML emails
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Connect your Gmail or Oulook account or add SMTP settings to send custom HTML emails.
+  connect_gmail_or_outlook: Connect Gmail or Outlook
+  connect_your_email_to_bulk_send: Connect your email to bulk send
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connect your Gmail or Oulook account or add SMTP settings to bulk send.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails it requires to connect Gmail or Outlook.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
+  you_have_been_invited_to_sign_the_template_name_html: 'You have been invited to sign the "<strong>{template.name}</strong>".'
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -944,7 +956,7 @@ es: &es
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Por favor, revisa la copia de tu "%{name}" en los archivos adjuntos del correo electrónico.'
   review_and_sign: Revisar y Firmar
   review_and_submit: Revisar y Enviar
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Por favor, contáctanos respondiendo a este correo si tienes alguna pregunta."
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Por favor, contáctanos respondiendo a este correo si tienes alguna pregunta."
   submitter_invitation_sms_body_sign: '{account.name} te ha invitado a firmar un documento: {submitter.link}'
   verification_code_sms_body: 'Código de verificación: {code}'
   you_are_invited_to_submit_a_form: 'Estás invitado/a a enviar un formulario'
@@ -973,7 +985,7 @@ es: &es
   submitter_documents_copy_email_body: |
     Hola,
 
-    Por favor, revisa la copia de tu "{template.name}" en los archivos adjuntos.
+    Por favor, revisa la copia de tu "{template.name}" en los archivos adjuntos del correo electrónico.
     Alternativamente, puedes revisar y descargar tu copia usando el enlace a continuación:
 
     [{template.name}]({documents.link})
@@ -1653,6 +1665,18 @@ es: &es
   email_verification: Verificación por correo electrónico
   your_verification_code_to_access_the_name: 'Su código de verificación para acceder a "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Por favor, responda este correo si no solicitó esto.
+  text: Texto
+  code: Código
+  custom_html_emails: Correos electrónicos HTML personalizados
+  connect_your_email_to_send_html_emails: Conecta tu correo electrónico para enviar correos HTML
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Conecta tu cuenta de Gmail u Outlook o añade ajustes SMTP para enviar correos HTML personalizados.
+  connect_gmail_or_outlook: Conectar Gmail u Outlook
+  connect_your_email_to_bulk_send: Conecta tu correo electrónico para el envío masivo
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Conecta tu cuenta de Gmail u Outlook o añade ajustes SMTP para el envío masivo.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: ¿Estás seguro de que quieres añadir destinatarios sin enviar? Para enviar correos electrónicos necesitas conectar Gmail u Outlook.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" ha sido completado por <strong>{submission.submitters}</strong>'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, revisa la copia de tu "<strong>{template.name}</strong>" en los archivos adjuntos del correo electrónico.'
+  you_have_been_invited_to_sign_the_template_name_html: 'Has sido invitado a firmar el "<strong>{template.name}</strong>".'
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1813,7 +1837,7 @@ it: &it
   please_check_the_copy_of_your_name_in_the_email_attachments: "Per favore, controlla la copia del tuo \"%{name}\" negli allegati dell'email."
   review_and_sign: Rivedi e Firma
   review_and_submit: Rivedi e Invia
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "Per favore, contattaci rispondendo a questa email se hai domande."
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Per favore, contattaci rispondendo a questa email se hai domande."
   submitter_invitation_sms_body_sign: '{account.name} ti ha invitato a firmare un documento: {submitter.link}'
   verification_code_sms_body: 'Codice di verifica: {code}'
   you_are_invited_to_submit_a_form: 'Sei stato invitato a inviare un modulo'
@@ -2522,6 +2546,18 @@ it: &it
   email_verification: Verifica email
   your_verification_code_to_access_the_name: 'Il tuo codice per accedere a "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Rispondi a questa email se non hai richiesto questo.
+  text: Testo
+  code: Codice
+  custom_html_emails: Email HTML personalizzate
+  connect_your_email_to_send_html_emails: Collega la tua email per inviare email HTML
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Collega il tuo account Gmail o Outlook oppure aggiungi impostazioni SMTP per inviare email HTML personalizzate.
+  connect_gmail_or_outlook: Collega Gmail o Outlook
+  connect_your_email_to_bulk_send: Collega la tua email per invio multiplo
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Collega il tuo account Gmail o Outlook oppure aggiungi impostazioni SMTP per invio multiplo.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Sei sicuro di voler aggiungere destinatari senza inviare? Per inviare email devi collegare Gmail o Outlook.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" è stato completato da <strong>{submission.submitters}</strong>'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Per favore, controlla la copia del tuo "<strong>{template.name}</strong>" negli allegati dell''email.'
+  you_have_been_invited_to_sign_the_template_name_html: 'Sei stato invitato a firmare il "<strong>{template.name}</strong>".'
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2683,7 +2719,7 @@ fr: &fr
   please_check_the_copy_of_your_name_in_the_email_attachments: "Veuillez vérifier la copie de votre \"%{name}\" dans les pièces jointes de l'email."
   review_and_sign: Consulter et signer
   review_and_submit: Consulter et soumettre
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: 'Veuillez nous contacter en répondant à cet e-mail si vous avez des questions.'
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: 'Veuillez nous contacter en répondant à cet e-mail si vous avez des questions.'
   submitter_invitation_sms_body_sign: '{account.name} vous a invité à signer un document: {submitter.link}'
   verification_code_sms_body: 'Code de vérification: {code}'
   you_are_invited_to_submit_a_form: Vous êtes invité à soumettre un formulaire
@@ -2699,7 +2735,7 @@ fr: &fr
 
     [Consulter et signer]({submitter.link})
 
-    Veuillez nous contacter si vous avez des questions.
+    Veuillez nous contacter en répondant à cet e-mail si vous avez des questions.
 
     Merci,
     {account.name}
@@ -2712,7 +2748,7 @@ fr: &fr
   submitter_documents_copy_email_body: |
     Bonjour,
 
-    Veuillez vérifier la copie de votre "{template.name}" dans les pièces jointes.
+    Veuillez vérifier la copie de votre "{template.name}" dans les pièces jointes de l'email.
     Vous pouvez également consulter et télécharger votre copie en utilisant le lien ci-dessous:
 
     [{template.name}]({documents.link})
@@ -3394,6 +3430,18 @@ fr: &fr
   email_verification: Vérification de l'email
   your_verification_code_to_access_the_name: 'Votre code pour accéder à "%{name}" :'
   please_reply_to_this_email_if_you_didnt_request_this: Veuillez répondre à cet email si vous n'avez pas fait cette demande.
+  text: Texte
+  code: Code
+  custom_html_emails: E-mails HTML personnalisés
+  connect_your_email_to_send_html_emails: Connectez votre e-mail pour envoyer des e-mails HTML
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Connectez votre compte Gmail ou Outlook ou ajoutez des paramètres SMTP pour envoyer des e-mails HTML personnalisés.
+  connect_gmail_or_outlook: Connecter Gmail ou Outlook
+  connect_your_email_to_bulk_send: Connectez votre e-mail pour l'envoi groupé
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connectez votre compte Gmail ou Outlook ou ajoutez des paramètres SMTP pour l'envoi groupé.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Êtes-vous sûr de vouloir ajouter des destinataires sans envoi ? Pour envoyer des e-mails, vous devez connecter Gmail ou Outlook.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" a été complété par <strong>{submission.submitters}</strong>'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Veuillez vérifier la copie de votre "<strong>{template.name}</strong>" dans les pièces jointes de l’e-mail.'
+  you_have_been_invited_to_sign_the_template_name_html: 'Vous avez été invité à signer le "<strong>{template.name}</strong>".'
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3555,7 +3603,7 @@ pt: &pt
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Por favor, verifique a cópia de "%{name}" nos anexos do e-mail.'
   review_and_sign: Revisar e assinar
   review_and_submit: Revisar e submeter
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: 'Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.'
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: 'Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.'
   submitter_invitation_sms_body_sign: '{account.name} convidou você para assinar um documento: {submitter.link}'
   verification_code_sms_body: 'Código de verificação: {code}'
   you_are_invited_to_submit_a_form: Você foi convidado a submeter um formulário
@@ -3567,11 +3615,11 @@ pt: &pt
   submitter_invitation_email_sign_body: |
     Olá,
 
-    Você foi convidado a assinar o documento "{template.name}".
+    Você foi convidado a assinar "{template.name}".
 
     [Revisar e assinar]({submitter.link})
 
-    Por favor, entre em contato conosco se tiver alguma dúvida.
+    Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.
 
     Obrigado,
     {account.name}
@@ -3584,8 +3632,8 @@ pt: &pt
   submitter_documents_copy_email_body: |
     Olá,
 
-    Por favor, verifique a cópia de seu "{template.name}" nos anexos do e-mail.
-    Alternativamente, você pode revisar e baixar sua cópia usando o link abaixo:
+    Por favor, verifique a cópia de "{template.name}" nos anexos do e-mail.
+    Você pode revisar e baixar sua cópia usando o link abaixo:
 
     [{template.name}]({documents.link})
 
@@ -4264,6 +4312,18 @@ pt: &pt
   email_verification: Verificação de e-mail
   your_verification_code_to_access_the_name: 'Seu código de verificação para acessar "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Responda a este e-mail se você não solicitou isso.
+  text: Texto
+  code: Código
+  custom_html_emails: E-mails HTML personalizados
+  connect_your_email_to_send_html_emails: Conecte seu e-mail para enviar e-mails HTML
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Conecte sua conta Gmail ou Outlook ou adicione configurações SMTP para enviar e-mails HTML personalizados.
+  connect_gmail_or_outlook: Conectar Gmail ou Outlook
+  connect_your_email_to_bulk_send: Conecte seu e-mail para envio em massa
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Conecte sua conta Gmail ou Outlook ou adicione configurações SMTP para envio em massa.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Tem certeza de que deseja adicionar destinatários sem enviar? Para enviar e-mails é necessário conectar Gmail ou Outlook.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" foi concluído por <strong>{submission.submitters}</strong>'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, verifique a cópia do seu "<strong>{template.name}</strong>" nos anexos do e-mail.'
+  you_have_been_invited_to_sign_the_template_name_html: 'Você foi convidado a assinar o "<strong>{template.name}</strong>".'
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4426,7 +4486,7 @@ de: &de
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Bitte überprüfe die Kopie von "%{name}" im E-Mail-Anhang.'
   review_and_sign: Überprüfen und unterschreiben
   review_and_submit: Überprüfen und einreichen
-  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: 'Bitte kontaktiere uns, indem du auf diese E-Mail antwortest, falls du Fragen hast.'
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: 'Bitte kontaktieren Sie uns, indem Sie auf diese E-Mail antworten, falls Sie Fragen haben.'
   submitter_invitation_sms_body_sign: '{account.name} hat dich eingeladen, ein Dokument zu unterschreiben: {submitter.link}'
   verification_code_sms_body: 'Verifizierungscode: {code}'
   you_are_invited_to_submit_a_form: Du wurdest eingeladen, ein Formular einzureichen
@@ -4438,11 +4498,11 @@ de: &de
   submitter_invitation_email_sign_body: |
     Hallo,
 
-    Du wurdest eingeladen, das Dokument "{template.name}" zu unterschreiben.
+    Du wurdest eingeladen, "{template.name}" zu unterschreiben.
 
     [Überprüfen und unterschreiben]({submitter.link})
 
-    Bitte kontaktiere uns, falls du Fragen hast.
+    Bitte kontaktieren Sie uns, indem Sie auf diese E-Mail antworten, falls Sie Fragen haben.
 
     Danke,
     {account.name}
@@ -4455,8 +4515,8 @@ de: &de
   submitter_documents_copy_email_body: |
     Hallo,
 
-    Bitte überprüfe die Kopie deines "{template.name}" im E-Mail-Anhang.
-    Alternativ kannst du deine Kopie mit dem untenstehenden Link überprüfen und herunterladen:
+    Bitte überprüfe die Kopie von "{template.name}" im E-Mail-Anhang.
+    Du kannst alternativ deine Kopie mit dem untenstehenden Link überprüfen und herunterladen:
 
     [{template.name}]({documents.link})
 
@@ -5135,6 +5195,18 @@ de: &de
   email_verification: E-Mail-Verifizierung
   your_verification_code_to_access_the_name: 'Ihr Verifizierungscode für den Zugriff auf "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Antworten Sie auf diese E-Mail, wenn Sie dies nicht angefordert haben.
+  text: Text
+  code: Code
+  custom_html_emails: Benutzerdefinierte HTML-E-Mails
+  connect_your_email_to_send_html_emails: Verbinden Sie Ihr E-Mail-Konto, um HTML-E-Mails zu senden
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Verbinden Sie Ihr Gmail- oder Outlook-Konto oder fügen Sie SMTP-Einstellungen hinzu, um benutzerdefinierte HTML-E-Mails zu senden.
+  connect_gmail_or_outlook: Gmail oder Outlook verbinden
+  connect_your_email_to_bulk_send: Verbinden Sie Ihr E-Mail-Konto für Massenversand
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Verbinden Sie Ihr Gmail- oder Outlook-Konto oder fügen Sie SMTP-Einstellungen für den Massenversand hinzu.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Möchten Sie wirklich Empfänger hinzufügen, ohne zu senden? Zum Senden von E-Mails ist eine Verbindung zu Gmail oder Outlook erforderlich.
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" wurde von <strong>{submission.submitters}</strong> abgeschlossen'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Bitte prüfen Sie die Kopie Ihres "<strong>{template.name}</strong>" in den E-Mail-Anhängen.'
+  you_have_been_invited_to_sign_the_template_name_html: 'Du wurdest eingeladen, "<strong>{template.name}</strong>" zu unterschreiben.'
   submission_sources:
     api: API
     bulk: Massenversand
