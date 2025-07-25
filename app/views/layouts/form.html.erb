@@ -12,7 +12,6 @@
       <%= javascript_pack_tag 'form', defer: true %>
     <% end %>
     <%= stylesheet_pack_tag 'form', media: 'all' %>
-    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>
   <body>
     <%= yield %>

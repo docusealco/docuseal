@@ -18,7 +18,6 @@
       <link href="<%= canonical_url %>" rel="canonical">
     <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
     <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
   </head>
   <body>
