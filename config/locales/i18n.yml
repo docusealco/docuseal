@@ -19,6 +19,7 @@ en: &en
   language_ar: العربية
   language_ko: 한국어
   language_ja: 日本語
+  language_zh-CN: 简体中文
   hi_there: Hi there
   pro: Pro
   thanks: Thanks
@@ -5951,6 +5952,894 @@ ja:
   email_verification: メール認証
   your_verification_code_to_access_the_name: '"%{name}"へのアクセスコード：'
   please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
+
+zh-CN:
+  hi_there: 你好
+  pro: 专业
+  thanks: 谢谢
+  private: 私密
+  default_parties: 默认方
+  authenticate_embedded_form_preview_with_token: 使用令牌验证嵌入式表单预览
+  stripe_integration: Stripe 集成
+  require_all_recipients: 要求所有收件人
+  stripe_account_has_been_connected: Stripe 帐户已连接。
+  re_connect_stripe: 重新连接 Stripe
+  bcc_recipients: 密送收件人
+  resend_pending: 重新发送待处理项
+  always_enforce_signing_order: 始终强制签署顺序
+  ensure_unique_recipients: 确保收件人唯一
+  edit_per_party: 每方编辑
+  reply_to: 回复至
+  pending_by_me: 我待处理的
+  partially_completed: 部分完成
+  require_phone_2fa_to_open: 打开时需要电话双因素认证
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: 发件人已请求通过发送到您的<b>%{phone}</b>电话号码的一次性密码进行双因素认证。
+  send_verification_code: 发送验证码
+  code_has_been_resent: 验证码已重新发送
+  invalid_code: 无效的验证码
+  unarchive: 取消存档
+  signed: 已签署
+  first_party: '第一方'
+  remove_filter: 移除筛选
+  add: 添加
+  adding: 添加中
+  owner: 所有者
+  select_user: 选择用户
+  team_member_permissions: 团队成员权限
+  entire_team: 整个团队
+  admin_only: 仅限管理员
+  accessiable_by: 可访问者
+  team_access: 团队访问
+  document_download_filename_format: 文档下载文件名格式
+  document_name: 文档名称
+  docuseal_trusted_signature: DocuSeal 可信签名
+  hello_name: 你好 %{name}
+  you_are_invited_to_product_name: 您被邀请使用 %{product_name}
+  you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: '您已被邀请加入 %{account_name} %{product_name}。请使用下面的链接注册：'
+  sent_using_product_name_in_testing_mode_html: '以测试模式通过 <a href="%{product_url}">%{product_name}</a> 发送'
+  sent_using_product_name_free_document_signing_html: '通过 <a href="%{product_url}">%{product_name}</a> 免费文档签署发送。'
+  sent_with_docuseal_pro_html: '通过 <a href="%{product_url}">DocuSeal Pro</a> 发送'
+  show_send_with_docuseal_pro_attribution_in_emails_html: 在邮件中显示“通过 <span class="link">DocuSeal Pro</span> 发送”归属
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: 使用 DocuSeal 提供的可信证书签署文档。您的文档和数据不会与 DocuSeal 共享。PDF 校验和用于生成可信签名。
+  you_have_been_invited_to_submit_the_name_form: '您已被邀请提交“%{name}”表单。'
+  you_have_been_invited_to_sign_the_name: '您已被邀请签署“%{name}”。'
+  alternatively_you_can_review_and_download_your_copy_using_the_link_below: "或者，您可以使用以下链接查看并下载您的副本："
+  please_check_the_copy_of_your_name_in_the_email_attachments: '请在邮件附件中查看您的“%{name}”副本。'
+  awaiting_completion_by_the_other_party: "等待对方完成"
+  review_and_sign: 审核并签署
+  review_and_submit: 审核并提交
+  please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this: "如有任何疑问，请回复此邮件与我们联系。"
+  submitter_invitation_sms_body_sign: '{account.name} 已邀请您签署文档：{submitter.link}'
+  verification_code_sms_body: '验证码：{code}'
+  you_are_invited_to_submit_a_form: '您被邀请提交表单'
+  you_are_invited_to_sign_a_document: '您被邀请签署文档'
+  you_are_invited_to_sign_documents: '您被邀请签署文档'
+  your_document_copy: '您的文档副本'
+  name_has_been_completed_by_submitters: '“%{name}”已由 %{submitters} 完成。'
+  template_name_has_been_completed_by_submitters: '{template.name} 已由 {submission.submitters} 完成'
+  submitter_invitation_email_sign_body: |
+    你好，
+
+    您已被邀请签署“{template.name}”。
+
+    [审核并签署]({submitter.link})
+
+    如有任何疑问，请回复此邮件与我们联系。
+
+    谢谢，
+    {account.name}
+  submitter_completed_email_body: |
+    您好，
+
+    “{template.name}”已由 {submission.submitters} 完成
+
+    {submission.link}
+  submitter_documents_copy_email_body: |
+    你好，
+
+    请在邮件附件中查看您的“{template.name}”副本。
+    或者，您可以使用以下链接查看并下载您的副本：
+
+    [{template.name}]({documents.link})
+
+    谢谢，
+    {account.name}
+  view: 查看
+  email: 电子邮件
+  form_expired_at_html: '表单已于 <span class="font-semibold">%{time}</span> 过期'
+  verification_code_code: '验证码：%{code}'
+  digitally_signed_by: 数字签名者
+  role: 角色
+  reason: 原因
+  provide_your_email_to_start: 提供您的电子邮件以开始
+  provide_your_email: 提供您的电子邮件
+  provide_your_name_to_start: 提供您的姓名以开始
+  provide_your_name: 提供您的姓名
+  provide_your_phone_in_international_format_to_start: 提供您的国际格式电话号码以开始
+  provide_your_phone_in_international_format: 提供您的国际格式电话号码
+  start: 开始
+  enforce_recipients_order: 强制收件人顺序
+  starting: 正在开始
+  invited_by_html: '邀请者：<span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: 您被邀请提交表单
+  signed_on_time: '已于 %{time} 签署'
+  completed_on_time: '已于 %{time} 完成'
+  document_has_been_signed_already: 文档已签署
+  form_has_been_submitted_already: 表单已提交
+  send_copy_to_email: 将副本发送至电子邮件
+  sending: 发送中
+  resubmit: 重新提交
+  form_has_been_deleted_by_html: '表单已被 <span class="font-semibold">%{name}</span> 删除。'
+  or: 或
+  download_documents: 下载文档
+  downloading: 下载中
+  download: 下载
+  decline: 拒绝
+  declined: 已拒绝
+  decline_reason: 拒绝原因
+  provide_a_reason: 提供原因
+  notify_the_sender_with_the_reason_you_declined: 通知发件人您拒绝的原因
+  form_has_been_declined_on_html: '表单已于 <span class="font-semibold">%{time}</span> 被拒绝'
+  name_declined_by_submitter: '“%{name}”被 %{submitter} 拒绝'
+  name_declined_by_submitter_with_the_following_reason: '“%{name}”已被 %{submitter} 拒绝，原因如下：'
+  completed_successfully: 完成成功
+  password: 密码
+  sign_in: 登录
+  signing_in: 登录中
+  sign_in_with_microsoft: 使用 Microsoft 登录
+  sign_in_with_google: 使用 Google 登录
+  forgot_your_password_: 忘记密码？
+  create_free_account: 创建免费账户
+  already_have_an_account: 已有账户？
+  first_name: 名
+  last_name: 姓
+  sign_up: 注册
+  signing_up: 注册中
+  profile_details: 个人资料详情
+  sign_up_with_google: 使用 Google 注册
+  sign_up_with_microsoft: 使用 Microsoft 注册
+  by_creating_an_account_you_agree_to_our_html: '创建账户即表示您同意我们的 <a target="_blank" href="https://www.docuseal.com/privacy">隐私政策</a> 和 <a target="_blank" href="https://www.docuseal.com/terms">服务条款</a>。'
+  enter_email_to_continue: 输入电子邮件以继续
+  account: 帐户
+  preferences: 偏好设置
+  company_name: 公司名称
+  time_zone: 时区
+  language: 语言
+  app_url: 应用 URL
+  update: 更新
+  updating: 更新中
+  force_2fa_with_authenticator_app: 强制使用身份验证器应用进行双因素认证
+  add_signature_id_to_the_documents: 向文档添加签名 ID
+  require_signing_reason: 要求签署原因
+  allow_typed_text_signatures: 允许输入文本签名
+  allow_to_resubmit_completed_forms: 允许重新提交已完成表单
+  allow_to_decline_documents: 允许拒绝文档
+  remember_and_pre_fill_signatures: 记住并预填签名
+  require_authentication_for_file_download_links: 要求文件下载链接进行身份验证
+  combine_completed_documents_and_audit_log: 合并已完成文档和审计日志
+  salesforce_integration: Salesforce 集成
+  salesforce_has_been_connected: Salesforce 已连接。
+  connect_salesforce_account_to_integrate_with_docuseal: 连接 Salesforce 帐户以与 DocuSeal 集成
+  re_connect_salesforce: 重新连接 Salesforce
+  connect_salesforce: 连接 Salesforce
+  danger_zone: 危险区域
+  delete_my_account: 删除我的账户
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: |
+    您正在安排删除您的账户。删除后，您的数据将被永久移除且无法恢复。  
+    如果您希望继续，请点击“确定”。
+  account_information_has_been_updated: 帐户信息已更新。
+  should_be_a_valid_url: 应为有效的 URL
+  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: 您的账户删除请求将在两个月内处理。如需保留账户，请联系我们。
+  test_mode: 测试模式
+  copy: 复制
+  copied: 已复制
+  rotate: 旋转
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: '将移除现有 API 令牌并生成新的。您确定吗？'
+  request_signature_multiple_submitters_with_default_values: 请求签名，多提交方（使用默认值）
+  request_signature_single_submitter: 请求签名，单提交方
+  template_details: 模板详情
+  open_full_api_reference: 打开完整 API 参考
+  api_token_has_been_updated: API 令牌已更新。
+  change_your_password: 更改密码
+  new_password: 新密码
+  minimum_password_length_characters_minimum: '至少 %{minimum_password_length} 个字符'
+  confirm_new_password: 确认新密码
+  change_my_password: 更改我的密码
+  changing_password: 更改密码中
+  reset_password: 重置密码
+  resetting_password: 重置密码中
+  sign_in_with_name_account: '使用 %{name} 帐户登录'
+  two_factor_code_from_authenticator_app: 来自身份验证器应用的双因素代码
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: 注册 DocuSeal 控制台以升级。本地部署应用完全独立，控制台仅用于管理许可。
+  send_from_email: 发送自电子邮件
+  optional: 可选
+  save: 保存
+  saving: 保存中
+  changes_have_been_saved: 更改已保存。
+  unlock_with_docuseal_pro: 使用 DocuSeal Pro 解锁
+  use_your_own_certificates_to_sign_and_verify_pdf_files: 使用您自己的证书签名和验证 PDF 文件。
+  upload_certificate: 上传证书
+  name: 名称
+  file: 文件
+  use_a_valid_der_p12_or_pfx_file: 使用有效的 .der、.p12 或 .pfx 文件。
+  submit: 提交
+  submitting: 提交中
+  pdf_signature: PDF 签名
+  upload_signed_pdf_file_to_validate_its_signature_: '上传已签署的 PDF 文件以验证其签名：'
+  analyzing: 分析中
+  verify_signed_pdf: 验证已签署的 PDF
+  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">点击上传</span>或拖放'
+  click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">点击上传</span>或拖放文件'
+  signing_certificates: 签名证书
+  upload_cert: 上传证书
+  valid_to: 有效至
+  status: 状态
+  make_default: 设为默认
+  remove: 删除
+  removing: 删除中
+  delete: 删除
+  default: 默认
+  are_you_sure_: 您确定吗？
+  timestamp_server: 时间戳服务器
+  timeserver_url: 时间服务器 URL
+  url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: 用于生成时间戳签名的可信 RFC 3161 时间服务器 URL。
+  apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer: 为每个签名者在文档中应用多个 PDF 数字签名
+  remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form: 从已签署的 PDF 中移除表单可填写字段（扁平化表单）
+  certificate_has_been_successfully_added: 证书已成功添加。
+  default_certificate_has_been_selected: 默认证书已被选中。
+  certificate_has_been_removed: 证书已被移除。
+  already_exists: 已存在。
+  welcome_to_product_name: '欢迎使用 %{product_name}'
+  set_password: 设置密码
+  confirm_password: 确认密码
+  save_password_and_sign_in: 保存密码并登录
+  use_an_authenticator_mobile_app_like_google_authenticator_or_1password_to_scan_the_qr_code_below: 使用 Google Authenticator 或 1Password 等身份验证器应用扫描以下二维码。
+  remove_2fa: 移除双因素认证
+  setup_2fa: 设置双因素认证
+  2fa_has_been_configured: 双因素认证已配置。
+  code_is_invalid: 代码无效
+  2fa_has_been_removed: 双因素认证已移除。
+  2fa_has_been_set_up_already: 双因素认证已设置。
+  developer_newsletters: 开发者通讯
+  skip: 跳过
+  email_notifications: 电子邮件通知
+  receive_notification_emails_on_completed_submission: 接收已完成提交的通知邮件
+  completed_documents_notification_bcc_address: 已完成文档通知密送地址
+  sign_request_email_reminders: 签署请求邮件提醒
+  send_automatic_email_reminders_to_your_recipients: 向您的收件人发送自动邮件提醒。
+  first_reminder_in: 首次提醒于
+  second_reminder_in: 第二次提醒于
+  third_reminder_in: 第三次提醒于
+  learn_more: 了解更多
+  unable_to_save: 无法保存。
+  invalid_timeserver: 无效的时间服务器
+  email_templates: 电子邮件模板
+  signature_request_email: 签名请求邮件
+  signature_request_sms: 签名请求短信
+  verification_code_sms: 验证码短信
+  completed_notification_email: 完成通知邮件
+  company_logo: 公司标志
+  submission_form: 提交表单
+  completed_form_message: 完成表单消息
+  completed_form_redirect_button: 完成表单重定向按钮
+  documents_copy_email: 文档副本邮件
+  form_custom_css: 表单自定义 CSS
+  subject: 主题
+  body: 正文
+  text_message: 文本消息
+  title: 标题
+  button_title: 按钮标题
+  button_url: 按钮 URL
+  upload_logo: 上传标志
+  show_confetti_on_successful_completion: 完成时显示彩带
+  attach_audit_log_pdf: 附加审计日志 PDF
+  attach_documents: 附加文档
+  settings_have_been_saved: 设置已保存。
+  display_your_company_name_and_logo_when_signing_documents: 签署文档时显示您的公司名称和标志。
+  profile: 个人资料
+  signature: 签名
+  update_signature: 更新签名
+  unable_to_save_signature: 无法保存签名。
+  signature_has_been_saved: 签名已保存。
+  signature_has_been_removed: 签名已移除。
+  initials: 首字母缩写
+  update_initials: 更新首字母缩写
+  unable_to_save_initials: 无法保存首字母缩写。
+  initials_has_been_saved: 首字母缩写已保存。
+  initials_has_been_removed: 首字母缩写已移除。
+  change_password: 更改密码
+  two_factor_authentication: 双因素认证
+  2fa_is_not_configured: 未配置双因素认证
+  set_up_2fa: 设置双因素认证
+  contact_information_has_been_update: 联系信息已更新。
+  password_has_been_changed: 密码已更改。
+  email_integration: 电子邮件集成
+  send_via_connected_email: 通过已连接邮箱发送
+  activate_with_docuseal_pro: 使用 DocuSeal Pro 激活
+  send_signature_request_to_your_recipients_directly_from_your_email: 直接从您的邮箱向收件人发送签名请求
+  connect_gmail: 连接 Gmail
+  re_connect_gmail: 重新连接 Gmail
+  connect_microsoft: 连接 Microsoft
+  re_connect_microsoft: 重新连接 Microsoft
+  gmail_has_been_connected: Gmail 已连接。
+  microsoft_account_has_been_connected: Microsoft 帐户已连接。
+  but_not_activated: 但未激活
+  email_has_been_sent: 邮件已发送。
+  email_has_been_sent_already: 邮件已发送。
+  initial_setup: 初始设置
+  demo_environment: 演示环境
+  close: 关闭
+  upgrade: 升级
+  settings: 设置
+  console: 控制台
+  verify_pdf: 验证 PDF
+  sign_out: 登出
+  page_number: '第 %{number} 页'
+  powered_by: 技术支持
+  count_documents_signed_with_html: '<b>%{count}</b> 份文档已签署'
+  storage: 存储
+  notifications: 通知
+  e_signature: 电子签名
+  personalization: 个性化
+  users: 用户
+  plans: 计划
+  new: 新建
+  embedding: 嵌入
+  background_jobs: 后台任务
+  need_help_ask_a_question_: '需要帮助？提问：'
+  exit: 退出
+  leave: 离开
+  impersonated_as: 作为...操作
+  ask_ai: 询问 AI
+  ai_assistant: AI 助手
+  discord_community: Discord 社区
+  integrations: 集成
+  teams: 团队
+  tenants: 租户
+  send_signature_requests_via_sms: 通过短信发送签名请求
+  twilio_settings: Twilio 设置
+  webhook_settings: Webhook 设置
+  sending_sms: 发送短信中
+  from: 来自
+  account_sid: 帐户 SID
+  send_sms_via_webhook: 通过 Webhook 发送短信
+  webhook_integration_allows_to_send_sms_using_any_provider: Webhook 集成允许使用任意提供商发送短信
+  test: 测试
+  single_sign_on_with_saml_2_0: 使用 SAML 2.0 单点登录
+  force_sso_disable_login_with_email_and_password: 强制 SSO（禁用邮箱和密码登录）
+  for_aws_s3_compatible_apis_like_minio: 适用于类似 Minio 的 AWS S3 兼容 API。
+  store_all_files_on_disk: 将所有文件存储在磁盘上
+  no_configs_are_needed_but_make_sure_your_disk_is_persistent: 无需配置，但请确保磁盘持久化
+  not_suitable_for_heroku_and_other_paas: 不适用于 Heroku 及其他 PaaS
+  bulk_send_from_excel_xlsx_or_csv: 从 Excel XLSX 或 CSV 批量发送
+  add_new: 添加新项
+  add_recipients: 添加收件人
+  add_new_recipients: 添加新收件人
+  add_recipients_html: '<span>添加 <span class="hidden md:inline">收件人</span></span>'
+  type_emails_here: 在此输入电子邮件
+  or_embed_on_your_website: 或在您网站上嵌入
+  phone: 电话
+  send_emails: 发送邮件
+  edit_message: 编辑消息
+  smtp_not_configured: SMTP 未配置
+  configure_smtp_settings_in_order_to_send_emails_: '请配置 SMTP 设置以发送邮件：'
+  go_to_smtp_settings: 转到 SMTP 设置
+  save_as_default_template_message: 保存为默认模板消息
+  re_send_sms: 重新发送短信
+  send_sms: 发送短信
+  preserve_order: 保持顺序
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: |
+    勾选后，当前一方完成表单时，通知将发送给第二方。  
+    取消勾选即可立即同时向所有方发送通知。
+  upgrade_to_send_unlimited_signature_requests: 升级以发送无限签名请求
+  add_without_sending: 添加但不发送
+  upgade_now: 立即升级
+  send_signature_request_emails_without_limits_with_docuseal_pro: 使用 DocuSeal Pro 发送无限制签名请求邮件
+  count_emails_used: '已使用 %{count} 封邮件'
+  has_been_connected: 已连接
+  but_not_activated: 但未激活
+  sms_not_configured: 短信未配置
+  configure_sms_settings_in_order_to_send_text_messages_: '请配置短信设置以发送短信：'
+  go_to_sms_settings: 转到短信设置
+  back_to_active: 返回活动
+  submissions: 提交
+  templates: 模板
+  document_templates_html: '<span class="hidden md:inline">文档</span> 模板'
+  archived: 已归档
+  search: 搜索
+  submissions_not_found: 未找到提交
+  create: 创建
+  view_archived: 查看归档
+  all: 全部
+  pending: 待处理
+  completed: 已完成
+  primarily_opened_with_microsoft_excel_other_options_include_google_sheets_libreoffice_calc_and_openoffice_calc: |
+    主要使用 Microsoft Excel 打开。  
+    其他选项包括 Google Sheets、LibreOffice Calc 和 OpenOffice Calc。
+  can_be_opened_with_microsoft_excel_google_sheets_or_any_text_editor_like_notepad: |
+    可使用 Microsoft Excel、Google Sheets 或任意文本编辑器（如记事本）打开。
+  draw_signature: 绘制签名
+  clear: 清除
+  signature_uploaded: 签名已上传
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: |
+    删除提交后不可恢复，且会永久移除所有相关签署文档。您确定吗？
+  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: |
+    返回桌面设备以完成表单，或 <a class="link" href="%{link}">在移动端继续</a>
+  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: |
+    删除模板后不可恢复，且会永久移除所有相关签署文档。您确定吗？
+  rename_folder: 重命名文件夹
+  folder_name: 文件夹名称
+  rename: 重命名
+  home: 主页
+  templates_not_found: 未找到模板
+  upload_new_document: 上传新文档
+  uploading: 上传中
+  expired: 已过期
+  sign_now: 立即签署
+  archive: 归档
+  archiving: 归档中
+  restore: 恢复
+  restoring: 恢复中
+  clone: 克隆
+  edit: 编辑
+  move: 移动
+  moving: 移动中
+  preview: 预览
+  upload: 上传
+  clone_template: 克隆模板
+  new_document_template: 新文档模板
+  document_name: 文档名称
+  change_folder: 更改文件夹
+  shared: 已共享
+  export: 导出
+  there_are_no_submissions: 暂无提交
+  send_an_invitation_to_fill_and_complete_the_form: 发送邀请以填写并完成表单
+  send_to_recipients: 发送给收件人
+  sign_it_yourself: 自行签署
+  api_and_embedding: API 与嵌入
+  template_id: 模板 ID
+  embedding_url: 嵌入 URL
+  share_template_with_test_mode: 在测试模式下共享模板
+  share_template_with_all_tenants: 与所有租户共享模板
+  use_following_placeholders_text_: '使用以下占位符文本：'
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: |
+    已达到 %{total_users_count} 个 Pro 用户限制中的 %{users_count} 个。  
+    如需邀请更多用户，请通过“管理计划”按钮购买更多 Pro 用户席位。
+  move_into_folder: 移动到文件夹
+  new_folder_name: 新文件夹名称
+  new_subfolder_name: 新子文件夹名称
+  change_parent_folder: 更改父文件夹
+  folder: 文件夹
+  create_a_new_folder: 创建新文件夹
+  exit_preview: 退出预览
+  general: 常规
+  recipients: 收件人
+  form_preferences: 表单偏好
+  redirect_on_completion_url: 完成后重定向 URL
+  completion_message: 完成消息
+  email_subject: 邮件主题
+  email_body: 邮件正文
+  attach_audit_log_pdf_to_the_email: 将审计日志 PDF 附加到邮件
+  send_emails_automatically_on_completion: 完成后自动发送邮件
+  attach_documents_to_the_email: 将文档附加到邮件
+  not_specified: 未指定
+  submission_requester: 提交请求者
+  specified_email: 指定邮箱
+  invite_by_name: '邀请 %{name}'
+  same_as_name: '与 %{name} 相同'
+  default_email: 默认邮箱
+  processing: 处理中
+  upload_initials: 上传首字母缩写
+  draw: 绘制
+  upload_signature: 上传签名
+  integration: 集成
+  admin: 管理员
+  tenant_admin: 租户管理员
+  editor: 编辑者
+  viewer: 查看者
+  member: 成员
+  agent: 代理
+  superadmin: 超级管理员
+  edit_user: 编辑用户
+  new_user: 新用户
+  unarchive: 取消归档
+  role: 角色
+  last_session: 上次会话
+  unlock_more_user_roles_with_docuseal_pro: 使用 DocuSeal Pro 解锁更多用户角色。
+  view_active: 查看活动
+  team_account: 团队账户
+  team_accounts: 团队账户
+  tenant_account: 租户账户
+  tenant_accounts: 租户账户
+  impersonate: 模拟
+  loading: 加载中
+  documents: 文档
+  accounts: 帐户
+  edit_account: 编辑账户
+  new_team: 新团队
+  new_tenant: 新租户
+  remove_team: 移除团队
+  remove_tenant: 移除租户
+  replace: 替换
+  allow_tenant_admins_to_invite_new_users: 允许租户管理员邀请新用户
+  manage_multiple_teams: 管理多个团队
+  api_key: API 密钥
+  logo: 标志
+  back: 返回
+  add_secret: 添加密钥
+  edit_secret: 编辑密钥
+  submission_example_payload: 提交示例负载
+  there_are_no_signatures: 暂无签名
+  signed_with_trusted_certificate: 使用可信证书签名
+  signed_with_external_certificate: 使用外部证书签名
+  setup_2fa_to_continue: 设置双因素认证以继续。
+  create_a_new_account: 创建新账户。
+  you_are_already_signed_in: 您已登录。
+  please_sign_in: 请登录。
+  not_found: 未找到
+  new_recipients_have_been_added: 新收件人已添加。
+  submission_has_been_removed: 提交已移除。
+  submission_has_been_archived: 提交已归档。
+  form_has_been_completed_already: 表单已完成。
+  form_has_been_archived: 表单已归档。
+  form_has_been_expired: 表单已过期。
+  form_has_been_declined: 表单已被拒绝。
+  file_is_missing: 文件丢失
+  folder_name_has_been_updated: 文件夹名称已更新。
+  unable_to_rename_folder: 无法重命名文件夹。
+  template_has_been_removed: 模板已移除。
+  template_has_been_archived: 模板已归档。
+  template_has_been_cloned: 模板已克隆。
+  document_template_has_been_moved: 文档模板已移动。
+  unable_to_move_template_into_folder: 无法将模板移动到文件夹。
+  template_has_been_unarchived: 模板已取消归档。
+  submission_has_been_unarchived: 提交已取消归档。
+  unable_to_update_file: 无法上传文件。
+  user_has_been_invited: 用户已被邀请。
+  unable_to_update_user: 无法更新用户。
+  user_has_been_updated: 用户已更新。
+  unable_to_remove_user: 无法移除用户。
+  user_has_been_removed: 用户已移除。
+  invalid_pdf: 无效的 PDF
+  webhook_secret_has_been_saved: Webhook 密钥已保存。
+  webhook_url_has_been_saved: Webhook URL 已保存。
+  webhook_request_has_been_sent: Webhook 请求已发送。
+  webhook_url_has_been_updated: Webhook URL 已更新。
+  webhook_url_has_been_deleted: Webhook URL 已删除。
+  unable_to_resend_webhook_request: 无法重新发送 Webhook 请求。
+  new_webhook: 新 Webhook
+  delete_webhook: 删除 Webhook
+  count_submissions_have_been_created: '已创建 %{count} 次提交。'
+  gmail_has_been_connected: Gmail 已连接
+  microsoft_account_has_been_connected: Microsoft 帐户已连接
+  sms_length_cant_be_longer_than_120_bytes: 短信长度不能超过 120 字节
+  connected_successfully: 连接成功。
+  user_nameid_not_found: '未找到用户 %{nameid}。'
+  sso_settings_have_been_updated: SSO 设置已更新。
+  sms_has_been_sent: 短信已发送。
+  account_has_been_created: 帐户已创建。
+  account_has_been_updated: 帐户已更新。
+  account_has_been_removed: 帐户已移除。
+  logo_has_been_uploaded: 标志已上传。
+  invalid_file_type: 无效的文件类型
+  upload_file: 上传文件
+  upgrade_your_plan_to_invite_more_users_contact_email: '升级您的计划以邀请更多用户（联系 %{email}）。'
+  contact_your_admin_email_to_invite_more_users: '联系您的管理员 %{email} 以邀请更多用户。'
+  contact_your_administrator_to_add_new_users: 联系您的管理员以添加新用户
+  one_hour: 1 小时
+  two_hours: 2 小时
+  four_hours: 4 小时
+  eight_hours: 8 小时
+  twelve_hours: 12 小时
+  twenty_four_hours: 24 小时
+  two_days: 2 天
+  four_days: 4 天
+  eight_days: 8 天
+  fifteen_days: 15 天
+  free: 免费
+  unlimited_documents_storage: 无限文档存储
+  users_management: 用户管理
+  ten_filed_types: 10 个字段类型
+  multiple_signers: 多个签署者
+  automatic_esignature: 自动电子签名
+  ten_signature_request_emails_per_month: 每月 10 封签名请求邮件
+  unlimited_sign_yourself: 无限自行签署
+  free_developer_testing_sandbox: 免费开发者测试沙箱
+  continue_with_free_basic: 继续使用免费基础版
+  unlimited_signature_request_emails: 无限签名请求邮件
+  your_company_logo: 您的公司标志
+  connect_own_email_address: 连接您自己的邮箱地址
+  personalize_email_content: 个性化邮件内容
+  automated_reminders: 自动提醒
+  bulk_send_from_spreadsheet: 从电子表格批量发送
+  identify_verification_via_sms: 通过短信身份验证
+  start_with_pro: 从专业版开始
+  user_month: 用户/月
+  developer_sandbox: 开发者沙箱
+  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">升级</a> 开始在生产环境使用。'
+  download_combined_pdf: 下载合并 PDF
+  audit_log: 审计日志
+  signers: 签署者
+  not_invited_yet: 尚未邀请
+  not_completed_yet: 尚未完成
+  declined_on_time: '于 %{time} 被拒绝'
+  expire_on_time: '于 %{time} 到期'
+  sign_in_person: 现场签署
+  create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">创建新模板</a> 文档表单或 <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">提交现有表单</a>'
+  send_email_copy_with_completed_documents_to_a_specified_bcc_address: 将已完成文档的邮件副本发送到指定密送地址。
+  re_send_email: 重新发送邮件
+  send_email: 发送邮件
+  copy_share_link: 复制分享链接
+  copied_to_clipboard: 已复制到剪贴板
+  link: 链接
+  via_email: 通过电子邮件
+  via_phone: 通过电话
+  detailed: 详细
+  upload_list: 上传列表
+  creating: 创建中
+  open_source_documents_software: 开源文档软件
+  copy_link: 复制链接
+  opened: 已打开
+  sent: 已发送
+  awaiting: 等待中
+  document_id: 文档 ID
+  envelope_id: 信封 ID
+  event_log: 事件日志
+  verify: 验证
+  testing_log_not_for_production_use: 测试日志 - 非生产用途
+  original_sha256: 原始 SHA256
+  result_sha256: 结果 SHA256
+  generated_at: 生成于
+  email_verification: 电子邮件验证
+  phone_verification: 电话验证
+  session_id: 会话 ID
+  option: 选项
+  text_field: 文本字段
+  signature_field: 签名字段
+  initials_field: 首字母缩写字段
+  date_field: 日期字段
+  number_field: 数字字段
+  image_field: 图片字段
+  file_field: 文件字段
+  select_field: 下拉字段
+  checkbox_field: 复选框字段
+  multiple_field: 多选字段
+  radio_field: 单选字段
+  cells_field: 单元格字段
+  stamp_field: 印章字段
+  payment_field: 支付字段
+  phone_field: 电话字段
+  verification_field: 身份验证字段
+  identity_verification: 身份验证
+  paid_price: '已支付 %{price}'
+  verified: 已验证
+  unverified: 未验证
+  document: 文档
+  completed_at: 完成于
+  edit_recipient: 编辑收件人
+  update_recipient: 更新收件人
+  use_international_format_1xxx_: '使用国际格式：+1xxx…'
+  submitter_cannot_be_updated: 提交者无法更新。
+  at_least_one_field_must_be_filled: 至少填写一个字段。
+  archived_users: 已归档用户
+  embedding_users: 嵌入用户
+  view_embedding_users: 查看嵌入用户
+  key: 键
+  value: 值
+  webhook_secret: Webhook 密钥
+  author: 作者
+  to: 收件人
+  created_at: 创建于
+  apply: 应用
+  applying: 应用中
+  today: 今天
+  yesterday: 昨天
+  this_week: 本周
+  last_week: 上周
+  this_month: 本月
+  last_month: 上月
+  this_year: 今年
+  policy_links: 政策链接
+  markdown_content_e_g: Markdown 内容，例如
+  privacy_policy: 隐私政策
+  the_code_has_been_sent_to_your_email: 验证码已发送至您的邮箱。
+  enter_the_verification_code_from_your_email: 输入您邮件中的验证码。
+  too_many_attempts: 尝试次数过多。
+  verification_code: 验证码
+  resend_code: 重新发送验证码
+  verify_new_sign_in: 验证新登录
+  use_otp_code_to_sign_in_or_click_the_link_below_html: '使用 <b>%{code}</b> 登录或点击以下链接：'
+  complete_sign_in: 完成登录
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: 如果您不识别此登录尝试，请回复此邮件。
+  docuseal_support: DocuSeal 支持
+  use_the_edit_form_to_move_it_to_another_team: 使用编辑表单将其移至其他团队。
+  too_many_sms_attempts_try_again_in_a_few_seconds: 短信尝试过多，请稍后重试。
+  number_phone_number_is_invalid: '+%{number} 电话号码无效'
+  make_com_integration: Make.com 集成
+  zapier_integration: Zapier 集成
+  seamlessly_automate_your_document_signing_process_with_make_com: 通过 Make.com 无缝自动化您的文档签署流程。
+  find_suitable_zapier_templates_to_automate_your_workflow: 寻找合适的 Zapier 模板以自动化您的工作流程。
+  get_started: 开始
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">点击此处</a> 了解用户角色和权限的更多信息。'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '本月已发送 %{count} 封签名请求邮件。升级到 Pro 可发送无限签名请求邮件。'
+  test_mode_emails_limit_will_be_reset_within_24_hours: 测试模式邮件限制将于 24 小时内重置。
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 在 1 到 10 的范围内，您对 DocuSeal 产品的满意度如何？
+  tell_us_more_about_your_experience: 告诉我们更多您的体验
+  extremely_dissatisfied: 非常不满意
+  extremely_satisfied: 非常满意
+  your_pro_plan_payment_is_overdue: 您的 Pro 计划付款已逾期。
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">点击此处</a> 更新付款详情并结清发票以确保服务不中断。'
+  overdue_payment: 逾期付款
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: 您的 Pro 计划因未支付发票已被暂停。您可以更新付款详情以结清发票并继续使用 DocuSeal，或取消订阅。
+  manage_subscription: 管理订阅
+  submission_created_by_email_html: '<b>提交创建者：</b> %{email}'
+  submission_created_by_email_via_source_html: '<b>提交创建者：</b> %{email}，来源：%{source}'
+  submission_created_via_source_html: '<b>提交创建于</b> 来源：%{source}'
+  pro_user_seats_used: Pro 用户席位已使用
+  manage_plan: 管理计划
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: |
+    此提交具有多个签署者，无法使用共享链接，因为无法确定哪个签署者负责特定字段。  
+    请按照此 <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">指南</a> 定义默认签署者详情。
+  welcome_to_docuseal: 欢迎使用 DocuSeal
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 开始快速导览，了解如何创建并发送您的第一份文档
+  start_tour: 开始导览
+  name_a_z: 名称 A-Z
+  recently_used: 最近使用
+  newest_first: 最新优先
+  none: 无
+  default_expiration: 默认过期
+  specified_date: 指定日期
+  one_day: 1 天
+  two_days: 2 天
+  three_days: 3 天
+  four_days: 4 天
+  five_days: 5 天
+  six_days: 6 天
+  seven_days: 7 天
+  eight_days: 8 天
+  nine_days: 9 天
+  ten_days: 10 天
+  two_weeks: 2 周
+  three_weeks: 3 周
+  four_weeks: 4 周
+  one_month: 1 个月
+  two_months: 2 个月
+  three_months: 3 个月
+  eu_data_residency: 欧盟数据驻留
+  please_enter_your_email_address_associated_with_the_completed_submission: 请输入与已完成提交关联的电子邮件地址。
+  esignature_disclosure: 电子签名披露
+  share_link: 分享链接
+  enable_shared_link: 启用共享链接
+  share_link_is_currently_disabled: 共享链接当前已禁用
+  select_data_residency: 选择数据驻留
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} 已邀请您在线轻松填写并签署文档，提供安全、快速且用户友好的数字文档签署解决方案。'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '查看或下载已完成的文档；在线轻松填写并签署文档，提供安全、快速且用户友好的数字文档签署解决方案。'
+  link_form_fields: 链接表单字段
+  at_least_one_field_must_be_displayed_in_the_form: 表单中至少应显示一个字段。
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: |
+    此模板具有多个方，无法使用共享链接，因为无法确定哪个方负责特定字段。  
+    为解决此问题，请定义默认方详情。
+  events_log: 事件日志
+  successed: 成功
+  failed: 失败
+  there_are_no_events: 暂无事件
+  resend: 重发
+  next_attempt_in_time_in_words: 下一次尝试：%{time_in_words}
+  request_email_otp_verification_with_shared_link: 使用共享链接请求电子邮件 OTP 验证
+  sms_rate_limit_exceeded: 短信速率限制已超出
+  invalid_phone_number: 无效的电话号码
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: 请联系请求者以指定您的电话号码进行双因素认证。
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: 我们已向您的邮箱发送一次性验证码，请在下方输入以继续。
+  re_send_code: 重新发送验证码
+  email_verification: 电子邮件验证
+  your_verification_code_to_access_the_name: '访问“%{name}”的验证码：'
+  please_reply_to_this_email_if_you_didnt_request_this: 如果您未请求此操作，请回复此邮件。
+  submission_sources:
+    api: API
+    bulk: 批量发送
+    embed: 嵌入
+    invite: 邀请
+    link: 链接
+  submission_event_names:
+    send_email_to_html: '<b>邮件已发送</b> 给 %{submitter_name}'
+    bounce_email_html: '<b>邮件退回</b> %{submitter_name}'
+    complaint_email_html: '<b>垃圾邮件投诉</b> %{submitter_name}'
+    send_reminder_email_to_html: '<b>提醒邮件已发送</b> 给 %{submitter_name}'
+    send_sms_to_html: '<b>短信已发送</b> 给 %{submitter_name}'
+    send_2fa_sms_to_html: '<b>验证短信已发送</b> 给 %{submitter_name}'
+    open_email_by_html: '<b>邮件已打开</b> %{submitter_name}'
+    click_email_by_html: '<b>邮件链接已点击</b> %{submitter_name}'
+    click_sms_by_html: '<b>短信链接已点击</b> %{submitter_name}'
+    phone_verified_by_html: '<b>电话已验证</b> %{submitter_name}'
+    email_verified_by_html: '<b>邮件已验证</b> %{submitter_name}'
+    start_form_by_html: '<b>提交已开始</b> %{submitter_name}'
+    view_form_by_html: '<b>表单已查看</b> %{submitter_name}'
+    invite_party_by_html: '<b>已邀请</b> %{invited_submitter_name} 由 %{submitter_name}'
+    complete_form_by_html: '<b>提交已完成</b> %{submitter_name}'
+    start_verification_by_html: '<b>身份验证已开始</b> %{submitter_name}'
+    complete_verification_by_html: '<b>身份验证已完成</b> %{submitter_name}（提供商：%{provider}）'
+    api_complete_form_by_html: '<b>通过 API 完成提交</b> %{submitter_name}'
+  import_list:
+    select_worksheet: 选择工作表
+    open: 打开
+    remove: 移除
+    recipient_field: 收件人字段
+    spreadsheet_column: 电子表格列
+    select_field: 选择字段
+    select_column: 选择列
+    new_field_mapping: 新字段映射
+    total_entries: 总条目
+    upload_csv_or_xlsx_spreadsheet: 上传 CSV 或 XLSX 电子表格
+    click_to_upload: 点击上传
+    or_drag_and_drop_files: 或拖放文件。
+    or: 或
+    download: 下载
+    a_sample_spreadsheet_to_fill_and_import: 用于填写和导入的示例电子表格
+  app_tour:
+    start: 开始
+    previous: 上一步
+    next: 下一步
+    template_and_submissions: '模板和提交'
+    template_and_submissions_description: |
+      您可以选择最适合您的工作流程的视图。  
+      选择“模板”视图以创建可重复使用的文档模板，或选择“提交”视图以签署单个文档或查看每个签名请求的状态。
+    upload_a_pdf_file: '上传 PDF 文件'
+    upload_a_pdf_file_description: '上传 PDF 文档以创建签署表单模板。'
+    select_a_signer_party: '选择签署方'
+    select_a_signer_party_description: '此下拉列表可让您选择签署方角色，或在需要两个或更多签名时添加新方。'
+    available_parties: '可用方'
+    available_parties_description: '此列表包含所有可用方及其角色名称。选中后，您可以为签署方添加和配置字段。'
+    available_field_types: '可用字段类型'
+    available_field_types_description: '此部分包含可添加到文档以输入数据或收集签名的所有可用字段类型。'
+    text_input_field: '文本输入字段'
+    text_input_field_description: '此字段允许用户输入基于文本的信息，例如姓名或电子邮件。'
+    signature_field: '签名字段'
+    signature_field_description: '此字段用于收集签署者的签名。'
+    added_fields: '已添加字段'
+    added_fields_description: '此列表显示添加到文档的所有字段。您可以重新排序、编辑或移除它们。'
+    open_field_settings: '打开字段设置'
+    open_field_settings_description: '在字段名称旁边右侧有一个设置图标，点击可打开字段设置。'
+    field_settings: '字段设置'
+    field_settings_description: '每个字段通过设置可自定义，以满足您的要求，例如调整字体大小、设为必填字段或添加描述。'
+    send_document: '发送文档以签署'
+    send_document_description: '在发送文档以签署之前，您可以配置收件人，输入他们的电子邮件地址或电话号码，并自定义邮件内容。'
+    sign_yourself: '自行签署文档'
+    sign_yourself_description: '此按钮允许您为需要您签名的文档添加您的签名。'
+    copy_and_share_link: '复制并分享链接'
+    copy_and_share_link_description: '复制此链接进行分享。任何拥有此链接的人在输入电子邮件后即可签署。'
+    sign_the_document: '签署文档'
+    sign_the_document_description: '如果您是签署者之一，此按钮允许您签署文档。'
+    send_for_signing: '发送以签署'
+    add_recipients: '添加收件人'
+    add_recipients_description: '通过输入他们的电子邮件地址或电话号码，为文档添加新的签署收件人。'
+    settings: '设置'
+    settings_account_description: '通过全面的帐户设置，您可以自定义电子签名体验并邀请更多用户。'
+    support: '支持'
+    support_description: '您可以使用我们的自助 AI 助手，或通过 support@docuseal.com 给我们发邮询问题。'
+    settings_template_description: '使用此按钮访问您的帐户设置页面。'
+  doorkeeper:
+    scopes:
+      write: 更新您的数据
+      read: 阅读您的数据
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} / 共 %{count} 条提交"
+      range_without_total: "%{from}-%{to} 条提交"
+    templates:
+      range_with_total: "%{from}-%{to} / 共 %{count} 个模板"
+      range_without_total: "%{from}-%{to} 个模板"
+    template_folders:
+      range_with_total: "%{from}-%{to} / 共 %{count} 个文件夹"
+      range_without_total: "%{from}-%{to} 个文件夹"
+    users:
+      range_with_total: "%{from}-%{to} / 共 %{count} 个用户"
+      range_without_total: "%{from}-%{to} 个用户"
+    items:
+      range_with_total: "%{from}-%{to} / 共 %{count} 项"
+      range_without_total: "%{from}-%{to} 项"
+    events:
+      range_with_total: "%{from}-%{to} / 共 %{count} 条事件"
+      range_without_total: "%{from}-%{to} 条事件"
 
 en-US:
   <<: *en
