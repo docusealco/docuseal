@@ -32,10 +32,7 @@ class SubmissionsController < ApplicationController
   def create
     save_template_message(@template, params) if params[:save_message] == '1'
 
-    if params[:is_custom_message] != '1'
-      params.delete(:subject)
-      params.delete(:body)
-    end
+    [params.delete(:subject), params.delete(:body)] if params[:is_custom_message] != '1'
 
     submissions =
       if params[:emails].present?
@@ -46,11 +43,16 @@ class SubmissionsController < ApplicationController
                                        emails: params[:emails],
                                        params: params.merge('send_completed_email' => true))
       else
+        submissions_attrs = submissions_params[:submission].to_h.values
+
+        submissions_attrs, =
+          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_attrs, @template)
+
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
                                            submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
-                                           submissions_attrs: submissions_params[:submission].to_h.values,
+                                           submissions_attrs:,
                                            params: params.merge('send_completed_email' => true))
       end
 
@@ -62,9 +64,8 @@ class SubmissionsController < ApplicationController
 
     redirect_to template_path(@template), notice: I18n.t('new_recipients_have_been_added')
   rescue Submissions::CreateFromSubmitters::BaseError => e
-    render turbo_stream: turbo_stream.replace(:submitters_error,
-                                              partial: 'submissions/error',
-                                              locals: { error: e.message }),
+    render turbo_stream: turbo_stream.replace(:submitters_error, partial: 'submissions/error',
+                                                                 locals: { error: e.message }),
            status: :unprocessable_entity
   end
 
@@ -95,7 +96,7 @@ class SubmissionsController < ApplicationController
   end
 
   def submissions_params
-    params.permit(submission: { submitters: [%i[uuid email phone name]] })
+    params.permit(submission: { submitters: [:uuid, :email, :phone, :name, { values: {} }] })
   end
 
   def load_template

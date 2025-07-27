@@ -141,6 +141,7 @@
               :with-required="false"
               :with-areas="false"
               :with-signature-id="withSignatureId"
+              :with-prefillable="withPrefillable"
               @click-formula="isShowFormulaModal = true"
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
@@ -352,6 +353,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     defaultSubmitters: {
       type: Array,

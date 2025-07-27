@@ -23,6 +23,8 @@ en: &en
   pro: Pro
   thanks: Thanks
   private: Private
+  select: Select
+  invite_form_fields: Invite form fields
   default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
@@ -896,6 +898,8 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  select: Seleccionar
+  invite_form_fields: Invitar campos del formulario
   pro: Pro
   default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
@@ -1772,6 +1776,8 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  select: Seleziona
+  invite_form_fields: Invita campi modulo
   pro: Pro
   default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
@@ -2648,6 +2654,8 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  select: Sélectionner
+  invite_form_fields: Inviter des champs de formulaire
   pro: Pro
   default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
@@ -3527,6 +3535,8 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  select: Selecionar
+  invite_form_fields: Convidar campos do formulário
   pro: Pro
   default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
@@ -4404,6 +4414,8 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  select: Auswählen
+  invite_form_fields: Formularfelder einladen
   pro: Pro
   default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Authentifizieren Sie die eingebettete Formularvorschau mit Token

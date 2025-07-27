@@ -59,6 +59,7 @@
         <%= t('form_preferences') %>
       </div>
       <div class="collapse-content">
+        <%= render 'templates_prefillable_fields/form', template: @template %>
         <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
           <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
           <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
@@ -68,7 +69,7 @@
               <%= ff.url_field :completed_redirect_url, required: false, class: 'base-input', dir: 'auto' %>
             </div>
             <%= ff.fields_for :completed_message, ff.object.completed_message do |fff| %>
-              <div class="form-control mb-2 border-t mt-4">
+              <div class="form-control mb-2 mt-4">
                 <%= fff.label :body, t('completion_message'), class: 'label' %>
                 <autoresize-textarea>
                   <%= fff.text_area :body, required: false, class: 'base-input w-full py-2', dir: 'auto' %>
@@ -160,6 +161,14 @@
                     </div>
                   <% end %>
                 <% end %>
+              </div>
+            <% end %>
+            <%= f.fields_for :preferences, Struct.new(:request_email_enabled).new(@template.preferences['request_email_enabled']) do |ff| %>
+              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+                <span>
+                  <%= 'Send signature request email' %>
+                </span>
+                <%= ff.check_box :request_email_enabled, { checked: ff.object.request_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
               </div>
             <% end %>
             <div class="form-control pt-2">

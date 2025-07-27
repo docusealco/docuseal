@@ -120,7 +120,7 @@ class TemplatesController < ApplicationController
         submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid optional_invite_by_uuid email]],
         fields: [[:uuid, :submitter_uuid, :name, :type,
                   :required, :readonly, :default_value,
-                  :title, :description,
+                  :title, :description, :prefillable,
                   { preferences: {},
                     conditions: [%i[field_uuid value action operation]],
                     options: [%i[value uuid]],

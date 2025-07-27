@@ -27,7 +27,7 @@ class TemplatesPreferencesController < ApplicationController
                       completed_redirect_url validate_unique_submitters
                       require_all_submitters submitters_order require_phone_2fa
                       default_expire_at_duration shared_link_2fa
-                      default_expire_at
+                      default_expire_at request_email_enabled
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit] +
                       [completed_message: %i[title body],

@@ -331,6 +331,7 @@
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields || drawField"
                 :with-signature-id="withSignatureId"
+                :with-prefillable="withPrefillable"
                 :data-document-uuid="document.uuid"
                 :default-submitters="defaultSubmitters"
                 :drag-field-placeholder="fieldsDragFieldRef.value || dragField"
@@ -438,6 +439,7 @@
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :with-signature-id="withSignatureId"
+            :with-prefillable="withPrefillable"
             :only-defined-fields="onlyDefinedFields"
             :editable="editable"
             :show-tour-start-form="showTourStartForm"
@@ -543,7 +545,6 @@ export default {
       withPayment: this.withPayment,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
-      withSignatureId: this.withSignatureId,
       withConditions: this.withConditions,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -801,6 +802,13 @@ export default {
     fieldsDragFieldRef: () => ref(),
     language () {
       return this.locale.split('-')[0].toLowerCase()
+    },
+    withPrefillable () {
+      if (this.template.fields) {
+        return this.template.fields.some((f) => f.prefillable)
+      } else {
+        return false
+      }
     },
     isInlineSize () {
       return CSS.supports('container-type: size')

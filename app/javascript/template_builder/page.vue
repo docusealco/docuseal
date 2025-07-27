@@ -28,6 +28,7 @@
         :editable="editable"
         :with-field-placeholder="withFieldPlaceholder"
         :with-signature-id="withSignatureId"
+        :with-prefillable="withPrefillable"
         :default-field="defaultFieldsIndex[item.field.name]"
         :default-submitters="defaultSubmitters"
         :max-page="totalPages - 1"
@@ -83,6 +84,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     areas: {
       type: Array,
