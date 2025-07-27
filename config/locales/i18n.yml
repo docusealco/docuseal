@@ -784,10 +784,10 @@ en: &en
   code: Code
   custom_html_emails: Custom HTML emails
   connect_your_email_to_send_html_emails: Connect your email to send HTML emails
-  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Connect your Gmail or Oulook account or add SMTP settings to send custom HTML emails.
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Connect your Gmail or Outlook account or add SMTP settings to send custom HTML emails.
   connect_gmail_or_outlook: Connect Gmail or Outlook
   connect_your_email_to_bulk_send: Connect your email to bulk send
-  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connect your Gmail or Oulook account or add SMTP settings to bulk send.
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connect your Gmail or Outlook account or add SMTP settings to bulk send.
   are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails it requires to connect Gmail or Outlook.
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
