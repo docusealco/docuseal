@@ -57,99 +57,20 @@
       :class="{ sticky: withStickySubmitters || isBreakpointLg }"
       :style="{ backgroundColor }"
     >
-      <div class="flex items-center space-x-3">
-        <Contenteditable
-          v-if="withTitle"
-          :model-value="template.name"
-          :editable="editable"
-          class="text-xl md:text-3xl font-semibold focus:text-clip template-name"
-          :icon-stroke-width="2.3"
-          @update:model-value="updateName"
-        />
-      </div>
+      <div />
       <div class="space-x-3 flex items-center flex-shrink-0">
         <slot
           v-if="$slots.buttons"
           name="buttons"
         />
         <template v-else>
-          <button
-            class="base-button"
-            :class="{ disabled: isExporting }"
-            v-bind="isExporting ? { disabled: true } : {}"
-            @click.prevent="onExportClick"
-          >
-            <IconInnerShadowTop
-              v-if="isExporting"
-              width="22"
-              class="animate-spin"
-            />
-            <IconDeviceFloppy
-              v-else
-              width="22"
-            />
-            <span class="hidden md:inline">
-              {{ t('Export') }}
-            </span>
-          </button>
-          <span
-            v-if="editable"
-            id="save_button_container"
-            class="flex"
-          >
-            <button
-              class="primary-button !rounded-r-none !pr-2"
-              :class="{ disabled: isSaving }"
-              v-bind="isSaving ? { disabled: true } : {}"
-              @click.prevent="onSaveClick"
-            >
-              <IconInnerShadowTop
-                v-if="isSaving"
-                width="22"
-                class="animate-spin"
-              />
-              <IconDeviceFloppy
-                v-else
-                width="22"
-              />
-              <span class="hidden md:inline">
-                {{ t('save') }}
-              </span>
-            </button>
-            <div class="dropdown dropdown-end">
-              <label
-                tabindex="0"
-                class="primary-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500"
-              >
-                <span class="text-sm align-text-top">
-                  <IconChevronDown class="w-5 h-5 flex-shrink-0" />
-                </span>
-              </label>
-              <ul
-                tabindex="0"
-                class="dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right"
-              >
-                <li>
-                  <a
-                    :href="`/templates/${template.id}/form`"
-                    data-turbo="false"
-                    class="flex items-center justify-center space-x-2"
-                  >
-                    <IconEye class="w-6 h-6 flex-shrink-0" />
-                    <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </span>
           <a
-            v-else
-            :href="`/templates/${template.id}`"
-            class="base-button"
+            :href="`/templates/${template.id}/form`"
+            data-turbo="false"
+            class="primary-button"
           >
-            <span class="hidden md:inline">
-              {{ t('back') }}
-            </span>
+            <IconEye class="w-6 h-6 flex-shrink-0" />
+            <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
           </a>
         </template>
       </div>

@@ -156,7 +156,7 @@ const en = {
   enter_pdf_password: 'Enter PDF password',
   wrong_password: 'Wrong password',
   currency: 'Currency',
-  save_and_preview: 'Save and Preview',
+  save_and_preview: 'Preview',
   preferences: 'Preferences',
   available_in_pro: 'Available in Pro',
   some_fields_are_missing_in_the_formula: 'Some fields are missing in the formula.',
