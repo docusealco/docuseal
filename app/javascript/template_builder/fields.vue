@@ -112,7 +112,7 @@
       :key="type"
     >
       <button
-        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))"
+        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification') && !['stamp', 'cells', 'file', 'image', 'number', 'initials'].includes(type))"
         :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
