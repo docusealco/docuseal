@@ -1,9 +1,17 @@
 name: Build Docker Images
 
 on:
-  push:
-    tags:
-      - "*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version
+        type: string
+        required: true
+      image:
+        description: QEMU image
+        type: string
+        required: false
+        default: tonistiigi/binfmt:latest
 
 jobs:
   build:
@@ -16,23 +24,23 @@ jobs:
       with:
         submodules: recursive
 
-    -
-      name: Docker meta
+    - name: Docker meta
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: |
-          docuseal/docuseal
-        tags: |
-          type=semver,pattern={{version}}
+        images: docuseal/docuseal
+        tags: type=semver,pattern={{version}}
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
+      with:
+        image: ${{ inputs.image }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
     - name: Create .version file
-      run: echo ${{ github.ref_name }} > .version
+      run: echo ${{ inputs.version }} > .version
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
