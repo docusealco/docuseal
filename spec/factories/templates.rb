@@ -11,7 +11,7 @@ FactoryBot.define do
       submitter_count { 1 }
       attachment_count { 1 }
       only_field_types do
-        %w[text date checkbox radio signature number multiple select initials image file stamp cells phone payment]
+        %w[text date checkbox radio signature multiple select phone payment]
       end
       except_field_types { [] }
       private_access_user { nil }
