@@ -406,6 +406,21 @@
       <span class="label-text">{{ t('read_only') }}</span>
     </label>
   </li>
+  <li
+    v-if="withPrefillable && ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone'].includes(field['type'])"
+    @click.stop
+  >
+    <label class="cursor-pointer py-1.5">
+      <input
+        v-model="field.prefillable"
+        type="checkbox"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.prefillable))"
+        class="toggle toggle-xs"
+        @update:model-value="save"
+      >
+      <span class="label-text">{{ t('prefillable') }}</span>
+    </label>
+  </li>
   <hr
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
@@ -554,6 +569,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withRequired: {
       type: Boolean,

@@ -7,5 +7,9 @@ export default actionable(class extends HTMLElement {
     elementIds.forEach((elementId) => {
       document.getElementById(elementId).classList.toggle('hidden', (event.target.dataset.toggleId || event.target.value) !== elementId)
     })
+
+    if (this.dataset.focusId) {
+      document.getElementById(this.dataset.focusId)?.focus()
+    }
   }
 })

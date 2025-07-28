@@ -112,11 +112,23 @@ export default {
     onSelectFiles (e) {
       e.preventDefault()
 
-      this.uploadFiles(this.$refs.input.files).then(() => {
-        if (this.$refs.input) {
-          this.$refs.input.value = ''
+      const files = Array.from(this.$refs.input.files).filter((f) => {
+        if (this.accept === 'image/*') {
+          return f.type.startsWith('image')
+        } else {
+          return true
         }
       })
+
+      if (this.accept === 'image/*' && !files.length) {
+        alert(this.t('please_upload_an_image_file'))
+      } else {
+        this.uploadFiles(files).then(() => {
+          if (this.$refs.input) {
+            this.$refs.input.value = ''
+          }
+        })
+      }
     },
     async uploadFiles (files) {
       this.isLoading = true

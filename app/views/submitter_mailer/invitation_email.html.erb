@@ -1,14 +1,13 @@
-<% if @email_config || @body.present? %>
-  <% body = (@body.presence || @email_config.value['body']).to_s %>
-  <%= render 'custom_content', content: body, submitter: @submitter %>
-  <% if !body.match?(ReplaceEmailVariables::SUBMITTER_LINK) && !body.match?(ReplaceEmailVariables::SUBMITTER_ID) && !body.match?(ReplaceEmailVariables::SUBMISSION_LINK) && !body.match?(ReplaceEmailVariables::TEMPLATE_ID) && !@submitter.submission.source.in?(%w[api embed]) %>
+<% if @body.present? %>
+  <%= render 'custom_content', content: @body, submitter: @submitter %>
+  <% if !@body.match?(ReplaceEmailVariables::SUBMITTER_LINK) && !@body.match?(ReplaceEmailVariables::SUBMITTER_ID) && !@body.match?(ReplaceEmailVariables::SUBMISSION_LINK) && !@body.match?(ReplaceEmailVariables::TEMPLATE_ID) && !@submitter.submission.source.in?(%w[api embed]) %>
     <p><%= link_to nil, submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email')) %></p>
   <% end %>
 <% else %>
   <p><%= t('hi_there') %>,</p>
   <p><%= I18n.t(@submitter.with_signature_fields? ? :you_have_been_invited_to_sign_the_name : :you_have_been_invited_to_submit_the_name_form, name: @submitter.submission.name || @submitter.submission.template.name) %></p>
   <p><%= link_to I18n.t(@submitter.with_signature_fields? ? :review_and_sign : :review_and_submit), submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email'), host: ENV.fetch('EMAIL_HOST', Docuseal.default_url_options[:host])) %></p>
-  <p><%= t('please_contact_us_by_replying_to_this_email_if_you_didn_t_request_this') %></p>
+  <p><%= t('please_contact_us_by_replying_to_this_email_if_you_have_any_questions') %></p>
   <p>
   <%= t('thanks') %>,<br><%= @current_account.name %>
   </p>

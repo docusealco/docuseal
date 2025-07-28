@@ -1,4 +1,5 @@
 const en = {
+  prefillable: 'Prefillable',
   signature_id: 'Signature ID',
   error_message: 'Error message',
   length: 'Length',
@@ -173,6 +174,7 @@ const en = {
 }
 
 const es = {
+  prefillable: 'Rellenable',
   signature_id: 'ID de Firma',
   error_message: 'Mensaje de error',
   length: 'Longitud',
@@ -347,6 +349,7 @@ const es = {
 }
 
 const it = {
+  prefillable: 'Precompilabile',
   signature_id: 'ID firma',
   error_message: 'Messaggio di errore',
   length: 'Lunghezza',
@@ -521,6 +524,7 @@ const it = {
 }
 
 const pt = {
+  prefillable: 'Pré-preenchível',
   signature_id: 'ID da Assinatura',
   error_message: 'Mensagem de erro',
   length: 'Comprimento',
@@ -695,6 +699,7 @@ const pt = {
 }
 
 const fr = {
+  prefillable: 'Pré-remplissable',
   signature_id: 'ID de signature',
   error_message: 'Message d\'erreur',
   length: 'Longueur',
@@ -869,6 +874,7 @@ const fr = {
 }
 
 const de = {
+  prefillable: 'Vorausfüllbar',
   signature_id: 'Signatur-ID',
   error_message: 'Fehlermeldung',
   length: 'Länge',

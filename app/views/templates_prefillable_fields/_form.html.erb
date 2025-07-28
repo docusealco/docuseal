@@ -1,0 +1,16 @@
+<% select_fields = template.fields.filter_map { |f| [f['name'], f['uuid']] if f['name'].present? && f['type'].in?(TemplatesPrefillableFieldsController::PREFILLABLE_FIELD_TYPES) } %>
+<% if select_fields.present? %>
+  <div class="border-b pb-4 mb-4">
+    <%= form_for '', url: template_prefillable_fields_path(template), method: :post, data: { close_on_submit: false } do |f| %>
+      <div class="form-control">
+        <%= f.hidden_field :prefillable, value: 'true' %>
+        <%= f.label :field_uuid, t(:invite_form_fields), class: 'label' %>
+        <div class="join w-full">
+          <%= select_tag :field_uuid, options_for_select(select_fields), prompt: t(:select_field), class: 'base-select w-full join-item', dir: 'auto', required: true %>
+          <%= f.button button_title(title: t('add'), disabled_with: t('add')), class: 'base-button join-item !px-6' %>
+        </div>
+      </div>
+    <% end %>
+    <%= render partial: 'templates_prefillable_fields/list', locals: { template: } %>
+  </div>
+<% end %>

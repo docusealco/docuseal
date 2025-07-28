@@ -30,6 +30,7 @@ class SubmitterMailer < ApplicationMailer
                @submitter.template&.preferences&.dig('request_email_subject').presence
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY)
+    @body ||= fetch_config_email_body(@email_config, @submitter)
 
     assign_message_metadata('submitter_invitation', @submitter)
 
@@ -71,7 +72,7 @@ class SubmitterMailer < ApplicationMailer
     @subject ||= @email_config.value['subject'] if @email_config
 
     @body = template_preferences['completed_notification_email_body'].presence
-    @body ||= @email_config.value['body'] if @email_config
+    @body ||= fetch_config_email_body(@email_config, @submitter)
 
     assign_message_metadata('submitter_completed', @submitter)
 
@@ -127,7 +128,7 @@ class SubmitterMailer < ApplicationMailer
     @subject ||= @email_config.value['subject'] if @email_config
 
     @body = template_preferences['documents_copy_email_body'].presence
-    @body ||= @email_config.value['body'] if @email_config
+    @body ||= fetch_config_email_body(@email_config, @submitter)
 
     assign_message_metadata('submitter_documents_copy', @submitter)
     reply_to = build_submitter_reply_to(submitter, email_config: @email_config, documents_copy_email: true)
@@ -245,5 +246,9 @@ class SubmitterMailer < ApplicationMailer
 
       user.friendly_name
     end
+  end
+
+  def fetch_config_email_body(email_config, _submitter = nil)
+    email_config ? email_config.value['body'].presence : nil
   end
 end

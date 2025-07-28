@@ -37,6 +37,7 @@ import AppTour from './elements/app_tour'
 import DashboardDropzone from './elements/dashboard_dropzone'
 import RequiredCheckboxGroup from './elements/required_checkbox_group'
 import PageContainer from './elements/page_container'
+import EmailEditor from './elements/email_editor'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -109,6 +110,7 @@ safeRegisterElement('dashboard-dropzone', DashboardDropzone)
 safeRegisterElement('check-on-click', CheckOnClick)
 safeRegisterElement('required-checkbox-group', RequiredCheckboxGroup)
 safeRegisterElement('page-container', PageContainer)
+safeRegisterElement('email-editor', EmailEditor)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

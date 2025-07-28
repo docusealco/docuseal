@@ -18,17 +18,7 @@
           </div>
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
-        <div class="form-control">
-          <div class="flex items-center">
-            <%= ff.label :body, t('body'), class: 'label' %>
-            <span class="tooltip" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-            </span>
-          </div>
-          <autoresize-textarea>
-            <%= ff.text_area :body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-          </autoresize-textarea>
-        </div>
+        <%= render 'personalization_settings/email_body_field', ff:, config: f.object %>
         <div class="flex items-center justify-between pt-2.5 mx-1">
           <span>
             <%= t('attach_documents') %>

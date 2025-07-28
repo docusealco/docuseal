@@ -4,7 +4,7 @@
   <% can_send_emails = Accounts.can_send_emails?(current_account) %>
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
-      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails || local_assigns[:disable_email], checked: can_send_emails && !local_assigns.key?(:resend_email) && !local_assigns[:disable_email] %>
+      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails || local_assigns[:disable_email], checked: can_send_emails && !local_assigns.key?(:resend_email) && !local_assigns[:disable_email] && template&.preferences&.dig('request_email_enabled') != false %>
       <span class="label"><%= local_assigns[:resend_email] ? t('re_send_email') : t('send_email') %></span>
     <% end %>
     <div>
