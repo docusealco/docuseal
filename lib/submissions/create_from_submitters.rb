@@ -52,9 +52,12 @@ module Submissions
             template_submitter = template_submitters.find { |e| e['uuid'] == uuid }
           end
 
-          submission.template_submitters << template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
+          template_submitter = template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
+          template_submitter['order'] = submitter_attrs['order'] if submitter_attrs['order'].present?
 
-          is_order_sent = submitters_order == 'random' || index.zero?
+          submission.template_submitters << template_submitter
+
+          is_order_sent = submitters_order == 'random' || (template_submitter['order'] || index).zero?
 
           build_submitter(submission:, attrs: submitter_attrs,
                           uuid:, is_order_sent:, user:, params:,

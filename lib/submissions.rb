@@ -142,15 +142,23 @@ module Submissions
     submissions.each_with_index do |submission, index|
       delay_seconds = (delay + index).seconds if delay
 
-      submitters = submission.submitters.reject(&:completed_at?)
+      template_submitters = submission.template_submitters
+      submitters_index = submission.submitters.reject(&:completed_at?).index_by(&:uuid)
 
-      if submission.submitters_order_preserved?
-        first_submitter =
-          submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
+      if template_submitters.any? { |s| s['order'] }
+        min_order = template_submitters.map.with_index { |s, i| s['order'] || i }.min
+
+        first_submitters = template_submitters.filter_map do |s|
+          submitters_index[s['uuid']] if s['order'] == min_order
+        end
+
+        Submitters.send_signature_requests(first_submitters, delay_seconds:)
+      elsif submission.submitters_order_preserved?
+        first_submitter = template_submitters.filter_map { |s| submitters_index[s['uuid']] }.first
 
         Submitters.send_signature_requests([first_submitter], delay_seconds:) if first_submitter
       else
-        Submitters.send_signature_requests(submitters, delay_seconds:)
+        Submitters.send_signature_requests(submitters_index.values, delay_seconds:)
       end
     end
   end
