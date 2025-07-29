@@ -90,66 +90,20 @@ module Api
     end
 
     def pdf
-      template = Template.new
-      template.account = current_account
-      template.author = current_user
-      template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
-      template.name = params[:name] || 'Untitled Template'
-      template.external_id = params[:external_id] if params[:external_id].present?
-      template.source = :api
-
-      # Set submitters if provided
-      if params[:submitters].present?
-        template.submitters = params[:submitters]
-      end
-
-      # Set fields if provided
-      if params[:fields].present?
-        # We'll set fields after documents are processed to ensure correct attachment_uuid mapping
-        fields_from_request = params[:fields]
-      end
+      template = build_template
+      fields_from_request = params[:fields] if params[:fields].present?
 
       template.save!
 
       begin
         documents = process_documents(template, params[:documents])
+        schema = build_schema(documents)
 
-        schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
-
-        if template.fields.blank?
-          if fields_from_request.present?
-            # Map the fields to use the correct attachment_uuid from the processed documents
-            mapped_fields = fields_from_request.map do |field|
-              field_copy = field.dup
-              if field_copy['areas'].present?
-                field_copy['areas'] = field_copy['areas'].map do |area|
-                  area_copy = area.dup
-                  # Use the first document's UUID since we're processing one document at a time
-                  area_copy['attachment_uuid'] = documents.first.uuid if documents.any?
-                  area_copy
-                end
-              end
-              field_copy
-            end
-            template.fields = mapped_fields
-          else
-            template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
-            schema.each { |item| item['pending_fields'] = true } if template.fields.present?
-          end
-        end
+        set_template_fields(template, fields_from_request, documents, schema) if template.fields.blank?
 
         template.update!(schema: schema)
 
-        enqueue_template_created_webhooks(template)
-
-        SearchEntries.enqueue_reindex(template)
-
-        # Get the documents for serialization
-        template_documents = template.documents.where(uuid: documents.map(&:uuid))
-
-        result = Templates::SerializeForApi.call(template, template_documents)
-
-        render json: result
+        finalize_template_creation(template, documents)
       rescue StandardError => e
         template.destroy!
         raise e
@@ -166,20 +120,16 @@ module Api
     def process_documents(template, documents_params)
       return [] if documents_params.blank?
 
-      documents_params.map.with_index do |doc_param, index|
-        expected_length = (doc_param[:file].length / 4.0 * 3).ceil
+      documents_params.map.with_index do |doc_param, _index|
+        (doc_param[:file].length / 4.0 * 3).ceil
         # Validate base64 string
-        unless doc_param[:file].match?(/\A[A-Za-z0-9+\/]*={0,2}\z/)
-          raise ArgumentError, "Invalid base64 string format"
-        end
+        raise ArgumentError, 'Invalid base64 string format' unless doc_param[:file].match?(%r{\A[A-Za-z0-9+/]*={0,2}\z})
 
         # Decode base64 file data
         file_data = Base64.decode64(doc_param[:file])
 
         # Check if the decoded data looks like a PDF
-        if file_data.size >= 4
-          pdf_header = file_data[0..3]
-        end
+        file_data[0..3] if file_data.size >= 4
 
         # Create a temporary file-like object
         file = Tempfile.new(['document', '.pdf'])
@@ -197,6 +147,55 @@ module Api
         file&.close
         file&.unlink
       end
+    end
+
+    def build_template
+      template = Template.new
+      template.account = current_account
+      template.author = current_user
+      template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
+      template.name = params[:name] || 'Untitled Template'
+      template.external_id = params[:external_id] if params[:external_id].present?
+      template.source = :api
+      template.submitters = params[:submitters] if params[:submitters].present?
+      template
+    end
+
+    def build_schema(documents)
+      documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+    end
+
+    def set_template_fields(template, fields_from_request, documents, schema)
+      if fields_from_request.present?
+        template.fields = map_request_fields_to_documents(fields_from_request, documents)
+      else
+        template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
+        schema.each { |item| item['pending_fields'] = true } if template.fields.present?
+      end
+    end
+
+    def map_request_fields_to_documents(fields_from_request, documents)
+      fields_from_request.map do |field|
+        field_copy = field.dup
+        if field_copy['areas'].present?
+          field_copy['areas'] = field_copy['areas'].map do |area|
+            area_copy = area.dup
+            area_copy['attachment_uuid'] = documents.first.uuid if documents.any?
+            area_copy
+          end
+        end
+        field_copy
+      end
+    end
+
+    def finalize_template_creation(template, documents)
+      enqueue_template_created_webhooks(template)
+      SearchEntries.enqueue_reindex(template)
+
+      template_documents = template.documents.where(uuid: documents.map(&:uuid))
+      result = Templates::SerializeForApi.call(template, template_documents)
+
+      render json: result
     end
 
     def enqueue_template_created_webhooks(template)

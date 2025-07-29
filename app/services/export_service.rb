@@ -3,10 +3,14 @@
 require 'faraday'
 
 class ExportService
-  attr_accessor :error_message
+  attr_reader :error_message
 
   def initialize
     @error_message = nil
+  end
+
+  def set_error(message)
+    @error_message = message
   end
 
   protected
@@ -35,5 +39,9 @@ class ExportService
 
   def export_location
     @export_location ||= ExportLocation.default_location
+  end
+
+  def set_error(message)
+    @error_message = message
   end
 end

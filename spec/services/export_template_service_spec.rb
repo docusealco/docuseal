@@ -2,6 +2,10 @@
 
 require 'rails_helper'
 
+class Rollbar
+  def self.error(message); end
+end
+
 RSpec.describe ExportTemplateService do
   let(:export_location) { create(:export_location, :default) }
   let(:data) { { template: { name: 'Test Template' } } }
@@ -62,10 +66,9 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'reports to Rollbar if available' do
-        rollbar_spy = instance_spy(Rollbar)
-        stub_const('Rollbar', rollbar_spy)
+        allow(Rollbar).to receive(:error)
         service.call
-        expect(rollbar_spy).to have_received(:error).with("#{export_location.name} template export API error: 422")
+        expect(Rollbar).to have_received(:error).with("#{export_location.name} template export API error: 422")
       end
     end
 
@@ -97,10 +100,9 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'reports to Rollbar if available' do
-        rollbar_spy = instance_spy(Rollbar)
-        stub_const('Rollbar', rollbar_spy)
+        allow(Rollbar).to receive(:error)
         service.call
-        expect(rollbar_spy).to have_received(:error).with('Failed to export template: Connection failed')
+        expect(Rollbar).to have_received(:error).with('Failed to export template: Connection failed')
       end
     end
 
@@ -121,12 +123,11 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'reports to Rollbar if available' do
-        rollbar_spy = instance_spy(Rollbar)
-        stub_const('Rollbar', rollbar_spy)
+        allow(Rollbar).to receive(:error)
         error = StandardError.new('Database error')
         allow(ExportLocation).to receive(:default_location).and_raise(error)
         service.call
-        expect(rollbar_spy).to have_received(:error).with(error)
+        expect(Rollbar).to have_received(:error).with(error)
       end
     end
   end
