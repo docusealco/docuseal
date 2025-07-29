@@ -9,7 +9,8 @@ RSpec.describe 'Dashboard Page' do
   end
 
   context 'when are no templates' do
-    xit 'shows empty state' do
+    it 'shows empty state' do
+      skip 'implementation needed'
       visit root_path
 
       expect(page).to have_link('Create', href: new_template_path)
@@ -25,7 +26,8 @@ RSpec.describe 'Dashboard Page' do
       visit root_path
     end
 
-    xit 'shows the list of templates' do
+    it 'shows the list of templates' do
+      skip 'implementation needed'
       templates.each do |template|
         expect(page).to have_content(template.name)
         expect(page).to have_content(template.author.full_name)
@@ -36,7 +38,8 @@ RSpec.describe 'Dashboard Page' do
       expect(page).to have_link('Create', href: new_template_path)
     end
 
-    xit 'initializes the template creation process' do
+    it 'initializes the template creation process' do
+      skip 'implementation needed'
       click_link 'Create'
 
       within('#modal') do
@@ -50,7 +53,8 @@ RSpec.describe 'Dashboard Page' do
       end
     end
 
-    xit 'searches be submitter email' do
+    it 'searches be submitter email' do
+      skip 'implementation needed'
       submission = create(:submission, :with_submitters, template: templates[0])
       submitter = submission.submitters.first
 

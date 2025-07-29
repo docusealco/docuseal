@@ -20,7 +20,8 @@ RSpec.describe 'Signing Form' do
       expect(page).to have_button('Start')
     end
 
-    xit 'completes the form' do
+    it 'completes the form' do
+      skip 'implementation needed'
       # Submit's email step
       fill_in 'Email', with: 'john.dou@example.com'
       click_button 'Start'
@@ -44,7 +45,6 @@ RSpec.describe 'Signing Form' do
       # Signature step
       draw_canvas
       click_button 'next'
-
 
       # Multiple choice step
       %w[Red Blue].each { |color| check color }
@@ -89,7 +89,8 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: submitter.slug)
     end
 
-    xit 'complete the form' do
+    it 'complete the form' do
+      skip 'implementation needed'
       # Text step
       fill_in 'First Name', with: 'John'
       click_button 'next'
@@ -109,7 +110,6 @@ RSpec.describe 'Signing Form' do
       # Signature step
       draw_canvas
       click_button 'next'
-
 
       # Multiple choice step
       %w[Red Blue].each { |color| check color }
@@ -342,7 +342,6 @@ RSpec.describe 'Signing Form' do
     end
   end
 
-
   context 'when the multiple choice step' do
     let(:template) { create(:template, account:, author:, only_field_types: %w[multiple]) }
     let(:submission) { create(:submission, template:) }
@@ -387,10 +386,6 @@ RSpec.describe 'Signing Form' do
       expect(field_value(submitter, 'Gender')).to eq 'Female'
     end
   end
-
-
-
-
 
   context 'when the field with conditions' do
     let(:template) { create(:template, account:, author:, only_field_types: ['text']) }

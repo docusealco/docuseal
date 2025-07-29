@@ -15,7 +15,7 @@ RSpec.describe ExportTemplateService do
   end
 
   describe '#call' do
-    let(:request_double) { double('request', body: nil) }
+    let(:request_double) { instance_double(Net::HTTPGenericRequest, body: nil) }
 
     before do
       allow(request_double).to receive(:body=)
@@ -32,20 +32,22 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'makes API call with correct endpoint' do
-        expect(faraday_connection).to receive(:post).with(export_location.templates_endpoint)
+        allow(faraday_connection).to receive(:post).with(export_location.templates_endpoint)
         service.call
+        expect(faraday_connection).to have_received(:post).with(export_location.templates_endpoint)
       end
 
       it 'logs success message' do
-        expect(Rails.logger).to receive(:info).with("Successfully exported template Test Template to #{export_location.name}")
+        allow(Rails.logger).to receive(:info)
         service.call
+        expect(Rails.logger).to have_received(:info)
+          .with("Successfully exported template Test Template to #{export_location.name}")
       end
     end
 
     context 'when API request fails' do
       before do
-        allow(faraday_response).to receive(:success?).and_return(false)
-        allow(faraday_response).to receive(:status).and_return(422)
+        allow(faraday_response).to receive_messages(success?: false, status: 422)
       end
 
       it 'returns false and sets error message' do
@@ -54,14 +56,16 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'logs error message' do
-        expect(Rails.logger).to receive(:error).with('Failed to export template to third party: 422')
+        allow(Rails.logger).to receive(:error)
         service.call
+        expect(Rails.logger).to have_received(:error).with('Failed to export template to third party: 422')
       end
 
       it 'reports to Rollbar if available' do
-        stub_const('Rollbar', double)
-        expect(Rollbar).to receive(:error).with("#{export_location.name} template export API error: 422")
+        rollbar_spy = instance_spy(Rollbar)
+        stub_const('Rollbar', rollbar_spy)
         service.call
+        expect(rollbar_spy).to have_received(:error).with("#{export_location.name} template export API error: 422")
       end
     end
 
@@ -87,14 +91,16 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'logs the error' do
-        expect(Rails.logger).to receive(:error).with('Failed to export template Faraday: Connection failed')
+        allow(Rails.logger).to receive(:error)
         service.call
+        expect(Rails.logger).to have_received(:error).with('Failed to export template Faraday: Connection failed')
       end
 
       it 'reports to Rollbar if available' do
-        stub_const('Rollbar', double)
-        expect(Rollbar).to receive(:error).with('Failed to export template: Connection failed')
+        rollbar_spy = instance_spy(Rollbar)
+        stub_const('Rollbar', rollbar_spy)
         service.call
+        expect(rollbar_spy).to have_received(:error).with('Failed to export template: Connection failed')
       end
     end
 
@@ -109,22 +115,24 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'logs the error' do
-        expect(Rails.logger).to receive(:error).with('Failed to export template: Database error')
+        allow(Rails.logger).to receive(:error)
         service.call
+        expect(Rails.logger).to have_received(:error).with('Failed to export template: Database error')
       end
 
       it 'reports to Rollbar if available' do
-        stub_const('Rollbar', double)
+        rollbar_spy = instance_spy(Rollbar)
+        stub_const('Rollbar', rollbar_spy)
         error = StandardError.new('Database error')
         allow(ExportLocation).to receive(:default_location).and_raise(error)
-        expect(Rollbar).to receive(:error).with(error)
         service.call
+        expect(rollbar_spy).to have_received(:error).with(error)
       end
     end
   end
 
   describe 'data handling' do
-    let(:request_double) { double('request', body: nil) }
+    let(:request_double) { instance_double(Net::HTTPGenericRequest, body: nil) }
 
     before do
       allow(request_double).to receive(:body=)
@@ -133,10 +141,11 @@ RSpec.describe ExportTemplateService do
     end
 
     it 'sends the data in the request body' do
-      expect(request_double).to receive(:body=) do |body|
+      allow(request_double).to receive(:body=)
+      service.call
+      expect(request_double).to have_received(:body=) do |body|
         expect(JSON.parse(body)).to eq(data.deep_stringify_keys)
       end
-      service.call
     end
 
     context 'when extra_params are provided' do
@@ -147,11 +156,12 @@ RSpec.describe ExportTemplateService do
       end
 
       it 'merges extra_params into the data' do
-        expect(request_double).to receive(:body=) do |body|
+        allow(request_double).to receive(:body=)
+        service.call
+        expect(request_double).to have_received(:body=) do |body|
           parsed_body = JSON.parse(body)
           expect(parsed_body).to include('api_key' => 'test_key', 'version' => '1.0')
         end
-        service.call
       end
     end
   end

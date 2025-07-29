@@ -30,5 +30,4 @@ class ExportController < ApplicationController
       redirect_to submission, alert: service.error_message
     end
   end
-
 end

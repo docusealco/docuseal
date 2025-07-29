@@ -16,7 +16,7 @@ RSpec.describe 'App Setup' do
     visit setup_index_path
   end
 
-  xit 'shows the setup page' do
+  xit 'shows the setup page', reason: 'Pending implementation' do
     expect(page).to have_content('Initial Setup')
 
     ['First name', 'Last name', 'Email', 'Company name', 'Password', 'App URL'].each do |field|
@@ -25,7 +25,7 @@ RSpec.describe 'App Setup' do
   end
 
   context 'when valid information' do
-    xit 'setups the app' do
+    xit 'setups the app', reason: 'Pending implementation' do
       fill_setup_form(form_data)
 
       expect do
@@ -51,7 +51,7 @@ RSpec.describe 'App Setup' do
   end
 
   context 'when invalid information' do
-    xit 'does not setup the app if the email is invalid' do
+    xit 'does not setup the app if the email is invalid', reason: 'Pending implementation' do
       fill_setup_form(form_data.merge(email: 'bob@example-com'))
 
       expect do
@@ -61,7 +61,8 @@ RSpec.describe 'App Setup' do
       expect(page).to have_content('Email is invalid')
     end
 
-    xit 'does not setup the app if the password is too short' do
+    it 'does not setup the app if the password is too short' do
+      skip 'implementation needed'
       fill_setup_form(form_data.merge(password: 'pass'))
 
       expect do
@@ -75,7 +76,8 @@ RSpec.describe 'App Setup' do
   context 'when the app is already setup' do
     let!(:user) { create(:user, account: create(:account)) }
 
-    xit 'redirects to the dashboard page' do
+    it 'redirects to the dashboard page' do
+      skip 'implementation needed'
       sign_in(user)
       visit setup_index_path
 
