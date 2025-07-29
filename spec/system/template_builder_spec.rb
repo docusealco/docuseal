@@ -30,10 +30,10 @@ RSpec.describe 'Template Builder' do
     end
   end
 
-  context 'when clicking the save and preview button' do
+  context 'when clicking the preview button' do
     it 'redirects to the template form page' do
       visit edit_template_path(template)
-      click_on 'Save and Preview'
+      click_on 'Preview'
       expect(page).to have_current_path("/templates/#{template.id}/form")
     end
   end

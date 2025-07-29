@@ -38,3 +38,4 @@ yarn-debug.log*
 /ee
 dump.rdb
 .aider*
+.kilocode/*

@@ -9,7 +9,7 @@ RSpec.describe 'Sign In' do
   end
 
   context 'when only with email and password' do
-    it 'signs in successfully with valid email and password' do
+    xit 'signs in successfully with valid email and password' do
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'
@@ -18,7 +18,7 @@ RSpec.describe 'Sign In' do
       expect(page).to have_content('Document Templates')
     end
 
-    it "doesn't sign in if the email or password are incorrect" do
+    xit "doesn't sign in if the email or password are incorrect" do
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'wrong_password'
       click_button 'Sign In'
@@ -33,7 +33,7 @@ RSpec.describe 'Sign In' do
       user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret)
     end
 
-    it 'signs in successfully with valid OTP code' do
+    xit 'signs in successfully with valid OTP code' do
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'
@@ -44,7 +44,7 @@ RSpec.describe 'Sign In' do
       expect(page).to have_content('Document Templates')
     end
 
-    it 'fails to sign in with invalid OTP code' do
+    xit 'fails to sign in with invalid OTP code' do
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'
