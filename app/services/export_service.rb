@@ -9,6 +9,10 @@ class ExportService
     @error_message = nil
   end
 
+  def set_error(message)
+    @error_message = message
+  end
+
   protected
 
   def api_connection

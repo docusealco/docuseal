@@ -9,7 +9,7 @@ class ExportSubmissionService < ExportService
   end
 
   def call
-    unless export_location&.submissions_endpoint.present?
+    if export_location&.submissions_endpoint.blank?
       set_error('Export failed: Submission export endpoint is not configured.')
       return false
     end

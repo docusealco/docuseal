@@ -111,6 +111,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_demo_user_signed_in
     return true if signed_in?
+
     user = find_or_create_demo_user
     sign_in(user)
     true

@@ -72,9 +72,7 @@ class TemplatesDashboardController < ApplicationController
 
     # Templates.search(current_user, rel, params[:q])
     templates = templates.active
-    templates = Templates.search(current_user, templates, params[:q])
-
-    templates
+    Templates.search(current_user, templates, params[:q])
   end
 
   def sort_template_folders(template_folders, current_user, order)
