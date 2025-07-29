@@ -14,4 +14,12 @@ module ImageUtils
 
     false
   end
+
+  def error?(image)
+    image = image.crop(0, 0, image.width / 4, 2)
+
+    row1, row2 = image.to_a
+
+    row1[3..] == row2[..-4] && row1.each_cons(2).none? { |a, b| a == b }
+  end
 end
