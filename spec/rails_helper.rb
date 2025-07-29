@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+class Rollbar
+  def self.info(*_args); end
+  def self.warning(*_args); end
+  def self.error(*_args); end
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 ENV['TZ'] ||= 'UTC'
