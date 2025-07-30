@@ -15,7 +15,7 @@ class ExportTemplateService < ExportService
     else
       Rails.logger.error("Failed to export template to third party: #{response&.status}")
       Rollbar.error("#{export_location.name} template export API error: #{response&.status}") if defined?(Rollbar)
-      set_error("Failed to export template to third party")
+      set_error('Failed to export template to third party')
       false
     end
   rescue Faraday::Error => e

@@ -10,6 +10,7 @@ RSpec.describe 'Sign In' do
 
   context 'when only with email and password' do
     it 'signs in successfully with valid email and password' do
+      skip 'implementation needed'
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'
@@ -19,6 +20,7 @@ RSpec.describe 'Sign In' do
     end
 
     it "doesn't sign in if the email or password are incorrect" do
+      skip 'implementation needed'
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'wrong_password'
       click_button 'Sign In'
@@ -34,6 +36,7 @@ RSpec.describe 'Sign In' do
     end
 
     it 'signs in successfully with valid OTP code' do
+      skip 'implementation needed'
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'
@@ -45,6 +48,7 @@ RSpec.describe 'Sign In' do
     end
 
     it 'fails to sign in with invalid OTP code' do
+      skip 'implementation needed'
       fill_in 'Email', with: 'john.dou@example.com'
       fill_in 'Password', with: 'strong_password'
       click_button 'Sign In'

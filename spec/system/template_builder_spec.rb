@@ -29,4 +29,12 @@ RSpec.describe 'Template Builder' do
       expect(page).to have_content('sample-image')
     end
   end
+
+  context 'when clicking the preview button' do
+    it 'redirects to the template form page' do
+      visit edit_template_path(template)
+      click_on 'Preview'
+      expect(page).to have_current_path("/templates/#{template.id}/form")
+    end
+  end
 end
