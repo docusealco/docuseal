@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AddSharedLinkToTemplates < ActiveRecord::Migration[8.0]
-  disable_ddl_transaction
+  disable_ddl_transaction!
 
   class MigrationTemplate < ActiveRecord::Base
     self.table_name = 'templates'
