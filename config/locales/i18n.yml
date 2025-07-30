@@ -24,6 +24,7 @@ en: &en
   thanks: Thanks
   private: Private
   select: Select
+  edit_order: Edit Order
   invite_form_fields: Invite form fields
   default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
@@ -898,6 +899,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  edit_order: Edita Pedido
   select: Seleccionar
   invite_form_fields: Invitar campos del formulario
   pro: Pro
@@ -1776,6 +1778,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  edit_order: Modifica Ordine
   select: Seleziona
   invite_form_fields: Invita campi modulo
   pro: Pro
@@ -2654,6 +2657,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  edit_order: Modifier la commande
   select: Sélectionner
   invite_form_fields: Inviter des champs de formulaire
   pro: Pro
@@ -3535,6 +3539,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  edit_order: Edita Pedido
   select: Selecionar
   invite_form_fields: Convidar campos do formulário
   pro: Pro
@@ -4414,6 +4419,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  edit_order: Bestellung bearbeiten
   select: Auswählen
   invite_form_fields: Formularfelder einladen
   pro: Pro

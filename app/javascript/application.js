@@ -38,6 +38,7 @@ import DashboardDropzone from './elements/dashboard_dropzone'
 import RequiredCheckboxGroup from './elements/required_checkbox_group'
 import PageContainer from './elements/page_container'
 import EmailEditor from './elements/email_editor'
+import MountOnClick from './elements/mount_on_click'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -111,6 +112,7 @@ safeRegisterElement('check-on-click', CheckOnClick)
 safeRegisterElement('required-checkbox-group', RequiredCheckboxGroup)
 safeRegisterElement('page-container', PageContainer)
 safeRegisterElement('email-editor', EmailEditor)
+safeRegisterElement('mount-on-click', MountOnClick)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

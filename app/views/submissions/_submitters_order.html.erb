@@ -1,4 +1,4 @@
-<% if template.preferences['submitters_order'] == 'preserved' %>
+<% if template.preferences['submitters_order'] == 'preserved' || template.submitters.any? { |s| s['order'] } %>
   <%= f.hidden_field :preserve_order, value: '1' %>
 <% elsif template.submitters.size > 1 %>
   <div class="form-control">

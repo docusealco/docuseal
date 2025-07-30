@@ -1,4 +1,5 @@
 <% close_on_submit = local_assigns.fetch(:close_on_submit, true) %>
+<% is_order_set = template.submitters.any? { |s| s['order'] } %>
 <%= form_for template, url: template_recipients_path(template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: :submitters_form }, data: { close_on_submit: } do |f| %>
   <% unless close_on_submit %>
     <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
@@ -6,11 +7,24 @@
   <div class="space-y-3 divide-y">
     <% template.submitters.each_with_index do |submitter, index| %>
       <div class="<%= 'pt-3' if index.positive? %>">
-        <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :optional_invite_by_uuid, :linked_to_uuid, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'optional_invite_by_uuid', 'linked_to_uuid')), index: do |ff| %>
+        <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :optional_invite_by_uuid, :linked_to_uuid, :order, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'optional_invite_by_uuid', 'linked_to_uuid', 'order')), index: do |ff| %>
           <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : (item.invite_by_uuid.present? ? "invite_by_#{item.invite_by_uuid}" : (item.optional_invite_by_uuid.present? ? "optional_invite_by_#{item.optional_invite_by_uuid}" : '')))) %>
           <%= ff.hidden_field :uuid %>
           <div class="form-control">
-            <%= ff.text_field :name, class: 'w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer mb-2', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
+            <div class="flex justify-between">
+              <%= ff.text_field :name, class: 'w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer mb-2', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
+              <% if template.submitters.size > 2 %>
+                <div id="order_<%= submitter['uuid'] %>" class="mr-0.5">
+                  <% if is_order_set %>
+                    <%= ff.select :order, options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), {}, class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
+                  <% elsif index == 0 %>
+                    <mount-on-click data-template-id="order_fields" class="link whitespace-nowrap text-sm mt-1 mr-1 block">
+                      <%= t('edit_order') %>
+                    </mount-on-click>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
             <% if template.submitters.size == 2 %>
               <%= tag.input name: ff.field_name(:email), value: ff.object.email, type: :email, class: 'base-input', multiple: true, autocomplete: 'off', placeholder: t('default_email'), disabled: ff.object.is_requester || ff.object.invite_by_uuid.present? || ff.object.optional_invite_by_uuid.present?, id: field_uuid = SecureRandom.uuid %>
             <% else %>
@@ -85,3 +99,16 @@
     </div>
   <% end %>
 </div>
+<% if template.submitters.size > 2 && !is_order_set %>
+  <template id="order_fields">
+    <% template.submitters.each_with_index do |submitter, index| %>
+      <turbo-stream action="replace" target="order_<%= submitter['uuid'] %>">
+        <template>
+          <div id="order_<%= submitter['uuid'] %>">
+            <%= select_tag "template[submitters][#{index}][order]", options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
+          </div>
+        </template>
+      </turbo-stream>
+    <% end %>
+  </template>
+<% end %>
