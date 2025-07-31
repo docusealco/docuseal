@@ -86,7 +86,7 @@
         </a>
         <span
           v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
-          class=" tooltip"
+          class="tooltip before:translate-x-[-90%]"
           :data-tip="t('drawn_signature_on_a_touchscreen_device')"
         >
           <a
