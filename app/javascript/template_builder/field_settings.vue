@@ -304,7 +304,7 @@
         {{ t('any') }}
       </option>
       <option
-        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'upload']"
+        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']"
         :key="type"
         :value="type"
         :selected="field.preferences?.format === type"
