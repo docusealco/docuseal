@@ -146,7 +146,8 @@ class ProcessSubmitterCompletionJob
         current_group_index = submitter_groups.find { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }&.first
 
         if submitter_groups[current_group_index + 1] &&
-           submitters_index.values_at(*submitter_groups[current_group_index].pluck('uuid')).all?(&:completed_at?)
+           submitters_index.values_at(*submitter_groups[current_group_index].pluck('uuid'))
+                           .compact.all?(&:completed_at?)
           submitter_groups[current_group_index + 1]
         end
       else
@@ -159,7 +160,7 @@ class ProcessSubmitterCompletionJob
         end
       end
 
-    next_submitters = submitters_index.values_at(*Array.wrap(next_submitter_items).pluck('uuid'))
+    next_submitters = submitters_index.values_at(*Array.wrap(next_submitter_items).pluck('uuid')).compact
 
     Submitters.send_signature_requests(next_submitters)
   end
