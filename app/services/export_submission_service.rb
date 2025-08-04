@@ -65,11 +65,11 @@ class ExportSubmissionService < ExportService
 
     if statuses.include?('declined')
       'declined'
-    elsif statuses.all? { |s| s == 'completed' }
+    elsif statuses.all?('completed')
       'completed'
-    elsif statuses.any? { |s| s == 'opened' }
+    elsif statuses.any?('opened')
       'in_progress'
-    elsif statuses.any? { |s| s == 'sent' }
+    elsif statuses.any?('sent')
       'sent'
     else
       'pending'
