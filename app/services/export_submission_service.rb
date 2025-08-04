@@ -9,6 +9,8 @@ class ExportSubmissionService < ExportService
   end
 
   def call
+    export_location = ExportLocation.default_location
+
     if export_location&.submissions_endpoint.blank?
       set_error('Export failed: Submission export endpoint is not configured.')
       return false
@@ -39,9 +41,38 @@ class ExportSubmissionService < ExportService
 
   def build_payload
     {
-      submission_id: submission.id,
+      external_submission_id: submission.id,
       template_name: submission.template&.name,
-      events: submission.submission_events.order(updated_at: :desc).limit(1)
+      status: submission_status,
+      submitter_data: submission.submitters.map do |submitter|
+        {
+          external_submitter_id: submitter.slug,
+          name: submitter.name,
+          email: submitter.email,
+          status: submitter.status,
+          completed_at: submitter.completed_at,
+          declined_at: submitter.declined_at
+        }
+      end,
+      created_at: submission.created_at,
+      updated_at: submission.updated_at
     }
+  end
+
+  def submission_status
+    # The status is tracked for each submitter, so we need to check the status of all submitters
+    statuses = submission.submitters.map(&:status)
+
+    if statuses.include?('declined')
+      'declined'
+    elsif statuses.all? { |s| s == 'completed' }
+      'completed'
+    elsif statuses.any? { |s| s == 'opened' }
+      'in_progress'
+    elsif statuses.any? { |s| s == 'sent' }
+      'sent'
+    else
+      'pending'
+    end
   end
 end

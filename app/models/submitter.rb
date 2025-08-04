@@ -68,6 +68,7 @@ class Submitter < ApplicationRecord
   scope :completed, -> { where.not(completed_at: nil) }
 
   after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
+  after_update :export_submission_on_status_change
 
   def status
     if declined_at?
@@ -121,5 +122,14 @@ class Submitter < ApplicationRecord
     email_events.each do |event|
       event.update!(email: Digest::MD5.base64digest(event.email))
     end
+  end
+
+  def export_submission_on_status_change
+    status_fields = %w[completed_at declined_at opened_at sent_at]
+    return unless (saved_changes.keys & status_fields).any?
+
+    ExportSubmissionService.new(submission).call
+  rescue => e
+    Rails.logger.error("Failed to export submission on status change: #{e.message}")
   end
 end
