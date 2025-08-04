@@ -10,10 +10,21 @@ module Api
     def create
       submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
-      if params[:type].in?(%w[initials signature]) && ImageUtils.blank?(Vips::Image.new_from_file(params[:file].path))
-        Rollbar.error("Empty signature: #{submitter.id}") if defined?(Rollbar)
+      if params[:type].in?(%w[initials signature])
+        image = Vips::Image.new_from_file(params[:file].path)
 
-        return render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_entity
+        if ImageUtils.blank?(image)
+          Rollbar.error("Empty signature: #{submitter.id}") if defined?(Rollbar)
+
+          return render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_entity
+        end
+
+        if ImageUtils.error?(image)
+          Rollbar.error("Error signature: #{submitter.id}") if defined?(Rollbar)
+
+          return render json: { error: "#{params[:type]} error, try to sign on another device" },
+                        status: :unprocessable_entity
+        end
       end
 
       attachment = Submitters.create_attachment!(submitter, params)

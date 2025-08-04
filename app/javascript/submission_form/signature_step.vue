@@ -21,7 +21,7 @@
       </label>
       <div class="space-x-2 flex flex-none">
         <span
-          v-if="isTextSignature && format !== 'typed' && format !== 'upload'"
+          v-if="isTextSignature && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
           class="tooltip"
           :data-tip="t('draw_signature')"
         >
@@ -38,7 +38,7 @@
           </a>
         </span>
         <span
-          v-else-if="withTypedSignature && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
+          v-else-if="withTypedSignature && format !== 'drawn_or_upload' && format !== 'typed_or_upload' && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="tooltip ml-2"
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('type_text')"
@@ -85,8 +85,8 @@
           {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
         </a>
         <span
-          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed' && format !== 'upload'"
-          class=" tooltip"
+          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
+          class="tooltip before:translate-x-[-90%]"
           :data-tip="t('drawn_signature_on_a_touchscreen_device')"
         >
           <a
@@ -395,7 +395,7 @@ export default {
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
-      isTextSignature: this.field.preferences?.format === 'typed',
+      isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
       uploadImageInputKey: Math.random().toString()
     }
   },

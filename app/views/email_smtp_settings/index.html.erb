@@ -35,17 +35,19 @@
             <%= ff.select :authentication, options_for_select([%w[Plain plain], %w[Login login], %w[CRAM-MD5 cram_md5]], value.fetch('authentication', 'plain')), { prompt: true }, required: true, class: 'base-select' %>
           </div>
         </div>
-        <div class="form-control">
-          <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
-          <div class="flex items-center space-x-6">
-            <% [%w[Auto none], %w[SSL ssl], %w[TLS tls], %w[Noverify noverify]].each do |(label, val)| %>
-              <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
-                <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
-                <%= label %>
+        <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+          <div class="form-control">
+            <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
+            <div class="flex items-center space-x-6">
+              <% [%w[Auto none], %w[SSL ssl], %w[TLS tls], %w[Noverify noverify]].each do |(label, val)| %>
+                <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
+                  <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
+                  <%= label %>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <div class="form-control">
           <%= ff.label :from_email, t('send_from_email'), class: 'label' %>
           <%= ff.email_field :from_email, value: value['from_email'], required: !Docuseal.multitenant?, class: 'base-input' %>

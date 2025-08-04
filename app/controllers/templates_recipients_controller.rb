@@ -9,6 +9,10 @@ class TemplatesRecipientsController < ApplicationController
     @template.submitters =
       submitters_params.map { |s| s.reject { |_, v| v.is_a?(String) && v.blank? } }
 
+    if @template.submitters.each_with_index.all? { |s, index| s['order'] == index }
+      @template.submitters.each { |s| s.delete('order') }
+    end
+
     @template.save!
 
     render json: { submitters: @template.submitters }
@@ -18,7 +22,7 @@ class TemplatesRecipientsController < ApplicationController
 
   def submitters_params
     permit_params = { submitters: [%i[name uuid is_requester optional_invite_by_uuid
-                                      invite_by_uuid linked_to_uuid email option]] }
+                                      invite_by_uuid linked_to_uuid email option order]] }
 
     params.require(:template).permit(permit_params).fetch(:submitters, {}).values.filter_map do |s|
       next if s[:uuid].blank?
@@ -29,6 +33,7 @@ class TemplatesRecipientsController < ApplicationController
         s.delete(:is_requester)
       end
 
+      s[:order] = s[:order].to_i if s[:order].present?
       s.delete(:invite_by_uuid) if s[:invite_by_uuid].blank?
       s.delete(:optional_invite_by_uuid) if s[:optional_invite_by_uuid].blank?
 

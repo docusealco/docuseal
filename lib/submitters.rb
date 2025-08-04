@@ -162,13 +162,22 @@ module Submitters
   end
 
   def current_submitter_order?(submitter)
-    submitter_items = submitter.submission.template_submitters || submitter.submission.template.submitters
+    submission = submitter.submission
 
-    before_items = submitter_items[0...(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })]
+    submitter_items = submission.template_submitters || submission.template.submitters
 
-    before_items.reduce(true) do |acc, item|
-      acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
-    end
+    before_items =
+      if submitter_items.any? { |s| s['order'] }
+        submitter_groups = submitter_items.group_by.with_index { |s, index| s['order'] || index }.sort_by(&:first)
+
+        current_group_index = submitter_groups.find_index { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }
+
+        submitter_groups.first(current_group_index).flat_map(&:last)
+      else
+        submitter_items.first(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })
+      end
+
+    before_items.all? { |item| submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at? }
   end
 
   def build_document_filename(submitter, blob, filename_format)

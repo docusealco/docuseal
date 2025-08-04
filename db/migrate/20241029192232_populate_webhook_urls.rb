@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PopulateWebhookUrls < ActiveRecord::Migration[7.2]
-  disable_ddl_transaction
+  disable_ddl_transaction!
 
   class MigrationWebhookUrl < ActiveRecord::Base
     self.table_name = 'webhook_urls'

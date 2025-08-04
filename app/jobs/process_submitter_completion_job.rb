@@ -135,19 +135,32 @@ class ProcessSubmitterCompletionJob
   end
 
   def enqueue_next_submitter_request_notification(submitter)
-    next_submitter_item =
-      submitter.submission.template_submitters.find do |e|
-        sub = submitter.submission.submitters.find { |s| s.uuid == e['uuid'] }
+    submission = submitter.submission
+    submitters_index = submission.submitters.index_by(&:uuid)
 
-        next unless sub
+    next_submitter_items =
+      if submission.template_submitters.any? { |s| s['order'] }
+        submitter_groups =
+          submission.template_submitters.group_by.with_index { |s, index| s['order'] || index }
 
-        sub.completed_at.blank? && sub.sent_at.blank?
+        current_group_index = submitter_groups.find { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }&.first
+
+        if submitter_groups[current_group_index + 1] &&
+           submitters_index.values_at(*submitter_groups[current_group_index].pluck('uuid')).all?(&:completed_at?)
+          submitter_groups[current_group_index + 1]
+        end
+      else
+        submission.template_submitters.find do |e|
+          sub = submitters_index[e['uuid']]
+
+          next unless sub
+
+          sub.completed_at.blank? && sub.sent_at.blank?
+        end
       end
 
-    return unless next_submitter_item
+    next_submitters = submitters_index.values_at(*Array.wrap(next_submitter_items).pluck('uuid'))
 
-    next_submitter = submitter.submission.submitters.find { |s| s.uuid == next_submitter_item['uuid'] }
-
-    Submitters.send_signature_requests([next_submitter])
+    Submitters.send_signature_requests(next_submitters)
   end
 end

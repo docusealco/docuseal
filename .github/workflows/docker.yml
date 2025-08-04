@@ -12,10 +12,15 @@ on:
         type: string
         required: false
         default: tonistiigi/binfmt:latest
+      os:
+        description: OS
+        type: string
+        required: false
+        default: ubuntu-24.04-arm
 
 jobs:
   build:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ${{ inputs.os }}
     timeout-minutes: 20
 
     steps:
@@ -29,7 +34,7 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: docuseal/docuseal
-        tags: type=semver,pattern={{version}}
+        tags: latest,${{ inputs.version }}
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3

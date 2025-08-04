@@ -76,6 +76,7 @@ module Params
       type(submitter_params, :name, String)
       type(submitter_params, :reply_to, String)
       type(submitter_params, :email, String)
+      type(submitter_params, :order, Integer)
       email_format(submitter_params, :email, message: 'email is invalid')
       email_format(submitter_params, :reply_to, message: 'reply_to email is invalid')
       type(submitter_params, :phone, String)
