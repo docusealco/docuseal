@@ -12,7 +12,7 @@ class ExportSubmissionService < ExportService
     export_location = ExportLocation.default_location
 
     if export_location&.submissions_endpoint.blank?
-      set_error('Export failed: Submission export endpoint is not configured.')
+      record_error('Export failed: Submission export endpoint is not configured.')
       return false
     end
 
@@ -22,18 +22,18 @@ class ExportSubmissionService < ExportService
     if response&.success?
       true
     else
-      set_error("Failed to export submission ##{submission.id} events.")
+      record_error("Failed to export submission ##{submission.id} events.")
       false
     end
   rescue Faraday::Error => e
     Rails.logger.error("Failed to export submission Faraday: #{e.message}")
     Rollbar.error("Failed to export submission: #{e.message}") if defined?(Rollbar)
-    set_error("Network error occurred during export: #{e.message}")
+    record_error("Network error occurred during export: #{e.message}")
     false
   rescue StandardError => e
     Rails.logger.error("Failed to export submission: #{e.message}")
     Rollbar.error(e) if defined?(Rollbar)
-    set_error("An unexpected error occurred during export: #{e.message}")
+    record_error("An unexpected error occurred during export: #{e.message}")
     false
   end
 

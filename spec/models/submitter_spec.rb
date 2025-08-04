@@ -6,7 +6,9 @@ RSpec.describe Submitter do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:template) { create(:template, account: account, author: user) }
-  let(:submission) { create(:submission, :with_submitters, template: template, account: account, created_by_user: user) }
+  let(:submission) do
+    create(:submission, :with_submitters, template: template, account: account, created_by_user: user)
+  end
   let(:submitter) { submission.submitters.first }
 
   describe '#status' do
@@ -128,7 +130,9 @@ RSpec.describe Submitter do
 
       it 'logs the error and does not re-raise' do
         expect { submitter.update!(completed_at: Time.current) }.not_to raise_error
-        expect(Rails.logger).to have_received(:error).with('Failed to export submission on status change: Export failed')
+        expect(Rails.logger).to have_received(:error).with(
+          'Failed to export submission on status change: Export failed'
+        )
       end
     end
 

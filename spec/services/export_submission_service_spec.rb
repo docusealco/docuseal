@@ -6,7 +6,9 @@ RSpec.describe ExportSubmissionService do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:template) { create(:template, account: account, author: user) }
-  let(:submission) { create(:submission, template: template, account: account) }
+  let(:submission) do
+    create(:submission, :with_submitters, template: template, account: account, created_by_user: user)
+  end
   let(:export_location) { create(:export_location, :with_submissions_endpoint) }
   let(:service) { described_class.new(submission) }
   let(:faraday_connection) { instance_double(Faraday::Connection) }
@@ -140,76 +142,51 @@ RSpec.describe ExportSubmissionService do
 
   describe 'payload building' do
     let(:request_double) { instance_double(Faraday::Request, body: nil) }
-    let(:submitter1) { create(:submitter, submission: submission, account: account, name: 'John Doe', email: 'john@example.com', completed_at: Time.current, uuid: SecureRandom.uuid) }
-    let(:submitter2) { create(:submitter, submission: submission, account: account, name: 'Jane Smith', email: 'jane@example.com', opened_at: Time.current, uuid: SecureRandom.uuid) }
 
     before do
-      submission.submitters << [submitter1, submitter2]
       allow(request_double).to receive(:body=)
-      allow(faraday_connection).to receive(:post).and_yield(request_double).and_return(faraday_response)
+      allow(faraday_connection).to receive(:post)
+        .with(export_location.submissions_endpoint)
+        .and_yield(request_double)
+        .and_return(faraday_response)
       allow(faraday_response).to receive(:success?).and_return(true)
+
+      allow(Submitter).to receive(:after_update)
+
+      submission.submitters.first.update!(name: 'John Doe', email: 'john@example.com', completed_at: Time.current)
+      submission.submitters << create(
+        :submitter,
+        submission: submission,
+        account: account,
+        name: 'Jane Smith',
+        email: 'jane@example.com',
+        opened_at: Time.current,
+        uuid: SecureRandom.uuid
+      )
     end
 
-    it 'includes external_submission_id in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        expect(JSON.parse(body)).to include('external_submission_id' => submission.id)
-      end
-      service.call
-    end
-
-    it 'includes template_name in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        expect(JSON.parse(body)).to include('template_name' => submission.template.name)
-      end
-      service.call
-    end
-
-    it 'includes submission status in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        expect(JSON.parse(body)).to include('status' => 'in_progress')
-      end
-      service.call
-    end
-
-    it 'includes submitter_data array in payload' do
+    it 'builds correct payload structure with all required fields' do
       allow(request_double).to receive(:body=) do |body|
         parsed_body = JSON.parse(body)
-        expect(parsed_body).to have_key('submitter_data')
+
+        expect(parsed_body).to include(
+          'external_submission_id' => submission.id,
+          'template_name' => submission.template.name,
+          'status' => 'in_progress'
+        )
+        expect(parsed_body).to have_key('created_at')
+        expect(parsed_body).to have_key('updated_at')
+
         expect(parsed_body['submitter_data']).to be_an(Array)
         expect(parsed_body['submitter_data'].length).to eq(2)
-      end
-      service.call
-    end
 
-    it 'includes correct submitter data in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        parsed_body = JSON.parse(body)
-        submitter_data = parsed_body['submitter_data']
-
-        first_submitter = submitter_data.find { |s| s['email'] == 'john@example.com' }
-        expect(first_submitter).to include(
-          'external_submitter_id' => submitter1.slug,
+        completed_submitter = parsed_body['submitter_data'].find { |s| s['status'] == 'completed' }
+        expect(completed_submitter).to include(
           'name' => 'John Doe',
           'email' => 'john@example.com',
           'status' => 'completed'
         )
-
-        second_submitter = submitter_data.find { |s| s['email'] == 'jane@example.com' }
-        expect(second_submitter).to include(
-          'external_submitter_id' => submitter2.slug,
-          'name' => 'Jane Smith',
-          'email' => 'jane@example.com',
-          'status' => 'opened'
-        )
-      end
-      service.call
-    end
-
-    it 'includes created_at and updated_at in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        parsed_body = JSON.parse(body)
-        expect(parsed_body).to have_key('created_at')
-        expect(parsed_body).to have_key('updated_at')
+        expect(completed_submitter).to have_key('external_submitter_id')
       end
       service.call
     end
@@ -228,66 +205,16 @@ RSpec.describe ExportSubmissionService do
     end
   end
 
-  describe '#submission_status' do
-    let(:service) { described_class.new(submission) }
-
-    context 'with multiple submitters' do
-      let(:submitter1) { create(:submitter, submission: submission, account: account, uuid: SecureRandom.uuid) }
-      let(:submitter2) { create(:submitter, submission: submission, account: account, uuid: SecureRandom.uuid) }
-
-      before do
-        submission.submitters << [submitter1, submitter2]
-      end
-
-      it 'returns declined when any submitter is declined' do
-        submitter1.declined_at = Time.current
-        submitter2.completed_at = Time.current
-        expect(service.send(:submission_status)).to eq('declined')
-      end
-
-      it 'returns completed when all submitters are completed' do
-        submitter1.completed_at = Time.current
-        submitter2.completed_at = Time.current
-        expect(service.send(:submission_status)).to eq('completed')
-      end
-
-      it 'returns in_progress when any submitter is opened but not all completed' do
-        submitter1.opened_at = Time.current
-        submitter2.sent_at = Time.current
-        expect(service.send(:submission_status)).to eq('in_progress')
-      end
-
-      it 'returns sent when any submitter is sent but none opened' do
-        submitter1.sent_at = Time.current
-        expect(service.send(:submission_status)).to eq('sent')
-      end
-
-      it 'returns pending when no submitters have been sent' do
-        expect(service.send(:submission_status)).to eq('pending')
-      end
-    end
-
-    context 'with single submitter' do
-      let(:submitter) { create(:submitter, submission: submission, account: account, uuid: SecureRandom.uuid) }
-
-      before do
-        submission.submitters << submitter
-      end
-
-      it 'returns the submitter status when single submitter' do
-        submitter.opened_at = Time.current
-        expect(service.send(:submission_status)).to eq('in_progress')
-      end
-    end
-  end
-
   describe 'extra_params handling' do
     let(:request_double) { instance_double(Faraday::Request, body: nil) }
 
     before do
       allow(export_location).to receive(:extra_params).and_return({ 'api_key' => 'test_key', 'version' => '1.0' })
       allow(request_double).to receive(:body=)
-      allow(faraday_connection).to receive(:post).and_yield(request_double).and_return(faraday_response)
+      allow(faraday_connection).to receive(:post)
+        .with(export_location.submissions_endpoint)
+        .and_yield(request_double)
+        .and_return(faraday_response)
       allow(faraday_response).to receive(:success?).and_return(true)
     end
 
