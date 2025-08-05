@@ -123,10 +123,9 @@ fetch_env_variables() {
     export DB_HOST=$(echo "$SECRET_JSON" | jq -r '.host')
     export REDIS_URL=$(echo "$SECRET_JSON" | jq -r '.redis_url')
     export S3_ATTACHMENTS_BUCKET=$(echo "$SECRET_JSON" | jq -r '.s3_attachments_bucket')
-    export DB_SSLCERT=$(echo "$SECRET_JSON" | jq -r '.ssl_cert_location')
 
     # Validate that we got the values
-    if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ "$DB_SSLCERT" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ] || [ -z "$DB_SSLCERT" ]; then
+    if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
         echo "ERROR: Failed to parse variables from secrets"
         echo "Expected JSON format: {\"key\": \"...\", ...}"
         exit 1
@@ -141,7 +140,6 @@ fetch_env_variables() {
         grep -v "^DB_HOST=" ./.env.staging > ./.env.staging.tmp || true
         grep -v "^REDIS_URL=" ./.env.staging.tmp > ./.env.staging || true
         grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^DB_SSLCERT=" ./.env.staging.tmp > ./.env.staging || true
         rm -f ./.env.staging.tmp
     fi
     
@@ -149,7 +147,6 @@ fetch_env_variables() {
     echo "DB_HOST=$DB_HOST" >> ./.env.staging
     echo "REDIS_URL=$REDIS_URL" >> ./.env.staging
     echo "S3_ATTACHMENTS_BUCKET=$S3_ATTACHMENTS_BUCKET" >> ./.env.staging
-    echo "DB_SSLCERT=$DB_SSLCERT" >> ./.env.staging
 
     echo "✓ Environment variables successfully retrieved and written to .env.staging"
 }
