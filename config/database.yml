@@ -1,7 +1,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
 
 development:
   adapter: postgresql
@@ -22,27 +21,25 @@ test:
   host: localhost
 
 production:
-<% if !ENV['DATABASE_HOST'].to_s.empty? %>
   <<: *default
-  host: <%= ENV['DATABASE_HOST'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  database: <%= ENV['DATABASE_NAME'] %>
-  <% if !ENV['DATABASE_SEARCH_PATH'].to_s.empty? %>
-  search_path: <%= ENV['DATABASE_SEARCH_PATH'] %>
-  <% end %>
-<% elsif ENV['DATABASE_URL'].to_s.empty? %>
-  adapter: sqlite3
-  database: <%= ENV['WORKDIR'] || '.' %>/db.sqlite3
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
-  timeout: 5000
-<% elsif ENV['DATABASE_URL'].match?(/\Apostgres/) %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
+  pool: <%= ENV['DB_POOL'] || 25 %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+  sslmode: <%= ENV['DB_SSLMODE'] %>
+  sslrootcert: <%= ENV['DB_SSLCERT'] %>
+
+staging:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-<% elsif ENV['DATABASE_URL'].match?(/\Amysql/) %>
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
-  url: <%= ENV['DATABASE_URL'] %>
-<% end %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
+  pool: <%= ENV['DB_POOL'] || 25 %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+  sslmode: <%= ENV['DB_SSLMODE'] %>
+  sslrootcert: <%= ENV['DB_SSLCERT'] %>
+  variables:
+    statement_timeout: 120000

@@ -41,6 +41,10 @@ test:
   compile: true
   public_output_path: packs-test
 
+staging:
+  <<: *default
+  compile: false
+
 production:
   <<: *default
   compile: false

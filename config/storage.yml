@@ -13,21 +13,6 @@ aws_s3:
   upload:
     cache_control: 'public, max-age=31536000'
 
-google:
-  service: GCS
-  credentials: <%= ENV['GCS_CREDENTIALS'] || '{}' %>
-  project: <%= ENV['GCS_PROJECT'] %>
-  bucket: <%= ENV['GCS_BUCKET'] %>
-  public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
-  cache_control: "public, max-age=31536000"
-
-azure:
-  service: AzureStorage
-  storage_account_name: <%= ENV['AZURE_STORAGE_ACCOUNT_NAME'] %>
-  storage_access_key: <%= ENV['AZURE_STORAGE_ACCESS_KEY'] %>
-  container: <%= ENV['AZURE_CONTAINER'] %>
-  public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
-
 test:
   service: Disk
   root: <%= Rails.root.join("tmp/storage") %>
