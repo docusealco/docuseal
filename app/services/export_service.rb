@@ -9,7 +9,7 @@ class ExportService
     @error_message = nil
   end
 
-  def set_error(message)
+  def record_error(message)
     @error_message = message
   end
 
@@ -39,9 +39,5 @@ class ExportService
 
   def export_location
     @export_location ||= ExportLocation.default_location
-  end
-
-  def set_error(message)
-    @error_message = message
   end
 end

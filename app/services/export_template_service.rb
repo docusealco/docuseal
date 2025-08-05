@@ -15,18 +15,18 @@ class ExportTemplateService < ExportService
     else
       Rails.logger.error("Failed to export template to third party: #{response&.status}")
       Rollbar.error("#{export_location.name} template export API error: #{response&.status}") if defined?(Rollbar)
-      set_error('Failed to export template to third party')
+      record_error('Failed to export template to third party')
       false
     end
   rescue Faraday::Error => e
     Rails.logger.error("Failed to export template Faraday: #{e.message}")
     Rollbar.error("Failed to export template: #{e.message}") if defined?(Rollbar)
-    set_error("Network error occurred during template export: #{e.message}")
+    record_error("Network error occurred during template export: #{e.message}")
     false
   rescue StandardError => e
     Rails.logger.error("Failed to export template: #{e.message}")
     Rollbar.error(e) if defined?(Rollbar)
-    set_error("An unexpected error occurred during template export: #{e.message}")
+    record_error("An unexpected error occurred during template export: #{e.message}")
     false
   end
 end
