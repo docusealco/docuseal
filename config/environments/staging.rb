@@ -154,7 +154,7 @@ Rails.application.configure do
     }
   end
 
-  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == '/up' } }
   [
     /.*\.careerplug\.org\Z/,
     /.*\.careerplug\.com\Z/,
