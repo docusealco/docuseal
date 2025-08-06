@@ -175,8 +175,6 @@ set_environment() {
 
 # Main execution
 main() {
-    local command=${1:-api}
-    
     cd ../../app/
 
     set_environment
@@ -184,7 +182,6 @@ main() {
     check_aws_setup
     
     echo "Starting CP Docuseal in staging mode..."
-    echo "Command: $command"
     echo "Rails Environment: ${RAILS_ENV:-staging}"
 
     # Fetch database credentials from Secrets Manager
@@ -199,22 +196,15 @@ main() {
     # Load updated environment variables
     set_environment
     
-    # Setup and migrate database (only for API command)
-    if [ "$command" = "api" ]; then
-        setup_database
-        echo "=== Startup Complete - Starting Rails Server ==="
-        echo "Database Host: ${DB_HOST:-not set}"
-        echo "Database Port: ${DB_PORT:-not set}"
-        # Start the Rails server
-        exec ./bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"
-    elif [ "$command" = "sidekiq" ]; then
-        echo "=== Startup Complete - Starting Sidekiq ==="
-        # Start Sidekiq
-        exec bundle exec sidekiq -q default
-    else
-        echo "ERROR: Unknown command '$command'. Use 'api' or 'sidekiq'"
-        exit 1
-    fi
+    # Setup and migrate database
+    setup_database
+
+    echo "=== Startup Complete - Starting Rails Server ==="
+    echo "Database Host: ${DB_HOST:-not set}"
+    echo "Database Port: ${DB_PORT:-not set}"
+
+    # Start the Rails server
+    exec ./bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"
 }
 
 # Execute main function with all arguments
