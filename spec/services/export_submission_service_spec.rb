@@ -6,7 +6,9 @@ RSpec.describe ExportSubmissionService do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:template) { create(:template, account: account, author: user) }
-  let(:submission) { create(:submission, template: template, account: account) }
+  let(:submission) do
+    create(:submission, :with_submitters, template: template, account: account, created_by_user: user)
+  end
   let(:export_location) { create(:export_location, :with_submissions_endpoint) }
   let(:service) { described_class.new(submission) }
   let(:faraday_connection) { instance_double(Faraday::Connection) }
@@ -143,28 +145,48 @@ RSpec.describe ExportSubmissionService do
 
     before do
       allow(request_double).to receive(:body=)
-      allow(faraday_connection).to receive(:post).and_yield(request_double).and_return(faraday_response)
+      allow(faraday_connection).to receive(:post)
+        .with(export_location.submissions_endpoint)
+        .and_yield(request_double)
+        .and_return(faraday_response)
       allow(faraday_response).to receive(:success?).and_return(true)
+
+      allow(Submitter).to receive(:after_update)
+
+      submission.submitters.first.update!(name: 'John Doe', email: 'john@example.com', completed_at: Time.current)
+      submission.submitters << create(
+        :submitter,
+        submission: submission,
+        account: account,
+        name: 'Jane Smith',
+        email: 'jane@example.com',
+        opened_at: Time.current,
+        uuid: SecureRandom.uuid
+      )
     end
 
-    it 'includes submission_id in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        expect(JSON.parse(body)).to include('submission_id' => submission.id)
-      end
-      service.call
-    end
-
-    it 'includes template_name in payload' do
-      allow(request_double).to receive(:body=) do |body|
-        expect(JSON.parse(body)).to include('template_name' => submission.template.name)
-      end
-      service.call
-    end
-
-    it 'includes recent events in payload' do
+    it 'builds correct payload structure with all required fields' do
       allow(request_double).to receive(:body=) do |body|
         parsed_body = JSON.parse(body)
-        expect(parsed_body).to have_key('events')
+
+        expect(parsed_body).to include(
+          'external_submission_id' => submission.id,
+          'template_name' => submission.template.name,
+          'status' => 'in_progress'
+        )
+        expect(parsed_body).to have_key('created_at')
+        expect(parsed_body).to have_key('updated_at')
+
+        expect(parsed_body['submitter_data']).to be_an(Array)
+        expect(parsed_body['submitter_data'].length).to eq(2)
+
+        completed_submitter = parsed_body['submitter_data'].find { |s| s['status'] == 'completed' }
+        expect(completed_submitter).to include(
+          'name' => 'John Doe',
+          'email' => 'john@example.com',
+          'status' => 'completed'
+        )
+        expect(completed_submitter).to have_key('external_submitter_id')
       end
       service.call
     end
@@ -189,7 +211,10 @@ RSpec.describe ExportSubmissionService do
     before do
       allow(export_location).to receive(:extra_params).and_return({ 'api_key' => 'test_key', 'version' => '1.0' })
       allow(request_double).to receive(:body=)
-      allow(faraday_connection).to receive(:post).and_yield(request_double).and_return(faraday_response)
+      allow(faraday_connection).to receive(:post)
+        .with(export_location.submissions_endpoint)
+        .and_yield(request_double)
+        .and_return(faraday_response)
       allow(faraday_response).to receive(:success?).and_return(true)
     end
 
