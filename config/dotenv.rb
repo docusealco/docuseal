@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if ENV['RAILS_ENV'] == 'production'
+if ENV['RAILS_ENV'] == 'production' || ENV['RAILS_ENV'] == 'staging'
   if !ENV['AWS_SECRET_MANAGER_ID'].to_s.empty?
     require 'aws-sdk-secretsmanager'
 
@@ -43,11 +43,11 @@ if ENV['DATABASE_URL'].to_s.split('@').last.to_s.split('/').first.to_s.include?(
 
   url = Addressable::URI.parse(ENV.fetch('DATABASE_URL', ''))
 
-  ENV['DATABASE_HOST'] = url.host
-  ENV['DATABASE_PORT'] = (url.port || 5432).to_s
-  ENV['DATABASE_USER'] = url.user
-  ENV['DATABASE_PASSWORD'] = url.password
-  ENV['DATABASE_NAME'] = url.path.to_s.delete_prefix('/')
+  ENV['DB_HOST'] = url.host
+  ENV['DB_PORT'] = (url.port || 5432).to_s
+  ENV['DB_USERNAME'] = url.user
+  ENV['DB_PASSWORD'] = url.password
+  ENV['DB_NAME'] = url.path.to_s.delete_prefix('/')
 
   ENV.delete('DATABASE_URL')
 end

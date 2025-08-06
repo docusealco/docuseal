@@ -78,12 +78,17 @@ COPY ./public ./public
 COPY ./tmp ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 COPY .version ./public/version
+COPY ./.env.staging ./.env.staging
+COPY ./config/rds-combined-ca-bundle.pem /config/rds-combined-ca-bundle.pem
 
 COPY --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
 COPY --from=download /fonts/FreeSans.ttf /usr/share/fonts/freefont
 COPY --from=download /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
 COPY --from=download /pdfium-linux/licenses/pdfium.txt /usr/lib/libpdfium-LICENSE.txt
 COPY --from=webpack /app/public/packs ./public/packs
+
+# Install AWS CLI and jq for secrets management
+RUN apk add --no-cache curl jemalloc vips sqlite postgresql-client aws-cli jq bind-tools
 
 RUN ln -s /fonts /app/public/fonts
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
