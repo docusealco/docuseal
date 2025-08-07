@@ -55,7 +55,6 @@
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
       :class="{ sticky: withStickySubmitters || isBreakpointLg }"
-      :style="{ backgroundColor }"
     >
       <div />
       <div class="space-x-3 flex items-center flex-shrink-0">

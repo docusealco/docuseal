@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
+  include PrefillFieldsHelper
+
   skip_before_action :maybe_redirect_to_setup
   skip_before_action :verify_authenticity_token
 
@@ -38,6 +40,9 @@ class TemplatesController < ApplicationController
       records: [@template],
       associations: [schema_documents: [:blob, { preview_images_attachments: :blob }]]
     ).call
+
+    # Process ATS fields for template editing
+    @available_ats_fields = extract_ats_prefill_fields
 
     @template_data =
       @template.as_json.merge(

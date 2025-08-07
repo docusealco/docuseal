@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmissionsController < ApplicationController
+  include PrefillFieldsHelper
+
   skip_before_action :verify_authenticity_token
   before_action :load_template, only: %i[new create]
   authorize_resource :template, only: %i[new create]
@@ -15,6 +17,10 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submissions.preload_with_pages(@submission)
+    @available_ats_fields = extract_ats_prefill_fields
+
+    # Optional: store in session for persistence across requests
+    session[:ats_prefill_fields] = @available_ats_fields if @available_ats_fields.any?
 
     unless @submission.submitters.all?(&:completed_at?)
       ActiveRecord::Associations::Preloader.new(
@@ -90,6 +96,7 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
 
   def save_template_message(template, params)
     template.preferences['request_email_subject'] = params[:subject] if params[:subject].present?
