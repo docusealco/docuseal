@@ -97,7 +97,6 @@ class SubmissionsController < ApplicationController
 
   private
 
-
   def save_template_message(template, params)
     template.preferences['request_email_subject'] = params[:subject] if params[:subject].present?
     template.preferences['request_email_body'] = params[:body] if params[:body].present?
