@@ -53,14 +53,33 @@ module Accounts
     ApplicationRecord.transaction do
       account.testing_accounts << testing_account
 
+      original_email = account.users.order(:id).first.email
+      test_email = generate_unique_test_email(original_email)
+
       testing_account.users.create!(
-        email: account.users.order(:id).first.email.sub('@', '+test@'),
+        email: test_email,
         first_name: 'Testing',
         last_name: 'Environment',
         password: SecureRandom.hex,
         role: :admin
       )
     end
+  end
+
+  def generate_unique_test_email(original_email)
+    base_email = original_email.sub('@', '+test@')
+
+    return base_email unless User.exists?(email: base_email)
+
+    (1..3).each do |i|
+      test_email = original_email.sub('@', "+test#{i}@")
+
+      return test_email unless User.exists?(email: test_email)
+    end
+
+    timestamp = Time.current.to_i
+
+    original_email.sub('@', "+test#{timestamp}@")
   end
 
   def create_default_template(account)
