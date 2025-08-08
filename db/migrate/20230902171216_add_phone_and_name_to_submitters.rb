@@ -2,9 +2,10 @@
 
 class AddPhoneAndNameToSubmitters < ActiveRecord::Migration[7.0]
   def change
-    add_column :submitters, :name, :string
-    add_column :submitters, :phone, :string
-
-    change_column_null :submitters, :email, true
+    change_table :submitters, bulk: true do |t|
+      t.string :name
+      t.string :phone
+      t.change_null :email, true
+    end
   end
 end

@@ -8,12 +8,14 @@ class AddSharedLinkToTemplates < ActiveRecord::Migration[8.0]
   end
 
   def up
-    add_column :templates, :shared_link, :boolean, if_not_exists: true
+    add_column :templates, :shared_link, :boolean, default: false, null: false, if_not_exists: true
 
     MigrationTemplate.where(shared_link: nil).in_batches.update_all(shared_link: true)
 
-    change_column_default :templates, :shared_link, from: nil, to: false
-    change_column_null :templates, :shared_link, false
+    change_table :templates, bulk: true do |t|
+      t.change_default :shared_link, from: nil, to: false
+      t.change_null :shared_link, false
+    end
   end
 
   def down

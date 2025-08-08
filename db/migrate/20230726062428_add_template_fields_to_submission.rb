@@ -10,9 +10,11 @@ class AddTemplateFieldsToSubmission < ActiveRecord::Migration[7.0]
   end
 
   def up
-    add_column :submissions, :template_fields, :text
-    add_column :submissions, :template_schema, :text
-    add_column :submissions, :template_submitters, :text
+    change_table :submissions, bulk: true do |t|
+      t.text :template_fields
+      t.text :template_schema
+      t.text :template_submitters
+    end
 
     MigrationTemplate.all.each do |template|
       MigrationSubmission.where(template_id: template.id).each do |submission|
@@ -24,8 +26,10 @@ class AddTemplateFieldsToSubmission < ActiveRecord::Migration[7.0]
   end
 
   def down
-    remove_column :submissions, :template_fields
-    remove_column :submissions, :template_schema
-    remove_column :submissions, :template_submitters
+    change_table :submissions, bulk: true do |t|
+      t.remove :template_fields
+      t.remove :template_schema
+      t.remove :template_submitters
+    end
   end
 end
