@@ -2972,7 +2972,7 @@ fr: &fr
   initial_setup: Configuration initiale
   demo_environment: Environnement de démonstration
   close: Fermer
-  upgrade: Mettre à jour
+  upgrade: Mettre à niveau
   settings: Paramètres
   console: Console
   verify_pdf: Vérifier le PDF
@@ -3034,7 +3034,7 @@ fr: &fr
   when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: "Lorsqu'elle est cochée, les notifications seront envoyées à la deuxième partie une fois que la partie précédente aura complété le formulaire. Décochez cette option pour envoyer des notifications à toutes les parties simultanément immédiatement."
   upgrade_to_send_unlimited_signature_requests: Mettez à jour pour envoyer des demandes de signature illimitées
   add_without_sending: Ajouter sans envoyer
-  upgade_now: Mettre à jour maintenant
+  upgade_now: Mettre à niveau maintenant
   send_signature_request_emails_without_limits_with_docuseal_pro: Envoyez des e-mails de demande de signature sans limites avec DocuSeal Pro
   count_emails_used: '%{count} e-mails utilisés'
   has_been_connected: a été connecté
@@ -3245,7 +3245,7 @@ fr: &fr
   start_with_pro: Commencer avec Pro
   user_month: utilisateur / mois
   developer_sandbox: Bac à sable pour développeurs
-  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Mettre à jour</a> pour commencer à utiliser en production.'
+  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Mettre à niveau</a> pour commencer à utiliser en production.'
   download_combined_pdf: Télécharger le PDF combiné
   audit_log: "Journal d'audit"
   signers: Signataires
