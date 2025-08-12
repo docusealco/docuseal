@@ -24,6 +24,7 @@ en: &en
   thanks: Thanks
   private: Private
   select: Select
+  party: Party
   edit_order: Edit Order
   invite_form_fields: Invite form fields
   default_parties: Default parties
@@ -899,6 +900,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  party: Parte
   edit_order: Edita Pedido
   select: Seleccionar
   invite_form_fields: Invitar campos del formulario
@@ -1778,6 +1780,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  party: Parte
   edit_order: Modifica Ordine
   select: Seleziona
   invite_form_fields: Invita campi modulo
@@ -2657,6 +2660,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  party: Partie
   edit_order: Modifier la commande
   select: Sélectionner
   invite_form_fields: Inviter des champs de formulaire
@@ -3539,6 +3543,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  party: Parte
   edit_order: Edita Pedido
   select: Selecionar
   invite_form_fields: Convidar campos do formulário
@@ -4419,6 +4424,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  party: Partei
   edit_order: Bestellung bearbeiten
   select: Auswählen
   invite_form_fields: Formularfelder einladen

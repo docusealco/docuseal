@@ -3,6 +3,8 @@
 class TemplatesDebugController < ApplicationController
   load_and_authorize_resource :template
 
+  DEBUG_FILE = ''
+
   def show
     attachment = @template.documents.first
 
@@ -15,6 +17,8 @@ class TemplatesDebugController < ApplicationController
     attachment.metadata['pdf']['fields'] = fields
 
     @template.update!(fields: Templates::ProcessDocument.normalize_attachment_fields(@template, [attachment]))
+
+    debug_file if DEBUG_FILE.present?
 
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
@@ -30,5 +34,28 @@ class TemplatesDebugController < ApplicationController
       ).to_json
 
     render 'templates/edit', layout: 'plain'
+  end
+
+  def debug_file
+    tempfile = Tempfile.new
+    tempfile.binmode
+    tempfile.write(File.read(DEBUG_FILE))
+    tempfile.rewind
+
+    filename = File.basename(DEBUG_FILE)
+
+    file = ActionDispatch::Http::UploadedFile.new(
+      tempfile:,
+      filename:,
+      type: Marcel::MimeType.for(tempfile)
+    )
+
+    params = { files: [file] }
+
+    documents = Templates::CreateAttachments.call(@template, params)
+
+    schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+
+    @template.update!(schema:)
   end
 end
