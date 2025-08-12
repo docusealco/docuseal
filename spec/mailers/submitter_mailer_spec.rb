@@ -8,7 +8,14 @@ RSpec.describe SubmitterMailer, type: :mailer do
   let(:template) { create(:template, account: account, author: user) }
   let(:submission) { create(:submission, template: template, account: account, created_by_user: user) }
   let(:submitter) do
-    create(:submitter, submission: submission, account: account, email: 'test@example.com', name: 'Jane Smith')
+    create(
+      :submitter,
+      submission: submission,
+      account: account,
+      email: 'test@example.com',
+      name: 'Jane Smith',
+      uuid: template.submitters.first['uuid']
+    )
   end
 
   describe '#changes_requested_email' do
