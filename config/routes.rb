@@ -170,6 +170,11 @@ Rails.application.routes.draw do
     resources :download, only: %i[index], controller: 'submissions_download'
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
+
+    member do
+      get :request_changes, controller: 'submitters_request_changes'
+      post :request_changes, controller: 'submitters_request_changes'
+    end
   end
 
   scope '/settings', as: :settings do

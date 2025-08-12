@@ -4,27 +4,28 @@
 #
 # Table name: submitters
 #
-#  id            :bigint           not null, primary key
-#  completed_at  :datetime
-#  declined_at   :datetime
-#  email         :string
-#  ip            :string
-#  metadata      :text             not null
-#  name          :string
-#  opened_at     :datetime
-#  phone         :string
-#  preferences   :text             not null
-#  sent_at       :datetime
-#  slug          :string           not null
-#  timezone      :string
-#  ua            :string
-#  uuid          :string           not null
-#  values        :text             not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  account_id    :integer          not null
-#  external_id   :string
-#  submission_id :integer          not null
+#  id                   :bigint           not null, primary key
+#  changes_requested_at :datetime
+#  completed_at         :datetime
+#  declined_at          :datetime
+#  email                :string
+#  ip                   :string
+#  metadata             :text             not null
+#  name                 :string
+#  opened_at            :datetime
+#  phone                :string
+#  preferences          :text             not null
+#  sent_at              :datetime
+#  slug                 :string           not null
+#  timezone             :string
+#  ua                   :string
+#  uuid                 :string           not null
+#  values               :text             not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  account_id           :integer          not null
+#  external_id          :string
+#  submission_id        :integer          not null
 #
 # Indexes
 #
@@ -73,6 +74,8 @@ class Submitter < ApplicationRecord
   def status
     if declined_at?
       'declined'
+    elsif changes_requested_at?
+      'changes_requested'
     elsif completed_at?
       'completed'
     elsif opened_at?

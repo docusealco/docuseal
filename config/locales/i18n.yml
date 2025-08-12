@@ -134,6 +134,7 @@ en: &en
   download: Download
   decline: Decline
   declined: Declined
+  changes_requested: Changes Requested
   decline_reason: Decline reason
   provide_a_reason: Provide a reason
   notify_the_sender_with_the_reason_you_declined: Notify the sender with the reason you declined

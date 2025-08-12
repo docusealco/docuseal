@@ -70,6 +70,27 @@ RSpec.describe Submitter do
         expect(submitter.status).to eq('declined')
       end
     end
+
+    context 'when submitter has changes requested' do
+      before { submitter.update!(changes_requested_at: Time.current) }
+
+      it 'returns changes_requested' do
+        expect(submitter.status).to eq('changes_requested')
+      end
+    end
+
+    context 'when submitter has changes requested but is also completed' do
+      before do
+        submitter.update!(
+          completed_at: Time.current,
+          changes_requested_at: Time.current
+        )
+      end
+
+      it 'returns changes_requested (changes_requested takes precedence over completed)' do
+        expect(submitter.status).to eq('changes_requested')
+      end
+    end
   end
 
   describe '#export_submission_on_status_change' do

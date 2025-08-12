@@ -104,6 +104,23 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
+  def changes_requested_email(submitter, user, reason)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+    @submission = submitter.submission
+    @user = user
+    @reason = reason
+
+    assign_message_metadata('submitter_changes_requested', @submitter)
+
+    I18n.with_locale(@current_account.locale) do
+      mail(from: from_address_for_submitter(submitter),
+           to: @submitter.friendly_name,
+           reply_to: user.friendly_name,
+           subject: "Changes requested for #{(@submission.name || @submission.template.name).truncate(20)}")
+    end
+  end
+
   def documents_copy_email(submitter, to: nil, sig: false)
     @current_account = submitter.submission.account
     @submitter = submitter

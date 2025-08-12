@@ -1,0 +1,34 @@
+<turbo-frame id="modal" target="_top">
+  <div class="modal modal-open">
+    <div class="modal-box relative">
+      <label class="btn btn-sm btn-circle absolute right-2 top-2" onclick="document.getElementById('modal').innerHTML = ''">✕</label>
+      <h3 class="text-lg font-bold mb-4">Request Changes</h3>
+
+      <p class="mb-4">
+        Request changes from <strong><%= @submitter.name || @submitter.email %></strong> for this submission.
+        They will receive an email with your message and be able to resubmit the form.
+      </p>
+
+      <%= form_for '', url: request_changes_submitter_path(@submitter.slug), method: :post do |f| %>
+        <div class="form-control mt-2">
+          <label class="label">
+            <span class="label-text">Message (required)</span>
+          </label>
+          <%= f.text_area :reason,
+              required: true,
+              class: 'textarea textarea-bordered w-full',
+              dir: 'auto',
+              placeholder: 'Please provide specific details about what needs to be changed...',
+              rows: '6' %>
+        </div>
+
+        <div class="modal-action">
+          <label class="btn btn-ghost" onclick="document.getElementById('modal').innerHTML = ''">Cancel</label>
+          <toggle-submit dir="auto">
+            <%= f.button 'Request Changes', class: 'btn btn-warning' %>
+          </toggle-submit>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>
