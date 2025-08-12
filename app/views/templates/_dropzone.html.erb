@@ -23,7 +23,7 @@
             </div>
           </span>
         </div>
-        <input id="file_dropzone_input" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls, .odt, .rtf' if Docuseal.multitenant? %>" multiple>
+        <input id="file_dropzone_input" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/*, application/pdf, application/zip<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>" multiple>
       </div>
     </label>
   </file-dropzone>
