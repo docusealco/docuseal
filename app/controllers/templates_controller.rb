@@ -49,7 +49,8 @@ class TemplatesController < ApplicationController
         documents: @template.schema_documents.as_json(
           methods: %i[metadata signed_uuid],
           include: { preview_images: { methods: %i[url metadata filename] } }
-        )
+        ),
+        available_ats_fields: @available_ats_fields
       ).to_json
 
     render :edit, layout: 'plain'
@@ -129,7 +130,7 @@ class TemplatesController < ApplicationController
         external_data_fields: {},
         fields: [[:uuid, :question_id, :submitter_uuid, :name, :type,
                   :required, :readonly, :default_value,
-                  :title, :description,
+                  :title, :description, :prefill,
                   { preferences: {},
                     conditions: [%i[field_uuid value action operation]],
                     options: [%i[value uuid answer_id]],

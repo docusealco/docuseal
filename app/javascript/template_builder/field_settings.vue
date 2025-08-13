@@ -255,6 +255,40 @@
       {{ t('format') }}
     </label>
   </div>
+  <div
+    v-if="availableAtsFields && availableAtsFields.length > 0"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('ats_field')"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      data-testid="ats-fields-dropdown"
+      @change="[field.prefill = $event.target.value || undefined, !field.prefill && delete field.prefill, save()]"
+    >
+      <option
+        value=""
+        :selected="!field.prefill"
+      >
+        {{ '' }}
+      </option>
+      <option
+        v-for="atsField in availableAtsFields"
+        :key="atsField"
+        :value="atsField"
+        :selected="field.prefill === atsField"
+      >
+        {{ formatAtsFieldName(atsField) }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('ats_field') }}
+    </label>
+  </div>
   <li
     v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
     @click.stop
@@ -492,6 +526,15 @@ export default {
     }
   },
   computed: {
+    availableAtsFields () {
+      return this.template.available_ats_fields || []
+    },
+    availableAtsFieldsForType () {
+      if (!this.template.ats_fields_by_type || !this.field.type) {
+        return []
+      }
+      return this.template.ats_fields_by_type[this.field.type] || []
+    },
     schemaAttachmentsIndexes () {
       return (this.template.schema || []).reduce((acc, item, index) => {
         acc[item.attachment_uuid] = index
@@ -551,6 +594,13 @@ export default {
     }
   },
   methods: {
+    formatAtsFieldName (fieldName) {
+      // Convert snake_case to Title Case for display
+      return fieldName
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    },
     onChangeValidation (event) {
       if (event.target.value === 'custom') {
         this.field.validation = { pattern: '' }
