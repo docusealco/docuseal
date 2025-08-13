@@ -5,7 +5,7 @@ class SubmittersRequestChangesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :request_changes
 
   def request_changes
-    if request.get?
+    if request.get? || request.head?
       render 'submitters_request_changes/request_changes', layout: false if request.xhr?
     else
       return redirect_back(fallback_location: root_path, alert: 'Invalid request') unless can_request_changes?

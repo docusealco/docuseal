@@ -238,8 +238,8 @@
             <% if signed_in? && submitter && submitter.completed_at? && !submitter.declined_at? && !submitter.changes_requested_at? && current_user == @submission.created_by_user %>
               <div class="mt-2 mb-1">
                 <%= link_to 'Request Changes', request_changes_submitter_path(submitter.slug),
-                    class: 'btn btn-sm btn-warning w-full',
-                    data: { turbo_frame: :modal } %>
+                            class: 'btn btn-sm btn-warning w-full',
+                            data: { turbo_frame: :modal } %>
               </div>
             <% end %>
           </div>
