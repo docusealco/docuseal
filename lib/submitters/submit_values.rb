@@ -55,6 +55,7 @@ module Submitters
 
     def assign_completed_attributes(submitter, request, validate_required: true)
       submitter.completed_at = Time.current
+      submitter.changes_requested_at = nil
       submitter.ip = request.remote_ip
       submitter.ua = request.user_agent
       submitter.timezone = request.params[:timezone]

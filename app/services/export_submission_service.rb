@@ -67,6 +67,8 @@ class ExportSubmissionService < ExportService
       'declined'
     elsif statuses.all?('completed')
       'completed'
+    elsif statuses.include?('changes_requested')
+      'changes_requested'
     elsif statuses.any?('opened')
       'in_progress'
     elsif statuses.any?('sent')

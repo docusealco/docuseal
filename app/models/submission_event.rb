@@ -54,6 +54,7 @@ class SubmissionEvent < ApplicationRecord
     invite_party: 'invite_party',
     complete_form: 'complete_form',
     decline_form: 'decline_form',
+    request_changes: 'request_changes',
     api_complete_form: 'api_complete_form'
   }, scope: false
 

@@ -6,6 +6,7 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
+    - db/migrate/**/*
     - db/schema.rb
     - node_modules/**/*
     - bin/*

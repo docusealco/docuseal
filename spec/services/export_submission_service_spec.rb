@@ -191,6 +191,30 @@ RSpec.describe ExportSubmissionService do
       service.call
     end
 
+    context 'when one submitter has changes requested' do
+      before do
+        submission.submitters.first.update!(name: 'John Doe', email: 'john@example.com',
+                                            changes_requested_at: Time.current)
+        submission.submitters << create(
+          :submitter,
+          submission: submission,
+          account: account,
+          name: 'Jane Smith',
+          email: 'jane@example.com',
+          completed_at: Time.current,
+          uuid: SecureRandom.uuid
+        )
+      end
+
+      it 'sets overall status to changes_requested' do
+        allow(request_double).to receive(:body=) do |body|
+          parsed_body = JSON.parse(body)
+          expect(parsed_body['status']).to eq('changes_requested')
+        end
+        service.call
+      end
+    end
+
     context 'when template is nil' do
       before do
         allow(submission).to receive(:template).and_return(nil)

@@ -180,6 +180,8 @@
               <span>
                 <% if submitter&.declined_at? %>
                   <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                <% elsif submitter&.changes_requested_at? %>
+                  Changes requested on <%= l(submitter.changes_requested_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %>
                 <% elsif submitter %>
                   <% if submitter.completed_at? %>
                     <%= l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) %>
@@ -205,6 +207,14 @@
                 </span>
               </div>
             <% end %>
+            <% if submitter&.changes_requested_at? %>
+              <div class="flex items-center space-x-1 mt-1">
+                <span>
+                  Changes requested:
+                  <%= simple_format(h(submitter.submission_events.find_by(event_type: :request_changes).data['reason'])) %>
+                </span>
+              </div>
+            <% end %>
             <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
@@ -223,6 +233,13 @@
             <% if signed_in? && submitter && submitter.completed_at? && submitter.email == current_user.email && submitter.completed_at > 1.month.ago && can?(:update, @submission) %>
               <div class="mt-2 mb-1">
                 <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
+              </div>
+            <% end %>
+            <% if signed_in? && submitter && submitter.completed_at? && !submitter.declined_at? && !submitter.changes_requested_at? && current_user == @submission.created_by_user %>
+              <div class="mt-2 mb-1">
+                <%= link_to 'Request Changes', request_changes_submitter_path(submitter.slug),
+                            class: 'btn btn-sm btn-warning w-full',
+                            data: { turbo_frame: :modal } %>
               </div>
             <% end %>
           </div>

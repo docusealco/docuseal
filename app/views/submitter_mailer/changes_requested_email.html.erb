@@ -1,0 +1,10 @@
+<p>Hello <%= @submitter.name || @submitter.email %>,</p>
+
+<p><%= [@user.first_name, @user.last_name].join(' ').strip.presence || @user.email %> has requested changes to your submission for "<%= @submission.name || @submission.template.name %>".</p>
+
+<p><strong>Message from <%= [@user.first_name, @user.last_name].join(' ').strip.presence || @user.email %>:</strong></p>
+<%= simple_format(h(@reason)) %>
+
+<p>To make the requested changes, please log in to your account and resubmit the form.</p>
+
+<p>If you have any questions, please reply to this email.</p>
