@@ -4,6 +4,7 @@ module Templates
   module CreateAttachments
     PDF_CONTENT_TYPE = 'application/pdf'
     ZIP_CONTENT_TYPE = 'application/zip'
+    X_ZIP_CONTENT_TYPE = 'application/x-zip-compressed'
     JSON_CONTENT_TYPE = 'application/json'
     DOCUMENT_EXTENSIONS = %w[.docx .doc .xlsx .xls .odt .rtf].freeze
 
@@ -70,7 +71,7 @@ module Templates
       extracted_files = []
 
       Array.wrap(files).each do |file|
-        if file.content_type == ZIP_CONTENT_TYPE
+        if file.content_type == ZIP_CONTENT_TYPE || file.content_type == X_ZIP_CONTENT_TYPE
           Zip::File.open(file.tempfile).each do |entry|
             next if entry.directory?
 
