@@ -42,7 +42,7 @@ class StartFormController < ApplicationController
       if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
         @error_message = multiple_submitters_error_message
 
-        return render :show, status: :unprocessable_entity
+        return render :show, status: :unprocessable_content
       end
 
       if (is_new_record = @submitter.new_record?)
@@ -60,7 +60,7 @@ class StartFormController < ApplicationController
 
         redirect_to submit_form_path(@submitter.slug)
       else
-        render :show, status: :unprocessable_entity
+        render :show, status: :unprocessable_content
       end
     end
   end
@@ -206,7 +206,7 @@ class StartFormController < ApplicationController
   end
 
   def handle_require_2fa(submitter, is_new_record:)
-    return render :show, status: :unprocessable_entity if submitter.errors.present?
+    return render :show, status: :unprocessable_content if submitter.errors.present?
 
     is_otp_verified = Submitters.verify_link_otp!(params[:one_time_code], submitter)
 
@@ -223,7 +223,7 @@ class StartFormController < ApplicationController
 
         redirect_to submit_form_path(submitter.slug)
       else
-        render :show, status: :unprocessable_entity
+        render :show, status: :unprocessable_content
       end
     else
       Submitters.send_shared_link_email_verification_code(submitter, request:)

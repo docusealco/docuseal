@@ -4,7 +4,7 @@ class TemplatesCloneAndReplaceController < ApplicationController
   load_and_authorize_resource :template
 
   def create
-    return head :unprocessable_entity if params[:files].blank?
+    return head :unprocessable_content if params[:files].blank?
 
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
@@ -31,7 +31,7 @@ class TemplatesCloneAndReplaceController < ApplicationController
   rescue Templates::CreateAttachments::PdfEncrypted
     respond_to do |f|
       f.html { render turbo_stream: turbo_stream.append(params[:form_id], html: helpers.tag.prompt_password) }
-      f.json { render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_entity }
+      f.json { render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_content }
     end
   end
 end

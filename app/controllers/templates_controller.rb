@@ -78,7 +78,7 @@ class TemplatesController < ApplicationController
 
       maybe_redirect_to_template(@template)
     else
-      render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_content
     end
   end
 

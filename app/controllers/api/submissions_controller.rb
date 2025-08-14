@@ -50,12 +50,12 @@ module Api
     def create
       Params::SubmissionCreateValidator.call(params)
 
-      return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
+      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
 
       if @template.fields.blank?
         Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
 
-        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_entity
+        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
       end
 
       params[:send_email] = true unless params.key?(:send_email)
@@ -82,7 +82,7 @@ module Api
            DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     def destroy

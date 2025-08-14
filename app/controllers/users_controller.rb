@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     if User.accessible_by(current_ability).exists?(email: @user.email)
       @user.errors.add(:email, I18n.t('already_exists'))
 
-      return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
+      return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
     end
 
     @user.role = User::ADMIN_ROLE unless role_valid?(@user.role)
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
       redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
     else
-      render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
     end
   end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     if @user.update(attrs.except(current_user == @user ? :role : nil))
       redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
     else
-      render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_content
     end
   end
 

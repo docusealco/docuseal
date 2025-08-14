@@ -151,7 +151,7 @@ describe 'Submission API' do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
 
       expect(response.parsed_body).to eq({ 'error' => 'email is invalid in `submitters[0]`.' })
     end
@@ -165,7 +165,7 @@ describe 'Submission API' do
         submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'Template does not contain fields' })
     end
 
@@ -179,7 +179,7 @@ describe 'Submission API' do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'role must be unique in `submitters`.' })
     end
 
@@ -193,7 +193,7 @@ describe 'Submission API' do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'Defined more signing parties than in template' })
     end
 
@@ -209,7 +209,7 @@ describe 'Submission API' do
         }
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'body is required in `message`.' })
     end
   end
@@ -235,7 +235,7 @@ describe 'Submission API' do
         emails: 'amy.baker@example.com, george.morris@example.com@gmail.com'
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
 
       expect(response.parsed_body).to eq({ 'error' => 'emails are invalid' })
     end

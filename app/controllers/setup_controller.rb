@@ -23,10 +23,10 @@ class SetupController < ApplicationController
     unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
       @encrypted_config.errors.add(:value, I18n.t('should_be_a_valid_url'))
 
-      return render :index, status: :unprocessable_entity
+      return render :index, status: :unprocessable_content
     end
 
-    return render :index, status: :unprocessable_entity unless @account.valid?
+    return render :index, status: :unprocessable_content unless @account.valid?
 
     if @user.save
       encrypted_configs = [
@@ -42,7 +42,7 @@ class SetupController < ApplicationController
 
       redirect_to newsletter_path
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   end
 

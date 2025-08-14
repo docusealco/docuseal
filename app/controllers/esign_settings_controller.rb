@@ -53,7 +53,7 @@ class EsignSettingsController < ApplicationController
       @cert_record.errors.add(:name, I18n.t('already_exists'))
 
       return render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'),
-                    status: :unprocessable_entity
+                    status: :unprocessable_content
     end
 
     save_new_cert!(@encrypted_config, @cert_record)
@@ -64,7 +64,7 @@ class EsignSettingsController < ApplicationController
 
     @cert_record.errors.add(:password, e.message)
 
-    render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'), status: :unprocessable_entity
+    render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'), status: :unprocessable_content
   end
 
   def update

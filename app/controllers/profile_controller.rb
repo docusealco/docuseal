@@ -11,7 +11,7 @@ class ProfileController < ApplicationController
     if current_user.update(contact_params)
       redirect_to settings_profile_index_path, notice: I18n.t('contact_information_has_been_update')
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   end
 
@@ -20,7 +20,7 @@ class ProfileController < ApplicationController
       bypass_sign_in(current_user)
       redirect_to settings_profile_index_path, notice: I18n.t('password_has_been_changed')
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   end
 
