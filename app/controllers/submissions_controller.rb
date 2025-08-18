@@ -66,7 +66,7 @@ class SubmissionsController < ApplicationController
   rescue Submissions::CreateFromSubmitters::BaseError => e
     render turbo_stream: turbo_stream.replace(:submitters_error, partial: 'submissions/error',
                                                                  locals: { error: e.message }),
-           status: :unprocessable_entity
+           status: :unprocessable_content
   end
 
   def destroy

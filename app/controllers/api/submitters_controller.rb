@@ -34,7 +34,7 @@ module Api
 
     def update
       if @submitter.completed_at?
-        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_entity
+        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
       end
 
       submission = @submitter.submission
@@ -74,7 +74,7 @@ module Api
     rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     def submitter_params

@@ -109,7 +109,7 @@
                   <%= render 'submissions/annotation', annot: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                  <% value = values[field['uuid']] %>
+                  <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                   <% value ||= field['default_value'] if field['type'] == 'heading' %>
                   <% next if value.blank? %>
                   <% submitter = submitters_index[field['submitter_uuid']] %>
@@ -238,7 +238,7 @@
         <div class="px-1.5 mb-4">
           <% submitter_fields_index[item['uuid']].to_a.each_with_index do |field, index| %>
             <% submitter_field_counters[field['type']] += 1 %>
-            <% value = values[field['uuid']] %>
+            <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
             <% next if value.blank? %>
             <% next if field['type'] == 'heading' %>
             <div class="pt-2.5 border-b border-base-300">

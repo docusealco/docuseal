@@ -48,20 +48,20 @@ class SubmitFormController < ApplicationController
 
   def update
     if @submitter.completed_at?
-      return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_content
     end
 
     if @submitter.submission.template&.archived_at? || @submitter.submission.archived_at?
-      return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
     end
 
     if @submitter.submission.expired?
-      return render json: { error: I18n.t('form_has_been_expired') }, status: :unprocessable_entity
+      return render json: { error: I18n.t('form_has_been_expired') }, status: :unprocessable_content
     end
 
     if @submitter.declined_at?
       return render json: { error: I18n.t('form_has_been_declined') },
-                    status: :unprocessable_entity
+                    status: :unprocessable_content
     end
 
     Submitters::SubmitValues.call(@submitter, params, request)
@@ -70,9 +70,9 @@ class SubmitFormController < ApplicationController
   rescue Submitters::SubmitValues::RequiredFieldError => e
     Rollbar.warning("Required field #{@submitter.id}: #{e.message}") if defined?(Rollbar)
 
-    render json: { field_uuid: e.message }, status: :unprocessable_entity
+    render json: { field_uuid: e.message }, status: :unprocessable_content
   rescue Submitters::SubmitValues::ValidationError => e
-    render json: { error: e.message }, status: :unprocessable_entity
+    render json: { error: e.message }, status: :unprocessable_content
   end
 
   def completed; end

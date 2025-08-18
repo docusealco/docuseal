@@ -5,7 +5,7 @@ class TemplateDocumentsController < ApplicationController
 
   def create
     if params[:blobs].blank? && params[:files].blank?
-      return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_entity
+      return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_content
     end
 
     old_fields_hash = @template.fields.hash
@@ -28,6 +28,6 @@ class TemplateDocumentsController < ApplicationController
       )
     }
   rescue Templates::CreateAttachments::PdfEncrypted
-    render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_entity
+    render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_content
   end
 end

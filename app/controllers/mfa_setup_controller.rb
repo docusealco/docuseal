@@ -24,7 +24,7 @@ class MfaSetupController < ApplicationController
 
       @error_message = I18n.t('code_is_invalid')
 
-      render turbo_stream: turbo_stream.replace(:mfa_form, partial: 'mfa_setup/form'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:mfa_form, partial: 'mfa_setup/form'), status: :unprocessable_content
     end
   end
 
@@ -36,7 +36,7 @@ class MfaSetupController < ApplicationController
     else
       @error_message = I18n.t('code_is_invalid')
 
-      render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/edit'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/edit'), status: :unprocessable_content
     end
   end
 

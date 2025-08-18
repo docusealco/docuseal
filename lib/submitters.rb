@@ -177,7 +177,11 @@ module Submitters
         submitter_items.first(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })
       end
 
-    before_items.all? { |item| submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at? }
+    before_items.all? do |item|
+      submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
+
+      submitter.nil? || submitter.completed_at?
+    end
   end
 
   def build_document_filename(submitter, blob, filename_format)

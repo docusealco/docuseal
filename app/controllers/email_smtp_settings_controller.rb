@@ -15,12 +15,12 @@ class EmailSmtpSettingsController < ApplicationController
 
       redirect_to settings_email_index_path, notice: I18n.t('changes_have_been_saved')
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   rescue StandardError => e
     flash[:alert] = e.message
 
-    render :index, status: :unprocessable_entity
+    render :index, status: :unprocessable_content
   end
 
   private

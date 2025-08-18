@@ -7,8 +7,8 @@ module Api
     def merge
       files = params[:files] || []
 
-      return render json: { error: 'Files are required' }, status: :unprocessable_entity if files.blank?
-      return render json: { error: 'At least 2 files are required' }, status: :unprocessable_entity if files.size < 2
+      return render json: { error: 'Files are required' }, status: :unprocessable_content if files.blank?
+      return render json: { error: 'At least 2 files are required' }, status: :unprocessable_content if files.size < 2
 
       render json: {
         data: Base64.encode64(PdfUtils.merge(files.map { |base64| StringIO.new(Base64.decode64(base64)) }).string)
@@ -35,7 +35,7 @@ module Api
         end
       }
     rescue HexaPDF::MalformedPDFError
-      render json: { error: 'Malformed PDF' }, status: :unprocessable_entity
+      render json: { error: 'Malformed PDF' }, status: :unprocessable_content
     end
   end
 end

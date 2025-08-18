@@ -8,6 +8,14 @@ module Submitters
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
     NONEDITABLE_FIELD_TYPES = %w[stamp heading].freeze
 
+    STRFTIME_MAP = {
+      'hour' => '%-k',
+      'minute' => '%M',
+      'day' => '%-d',
+      'month' => '%-m',
+      'year' => '%Y'
+    }.freeze
+
     module_function
 
     def call(submitter, params, request, validate_required: true)
@@ -327,12 +335,10 @@ module Submitters
           else
             e
           end
+        when 'hour', 'minute', 'day', 'month', 'year'
+          with_time ? Time.current.in_time_zone(submission.account.timezone).strftime(STRFTIME_MAP[key]) : e
         when 'date'
-          if with_time
-            Time.current.in_time_zone(submission.account.timezone).to_date.to_s
-          else
-            e
-          end
+          with_time ? Time.current.in_time_zone(submission.account.timezone).to_date.to_s : e
         when 'role', 'email', 'phone', 'name'
           attrs[key] || e
         else

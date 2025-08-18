@@ -11,13 +11,13 @@ class SubmitFormDownloadController < ApplicationController
 
     return redirect_to submitter_download_index_path(@submitter.slug) if @submitter.completed_at?
 
-    return head :unprocessable_entity if @submitter.declined_at? ||
-                                         @submitter.submission.archived_at? ||
-                                         @submitter.submission.expired? ||
-                                         @submitter.submission.template&.archived_at? ||
-                                         AccountConfig.exists?(account_id: @submitter.account_id,
-                                                               key: AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
-                                                               value: false)
+    return head :unprocessable_content if @submitter.declined_at? ||
+                                          @submitter.submission.archived_at? ||
+                                          @submitter.submission.expired? ||
+                                          @submitter.submission.template&.archived_at? ||
+                                          AccountConfig.exists?(account_id: @submitter.account_id,
+                                                                key: AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
+                                                                value: false)
 
     last_completed_submitter = @submitter.submission.submitters
                                          .where.not(id: @submitter.id)
