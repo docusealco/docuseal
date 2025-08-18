@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmitFormController < ApplicationController
+  include PrefillFieldsHelper
+  
   layout 'form'
 
   around_action :with_browser_locale, only: %i[show completed success]
@@ -27,6 +29,9 @@ class SubmitFormController < ApplicationController
     Submissions.preload_with_pages(submission)
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
+
+    # Fetch ATS prefill values if task_assignment_id is provided
+    @ats_prefill_values = fetch_ats_prefill_values_if_available
 
     @attachments_index = build_attachments_index(submission)
 
@@ -97,5 +102,17 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def fetch_ats_prefill_values_if_available
+    task_assignment_id = params[:task_assignment_id]
+    return {} if task_assignment_id.blank?
+
+    begin
+      fetch_ats_prefill_values(task_assignment_id)
+    rescue StandardError => e
+      Rails.logger.error "Error fetching ATS prefill values: #{e.message}"
+      {}
+    end
   end
 end

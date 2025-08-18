@@ -1,7 +1,8 @@
 <% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
-<% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% submitter_values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% values = merge_ats_prefill_values(submitter_values, @ats_prefill_values || {}) %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
