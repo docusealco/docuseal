@@ -331,8 +331,8 @@ module Submissions
       end
     end
 
-    def assign_completed_attributes(submitter)
-      submitter.values = Submitters::SubmitValues.merge_default_values(submitter)
+    def assign_completed_attributes(submitter, with_verification: true)
+      submitter.values = Submitters::SubmitValues.merge_default_values(submitter, with_verification:)
       submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
 
       formula_values = Submitters::SubmitValues.build_formula_values(submitter)

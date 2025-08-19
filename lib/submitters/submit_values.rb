@@ -143,7 +143,7 @@ module Submitters
       end
     end
 
-    def merge_default_values(submitter)
+    def merge_default_values(submitter, with_verification: true)
       default_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
 
@@ -157,7 +157,7 @@ module Submitters
           next
         end
 
-        if field['type'] == 'verification'
+        if field['type'] == 'verification' && with_verification
           acc[field['uuid']] =
             if submitter.submission_events.exists?(event_type: :complete_verification)
               I18n.t(:verified, locale: :en)
