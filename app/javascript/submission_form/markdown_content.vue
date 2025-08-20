@@ -6,7 +6,7 @@
     >
       <a
         v-if="item.startsWith('<a') && item.endsWith('</a>')"
-        :href="sanitizeHref(extractAttr(item, 'href'))"
+        :href="sanitizeUrl(extractAttr(item, 'href'))"
         rel="noopener noreferrer nofollow"
         :class="extractAttr(item, 'class') || 'link'"
         target="_blank"
@@ -37,6 +37,7 @@
 
 <script>
 import snarkdown from 'snarkdown'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 const htmlSplitRegexp = /(<a.+?<\/a>|<i>.+?<\/i>|<b>.+?<\/b>|<em>.+?<\/em>|<strong>.+?<\/strong>|<br>)/
 
@@ -65,11 +66,7 @@ export default {
     }
   },
   methods: {
-    sanitizeHref (href) {
-      if (href && href.trim().match(/^((?:https?:\/\/)|\/)/)) {
-        return href.replace(/javascript:/g, '')
-      }
-    },
+    sanitizeUrl,
     extractAttr (text, attr) {
       if (text.includes(attr)) {
         return text.split(attr).pop().split('"')[1]
