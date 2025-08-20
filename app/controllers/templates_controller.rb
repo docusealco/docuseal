@@ -124,7 +124,7 @@ class TemplatesController < ApplicationController
                   { preferences: {},
                     conditions: [%i[field_uuid value action operation]],
                     options: [%i[value uuid]],
-                    validation: %i[message pattern],
+                    validation: %i[message pattern min max step],
                     areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
     )
   end

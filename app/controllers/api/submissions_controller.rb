@@ -189,7 +189,7 @@ module Api
                         { metadata: {}, values: {}, roles: [], readonly_fields: [], message: %i[subject body],
                           fields: [:name, :uuid, :default_value, :value, :title, :description,
                                    :readonly, :required, :validation_pattern, :invalid_message,
-                                   { default_value: [], value: [], preferences: {} }] }]]
+                                   { default_value: [], value: [], preferences: {}, validation: {} }] }]]
         }
       ]
 

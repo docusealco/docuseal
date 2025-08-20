@@ -275,6 +275,7 @@ module Submissions
       end
 
       field['preferences'] = (field['preferences'] || {}).merge(attrs['preferences']) if attrs['preferences'].present?
+      field['validation'] = (field['validation'] || {}).merge(attrs['validation']) if attrs['validation'].present?
 
       return field if attrs['validation_pattern'].blank?
 
