@@ -189,6 +189,8 @@ module Submitters
 
         next if formula.blank?
 
+        formula = normalize_formula(formula, submitter.submission)
+
         submission_values ||=
           if submitter.submission.template_submitters.size > 1
             merge_submitters_values(submitter)
@@ -200,6 +202,20 @@ module Submitters
       end
 
       computed_values.compact_blank
+    end
+
+    def normalize_formula(formula, submission, depth = 0)
+      raise ValidationError, 'Formula infinite loop' if depth > 10
+
+      formula.gsub(/{{(.*?)}}/) do |match|
+        uuid = Regexp.last_match(1)
+
+        if (nested_formula = submission.fields_uuid_index.dig(uuid, 'preferences', 'formula').presence)
+          "(#{normalize_formula(nested_formula, submission, depth + 1)})"
+        else
+          match
+        end
+      end
     end
 
     def calculate_formula_value(_formula, _values)

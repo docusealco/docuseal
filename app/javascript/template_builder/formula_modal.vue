@@ -28,14 +28,21 @@
             class="link"
           >{{ t('available_in_pro') }}</a>
         </div>
-        <div class="flex-inline mb-2 gap-2 space-y-1">
+        <div class="flex flex-wrap mb-2 gap-y-1 pt-1">
           <button
             v-for="f in fields"
             :key="f.uuid"
-            class="mr-1 btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
+            class="mr-1 flex btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
             @click.prevent="insertTextUnderCursor(`{{${f.name || buildDefaultName(f, template.fields)}}}`)"
           >
+            <IconMathFunction
+              v-if="f.preferences?.formula"
+              width="17"
+              height="17"
+              stroke-width="1.5"
+            />
             <IconCodePlus
+              v-else
               width="20"
               height="20"
               stroke-width="1.5"
@@ -122,12 +129,13 @@
 </template>
 
 <script>
-import { IconCodePlus } from '@tabler/icons-vue'
+import { IconCodePlus, IconMathFunction } from '@tabler/icons-vue'
 
 export default {
   name: 'FormulaModal',
   components: {
-    IconCodePlus
+    IconCodePlus,
+    IconMathFunction
   },
   inject: ['t', 'save', 'template', 'withFormula'],
   props: {
@@ -154,7 +162,7 @@ export default {
   computed: {
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || f.submitter_uuid !== this.field.submitter_uuid)) {
+        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
           acc.push(f)
         }
 
