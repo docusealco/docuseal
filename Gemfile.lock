@@ -150,6 +150,8 @@ GEM
     css_parser (1.21.0)
       addressable
     csv (3.3.2)
+    csv-safe (3.3.1)
+      csv (~> 3.0)
     cuprite (0.15.1)
       capybara (~> 3.0)
       ferrum (~> 0.15.0)
@@ -612,6 +614,7 @@ DEPENDENCIES
   cancancan
   capybara
   csv
+  csv-safe
   cuprite
   debug
   devise

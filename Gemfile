@@ -11,6 +11,7 @@ gem 'azure-storage-blob', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'csv'
+gem 'csv-safe'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'dotenv', require: false

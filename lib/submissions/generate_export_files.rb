@@ -40,7 +40,7 @@ module Submissions
     def rows_to_csv(rows)
       headers = build_headers(rows)
 
-      CSV.generate do |csv|
+      CSVSafe.generate do |csv|
         csv << headers
 
         rows.each do |row|
