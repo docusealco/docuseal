@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   # before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
-  # before_action :newrelic_metadata
 
   helper_method :button_title,
                 :current_account,
@@ -158,11 +157,4 @@ class ApplicationController < ActionController::Base
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently
   end
-
-  # Add to this as required!
-  # def newrelic_metadata
-  #   ::NewRelic::Agent.add_custom_attributes(
-  #     user_id: current_user&.id
-  #   )
-  # end
 end

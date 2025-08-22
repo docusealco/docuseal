@@ -47,9 +47,6 @@ GEM
     activejob (8.0.1)
       activesupport (= 8.0.1)
       globalid (>= 0.3.6)
-    activejob-uniqueness (0.4.0)
-      activejob (>= 4.2, < 8.1)
-      redlock (>= 2.0, < 3)
     activemodel (8.0.1)
       activesupport (= 8.0.1)
     activerecord (8.0.1)
@@ -446,8 +443,6 @@ GEM
       psych (>= 4.0.0)
     redis-client (0.23.0)
       connection_pool
-    redlock (2.0.6)
-      redis-client (>= 0.14.1, < 1.0.0)
     regexp_parser (2.9.3)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -599,7 +594,6 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  activejob-uniqueness
   airbrake
   annotaterb
   arabic-letter-connector

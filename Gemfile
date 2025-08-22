@@ -44,7 +44,6 @@ gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
 
-gem 'activejob-uniqueness'
 gem 'airbrake'
 gem 'newrelic_rpm'
 
