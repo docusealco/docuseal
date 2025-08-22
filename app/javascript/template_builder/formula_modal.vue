@@ -92,12 +92,6 @@
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor(' % ')"
-              >
-                %
-              </button>
-              <button
-                class="bg-base-200 px-2 rounded-xl"
                 @click="insertTextUnderCursor('^')"
               >
                 ^
@@ -232,9 +226,11 @@ export default {
 
       this.formula = newText
 
-      textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
+      this.$nextTick(() => {
+        textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
 
-      textarea.focus()
+        textarea.focus()
+      })
     },
     resizeTextarea () {
       const textarea = this.$refs.textarea
