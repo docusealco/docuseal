@@ -12,15 +12,16 @@ module Submitters
 
     def call(submitter)
       ActiveRecord::Associations::Preloader.new(
-        records: [submitter],
-        associations: [documents_attachments: :blob, attachments_attachments: :blob]
+        records: [submitter], associations: [documents_attachments: :blob, attachments_attachments: :blob]
       ).call
 
       values = build_values_array(submitter)
       documents = build_documents_array(submitter)
 
-      submitter_name = (submitter.submission.template_submitters ||
-                        submitter.submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
+      submission = submitter.submission
+
+      submitter_name = (submission.template_submitters ||
+                        submission.template.submitters).find { |e| e['uuid'] == submitter.uuid }['name']
 
       decline_reason =
         submitter.declined_at? ? submitter.submission_events.find_by(event_type: :decline_form).data['reason'] : nil
@@ -32,16 +33,18 @@ module Submitters
                       'values' => values,
                       'documents' => documents,
                       'audit_log_url' => submitter.submission.audit_log_url,
-                      'submission_url' => r.submissions_preview_url(submitter.submission.slug,
-                                                                    **Docuseal.default_url_options),
-                      'template' => submitter.submission.template.as_json(
+                      'submission_url' => r.submissions_preview_url(submission.slug, **Docuseal.default_url_options),
+                      'template' => submission.template.as_json(
                         only: %i[id name external_id created_at updated_at],
                         methods: %i[folder_name]
                       ),
                       'submission' => {
-                        **submitter.submission.slice(:id, :audit_log_url, :combined_document_url, :created_at),
-                        status: build_submission_status(submitter.submission),
-                        url: r.submissions_preview_url(submitter.submission.slug, **Docuseal.default_url_options)
+                        'id' => submission.id,
+                        'audit_log_url' => submission.audit_log_url,
+                        'combined_document_url' => submission.combined_document_url,
+                        'status' => build_submission_status(submission),
+                        'url' => r.submissions_preview_url(submission.slug, **Docuseal.default_url_options),
+                        'created_at' => submission.created_at.as_json
                       })
     end
 
@@ -63,7 +66,7 @@ module Submitters
 
         value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
 
-        { field: field_name, value: }
+        { 'field' => field_name, 'value' => value }
       end
     end
 
@@ -85,7 +88,7 @@ module Submitters
 
         value = fetch_field_value(field, submitter.values[field['uuid']], attachments_index)
 
-        { name: field_name, uuid: field['uuid'], value:, readonly: field['readonly'] == true }
+        { 'name' => field_name, 'uuid' => field['uuid'], 'value' => value, 'readonly' => field['readonly'] == true }
       end
     end
 
@@ -103,7 +106,7 @@ module Submitters
 
     def build_documents_array(submitter)
       submitter.documents.map do |attachment|
-        { name: attachment.filename.base, url: rails_storage_proxy_url(attachment) }
+        { 'name' => attachment.filename.base, 'url' => rails_storage_proxy_url(attachment) }
       end
     end
 

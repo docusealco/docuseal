@@ -25,7 +25,7 @@ module Templates
                                         name: :preview_images)
                                  .preload(:blob)
 
-      json[:documents] = template.schema.filter_map do |item|
+      json['documents'] = template.schema.filter_map do |item|
         attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
 
         unless attachment
@@ -38,11 +38,11 @@ module Templates
         first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: ['0.jpg', '0.png'] })&.blob
 
         {
-          id: attachment.id,
-          uuid: attachment.uuid,
-          url: ActiveStorage::Blob.proxy_url(attachment.blob),
-          preview_image_url: first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob),
-          filename: attachment.filename
+          'id' => attachment.id,
+          'uuid' => attachment.uuid,
+          'url' => ActiveStorage::Blob.proxy_url(attachment.blob),
+          'preview_image_url' => first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob),
+          'filename' => attachment.filename
         }
       end
 

@@ -40,7 +40,7 @@ module Submissions
         end
 
         json['status'] = 'completed'
-        json['completed_at'] = last_submitter.completed_at
+        json['completed_at'] = last_submitter.completed_at.as_json
       else
         json['documents'] = [] if with_documents
         json['status'] = build_status(submission, submitters)
