@@ -1065,7 +1065,7 @@ export default {
       }
 
       if (['select', 'multiple', 'radio'].includes(type)) {
-        field.options = [{ value: '', uuid: v4() }]
+        field.options = [{ value: '', uuid: v4() }, { value: '', uuid: v4() }]
       }
 
       if (type === 'stamp') {
@@ -1109,7 +1109,7 @@ export default {
         }
 
         if (['select', 'multiple', 'radio'].includes(type)) {
-          field.options = [{ value: '', uuid: v4() }]
+          field.options = [{ value: '', uuid: v4() }, { value: '', uuid: v4() }]
         }
 
         if (type === 'stamp') {
@@ -1477,7 +1477,7 @@ export default {
           if (this.dragField?.options?.length) {
             field.options = this.dragField.options.map(option => ({ value: option, uuid: v4() }))
           } else {
-            field.options = [{ value: '', uuid: v4() }]
+            field.options = [{ value: '', uuid: v4() }, { value: '', uuid: v4() }]
           }
         }
 

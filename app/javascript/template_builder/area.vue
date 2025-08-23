@@ -192,7 +192,7 @@
               v-else-if="(field.type === 'radio' || field.type === 'multiple') && field?.areas?.length > 1"
             >
               <IconCheck
-                v-if="field.type === 'multiple' ? field.default_value.includes(optionsUuidIndex[area.option_uuid].value) : optionsUuidIndex[area.option_uuid].value === field.default_value"
+                v-if="field.type === 'multiple' ? field.default_value.includes(buildAreaOptionValue(area)) : buildAreaOptionValue(area) === field.default_value"
                 class="aspect-square mx-auto"
                 :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
               />
@@ -596,6 +596,11 @@ export default {
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
     },
+    buildAreaOptionValue (area) {
+      const option = this.optionsUuidIndex[area.option_uuid]
+
+      return option.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
+    },
     maybeToggleDefaultValue () {
       if (!this.editable) {
         return
@@ -621,9 +626,7 @@ export default {
 
         this.save()
       } else if (this.field.type === 'radio' && this.area.option_uuid) {
-        const option = this.optionsUuidIndex[this.area.option_uuid]
-
-        const value = option.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
+        const value = this.buildAreaOptionValue(this.area)
 
         this.field.default_value === value ? delete this.field.default_value : this.field.default_value = value
 
@@ -631,9 +634,7 @@ export default {
 
         this.save()
       } else if (this.field.type === 'multiple' && this.area.option_uuid) {
-        const option = this.optionsUuidIndex[this.area.option_uuid]
-
-        const value = option.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
+        const value = this.buildAreaOptionValue(this.area)
 
         if (this.field.default_value?.includes(value)) {
           this.field.default_value.splice(this.field.default_value.indexOf(value), 1)
