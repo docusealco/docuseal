@@ -287,6 +287,7 @@
       <FormulaModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFormulaModal = false"
       />
@@ -298,6 +299,7 @@
       <FontModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFontModal = false"
       />
@@ -309,6 +311,7 @@
       <ConditionsModal
         :item="field"
         :build-default-name="buildDefaultName"
+        :default-field="defaultField"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -319,6 +322,7 @@
       <DescriptionModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowDescriptionModal = false"
       />

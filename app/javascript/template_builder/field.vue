@@ -248,6 +248,7 @@
       <FormulaModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFormulaModal = false"
       />
@@ -259,6 +260,7 @@
       <FontModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFontModal = false"
       />
@@ -269,6 +271,7 @@
     >
       <ConditionsModal
         :item="field"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowConditionsModal = false"
       />
@@ -280,6 +283,7 @@
       <DescriptionModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowDescriptionModal = false"
       />
