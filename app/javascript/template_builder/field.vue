@@ -151,7 +151,7 @@
         </div>
       </div>
       <div
-        v-if="field.options && withOptions"
+        v-if="field.options && withOptions && (isExpandOptions || field.options.length < 5)"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
         draggable="true"
@@ -216,10 +216,28 @@
         />
         <button
           v-else-if="field.options && editable && !defaultField"
-          class="text-center text-sm w-full pb-1"
+          class="field-add-option text-center text-sm w-full pb-1"
           @click="addOption"
         >
           + {{ t('add_option') }}
+        </button>
+      </div>
+      <div
+        v-else-if="field.options && withOptions && !isExpandOptions && field.options.length > 4"
+        class="border-t border-base-300 mx-2 space-y-1.5"
+      >
+        <button
+          class="field-expand-options text-center text-sm w-full py-1 flex space-x-0.5 justify-center items-center"
+          @click="isExpandOptions = true"
+        >
+          <span class="lowercase">
+            {{ field.options.length }} {{ t('options') }}
+          </span>
+          <IconChevronDown
+            class="ml-2 mr-2 mt-0.5"
+            width="16"
+            height="16"
+          />
         </button>
       </div>
     </div>
@@ -278,7 +296,7 @@ import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconChevronDown } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -288,6 +306,7 @@ export default {
     IconSettings,
     FieldSettings,
     PaymentSettings,
+    IconChevronDown,
     IconNewSection,
     FormulaModal,
     FontModal,
@@ -333,6 +352,7 @@ export default {
   emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
+      isExpandOptions: false,
       isNameFocus: false,
       showPaymentModal: false,
       isShowFormulaModal: false,
@@ -427,6 +447,8 @@ export default {
       this.$el.getRootNode().activeElement.blur()
     },
     addOption () {
+      this.isExpandOptions = true
+
       this.field.options.push({ value: '', uuid: v4() })
 
       this.$nextTick(() => {
