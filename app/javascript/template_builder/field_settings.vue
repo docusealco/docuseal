@@ -437,7 +437,7 @@
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type) && !defaultField"
+    v-if="['text', 'number'].includes(field.type)"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -445,6 +445,7 @@
         v-model="field.readonly"
         type="checkbox"
         class="toggle toggle-xs"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.readonly))"
         @update:model-value="save"
       >
       <span class="label-text">{{ t('read_only') }}</span>
