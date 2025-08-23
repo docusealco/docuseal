@@ -111,6 +111,7 @@ module Api
                     :required, :readonly, :default_value,
                     :title, :description, :prefillable,
                     { preferences: {},
+                      default_value: [],
                       conditions: [%i[field_uuid value action operation]],
                       options: [%i[value uuid]],
                       validation: %i[message pattern min max step],
