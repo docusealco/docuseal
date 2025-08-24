@@ -1301,7 +1301,13 @@ export default {
           this.copiedArea.option_uuid ||= field.options[0].uuid
           area.option_uuid = v4()
 
-          field.options.push({ uuid: area.option_uuid })
+          const lastOption = field.options[field.options.length - 1]
+
+          if (!field.areas.find((a) => lastOption.uuid === a.option_uuid)) {
+            area.option_uuid = lastOption.uuid
+          } else {
+            field.options.push({ uuid: area.option_uuid })
+          }
 
           field.areas.push(area)
         } else {
