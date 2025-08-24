@@ -235,8 +235,8 @@
           </span>
           <IconChevronDown
             class="ml-2 mr-2 mt-0.5"
-            width="16"
-            height="16"
+            width="15"
+            height="15"
           />
         </button>
       </div>
