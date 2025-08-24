@@ -249,7 +249,7 @@
               :contenteditable="isValueInput"
               class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-base-content/30"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences.format || t('type_value') : t('type_value'))"
+              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
               @blur="onDefaultValueBlur"
               @focus="selectedAreaRef.value = area"
               @paste.prevent="onPaste"
