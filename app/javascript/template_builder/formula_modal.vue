@@ -64,7 +64,7 @@
           <div class="mb-3 mt-1">
             <div
               target="blank"
-              class="text-sm mb-2 inline space-x-2"
+              class="text-sm mb-2 inline space-x-2 font-mono"
             >
               <button
                 class="bg-base-200 px-2 rounded-xl"
