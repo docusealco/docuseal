@@ -1,35 +1,32 @@
 <template>
   <span>
-    <template
-      v-for="(item, index) in items"
-      :key="index"
-    >
-      <a
-        v-if="item.startsWith('<a') && item.endsWith('</a>')"
-        :href="sanitizeUrl(extractAttr(item, 'href'))"
-        rel="noopener noreferrer nofollow"
-        :class="extractAttr(item, 'class') || 'link'"
-        target="_blank"
-      >
-        {{ extractText(item) }}
-      </a>
-      <b
-        v-else-if="item.startsWith('<b>') || item.startsWith('<strong>')"
-      >
-        {{ extractText(item) }}
-      </b>
-      <i
-        v-else-if="item.startsWith('<i>') || item.startsWith('<em>')"
-      >
-        {{ extractText(item) }}
-      </i>
-      <br
-        v-else-if="item === '<br>' || item === '\n'"
-      >
+    <span v-if="textOnly">
+      {{ dom.body.textContent }}
+    </span>
+    <template v-else>
       <template
-        v-else
+        v-for="(item, index) in nodes || dom.body.childNodes"
+        :key="index"
       >
-        {{ item }}
+        <a
+          v-if="item.tagName === 'A' && item.getAttribute('href') !== 'undefined'"
+          :href="sanitizeUrl(item.getAttribute('href'))"
+          rel="noopener noreferrer nofollow"
+          :class="item.getAttribute('class') || 'link'"
+          target="_blank"
+        >
+          <MarkdownContent :nodes="item.childNodes" />
+        </a>
+        <component
+          :is="item.tagName"
+          v-else-if="safeTags.includes(item.tagName)"
+        >
+          <MarkdownContent :nodes="item.childNodes" />
+        </component>
+        <br v-else-if="item.tagName === 'BR' || item.nodeValue === '\n'">
+        <template v-else>
+          {{ item.textContent }}
+        </template>
       </template>
     </template>
   </span>
@@ -39,8 +36,6 @@
 import snarkdown from 'snarkdown'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 
-const htmlSplitRegexp = /(<a.+?<\/a>|<i>.+?<\/i>|<b>.+?<\/b>|<em>.+?<\/em>|<strong>.+?<\/strong>|<br>)/
-
 export default {
   name: 'MarkdownContent',
   props: {
@@ -48,35 +43,30 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    nodes: {
+      type: [Array, Object],
+      require: false,
+      default: null
+    },
+    textOnly: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {
-    items () {
-      const linkParts = this.string.split(/(https?:\/\/[^\s)]+)/g)
+    safeTags () {
+      return ['UL', 'I', 'EM', 'B', 'STRONG', 'P']
+    },
+    dom () {
+      const text = this.string.replace(/(?<!\(\s*)(https?:\/\/[^\s)]+)(?!\s*\))/g, (url) => `[${url}](${url})`)
 
-      const text = linkParts.map((part, index) => {
-        if (part.match(/^https?:\/\//) && !linkParts[index - 1]?.match(/\(\s*$/) && !linkParts[index + 1]?.match(/^\s*\)/)) {
-          return `[${part}](${part})`
-        } else {
-          return part
-        }
-      }).join('')
-
-      return snarkdown(text.replace(/\n/g, '<br>')).split(htmlSplitRegexp)
+      return new DOMParser().parseFromString(snarkdown(text.replace(/\n/g, '<br>')), 'text/html')
     }
   },
   methods: {
-    sanitizeUrl,
-    extractAttr (text, attr) {
-      if (text.includes(attr)) {
-        return text.split(attr).pop().split('"')[1]
-      }
-    },
-    extractText (text) {
-      if (text) {
-        return text.match(/>(.+?)</)?.[1]
-      }
-    }
+    sanitizeUrl
   }
 }
 </script>
