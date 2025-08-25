@@ -2,7 +2,7 @@
 
 class SubmitFormController < ApplicationController
   include PrefillFieldsHelper
-  
+
   layout 'form'
 
   around_action :with_browser_locale, only: %i[show completed success]
@@ -105,13 +105,16 @@ class SubmitFormController < ApplicationController
   end
 
   def fetch_ats_prefill_values_if_available
-    task_assignment_id = params[:task_assignment_id]
-    return {} if task_assignment_id.blank?
+    # ATS passes values directly as Base64-encoded JSON parameters
+    return {} unless params[:ats_values].present?
 
     begin
-      fetch_ats_prefill_values(task_assignment_id)
+      decoded_json = Base64.urlsafe_decode64(params[:ats_values])
+      ats_values = JSON.parse(decoded_json)
+
+      # Validate that we got a hash
+      ats_values.is_a?(Hash) ? ats_values : {}
     rescue StandardError => e
-      Rails.logger.error "Error fetching ATS prefill values: #{e.message}"
       {}
     end
   end

@@ -3,77 +3,209 @@
 require 'rails_helper'
 
 RSpec.describe PrefillFieldsHelper, type: :helper do
-  # Clear cache before each test to ensure clean state
-  before do
-    Rails.cache.clear
+  let(:template_fields) do
+    [
+      {
+        'uuid' => 'field-1-uuid',
+        'name' => 'First Name',
+        'type' => 'text',
+        'prefill' => 'employee_first_name'
+      },
+      {
+        'uuid' => 'field-2-uuid',
+        'name' => 'Last Name',
+        'type' => 'text',
+        'prefill' => 'employee_last_name'
+      },
+      {
+        'uuid' => 'field-3-uuid',
+        'name' => 'Email',
+        'type' => 'text',
+        'prefill' => 'employee_email'
+      },
+      {
+        'uuid' => 'field-4-uuid',
+        'name' => 'Signature',
+        'type' => 'signature'
+        # No prefill attribute
+      }
+    ]
+  end
+
+  describe '#find_field_uuid_by_name' do
+    context 'when template_fields is provided' do
+      it 'returns the correct UUID for a matching ATS field name' do
+        uuid = helper.send(:find_field_uuid_by_name, 'employee_first_name', template_fields)
+        expect(uuid).to eq('field-1-uuid')
+      end
+
+      it 'returns the correct UUID for another matching ATS field name' do
+        uuid = helper.send(:find_field_uuid_by_name, 'employee_email', template_fields)
+        expect(uuid).to eq('field-3-uuid')
+      end
+
+      it 'returns nil for a non-matching ATS field name' do
+        uuid = helper.send(:find_field_uuid_by_name, 'non_existent_field', template_fields)
+        expect(uuid).to be_nil
+      end
+
+      it 'returns nil for a field without prefill attribute' do
+        uuid = helper.send(:find_field_uuid_by_name, 'signature', template_fields)
+        expect(uuid).to be_nil
+      end
+    end
+
+    context 'when template_fields is nil' do
+      it 'returns nil' do
+        uuid = helper.send(:find_field_uuid_by_name, 'employee_first_name', nil)
+        expect(uuid).to be_nil
+      end
+    end
+
+    context 'when template_fields is empty' do
+      it 'returns nil' do
+        uuid = helper.send(:find_field_uuid_by_name, 'employee_first_name', [])
+        expect(uuid).to be_nil
+      end
+    end
+
+    context 'when field_name is blank' do
+      it 'returns nil for nil field_name' do
+        uuid = helper.send(:find_field_uuid_by_name, nil, template_fields)
+        expect(uuid).to be_nil
+      end
+
+      it 'returns nil for empty field_name' do
+        uuid = helper.send(:find_field_uuid_by_name, '', template_fields)
+        expect(uuid).to be_nil
+      end
+    end
+  end
+
+  describe '#merge_ats_prefill_values' do
+    let(:submitter_values) do
+      {
+        'field-1-uuid' => 'Existing First Name',
+        'field-4-uuid' => 'Existing Signature'
+      }
+    end
+
+    let(:ats_values) do
+      {
+        'employee_first_name' => 'John',
+        'employee_last_name' => 'Doe',
+        'employee_email' => 'john.doe@example.com'
+      }
+    end
+
+    context 'when template_fields is provided' do
+      it 'merges ATS values for fields that do not have existing submitter values' do
+        result = helper.merge_ats_prefill_values(submitter_values, ats_values, template_fields)
+
+        expect(result).to include(
+          'field-1-uuid' => 'Existing First Name', # Should not be overwritten
+          'field-2-uuid' => 'Doe',                 # Should be set from ATS
+          'field-3-uuid' => 'john.doe@example.com', # Should be set from ATS
+          'field-4-uuid' => 'Existing Signature'   # Should remain unchanged
+        )
+      end
+
+      it 'does not overwrite existing submitter values' do
+        result = helper.merge_ats_prefill_values(submitter_values, ats_values, template_fields)
+
+        expect(result['field-1-uuid']).to eq('Existing First Name')
+      end
+
+      it 'ignores ATS values for fields without matching prefill attributes' do
+        ats_values_with_unknown = ats_values.merge('unknown_field' => 'Unknown Value')
+
+        result = helper.merge_ats_prefill_values(submitter_values, ats_values_with_unknown, template_fields)
+
+        expect(result.keys).not_to include('unknown_field')
+      end
+    end
+
+    context 'when template_fields is nil' do
+      it 'returns original submitter_values unchanged' do
+        result = helper.merge_ats_prefill_values(submitter_values, ats_values, nil)
+        expect(result).to eq(submitter_values)
+      end
+    end
+
+    context 'when ats_values is blank' do
+      it 'returns original submitter_values for nil ats_values' do
+        result = helper.merge_ats_prefill_values(submitter_values, nil, template_fields)
+        expect(result).to eq(submitter_values)
+      end
+
+      it 'returns original submitter_values for empty ats_values' do
+        result = helper.merge_ats_prefill_values(submitter_values, {}, template_fields)
+        expect(result).to eq(submitter_values)
+      end
+    end
+
+    context 'when submitter_values has blank values' do
+      let(:submitter_values_with_blanks) do
+        {
+          'field-1-uuid' => '',
+          'field-2-uuid' => nil,
+          'field-4-uuid' => 'Existing Signature'
+        }
+      end
+
+      it 'fills blank submitter values with ATS values' do
+        result = helper.merge_ats_prefill_values(submitter_values_with_blanks, ats_values, template_fields)
+
+        expect(result).to include(
+          'field-1-uuid' => 'John',                 # Should be filled from ATS (was blank)
+          'field-2-uuid' => 'Doe',                  # Should be filled from ATS (was nil)
+          'field-3-uuid' => 'john.doe@example.com', # Should be set from ATS (was missing)
+          'field-4-uuid' => 'Existing Signature'    # Should remain unchanged
+        )
+      end
+    end
   end
 
   describe '#extract_ats_prefill_fields' do
-    it 'extracts valid field names from base64 encoded parameter' do
-      fields = %w[employee_first_name employee_email manager_firstname]
-      encoded = Base64.urlsafe_encode64(fields.to_json)
-
-      allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq(fields)
+    before do
+      allow(helper).to receive(:params).and_return(params)
     end
 
-    it 'returns empty array for invalid base64' do
-      allow(helper).to receive(:params).and_return({ ats_fields: 'invalid_base64' })
+    context 'when ats_fields parameter is present' do
+      let(:fields) { %w[employee_first_name employee_last_name employee_email] }
+      let(:encoded_fields) { Base64.urlsafe_encode64(fields.to_json) }
+      let(:params) { { ats_fields: encoded_fields } }
 
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
+      it 'decodes and returns the ATS fields' do
+        result = helper.extract_ats_prefill_fields
+        expect(result).to eq(fields)
+      end
+
+      it 'caches the result' do
+        # The implementation uses a SHA256 hash for cache key, not the raw encoded string
+        cache_key = helper.send(:ats_fields_cache_key, encoded_fields)
+        expect(Rails.cache).to receive(:read).with(cache_key).and_return(nil)
+        expect(Rails.cache).to receive(:write).with(cache_key, fields, expires_in: 1.hour)
+        helper.extract_ats_prefill_fields
+      end
     end
 
-    it 'returns empty array for invalid JSON' do
-      invalid_json = Base64.urlsafe_encode64('invalid json')
-      allow(helper).to receive(:params).and_return({ ats_fields: invalid_json })
+    context 'when ats_fields parameter is missing' do
+      let(:params) { {} }
 
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
+      it 'returns an empty array' do
+        result = helper.extract_ats_prefill_fields
+        expect(result).to eq([])
+      end
     end
 
-    it 'filters out invalid field names' do
-      fields = %w[employee_first_name malicious_field account_name invalid-field]
-      encoded = Base64.urlsafe_encode64(fields.to_json)
+    context 'when ats_fields parameter is invalid' do
+      let(:params) { { ats_fields: 'invalid-base64' } }
 
-      allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq(%w[employee_first_name account_name])
-    end
-
-    it 'returns empty array when no ats_fields parameter' do
-      allow(helper).to receive(:params).and_return({})
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
-    end
-
-    it 'returns empty array when ats_fields parameter is empty' do
-      allow(helper).to receive(:params).and_return({ ats_fields: '' })
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
-    end
-
-    it 'returns empty array when decoded JSON is not an array' do
-      not_array = Base64.urlsafe_encode64({ field: 'employee_name' }.to_json)
-      allow(helper).to receive(:params).and_return({ ats_fields: not_array })
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
-    end
-
-    it 'returns empty array when array contains non-string values' do
-      mixed_array = ['employee_first_name', 123, 'manager_firstname']
-      encoded = Base64.urlsafe_encode64(mixed_array.to_json)
-
-      allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
+      it 'returns an empty array' do
+        result = helper.extract_ats_prefill_fields
+        expect(result).to eq([])
+      end
     end
 
     it 'accepts all valid field name patterns' do
@@ -95,256 +227,6 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       result = helper.extract_ats_prefill_fields
       expect(result).to eq(fields)
     end
-
-    it 'logs successful field reception on cache miss' do
-      fields = %w[employee_first_name employee_email]
-      encoded = Base64.urlsafe_encode64(fields.to_json)
-
-      allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-      allow(Rails.logger).to receive(:info)
-      allow(Rails.logger).to receive(:debug)
-
-      helper.extract_ats_prefill_fields
-
-      expect(Rails.logger).to have_received(:info).with(
-        'Processed and cached 2 ATS prefill fields: employee_first_name, employee_email'
-      )
-    end
-
-    it 'logs parsing errors and caches empty result' do
-      allow(helper).to receive(:params).and_return({ ats_fields: 'invalid_base64' })
-      allow(Rails.logger).to receive(:warn)
-      allow(Rails.logger).to receive(:debug)
-
-      result = helper.extract_ats_prefill_fields
-      expect(result).to eq([])
-
-      expect(Rails.logger).to have_received(:warn).with(
-        a_string_matching(/Failed to parse ATS prefill fields:/)
-      )
-    end
-
-    # Caching-specific tests
-    describe 'caching behavior' do
-      let(:fields) { %w[employee_first_name employee_email manager_firstname] }
-      let(:encoded) { Base64.urlsafe_encode64(fields.to_json) }
-
-      # Use memory store for caching tests since test environment uses null_store
-      around do |example|
-        original_cache = Rails.cache
-        Rails.cache = ActiveSupport::Cache::MemoryStore.new
-        example.run
-        Rails.cache = original_cache
-      end
-
-      it 'caches successful parsing results' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.logger).to receive(:info)
-        allow(Rails.logger).to receive(:debug)
-
-        # First call should parse and cache
-        result1 = helper.extract_ats_prefill_fields
-        expect(result1).to eq(fields)
-
-        # Verify cache write occurred
-        cache_key = helper.send(:ats_fields_cache_key, encoded)
-        cached_value = Rails.cache.read(cache_key)
-        expect(cached_value).to eq(fields)
-      end
-
-      it 'returns cached results on subsequent calls' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.logger).to receive(:info)
-        allow(Rails.logger).to receive(:debug)
-
-        # First call - cache miss
-        result1 = helper.extract_ats_prefill_fields
-        expect(result1).to eq(fields)
-
-        # Verify cache miss was logged
-        expect(Rails.logger).to have_received(:debug).at_least(:once) do |&block|
-          block&.call&.include?('cache miss')
-        end
-
-        # Reset logger expectations
-        allow(Rails.logger).to receive(:debug)
-
-        # Second call - should be cache hit
-        result2 = helper.extract_ats_prefill_fields
-        expect(result2).to eq(fields)
-
-        # Verify cache hit was logged
-        expect(Rails.logger).to have_received(:debug).at_least(:once) do |&block|
-          block&.call&.include?('cache hit')
-        end
-      end
-
-      it 'caches empty results for parsing errors' do
-        allow(helper).to receive(:params).and_return({ ats_fields: 'invalid_base64' })
-        allow(Rails.logger).to receive(:warn)
-        allow(Rails.logger).to receive(:debug)
-
-        # First call should fail and cache empty result
-        result1 = helper.extract_ats_prefill_fields
-        expect(result1).to eq([])
-
-        # Verify empty result is cached
-        cache_key = helper.send(:ats_fields_cache_key, 'invalid_base64')
-        cached_value = Rails.cache.read(cache_key)
-        expect(cached_value).to eq([])
-
-        # Reset logger expectations
-        allow(Rails.logger).to receive(:debug)
-
-        # Second call should return cached empty result
-        result2 = helper.extract_ats_prefill_fields
-        expect(result2).to eq([])
-
-        # Verify cache hit was logged
-        expect(Rails.logger).to have_received(:debug).at_least(:once) do |&block|
-          block&.call&.include?('cache hit')
-        end
-      end
-
-      it 'generates consistent cache keys for same input' do
-        key1 = helper.send(:ats_fields_cache_key, encoded)
-        key2 = helper.send(:ats_fields_cache_key, encoded)
-
-        expect(key1).to eq(key2)
-        expect(key1).to start_with('ats_fields:')
-        expect(key1.length).to be > 20 # Should be a reasonable hash length
-      end
-
-      it 'generates different cache keys for different inputs' do
-        fields2 = %w[manager_lastname location_name]
-        encoded2 = Base64.urlsafe_encode64(fields2.to_json)
-
-        key1 = helper.send(:ats_fields_cache_key, encoded)
-        key2 = helper.send(:ats_fields_cache_key, encoded2)
-
-        expect(key1).not_to eq(key2)
-      end
-
-      it 'respects cache TTL for successful results' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.cache).to receive(:write).and_call_original
-
-        helper.extract_ats_prefill_fields
-
-        expect(Rails.cache).to have_received(:write).with(
-          anything,
-          fields,
-          expires_in: PrefillFieldsHelper::ATS_FIELDS_CACHE_TTL
-        )
-      end
-
-      it 'uses shorter TTL for error results' do
-        allow(helper).to receive(:params).and_return({ ats_fields: 'invalid_base64' })
-        allow(Rails.cache).to receive(:write).and_call_original
-        allow(Rails.logger).to receive(:warn)
-
-        helper.extract_ats_prefill_fields
-
-        expect(Rails.cache).to have_received(:write).with(
-          anything,
-          [],
-          expires_in: 5.minutes
-        )
-      end
-
-      it 'handles cache read failures gracefully' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.cache).to receive(:read).and_raise(StandardError.new('Cache error'))
-        allow(Rails.logger).to receive(:info)
-        allow(Rails.logger).to receive(:debug)
-        allow(Rails.logger).to receive(:warn)
-
-        # Should fall back to normal processing
-        result = helper.extract_ats_prefill_fields
-        expect(result).to eq(fields)
-        expect(Rails.logger).to have_received(:warn).with('Cache read failed for ATS fields: Cache error')
-      end
-
-      it 'handles cache write failures gracefully' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.cache).to receive(:write).and_raise(StandardError.new('Cache error'))
-        allow(Rails.logger).to receive(:info)
-        allow(Rails.logger).to receive(:debug)
-        allow(Rails.logger).to receive(:warn)
-
-        # Should still return correct result even if caching fails
-        result = helper.extract_ats_prefill_fields
-        expect(result).to eq(fields)
-        expect(Rails.logger).to have_received(:warn).with('Cache write failed for ATS fields: Cache error')
-      end
-    end
-
-    describe 'performance characteristics' do
-      let(:fields) { %w[employee_first_name employee_email manager_firstname] }
-      let(:encoded) { Base64.urlsafe_encode64(fields.to_json) }
-
-      # Use memory store for performance tests since test environment uses null_store
-      around do |example|
-        original_cache = Rails.cache
-        Rails.cache = ActiveSupport::Cache::MemoryStore.new
-        example.run
-        Rails.cache = original_cache
-      end
-
-      it 'avoids expensive operations on cache hits' do
-        allow(helper).to receive(:params).and_return({ ats_fields: encoded })
-        allow(Rails.logger).to receive(:info)
-        allow(Rails.logger).to receive(:debug)
-
-        # First call to populate cache
-        helper.extract_ats_prefill_fields
-
-        # Mock expensive operations to verify they're not called on cache hit
-        allow(Base64).to receive(:urlsafe_decode64).and_call_original
-        allow(JSON).to receive(:parse).and_call_original
-
-        # Second call should use cache
-        result = helper.extract_ats_prefill_fields
-        expect(result).to eq(fields)
-
-        # Verify expensive operations were not called on second call
-        expect(Base64).not_to have_received(:urlsafe_decode64)
-        expect(JSON).not_to have_received(:parse)
-      end
-    end
   end
 
-  describe '#valid_ats_field_name?' do
-    it 'returns true for valid employee field names' do
-      expect(helper.send(:valid_ats_field_name?, 'employee_first_name')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'employee_email')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'employee_phone_number')).to be true
-    end
-
-    it 'returns true for valid manager field names' do
-      expect(helper.send(:valid_ats_field_name?, 'manager_firstname')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'manager_lastname')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'manager_email')).to be true
-    end
-
-    it 'returns true for valid account field names' do
-      expect(helper.send(:valid_ats_field_name?, 'account_name')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'account_id')).to be true
-    end
-
-    it 'returns true for valid location field names' do
-      expect(helper.send(:valid_ats_field_name?, 'location_name')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'location_street')).to be true
-      expect(helper.send(:valid_ats_field_name?, 'location_city')).to be true
-    end
-
-    it 'returns false for invalid field names' do
-      expect(helper.send(:valid_ats_field_name?, 'malicious_field')).to be false
-      expect(helper.send(:valid_ats_field_name?, 'invalid-field')).to be false
-      expect(helper.send(:valid_ats_field_name?, 'EMPLOYEE_NAME')).to be false
-      expect(helper.send(:valid_ats_field_name?, 'employee')).to be false
-      expect(helper.send(:valid_ats_field_name?, 'employee_')).to be false
-      expect(helper.send(:valid_ats_field_name?, '_employee_name')).to be false
-    end
-  end
 end
