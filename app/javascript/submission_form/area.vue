@@ -29,8 +29,15 @@
         {{ optionValue(option) }}
       </template>
       <template v-else>
-        {{ field.title || field.name || fieldNames[field.type] }}
-        <template v-if="field.type === 'checkbox' && !field.name">
+        <MarkdownContent
+          v-if="field.title"
+          :text-only="true"
+          :string="field.title"
+        />
+        <template v-else>
+          {{ field.name || fieldNames[field.type] }}
+        </template>
+        <template v-if="field.type === 'checkbox' && !field.name && !field.title">
           {{ fieldIndex + 1 }}
         </template>
         <template v-else-if="!field.required && field.type !== 'checkbox'">
@@ -222,12 +229,14 @@
 </template>
 
 <script>
+import MarkdownContent from './markdown_content'
 import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconId } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
   components: {
     IconPaperclip,
+    MarkdownContent,
     IconCheck
   },
   inject: ['t'],
@@ -422,10 +431,14 @@ export default {
     },
     formattedDate () {
       if (this.field.type === 'date' && this.modelValue) {
-        return this.formatDate(
-          this.modelValue === '{{date}}' ? new Date() : new Date(this.modelValue),
-          this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
-        )
+        try {
+          return this.formatDate(
+            this.modelValue === '{{date}}' ? new Date() : new Date(this.modelValue),
+            this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+          )
+        } catch {
+          return this.modelValue
+        }
       } else {
         return ''
       }

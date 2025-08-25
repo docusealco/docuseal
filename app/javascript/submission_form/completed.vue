@@ -25,7 +25,7 @@
     <div class="space-y-3 mt-5">
       <a
         v-if="completedButton.url"
-        :href="sanitizeHref(completedButton.url)"
+        :href="sanitizeUrl(completedButton.url)"
         rel="noopener noreferrer nofollow"
         class="white-button flex items-center w-full completed-form-completed-button"
       >
@@ -102,6 +102,7 @@
 <script>
 import { IconCircleCheck, IconBrandGithub, IconMail, IconDownload, IconInnerShadowTop, IconLogin } from '@tabler/icons-vue'
 import MarkdownContent from './markdown_content'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 export default {
   name: 'FormCompleted',
@@ -198,6 +199,7 @@ export default {
     })
   },
   methods: {
+    sanitizeUrl,
     sendCopyToEmail () {
       this.isSendingCopy = true
 
@@ -251,11 +253,6 @@ export default {
       ).finally(() => {
         this.isDownloading = false
       })
-    },
-    sanitizeHref (href) {
-      if (href && href.trim().match(/^((?:https?:\/\/)|\/)/)) {
-        return href.replace(/javascript:/g, '')
-      }
     },
     downloadSafariIos (urls) {
       const fileRequests = urls.map((url) => {

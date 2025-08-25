@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ t('condition') }} - {{ item.name || buildDefaultName(item, template.fields) }}
+          {{ t('condition') }} - {{ (defaultField ? (defaultField.title || item.title || item.name) : item.name) || buildDefaultName(item, template.fields) }}
         </span>
         <a
           href="#"
@@ -159,6 +159,11 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     buildDefaultName: {
       type: Function,

@@ -72,11 +72,11 @@
         @blur="onNameBlur"
       >{{ optionIndexText }} {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || defaultName }}</span>
       <div
-        v-if="isSettingsFocus || (isValueInput && field.type !== 'heading') || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
+        v-if="isSettingsFocus || isSelectInput || (isValueInput && field.type !== 'heading') || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
         class="flex items-center ml-1.5"
       >
         <input
-          v-if="!isValueInput"
+          v-if="!isValueInput && !isSelectInput"
           :id="`required-checkbox-${field.uuid}`"
           v-model="field.required"
           type="checkbox"
@@ -84,14 +84,14 @@
           @mousedown.prevent
         >
         <label
-          v-if="!isValueInput"
+          v-if="!isValueInput && !isSelectInput"
           :for="`required-checkbox-${field.uuid}`"
           class="label text-xs"
           @click.prevent="field.required = !field.required"
           @mousedown.prevent
         >{{ t('required') }}</label>
         <input
-          v-if="isValueInput"
+          v-if="isValueInput || isSelectInput"
           :id="`readonly-checkbox-${field.uuid}`"
           type="checkbox"
           class="checkbox checkbox-xs no-animation rounded"
@@ -100,7 +100,7 @@
           @mousedown.prevent
         >
         <label
-          v-if="isValueInput"
+          v-if="isValueInput || isSelectInput"
           :for="`readonly-checkbox-${field.uuid}`"
           class="label text-xs"
           @click.prevent="field.readonly = !(field.readonly ?? true)"
@@ -164,30 +164,39 @@
       ref="touchValueTarget"
       class="flex h-full w-full field-area"
       dir="auto"
-      :class="[isValueInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center items-center']"
+      :class="[isValueInput ? 'cursor-text' : '', isValueInput || isCheckboxInput || isSelectInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center items-center']"
       @click="focusValueInput"
     >
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1"
-        :class="{ 'w-full': ['cells', 'checkbox'].includes(field.type), 'h-full': !isValueInput && !isDefaultValuePresent }"
+        :class="{ 'w-full': isWFullType, 'h-full': !isValueInput && !isDefaultValuePresent }"
       >
         <div
-          v-if="isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
-          :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
+          v-if="isDefaultValuePresent || isValueInput || isSelectInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
+          :class="{ 'w-full h-full': isWFullType }"
           :style="fontStyle"
         >
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
             :style="{ color: field.preferences?.color }"
-            :class="{ 'w-full h-full': ['cells', 'checkbox'].includes(field.type) }"
+            :class="{ 'w-full h-full': isWFullType }"
           >
             <IconCheck
               v-if="field.type == 'checkbox'"
               class="aspect-square mx-auto"
               :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
             />
+            <template
+              v-else-if="(field.type === 'radio' || field.type === 'multiple') && field?.areas?.length > 1"
+            >
+              <IconCheck
+                v-if="field.type === 'multiple' ? field.default_value.includes(buildAreaOptionValue(area)) : buildAreaOptionValue(area) === field.default_value"
+                class="aspect-square mx-auto"
+                :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
+              />
+            </template>
             <span
               v-else-if="field.type === 'number' && !isValueInput && (field.default_value || field.default_value == 0)"
               class="whitespace-pre-wrap"
@@ -210,14 +219,39 @@
                 {{ char }}
               </div>
             </div>
+            <select
+              v-else-if="isSelectInput"
+              ref="defaultValueSelect"
+              class="bg-transparent outline-none focus:outline-none w-full"
+              @change="[field.default_value = $event.target.value, field.readonly = !!field.default_value?.length, save()]"
+              @focus="selectedAreaRef.value = area"
+              @keydown.enter="onDefaultValueEnter"
+            >
+              <option
+                :disabled="!field.default_value?.length"
+                :selected="!field.default_value?.length"
+                :value="''"
+              >
+                {{ t(field.default_value?.length ? 'none' : 'select') }}
+              </option>
+              <option
+                v-for="(option, index) in field.options"
+                :key="index"
+                :selected="field.default_value === option.value"
+                :value="option.value"
+              >
+                {{ option.value }}
+              </option>
+            </select>
             <span
               v-else
               ref="defaultValue"
               :contenteditable="isValueInput"
-              class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-gray-400"
+              class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-base-content/30"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : t('type_value')"
+              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
               @blur="onDefaultValueBlur"
+              @focus="selectedAreaRef.value = area"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
             >{{ field.default_value }}</span>
@@ -225,7 +259,7 @@
         </div>
         <component
           :is="fieldIcons[field.type]"
-          v-else
+          v-else-if="!isCheckboxInput"
           width="100%"
           height="100%"
           class="max-h-10 opacity-50"
@@ -233,12 +267,12 @@
       </span>
     </div>
     <div
-      v-if="!isValueInput"
+      v-if="!isValueInput && !isSelectInput"
       ref="touchTarget"
       class="absolute top-0 bottom-0 right-0 left-0"
       :class="isDragged ? 'cursor-grab' : 'cursor-pointer'"
       @dblclick="maybeToggleDefaultValue"
-      @click="maybeToggleCheckboxValue"
+      @click="inputMode && maybeToggleCheckboxValue()"
     />
     <span
       v-if="field?.type && editable"
@@ -253,6 +287,7 @@
       <FormulaModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFormulaModal = false"
       />
@@ -264,6 +299,7 @@
       <FontModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFontModal = false"
       />
@@ -275,6 +311,7 @@
       <ConditionsModal
         :item="field"
         :build-default-name="buildDefaultName"
+        :default-field="defaultField"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -285,6 +322,7 @@
       <DescriptionModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowDescriptionModal = false"
       />
@@ -398,6 +436,9 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
+    isWFullType () {
+      return ['cells', 'checkbox', 'radio', 'multiple', 'select'].includes(this.field.type)
+    },
     fontStyle () {
       let fontSize = ''
 
@@ -417,6 +458,13 @@ export default {
 
       return { fontSize, lineHeight: `calc(${fontSize} * ${this.lineHeight})` }
     },
+    optionsUuidIndex () {
+      return this.field.options.reduce((acc, option) => {
+        acc[option.uuid] = option
+
+        return acc
+      }, {})
+    },
     fontSizePx () {
       return parseInt(this.field?.preferences?.font_size || 11) * this.fontScale
     },
@@ -427,14 +475,17 @@ export default {
       return 1040 / 612.0
     },
     isDefaultValuePresent () {
-      if (this.field?.type === 'radio' && this.field?.areas?.length > 1) {
-        return false
-      } else {
-        return this.field?.default_value || this.field?.default_value === 0
-      }
+      return this.field?.default_value || this.field?.default_value === 0
+    },
+    isSelectInput () {
+      return this.inputMode && (this.field.type === 'select' || (this.field.type === 'radio' && this.field.areas?.length < 2))
+    },
+    isCheckboxInput () {
+      return this.inputMode && (this.field.type === 'checkbox' || (['radio', 'multiple'].includes(this.field.type) && this.area.option_uuid))
     },
     isValueInput () {
-      return (this.field.type === 'heading' && this.isHeadingSelected) || this.isContenteditable || (this.inputMode && ['text', 'number', 'date'].includes(this.field.type))
+      return (this.field.type === 'heading' && this.isHeadingSelected) || this.isContenteditable ||
+        (this.inputMode && (['text', 'number'].includes(this.field.type) || (this.field.type === 'date' && this.field.default_value !== '{{date}}')))
     },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
@@ -549,6 +600,11 @@ export default {
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
     },
+    buildAreaOptionValue (area) {
+      const option = this.optionsUuidIndex[area.option_uuid]
+
+      return option.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
+    },
     maybeToggleDefaultValue () {
       if (!this.editable) {
         return
@@ -558,22 +614,41 @@ export default {
         this.isContenteditable = true
 
         this.focusValueInput()
-      } else if (this.field.type === 'checkbox') {
-        this.field.readonly = !this.field.readonly
-        this.field.default_value === true ? delete this.field.default_value : this.field.default_value = true
-
-        this.save()
       } else if (this.field.type === 'date') {
         this.field.readonly = !this.field.readonly
         this.field.default_value === '{{date}}' ? delete this.field.default_value : this.field.default_value = '{{date}}'
 
         this.save()
+      } else {
+        this.maybeToggleCheckboxValue()
       }
     },
     maybeToggleCheckboxValue () {
-      if (this.inputMode && this.field.type === 'checkbox') {
-        this.field.readonly = !this.field.readonly
+      if (this.field.type === 'checkbox') {
         this.field.default_value === true ? delete this.field.default_value : this.field.default_value = true
+        this.field.readonly = this.field.default_value === true
+
+        this.save()
+      } else if (this.field.type === 'radio' && this.area.option_uuid) {
+        const value = this.buildAreaOptionValue(this.area)
+
+        this.field.default_value === value ? delete this.field.default_value : this.field.default_value = value
+
+        this.field.readonly = !!this.field.default_value?.length
+
+        this.save()
+      } else if (this.field.type === 'multiple' && this.area.option_uuid) {
+        const value = this.buildAreaOptionValue(this.area)
+
+        if (this.field.default_value?.includes(value)) {
+          this.field.default_value.splice(this.field.default_value.indexOf(value), 1)
+
+          if (!this.field.default_value?.length) delete this.field.default_value
+        } else {
+          Array.isArray(this.field.default_value) ? this.field.default_value.push(value) : this.field.default_value = [value]
+        }
+
+        this.field.readonly = !!this.field.default_value?.length
 
         this.save()
       }
@@ -749,7 +824,7 @@ export default {
       }
     },
     drag (e) {
-      if (e.target.id === 'mask') {
+      if (e.target.id === 'mask' && this.editable) {
         this.isDragged = true
 
         this.area.x = (e.offsetX - this.dragFrom.x) / e.target.clientWidth
@@ -765,7 +840,9 @@ export default {
 
       e.preventDefault()
 
-      this.isDragged = true
+      if (this.editable) {
+        this.isDragged = true
+      }
 
       const rect = e.target.getBoundingClientRect()
 
@@ -818,7 +895,9 @@ export default {
 
       e.preventDefault()
 
-      this.isDragged = true
+      if (this.editable) {
+        this.isDragged = true
+      }
 
       const rect = e.target.getBoundingClientRect()
 

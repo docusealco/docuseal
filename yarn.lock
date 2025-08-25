@@ -1030,6 +1030,11 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
+"@braintree/sanitize-url@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-7.1.1.tgz#15e19737d946559289b915e5dad3b4c28407735e"
+  integrity sha512-i1L7noDNxtFyL5DmZafWy1wRVhGehQmzZaz1HiN5e7iylJMSZR7ekOV7NsIqa5qBldlLrsKv4HbgFUVlQrz8Mw==
+
 "@codemirror/autocomplete@^6.0.0":
   version "6.18.6"
   resolved "https://registry.yarnpkg.com/@codemirror/autocomplete/-/autocomplete-6.18.6.tgz#de26e864a1ec8192a1b241eb86addbb612964ddb"
@@ -1141,22 +1146,22 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@eid-easy/eideasy-browser-client@2.127.0":
-  version "2.127.0"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.127.0.tgz#d1b09e3634e94d7e32f593209a63f962fd326731"
-  integrity sha512-2iosVqkF1C0hQWc6TVBe1SK7b/z8ZnvHnulGXfQf6VrrpEJMgnzK95h6LFDqDQyetfIwEGGoeOiUij2hYA1ZPA==
+"@eid-easy/eideasy-browser-client@2.135.0":
+  version "2.135.0"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-browser-client/-/eideasy-browser-client-2.135.0.tgz#ade3cd72210aba2bdef99ec8ffdabbefdd5e6480"
+  integrity sha512-QaFMxdZaEzN/MdQ/ZhJBDN2v+6XJL0l9vK3zDgJFDyaUYvMvWcjFpHvtMiQEOivTD3sB4cM7/sJdwzA01APvsw==
   dependencies:
     axios "1.8.2"
     jsencrypt "3.2.1"
     lodash "^4.17.21"
     serialize-error "^9.1.1"
 
-"@eid-easy/eideasy-widget@^2.163.4":
-  version "2.163.4"
-  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.163.4.tgz#4a8ada2c61f032527a08f9f8d9d1adf3fa7b5334"
-  integrity sha512-7OQ1bm+KSG99wUI6szXT25Icq67CEQRK38VGj8fynW0ctqJTiFXRop7dqgR9JXLlJ1s1Z++El7igYxph7Dq5Aw==
+"@eid-easy/eideasy-widget@^2.171.0":
+  version "2.171.0"
+  resolved "https://registry.yarnpkg.com/@eid-easy/eideasy-widget/-/eideasy-widget-2.171.0.tgz#2072e50a187ef36dd89d0bc5102d5996657ea180"
+  integrity sha512-zDQgq2JhGR+omomU+4PU9vyWXJbMutklWCzZ74YVXzP1LmV0SD/X9Vy/bqofSZ1iRwgT+A+lCqLSmkoztaPC3A==
   dependencies:
-    "@eid-easy/eideasy-browser-client" "2.127.0"
+    "@eid-easy/eideasy-browser-client" "2.135.0"
     core-js "^3.8.3"
     i18n-iso-countries "^6.7.0"
     lodash.defaultsdeep "^4.6.1"

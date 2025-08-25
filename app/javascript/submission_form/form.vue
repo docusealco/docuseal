@@ -572,6 +572,7 @@ import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 const isEmpty = (obj) => {
   if (obj == null) return true
@@ -1476,7 +1477,7 @@ export default {
       }
 
       if (this.completedRedirectUrl) {
-        window.location.href = this.completedRedirectUrl
+        window.location.href = sanitizeUrl(this.completedRedirectUrl)
       }
     }
   }

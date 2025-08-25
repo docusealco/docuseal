@@ -143,7 +143,7 @@ module Submitters
       end
     end
 
-    def merge_default_values(submitter)
+    def merge_default_values(submitter, with_verification: true)
       default_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
 
@@ -157,7 +157,7 @@ module Submitters
           next
         end
 
-        if field['type'] == 'verification'
+        if field['type'] == 'verification' && with_verification
           acc[field['uuid']] =
             if submitter.submission_events.exists?(event_type: :complete_verification)
               I18n.t(:verified, locale: :en)
@@ -189,6 +189,8 @@ module Submitters
 
         next if formula.blank?
 
+        formula = normalize_formula(formula, submitter.submission)
+
         submission_values ||=
           if submitter.submission.template_submitters.size > 1
             merge_submitters_values(submitter)
@@ -200,6 +202,20 @@ module Submitters
       end
 
       computed_values.compact_blank
+    end
+
+    def normalize_formula(formula, submission, depth = 0)
+      raise ValidationError, 'Formula infinite loop' if depth > 10
+
+      formula.gsub(/{{(.*?)}}/) do |match|
+        uuid = Regexp.last_match(1)
+
+        if (nested_formula = submission.fields_uuid_index.dig(uuid, 'preferences', 'formula').presence)
+          "(#{normalize_formula(nested_formula, submission, depth + 1)})"
+        else
+          match
+        end
+      end
     end
 
     def calculate_formula_value(_formula, _values)
@@ -321,7 +337,7 @@ module Submitters
     end
 
     def replace_default_variables(value, attrs, submission, with_time: false)
-      return value if value.in?([true, false]) || value.is_a?(Numeric)
+      return value if value.in?([true, false]) || value.is_a?(Numeric) || value.is_a?(Array)
       return if value.blank?
 
       value.to_s.gsub(VARIABLE_REGEXP) do |e|

@@ -1,32 +1,5 @@
 <template>
   <div
-    v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative"
-    @click.stop
-  >
-    <select
-      :placeholder="t('format')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
-    >
-      <option
-        v-for="format in numberFormats"
-        :key="format"
-        :value="format"
-        :selected="format === field.preferences?.format || (format === 'none' && !field.preferences?.format)"
-      >
-        {{ formatNumber(123456789.567, format) }}
-      </option>
-    </select>
-    <label
-      :style="{ backgroundColor }"
-      class="absolute -top-1 left-2.5 px-1 h-4"
-      style="font-size: 8px"
-    >
-      {{ t('format') }}
-    </label>
-  </div>
-  <div
     v-if="field.type === 'verification'"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -218,6 +191,77 @@
     </div>
   </div>
   <div
+    v-if="field.type === 'number'"
+    class="py-1.5 px-1 relative flex space-x-1"
+    @click.stop
+  >
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('min')"
+        type="number"
+        min="0"
+        :value="field.validation?.min"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        @input="[field.validation ||= {}, $event.target.value ? field.validation.min = $event.target.value : delete field.validation.min]"
+        @blur="save"
+      >
+      <label
+        v-if="field.validation?.min"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('min') }}
+      </label>
+    </div>
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('max')"
+        type="number"
+        min="1"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        :value="field.validation?.max"
+        @input="[field.validation ||= {}, $event.target.value ? field.validation.max = $event.target.value : delete field.validation.max]"
+        @blur="save"
+      >
+      <label
+        v-if="field.validation?.max"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('max') }}
+      </label>
+    </div>
+  </div>
+  <div
+    v-if="field.type === 'number'"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('format')"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
+    >
+      <option
+        v-for="format in numberFormats"
+        :key="format"
+        :value="format"
+        :selected="format === field.preferences?.format || (format === 'none' && !field.preferences?.format)"
+      >
+        {{ formatNumber(123456789.567, format) }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('format') }}
+    </label>
+  </div>
+  <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -393,7 +437,7 @@
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type) && !defaultField"
+    v-if="['text', 'number'].includes(field.type)"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -401,6 +445,7 @@
         v-model="field.readonly"
         type="checkbox"
         class="toggle toggle-xs"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.readonly))"
         @update:model-value="save"
       >
       <span class="label-text">{{ t('read_only') }}</span>

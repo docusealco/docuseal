@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ t('formula') }} - {{ field.name || buildDefaultName(field, template.fields) }}
+          {{ t('formula') }} - {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field, template.fields) }}
         </span>
         <a
           href="#"
@@ -28,14 +28,21 @@
             class="link"
           >{{ t('available_in_pro') }}</a>
         </div>
-        <div class="flex-inline mb-2 gap-2 space-y-1">
+        <div class="flex flex-wrap mb-2 gap-y-1 pt-1">
           <button
             v-for="f in fields"
             :key="f.uuid"
-            class="mr-1 btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
+            class="mr-1 flex btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
             @click.prevent="insertTextUnderCursor(`{{${f.name || buildDefaultName(f, template.fields)}}}`)"
           >
+            <IconMathFunction
+              v-if="f.preferences?.formula"
+              width="17"
+              height="17"
+              stroke-width="1.5"
+            />
             <IconCodePlus
+              v-else
               width="20"
               height="20"
               stroke-width="1.5"
@@ -57,7 +64,7 @@
           <div class="mb-3 mt-1">
             <div
               target="blank"
-              class="text-sm mb-2 inline space-x-2"
+              class="text-sm mb-2 inline space-x-2 font-mono"
             >
               <button
                 class="bg-base-200 px-2 rounded-xl"
@@ -82,12 +89,6 @@
                 @click="insertTextUnderCursor(' / ')"
               >
                 /
-              </button>
-              <button
-                class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor(' % ')"
-              >
-                %
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
@@ -122,18 +123,24 @@
 </template>
 
 <script>
-import { IconCodePlus } from '@tabler/icons-vue'
+import { IconCodePlus, IconMathFunction } from '@tabler/icons-vue'
 
 export default {
   name: 'FormulaModal',
   components: {
-    IconCodePlus
+    IconCodePlus,
+    IconMathFunction
   },
   inject: ['t', 'save', 'template', 'withFormula'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     editable: {
       type: Boolean,
@@ -154,7 +161,7 @@ export default {
   computed: {
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || f.submitter_uuid !== this.field.submitter_uuid)) {
+        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
           acc.push(f)
         }
 
@@ -224,9 +231,11 @@ export default {
 
       this.formula = newText
 
-      textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
+      this.$nextTick(() => {
+        textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
 
-      textarea.focus()
+        textarea.focus()
+      })
     },
     resizeTextarea () {
       const textarea = this.$refs.textarea
