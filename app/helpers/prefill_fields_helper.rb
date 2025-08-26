@@ -7,6 +7,20 @@ module PrefillFieldsHelper
   # Maximum number of cached entries to prevent memory bloat
   MAX_CACHE_ENTRIES = 1000
 
+  # Cache TTL for field UUID lookup optimization (30 minutes)
+  FIELD_LOOKUP_CACHE_TTL = 30.minutes
+
+  # Extracts and validates ATS prefill field names from Base64-encoded parameters
+  #
+  # This method decodes the ats_fields parameter, validates the field names against
+  # allowed patterns, and caches the results to improve performance on repeated requests.
+  #
+  # @return [Array<String>] Array of valid ATS field names, empty array if none found or on error
+  #
+  # @example
+  #   # With params[:ats_fields] = Base64.urlsafe_encode64(['employee_first_name', 'employee_email'].to_json)
+  #   extract_ats_prefill_fields
+  #   # => ['employee_first_name', 'employee_email']
   def extract_ats_prefill_fields
     return [] if params[:ats_fields].blank?
 
@@ -43,18 +57,38 @@ module PrefillFieldsHelper
   end
 
 
-  # Merge ATS prefill values with existing submitter values
-  # ATS values should not override existing submitter-entered values
-  # @param submitter_values [Hash] existing values entered by submitters
-  # @param ats_values [Hash] prefill values from ATS
-  # @return [Hash] merged values with submitter values taking precedence
+  # Merges ATS prefill values with existing submitter values
+  #
+  # This method combines ATS-provided prefill values with values already entered by submitters.
+  # Existing submitter values always take precedence over ATS values to prevent overwriting
+  # user input. Uses optimized field lookup caching for better performance.
+  #
+  # @param submitter_values [Hash] Existing values entered by submitters, keyed by field UUID
+  # @param ats_values [Hash] Prefill values from ATS system, keyed by ATS field name
+  # @param template_fields [Array<Hash>, nil] Template field definitions containing UUID and prefill mappings
+  # @return [Hash] Merged values with submitter values taking precedence over ATS values
+  #
+  # @example
+  #   submitter_values = { 'field-uuid-1' => 'John' }
+  #   ats_values = { 'employee_first_name' => 'Jane', 'employee_last_name' => 'Doe' }
+  #   template_fields = [
+  #     { 'uuid' => 'field-uuid-1', 'prefill' => 'employee_first_name' },
+  #     { 'uuid' => 'field-uuid-2', 'prefill' => 'employee_last_name' }
+  #   ]
+  #
+  #   merge_ats_prefill_values(submitter_values, ats_values, template_fields)
+  #   # => { 'field-uuid-1' => 'John', 'field-uuid-2' => 'Doe' }
+  #   # Note: 'John' is preserved over 'Jane' because submitter value takes precedence
   def merge_ats_prefill_values(submitter_values, ats_values, template_fields = nil)
     return submitter_values if ats_values.blank?
 
+    # Build optimized lookup cache for better performance with large field sets
+    field_lookup = build_field_lookup_cache(template_fields)
+
     # Only use ATS values for fields that don't already have submitter values
     ats_values.each do |field_name, value|
-      # Find matching field by name in template fields
-      matching_field_uuid = find_field_uuid_by_name(field_name, template_fields)
+      # Use cached lookup for better performance
+      matching_field_uuid = field_lookup[field_name]
 
       next if matching_field_uuid.nil?
 
@@ -67,7 +101,13 @@ module PrefillFieldsHelper
     submitter_values
   end
 
-  # Clear ATS fields cache (useful for testing or manual cache invalidation)
+  # Clears ATS fields cache (useful for testing or manual cache invalidation)
+  #
+  # Since Rails cache doesn't provide easy enumeration of keys, this method
+  # relies on TTL for automatic cleanup. This method is provided for potential
+  # future use or testing scenarios where immediate cache invalidation is needed.
+  #
+  # @return [void]
   def clear_ats_fields_cache
     # Since we can't easily enumerate cache keys, we'll rely on TTL for cleanup
     # This method is provided for potential future use or testing
@@ -98,14 +138,84 @@ module PrefillFieldsHelper
     []
   end
 
-  # Find field UUID by matching ATS field name to template field's prefill attribute
+  # Builds an optimized lookup cache for field UUID resolution
+  #
+  # Creates a hash mapping ATS field names to template field UUIDs for O(1) lookup
+  # performance instead of O(n) linear search. Results are cached to improve
+  # performance across multiple requests.
+  #
+  # @param template_fields [Array<Hash>, nil] Template field definitions
+  # @return [Hash] Mapping of ATS field names to field UUIDs
+  #
+  # @example
+  #   template_fields = [
+  #     { 'uuid' => 'field-1', 'prefill' => 'employee_first_name' },
+  #     { 'uuid' => 'field-2', 'prefill' => 'employee_last_name' }
+  #   ]
+  #   build_field_lookup_cache(template_fields)
+  #   # => { 'employee_first_name' => 'field-1', 'employee_last_name' => 'field-2' }
+  def build_field_lookup_cache(template_fields)
+    return {} if template_fields.blank?
+
+    # Create cache key based on template fields structure
+    cache_key = field_lookup_cache_key(template_fields)
+
+    # Try to get from cache first
+    begin
+      cached_lookup = Rails.cache.read(cache_key)
+      return cached_lookup if cached_lookup
+    rescue StandardError => e
+      # Continue with normal processing if cache read fails
+    end
+
+    # Build lookup hash for O(1) performance
+    lookup = template_fields.each_with_object({}) do |field, hash|
+      prefill_name = field['prefill']
+      field_uuid = field['uuid']
+
+      if prefill_name.present? && field_uuid.present?
+        hash[prefill_name] = field_uuid
+      end
+    end
+
+    # Cache the lookup with error handling
+    begin
+      Rails.cache.write(cache_key, lookup, expires_in: FIELD_LOOKUP_CACHE_TTL)
+    rescue StandardError => e
+      # Continue execution even if caching fails
+    end
+
+    lookup
+  end
+
+  # Finds field UUID by matching ATS field name to template field's prefill attribute
+  #
+  # This method provides backward compatibility and is now optimized to use
+  # the cached lookup when possible.
+  #
+  # @param field_name [String] ATS field name to look up
+  # @param template_fields [Array<Hash>, nil] Template field definitions
+  # @return [String, nil] Field UUID if found, nil otherwise
+  #
+  # @example
+  #   find_field_uuid_by_name('employee_first_name', template_fields)
+  #   # => 'field-uuid-123'
   def find_field_uuid_by_name(field_name, template_fields = nil)
     return nil if field_name.blank? || template_fields.blank?
 
-    # Find template field where the prefill attribute matches the ATS field name
-    matching_field = template_fields.find { |field| field['prefill'] == field_name }
+    # Use optimized lookup cache
+    field_lookup = build_field_lookup_cache(template_fields)
+    field_lookup[field_name]
+  end
 
-    matching_field&.dig('uuid')
+  private
+
+  # Generates cache key for field lookup optimization
+  def field_lookup_cache_key(template_fields)
+    # Create a hash based on the structure of template fields for caching
+    fields_signature = template_fields.map { |f| "#{f['uuid']}:#{f['prefill']}" }.sort.join('|')
+    hash = Digest::SHA256.hexdigest(fields_signature)
+    "field_lookup:#{hash}"
   end
 
 end
