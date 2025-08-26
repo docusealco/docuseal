@@ -24,36 +24,23 @@ module PrefillFieldsHelper
   def extract_ats_prefill_fields
     return [] if params[:ats_fields].blank?
 
-    # Create cache key from parameter hash for security and uniqueness
     cache_key = ats_fields_cache_key(params[:ats_fields])
 
-    # Try to get from cache first with error handling
-    begin
-      cached_result = Rails.cache.read(cache_key)
-      return cached_result if cached_result
-    rescue StandardError
-      # Continue with normal processing if cache read fails
-    end
+    # Try to get from cache first
+    cached_result = read_from_cache(cache_key)
+    return cached_result if cached_result
 
-    begin
-      decoded_json = Base64.urlsafe_decode64(params[:ats_fields])
-      field_names = JSON.parse(decoded_json)
+    # Parse and validate the ATS fields
+    field_names = parse_ats_fields_param(params[:ats_fields])
+    return cache_and_return_empty(cache_key) if field_names.nil?
 
-      # Validate that we got an array of strings
-      return cache_and_return_empty(cache_key) unless field_names.is_a?(Array) && field_names.all?(String)
+    # Validate and filter field names
+    valid_fields = validate_and_filter_field_names(field_names)
+    return cache_and_return_empty(cache_key) if valid_fields.nil?
 
-      # Filter to only expected field name patterns
-      valid_fields = field_names.select { |name| valid_ats_field_name?(name) }
-
-      # Cache the result with TTL (with error handling)
-      cache_result(cache_key, valid_fields, ATS_FIELDS_CACHE_TTL)
-
-      valid_fields
-    rescue StandardError
-      # Cache empty result for failed parsing to avoid repeated failures
-      cache_result(cache_key, [], 5.minutes)
-      []
-    end
+    # Cache and return the valid fields
+    cache_result(cache_key, valid_fields, ATS_FIELDS_CACHE_TTL)
+    valid_fields
   end
 
   # Merges ATS prefill values with existing submitter values
@@ -111,6 +98,41 @@ module PrefillFieldsHelper
   end
 
   private
+
+  # Safely reads from cache with error handling
+  #
+  # @param cache_key [String] The cache key to read from
+  # @return [Object, nil] Cached value if found and readable, nil otherwise
+  def read_from_cache(cache_key)
+    Rails.cache.read(cache_key)
+  rescue StandardError
+    # Return nil if cache read fails, allowing normal processing to continue
+    nil
+  end
+
+  # Parses and decodes the ATS fields parameter
+  #
+  # @param ats_fields_param [String] Base64-encoded JSON string containing field names
+  # @return [Array<String>, nil] Array of field names if parsing succeeds, nil on error
+  def parse_ats_fields_param(ats_fields_param)
+    decoded_json = Base64.urlsafe_decode64(ats_fields_param)
+    JSON.parse(decoded_json)
+  rescue StandardError
+    # Return nil if Base64 decoding or JSON parsing fails
+    nil
+  end
+
+  # Validates and filters field names to only include allowed patterns
+  #
+  # @param field_names [Array] Array of field names to validate
+  # @return [Array<String>, nil] Array of valid field names, nil if input is invalid
+  def validate_and_filter_field_names(field_names)
+    # Validate that we got an array of strings
+    return nil unless field_names.is_a?(Array) && field_names.all?(String)
+
+    # Filter to only expected field name patterns
+    field_names.select { |name| valid_ats_field_name?(name) }
+  end
 
   def valid_ats_field_name?(name)
     # Only allow expected field name patterns (security)
