@@ -37,6 +37,10 @@ module Templates
     hash
   end
 
+  def maybe_assign_access(_template)
+    nil
+  end
+
   def search(current_user, templates, keyword)
     if Docuseal.fulltext_search?
       fulltext_search(current_user, templates, keyword)

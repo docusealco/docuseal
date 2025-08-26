@@ -26,6 +26,8 @@ module Api
                                                           original_template: @template,
                                                           documents: params[:documents])
 
+      Templates.maybe_assign_access(cloned_template)
+
       cloned_template.save!
 
       WebhookUrls.enqueue_events(cloned_template, 'template.created')
