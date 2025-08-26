@@ -106,7 +106,7 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
           'field-1-uuid' => 'Existing First Name', # Should not be overwritten
           'field-2-uuid' => 'Doe',                 # Should be set from ATS
           'field-3-uuid' => 'john.doe@example.com', # Should be set from ATS
-          'field-4-uuid' => 'Existing Signature'   # Should remain unchanged
+          'field-4-uuid' => 'Existing Signature' # Should remain unchanged
         )
       end
 
@@ -184,9 +184,13 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       it 'caches the result' do
         # The implementation uses a SHA256 hash for cache key, not the raw encoded string
         cache_key = helper.send(:ats_fields_cache_key, encoded_fields)
-        expect(Rails.cache).to receive(:read).with(cache_key).and_return(nil)
-        expect(Rails.cache).to receive(:write).with(cache_key, fields, expires_in: 1.hour)
+        allow(Rails.cache).to receive(:read).with(cache_key).and_return(nil)
+        allow(Rails.cache).to receive(:write).with(cache_key, fields, expires_in: 1.hour)
+
         helper.extract_ats_prefill_fields
+
+        expect(Rails.cache).to have_received(:read).with(cache_key)
+        expect(Rails.cache).to have_received(:write).with(cache_key, fields, expires_in: 1.hour)
       end
     end
 
@@ -228,5 +232,4 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       expect(result).to eq(fields)
     end
   end
-
 end

@@ -106,7 +106,7 @@ class SubmitFormController < ApplicationController
 
   def fetch_ats_prefill_values_if_available
     # ATS passes values directly as Base64-encoded JSON parameters
-    return {} unless params[:ats_values].present?
+    return {} if params[:ats_values].blank?
 
     # Security: Limit input size to prevent DoS attacks (64KB limit)
     if params[:ats_values].bytesize > 65_536
@@ -129,8 +129,8 @@ class SubmitFormController < ApplicationController
       if ats_values.is_a?(Hash)
         # Audit logging: Log ATS prefill usage for security monitoring
         Rails.logger.info "ATS prefill values processed for submitter: #{@submitter&.slug || 'unknown'}, " \
-                         "field_count: #{ats_values.keys.length}, " \
-                         "account: #{@submitter&.account&.name || 'unknown'}"
+                          "field_count: #{ats_values.keys.length}, " \
+                          "account: #{@submitter&.account&.name || 'unknown'}"
         ats_values
       else
         Rails.logger.warn "ATS prefill values not a hash: #{ats_values.class}"

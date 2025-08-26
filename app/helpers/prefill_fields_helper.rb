@@ -31,7 +31,7 @@ module PrefillFieldsHelper
     begin
       cached_result = Rails.cache.read(cache_key)
       return cached_result if cached_result
-    rescue StandardError => e
+    rescue StandardError
       # Continue with normal processing if cache read fails
     end
 
@@ -49,13 +49,12 @@ module PrefillFieldsHelper
       cache_result(cache_key, valid_fields, ATS_FIELDS_CACHE_TTL)
 
       valid_fields
-    rescue StandardError => e
+    rescue StandardError
       # Cache empty result for failed parsing to avoid repeated failures
       cache_result(cache_key, [], 5.minutes)
       []
     end
   end
-
 
   # Merges ATS prefill values with existing submitter values
   #
@@ -93,9 +92,7 @@ module PrefillFieldsHelper
       next if matching_field_uuid.nil?
 
       # Only set if submitter hasn't already filled this field
-      if submitter_values[matching_field_uuid].blank?
-        submitter_values[matching_field_uuid] = value
-      end
+      submitter_values[matching_field_uuid] = value if submitter_values[matching_field_uuid].blank?
     end
 
     submitter_values
@@ -129,7 +126,7 @@ module PrefillFieldsHelper
 
   def cache_result(cache_key, value, ttl)
     Rails.cache.write(cache_key, value, expires_in: ttl)
-  rescue StandardError => e
+  rescue StandardError
     # Continue execution even if caching fails
   end
 
@@ -164,7 +161,7 @@ module PrefillFieldsHelper
     begin
       cached_lookup = Rails.cache.read(cache_key)
       return cached_lookup if cached_lookup
-    rescue StandardError => e
+    rescue StandardError
       # Continue with normal processing if cache read fails
     end
 
@@ -173,15 +170,13 @@ module PrefillFieldsHelper
       prefill_name = field['prefill']
       field_uuid = field['uuid']
 
-      if prefill_name.present? && field_uuid.present?
-        hash[prefill_name] = field_uuid
-      end
+      hash[prefill_name] = field_uuid if prefill_name.present? && field_uuid.present?
     end
 
     # Cache the lookup with error handling
     begin
       Rails.cache.write(cache_key, lookup, expires_in: FIELD_LOOKUP_CACHE_TTL)
-    rescue StandardError => e
+    rescue StandardError
       # Continue execution even if caching fails
     end
 
@@ -208,8 +203,6 @@ module PrefillFieldsHelper
     field_lookup[field_name]
   end
 
-  private
-
   # Generates cache key for field lookup optimization
   def field_lookup_cache_key(template_fields)
     # Create a hash based on the structure of template fields for caching
@@ -217,5 +210,4 @@ module PrefillFieldsHelper
     hash = Digest::SHA256.hexdigest(fields_signature)
     "field_lookup:#{hash}"
   end
-
 end
