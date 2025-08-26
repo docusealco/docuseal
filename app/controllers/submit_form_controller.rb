@@ -109,35 +109,19 @@ class SubmitFormController < ApplicationController
     return {} if params[:ats_values].blank?
 
     # Security: Limit input size to prevent DoS attacks (64KB limit)
-    if params[:ats_values].bytesize > 65_536
-      Rails.logger.warn "ATS prefill values parameter exceeds size limit: #{params[:ats_values].bytesize} bytes"
-      return {}
-    end
+    return {} if params[:ats_values].bytesize > 65_536
 
     begin
       decoded_json = Base64.urlsafe_decode64(params[:ats_values])
 
       # Security: Limit decoded JSON size as well
-      if decoded_json.bytesize > 32_768
-        Rails.logger.warn "ATS prefill decoded JSON exceeds size limit: #{decoded_json.bytesize} bytes"
-        return {}
-      end
+      return {} if decoded_json.bytesize > 32_768
 
       ats_values = JSON.parse(decoded_json)
 
       # Validate that we got a hash
-      if ats_values.is_a?(Hash)
-        # Audit logging: Log ATS prefill usage for security monitoring
-        Rails.logger.info "ATS prefill values processed for submitter: #{@submitter&.slug || 'unknown'}, " \
-                          "field_count: #{ats_values.keys.length}, " \
-                          "account: #{@submitter&.account&.name || 'unknown'}"
-        ats_values
-      else
-        Rails.logger.warn "ATS prefill values not a hash: #{ats_values.class}"
-        {}
-      end
-    rescue StandardError => e
-      Rails.logger.warn "Failed to parse ATS prefill values: #{e.message}"
+      ats_values.is_a?(Hash) ? ats_values : {}
+    rescue StandardError
       {}
     end
   end
