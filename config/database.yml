@@ -1,10 +1,14 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
+  pool: <%= ENV['DB_POOL'] || 25 %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
 
 development:
-  adapter: postgresql
-  encoding: unicode
   database: docuseal_development
   pool: 5
   username: postgres
@@ -12,8 +16,6 @@ development:
   host: localhost
 
 test:
-  adapter: postgresql
-  encoding: unicode
   database: docuseal_test
   pool: 5
   username: postgres
@@ -22,23 +24,11 @@ test:
 
 production:
   <<: *default
-  host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV['DB_PORT'] %>
-  pool: <%= ENV['DB_POOL'] || 25 %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  database: <%= ENV['DB_NAME'] %>
   sslmode: <%= ENV['DB_SSLMODE'] %>
   sslrootcert: <%= ENV['DB_SSLCERT'] %>
 
 staging:
   <<: *default
-  host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV['DB_PORT'] %>
-  pool: <%= ENV['DB_POOL'] || 25 %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  database: <%= ENV['DB_NAME'] %>
   sslmode: <%= ENV['DB_SSLMODE'] %>
   sslrootcert: <%= ENV['DB_SSLCERT'] %>
   variables:
