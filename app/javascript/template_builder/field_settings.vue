@@ -286,7 +286,7 @@
       class="absolute -top-1 left-2.5 px-1 h-4"
       style="font-size: 8px"
     >
-      {{ t('ats_field') }}
+      {{ 'Pre-fill Options' }}
     </label>
   </div>
   <li
