@@ -60,7 +60,15 @@ export default {
       return ['UL', 'I', 'EM', 'B', 'STRONG', 'P']
     },
     dom () {
-      const text = this.string.replace(/(?<!\(\s*)(https?:\/\/[^\s)]+)(?!\s*\))/g, (url) => `[${url}](${url})`)
+      const linkParts = this.string.split(/(https?:\/\/[^\s)]+)/g)
+
+      const text = linkParts.map((part, index) => {
+        if (part.match(/^https?:\/\//) && !linkParts[index - 1]?.match(/\(\s*$/) && !linkParts[index + 1]?.match(/^\s*\)/)) {
+          return `[${part}](${part})`
+        } else {
+          return part
+        }
+      }).join('')
 
       return new DOMParser().parseFromString(snarkdown(text.replace(/\n/g, '<br>')), 'text/html')
     }
