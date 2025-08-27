@@ -182,15 +182,15 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       end
 
       it 'caches the result' do
-        # The implementation uses a SHA256 hash for cache key, not the raw encoded string
-        cache_key = helper.send(:ats_fields_cache_key, encoded_fields)
-        allow(Rails.cache).to receive(:read).with(cache_key).and_return(nil)
-        allow(Rails.cache).to receive(:write).with(cache_key, fields, expires_in: 1.hour)
+        # The implementation now uses AtsPrefill service which uses Rails.cache.fetch
+        cache_key = AtsPrefill::CacheManager.generate_cache_key('ats_fields', encoded_fields)
+
+        # Mock the cache to verify it's being used
+        allow(Rails.cache).to receive(:fetch).and_call_original
 
         helper.extract_ats_prefill_fields
 
-        expect(Rails.cache).to have_received(:read).with(cache_key)
-        expect(Rails.cache).to have_received(:write).with(cache_key, fields, expires_in: 1.hour)
+        expect(Rails.cache).to have_received(:fetch).with(cache_key, expires_in: 3600)
       end
     end
 

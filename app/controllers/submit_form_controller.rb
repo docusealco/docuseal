@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SubmitFormController < ApplicationController
-  include PrefillFieldsHelper
-
   layout 'form'
 
   around_action :with_browser_locale, only: %i[show completed success]
