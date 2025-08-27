@@ -79,6 +79,7 @@ COPY ./tmp ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 COPY .version ./public/version
 COPY ./.env.staging ./.env.staging
+COPY ./.env.production ./.env.production
 COPY ./config/rds-combined-ca-bundle.pem /config/rds-combined-ca-bundle.pem
 
 COPY --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts

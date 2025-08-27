@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-echo "=== CP Docuseal Staging Startup ==="
+echo "=== CP Docuseal Production Startup ==="
 
 # Enable jemalloc for reduced memory usage and latency.
 if [ -z "${LD_PRELOAD+x}" ]; then
@@ -52,63 +52,23 @@ fetch_db_credentials() {
         echo "Expected JSON format: {\"username\": \"...\", \"password\": \"...\"}"
         exit 1
     fi
-    
-    # Write credentials to .env.staging file
-    echo "Writing database credentials to .env.staging..."
-    
+
+    # Write credentials to .env.production file
+    echo "Writing database credentials to .env.production..."
+
     # Remove existing DB_USERNAME and DB_PASSWORD lines if they exist
-    if [ -f "./.env.staging" ]; then
-        echo "Removing existing DB_USERNAME and DB_PASSWORD from .env.staging"
-        grep -v "^DB_USERNAME=" ./.env.staging > ./.env.staging.tmp || true
-        grep -v "^DB_PASSWORD=" ./.env.staging.tmp > ./.env.staging || true
-        rm -f ./.env.staging.tmp
+    if [ -f "./.env.production" ]; then
+        echo "Removing existing DB_USERNAME and DB_PASSWORD from .env.production"
+        grep -v "^DB_USERNAME=" ./.env.production > ./.env.production.tmp || true
+        grep -v "^DB_PASSWORD=" ./.env.production.tmp > ./.env.production || true
+        rm -f ./.env.production.tmp
     fi
     
     # Append the new credentials
-    echo "DB_USERNAME=$DB_USERNAME" >> ./.env.staging
-    echo "DB_PASSWORD=$DB_PASSWORD" >> ./.env.staging
+    echo "DB_USERNAME=$DB_USERNAME" >> ./.env.production
+    echo "DB_PASSWORD=$DB_PASSWORD" >> ./.env.production
 
-    echo "✓ Database credentials successfully retrieved and written to .env.staging"
-}
-
-# Function to fetch allowed hosts from AWS Secrets Manager and write to .env.staging
-fetch_allowed_hosts() {
-    echo "Fetching allowed hosts from AWS Secrets Manager..."
-
-    if [ -z "$ALLOWED_HOSTS_NAME" ]; then
-        echo "ERROR: ALLOWED_HOSTS_NAME environment variable is not set"
-        exit 1
-    fi
-
-    # Fetch the secret value, assume kept as JSON array
-    ALLOWED_HOSTS_JSON=$(aws secretsmanager get-secret-value \
-        --region "$AWS_REGION" \
-        --secret-id "$ALLOWED_HOSTS_NAME" \
-        --query SecretString \
-        --output text)
-
-    if [ $? -ne 0 ] || [ -z "$ALLOWED_HOSTS_JSON" ] || [ "$ALLOWED_HOSTS_JSON" = "null" ]; then
-        echo "ERROR: Failed to retrieve allowed hosts from AWS Secrets Manager"
-        exit 1
-    fi
-
-    # Extract the array and convert to comma-separated string
-    ALLOWED_HOSTS=$(echo "$ALLOWED_HOSTS_JSON" | jq -r '.allowed_hosts | join(",")')
-
-    if [ -z "$ALLOWED_HOSTS" ] || [ "$ALLOWED_HOSTS" = "null" ]; then
-        echo "ERROR: Failed to parse allowed hosts from secrets. Check that the secret contains 'allowed_hosts' key."
-        exit 1
-    fi
-
-    # Remove existing ALLOWED_HOSTS line if it exists
-    if [ -f "./.env.staging" ]; then
-        grep -v "^ALLOWED_HOSTS=" ./.env.staging > ./.env.staging.tmp || true
-        mv ./.env.staging.tmp ./.env.staging
-    fi
-
-    # Append the new allowed hosts
-    echo "ALLOWED_HOSTS=$ALLOWED_HOSTS" >> ./.env.staging
-    echo "✓ Allowed hosts successfully retrieved and written to .env.staging"
+    echo "✓ Database credentials successfully retrieved and written to .env.production"
 }
 
 # Function to fetch encryption key from AWS Secrets Manager and write to config/master.key
@@ -139,6 +99,42 @@ fetch_encryption_key() {
     echo "✓ Encryption key written to config/master.key"
 }
 
+# Function to fetch allowed hosts values
+fetch_allowed_hosts() {
+    echo "Fetching allowed hosts from AWS Secrets Manager..."
+
+    if [ -z "$ALLOWED_HOSTS_NAME" ]; then
+        echo "ERROR: ALLOWED_HOSTS_NAME environment variable is not set"
+        exit 1
+    fi
+
+    # Fetch the secret value, assume kept as JSON array
+    ALLOWED_HOSTS_JSON=$(aws secretsmanager get-secret-value \
+        --region "$AWS_REGION" \
+        --secret-id "$ALLOWED_HOSTS_NAME" \
+        --query SecretString \
+        --output text)
+
+    if [ $? -ne 0 ] || [ -z "$ALLOWED_HOSTS_JSON" ] || [ "$ALLOWED_HOSTS_JSON" = "null" ]; then
+        echo "ERROR: Failed to retrieve allowed hosts from AWS Secrets Manager"
+        exit 1
+    fi
+
+    # Extract the array and convert to comma-separated string
+    ALLOWED_HOSTS=$(echo "$ALLOWED_HOSTS_JSON" | jq -r '.allowed_hosts | join(",")')
+
+    if [ -z "$ALLOWED_HOSTS" ] || [ "$ALLOWED_HOSTS" = "null" ]; then
+        echo "ERROR: Failed to parse allowed hosts from secrets. Check that the secret contains 'allowed_hosts' key."
+        exit 1
+    fi
+
+    # Write allowed hosts to .env.production file
+    echo "Writing allowed hosts to .env.production..."
+    echo "ALLOWED_HOSTS=$ALLOWED_HOSTS" >> ./.env.production
+    echo "✓ Allowed hosts successfully retrieved and written to .env.production"
+}
+
+# Function to fetch various environment variables and write to .env file for use by app
 fetch_env_variables() {
     echo "Fetching environment variables from AWS Secrets Manager..."
 
@@ -169,7 +165,6 @@ fetch_env_variables() {
     export NEWRELIC_APP_NAME=$(echo "$SECRET_JSON" | jq -r '.newrelic_app_name')
     export NEWRELIC_MONITOR_MODE=$(echo "$SECRET_JSON" | jq -r '.newrelic_monitor_mode')
 
-
     # Validate that we got the values
     if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
         echo "ERROR: Failed to parse variables from secrets"
@@ -182,35 +177,35 @@ fetch_env_variables() {
         echo "ERROR: One or more monitor/logging license keys are missing"
         exit 1
     fi
-    
-    # Write variables to .env.staging file
-    echo "Writing environment variables to .env.staging..."
+
+    # Write variables to .env.production file
+    echo "Writing environment variables to .env.production..."
 
     # Remove existing DB_HOST, REDIS_URL, and S3_ATTACHMENTS_BUCKET lines if they exist
-    if [ -f "./.env.staging" ]; then
-        echo "Removing existing variables from .env.staging"
-        grep -v "^DB_HOST=" ./.env.staging > ./.env.staging.tmp || true
-        grep -v "^REDIS_URL=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^AIRBRAKE_ID=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^AIRBRAKE_KEY=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_APP_NAME=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.staging.tmp > ./.env.staging || true
-        rm -f ./.env.staging.tmp
+    if [ -f "./.env.production" ]; then
+        echo "Removing existing variables from .env.production"
+        grep -v "^DB_HOST=" ./.env.production > ./.env.production.tmp || true
+        grep -v "^REDIS_URL=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^AIRBRAKE_ID=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^AIRBRAKE_KEY=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_APP_NAME=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.production.tmp > ./.env.production || true
+        rm -f ./.env.production.tmp
     fi
     
     # Append the new credentials
-    echo "DB_HOST=$DB_HOST" >> ./.env.staging
-    echo "REDIS_URL=$REDIS_URL" >> ./.env.staging
-    echo "S3_ATTACHMENTS_BUCKET=$S3_ATTACHMENTS_BUCKET" >> ./.env.staging
-    echo "AIRBRAKE_ID=$AIRBRAKE_ID" >> ./.env.staging
-    echo "AIRBRAKE_KEY=$AIRBRAKE_KEY" >> ./.env.staging
-    echo "NEWRELIC_LICENSE_KEY=$NEWRELIC_LICENSE_KEY" >> ./.env.staging
-    echo "NEWRELIC_APP_NAME=$NEWRELIC_APP_NAME" >> ./.env.staging
-    echo "NEWRELIC_MONITOR_MODE=$NEWRELIC_MONITOR_MODE" >> ./.env.staging
+    echo "DB_HOST=$DB_HOST" >> ./.env.production
+    echo "REDIS_URL=$REDIS_URL" >> ./.env.production
+    echo "S3_ATTACHMENTS_BUCKET=$S3_ATTACHMENTS_BUCKET" >> ./.env.production
+    echo "AIRBRAKE_ID=$AIRBRAKE_ID" >> ./.env.production
+    echo "AIRBRAKE_KEY=$AIRBRAKE_KEY" >> ./.env.production
+    echo "NEWRELIC_LICENSE_KEY=$NEWRELIC_LICENSE_KEY" >> ./.env.production
+    echo "NEWRELIC_APP_NAME=$NEWRELIC_APP_NAME" >> ./.env.production
+    echo "NEWRELIC_MONITOR_MODE=$NEWRELIC_MONITOR_MODE" >> ./.env.production
 
-    echo "✓ Environment variables successfully retrieved and written to .env.staging"
+    echo "✓ Environment variables successfully retrieved and written to .env.production"
 }
 
 # Function to setup database
@@ -227,10 +222,10 @@ setup_database() {
 }
 
 set_environment() {
-    if [ -f "./.env.staging" ]; then
-      echo "Setting environment variables from .env.staging"
+    if [ -f "./.env.production" ]; then
+      echo "Setting environment variables from .env.production"
       set -a
-      . ./.env.staging
+      . ./.env.production
       set +a
     fi
 }
@@ -242,10 +237,10 @@ main() {
     set_environment
 
     check_aws_setup
-    
-    echo "Starting CP Docuseal in staging mode..."
-    echo "Rails Environment: ${RAILS_ENV:-staging}"
 
+    echo "Starting CP Docuseal in production mode..."
+    echo "Rails Environment: ${RAILS_ENV:-production}"
+    
     # Fetch database credentials from Secrets Manager
     fetch_db_credentials
     
@@ -263,7 +258,7 @@ main() {
     
     # Setup and migrate database
     setup_database
-
+    
     echo "=== Startup Complete - Starting Rails Server ==="
     echo "Database Host: ${DB_HOST:-not set}"
     echo "Database Port: ${DB_PORT:-not set}"
@@ -272,5 +267,5 @@ main() {
     exec ./bin/rails server -b 0.0.0.0 -p "${PORT:-3000}"
 }
 
-# Execute main function with all arguments
+# Execute main function
 main "$@" 

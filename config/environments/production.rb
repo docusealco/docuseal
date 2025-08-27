@@ -40,10 +40,6 @@ Rails.application.configure do
   config.active_storage.service =
     if ENV['S3_ATTACHMENTS_BUCKET'].present?
       :aws_s3
-    elsif ENV['GCS_BUCKET'].present?
-      :google
-    elsif ENV['AZURE_CONTAINER'].present?
-      :azure
     else
       :disk
     end
@@ -57,10 +53,10 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = ENV['FORCE_SSL'].present? && ENV['FORCE_SSL'] != 'false'
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = ENV['FORCE_SSL'].present? && ENV['FORCE_SSL'] != 'false'
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
@@ -162,4 +158,12 @@ Rails.application.configure do
       raid: resource.try(:account_id)
     }
   end
+
+  config.host_authorization = { exclude: ->(request) { request.path == '/up' } }
+
+  # Load allowed hosts from environment variable
+  allowed_hosts = ENV['ALLOWED_HOSTS']&.split(',')&.map(&:strip) || ['.*\\.careerplug\\.com\\Z']
+
+  config.host_authorization = { exclude: ->(request) { request.path == '/up' } }
+  allowed_hosts.each { |host_pattern| config.hosts << Regexp.new(host_pattern) }
 end

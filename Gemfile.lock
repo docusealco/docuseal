@@ -74,6 +74,10 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    airbrake (13.0.5)
+      airbrake-ruby (~> 6.0)
+    airbrake-ruby (6.2.2)
+      rbtree3 (~> 0.6)
     annotaterb (4.14.0)
     arabic-letter-connector (0.1.1)
     ast (2.4.2)
@@ -336,6 +340,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    newrelic_rpm (9.17.0)
     nio4r (2.7.4)
     nokogiri (1.18.8)
       mini_portile2 (~> 2.8.2)
@@ -433,6 +438,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
+    rbtree3 (0.7.1)
     rdoc (6.10.0)
       psych (>= 4.0.0)
     redis-client (0.23.0)
@@ -588,6 +594,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  airbrake
   annotaterb
   arabic-letter-connector
   aws-sdk-s3
@@ -618,6 +625,7 @@ DEPENDENCIES
   jwt
   letter_opener_web
   lograge
+  newrelic_rpm
   oj
   pagy
   pg
