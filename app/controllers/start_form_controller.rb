@@ -3,7 +3,7 @@
 class StartFormController < ApplicationController
   layout 'form'
 
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_via_token!
   skip_authorization_check
 
   around_action :with_browser_locale, only: %i[show completed]

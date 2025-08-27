@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class SetupController < ApplicationController
-  skip_before_action :maybe_redirect_to_setup
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_via_token!
   skip_authorization_check
 
   before_action :redirect_to_root_if_signed, if: :signed_in?

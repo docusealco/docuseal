@@ -59,4 +59,18 @@ module SigningFormHelper
   def template_field(template, field_name)
     template.fields.find { |f| f['name'] == field_name || f['title'] == field_name } || {}
   end
+
+  # Waits for a job to be queued in Sidekiq for the specified job class.
+  def wait_for_job_to_queue(job_class, timeout: 5)
+    initial_count = job_class.jobs.size
+    Timeout.timeout(timeout) do
+      loop do
+        break if job_class.jobs.size > initial_count
+
+        sleep 0.1
+      end
+    end
+  rescue Timeout::Error
+    # If timeout occurs, just continue - the test will fail with a more descriptive message
+  end
 end

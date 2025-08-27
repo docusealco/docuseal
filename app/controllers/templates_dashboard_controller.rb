@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class TemplatesDashboardController < ApplicationController
-  before_action :ensure_demo_user_signed_in
-  skip_before_action :authenticate_user!
-  skip_before_action :maybe_redirect_to_setup
-
   load_and_authorize_resource :template_folder, parent: false
   load_and_authorize_resource :template, parent: false
 
