@@ -1265,24 +1265,31 @@ export default {
       if (!field.areas.length) {
         this.template.fields.splice(this.template.fields.indexOf(field), 1)
 
-        this.template.fields.forEach((f) => {
-          (f.conditions || []).forEach((c) => {
+        this.removeFieldConditions(field)
+      }
+
+      this.save()
+    },
+    removeFieldConditions (field) {
+      this.template.fields.forEach((f) => {
+        if (f.conditions) {
+          f.conditions.forEach((c) => {
             if (c.field_uuid === field.uuid) {
               f.conditions.splice(f.conditions.indexOf(c), 1)
             }
           })
-        })
+        }
+      })
 
-        this.template.schema.forEach((item) => {
-          (item.conditions || []).forEach((c) => {
+      this.template.schema.forEach((item) => {
+        if (item.conditions) {
+          item.conditions.forEach((c) => {
             if (c.field_uuid === field.uuid) {
               item.conditions.splice(item.conditions.indexOf(c), 1)
             }
           })
-        })
-      }
-
-      this.save()
+        }
+      })
     },
     pasteField () {
       const field = this.template.fields.find((f) => f.areas?.includes(this.copiedArea))
@@ -1715,8 +1722,15 @@ export default {
           })
         })
 
-        this.template.fields =
-          this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+        this.template.fields = this.template.fields.reduce((acc, f) => {
+          if (removedFieldUuids.includes(f.uuid) && !f.areas?.length) {
+            this.removeFieldConditions(f)
+          } else {
+            acc.push(f)
+          }
+
+          return acc
+        }, [])
 
         this.save()
       }
