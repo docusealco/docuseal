@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_11_211829) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_211829) do
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
     t.datetime "archived_at"
+    t.integer "external_account_id"
+    t.index ["external_account_id"], name: "index_accounts_on_external_account_id", unique: true
     t.index ["uuid"], name: "index_accounts_on_uuid", unique: true
   end
 
@@ -440,8 +442,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_211829) do
     t.string "otp_secret"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false
+    t.integer "external_user_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["external_user_id"], name: "index_users_on_external_user_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true

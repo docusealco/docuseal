@@ -2,12 +2,13 @@
 
 class TemplatesController < ApplicationController
   include PrefillFieldsHelper
+  include IframeAuthentication
 
-  skip_before_action :maybe_redirect_to_setup
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_via_token!, only: [:update]
 
+  before_action :authenticate_from_referer, only: [:update]
   load_and_authorize_resource :template
-
   before_action :load_base_template, only: %i[new create]
 
   def show
@@ -67,6 +68,7 @@ class TemplatesController < ApplicationController
                                                         name: params.dig(:template, :name),
                                                         folder_name: params[:folder_name])
     else
+      @template = Template.new(template_params) if @template.nil?
       @template.author = current_user
       @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     end

@@ -4,7 +4,6 @@ require 'faraday'
 
 class ExportController < ApplicationController
   skip_authorization_check
-  skip_before_action :maybe_redirect_to_setup
   skip_before_action :verify_authenticity_token
 
   # Send template to third party.

@@ -29,11 +29,13 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  account_id             :integer          not null
+#  external_user_id       :integer
 #
 # Indexes
 #
 #  index_users_on_account_id            (account_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_external_user_id      (external_user_id) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_uuid                  (uuid) UNIQUE
@@ -74,6 +76,17 @@ class User < ApplicationRecord
   scope :admins, -> { where(role: ADMIN_ROLE) }
 
   validates :email, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\z/ }
+  validates :external_user_id, uniqueness: true, allow_nil: true
+
+  def self.find_or_create_by_external_id(account, external_id, attributes = {})
+    account.users.find_by(external_user_id: external_id) ||
+      account.users.create!(
+        attributes.merge(
+          external_user_id: external_id,
+          password: SecureRandom.hex(16)
+        )
+      )
+  end
 
   def access_token
     super || build_access_token.tap(&:save!)

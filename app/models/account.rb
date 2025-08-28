@@ -4,18 +4,20 @@
 #
 # Table name: accounts
 #
-#  id          :bigint           not null, primary key
-#  archived_at :datetime
-#  locale      :string           not null
-#  name        :string           not null
-#  timezone    :string           not null
-#  uuid        :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                  :bigint           not null, primary key
+#  archived_at         :datetime
+#  locale              :string           not null
+#  name                :string           not null
+#  timezone            :string           not null
+#  uuid                :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  external_account_id :integer
 #
 # Indexes
 #
-#  index_accounts_on_uuid  (uuid) UNIQUE
+#  index_accounts_on_external_account_id  (external_account_id) UNIQUE
+#  index_accounts_on_uuid                 (uuid) UNIQUE
 #
 class Account < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -53,7 +55,14 @@ class Account < ApplicationRecord
   attribute :timezone, :string, default: 'UTC'
   attribute :locale, :string, default: 'en-US'
 
+  validates :external_account_id, uniqueness: true, allow_nil: true
+
   scope :active, -> { where(archived_at: nil) }
+
+  def self.find_or_create_by_external_id(external_id, attributes = {})
+    find_by(external_account_id: external_id) ||
+      create!(attributes.merge(external_account_id: external_id))
+  end
 
   def testing?
     linked_account_account&.testing?

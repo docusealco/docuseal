@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DashboardController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_via_token!, only: %i[index]
 
   before_action :maybe_redirect_product_url
   before_action :maybe_render_landing

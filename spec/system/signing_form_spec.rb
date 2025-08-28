@@ -654,6 +654,7 @@ RSpec.describe 'Signing Form' do
 
     expect do
       click_on 'Sign and Complete'
+      wait_for_job_to_queue(ProcessSubmitterCompletionJob)
     end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
   end
 end

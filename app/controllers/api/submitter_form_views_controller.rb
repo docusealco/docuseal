@@ -2,7 +2,7 @@
 
 module Api
   class SubmitterFormViewsController < ApiBaseController
-    skip_before_action :authenticate_user!
+    skip_before_action :authenticate_via_token!
     skip_authorization_check
 
     def create

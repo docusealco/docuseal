@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class SubmittersRequestChangesController < ApplicationController
-  before_action :load_submitter
+  include IframeAuthentication
+
   skip_before_action :verify_authenticity_token, only: :request_changes
+  skip_before_action :authenticate_via_token!, only: :request_changes
+  before_action :authenticate_from_referer, only: :request_changes
+  before_action :load_submitter
 
   def request_changes
     if request.get? || request.head?
@@ -48,9 +52,9 @@ class SubmittersRequestChangesController < ApplicationController
   end
 
   def can_request_changes?
-    # Only the user who created the submission can request changes
+    # Only the template author (manager) can request changes from submitters
     # Only for completed submissions that haven't been declined
-    current_user == @submitter.submission.created_by_user &&
+    current_user == @submitter.submission.template.author &&
       @submitter.completed_at? &&
       !@submitter.declined_at? &&
       !@submitter.changes_requested_at?

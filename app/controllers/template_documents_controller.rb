@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class TemplateDocumentsController < ApplicationController
+  include IframeAuthentication
+
   skip_before_action :verify_authenticity_token
-  load_and_authorize_resource :template
+  skip_before_action :authenticate_via_token!
+
+  before_action :authenticate_from_referer
+  load_and_authorize_resource :template, id_param: :template_id
 
   def create
     if params[:blobs].blank? && params[:files].blank?

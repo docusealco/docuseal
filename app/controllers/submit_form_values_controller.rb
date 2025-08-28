@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SubmitFormValuesController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_via_token!
   skip_authorization_check
 
   def index

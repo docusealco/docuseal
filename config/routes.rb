@@ -56,6 +56,11 @@ Rails.application.routes.draw do
       resources :form_events, only: %i[index], path: 'form/:type'
       resources :submission_events, only: %i[index], path: 'submission/:type'
     end
+    resources :external_auth, only: [] do
+      collection do
+        post :user_token
+      end
+    end
   end
 
   resources :export, controller: 'export' do

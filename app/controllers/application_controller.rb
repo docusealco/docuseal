@@ -6,14 +6,12 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Backend
 
-  before_action :ensure_demo_user_signed_in
-
   check_authorization unless: :devise_controller?
 
   around_action :with_locale
   # before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
-  before_action :maybe_redirect_to_setup, unless: :signed_in?
-  before_action :authenticate_user!, unless: :devise_controller?
+  before_action :maybe_authenticate_via_token
+  before_action :authenticate_via_token!, unless: :devise_controller?
 
   helper_method :button_title,
                 :current_account,
@@ -102,34 +100,42 @@ class ApplicationController < ActionController::Base
     current_user&.account
   end
 
-  def maybe_redirect_to_setup
-    # Skip setup redirect for iframe embedding - create demo user instead
-    return if ensure_demo_user_signed_in
+  def maybe_authenticate_via_token
+    return if signed_in?
 
-    redirect_to setup_index_path unless User.exists?
-  end
+    # Check for token in params, session, or X-Auth-Token header
+    token = params[:auth_token] || session[:auth_token] || request.headers['X-Auth-Token']
+    return if token.blank?
 
-  def ensure_demo_user_signed_in
-    return true if signed_in?
+    # Try to find user by token and sign them in
+    sha256 = Digest::SHA256.hexdigest(token)
+    user = User.joins(:access_token).active.find_by(access_token: { sha256: sha256 })
 
-    user = find_or_create_demo_user
+    return unless user
+
     sign_in(user)
-    true
+    session[:auth_token] = token
   end
 
-  def find_or_create_demo_user
-    User.find_by(email: 'demo@docuseal.local') || begin
-      account = Account.create!(name: 'Demo Account', locale: 'en', timezone: 'UTC')
-      User.create!(
-        email: 'demo@docuseal.local',
-        password: 'password123',
-        password_confirmation: 'password123',
-        first_name: 'Demo',
-        last_name: 'User',
-        account: account,
-        role: 'admin'
-      )
+  # Enhanced authentication that tries token auth and fails with error if no user found
+  # Use this when you need to enforce authentication with better token handling
+  def authenticate_via_token!
+    return if signed_in?
+
+    token = params[:auth_token] || session[:auth_token] || request.headers['X-Auth-Token']
+
+    if token.present?
+      sha256 = Digest::SHA256.hexdigest(token)
+      user = User.joins(:access_token).active.find_by(access_token: { sha256: sha256 })
+
+      if user
+        sign_in(user)
+        session[:auth_token] = token
+        return
+      end
     end
+
+    render json: { error: 'Authentication required. Please provide a valid auth_token.' }, status: :unauthorized
   end
 
   def button_title(title: I18n.t('submit'), disabled_with: I18n.t('submitting'), title_class: '', icon: nil,

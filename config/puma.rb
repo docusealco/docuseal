@@ -8,7 +8,7 @@
 
 require_relative 'dotenv'
 
-max_threads_count = ENV.fetch('RAILS_MAX_THREADS', 15)
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS', 5)
 min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
 
@@ -39,7 +39,7 @@ if ENV['WEB_CONCURRENCY_AUTO'] == 'true'
 
   workers Etc.nprocessors
 else
-  workers ENV.fetch('WEB_CONCURRENCY', 0)
+  workers ENV.fetch('WEB_CONCURRENCY', 1)
 end
 
 # Use the `preload_app!` method when specifying a `workers` number.
