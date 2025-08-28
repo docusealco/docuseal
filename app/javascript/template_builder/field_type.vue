@@ -55,7 +55,7 @@ import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckb
 
 export default {
   name: 'FiledTypeDropdown',
-  inject: ['withPhone', 'withPayment', 'withVerification', 'withStamp', 't', 'fieldTypes'],
+  inject: ['withPhone', 'withPayment', 'withVerification', 't', 'fieldTypes'],
   props: {
     modelValue: {
       type: String,
