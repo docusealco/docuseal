@@ -290,7 +290,7 @@
     </label>
   </div>
   <li
-    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
+    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification' && field.type !== 'cells'"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">

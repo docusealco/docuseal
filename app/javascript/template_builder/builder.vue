@@ -389,6 +389,7 @@ export default {
       withPhone: this.withPhone,
       withVerification: this.withVerification,
       withPayment: this.withPayment,
+      withStamp: this.withStamp,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
@@ -584,6 +585,11 @@ export default {
       default: null
     },
     withPayment: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withStamp: {
       type: Boolean,
       required: false,
       default: false
