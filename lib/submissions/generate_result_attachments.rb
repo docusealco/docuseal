@@ -747,11 +747,15 @@ module Submissions
     def maybe_rotate_pdf(pdf)
       return pdf if pdf.pages.size > MAX_PAGE_ROTATE
 
+      is_pages_rotated = pdf.pages.root[:Rotate].present? && pdf.pages.root[:Rotate] != 0
+
+      pdf.pages.root[:Rotate] = 0 if is_pages_rotated
+
       is_rotated = pdf.pages.filter_map do |page|
         page.rotate(0, flatten: true) if page[:Rotate] != 0
       end.present?
 
-      return pdf unless is_rotated
+      return pdf if !is_rotated && !is_pages_rotated
 
       io = StringIO.new
 
