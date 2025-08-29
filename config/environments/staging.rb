@@ -91,32 +91,13 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = Logger::Formatter.new
 
-  # Use a different logger for distributed setups.
-  # require "syslog/logger"
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
+  config.logger = ActiveSupport::TaggedLogging.new(
+    Logger.new($stdout)
+  )
 
-  # logger           = ActiveSupport::Logger.new($stdout)
-  # logger.formatter = config.log_formatter
-  # config.logger    = ActiveSupport::TaggedLogging.new(logger)
-
-  # NEWRELIC_MONITOR_MODE enables stdout logger sync for worker/web via NR APM
-  if ENV['NEWRELIC_MONITOR_MODE'].presence
-    config.logger = ActiveSupport::TaggedLogging.new(
-      Logger.new($stdout)
-    )
-
-    config.active_job.logger = ActiveSupport::TaggedLogging.new(
-      Logger.new($stdout)
-    )
-  else
-    config.logger = ActiveSupport::TaggedLogging.new(
-      Syslog::Logger.new('rails-main')
-    )
-
-    config.active_job.logger = ActiveSupport::TaggedLogging.new(
-      Syslog::Logger.new('rails-sidekiq')
-    )
-  end
+  config.active_job.logger = ActiveSupport::TaggedLogging.new(
+    Logger.new($stdout)
+  )
 
   encryption_secret = ENV['ENCRYPTION_SECRET'].presence || Digest::SHA256.hexdigest(ENV['SECRET_KEY_BASE'].to_s)
 
