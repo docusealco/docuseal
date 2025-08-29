@@ -42,8 +42,8 @@ class TemplatesController < ApplicationController
       associations: [schema_documents: [:blob, { preview_images_attachments: :blob }]]
     ).call
 
-    # Process ATS fields for template editing
-    @available_ats_fields = extract_ats_prefill_fields
+    # Process prefill fields for template editing
+    @available_prefill_fields = extract_prefill_fields
 
     @template_data =
       @template.as_json.merge(
@@ -51,7 +51,7 @@ class TemplatesController < ApplicationController
           methods: %i[metadata signed_uuid],
           include: { preview_images: { methods: %i[url metadata filename] } }
         ),
-        available_ats_fields: @available_ats_fields
+        available_prefill_fields: @available_prefill_fields
       ).to_json
 
     render :edit, layout: 'plain'

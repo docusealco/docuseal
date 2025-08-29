@@ -82,7 +82,7 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
     end
   end
 
-  describe '#merge_ats_prefill_values' do
+  describe '#merge_prefill_values' do
     let(:submitter_values) do
       {
         'field-1-uuid' => 'Existing First Name',
@@ -90,7 +90,7 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       }
     end
 
-    let(:ats_values) do
+    let(:prefill_values) do
       {
         'employee_first_name' => 'John',
         'employee_last_name' => 'Doe',
@@ -100,7 +100,7 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
 
     context 'when template_fields is provided' do
       it 'merges ATS values for fields that do not have existing submitter values' do
-        result = helper.merge_ats_prefill_values(submitter_values, ats_values, template_fields)
+        result = helper.merge_prefill_values(submitter_values, prefill_values, template_fields)
 
         expect(result).to include(
           'field-1-uuid' => 'Existing First Name', # Should not be overwritten
@@ -111,15 +111,15 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       end
 
       it 'does not overwrite existing submitter values' do
-        result = helper.merge_ats_prefill_values(submitter_values, ats_values, template_fields)
+        result = helper.merge_prefill_values(submitter_values, prefill_values, template_fields)
 
         expect(result['field-1-uuid']).to eq('Existing First Name')
       end
 
       it 'ignores ATS values for fields without matching prefill attributes' do
-        ats_values_with_unknown = ats_values.merge('unknown_field' => 'Unknown Value')
+        prefill_values_with_unknown = prefill_values.merge('unknown_field' => 'Unknown Value')
 
-        result = helper.merge_ats_prefill_values(submitter_values, ats_values_with_unknown, template_fields)
+        result = helper.merge_prefill_values(submitter_values, prefill_values_with_unknown, template_fields)
 
         expect(result.keys).not_to include('unknown_field')
       end
@@ -127,19 +127,19 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
 
     context 'when template_fields is nil' do
       it 'returns original submitter_values unchanged' do
-        result = helper.merge_ats_prefill_values(submitter_values, ats_values, nil)
+        result = helper.merge_prefill_values(submitter_values, prefill_values, nil)
         expect(result).to eq(submitter_values)
       end
     end
 
-    context 'when ats_values is blank' do
-      it 'returns original submitter_values for nil ats_values' do
-        result = helper.merge_ats_prefill_values(submitter_values, nil, template_fields)
+    context 'when prefill_values is blank' do
+      it 'returns original submitter_values for nil prefill_values' do
+        result = helper.merge_prefill_values(submitter_values, nil, template_fields)
         expect(result).to eq(submitter_values)
       end
 
-      it 'returns original submitter_values for empty ats_values' do
-        result = helper.merge_ats_prefill_values(submitter_values, {}, template_fields)
+      it 'returns original submitter_values for empty prefill_values' do
+        result = helper.merge_prefill_values(submitter_values, {}, template_fields)
         expect(result).to eq(submitter_values)
       end
     end
@@ -154,7 +154,7 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       end
 
       it 'fills blank submitter values with ATS values' do
-        result = helper.merge_ats_prefill_values(submitter_values_with_blanks, ats_values, template_fields)
+        result = helper.merge_prefill_values(submitter_values_with_blanks, prefill_values, template_fields)
 
         expect(result).to include(
           'field-1-uuid' => 'John',                 # Should be filled from ATS (was blank)
@@ -166,48 +166,48 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
     end
   end
 
-  describe '#extract_ats_prefill_fields' do
+  describe '#extract_prefill_fields' do
     before do
       allow(helper).to receive(:params).and_return(params)
     end
 
-    context 'when ats_fields parameter is present' do
+    context 'when prefill_fields parameter is present' do
       let(:fields) { %w[employee_first_name employee_last_name employee_email] }
       let(:encoded_fields) { Base64.urlsafe_encode64(fields.to_json) }
-      let(:params) { { ats_fields: encoded_fields } }
+      let(:params) { { prefill_fields: encoded_fields } }
 
       it 'decodes and returns the ATS fields' do
-        result = helper.extract_ats_prefill_fields
+        result = helper.extract_prefill_fields
         expect(result).to eq(fields)
       end
 
       it 'caches the result' do
         # The implementation now uses AtsPrefill service which uses Rails.cache.fetch
-        cache_key = AtsPrefill::CacheManager.generate_cache_key('ats_fields', encoded_fields)
+        cache_key = Prefill::CacheManager.generate_cache_key('prefill_fields', encoded_fields)
 
         # Mock the cache to verify it's being used
         allow(Rails.cache).to receive(:fetch).and_call_original
 
-        helper.extract_ats_prefill_fields
+        helper.extract_prefill_fields
 
         expect(Rails.cache).to have_received(:fetch).with(cache_key, expires_in: 3600)
       end
     end
 
-    context 'when ats_fields parameter is missing' do
+    context 'when prefill_fields parameter is missing' do
       let(:params) { {} }
 
       it 'returns an empty array' do
-        result = helper.extract_ats_prefill_fields
+        result = helper.extract_prefill_fields
         expect(result).to eq([])
       end
     end
 
-    context 'when ats_fields parameter is invalid' do
-      let(:params) { { ats_fields: 'invalid-base64' } }
+    context 'when prefill_fields parameter is invalid' do
+      let(:params) { { prefill_fields: 'invalid-base64' } }
 
       it 'returns an empty array' do
-        result = helper.extract_ats_prefill_fields
+        result = helper.extract_prefill_fields
         expect(result).to eq([])
       end
     end
@@ -226,9 +226,9 @@ RSpec.describe PrefillFieldsHelper, type: :helper do
       ]
       encoded = Base64.urlsafe_encode64(fields.to_json)
 
-      allow(helper).to receive(:params).and_return({ ats_fields: encoded })
+      allow(helper).to receive(:params).and_return({ prefill_fields: encoded })
 
-      result = helper.extract_ats_prefill_fields
+      result = helper.extract_prefill_fields
       expect(result).to eq(fields)
     end
   end
