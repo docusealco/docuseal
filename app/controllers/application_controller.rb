@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   BROWSER_LOCALE_REGEXP = /\A\w{2}(?:-\w{2})?/
 
