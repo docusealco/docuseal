@@ -3,7 +3,7 @@
 <% template_fields = @submitter.submission.template_fields || @submitter.submission.template.fields %>
 <% fields_index = Templates.build_field_areas_index(template_fields) %>
 <% submitter_values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
-<% values = merge_ats_prefill_values(submitter_values, @ats_prefill_values || {}, template_fields) %>
+<% values = merge_prefill_values(submitter_values, @prefill_values || {}, template_fields) %>
 
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
