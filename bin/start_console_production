@@ -1,0 +1,277 @@
+#!/bin/sh -e
+
+echo "=== CP Docuseal Production Console Startup ==="
+
+# Enable jemalloc for reduced memory usage and latency.
+if [ -z "${LD_PRELOAD+x}" ]; then
+    LD_PRELOAD=$(find /usr/lib -name libjemalloc.so.2 -print -quit)
+    export LD_PRELOAD
+fi
+
+check_aws_setup() {
+    if [ -z "$AWS_REGION" ]; then
+        echo "ERROR: AWS_REGION environment variable is not set"
+        exit 1
+    fi
+
+    if ! command -v aws &> /dev/null; then
+        echo "ERROR: AWS CLI is not installed. Please install it to proceed."
+        exit 1
+    fi
+}
+
+# Function to fetch secrets from AWS Secrets Manager
+fetch_db_credentials() {
+    echo "Fetching database credentials from AWS Secrets Manager..."
+
+    if [ -z "$DB_SECRETS_NAME" ]; then
+        echo "ERROR: DB_SECRETS_NAME environment variable is not set"
+        exit 1
+    fi
+    
+    # Fetch the secret
+    echo "Retrieving secret: $DB_SECRETS_NAME"
+    SECRET_JSON=$(aws secretsmanager get-secret-value \
+        --region "$AWS_REGION" \
+        --secret-id "$DB_SECRETS_NAME" \
+        --query SecretString \
+        --output text)
+    
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Failed to retrieve secrets from AWS Secrets Manager"
+        exit 1
+    fi
+    
+    # Parse JSON and export environment variables
+    export DB_USERNAME=$(echo "$SECRET_JSON" | jq -r '.username')
+    export DB_PASSWORD=$(echo "$SECRET_JSON" | jq -r '.password')
+
+    # Validate that we got the credentials
+    if [ "$DB_USERNAME" = "null" ] || [ "$DB_PASSWORD" = "null" ] || [ -z "$DB_USERNAME" ] || [ -z "$DB_PASSWORD" ]; then
+        echo "ERROR: Failed to parse database credentials from secrets"
+        echo "Expected JSON format: {\"username\": \"...\", \"password\": \"...\"}"
+        exit 1
+    fi
+    
+    # Write credentials to .env.production file
+    echo "Writing database credentials to .env.production..."
+    
+    # Remove existing DB_USERNAME and DB_PASSWORD lines if they exist
+    if [ -f "./.env.production" ]; then
+        echo "Removing existing DB_USERNAME and DB_PASSWORD from .env.production"
+        grep -v "^DB_USERNAME=" ./.env.production > ./.env.production.tmp || true
+        grep -v "^DB_PASSWORD=" ./.env.production.tmp > ./.env.production || true
+        rm -f ./.env.production.tmp
+    fi
+    
+    # Append the new credentials
+    echo "DB_USERNAME=$DB_USERNAME" >> ./.env.production
+    echo "DB_PASSWORD=$DB_PASSWORD" >> ./.env.production
+
+    echo "✓ Database credentials successfully retrieved and written to .env.production"
+}
+
+# Function to fetch allowed hosts from AWS Secrets Manager and write to .env.production
+fetch_allowed_hosts() {
+    echo "Fetching allowed hosts from AWS Secrets Manager..."
+
+    if [ -z "$ALLOWED_HOSTS_NAME" ]; then
+        echo "ERROR: ALLOWED_HOSTS_NAME environment variable is not set"
+        exit 1
+    fi
+
+    # Fetch the secret value, assume kept as JSON array
+    ALLOWED_HOSTS_JSON=$(aws secretsmanager get-secret-value \
+        --region "$AWS_REGION" \
+        --secret-id "$ALLOWED_HOSTS_NAME" \
+        --query SecretString \
+        --output text)
+
+    if [ $? -ne 0 ] || [ -z "$ALLOWED_HOSTS_JSON" ] || [ "$ALLOWED_HOSTS_JSON" = "null" ]; then
+        echo "ERROR: Failed to retrieve allowed hosts from AWS Secrets Manager"
+        exit 1
+    fi
+
+    # Extract the array and convert to comma-separated string
+    ALLOWED_HOSTS=$(echo "$ALLOWED_HOSTS_JSON" | jq -r '.allowed_hosts | join(",")')
+
+    if [ -z "$ALLOWED_HOSTS" ] || [ "$ALLOWED_HOSTS" = "null" ]; then
+        echo "ERROR: Failed to parse allowed hosts from secrets. Check that the secret contains 'allowed_hosts' key."
+        exit 1
+    fi
+
+    # Remove existing ALLOWED_HOSTS line if it exists
+    if [ -f "./.env.production" ]; then
+        grep -v "^ALLOWED_HOSTS=" ./.env.production > ./.env.production.tmp || true
+        mv ./.env.production.tmp ./.env.production
+    fi
+
+    # Append the new allowed hosts
+    echo "ALLOWED_HOSTS=$ALLOWED_HOSTS" >> ./.env.production
+    echo "✓ Allowed hosts successfully retrieved and written to .env.production"
+}
+
+# Function to fetch encryption key from AWS Secrets Manager and write to config/master.key
+fetch_encryption_key() {
+    echo "Fetching encryption key from AWS Secrets Manager..."
+
+    ENCRYPTION_SECRET_NAME="cpdocuseal/encryption_key"
+    if [ -z "$AWS_REGION" ]; then
+        echo "ERROR: AWS_REGION environment variable is not set"
+        exit 1
+    fi
+
+    # Fetch the secret value (assume it's a plain string, not JSON)
+    ENCRYPTION_KEY=$(aws secretsmanager get-secret-value \
+        --region "$AWS_REGION" \
+        --secret-id "$ENCRYPTION_SECRET_NAME" \
+        --query SecretString \
+        --output text)
+
+    if [ $? -ne 0 ] || [ -z "$ENCRYPTION_KEY" ] || [ "$ENCRYPTION_KEY" = "null" ]; then
+        echo "ERROR: Failed to retrieve encryption key from AWS Secrets Manager"
+        exit 1
+    fi
+
+    # Write the key to config/master.key
+    echo -n "$ENCRYPTION_KEY" > config/master.key
+    chmod 600 config/master.key
+    echo "✓ Encryption key written to config/master.key"
+}
+
+fetch_env_variables() {
+    echo "Fetching environment variables from AWS Secrets Manager..."
+
+    if [ -z "$CP_VARIABLES_NAME" ]; then
+        echo "ERROR: CP_VARIABLES_NAME environment variable is not set"
+        exit 1
+    fi
+    
+    # Fetch the secret
+    echo "Retrieving secret: $CP_VARIABLES_NAME"
+    SECRET_JSON=$(aws secretsmanager get-secret-value \
+        --region "$AWS_REGION" \
+        --secret-id "$CP_VARIABLES_NAME" \
+        --query SecretString \
+        --output text)
+    
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Failed to retrieve secrets from AWS Secrets Manager"
+        exit 1
+    fi
+
+    export DB_HOST=$(echo "$SECRET_JSON" | jq -r '.host')
+    export REDIS_URL=$(echo "$SECRET_JSON" | jq -r '.redis_url')
+    export S3_ATTACHMENTS_BUCKET=$(echo "$SECRET_JSON" | jq -r '.s3_attachments_bucket')
+    export AIRBRAKE_ID=$(echo "$SECRET_JSON" | jq -r '.airbrake_id')
+    export AIRBRAKE_KEY=$(echo "$SECRET_JSON" | jq -r '.airbrake_key')
+    export NEWRELIC_LICENSE_KEY=$(echo "$SECRET_JSON" | jq -r '.newrelic_license_key')
+    export NEWRELIC_APP_NAME=$(echo "$SECRET_JSON" | jq -r '.newrelic_app_name')
+    export NEWRELIC_MONITOR_MODE=$(echo "$SECRET_JSON" | jq -r '.newrelic_monitor_mode')
+
+
+    # Validate that we got the values
+    if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
+        echo "ERROR: Failed to parse variables from secrets"
+        echo "Expected JSON format: {\"key\": \"...\", ...}"
+        exit 1
+    fi
+    
+    # Write variables to .env.production file
+    echo "Writing environment variables to .env.production..."
+
+    # Remove existing DB_HOST, REDIS_URL, and S3_ATTACHMENTS_BUCKET lines if they exist
+    if [ -f "./.env.production" ]; then
+        echo "Removing existing variables from .env.production"
+        grep -v "^DB_HOST=" ./.env.production > ./.env.production.tmp || true
+        grep -v "^REDIS_URL=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^AIRBRAKE_ID=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^AIRBRAKE_KEY=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_APP_NAME=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.production.tmp > ./.env.production || true
+        rm -f ./.env.production.tmp
+    fi
+    
+    # Append the new credentials
+    echo "DB_HOST=$DB_HOST" >> ./.env.production
+    echo "REDIS_URL=$REDIS_URL" >> ./.env.production
+    echo "S3_ATTACHMENTS_BUCKET=$S3_ATTACHMENTS_BUCKET" >> ./.env.production
+    echo "AIRBRAKE_ID=$AIRBRAKE_ID" >> ./.env.production
+    echo "AIRBRAKE_KEY=$AIRBRAKE_KEY" >> ./.env.production
+    echo "NEWRELIC_LICENSE_KEY=$NEWRELIC_LICENSE_KEY" >> ./.env.production
+    echo "NEWRELIC_APP_NAME=$NEWRELIC_APP_NAME" >> ./.env.production
+    echo "NEWRELIC_MONITOR_MODE=$NEWRELIC_MONITOR_MODE" >> ./.env.production
+
+    echo "✓ Environment variables successfully retrieved and written to .env.production"
+}
+
+# Function to setup database
+setup_database() {
+    echo "Running database migrations..."
+    ./bin/rails db:migrate
+
+    if [ $? -eq 0 ]; then
+        echo "✓ Database migrations completed successfully"
+    else
+        echo "ERROR: Database migrations failed"
+        exit 1
+    fi
+}
+
+set_environment() {
+    if [ -f "./.env.production" ]; then
+      echo "Setting environment variables from .env.production"
+      set -a
+      . ./.env.production
+      set +a
+    fi
+}
+
+# Main execution
+main() {
+    cd ../../app/
+
+    set_environment
+
+    check_aws_setup
+    
+    echo "Starting CP Docuseal in production mode..."
+    echo "Rails Environment: ${RAILS_ENV:-production}"
+
+    # Fetch database credentials from Secrets Manager
+    fetch_db_credentials
+    
+    # Fetch encryption key and write to config/master.key
+    fetch_encryption_key
+
+    # Fetch allowed hosts from Secrets Manager
+    fetch_allowed_hosts
+
+    # Fetch other environment variables from Secrets Manager
+    fetch_env_variables
+
+    # Load updated environment variables
+    set_environment
+    
+    # Setup and migrate database
+    setup_database
+
+    echo "=== Startup Complete - Starting Rails Console ==="
+    echo "Database Host: ${DB_HOST:-not set}"
+    echo "Database Port: ${DB_PORT:-not set}"
+    echo "S3 Bucket: ${S3_ATTACHMENTS_BUCKET:-not set}"
+
+    # Check if READONLY mode is enabled
+    if [ "$READONLY" = "true" ]; then
+        echo "Starting Rails console in READONLY mode..."
+        exec ./bin/rails console -e 'ActiveRecord::Base.connection.execute("SET default_transaction_read_only = true")'
+    else
+        echo "Starting Rails console in normal mode..."
+        exec ./bin/rails console
+    fi
+}
+
+# Execute main function with all arguments
+main "$@" 
