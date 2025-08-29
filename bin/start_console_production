@@ -266,7 +266,8 @@ main() {
     # Check if READONLY mode is enabled
     if [ "$READONLY" = "true" ]; then
         echo "Starting Rails console in READONLY mode..."
-        exec ./bin/rails console -e 'ActiveRecord::Base.connection.execute("SET default_transaction_read_only = true")'
+        export RAILS_READONLY=true
+        exec ./bin/rails console
     else
         echo "Starting Rails console in normal mode..."
         exec ./bin/rails console
