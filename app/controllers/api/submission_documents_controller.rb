@@ -34,10 +34,12 @@ module Api
         associations: [:blob]
       ).call
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         id: @submission.id,
         documents: documents.map do |attachment|
-          { name: attachment.filename.base, url: ActiveStorage::Blob.proxy_url(attachment.blob) }
+          { name: attachment.filename.base, url: ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) }
         end
       }
     end

@@ -102,6 +102,7 @@ module ReplaceEmailVariables
     return unless submitter
 
     value = submitter.try(field_name)
+    expires_at = nil
 
     if value_name
       field = (submission.template_fields || submission.template.fields).find { |e| e['name'] == value_name }
@@ -114,7 +115,11 @@ module ReplaceEmailVariables
 
           attachment = submitter.attachments.find { |e| e.uuid == attachment_uuid }
 
-          ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
+          if attachment
+            expires_at ||= Accounts.link_expires_at(Account.new(id: submission.account_id))
+
+            ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:)
+          end
         else
           value[field&.dig('uuid')]
         end

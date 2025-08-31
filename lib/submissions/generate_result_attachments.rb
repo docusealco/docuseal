@@ -201,13 +201,15 @@ module Submissions
 
       attachments_data_cache = {}
 
-      return pdfs_index if submitter.submission.template_fields.blank?
+      submission = submitter.submission
 
-      with_headings = find_last_submitter(submitter.submission, submitter:).blank? if with_headings.nil?
+      return pdfs_index if submission.template_fields.blank?
+
+      with_headings = find_last_submitter(submission, submitter:).blank? if with_headings.nil?
 
       locale = submitter.metadata.fetch('lang', account.locale)
 
-      submitter.submission.template_fields.each do |field|
+      submission.template_fields.each do |field|
         next if field['type'] == 'heading' && !with_headings
         next if field['submitter_uuid'] != submitter.uuid && field['type'] != 'heading'
 
@@ -476,7 +478,7 @@ module Submissions
                     height_diff - (height_diff.zero? ? diff : 0)
                   ],
                   A: { Type: :Action, S: :URI,
-                       URI: ActiveStorage::Blob.proxy_url(attachment.blob) }
+                       URI: r.submissions_preview_url(submission.slug, **Docuseal.default_url_options) }
                 }
               )
 
@@ -877,7 +879,7 @@ module Submissions
       end
     end
 
-    def h
+    def r
       Rails.application.routes.url_helpers
     end
   end

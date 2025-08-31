@@ -391,8 +391,8 @@ module Submissions
               composer.formatted_text_box(
                 Array.wrap(value).map do |uuid|
                   attachment = submitter.attachments.find { |a| a.uuid == uuid }
-                  link =
-                    ActiveStorage::Blob.proxy_url(attachment.blob)
+
+                  link = r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
 
                   { link:, text: "#{attachment.filename}\n", style: :link }
                 end,
@@ -488,6 +488,10 @@ module Submissions
                             width: 100,
                             padding: [5, 0, 0, 8],
                             position: :float, text_align: :left)
+    end
+
+    def r
+      Rails.application.routes.url_helpers
     end
     # rubocop:enable Metrics
   end

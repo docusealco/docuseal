@@ -34,7 +34,7 @@ module Api
 
       SearchEntries.enqueue_reindex(cloned_template)
 
-      render json: Templates::SerializeForApi.call(cloned_template, schema_documents)
+      render json: Templates::SerializeForApi.call(cloned_template, schema_documents:)
     end
   end
 end

@@ -14,7 +14,8 @@ module Templates
 
     module_function
 
-    def call(template, schema_documents = template.schema_documents.preload(:blob), preview_image_attachments = nil)
+    def call(template, schema_documents: template.schema_documents.preload(:blob), preview_image_attachments: nil,
+             expires_at: Accounts.link_expires_at(Account.new(id: template.account_id)))
       json = template.as_json(SERIALIZE_PARAMS)
 
       preview_image_attachments ||=
@@ -40,8 +41,8 @@ module Templates
         {
           'id' => attachment.id,
           'uuid' => attachment.uuid,
-          'url' => ActiveStorage::Blob.proxy_url(attachment.blob),
-          'preview_image_url' => first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob),
+          'url' => ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:),
+          'preview_image_url' => first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob, expires_at:),
           'filename' => attachment.filename
         }
       end

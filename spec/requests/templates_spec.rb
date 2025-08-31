@@ -8,6 +8,10 @@ describe 'Templates API' do
   let(:folder) { create(:template_folder, account:) }
   let(:template_preferences) { { 'request_email_subject' => 'Subject text', 'request_email_body' => 'Body Text' } }
 
+  before do
+    allow(Accounts).to receive(:link_expires_at).and_return(Accounts::LINK_EXPIRES_AT)
+  end
+
   describe 'GET /api/templates' do
     it 'returns a list of templates' do
       templates = [
@@ -211,8 +215,8 @@ describe 'Templates API' do
         {
           id: template.documents.first.id,
           uuid: template.documents.first.uuid,
-          url: ActiveStorage::Blob.proxy_url(attachment.blob),
-          preview_image_url: ActiveStorage::Blob.proxy_url(first_page_blob),
+          url: ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: Accounts::LINK_EXPIRES_AT),
+          preview_image_url: ActiveStorage::Blob.proxy_url(first_page_blob, expires_at: Accounts::LINK_EXPIRES_AT),
           filename: 'sample-document.pdf'
         }
       ],
@@ -235,7 +239,7 @@ describe 'Templates API' do
       folder_name: folder.name,
       source: 'native',
       external_id: template.external_id,
-      application_key: template.external_id # Backward compatibility
+      application_key: template.external_id
     }
   end
 

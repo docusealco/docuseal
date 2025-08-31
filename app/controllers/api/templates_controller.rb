@@ -24,13 +24,14 @@ module Api
                                         name: :preview_images)
                                  .preload(:blob)
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         data: templates.map do |t|
-          Templates::SerializeForApi.call(
-            t,
-            schema_documents.select { |e| e.record_id == t.id },
-            preview_image_attachments
-          )
+          Templates::SerializeForApi.call(t,
+                                          schema_documents: schema_documents.select { |e| e.record_id == t.id },
+                                          preview_image_attachments:,
+                                          expires_at:)
         end,
         pagination: {
           count: templates.size,

@@ -6,8 +6,8 @@ module Submissions
 
     module_function
 
-    def call(submissions, format: :csv)
-      rows = build_table_rows(submissions)
+    def call(submissions, format: :csv, expires_at: nil)
+      rows = build_table_rows(submissions, expires_at:)
 
       if format.to_sym == :csv
         rows_to_csv(rows)
@@ -57,7 +57,7 @@ module Submissions
       headers.map { |key| row.find { |e| e[:name] == key }&.dig(:value) }
     end
 
-    def build_table_rows(submissions)
+    def build_table_rows(submissions, expires_at: nil)
       submissions.preload(submitters: [attachments_attachments: :blob, documents_attachments: :blob])
                  .find_each.map do |submission|
         submission_data = []
@@ -69,7 +69,7 @@ module Submissions
 
           submission_data += build_submission_data(submitter, submitter_name, submitters_count)
 
-          submission_data += submitter_formatted_fields(submitter).map do |field|
+          submission_data += submitter_formatted_fields(submitter, expires_at:).map do |field|
             {
               name: column_name(field[:name], submitter_name, submitters_count),
               value: field[:value]
@@ -81,7 +81,7 @@ module Submissions
           submission_data += submitter.documents.map.with_index(1) do |attachment, index|
             {
               name: "#{I18n.t('document')} #{index}",
-              value: ActiveStorage::Blob.proxy_url(attachment.blob)
+              value: ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:)
             }
           end
         end
@@ -123,7 +123,7 @@ module Submissions
       submitters_count > 1 ? "#{submitter_name} - #{name}" : name
     end
 
-    def submitter_formatted_fields(submitter)
+    def submitter_formatted_fields(submitter, expires_at: nil)
       fields = submitter.submission.template_fields || submitter.submission.template.fields
 
       template_fields = fields.select { |f| f['submitter_uuid'] == submitter.uuid }
@@ -142,11 +142,13 @@ module Submissions
         value =
           if template_field_type.in?(%w[image signature])
             attachment = attachments_index[submitter_value]
-            ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
+
+            ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) if attachment
           elsif template_field_type == 'file'
             Array.wrap(submitter_value).compact_blank.filter_map do |e|
               attachment = attachments_index[e]
-              ActiveStorage::Blob.proxy_url(attachment.blob) if attachment
+
+              ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) if attachment
             end
           else
             submitter_value
