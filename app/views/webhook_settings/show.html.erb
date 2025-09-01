@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center mb-4">
       <h1 class="text-4xl font-bold">Webhook</h1>
       <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
-        <% if params[:action] == 'index' %>
+        <% if params[:action] == 'index' && (current_user == true_user || current_account.testing?) %>
           <%= render 'shared/test_mode_toggle' %>
         <% end %>
         <% if @webhook_url.persisted? && params[:action] == 'index' %>
