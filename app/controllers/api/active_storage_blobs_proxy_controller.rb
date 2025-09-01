@@ -57,7 +57,7 @@ module Api
         return if !require_ttl && !require_auth
       end
 
-      Rollbar.error('Blob aunauthorized') if defined?(Rollbar)
+      Rollbar.error('Blob unauthorized') if defined?(Rollbar)
 
       raise CanCan::AccessDenied
     end
