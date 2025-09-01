@@ -45,16 +45,17 @@ module Api
     def authorization_check!(attachment, record, exp)
       return if attachment.name == 'logo'
       return if exp.to_i >= Time.current.to_i
-
       return if current_user && current_ability.can?(:read, record)
 
-      configs = record.account.account_configs.where(key: [AccountConfig::DOWNLOAD_LINKS_AUTH_KEY,
-                                                           AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY])
+      if exp.blank?
+        configs = record.account.account_configs.where(key: [AccountConfig::DOWNLOAD_LINKS_AUTH_KEY,
+                                                             AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY])
 
-      require_auth = configs.any? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_AUTH_KEY && c.value }
-      require_ttl = configs.none? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY && c.value == false }
+        require_auth = configs.any? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_AUTH_KEY && c.value }
+        require_ttl = configs.none? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY && c.value == false }
 
-      return if !require_ttl && !require_auth
+        return if !require_ttl && !require_auth
+      end
 
       Rollbar.error('Blob aunauthorized') if defined?(Rollbar)
 
