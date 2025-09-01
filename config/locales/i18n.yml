@@ -26,6 +26,7 @@ en: &en
   select: Select
   party: Party
   edit_order: Edit Order
+  expirable_file_download_links: Expirable file download links
   invite_form_fields: Invite form fields
   default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
@@ -36,6 +37,7 @@ en: &en
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
+  create_templates_with_private_access_by_default: Create templates with private access by default
   ensure_unique_recipients: Ensure unique recipients
   edit_per_party: Edit per party
   reply_to: Reply to
@@ -900,6 +902,8 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
+  create_templates_with_private_access_by_default: Crear plantillas con acceso privado por defecto
   party: Parte
   edit_order: Edita Pedido
   select: Seleccionar
@@ -1780,6 +1784,8 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  expirable_file_download_links: Link di download di file con scadenza
+  create_templates_with_private_access_by_default: Crea modelli con accesso privato per impostazione predefinita
   party: Parte
   edit_order: Modifica Ordine
   select: Seleziona
@@ -2660,6 +2666,8 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  expirable_file_download_links: Liens de téléchargement de fichiers expirables
+  create_templates_with_private_access_by_default: Créer des modèles avec un accès privé par défaut
   party: Partie
   edit_order: Modifier la commande
   select: Sélectionner
@@ -3543,6 +3551,8 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  expirable_file_download_links: Links de download de arquivos com expiração
+  create_templates_with_private_access_by_default: Criar modelos com acesso privado por padrão
   party: Parte
   edit_order: Edita Pedido
   select: Selecionar
@@ -4424,6 +4434,8 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  expirable_file_download_links: Ablaufbare Datei-Download-Links
+  create_templates_with_private_access_by_default: Vorlagen standardmäßig mit privatem Zugriff erstellen
   party: Partei
   edit_order: Bestellung bearbeiten
   select: Auswählen

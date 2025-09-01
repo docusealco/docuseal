@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Accounts
+  LINK_EXPIRES_AT = 40.minutes
+
   module_function
 
   def create_duplicate(account)
@@ -184,5 +186,12 @@ module Accounts
     ::ActiveSupport::TimeZone.all.find { |e| e.tzinfo == tzinfo }&.name || timezone
   rescue TZInfo::InvalidTimezoneIdentifier
     'UTC'
+  end
+
+  def link_expires_at(account)
+    return if AccountConfig.find_or_initialize_by(account: account,
+                                                  key: AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY).value == false
+
+    LINK_EXPIRES_AT.from_now
   end
 end

@@ -38,6 +38,7 @@ class AccountConfig < ApplicationRecord
   FORM_PREFILL_SIGNATURE_KEY = 'form_prefill_signature'
   ESIGNING_PREFERENCE_KEY = 'esigning_preference'
   DOWNLOAD_LINKS_AUTH_KEY = 'download_links_auth'
+  DOWNLOAD_LINKS_EXPIRE_KEY = 'download_links_expire'
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'

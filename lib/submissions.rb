@@ -239,7 +239,7 @@ module Submissions
 
     item['conditions'].each_with_object([]) do |condition, acc|
       result =
-        if fields_index[condition['field_uuid']]['submitter_uuid'] == include_submitter_uuid
+        if fields_index.dig(condition['field_uuid'], 'submitter_uuid') == include_submitter_uuid
           submitter_conditions_acc << condition if submitter_conditions_acc
 
           true

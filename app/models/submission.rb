@@ -114,16 +114,16 @@ class Submission < ApplicationRecord
     @fields_uuid_index ||= (template_fields || template.fields).index_by { |f| f['uuid'] }
   end
 
-  def audit_trail_url
+  def audit_trail_url(expires_at: nil)
     return if audit_trail.blank?
 
-    ActiveStorage::Blob.proxy_url(audit_trail.blob)
+    ActiveStorage::Blob.proxy_url(audit_trail.blob, expires_at:)
   end
   alias audit_log_url audit_trail_url
 
-  def combined_document_url
+  def combined_document_url(expires_at: nil)
     return if combined_document.blank?
 
-    ActiveStorage::Blob.proxy_url(combined_document.blob)
+    ActiveStorage::Blob.proxy_url(combined_document.blob, expires_at:)
   end
 end

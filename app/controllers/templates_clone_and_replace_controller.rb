@@ -17,6 +17,8 @@ class TemplatesCloneAndReplaceController < ApplicationController
 
     documents = Templates::ReplaceAttachments.call(cloned_template, params, extract_fields: true)
 
+    Templates.maybe_assign_access(cloned_template)
+
     cloned_template.save!
 
     Templates::CloneAttachments.call(template: cloned_template, original_template: @template,

@@ -18,12 +18,14 @@ module Api
         field: :completed_at
       )
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         data: submitters.map do |s|
                 {
                   event_type: 'form.completed',
                   timestamp: s.completed_at,
-                  data: Submitters::SerializeForWebhook.call(s)
+                  data: Submitters::SerializeForWebhook.call(s, expires_at:)
                 }
               end,
         pagination: {

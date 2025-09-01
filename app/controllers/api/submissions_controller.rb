@@ -18,10 +18,12 @@ module Api
                                                  combined_document_attachment: :blob,
                                                  audit_trail_attachment: :blob))
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         data: submissions.map do |s|
           Submissions::SerializeForApi.call(s, s.submitters, params,
-                                            with_events: false, with_documents: false, with_values: false)
+                                            with_events: false, with_documents: false, with_values: false, expires_at:)
         end,
         pagination: {
           count: submissions.size,

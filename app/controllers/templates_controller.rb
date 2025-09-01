@@ -69,6 +69,8 @@ class TemplatesController < ApplicationController
       @template.account = current_account
     end
 
+    Templates.maybe_assign_access(@template)
+
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
