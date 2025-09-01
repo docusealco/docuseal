@@ -38,12 +38,19 @@ class ProcessSubmitterCompletionJob
 
     submission = submitter.submission
 
+    complete_verification_events, sms_events =
+      submitter.submission_events.where(event_type: %i[send_sms send_2fa_sms complete_verification])
+               .partition { |e| e.event_type == 'complete_verification' }
+
+    complete_verification_event = complete_verification_events.first
+
     completed_submitter.assign_attributes(
       submission_id: submitter.submission_id,
       account_id: submission.account_id,
       template_id: submission.template_id,
       source: submission.source,
-      sms_count: submitter.submission_events.where(event_type: %w[send_sms send_2fa_sms]).count,
+      sms_count: sms_events.size,
+      verification_method: complete_verification_event&.data&.dig('method'),
       completed_at: submitter.completed_at
     )
 

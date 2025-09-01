@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_31_125322) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_110606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_31_125322) do
     t.datetime "completed_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "verification_method"
     t.index ["account_id"], name: "index_completed_submitters_on_account_id"
     t.index ["submitter_id"], name: "index_completed_submitters_on_submitter_id", unique: true
   end
