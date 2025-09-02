@@ -17,10 +17,10 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submissions.preload_with_pages(@submission)
-    @available_ats_fields = extract_ats_prefill_fields
+    @available_prefill_fields = extract_prefill_fields
 
     # Optional: store in session for persistence across requests
-    session[:ats_prefill_fields] = @available_ats_fields if @available_ats_fields.any?
+    session[:prefill_fields] = @available_prefill_fields if @available_prefill_fields.any?
 
     unless @submission.submitters.all?(&:completed_at?)
       ActiveRecord::Associations::Preloader.new(

@@ -256,14 +256,14 @@
     </label>
   </div>
   <div
-    v-if="availableAtsFields && availableAtsFields.length > 0"
+    v-if="availablePrefillFields && availablePrefillFields.length > 0"
     class="py-1.5 px-1 relative"
     @click.stop
   >
     <select
-      :placeholder="t('ats_field')"
+      :placeholder="t('prefill_field')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      data-testid="ats-fields-dropdown"
+      data-testid="prefill-fields-dropdown"
       @change="[field.prefill = $event.target.value || undefined, !field.prefill && delete field.prefill, save()]"
     >
       <option
@@ -273,12 +273,12 @@
         {{ '' }}
       </option>
       <option
-        v-for="atsField in availableAtsFields"
-        :key="atsField"
-        :value="atsField"
-        :selected="field.prefill === atsField"
+        v-for="prefillField in availablePrefillFields"
+        :key="prefillField"
+        :value="prefillField"
+        :selected="field.prefill === prefillField"
       >
-        {{ formatAtsFieldName(atsField) }}
+        {{ formatPrefillFieldName(prefillField) }}
       </option>
     </select>
     <label
@@ -286,7 +286,7 @@
       class="absolute -top-1 left-2.5 px-1 h-4"
       style="font-size: 8px"
     >
-      {{ t('ats_field') }}
+      {{ 'Pre-fill Options' }}
     </label>
   </div>
   <li
@@ -526,14 +526,14 @@ export default {
     }
   },
   computed: {
-    availableAtsFields () {
-      return this.template.available_ats_fields || []
+    availablePrefillFields () {
+      return this.template.available_prefill_fields || []
     },
-    availableAtsFieldsForType () {
-      if (!this.template.ats_fields_by_type || !this.field.type) {
+    availablePrefillFieldsForType () {
+      if (!this.template.prefill_fields_by_type || !this.field.type) {
         return []
       }
-      return this.template.ats_fields_by_type[this.field.type] || []
+      return this.template.prefill_fields_by_type[this.field.type] || []
     },
     schemaAttachmentsIndexes () {
       return (this.template.schema || []).reduce((acc, item, index) => {
@@ -594,7 +594,7 @@ export default {
     }
   },
   methods: {
-    formatAtsFieldName (fieldName) {
+    formatPrefillFieldName (fieldName) {
       // Convert snake_case to Title Case for display
       return fieldName
         .split('_')

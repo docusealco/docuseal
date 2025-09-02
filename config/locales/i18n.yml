@@ -22,6 +22,7 @@ en: &en
   hi_there: Hi there
   thanks: Thanks
   private: Private
+  prefill_field: Pre-fill Options
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
   require_all_recipients: Require all recipients
@@ -907,6 +908,7 @@ es: &es
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por DocuSeal. Sus documentos y datos nunca se comparten con DocuSeal. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
+  prefill_field: Opciones de Prellenado
   you_have_been_invited_to_submit_the_name_form: 'Has sido invitado/a a enviar el formulario "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Has sido invitado/a a firmar el "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternativamente, puedes revisar y descargar tu copia usando el enlace a continuación:"
@@ -1741,6 +1743,7 @@ it: &it
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da DocuSeal. I tuoi documenti e i tuoi dati non vengono mai condivisi con DocuSeal. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
+  prefill_field: Opzioni di Precompilazione
   you_have_been_invited_to_submit_the_name_form: 'Sei stato invitato a inviare il modulo "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Sei stato invitato a firmare il "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "In alternativa, puoi rivedere e scaricare la tua copia utilizzando il link qui sotto:"
@@ -2575,6 +2578,7 @@ fr: &fr
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par DocuSeal. Vos documents et données ne sont jamais partagés avec DocuSeal. Un checksum PDF est fourni pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
+  prefill_field: Options de Préremplissage
   you_have_been_invited_to_submit_the_name_form: 'Vous avez été invité à remplir le formulaire "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Vous avez été invité à signer "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Vous pouvez également consulter et télécharger votre copie en utilisant le lien ci-dessous:'
@@ -3411,6 +3415,7 @@ pt: &pt
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela DocuSeal. Seus documentos e dados nunca são compartilhados com a DocuSeal. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
+  prefill_field: Opções de Preenchimento
   you_have_been_invited_to_submit_the_name_form: 'Você foi convidado a submeter o formulário "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Você foi convidado a assinar "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Você pode revisar e baixar sua cópia usando o link abaixo:'
@@ -4247,6 +4252,7 @@ de: &de
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfziffer wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   hi_there: Hallo
   thanks: Danke
+  prefill_field: Vorausfüll-Optionen
   you_have_been_invited_to_submit_the_name_form: 'Du wurdest eingeladen, das Formular "%{name}" einzureichen.'
   you_have_been_invited_to_sign_the_name: 'Du wurdest eingeladen, "%{name}" zu unterschreiben.'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Du kannst alternativ deine Kopie mit dem untenstehenden Link überprüfen und herunterladen:'

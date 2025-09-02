@@ -1,88 +1,119 @@
 # frozen_string_literal: true
 
 module PrefillFieldsHelper
-  # Cache TTL for ATS field parsing (1 hour)
-  ATS_FIELDS_CACHE_TTL = 1.hour
-
-  # Maximum number of cached entries to prevent memory bloat
-  MAX_CACHE_ENTRIES = 1000
-
-  def extract_ats_prefill_fields
-    return [] if params[:ats_fields].blank?
-
-    # Create cache key from parameter hash for security and uniqueness
-    cache_key = ats_fields_cache_key(params[:ats_fields])
-
-    # Try to get from cache first with error handling
-    begin
-      cached_result = Rails.cache.read(cache_key)
-      if cached_result
-        Rails.logger.debug { "ATS fields cache hit for key: #{cache_key}" }
-        return cached_result
-      end
-    rescue StandardError => e
-      Rails.logger.warn "Cache read failed for ATS fields: #{e.message}"
-      # Continue with normal processing if cache read fails
-    end
-
-    # Cache miss - perform expensive operations
-    Rails.logger.debug { "ATS fields cache miss for key: #{cache_key}" }
-
-    begin
-      decoded_json = Base64.urlsafe_decode64(params[:ats_fields])
-      field_names = JSON.parse(decoded_json)
-
-      # Validate that we got an array of strings
-      return cache_and_return_empty(cache_key) unless field_names.is_a?(Array) && field_names.all?(String)
-
-      # Filter to only expected field name patterns
-      valid_fields = field_names.select { |name| valid_ats_field_name?(name) }
-
-      # Cache the result with TTL (with error handling)
-      cache_result(cache_key, valid_fields, ATS_FIELDS_CACHE_TTL)
-
-      # Log successful field reception
-      Rails.logger.info "Processed and cached #{valid_fields.length} ATS prefill fields: #{valid_fields.join(', ')}"
-
-      valid_fields
-    rescue StandardError => e
-      Rails.logger.warn "Failed to parse ATS prefill fields: #{e.message}"
-      # Cache empty result for failed parsing to avoid repeated failures
-      cache_result(cache_key, [], 5.minutes)
-      []
-    end
+  # Extracts and validates prefill field names from Base64-encoded parameters
+  #
+  # This method decodes the prefill_fields parameter, validates the field names against
+  # allowed patterns, and caches the results to improve performance on repeated requests.
+  #
+  # @return [Array<String>] Array of valid prefill field names, empty array if none found or on error
+  #
+  # @example
+  #   # With params[:prefill_fields] = Base64.urlsafe_encode64(['employee_first_name', 'employee_email'].to_json)
+  #   extract_prefill_fields
+  #   # => ['employee_first_name', 'employee_email']
+  def extract_prefill_fields
+    Prefill.extract_fields(params)
   end
 
-  # Clear ATS fields cache (useful for testing or manual cache invalidation)
-  def clear_ats_fields_cache
-    # Since we can't easily enumerate cache keys, we'll rely on TTL for cleanup
-    # This method is provided for potential future use or testing
-    Rails.logger.info 'ATS fields cache clear requested (relies on TTL for cleanup)'
+  # Merges prefill values with existing submitter values
+  #
+  # This method combines externally-provided prefill values with values already entered by submitters.
+  # Existing submitter values always take precedence over prefill values to prevent overwriting
+  # user input. Uses optimized field lookup caching for better performance.
+  #
+  # @param submitter_values [Hash] Existing values entered by submitters, keyed by field UUID
+  # @param prefill_values [Hash] Prefill values from external system, keyed by prefill field name
+  # @param template_fields [Array<Hash>, nil] Template field definitions containing UUID and prefill mappings
+  # @return [Hash] Merged values with submitter values taking precedence over prefill values
+  #
+  # @example
+  #   submitter_values = { 'field-uuid-1' => 'John' }
+  #   prefill_values = { 'employee_first_name' => 'Jane', 'employee_last_name' => 'Doe' }
+  #   template_fields = [
+  #     { 'uuid' => 'field-uuid-1', 'prefill' => 'employee_first_name' },
+  #     { 'uuid' => 'field-uuid-2', 'prefill' => 'employee_last_name' }
+  #   ]
+  #
+  #   merge_prefill_values(submitter_values, prefill_values, template_fields)
+  #   # => { 'field-uuid-1' => 'John', 'field-uuid-2' => 'Doe' }
+  #   # Note: 'John' is preserved over 'Jane' because submitter value takes precedence
+  def merge_prefill_values(submitter_values, prefill_values, template_fields = nil)
+    Prefill.merge_values(submitter_values, prefill_values, template_fields)
   end
+
+  # Finds field UUID by matching prefill field name to template field's prefill attribute
+  #
+  # This method provides backward compatibility and is now optimized to use
+  # the cached lookup when possible.
+  #
+  # @param field_name [String] Prefill field name to look up
+  # @param template_fields [Array<Hash>, nil] Template field definitions
+  # @return [String, nil] Field UUID if found, nil otherwise
+  #
+  # @example
+  #   find_field_uuid_by_name('employee_first_name', template_fields)
+  #   # => 'field-uuid-123'
+  def find_field_uuid_by_name(field_name, template_fields = nil)
+    Prefill.find_field_uuid(field_name, template_fields)
+  end
+
+  # Clears prefill fields cache (useful for testing or manual cache invalidation)
+  #
+  # Since Rails cache doesn't provide easy enumeration of keys, this method
+  # relies on TTL for automatic cleanup. This method is provided for potential
+  # future use or testing scenarios where immediate cache invalidation is needed.
+  #
+  # @return [void]
+  def clear_prefill_fields_cache
+    Prefill.clear_cache
+  end
+
+  # Legacy method aliases for backward compatibility
+  alias build_field_lookup_cache merge_prefill_values
 
   private
 
-  def valid_ats_field_name?(name)
-    # Only allow expected field name patterns (security)
-    name.match?(/\A(employee|manager|account|location)_[a-z_]+\z/)
+  # Legacy private methods maintained for any potential direct usage
+  # These now delegate to the service layer for consistency
+
+  def read_from_cache(cache_key)
+    Prefill::CacheManager.read_from_cache(cache_key)
   end
 
-  def ats_fields_cache_key(ats_fields_param)
-    # Create secure cache key using SHA256 hash of the parameter
-    # This prevents cache key collisions and keeps keys reasonably sized
-    hash = Digest::SHA256.hexdigest(ats_fields_param)
-    "ats_fields:#{hash}"
+  def parse_prefill_fields_param(prefill_fields_param)
+    # This is now handled internally by FieldExtractor
+    # Kept for backward compatibility but not recommended for direct use
+    Prefill::FieldExtractor.send(:parse_encoded_fields, prefill_fields_param)
+  end
+
+  def validate_and_filter_field_names(field_names)
+    # This is now handled internally by FieldExtractor
+    # Kept for backward compatibility but not recommended for direct use
+    Prefill::FieldExtractor.send(:validate_field_names, field_names)
+  end
+
+  def valid_prefill_field_name?(name)
+    # This is now handled internally by FieldExtractor
+    # Kept for backward compatibility but not recommended for direct use
+    Prefill::FieldExtractor.send(:valid_prefill_field_name?, name)
+  end
+
+  def prefill_fields_cache_key(prefill_fields_param)
+    Prefill::CacheManager.generate_cache_key('prefill_fields', prefill_fields_param)
   end
 
   def cache_result(cache_key, value, ttl)
-    Rails.cache.write(cache_key, value, expires_in: ttl)
-  rescue StandardError => e
-    Rails.logger.warn "Cache write failed for ATS fields: #{e.message}"
-    # Continue execution even if caching fails
+    Prefill::CacheManager.write_to_cache(cache_key, value, ttl)
   end
 
   def cache_and_return_empty(cache_key)
-    cache_result(cache_key, [], 5.minutes)
+    cache_result(cache_key, [], 300) # 5 minutes
     []
+  end
+
+  def field_lookup_cache_key(template_fields)
+    signature = Prefill::FieldMapper.send(:build_cache_signature, template_fields)
+    Prefill::CacheManager.generate_cache_key('field_mapping', signature)
   end
 end

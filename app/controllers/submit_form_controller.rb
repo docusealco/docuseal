@@ -28,6 +28,9 @@ class SubmitFormController < ApplicationController
 
     Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
 
+    # Fetch prefill values if available
+    @prefill_values = fetch_prefill_values_if_available
+
     @attachments_index = build_attachments_index(submission)
 
     return unless @form_configs[:prefill_signature]
@@ -97,5 +100,27 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def fetch_prefill_values_if_available
+    # External system passes values directly as Base64-encoded JSON parameters
+    return {} if params[:prefill_values].blank?
+
+    # Security: Limit input size to prevent DoS attacks (64KB limit)
+    return {} if params[:prefill_values].bytesize > 65_536
+
+    begin
+      decoded_json = Base64.urlsafe_decode64(params[:prefill_values])
+
+      # Security: Limit decoded JSON size as well
+      return {} if decoded_json.bytesize > 32_768
+
+      prefill_values = JSON.parse(decoded_json)
+
+      # Validate that we got a hash
+      prefill_values.is_a?(Hash) ? prefill_values : {}
+    rescue StandardError
+      {}
+    end
   end
 end

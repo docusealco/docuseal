@@ -1,7 +1,10 @@
 <% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
 <% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
-<% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
-<% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% template_fields = @submitter.submission.template_fields || @submitter.submission.template.fields %>
+<% fields_index = Templates.build_field_areas_index(template_fields) %>
+<% submitter_values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+<% values = merge_prefill_values(submitter_values, @prefill_values || {}, template_fields) %>
+
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
 <% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
@@ -102,7 +105,7 @@
 <div class="fixed bottom-0 w-full h-0 z-20">
   <div class="mx-auto" style="max-width: 1000px">
     <div class="relative md:mx-32">
-      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns.fetch(:scroll_padding, '-110px'), schema: %>
+      <%= render 'submit_form/submission_form', attachments_index: @attachments_index, submitter: @submitter, signature_attachment: @signature_attachment, configs: @form_configs, dry_run: local_assigns[:dry_run], expand: local_assigns[:expand], scroll_padding: local_assigns.fetch(:scroll_padding, '-110px'), schema:, values: values %>
     </div>
   </div>
 </div>
