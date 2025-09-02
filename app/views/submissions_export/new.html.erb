@@ -1,6 +1,7 @@
+<% filter_params = params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS) %>
 <%= render 'shared/turbo_modal', title: t('export'), close_after_submit: false do %>
   <div class="space-y-2">
-    <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx }, method: :get, data: { turbo_frame: :_top } do %>
+    <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx, **filter_params }, method: :get, data: { turbo_frame: :_top } do %>
       <div class="flex items-center p-4 text-left rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">
         <div class="enabled">
           <%= svg_icon('download', class: 'w-12 h-12 stroke-2 mr-2') %>
@@ -14,7 +15,7 @@
         </div>
       </div>
     <% end %>
-    <%= button_to template_submissions_export_index_path(@template), params: { format: :csv }, method: :get, data: { turbo_frame: :_top } do %>
+    <%= button_to template_submissions_export_index_path(@template), params: { format: :csv, **filter_params }, method: :get, data: { turbo_frame: :_top } do %>
       <div class="flex items-center text-left p-4 rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">
         <div class="enabled">
           <%= svg_icon('download', class: 'w-12 h-12 stroke-2 mr-2') %>
