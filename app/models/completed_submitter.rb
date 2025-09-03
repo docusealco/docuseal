@@ -30,5 +30,5 @@ class CompletedSubmitter < ApplicationRecord
   has_many :completed_documents, dependent: :destroy,
                                  primary_key: :submitter_id,
                                  foreign_key: :submitter_id,
-                                 inverse_of: :submitter
+                                 inverse_of: :completed_submitter
 end
