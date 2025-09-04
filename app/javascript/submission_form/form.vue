@@ -1015,7 +1015,11 @@ export default {
           const aArea = (fieldAreasIndex[aField.uuid] ||= [...(aField.areas || [])].sort(sortArea)[0])
           const bArea = (fieldAreasIndex[bField.uuid] ||= [...(bField.areas || [])].sort(sortArea)[0])
 
-          return sortArea(aArea, bArea)
+          if (aArea && bArea) {
+            return sortArea(aArea, bArea)
+          } else {
+            return 0
+          }
         })
       }
 
