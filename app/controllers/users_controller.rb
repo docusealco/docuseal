@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       @user.account = account
     end
 
-    if @user.update(attrs.except(current_user == @user ? :role : nil))
+    if @user.update(attrs.except(*(current_user == @user ? %i[otp_required_for_login role] : nil)))
       redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_content
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 
   def user_params
     if params.key?(:user)
-      permitted_params = %i[email first_name last_name password archived_at]
+      permitted_params = %i[email first_name last_name password archived_at otp_required_for_login]
 
       permitted_params << :role if role_valid?(params.dig(:user, :role))
 

@@ -1,12 +1,14 @@
 <%= form_for user, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
   <div class="space-y-2">
-    <div class="form-control">
-      <%= f.label :first_name, t('first_name'), class: 'label' %>
-      <%= f.text_field :first_name, required: true, class: 'base-input', dir: 'auto' %>
-    </div>
-    <div class="form-control">
-      <%= f.label :last_name, t('last_name'), class: 'label' %>
-      <%= f.text_field :last_name, required: true, class: 'base-input', dir: 'auto' %>
+    <div class="flex space-x-4">
+      <div class="w-full">
+        <%= f.label :first_name, t('first_name'), class: 'label' %>
+        <%= f.text_field :first_name, required: true, class: 'base-input w-full', dir: 'auto' %>
+      </div>
+      <div class="w-full">
+        <%= f.label :last_name, t('last_name'), class: 'label' %>
+        <%= f.text_field :last_name, required: true, class: 'base-input w-full', dir: 'auto' %>
+      </div>
     </div>
     <div class="form-control">
       <%= f.label :email, t('email'), class: 'label' %>
@@ -17,6 +19,12 @@
       <%= f.password_field :password, required: user.new_record?, class: 'base-input' %>
     </div>
     <% if f.object != current_user %>
+      <% if user.otp_required_for_login %>
+        <div class="form-control">
+          <%= f.label :otp_required_for_login, t('two_factor_authentication'), class: 'label' %>
+          <%= f.select :otp_required_for_login, [[t('enabled'), true], [t('disabled'), false]], { include_blank: false }, class: 'base-select' %>
+        </div>
+      <% end %>
       <%= render 'role_select', f: %>
     <% end %>
     <% if local_assigns[:extra_fields_html].present? %>
