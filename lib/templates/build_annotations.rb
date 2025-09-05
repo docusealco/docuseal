@@ -10,6 +10,7 @@ module Templates
       pdf.pages.flat_map.with_index do |page, index|
         (page[:Annots] || []).filter_map do |annot|
           next if annot.blank?
+          next if annot.is_a?(Integer) || annot.is_a?(Symbol)
           next if annot[:A].blank? || annot[:A][:URI].blank?
           next unless annot[:Subtype] == :Link
           next if !annot[:A][:URI].starts_with?('https://') && !annot[:A][:URI].starts_with?('http://')
