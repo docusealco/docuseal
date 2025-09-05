@@ -65,7 +65,9 @@ Rails.application.routes.draw do
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
   resources :enquiries, only: %i[create]
-  resources :users, only: %i[new create edit update destroy]
+  resources :users, only: %i[new create edit update destroy] do
+    post :resend_reset_password, on: :collection
+  end
   resource :user_signature, only: %i[edit update destroy]
   resource :user_initials, only: %i[edit update destroy]
   resources :submissions_archived, only: %i[index], path: 'submissions/archived'

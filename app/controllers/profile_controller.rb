@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
   end
 
   def update_password
-    if current_user.update(password_params)
+    if current_user.update_with_password(password_params)
       bypass_sign_in(current_user)
       redirect_to settings_profile_index_path, notice: I18n.t('password_has_been_changed')
     else
@@ -31,6 +31,6 @@ class ProfileController < ApplicationController
   end
 
   def password_params
-    params.require(:user).permit(:password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 end

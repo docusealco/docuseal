@@ -801,6 +801,9 @@ en: &en
   reveal_api_key: Reveal API Key
   enter_your_password_to_reveal_the_api_key: Enter your password to reveal the API key
   wrong_password: Wrong password.
+  current_password: Current password
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Don''t remember your current password? <label class="link" for="resend_password_button">Click here</label> to reset it.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: You will receive an email with password reset instructions in a few minutes.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1688,6 +1691,9 @@ es: &es
   reveal_api_key: Revelar clave API
   enter_your_password_to_reveal_the_api_key: Introduce tu contraseña para revelar la clave API
   wrong_password: Contraseña incorrecta.
+  current_password: Contraseña actual
+  dont_remember_your_current_password_click_here_to_reset_it_html: '¿No recuerdas tu contraseña actual? <label class="link" for="resend_password_button">Haz clic aquí</label> para restablecerla.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: Recibirás un correo electrónico con las instrucciones para restablecer tu contraseña en unos minutos.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2575,6 +2581,9 @@ it: &it
   reveal_api_key: Mostra chiave API
   enter_your_password_to_reveal_the_api_key: Inserisci la tua password per mostrare la chiave API
   wrong_password: Password errata.
+  current_password: Password attuale
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Non ricordi la tua password attuale? <label class="link" for="resend_password_button">Clicca qui</label> per reimpostarla.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: Riceverai un'email con le istruzioni per reimpostare la password entro pochi minuti.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3465,6 +3474,9 @@ fr: &fr
   reveal_api_key: Révéler la clé API
   enter_your_password_to_reveal_the_api_key: Entrez votre mot de passe pour révéler la clé API
   wrong_password: Mot de passe incorrect.
+  current_password: Mot de passe actuel
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Vous ne vous souvenez plus de votre mot de passe actuel ? <label class="link" for="resend_password_button">Cliquez ici</label> pour le réinitialiser.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: Vous recevrez un e-mail avec les instructions de réinitialisation de votre mot de passe dans quelques minutes.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4353,6 +4365,9 @@ pt: &pt
   reveal_api_key: Revelar chave API
   enter_your_password_to_reveal_the_api_key: Insira sua senha para revelar a chave API
   wrong_password: Senha incorreta.
+  current_password: Senha atual
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Não se lembra da sua senha atual? <label class="link" for="resend_password_button">Clique aqui</label> para redefini-la.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: Você receberá um e-mail com as instruções para redefinir sua senha em alguns minutos.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5241,6 +5256,9 @@ de: &de
   reveal_api_key: API-Schlüssel anzeigen
   enter_your_password_to_reveal_the_api_key: Gib dein Passwort ein, um den API-Schlüssel anzuzeigen
   wrong_password: Falsches Passwort.
+  current_password: Aktuelles Passwort
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Sie erinnern sich nicht an Ihr aktuelles Passwort? <label class="link" for="resend_password_button">Klicken Sie hier</label>, um es zurückzusetzen.'
+  you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes: Sie erhalten in wenigen Minuten eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts.
   submission_sources:
     api: API
     bulk: Massenversand
