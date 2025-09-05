@@ -49,7 +49,7 @@ class ProcessSubmitterCompletionJob
       account_id: submission.account_id,
       template_id: submission.template_id,
       source: submission.source,
-      sms_count: sms_events.size,
+      sms_count: sms_events.sum { |e| e.data['segments'] || 1 },
       verification_method: complete_verification_event&.data&.dig('method'),
       completed_at: submitter.completed_at
     )
