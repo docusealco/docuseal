@@ -798,6 +798,9 @@ en: &en
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
   you_have_been_invited_to_sign_the_template_name_html: 'You have been invited to sign the "<strong>{template.name}</strong>".'
+  reveal_api_key: Reveal API Key
+  enter_your_password_to_reveal_the_api_key: Enter your password to reveal the API key
+  wrong_password: Wrong password.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1682,6 +1685,9 @@ es: &es
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" ha sido completado por <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, revisa la copia de tu "<strong>{template.name}</strong>" en los archivos adjuntos del correo electrónico.'
   you_have_been_invited_to_sign_the_template_name_html: 'Has sido invitado a firmar el "<strong>{template.name}</strong>".'
+  reveal_api_key: Revelar clave API
+  enter_your_password_to_reveal_the_api_key: Introduce tu contraseña para revelar la clave API
+  wrong_password: Contraseña incorrecta.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2566,6 +2572,9 @@ it: &it
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" è stato completato da <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Per favore, controlla la copia del tuo "<strong>{template.name}</strong>" negli allegati dell''email.'
   you_have_been_invited_to_sign_the_template_name_html: 'Sei stato invitato a firmare il "<strong>{template.name}</strong>".'
+  reveal_api_key: Mostra chiave API
+  enter_your_password_to_reveal_the_api_key: Inserisci la tua password per mostrare la chiave API
+  wrong_password: Password errata.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3453,6 +3462,9 @@ fr: &fr
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" a été complété par <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Veuillez vérifier la copie de votre "<strong>{template.name}</strong>" dans les pièces jointes de l’e-mail.'
   you_have_been_invited_to_sign_the_template_name_html: 'Vous avez été invité à signer le "<strong>{template.name}</strong>".'
+  reveal_api_key: Révéler la clé API
+  enter_your_password_to_reveal_the_api_key: Entrez votre mot de passe pour révéler la clé API
+  wrong_password: Mot de passe incorrect.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4338,6 +4350,9 @@ pt: &pt
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" foi concluído por <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, verifique a cópia do seu "<strong>{template.name}</strong>" nos anexos do e-mail.'
   you_have_been_invited_to_sign_the_template_name_html: 'Você foi convidado a assinar o "<strong>{template.name}</strong>".'
+  reveal_api_key: Revelar chave API
+  enter_your_password_to_reveal_the_api_key: Insira sua senha para revelar a chave API
+  wrong_password: Senha incorreta.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5223,6 +5238,9 @@ de: &de
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" wurde von <strong>{submission.submitters}</strong> abgeschlossen'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Bitte prüfen Sie die Kopie Ihres "<strong>{template.name}</strong>" in den E-Mail-Anhängen.'
   you_have_been_invited_to_sign_the_template_name_html: 'Du wurdest eingeladen, "<strong>{template.name}</strong>" zu unterschreiben.'
+  reveal_api_key: API-Schlüssel anzeigen
+  enter_your_password_to_reveal_the_api_key: Gib dein Passwort ein, um den API-Schlüssel anzuzeigen
+  wrong_password: Falsches Passwort.
   submission_sources:
     api: API
     bulk: Massenversand

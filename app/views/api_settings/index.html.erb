@@ -11,10 +11,21 @@
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex w-full space-x-4">
             <% token = current_user.access_token.token %>
-            <masked-input class="block w-full" data-token="<%= token %>">
-              <input id="api_key" type="text" value="<%= token.sub(token[5..], '*' * token[5..].size) %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-            </masked-input>
-            <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+            <% obscured_token = current_user.access_token.token.sub(token[5..], '*' * token[5..].size) %>
+            <% if current_account.testing? %>
+              <masked-input class="block w-full" data-token="<%= token %>">
+                <input id="api_key" type="text" value="<%= obscured_token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+              </masked-input>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+            <% else %>
+              <a id="access_token_container" href="<%= settings_reveal_access_token_path %>" data-turbo-frame="modal" class="flex w-full space-x-4">
+                <input id="api_key" type="text" value="<%= obscured_token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+                <div class="base-button">
+                  <%= svg_icon('copy', class: 'w-6 h-6 text-white') %>
+                  <span class="hidden md:inline"><%= t('copy') %></span>
+                </div>
+              </a>
+            <% end %>
           </div>
           <%= button_to button_title(title: t('rotate'), disabled_with: t('rotate'), icon: svg_icon('reload', class: 'w-6 h-6')), settings_api_index_path, class: 'white-button w-full', data: { turbo_confirm: t('remove_existing_api_token_and_generated_a_new_one_are_you_sure_') } %>
         </div>
