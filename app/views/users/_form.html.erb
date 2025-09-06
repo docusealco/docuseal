@@ -14,10 +14,12 @@
       <%= f.label :email, t('email'), class: 'label' %>
       <%= f.email_field :email, required: true, class: 'base-input' %>
     </div>
-    <div class="form-control">
-      <%= f.label :password, t('password'), class: 'label' %>
-      <%= f.password_field :password, required: user.new_record?, class: 'base-input' %>
-    </div>
+    <% if user.new_record? && !Docuseal.multitenant? %>
+      <div class="form-control">
+        <%= f.label :password, t('password'), class: 'label' %>
+        <%= f.password_field :password, required: true, class: 'base-input' %>
+      </div>
+    <% end %>
     <% if f.object != current_user %>
       <% if user.otp_required_for_login %>
         <div class="form-control">
