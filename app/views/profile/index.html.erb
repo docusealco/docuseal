@@ -57,7 +57,7 @@
       <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off' } do |f| %>
         <%= f.label :password, t('new_password'), class: 'label' %>
         <%= f.password_field :password, autocomplete: 'off', class: 'base-input peer w-full', required: true %>
-        <div class="peer-invalid:hidden space-y-4 mt-4">
+        <div class="<%= 'peer-invalid:hidden' if current_user.errors.blank? %> space-y-4 mt-4">
           <div class="form-control">
             <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
             <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
@@ -67,7 +67,7 @@
             <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input' %>
             <% if Accounts.can_send_emails?(current_account) %>
               <span class="label-text-alt mt-1">
-                <%= t('dont_remember_your_current_password_click_here_to_reset_it_html', link: new_user_password_url) %>
+                <%= t('dont_remember_your_current_password_click_here_to_reset_it_html') %>
               </span>
             <% end %>
           </div>

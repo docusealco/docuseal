@@ -5,6 +5,9 @@ RSpec.describe 'Profile Settings' do
 
   before do
     sign_in(user)
+
+    allow(Accounts).to receive(:can_send_emails?).and_return(true)
+
     visit settings_profile_index_path
   end
 
@@ -79,7 +82,7 @@ RSpec.describe 'Profile Settings' do
         find('label', text: 'Click here').click
       end
 
-      expect(page).to have_content('You will receive an email with password reset instructions in a few minutes.')
+      expect(page).to have_content('An email with password reset instructions has been sent.')
 
       email = ActionMailer::Base.deliveries.last
       reset_password_url = email.body

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
       return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
     end
 
+    @user.password = SecureRandom.hex if @user.password.blank?
     @user.role = User::ADMIN_ROLE unless role_valid?(@user.role)
 
     if @user.save

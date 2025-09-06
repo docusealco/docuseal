@@ -14,7 +14,7 @@ class UsersSendResetPasswordController < ApplicationController
       @user.send_reset_password_instructions
 
       redirect_back fallback_location: settings_users_path,
-                    notice: I18n.t('you_will_receive_an_email_with_password_reset_instructions_in_a_few_minutes')
+                    notice: I18n.t('an_email_with_password_reset_instructions_has_been_sent')
     end
   end
 end

@@ -115,7 +115,6 @@ RSpec.describe 'Team Settings' do
       fill_in 'First name', with: 'Adam'
       fill_in 'Last name', with: 'Meier'
       fill_in 'Email', with: 'adam.meier@example.com'
-      fill_in 'Password', with: 'new_password'
 
       expect do
         click_button 'Submit'

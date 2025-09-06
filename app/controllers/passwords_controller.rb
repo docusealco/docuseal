@@ -20,4 +20,10 @@ class PasswordsController < Devise::PasswordsController
       Current.user = resource
     end
   end
+
+  private
+
+  def after_resetting_password_path_for(_)
+    new_session_path(resource_name)
+  end
 end
