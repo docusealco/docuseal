@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   resource :newsletter, only: %i[show update]
   resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy] do
-    post :resend_reset_password, on: :collection
+    resource :send_reset_password, only: %i[update], controller: 'users_send_reset_password'
   end
   resource :user_signature, only: %i[edit update destroy]
   resource :user_initials, only: %i[edit update destroy]
