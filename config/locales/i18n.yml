@@ -24,7 +24,10 @@ en: &en
   thanks: Thanks
   private: Private
   select: Select
+  enabled: Enabled
+  disabled: Disabled
   party: Party
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
   expirable_file_download_links: Expirable file download links
   invite_form_fields: Invite form fields
@@ -44,7 +47,7 @@ en: &en
   pending_by_me: Pending by me
   partially_completed: Partially completed
   require_phone_2fa_to_open: Require phone 2FA to open
-  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: The sender has requested a two factor authentication via one time password sent to your <b>%{phone}</b> phone number.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: The sender has requested two-factor authentication via a one-time password sent to your <b>%{phone}</b> phone number.
   send_verification_code: Send verification code
   code_has_been_resent: Code has been re-sent
   invalid_code: Invalid code
@@ -796,6 +799,12 @@ en: &en
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
   you_have_been_invited_to_sign_the_template_name_html: 'You have been invited to sign the "<strong>{template.name}</strong>".'
+  reveal_api_key: Reveal API Key
+  enter_your_password_to_reveal_the_api_key: Enter your password to reveal the API key
+  wrong_password: Wrong password.
+  current_password: Current password
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Don''t remember your current password? <label class="link" for="resend_password_button">Click here</label> to reset it.'
+  an_email_with_password_reset_instructions_has_been_sent: An email with password reset instructions has been sent.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -902,6 +911,8 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  enabled: Habilitado
+  disabled: Deshabilitado
   expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
   create_templates_with_private_access_by_default: Crear plantillas con acceso privado por defecto
   party: Parte
@@ -1678,6 +1689,12 @@ es: &es
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" ha sido completado por <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, revisa la copia de tu "<strong>{template.name}</strong>" en los archivos adjuntos del correo electrónico.'
   you_have_been_invited_to_sign_the_template_name_html: 'Has sido invitado a firmar el "<strong>{template.name}</strong>".'
+  reveal_api_key: Revelar clave API
+  enter_your_password_to_reveal_the_api_key: Introduce tu contraseña para revelar la clave API
+  wrong_password: Contraseña incorrecta.
+  current_password: Contraseña actual
+  dont_remember_your_current_password_click_here_to_reset_it_html: '¿No recuerdas tu contraseña actual? <label class="link" for="resend_password_button">Haz clic aquí</label> para restablecerla.'
+  an_email_with_password_reset_instructions_has_been_sent: Se enviará un correo electrónico con las instrucciones para restablecer tu contraseña en unos minutos.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1784,6 +1801,9 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clicca qui</label> per inviare una email per reimpostare la password.'
+  enabled: Abilitato
+  disabled: Disabilitato
   expirable_file_download_links: Link di download di file con scadenza
   create_templates_with_private_access_by_default: Crea modelli con accesso privato per impostazione predefinita
   party: Parte
@@ -2560,6 +2580,12 @@ it: &it
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" è stato completato da <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Per favore, controlla la copia del tuo "<strong>{template.name}</strong>" negli allegati dell''email.'
   you_have_been_invited_to_sign_the_template_name_html: 'Sei stato invitato a firmare il "<strong>{template.name}</strong>".'
+  reveal_api_key: Mostra chiave API
+  enter_your_password_to_reveal_the_api_key: Inserisci la tua password per mostrare la chiave API
+  wrong_password: Password errata.
+  current_password: Password attuale
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Non ricordi la tua password attuale? <label class="link" for="resend_password_button">Clicca qui</label> per reimpostarla.'
+  an_email_with_password_reset_instructions_has_been_sent: Un'email con le istruzioni per reimpostare la password ti è stata inviata e arriverà entro pochi minuti.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2666,6 +2692,9 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Cliquez ici</label> pour envoyer un e-mail de réinitialisation du mot de passe.'
+  enabled: Activé
+  disabled: Désactivé
   expirable_file_download_links: Liens de téléchargement de fichiers expirables
   create_templates_with_private_access_by_default: Créer des modèles avec un accès privé par défaut
   party: Partie
@@ -3445,6 +3474,12 @@ fr: &fr
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" a été complété par <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Veuillez vérifier la copie de votre "<strong>{template.name}</strong>" dans les pièces jointes de l’e-mail.'
   you_have_been_invited_to_sign_the_template_name_html: 'Vous avez été invité à signer le "<strong>{template.name}</strong>".'
+  reveal_api_key: Révéler la clé API
+  enter_your_password_to_reveal_the_api_key: Entrez votre mot de passe pour révéler la clé API
+  wrong_password: Mot de passe incorrect.
+  current_password: Mot de passe actuel
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Vous ne vous souvenez plus de votre mot de passe actuel ? <label class="link" for="resend_password_button">Cliquez ici</label> pour le réinitialiser.'
+  an_email_with_password_reset_instructions_has_been_sent: Un e-mail contenant les instructions pour réinitialiser votre mot de passe vous sera envoyé dans quelques minutes.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3551,6 +3586,9 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clique aqui</label> para enviar um e-mail de redefinição de senha.'
+  enabled: Ativado
+  disabled: Desativado
   expirable_file_download_links: Links de download de arquivos com expiração
   create_templates_with_private_access_by_default: Criar modelos com acesso privado por padrão
   party: Parte
@@ -4328,6 +4366,12 @@ pt: &pt
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" foi concluído por <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Por favor, verifique a cópia do seu "<strong>{template.name}</strong>" nos anexos do e-mail.'
   you_have_been_invited_to_sign_the_template_name_html: 'Você foi convidado a assinar o "<strong>{template.name}</strong>".'
+  reveal_api_key: Revelar chave API
+  enter_your_password_to_reveal_the_api_key: Insira sua senha para revelar a chave API
+  wrong_password: Senha incorreta.
+  current_password: Senha atual
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Não se lembra da sua senha atual? <label class="link" for="resend_password_button">Clique aqui</label> para redefini-la.'
+  an_email_with_password_reset_instructions_has_been_sent: Um e-mail com instruções para redefinir sua senha será enviado em alguns minutos.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4434,6 +4478,9 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
+  enabled: Aktiviert
+  disabled: Deaktiviert
   expirable_file_download_links: Ablaufbare Datei-Download-Links
   create_templates_with_private_access_by_default: Vorlagen standardmäßig mit privatem Zugriff erstellen
   party: Partei
@@ -5211,6 +5258,12 @@ de: &de
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" wurde von <strong>{submission.submitters}</strong> abgeschlossen'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Bitte prüfen Sie die Kopie Ihres "<strong>{template.name}</strong>" in den E-Mail-Anhängen.'
   you_have_been_invited_to_sign_the_template_name_html: 'Du wurdest eingeladen, "<strong>{template.name}</strong>" zu unterschreiben.'
+  reveal_api_key: API-Schlüssel anzeigen
+  enter_your_password_to_reveal_the_api_key: Gib dein Passwort ein, um den API-Schlüssel anzuzeigen
+  wrong_password: Falsches Passwort.
+  current_password: Aktuelles Passwort
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Sie erinnern sich nicht an Ihr aktuelles Passwort? <label class="link" for="resend_password_button">Klicken Sie hier</label>, um es zurückzusetzen.'
+  an_email_with_password_reset_instructions_has_been_sent: Eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts wurde Ihnen in wenigen Minuten zugesendet.
   submission_sources:
     api: API
     bulk: Massenversand

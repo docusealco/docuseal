@@ -1,22 +1,37 @@
 <%= form_for user, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
   <div class="space-y-2">
-    <div class="form-control">
-      <%= f.label :first_name, t('first_name'), class: 'label' %>
-      <%= f.text_field :first_name, required: true, class: 'base-input', dir: 'auto' %>
-    </div>
-    <div class="form-control">
-      <%= f.label :last_name, t('last_name'), class: 'label' %>
-      <%= f.text_field :last_name, required: true, class: 'base-input', dir: 'auto' %>
+    <div class="flex space-x-4">
+      <div class="w-full">
+        <%= f.label :first_name, t('first_name'), class: 'label' %>
+        <%= f.text_field :first_name, required: true, class: 'base-input w-full', dir: 'auto' %>
+      </div>
+      <div class="w-full">
+        <%= f.label :last_name, t('last_name'), class: 'label' %>
+        <%= f.text_field :last_name, required: true, class: 'base-input w-full', dir: 'auto' %>
+      </div>
     </div>
     <div class="form-control">
       <%= f.label :email, t('email'), class: 'label' %>
       <%= f.email_field :email, required: true, class: 'base-input' %>
+      <% if user.persisted? && Accounts.can_send_emails?(current_account) %>
+        <span class="label-text-alt mt-2 mx-1">
+          <%= t('click_here_to_send_a_reset_password_email_html') %>
+        </span>
+      <% end %>
     </div>
-    <div class="form-control">
-      <%= f.label :password, t('password'), class: 'label' %>
-      <%= f.password_field :password, required: user.new_record?, class: 'base-input' %>
-    </div>
+    <% if user.new_record? && !Docuseal.multitenant? %>
+      <div class="form-control">
+        <%= f.label :password, t('password'), class: 'label' %>
+        <%= f.password_field :password, class: 'base-input' %>
+      </div>
+    <% end %>
     <% if f.object != current_user %>
+      <% if user.otp_required_for_login %>
+        <div class="form-control">
+          <%= f.label :otp_required_for_login, t('two_factor_authentication'), class: 'label' %>
+          <%= f.select :otp_required_for_login, [[t('enabled'), true], [t('disabled'), false]], { include_blank: false }, class: 'base-select' %>
+        </div>
+      <% end %>
       <%= render 'role_select', f: %>
     <% end %>
     <% if local_assigns[:extra_fields_html].present? %>
@@ -26,4 +41,7 @@
   <div class="form-control pt-2">
     <%= f.button button_title, class: 'base-button' %>
   </div>
+<% end %>
+<% if user.persisted? %>
+  <%= button_to nil, user_send_reset_password_path(user), id: 'resend_password_button', method: :put, class: 'hidden', data: { turbo_confirm: t('are_you_sure_'), turbo_frame: :_top } %>
 <% end %>

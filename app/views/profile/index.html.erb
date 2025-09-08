@@ -54,19 +54,29 @@
       <p class="text-2xl font-bold mt-8 mb-4">
         <%= t('change_password') %>
       </p>
-      <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
-        <div class="form-control">
-          <%= f.label :password, t('new_password'), class: 'label' %>
-          <%= f.password_field :password, autocomplete: 'off', class: 'base-input' %>
-        </div>
-        <div class="form-control">
-          <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
-          <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
-        </div>
-        <div class="form-control pt-2">
-          <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
+      <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off' } do |f| %>
+        <%= f.label :password, t('new_password'), class: 'label' %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'base-input peer w-full', required: true %>
+        <div class="<%= 'peer-invalid:hidden' if current_user.errors.blank? %> space-y-4 mt-4">
+          <div class="form-control">
+            <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
+            <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
+          </div>
+          <div class="form-control">
+            <%= f.label :current_password, t('current_password'), class: 'label' %>
+            <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input' %>
+            <% if Accounts.can_send_emails?(current_account) %>
+              <span class="label-text-alt mt-1">
+                <%= t('dont_remember_your_current_password_click_here_to_reset_it_html') %>
+              </span>
+            <% end %>
+          </div>
+          <div class="form-control">
+            <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
+          </div>
         </div>
       <% end %>
+      <%= button_to nil, user_send_reset_password_path(current_user), id: 'resend_password_button', method: :put, class: 'hidden', data: { turbo_confirm: t('are_you_sure_') } %>
       <p class="text-2xl font-bold mt-8 mb-4">
         <%= t('two_factor_authentication') %>
       </p>

@@ -226,7 +226,7 @@ module Submissions
 
           page[:Annots] ||= []
           page[:Annots] = page[:Annots].try(:reject) do |e|
-            next if e.is_a?(Integer)
+            next if e.is_a?(Integer) || e.is_a?(Symbol)
 
             e.present? && e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field')
           end || page[:Annots]

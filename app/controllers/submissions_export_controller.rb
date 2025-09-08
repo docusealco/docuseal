@@ -10,6 +10,9 @@ class SubmissionsExportController < ApplicationController
                                                      attachments_attachments: :blob })
                               .order(id: :asc)
 
+    submissions = Submissions.search(current_user, submissions, params[:q], search_values: true)
+    submissions = Submissions::Filter.call(submissions, current_user, params)
+
     expires_at = Accounts.link_expires_at(current_account)
 
     if params[:format] == 'csv'

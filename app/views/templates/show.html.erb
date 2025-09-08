@@ -13,7 +13,7 @@
         <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
           <%= render 'shared/search_input', title_selector: 'h2' %>
         <% end %>
-        <%= link_to new_template_submissions_export_path(@template), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
           <span><%= t('export') %></span>
         <% end %>
