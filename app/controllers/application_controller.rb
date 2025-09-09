@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
       if locale.starts_with?('en-') && locale != 'en-US'
         'en-GB'
       else
-        locale.split('-').first.presence || 'en-GB'
+        locale || 'en-GB'
       end
 
     locale = 'en-GB' unless I18n.locale_available?(locale)
