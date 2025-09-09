@@ -805,6 +805,9 @@ en: &en
   current_password: Current password
   dont_remember_your_current_password_click_here_to_reset_it_html: 'Don''t remember your current password? <label class="link" for="resend_password_button">Click here</label> to reset it.'
   an_email_with_password_reset_instructions_has_been_sent: An email with password reset instructions has been sent.
+  api_key_access_code: API key access code
+  use_otp_code_to_access_the_api_key_html: Use <b>%{code}</b> code to access the API key.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Please reply to this email if you don't recognize this request.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1695,6 +1698,9 @@ es: &es
   current_password: Contraseña actual
   dont_remember_your_current_password_click_here_to_reset_it_html: '¿No recuerdas tu contraseña actual? <label class="link" for="resend_password_button">Haz clic aquí</label> para restablecerla.'
   an_email_with_password_reset_instructions_has_been_sent: Se enviará un correo electrónico con las instrucciones para restablecer tu contraseña en unos minutos.
+  api_key_access_code: Código de acceso de la clave API
+  use_otp_code_to_access_the_api_key_html: Usa el código <b>%{code}</b> para acceder a la clave API.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Responde a este correo si no reconoces esta solicitud.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2586,6 +2592,9 @@ it: &it
   current_password: Password attuale
   dont_remember_your_current_password_click_here_to_reset_it_html: 'Non ricordi la tua password attuale? <label class="link" for="resend_password_button">Clicca qui</label> per reimpostarla.'
   an_email_with_password_reset_instructions_has_been_sent: Un'email con le istruzioni per reimpostare la password ti è stata inviata e arriverà entro pochi minuti.
+  api_key_access_code: Codice di accesso della chiave API
+  use_otp_code_to_access_the_api_key_html: Usa il codice <b>%{code}</b> per accedere alla chiave API.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Rispondi a questa email se non riconosci questa richiesta.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3480,6 +3489,9 @@ fr: &fr
   current_password: Mot de passe actuel
   dont_remember_your_current_password_click_here_to_reset_it_html: 'Vous ne vous souvenez plus de votre mot de passe actuel ? <label class="link" for="resend_password_button">Cliquez ici</label> pour le réinitialiser.'
   an_email_with_password_reset_instructions_has_been_sent: Un e-mail contenant les instructions pour réinitialiser votre mot de passe vous sera envoyé dans quelques minutes.
+  api_key_access_code: Code d'accès de la clé API
+  use_otp_code_to_access_the_api_key_html: Utilisez le code <b>%{code}</b> pour accéder à la clé API.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Veuillez répondre à cet e-mail si vous ne reconnaissez pas cette demande.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4372,6 +4384,9 @@ pt: &pt
   current_password: Senha atual
   dont_remember_your_current_password_click_here_to_reset_it_html: 'Não se lembra da sua senha atual? <label class="link" for="resend_password_button">Clique aqui</label> para redefini-la.'
   an_email_with_password_reset_instructions_has_been_sent: Um e-mail com instruções para redefinir sua senha será enviado em alguns minutos.
+  api_key_access_code: Código de acesso da chave API
+  use_otp_code_to_access_the_api_key_html: Use o código <b>%{code}</b> para acessar a chave API.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Responda a este e-mail se você não reconhecer esta solicitação.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5264,6 +5279,9 @@ de: &de
   current_password: Aktuelles Passwort
   dont_remember_your_current_password_click_here_to_reset_it_html: 'Sie erinnern sich nicht an Ihr aktuelles Passwort? <label class="link" for="resend_password_button">Klicken Sie hier</label>, um es zurückzusetzen.'
   an_email_with_password_reset_instructions_has_been_sent: Eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts wurde Ihnen in wenigen Minuten zugesendet.
+  api_key_access_code: API-Schlüssel-Zugangscode
+  use_otp_code_to_access_the_api_key_html: Verwenden Sie den Code <b>%{code}</b>, um auf den API-Schlüssel zuzugreifen.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Bitte antworten Sie auf diese E-Mail, wenn Sie diese Anfrage nicht erkennen.
   submission_sources:
     api: API
     bulk: Massenversand
