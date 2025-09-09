@@ -139,12 +139,14 @@ module Submissions
     def generate_pdfs(submitter)
       configs = submitter.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
                                                               AccountConfig::WITH_SIGNATURE_ID,
+                                                              AccountConfig::WITH_FILE_LINKS_KEY,
                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
+      with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
@@ -192,11 +194,12 @@ module Submissions
 
       fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:,
                                                                       with_submitter_timezone:,
+                                                                      with_file_links:,
                                                                       with_signature_id_reason:)
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
-                              with_submitter_timezone: false, with_signature_id_reason: true)
+                              with_submitter_timezone: false, with_signature_id_reason: true, with_file_links: nil)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
@@ -466,6 +469,13 @@ module Submissions
 
               diff = ((area['h'] * height) / 2) - (lines.sum(&:height) / 2)
 
+              url =
+                if with_file_links
+                  ActiveStorage::Blob.proxy_url(attachment.blob)
+                else
+                  r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
+                end
+
               page[:Annots] << pdf.add(
                 {
                   Type: :Annot, Subtype: :Link,
@@ -477,8 +487,7 @@ module Submissions
                     height - (area['y'] * height) - lines[..next_index].sum(&:height) +
                     height_diff - (height_diff.zero? ? diff : 0)
                   ],
-                  A: { Type: :Action, S: :URI,
-                       URI: r.submissions_preview_url(submission.slug, **Docuseal.default_url_options) }
+                  A: { Type: :Action, S: :URI, URI: url }
                 }
               )
 

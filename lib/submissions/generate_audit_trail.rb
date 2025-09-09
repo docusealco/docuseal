@@ -113,11 +113,13 @@ module Submissions
 
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
+                                                               AccountConfig::WITH_FILE_LINKS_KEY,
                                                                AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
@@ -392,7 +394,12 @@ module Submissions
                 Array.wrap(value).map do |uuid|
                   attachment = submitter.attachments.find { |a| a.uuid == uuid }
 
-                  link = r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
+                  link =
+                    if with_file_links
+                      ActiveStorage::Blob.proxy_url(attachment.blob)
+                    else
+                      r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
+                    end
 
                   { link:, text: "#{attachment.filename}\n", style: :link }
                 end,
