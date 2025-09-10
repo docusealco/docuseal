@@ -699,6 +699,15 @@ export default {
       }
     }
 
+    // Update old party names to new translations
+    this.template.submitters.forEach((submitter) => {
+      if (submitter.name === 'First Party') {
+        submitter.name = this.t('first_party')
+      } else if (submitter.name === 'Second Party') {
+        submitter.name = this.t('second_party')
+      }
+    })
+
     const existingSubmittersUuids = this.defaultSubmitters.map((name) => {
       return this.template.submitters.find(e => e.name === name)?.uuid
     })

@@ -43,7 +43,7 @@ en: &en
   invalid_code: Invalid code
   unarchive: Unarchive
   signed: Signed
-  first_party: 'First Party'
+  first_party: 'Employee'
   remove_filter: Remove filter
   add: Add
   adding: Adding

@@ -45,7 +45,7 @@ RSpec.describe 'ATS Prefill Integration', type: :request do
            author: user,
            folder: template_folder,
            fields: template_fields,
-           submitters: [{ 'name' => 'First Party', 'uuid' => 'submitter-uuid-1' }])
+           submitters: [{ 'name' => 'Employee', 'uuid' => 'submitter-uuid-1' }])
   end
 
   let(:submission) do
@@ -54,7 +54,7 @@ RSpec.describe 'ATS Prefill Integration', type: :request do
            account: account,
            created_by_user: user,
            template_fields: template_fields,
-           template_submitters: [{ 'name' => 'First Party', 'uuid' => 'submitter-uuid-1' }])
+           template_submitters: [{ 'name' => 'Employee', 'uuid' => 'submitter-uuid-1' }])
   end
 
   let(:submitter) do
