@@ -287,8 +287,8 @@ export default {
   computed: {
     colors () {
       return [
-        'bg-red-500',
-        'bg-sky-500',
+        'bg-employee-color',
+        'bg-manager-color',
         'bg-emerald-500',
         'bg-yellow-300',
         'bg-purple-600',
