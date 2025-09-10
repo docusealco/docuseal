@@ -18,11 +18,11 @@ FactoryBot.define do
     end
 
     after(:create) do |template, ev|
-      number_words = %w[first second third fourth fifth sixth seventh eighth ninth tenth]
+      party_names = ['Employee', 'Manager', 'Third Party', 'Fourth Party', 'Fifth Party', 'Sixth Party', 'Seventh Party', 'Eighth Party', 'Ninth Party', 'Tenth Party']
 
       template.submitters = Array.new(ev.submitter_count) do |i|
         {
-          'name' => "#{number_words[i]&.capitalize} Party",
+          'name' => party_names[i],
           'uuid' => SecureRandom.uuid
         }
       end
