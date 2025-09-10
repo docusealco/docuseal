@@ -447,8 +447,8 @@ export default {
     },
     borderColors () {
       return [
-        'border-red-500/80',
-        'border-sky-500/80',
+        'border-employee-color',
+        'border-manager-color',
         'border-emerald-500/80',
         'border-yellow-300/80',
         'border-purple-600/80',
@@ -461,8 +461,8 @@ export default {
     },
     bgColors () {
       return [
-        'bg-red-100',
-        'bg-sky-100',
+        'bg-employee-bg-color',
+        'bg-manager-bg-color',
         'bg-emerald-100',
         'bg-yellow-100',
         'bg-purple-100',

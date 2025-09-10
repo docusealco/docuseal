@@ -197,7 +197,7 @@ describe 'Templates API' do
       fields: template.fields,
       submitters: [
         {
-          name: 'First Party',
+          name: 'Employee',
           uuid: template.submitters.first['uuid']
         }
       ],

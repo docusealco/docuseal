@@ -131,6 +131,8 @@ label.primary-button {
 
 :root {
   --tooltip-color: black;
+  --employee-color: #FFD687;
+  --manager-color: #D6E4FD;
 }
 
 .tooltip-bottom-end:before {
@@ -204,4 +206,29 @@ label.primary-button {
   outline-width: 1px;
   outline-offset: 3px;
   outline-color: hsl(var(--bc) / 0.2);
+}
+
+/* Custom party colors */
+.bg-employee-color {
+  background-color: var(--employee-color);
+}
+
+.bg-manager-color {
+  background-color: var(--manager-color);
+}
+
+.bg-employee-bg-color {
+  background-color: var(--employee-color);
+}
+
+.bg-manager-bg-color {
+  background-color: var(--manager-color);
+}
+
+.border-employee-color {
+  border-color: var(--employee-color);
+}
+
+.border-manager-color {
+  border-color: var(--manager-color);
 }

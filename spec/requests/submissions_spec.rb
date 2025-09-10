@@ -77,7 +77,7 @@ describe 'Submission API' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'Employee', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:ok)
@@ -91,7 +91,7 @@ describe 'Submission API' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }],
+        submitters: [{ role: 'Employee', email: 'john.doe@example.com' }],
         message: {}
       }.to_json
 
@@ -105,7 +105,7 @@ describe 'Submission API' do
     it 'creates a submission when the submitter is marked as completed' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
-        submitters: [{ role: 'First Party', email: 'john.doe@example.com', completed: true }]
+        submitters: [{ role: 'Employee', email: 'john.doe@example.com', completed: true }]
       }.to_json
 
       expect(response).to have_http_status(:ok)
@@ -122,7 +122,7 @@ describe 'Submission API' do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Party', email: 'john.doe@example.com' },
+          { role: 'Employee', email: 'john.doe@example.com' },
           { email: 'jane.doe@example.com' },
           { email: 'mike.doe@example.com' }
         ]
@@ -134,9 +134,9 @@ describe 'Submission API' do
 
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
-      expect(response.parsed_body[0]['role']).to eq('First Party')
+      expect(response.parsed_body[0]['role']).to eq('Employee')
       expect(response.parsed_body[0]['email']).to eq('john.doe@example.com')
-      expect(response.parsed_body[1]['role']).to eq('Second Party')
+      expect(response.parsed_body[1]['role']).to eq('Manager')
       expect(response.parsed_body[1]['email']).to eq('jane.doe@example.com')
       expect(response.parsed_body[2]['role']).to eq('Third Party')
       expect(response.parsed_body[2]['email']).to eq('mike.doe@example.com')
@@ -147,7 +147,7 @@ describe 'Submission API' do
         template_id: templates[0].id,
         send_email: true,
         submitters: [
-          { role: 'First Party', email: 'john@example' }
+          { role: 'Employee', email: 'john@example' }
         ]
       }.to_json
 
@@ -162,7 +162,7 @@ describe 'Submission API' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: templates[0].id,
         send_email: true,
-        submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
+        submitters: [{ role: 'Employee', email: 'john.doe@example.com' }]
       }.to_json
 
       expect(response).to have_http_status(:unprocessable_entity)
@@ -174,8 +174,8 @@ describe 'Submission API' do
         template_id: multiple_submitters_template.id,
         send_email: true,
         submitters: [
-          { role: 'First Party', email: 'john.doe@example.com' },
-          { role: 'First Party', email: 'jane.doe@example.com' }
+          { role: 'Employee', email: 'john.doe@example.com' },
+          { role: 'Employee', email: 'jane.doe@example.com' }
         ]
       }.to_json
 
@@ -189,7 +189,7 @@ describe 'Submission API' do
         send_email: true,
         submitters: [
           { email: 'jane.doe@example.com' },
-          { role: 'First Party', email: 'john.doe@example.com' }
+          { role: 'Employee', email: 'john.doe@example.com' }
         ]
       }.to_json
 
@@ -202,7 +202,7 @@ describe 'Submission API' do
         template_id: templates[0].id,
         send_email: true,
         submitters: [
-          { role: 'First Party', email: 'john.doe@example.com' }
+          { role: 'Employee', email: 'john.doe@example.com' }
         ],
         message: {
           subject: 'Custom Email Subject'
