@@ -28,11 +28,13 @@
 #  uuid                   :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  account_id             :integer          not null
+#  account_group_id       :bigint
+#  account_id             :integer
 #  external_user_id       :integer
 #
 # Indexes
 #
+#  index_users_on_account_group_id      (account_group_id)
 #  index_users_on_account_id            (account_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_external_user_id      (external_user_id) UNIQUE
@@ -42,9 +44,12 @@
 #
 # Foreign Keys
 #
+#  fk_rails_...  (account_group_id => account_groups.id)
 #  fk_rails_...  (account_id => accounts.id)
 #
 class User < ApplicationRecord
+  include AccountGroupValidation
+
   ROLES = [
     ADMIN_ROLE = 'admin'
   ].freeze
@@ -57,7 +62,9 @@ class User < ApplicationRecord
   has_one_attached :signature
   has_one_attached :initials
 
-  belongs_to :account
+  belongs_to :account, optional: true
+  belongs_to :account_group, optional: true
+
   has_one :access_token, dependent: :destroy
   has_many :access_tokens, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
@@ -88,12 +95,24 @@ class User < ApplicationRecord
       )
   end
 
+  def self.find_or_create_by_external_group_id(account_group, external_id, attributes = {})
+    account_group.users.find_by(external_user_id: external_id) ||
+      account_group.users.create!(
+        attributes.merge(
+          external_user_id: external_id,
+          password: SecureRandom.hex(16)
+        )
+      )
+  end
+
   def access_token
     super || build_access_token.tap(&:save!)
   end
 
   def active_for_authentication?
-    super && !archived_at? && !account.archived_at?
+    return false unless account.present? || account_group.present?
+
+    super && !archived_at? && !account&.archived_at?
   end
 
   def remember_me

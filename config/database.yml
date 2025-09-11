@@ -9,6 +9,7 @@ default: &default
   database: <%= ENV['DB_NAME'] %>
 
 development:
+  <<: *default
   database: docuseal_development
   pool: 5
   username: postgres
@@ -16,6 +17,7 @@ development:
   host: localhost
 
 test:
+  <<: *default
   database: docuseal_test
   pool: 5
   username: postgres

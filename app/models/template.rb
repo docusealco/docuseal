@@ -17,13 +17,15 @@
 #  submitters           :text             not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  account_id           :integer          not null
+#  account_group_id     :bigint
+#  account_id           :integer
 #  author_id            :integer          not null
 #  external_id          :string
 #  folder_id            :integer          not null
 #
 # Indexes
 #
+#  index_templates_on_account_group_id                 (account_group_id)
 #  index_templates_on_account_id                       (account_id)
 #  index_templates_on_account_id_and_folder_id_and_id  (account_id,folder_id,id) WHERE (archived_at IS NULL)
 #  index_templates_on_account_id_and_id_archived       (account_id,id) WHERE (archived_at IS NOT NULL)
@@ -34,15 +36,19 @@
 #
 # Foreign Keys
 #
+#  fk_rails_...  (account_group_id => account_groups.id)
 #  fk_rails_...  (account_id => accounts.id)
 #  fk_rails_...  (author_id => users.id)
 #  fk_rails_...  (folder_id => template_folders.id)
 #
 class Template < ApplicationRecord
+  include AccountGroupValidation
+
   DEFAULT_SUBMITTER_NAME = 'Employee'
 
   belongs_to :author, class_name: 'User'
-  belongs_to :account
+  belongs_to :account, optional: true
+  belongs_to :account_group, optional: true
   belongs_to :folder, class_name: 'TemplateFolder'
 
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
@@ -84,6 +90,10 @@ class Template < ApplicationRecord
   private
 
   def maybe_set_default_folder
-    self.folder ||= account.default_template_folder
+    if account.present?
+      self.folder ||= account.default_template_folder
+    elsif account_group.present?
+      self.folder ||= account_group.default_template_folder
+    end
   end
 end

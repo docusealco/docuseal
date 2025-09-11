@@ -70,25 +70,17 @@ class TemplatesController < ApplicationController
     else
       @template = Template.new(template_params) if @template.nil?
       @template.author = current_user
-      @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
+
+      TemplateService.new(@template, current_user, params).assign_ownership
     end
 
-    if params[:account_id].present? && authorized_clone_account_id?(params[:account_id])
-      @template.account_id = params[:account_id]
-      @template.folder = @template.account.default_template_folder if @template.account_id != current_account.id
-    else
-      @template.account = current_account
-    end
+    handle_account_override if params[:account_id].present?
 
     if @template.save
-      Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
-
-      SearchEntries.enqueue_reindex(@template)
-
-      enqueue_template_created_webhooks(@template)
-
+      handle_successful_template_creation
       maybe_redirect_to_template(@template)
     else
+      Rails.logger.error "Template save failed: #{@template.errors.full_messages.join(', ')}"
       render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_entity
     end
   end
@@ -126,7 +118,7 @@ class TemplatesController < ApplicationController
 
   def template_params
     params.require(:template).permit(
-      :name,
+      :name, :external_id,
       { schema: [[:attachment_uuid, :name, { conditions: [%i[field_uuid value action operation]] }]],
         submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid optional_invite_by_uuid email]],
         external_data_fields: {},
@@ -166,6 +158,20 @@ class TemplatesController < ApplicationController
       SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => template.id,
                                                          'webhook_url_id' => webhook_url.id)
     end
+  end
+
+  def handle_account_override
+    return unless authorized_clone_account_id?(params[:account_id])
+
+    @template.account_id = params[:account_id]
+    @template.account_group = nil
+    @template.folder = @template.account.default_template_folder if @template.account_id != current_account&.id
+  end
+
+  def handle_successful_template_creation
+    Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
+    SearchEntries.enqueue_reindex(@template)
+    enqueue_template_created_webhooks(@template)
   end
 
   def load_base_template

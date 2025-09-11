@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_10_191227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.index ["account_id"], name: "index_account_configs_on_account_id"
   end
 
+  create_table "account_groups", force: :cascade do |t|
+    t.integer "external_account_group_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["external_account_group_id"], name: "index_account_groups_on_external_account_group_id", unique: true
+  end
+
   create_table "account_linked_accounts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "linked_account_id", null: false
@@ -63,6 +71,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.string "uuid", null: false
     t.datetime "archived_at"
     t.integer "external_account_id"
+    t.bigint "account_group_id"
+    t.index ["account_group_id"], name: "index_accounts_on_account_group_id"
     t.index ["external_account_id"], name: "index_accounts_on_external_account_id", unique: true
     t.index ["uuid"], name: "index_accounts_on_uuid", unique: true
   end
@@ -363,10 +373,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
   create_table "template_folders", force: :cascade do |t|
     t.string "name", null: false
     t.integer "author_id", null: false
-    t.integer "account_id", null: false
+    t.integer "account_id"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "account_group_id"
+    t.index ["account_group_id"], name: "index_template_folders_on_account_group_id"
     t.index ["account_id"], name: "index_template_folders_on_account_id"
     t.index ["author_id"], name: "index_template_folders_on_author_id"
   end
@@ -388,7 +400,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.text "fields", null: false
     t.text "submitters", null: false
     t.integer "author_id", null: false
-    t.integer "account_id", null: false
+    t.integer "account_id"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -398,6 +410,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.text "preferences", null: false
     t.boolean "shared_link", default: false, null: false
     t.text "external_data_fields"
+    t.bigint "account_group_id"
+    t.index ["account_group_id"], name: "index_templates_on_account_group_id"
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["account_id"], name: "index_templates_on_account_id"
@@ -423,7 +437,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.string "email", null: false
     t.string "role", null: false
     t.string "encrypted_password", null: false
-    t.integer "account_id", null: false
+    t.integer "account_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -443,6 +457,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false
     t.integer "external_user_id"
+    t.bigint "account_group_id"
+    t.index ["account_group_id"], name: "index_users_on_account_group_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["external_user_id"], name: "index_users_on_external_user_id", unique: true
@@ -468,6 +484,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
   add_foreign_key "account_configs", "accounts"
   add_foreign_key "account_linked_accounts", "accounts"
   add_foreign_key "account_linked_accounts", "accounts", column: "linked_account_id"
+  add_foreign_key "accounts", "account_groups"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
@@ -486,13 +503,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_214357) do
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitters", "submissions"
   add_foreign_key "template_accesses", "templates"
+  add_foreign_key "template_folders", "account_groups"
   add_foreign_key "template_folders", "accounts"
   add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "template_sharings", "templates"
+  add_foreign_key "templates", "account_groups"
   add_foreign_key "templates", "accounts"
   add_foreign_key "templates", "template_folders", column: "folder_id"
   add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "user_configs", "users"
+  add_foreign_key "users", "account_groups"
   add_foreign_key "users", "accounts"
   add_foreign_key "webhook_urls", "accounts"
 end
