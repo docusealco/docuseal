@@ -808,6 +808,8 @@ en: &en
   api_key_access_code: API key access code
   use_otp_code_to_access_the_api_key_html: Use <b>%{code}</b> code to access the API key.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Please reply to this email if you don't recognize this request.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Your user account has been archived. Contact your administrator to restore access to your account.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@docuseal.com to log in.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1701,6 +1703,8 @@ es: &es
   api_key_access_code: Código de acceso de la clave API
   use_otp_code_to_access_the_api_key_html: Usa el código <b>%{code}</b> para acceder a la clave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responde a este correo si no reconoces esta solicitud.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Tu cuenta de usuario ha sido archivada. Contacta a tu administrador para restaurar el acceso a tu cuenta.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a support@docuseal.com para iniciar sesión.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2595,6 +2599,8 @@ it: &it
   api_key_access_code: Codice di accesso della chiave API
   use_otp_code_to_access_the_api_key_html: Usa il codice <b>%{code}</b> per accedere alla chiave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Rispondi a questa email se non riconosci questa richiesta.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Il tuo account utente è stato archiviato. Contatta il tuo amministratore per ripristinare l'accesso al tuo account.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta support@docuseal.com per accedere.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3492,6 +3498,8 @@ fr: &fr
   api_key_access_code: Code d'accès de la clé API
   use_otp_code_to_access_the_api_key_html: Utilisez le code <b>%{code}</b> pour accéder à la clé API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Veuillez répondre à cet e-mail si vous ne reconnaissez pas cette demande.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Votre compte utilisateur a été archivé. Contactez votre administrateur pour rétablir l'accès à votre compte.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e-mail n'a pas pu être atteint. Cela peut arriver s'il y a eu une faute de frappe dans votre adresse ou si votre boîte aux lettres n'est pas disponible. Veuillez contacter support@docuseal.com pour vous connecter.
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4387,6 +4395,8 @@ pt: &pt
   api_key_access_code: Código de acesso da chave API
   use_otp_code_to_access_the_api_key_html: Use o código <b>%{code}</b> para acessar a chave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responda a este e-mail se você não reconhecer esta solicitação.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Sua conta de usuário foi arquivada. Entre em contato com o administrador para restaurar o acesso à sua conta.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com support@docuseal.com para fazer login.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5475,6 +5485,8 @@ pl:
   email_verification: Weryfikacja e-mail
   your_verification_code_to_access_the_name: 'Twój kod weryfikacyjny do uzyskania dostępu do "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpowiedz na ten e-mail, jeśli nie prosiłeś o to.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Twoje konto użytkownika zostało zarchiwizowane. Skontaktuj się z administratorem, aby przywrócić dostęp do konta.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z support@docuseal.com, aby się zalogować.
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5564,6 +5576,8 @@ uk:
   email_verification: Підтвердження електронної пошти
   your_verification_code_to_access_the_name: 'Ваш код доступу до "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Відповідайте на цей лист, якщо ви цього не запитували.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ваш обліковий запис було архівовано. Зверніться до адміністратора, щоб відновити доступ.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до support@docuseal.com, щоб увійти.
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -5653,6 +5667,8 @@ cs:
   email_verification: Ověření e-mailu
   your_verification_code_to_access_the_name: 'Váš ověřovací kód pro přístup k "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpovězte na tento e-mail, pokud jste o to nežádali.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Váš uživatelský účet byl archivován. Kontaktujte svého administrátora pro obnovení přístupu.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nepodařilo se dosáhnout na váš e-mail. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Kontaktujte support@docuseal.com pro přihlášení.
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -5742,6 +5758,8 @@ he:
   email_verification: 'אימות דוא"ל'
   your_verification_code_to_access_the_name: 'קוד האימות שלך לגישה ל-%{name}:'
   please_reply_to_this_email_if_you_didnt_request_this: 'השב למייל זה אם לא ביקשת זאת.'
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: החשבון שלך הועבר לארכיון. פנה למנהל המערכת כדי לשחזר את הגישה.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl:
   require_phone_2fa_to_open: Vereis telefoon 2FA om te openen
@@ -5831,6 +5849,8 @@ nl:
   email_verification: E-mailverificatie
   your_verification_code_to_access_the_name: 'Je verificatiecode voor toegang tot "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Reageer op deze e-mail als je dit niet hebt aangevraagd.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Je gebruikersaccount is gearchiveerd. Neem contact op met je beheerder om de toegang te herstellen.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Je e-mailadres kon niet worden bereikt. Dit kan gebeuren door een typefout in je adres of als je mailbox niet beschikbaar is. Neem contact op met support@docuseal.com om in te loggen.
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -5920,6 +5940,8 @@ ar:
   email_verification: 'التحقق من البريد الإلكتروني'
   your_verification_code_to_access_the_name: 'رمز التحقق الخاص بك للوصول إلى "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: 'يرجى الرد على هذا البريد إذا لم تطلب ذلك.'
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: تم أرشفة حسابك. يرجى التواصل مع المسؤول لاستعادة الوصول إلى حسابك.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كانت صندوق البريد غير متاح. يرجى التواصل مع support@docuseal.com لتسجيل الدخول.
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -6009,6 +6031,8 @@ ko:
   email_verification: 이메일 인증
   your_verification_code_to_access_the_name: '"%{name}"에 액세스하기 위한 인증 코드:'
   please_reply_to_this_email_if_you_didnt_request_this: 요청하지 않았다면 이 이메일에 회신하세요.
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: 사용자 계정이 보관되었습니다. 계정 접근을 복원하려면 관리자에게 문의하세요.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 support@docuseal.com에 문의하세요.
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -6098,6 +6122,8 @@ ja:
   email_verification: メール認証
   your_verification_code_to_access_the_name: '"%{name}"へのアクセスコード：'
   please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: あなたのユーザーアカウントはアーカイブされました。アクセスを復元するには管理者に連絡してください。
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには support@docuseal.com に連絡してください。
 
 en-US:
   <<: *en

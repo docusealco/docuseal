@@ -2,15 +2,22 @@
   <h1 class="text-4xl font-bold text-center mt-8">
     <%= t('sign_in') %>
   </h1>
-  <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :password %>
-    <% if params[:redir].present? %>
-      <%= hidden_field_tag :redir, params[:redir] %>
-    <% end %>
-    <%= render 'otp_form', **local_assigns %>
-    <div class="form-control">
-      <%= f.button button_title(title: t('sign_in'), disabled_with: t('signing_in')), class: 'base-button' %>
+  <% if local_assigns[:access_error].present? %>
+    <div class="alert mt-6">
+      <%= svg_icon('x_circle', class: 'w-6 h-6 text-red-500') %>
+      <span><%= local_assigns[:access_error] %></span>
     </div>
+  <% else %>
+    <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :password %>
+      <% if params[:redir].present? %>
+        <%= hidden_field_tag :redir, params[:redir] %>
+      <% end %>
+      <%= render 'otp_form', **local_assigns %>
+      <div class="form-control">
+        <%= f.button button_title(title: t('sign_in'), disabled_with: t('signing_in')), class: 'base-button' %>
+      </div>
+    <% end %>
   <% end %>
 </div>
