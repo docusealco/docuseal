@@ -298,6 +298,7 @@ describe 'Submission API' do
       completed_at: nil,
       created_at: submission.created_at,
       updated_at: submission.updated_at,
+      variables: {},
       archived_at: nil,
       status: 'pending',
       submitters:,
@@ -358,6 +359,7 @@ describe 'Submission API' do
       completed_at: nil,
       created_at: submission.created_at,
       updated_at: submission.updated_at,
+      variables: {},
       archived_at: nil,
       submitters:,
       template: {

@@ -15,6 +15,8 @@
 #  template_fields     :text
 #  template_schema     :text
 #  template_submitters :text
+#  variables           :text
+#  variables_schema    :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint           not null
@@ -50,6 +52,8 @@ class Submission < ApplicationRecord
   serialize :template_fields, coder: JSON
   serialize :template_schema, coder: JSON
   serialize :template_submitters, coder: JSON
+  serialize :variables_schema, coder: JSON
+  serialize :variables, coder: JSON
   serialize :preferences, coder: JSON
 
   attribute :source, :string, default: 'link'

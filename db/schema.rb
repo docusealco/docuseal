@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_110606) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_12_090605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -305,6 +305,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_110606) do
     t.bigint "account_id", null: false
     t.datetime "expire_at"
     t.text "name"
+    t.text "variables_schema"
+    t.text "variables"
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "(archived_at IS NOT NULL)"
@@ -389,6 +391,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_110606) do
     t.string "external_id"
     t.text "preferences", null: false
     t.boolean "shared_link", default: false, null: false
+    t.text "variables_schema"
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["account_id"], name: "index_templates_on_account_id"

@@ -25,6 +25,7 @@ module Submissions
 
       json = submission.as_json(SERIALIZE_PARAMS)
 
+      json['variables'] = (submission.variables || {}).as_json
       json['created_by_user'] ||= nil
 
       if with_events
