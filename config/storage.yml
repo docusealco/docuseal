@@ -1,7 +1,7 @@
 disk:
   service: Disk
   root: <%= ENV['WORKDIR'] || '.' %>/attachments
-  public: true
+  public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
 
 aws_s3:
   service: S3
