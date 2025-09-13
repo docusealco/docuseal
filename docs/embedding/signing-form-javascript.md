@@ -7,12 +7,14 @@
 
 <docuseal-form
   id="docusealForm"
-  data-src="https://docuseal.com/d/{{template_slug}}"
-  data-email="{{signer_email}}">
+  data-src="https://docuseal.com/d/{{ template_slug }}"
+  data-email="{{ signer_email }}">
 </docuseal-form>
 
 <script>
-  window.docusealForm.addEventListener('completed', (e) => e.detail)
+  window.docusealForm.addEventListener('completed', (e) => {
+    console.log(e.detail)
+  })
 </script>
 
 ```

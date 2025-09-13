@@ -146,6 +146,10 @@ During the form filling and signing process, 3 types of events may occur and are
             "type": "string",
             "description": "The submission URL."
           },
+          "variables": {
+            "type": "object",
+            "description": "Dynamic content variables object."
+          },
           "created_at": {
             "type": "string",
             "description": "The submission creation date.",
