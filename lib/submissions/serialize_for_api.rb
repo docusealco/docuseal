@@ -74,7 +74,7 @@ module Submissions
       if !attachment && params[:include].to_s.include?('combined_document_url')
         submitter = submitters.max_by(&:completed_at)
 
-        attachment = Submissions::GenerateCombinedAttachment.call(submitter)
+        attachment = Submissions::EnsureCombinedGenerated.call(submitter)
       end
 
       ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) if attachment

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_12_090605) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_15_060548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -215,6 +215,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_12_090605) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "key"], name: "index_encrypted_user_configs_on_user_id_and_key", unique: true
     t.index ["user_id"], name: "index_encrypted_user_configs_on_user_id"
+  end
+
+  create_table "lock_events", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "event_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_name", "key"], name: "index_lock_events_on_event_name_and_key", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
+    t.index ["key"], name: "index_lock_events_on_key"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

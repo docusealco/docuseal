@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Submissions
-  module EnsureResultGenerated
+  module EnsureCombinedGenerated
     WAIT_FOR_RETRY = 2.seconds
     CHECK_EVENT_INTERVAL = 1.second
     CHECK_COMPLETE_TIMEOUT = 90.seconds
+    KEY_PREFIX = 'combined_document'
 
     WaitForCompleteTimeout = Class.new(StandardError)
     NotCompletedYet = Class.new(StandardError)
@@ -12,13 +13,15 @@ module Submissions
     module_function
 
     def call(submitter)
-      return [] unless submitter
+      return nil unless submitter
 
       raise NotCompletedYet unless submitter.completed_at?
 
-      key = ['result_attachments', submitter.id].join(':')
+      key = [KEY_PREFIX, submitter.id].join(':')
 
-      return submitter.documents if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+      if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+        return submitter.submission.combined_document_attachment
+      end
 
       events = ApplicationRecord.uncached { LockEvent.where(key:).order(:id).to_a }
 
@@ -27,11 +30,11 @@ module Submissions
       else
         LockEvent.create!(key:, event_name: events.present? ? :retry : :start)
 
-        documents = GenerateResultAttachments.call(submitter)
+        result = Submissions::GenerateCombinedAttachment.call(submitter)
 
         LockEvent.create!(key:, event_name: :complete)
 
-        documents
+        result
       end
     rescue ActiveRecord::RecordNotUnique
       sleep WAIT_FOR_RETRY
@@ -55,10 +58,14 @@ module Submissions
 
         last_event =
           ApplicationRecord.uncached do
-            LockEvent.where(key: ['result_attachments', submitter.id].join(':')).order(:id).last
+            LockEvent.where(key: [KEY_PREFIX, submitter.id].join(':')).order(:id).last
           end
 
-        break submitter.documents.reload if last_event.event_name.in?(%w[complete fail])
+        if last_event.event_name.in?(%w[complete fail])
+          break ApplicationRecord.uncached do
+            ActiveStorage::Attachment.find_by(record: submitter.submission, name: 'combined_document')
+          end
+        end
 
         raise WaitForCompleteTimeout if total_wait_time > CHECK_COMPLETE_TIMEOUT
       end

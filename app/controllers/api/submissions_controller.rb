@@ -43,7 +43,7 @@ module Api
       end
 
       if @submission.audit_trail_attachment.blank? && submitters.all?(&:completed_at?)
-        @submission.audit_trail_attachment = Submissions::GenerateAuditTrail.call(@submission)
+        @submission.audit_trail_attachment = Submissions::EnsureAuditGenerated.call(@submission)
       end
 
       render json: Submissions::SerializeForApi.call(@submission, submitters, params)
