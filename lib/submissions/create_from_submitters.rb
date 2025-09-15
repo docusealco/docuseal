@@ -142,8 +142,9 @@ module Submissions
       if template_fields != (submission.template_fields || submission.template.fields) ||
          submitters_attrs.any? { |e| e[:completed].present? } || !with_template || submission.variables.present?
         submission.template_fields = template_fields
-        submission.variables_schema = submission.template.variables_schema if submission.variables_schema.blank?
         submission.template_schema = submission.template.schema if submission.template_schema.blank?
+        submission.variables_schema = submission.template.variables_schema if submission.template_id &&
+                                                                              submission.variables_schema.blank?
       end
 
       submission
