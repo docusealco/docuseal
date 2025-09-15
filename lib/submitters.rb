@@ -94,8 +94,9 @@ module Submitters
   def select_attachments_for_download(submitter)
     if AccountConfig.exists?(account_id: submitter.submission.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
-                             value: true) && submitter.submission.combined_document_attachment
-      return [submitter.submission.combined_document_attachment]
+                             value: true) &&
+       submitter.submission.submitters.all?(&:completed_at?)
+      return [submitter.submission.combined_document_attachment || Submissions::EnsureCombinedGenerated.call(submitter)]
     end
 
     original_documents = submitter.submission.schema_documents.preload(:blob)

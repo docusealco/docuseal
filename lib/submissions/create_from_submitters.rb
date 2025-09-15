@@ -22,6 +22,7 @@ module Submissions
                                               account_id: user.account_id,
                                               preferences: set_submission_preferences,
                                               name: with_template ? attrs[:name] : (attrs[:name] || template.name),
+                                              variables: attrs[:variables] || {},
                                               expire_at:,
                                               template_submitters: [], submitters_order:)
 
@@ -139,9 +140,11 @@ module Submissions
       end
 
       if template_fields != (submission.template_fields || submission.template.fields) ||
-         submitters_attrs.any? { |e| e[:completed].present? } || !with_template
+         submitters_attrs.any? { |e| e[:completed].present? } || !with_template || submission.variables.present?
         submission.template_fields = template_fields
         submission.template_schema = submission.template.schema if submission.template_schema.blank?
+        submission.variables_schema = submission.template.variables_schema if submission.template_id &&
+                                                                              submission.variables_schema.blank?
       end
 
       submission

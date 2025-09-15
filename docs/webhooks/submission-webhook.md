@@ -216,6 +216,10 @@ Get submission creation, completion, expiration, and archiving notifications usi
           }
         }
       },
+      "variables": {
+        "type": "object",
+        "description": "Dynamic content variables object."
+      },
       "created_by_user": {
         "type": "object",
         "properties": {

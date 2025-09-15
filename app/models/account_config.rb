@@ -42,6 +42,7 @@ class AccountConfig < ApplicationRecord
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'
+  WITH_FILE_LINKS_KEY = 'with_file_links'
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'

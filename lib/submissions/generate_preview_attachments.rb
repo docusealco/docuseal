@@ -15,9 +15,11 @@ module Submissions
       configs = submission.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
                                                                AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
+                                                               AccountConfig::WITH_FILE_LINKS_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
       with_signature_id_reason =
@@ -34,7 +36,7 @@ module Submissions
       submitters.preload(attachments_attachments: :blob).each_with_index do |s, index|
         GenerateResultAttachments.fill_submitter_fields(s, submission.account, pdfs_index,
                                                         with_signature_id:, is_flatten:, with_headings: index.zero?,
-                                                        with_submitter_timezone:,
+                                                        with_submitter_timezone:, with_file_links:,
                                                         with_signature_id_reason:)
       end
 

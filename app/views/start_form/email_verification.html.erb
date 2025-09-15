@@ -25,6 +25,7 @@
     </div>
     <%= form_for '', url: start_form_path(@template.slug), method: :put, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
       <div dir="auto" class="form-control !mt-0">
+        <%= f.hidden_field 'resubmit', value: params[:resubmit] %>
         <%= f.hidden_field 'submitter[name]', value: params[:name] || @submitter&.name %>
         <%= f.hidden_field 'submitter[email]', value: params[:email] || @submitter&.email %>
         <%= f.hidden_field 'submitter[phone]', value: params[:phone] || @submitter&.phone %>

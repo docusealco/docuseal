@@ -1,37 +1,40 @@
 # frozen_string_literal: true
 
 module Submissions
-  module EnsureResultGenerated
+  module EnsureAuditGenerated
     WAIT_FOR_RETRY = 2.seconds
     CHECK_EVENT_INTERVAL = 1.second
     CHECK_COMPLETE_TIMEOUT = 90.seconds
+    KEY_PREFIX = 'audit_trail'
 
     WaitForCompleteTimeout = Class.new(StandardError)
     NotCompletedYet = Class.new(StandardError)
 
     module_function
 
-    def call(submitter)
-      return [] unless submitter
+    def call(submission)
+      return nil unless submission
 
-      raise NotCompletedYet unless submitter.completed_at?
+      raise NotCompletedYet unless submission.submitters.all?(&:completed_at?)
 
-      key = ['result_attachments', submitter.id].join(':')
+      key = [KEY_PREFIX, submission.id].join(':')
 
-      return submitter.documents if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+      if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+        return submission.audit_trail_attachment
+      end
 
       events = ApplicationRecord.uncached { LockEvent.where(key:).order(:id).to_a }
 
       if events.present? && events.last.event_name.in?(%w[start retry])
-        wait_for_complete_or_fail(submitter)
+        wait_for_complete_or_fail(submission)
       else
         LockEvent.create!(key:, event_name: events.present? ? :retry : :start)
 
-        documents = GenerateResultAttachments.call(submitter)
+        result = Submissions::GenerateAuditTrail.call(submission)
 
         LockEvent.create!(key:, event_name: :complete)
 
-        documents
+        result
       end
     rescue ActiveRecord::RecordNotUnique
       sleep WAIT_FOR_RETRY
@@ -46,7 +49,7 @@ module Submissions
       raise
     end
 
-    def wait_for_complete_or_fail(submitter)
+    def wait_for_complete_or_fail(submission)
       total_wait_time = 0
 
       loop do
@@ -55,10 +58,14 @@ module Submissions
 
         last_event =
           ApplicationRecord.uncached do
-            LockEvent.where(key: ['result_attachments', submitter.id].join(':')).order(:id).last
+            LockEvent.where(key: [KEY_PREFIX, submission.id].join(':')).order(:id).last
           end
 
-        break submitter.documents.reload if last_event.event_name.in?(%w[complete fail])
+        if last_event.event_name.in?(%w[complete fail])
+          break ApplicationRecord.uncached do
+            ActiveStorage::Attachment.find_by(record: submission, name: 'audit_trail')
+          end
+        end
 
         raise WaitForCompleteTimeout if total_wait_time > CHECK_COMPLETE_TIMEOUT
       end

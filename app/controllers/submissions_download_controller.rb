@@ -70,7 +70,7 @@ class SubmissionsDownloadController < ApplicationController
     return if submitter.submission.submitters.order(:completed_at).last != submitter
 
     attachment = submitter.submission.combined_document_attachment
-    attachment ||= Submissions::GenerateCombinedAttachment.call(submitter)
+    attachment ||= Submissions::EnsureCombinedGenerated.call(submitter)
 
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
