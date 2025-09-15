@@ -198,7 +198,7 @@ module Submissions
 
       composer.draw_box(divider)
 
-      documents_data = Submitters.select_attachments_for_download(last_submitter).map do |document|
+      documents_data = select_attachments(last_submitter).map do |document|
         original_documents = submission.schema_documents.select do |e|
           e.uuid == (document.metadata['original_uuid'] || document.uuid)
         end.presence
@@ -477,6 +477,16 @@ module Submissions
 
     def sign_reason
       'Signed with DocuSeal.com'
+    end
+
+    def select_attachments(submitter)
+      original_documents = submitter.submission.schema_documents.preload(:blob)
+      is_more_than_two_images = original_documents.count(&:image?) > 1
+
+      submitter.documents.preload(:blob).reject do |attachment|
+        is_more_than_two_images &&
+          original_documents.find { |a| a.uuid == (attachment.metadata['original_uuid'] || attachment.uuid) }&.image?
+      end
     end
 
     def maybe_add_background(_canvas, _submission, _page_size); end
