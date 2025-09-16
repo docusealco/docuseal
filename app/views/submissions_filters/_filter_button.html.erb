@@ -24,6 +24,12 @@
       <% end %>
     </li>
     <li class="flex">
+      <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+        <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
+        <span><%= t('folder') %></span>
+      <% end %>
+    </li>
+    <li class="flex">
       <%= link_to submissions_filter_path('author', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('user', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('author') %></span>
