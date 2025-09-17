@@ -810,6 +810,22 @@ en: &en
   please_reply_to_this_email_if_you_dont_recognize_this_request: Please reply to this email if you don't recognize this request.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Your user account has been archived. Contact your administrator to restore access to your account.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@docuseal.com to log in.
+  efficient_search_with_search_index: Efficient search with search index
+  reindex: Reindex
+  build_search_index: Build Search Index
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Require two-factor authentication (2FA) with an authenticator app (e.g., Google Authenticator, Authy). All users signing documents must pass the second factor verification using a secure code in addition to their password.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Add a unique Signature ID and timestamp to each signature for audit and traceability purposes along with the timestamp. Part of DocuSeal's 21 CFR Part 11 compliance settings."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Require signers to provide a reason for signing before completing their signature (e.g., approvals, certifications). Part of DocuSeal's 21 CFR Part 11 compliance settings."
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Allow signers to create signatures by typing their name instead of drawing or uploading one.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Allow signers to resubmit forms after completion, useful when corrections or multiple submissions are needed.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Allow recipients to decline signing a document. The decline reason notification will be sent to the signature requester.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: "Save a user's signature and automatically pre-fill it in future signing sessions."
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Make document download links expire after 40 minutes to prevent long-term access and enhance security.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Require authentication with user login or API key to access the document download links.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Combine signed documents and the Audit Log into a single PDF file for easier recordkeeping and compliance.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Require a JWT authorization to preview embedded forms, ensuring only authorized users can view them.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Make all newly created templates private to their creator by default.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Make the recipients signing order always enforced, so that the second signer can start signing their part only after the first signer has completed signing.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1705,6 +1721,22 @@ es: &es
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responde a este correo si no reconoces esta solicitud.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Tu cuenta de usuario ha sido archivada. Contacta a tu administrador para restaurar el acceso a tu cuenta.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a support@docuseal.com para iniciar sesión.
+  efficient_search_with_search_index: Búsqueda eficiente con índice de búsqueda
+  reindex: Reindexar
+  build_search_index: Construir índice de búsqueda
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Requerir autenticación de dos factores (2FA) con una aplicación de autenticación (p. ej., Google Authenticator, Authy). Todos los usuarios que firman documentos deben pasar la verificación del segundo factor usando un código seguro además de su contraseña.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Agregar un ID de firma único y una marca de tiempo a cada firma para fines de auditoría y trazabilidad junto con la marca de tiempo. Parte de la configuración de cumplimiento 21 CFR Parte 11 de DocuSeal.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Requerir que los firmantes proporcionen un motivo para firmar antes de completar su firma (p. ej., aprobaciones, certificaciones). Parte de la configuración de cumplimiento 21 CFR Parte 11 de DocuSeal.
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que los firmantes creen firmas escribiendo su nombre en lugar de dibujar o subir una.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que los firmantes vuelvan a enviar formularios después de completarlos, útil cuando se necesitan correcciones o múltiples envíos.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que los destinatarios rechacen firmar un documento. La notificación del motivo del rechazo se enviará al solicitante de la firma.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Guardar la firma de un usuario y rellenarla automáticamente en futuras sesiones de firma.
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Hacer que los enlaces de descarga de documentos caduquen después de 40 minutos para evitar el acceso a largo plazo y mejorar la seguridad.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Requerir autenticación con inicio de sesión de usuario o clave API para acceder a los enlaces de descarga de documentos.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Combinar documentos firmados y el registro de auditoría en un solo archivo PDF para una gestión y cumplimiento más fáciles.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Requerir autorización JWT para previsualizar formularios incrustados, garantizando que solo los usuarios autorizados puedan verlos.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Hacer que todas las plantillas creadas sean privadas para su creador por defecto.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Hacer que el orden de firma de los destinatarios se aplique siempre, de modo que el segundo firmante pueda comenzar a firmar solo después de que el primero haya completado la firma.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2601,6 +2633,22 @@ it: &it
   please_reply_to_this_email_if_you_dont_recognize_this_request: Rispondi a questa email se non riconosci questa richiesta.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Il tuo account utente è stato archiviato. Contatta il tuo amministratore per ripristinare l'accesso al tuo account.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta support@docuseal.com per accedere.
+  efficient_search_with_search_index: Ricerca efficiente con indice di ricerca
+  reindex: Reindicizza
+  build_search_index: Crea indice di ricerca
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: "Richiedere l'autenticazione a due fattori (2FA) con un'app di autenticazione (es. Google Authenticator, Authy). Tutti gli utenti che firmano documenti devono superare la verifica del secondo fattore utilizzando un codice sicuro oltre alla password."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Aggiungere un ID firma univoco e una marca temporale a ogni firma per scopi di audit e tracciabilità insieme alla marca temporale. Parte delle impostazioni di conformità 21 CFR Parte 11 di DocuSeal.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Richiedere ai firmatari di fornire una motivazione prima di completare la firma (es. approvazioni, certificazioni). Parte delle impostazioni di conformità 21 CFR Parte 11 di DocuSeal.
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Consentire ai firmatari di creare firme digitando il proprio nome invece di disegnarle o caricarle.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Consentire ai firmatari di reinviare i moduli dopo il completamento, utile quando sono necessarie correzioni o più invii.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Consentire ai destinatari di rifiutare di firmare un documento. La notifica del motivo del rifiuto verrà inviata al richiedente della firma.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Salvare la firma di un utente e compilarla automaticamente nelle future sessioni di firma.
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: "Fare in modo che i link di download dei documenti scadano dopo 40 minuti per prevenire l'accesso a lungo termine e migliorare la sicurezza."
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: "Richiedere l'autenticazione con login utente o chiave API per accedere ai link di download dei documenti."
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Combinare documenti firmati e registro di audit in un unico file PDF per una gestione e conformità più semplici.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: "Richiedere un'autorizzazione JWT per visualizzare in anteprima i moduli incorporati, garantendo che solo gli utenti autorizzati possano vederli."
+  make_all_newly_created_templates_private_to_their_creator_by_default: Rendere tutte le nuove template private per il creatore per impostazione predefinita.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: "Rendere sempre obbligatorio l'ordine di firma dei destinatari, in modo che il secondo firmatario possa iniziare solo dopo che il primo ha completato la firma."
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3500,6 +3548,22 @@ fr: &fr
   please_reply_to_this_email_if_you_dont_recognize_this_request: Veuillez répondre à cet e-mail si vous ne reconnaissez pas cette demande.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Votre compte utilisateur a été archivé. Contactez votre administrateur pour rétablir l'accès à votre compte.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e-mail n'a pas pu être atteint. Cela peut arriver s'il y a eu une faute de frappe dans votre adresse ou si votre boîte aux lettres n'est pas disponible. Veuillez contacter support@docuseal.com pour vous connecter.
+  efficient_search_with_search_index: Recherche efficace avec index de recherche
+  reindex: Réindexer
+  build_search_index: Construire un index de recherche
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: "Exiger une authentification à deux facteurs (2FA) avec une application d'authentification (ex. Google Authenticator, Authy). Tous les utilisateurs signant des documents doivent passer la vérification du second facteur en utilisant un code sécurisé en plus de leur mot de passe."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Ajouter un identifiant de signature unique et un horodatage à chaque signature à des fins d'audit et de traçabilité avec l'horodatage. Fait partie des paramètres de conformité 21 CFR Partie 11 de DocuSeal."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Exiger des signataires qu'ils fournissent une raison avant de compléter leur signature (ex. approbations, certifications). Fait partie des paramètres de conformité 21 CFR Partie 11 de DocuSeal."
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permettre aux signataires de créer des signatures en tapant leur nom au lieu de les dessiner ou de les télécharger.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permettre aux signataires de soumettre à nouveau des formulaires après achèvement, utile lorsque des corrections ou plusieurs envois sont nécessaires.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permettre aux destinataires de refuser de signer un document. La notification de la raison du refus sera envoyée au demandeur de la signature.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: "Enregistrer la signature d'un utilisateur et la pré-remplir automatiquement dans les futures sessions de signature."
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Faire expirer les liens de téléchargement de documents après 40 minutes pour éviter un accès à long terme et améliorer la sécurité.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Exiger une authentification avec identifiant utilisateur ou clé API pour accéder aux liens de téléchargement de documents.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: "Combiner les documents signés et le journal d'audit dans un seul fichier PDF pour une gestion et une conformité plus faciles."
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Exiger une autorisation JWT pour prévisualiser les formulaires intégrés, garantissant que seuls les utilisateurs autorisés puissent les voir.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Rendre toutes les nouvelles modèles privées à leur créateur par défaut.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: "Rendre l'ordre de signature des destinataires toujours obligatoire, de sorte que le deuxième signataire ne puisse commencer qu'après que le premier a terminé."
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4397,6 +4461,22 @@ pt: &pt
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responda a este e-mail se você não reconhecer esta solicitação.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Sua conta de usuário foi arquivada. Entre em contato com o administrador para restaurar o acesso à sua conta.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com support@docuseal.com para fazer login.
+  efficient_search_with_search_index: Pesquisa eficiente com índice de busca
+  reindex: Reindexar
+  build_search_index: Construir índice de busca
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: "Exigir autenticação de dois fatores (2FA) com um aplicativo autenticador (ex.: Google Authenticator, Authy). Todos os usuários que assinam documentos devem passar pela verificação do segundo fator usando um código seguro além da senha."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Adicionar um ID de assinatura exclusivo e um carimbo de data/hora a cada assinatura para fins de auditoria e rastreabilidade junto com o carimbo de data/hora. Parte das configurações de conformidade 21 CFR Parte 11 do DocuSeal.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Exigir que os signatários forneçam uma razão antes de completar a assinatura (ex.: aprovações, certificações). Parte das configurações de conformidade 21 CFR Parte 11 do DocuSeal."
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que os signatários criem assinaturas digitando seu nome em vez de desenhá-las ou carregá-las.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que os signatários reenviem formulários após o término, útil quando são necessárias correções ou múltiplos envios.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que os destinatários recusem assinar um documento. A notificação do motivo da recusa será enviada ao solicitante da assinatura.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Salvar a assinatura de um usuário e preenchê-la automaticamente em futuras sessões de assinatura.
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Fazer os links de download de documentos expirarem após 40 minutos para evitar o acesso prolongado e aumentar a segurança.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Exigir autenticação com login do usuário ou chave API para acessar os links de download de documentos.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Combinar documentos assinados e o registro de auditoria em um único arquivo PDF para facilitar o arquivamento e a conformidade.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Exigir autorização JWT para visualizar formulários incorporados, garantindo que apenas usuários autorizados possam vê-los.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Tornar todos os modelos recém-criados privados para seu criador por padrão.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Tornar a ordem de assinatura dos destinatários sempre obrigatória, para que o segundo signatário só possa assinar após o primeiro concluir.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5292,6 +5372,22 @@ de: &de
   api_key_access_code: API-Schlüssel-Zugangscode
   use_otp_code_to_access_the_api_key_html: Verwenden Sie den Code <b>%{code}</b>, um auf den API-Schlüssel zuzugreifen.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Bitte antworten Sie auf diese E-Mail, wenn Sie diese Anfrage nicht erkennen.
+  efficient_search_with_search_index: Effiziente Suche mit Suchindex
+  reindex: Neu indexieren
+  build_search_index: Suchindex erstellen
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Zwei-Faktor-Authentifizierung (2FA) mit einer Authentifizierungs-App (z. B. Google Authenticator, Authy) erforderlich. Alle Benutzer, die Dokumente unterzeichnen, müssen die zweite Faktorprüfung mit einem sicheren Code zusätzlich zu ihrem Passwort bestehen.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Eine eindeutige Signatur-ID und einen Zeitstempel zu jeder Signatur hinzufügen, um Prüfungs- und Nachverfolgbarkeitszwecke zusammen mit dem Zeitstempel zu erfüllen. Teil der 21 CFR Teil 11-Compliance-Einstellungen von DocuSeal.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Unterzeichner müssen einen Grund für die Unterzeichnung angeben, bevor sie ihre Signatur abschließen (z. B. Genehmigungen, Zertifizierungen). Teil der 21 CFR Teil 11-Compliance-Einstellungen von DocuSeal.
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Unterzeichner dürfen Signaturen erstellen, indem sie ihren Namen eingeben, anstatt eine zu zeichnen oder hochzuladen.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Unterzeichner dürfen Formulare nach Abschluss erneut einreichen, was nützlich ist, wenn Korrekturen oder mehrere Einreichungen erforderlich sind.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Empfänger dürfen die Unterzeichnung eines Dokuments ablehnen. Die Benachrichtigung über den Ablehnungsgrund wird an den Anforderer der Signatur gesendet.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Die Signatur eines Benutzers speichern und sie in zukünftigen Signatursitzungen automatisch ausfüllen.
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Download-Links für Dokumente nach 40 Minuten ablaufen lassen, um langfristigen Zugriff zu verhindern und die Sicherheit zu erhöhen.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Authentifizierung mit Benutzeranmeldung oder API-Schlüssel erforderlich, um auf die Download-Links für Dokumente zuzugreifen.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Unterzeichnete Dokumente und das Prüfprotokoll in einer einzigen PDF-Datei kombinieren, um die Aufbewahrung und Compliance zu erleichtern.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: JWT-Autorisierung erforderlich, um eingebettete Formulare anzuzeigen, sodass nur autorisierte Benutzer sie sehen können.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Alle neu erstellten Vorlagen standardmäßig für ihren Ersteller privat machen.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Die Unterzeichnungsreihenfolge der Empfänger immer erzwingen, sodass der zweite Unterzeichner erst nach Abschluss der Unterschrift durch den ersten beginnen kann.
   submission_sources:
     api: API
     bulk: Massenversand
