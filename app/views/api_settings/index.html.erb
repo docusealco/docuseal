@@ -46,7 +46,7 @@
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
             <% text = capture do %>curl --location '<%= api_submissions_url %>' \
-       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
+       --header 'X-Auth-Token: API_TOKEN' \
        --data-raw '{
          "template_id": <%= current_account.templates.last&.id || 1 %>,
          "submitters": [
@@ -82,7 +82,7 @@
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
             <% text = capture do %>curl --location '<%= api_submissions_emails_url %>' \
-       --header 'X-Auth-Token: <%= current_user.access_token.token %>' \
+       --header 'X-Auth-Token: API_TOKEN' \
        --data-raw '{
            "template_id": <%= current_account.templates.last&.id || 1 %>,
            "emails":  "<%= current_user.email.sub('@', '+test@') %>, <%= current_user.email.sub('@', '+test2@') %>"
@@ -108,7 +108,7 @@
         <div class="collapse-content" style="display: inherit">
           <div class="mockup-code overflow-hidden">
             <% text = capture do %>curl '<%= api_template_url(current_account.templates&.last || 1) %>' \
-       --header 'X-Auth-Token: <%= current_user.access_token.token %>'<% end.to_str %>
+       --header 'X-Auth-Token: API_TOKEN'<% end.to_str %>
             <span class="top-0 right-0 absolute">
               <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </span>
