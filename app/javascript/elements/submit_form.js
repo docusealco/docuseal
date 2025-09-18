@@ -4,6 +4,10 @@ export default class extends HTMLElement {
       this.interval = setInterval(() => {
         this.querySelector('form').requestSubmit()
       }, parseInt(this.dataset.interval))
+    } else if (this.dataset.on) {
+      this.lastElementChild.addEventListener(this.dataset.on, () => {
+        this.lastElementChild.form.requestSubmit()
+      })
     } else {
       this.querySelector('form').requestSubmit()
     }
