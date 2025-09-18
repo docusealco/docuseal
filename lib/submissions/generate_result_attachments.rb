@@ -661,7 +661,7 @@ module Submissions
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
-        rescue HexaPDF::MalformedPDFError => e
+        rescue HexaPDF::MalformedPDFError, NoMethodError => e
           Rollbar.error(e) if defined?(Rollbar)
 
           pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
@@ -671,7 +671,7 @@ module Submissions
       else
         begin
           pdf.write(io, incremental: true, validate: false)
-        rescue HexaPDF::MalformedPDFError => e
+        rescue HexaPDF::MalformedPDFError, NoMethodError => e
           Rollbar.error(e) if defined?(Rollbar)
 
           pdf.write(io, incremental: false, validate: false)
