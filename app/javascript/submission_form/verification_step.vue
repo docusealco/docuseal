@@ -156,6 +156,10 @@ export default {
       }).then(async (resp) => {
         this.eidEasyData = await resp.json()
 
+        if (this.eidEasyData.check_completed) {
+          this.$emit('submit')
+        }
+
         if (this.eidEasyData.available_methods[0] === 'itsme-qes-signature' &&
             this.eidEasyData.available_methods.length === 1) {
           const redirectUrl = new URL('https://id.eideasy.com/sign_contract_external')
@@ -179,15 +183,23 @@ export default {
       })
     },
     async submit () {
-      return fetch(this.baseUrl + '/api/identity_verification', {
+      const resp = await fetch(this.baseUrl + '/api/identity_verification', {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug
         }),
         headers: { 'Content-Type': 'application/json' }
-      }).then(async (resp) => {
-        return resp
       })
+
+      if (resp.status === 404) {
+        throw new Error('Verification not completed yet')
+      }
+
+      if (resp.ok) {
+        return resp
+      } else {
+        throw new Error('Verification failed')
+      }
     }
   }
 }
