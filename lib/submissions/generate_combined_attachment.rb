@@ -46,7 +46,7 @@ module Submissions
 
     def sign_pdf(io, pdf, sign_params)
       pdf.sign(io, **sign_params)
-    rescue HexaPDF::MalformedPDFError => e
+    rescue HexaPDF::MalformedPDFError, NoMethodError => e
       Rollbar.error(e) if defined?(Rollbar)
 
       pdf.sign(io, write_options: { incremental: false }, **sign_params)

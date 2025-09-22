@@ -170,6 +170,10 @@ Rails.application.routes.draw do
       resources :search_entries_reindex, only: %i[create]
       resources :sms, only: %i[index], controller: 'sms_settings'
     end
+    if Docuseal.demo? || !Docuseal.multitenant?
+      resources :api, only: %i[index create], controller: 'api_settings'
+      resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
+    end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
@@ -180,8 +184,6 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
-    resources :api, only: %i[index create], controller: 'api_settings'
-    resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
 

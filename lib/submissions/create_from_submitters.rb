@@ -18,13 +18,15 @@ module Submissions
         set_submission_preferences['send_email'] = true if params['send_completed_email']
         expire_at = attrs[:expire_at] || Templates.build_default_expire_at(template)
 
-        submission = template.submissions.new(created_by_user: user, source:,
-                                              account_id: user.account_id,
-                                              preferences: set_submission_preferences,
-                                              name: with_template ? attrs[:name] : (attrs[:name] || template.name),
-                                              variables: attrs[:variables] || {},
-                                              expire_at:,
-                                              template_submitters: [], submitters_order:)
+        submission = template.submissions.new(
+          created_by_user: user, source:,
+          account_id: user.account_id,
+          preferences: set_submission_preferences,
+          name: with_template ? attrs[:name] : (attrs[:name].presence || template.name),
+          variables: attrs[:variables] || {},
+          expire_at:,
+          template_submitters: [], submitters_order:
+        )
 
         template_submitters = template.submitters.deep_dup
 
