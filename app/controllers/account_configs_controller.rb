@@ -19,6 +19,7 @@ class AccountConfigsController < ApplicationController
     AccountConfig::FORCE_SSO_AUTH_KEY,
     AccountConfig::FLATTEN_RESULT_PDF_KEY,
     AccountConfig::ENFORCE_SIGNING_ORDER_KEY,
+    AccountConfig::WITH_FILE_LINKS_KEY,
     AccountConfig::WITH_SIGNATURE_ID,
     AccountConfig::COMBINE_PDF_RESULT_KEY,
     AccountConfig::REQUIRE_SIGNING_REASON_KEY,

@@ -27,6 +27,7 @@ en: &en
   enabled: Enabled
   disabled: Disabled
   party: Party
+  use_direct_file_attachment_links_in_the_documents: Use direct file attachment links in the documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
   expirable_file_download_links: Expirable file download links
@@ -932,6 +933,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  use_direct_file_attachment_links_in_the_documents: Usar enlaces directos de archivos adjuntos en los documentos
   enabled: Habilitado
   disabled: Deshabilitado
   expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
@@ -1843,6 +1845,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  use_direct_file_attachment_links_in_the_documents: Usa i link diretti per gli allegati nei documenti
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clicca qui</label> per inviare una email per reimpostare la password.'
   enabled: Abilitato
   disabled: Disabilitato
@@ -2755,6 +2758,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  use_direct_file_attachment_links_in_the_documents: Utiliser des liens directs pour les pièces jointes dans les documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Cliquez ici</label> pour envoyer un e-mail de réinitialisation du mot de passe.'
   enabled: Activé
   disabled: Désactivé
@@ -3670,6 +3674,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  use_direct_file_attachment_links_in_the_documents: Usar links diretos de anexos de arquivos nos documentos
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clique aqui</label> para enviar um e-mail de redefinição de senha.'
   enabled: Ativado
   disabled: Desativado
@@ -4583,6 +4588,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  use_direct_file_attachment_links_in_the_documents: Verwenden Sie direkte Dateianhang-Links in den Dokumenten
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
   enabled: Aktiviert
   disabled: Deaktiviert
