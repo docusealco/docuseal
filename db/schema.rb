@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_15_060548) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -178,7 +178,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_060548) do
     t.datetime "created_at", null: false
     t.index ["account_id", "event_datetime"], name: "index_email_events_on_account_id_and_event_datetime"
     t.index ["email"], name: "index_email_events_on_email"
-    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
+    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'permanent_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
   end
