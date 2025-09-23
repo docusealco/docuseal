@@ -116,6 +116,10 @@ export default {
       return this.queryParams.get('stripe_session_id')
     },
     defaultName () {
+      if (this.field.preferences?.price_id) {
+        return ''
+      }
+
       const { price, currency } = this.field.preferences || {}
 
       const formatter = new Intl.NumberFormat([], {
