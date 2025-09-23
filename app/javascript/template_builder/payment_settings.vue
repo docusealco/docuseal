@@ -52,17 +52,17 @@
         @click.stop
       >
         <input
-          v-if="field.preferences.formula"
-          type="number"
-          :placeholder="t('price')"
-          disabled="true"
+          v-if="'price_id' in field.preferences"
+          v-model="field.preferences.price_id"
+          placeholder="Price ID: price_XXXXX"
           class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
           @blur="save"
         >
         <input
-          v-else-if="'price_id' in field.preferences"
-          v-model="field.preferences.price_id"
-          placeholder="Price ID: price_XXXXX"
+          v-else-if="field.preferences.formula"
+          type="number"
+          :placeholder="t('price')"
+          disabled="true"
           class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
           @blur="save"
         >
@@ -75,7 +75,7 @@
           @blur="save"
         >
         <label
-          v-if="field.preferences.price && !field.preferences.formula"
+          v-if="(field.preferences.price || field.preferences.price_id) && (!field.preferences.formula || ('price_id' in field.preferences))"
           :style="{ backgroundColor: backgroundColor }"
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
@@ -184,7 +184,6 @@
         >{{ t('learn_more') }}</a>
       </div>
       <li
-        v-if="!('price_id' in field.preferences)"
         class="mb-1"
       >
         <label
@@ -195,7 +194,7 @@
             width="18"
           />
           <span class="text-sm">
-            {{ t('formula') }}
+            {{ 'price_id' in field.preferences ? t('quantity') : t('formula') }}
           </span>
         </label>
       </li>
