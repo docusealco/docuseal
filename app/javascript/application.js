@@ -47,6 +47,7 @@ import ReviewForm from './elements/review_form'
 import ShowOnValue from './elements/show_on_value'
 import CustomValidation from './elements/custom_validation'
 import ToggleClasses from './elements/toggle_classes'
+import AutosizeField from './elements/autosize_field'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -63,6 +64,9 @@ document.addEventListener('keyup', (e) => {
 })
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
+document.addEventListener('turbo:before-fetch-request', (event) => {
+  event.detail.fetchOptions.headers['X-Turbo'] = 'true'
+})
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
 
@@ -129,6 +133,7 @@ safeRegisterElement('review-form', ReviewForm)
 safeRegisterElement('show-on-value', ShowOnValue)
 safeRegisterElement('custom-validation', CustomValidation)
 safeRegisterElement('toggle-classes', ToggleClasses)
+safeRegisterElement('autosize-field', AutosizeField)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

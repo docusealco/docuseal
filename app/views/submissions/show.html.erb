@@ -302,4 +302,6 @@
     </label>
   </toggle-visible>
 </div>
-<%= render 'scripts/autosize_field' %>
+<% unless request.headers['HTTP_X_TURBO'] %>
+  <%= render 'scripts/autosize_field' %>
+<% end %>

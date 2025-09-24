@@ -18,7 +18,6 @@
       <link href="<%= canonical_url %>" rel="canonical">
     <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
   </head>
   <body>
     <turbo-frame id="modal"></turbo-frame>
@@ -28,5 +27,6 @@
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>
     </div>
+    <%= render 'shared/body_scripts' %>
   </body>
 </html>
