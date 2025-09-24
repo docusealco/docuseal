@@ -80,12 +80,12 @@
       <% schema.each do |item| %>
         <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <% if document.preview_images.first %>
-          <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
+          <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
             <img src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, 0].join(':'), expires_in: 10.minutes) { document.preview_images.first.url } %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
             <div class="pb-2 pt-1.5 text-center" dir="auto">
               <%= item['name'].presence || document.filename.base %>
             </div>
-          </a>
+          </scroll-to>
         <% end %>
       <% end %>
     </div>
@@ -288,16 +288,18 @@
       <% end %>
     </div>
   </div>
-  <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
-    <input type="checkbox" class="peer hidden" onclick="[document_view.classList.toggle('hidden'), parties_view.classList.toggle('hidden')]">
-    <span class="peer-checked:hidden flex items-center space-x-2">
-      <%= svg_icon('users', class: 'w-8 h-8') %>
-      <span><%= t('signers') %></span>
-    </span>
-    <span class="hidden peer-checked:flex items-center">
-      <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
-      <span><%= t('back') %></span>
-    </span>
-  </label>
+  <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
+    <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
+      <input type="checkbox" class="peer hidden" data-action="click:toggle-visible#trigger">
+      <span class="peer-checked:hidden flex items-center space-x-2">
+        <%= svg_icon('users', class: 'w-8 h-8') %>
+        <span><%= t('signers') %></span>
+      </span>
+      <span class="hidden peer-checked:flex items-center">
+        <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
+        <span><%= t('back') %></span>
+      </span>
+    </label>
+  </toggle-visible>
 </div>
 <%= render 'scripts/autosize_field' %>

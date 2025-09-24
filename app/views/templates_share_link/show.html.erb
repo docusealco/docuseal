@@ -5,7 +5,9 @@
     <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
       <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
         <span><%= t('enable_shared_link') %></span>
-        <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+        <submit-form data-on="change" class="flex">
+          <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
+        </submit-form>
       </label>
       <div class="flex gap-2 mt-3">
         <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
@@ -63,7 +65,9 @@
             <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
               <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-1 alert bg-base-100 border-base-300">
                 <span><%= t('request_email_otp_verification_with_shared_link') %></span>
-                <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
+                </submit-form>
               </label>
             <% end %>
           <% end %>

@@ -61,7 +61,9 @@
           <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full py-1' } do |f| %>
               <label class="flex items-center pl-6 pr-4 py-2 border-y border-base-300 -ml-2 -mr-2" for="testing_toggle">
-                <%= f.check_box :testing_toggle, class: 'toggle', checked: current_account.testing?, onchange: 'this.form.requestSubmit()', style: 'height: 0.885rem; width: 1.35rem; --handleoffset: 0.395rem; margin-left: -2px; margin-right: 8px' %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :testing_toggle, class: 'toggle', checked: current_account.testing?, style: 'height: 0.885rem; width: 1.35rem; --handleoffset: 0.395rem; margin-left: -2px; margin-right: 8px' %>
+                </submit-form>
                 <span class="whitespace-nowrap">
                   <%= t('test_mode') %>
                 </span>

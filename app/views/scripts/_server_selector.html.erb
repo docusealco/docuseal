@@ -1,4 +1,4 @@
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
   if (!window.customElements.get('server-selector')) {
     customElements.define('server-selector', class extends HTMLElement {
       connectedCallback() {

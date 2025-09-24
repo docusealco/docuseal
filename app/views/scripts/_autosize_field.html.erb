@@ -1,4 +1,4 @@
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
   if (!window.customElements.get('autosize-field')) {
     window.customElements.define('autosize-field', class extends HTMLElement {
       connectedCallback() {

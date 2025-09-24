@@ -78,7 +78,7 @@ RSpec.describe 'Template' do
 
       within '#modal' do
         fill_in 'template[name]', with: 'New Template Name'
-        click_link 'Change Folder'
+        find('label', text: 'Change Folder').click
         fill_in 'folder_name', with: 'New Folder Name'
 
         expect do
@@ -101,7 +101,7 @@ RSpec.describe 'Template' do
       within '#modal' do
         template_folder.reload
         fill_in 'template[name]', with: 'New Template Name'
-        click_link 'Change Folder'
+        find('label', text: 'Change Folder').click
       end
 
       within '.autocomplete' do

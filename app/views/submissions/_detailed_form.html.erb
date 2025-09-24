@@ -33,11 +33,13 @@
                       </linked-input>
                     </submitters-autocomplete>
                     <% has_phone_field = true %>
-                    <submitters-autocomplete data-field="phone">
-                      <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                        <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', oninvalid: "this.value ? this.setCustomValidity('#{t('use_international_format_1xxx_')}') : ''", oninput: "this.setCustomValidity('')", name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true %>
-                      </linked-input>
-                    </submitters-autocomplete>
+                    <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
+                      <submitters-autocomplete data-field="phone">
+                        <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
+                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true %>
+                        </linked-input>
+                      </submitters-autocomplete>
+                    </custom-validation>
                   </div>
                 <% end %>
                 <% if prefillable_fields.present? %>
@@ -48,11 +50,13 @@
                   </submitters-autocomplete>
                   <% if local_assigns[:require_phone_2fa] == true || prefillable_fields.any? { |f| f['type'] == 'phone' } %>
                     <% has_phone_field = true %>
-                    <submitters-autocomplete data-field="phone">
-                      <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                        <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', oninvalid: "this.value ? this.setCustomValidity('#{t('use_international_format_1xxx_')}') : ''", oninput: "this.setCustomValidity('')", name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: t(:phone), id: "detailed_phone_#{item['uuid']}", required: true %>
-                      </linked-input>
-                    </submitters-autocomplete>
+                    <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
+                      <submitters-autocomplete data-field="phone">
+                        <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
+                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: t(:phone), id: "detailed_phone_#{item['uuid']}", required: true %>
+                        </linked-input>
+                      </submitters-autocomplete>
+                    </custom-validation>
                   <% end %>
                   <% prefillable_fields.each do |field| %>
                     <% if field['type'] == 'checkbox' %>

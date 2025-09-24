@@ -98,7 +98,9 @@
                 <span class="mr-2 w-full">
                   <%= t('test_mode') %>
                 </span>
-                <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing?, onchange: 'this.form.requestSubmit()' %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing? %>
+                </submit-form>
               </label>
             </li>
           <% end %>

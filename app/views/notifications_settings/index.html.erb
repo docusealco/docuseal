@@ -13,7 +13,9 @@
             <span>
               <%= t('receive_notification_emails_on_completed_submission') %>
             </span>
-            <%= f.check_box :value, class: 'toggle', checked: user_config.value != false, onchange: 'this.form.requestSubmit()' %>
+            <submit-form data-on="change" class="flex">
+              <%= f.check_box :value, class: 'toggle', checked: user_config.value != false %>
+            </submit-form>
           </div>
         <% end %>
       <% end %>

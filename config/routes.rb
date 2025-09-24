@@ -202,6 +202,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :csp
+
   get '/js/:filename', to: 'embed_scripts#show', as: :embed_script
 
   ActiveSupport.run_load_hooks(:routes, self)
