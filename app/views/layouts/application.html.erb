@@ -7,7 +7,6 @@
     <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
       <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
       <%= javascript_pack_tag 'rollbar', 'application', defer: true %>
