@@ -57,9 +57,9 @@ module TimeUtils
 
     format ||= locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT
 
-    i18n_format = format.sub(/D+/, DAY_FORMATS[format[/D+/]])
-                        .sub(/M+/, MONTH_FORMATS[format[/M+/]])
-                        .sub(/Y+/, YEAR_FORMATS[format[/Y+/]])
+    i18n_format = format.sub(/D+/) { DAY_FORMATS[format[/D+/]] }
+                        .sub(/M+/) { MONTH_FORMATS[format[/M+/]] }
+                        .sub(/Y+/) { YEAR_FORMATS[format[/Y+/]] }
 
     I18n.l(date, format: i18n_format, locale:)
   rescue Date::Error
