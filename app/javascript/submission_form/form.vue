@@ -23,7 +23,7 @@
   <FormulaFieldAreas
     v-if="formulaFields.length"
     :fields="formulaFields"
-    :readonly-values="readonlyConditionalFieldValues"
+    :readonly-values="readonlyFieldValues"
     :values="values"
   />
   <Teleport
@@ -454,7 +454,9 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :submitter-slug="submitterSlug"
+            :fields="formulaFields"
             :values="values"
+            :readonly-values="readonlyFieldValues"
             @attached="attachments.push($event)"
             @focus="scrollIntoField(currentField)"
             @submit="!isSubmitting && submitStep()"
@@ -872,7 +874,14 @@ export default {
     },
     readonlyConditionalFieldValues () {
       return this.readonlyConditionalFields.reduce((acc, f) => {
-        acc[f.uuid] = (this.values[f.uuid] || f.default_value)
+        acc[f.uuid] = isEmpty(this.values[f.uuid]) ? f.default_value : this.values[f.uuid]
+
+        return acc
+      }, {})
+    },
+    readonlyFieldValues () {
+      return this.readonlyFields.reduce((acc, f) => {
+        acc[f.uuid] = isEmpty(this.values[f.uuid]) ? f.default_value : this.values[f.uuid]
 
         return acc
       }, {})
@@ -972,7 +981,10 @@ export default {
       return this.currentStepFields[0]
     },
     readonlyConditionalFields () {
-      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      return this.readonlyFields.filter((f) => f.conditions?.length)
+    },
+    readonlyFields () {
+      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
     },
     stepFields () {
       const verificationFields = []
