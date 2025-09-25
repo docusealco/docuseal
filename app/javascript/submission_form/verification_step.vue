@@ -14,7 +14,7 @@
     <MarkdownContent :string="field.description" />
   </div>
   <div
-    v-if="emptyValueRequiredStep && emptyValueRequiredStep[0] !== field"
+    v-if="isRequiredFieldEmpty"
     class="px-1 field-description-text"
   >
     {{ t('complete_all_required_fields_to_proceed_with_identity_verification') }}
@@ -100,6 +100,9 @@ export default {
     }
   },
   computed: {
+    isRequiredFieldEmpty () {
+      return this.emptyValueRequiredStep && this.emptyValueRequiredStep[0] !== this.field
+    },
     countryCode () {
       const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
       const browserTz = browserTimeZone.split('/')[1]
@@ -131,17 +134,19 @@ export default {
     }
   },
   async mounted () {
-    this.isLoading = true
+    if (!this.isRequiredFieldEmpty) {
+      this.isLoading = true
 
-    if (new URLSearchParams(window.location.search).get('submit') === 'true') {
-      this.$emit('submit')
-    } else {
-      Promise.all([
-        import('@eid-easy/eideasy-widget'),
-        this.start()
-      ]).finally(() => {
-        this.isLoading = false
-      })
+      if (new URLSearchParams(window.location.search).get('submit') === 'true') {
+        this.$emit('submit')
+      } else {
+        Promise.all([
+          import('@eid-easy/eideasy-widget'),
+          this.start()
+        ]).finally(() => {
+          this.isLoading = false
+        })
+      }
     }
   },
   methods: {
@@ -170,7 +175,7 @@ export default {
           redirectUrl.searchParams.append('lang', this.locale)
 
           this.redirectUrl = redirectUrl.toString()
-        } else {
+        } else if (this.$refs.widgetContainer) {
           const eidEasyWidget = document.createElement('eideasy-widget')
 
           for (const key in this.widgetSettings) {
