@@ -15,13 +15,11 @@ export default class extends HTMLElement {
     })
 
     this.button.addEventListener('click', (event) => {
-      event.preventDefault()
+      if (!this.input.value && document.activeElement !== this.input) {
+        event.preventDefault()
 
-      if (this.input.value || document.activeElement === this.input) {
-        return
+        this.input.focus()
       }
-
-      this.input.focus()
     })
   }
 
