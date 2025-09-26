@@ -127,8 +127,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_csp
-    request.content_security_policy_report_only = Rails.env.production?
-
     request.content_security_policy = current_content_security_policy.tap do |policy|
       policy.default_src :self
       policy.script_src :self
@@ -140,7 +138,6 @@ class ApplicationController < ActionController::Base
       policy.frame_src :self
       policy.worker_src :self, :blob
       policy.connect_src :self
-      policy.report_uri '/csp'
 
       policy.directives['connect-src'] << 'ws:' if Rails.env.development?
     end
