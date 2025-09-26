@@ -351,6 +351,9 @@ export default {
         return acc
       }, {})
     },
+    skipTypes () {
+      return ['heading', 'datenow', 'strikethrough']
+    },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
         return this.fieldTypes.reduce((acc, type) => {
@@ -359,7 +362,7 @@ export default {
           return acc
         }, {})
       } else {
-        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading' && key !== 'datenow'))
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => !this.skipTypes.includes(key)))
       }
     },
     submitterFields () {

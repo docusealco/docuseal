@@ -6,7 +6,7 @@ module Submitters
     RequiredFieldError = Class.new(StandardError)
 
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
-    NONEDITABLE_FIELD_TYPES = %w[stamp heading].freeze
+    NONEDITABLE_FIELD_TYPES = %w[stamp heading strikethrough].freeze
 
     STRFTIME_MAP = {
       'hour' => '%-k',

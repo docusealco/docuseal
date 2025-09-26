@@ -1,4 +1,6 @@
 const en = {
+  strikeout: 'Strikeout',
+  draw_strikethrough_the_document: 'Draw strikethrough the document',
   quantity: 'Quantity',
   prefillable: 'Prefillable',
   signature_id: 'Signature ID',
@@ -177,6 +179,8 @@ const en = {
 }
 
 const es = {
+  strikeout: 'Tachar',
+  draw_strikethrough_the_document: 'Dibujar una línea de tachado en el documento',
   quantity: 'Cantidad',
   prefillable: 'Rellenable',
   signature_id: 'ID de Firma',
@@ -355,6 +359,8 @@ const es = {
 }
 
 const it = {
+  strikeout: 'Barrato',
+  draw_strikethrough_the_document: 'Disegna una linea barrata sul documento',
   quantity: 'Quantità',
   prefillable: 'Precompilabile',
   signature_id: 'ID firma',
@@ -533,6 +539,8 @@ const it = {
 }
 
 const pt = {
+  strikeout: 'Tachado',
+  draw_strikethrough_the_document: 'Desenhe uma linha de tachado no documento',
   quantity: 'Quantidade',
   prefillable: 'Pré-preenchível',
   signature_id: 'ID da Assinatura',
@@ -711,6 +719,8 @@ const pt = {
 }
 
 const fr = {
+  strikeout: 'Barrer',
+  draw_strikethrough_the_document: 'Tracer une ligne de suppression sur le document',
   quantity: 'Quantité',
   prefillable: 'Pré-remplissable',
   signature_id: 'ID de signature',
@@ -889,6 +899,8 @@ const fr = {
 }
 
 const de = {
+  strikeout: 'Streichung',
+  draw_strikethrough_the_document: 'Ziehe eine Streichung auf das Dokument',
   quantity: 'Menge',
   prefillable: 'Vorausfüllbar',
   signature_id: 'Signatur-ID',

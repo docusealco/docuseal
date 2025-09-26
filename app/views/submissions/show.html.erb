@@ -123,7 +123,7 @@
                       </span>
                     </span>
                   <% else %>
-                    <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id:, with_submitter_timezone:, with_signature_id_reason: %>
+                    <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id:, with_submitter_timezone:, with_signature_id_reason: %>
                   <% end %>
                 <% end %>
               </div>
@@ -240,7 +240,7 @@
             <% submitter_field_counters[field['type']] += 1 %>
             <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
             <% next if value.blank? %>
-            <% next if field['type'] == 'heading' %>
+            <% next if field['type'] == 'heading' || field['type'] == 'strikethrough' %>
             <div class="pt-2.5 border-b border-base-300">
               <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                 <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>

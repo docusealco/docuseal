@@ -177,10 +177,13 @@ export default {
     }
   },
   computed: {
+    excludeTypes () {
+      return ['heading', 'strikethrough']
+    },
     fields () {
       if (this.item.submitter_uuid) {
         return this.template.fields.reduce((acc, f) => {
-          if (f !== this.item && (!f.conditions?.length || !f.conditions.find((c) => c.field_uuid === this.item.uuid))) {
+          if (f !== this.item && !this.excludeTypes.includes(f.type) && (!f.conditions?.length || !f.conditions.find((c) => c.field_uuid === this.item.uuid))) {
             acc.push(f)
           }
 

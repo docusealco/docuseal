@@ -24,6 +24,8 @@
         :ref="setAreaRefs"
         :area="item.area"
         :input-mode="inputMode"
+        :page-width="width"
+        :page-height="height"
         :field="item.field"
         :editable="editable"
         :with-field-placeholder="withFieldPlaceholder"
@@ -40,6 +42,8 @@
       <FieldArea
         v-if="newArea"
         :is-draw="true"
+        :page-width="width"
+        :page-height="height"
         :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || dragFieldPlaceholder?.type || defaultFieldType }"
         :area="newArea"
       />
