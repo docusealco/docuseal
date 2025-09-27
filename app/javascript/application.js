@@ -23,6 +23,7 @@ import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
+import ToggleSubmit from './elements/toggle_submit'
 import ToggleOnSubmit from './elements/toggle_on_submit'
 import CheckOnClick from './elements/check_on_click'
 import PasswordInput from './elements/password_input'
@@ -109,6 +110,7 @@ safeRegisterElement('submit-form', SubmitForm)
 safeRegisterElement('prompt-password', PromptPassword)
 safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
+safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
 safeRegisterElement('password-input', PasswordInput)
 safeRegisterElement('search-input', SearchInput)
