@@ -593,6 +593,7 @@ en: &en
   four_days: 4 days
   eight_days: 8 days
   fifteen_days: 15 days
+  twenty_one_days: 21 days
   thirty_days: 30 days
   free: Free
   unlimited_documents_storage: Unlimited documents storage
@@ -1507,6 +1508,7 @@ es: &es
   four_days: 4 días
   eight_days: 8 días
   fifteen_days: 15 días
+  twenty_one_days: 21 días
   thirty_days: 30 días
   free: Gratis
   unlimited_documents_storage: Almacenamiento ilimitado de documentos
@@ -2419,6 +2421,7 @@ it: &it
   four_days: 4 giorni
   eight_days: 8 giorni
   fifteen_days: 15 giorni
+  twenty_one_days: 21 giorni
   thirty_days: 30 giorni
   free: Gratuito
   unlimited_documents_storage: Archiviazione illimitata di documenti
@@ -3336,6 +3339,7 @@ fr: &fr
   four_days: 4 jours
   eight_days: 8 jours
   fifteen_days: 15 jours
+  twenty_one_days: 21 jours
   thirty_days: 30 jours
   free: Gratuit
   unlimited_documents_storage: Stockage illimité de documents
@@ -4252,6 +4256,7 @@ pt: &pt
   four_days: 4 dias
   eight_days: 8 dias
   fifteen_days: 15 dias
+  twenty_one_days: 21 dias
   thirty_days: 30 dias
   free: Gratuito
   unlimited_documents_storage: Armazenamento ilimitado de documentos
@@ -5167,6 +5172,7 @@ de: &de
   four_days: 4 Tage
   eight_days: 8 Tage
   fifteen_days: 15 Tage
+  twenty_one_days: 21 Tage
   thirty_days: 30 Tage
   free: Kostenlos
   unlimited_documents_storage: Unbegrenzter Dokumentenspeicher
