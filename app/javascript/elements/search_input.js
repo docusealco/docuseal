@@ -13,6 +13,14 @@ export default class extends HTMLElement {
         this.input.classList.remove('w-60')
       }
     })
+
+    this.button.addEventListener('click', (event) => {
+      if (!this.input.value && document.activeElement !== this.input) {
+        event.preventDefault()
+
+        this.input.focus()
+      }
+    })
   }
 
   get input () {
@@ -21,5 +29,9 @@ export default class extends HTMLElement {
 
   get title () {
     return document.querySelector(this.dataset.title)
+  }
+
+  get button () {
+    return this.querySelector('button')
   }
 }

@@ -402,7 +402,10 @@
           :style="{ backgroundColor }"
         >
           <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
-            <p>
+            <p v-if="(drawField?.type || drawFieldType) === 'strikethrough'">
+              {{ t('draw_strikethrough_the_document') }}
+            </p>
+            <p v-else>
               {{ t('draw_field_on_the_document') }}
             </p>
             <div>
@@ -413,7 +416,7 @@
                 {{ t('cancel') }}
               </button>
               <a
-                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading'].includes(drawField?.type || drawFieldType)"
+                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading', 'strikethrough'].includes(drawField?.type || drawFieldType)"
                 href="#"
                 class="link block mt-3 text-sm"
                 @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
@@ -1084,6 +1087,11 @@ export default {
         }
       }
 
+      if (field.type === 'strikethrough') {
+        field.readonly = true
+        field.default_value = true
+      }
+
       if (type === 'signature' && [true, false].includes(this.withSignatureId)) {
         field.preferences ||= {}
         field.preferences.with_signature_id = this.withSignatureId
@@ -1357,6 +1365,9 @@ export default {
       } else if (type === 'initials') {
         area.w = pageMask.clientWidth / 10 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
+      } else if (type === 'strikethrough') {
+        area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
+        area.h = (pageMask.clientWidth / 70 / pageMask.clientWidth)
       } else {
         area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 35 / pageMask.clientWidth)
@@ -1500,8 +1511,12 @@ export default {
           field.default_value = '{{date}}'
         }
 
-        if (['stamp', 'heading'].includes(field.type)) {
+        if (['stamp', 'heading', 'strikethrough'].includes(field.type)) {
           field.readonly = true
+
+          if (field.type === 'strikethrough') {
+            field.default_value = true
+          }
         }
 
         if (field.type === 'date') {
@@ -1588,6 +1603,11 @@ export default {
           baseArea = {
             w: area.maskW / 10 / area.maskW,
             h: area.maskW / 35 / area.maskW
+          }
+        } else if (fieldType === 'strikethrough') {
+          baseArea = {
+            w: area.maskW / 5 / area.maskW,
+            h: area.maskW / 70 / area.maskW
           }
         } else {
           baseArea = {

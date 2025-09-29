@@ -56,7 +56,7 @@ function mouseoverListener (event) {
 
   const requestOptions = {
     credentials: 'same-origin',
-    headers: { Accept: 'text/html, application/xhtml+xml', 'VND.PREFETCH': 'true' },
+    headers: { Accept: 'text/html, application/xhtml+xml', 'VND.PREFETCH': 'true', 'X-Turbo': 'true' },
     method: 'GET',
     redirect: 'follow'
   }

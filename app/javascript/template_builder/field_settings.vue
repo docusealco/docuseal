@@ -380,7 +380,7 @@
     </label>
   </li>
   <li
-    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
+    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification' && field.type !== 'strikethrough' && field.type !== 'heading'"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -470,7 +470,7 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="['text', 'number', 'date', 'select'].includes(field.type)">
+  <li v-if="['text', 'number', 'date', 'select', 'heading'].includes(field.type)">
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
@@ -484,7 +484,7 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp'"
+    v-if="field.type != 'stamp' && field.type != 'heading' && field.type != 'strikethrough'"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -499,7 +499,7 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp'"
+    v-if="field.type != 'stamp' && field.type != 'heading'"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"

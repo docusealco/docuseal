@@ -27,6 +27,7 @@ en: &en
   enabled: Enabled
   disabled: Disabled
   party: Party
+  use_direct_file_attachment_links_in_the_documents: Use direct file attachment links in the documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
   expirable_file_download_links: Expirable file download links
@@ -592,6 +593,8 @@ en: &en
   four_days: 4 days
   eight_days: 8 days
   fifteen_days: 15 days
+  twenty_one_days: 21 days
+  thirty_days: 30 days
   free: Free
   unlimited_documents_storage: Unlimited documents storage
   users_management: Users management
@@ -932,6 +935,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  use_direct_file_attachment_links_in_the_documents: Usar enlaces directos de archivos adjuntos en los documentos
   enabled: Habilitado
   disabled: Deshabilitado
   expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
@@ -1504,6 +1508,8 @@ es: &es
   four_days: 4 días
   eight_days: 8 días
   fifteen_days: 15 días
+  twenty_one_days: 21 días
+  thirty_days: 30 días
   free: Gratis
   unlimited_documents_storage: Almacenamiento ilimitado de documentos
   users_management: Gestión de usuarios
@@ -1843,6 +1849,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  use_direct_file_attachment_links_in_the_documents: Usa i link diretti per gli allegati nei documenti
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clicca qui</label> per inviare una email per reimpostare la password.'
   enabled: Abilitato
   disabled: Disabilitato
@@ -2414,6 +2421,8 @@ it: &it
   four_days: 4 giorni
   eight_days: 8 giorni
   fifteen_days: 15 giorni
+  twenty_one_days: 21 giorni
+  thirty_days: 30 giorni
   free: Gratuito
   unlimited_documents_storage: Archiviazione illimitata di documenti
   users_management: Gestione utenti
@@ -2755,6 +2764,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  use_direct_file_attachment_links_in_the_documents: Utiliser des liens directs pour les pièces jointes dans les documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Cliquez ici</label> pour envoyer un e-mail de réinitialisation du mot de passe.'
   enabled: Activé
   disabled: Désactivé
@@ -3329,6 +3339,8 @@ fr: &fr
   four_days: 4 jours
   eight_days: 8 jours
   fifteen_days: 15 jours
+  twenty_one_days: 21 jours
+  thirty_days: 30 jours
   free: Gratuit
   unlimited_documents_storage: Stockage illimité de documents
   users_management: Gestion des utilisateurs
@@ -3670,6 +3682,7 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  use_direct_file_attachment_links_in_the_documents: Usar links diretos de anexos de arquivos nos documentos
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clique aqui</label> para enviar um e-mail de redefinição de senha.'
   enabled: Ativado
   disabled: Desativado
@@ -4243,6 +4256,8 @@ pt: &pt
   four_days: 4 dias
   eight_days: 8 dias
   fifteen_days: 15 dias
+  twenty_one_days: 21 dias
+  thirty_days: 30 dias
   free: Gratuito
   unlimited_documents_storage: Armazenamento ilimitado de documentos
   users_management: Gerenciamento de usuários
@@ -4583,6 +4598,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  use_direct_file_attachment_links_in_the_documents: Verwenden Sie direkte Dateianhang-Links in den Dokumenten
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
   enabled: Aktiviert
   disabled: Deaktiviert
@@ -5156,6 +5172,8 @@ de: &de
   four_days: 4 Tage
   eight_days: 8 Tage
   fifteen_days: 15 Tage
+  twenty_one_days: 21 Tage
+  thirty_days: 30 Tage
   free: Kostenlos
   unlimited_documents_storage: Unbegrenzter Dokumentenspeicher
   users_management: Benutzerverwaltung

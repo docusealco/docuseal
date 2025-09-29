@@ -12,14 +12,18 @@
       <%= f.text_field :name, required: true, placeholder: t('document_name'), class: 'base-input', dir: 'auto' %>
     </div>
     <div class="mt-3 mb-4 flex items-center justify-between">
-      <a href="#" onclick="[event.preventDefault(), window.folder_name.focus()]">
+      <label for="folder_name" class="cursor-pointer">
         <%= svg_icon('folder', class: 'w-6 h-6') %>
-      </a>
+      </label>
       <folder-autocomplete class="flex justify-between w-full">
-        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" onblur="window.folder_name.value = window.folder_name.value || 'Default'" autocomplete="off">
-        <a href="#" onclick="[event.preventDefault(), window.folder_name.value = '', window.folder_name.focus()]" class="shrink-0 link peer-focus:hidden mr-1.5">
-          <%= t('change_folder') %>
-        </a>
+        <set-value data-on="blur" data-value="<%= TemplateFolder::DEFAULT_NAME %>" data-empty-only="true" class="peer w-full whitespace-nowrap">
+          <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
+        </set-value>
+        <set-value data-on="click" data-value="" data-input-id="folder_name" class="peer-focus-within:hidden whitespace-nowrap">
+          <label for="folder_name" data-clear-on-focus="true" class="shrink-0 link mr-1.5 cursor-pointer">
+            <%= t('change_folder') %>
+          </label>
+        </set-value>
       </folder-autocomplete>
     </div>
     <div class="form-control">

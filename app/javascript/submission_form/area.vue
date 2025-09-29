@@ -220,6 +220,48 @@
         {{ formatNumber(modelValue, field.preferences?.format) }}
       </span>
       <span
+        v-else-if="field.type === 'strikethrough'"
+        class="w-full h-full flex items-center justify-center"
+      >
+        <svg
+          v-if="(((1000.0 / pageWidth) * pageHeight) * area.h) < 40.0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+        >
+          <line
+            x1="0"
+            y1="50%"
+            x2="100%"
+            y2="50%"
+            :stroke="field.preferences?.color || 'red'"
+            :stroke-width="strikethroughWidth"
+          />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          :style="{ overflow: 'visible', width: `calc(100% - ${strikethroughWidth})`, height: `calc(100% - ${strikethroughWidth})` }"
+        >
+          <line
+            x1="0"
+            y1="0"
+            x2="100%"
+            y2="100%"
+            :stroke="field.preferences?.color || 'red'"
+            :stroke-width="strikethroughWidth"
+          />
+          <line
+            x1="100%"
+            y1="0"
+            x2="0"
+            y2="100%"
+            :stroke="field.preferences?.color || 'red'"
+            :stroke-width="strikethroughWidth"
+          />
+        </svg>
+      </span>
+      <span
         v-else
         class="whitespace-pre-wrap"
         :class="{ 'w-full': field.preferences?.align }"
@@ -259,6 +301,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    pageWidth: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    pageHeight: {
+      type: Number,
+      required: false,
+      default: 0
     },
     isValueSet: {
       type: Boolean,
@@ -340,6 +392,13 @@ export default {
         payment: this.t('payment'),
         phone: this.t('phone'),
         verification: this.t('verify_id')
+      }
+    },
+    strikethroughWidth () {
+      if (this.isInlineSize) {
+        return '0.6cqmin'
+      } else {
+        return 'clamp(0px, 0.5vw, 6px)'
       }
     },
     isShowSignatureId () {

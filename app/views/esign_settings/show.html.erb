@@ -148,7 +148,9 @@
               <span>
                 <%= t('apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer') %>
               </span>
-              <%= f.check_box :value, { class: 'toggle', checked: account_config.value == 'multiple', onchange: 'this.form.requestSubmit()' }, 'multiple', 'single' %>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :value, { class: 'toggle', checked: account_config.value == 'multiple' }, 'multiple', 'single' %>
+              </submit-form>
             </div>
           <% end %>
         <% end %>
@@ -160,7 +162,9 @@
               <span>
                 <%= t('remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form') %>
               </span>
-              <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' } %>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false } %>
+              </submit-form>
             </div>
           <% end %>
         <% end %>
@@ -172,9 +176,9 @@
               <span>
                 <%= t('document_download_filename_format') %>
               </span>
-              <div class="mt-3">
-                <%= f.select :value, [["#{I18n.t('document_name')}.pdf", '{document.name}'], ["#{I18n.t('document_name')} - #{I18n.t(:signed)}.pdf", '{document.name} - {submission.status}'], ["#{I18n.t('document_name')} - name@domain.com.pdf", '{document.name} - {submission.submitters}'], ["#{I18n.t('document_name')} - name@domain.com - #{I18n.l(Time.current.beginning_of_year.in_time_zone(current_account.timezone), format: :short)}.pdf", '{document.name} - {submission.submitters} - {submission.completed_at}']], {}, class: 'base-select', onchange: 'this.form.requestSubmit()' %>
-              </div>
+              <submit-form data-on="change" class="block mt-3">
+                <%= f.select :value, [["#{I18n.t('document_name')}.pdf", '{document.name}'], ["#{I18n.t('document_name')} - #{I18n.t(:signed)}.pdf", '{document.name} - {submission.status}'], ["#{I18n.t('document_name')} - name@domain.com.pdf", '{document.name} - {submission.submitters}'], ["#{I18n.t('document_name')} - name@domain.com - #{I18n.l(Time.current.beginning_of_year.in_time_zone(current_account.timezone), format: :short)}.pdf", '{document.name} - {submission.submitters} - {submission.completed_at}']], {}, class: 'base-select' %>
+              </submit-form>
             </div>
           <% end %>
         <% end %>

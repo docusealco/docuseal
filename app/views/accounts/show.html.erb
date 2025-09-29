@@ -235,6 +235,22 @@
             <% end %>
           <% end %>
         <% end %>
+        <% if can?(:manage, :personalization_advanced) %>
+          <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::WITH_FILE_LINKS_KEY) %>
+          <% if can?(:manage, account_config) %>
+            <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+              <%= f.hidden_field :key %>
+              <div class="flex items-center justify-between gap-4 py-2.5">
+                <div class="flex items-center space-x-1">
+                  <span class="text-left"><%= t('use_direct_file_attachment_links_in_the_documents') %></span>
+                </div>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :value, class: 'toggle', checked: account_config.value %>
+                </submit-form>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
         <%= render 'extra_preferences' %>
         <% if !Docuseal.multitenant? && SearchEntry.table_exists? && (!Docuseal.fulltext_search? || params[:reindex] == 'true') && can?(:manage, EncryptedConfig) %>
           <div class="flex items-center justify-between gap-4 py-2.5">

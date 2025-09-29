@@ -1,4 +1,8 @@
 const en = {
+  payment_link: 'Payment link',
+  strikeout: 'Strikeout',
+  draw_strikethrough_the_document: 'Draw strikethrough the document',
+  quantity: 'Quantity',
   prefillable: 'Prefillable',
   signature_id: 'Signature ID',
   error_message: 'Error message',
@@ -176,6 +180,10 @@ const en = {
 }
 
 const es = {
+  payment_link: 'Enlace de pago',
+  strikeout: 'Tachar',
+  draw_strikethrough_the_document: 'Dibujar una línea de tachado en el documento',
+  quantity: 'Cantidad',
   prefillable: 'Rellenable',
   signature_id: 'ID de Firma',
   error_message: 'Mensaje de error',
@@ -353,6 +361,10 @@ const es = {
 }
 
 const it = {
+  payment_link: 'Link di pagamento',
+  strikeout: 'Barrato',
+  draw_strikethrough_the_document: 'Disegna una linea barrata sul documento',
+  quantity: 'Quantità',
   prefillable: 'Precompilabile',
   signature_id: 'ID firma',
   error_message: 'Messaggio di errore',
@@ -530,6 +542,10 @@ const it = {
 }
 
 const pt = {
+  payment_link: 'Link de pagamento',
+  strikeout: 'Tachado',
+  draw_strikethrough_the_document: 'Desenhe uma linha de tachado no documento',
+  quantity: 'Quantidade',
   prefillable: 'Pré-preenchível',
   signature_id: 'ID da Assinatura',
   error_message: 'Mensagem de erro',
@@ -707,6 +723,10 @@ const pt = {
 }
 
 const fr = {
+  payment_link: 'Lien de paiement',
+  strikeout: 'Barrer',
+  draw_strikethrough_the_document: 'Tracer une ligne de suppression sur le document',
+  quantity: 'Quantité',
   prefillable: 'Pré-remplissable',
   signature_id: 'ID de signature',
   error_message: 'Message d\'erreur',
@@ -884,6 +904,10 @@ const fr = {
 }
 
 const de = {
+  payment_link: 'Zahlungslink',
+  strikeout: 'Streichung',
+  draw_strikethrough_the_document: 'Ziehe eine Streichung auf das Dokument',
+  quantity: 'Menge',
   prefillable: 'Vorausfüllbar',
   signature_id: 'Signatur-ID',
   error_message: 'Fehlermeldung',

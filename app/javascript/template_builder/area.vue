@@ -10,7 +10,7 @@
     <div
       v-if="isSelected || isDraw"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
-      :class="field.type === 'heading' ? '' : borderColors[submitterIndex % borderColors.length]"
+      :class="activeBorderClasses"
     />
     <div
       v-if="field.type === 'cells' && (isSelected || isDraw)"
@@ -39,7 +39,7 @@
       @pointerdown.stop
     >
       <FieldSubmitter
-        v-if="field.type != 'heading'"
+        v-if="field.type != 'heading' && field.type != 'strikethrough'"
         v-model="field.submitter_uuid"
         class="border-r roles-dropdown"
         :compact="true"
@@ -164,16 +164,58 @@
       ref="touchValueTarget"
       class="flex h-full w-full field-area"
       dir="auto"
-      :class="[isValueInput ? 'cursor-text' : '', isValueInput || isCheckboxInput || isSelectInput ? 'bg-opacity-50' : 'bg-opacity-80', field.type === 'heading' ? 'bg-gray-50' : bgColors[submitterIndex % bgColors.length], isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center items-center']"
+      :class="[isValueInput ? 'cursor-text' : '', isValueInput || isCheckboxInput || isSelectInput ? 'bg-opacity-50' : 'bg-opacity-80', bgClasses, isDefaultValuePresent || isValueInput || (withFieldPlaceholder && field.areas) ? fontClasses : 'justify-center items-center']"
       @click="focusValueInput"
     >
       <span
         v-if="field"
         class="flex justify-center items-center space-x-1"
-        :class="{ 'w-full': isWFullType, 'h-full': !isValueInput && !isDefaultValuePresent }"
+        :class="{ 'w-full': isWFullType, 'h-full': !isValueInput && (!isDefaultValuePresent || field.type === 'strikethrough') }"
       >
         <div
-          v-if="isDefaultValuePresent || isValueInput || isSelectInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
+          v-if="field.type === 'strikethrough'"
+          class="w-full h-full flex items-center justify-center"
+        >
+          <svg
+            v-if="(((basePageWidth / pageWidth) * pageHeight) * area.h) < 41.6"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+          >
+            <line
+              x1="0"
+              y1="50%"
+              x2="100%"
+              y2="50%"
+              :stroke="field.preferences?.color || 'red'"
+              :stroke-width="strikethroughWidth"
+            />
+          </svg>
+          <svg
+            v-else
+            xmlns="http://www.w3.org/2000/svg"
+            :style="{ overflow: 'visible', width: `calc(100% - ${strikethroughWidth})`, height: `calc(100% - ${strikethroughWidth})` }"
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="100%"
+              y2="100%"
+              :stroke="field.preferences?.color || 'red'"
+              :stroke-width="strikethroughWidth"
+            />
+            <line
+              x1="100%"
+              y1="0"
+              x2="0"
+              y2="100%"
+              :stroke="field.preferences?.color || 'red'"
+              :stroke-width="strikethroughWidth"
+            />
+          </svg>
+        </div>
+        <div
+          v-else-if="isDefaultValuePresent || isValueInput || isSelectInput || (withFieldPlaceholder && field.areas && field.type !== 'checkbox')"
           :class="{ 'w-full h-full': isWFullType }"
           :style="fontStyle"
         >
@@ -397,6 +439,16 @@ export default {
       required: false,
       default: false
     },
+    pageWidth: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    pageHeight: {
+      type: Number,
+      required: false,
+      default: 0
+    },
     defaultSubmitters: {
       type: Array,
       required: false,
@@ -436,8 +488,33 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
+    bgClasses () {
+      if (this.field.type === 'heading') {
+        return 'bg-gray-50'
+      } else if (this.field.type === 'strikethrough') {
+        return 'bg-transparent'
+      } else {
+        return this.bgColors[this.submitterIndex % this.bgColors.length]
+      }
+    },
+    activeBorderClasses () {
+      if (this.field.type === 'heading') {
+        return ''
+      } else if (this.field.type === 'strikethrough') {
+        return 'border-dashed border-gray-300'
+      } else {
+        return this.borderColors[this.submitterIndex % this.borderColors.length]
+      }
+    },
     isWFullType () {
-      return ['cells', 'checkbox', 'radio', 'multiple', 'select'].includes(this.field.type)
+      return ['cells', 'checkbox', 'radio', 'multiple', 'select', 'strikethrough'].includes(this.field.type)
+    },
+    strikethroughWidth () {
+      if (this.isInlineSize) {
+        return '0.6cqmin'
+      } else {
+        return 'clamp(0px, 0.5vw, 6px)'
+      }
     },
     fontStyle () {
       let fontSize = ''
@@ -471,8 +548,11 @@ export default {
     lineHeight () {
       return 1.3
     },
+    basePageWidth () {
+      return 1040.0
+    },
     fontScale () {
-      return 1040 / 612.0
+      return this.basePageWidth / 612.0
     },
     isDefaultValuePresent () {
       return this.field?.default_value || this.field?.default_value === 0
@@ -742,8 +822,13 @@ export default {
         delete this.field.options
       }
 
-      if (['heading'].includes(this.field.type)) {
+      if (this.field.type === 'heading') {
         this.field.readonly = true
+      }
+
+      if (this.field.type === 'strikethrough') {
+        this.field.readonly = true
+        this.field.default_value = true
       }
 
       if (['select', 'multiple', 'radio'].includes(this.field.type)) {

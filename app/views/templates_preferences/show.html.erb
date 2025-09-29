@@ -46,9 +46,13 @@
         <div class="form-control">
           <% duration_options = Templates::EXPIRATION_DURATIONS.keys.map { |duration| [t(duration), duration] } + [[t('specified_date'), 'specified_date']] %>
           <%= ff.label :default_expire_at_duration, t('default_expiration'), class: 'label pt-0' %>
-          <div class="flex items-center gap-2">
-            <%= ff.select :default_expire_at_duration, duration_options, { include_blank: t('none') }, required: false, class: 'base-select flex-1', dir: 'auto', autocomplete: 'off', onchange: "this.value == 'specified_date' ? window.template_preferences_default_expire_at.classList.remove('hidden') : [window.template_preferences_default_expire_at.classList.add('hidden'), window.template_preferences_default_expire_at.value = '', this.form.requestSubmit()]" %>
-            <%= ff.datetime_field :default_expire_at, required: false, class: ['base-input flex-1', ff.object.default_expire_at.blank? && 'hidden'].compact_blank.join(' '), dir: 'auto', autocomplete: 'off', onchange: 'this.value && this.form.requestSubmit()' %>
+          <div class="flex flex-col md:flex-row md:items-center gap-2">
+            <show-on-value data-value="specified_date" data-selector-id="template_preferences_default_expire_at" class="flex w-full">
+              <%= ff.select :default_expire_at_duration, duration_options, { include_blank: t('none') }, required: false, class: 'base-select flex-1', dir: 'auto', autocomplete: 'off' %>
+            </show-on-value>
+            <submit-form data-on="change" data-submit-if-value="true" class="flex">
+              <%= ff.datetime_field :default_expire_at, required: false, class: ['base-input flex-1', ff.object.default_expire_at.blank? && 'hidden'].compact_blank.join(' '), dir: 'auto', autocomplete: 'off' %>
+            </submit-form>
           </div>
         </div>
       <% end %>
@@ -168,7 +172,9 @@
                 <span>
                   <%= 'Send signature request email' %>
                 </span>
-                <%= ff.check_box :request_email_enabled, { checked: ff.object.request_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :request_email_enabled, { checked: ff.object.request_email_enabled != false, class: 'toggle' }, 'true', 'false' %>
+                </submit-form>
               </div>
             <% end %>
             <div class="form-control pt-2">
@@ -215,19 +221,25 @@
                 <span>
                   <%= t('attach_documents_to_the_email') %>
                 </span>
-                <%= ff.check_box :documents_copy_email_attach_documents, { checked: ff.object.documents_copy_email_attach_documents != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :documents_copy_email_attach_documents, { checked: ff.object.documents_copy_email_attach_documents != false, class: 'toggle', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
               <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
                 <span>
                   <%= t('attach_audit_log_pdf_to_the_email') %>
                 </span>
-                <%= ff.check_box :documents_copy_email_attach_audit, { checked: ff.object.documents_copy_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :documents_copy_email_attach_audit, { checked: ff.object.documents_copy_email_attach_audit != false, class: 'toggle', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
               <div class="flex items-center justify-between py-2.5 px-1 mb-2">
                 <span>
                   <%= t('send_emails_automatically_on_completion') %>
                 </span>
-                <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false && configs['enabled'] != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['enabled'] == false }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false && configs['enabled'] != false, class: 'toggle', disabled: configs['enabled'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
             <% end %>
             <div class="form-control pt-2">
@@ -268,19 +280,25 @@
                 <span>
                   <%= t('attach_documents_to_the_email') %>
                 </span>
-                <%= ff.check_box :completed_notification_email_attach_documents, { checked: ff.object.completed_notification_email_attach_documents != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :completed_notification_email_attach_documents, { checked: ff.object.completed_notification_email_attach_documents != false, class: 'toggle', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
               <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
                 <span>
                   <%= t('attach_audit_log_pdf_to_the_email') %>
                 </span>
-                <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', onchange: 'this.form.requestSubmit()', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
               <div class="flex items-center justify-between py-2.5 px-1 mb-2">
                 <span>
                   <%= t('send_emails_automatically_on_completion') %>
                 </span>
-                <%= ff.check_box :completed_notification_email_enabled, { checked: ff.object.completed_notification_email_enabled != false, class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+                <submit-form data-on="change" class="flex">
+                  <%= ff.check_box :completed_notification_email_enabled, { checked: ff.object.completed_notification_email_enabled != false, class: 'toggle', disabled: configs['enabled'] == false }, 'true', 'false' %>
+                </submit-form>
               </div>
             <% end %>
             <div class="form-control pt-2">
@@ -325,7 +343,9 @@
             </div>
             <div class="flex items-center justify-between gap-1 pt-3">
               <span><%= t('enable_shared_link') %></span>
-              <%= f.check_box :shared_link, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', 'false' %>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :shared_link, { class: 'toggle' }, 'true', 'false' %>
+              </submit-form>
             </div>
           <% end %>
         </div>
@@ -339,7 +359,9 @@
             <span>
               <%= t('share_template_with_test_mode') %>
             </span>
-            <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
+             <submit-form data-on="change" class="flex">
+               <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts) %>
+             </submit-form>
           </div>
         <% end %>
         <div class="mb-4">

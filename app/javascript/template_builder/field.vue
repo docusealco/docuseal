@@ -14,7 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
-            :editable="editable && !defaultField && field.type != 'heading'"
+            :editable="editable && !defaultField"
             :button-width="20"
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
@@ -97,7 +97,7 @@
             @click-formula="isShowFormulaModal = true"
           />
           <span
-            v-else-if="field.type !== 'heading'"
+            v-else
             class="dropdown dropdown-end field-settings-dropdown"
             @mouseenter="renderDropdown = true"
             @touchstart="renderDropdown = true"
@@ -421,7 +421,7 @@ export default {
       } else {
         const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
 
-        if (field.type === 'heading') {
+        if (field.type === 'heading' || field.type === 'strikethrough') {
           return `${this.fieldNames[field.type]} ${typeIndex + 1}`
         } else {
           return `${this.fieldLabels[field.type]} ${typeIndex + 1}`
@@ -485,8 +485,13 @@ export default {
         this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
-      if (['heading'].includes(this.field.type)) {
+      if (this.field.type === 'heading') {
         this.field.readonly = true
+      }
+
+      if (this.field.type === 'strikethrough') {
+        this.field.readonly = true
+        this.field.default_value = true
       }
 
       (this.field.areas || []).forEach((area) => {

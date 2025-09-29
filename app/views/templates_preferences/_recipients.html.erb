@@ -73,7 +73,9 @@
           <%= t('enforce_recipients_order') %>
         </span>
         <%= f.fields_for :preferences, Struct.new(:submitters_order).new(template.preferences['submitters_order']) do |ff| %>
-          <%= ff.check_box :submitters_order, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'preserved', '' %>
+          <submit-form data-on="change" class="flex">
+            <%= ff.check_box :submitters_order, { class: 'toggle' }, 'preserved', '' %>
+          </submit-form>
         <% end %>
       </div>
     <% end %>
@@ -85,7 +87,9 @@
           <%= t('ensure_unique_recipients') %>
         </span>
         <%= f.fields_for :preferences, Struct.new(:validate_unique_submitters).new(template.preferences['validate_unique_submitters']) do |ff| %>
-          <%= ff.check_box :validate_unique_submitters, { class: 'toggle', onchange: 'this.form.requestSubmit()' }, 'true', '' %>
+          <submit-form data-on="change" class="flex">
+            <%= ff.check_box :validate_unique_submitters, { class: 'toggle' }, 'true', '' %>
+          </submit-form>
         <% end %>
       </div>
     <% end %>

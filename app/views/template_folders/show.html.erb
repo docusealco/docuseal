@@ -34,7 +34,9 @@
         <%= render 'shared/search_input' %>
       <% end %>
       <% if can?(:create, ::Template) %>
-        <%= render 'templates/upload_button', folder_name: @template_folder.full_name %>
+        <span class="hidden sm:block">
+          <%= render 'templates/upload_button', folder_name: @template_folder.full_name %>
+        </span>
         <%= link_to new_template_path(folder_name: @template_folder.full_name), class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span class="hidden md:block"><%= t('create') %></span>

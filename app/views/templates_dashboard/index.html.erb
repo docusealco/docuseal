@@ -63,7 +63,7 @@
           <div class="hidden md:block">
             <app-tour id="app_tour" data-show-tour="<%= params[:tour] == 'true' || user_config.value %>" data-type="dashboard" data-next-page-path="<%= @templates.first && can?(:edit, @templates.first) ? edit_template_path(@templates.first, params.permit(:tour)) : settings_account_path %>" data-i18n="<%= t('app_tour').to_json %>"></app-tour>
             <% if user_config.new_record? && !params.key?(:tour) %>
-              <div class="h-36 rounded-2xl pt-3 px-7 w-full border border-dashed border-base-300">
+              <div id="app_tour_manager" class="h-36 rounded-2xl pt-3 px-7 w-full border border-dashed border-base-300">
                 <div class="text-xl text-center font-semibold text-base-content">
                   <%= t('welcome_to_docuseal') %>
                 </div>
@@ -71,8 +71,12 @@
                   <%= t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') %>
                 </div>
                 <div class="flex gap-2 mt-3 w-full">
-                  <%= button_to button_title(title: t('skip'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: false } }, class: 'btn btn-sm btn-outline w-full', form_class: 'flex-1', method: :post, form: { onsubmit: 'window.app_tour.parentNode.remove()' } %>
-                  <%= button_to t('start_tour'), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: true } }, class: 'btn btn-sm btn-warning  w-full', form_class: 'flex-1', method: :post, form: { onsubmit: 'window.app_tour.start()' } %>
+                  <remove-on-event data-on="submit" data-selector-id="app_tour_manager" class="block w-full">
+                    <%= button_to button_title(title: t('skip'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: false } }, class: 'btn btn-sm btn-outline w-full', form_class: 'flex-1', method: :post %>
+                  </remove-on-event>
+                  <app-tour-start class="block w-full">
+                    <%= button_to t('start_tour'), user_configs_path, params: { user_config: { key: UserConfig::SHOW_APP_TOUR, value: true } }, class: 'btn btn-sm btn-warning w-full', form_class: 'flex-1', method: :post %>
+                  </app-tour-start>
                 </div>
               </div>
             <% end %>

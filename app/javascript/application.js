@@ -23,6 +23,7 @@ import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
+import ToggleSubmit from './elements/toggle_submit'
 import ToggleOnSubmit from './elements/toggle_on_submit'
 import CheckOnClick from './elements/check_on_click'
 import PasswordInput from './elements/password_input'
@@ -34,11 +35,20 @@ import MaskedInput from './elements/masked_input'
 import SetDateButton from './elements/set_date_button'
 import IndeterminateCheckbox from './elements/indeterminate_checkbox'
 import AppTour from './elements/app_tour'
+import AppTourStart from './elements/app_tour_start'
 import DashboardDropzone from './elements/dashboard_dropzone'
 import RequiredCheckboxGroup from './elements/required_checkbox_group'
 import PageContainer from './elements/page_container'
 import EmailEditor from './elements/email_editor'
 import MountOnClick from './elements/mount_on_click'
+import RemoveOnEvent from './elements/remove_on_event'
+import ScrollTo from './elements/scroll_to'
+import SetValue from './elements/set_value'
+import ReviewForm from './elements/review_form'
+import ShowOnValue from './elements/show_on_value'
+import CustomValidation from './elements/custom_validation'
+import ToggleClasses from './elements/toggle_classes'
+import AutosizeField from './elements/autosize_field'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -55,6 +65,9 @@ document.addEventListener('keyup', (e) => {
 })
 
 document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
+document.addEventListener('turbo:before-fetch-request', (event) => {
+  event.detail.fetchOptions.headers['X-Turbo'] = 'true'
+})
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
 
@@ -97,6 +110,7 @@ safeRegisterElement('submit-form', SubmitForm)
 safeRegisterElement('prompt-password', PromptPassword)
 safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
+safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
 safeRegisterElement('password-input', PasswordInput)
 safeRegisterElement('search-input', SearchInput)
@@ -107,12 +121,21 @@ safeRegisterElement('masked-input', MaskedInput)
 safeRegisterElement('set-date-button', SetDateButton)
 safeRegisterElement('indeterminate-checkbox', IndeterminateCheckbox)
 safeRegisterElement('app-tour', AppTour)
+safeRegisterElement('app-tour-start', AppTourStart)
 safeRegisterElement('dashboard-dropzone', DashboardDropzone)
 safeRegisterElement('check-on-click', CheckOnClick)
 safeRegisterElement('required-checkbox-group', RequiredCheckboxGroup)
 safeRegisterElement('page-container', PageContainer)
 safeRegisterElement('email-editor', EmailEditor)
 safeRegisterElement('mount-on-click', MountOnClick)
+safeRegisterElement('remove-on-event', RemoveOnEvent)
+safeRegisterElement('scroll-to', ScrollTo)
+safeRegisterElement('set-value', SetValue)
+safeRegisterElement('review-form', ReviewForm)
+safeRegisterElement('show-on-value', ShowOnValue)
+safeRegisterElement('custom-validation', CustomValidation)
+safeRegisterElement('toggle-classes', ToggleClasses)
+safeRegisterElement('autosize-field', AutosizeField)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

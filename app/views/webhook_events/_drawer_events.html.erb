@@ -51,7 +51,9 @@
   </ol>
   <% unless webhook_event.status == 'pending' %>
     <div class="absolute right-4 top-3">
-      <%= button_to button_title(title: t('resend'), disabled_with: t('awaiting'), icon: svg_icon('rotate', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), resend_settings_webhook_event_path(webhook_url.id, webhook_event.uuid), form: { id: button_uuid = SecureRandom.uuid }, params: { button_id: button_uuid }, class: 'btn btn-neutral btn-sm text-white', method: :post, onclick: '[this.form.requestSubmit(), this.disabled = true]' %>
+      <toggle-classes data-classes="btn-disabled">
+        <%= button_to button_title(title: t('resend'), disabled_with: t('awaiting'), icon: svg_icon('rotate', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), resend_settings_webhook_event_path(webhook_url.id, webhook_event.uuid), form: { id: button_uuid = SecureRandom.uuid }, params: { button_id: button_uuid }, class: 'btn btn-neutral btn-sm text-white', method: :post %>
+      </toggle-classes>
     </div>
   <% end %>
 </div>

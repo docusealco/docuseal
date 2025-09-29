@@ -31,6 +31,9 @@ module DocuSeal
 
     config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
 
+    config.content_security_policy_nonce_generator = ->(_) { SecureRandom.base64(16) }
+    config.content_security_policy_nonce_directives = %w[script-src]
+
     config.action_view.frozen_string_literal = true
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater

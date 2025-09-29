@@ -6,13 +6,15 @@
     <div class="flex items-center" style="margin-left: 20px; flex-shrink: 0">
       <% if @template.submitters.size > 1 %>
         <form action="<%= template_form_path(@template) %>" method="get" class="mr-3">
-          <select onchange="this.form.submit()" name="uuid" class="select base-input text-center font-normal" style="width: 180px; flex-shrink: 0;">
-            <% @template.submitters.each do |submitter| %>
-              <%= tag.option(value: submitter['uuid'], selected: submitter['uuid'] == @submitter.uuid) do %>
-                <%= submitter['name'] %>
+          <submit-form data-on="change">
+            <select name="uuid" class="select base-input text-center font-normal" style="width: 180px; flex-shrink: 0;">
+              <% @template.submitters.each do |submitter| %>
+                <%= tag.option(value: submitter['uuid'], selected: submitter['uuid'] == @submitter.uuid) do %>
+                  <%= submitter['name'] %>
+                <% end %>
               <% end %>
-            <% end %>
-          </select>
+            </select>
+          </submit-form>
         </form>
       <% end %>
       <a href="<%= edit_template_path(@template) %>" class="base-button" data-turbo="false" style="flex-shrink: 0; padding: 0px 24px;">

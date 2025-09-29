@@ -19,7 +19,7 @@ button .disabled {
   display: none;
 }
 
-button[disabled] .disabled {
+button[disabled] .disabled, button.btn-disabled .disabled {
   display: initial;
 }
 
@@ -27,7 +27,7 @@ button .enabled {
   display: initial;
 }
 
-button[disabled] .enabled {
+button[disabled] .enabled, button.btn-disabled .enabled {
   display: none;
 }
 

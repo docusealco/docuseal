@@ -6,7 +6,7 @@ module Submitters
     RequiredFieldError = Class.new(StandardError)
 
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
-    NONEDITABLE_FIELD_TYPES = %w[stamp heading].freeze
+    NONEDITABLE_FIELD_TYPES = %w[stamp heading strikethrough].freeze
 
     STRFTIME_MAP = {
       'hour' => '%-k',
@@ -189,8 +189,6 @@ module Submitters
 
         next if formula.blank?
 
-        formula = normalize_formula(formula, submitter.submission)
-
         submission_values ||=
           if submitter.submission.template_submitters.size > 1
             merge_submitters_values(submitter)
@@ -198,20 +196,26 @@ module Submitters
             submitter.values
           end
 
+        formula = normalize_formula(formula, submitter.submission, submission_values:)
+
         acc[field['uuid']] = calculate_formula_value(formula, submission_values.merge(acc.compact_blank))
       end
 
       computed_values.compact_blank
     end
 
-    def normalize_formula(formula, submission, depth = 0)
+    def normalize_formula(formula, submission, depth: 0, submission_values: nil)
       raise ValidationError, 'Formula infinite loop' if depth > 10
 
       formula.gsub(/{{(.*?)}}/) do |match|
         uuid = Regexp.last_match(1)
 
         if (nested_formula = submission.fields_uuid_index.dig(uuid, 'preferences', 'formula').presence)
-          "(#{normalize_formula(nested_formula, submission, depth + 1)})"
+          if check_field_conditions(submission_values, submission.fields_uuid_index[uuid], submission.fields_uuid_index)
+            "(#{normalize_formula(nested_formula, submission, depth: depth + 1, submission_values:)})"
+          else
+            '0'
+          end
         else
           match
         end

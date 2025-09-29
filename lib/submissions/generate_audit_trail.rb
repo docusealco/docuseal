@@ -329,7 +329,7 @@ module Submissions
           submitter_field_counters[field['type']] += 1
 
           next if field['submitter_uuid'] != submitter.uuid
-          next if field['type'] == 'heading'
+          next if field['type'] == 'heading' || field['type'] == 'strikethrough'
           next if !with_audit_values && !field['type'].in?(%w[signature initials])
           next if skip_grouped_field_uuids[field['uuid']]
 

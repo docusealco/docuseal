@@ -11,10 +11,12 @@
       <% if can_send_emails %>
         <%= render 'submissions/email_stats' %>
         <%= content_for(:edit_button) || capture do %>
-          <label>
-            <%= f.check_box :is_custom_message, onchange: "[this.form.querySelector('#message_field').classList.toggle('hidden', !event.currentTarget.checked)]", checked: false, class: 'hidden peer' %>
-            <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
-          </label>
+          <toggle-visible data-element-ids="<%= %w[message_field].to_json %>" class="flex">
+            <label>
+              <%= f.check_box :is_custom_message, checked: false, class: 'hidden peer', data: { action: 'change:toggle-visible#trigger', type: 'checkbox' } %>
+              <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
+            </label>
+          </toggle-visible>
         <% end %>
       <% end %>
     </div>

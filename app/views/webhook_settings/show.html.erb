@@ -66,7 +66,9 @@
                     <%= f.fields_for :events do |ff| %>
                       <div class="flex">
                         <label class="flex items-center cursor-pointer">
-                          <%= ff.check_box event, class: 'base-checkbox', checked: @webhook_url.events.include?(event), onchange: 'this.form.requestSubmit()' %>
+                          <submit-form data-on="change" class="flex">
+                            <%= ff.check_box event, class: 'base-checkbox', checked: @webhook_url.events.include?(event) %>
+                          </submit-form>
                           <span class="ml-2"><%= event %></span>
                         </label>
                       </div>
