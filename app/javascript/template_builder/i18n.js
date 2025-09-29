@@ -1,4 +1,5 @@
 const en = {
+  payment_link: 'Payment link',
   strikeout: 'Strikeout',
   draw_strikethrough_the_document: 'Draw strikethrough the document',
   quantity: 'Quantity',
@@ -179,6 +180,7 @@ const en = {
 }
 
 const es = {
+  payment_link: 'Enlace de pago',
   strikeout: 'Tachar',
   draw_strikethrough_the_document: 'Dibujar una línea de tachado en el documento',
   quantity: 'Cantidad',
@@ -359,6 +361,7 @@ const es = {
 }
 
 const it = {
+  payment_link: 'Link di pagamento',
   strikeout: 'Barrato',
   draw_strikethrough_the_document: 'Disegna una linea barrata sul documento',
   quantity: 'Quantità',
@@ -539,6 +542,7 @@ const it = {
 }
 
 const pt = {
+  payment_link: 'Link de pagamento',
   strikeout: 'Tachado',
   draw_strikethrough_the_document: 'Desenhe uma linha de tachado no documento',
   quantity: 'Quantidade',
@@ -719,6 +723,7 @@ const pt = {
 }
 
 const fr = {
+  payment_link: 'Lien de paiement',
   strikeout: 'Barrer',
   draw_strikethrough_the_document: 'Tracer une ligne de suppression sur le document',
   quantity: 'Quantité',
@@ -899,6 +904,7 @@ const fr = {
 }
 
 const de = {
+  payment_link: 'Zahlungslink',
   strikeout: 'Streichung',
   draw_strikethrough_the_document: 'Ziehe eine Streichung auf das Dokument',
   quantity: 'Menge',

@@ -133,7 +133,7 @@ export default {
       return this.queryParams.get('stripe_session_id')
     },
     defaultName () {
-      if (this.field.preferences?.price_id) {
+      if (this.field.preferences?.price_id || this.field.preferences?.payment_link_id) {
         return ''
       }
 
