@@ -97,6 +97,7 @@
             @click-formula="isShowFormulaModal = true"
           />
           <span
+            v-else
             class="dropdown dropdown-end field-settings-dropdown"
             @mouseenter="renderDropdown = true"
             @touchstart="renderDropdown = true"
