@@ -12,18 +12,12 @@
 #  uuid                :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  account_group_id    :bigint
 #  external_account_id :integer
 #
 # Indexes
 #
-#  index_accounts_on_account_group_id     (account_group_id)
 #  index_accounts_on_external_account_id  (external_account_id) UNIQUE
 #  index_accounts_on_uuid                 (uuid) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (account_group_id => account_groups.id)
 #
 require 'rails_helper'
 
@@ -43,16 +37,16 @@ RSpec.describe Account do
 
   describe '.find_or_create_by_external_id' do
     let(:external_id) { 123 }
-    let(:attributes) { { name: 'Test Account' } }
+    let(:name) { 'Test Account' }
 
     it 'finds existing account by external_account_id' do
       existing_account = create(:account, external_account_id: external_id)
-      result = described_class.find_or_create_by_external_id(external_id, attributes)
+      result = described_class.find_or_create_by_external_id(external_id, name)
       expect(result).to eq(existing_account)
     end
 
     it 'creates new account when none exists' do
-      result = described_class.find_or_create_by_external_id(external_id, attributes)
+      result = described_class.find_or_create_by_external_id(external_id, name)
       expect(result.external_account_id).to eq(external_id)
       expect(result.name).to eq('Test Account')
     end
@@ -66,17 +60,6 @@ RSpec.describe Account do
       allow(account).to receive(:linked_account_account).and_return(linked_account_account)
 
       expect(account.testing?).to be true
-    end
-  end
-
-  describe 'account_group association' do
-    it 'belongs to account_group optionally' do
-      account = create(:account)
-      expect(account.account_group).to be_nil
-
-      account_group = create(:account_group)
-      account.update!(account_group: account_group)
-      expect(account.reload.account_group).to eq(account_group)
     end
   end
 
