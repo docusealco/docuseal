@@ -6,7 +6,9 @@ class RenameAccountGroupsToPartnerships < ActiveRecord::Migration[8.0]
     # Rename the foreign key columns in other tables
     rename_column :templates, :account_group_id, :partnership_id
     rename_column :template_folders, :account_group_id, :partnership_id
-    rename_column :export_locations, :global_account_group_id, :global_partnership_id
+
+    # Add global_partnership_id to export_locations
+    add_column :export_locations, :global_partnership_id, :integer
 
     # Remove partnership relationships since both users and accounts use API context now
     remove_column :users, :account_group_id, :bigint
