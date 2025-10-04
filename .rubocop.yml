@@ -42,6 +42,12 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 15
 
+Style/MultipleComparison:
+  Enabled: false
+
+Naming/PredicateMethod:
+  Enabled: false
+
 Layout/LineLength:
   AllowedPatterns: ['\A\s*#']
 

@@ -311,8 +311,8 @@ module Submissions
                 timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
 
                 if with_signature_id_reason
-                  "#{reason_value ? "#{I18n.t('reason')}: " : ''}#{reason_value || I18n.t('digitally_signed_by')} " \
-                    "#{submitter.name}#{submitter.email.present? ? " <#{submitter.email}>" : ''}\n" \
+                  "#{"#{I18n.t('reason')}: " if reason_value}#{reason_value || I18n.t('digitally_signed_by')} " \
+                    "#{submitter.name}#{" <#{submitter.email}>" if submitter.email.present?}\n" \
                     "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: :long)} " \
                     "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
                 else
@@ -833,7 +833,7 @@ module Submissions
     def find_last_submitter(submission, submitter: nil)
       submission.submitters
                 .select(&:completed_at?)
-                .select { |e| submitter.nil? ? true : e.id != submitter.id && e.completed_at <= submitter.completed_at }
+                .select { |e| submitter.nil? || (e.id != submitter.id && e.completed_at <= submitter.completed_at) }
                 .max_by(&:completed_at)
     end
 

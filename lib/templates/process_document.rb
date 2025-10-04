@@ -99,7 +99,7 @@ module Templates
 
       max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? max_pages : 1
 
-      generate_document_preview_images(attachment, data, (0..[number_of_pages - 1, max_pages_to_process].min))
+      generate_document_preview_images(attachment, data, 0..[number_of_pages - 1, max_pages_to_process].min)
     end
 
     def generate_document_preview_images(attachment, data, range, concurrency: CONCURRENCY)

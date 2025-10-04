@@ -78,7 +78,7 @@ module Docuseal
 
     @fulltext_search =
       if SearchEntry.table_exists?
-        Docuseal.multitenant? ? true : AccountConfig.exists?(key: :fulltext_search, value: true)
+        Docuseal.multitenant? || AccountConfig.exists?(key: :fulltext_search, value: true)
       else
         false
       end
