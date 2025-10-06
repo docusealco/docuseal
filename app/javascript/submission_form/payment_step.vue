@@ -62,7 +62,7 @@
           width="22"
         />
         <span>
-          {{ t('pay_with_strip') }}
+          {{ t('pay_with_stripe') }}
         </span>
       </button>
     </div>
