@@ -5991,7 +5991,7 @@ nl: &nl
   provide_your_phone_in_international_format: Vul uw telefoonnummer in internationaal formaat in
   start: Start
   enforce_recipients_order: Volgorde van ontvangers afdwingen
-  starting: Starten...
+  starting: Starten
   invited_by_html: Uitgenodigd door <span class="font-semibold">%{name}</span>
   you_have_been_invited_to_submit_a_form: U bent uitgenodigd om een formulier in te dienen
   signed_on_time: Ondertekend op %{time}
@@ -5999,12 +5999,12 @@ nl: &nl
   document_has_been_signed_already: Document is al ondertekend
   form_has_been_submitted_already: Formulier is al ingediend
   send_copy_to_email: Kopie naar e-mail verzenden
-  sending: Verzenden...
+  sending: Verzenden
   resubmit: Opnieuw indienen
   form_has_been_deleted_by_html: Formulier is verwijderd door <span class="font-semibold">%{name}</span>.
   or: of
   download_documents: Documenten downloaden
-  downloading: Downloaden...
+  downloading: Downloaden
   download: Downloaden
   decline: Weigeren
   declined: Geweigerd
@@ -6039,7 +6039,7 @@ nl: &nl
   language: Taal
   app_url: App-URL
   update: Bijwerken
-  updating: Bijwerken...
+  updating: Bijwerken
   force_2fa_with_authenticator_app: 2FA afdwingen met authenticator-app
   add_signature_id_to_the_documents: Handtekening-ID toevoegen aan de documenten
   require_signing_reason: Reden voor ondertekening verplicht stellen
@@ -6075,16 +6075,16 @@ nl: &nl
   minimum_password_length_characters_minimum: Minimaal %{minimum_password_length} tekens
   confirm_new_password: Nieuw wachtwoord bevestigen
   change_my_password: Mijn wachtwoord wijzigen
-  changing_password: Wachtwoord wijzigen...
+  changing_password: Wachtwoord wijzigen
   reset_password: Wachtwoord resetten
-  resetting_password: Wachtwoord resetten...
+  resetting_password: Wachtwoord resetten
   sign_in_with_name_account: Inloggen met %{name}-account
   two_factor_code_from_authenticator_app: Twee-factorcode van authenticator-app
   sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Meld u aan in de DocuSeal Console om te upgraden. De on-premises app is volledig zelfstandig; de Console wordt alleen gebruikt om uw licentie te beheren.
   send_from_email: Verzenden vanaf e-mailadres
   optional: optioneel
   save: Opslaan
-  saving: Opslaan...
+  saving: Opslaan
   changes_have_been_saved: Wijzigingen zijn opgeslagen.
   unlock_with_docuseal_pro: Ontgrendel met DocuSeal Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Gebruik uw eigen certificaten om PDF-bestanden te ondertekenen en te verifiëren.
@@ -6093,10 +6093,10 @@ nl: &nl
   file: Bestand
   use_a_valid_der_p12_or_pfx_file: Gebruik een geldig .der-, .p12- of .pfx-bestand.
   submit: Indienen
-  submitting: Indienen...
+  submitting: Indienen
   pdf_signature: PDF-handtekening
   upload_signed_pdf_file_to_validate_its_signature_: 'Upload een ondertekend PDF-bestand om de handtekening te valideren:'
-  analyzing: Analyseren...
+  analyzing: Analyseren
   verify_signed_pdf: Ondertekende PDF verifiëren
   click_to_upload_or_drag_and_drop_html: <span class="font-medium">Klik om te uploaden</span> of sleep bestanden hierheen
   click_to_upload_or_drag_and_drop_files_html: <span class="font-medium">Klik om te uploaden</span> of sleep bestanden
@@ -6106,7 +6106,7 @@ nl: &nl
   status: Status
   make_default: Als standaard instellen
   remove: Verwijderen
-  removing: Verwijderen...
+  removing: Verwijderen
   delete: Verwijderen
   default: Standaard
   are_you_sure_: Weet u het zeker?
@@ -6295,17 +6295,17 @@ nl: &nl
   home: Start
   templates_not_found: Geen sjablonen gevonden
   upload_new_document: Nieuw document uploaden
-  uploading: Uploaden...
+  uploading: Uploaden
   expired: Verlopen
   sign_now: Onderteken
   archive: Archiveren
-  archiving: Archiveren...
+  archiving: Archiveren
   restore: Herstellen
-  restoring: Herstellen...
+  restoring: Herstellen
   clone: Klonen
   edit: Bewerken
   move: Verplaatsen
-  moving: Verplaatsen...
+  moving: Verplaatsen
   preview: Voorbeeld
   upload: Uploaden
   clone_template: Sjabloon klonen
@@ -6349,7 +6349,7 @@ nl: &nl
   invite_by_name: Uitnodigen door %{name}
   same_as_name: Zelfde als %{name}
   default_email: Standaard e-mail
-  processing: Verwerken...
+  processing: Verwerken
   upload_initials: Initialen uploaden
   draw: Tekenen
   upload_signature: Handtekening uploaden
@@ -6372,7 +6372,7 @@ nl: &nl
   tenant_account: Tenantaccount
   tenant_accounts: Tenantaccounts
   impersonate: Impersoneren
-  loading: Laden...
+  loading: Laden
   documents: Documenten
   accounts: Accounts
   edit_account: Account bewerken
@@ -6462,11 +6462,11 @@ nl: &nl
   ten_filed_types: 10 veldtypen
   multiple_signers: Meerdere ondertekenaars
   automatic_esignature: Automatische e-handtekening
-  ten_signature_request_emails_per_month: 10 e-mails voor ondertekenverzoeken per maand
+  ten_signature_request_emails_per_month: 10 e-mails met verzoeken/maand
   unlimited_sign_yourself: Onbeperkt zelf ondertekenen
-  free_developer_testing_sandbox: Gratis testomgeving voor ontwikkelaars
+  free_developer_testing_sandbox: Gratis test-sandbox voor devs
   continue_with_free_basic: Doorgaan met Free Basic
-  unlimited_signature_request_emails: Onbeperkte e-mails voor ondertekenverzoeken
+  unlimited_signature_request_emails: Onbeperkte ondertekenverzoeken
   your_company_logo: Uw bedrijfslogo
   connect_own_email_address: Eigen e-mailadres koppelen
   personalize_email_content: E-mailinhoud personaliseren
@@ -6496,7 +6496,7 @@ nl: &nl
   via_phone: via telefoon
   detailed: Gedetailleerd
   upload_list: Lijst uploaden
-  creating: Aanmaken...
+  creating: Aanmaken
   open_source_documents_software: open-sourcesoftware voor documenten
   copy_link: Link kopiëren
   opened: Geopend
@@ -6551,7 +6551,7 @@ nl: &nl
   to: Aan
   created_at: Aangemaakt
   apply: Toepassen
-  applying: Toepassen...
+  applying: Toepassen
   today: Vandaag
   yesterday: Gisteren
   this_week: Deze week
