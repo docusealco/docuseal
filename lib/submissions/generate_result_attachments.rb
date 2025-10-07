@@ -847,10 +847,16 @@ module Submissions
 
     def determine_storage_service
       # Use secured storage by default unless explicitly disabled
-      return Rails.application.config.active_storage.service if Rails.env.development? && ENV['DOCUSEAL_DISABLE_SECURED_STORAGE'].present?
+      if Rails.env.development? && ENV['DOCUSEAL_DISABLE_SECURED_STORAGE'].present?
+        return Rails.application.config.active_storage.service
+      end
 
       # Use secured storage if compliance configuration is present
-      Rails.configuration.x.compliance_storage.present? ? 'aws_s3_secured' : Rails.application.config.active_storage.service
+      if Rails.configuration.x.compliance_storage.present?
+        'aws_s3_secured'
+      else
+        Rails.application.config.active_storage.service
+      end
     end
 
     def create_secured_blob(io, filename, service_name)

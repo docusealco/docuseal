@@ -10,7 +10,7 @@ if key_secret.present?
     client = Aws::SecretsManager::Client.new
     response = client.get_secret_value(secret_id: key_secret)
     ENV['SECURE_ATTACHMENT_PRIVATE_KEY'] = response.secret_string
-    Rails.logger.info("Successfully loaded CloudFront private key from Secrets Manager")
+    Rails.logger.info('Successfully loaded CloudFront private key from Secrets Manager')
   rescue StandardError => e
     Rails.logger.error("Failed to load CloudFront private key: #{e.message}")
   end

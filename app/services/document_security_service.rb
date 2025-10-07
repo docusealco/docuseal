@@ -27,8 +27,8 @@ class DocumentSecurityService
 
     def cloudfront_configured?
       cloudfront_base_url.present? &&
-      cloudfront_key_pair_id.present? &&
-      cloudfront_private_key.present?
+        cloudfront_key_pair_id.present? &&
+        cloudfront_private_key.present?
     end
 
     def cloudfront_signer
@@ -55,7 +55,7 @@ class DocumentSecurityService
     end
 
     def cloudfront_private_key
-      @cloudfront_private_key ||= ENV['SECURE_ATTACHMENT_PRIVATE_KEY']
+      @cloudfront_private_key ||= ENV.fetch('SECURE_ATTACHMENT_PRIVATE_KEY', nil)
     end
   end
 end

@@ -22,10 +22,10 @@ class CompletedDocument < ApplicationRecord
 
   has_one :completed_submitter, primary_key: :submitter_id, inverse_of: :completed_documents, dependent: :destroy
 
-  enum storage_location: {
+  enum :storage_location, {
     legacy: 'legacy',        # Fallback for development/testing
     secured: 'secured'       # Default secured storage (shared with ATS)
-  }, _suffix: true
+  }, suffix: true
 
   # Check if document uses secured storage (default for new documents)
   def uses_secured_storage?
