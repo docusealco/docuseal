@@ -6639,7 +6639,7 @@ nl: &nl
   succeeded: Geslaagd
   failed: Mislukt
   there_are_no_events: Er zijn geen gebeurtenissen
-  resend: Opnieuw verzenden
+  resend: Opnieuw
   next_attempt_in_time_in_words: Volgende poging over %{time_in_words}
   request_email_otp_verification_with_shared_link: E-mail-OTP-verificatie vereisen bij deellink
   sms_rate_limit_exceeded: SMS-snelheidslimiet overschreden
