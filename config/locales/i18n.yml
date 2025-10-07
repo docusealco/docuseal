@@ -6258,8 +6258,7 @@ nl: &nl
   re_send_sms: SMS opnieuw verzenden
   send_sms: SMS verzenden
   preserve_order: Volgorde behouden
-  ? when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away
-  : Indien aangevinkt worden meldingen naar de tweede partij verzonden zodra de voorgaande partij het formulier heeft voltooid. Schakel deze optie uit om meldingen direct tegelijk naar alle partijen te sturen.
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: Indien aangevinkt worden meldingen naar de tweede partij verzonden zodra de voorgaande partij het formulier heeft voltooid. Schakel deze optie uit om meldingen direct tegelijk naar alle partijen te sturen.
   upgrade_to_send_unlimited_signature_requests: Upgrade om onbeperkte ondertekenverzoeken te verzenden
   add_without_sending: Toevoegen zonder te verzenden
   upgade_now: Nu upgraden
@@ -6324,8 +6323,7 @@ nl: &nl
   share_template_with_test_mode: Sjabloon delen met testmodus
   share_template_with_all_tenants: Sjabloon delen met alle tenants
   use_following_placeholders_text_: 'Gebruik de volgende placeholder-teksten:'
-  ? users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button
-  : "%{users_count}/%{total_users_count} Pro-gebruikerslimiet is bereikt. Koop meer Pro-gebruikersplaatsen via de knop ''Abonnement beheren'' om extra gebruikers uit te nodigen."
+  users_count_total_users_count_pro_users_limit_was_reached_to_invite_additional_users_please_purchase_more_pro_user_seats_via_the_manage_plan_button: "%{users_count}/%{total_users_count} Pro-gebruikerslimiet is bereikt. Koop meer Pro-gebruikersplaatsen via de knop ''Abonnement beheren'' om extra gebruikers uit te nodigen."
   move_into_folder: Verplaatsen naar map
   new_folder_name: Nieuwe mapnaam
   new_subfolder_name: Nieuwe submapnaam
@@ -6590,8 +6588,7 @@ nl: &nl
   your_pro_plan_payment_is_overdue: Uw betaling voor het Pro-abonnement is achterstallig.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Klik hier</a> om uw betaalgegevens bij te werken en de factuur te voldoen om ononderbroken service te garanderen.
   overdue_payment: Achterstallige betaling
-  ? your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription
-  : Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en DocuSeal te blijven gebruiken of uw abonnement opzeggen.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en DocuSeal te blijven gebruiken of uw abonnement opzeggen.
   manage_subscription: Abonnement beheren
   submission_created_by_email_html: "<b>Inzending aangemaakt</b> door %{email}"
   submission_created_by_email_via_source_html: "<b>Inzending aangemaakt</b> door %{email} via %{source}"
@@ -6628,10 +6625,8 @@ nl: &nl
   enable_shared_link: Deellink inschakelen
   share_link_is_currently_disabled: Deellink is momenteel uitgeschakeld
   select_data_residency: Gegevensresidentie selecteren
-  ? account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution
-  : "%{account_name} heeft u uitgenodigd om documenten online moeiteloos in te vullen en te ondertekenen met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing."
-  ? review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution
-  : Bekijk of download voltooide documenten. Vul en onderteken documenten online moeiteloos met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing.
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: "%{account_name} heeft u uitgenodigd om documenten online moeiteloos in te vullen en te ondertekenen met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing."
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Bekijk of download voltooide documenten. Vul en onderteken documenten online moeiteloos met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing.
   link_form_fields: Formuliervelden koppelen
   at_least_one_field_must_be_displayed_in_the_form: Er moet minstens één veld in het formulier worden weergegeven
   this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Dit sjabloon heeft meerdere partijen, waardoor het gebruik van een gedeelde link niet mogelijk is omdat onduidelijk is welke partij verantwoordelijk is voor specifieke velden. Definieer de standaardpartijdetails om dit op te lossen.
@@ -6672,17 +6667,13 @@ nl: &nl
   use_otp_code_to_access_the_api_key_html: Gebruik de code <b>%{code}</b> om toegang te krijgen tot de API-sleutel.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Reageer op deze e-mail als u dit verzoek niet herkent.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Uw gebruikersaccount is gearchiveerd. Neem contact op met uw beheerder om de toegang tot uw account te herstellen.
-  ? your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in
-  : Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met support@docuseal.com om in te loggen.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met support@docuseal.com om in te loggen.
   efficient_search_with_search_index: Efficiënt zoeken met zoekindex
   reindex: Opnieuw indexeren
   build_search_index: Zoekindex opbouwen
-  ? require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password
-  : Tweeledige verificatie (2FA) met een authenticator-app (bijv. Google Authenticator, Authy) vereisen. Alle gebruikers die documenten ondertekenen moeten naast hun wachtwoord de tweede factor verifiëren met een beveiligde code.
-  ? add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings
-  : Voeg voor audit- en traceerbaarheidsdoeleinden een unieke handtekening-ID en tijdstempel toe aan elke handtekening. Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van DocuSeal.
-  ? require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings
-  : Vereist dat de ondertekenaar vóór het voltooien van zijn handtekening een reden opgeeft (bijv. goedkeuringen, certificeringen). Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van DocuSeal.
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Tweeledige verificatie (2FA) met een authenticator-app (bijv. Google Authenticator, Authy) vereisen. Alle gebruikers die documenten ondertekenen moeten naast hun wachtwoord de tweede factor verifiëren met een beveiligde code.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Voeg voor audit- en traceerbaarheidsdoeleinden een unieke handtekening-ID en tijdstempel toe aan elke handtekening. Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van DocuSeal.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Vereist dat de ondertekenaar vóór het voltooien van zijn handtekening een reden opgeeft (bijv. goedkeuringen, certificeringen). Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van DocuSeal.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Sta ondertekenaars toe handtekeningen te maken door hun naam te typen in plaats van te tekenen of te uploaden.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Sta ondertekenaars toe formulieren na voltooiing opnieuw in te dienen; nuttig wanneer correcties of meerdere inzendingen nodig zijn.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Sta ontvangers toe het ondertekenen van een document te weigeren. De melding met de reden van weigering wordt naar de aanvrager van de handtekening gestuurd.
@@ -6692,8 +6683,7 @@ nl: &nl
   combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Combineer ondertekende documenten en het auditlogboek in één PDF-bestand voor eenvoudiger archivering en compliance.
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: JWT-autorisatie vereisen om ingesloten formulieren te bekijken, zodat alleen geautoriseerde gebruikers ze kunnen zien.
   make_all_newly_created_templates_private_to_their_creator_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker.
-  ? make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing
-  : Zorg dat de volgorde van ondertekenen altijd wordt afgedwongen, zodat de tweede ondertekenaar pas kan beginnen nadat de eerste ondertekenaar heeft voltooid.
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Zorg dat de volgorde van ondertekenen altijd wordt afgedwongen, zodat de tweede ondertekenaar pas kan beginnen nadat de eerste ondertekenaar heeft voltooid.
   submission_sources:
     api: API
     bulk: Bulkverzending
