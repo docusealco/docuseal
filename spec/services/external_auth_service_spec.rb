@@ -51,7 +51,7 @@ RSpec.describe ExternalAuthService do
         token = described_class.new(params).authenticate_user
 
         expect(token).to be_present
-        expect(AccountGroup.last.external_account_group_id).to eq(789)
+        expect(AccountGroup.last.external_account_group_id).to eq('789')
         expect(User.last.external_user_id).to eq(123)
       end
     end

@@ -36,7 +36,7 @@ class ExternalAuthService
 
   def find_or_create_user_with_account_group
     account_group = AccountGroup.find_or_create_by_external_id(
-      @params[:account_group][:external_id],
+      @params[:account_group][:external_id]&.to_s,
       name: @params[:account_group][:name]
     )
 
