@@ -1512,22 +1512,22 @@ es: &es
   twenty_one_days: 21 días
   thirty_days: 30 días
   free: Gratis
-  unlimited_documents_storage: Almacenamiento ilimitado de documentos
+  unlimited_documents_storage: Almacenamiento ilimitado
   users_management: Gestión de usuarios
   ten_filed_types: 10 tipos de campos
   multiple_signers: Múltiples firmantes
   automatic_esignature: Firma electrónica automática
-  ten_signature_request_emails_per_month: 10 correos electrónicos de solicitud de firma por mes
+  ten_signature_request_emails_per_month: 10 solicitudes de firma/mes
   unlimited_sign_yourself: Firma ilimitada por ti mismo
-  free_developer_testing_sandbox: Sandbox de prueba para desarrolladores gratis
+  free_developer_testing_sandbox: Sandbox gratuito para desarrolladores
   continue_with_free_basic: Continuar con Free Basic
-  unlimited_signature_request_emails: Correos electrónicos de solicitud de firma ilimitados
+  unlimited_signature_request_emails: Solicitudes de firma ilimitadas
   your_company_logo: El logotipo de tu empresa
-  connect_own_email_address: Conectar tu propia dirección de correo electrónico
-  personalize_email_content: Personalizar el contenido del correo electrónico
+  connect_own_email_address: Conectar tu correo
+  personalize_email_content: Personalizar correo
   automated_reminders: Recordatorios automáticos
   bulk_send_from_spreadsheet: Envío masivo desde hoja de cálculo
-  identify_verification_via_sms: Verificación de identidad a través de SMS
+  identify_verification_via_sms: Verificación por SMS
   start_with_pro: Comenzar con Pro
   user_month: usuario / mes
   developer_sandbox: Sandbox para desarrolladores.
@@ -2432,7 +2432,7 @@ it: &it
   automatic_esignature: Firma elettronica automatica
   ten_signature_request_emails_per_month: 10 email di richiesta di firma al mese
   unlimited_sign_yourself: Firma illimitata da te stesso
-  free_developer_testing_sandbox: Sandbox di test per sviluppatori gratuito
+  free_developer_testing_sandbox: Sandbox di test gratuita
   continue_with_free_basic: Continua con il piano Free Basic
   unlimited_signature_request_emails: Email di richiesta di firma illimitate
   your_company_logo: Il logo della tua azienda
@@ -3348,16 +3348,16 @@ fr: &fr
   ten_filed_types: 10 types de champs
   multiple_signers: Signataires multiples
   automatic_esignature: Signature électronique automatique
-  ten_signature_request_emails_per_month: 10 e-mails de demande de signature par mois
+  ten_signature_request_emails_per_month: 10 e-mails de demandes par mois
   unlimited_sign_yourself: Signature illimitée par vous-même
-  free_developer_testing_sandbox: Bac à sable de test pour développeurs gratuit
+  free_developer_testing_sandbox: Bac à sable gratuit pour devs
   continue_with_free_basic: Continuer avec Free Basic
-  unlimited_signature_request_emails: E-mails de demande de signature illimités
+  unlimited_signature_request_emails: E-mails de demande illimités
   your_company_logo: Le logo de votre entreprise
-  connect_own_email_address: Connectez votre propre adresse e-mail
+  connect_own_email_address: Connectez votre e-mail
   personalize_email_content: "Personnalisez le contenu de l'e-mail"
   automated_reminders: Rappels automatiques
-  bulk_send_from_spreadsheet: Envoi en masse depuis une feuille de calcul
+  bulk_send_from_spreadsheet: Envoi groupé depuis un tableur
   identify_verification_via_sms: "Vérification de l'identité via SMS"
   start_with_pro: Commencer avec Pro
   user_month: utilisateur / mois
@@ -4260,16 +4260,16 @@ pt: &pt
   twenty_one_days: 21 dias
   thirty_days: 30 dias
   free: Gratuito
-  unlimited_documents_storage: Armazenamento ilimitado de documentos
+  unlimited_documents_storage: Armazenamento ilimitado
   users_management: Gerenciamento de usuários
   ten_filed_types: 10 tipos de campo
   multiple_signers: Múltiplos signatários
   automatic_esignature: Assinatura eletrônica automática
-  ten_signature_request_emails_per_month: 10 e-mails de solicitação de assinatura por mês
+  ten_signature_request_emails_per_month: 10 e-mails/mês
   unlimited_sign_yourself: Assinatura ilimitada por você mesmo
-  free_developer_testing_sandbox: Sandbox de teste gratuito para desenvolvedores
+  free_developer_testing_sandbox: Sandbox gratuito para testes
   continue_with_free_basic: Continuar com Free Basic
-  unlimited_signature_request_emails: E-mails de solicitação de assinatura ilimitados
+  unlimited_signature_request_emails: E-mails ilimitados de solicitação
   your_company_logo: Seu logotipo da empresa
   connect_own_email_address: Conectar endereço de e-mail próprio
   personalize_email_content: Personalizar conteúdo do e-mail
@@ -5181,16 +5181,16 @@ de: &de
   ten_filed_types: 10 Feldtypen
   multiple_signers: Mehrere Unterzeichner
   automatic_esignature: Automatische E-Signatur
-  ten_signature_request_emails_per_month: 10 E-Mails für Unterschriftsanforderungen pro Monat
+  ten_signature_request_emails_per_month: 10 Signatur-Anfragen/Monat
   unlimited_sign_yourself: Unbegrenzte Selbstsignatur
-  free_developer_testing_sandbox: Kostenloser Test-Sandbox für Entwickler
+  free_developer_testing_sandbox: Kostenloser Entwickler-Testmodus
   continue_with_free_basic: Mit Free Basic fortfahren
-  unlimited_signature_request_emails: Unbegrenzte Unterschriftsanforderungen per E-Mail
+  unlimited_signature_request_emails: Unbegrenzte Signatur-E-Mails
   your_company_logo: Dein Firmenlogo
   connect_own_email_address: Eigene E-Mail-Adresse verbinden
   personalize_email_content: E-Mail-Inhalt personalisieren
   automated_reminders: Automatische Erinnerungen
-  bulk_send_from_spreadsheet: Massenversand aus einer Tabellenkalkulation
+  bulk_send_from_spreadsheet: Massenversand aus Tabelle
   identify_verification_via_sms: Identitätsüberprüfung per SMS
   start_with_pro: Mit Pro starten
   user_month: Benutzer / Monat
