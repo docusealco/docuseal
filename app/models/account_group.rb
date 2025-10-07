@@ -8,7 +8,7 @@
 #  name                      :string           not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  external_account_group_id :string           not null
+#  external_account_group_id :integer          not null
 #
 # Indexes
 #
