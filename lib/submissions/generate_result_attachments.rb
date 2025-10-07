@@ -624,8 +624,23 @@ module Submissions
         end
       end
 
+      # Determine storage service for secured storage
+      service_name = determine_storage_service
+
+      # Create blob with appropriate service
+      blob = if service_name == 'aws_s3_secured'
+               # For secured storage, create blob with custom key including docuseal prefix
+               create_secured_blob(io.tap(&:rewind), "#{name}.pdf", service_name)
+             else
+               # For regular storage, use standard creation
+               ActiveStorage::Blob.create_and_upload!(
+                 io: io.tap(&:rewind),
+                 filename: "#{name}.pdf"
+               )
+             end
+
       ActiveStorage::Attachment.new(
-        blob: ActiveStorage::Blob.create_and_upload!(io: io.tap(&:rewind), filename: "#{name}.pdf"),
+        blob: blob,
         metadata: { original_uuid: uuid,
                     analyzed: true,
                     sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
@@ -828,6 +843,37 @@ module Submissions
       else
         Vips::Image.new_from_buffer(data, '')
       end
+    end
+
+    def determine_storage_service
+      # Use secured storage by default unless explicitly disabled
+      return Rails.application.config.active_storage.service if Rails.env.development? && ENV['DOCUSEAL_DISABLE_SECURED_STORAGE'].present?
+
+      # Use secured storage if compliance configuration is present
+      Rails.configuration.x.compliance_storage.present? ? 'aws_s3_secured' : Rails.application.config.active_storage.service
+    end
+
+    def create_secured_blob(io, filename, service_name)
+      # Generate a unique key with docuseal prefix for document organization in shared bucket
+      key = "docuseal/#{SecureRandom.uuid}/#{filename}"
+
+      # Create the blob with the custom key
+      blob = ActiveStorage::Blob.create_before_direct_upload!(
+        filename: filename,
+        byte_size: io.size,
+        checksum: Digest::MD5.base64digest(io.read),
+        content_type: 'application/pdf',
+        service_name: service_name
+      )
+
+      # Override the generated key with our custom prefixed key
+      blob.update_column(:key, key)
+
+      # Upload the file to S3 with the custom key
+      io.rewind
+      blob.upload(io)
+
+      blob
     end
 
     def h

@@ -58,8 +58,19 @@ class ProcessSubmitterCompletionJob
     submitter.documents.filter_map do |attachment|
       next if attachment.metadata['sha256'].blank?
 
-      CompletedDocument.find_or_create_by!(sha256: attachment.metadata['sha256'], submitter_id: submitter.id)
+      # Determine storage location based on service used
+      storage_location = determine_storage_location_for_attachment(attachment)
+
+      CompletedDocument.find_or_create_by!(sha256: attachment.metadata['sha256'], submitter_id: submitter.id) do |doc|
+        doc.storage_location = storage_location
+      end
     end
+  end
+
+  def determine_storage_location_for_attachment(attachment)
+    # Check if attachment is stored in secured storage
+    service_name = attachment.blob.service_name
+    service_name == 'aws_s3_secured' ? 'secured' : 'legacy'
   end
 
   def enqueue_completed_webhooks(submitter, is_all_completed: false)
