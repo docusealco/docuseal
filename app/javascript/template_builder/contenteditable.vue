@@ -9,7 +9,7 @@
       :contenteditable="editable"
       style="min-width: 2px"
       :class="iconInline ? 'inline' : 'block'"
-      class="peer outline-none focus:block"
+      class="peer outline-none"
       @paste.prevent="onPaste"
       @keydown.enter.prevent="blurContenteditable"
       @focus="$emit('focus', $event)"
@@ -26,10 +26,10 @@
       *
     </span>
     <IconPencil
-      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle peer-focus:hidden"
+      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle"
       :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
       :title="t('edit')"
-      :class="{ invisible: !editable, 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline }"
+      :class="{ invisible: !editable, 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline, 'peer-focus:hidden': hideIcon, 'peer-focus:invisible': !hideIcon }"
       :width="iconWidth"
       :stroke-width="iconStrokeWidth"
       @click="[focusContenteditable(), selectOnEditClick && selectContent()]"
@@ -61,6 +61,11 @@ export default {
       type: Number,
       required: false,
       default: 30
+    },
+    hideIcon: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withRequired: {
       type: Boolean,

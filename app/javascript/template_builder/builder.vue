@@ -260,8 +260,12 @@
           :style="{ backgroundColor }"
         >
           <Upload
-            v-if="sortedDocuments.length && editable && withUploadButton"
+            v-if="editable && withUploadButton"
+            v-show="sortedDocuments.length"
+            ref="upload"
             :accept-file-types="acceptFileTypes"
+            :authenticity-token="authenticityToken"
+            :with-google-drive="withGoogleDrive"
             :template-id="template.id"
             @success="updateFromUpload"
           />
@@ -297,6 +301,8 @@
               v-if="withUploadButton"
               :template-id="template.id"
               :accept-file-types="acceptFileTypes"
+              :with-google-drive="withGoogleDrive"
+              @click-google-drive="$refs.upload.openGoogleDriveModal()"
               @success="updateFromUpload"
             />
             <button
@@ -368,6 +374,8 @@
                 v-if="withUploadButton"
                 :template-id="template.id"
                 :accept-file-types="acceptFileTypes"
+                :authenticity-token="authenticityToken"
+                :with-google-drive="withGoogleDrive"
                 @success="updateFromUpload"
               />
               <button
@@ -762,6 +770,11 @@ export default {
       default: false
     },
     withConditions: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withGoogleDrive: {
       type: Boolean,
       required: false,
       default: false
@@ -1757,8 +1770,9 @@ export default {
     },
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
+      const { google_drive_file_id, ...cleanedReplaceSchemaItem } = replaceSchemaItem
 
-      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...replaceSchemaItem, ...schema[0] })
+      this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...cleanedReplaceSchemaItem, ...schema[0] })
       this.template.documents.push(...documents)
 
       if (data.fields) {

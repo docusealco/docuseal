@@ -49,6 +49,8 @@ import ShowOnValue from './elements/show_on_value'
 import CustomValidation from './elements/custom_validation'
 import ToggleClasses from './elements/toggle_classes'
 import AutosizeField from './elements/autosize_field'
+import GoogleDriveFilePicker from './elements/google_drive_file_picker'
+import OpenModal from './elements/open_modal'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -136,6 +138,8 @@ safeRegisterElement('show-on-value', ShowOnValue)
 safeRegisterElement('custom-validation', CustomValidation)
 safeRegisterElement('toggle-classes', ToggleClasses)
 safeRegisterElement('autosize-field', AutosizeField)
+safeRegisterElement('google-drive-file-picker', GoogleDriveFilePicker)
+safeRegisterElement('open-modal', OpenModal)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
@@ -160,6 +164,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withSendButton: this.dataset.withSendButton !== 'false',
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
+      withGoogleDrive: this.dataset.withGoogleDrive === 'true',
       withReplaceAndCloneUpload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,

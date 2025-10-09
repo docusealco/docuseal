@@ -1,4 +1,5 @@
 const en = {
+  view: 'View',
   payment_link: 'Payment link',
   strikeout: 'Strikeout',
   draw_strikethrough_the_document: 'Draw strikethrough the document',
@@ -176,10 +177,14 @@ const en = {
   and: 'and',
   or: 'or',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start a quick tour to learn how to create an send your first document',
-  start_tour: 'Start Tour'
+  start_tour: 'Start Tour',
+  or_add_from: 'Or add from',
+  sync: 'Sync',
+  syncing: 'Syncing...'
 }
 
 const es = {
+  view: 'Vista',
   payment_link: 'Enlace de pago',
   strikeout: 'Tachar',
   draw_strikethrough_the_document: 'Dibujar una línea de tachado en el documento',
@@ -357,10 +362,14 @@ const es = {
   and: 'y',
   or: 'o',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inicia una guía rápida para aprender a crear y enviar tu primer documento.',
-  start_tour: 'Iniciar guía'
+  start_tour: 'Iniciar guía',
+  or_add_from: 'O agregar desde',
+  sync: 'Sincronizar',
+  syncing: 'Sincronizando...'
 }
 
 const it = {
+  view: 'Vista',
   payment_link: 'Link di pagamento',
   strikeout: 'Barrato',
   draw_strikethrough_the_document: 'Disegna una linea barrata sul documento',
@@ -538,10 +547,14 @@ const it = {
   and: 'e',
   or: 'o',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.',
-  start_tour: 'Inizia il tour'
+  start_tour: 'Inizia il tour',
+  or_add_from: 'O aggiungi da',
+  sync: 'Sincronizza',
+  syncing: 'Sincronizzazione...'
 }
 
 const pt = {
+  view: 'Visualizar',
   payment_link: 'Link de pagamento',
   strikeout: 'Tachado',
   draw_strikethrough_the_document: 'Desenhe uma linha de tachado no documento',
@@ -719,10 +732,14 @@ const pt = {
   and: 'e',
   or: 'ou',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Comece um tour rápido para aprender a criar e enviar seu primeiro documento.',
-  start_tour: 'Iniciar tour'
+  start_tour: 'Iniciar tour',
+  or_add_from: 'Ou adicionar de',
+  sync: 'Sincronizar',
+  syncing: 'Sincronizando...'
 }
 
 const fr = {
+  view: 'Vue',
   payment_link: 'Lien de paiement',
   strikeout: 'Barrer',
   draw_strikethrough_the_document: 'Tracer une ligne de suppression sur le document',
@@ -900,10 +917,14 @@ const fr = {
   and: 'et',
   or: 'ou',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Lancez une visite rapide pour apprendre à créer et envoyer votre premier document.',
-  start_tour: 'Démarrer'
+  start_tour: 'Démarrer',
+  or_add_from: 'Ou ajouter depuis',
+  sync: 'Synchroniser',
+  syncing: 'Synchronisation...'
 }
 
 const de = {
+  view: 'Ansicht',
   payment_link: 'Zahlungslink',
   strikeout: 'Streichung',
   draw_strikethrough_the_document: 'Ziehe eine Streichung auf das Dokument',
@@ -1081,10 +1102,14 @@ const de = {
   and: 'und',
   or: 'oder',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Starte eine kurze Tour, um zu lernen, wie du dein erstes Dokument erstellst und versendest.',
-  start_tour: 'Starten'
+  start_tour: 'Starten',
+  or_add_from: 'Oder hinzufügen von',
+  sync: 'Synchronisieren',
+  syncing: 'Synchronisierung...'
 }
 
 const nl = {
+  view: 'Bekijken',
   payment_link: 'Betaallink',
   strikeout: 'Doorhalen',
   draw_strikethrough_the_document: 'Teken doorhaling in het document',
@@ -1262,7 +1287,10 @@ const nl = {
   and: 'en',
   or: 'of',
   start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt',
-  start_tour: 'Rondleiding starten'
+  start_tour: 'Rondleiding starten',
+  or_add_from: 'Of toevoegen van',
+  sync: 'Synchroniseren',
+  syncing: 'Synchroniseren...'
 }
 
 export { en, es, it, pt, fr, de, nl }

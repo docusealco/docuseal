@@ -20,6 +20,9 @@ en: &en
   language_ar: العربية
   language_ko: 한국어
   language_ja: 日本語
+  add_from_google_drive: Add from Google Drive
+  or_add_from: Or add from
+  upload_a_new_document: Upload a New Document
   hi_there: Hi there
   pro: Pro
   thanks: Thanks
@@ -240,7 +243,7 @@ en: &en
   upload_signed_pdf_file_to_validate_its_signature_: 'Upload signed PDF file to validate its signature:'
   analyzing: Analyzing
   verify_signed_pdf: Verify Signed PDF
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Click to upload</span> or drag and drop'
+  click_to_upload_or_drag_and_drop_html: 'Click to upload or drag and drop'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Click to upload</span> or drag and drop files'
   signing_certificates: Signing Certificates
   upload_cert: Upload Cert
@@ -830,6 +833,10 @@ en: &en
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Require a JWT authorization to preview embedded forms, ensuring only authorized users can view them.
   make_all_newly_created_templates_private_to_their_creator_by_default: Make all newly created templates private to their creator by default.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Make the recipients signing order always enforced, so that the second signer can start signing their part only after the first signer has completed signing.
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: The file is missing. Make sure you have access to it on Google Drive.
+  connect_google_drive: Connect Google Drive
+  google_drive_has_been_connected: Google Drive has been connected
+  unable_to_identify_reset_your_password_to_sign_in: Unable to identify. Reset your password to sign in.
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -936,6 +943,9 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  add_from_google_drive: Agregar desde Google Drive
+  or_add_from: O agregar desde
+  upload_a_new_document: Subir nuevo documento
   use_direct_file_attachment_links_in_the_documents: Usar enlaces directos de archivos adjuntos en los documentos
   enabled: Habilitado
   disabled: Deshabilitado
@@ -1155,7 +1165,7 @@ es: &es
   upload_signed_pdf_file_to_validate_its_signature_: 'Sube el archivo PDF firmado para validar su firma:'
   analyzing: Analizando
   verify_signed_pdf: Verificar PDF firmado
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Haz clic para subir</span> o arrastra y suelta'
+  click_to_upload_or_drag_and_drop_html: 'Haz clic para subir o arrastra y suelta'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Haz clic para subir</span> o arrastra y suelta archivos'
   signing_certificates: Certificados de firma
   upload_cert: Subir certificado
@@ -1744,6 +1754,10 @@ es: &es
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Requerir autorización JWT para previsualizar formularios incrustados, garantizando que solo los usuarios autorizados puedan verlos.
   make_all_newly_created_templates_private_to_their_creator_by_default: Hacer que todas las plantillas creadas sean privadas para su creador por defecto.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Hacer que el orden de firma de los destinatarios se aplique siempre, de modo que el segundo firmante pueda comenzar a firmar solo después de que el primero haya completado la firma.
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: El archivo falta. Asegúrate de tener acceso a él en Google Drive.
+  connect_google_drive: Conectar Google Drive
+  google_drive_has_been_connected: Google Drive se ha conectado
+  unable_to_identify_reset_your_password_to_sign_in: No se pudo identificar. Restablece tu contraseña para iniciar sesión.
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1850,6 +1864,9 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  add_from_google_drive: Aggiungi da Google Drive
+  or_add_from: Oppure aggiungi da
+  upload_a_new_document: Carica nuovo documento
   use_direct_file_attachment_links_in_the_documents: Usa i link diretti per gli allegati nei documenti
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clicca qui</label> per inviare una email per reimpostare la password.'
   enabled: Abilitato
@@ -2069,7 +2086,7 @@ it: &it
   upload_signed_pdf_file_to_validate_its_signature_: 'Carica il file PDF firmato per validarne la firma:'
   analyzing: Analisi in corso
   verify_signed_pdf: Verifica PDF firmato
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Clicca per caricare</span> o trascina e rilascia'
+  click_to_upload_or_drag_and_drop_html: 'Clicca per caricare o trascina e rilascia'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Clicca per caricare</span> o trascina e rilascia i file'
   signing_certificates: Certificati di firma
   upload_cert: Carica certificato
@@ -2659,6 +2676,10 @@ it: &it
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: "Richiedere un'autorizzazione JWT per visualizzare in anteprima i moduli incorporati, garantendo che solo gli utenti autorizzati possano vederli."
   make_all_newly_created_templates_private_to_their_creator_by_default: Rendere tutte le nuove template private per il creatore per impostazione predefinita.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: "Rendere sempre obbligatorio l'ordine di firma dei destinatari, in modo che il secondo firmatario possa iniziare solo dopo che il primo ha completato la firma."
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: Il file è mancante. Assicurati di avere accesso a esso su Google Drive.
+  connect_google_drive: Connetti Google Drive
+  google_drive_has_been_connected: Google Drive è stato connesso
+  unable_to_identify_reset_your_password_to_sign_in: Impossibile identificare. Reimposta la password per accedere.
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2765,6 +2786,9 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  add_from_google_drive: Ajouter depuis Google Drive
+  or_add_from: Ou ajouter depuis
+  upload_a_new_document: Télécharger un nouveau document
   use_direct_file_attachment_links_in_the_documents: Utiliser des liens directs pour les pièces jointes dans les documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Cliquez ici</label> pour envoyer un e-mail de réinitialisation du mot de passe.'
   enabled: Activé
@@ -2986,7 +3010,7 @@ fr: &fr
   upload_signed_pdf_file_to_validate_its_signature_: 'Téléchargez le fichier PDF signé pour valider sa signature:'
   analyzing: Analyse en cours
   verify_signed_pdf: Vérifier le PDF signé
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Cliquez pour télécharger</span> ou glissez-déposez'
+  click_to_upload_or_drag_and_drop_html: 'Cliquez pour télécharger ou glissez-déposez'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Cliquez pour télécharger</span> ou glissez-déposez des fichiers'
   signing_certificates: Certificats de signature
   upload_cert: Télécharger un certificat
@@ -3577,6 +3601,10 @@ fr: &fr
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Exiger une autorisation JWT pour prévisualiser les formulaires intégrés, garantissant que seuls les utilisateurs autorisés puissent les voir.
   make_all_newly_created_templates_private_to_their_creator_by_default: Rendre toutes les nouvelles modèles privées à leur créateur par défaut.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: "Rendre l'ordre de signature des destinataires toujours obligatoire, de sorte que le deuxième signataire ne puisse commencer qu'après que le premier a terminé."
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: Le fichier est manquant. Assurez-vous d’y avoir accès sur Google Drive.
+  connect_google_drive: Connecter Google Drive
+  google_drive_has_been_connected: Google Drive a été connecté
+  unable_to_identify_reset_your_password_to_sign_in: "Impossible d'identifier. Réinitialisez votre mot de passe pour vous connecter."
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3683,6 +3711,9 @@ fr: &fr
       range_without_total: "%{from} à %{to} événements"
 
 pt: &pt
+  add_from_google_drive: Adicionar do Google Drive
+  or_add_from: Ou adicionar de
+  upload_a_new_document: Enviar novo documento
   use_direct_file_attachment_links_in_the_documents: Usar links diretos de anexos de arquivos nos documentos
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Clique aqui</label> para enviar um e-mail de redefinição de senha.'
   enabled: Ativado
@@ -3903,7 +3934,7 @@ pt: &pt
   upload_signed_pdf_file_to_validate_its_signature_: 'Envie o arquivo PDF assinado para validar a assinatura:'
   analyzing: Analisando
   verify_signed_pdf: Verificar PDF assinado
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Clique para enviar</span> ou arraste e solte'
+  click_to_upload_or_drag_and_drop_html: 'Clique para enviar ou arraste e solte'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Clique para enviar</span> ou arraste e solte os arquivos'
   signing_certificates: Certificados de assinatura
   upload_cert: Enviar certificado
@@ -4493,6 +4524,10 @@ pt: &pt
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Exigir autorização JWT para visualizar formulários incorporados, garantindo que apenas usuários autorizados possam vê-los.
   make_all_newly_created_templates_private_to_their_creator_by_default: Tornar todos os modelos recém-criados privados para seu criador por padrão.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Tornar a ordem de assinatura dos destinatários sempre obrigatória, para que o segundo signatário só possa assinar após o primeiro concluir.
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: O arquivo está faltando. Certifique-se de ter acesso a ele no Google Drive.
+  connect_google_drive: Conectar Google Drive
+  google_drive_has_been_connected: O Google Drive foi conectado
+  unable_to_identify_reset_your_password_to_sign_in: Não foi possível identificar. Redefina sua senha para fazer login.
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4599,6 +4634,9 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  add_from_google_drive: Aus Google Drive hinzufügen
+  or_add_from: Oder hinzufügen von
+  upload_a_new_document: Neues Dokument hochladen
   use_direct_file_attachment_links_in_the_documents: Verwenden Sie direkte Dateianhang-Links in den Dokumenten
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
   enabled: Aktiviert
@@ -4819,7 +4857,7 @@ de: &de
   upload_signed_pdf_file_to_validate_its_signature_: 'Signierte PDF-Datei hochladen, um ihre Signatur zu validieren:'
   analyzing: Analysieren
   verify_signed_pdf: Signiertes PDF verifizieren
-  click_to_upload_or_drag_and_drop_html: '<span class="font-medium">Klicke, um hochzuladen</span> oder ziehe und lasse fallen'
+  click_to_upload_or_drag_and_drop_html: 'Klicke, um hochzuladen oder ziehe und lasse fallen'
   click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Klicke, um Dateien hochzuladen</span> oder ziehe und lasse sie fallen'
   signing_certificates: Signaturzertifikate
   upload_cert: Zertifikat hochladen
@@ -5407,6 +5445,10 @@ de: &de
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: JWT-Autorisierung erforderlich, um eingebettete Formulare anzuzeigen, sodass nur autorisierte Benutzer sie sehen können.
   make_all_newly_created_templates_private_to_their_creator_by_default: Alle neu erstellten Vorlagen standardmäßig für ihren Ersteller privat machen.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Die Unterzeichnungsreihenfolge der Empfänger immer erzwingen, sodass der zweite Unterzeichner erst nach Abschluss der Unterschrift durch den ersten beginnen kann.
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: Die Datei fehlt. Stellen Sie sicher, dass Sie Zugriff darauf in Google Drive haben.
+  connect_google_drive: Google Drive verbinden
+  google_drive_has_been_connected: Google Drive wurde verbunden
+  unable_to_identify_reset_your_password_to_sign_in: Identifizierung nicht möglich. Setzen Sie Ihr Passwort zurück, um sich anzumelden.
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5877,6 +5919,9 @@ he:
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl: &nl
+  add_from_google_drive: Toevoegen vanuit Google Drive
+  or_add_from: Of toevoegen vanuit
+  upload_a_new_document: Nieuw document uploaden
   hi_there: Hallo
   pro: Pro
   thanks: Bedankt
@@ -6098,7 +6143,7 @@ nl: &nl
   upload_signed_pdf_file_to_validate_its_signature_: 'Upload een ondertekend PDF-bestand om de handtekening te valideren:'
   analyzing: Analyseren
   verify_signed_pdf: Ondertekende PDF verifiëren
-  click_to_upload_or_drag_and_drop_html: <span class="font-medium">Klik om te uploaden</span> of sleep bestanden hierheen
+  click_to_upload_or_drag_and_drop_html: Klik om te uploaden of sleep bestanden hierheen
   click_to_upload_or_drag_and_drop_files_html: <span class="font-medium">Klik om te uploaden</span> of sleep bestanden
   signing_certificates: Ondertekeningscertificaten
   upload_cert: Certificaat uploaden
@@ -6684,6 +6729,10 @@ nl: &nl
   require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: JWT-autorisatie vereisen om ingesloten formulieren te bekijken, zodat alleen geautoriseerde gebruikers ze kunnen zien.
   make_all_newly_created_templates_private_to_their_creator_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker.
   make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: Zorg dat de volgorde van ondertekenen altijd wordt afgedwongen, zodat de tweede ondertekenaar pas kan beginnen nadat de eerste ondertekenaar heeft voltooid.
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: Het bestand ontbreekt. Zorg ervoor dat je er toegang toe hebt op Google Drive.
+  connect_google_drive: Verbind Google Drive
+  google_drive_has_been_connected: Google Drive is verbonden
+  unable_to_identify_reset_your_password_to_sign_in: Kan niet worden geïdentificeerd. Stel je wachtwoord opnieuw in om in te loggen.
   submission_sources:
     api: API
     bulk: Bulkverzending

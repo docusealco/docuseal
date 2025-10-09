@@ -94,12 +94,19 @@
         </div>
       </div>
     </div>
-    <div class="flex pb-2 pt-1.5 document-preview-name">
+    <div class="flex items-center gap-1 pb-2 pt-1.5 document-preview-name">
+      <GoogleDriveDocumentSettings
+        v-if="item.google_drive_file_id"
+        :template-id="template.id"
+        :google-drive-file-id="item.google_drive_file_id"
+        @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
+      />
       <Contenteditable
         :model-value="item.name"
         :icon-width="16"
+        :icon-inline="true"
+        :hide-icon="false"
         :editable="editable"
-        style="max-width: 95%"
         class="mx-auto"
         @update:model-value="onUpdateName"
       />
@@ -123,6 +130,7 @@ import Upload from './upload'
 import { IconRouteAltLeft, IconSortDescending2 } from '@tabler/icons-vue'
 import ConditionsModal from './conditions_modal'
 import ReplaceButton from './replace'
+import GoogleDriveDocumentSettings from './google_drive_document_settings'
 import Field from './field'
 import FieldType from './field_type'
 
@@ -133,6 +141,7 @@ export default {
     IconRouteAltLeft,
     ConditionsModal,
     ReplaceButton,
+    GoogleDriveDocumentSettings,
     IconSortDescending2
   },
   inject: ['t'],
