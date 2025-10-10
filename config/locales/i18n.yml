@@ -3371,11 +3371,11 @@ fr: &fr
   ten_filed_types: 10 types de champs
   multiple_signers: Plusieurs signataires
   automatic_esignature: Signature électronique automatique
-  ten_signature_request_emails_per_month: 10 e‑mails de demande de signature par mois
+  ten_signature_request_emails_per_month: 10 e‑mails de demande de signature/mois
   unlimited_sign_yourself: Signature personnelle illimitée
   free_developer_testing_sandbox: Bac à sable de test développeur gratuit
   continue_with_free_basic: Continuer avec l’offre Free Basic
-  unlimited_signature_request_emails: E‑mails de demande de signature illimités
+  unlimited_signature_request_emails: Demandes de signature illimitées
   your_company_logo: Le logo de votre entreprise
   connect_own_email_address: Connecter votre propre adresse e‑mail
   personalize_email_content: Personnaliser le contenu des e‑mails
@@ -5215,9 +5215,9 @@ de: &de
   automatic_esignature: Automatische E‑Signatur
   ten_signature_request_emails_per_month: 10 E-Mails für Signaturanfragen pro Monat
   unlimited_sign_yourself: Unbegrenzt selbst unterschreiben
-  free_developer_testing_sandbox: Kostenlose Entwickler-Testumgebung (Sandbox)
+  free_developer_testing_sandbox: Kostenlose Entwickler-Testumgebung
   continue_with_free_basic: Mit Free Basic fortfahren
-  unlimited_signature_request_emails: Unbegrenzte E-Mails für Signaturanfragen
+  unlimited_signature_request_emails: Unbegrenzte Signaturanfrage-E-Mails
   your_company_logo: Ihr Firmenlogo
   connect_own_email_address: Eigene E-Mail-Adresse verbinden
   personalize_email_content: E-Mail-Inhalt personalisieren
