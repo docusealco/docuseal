@@ -21,7 +21,7 @@ development:
   dev_server:
     server: 'http'
     host: localhost
-    port: 3036
+    port: 3035
     hmr: false
     inline_css: true
     live_reload: false
