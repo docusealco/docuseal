@@ -23,32 +23,32 @@
         </a>
       </li>
       <li>
-        <form
-          ref="form"
-          class="flex items-center"
-          @submit.prevent="upload({ path: uploadUrl })"
+        <button
+          form="sync_form"
+          type="submit"
+          :disabled="isLoading"
         >
-          <input
-            :id="inputId"
-            ref="input"
-            :value="googleDriveFileId"
-            type="hidden"
-            name="google_drive_file_ids[]"
-          >
-          <button
-            type="submit"
-            :disabled="isLoading"
-            class="flex items-center w-full space-x-2"
-          >
-            <IconRefresh
-              class="w-4 h-4 flex-shrink-0"
-              :class="{ 'animate-spin': isLoading }"
-            />
-            <span>{{ message }}</span>
-          </button>
-        </form>
+          <IconRefresh
+            class="w-4 h-4 flex-shrink-0"
+            :class="{ 'animate-spin': isLoading }"
+          />
+          <span>{{ message }}</span>
+        </button>
       </li>
     </ul>
+    <form
+      id="sync_form"
+      ref="form"
+      class="hidden"
+      @submit.prevent="upload({ path: uploadUrl })"
+    >
+      <input
+        :id="inputId"
+        ref="input"
+        :value="googleDriveFileId"
+        name="google_drive_file_ids[]"
+      >
+    </form>
   </div>
 </template>
 
