@@ -4,7 +4,10 @@
     :class="{ 'dropdown-open': isLoading }"
   >
     <label tabindex="0">
-      <IconBrandGoogleDrive class="w-5 h-5 inline-block mr-1 cursor-pointer" />
+      <IconBrandGoogleDrive
+        width="19"
+        class="inline-block mr-1 cursor-pointer"
+      />
     </label>
     <ul
       tabindex="0"

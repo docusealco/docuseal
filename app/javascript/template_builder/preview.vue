@@ -9,7 +9,7 @@
         loading="lazy"
       >
       <div
-        class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1 hover:bg-black/10 transition-colors"
+        class="group flex justify-end cursor-pointer top-0 bottom-0 left-0 right-0 absolute p-1 hover:bg-black/10 transition-colors rounded"
         @click="$emit('scroll-to', item)"
       >
         <div
@@ -23,7 +23,7 @@
           >
             <div>
               <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
+                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
                 @click.stop="isShowConditionsModal = true"
               >
                 <IconRouteAltLeft
@@ -48,7 +48,7 @@
           >
             <div>
               <button
-                class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
+                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                 style="width: 24px; height: 24px"
                 @click.stop="$emit('remove', item)"
               >
@@ -63,7 +63,7 @@
                 class="tooltip tooltip-left before:text-xs"
               >
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
+                  class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
                   @click.stop="$emit('reorder', item)"
                 >
                   <IconSortDescending2
@@ -75,14 +75,14 @@
               </span>
               <template v-if="withArrows">
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
+                  class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                   style="width: 24px; height: 24px"
                   @click.stop="$emit('up', item)"
                 >
                   &uarr;
                 </button>
                 <button
-                  class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
+                  class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
                   style="width: 24px; height: 24px"
                   @click.stop="$emit('down', item)"
                 >
@@ -105,7 +105,8 @@
         :model-value="item.name"
         :icon-width="16"
         :icon-inline="true"
-        :hide-icon="false"
+        :float-icon="!item.google_drive_file_id"
+        :hide-icon="!item.google_drive_file_id"
         :editable="editable"
         class="mx-auto"
         @update:model-value="onUpdateName"

@@ -8,7 +8,7 @@
       dir="auto"
       :contenteditable="editable"
       style="min-width: 2px"
-      :class="iconInline ? 'inline' : 'block'"
+      :class="[iconInline ? 'inline' : 'block', hideIcon ? 'focus:block' : '']"
       class="peer outline-none"
       @paste.prevent="onPaste"
       @keydown.enter.prevent="blurContenteditable"
@@ -18,22 +18,19 @@
       {{ value }}
     </span>
     <span
-      v-if="withRequired"
-      title="Required"
-      class="text-red-500 peer-focus:hidden"
-      @click="focusContenteditable"
+      class="relative inline"
+      :class="{ 'peer-focus:hidden': hideIcon, 'peer-focus:invisible': !hideIcon }"
     >
-      *
+      <IconPencil
+        class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle pl-1"
+        :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
+        :title="t('edit')"
+        :class="{ invisible: !editable, 'absolute top-1/2 -translate-y-1/2': !iconInline || floatIcon, 'inline align-bottom': iconInline, 'left-0': floatIcon }"
+        :width="iconWidth + 4"
+        :stroke-width="iconStrokeWidth"
+        @click="[focusContenteditable(), selectOnEditClick && selectContent()]"
+      />
     </span>
-    <IconPencil
-      class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle"
-      :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
-      :title="t('edit')"
-      :class="{ invisible: !editable, 'ml-1': !withRequired, 'absolute': !iconInline, 'inline align-bottom': iconInline, 'peer-focus:hidden': hideIcon, 'peer-focus:invisible': !hideIcon }"
-      :width="iconWidth"
-      :stroke-width="iconStrokeWidth"
-      @click="[focusContenteditable(), selectOnEditClick && selectContent()]"
-    />
   </div>
 </template>
 
@@ -67,7 +64,7 @@ export default {
       required: false,
       default: true
     },
-    withRequired: {
+    floatIcon: {
       type: Boolean,
       required: false,
       default: false
