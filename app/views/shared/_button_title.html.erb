@@ -9,6 +9,8 @@
 <span class="disabled">
   <span class="flex items-center justify-center space-x-2">
     <%= local_assigns[:icon_disabled] || svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-    <span class="<%= local_assigns[:title_class] %>"><%= disabled_with %>...</span>
+    <% if disabled_with %>
+      <span class="<%= local_assigns[:title_class] %>"><%= disabled_with %>...</span>
+    <% end %>
   </span>
 </span>

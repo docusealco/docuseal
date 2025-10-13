@@ -93,18 +93,26 @@ class ProcessSubmitterCompletionJob
 
   def enqueue_completed_emails(submitter)
     submission = submitter.submission
+    template = submitter.template
 
-    user = submission.created_by_user || submitter.template.author
+    user = submission.created_by_user || template.author
 
     if submitter.account.users.exists?(id: user.id) && submission.preferences['send_email'] != false &&
-       submitter.template&.preferences&.dig('completed_notification_email_enabled') != false
-      if submission.submitters.map(&:email).exclude?(user.email) &&
-         user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false &&
-         user.role != 'integration'
-        SubmitterMailer.completed_email(submitter, user).deliver_later!
-      end
+       (!template || template.preferences['completed_notification_email_enabled'] != false)
+      user_submitter = submission.submitters.find { |s| s.email == user.email }
+
+      is_sent_to_user =
+        if user.role != 'integration' &&
+           (!user_submitter || user_submitter.preferences['send_email'] == false) &&
+           user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false
+          SubmitterMailer.completed_email(submitter, user).deliver_later!
+
+          true
+        end
 
       build_bcc_addresses(submission).each do |to|
+        next if is_sent_to_user && to == user.email
+
         SubmitterMailer.completed_email(submitter, user, to:).deliver_later!
       end
     end

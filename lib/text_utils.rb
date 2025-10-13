@@ -2,7 +2,7 @@
 
 module TextUtils
   RTL_REGEXP = /[\p{Hebrew}\p{Arabic}]/
-  MASK_REGEXP = /[^\s\-_\[\]\(\)\+\?\.\,]/
+  MASK_REGEXP = /[^\s\-_\[\]()+?.,]/
   MASK_SYMBOL = 'X'
 
   TRANSLITERATIONS =

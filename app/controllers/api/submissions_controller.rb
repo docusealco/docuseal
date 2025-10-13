@@ -147,7 +147,7 @@ module Api
       is_send_email = !params[:send_email].in?(['false', false])
 
       if (emails = (params[:emails] || params[:email]).presence) &&
-         (params[:submission].blank? && params[:submitters].blank?)
+         params[:submission].blank? && params[:submitters].blank?
         Submissions.create_from_emails(template:,
                                        user: current_user,
                                        source: :api,

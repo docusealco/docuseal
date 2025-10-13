@@ -56,7 +56,7 @@ module Submitters
           end
 
         [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
-      elsif keyword.match?(/[^\p{L}\d&@.\-]/) || keyword.match?(/[.\-]{2,}/)
+      elsif keyword.match?(/[^\p{L}\d&@.-]/) || keyword.match?(/[.-]{2,}/)
         terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
 
         if terms.size > 1
@@ -100,7 +100,7 @@ module Submitters
     end
 
     original_documents = submitter.submission.schema_documents.preload(:blob)
-    is_more_than_two_images = original_documents.count(&:image?) > 1
+    is_more_than_two_images = original_documents.many?(&:image?)
 
     submitter.documents.preload(:blob).reject do |attachment|
       is_more_than_two_images &&

@@ -6,7 +6,7 @@ module SendWebhookRequest
   LOCALHOSTS = %w[0.0.0.0 127.0.0.1 localhost].freeze
 
   MANUAL_ATTEMPT = 99_999
-  AUTOMATED_RETRY_RANGE = 1..MANUAL_ATTEMPT - 1
+  AUTOMATED_RETRY_RANGE = 1..(MANUAL_ATTEMPT - 1)
 
   HttpsError = Class.new(StandardError)
   LocalhostError = Class.new(StandardError)

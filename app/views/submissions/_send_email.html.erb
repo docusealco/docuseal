@@ -1,5 +1,6 @@
 <% submitter_preferences_index = template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] } %>
 <% template_submitters = local_assigns[:submitter]&.submission&.template_submitters || template.submitters %>
+<% message_field_id = "message_field_#{SecureRandom.hex(3)}" %>
 <div class="form-control">
   <% can_send_emails = Accounts.can_send_emails?(current_account) %>
   <div class="flex justify-between items-center">
@@ -11,7 +12,7 @@
       <% if can_send_emails %>
         <%= render 'submissions/email_stats' %>
         <%= content_for(:edit_button) || capture do %>
-          <toggle-visible data-element-ids="<%= %w[message_field].to_json %>" class="flex">
+          <toggle-visible data-element-ids="<%= [message_field_id].to_json %>" class="flex">
             <label>
               <%= f.check_box :is_custom_message, checked: false, class: 'hidden peer', data: { action: 'change:toggle-visible#trigger', type: 'checkbox' } %>
               <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
@@ -38,7 +39,7 @@
   <% end %>
 </div>
 <% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
-<div id="message_field" class="card card-compact bg-base-300/40 hidden">
+<div id="<%= message_field_id %>" class="card card-compact bg-base-300/40 hidden">
   <div class="card-body">
     <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template&.preferences&.dig('submitters').to_a.size > 1 %>
     <div class="peer-checked:hidden form-control space-y-2">

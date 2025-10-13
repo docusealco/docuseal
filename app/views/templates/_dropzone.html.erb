@@ -5,16 +5,23 @@
     <label for="file_dropzone_input" class="w-full block h-52 relative hover:bg-base-200/30 rounded-xl border-2 border-base-300 border-dashed" data-target="file-dropzone.area">
       <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2 pointer-events-none">
         <div class="flex flex-col items-center text-center">
-          <span data-target="file-dropzone.icon" class="flex flex-col items-center">
+          <span data-target="file-dropzone.icon" class="flex flex-col items-center <%= 'mb-5' if Docuseal.multitenant? %>">
             <span>
               <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
             </span>
             <div class="font-medium mb-1">
-              <%= t('upload_new_document') %>
+              <%= t('upload_a_new_document') %>
             </div>
-            <div class="text-xs">
+            <div class="text-sm">
               <%= t('click_to_upload_or_drag_and_drop_html') %>
             </div>
+            <% if Docuseal.multitenant? %>
+              <a class="flex absolute bottom-4 items-center text-sm mt-2 pointer-events-auto" href="<%= new_template_path(modal_tab: 'google_drive') %>" data-turbo-frame="modal">
+                <span><%= t('or_add_from') %></span>
+                <%= svg_icon('brand_gdrive', class: 'w-4 h-4 ml-1') %>
+                <span class="ml-1 font-medium hover:underline">Google Drive</span>
+              </a>
+            <% end %>
           </span>
           <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
             <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>

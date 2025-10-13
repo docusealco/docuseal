@@ -481,7 +481,7 @@ module Submissions
 
     def select_attachments(submitter)
       original_documents = submitter.submission.schema_documents.preload(:blob)
-      is_more_than_two_images = original_documents.count(&:image?) > 1
+      is_more_than_two_images = original_documents.many?(&:image?)
 
       submitter.documents.preload(:blob).reject do |attachment|
         is_more_than_two_images &&

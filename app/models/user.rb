@@ -50,7 +50,7 @@ class User < ApplicationRecord
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
   FULL_EMAIL_REGEXP =
-    /\A[a-z0-9][\.']?(?:(?:[a-z0-9_-]+[\.\+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[\.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+    /\A[a-z0-9][.']?(?:(?:[a-z0-9_-]+[.+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[.-])*[a-z0-9]+\.[a-z]{2,}\z/i
 
   has_one_attached :signature
   has_one_attached :initials
