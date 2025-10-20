@@ -13,7 +13,7 @@
 # Indexes
 #
 #  index_document_generation_events_on_submitter_id                 (submitter_id)
-#  index_document_generation_events_on_submitter_id_and_event_name  (submitter_id,event_name) UNIQUE WHERE ((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))
+#  index_document_generation_events_on_submitter_id_and_event_name  (submitter_id,event_name) UNIQUE WHERE ((event_name)::text = ANY (ARRAY[('start'::character varying)::text, ('complete'::character varying)::text]))
 #
 # Foreign Keys
 #

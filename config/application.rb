@@ -44,9 +44,6 @@ module DocuSeal
 
     autoloaders.once.do_not_eager_load("#{Turbo::Engine.root}/app/channels") # https://github.com/hotwired/turbo-rails/issues/512
 
-    # DocuSeal compliance storage configuration (reuses ATS infrastructure)
-    config.x.compliance_storage = config_for(:compliance_storage)
-
     ActiveSupport.run_load_hooks(:application_config, self)
   end
 end

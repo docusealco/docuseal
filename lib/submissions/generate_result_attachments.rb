@@ -851,8 +851,8 @@ module Submissions
         return Rails.application.config.active_storage.service
       end
 
-      # Use secured storage if compliance configuration is present
-      if Rails.configuration.x.compliance_storage.present?
+      # Use secured storage if CloudFront configuration is present (loaded from ENV)
+      if ENV['CF_URL'].present? && ENV['CF_KEY_PAIR_ID'].present?
         'aws_s3_secured'
       else
         Rails.application.config.active_storage.service

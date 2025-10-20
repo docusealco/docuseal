@@ -3,7 +3,8 @@
 require 'aws-sdk-secretsmanager'
 
 # Load CloudFront private key from AWS Secrets Manager (same as ATS)
-key_secret = Rails.configuration.x.compliance_storage&.dig(:cf_key_secret)
+# Configuration loaded from environment variables (set in cpdocuseal deployment)
+key_secret = ENV['CF_KEY_SECRET']
 
 if key_secret.present?
   begin
