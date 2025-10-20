@@ -4,7 +4,7 @@ require 'aws-sdk-secretsmanager'
 
 # Load CloudFront private key from AWS Secrets Manager (same as ATS)
 # Configuration loaded from environment variables (set in cpdocuseal deployment)
-key_secret = ENV['CF_KEY_SECRET']
+key_secret = ENV.fetch('CF_KEY_SECRET', nil)
 
 if key_secret.present?
   begin

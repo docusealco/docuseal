@@ -47,15 +47,15 @@ class DocumentSecurityService
     end
 
     def cloudfront_base_url
-      @cloudfront_base_url ||= ENV['CF_URL']
+      @cloudfront_base_url ||= ENV.fetch('CF_URL', nil)
     end
 
     def cloudfront_key_pair_id
-      @cloudfront_key_pair_id ||= ENV['CF_KEY_PAIR_ID']
+      @cloudfront_key_pair_id ||= ENV.fetch('CF_KEY_PAIR_ID', nil)
     end
 
     def cloudfront_private_key
-      @cloudfront_private_key ||= ENV['SECURE_ATTACHMENT_PRIVATE_KEY']
+      @cloudfront_private_key ||= ENV.fetch('SECURE_ATTACHMENT_PRIVATE_KEY', nil)
     end
   end
 end
