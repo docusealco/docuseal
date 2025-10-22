@@ -27,6 +27,7 @@ services:
     volumes:
       - ./docuseal:/data/docuseal
     environment:
+      - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
       - REDIS_URL=redis://redis:6379/0
       - SIDEKIQ_BASIC_AUTH_PASSWORD=sidekiq
