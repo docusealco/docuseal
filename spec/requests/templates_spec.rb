@@ -173,6 +173,41 @@ describe 'Templates API' do
       expect(cloned_template.external_id).to eq('123456')
       expect(response.parsed_body).to eq(JSON.parse(clone_template_body(cloned_template).to_json))
     end
+
+    context 'when cloning a template' do
+      it 'preserves partnership ownership' do
+        global_partnership = create(:partnership)
+        allow(ExportLocation).to receive(:global_partnership_id).and_return(global_partnership.id)
+
+        partnership_template = create(
+          :template,
+          partnership: global_partnership,
+          account: nil, author: create(:user, account: nil)
+        )
+
+        expect do
+          post "/api/templates/#{partnership_template.id}/clone",
+               headers: { 'x-auth-token': partnership_template.author.access_token.token }
+        end.to change(Template, :count)
+
+        cloned_template = Template.last
+        expect(cloned_template.partnership_id).to eq(partnership_template.partnership_id)
+        expect(cloned_template.account_id).to be_nil
+      end
+
+      it 'preserves account ownership' do
+        account_template = create(:template, account: account, author: author)
+
+        expect do
+          post "/api/templates/#{account_template.id}/clone",
+               headers: { 'x-auth-token': author.access_token.token }
+        end.to change(Template, :count)
+
+        cloned_template = Template.last
+        expect(cloned_template.account_id).to eq(account.id)
+        expect(cloned_template.partnership_id).to be_nil
+      end
+    end
   end
 
   private

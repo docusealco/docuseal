@@ -70,11 +70,7 @@ module Api
       @template.update!(template_params)
 
       SearchEntries.enqueue_reindex(@template)
-
-      WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
-        SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      enqueue_template_updated_webhooks
 
       render json: @template.as_json(only: %i[id updated_at])
     end
@@ -151,13 +147,30 @@ module Api
 
     def build_template
       template = Template.new
-      template.account = current_account
       template.author = current_user
-      template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
       template.name = params[:name] || 'Untitled Template'
       template.external_id = params[:external_id] if params[:external_id].present?
       template.source = :api
       template.submitters = params[:submitters] if params[:submitters].present?
+
+      # Handle partnership vs account template creation
+      if params[:external_partnership_id].present?
+        partnership = Partnership.find_by(external_partnership_id: params[:external_partnership_id])
+        if partnership.blank?
+          raise ActiveRecord::RecordNotFound, "Partnership not found: #{params[:external_partnership_id]}"
+        end
+
+        template.partnership = partnership
+        template.folder = TemplateFolders.find_or_create_by_name(
+          current_user,
+          params[:folder_name],
+          partnership: partnership
+        )
+      else
+        template.account = current_account
+        template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
+      end
+
       template
     end
 
@@ -199,9 +212,18 @@ module Api
     end
 
     def enqueue_template_created_webhooks(template)
-      WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
-        SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                           'webhook_url_id' => webhook_url.id)
+      enqueue_template_webhooks(template, 'template.created', SendTemplateCreatedWebhookRequestJob)
+    end
+
+    def enqueue_template_updated_webhooks
+      enqueue_template_webhooks(@template, 'template.updated', SendTemplateUpdatedWebhookRequestJob)
+    end
+
+    def enqueue_template_webhooks(template, event_type, job_class)
+      return if template.account_id.blank?
+
+      WebhookUrls.for_account_id(template.account_id, event_type).each do |webhook_url|
+        job_class.perform_async('template_id' => template.id, 'webhook_url_id' => webhook_url.id)
       end
     end
 

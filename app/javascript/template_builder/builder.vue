@@ -64,7 +64,7 @@
         />
         <template v-else>
           <a
-            :href="`/templates/${template.id}/form`"
+            :href="formPreviewUrl"
             data-turbo="false"
             class="primary-button"
           >
@@ -349,7 +349,6 @@ import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, Ic
 import { v4 } from 'uuid'
 import { ref, computed, toRaw } from 'vue'
 import * as i18n from './i18n'
-
 export default {
   name: 'TemplateBuilder',
   components: {
@@ -690,6 +689,26 @@ export default {
       return this.template.schema.map((item) => {
         return this.template.documents.find(doc => doc.uuid === item.attachment_uuid)
       })
+    },
+    formPreviewUrl () {
+      let url = `/templates/${this.template.id}/form`
+      if (this.template.partnership_context) {
+        const params = new URLSearchParams()
+        const context = this.template.partnership_context
+        if (context.accessible_partnership_ids) {
+          context.accessible_partnership_ids.forEach(id => {
+            params.append('accessible_partnership_ids[]', id)
+          })
+        }
+        if (context.external_partnership_id) {
+          params.append('external_partnership_id', context.external_partnership_id)
+        }
+        if (context.external_account_id) {
+          params.append('external_account_id', context.external_account_id)
+        }
+        url += `?${params.toString()}`
+      }
+      return url
     }
   },
   created () {
@@ -1448,6 +1467,22 @@ export default {
 
         const formData = new FormData()
         formData.append('files[]', file)
+        
+        // Add partnership context if available
+        if (this.template.partnership_context) {
+          const context = this.template.partnership_context
+          if (context.accessible_partnership_ids) {
+            context.accessible_partnership_ids.forEach(id => {
+              formData.append('accessible_partnership_ids[]', id)
+            })
+          }
+          if (context.external_partnership_id) {
+            formData.append('external_partnership_id', context.external_partnership_id)
+          }
+          if (context.external_account_id) {
+            formData.append('external_account_id', context.external_account_id)
+          }
+        }
 
         this.baseFetch(`/templates/${this.template.id}/documents`, {
           method: 'POST',
@@ -1722,7 +1757,26 @@ export default {
 
       this.pushUndo()
 
-      return this.baseFetch(`/templates/${this.template.id}`, {
+      // Build URL with partnership context if available
+      let url = `/templates/${this.template.id}`
+      if (this.template.partnership_context) {
+        const params = new URLSearchParams()
+        const context = this.template.partnership_context
+        if (context.accessible_partnership_ids) {
+          context.accessible_partnership_ids.forEach(id => {
+            params.append('accessible_partnership_ids[]', id)
+          })
+        }
+        if (context.external_partnership_id) {
+          params.append('external_partnership_id', context.external_partnership_id)
+        }
+        if (context.external_account_id) {
+          params.append('external_account_id', context.external_account_id)
+        }
+        url += `?${params.toString()}`
+      }
+
+      return this.baseFetch(url, {
         method: 'PUT',
         body: JSON.stringify({
           template: {

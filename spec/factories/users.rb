@@ -8,5 +8,9 @@ FactoryBot.define do
     password { 'password' }
     role { User::ADMIN_ROLE }
     email { Faker::Internet.email }
+
+    trait :with_partnership do
+      account { nil }
+    end
   end
 end

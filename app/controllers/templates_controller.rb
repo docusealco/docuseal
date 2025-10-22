@@ -3,6 +3,7 @@
 class TemplatesController < ApplicationController
   include PrefillFieldsHelper
   include IframeAuthentication
+  include PartnershipContext
 
   skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_via_token!, only: [:update]
@@ -51,7 +52,8 @@ class TemplatesController < ApplicationController
           methods: %i[metadata signed_uuid],
           include: { preview_images: { methods: %i[url metadata filename] } }
         ),
-        available_prefill_fields: @available_prefill_fields
+        available_prefill_fields: @available_prefill_fields,
+        partnership_context: partnership_request_context
       ).to_json
 
     render :edit, layout: 'plain'
@@ -64,9 +66,20 @@ class TemplatesController < ApplicationController
         associations: [schema_documents: :preview_images_attachments]
       ).call
 
-      @template = Templates::Clone.call(@base_template, author: current_user,
-                                                        name: params.dig(:template, :name),
-                                                        folder_name: params[:folder_name])
+      # Determine target for same-type cloning (clone to same ownership type as original)
+      target_args = if @base_template.account_id.present?
+                      { target_account: @base_template.account }
+                    elsif @base_template.partnership_id.present?
+                      { target_partnership: @base_template.partnership }
+                    else
+                      {}
+                    end
+
+      @template = Templates::Clone.call(@base_template,
+                                        author: current_user,
+                                        name: params.dig(:template, :name),
+                                        folder_name: params[:folder_name],
+                                        **target_args)
     else
       @template = Template.new(template_params) if @template.nil?
       @template.author = current_user

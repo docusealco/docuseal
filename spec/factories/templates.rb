@@ -357,5 +357,23 @@ FactoryBot.define do
         create(:template_access, template:, user: ev.private_access_user || template.author)
       end
     end
+
+    trait :partnership_template do
+      account { nil }
+
+      transient do
+        partnership { nil }
+      end
+
+      partnership_id do |template|
+        if template.partnership
+          template.partnership.id
+        else
+          create(:partnership).id
+        end
+      end
+
+      author { create(:user, :with_partnership) }
+    end
   end
 end

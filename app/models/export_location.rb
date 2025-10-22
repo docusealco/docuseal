@@ -24,4 +24,8 @@ class ExportLocation < ApplicationRecord
   def self.default_location
     where(default_location: true).first || ExportLocation.first
   end
+
+  def self.global_partnership_id
+    default_location&.global_partnership_id
+  end
 end

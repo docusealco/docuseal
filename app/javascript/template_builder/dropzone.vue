@@ -73,7 +73,7 @@ export default {
     IconFileSymlink,
     IconFiles
   },
-  inject: ['baseFetch', 't'],
+  inject: ['baseFetch', 't', 'template'],
   props: {
     templateId: {
       type: [Number, String],

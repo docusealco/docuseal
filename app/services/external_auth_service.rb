@@ -9,7 +9,12 @@ class ExternalAuthService
     user = if @params[:account].present?
              find_or_create_user_with_account
            elsif @params[:partnership].present?
-             find_or_create_user_with_partnership
+             # Check if account context is also provided for account-level operations
+             if @params[:external_account_id].present?
+               find_or_create_user_with_partnership_and_account
+             else
+               find_or_create_user_with_partnership
+             end
            else
              raise ArgumentError, 'Either account or partnership params must be provided'
            end
@@ -43,15 +48,18 @@ class ExternalAuthService
 
     # For partnership users, we don't store any partnership relationship
     # They get authorized via API request context (accessible_partnership_ids)
-    # Just ensure the user exists in DocuSeal for authentication
-    User.find_by(external_user_id: @params[:user][:external_id]&.to_i) ||
-      User.create!(
-        user_attributes.merge(
-          external_user_id: @params[:user][:external_id]&.to_i,
-          password: SecureRandom.hex(16)
-          # NOTE: No account_id or partnership_id - authorization comes from API context
-        )
-      )
+    find_or_create_user_by_external_id(account: nil)
+  end
+
+  def find_or_create_user_with_partnership_and_account
+    # Hybrid approach: partnership authentication with account context
+    ensure_partnerships_exist
+
+    # Find the target account by external_account_id
+    account = Account.find_by(external_account_id: @params[:external_account_id])
+    raise ArgumentError, "Account not found for external_account_id: #{@params[:external_account_id]}" unless account
+
+    find_or_create_user_by_external_id(account: account)
   end
 
   def ensure_partnerships_exist
@@ -62,6 +70,27 @@ class ExternalAuthService
       @params[:partnership][:external_id],
       @params[:partnership][:name]
     )
+  end
+
+  def find_or_create_user_by_external_id(account: nil)
+    external_user_id = @params[:user][:external_id]&.to_i
+    user = User.find_by(external_user_id: external_user_id)
+
+    if user.present?
+      # If user exists and we have an account context, assign them to the account if they don't have one
+      user.update!(account: account) if account.present? && user.account_id.blank?
+      return user
+    end
+
+    # Create new user
+    create_attributes = user_attributes.merge(
+      external_user_id: external_user_id,
+      password: SecureRandom.hex(16)
+    )
+
+    create_attributes[:account] = account if account.present?
+
+    User.create!(create_attributes)
   end
 
   def user_attributes

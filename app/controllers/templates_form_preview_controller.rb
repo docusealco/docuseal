@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class TemplatesFormPreviewController < ApplicationController
+  include IframeAuthentication
+  include PartnershipContext
+
   layout 'form'
 
+  skip_before_action :authenticate_via_token!
+  before_action :authenticate_from_referer
   load_and_authorize_resource :template
 
   def show
