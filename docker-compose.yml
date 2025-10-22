@@ -3,17 +3,50 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     image: docuseal/docuseal:latest
     ports:
-      - 3000:3000
+      - 3005:3000
     volumes:
       - ./docuseal:/data/docuseal
     environment:
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+      - REDIS_URL=redis://redis:6379/0
+      - SIDEKIQ_BASIC_AUTH_PASSWORD=sidekiq
+
+  sidekiq:
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    image: docuseal/docuseal:latest
+    command: sh -c "cd /app && bundle exec sidekiq"
+    volumes:
+      - ./docuseal:/data/docuseal
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+      - REDIS_URL=redis://redis:6379/0
+      - SIDEKIQ_BASIC_AUTH_PASSWORD=sidekiq
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - './redis_data:/data'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   postgres:
     image: postgres:15
+    ports:
+      - 5436:5432
     volumes:
       - './pg_data:/var/lib/postgresql/data'
     environment:
@@ -28,7 +61,7 @@ services:
 
   caddy:
     image: caddy:latest
-    command: caddy reverse-proxy --from $HOST --to app:3000
+    command: caddy reverse-proxy --from ${HOST:-localhost} --to app:3000
     ports:
       - 80:80
       - 443:443
@@ -36,4 +69,4 @@ services:
     volumes:
       - .:/data
     environment:
-      - HOST=${HOST}
+      - HOST=${HOST:-localhost}
