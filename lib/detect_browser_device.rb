@@ -3,10 +3,28 @@
 module DetectBrowserDevice
   module_function
 
-  # rubocop:disable Metrics/LineLength
-  MOBILE_USER_AGENT_REGEXP = /iPhone|iPod|Android.*Mobile|Opera Mini|Opera Mobi|webOS|IEMobile|Windows Phone|BlackBerry|BB10|Mobile/i
-  TABLET_USER_AGENT_REGEXP = /iPad|Android(?!.*Mobile)|Tablet|Kindle|PlayBook|Silk/i
-  # rubocop:enable Metrics/LineLength
+  MOBILE_USER_AGENT_REGEXP = /
+    iPhone         |
+    iPod           |
+    Android.*Mobile|
+    Opera\ Mini    |
+    Opera\ Mobi    |
+    webOS          |
+    IEMobile       |
+    Windows\ Phone |
+    BlackBerry     |
+    BB10           |
+    Mobile
+  /ix
+
+  TABLET_USER_AGENT_REGEXP = /
+    iPad               |
+    Android(?!.*Mobile)|
+    Tablet             |
+    Kindle             |
+    PlayBook           |
+    Silk
+  /ix
 
   def call(user_agent)
     return :mobile if mobile?(user_agent)
