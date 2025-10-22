@@ -837,6 +837,9 @@ en: &en
   connect_google_drive: Connect Google Drive
   google_drive_has_been_connected: Google Drive has been connected
   unable_to_identify_reset_your_password_to_sign_in: Unable to identify. Reset your password to sign in.
+  desktop: Desktop
+  mobile: Mobile
+  tablet: Tablet
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1758,6 +1761,9 @@ es: &es
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: Google Drive se ha conectado
   unable_to_identify_reset_your_password_to_sign_in: No se pudo identificar. Restablece tu contraseña para iniciar sesión.
+  desktop: Escritorio
+  mobile: Móvil
+  tablet: Tableta
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2680,6 +2686,9 @@ it: &it
   connect_google_drive: Connetti Google Drive
   google_drive_has_been_connected: Google Drive è stato connesso
   unable_to_identify_reset_your_password_to_sign_in: Impossibile identificare. Reimposta la password per accedere.
+  desktop: Desktop
+  mobile: Mobile
+  tablet: Tablet
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3599,6 +3608,9 @@ fr: &fr
   connect_google_drive: Connecter Google Drive
   google_drive_has_been_connected: Google Drive a été connecté
   unable_to_identify_reset_your_password_to_sign_in: Impossible d’identifier. Réinitialisez votre mot de passe pour vous connecter.
+  desktop: Bureau
+  mobile: Mobile
+  tablet: Tablette
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4522,6 +4534,9 @@ pt: &pt
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: O Google Drive foi conectado
   unable_to_identify_reset_your_password_to_sign_in: Não foi possível identificar. Redefina sua senha para fazer login.
+  desktop: Computador
+  mobile: Celular
+  tablet: Tablet
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5445,6 +5460,9 @@ de: &de
   connect_google_drive: Google Drive verbinden
   google_drive_has_been_connected: Google Drive wurde verbunden
   unable_to_identify_reset_your_password_to_sign_in: Identifizierung nicht möglich. Setzen Sie Ihr Passwort zurück, um sich anzumelden.
+  desktop: Desktop
+  mobile: Mobil
+  tablet: Tablet
   submission_sources:
     api: API
     bulk: Massenversand
@@ -6729,6 +6747,9 @@ nl: &nl
   connect_google_drive: Verbind Google Drive
   google_drive_has_been_connected: Google Drive is verbonden
   unable_to_identify_reset_your_password_to_sign_in: Kan niet worden geïdentificeerd. Stel je wachtwoord opnieuw in om in te loggen.
+  desktop: Desktop
+  mobile: Mobiel
+  tablet: Tablet
   submission_sources:
     api: API
     bulk: Bulkverzending

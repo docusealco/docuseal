@@ -21,6 +21,7 @@
         </p>
       </li>
       <% @submission.submission_events.order(:event_timestamp).each do |event| %>
+        <% device = DetectBrowserDevice.call(event.data['ua']) %>
         <% submitter = @submission.submitters.find { |e| e.id == event.submitter_id } %>
         <% bg_class = event_colors[submitters_uuids.index(submitter.uuid) % event_colors.length] %>
         <% submitter_name = event.event_type.include?('sms') || event.event_type.include?('phone') ? (event.data['phone'] || submitter.phone) : (submitter.name || submitter.email || submitter.phone) %>
@@ -28,9 +29,14 @@
           <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content <%= bg_class %>">
             <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(event.event_type, 'circle_dot'), class: 'w-4 h-4') %>
           </span>
-          <p class="text-sm leading-none text-base-content/60 pt-1.5">
-            <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
-          </p>
+          <div class="flex items-center space-x-1 pt-1.5">
+            <span class="text-sm leading-none text-base-content/60">
+              <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
+            </span>
+            <span class="tooltip tooltip-top" data-tip="<%= t(device) %>">
+              <%= svg_icon("device_#{device}", class: 'w-3.5 h-3.5') %>
+            </span>
+          </div>
           <p class="text-base-content/80 mt-1">
             <% if event.event_type == 'complete_verification' %>
               <%= t('submission_event_names.complete_verification_by_html', provider: event.data['method'], submitter_name:) %>
