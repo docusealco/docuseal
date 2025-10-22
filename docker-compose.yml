@@ -31,6 +31,8 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
       - REDIS_URL=redis://redis:6379/0
       - SIDEKIQ_BASIC_AUTH_PASSWORD=sidekiq
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   redis:
     image: redis:7-alpine
