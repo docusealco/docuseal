@@ -29,7 +29,7 @@ class SendSubmissionEmailController < ApplicationController
 
     RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 
-    SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later! unless already_sent?(@submitter)
+    SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later! if can_send?(@submitter)
 
     respond_to do |f|
       f.html { render :success }
@@ -39,8 +39,11 @@ class SendSubmissionEmailController < ApplicationController
 
   private
 
-  def already_sent?(submitter)
-    EmailEvent.exists?(tag: :submitter_documents_copy, email: submitter.email, emailable: submitter,
-                       event_type: :send, created_at: SEND_DURATION.ago..Time.current)
+  def can_send?(submitter)
+    return false if submitter.account.archived_at?
+    return false if EmailEvent.exists?(tag: :submitter_documents_copy, email: submitter.email, emailable: submitter,
+                                       event_type: :send, created_at: SEND_DURATION.ago..Time.current)
+
+    true
   end
 end

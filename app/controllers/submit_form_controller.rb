@@ -75,7 +75,9 @@ class SubmitFormController < ApplicationController
     render json: { error: e.message }, status: :unprocessable_content
   end
 
-  def completed; end
+  def completed
+    raise ActionController::RoutingError, I18n.t('not_found') if @submitter.account.archived_at?
+  end
 
   def success; end
 
