@@ -180,6 +180,11 @@ module SearchEntries
   end
 
   def index_template(template)
+    # Skip search indexing for partnership templates since they don't belong to accounts
+    # We currently don't utilize search, so this can be implemented later for partnerships
+    # if that changes.
+    return if template.account_id.blank?
+
     sql = SearchEntry.sanitize_sql_array(
       ["SELECT to_tsvector(:text), to_tsvector('simple', :text)",
        { text: TextUtils.transliterate(template.name.to_s.downcase).delete("\0") }]
