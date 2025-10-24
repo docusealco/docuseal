@@ -1,11 +1,11 @@
 <% banner_html = capture do %>
-  <div class="sticky top-0 z-50 bg-base-100 py-2 px-2 flex items-center" style="margin: 0px -8px -16px -8px">
-    <div class="text-xl md:text-3xl font-semibold focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-      <%= @template.name %>
-    </div>
-    <div class="flex items-center" style="margin-left: 20px; flex-shrink: 0">
+  <div class="sticky top-0 z-50 bg-base-100 py-2 px-2 flex items-center justify-end" style="margin: 0px -8px -16px -8px">
+    <div class="flex items-center" style="flex-shrink: 0">
       <% if @template.submitters.size > 1 %>
-          <form action="<%= template_form_path(@template, auth_token: params[:auth_token] || session[:auth_token]) %>" method="get" class="mr-3">
+          <form action="<%= template_form_path(@template) %>" method="get" class="mr-3">
+          <% if (auth_token = params[:auth_token] || session[:auth_token]) %>
+            <%= hidden_field_tag :auth_token, auth_token %>
+          <% end %>
           <select onchange="this.form.submit()" name="uuid" class="select base-input text-center font-normal" style="width: 180px; flex-shrink: 0;">
             <% @template.submitters.each do |submitter| %>
               <%= tag.option(value: submitter['uuid'], selected: submitter['uuid'] == @submitter.uuid) do %>
@@ -15,7 +15,7 @@
           </select>
         </form>
       <% end %>
-      <a href="<%= edit_template_path(@template, auth_token: params[:auth_token] || session[:auth_token]) %>" class="base-button" data-turbo="false" style="flex-shrink: 0; padding: 0px 24px;">
+      <a href="<%= edit_template_path(@template, params[:auth_token] || session[:auth_token] ? { auth_token: params[:auth_token] || session[:auth_token] } : {}) %>" class="base-button" data-turbo="false" style="flex-shrink: 0; padding: 0px 24px;">
         <%= t('exit_preview') %>
       </a>
     </div>

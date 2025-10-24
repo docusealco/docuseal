@@ -36,6 +36,7 @@ export default class extends HTMLElement {
   }
 
   isHeaderNotVisible () {
+    if (!this.header) return true
     const rect = this.header.getBoundingClientRect()
     return rect.bottom <= 0 || rect.top >= window.innerHeight
   }

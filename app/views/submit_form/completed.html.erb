@@ -16,36 +16,6 @@
       </div>
     </div>
     <div>
-      <% if (Docuseal.multitenant? || Accounts.can_send_emails?(@submitter.account)) && @submitter.email.present? %>
-        <toggle-submit>
-          <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, class: 'white-button w-full' %>
-        </toggle-submit>
-        <% if Templates.filter_undefined_submitters(@submitter.submission.template_submitters).size != 1 %>
-          <div class="divider uppercase"><%= t('or') %></div>
-        <% else %>
-          <div class="py-2"></div>
-        <% end %>
-      <% end %>
-      <% if @submitter.completed_at > 30.minutes.ago || (current_user && current_user.account.submitters.exists?(id: @submitter.id)) %>
-        <download-button data-src="<%= submitter_download_index_path(@submitter.slug) %>" class="base-button w-full">
-          <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-            <%= svg_icon('download', class: 'w-6 h-6') %>
-            <span><%= t('download_documents') %></span>
-          </span>
-          <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-            <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-            <span><%= t('downloading') %></span>
-          </span>
-        </download-button>
-      <% end %>
     </div>
-    <% undefined_submitters = Templates.filter_undefined_submitters(@submitter.submission.template_submitters) %>
-    <% if undefined_submitters.size == 1 && undefined_submitters.first['uuid'] == @submitter.uuid && %w[api embed].exclude?(@submitter.submission.source) && @submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false && @submitter.template && !@submitter.template.archived_at? %>
-      <div class="divider uppercase"><%= t('or') %></div>
-      <toggle-submit class="block">
-        <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), resubmit_form_path, params: { resubmit: @submitter.slug }, method: :put, class: 'white-button w-full' %>
-      </toggle-submit>
-    <% end %>
   </div>
 </div>
-<%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>

@@ -4,10 +4,7 @@
 <% with_signature_id, is_combined_enabled = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID], value: true).then { |configs| [configs.any? { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }, configs.any? { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }] } %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
-      <span><%= render 'submissions/logo' %></span>
-      <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template.name).split(/(_)/).each do |item| %><%= item %><wbr><% end %></span>
-    </a>
+    <div></div>
     <div class="space-x-3 flex items-center">
       <% last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
       <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
@@ -228,11 +225,6 @@
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   <%= t('sign_in_person') %>
                 </a>
-              </div>
-            <% end %>
-            <% if signed_in? && submitter && submitter.completed_at? && submitter.email == current_user.email && submitter.completed_at > 1.month.ago && can?(:update, @submission) %>
-              <div class="mt-2 mb-1">
-                <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
               </div>
             <% end %>
             <% if signed_in? && submitter && submitter.completed_at? && !submitter.declined_at? && !submitter.changes_requested_at? && current_user == @submission.template.author %>
