@@ -31,7 +31,9 @@ module IframeAuthentication
       return
     end
 
-    Rails.logger.error "#{self.class.name}: Authentication failed"
+    Rails.logger.error "#{self.class.name}: Authentication failed - no token found. " \
+                       "Params: #{params.keys}, Session has token: #{session[:auth_token].present?}, " \
+                       "Referer: #{request.referer}"
     render json: { error: 'Authentication required' }, status: :unauthorized
   end
 end

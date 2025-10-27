@@ -1,5 +1,5 @@
 <% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
-<% content_for(:html_description, "#{@submitter.account.name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
+<% content_for(:html_description, "#{@submitter.account&.name || 'You have been invited'} to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.") %>
 <% template_fields = @submitter.submission.template_fields || @submitter.submission.template.fields %>
 <% fields_index = Templates.build_field_areas_index(template_fields) %>
 <% submitter_values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
@@ -14,44 +14,7 @@
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 transition-transform duration-300 %>
       <%= local_assigns[:banner_html] || capture do %>
         <%= render('submit_form/banner') %>
-        <div id="signing_form_header" class="sticky min-[1230px]:static top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
-          <div class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            <%= @submitter.submission.name || @submitter.submission.template.name %>
-          </div>
-          <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
-            <% if @form_configs[:with_decline] %>
-              <% decline_modal_checkbox_uuid = SecureRandom.uuid %>
-              <div>
-                <%= render 'shared/html_modal', title: t(:decline), btn_text: t(:decline), btn_class: 'btn btn-sm !px-5', button_id: 'decline_button', uuid: decline_modal_checkbox_uuid do %>
-                  <%= render 'submit_form/decline_form', submitter: @submitter %>
-                <% end %>
-              </div>
-            <% end %>
-            <% if @form_configs[:with_partial_download] %>
-              <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
-                <span class="flex items-center justify-center" data-target="download-button.defaultButton">
-                  <%= svg_icon('download', class: 'w-6 h-6 inline md:hidden') %>
-                  <span class="hidden md:inline"><%= t('download') %></span>
-                </span>
-                <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                  <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                  <span class="hidden md:inline"><%= t('downloading') %></span>
-                </span>
-              </download-button>
-            <% end %>
-          </div>
-        </div>
         <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
-          <% if @form_configs[:with_decline] %>
-            <label id="decline_button" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-0">
-              <span class="min-[1366px]:inline hidden px-3">
-                <%= t(:decline) %>
-              </span>
-              <span class="inline min-[1366px]:hidden px-2">
-                <%= svg_icon('x', class: 'w-5 h-5') %>
-              </span>
-            </label>
-          <% end %>
           <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2">
             <span data-target="download-button.defaultButton">
               <%= svg_icon('download', class: 'w-5 h-5') %>
@@ -84,14 +47,25 @@
                   <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
                   <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
                   <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                  <%= render 'submissions/value', area:, field:, attachments_index: @attachments_index, value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id] %>
+                  <%= render 'submissions/value',
+                             area:,
+                             field:,
+                             attachments_index: @attachments_index,
+                             value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value,
+                             locale: @submitter.account&.locale || 'en',
+                             timezone: @submitter.account&.timezone || 'UTC',
+                             submitter: submitters_index[field['submitter_uuid']],
+                             with_signature_id: @form_configs[:with_signature_id] %>
                 <% end %>
               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-      <%= render 'shared/attribution', link_path: '/start', account: @submitter.account, with_style: false %>
+      <%# Partnership not supported %>
+      <% if @submitter.account %>
+        <%= render 'shared/attribution', link_path: '/start', account: @submitter.account, with_style: false %>
+      <% end %>
       <% if @form_configs[:policy_links].present? %>
         <div class="text-center md:text-neutral-500 md:pr-3 md:pb-3 md:text-sm md:text-left mt-2 md:mt-0 md:fixed md:bottom-0 md:right-0">
           <div class="md:max-w-[8rem] flex flex-wrap md:flex-col justify-center md:justify-start md:items-start space-x-2 md:space-x-0">

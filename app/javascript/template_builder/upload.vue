@@ -48,7 +48,7 @@ export default {
     IconUpload,
     IconInnerShadowTop
   },
-  inject: ['baseFetch', 't'],
+  inject: ['baseFetch', 't', 'template'],
   props: {
     templateId: {
       type: [Number, String],
@@ -78,10 +78,28 @@ export default {
     async upload () {
       this.isLoading = true
 
+      const formData = new FormData(this.$refs.form)
+      
+      // Add partnership context if available
+      if (this.template?.partnership_context) {
+        const context = this.template.partnership_context
+        if (context.accessible_partnership_ids) {
+          context.accessible_partnership_ids.forEach(id => {
+            formData.append('accessible_partnership_ids[]', id)
+          })
+        }
+        if (context.external_partnership_id) {
+          formData.append('external_partnership_id', context.external_partnership_id)
+        }
+        if (context.external_account_id) {
+          formData.append('external_account_id', context.external_account_id)
+        }
+      }
+
       this.baseFetch(this.uploadUrl, {
         method: 'POST',
         headers: { Accept: 'application/json' },
-        body: new FormData(this.$refs.form)
+        body: formData
       }).then((resp) => {
         if (resp.ok) {
           resp.json().then((data) => {
@@ -95,6 +113,22 @@ export default {
               const formData = new FormData(this.$refs.form)
 
               formData.append('password', prompt(this.t('enter_pdf_password')))
+              
+              // Add partnership context if available
+              if (this.template?.partnership_context) {
+                const context = this.template.partnership_context
+                if (context.accessible_partnership_ids) {
+                  context.accessible_partnership_ids.forEach(id => {
+                    formData.append('accessible_partnership_ids[]', id)
+                  })
+                }
+                if (context.external_partnership_id) {
+                  formData.append('external_partnership_id', context.external_partnership_id)
+                }
+                if (context.external_account_id) {
+                  formData.append('external_account_id', context.external_account_id)
+                }
+              }
 
               this.baseFetch(this.uploadUrl, {
                 method: 'POST',

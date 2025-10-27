@@ -39,3 +39,4 @@ yarn-debug.log*
 dump.rdb
 .aider*
 .kilocode/*
+CLAUDE.local.md

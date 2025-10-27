@@ -4,6 +4,7 @@ module Api
   class ApiBaseController < ActionController::API
     include ActiveStorage::SetCurrent
     include Pagy::Backend
+    include PartnershipContext
 
     DEFAULT_LIMIT = 10
     MAX_LIMIT = 100
@@ -45,11 +46,13 @@ module Api
       return 'Not authorized' unless error.subject.respond_to?(:account_id)
 
       linked_account_record_exists =
-        if current_user.account.testing?
+        if current_user.account&.testing?
           current_user.account.linked_account_accounts.where(account_type: 'testing')
                       .exists?(account_id: error.subject.account_id)
-        else
+        elsif current_user.account
           current_user.account.testing_accounts.exists?(id: error.subject.account_id)
+        else
+          false
         end
 
       return 'Not authorized' unless linked_account_record_exists

@@ -61,6 +61,12 @@ Rails.application.routes.draw do
         post :user_token
       end
     end
+
+    resources :token_refresh, only: [] do
+      collection do
+        post :create
+      end
+    end
   end
 
   resources :export, controller: 'export' do

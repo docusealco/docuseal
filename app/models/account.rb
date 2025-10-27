@@ -12,23 +12,16 @@
 #  uuid                :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  account_group_id    :bigint
 #  external_account_id :integer
 #
 # Indexes
 #
-#  index_accounts_on_account_group_id     (account_group_id)
 #  index_accounts_on_external_account_id  (external_account_id) UNIQUE
 #  index_accounts_on_uuid                 (uuid) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (account_group_id => account_groups.id)
 #
 class Account < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
-  belongs_to :account_group, optional: true
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
@@ -66,9 +59,9 @@ class Account < ApplicationRecord
 
   scope :active, -> { where(archived_at: nil) }
 
-  def self.find_or_create_by_external_id(external_id, attributes = {})
+  def self.find_or_create_by_external_id(external_id, name, attributes = {})
     find_by(external_account_id: external_id) ||
-      create!(attributes.merge(external_account_id: external_id))
+      create!(attributes.merge(external_account_id: external_id, name: name))
   end
 
   def testing?

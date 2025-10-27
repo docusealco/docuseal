@@ -3,9 +3,15 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    can %i[read create update], Template, Abilities::TemplateConditions.collection(user) do |template|
-      Abilities::TemplateConditions.entity(template, user:, ability: 'manage')
+  def initialize(user, request_context = nil)
+    can %i[read create update], Template,
+        Abilities::TemplateConditions.collection(user, request_context: request_context) do |template|
+      Abilities::TemplateConditions.entity(
+        template,
+        user: user,
+        ability: 'manage',
+        request_context: request_context
+      )
     end
 
     can :destroy, Template, account_id: user.account_id

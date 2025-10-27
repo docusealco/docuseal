@@ -16,7 +16,9 @@ RSpec.describe ExternalAuthService do
     context 'with account params' do
       let(:params) do
         {
-          account: { external_id: 456, name: 'Test Account' },
+          account: {
+            external_id: '456', name: 'Test Account', locale: 'en-US', timezone: 'UTC', entity_type: 'Account'
+          },
           user: user_params
         }
       end
@@ -39,29 +41,80 @@ RSpec.describe ExternalAuthService do
       end
     end
 
-    context 'with account_group params' do
+    context 'with partnership params' do
       let(:params) do
         {
-          account_group: { external_id: 789, name: 'Test Group' },
+          partnership: {
+            external_id: '789', name: 'Test Group', locale: 'en-US', timezone: 'UTC', entity_type: 'Partnership'
+          },
           user: user_params
         }
       end
 
-      it 'returns access token for new account_group and user' do
+      it 'returns access token for new partnership and user' do
         token = described_class.new(params).authenticate_user
 
         expect(token).to be_present
-        expect(AccountGroup.last.external_account_group_id).to eq(789)
+        expect(Partnership.last.external_partnership_id).to eq(789)
         expect(User.last.external_user_id).to eq(123)
+      end
+
+      it 'returns access token for existing partnership and user' do
+        user = create(:user, account: nil, external_user_id: 123)
+
+        token = described_class.new(params).authenticate_user
+
+        expect(token).to eq(user.access_token.token)
+      end
+    end
+
+    context 'with partnership and account params' do
+      let(:params) do
+        {
+          partnership: {
+            external_id: '789', name: 'Test Group', locale: 'en-US', timezone: 'UTC', entity_type: 'Partnership'
+          },
+          external_account_id: '456',
+          user: user_params
+        }
+      end
+
+      it 'creates partnership user with account context' do
+        account = create(:account, external_account_id: 456)
+
+        token = described_class.new(params).authenticate_user
+
+        expect(token).to be_present
+        expect(Partnership.last.external_partnership_id).to eq(789)
+        expect(User.last.external_user_id).to eq(123)
+        expect(User.last.account_id).to eq(account.id)
+      end
+
+      it 'finds existing partnership user with account context' do
+        create(:account, external_account_id: 456)
+        user = create(:user, account: nil, external_user_id: 123)
+
+        token = described_class.new(params).authenticate_user
+
+        expect(token).to eq(user.access_token.token)
+        expect(User.count).to eq(1)
+      end
+
+      it 'handles external_account_id for account-level operations' do
+        account = create(:account, external_account_id: 456)
+        token = described_class.new(params).authenticate_user
+
+        expect(token).to be_present
+        expect(User.last.account_id).to eq(account.id)
       end
     end
 
     context 'with invalid params' do
-      it 'raises error when neither account nor account_group provided' do
+      it 'raises error when neither account nor partnership provided' do
         params = { user: user_params }
 
         expect { described_class.new(params).authenticate_user }
-          .to raise_error(ArgumentError, 'Either account or account_group params must be provided')
+          .to raise_error(ArgumentError, 'Either account or partnership params must be provided')
       end
     end
   end
