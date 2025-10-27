@@ -38,14 +38,6 @@
           <%= f.button button_title(title: t('send_copy_to_email'), disabled_with: t('starting')), class: 'base-button' %>
         </toggle-submit>
       <% end %>
-      <% if Docuseal.multitenant? %>
-        <div class="divider uppercase"><%= t('or') %></div>
-      <% end %>
-    <% end %>
-    <% if Docuseal.multitenant? %>
-      <div>
-        <%= link_to t('create_free_account'), registration_path, class: 'white-button w-full' %>
-      </div>
     <% end %>
   </div>
 </div>
