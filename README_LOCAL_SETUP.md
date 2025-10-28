@@ -96,6 +96,14 @@ yarn install
 
 ### 6. Start the Development Servers
 
+**Option 1: Using Foreman (recommended)**
+```bash
+foreman start -f Procfile.dev
+```
+This starts both Rails server (port 3001) and Webpack dev server (port 3036) together.
+
+**Option 2: Separate terminals**
+
 In separate terminal windows:
 
 ```bash
@@ -105,6 +113,8 @@ PORT=3001 bundle exec rails s -p 3001
 # Terminal 2: Webpack dev server
 bundle exec ./bin/shakapacker-dev-server
 ```
+
+**Important**: Both servers are required - Rails serves the backend while Webpack compiles JavaScript/CSS assets including Vue.js components.
 
 ### 7. Access the Application
 
