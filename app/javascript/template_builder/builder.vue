@@ -449,6 +449,7 @@
             :default-required-fields="defaultRequiredFields"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
+            :with-fields-detection="withFieldsDetection"
             :with-signature-id="withSignatureId"
             :with-prefillable="withPrefillable"
             :only-defined-fields="onlyDefinedFields"
@@ -617,6 +618,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withAddPageButton: {
       type: Boolean,

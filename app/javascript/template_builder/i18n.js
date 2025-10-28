@@ -1,5 +1,6 @@
 const en = {
   view: 'View',
+  autodetect_fields: 'Autodetect fields',
   payment_link: 'Payment link',
   strikeout: 'Strikeout',
   draw_strikethrough_the_document: 'Draw strikethrough the document',
