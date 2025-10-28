@@ -8,7 +8,7 @@ describe 'Submission API' do
   let(:folder) { create(:template_folder, account:) }
   let(:testing_folder) { create(:template_folder, account: testing_account) }
   let(:templates) { create_list(:template, 2, account:, author:, folder:) }
-  let(:multiple_submitters_template) { create(:template, submitter_count: 3, account:, author:, folder:) }
+  let(:multiple_submitters_template) { create(:template, submitter_count: 2, account:, author:, folder:) }
   let(:testing_templates) do
     create_list(:template, 2, account: testing_account, author: testing_author, folder: testing_folder)
   end
@@ -123,8 +123,7 @@ describe 'Submission API' do
         send_email: true,
         submitters: [
           { role: 'Employee', email: 'john.doe@example.com' },
-          { email: 'jane.doe@example.com' },
-          { email: 'mike.doe@example.com' }
+          { email: 'jane.doe@example.com' }
         ]
       }.to_json
 
@@ -138,8 +137,6 @@ describe 'Submission API' do
       expect(response.parsed_body[0]['email']).to eq('john.doe@example.com')
       expect(response.parsed_body[1]['role']).to eq('Manager')
       expect(response.parsed_body[1]['email']).to eq('jane.doe@example.com')
-      expect(response.parsed_body[2]['role']).to eq('Third Party')
-      expect(response.parsed_body[2]['email']).to eq('mike.doe@example.com')
     end
 
     it 'returns an error if the submitter email is invalid' do

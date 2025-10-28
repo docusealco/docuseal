@@ -59,13 +59,6 @@
                   {{ submitter.name }}
                 </span>
               </span>
-              <button
-                v-if="submitters.length > 1 && editable"
-                class="px-2"
-                @click.prevent.stop="remove(submitter)"
-              >
-                <IconTrashX :width="18" />
-              </button>
             </a>
           </li>
           <li v-if="submitters.length < names.length && editable">
@@ -160,36 +153,6 @@
               {{ submitter.name }}
             </span>
           </span>
-          <div
-            v-if="!compact && submitters.length > 1 && editable"
-            class="flex"
-          >
-            <div class="flex-col pr-1 hidden group-hover:flex -mt-1 h-0">
-              <button
-                :title="t('up')"
-                class="relative w-2"
-                style="font-size: 10px; margin-bottom: -4px"
-                @click.prevent.stop="[move(submitter, -1), $refs.label.focus()] "
-              >
-                ▲
-              </button>
-              <button
-                :title="t('down')"
-                class="relative w-2"
-                style="font-size: 10px; margin-top: -4px"
-                @click.prevent.stop="[move(submitter, 1), $refs.label.focus()] "
-              >
-                ▼
-              </button>
-            </div>
-            <button
-              v-if="!compact && submitters.length > 1 && editable"
-              class="hidden group-hover:block px-2"
-              @click.prevent.stop="remove(submitter)"
-            >
-              <IconTrashX :width="18" />
-            </button>
-          </div>
         </a>
       </li>
       <li
@@ -300,36 +263,9 @@ export default {
       ]
     },
     names () {
-      const generatedNames = []
-
-      for (let i = 21; i < 101; i++) {
-        const suffix = getOrdinalSuffix(i)
-
-        generatedNames.push(`${i}${suffix} ${this.t('party')}`)
-      }
-
       return [
         this.t('first_party'),
-        this.t('second_party'),
-        this.t('third_party'),
-        this.t('fourth_party'),
-        this.t('fifth_party'),
-        this.t('sixth_party'),
-        this.t('seventh_party'),
-        this.t('eighth_party'),
-        this.t('ninth_party'),
-        this.t('tenth_party'),
-        this.t('eleventh_party'),
-        this.t('twelfth_party'),
-        this.t('thirteenth_party'),
-        this.t('fourteenth_party'),
-        this.t('fifteenth_party'),
-        this.t('sixteenth_party'),
-        this.t('seventeenth_party'),
-        this.t('eighteenth_party'),
-        this.t('nineteenth_party'),
-        this.t('twentieth_party'),
-        ...generatedNames
+        this.t('second_party')
       ]
     },
     lastPartyIndex () {

@@ -44,6 +44,7 @@ en: &en
   unarchive: Unarchive
   signed: Signed
   first_party: 'Employee'
+  second_party: 'Manager'
   remove_filter: Remove filter
   add: Add
   adding: Adding
@@ -897,6 +898,7 @@ es: &es
   awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
   enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
   first_party: 'Primera Parte'
+  second_party: 'Segunda Parte'
   docuseal_trusted_signature: Firma de confianza DocuSeal
   hello_name: Hola %{name}
   you_are_invited_to_product_name: Estás invitado a %{product_name}
