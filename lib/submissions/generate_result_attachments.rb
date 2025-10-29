@@ -244,6 +244,7 @@ module Submissions
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           fill_color = field.dig('preferences', 'color').to_s.delete_prefix('#').presence
+          bg_color = field.dig('preferences', 'background').to_s.delete_prefix('#').presence
 
           font_name = field.dig('preferences', 'font')
           font_variant = (field.dig('preferences', 'font_type').presence || 'none').to_sym
@@ -287,6 +288,13 @@ module Submissions
 
           if field_type == 'signature' && field.dig('preferences', 'with_signature_id').in?([true, false])
             with_signature_id = field['preferences']['with_signature_id']
+          end
+
+          if bg_color.present?
+            canvas.fill_color(bg_color)
+                  .rectangle(area['x'] * width, height - (area['y'] * height) - (area['h'] * height),
+                             area['w'] * width, area['h'] * height)
+                  .fill
           end
 
           case field_type
