@@ -275,7 +275,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_30_175543) do
   end
 
   create_table "partnerships", force: :cascade do |t|
-    t.string "external_partnership_id", null: false
+    t.integer "external_partnership_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
