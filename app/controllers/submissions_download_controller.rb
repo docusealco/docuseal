@@ -57,11 +57,16 @@ class SubmissionsDownloadController < ApplicationController
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
     Submitters.select_attachments_for_download(submitter).map do |attachment|
-      ActiveStorage::Blob.proxy_url(
-        attachment.blob,
-        expires_at: FILES_TTL.from_now.to_i,
-        filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
-      )
+      # Use signed URLs for secured storage
+      if uses_secured_storage?(attachment)
+        DocumentSecurityService.signed_url_for(attachment, expires_in: FILES_TTL)
+      else
+        ActiveStorage::Blob.proxy_url(
+          attachment.blob,
+          expires_at: FILES_TTL.from_now.to_i,
+          filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+        )
+      end
     end
   end
 
@@ -75,10 +80,19 @@ class SubmissionsDownloadController < ApplicationController
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    ActiveStorage::Blob.proxy_url(
-      attachment.blob,
-      expires_at: FILES_TTL.from_now.to_i,
-      filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
-    )
+    # Use signed URLs for secured storage
+    if uses_secured_storage?(attachment)
+      DocumentSecurityService.signed_url_for(attachment, expires_in: FILES_TTL)
+    else
+      ActiveStorage::Blob.proxy_url(
+        attachment.blob,
+        expires_at: FILES_TTL.from_now.to_i,
+        filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+      )
+    end
+  end
+
+  def uses_secured_storage?(attachment)
+    attachment.blob.service_name == 'aws_s3_secured'
   end
 end

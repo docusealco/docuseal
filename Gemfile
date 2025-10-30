@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '3.4.2'
 
 gem 'arabic-letter-connector', require: 'arabic-letter-connector/logic'
+gem 'aws-sdk-cloudfront', require: false
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-secretsmanager', require: false
 gem 'azure-storage-blob', require: false

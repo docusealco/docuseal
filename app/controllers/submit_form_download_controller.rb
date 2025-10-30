@@ -32,9 +32,20 @@ class SubmitFormDownloadController < ApplicationController
       end
 
     urls = attachments.map do |attachment|
-      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
+      # Use signed URLs for secured storage
+      if uses_secured_storage?(attachment)
+        DocumentSecurityService.signed_url_for(attachment, expires_in: FILES_TTL)
+      else
+        ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
+      end
     end
 
     render json: urls
+  end
+
+  private
+
+  def uses_secured_storage?(attachment)
+    attachment.blob.service_name == 'aws_s3_secured'
   end
 end

@@ -13,6 +13,16 @@ aws_s3:
   upload:
     cache_control: 'public, max-age=31536000'
 
+# Secured storage service for completed documents (reuses ATS infrastructure)
+# Uses IAM role for authentication in staging/production (no keys needed)
+# Set SECURED_STORAGE_BUCKET and SECURED_STORAGE_REGION in Secrets Manager
+aws_s3_secured:
+  service: S3
+  bucket: <%= ENV['SECURED_STORAGE_BUCKET'] %>
+  region: <%= ENV['SECURED_STORAGE_REGION'] || 'us-east-1' %>
+  public: false
+  force_path_style: true
+
 test:
   service: Disk
   root: <%= Rails.root.join("tmp/storage") %>
