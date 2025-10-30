@@ -163,12 +163,20 @@ export default {
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
-            }).then(resp => resp.json()).then((data) => {
-              return data
+            }).then(async (resp) => {
+              const data = await resp.json()
+
+              if (resp.status === 422) {
+                alert(data.error)
+              } else {
+                return data
+              }
             })
           }
         })).then((result) => {
-        this.$emit('upload', result)
+        if (result && result[0]) {
+          this.$emit('upload', result)
+        }
       }).finally(() => {
         this.isLoading = false
       })

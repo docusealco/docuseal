@@ -34,6 +34,8 @@ module Api
       end
 
       render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
+    rescue Submitters::MaliciousFileExtension => e
+      render json: { error: e.message }, status: :unprocessable_entity
     end
 
     def build_new_cookie_signatures_json(submitter, attachment)
