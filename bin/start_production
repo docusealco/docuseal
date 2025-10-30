@@ -164,6 +164,11 @@ fetch_env_variables() {
     export NEWRELIC_LICENSE_KEY=$(echo "$SECRET_JSON" | jq -r '.newrelic_license_key')
     export NEWRELIC_APP_NAME=$(echo "$SECRET_JSON" | jq -r '.newrelic_app_name')
     export NEWRELIC_MONITOR_MODE=$(echo "$SECRET_JSON" | jq -r '.newrelic_monitor_mode')
+    export CF_URL=$(echo "$SECRET_JSON" | jq -r '.cf_url')
+    export CF_KEY_PAIR_ID=$(echo "$SECRET_JSON" | jq -r '.cf_key_pair_id')
+    export CF_KEY_SECRET=$(echo "$SECRET_JSON" | jq -r '.cf_key_secret')
+    export SECURED_STORAGE_BUCKET=$(echo "$SECRET_JSON" | jq -r '.secured_storage_bucket')
+    export SECURED_STORAGE_REGION=$(echo "$SECRET_JSON" | jq -r '.secured_storage_region')
 
     # Validate that we got the values
     if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
@@ -192,6 +197,11 @@ fetch_env_variables() {
         grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.production.tmp > ./.env.production || true
         grep -v "^NEWRELIC_APP_NAME=" ./.env.production.tmp > ./.env.production || true
         grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^CF_URL=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^CF_KEY_PAIR_ID=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^CF_KEY_SECRET=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^SECURED_STORAGE_BUCKET=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^SECURED_STORAGE_REGION=" ./.env.production.tmp > ./.env.production || true
         rm -f ./.env.production.tmp
     fi
     
@@ -204,6 +214,11 @@ fetch_env_variables() {
     echo "NEWRELIC_LICENSE_KEY=$NEWRELIC_LICENSE_KEY" >> ./.env.production
     echo "NEWRELIC_APP_NAME=$NEWRELIC_APP_NAME" >> ./.env.production
     echo "NEWRELIC_MONITOR_MODE=$NEWRELIC_MONITOR_MODE" >> ./.env.production
+    echo "CF_URL=$CF_URL" >> ./.env.production
+    echo "CF_KEY_PAIR_ID=$CF_KEY_PAIR_ID" >> ./.env.production
+    echo "CF_KEY_SECRET=$CF_KEY_SECRET" >> ./.env.production
+    echo "SECURED_STORAGE_BUCKET=$SECURED_STORAGE_BUCKET" >> ./.env.production
+    echo "SECURED_STORAGE_REGION=$SECURED_STORAGE_REGION" >> ./.env.production
 
     echo "✓ Environment variables successfully retrieved and written to .env.production"
 }
