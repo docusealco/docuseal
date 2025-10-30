@@ -614,7 +614,6 @@ en: &en
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
   re_send_email: Re-send Email
   send_email: Send Email
-  copy_share_link: Copy Share Link
   copied_to_clipboard: Copied to Clipboard
   link: Link
   via_email: via Email
