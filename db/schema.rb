@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_09_30_175543) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
 
   create_table "access_tokens", force: :cascade do |t|
