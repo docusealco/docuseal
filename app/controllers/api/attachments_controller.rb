@@ -35,6 +35,8 @@ module Api
 
       render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
     rescue Submitters::MaliciousFileExtension => e
+      Rollbar.error(e) if defined?(Rollbar)
+
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
