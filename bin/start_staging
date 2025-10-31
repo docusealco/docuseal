@@ -168,6 +168,11 @@ fetch_env_variables() {
     export NEWRELIC_LICENSE_KEY=$(echo "$SECRET_JSON" | jq -r '.newrelic_license_key')
     export NEWRELIC_APP_NAME=$(echo "$SECRET_JSON" | jq -r '.newrelic_app_name')
     export NEWRELIC_MONITOR_MODE=$(echo "$SECRET_JSON" | jq -r '.newrelic_monitor_mode')
+    export CF_URL=$(echo "$SECRET_JSON" | jq -r '.cf_url')
+    export CF_KEY_PAIR_ID=$(echo "$SECRET_JSON" | jq -r '.cf_key_pair_id')
+    export CF_KEY_SECRET=$(echo "$SECRET_JSON" | jq -r '.cf_key_secret')
+    export SECURED_STORAGE_BUCKET=$(echo "$SECRET_JSON" | jq -r '.secured_storage_bucket')
+    export SECURED_STORAGE_REGION=$(echo "$SECRET_JSON" | jq -r '.secured_storage_region')
 
 
     # Validate that we got the values
@@ -197,6 +202,11 @@ fetch_env_variables() {
         grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.staging.tmp > ./.env.staging || true
         grep -v "^NEWRELIC_APP_NAME=" ./.env.staging.tmp > ./.env.staging || true
         grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.staging.tmp > ./.env.staging || true
+        grep -v "^CF_URL=" ./.env.staging.tmp > ./.env.staging || true
+        grep -v "^CF_KEY_PAIR_ID=" ./.env.staging.tmp > ./.env.staging || true
+        grep -v "^CF_KEY_SECRET=" ./.env.staging.tmp > ./.env.staging || true
+        grep -v "^SECURED_STORAGE_BUCKET=" ./.env.staging.tmp > ./.env.staging || true
+        grep -v "^SECURED_STORAGE_REGION=" ./.env.staging.tmp > ./.env.staging || true
         rm -f ./.env.staging.tmp
     fi
     
@@ -209,6 +219,11 @@ fetch_env_variables() {
     echo "NEWRELIC_LICENSE_KEY=$NEWRELIC_LICENSE_KEY" >> ./.env.staging
     echo "NEWRELIC_APP_NAME=$NEWRELIC_APP_NAME" >> ./.env.staging
     echo "NEWRELIC_MONITOR_MODE=$NEWRELIC_MONITOR_MODE" >> ./.env.staging
+    echo "CF_URL=$CF_URL" >> ./.env.staging
+    echo "CF_KEY_PAIR_ID=$CF_KEY_PAIR_ID" >> ./.env.staging
+    echo "CF_KEY_SECRET=$CF_KEY_SECRET" >> ./.env.staging
+    echo "SECURED_STORAGE_BUCKET=$SECURED_STORAGE_BUCKET" >> ./.env.staging
+    echo "SECURED_STORAGE_REGION=$SECURED_STORAGE_REGION" >> ./.env.staging
 
     echo "✓ Environment variables successfully retrieved and written to .env.staging"
 }
