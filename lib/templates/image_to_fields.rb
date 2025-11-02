@@ -6,7 +6,7 @@ module Templates
 
     Field = Struct.new(:type, :x, :y, :w, :h, :confidence, keyword_init: true)
 
-    MODEL_PATH = Rails.root.join('tmp/model_704_int8.onnx')
+    MODEL_PATH = Rails.root.join('tmp/model.onnx')
 
     RESOLUTION = 704
 
