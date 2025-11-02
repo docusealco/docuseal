@@ -87,7 +87,11 @@ module Templates
         yield [attachment&.uuid, page_number, fields] if block_given?
 
         fields
+      ensure
+        page.close
       end
+    ensure
+      doc.close
     end
 
     def extract_line_fields_from_page(page)
