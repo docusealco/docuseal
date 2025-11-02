@@ -210,7 +210,7 @@
   </div>
   <div
     v-if="withFieldsDetection && editable && fields.length < 2"
-    class="mt-2"
+    class="my-2"
   >
     <button
       class="btn w-full"
