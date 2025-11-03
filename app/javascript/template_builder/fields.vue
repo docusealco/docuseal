@@ -464,11 +464,14 @@ export default {
               if (data.completed) {
                 this.fieldPagesLoaded = null
                 this.template.fields = fields
+                this.save()
 
                 break
               } else if (data.fields) {
                 data.fields.forEach((f) => {
-                  f.submitter_uuid = this.template.submitters[0].uuid
+                  if (!f.submitter_uuid) {
+                    f.submitter_uuid = this.template.submitters[0].uuid
+                  }
                 })
 
                 this.fieldPagesLoaded += 1
