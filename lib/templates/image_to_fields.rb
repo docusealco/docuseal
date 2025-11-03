@@ -19,49 +19,65 @@ module Templates
 
     # rubocop:disable Metrics
     def call(image, confidence: 0.3, nms: 0.1, temperature: 1,
-             split_page: false, aspect_ratio: true, padding: nil)
+             split_page: false, aspect_ratio: true, padding: nil, resolution: RESOLUTION)
       base_image = image.extract_band(0, n: 3)
 
       trimmed_base, base_offset_x, base_offset_y = trim_image_with_padding(base_image, padding)
 
       if split_page && image.height > image.width
-        half_h = trimmed_base.height / 2
-        top_h = half_h
-        bottom_h = trimmed_base.height - half_h
-
-        regions = [
-          { img: trimmed_base.crop(0, 0, trimmed_base.width, top_h), offset_y: 0 },
-          { img: trimmed_base.crop(0, top_h, trimmed_base.width, bottom_h), offset_y: top_h }
-        ]
+        regions = build_split_image_regions(trimmed_base)
 
         detections = { xyxy: Numo::SFloat[], confidence: Numo::SFloat[], class_id: Numo::Int32[] }
 
         detections = regions.reduce(detections) do |acc, r|
           next detections if r[:img].height <= 0 || r[:img].width <= 0
 
-          input_tensor, transform_info = preprocess_image(r[:img], RESOLUTION, aspect_ratio:)
+          input_tensor, transform_info = preprocess_image(r[:img], resolution, aspect_ratio:)
 
           transform_info[:trim_offset_x] = base_offset_x
           transform_info[:trim_offset_y] = base_offset_y + r[:offset_y]
 
           outputs = model.predict({ 'input' => input_tensor })
 
-          postprocess_outputs(outputs, transform_info, acc, confidence:, temperature:)
+          boxes = Numo::SFloat.cast(outputs['dets'])[0, true, true]
+          logits = Numo::SFloat.cast(outputs['labels'])[0, true, true]
+
+          postprocess_outputs(boxes, logits, transform_info, acc, confidence:, temperature:, resolution:)
         end
       else
-        input_tensor, transform_info = preprocess_image(trimmed_base, RESOLUTION, aspect_ratio:)
+        input_tensor, transform_info = preprocess_image(trimmed_base, resolution, aspect_ratio:)
 
         transform_info[:trim_offset_x] = base_offset_x
         transform_info[:trim_offset_y] = base_offset_y
 
         outputs = model.predict({ 'input' => input_tensor })
 
-        detections = postprocess_outputs(outputs, transform_info, confidence:, temperature:)
+        boxes = Numo::SFloat.cast(outputs['dets'])[0, true, true]
+        logits = Numo::SFloat.cast(outputs['labels'])[0, true, true]
+
+        detections = postprocess_outputs(boxes, logits, transform_info, confidence:, temperature:, resolution:)
       end
 
       detections = apply_nms(detections, nms)
 
-      fields = Array.new(detections[:xyxy].shape[0]) do |i|
+      fields = build_fields_from_detections(detections, image)
+
+      sort_fields(fields, y_threshold: 10.0 / image.height)
+    end
+
+    def build_split_image_regions(image)
+      half_h = image.height / 2
+      top_h = half_h
+      bottom_h = image.height - half_h
+
+      [
+        { img: image.crop(0, 0, image.width, top_h), offset_y: 0 },
+        { img: image.crop(0, top_h, image.width, bottom_h), offset_y: top_h }
+      ]
+    end
+
+    def build_fields_from_detections(detections, image)
+      Array.new(detections[:xyxy].shape[0]) do |i|
         x1 = detections[:xyxy][i, 0]
         y1 = detections[:xyxy][i, 1]
         x2 = detections[:xyxy][i, 2]
@@ -87,8 +103,6 @@ module Templates
           confidence:
         )
       end
-
-      sort_fields(fields, y_threshold: 10.0 / image.height)
     end
 
     def trim_image_with_padding(image, padding = 0)
@@ -185,13 +199,8 @@ module Templates
       Numo::Int32.cast(keep)
     end
 
-    def postprocess_outputs(outputs, transform_info, detections = nil, confidence: 0.3, temperature: 1)
-      boxes = Numo::SFloat.cast(outputs['dets'])
-      logits = Numo::SFloat.cast(outputs['labels'])
-
-      boxes = boxes[0, true, true] # [300, 4]
-      logits = logits[0, true, true] # [300, num_classes]
-
+    def postprocess_outputs(boxes, logits, transform_info, detections = nil, confidence: 0.3, temperature: 1,
+                            resolution: RESOLUTION)
       scaled_logits = logits / temperature
 
       probs = 1.0 / (1.0 + Numo::NMath.exp(-scaled_logits))
@@ -215,7 +224,7 @@ module Templates
       boxes_xyxy[true, 2] = x2
       boxes_xyxy[true, 3] = y2
 
-      boxes_xyxy *= RESOLUTION
+      boxes_xyxy *= resolution
 
       pad_x = transform_info[:pad_x]
       pad_y = transform_info[:pad_y]

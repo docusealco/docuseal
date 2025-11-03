@@ -461,7 +461,11 @@ export default {
               const jsonStr = line.replace(/^data: /, '')
               const data = JSON.parse(jsonStr)
 
-              if (data.completed) {
+              if (data.error) {
+                alert(data.error)
+
+                break
+              } else if (data.completed) {
                 this.fieldPagesLoaded = null
                 this.template.fields = fields
                 this.save()

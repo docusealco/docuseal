@@ -7,23 +7,23 @@ module Templates
     TextFieldBox = Struct.new(:x, :y, :w, :h, keyword_init: true)
 
     # rubocop:disable Metrics
-    def call(io, attachment: nil, confidence: 0.3, temperature: 1,
+    def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields,
              nms: 0.1, split_page: false, aspect_ratio: true, padding: 20, &)
       if attachment&.image?
-        process_image_attachment(io, attachment:, confidence:, nms:, split_page:,
+        process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
                                      temperature:, aspect_ratio:, padding:, &)
       else
-        process_pdf_attachment(io, attachment:, confidence:, nms:, split_page:,
+        process_pdf_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
                                    temperature:, aspect_ratio:, padding:, &)
       end
     end
 
-    def process_image_attachment(io, attachment:, confidence:, nms:, temperature: 1,
+    def process_image_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
                                  split_page: false, aspect_ratio: false, padding: nil)
       image = Vips::Image.new_from_buffer(io.read, '')
 
-      fields = Templates::ImageToFields.call(image, confidence:, nms:, split_page:,
-                                                    temperature:, aspect_ratio:, padding:)
+      fields = inference.call(image, confidence:, nms:, split_page:,
+                                     temperature:, aspect_ratio:, padding:)
 
       fields = fields.map do |f|
         {
@@ -47,19 +47,19 @@ module Templates
       fields
     end
 
-    def process_pdf_attachment(io, attachment:, confidence:, nms:, temperature: 1,
+    def process_pdf_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
                                split_page: false, aspect_ratio: false, padding: nil)
       doc = Pdfium::Document.open_bytes(io.read)
 
       doc.page_count.times.flat_map do |page_number|
         page = doc.get_page(page_number)
 
-        data, width, height = page.render_to_bitmap(width: ImageToFields::RESOLUTION * 1.5)
+        data, width, height = page.render_to_bitmap(width: inference::RESOLUTION * 1.5)
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
-        fields = Templates::ImageToFields.call(image, confidence: 0.05, nms:, split_page:,
-                                                      temperature:, aspect_ratio:, padding:)
+        fields = inference.call(image, confidence: 0.05, nms:, split_page:,
+                                       temperature:, aspect_ratio:, padding:)
 
         text_fields = extract_text_fields_from_page(page)
         line_fields = extract_line_fields_from_page(page)
@@ -150,6 +150,8 @@ module Templates
           next if nodes.blank?
 
           next_node = page.text_nodes[node_index + 1]
+
+          break unless next_node
 
           break if next_node.x + next_node.w < line.x || line.x + line.w < next_node.x ||
                    next_node.y + next_node.h < line.y - next_node.h || line.y < next_node.y
