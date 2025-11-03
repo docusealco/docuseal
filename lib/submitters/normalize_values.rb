@@ -94,7 +94,7 @@ module Submitters
     end
 
     def fetch_fields(template, submitter_name: nil, for_submitter: nil)
-      if submitter_name
+      if submitter_name && !for_submitter
         submitter =
           template.submitters.find { |e| e['name'] == submitter_name } ||
           raise(UnknownSubmitterName,

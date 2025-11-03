@@ -553,6 +553,10 @@ export default {
         style.color = this.field.preferences.color
       }
 
+      if (this.field.preferences?.background) {
+        style.background = this.field.preferences.background
+      }
+
       return style
     },
     isNarrow () {

@@ -13,6 +13,17 @@ module Submitters
 
   UnableToSendCode = Class.new(StandardError)
   InvalidOtp = Class.new(StandardError)
+  MaliciousFileExtension = Class.new(StandardError)
+
+  DANGEROUS_EXTENSIONS = Set.new(%w[
+    exe com bat cmd scr pif vbs vbe js jse wsf wsh msi msp
+    hta cpl jar app deb rpm dmg pkg mpkg dll so dylib sys
+    inf reg ps1 psm1 psd1 ps1xml psc1 pssc bat cmd vb vba
+    sh bash zsh fish run out bin elf gadget workflow lnk scf
+    url desktop application action workflow apk ipa xap appx
+    appxbundle msix msixbundle diagcab diagpkg cpl msc ocx
+    drv scr ins isp mst paf prf shb shs slk ws wsc inf1 inf2
+  ].freeze)
 
   module_function
 
@@ -111,6 +122,12 @@ module Submitters
   def create_attachment!(submitter, params)
     blob =
       if (file = params[:file])
+        extension = File.extname(file.original_filename).delete_prefix('.').downcase
+
+        if DANGEROUS_EXTENSIONS.include?(extension)
+          raise MaliciousFileExtension, "File type '.#{extension}' is not allowed."
+        end
+
         ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                filename: file.original_filename,
                                                content_type: file.content_type)

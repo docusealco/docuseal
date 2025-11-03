@@ -25,6 +25,8 @@ class Pdfium
   typedef :pointer, :FPDF_BITMAP
   typedef :pointer, :FPDF_FORMHANDLE
   typedef :pointer, :FPDF_TEXTPAGE
+  typedef :pointer, :FPDF_PAGEOBJECT
+  typedef :pointer, :FPDF_PATHSEGMENT
 
   MAX_SIZE = 32_767
 
@@ -36,6 +38,9 @@ class Pdfium
   FPDF_RENDER_LIMITEDIMAGECACHE = 0x200
   FPDF_RENDER_FORCEHALFTONE = 0x400
   FPDF_PRINTING = 0x800
+
+  TextNode = Struct.new(:content, :x, :y, :w, :h, keyword_init: true)
+  LineNode = Struct.new(:x, :y, :w, :h, :tilt, keyword_init: true)
 
   # rubocop:disable Naming/ClassAndModuleCamelCase
   class FPDF_LIBRARY_CONFIG < FFI::Struct
@@ -77,6 +82,37 @@ class Pdfium
   attach_function :FPDFText_ClosePage, [:FPDF_TEXTPAGE], :void
   attach_function :FPDFText_CountChars, [:FPDF_TEXTPAGE], :int
   attach_function :FPDFText_GetText, %i[FPDF_TEXTPAGE int int pointer], :int
+  attach_function :FPDFText_GetUnicode, %i[FPDF_TEXTPAGE int], :uint
+  attach_function :FPDFText_GetCharBox, %i[FPDF_TEXTPAGE int pointer pointer pointer pointer], :int
+  attach_function :FPDFText_GetCharOrigin, %i[FPDF_TEXTPAGE int pointer pointer], :int
+  attach_function :FPDFText_GetCharIndexAtPos, %i[FPDF_TEXTPAGE double double double double], :int
+  attach_function :FPDFText_CountRects, %i[FPDF_TEXTPAGE int int], :int
+  attach_function :FPDFText_GetRect, %i[FPDF_TEXTPAGE int pointer pointer pointer pointer], :int
+  attach_function :FPDFText_GetFontSize, %i[FPDF_TEXTPAGE int], :double
+
+  # Page object functions for extracting paths/lines
+  attach_function :FPDFPage_CountObjects, [:FPDF_PAGE], :int
+  attach_function :FPDFPage_GetObject, %i[FPDF_PAGE int], :FPDF_PAGEOBJECT
+  attach_function :FPDFPageObj_GetType, [:FPDF_PAGEOBJECT], :int
+  attach_function :FPDFPageObj_GetBounds, %i[FPDF_PAGEOBJECT pointer pointer pointer pointer], :int
+  attach_function :FPDFPath_CountSegments, [:FPDF_PAGEOBJECT], :int
+  attach_function :FPDFPath_GetPathSegment, %i[FPDF_PAGEOBJECT int], :FPDF_PATHSEGMENT
+  attach_function :FPDFPathSegment_GetType, [:FPDF_PATHSEGMENT], :int
+  attach_function :FPDFPathSegment_GetPoint, %i[FPDF_PATHSEGMENT pointer pointer], :int
+
+  # Page object types
+  FPDF_PAGEOBJ_UNKNOWN = 0
+  FPDF_PAGEOBJ_TEXT = 1
+  FPDF_PAGEOBJ_PATH = 2
+  FPDF_PAGEOBJ_IMAGE = 3
+  FPDF_PAGEOBJ_SHADING = 4
+  FPDF_PAGEOBJ_FORM = 5
+
+  # Path segment types
+  FPDF_SEGMENT_UNKNOWN = -1
+  FPDF_SEGMENT_LINETO = 0
+  FPDF_SEGMENT_BEZIERTO = 1
+  FPDF_SEGMENT_MOVETO = 2
 
   typedef :int, :FPDF_BOOL
   typedef :pointer, :IPDF_JSPLATFORM
@@ -157,6 +193,7 @@ class Pdfium
     raise PdfiumError, "#{context_message}: #{error_message(error_code)} (Code: #{error_code})"
   end
 
+  # rubocop:disable Metrics
   class Document
     attr_reader :document_ptr, :form_handle
 
@@ -386,6 +423,128 @@ class Pdfium
       Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
     end
 
+    def text_nodes
+      return @text_nodes if @text_nodes
+
+      text_page = Pdfium.FPDFText_LoadPage(page_ptr)
+      char_count = Pdfium.FPDFText_CountChars(text_page)
+
+      @text_nodes = []
+
+      return @text_nodes if char_count.zero?
+
+      char_count.times do |i|
+        unicode = Pdfium.FPDFText_GetUnicode(text_page, i)
+
+        char = [unicode].pack('U*')
+
+        left_ptr = FFI::MemoryPointer.new(:double)
+        right_ptr = FFI::MemoryPointer.new(:double)
+        bottom_ptr = FFI::MemoryPointer.new(:double)
+        top_ptr = FFI::MemoryPointer.new(:double)
+
+        result = Pdfium.FPDFText_GetCharBox(text_page, i, left_ptr, right_ptr, bottom_ptr, top_ptr)
+
+        next if result.zero?
+
+        left = left_ptr.read_double
+        right = right_ptr.read_double
+
+        origin_x_ptr = FFI::MemoryPointer.new(:double)
+        origin_y_ptr = FFI::MemoryPointer.new(:double)
+
+        Pdfium.FPDFText_GetCharOrigin(text_page, i, origin_x_ptr, origin_y_ptr)
+
+        origin_y = origin_y_ptr.read_double
+
+        font_size = Pdfium.FPDFText_GetFontSize(text_page, i)
+        font_size = 8 if font_size == 1
+
+        abs_x = left
+        abs_y = height - origin_y - (font_size * 0.8)
+        abs_width = right - left
+        abs_height = font_size
+
+        x = abs_x / width
+        y = abs_y / height
+        node_width = abs_width / width
+        node_height = abs_height / height
+
+        @text_nodes << TextNode.new(content: char, x: x, y: y, w: node_width, h: node_height)
+      end
+
+      @text_nodes = @text_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
+    ensure
+      Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
+    end
+
+    def line_nodes
+      return @line_nodes if @line_nodes
+
+      ensure_not_closed!
+
+      @line_nodes = []
+
+      object_count = Pdfium.FPDFPage_CountObjects(page_ptr)
+
+      return @line_nodes if object_count.zero?
+
+      object_count.times do |i|
+        page_object = Pdfium.FPDFPage_GetObject(page_ptr, i)
+
+        next if page_object.null?
+
+        obj_type = Pdfium.FPDFPageObj_GetType(page_object)
+
+        next unless obj_type == Pdfium::FPDF_PAGEOBJ_PATH
+
+        left_ptr = FFI::MemoryPointer.new(:float)
+        bottom_ptr = FFI::MemoryPointer.new(:float)
+        right_ptr = FFI::MemoryPointer.new(:float)
+        top_ptr = FFI::MemoryPointer.new(:float)
+
+        Pdfium.FPDFPageObj_GetBounds(page_object, left_ptr, bottom_ptr, right_ptr, top_ptr)
+
+        obj_left = left_ptr.read_float
+        obj_bottom = bottom_ptr.read_float
+        obj_right = right_ptr.read_float
+        obj_top = top_ptr.read_float
+
+        obj_width = obj_right - obj_left
+        obj_height = obj_top - obj_bottom
+
+        next if obj_width < 1 && obj_height < 1
+
+        segment_count = Pdfium.FPDFPath_CountSegments(page_object)
+
+        next if segment_count < 2
+
+        next unless segment_count <= 10 && (obj_height < 10 || obj_width < 10)
+
+        if obj_width > obj_height && obj_height < 10
+          tilt = 0
+        elsif obj_height > obj_width && obj_width < 10
+          tilt = 90
+        else
+          next
+        end
+
+        x = obj_left
+        y = obj_bottom
+        w = obj_width
+        h = obj_height
+
+        norm_x = x / width
+        norm_y = (height - y - h) / height
+        norm_w = w / width
+        norm_h = h / height
+
+        @line_nodes << LineNode.new(x: norm_x, y: norm_y, w: norm_w, h: norm_h, tilt: tilt)
+      end
+
+      @line_nodes = @line_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
+    end
+
     def close
       return if closed?
 
@@ -445,4 +604,5 @@ class Pdfium
   at_exit do
     cleanup_library
   end
+  # rubocop:enable Metrics
 end

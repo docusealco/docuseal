@@ -41,6 +41,9 @@ class SubmissionsPreviewController < ApplicationController
 
   def completed
     @submission = Submission.find_by!(slug: params[:submissions_preview_slug])
+
+    raise ActionController::RoutingError, I18n.t('not_found') if @submission.account.archived_at?
+
     @template = @submission.template
 
     render :completed, layout: 'form'

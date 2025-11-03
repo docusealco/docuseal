@@ -244,6 +244,7 @@ module Submissions
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
 
           fill_color = field.dig('preferences', 'color').to_s.delete_prefix('#').presence
+          bg_color = field.dig('preferences', 'background').to_s.delete_prefix('#').presence
 
           font_name = field.dig('preferences', 'font')
           font_variant = (field.dig('preferences', 'font_type').presence || 'none').to_sym
@@ -289,6 +290,13 @@ module Submissions
             with_signature_id = field['preferences']['with_signature_id']
           end
 
+          if bg_color.present?
+            canvas.fill_color(bg_color)
+                  .rectangle(area['x'] * width, height - (area['y'] * height) - (area['h'] * height),
+                             area['w'] * width, area['h'] * height)
+                  .fill
+          end
+
           case field_type
           when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
             attachment = submitter.attachments.find { |a| a.uuid == value }
@@ -321,9 +329,9 @@ module Submissions
                 end
               end
 
-            reason_text = HexaPDF::Layout::TextFragment.create(reason_string,
-                                                               font:,
-                                                               font_size: (font_size / 1.8).to_i)
+            base_font_size = (font_size / 1.8).to_i
+
+            result = nil
 
             if area['h']&.positive? && (area['w'].to_f / area['h']) > 6
               area_x = area['x'] * width
@@ -344,12 +352,10 @@ module Submissions
 
               id_string = "ID: #{attachment.uuid}".upcase
 
-              while true
-                text = HexaPDF::Layout::TextFragment.create(id_string,
-                                                            font:,
-                                                            font_size: (font_size / 1.8).to_i)
+              loop do
+                text = HexaPDF::Layout::TextFragment.create(id_string, font:, font_size: base_font_size)
 
-                result = layouter.fit([text], half_width, (font_size / 1.8) / 0.65)
+                result = layouter.fit([text], half_width, base_font_size / 0.65)
 
                 break if result.status == :success
 
@@ -358,25 +364,39 @@ module Submissions
                 break if id_string.length < 8
               end
 
+              string = [id_string, reason_string].join("\n")
+
+              loop do
+                text = HexaPDF::Layout::TextFragment.create(string, font:, font_size: base_font_size)
+
+                result = layouter.fit([text], half_width, area_h)
+
+                break if result.status == :success
+
+                base_font_size *= 0.9
+
+                break if base_font_size < 2
+              end
+
+              text = HexaPDF::Layout::TextFragment.create(string, font:, font_size: base_font_size)
+
               text_x = area_x + half_width
               text_y = height - area_y
 
-              reason_result = layouter.fit([reason_text], half_width, height)
-
-              layouter.fit([text], half_width, (font_size / 1.8) / 0.65)
-                      .draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y)
-
-              layouter.fit([reason_text], half_width, reason_result.lines.sum(&:height))
-                      .draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y - TEXT_TOP_MARGIN - result.lines.sum(&:height))
+              layouter.fit([text], half_width, area_h).draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y)
             else
+              reason_text = HexaPDF::Layout::TextFragment.create(reason_string,
+                                                                 font:,
+                                                                 font_size: base_font_size)
+
               id_string = "ID: #{attachment.uuid}".upcase
 
               loop do
                 text = HexaPDF::Layout::TextFragment.create(id_string,
                                                             font:,
-                                                            font_size: (font_size / 1.8).to_i)
+                                                            font_size: base_font_size)
 
-                result = layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
+                result = layouter.fit([text], area['w'] * width, base_font_size / 0.65)
 
                 break if result.status == :success
 
@@ -395,7 +415,7 @@ module Submissions
 
               io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
 
-              layouter.fit([text], area['w'] * width, (font_size / 1.8) / 0.65)
+              layouter.fit([text], area['w'] * width, base_font_size / 0.65)
                       .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
                             height - (area['y'] * height) - TEXT_TOP_MARGIN - image_height)
 

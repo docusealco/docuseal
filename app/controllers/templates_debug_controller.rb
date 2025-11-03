@@ -6,12 +6,18 @@ class TemplatesDebugController < ApplicationController
   DEBUG_FILE = ''
 
   def show
-    attachment = @template.documents.first
+    schema_uuids = @template.schema.index_by { |e| e['attachment_uuid'] }
+    attachment = @template.documents.find { |a| schema_uuids[a.uuid] }
 
     data = attachment.download
-    pdf = HexaPDF::Document.new(io: StringIO.new(data))
 
-    fields = Templates::FindAcroFields.call(pdf, attachment, data)
+    unless attachment.image?
+      pdf = HexaPDF::Document.new(io: StringIO.new(data))
+
+      fields = Templates::FindAcroFields.call(pdf, attachment, data)
+    end
+
+    fields = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
 
     attachment.metadata['pdf'] ||= {}
     attachment.metadata['pdf']['fields'] = fields
