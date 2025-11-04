@@ -58,7 +58,7 @@ module Templates
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
-        fields = inference.call(image, confidence: 0.05, nms:, split_page:,
+        fields = inference.call(image, confidence: confidence * 0.1, nms:, split_page:,
                                        temperature:, aspect_ratio:, padding:)
 
         text_fields = extract_text_fields_from_page(page)
