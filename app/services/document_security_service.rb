@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'aws-sdk-cloudfront'
+
 # Service for handling secure document access with CloudFront signed URLs
 # Reuses same infrastructure and key pairs as ATS
 class DocumentSecurityService
