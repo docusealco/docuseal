@@ -28,7 +28,7 @@ fetch_db_credentials() {
         echo "ERROR: DB_SECRETS_NAME environment variable is not set"
         exit 1
     fi
-    
+
     # Fetch the secret
     echo "Retrieving secret: $DB_SECRETS_NAME"
     SECRET_JSON=$(aws secretsmanager get-secret-value \
@@ -36,12 +36,12 @@ fetch_db_credentials() {
         --secret-id "$DB_SECRETS_NAME" \
         --query SecretString \
         --output text)
-    
+
     if [ $? -ne 0 ]; then
         echo "ERROR: Failed to retrieve secrets from AWS Secrets Manager"
         exit 1
     fi
-    
+
     # Parse JSON and export environment variables
     export DB_USERNAME=$(echo "$SECRET_JSON" | jq -r '.username')
     export DB_PASSWORD=$(echo "$SECRET_JSON" | jq -r '.password')
@@ -63,7 +63,7 @@ fetch_db_credentials() {
         grep -v "^DB_PASSWORD=" ./.env.production.tmp > ./.env.production || true
         rm -f ./.env.production.tmp
     fi
-    
+
     # Append the new credentials
     echo "DB_USERNAME=$DB_USERNAME" >> ./.env.production
     echo "DB_PASSWORD=$DB_PASSWORD" >> ./.env.production
@@ -142,7 +142,7 @@ fetch_env_variables() {
         echo "ERROR: CP_VARIABLES_NAME environment variable is not set"
         exit 1
     fi
-    
+
     # Fetch the secret
     echo "Retrieving secret: $CP_VARIABLES_NAME"
     SECRET_JSON=$(aws secretsmanager get-secret-value \
@@ -150,7 +150,7 @@ fetch_env_variables() {
         --secret-id "$CP_VARIABLES_NAME" \
         --query SecretString \
         --output text)
-    
+
     if [ $? -ne 0 ]; then
         echo "ERROR: Failed to retrieve secrets from AWS Secrets Manager"
         exit 1
@@ -169,6 +169,7 @@ fetch_env_variables() {
     export CF_KEY_SECRET=$(echo "$SECRET_JSON" | jq -r '.cf_key_secret')
     export SECURED_STORAGE_BUCKET=$(echo "$SECRET_JSON" | jq -r '.secured_storage_bucket')
     export SECURED_STORAGE_REGION=$(echo "$SECRET_JSON" | jq -r '.secured_storage_region')
+    export ENCRYPTION_SECRET=$(echo "$SECRET_JSON" | jq -r '.ENCRYPTION_SECRET // empty')
 
     # Validate that we got the values
     if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
@@ -181,6 +182,12 @@ fetch_env_variables() {
     if [ "$AIRBRAKE_ID" = "null" ] || [ "$AIRBRAKE_KEY" = "null" ] || [ "$NEWRELIC_LICENSE_KEY" = "null" ] || [ "$NEWRELIC_APP_NAME" = "null" ]; then
         echo "ERROR: One or more monitor/logging license keys are missing"
         exit 1
+    fi
+
+    # Warn if encryption secret is missing (important for ActiveRecord encryption)
+    if [ -z "$ENCRYPTION_SECRET" ]; then
+        echo "WARNING: ENCRYPTION_SECRET not found in secrets"
+        echo "WARNING: ActiveRecord encryption may not work correctly"
     fi
 
     # Write variables to .env.production file
@@ -202,9 +209,10 @@ fetch_env_variables() {
         grep -v "^CF_KEY_SECRET=" ./.env.production.tmp > ./.env.production || true
         grep -v "^SECURED_STORAGE_BUCKET=" ./.env.production.tmp > ./.env.production || true
         grep -v "^SECURED_STORAGE_REGION=" ./.env.production.tmp > ./.env.production || true
+        grep -v "^ENCRYPTION_SECRET=" ./.env.production.tmp > ./.env.production || true
         rm -f ./.env.production.tmp
     fi
-    
+
     # Append the new credentials
     echo "DB_HOST=$DB_HOST" >> ./.env.production
     echo "REDIS_URL=$REDIS_URL" >> ./.env.production
@@ -219,6 +227,12 @@ fetch_env_variables() {
     echo "CF_KEY_SECRET=$CF_KEY_SECRET" >> ./.env.production
     echo "SECURED_STORAGE_BUCKET=$SECURED_STORAGE_BUCKET" >> ./.env.production
     echo "SECURED_STORAGE_REGION=$SECURED_STORAGE_REGION" >> ./.env.production
+
+    # Add encryption secret if it exists
+    if [ -n "$ENCRYPTION_SECRET" ]; then
+        echo "ENCRYPTION_SECRET=$ENCRYPTION_SECRET" >> ./.env.production
+        echo "✓ ENCRYPTION_SECRET written to .env.production"
+    fi
 
     echo "✓ Environment variables successfully retrieved and written to .env.production"
 }
@@ -255,10 +269,10 @@ main() {
 
     echo "Starting CP Docuseal in production mode..."
     echo "Rails Environment: ${RAILS_ENV:-production}"
-    
+
     # Fetch database credentials from Secrets Manager
     fetch_db_credentials
-    
+
     # Fetch encryption key and write to config/master.key
     fetch_encryption_key
 
@@ -270,10 +284,10 @@ main() {
 
     # Load updated environment variables
     set_environment
-    
+
     # Setup and migrate database
     setup_database
-    
+
     echo "=== Startup Complete - Starting Rails Server ==="
     echo "Database Host: ${DB_HOST:-not set}"
     echo "Database Port: ${DB_PORT:-not set}"
@@ -283,4 +297,4 @@ main() {
 }
 
 # Execute main function
-main "$@" 
+main "$@"
