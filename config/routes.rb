@@ -98,7 +98,7 @@ Rails.application.routes.draw do
   resources :submissions_filters, only: %i[show], param: 'name'
   resources :templates, only: %i[new create edit update show destroy] do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
-    resources :documents, only: %i[create], controller: 'template_documents'
+    resources :documents, only: %i[index create], controller: 'template_documents'
     resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
     if !Docuseal.multitenant? || Docuseal.demo?
       resources :detect_fields, only: %i[create], controller: 'templates_detect_fields'

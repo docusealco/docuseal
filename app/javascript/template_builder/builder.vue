@@ -175,7 +175,10 @@
                 {{ t('save') }}
               </span>
             </button>
-            <div class="dropdown dropdown-end">
+            <div
+              class="dropdown dropdown-end"
+              :class="{ 'dropdown-open': isDownloading }"
+            >
               <label
                 tabindex="0"
                 class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500"
@@ -208,6 +211,30 @@
                     <IconAdjustments class="w-6 h-6 flex-shrink-0" />
                     <span class="whitespace-nowrap">{{ t('preferences') }}</span>
                   </a>
+                </li>
+                <li v-if="withDownload">
+                  <button
+                    class="flex space-x-2"
+                    :disabled="isDownloading"
+                    @click.stop.prevent="download"
+                  >
+                    <IconInnerShadowTop
+                      v-if="isDownloading"
+                      class="animate-spin w-6 h-6 flex-shrink-0"
+                    />
+                    <IconDownload
+                      v-else
+                      class="w-6 h-6 flex-shrink-0"
+                    />
+                    <span
+                      v-if="isDownloading"
+                      class="whitespace-nowrap"
+                    >{{ t('downloading_') }}</span>
+                    <span
+                      v-else
+                      class="whitespace-nowrap"
+                    >{{ t('download') }}</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -511,7 +538,7 @@ import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
+import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw } from 'vue'
 import * as i18n from './i18n'
@@ -537,6 +564,7 @@ export default {
     Contenteditable,
     IconUsersPlus,
     IconChevronDown,
+    IconDownload,
     IconAdjustments,
     IconEye,
     IconDeviceFloppy
@@ -583,6 +611,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    withDownload: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     backgroundColor: {
       type: String,
@@ -805,6 +838,7 @@ export default {
     return {
       documentRefs: [],
       isBreakpointLg: false,
+      isDownloading: false,
       isLoadingBlankPage: false,
       isSaving: false,
       selectedSubmitter: null,
@@ -963,6 +997,75 @@ export default {
   },
   methods: {
     toRaw,
+    download () {
+      this.isDownloading = true
+
+      this.baseFetch(`/templates/${this.template.id}/documents`).then(async (response) => {
+        if (response.ok) {
+          const urls = await response.json()
+          const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
+          const isSafariIos = isMobileSafariIos || /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+          if (isSafariIos && urls.length > 1) {
+            this.downloadSafariIos(urls)
+          } else {
+            this.downloadUrls(urls)
+          }
+        } else {
+          alert(this.t('failed_to_download_files'))
+        }
+      })
+    },
+    downloadUrls (urls) {
+      const fileRequests = urls.map((url) => {
+        return () => {
+          return fetch(url).then(async (resp) => {
+            const blobUrl = URL.createObjectURL(await resp.blob())
+            const link = document.createElement('a')
+
+            link.href = blobUrl
+            link.setAttribute('download', decodeURI(url.split('/').pop()))
+
+            link.click()
+
+            URL.revokeObjectURL(blobUrl)
+          })
+        }
+      })
+
+      fileRequests.reduce(
+        (prevPromise, request) => prevPromise.then(() => request()),
+        Promise.resolve()
+      ).finally(() => {
+        this.isDownloading = false
+      })
+    },
+    downloadSafariIos (urls) {
+      const fileRequests = urls.map((url) => {
+        return fetch(url).then(async (resp) => {
+          const blob = await resp.blob()
+          const blobUrl = URL.createObjectURL(blob.slice(0, blob.size, 'application/octet-stream'))
+          const link = document.createElement('a')
+
+          link.href = blobUrl
+          link.setAttribute('download', decodeURI(url.split('/').pop()))
+
+          return link
+        })
+      })
+
+      Promise.all(fileRequests).then((links) => {
+        links.forEach((link, index) => {
+          setTimeout(() => {
+            link.click()
+
+            URL.revokeObjectURL(link.href)
+          }, index * 50)
+        })
+      }).finally(() => {
+        this.isDownloading = false
+      })
+    },
     onDragover (e) {
       if (this.$refs.dragPlaceholder?.dragPlaceholder) {
         this.$refs.dragPlaceholder.isMask = e.target.id === 'mask'

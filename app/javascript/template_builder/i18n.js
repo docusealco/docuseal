@@ -1,4 +1,6 @@
 const en = {
+  download: 'Download',
+  downloading_: 'Downloading...',
   view: 'View',
   autodetect_fields: 'Autodetect fields',
   payment_link: 'Payment link',
@@ -185,6 +187,8 @@ const en = {
 }
 
 const es = {
+  download: 'Descargar',
+  downloading_: 'Descargando...',
   view: 'Vista',
   payment_link: 'Enlace de pago',
   strikeout: 'Tachar',
@@ -370,6 +374,8 @@ const es = {
 }
 
 const it = {
+  download: 'Scarica',
+  downloading_: 'Download in corso...',
   view: 'Vista',
   payment_link: 'Link di pagamento',
   strikeout: 'Barrato',
@@ -555,6 +561,8 @@ const it = {
 }
 
 const pt = {
+  download: 'Baixar',
+  downloading_: 'Baixando...',
   view: 'Visualizar',
   payment_link: 'Link de pagamento',
   strikeout: 'Tachado',
@@ -740,6 +748,8 @@ const pt = {
 }
 
 const fr = {
+  download: 'Télécharger',
+  downloading_: 'Téléchargement...',
   view: 'Voir',
   payment_link: 'Lien de paiement',
   strikeout: 'Rature',
@@ -925,6 +935,8 @@ const fr = {
 }
 
 const de = {
+  download: 'Download',
+  downloading_: 'Download...',
   view: 'Anzeigen',
   payment_link: 'Zahlungslink',
   strikeout: 'Durchstreichen',
@@ -1110,6 +1122,8 @@ const de = {
 }
 
 const nl = {
+  download: 'Downloaden',
+  downloading_: 'Downloaden...',
   view: 'Bekijken',
   payment_link: 'Betaallink',
   strikeout: 'Doorhalen',
