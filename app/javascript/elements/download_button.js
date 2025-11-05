@@ -42,7 +42,7 @@ export default targetable(class extends HTMLElement {
           const link = document.createElement('a')
 
           link.href = blobUrl
-          link.setAttribute('download', decodeURI(url.split('/').pop()))
+          link.setAttribute('download', decodeURI((url.split('?')[0] || url).split('/').pop()))
 
           link.click()
 
@@ -67,7 +67,7 @@ export default targetable(class extends HTMLElement {
         const link = document.createElement('a')
 
         link.href = blobUrl
-        link.setAttribute('download', decodeURI(url.split('/').pop()))
+        link.setAttribute('download', decodeURI((url.split('?')[0] || url).split('/').pop()))
 
         return link
       })

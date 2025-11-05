@@ -41,11 +41,30 @@ class DocumentSecurityService
     end
 
     def build_cloudfront_url(attachment)
-      # Convert S3 URL to CloudFront URL with DocuSeal prefix
-      s3_key = attachment.blob.key
-      # Ensure DocuSeal prefix for document organization
-      prefixed_key = s3_key.start_with?('docuseal/') ? s3_key : "docuseal/#{s3_key}"
-      "#{cloudfront_base_url}/#{prefixed_key}"
+      key = ensure_docuseal_prefix(attachment.blob.key)
+      base_url = "#{cloudfront_base_url}/#{key}"
+      query_string = build_query_params(attachment)
+
+      "#{base_url}?#{query_string}"
+    end
+
+    def ensure_docuseal_prefix(s3_key)
+      s3_key.start_with?('docuseal/') ? s3_key : "docuseal/#{s3_key}"
+    end
+
+    def build_query_params(attachment)
+      filename = attachment.blob.filename.to_s.presence || 'download.pdf'
+
+      {
+        'response-content-disposition' => content_disposition_for(filename),
+        'response-content-type' => attachment.blob.content_type
+      }.to_query
+    end
+
+    def content_disposition_for(filename)
+      # RFC 6266 with RFC 5987 encoding for international characters
+      rfc5987_encoded = CGI.escape(filename)
+      "inline; filename=\"#{filename}\"; filename*=UTF-8''#{rfc5987_encoded}"
     end
 
     def cloudfront_base_url

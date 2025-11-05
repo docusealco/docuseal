@@ -19,41 +19,16 @@
       <% end %>
       <% if last_submitter %>
         <% if is_all_completed || !is_combined_enabled %>
-          <div class="join relative">
-            <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
-              <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                <%= svg_icon('download', class: 'w-6 h-6') %>
-                <span class="hidden md:inline"><%= t('download') %></span>
-              </span>
-              <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                <span class="hidden md:inline"><%= t('downloading') %></span>
-              </span>
-            </download-button>
-            <% if is_all_completed && !is_combined_enabled %>
-              <div class="dropdown dropdown-end">
-                <label tabindex="0" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
-                  <span class="text-sm align-text-top">
-                    <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
-                  </span>
-                </label>
-                <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
-                  <li>
-                    <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: true }.compact) %>" class="flex items-center">
-                      <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                        <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
-                        <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
-                      </span>
-                      <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                        <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                        <span><%= t('downloading') %></span>
-                      </span>
-                    </download-button>
-                  </li>
-                </ul>
-              </div>
-            <% end %>
-          </div>
+          <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button">
+            <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+              <%= svg_icon('download', class: 'w-6 h-6') %>
+              <span class="hidden md:inline"><%= t('download') %></span>
+            </span>
+            <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+              <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+              <span class="hidden md:inline"><%= t('downloading') %></span>
+            </span>
+          </download-button>
         <% end %>
       <% end %>
     </div>
