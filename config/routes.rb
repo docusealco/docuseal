@@ -108,7 +108,7 @@ Rails.application.routes.draw do
     resource :preview, only: %i[show], controller: 'templates_preview'
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
-    resource :preferences, only: %i[show create], controller: 'templates_preferences'
+    resource :preferences, only: %i[show create destroy], controller: 'templates_preferences'
     resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resources :recipients, only: %i[create], controller: 'templates_recipients'
     resources :prefillable_fields, only: %i[create], controller: 'templates_prefillable_fields'

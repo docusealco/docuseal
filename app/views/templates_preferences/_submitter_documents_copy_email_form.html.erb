@@ -1,0 +1,72 @@
+<div id="<%= AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY %>_form">
+  <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value %>
+  <% template_email_preferences_values = @template.preferences.values_at('documents_copy_email_subject', 'documents_copy_email_body').compact_blank.presence %>
+  <% is_custom_template_email = template_email_preferences_values.present? %>
+  <% if is_custom_template_email %>
+    <%= button_to nil, template_preferences_path(@template), id: 'submitter_documents_copy_email_reset_link', method: :delete, class: 'hidden', params: { config_key: AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY }, data: { turbo_confirm: t('are_you_sure_') }, form: { data: { close_on_submit: false } } %>
+  <% end %>
+  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
+    <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
+    <%= f.hidden_field :config_key, value: AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY %>
+    <%= f.fields_for :preferences, Struct.new(:documents_copy_email_reply_to, :documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_reply_to'].presence || configs['reply_to'], @template.preferences['documents_copy_email_subject'].presence || configs['subject'], @template.preferences['documents_copy_email_body'].presence || configs['body'], @template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
+      <div class="form-control">
+        <div class="flex justify-between">
+          <%= ff.label :documents_copy_email_subject, t('email_subject'), class: 'label' %>
+          <% if is_custom_template_email %>
+            <label for="submitter_documents_copy_email_reset_link" class="label underline">
+              <%= t('reset_default') %>
+            </label>
+          <% end %>
+        </div>
+        <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+      </div>
+      <div class="form-control">
+        <div class="flex items-center">
+          <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
+          <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
+            <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+          </span>
+        </div>
+        <autoresize-textarea>
+          <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+        </autoresize-textarea>
+      </div>
+      <% if can?(:manage, :reply_to) %>
+        <div class="form-control">
+          <%= ff.label :documents_copy_email_reply_to, t('reply_to'), class: 'label' %>
+          <%= ff.email_field :documents_copy_email_reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
+        </div>
+      <% end %>
+      <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
+        <span>
+          <%= t('attach_documents_to_the_email') %>
+        </span>
+        <submit-form data-on="change" class="flex">
+          <%= ff.check_box :documents_copy_email_attach_documents, { checked: ff.object.documents_copy_email_attach_documents != false, class: 'toggle', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
+        </submit-form>
+      </div>
+      <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
+        <span>
+          <%= t('attach_audit_log_pdf_to_the_email') %>
+        </span>
+        <submit-form data-on="change" class="flex">
+          <%= ff.check_box :documents_copy_email_attach_audit, { checked: ff.object.documents_copy_email_attach_audit != false, class: 'toggle', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
+        </submit-form>
+      </div>
+      <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+        <span>
+          <%= t('send_emails_automatically_on_completion') %>
+        </span>
+        <submit-form data-on="change" class="flex">
+          <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false && configs['enabled'] != false, class: 'toggle', disabled: configs['enabled'] == false }, 'true', 'false' %>
+        </submit-form>
+      </div>
+    <% end %>
+    <div class="form-control pt-2">
+      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+      <div class="flex justify-center">
+        <span id="email_saved_alert2" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -840,6 +840,8 @@ en: &en
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
+  reset_default: Reset default
+  send_signature_request_email: Send signature request email
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1764,6 +1766,8 @@ es: &es
   desktop: Escritorio
   mobile: Móvil
   tablet: Tableta
+  reset_default: Restablecer por defecto
+  send_signature_request_email: Enviar correo de solicitud de firma
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2689,6 +2693,8 @@ it: &it
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
+  reset_default: Reimposta predefinito
+  send_signature_request_email: Invia email di richiesta firma
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3611,6 +3617,8 @@ fr: &fr
   desktop: Bureau
   mobile: Mobile
   tablet: Tablette
+  reset_default: Réinitialiser par défaut
+  send_signature_request_email: Envoyer un e-mail de demande de signature
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -4537,6 +4545,8 @@ pt: &pt
   desktop: Computador
   mobile: Celular
   tablet: Tablet
+  reset_default: Redefinir para padrão
+  send_signature_request_email: Enviar e-mail de solicitação de assinatura
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -5463,6 +5473,8 @@ de: &de
   desktop: Desktop
   mobile: Mobil
   tablet: Tablet
+  reset_default: Standard zurücksetzen
+  send_signature_request_email: Signaturanfrage-E-Mail senden
   submission_sources:
     api: API
     bulk: Massenversand
@@ -6750,6 +6762,8 @@ nl: &nl
   desktop: Desktop
   mobile: Mobiel
   tablet: Tablet
+  reset_default: Standaard herstellen
+  send_signature_request_email: E-mail met handtekeningaanvraag verzenden
   submission_sources:
     api: API
     bulk: Bulkverzending

@@ -98,92 +98,7 @@
           <%= t('signature_request_email') %>
         </div>
         <div class="collapse-content">
-          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
-            <toggle-on-submit data-element-id="email_saved_alert1"></toggle-on-submit>
-            <%= tag.input id: 'request_email_per_submitter', value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: @template.preferences['submitters'].to_a.size > 1 %>
-            <div class="peer-checked:hidden">
-              <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(@template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))) do |ff| %>
-                <div class="form-control">
-                  <div class="flex justify-between">
-                    <%= ff.label :request_email_subject, t('email_subject'), class: 'label' %>
-                    <% if @template.submitters.size > 1 && @template.submitters.size < 5 %>
-                      <label for="request_email_per_submitter" class="label underline">
-                        <%= t('edit_per_party') %>
-                      </label>
-                    <% end %>
-                  </div>
-                  <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-                </div>
-                <div class="form-control">
-                  <div class="flex items-center">
-                    <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
-                    <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                      <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                    </span>
-                  </div>
-                  <autoresize-textarea>
-                    <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                  </autoresize-textarea>
-                </div>
-              <% end %>
-            </div>
-            <% if @template.submitters.size > 1 && @template.submitters.size < 5 %>
-              <div class="hidden peer-checked:block">
-                <% options = @template.submitters.map { |e| [e['name'], "request_email_#{e['uuid']}"] } %>
-                <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
-                  <ul class="tabs w-full flex flex-nowrap mb-2">
-                    <% options.each_with_index do |(label, val), index| %>
-                      <div class="w-full">
-                        <%= f.radio_button :selected, val, checked: index.zero?, id: "#{val}_radio", data: { action: 'click:toggle-visible#trigger' }, class: 'hidden peer' %>
-                        <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active' %>
-                      </div>
-                    <% end %>
-                  </ul>
-                </toggle-visible>
-                <%= f.fields_for :preferences do |ff| %>
-                  <% @template.submitters.each_with_index do |submitter, index| %>
-                    <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
-                      <% submitter_preferences = f.object.preferences['submitters'].to_a.find { |e| e['uuid'] == submitter['uuid'] } || {} %>
-                      <%= ff.fields_for :submitters, Struct.new(:request_email_subject, :request_email_body).new(*(submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || @template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body'))), index: nil do |fff| %>
-                        <%= fff.hidden_field :uuid, value: submitter['uuid'] %>
-                        <div class="form-control">
-                          <%= fff.label :request_email_subject, t('email_subject'), class: 'label' %>
-                          <%= fff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-                        </div>
-                        <div class="form-control">
-                          <div class="flex items-center">
-                            <%= fff.label :request_email_body, t('email_body'), class: 'label' %>
-                            <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                            </span>
-                          </div>
-                          <autoresize-textarea>
-                            <%= fff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                          </autoresize-textarea>
-                        </div>
-                      <% end %>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
-            <%= f.fields_for :preferences, Struct.new(:request_email_enabled).new(@template.preferences['request_email_enabled']) do |ff| %>
-              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
-                <span>
-                  <%= 'Send signature request email' %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :request_email_enabled, { checked: ff.object.request_email_enabled != false, class: 'toggle' }, 'true', 'false' %>
-                </submit-form>
-              </div>
-            <% end %>
-            <div class="form-control pt-2">
-              <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
-              <div class="flex justify-center">
-                <span id="email_saved_alert1" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
-              </div>
-            </div>
-          <% end %>
+          <%= render 'templates_preferences/submitter_invitation_email_form' %>
         </div>
       </div>
       <div class="collapse collapse-arrow join-item border border-base-300">
@@ -192,63 +107,7 @@
           <%= t('documents_copy_email') %>
         </div>
         <div class="collapse-content">
-          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
-            <toggle-on-submit data-element-id="email_saved_alert2"></toggle-on-submit>
-            <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY).value %>
-            <%= f.fields_for :preferences, Struct.new(:documents_copy_email_reply_to, :documents_copy_email_subject, :documents_copy_email_body, :documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_reply_to'].presence || configs['reply_to'], @template.preferences['documents_copy_email_subject'].presence || configs['subject'], @template.preferences['documents_copy_email_body'].presence || configs['body'], @template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
-              <div class="form-control">
-                <%= ff.label :documents_copy_email_subject, t('email_subject'), class: 'label' %>
-                <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-              </div>
-              <div class="form-control">
-                <div class="flex items-center">
-                  <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                  </span>
-                </div>
-                <autoresize-textarea>
-                  <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                </autoresize-textarea>
-              </div>
-              <% if can?(:manage, :reply_to) %>
-                <div class="form-control">
-                  <%= ff.label :documents_copy_email_reply_to, t('reply_to'), class: 'label' %>
-                  <%= ff.email_field :documents_copy_email_reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
-                </div>
-              <% end %>
-              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
-                <span>
-                  <%= t('attach_documents_to_the_email') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :documents_copy_email_attach_documents, { checked: ff.object.documents_copy_email_attach_documents != false, class: 'toggle', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
-                <span>
-                  <%= t('attach_audit_log_pdf_to_the_email') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :documents_copy_email_attach_audit, { checked: ff.object.documents_copy_email_attach_audit != false, class: 'toggle', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
-                <span>
-                  <%= t('send_emails_automatically_on_completion') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :documents_copy_email_enabled, { checked: ff.object.documents_copy_email_enabled != false && configs['enabled'] != false, class: 'toggle', disabled: configs['enabled'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-            <% end %>
-            <div class="form-control pt-2">
-              <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
-              <div class="flex justify-center">
-                <span id="email_saved_alert2" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
-              </div>
-            </div>
-          <% end %>
+          <%= render 'templates_preferences/submitter_documents_copy_email_form' %>
         </div>
       </div>
       <div class="collapse collapse-arrow join-item border border-base-300">
@@ -257,57 +116,7 @@
           <%= t('completed_notification_email') %>
         </div>
         <div class="collapse-content">
-          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
-            <toggle-on-submit data-element-id="email_saved_alert3"></toggle-on-submit>
-            <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
-            <%= f.fields_for :preferences, Struct.new(:completed_notification_email_subject, :completed_notification_email_body, :completed_notification_email_enabled, :completed_notification_email_attach_audit, :completed_notification_email_attach_documents).new(@template.preferences['completed_notification_email_subject'].presence || configs['subject'], @template.preferences['completed_notification_email_body'].presence || configs['body'], @template.preferences['completed_notification_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['completed_notification_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['completed_notification_email_attach_documents'] != false) do |ff| %>
-              <div class="form-control">
-                <%= ff.label :completed_notification_email_subject, t('email_subject'), class: 'label' %>
-                <%= ff.text_field :completed_notification_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-              </div>
-              <div class="form-control">
-                <div class="flex items-center">
-                  <%= ff.label :completed_notification_email_body, t('email_body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                  </span>
-                </div>
-                <autoresize-textarea>
-                  <%= ff.text_area :completed_notification_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                </autoresize-textarea>
-              </div>
-              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
-                <span>
-                  <%= t('attach_documents_to_the_email') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :completed_notification_email_attach_documents, { checked: ff.object.completed_notification_email_attach_documents != false, class: 'toggle', disabled: configs['attach_documents'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-              <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
-                <span>
-                  <%= t('attach_audit_log_pdf_to_the_email') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :completed_notification_email_attach_audit, { checked: ff.object.completed_notification_email_attach_audit != false, class: 'toggle', disabled: configs['attach_audit_log'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-1 mb-2">
-                <span>
-                  <%= t('send_emails_automatically_on_completion') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :completed_notification_email_enabled, { checked: ff.object.completed_notification_email_enabled != false, class: 'toggle', disabled: configs['enabled'] == false }, 'true', 'false' %>
-                </submit-form>
-              </div>
-            <% end %>
-            <div class="form-control pt-2">
-              <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
-              <div class="flex justify-center">
-                <span id="email_saved_alert3" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
-              </div>
-            </div>
-          <% end %>
+          <%= render 'templates_preferences/submitter_completed_email_form' %>
         </div>
       </div>
     </div>
@@ -359,9 +168,9 @@
             <span>
               <%= t('share_template_with_test_mode') %>
             </span>
-             <submit-form data-on="change" class="flex">
-               <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts) %>
-             </submit-form>
+            <submit-form data-on="change" class="flex">
+              <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts) %>
+            </submit-form>
           </div>
         <% end %>
         <div class="mb-4">
