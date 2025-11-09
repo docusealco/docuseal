@@ -222,7 +222,16 @@
           width="22"
           class="animate-spin"
         />
-        <span class="hidden md:inline">
+        <span
+          v-if="analyzingProgress"
+          class="hidden md:inline"
+        >
+          {{ Math.round(analyzingProgress * 100) }}% {{ t('analyzing_') }}
+        </span>
+        <span
+          v-else
+          class="hidden md:inline"
+        >
           {{ fieldPagesLoaded }} / {{ numberOfPages }} {{ t('processing_') }}
         </span>
       </template>
@@ -363,10 +372,11 @@ export default {
       default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
   data () {
     return {
       fieldPagesLoaded: null,
+      analyzingProgress: 0,
       defaultFieldsSearch: ''
     }
   },
@@ -448,8 +458,6 @@ export default {
         while (true) {
           const { value, done } = await reader.read()
 
-          if (done) break
-
           buffer += decoder.decode(value, { stream: true })
 
           const lines = buffer.split('\n\n')
@@ -464,10 +472,21 @@ export default {
               if (data.error) {
                 alert(data.error)
 
+                this.template.fields = data.fields || fields
+
                 break
+              } else if (data.analyzing) {
+                this.analyzingProgress = data.progress
               } else if (data.completed) {
                 this.fieldPagesLoaded = null
-                this.template.fields = fields
+
+                if (data.submitters) {
+                  this.template.submitters = data.submitters
+                  this.$emit('select-submitter', this.template.submitters[0])
+                }
+
+                this.template.fields = data.fields || fields
+
                 this.save()
 
                 break
@@ -484,11 +503,14 @@ export default {
               }
             }
           }
+
+          if (done) break
         }
       }).catch(error => {
         console.error('Error in streaming message: ', error)
       }).finally(() => {
         this.fieldPagesLoaded = null
+        this.analyzingProgress = null
         this.isFieldsLoading = false
       })
     },

@@ -484,6 +484,7 @@
             :show-tour-start-form="showTourStartForm"
             @add-field="addField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
+            @select-submitter="selectedSubmitter = $event"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
             @set-drag="dragField = $event"
             @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"

@@ -5,7 +5,7 @@ module Templates
     module_function
 
     TextFieldBox = Struct.new(:x, :y, :w, :h, keyword_init: true)
-    PageNode = Struct.new(:prev, :next, :elem, :page, keyword_init: true)
+    PageNode = Struct.new(:prev, :next, :elem, :page, :attachment_uuid, keyword_init: true)
 
     DATE_REGEXP = /
       (?:
@@ -75,7 +75,7 @@ module Templates
         {
           uuid: SecureRandom.uuid,
           type: f.type,
-          required: true,
+          required: f.type != 'checkbox',
           preferences: {},
           areas: [{
             x: f.x,
@@ -90,14 +90,14 @@ module Templates
 
       yield [attachment&.uuid, 0, fields] if block_given?
 
-      fields
+      [fields, nil]
     end
 
     def process_pdf_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
                                split_page: false, aspect_ratio: false, padding: nil, regexp_type: false)
       doc = Pdfium::Document.open_bytes(io.read)
 
-      head_node = PageNode.new(elem: ''.b)
+      head_node = PageNode.new(elem: ''.b, page: 0, attachment_uuid: attachment&.uuid)
       tail_node = head_node
 
       fields = doc.page_count.times.flat_map do |page_number|
@@ -107,7 +107,7 @@ module Templates
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
-        fields = inference.call(image, confidence: confidence * 0.1, nms:, split_page:,
+        fields = inference.call(image, confidence: confidence / 4.0, nms:, split_page:,
                                        temperature:, aspect_ratio:, padding:)
 
         text_fields = extract_text_fields_from_page(page)
@@ -118,15 +118,17 @@ module Templates
 
         fields = fields.reject { |f| f.confidence < confidence }
 
-        field_nodes, tail_node = build_page_nodes(page, fields, tail_node)
+        field_nodes, tail_node = build_page_nodes(page, fields, tail_node, attachment_uuid: attachment&.uuid)
 
         fields = field_nodes.map do |node|
           field = node.elem
 
+          type = regexp_type ? type_from_page_node(node) : field.type
+
           {
             uuid: SecureRandom.uuid,
-            type: regexp_type ? type_from_page_node(node) : field.type,
-            required: true,
+            type:,
+            required: type != 'checkbox',
             preferences: {},
             areas: [{
               x: field.x, y: field.y,
@@ -185,7 +187,7 @@ module Templates
       return 'text'
     end
 
-    def build_page_nodes(page, fields, tail_node)
+    def build_page_nodes(page, fields, tail_node, attachment_uuid: nil)
       field_nodes = []
       current_text = ''.b
 
@@ -243,13 +245,13 @@ module Templates
 
         if process_field_node
           unless current_text.empty?
-            new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index)
+            new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index, attachment_uuid:)
             tail_node.next = new_text_node
             tail_node = new_text_node
             current_text = ''.b
           end
 
-          new_field_node = PageNode.new(prev: tail_node, elem: field, page: page.page_index)
+          new_field_node = PageNode.new(prev: tail_node, elem: field, page: page.page_index, attachment_uuid:)
           tail_node.next = new_field_node
           tail_node = new_field_node
 
@@ -299,7 +301,7 @@ module Templates
       end
 
       unless current_text.empty?
-        new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index)
+        new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index, attachment_uuid:)
         tail_node.next = new_text_node
         tail_node = new_text_node
       end

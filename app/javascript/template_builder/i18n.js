@@ -1,4 +1,5 @@
 const en = {
+  analyzing_: 'Analyzing...',
   download: 'Download',
   downloading_: 'Downloading...',
   view: 'View',
@@ -187,6 +188,7 @@ const en = {
 }
 
 const es = {
+  analyzing_: 'Analizando...',
   download: 'Descargar',
   downloading_: 'Descargando...',
   view: 'Vista',
@@ -374,6 +376,7 @@ const es = {
 }
 
 const it = {
+  analyzing_: 'Analisi...',
   download: 'Scarica',
   downloading_: 'Download in corso...',
   view: 'Vista',
@@ -561,6 +564,7 @@ const it = {
 }
 
 const pt = {
+  analyzing_: 'Analisando...',
   download: 'Baixar',
   downloading_: 'Baixando...',
   view: 'Visualizar',
@@ -748,6 +752,7 @@ const pt = {
 }
 
 const fr = {
+  analyzing_: 'Analyse...',
   download: 'Télécharger',
   downloading_: 'Téléchargement...',
   view: 'Voir',
@@ -935,6 +940,7 @@ const fr = {
 }
 
 const de = {
+  analyzing_: 'Analysiere...',
   download: 'Download',
   downloading_: 'Download...',
   view: 'Anzeigen',
@@ -1122,6 +1128,7 @@ const de = {
 }
 
 const nl = {
+  analyzing_: 'Analyseren...',
   download: 'Downloaden',
   downloading_: 'Downloaden...',
   view: 'Bekijken',
