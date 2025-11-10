@@ -167,6 +167,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withConditions: this.dataset.withConditions === 'true',
       withGoogleDrive: this.dataset.withGoogleDrive === 'true',
       withReplaceAndCloneUpload: true,
+      withDownload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true'

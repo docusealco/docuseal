@@ -17,7 +17,7 @@ class TemplatesDebugController < ApplicationController
       fields = Templates::FindAcroFields.call(pdf, attachment, data)
     end
 
-    fields = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
+    fields, = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
 
     attachment.metadata['pdf'] ||= {}
     attachment.metadata['pdf']['fields'] = fields

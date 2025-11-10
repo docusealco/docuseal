@@ -5,17 +5,63 @@ module Templates
     module_function
 
     TextFieldBox = Struct.new(:x, :y, :w, :h, keyword_init: true)
+    PageNode = Struct.new(:prev, :next, :elem, :page, :attachment_uuid, keyword_init: true)
 
-    # rubocop:disable Metrics
+    DATE_REGEXP = /
+      (?:
+          date
+        | signed\sat
+        | datum
+      )
+      \s*[:-]?\s*\z
+    /ix
+
+    NUMBER_REGEXP = /
+      (?:
+          price
+        | \$
+        | €
+        | total
+        | quantity
+        | prix
+        | quantité
+        | preis
+        | summe
+        | gesamt(?:betrag)?
+        | menge
+        | anzahl
+        | stückzahl
+      )
+      \s*[:-]?\s*\z
+    /ix
+
+    SIGNATURE_REGEXP = /
+      (?:
+          signature
+        | sign\shere
+        | sign
+        | signez\sici
+        | signer\sici
+        | unterschrift
+        | unterschreiben
+        | unterzeichnen
+      )
+      \s*[:-]?\s*\z
+    /ix
+
+    # rubocop:disable Metrics, Style
     def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields,
-             nms: 0.1, split_page: false, aspect_ratio: true, padding: 20, &)
-      if attachment&.image?
-        process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
-                                     temperature:, aspect_ratio:, padding:, &)
-      else
-        process_pdf_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
-                                   temperature:, aspect_ratio:, padding:, &)
-      end
+             nms: 0.1, split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
+      fields, head_node =
+        if attachment&.image?
+          process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
+                                       temperature:, aspect_ratio:, padding:, &)
+        else
+          process_pdf_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
+                                     temperature:, aspect_ratio:, regexp_type:, padding:, &)
+        end
+
+      [fields, head_node]
     end
 
     def process_image_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
@@ -29,7 +75,7 @@ module Templates
         {
           uuid: SecureRandom.uuid,
           type: f.type,
-          required: true,
+          required: f.type != 'checkbox',
           preferences: {},
           areas: [{
             x: f.x,
@@ -44,21 +90,24 @@ module Templates
 
       yield [attachment&.uuid, 0, fields] if block_given?
 
-      fields
+      [fields, nil]
     end
 
     def process_pdf_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
-                               split_page: false, aspect_ratio: false, padding: nil)
+                               split_page: false, aspect_ratio: false, padding: nil, regexp_type: false)
       doc = Pdfium::Document.open_bytes(io.read)
 
-      doc.page_count.times.flat_map do |page_number|
+      head_node = PageNode.new(elem: ''.b, page: 0, attachment_uuid: attachment&.uuid)
+      tail_node = head_node
+
+      fields = doc.page_count.times.flat_map do |page_number|
         page = doc.get_page(page_number)
 
         data, width, height = page.render_to_bitmap(width: inference::RESOLUTION * 1.5)
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
-        fields = inference.call(image, confidence: 0.05, nms:, split_page:,
+        fields = inference.call(image, confidence: confidence / 4.0, nms:, split_page:,
                                        temperature:, aspect_ratio:, padding:)
 
         text_fields = extract_text_fields_from_page(page)
@@ -67,17 +116,23 @@ module Templates
         fields = increase_confidence_for_overlapping_fields(fields, text_fields)
         fields = increase_confidence_for_overlapping_fields(fields, line_fields)
 
-        fields = fields.filter_map do |f|
-          next if f.confidence < confidence
+        fields = fields.reject { |f| f.confidence < confidence }
+
+        field_nodes, tail_node = build_page_nodes(page, fields, tail_node, attachment_uuid: attachment&.uuid)
+
+        fields = field_nodes.map do |node|
+          field = node.elem
+
+          type = regexp_type ? type_from_page_node(node) : field.type
 
           {
             uuid: SecureRandom.uuid,
-            type: f.type,
-            required: true,
+            type:,
+            required: type != 'checkbox',
             preferences: {},
             areas: [{
-              x: f.x, y: f.y,
-              w: f.w, h: f.h,
+              x: field.x, y: field.y,
+              w: field.w, h: field.h,
               page: page_number,
               attachment_uuid: attachment&.uuid
             }]
@@ -90,8 +145,168 @@ module Templates
       ensure
         page.close
       end
+
+      print_debug(head_node) if Rails.env.development?
+
+      [fields, head_node]
     ensure
       doc.close
+    end
+
+    def print_debug(head_node)
+      current_node = head_node
+      index = 0
+      string = ''.b
+
+      loop do
+        string <<
+          if current_node.elem.is_a?(String)
+            current_node.elem
+          else
+            "[#{current_node.elem.type == 'checkbox' ? 'Checkbox' : 'Field'}_#{index += 1}]"
+          end
+
+        current_node = current_node.next
+
+        break unless current_node
+      end
+
+      Rails.logger.info(string)
+    end
+
+    def type_from_page_node(node)
+      return node.elem.type unless node.prev.elem.is_a?(String)
+      return node.elem.type unless node.elem.type == 'text'
+
+      string = node.prev.elem
+
+      return 'date' if string.match?(DATE_REGEXP)
+      return 'signature' if string.match?(SIGNATURE_REGEXP)
+      return 'number' if string.match?(NUMBER_REGEXP)
+
+      return 'text'
+    end
+
+    def build_page_nodes(page, fields, tail_node, attachment_uuid: nil)
+      field_nodes = []
+      current_text = ''.b
+
+      text_nodes = page.text_nodes
+
+      text_idx = 0
+      field_idx = 0
+
+      while text_idx < text_nodes.length || field_idx < fields.length
+        text_node = text_nodes[text_idx]
+        field = fields[field_idx]
+
+        process_text_node = false
+        process_field_node = false
+
+        if text_node && field
+          text_y_center = text_node.y + (text_node.h / 2.0)
+          field_y_center = field.y + (field.h / 2.0)
+          y_threshold = text_node.h / 2.0
+          vertical_distance = (text_y_center - field_y_center).abs
+
+          if vertical_distance < y_threshold
+            is_underscore = text_node.content == '_'
+            is_left_of_field = text_node.x < field.x
+
+            if is_underscore && is_left_of_field
+              text_x_end = text_node.x + text_node.w
+
+              distance = field.x - text_x_end
+              proximity_threshold = text_node.w * 3.0
+
+              if distance < proximity_threshold
+                process_field_node = true
+              else
+                process_text_node = true
+              end
+
+            elsif is_left_of_field
+              process_text_node = true
+            else
+              process_field_node = true
+            end
+
+          elsif text_node.y < field.y
+            process_text_node = true
+          else
+            process_field_node = true
+          end
+
+        elsif text_node
+          process_text_node = true
+        elsif field
+          process_field_node = true
+        end
+
+        if process_field_node
+          unless current_text.empty?
+            new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index, attachment_uuid:)
+            tail_node.next = new_text_node
+            tail_node = new_text_node
+            current_text = ''.b
+          end
+
+          new_field_node = PageNode.new(prev: tail_node, elem: field, page: page.page_index, attachment_uuid:)
+          tail_node.next = new_field_node
+          tail_node = new_field_node
+
+          field_nodes << tail_node
+
+          while text_idx < text_nodes.length
+            text_node_to_check = text_nodes[text_idx]
+
+            is_part_of_field = false
+
+            if text_node_to_check.content == '_'
+              check_y_center = text_node_to_check.y + (text_node_to_check.h / 2.0)
+              check_y_dist = (check_y_center - field_y_center).abs
+              check_y_thresh = text_node_to_check.h / 2.0
+
+              if check_y_dist < check_y_thresh
+                padding = text_node_to_check.w * 3.0
+                field_x_start = field.x - padding
+                field_x_end = field.x + field.w + padding
+                text_x_start = text_node_to_check.x
+                text_x_end = text_node_to_check.x + text_node_to_check.w
+
+                is_part_of_field = true if text_x_start <= field_x_end && field_x_start <= text_x_end
+              end
+            end
+
+            break unless is_part_of_field
+
+            text_idx += 1
+          end
+
+          field_idx += 1
+        elsif process_text_node
+          if text_idx > 0
+            prev_text_node = text_nodes[text_idx - 1]
+
+            x_gap = text_node.x - (prev_text_node.x + prev_text_node.w)
+
+            gap_w = text_node.w > prev_text_node.w ? text_node.w : prev_text_node.w
+
+            current_text << ' ' if x_gap > gap_w * 2
+          end
+
+          current_text << text_node.content
+          text_idx += 1
+        end
+      end
+
+      unless current_text.empty?
+        new_text_node = PageNode.new(prev: tail_node, elem: current_text, page: page.page_index, attachment_uuid:)
+        tail_node.next = new_text_node
+        tail_node = new_text_node
+      end
+
+      [field_nodes, tail_node]
     end
 
     def extract_line_fields_from_page(page)
@@ -265,6 +480,6 @@ module Templates
 
       image_fields
     end
-    # rubocop:enable Metrics
+    # rubocop:enable Metrics, Style
   end
 end

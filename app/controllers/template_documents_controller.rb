@@ -3,6 +3,12 @@
 class TemplateDocumentsController < ApplicationController
   load_and_authorize_resource :template
 
+  FILES_TTL = 5.minutes
+
+  def index
+    render json: @template.schema_documents.map { |d| ActiveStorage::Blob.proxy_url(d.blob, expires_at: FILES_TTL.from_now.to_i) }
+  end
+
   def create
     if params[:blobs].blank? && params[:files].blank?
       return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_content
