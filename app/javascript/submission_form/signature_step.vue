@@ -211,7 +211,7 @@
       @input="updateWrittenSignature"
     >
     <select
-      v-if="requireSigningReason && !isOtherReason"
+      v-if="withSigningReason && !isOtherReason"
       class="select base-input !text-2xl w-full mt-6 text-center"
       :class="{ 'text-gray-300': !reason }"
       required
@@ -226,24 +226,37 @@
       >
         {{ t('select_a_reason') }}
       </option>
-      <option
-        v-for="(label, option) in defaultReasons"
-        :key="option"
-        :value="option"
-        :selected="reason === option"
-        class="text-base-content"
-      >
-        {{ label }}
-      </option>
-      <option
-        value="other"
-        class="text-base-content"
-      >
-        {{ t('other') }}
-      </option>
+      <template v-if="field.preferences?.reasons">
+        <option
+          v-for="option in field.preferences.reasons"
+          :key="option"
+          :value="option"
+          :selected="reason === option"
+          class="text-base-content"
+        >
+          {{ option }}
+        </option>
+      </template>
+      <template v-else>
+        <option
+          v-for="(label, option) in defaultReasons"
+          :key="option"
+          :value="option"
+          :selected="reason === option"
+          class="text-base-content"
+        >
+          {{ label }}
+        </option>
+        <option
+          value="other"
+          class="text-base-content"
+        >
+          {{ t('other') }}
+        </option>
+      </template>
     </select>
     <input
-      v-if="requireSigningReason && isOtherReason"
+      v-if="withSigningReason && isOtherReason"
       class="base-input !text-2xl w-full mt-6"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
@@ -253,7 +266,7 @@
       @input="$emit('update:reason', $event.target.value)"
     >
     <input
-      v-if="requireSigningReason"
+      v-if="withSigningReason"
       hidden
       name="with_reason"
       :value="field.preferences.reason_field_uuid"
@@ -406,6 +419,9 @@ export default {
     format () {
       return this.field.preferences?.format
     },
+    withSigningReason () {
+      return this.requireSigningReason || this.field.preferences?.reasons?.length
+    },
     defaultReasons () {
       return {
         [this.t('approved_by')]: this.t('approved'),
@@ -424,10 +440,11 @@ export default {
   created () {
     this.isSignatureStarted = !!this.computedPreviousValue
 
-    if (this.requireSigningReason) {
+    if (this.withSigningReason) {
       this.field.preferences ||= {}
       this.field.preferences.reason_field_uuid ||= v4()
-      this.isOtherReason = this.reason && !this.defaultReasons[this.reason]
+      this.isOtherReason = this.reason && !this.defaultReasons[this.reason] &&
+        (!this.field.preferences?.reasons?.length || !this.field.preferences.reasons.includes(this.reason))
     }
   },
   async mounted () {
