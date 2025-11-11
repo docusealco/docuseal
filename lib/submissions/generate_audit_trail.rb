@@ -23,6 +23,8 @@ module Submissions
     RTL_REGEXP = TextUtils::RTL_REGEXP
     MAX_IMAGE_HEIGHT = 100
 
+    CHECKSUM_LIMIT = 30
+
     US_TIMEZONES = TimeUtils::US_TIMEZONES
 
     module_function
@@ -216,7 +218,7 @@ module Submissions
           composer.document.layout.formatted_text_box(
             [
               { text: "#{I18n.t('original_sha256')}:\n", font: [FONT_NAME, { variant: :bold }] },
-              original_documents.map { |d| d.metadata['sha256'] || d.checksum }.join("\n"),
+              original_documents.map { |d| d.metadata['sha256'] || d.checksum }.first(CHECKSUM_LIMIT).join("\n"),
               "\n",
               { text: "#{I18n.t('result_sha256')}:\n", font: [FONT_NAME, { variant: :bold }] },
               document.metadata['sha256'] || document.checksum,
