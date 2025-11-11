@@ -236,7 +236,7 @@
         </span>
       </template>
       <template v-else>
-        <IconListSearch width="22" />
+        <IconSparkles width="22" />
         <span
           class="hidden md:inline"
         >
@@ -268,7 +268,7 @@
 import Field from './field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
-import { IconLock, IconCirclePlus, IconInnerShadowTop, IconListSearch } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 
 export default {
@@ -277,7 +277,7 @@ export default {
     Field,
     FieldType,
     IconCirclePlus,
-    IconListSearch,
+    IconSparkles,
     IconInnerShadowTop,
     FieldSubmitter,
     IconDrag,
