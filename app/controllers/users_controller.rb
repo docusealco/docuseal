@@ -24,10 +24,18 @@ class UsersController < ApplicationController
   def edit; end
 
   def create
-    if User.accessible_by(current_ability).exists?(email: @user.email)
-      @user.errors.add(:email, I18n.t('already_exists'))
+    existing_user = User.accessible_by(current_ability).find_by(email: @user.email)
 
-      return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
+    if existing_user
+      if existing_user.archived_at? && authorize!(:manage, existing_user) && authorize!(:manage, @user.account)
+        existing_user.assign_attributes(@user.slice(:first_name, :last_name, :role, :account_id))
+        existing_user.archived_at = nil
+        @user = existing_user
+      else
+        @user.errors.add(:email, I18n.t('already_exists'))
+
+        return render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
+      end
     end
 
     @user.password = SecureRandom.hex if @user.password.blank?
