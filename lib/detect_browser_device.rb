@@ -27,17 +27,11 @@ module DetectBrowserDevice
   /ix
 
   def call(user_agent)
-    return :mobile if mobile?(user_agent)
-    return :tablet if tablet?(user_agent)
+    return if user_agent.blank?
 
-    :desktop
-  end
+    return 'mobile' if MOBILE_USER_AGENT_REGEXP.match?(user_agent)
+    return 'tablet' if TABLET_USER_AGENT_REGEXP.match?(user_agent)
 
-  def mobile?(user_agent)
-    user_agent.to_s =~ MOBILE_USER_AGENT_REGEXP
-  end
-
-  def tablet?(user_agent)
-    user_agent.to_s =~ TABLET_USER_AGENT_REGEXP
+    'desktop'
   end
 end
