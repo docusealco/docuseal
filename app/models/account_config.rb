@@ -22,6 +22,7 @@
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'
+  SUBMITTER_INVITATION_REMINDER_EMAIL_KEY = 'submitter_invitation_reminder_email'
   SUBMITTER_COMPLETED_EMAIL_KEY = 'submitter_completed_email'
   SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
   BCC_EMAILS = 'bcc_emails'
@@ -54,6 +55,12 @@ class AccountConfig < ApplicationRecord
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => lambda {
+      {
+        'subject' => I18n.t(:you_are_invited_to_sign_a_document),
+        'body' => I18n.t(:submitter_invitation_email_sign_body)
+      }
+    },
+    SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => lambda {
       {
         'subject' => I18n.t(:you_are_invited_to_sign_a_document),
         'body' => I18n.t(:submitter_invitation_email_sign_body)

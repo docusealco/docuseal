@@ -5,6 +5,8 @@ class TemplatesPreferencesController < ApplicationController
 
   RESETTABLE_PREFERENCE_KEYS = {
     AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY => %w[request_email_subject request_email_body submitters],
+    AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[invitation_reminder_email_subject
+                                                                 invitation_reminder_email_body],
     AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[documents_copy_email_subject documents_copy_email_body],
     AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY => %w[completed_notification_email_subject
                                                        completed_notification_email_body]
@@ -46,14 +48,14 @@ class TemplatesPreferencesController < ApplicationController
   def template_params
     params.require(:template).permit(
       preferences: %i[bcc_completed request_email_subject request_email_body
+                      invitation_reminder_email_subject invitation_reminder_email_body
                       documents_copy_email_subject documents_copy_email_body
                       documents_copy_email_enabled documents_copy_email_attach_audit
                       documents_copy_email_attach_documents documents_copy_email_reply_to
                       completed_notification_email_attach_documents
                       completed_redirect_url validate_unique_submitters
                       require_all_submitters submitters_order require_phone_2fa
-                      default_expire_at_duration shared_link_2fa
-                      default_expire_at request_email_enabled
+                      default_expire_at_duration shared_link_2fa default_expire_at request_email_enabled
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit] +
                       [completed_message: %i[title body],

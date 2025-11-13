@@ -290,6 +290,7 @@ en: &en
   invalid_timeserver: Invalid Timeserver
   email_templates: Email Templates
   signature_request_email: Signature request email
+  signature_request_reminder_email: Signature request reminder email
   signature_request_sms: Signature Request SMS
   verification_code_sms: Verification Code SMS
   completed_notification_email: Completed notification email
@@ -1217,6 +1218,7 @@ es: &es
   invalid_timeserver: Servidor de tiempo inválido
   email_templates: Plantillas de correo electrónico
   signature_request_email: Correo de solicitud de firma
+  signature_request_reminder_email: Correo de recordatorio de solicitud de firma
   signature_request_sms: SMS de solicitud de firma
   verification_code_sms: SMS de código de verificación
   completed_notification_email: Correo de notificación de formulario completado
@@ -2143,6 +2145,7 @@ it: &it
   invalid_timeserver: Server di timestamp non valido
   email_templates: Modelli email
   signature_request_email: Email di richiesta di firma
+  signature_request_reminder_email: Email di promemoria di richiesta di firma
   signature_request_sms: SMS di richiesta di firma
   verification_code_sms: SMS con codice di verifica
   completed_notification_email: Email di notifica di completamento
@@ -3071,6 +3074,7 @@ fr: &fr
   invalid_timeserver: Serveur d’horodatage invalide
   email_templates: Modèles d’e‑mail
   signature_request_email: E‑mail de demande de signature
+  signature_request_reminder_email: E‑mail de rappel de demande de signature
   signature_request_sms: SMS de demande de signature
   verification_code_sms: SMS de code de vérification
   completed_notification_email: E‑mail de notification de finalisation
@@ -3995,6 +3999,7 @@ pt: &pt
   invalid_timeserver: Servidor de carimbo de tempo inválido
   email_templates: Modelos de e-mail
   signature_request_email: E-mail de solicitação de assinatura
+  signature_request_reminder_email: E-mail de lembrete de solicitação de assinatura
   signature_request_sms: SMS de solicitação de assinatura
   verification_code_sms: SMS com código de verificação
   completed_notification_email: E-mail de notificação de submissão concluída
@@ -4923,6 +4928,7 @@ de: &de
   invalid_timeserver: Ungültiger Zeitstempelserver
   email_templates: E-Mail-Vorlagen
   signature_request_email: E-Mail für Signaturanfrage
+  signature_request_reminder_email: E-Mail-Erinnerung für Signaturanfrage
   signature_request_sms: SMS für Signaturanfrage
   verification_code_sms: SMS mit Verifizierungscode
   completed_notification_email: E-Mail-Benachrichtigung bei Abschluss
@@ -6216,6 +6222,7 @@ nl: &nl
   invalid_timeserver: Ongeldige tijdserver
   email_templates: E-mailsjablonen
   signature_request_email: E-mail voor handtekeningverzoek
+  signature_request_reminder_email: E-mailherinnering voor handtekeningverzoek
   signature_request_sms: SMS voor handtekeningverzoek
   verification_code_sms: Verificatiecode-SMS
   completed_notification_email: E-mailmelding voltooid
