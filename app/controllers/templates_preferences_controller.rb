@@ -26,7 +26,7 @@ class TemplatesPreferencesController < ApplicationController
     authorize!(:update, @template)
 
     config_key = params[:config_key]
-    preferences_to_delete = RESETTABLE_PREFERENCE_KEYS[config_key] || []
+    preferences_to_delete = RESETTABLE_PREFERENCE_KEYS[config_key]
 
     return head :ok if preferences_to_delete.blank?
 

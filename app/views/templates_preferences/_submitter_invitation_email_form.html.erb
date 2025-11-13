@@ -6,9 +6,8 @@
   <% if is_custom_template_email || @template.preferences['submitters'].to_a.any? %>
     <%= button_to nil, template_preferences_path(@template), id: 'submitter_invitation_email_reset_link', method: :delete, class: 'hidden', params: { config_key: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY }, data: { turbo_confirm: t('are_you_sure_') }, form: { data: { close_on_submit: false } } %>
   <% end %>
-  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
+  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: 'submitter_invitation_email_template_form' }, data: { close_on_submit: false } do |f| %>
     <toggle-on-submit data-element-id="email_saved_alert1"></toggle-on-submit>
-    <%= f.hidden_field :config_key, value: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY %>
     <%= tag.input id: 'request_email_per_submitter', value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: @template.preferences['submitters'].to_a.size > 1 %>
     <div class="peer-checked:hidden">
       <%= f.fields_for :preferences, Struct.new(:request_email_subject, :request_email_body).new(*(template_email_preferences_values.presence || default_template_email_preferences_values)) do |ff| %>
@@ -35,7 +34,7 @@
             </span>
           </div>
           <autoresize-textarea>
-            <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
+            <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2 !rounded-2xl', dir: 'auto' %>
           </autoresize-textarea>
         </div>
       <% end %>
@@ -88,6 +87,9 @@
         <% end %>
       </div>
     <% end %>
+  <% end %>
+  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
+    <toggle-on-submit data-element-id="email_saved_alert1"></toggle-on-submit>
     <%= f.fields_for :preferences, Struct.new(:request_email_enabled).new(@template.preferences['request_email_enabled']) do |ff| %>
       <div class="flex items-center justify-between py-2.5 px-1 mb-2">
         <span>
@@ -98,11 +100,11 @@
         </submit-form>
       </div>
     <% end %>
-    <div class="form-control pt-2">
-      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
-      <div class="flex justify-center">
-        <span id="email_saved_alert1" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
-      </div>
-    </div>
   <% end %>
+  <div class="form-control pt-2">
+    <%= button_tag button_title(title: t('save'), disabled_with: t('saving')), form: 'submitter_invitation_email_template_form', class: 'base-button' %>
+    <div class="flex justify-center">
+      <span id="email_saved_alert1" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
+    </div>
+  </div>
 </div>
