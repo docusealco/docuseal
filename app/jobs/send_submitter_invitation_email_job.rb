@@ -7,6 +7,8 @@ class SendSubmitterInvitationEmailJob
     submitter = Submitter.find(params['submitter_id'])
 
     return if submitter.completed_at?
+    return if submitter.submission.archived_at?
+    return if submitter.template&.archived_at?
     return if submitter.submission.source == 'invite' && !Accounts.can_send_emails?(submitter.account, on_events: true)
 
     unless Accounts.can_send_invitation_emails?(submitter.account)
