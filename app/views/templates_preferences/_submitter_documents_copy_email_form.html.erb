@@ -30,16 +30,16 @@
           <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2 !rounded-2xl', dir: 'auto' %>
         </autoresize-textarea>
       </div>
-    <% end %>
-  <% end %>
-  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: 'submitter_documents_copy_email_template_form' }, data: { close_on_submit: false } do |f| %>
-    <%= f.fields_for :preferences, Struct.new(:documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
       <% if can?(:manage, :reply_to) %>
         <div class="form-control">
           <%= ff.label :documents_copy_email_reply_to, t('reply_to'), class: 'label' %>
           <%= ff.email_field :documents_copy_email_reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
         </div>
       <% end %>
+    <% end %>
+  <% end %>
+  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: 'submitter_documents_copy_email_template_form' }, data: { close_on_submit: false } do |f| %>
+    <%= f.fields_for :preferences, Struct.new(:documents_copy_email_enabled, :documents_copy_email_attach_audit, :documents_copy_email_attach_documents).new(@template.preferences['documents_copy_email_enabled'], configs['attach_audit_log'] != false && @template.preferences['documents_copy_email_attach_audit'] != false, configs['attach_documents'] != false && @template.preferences['documents_copy_email_attach_documents'] != false) do |ff| %>
       <div class="flex items-center justify-between pt-2.5 px-1 mb-2">
         <span>
           <%= t('attach_documents_to_the_email') %>
