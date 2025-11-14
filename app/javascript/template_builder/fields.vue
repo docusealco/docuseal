@@ -470,9 +470,13 @@ export default {
               const data = JSON.parse(jsonStr)
 
               if (data.error) {
-                alert(data.error)
+                if ((data.fields || fields).length) {
+                  this.template.fields = data.fields || fields
 
-                this.template.fields = data.fields || fields
+                  this.save()
+                } else {
+                  alert(data.error)
+                }
 
                 break
               } else if (data.analyzing) {
