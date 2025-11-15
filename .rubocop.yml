@@ -45,6 +45,9 @@ Metrics/PerceivedComplexity:
 Style/MultipleComparison:
   Enabled: false
 
+Style/NumericPredicate:
+  Enabled: false
+
 Naming/PredicateMethod:
   Enabled: false
 

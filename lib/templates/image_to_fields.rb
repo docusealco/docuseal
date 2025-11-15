@@ -77,7 +77,7 @@ module Templates
     end
 
     def build_fields_from_detections(detections, image)
-      Array.new(detections[:xyxy].shape[0]) do |i|
+      detections[:xyxy].shape[0].times.filter_map do |i|
         x1 = detections[:xyxy][i, 0]
         y1 = detections[:xyxy][i, 1]
         x2 = detections[:xyxy][i, 2]
@@ -91,6 +91,12 @@ module Templates
         y0_norm = y1 / image.height.to_f
         x1_norm = x2 / image.width.to_f
         y1_norm = y2 / image.height.to_f
+
+        x1_norm = 1 if x1_norm > 1
+        y1_norm = 1 if y1_norm > 1
+
+        next if x0_norm < 0 || x0_norm > 1
+        next if y0_norm < 0 || y0_norm > 1
 
         type_name = ID_TO_CLASS[class_id]
 
