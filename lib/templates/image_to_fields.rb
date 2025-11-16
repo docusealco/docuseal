@@ -37,10 +37,10 @@ module Templates
           transform_info[:trim_offset_x] = base_offset_x
           transform_info[:trim_offset_y] = base_offset_y + r[:offset_y]
 
-          outputs = model.predict({ 'input' => input_tensor })
+          outputs = model.predict({ 'input' => input_tensor }, output_type: :numo)
 
-          boxes = Numo::SFloat.cast(outputs['dets'])[0, true, true]
-          logits = Numo::SFloat.cast(outputs['labels'])[0, true, true]
+          boxes = outputs['dets'][0, true, true]
+          logits = outputs['labels'][0, true, true]
 
           postprocess_outputs(boxes, logits, transform_info, acc, confidence:, temperature:, resolution:)
         end
@@ -50,10 +50,10 @@ module Templates
         transform_info[:trim_offset_x] = base_offset_x
         transform_info[:trim_offset_y] = base_offset_y
 
-        outputs = model.predict({ 'input' => input_tensor })
+        outputs = model.predict({ 'input' => input_tensor }, output_type: :numo)
 
-        boxes = Numo::SFloat.cast(outputs['dets'])[0, true, true]
-        logits = Numo::SFloat.cast(outputs['labels'])[0, true, true]
+        boxes = outputs['dets'][0, true, true]
+        logits = outputs['labels'][0, true, true]
 
         detections = postprocess_outputs(boxes, logits, transform_info, confidence:, temperature:, resolution:)
       end
