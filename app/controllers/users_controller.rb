@@ -27,7 +27,8 @@ class UsersController < ApplicationController
     existing_user = User.accessible_by(current_ability).find_by(email: @user.email)
 
     if existing_user
-      if existing_user.archived_at? && authorize!(:manage, existing_user) && authorize!(:manage, @user.account)
+      if existing_user.archived_at? &&
+         current_ability.can?(:manage, existing_user) && current_ability.can?(:manage, @user.account)
         existing_user.assign_attributes(@user.slice(:first_name, :last_name, :role, :account_id))
         existing_user.archived_at = nil
         @user = existing_user
