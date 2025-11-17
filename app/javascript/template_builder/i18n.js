@@ -188,6 +188,7 @@ const en = {
 }
 
 const es = {
+  autodetect_fields: 'Autodetectar campos',
   analyzing_: 'Analizando...',
   download: 'Descargar',
   downloading_: 'Descargando...',
@@ -376,6 +377,7 @@ const es = {
 }
 
 const it = {
+  autodetect_fields: 'Rileva campi',
   analyzing_: 'Analisi...',
   download: 'Scarica',
   downloading_: 'Download in corso...',
@@ -564,6 +566,7 @@ const it = {
 }
 
 const pt = {
+  autodetect_fields: 'Detectar campos',
   analyzing_: 'Analisando...',
   download: 'Baixar',
   downloading_: 'Baixando...',
@@ -752,6 +755,7 @@ const pt = {
 }
 
 const fr = {
+  autodetect_fields: 'Détecter les champs',
   analyzing_: 'Analyse...',
   download: 'Télécharger',
   downloading_: 'Téléchargement...',
@@ -940,6 +944,7 @@ const fr = {
 }
 
 const de = {
+  autodetect_fields: 'Felder erkennen',
   analyzing_: 'Analysiere...',
   download: 'Download',
   downloading_: 'Download...',
@@ -1128,6 +1133,7 @@ const de = {
 }
 
 const nl = {
+  autodetect_fields: 'Velden detecteren',
   analyzing_: 'Analyseren...',
   download: 'Downloaden',
   downloading_: 'Downloaden...',

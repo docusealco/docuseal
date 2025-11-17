@@ -290,6 +290,7 @@ en: &en
   invalid_timeserver: Invalid Timeserver
   email_templates: Email Templates
   signature_request_email: Signature request email
+  signature_request_reminder_email: Signature request reminder email
   signature_request_sms: Signature Request SMS
   verification_code_sms: Verification Code SMS
   completed_notification_email: Completed notification email
@@ -837,6 +838,11 @@ en: &en
   connect_google_drive: Connect Google Drive
   google_drive_has_been_connected: Google Drive has been connected
   unable_to_identify_reset_your_password_to_sign_in: Unable to identify. Reset your password to sign in.
+  desktop: Desktop
+  mobile: Mobile
+  tablet: Tablet
+  reset_default: Reset default
+  send_signature_request_email: Send signature request email
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -1212,6 +1218,7 @@ es: &es
   invalid_timeserver: Servidor de tiempo inválido
   email_templates: Plantillas de correo electrónico
   signature_request_email: Correo de solicitud de firma
+  signature_request_reminder_email: Correo de recordatorio de solicitud de firma
   signature_request_sms: SMS de solicitud de firma
   verification_code_sms: SMS de código de verificación
   completed_notification_email: Correo de notificación de formulario completado
@@ -1758,6 +1765,11 @@ es: &es
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: Google Drive se ha conectado
   unable_to_identify_reset_your_password_to_sign_in: No se pudo identificar. Restablece tu contraseña para iniciar sesión.
+  desktop: Escritorio
+  mobile: Móvil
+  tablet: Tableta
+  reset_default: Restablecer por defecto
+  send_signature_request_email: Enviar correo de solicitud de firma
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -2133,6 +2145,7 @@ it: &it
   invalid_timeserver: Server di timestamp non valido
   email_templates: Modelli email
   signature_request_email: Email di richiesta di firma
+  signature_request_reminder_email: Email di promemoria di richiesta di firma
   signature_request_sms: SMS di richiesta di firma
   verification_code_sms: SMS con codice di verifica
   completed_notification_email: Email di notifica di completamento
@@ -2680,6 +2693,11 @@ it: &it
   connect_google_drive: Connetti Google Drive
   google_drive_has_been_connected: Google Drive è stato connesso
   unable_to_identify_reset_your_password_to_sign_in: Impossibile identificare. Reimposta la password per accedere.
+  desktop: Desktop
+  mobile: Mobile
+  tablet: Tablet
+  reset_default: Reimposta predefinito
+  send_signature_request_email: Invia email di richiesta firma
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -3056,6 +3074,7 @@ fr: &fr
   invalid_timeserver: Serveur d’horodatage invalide
   email_templates: Modèles d’e‑mail
   signature_request_email: E‑mail de demande de signature
+  signature_request_reminder_email: E‑mail de rappel de demande de signature
   signature_request_sms: SMS de demande de signature
   verification_code_sms: SMS de code de vérification
   completed_notification_email: E‑mail de notification de finalisation
@@ -3599,6 +3618,11 @@ fr: &fr
   connect_google_drive: Connecter Google Drive
   google_drive_has_been_connected: Google Drive a été connecté
   unable_to_identify_reset_your_password_to_sign_in: Impossible d’identifier. Réinitialisez votre mot de passe pour vous connecter.
+  desktop: Bureau
+  mobile: Mobile
+  tablet: Tablette
+  reset_default: Réinitialiser par défaut
+  send_signature_request_email: Envoyer un e-mail de demande de signature
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3975,6 +3999,7 @@ pt: &pt
   invalid_timeserver: Servidor de carimbo de tempo inválido
   email_templates: Modelos de e-mail
   signature_request_email: E-mail de solicitação de assinatura
+  signature_request_reminder_email: E-mail de lembrete de solicitação de assinatura
   signature_request_sms: SMS de solicitação de assinatura
   verification_code_sms: SMS com código de verificação
   completed_notification_email: E-mail de notificação de submissão concluída
@@ -4522,6 +4547,11 @@ pt: &pt
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: O Google Drive foi conectado
   unable_to_identify_reset_your_password_to_sign_in: Não foi possível identificar. Redefina sua senha para fazer login.
+  desktop: Computador
+  mobile: Celular
+  tablet: Tablet
+  reset_default: Redefinir para padrão
+  send_signature_request_email: Enviar e-mail de solicitação de assinatura
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4898,6 +4928,7 @@ de: &de
   invalid_timeserver: Ungültiger Zeitstempelserver
   email_templates: E-Mail-Vorlagen
   signature_request_email: E-Mail für Signaturanfrage
+  signature_request_reminder_email: E-Mail-Erinnerung für Signaturanfrage
   signature_request_sms: SMS für Signaturanfrage
   verification_code_sms: SMS mit Verifizierungscode
   completed_notification_email: E-Mail-Benachrichtigung bei Abschluss
@@ -5445,6 +5476,11 @@ de: &de
   connect_google_drive: Google Drive verbinden
   google_drive_has_been_connected: Google Drive wurde verbunden
   unable_to_identify_reset_your_password_to_sign_in: Identifizierung nicht möglich. Setzen Sie Ihr Passwort zurück, um sich anzumelden.
+  desktop: Desktop
+  mobile: Mobil
+  tablet: Tablet
+  reset_default: Standard zurücksetzen
+  send_signature_request_email: Signaturanfrage-E-Mail senden
   submission_sources:
     api: API
     bulk: Massenversand
@@ -6186,6 +6222,7 @@ nl: &nl
   invalid_timeserver: Ongeldige tijdserver
   email_templates: E-mailsjablonen
   signature_request_email: E-mail voor handtekeningverzoek
+  signature_request_reminder_email: E-mailherinnering voor handtekeningverzoek
   signature_request_sms: SMS voor handtekeningverzoek
   verification_code_sms: Verificatiecode-SMS
   completed_notification_email: E-mailmelding voltooid
@@ -6729,6 +6766,11 @@ nl: &nl
   connect_google_drive: Verbind Google Drive
   google_drive_has_been_connected: Google Drive is verbonden
   unable_to_identify_reset_your_password_to_sign_in: Kan niet worden geïdentificeerd. Stel je wachtwoord opnieuw in om in te loggen.
+  desktop: Desktop
+  mobile: Mobiel
+  tablet: Tablet
+  reset_default: Standaard herstellen
+  send_signature_request_email: E-mail met handtekeningaanvraag verzenden
   submission_sources:
     api: API
     bulk: Bulkverzending

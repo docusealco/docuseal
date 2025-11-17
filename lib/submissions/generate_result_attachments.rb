@@ -719,20 +719,30 @@ module Submissions
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
-        rescue HexaPDF::MalformedPDFError, NoMethodError => e
+        rescue HexaPDF::Error, NoMethodError => e
           Rollbar.error(e) if defined?(Rollbar)
 
-          pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
+          begin
+            pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
+          rescue HexaPDF::Error
+            pdf.validate(auto_correct: true)
+            pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
+          end
         end
 
         maybe_enable_ltv(io, sign_params)
       else
         begin
           pdf.write(io, incremental: true, validate: false)
-        rescue HexaPDF::MalformedPDFError, NoMethodError => e
+        rescue HexaPDF::Error, NoMethodError => e
           Rollbar.error(e) if defined?(Rollbar)
 
-          pdf.write(io, incremental: false, validate: false)
+          begin
+            pdf.write(io, incremental: false, validate: false)
+          rescue HexaPDF::Error
+            pdf.validate(auto_correct: true)
+            pdf.write(io, incremental: false, validate: false)
+          end
         end
       end
 
