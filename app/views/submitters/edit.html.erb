@@ -10,9 +10,11 @@
             <submitters-autocomplete data-field="email">
               <%= email_field_tag 'submitter[email]', @submitter.email, autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: "#{t('email')} (#{t('optional')})" %>
             </submitters-autocomplete>
-            <submitters-autocomplete data-field="phone">
-              <%= telephone_field_tag 'submitter[phone]', @submitter.phone, autocomplete: 'off', pattern: '^\+[0-9\s\-]+$', class: 'base-input !h-10 mt-1.5 w-full', placeholder: "#{t('phone')} (#{t('optional')})", oninvalid: "this.value ? this.setCustomValidity('#{t('use_international_format_1xxx_')}') : ''", oninput: "this.setCustomValidity('')" %>
-            </submitters-autocomplete>
+            <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
+              <submitters-autocomplete data-field="phone">
+                <%= telephone_field_tag 'submitter[phone]', @submitter.phone, autocomplete: 'off', pattern: '^\+[0-9\s\-]+$', class: 'base-input !h-10 mt-1.5 w-full', placeholder: "#{t('phone')} (#{t('optional')})" %>
+              </submitters-autocomplete>
+            </custom-validation>
           </div>
         </submitter-item>
       </div>

@@ -13,7 +13,7 @@ module Api
     def show
       blob_uuid, purp, exp = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 
-      if blob_uuid.blank? || (purp.present? && purp != 'blob') || (exp && exp < Time.current.to_i)
+      if blob_uuid.blank? || purp != 'blob'
         Rollbar.error('Blob not found') if defined?(Rollbar)
 
         return head :not_found
@@ -21,7 +21,12 @@ module Api
 
       blob = ActiveStorage::Blob.find_by!(uuid: blob_uuid)
 
-      authorization_check!(blob) if exp.blank?
+      attachment = blob.attachments.take
+
+      @record = attachment.record
+      @record = @record.record if @record.is_a?(ActiveStorage::Attachment)
+
+      authorization_check!(attachment, @record, exp)
 
       if request.headers['Range'].present?
         send_blob_byte_range_data blob, request.headers['Range']
@@ -37,18 +42,22 @@ module Api
 
     private
 
-    def authorization_check!(blob)
-      attachment = blob.attachments.take
+    def authorization_check!(attachment, record, exp)
+      return if attachment.name == 'logo'
+      return if exp.to_i >= Time.current.to_i
+      return if current_user && current_ability.can?(:read, record)
 
-      is_authorized = attachment.name.in?(%w[logo preview_images]) ||
-                      (current_user && attachment.record.account.id == current_user.account_id) ||
-                      (current_user && !Docuseal.multitenant? && current_user.role == 'superadmin') ||
-                      !attachment.record.account.account_configs
-                                 .find_or_initialize_by(key: AccountConfig::DOWNLOAD_LINKS_AUTH_KEY).value
+      if exp.blank?
+        configs = record.account.account_configs.where(key: [AccountConfig::DOWNLOAD_LINKS_AUTH_KEY,
+                                                             AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY])
 
-      return if is_authorized
+        require_auth = configs.any? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_AUTH_KEY && c.value }
+        require_ttl = configs.none? { |c| c.key == AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY && c.value == false }
 
-      Rollbar.error('Blob aunauthorized') if defined?(Rollbar)
+        return if !require_ttl && !require_auth
+      end
+
+      Rollbar.error('Blob unauthorized') if defined?(Rollbar)
 
       raise CanCan::AccessDenied
     end

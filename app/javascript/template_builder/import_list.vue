@@ -406,7 +406,7 @@ export default {
               this.mappings.every((m) => m.column_index !== index)
           })
 
-          if (columnIndex !== -1) {
+          if (columnIndex !== -1 && this.rows.some((row) => row[columnIndex])) {
             this.mappings.push({ uuid: v4(), field_name: field.name, column_index: columnIndex, submitter_uuid: submitter.uuid })
           }
         })

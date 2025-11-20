@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-describe 'Submission API', type: :request do
+describe 'Submission API' do
   let(:account) { create(:account, :with_testing_account) }
   let(:testing_account) { account.testing_accounts.first }
   let(:author) { create(:user, account:) }
@@ -104,6 +102,21 @@ describe 'Submission API', type: :request do
       expect(response.parsed_body).to eq(JSON.parse(create_submission_body(submission).to_json))
     end
 
+    it 'creates a submission when the submitter is marked as completed' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: templates[0].id,
+        submitters: [{ role: 'First Party', email: 'john.doe@example.com', completed: true }]
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submission = Submission.last
+      submitter = submission.submitters.first
+
+      expect(submitter.status).to eq('completed')
+      expect(submitter.completed_at).not_to be_nil
+    end
+
     it 'creates a submission when some submitter roles are not provided' do
       post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
         template_id: multiple_submitters_template.id,
@@ -138,7 +151,7 @@ describe 'Submission API', type: :request do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
 
       expect(response.parsed_body).to eq({ 'error' => 'email is invalid in `submitters[0]`.' })
     end
@@ -152,7 +165,7 @@ describe 'Submission API', type: :request do
         submitters: [{ role: 'First Party', email: 'john.doe@example.com' }]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'Template does not contain fields' })
     end
 
@@ -166,7 +179,7 @@ describe 'Submission API', type: :request do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'role must be unique in `submitters`.' })
     end
 
@@ -180,7 +193,7 @@ describe 'Submission API', type: :request do
         ]
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'Defined more signing parties than in template' })
     end
 
@@ -196,7 +209,7 @@ describe 'Submission API', type: :request do
         }
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(response.parsed_body).to eq({ 'error' => 'body is required in `message`.' })
     end
   end
@@ -222,7 +235,7 @@ describe 'Submission API', type: :request do
         emails: 'amy.baker@example.com, george.morris@example.com@gmail.com'
       }.to_json
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
 
       expect(response.parsed_body).to eq({ 'error' => 'emails are invalid' })
     end
@@ -275,6 +288,7 @@ describe 'Submission API', type: :request do
 
     {
       id: submission.id,
+      name: submission.name,
       source: 'link',
       submitters_order: 'random',
       slug: submission.slug,
@@ -284,6 +298,7 @@ describe 'Submission API', type: :request do
       completed_at: nil,
       created_at: submission.created_at,
       updated_at: submission.updated_at,
+      variables: {},
       archived_at: nil,
       status: 'pending',
       submitters:,
@@ -333,6 +348,7 @@ describe 'Submission API', type: :request do
 
     {
       id: submission.id,
+      name: submission.name,
       source: 'link',
       status: 'pending',
       submitters_order: 'random',
@@ -343,6 +359,7 @@ describe 'Submission API', type: :request do
       completed_at: nil,
       created_at: submission.created_at,
       updated_at: submission.updated_at,
+      variables: {},
       archived_at: nil,
       submitters:,
       template: {
@@ -395,7 +412,7 @@ describe 'Submission API', type: :request do
         preferences: { send_email: true, send_sms: false },
         role: submitter.template.submitters.find { |s| s['uuid'] == submitter.uuid }['name'],
         embed_src: "#{Docuseal::DEFAULT_APP_URL}/s/#{submitter.slug}",
-        values: []
+        values: Submitters::SerializeForWebhook.build_values_array(submitter)
       }
     end
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PopulateCompletedSubmittersAndDocuments < ActiveRecord::Migration[7.2]
-  disable_ddl_transaction
+  disable_ddl_transaction!
 
   class MigrationSubmitter < ApplicationRecord
     self.table_name = 'submitters'

@@ -16,7 +16,7 @@ class SessionsController < Devise::SessionsController
     end
 
     if User.exists?(email:, otp_required_for_login: true) && sign_in_params[:otp_attempt].blank?
-      return render :otp, locals: { resource: User.new(sign_in_params) }, status: :unprocessable_entity
+      return render :otp, locals: { resource: User.new(sign_in_params) }, status: :unprocessable_content
     end
 
     super

@@ -1,7 +1,5 @@
 <template>
-  <label
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
-  >
+  <label class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label">
     <MarkdownContent
       v-if="field.title"
       :string="field.title"
@@ -11,13 +9,13 @@
   <div
     v-if="field.description"
     dir="auto"
-    class="mb-4 px-1"
+    class="mb-4 px-1 field-description-text"
   >
     <MarkdownContent :string="field.description" />
   </div>
   <div
-    v-if="emptyValueRequiredStep && emptyValueRequiredStep[0] !== field"
-    class="px-1"
+    v-if="isRequiredFieldEmpty"
+    class="px-1 field-description-text"
   >
     {{ t('complete_all_required_fields_to_proceed_with_identity_verification') }}
   </div>
@@ -102,6 +100,9 @@ export default {
     }
   },
   computed: {
+    isRequiredFieldEmpty () {
+      return this.emptyValueRequiredStep && this.emptyValueRequiredStep[0] !== this.field
+    },
     countryCode () {
       const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
       const browserTz = browserTimeZone.split('/')[1]
@@ -133,17 +134,19 @@ export default {
     }
   },
   async mounted () {
-    this.isLoading = true
+    if (!this.isRequiredFieldEmpty) {
+      this.isLoading = true
 
-    if (new URLSearchParams(window.location.search).get('submit') === 'true') {
-      this.$emit('submit')
-    } else {
-      Promise.all([
-        import('@eid-easy/eideasy-widget'),
-        this.start()
-      ]).finally(() => {
-        this.isLoading = false
-      })
+      if (new URLSearchParams(window.location.search).get('submit') === 'true') {
+        this.$emit('submit')
+      } else {
+        Promise.all([
+          import('@eid-easy/eideasy-widget'),
+          this.start()
+        ]).finally(() => {
+          this.isLoading = false
+        })
+      }
     }
   },
   methods: {
@@ -151,11 +154,16 @@ export default {
       return fetch(this.baseUrl + `/api/identity_verification/${this.field.uuid}`, {
         method: 'PUT',
         body: JSON.stringify({
-          submitter_slug: this.submitterSlug
+          submitter_slug: this.submitterSlug,
+          redirect_url: document.location.href
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {
         this.eidEasyData = await resp.json()
+
+        if (this.eidEasyData.check_completed) {
+          this.$emit('submit')
+        }
 
         if (this.eidEasyData.available_methods[0] === 'itsme-qes-signature' &&
             this.eidEasyData.available_methods.length === 1) {
@@ -167,7 +175,7 @@ export default {
           redirectUrl.searchParams.append('lang', this.locale)
 
           this.redirectUrl = redirectUrl.toString()
-        } else {
+        } else if (this.$refs.widgetContainer) {
           const eidEasyWidget = document.createElement('eideasy-widget')
 
           for (const key in this.widgetSettings) {
@@ -180,15 +188,23 @@ export default {
       })
     },
     async submit () {
-      return fetch(this.baseUrl + '/api/identity_verification', {
+      const resp = await fetch(this.baseUrl + '/api/identity_verification', {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug
         }),
         headers: { 'Content-Type': 'application/json' }
-      }).then(async (resp) => {
-        return resp
       })
+
+      if (resp.status === 404) {
+        throw new Error('Verification not completed yet')
+      }
+
+      if (resp.ok) {
+        return resp
+      } else {
+        throw new Error('Verification failed')
+      }
     }
   }
 }

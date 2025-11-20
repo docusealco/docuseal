@@ -28,9 +28,16 @@
           <span class="absolute flex items-center justify-center w-7 h-7 rounded-full -start-3.5 ring-8 ring-base-100 text-base-content <%= bg_class %>">
             <%= svg_icon(SubmissionEventsController::SUBMISSION_EVENT_ICONS.fetch(event.event_type, 'circle_dot'), class: 'w-4 h-4') %>
           </span>
-          <p class="text-sm leading-none text-base-content/60 pt-1.5">
-            <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
-          </p>
+          <div class="flex items-center space-x-1 pt-1.5">
+            <span class="text-sm leading-none text-base-content/60">
+              <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
+            </span>
+            <% if (device = DetectBrowserDevice.call(event.data['ua'])) %>
+              <span class="tooltip tooltip-top" data-tip="<%= t(device) %>">
+                <%= svg_icon("device_#{device}", class: 'w-4 h-4') %>
+              </span>
+            <% end %>
+          </div>
           <p class="text-base-content/80 mt-1">
             <% if event.event_type == 'complete_verification' %>
               <%= t('submission_event_names.complete_verification_by_html', provider: event.data['method'], submitter_name:) %>
@@ -38,6 +45,8 @@
               <%= t('submission_event_names.invite_party_by_html', invited_submitter_name: [invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' '), submitter_name:) %>
             <% elsif event.event_type.include?('send_') %>
               <%= t("submission_event_names.#{event.event_type}_to_html", submitter_name:) %>
+            <% elsif event.event_type.start_with?('bounce_') ||  event.event_type.start_with?('complaint_') %>
+              <%= t("submission_event_names.#{event.event_type}_html", submitter_name:) %>
             <% else %>
               <%= t("submission_event_names.#{event.event_type}_by_html", submitter_name:) %>
             <% end %>

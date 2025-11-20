@@ -28,13 +28,16 @@ class WebhookUrl < ApplicationRecord
     form.started
     form.completed
     form.declined
+    submission.created
+    submission.completed
+    submission.expired
+    submission.archived
     template.created
     template.updated
-    submission.created
-    submission.archived
   ].freeze
 
   belongs_to :account
+  has_many :webhook_events, dependent: nil
 
   attribute :events, :string, default: -> { %w[form.viewed form.started form.completed form.declined] }
   attribute :secret, :string, default: -> { {} }

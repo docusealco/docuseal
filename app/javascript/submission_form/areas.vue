@@ -11,29 +11,37 @@
         v-for="(area, areaIndex) in field.areas"
         :key="areaIndex"
       >
-        <Teleport
-          v-if="findPageElementForArea(area)"
-          :to="findPageElementForArea(area)"
+        <template
+          v-for="(pageElem, index) in [findPageElementForArea(area)]"
+          :key="index"
         >
-          <FieldArea
-            :ref="setAreaRef"
-            v-model="values[field.uuid]"
-            :values="values"
-            :field="field"
-            :area="area"
-            :submittable="submittable"
-            :field-index="fieldIndex"
-            :scroll-padding="scrollPadding"
-            :submitter="submitter"
-            :with-field-placeholder="withFieldPlaceholder"
-            :with-signature-id="withSignatureId"
-            :is-active="currentStep === step"
-            :with-label="withLabel && !withFieldPlaceholder && step.length < 2"
-            :is-value-set="step.some((f) => f.uuid in values)"
-            :attachments-index="attachmentsIndex"
-            @click="[$emit('focus-step', stepIndex), maybeScrollOnClick(field, area)]"
-          />
-        </Teleport>
+          <Teleport
+            v-if="pageElem"
+            :to="pageElem"
+          >
+            <FieldArea
+              :ref="setAreaRef"
+              v-model="values[field.uuid]"
+              :values="values"
+              :field="field"
+              :area="area"
+              :submittable="submittable"
+              :page-width="1400"
+              :page-height="(1400.0 / pageElem.offsetWidth) * pageElem.offsetHeight"
+              :field-index="fieldIndex"
+              :is-inline-size="isInlineSize"
+              :scroll-padding="scrollPadding"
+              :submitter="submitter"
+              :with-field-placeholder="withFieldPlaceholder"
+              :with-signature-id="withSignatureId"
+              :is-active="currentStep === step"
+              :with-label="withLabel && !withFieldPlaceholder && step.length < 2"
+              :is-value-set="step.some((f) => f.uuid in values)"
+              :attachments-index="attachmentsIndex"
+              @click="[$emit('focus-step', stepIndex), maybeScrollOnClick(field, area)]"
+            />
+          </Teleport>
+        </template>
       </template>
     </template>
   </template>
@@ -110,6 +118,9 @@ export default {
     }
   },
   computed: {
+    isInlineSize () {
+      return CSS.supports('container-type: size')
+    },
     isMobileContainer () {
       const root = this.$root.$el.parentNode.getRootNode()
       const container = root.body || root.querySelector('div')

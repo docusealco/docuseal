@@ -10,24 +10,20 @@ module Api
     end
 
     def index
-      submissions = Submissions.search(@submissions, params[:q])
-      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
-
-      if params[:template_folder].present?
-        submissions = submissions.joins(template: :folder).where(folder: { name: params[:template_folder] })
-      end
-
-      submissions = Submissions::Filter.call(submissions, current_user, params)
+      submissions = Submissions.search(current_user, @submissions, params[:q])
+      submissions = filter_submissions(submissions, params)
 
       submissions = paginate(submissions.preload(:created_by_user, :submitters,
-                                                 template: :folder,
+                                                 template: { folder: :parent_folder },
                                                  combined_document_attachment: :blob,
                                                  audit_trail_attachment: :blob))
+
+      expires_at = Accounts.link_expires_at(current_account)
 
       render json: {
         data: submissions.map do |s|
           Submissions::SerializeForApi.call(s, s.submitters, params,
-                                            with_events: false, with_documents: false, with_values: false)
+                                            with_events: false, with_documents: false, with_values: false, expires_at:)
         end,
         pagination: {
           count: submissions.size,
@@ -47,7 +43,7 @@ module Api
       end
 
       if @submission.audit_trail_attachment.blank? && submitters.all?(&:completed_at?)
-        @submission.audit_trail_attachment = Submissions::GenerateAuditTrail.call(@submission)
+        @submission.audit_trail_attachment = Submissions::EnsureAuditGenerated.call(@submission)
       end
 
       render json: Submissions::SerializeForApi.call(@submission, submitters, params)
@@ -56,12 +52,12 @@ module Api
     def create
       Params::SubmissionCreateValidator.call(params)
 
-      return render json: { error: 'Template not found' }, status: :unprocessable_entity if @template.nil?
+      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
 
       if @template.fields.blank?
         Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
 
-        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_entity
+        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
       end
 
       params[:send_email] = true unless params.key?(:send_email)
@@ -69,12 +65,7 @@ module Api
 
       submissions = create_submissions(@template, params)
 
-      WebhookUrls.for_account_id(@template.account_id, 'submission.created').each do |webhook_url|
-        submissions.each do |submission|
-          SendSubmissionCreatedWebhookRequestJob.perform_async('submission_id' => submission.id,
-                                                               'webhook_url_id' => webhook_url.id)
-        end
-      end
+      WebhookUrls.enqueue_events(submissions, 'submission.created')
 
       Submissions.send_signature_requests(submissions)
 
@@ -86,12 +77,14 @@ module Api
         end
       end
 
+      SearchEntries.enqueue_reindex(submissions)
+
       render json: build_create_json(submissions)
     rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,
            DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     def destroy
@@ -100,16 +93,31 @@ module Api
       else
         @submission.update!(archived_at: Time.current)
 
-        WebhookUrls.for_account_id(@submission.account_id, 'submission.archived').each do |webhook_url|
-          SendSubmissionArchivedWebhookRequestJob.perform_async('submission_id' => @submission.id,
-                                                                'webhook_url_id' => webhook_url.id)
-        end
+        WebhookUrls.enqueue_events(@submission, 'submission.archived')
       end
 
       render json: @submission.as_json(only: %i[id archived_at])
     end
 
     private
+
+    def filter_submissions(submissions, params)
+      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
+      submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
+
+      if params[:template_folder].present?
+        folders =
+          TemplateFolders.filter_by_full_name(TemplateFolder.accessible_by(current_ability), params[:template_folder])
+
+        submissions = submissions.joins(:template).where(template: { folder_id: folders.pluck(:id) })
+      end
+
+      if params.key?(:archived)
+        submissions = params[:archived].in?(['true', true]) ? submissions.archived : submissions.active
+      end
+
+      Submissions::Filter.call(submissions, current_user, params)
+    end
 
     def build_create_json(submissions)
       json = submissions.flat_map do |submission|
@@ -139,7 +147,7 @@ module Api
       is_send_email = !params[:send_email].in?(['false', false])
 
       if (emails = (params[:emails] || params[:email]).presence) &&
-         (params[:submission].blank? && params[:submitters].blank?)
+         params[:submission].blank? && params[:submitters].blank?
         Submissions.create_from_emails(template:,
                                        user: current_user,
                                        source: :api,
@@ -174,15 +182,17 @@ module Api
     def submissions_params
       permitted_attrs = [
         :send_email, :send_sms, :bcc_completed, :completed_redirect_url, :reply_to, :go_to_last,
-        :expire_at,
+        :require_phone_2fa, :expire_at, :name,
         {
+          variables: {},
           message: %i[subject body],
           submitters: [[:send_email, :send_sms, :completed_redirect_url, :uuid, :name, :email, :role,
                         :completed, :phone, :application_key, :external_id, :reply_to, :go_to_last,
-                        { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
+                        :require_phone_2fa, :order,
+                        { metadata: {}, values: {}, roles: [], readonly_fields: [], message: %i[subject body],
                           fields: [:name, :uuid, :default_value, :value, :title, :description,
-                                   :readonly, :validation_pattern, :invalid_message,
-                                   { default_value: [], value: [], preferences: {} }] }]]
+                                   :readonly, :required, :validation_pattern, :invalid_message,
+                                   { default_value: [], value: [], preferences: {}, validation: {} }] }]]
         }
       ]
 

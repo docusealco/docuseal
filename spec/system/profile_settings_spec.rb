@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Profile Settings' do
   let(:user) { create(:user, account: create(:account)) }
 
   before do
     sign_in(user)
+
+    allow(Accounts).to receive(:can_send_emails?).and_return(true)
+
     visit settings_profile_index_path
   end
 
@@ -18,7 +19,6 @@ RSpec.describe 'Profile Settings' do
 
     expect(page).to have_content('Change Password')
     expect(page).to have_field('user[password]')
-    expect(page).to have_field('user[password_confirmation]')
   end
 
   context 'when changes contact information' do
@@ -35,12 +35,21 @@ RSpec.describe 'Profile Settings' do
       expect(user.last_name).to eq('Beckham')
       expect(user.email).to eq('david.beckham@example.com')
     end
+
+    it 'does not update if email is invalid' do
+      fill_in 'Email', with: 'devid+test@example'
+
+      all(:button, 'Update')[0].click
+
+      expect(page).to have_content('Email is invalid')
+    end
   end
 
   context 'when changes password' do
     it 'updates password' do
       fill_in 'New password', with: 'newpassword'
       fill_in 'Confirm new password', with: 'newpassword'
+      fill_in 'Current password', with: 'password'
 
       all(:button, 'Update')[1].click
 
@@ -50,10 +59,51 @@ RSpec.describe 'Profile Settings' do
     it 'does not update if password confirmation does not match' do
       fill_in 'New password', with: 'newpassword'
       fill_in 'Confirm new password', with: 'newpassword1'
+      fill_in 'Current password', with: 'password'
 
       all(:button, 'Update')[1].click
 
       expect(page).to have_content("Password confirmation doesn't match Password")
+    end
+
+    it 'does not update if current password is incorrect' do
+      fill_in 'New password', with: 'newpassword'
+      fill_in 'Confirm new password', with: 'newpassword'
+      fill_in 'Current password', with: 'wrongpassword'
+
+      all(:button, 'Update')[1].click
+
+      expect(page).to have_content('Current password is invalid')
+    end
+
+    it 'resets password and signs in with new password', sidekiq: :inline do
+      fill_in 'New password', with: 'newpassword'
+      accept_confirm('Are you sure?') do
+        find('label', text: 'Click here').click
+      end
+
+      expect(page).to have_content('An email with password reset instructions has been sent.')
+
+      email = ActionMailer::Base.deliveries.last
+      reset_password_url = email.body
+                                .encoded[/href="([^"]+)"/, 1]
+                                .sub(%r{https?://(.*?)/}, "#{Capybara.current_session.server.base_url}/")
+
+      visit reset_password_url
+
+      fill_in 'New password', with: 'new_strong_password'
+      fill_in 'Confirm new password', with: 'new_strong_password'
+      click_button 'Change my password'
+
+      expect(page).to have_content('Your password has been changed successfully. You are now signed in.')
+
+      visit new_user_session_path
+
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: 'new_strong_password'
+      click_button 'Sign In'
+
+      expect(page).to have_content('Signed in successfully')
     end
   end
 end

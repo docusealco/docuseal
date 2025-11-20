@@ -1,7 +1,7 @@
 <template>
   <span
-    class="dropdown dropdown-end"
-    :class="{ 'dropdown-open': ((!field.preferences?.price && !field.preferences?.formula) || !isConnected) && !isLoading }"
+    class="dropdown dropdown-end field-settings-dropdown"
+    :class="{ 'dropdown-open': ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
   >
     <label
       tabindex="0"
@@ -21,7 +21,7 @@
       @click="closeDropdown"
     >
       <div
-        v-if="!('price_id' in field.preferences)"
+        v-if="!('price_id' in field.preferences) && !('payment_link_id' in field.preferences)"
         class="py-1.5 px-1 relative"
         @click.stop
       >
@@ -52,10 +52,9 @@
         @click.stop
       >
         <input
-          v-if="field.preferences.formula"
-          type="number"
-          :placeholder="t('price')"
-          disabled="true"
+          v-if="'payment_link_id' in field.preferences"
+          v-model="field.preferences.payment_link_id"
+          placeholder="plink_XXXXX"
           class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
           @blur="save"
         >
@@ -63,6 +62,14 @@
           v-else-if="'price_id' in field.preferences"
           v-model="field.preferences.price_id"
           placeholder="Price ID: price_XXXXX"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          @blur="save"
+        >
+        <input
+          v-else-if="field.preferences.formula"
+          type="number"
+          :placeholder="t('price')"
+          disabled="true"
           class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
           @blur="save"
         >
@@ -75,29 +82,41 @@
           @blur="save"
         >
         <label
-          v-if="field.preferences.price && !field.preferences.formula"
+          v-if="(field.preferences.price || field.preferences.price_id || field.preferences.payment_link_id) && (!field.preferences.formula || ('price_id' in field.preferences) || ('payment_link_id' in field.preferences))"
           :style="{ backgroundColor: backgroundColor }"
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
         >
-          {{ t('price') }}
+          {{ 'payment_link_id' in field.preferences ? t('payment_link') : t('price') }}
         </label>
         <div class="flex items-center justify-center">
           <a
             href="#"
             class="hover:underline"
             style="font-size: 11px"
-            :class="{'underline': !('price_id' in field.preferences)}"
-            @click="delete field.preferences.price_id"
+            :class="{'underline': !('payment_link_id' in field.preferences)}"
+            @click="[delete field.preferences.price_id, delete field.preferences.payment_link_id]"
           >{{ t('one_off') }}</a>
           <span class="h-2.5 border-l border-base-content mx-1" />
+          <template
+            v-if="field.preferences.price_id"
+          >
+            <a
+              href="#"
+              class="hover:underline"
+              style="font-size: 11px"
+              :class="{'underline': ('price_id' in field.preferences)}"
+              @click="field.preferences.payment_link_id ??= ''"
+            >{{ t('recurrent') }}</a>
+            <span class="h-2.5 border-l border-base-content mx-1" />
+          </template>
           <a
             href="#"
             class="hover:underline"
             style="font-size: 11px"
-            :class="{'underline': ('price_id' in field.preferences)}"
-            @click="field.preferences.price_id ??= ''"
-          >{{ t('recurrent') }}</a>
+            :class="{'underline': ('payment_link_id' in field.preferences)}"
+            @click="[delete field.preferences.price_id, field.preferences.payment_link_id ??= '']"
+          >{{ t('payment_link') }}</a>
         </div>
       </div>
       <div
@@ -184,7 +203,6 @@
         >{{ t('learn_more') }}</a>
       </div>
       <li
-        v-if="!('price_id' in field.preferences)"
         class="mb-1"
       >
         <label
@@ -195,7 +213,7 @@
             width="18"
           />
           <span class="text-sm">
-            {{ t('formula') }}
+            {{ 'payment_link_id' in field.preferences ? t('quantity') : t('formula') }}
           </span>
         </label>
       </li>

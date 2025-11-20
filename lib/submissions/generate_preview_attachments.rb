@@ -13,10 +13,17 @@ module Submissions
                       end
 
       configs = submission.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
-                                                               AccountConfig::WITH_SIGNATURE_ID])
+                                                               AccountConfig::WITH_SIGNATURE_ID,
+                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
+                                                               AccountConfig::WITH_FILE_LINKS_KEY,
+                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
+      with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
+      with_signature_id_reason =
+        configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
       pdfs_index = GenerateResultAttachments.build_pdfs_index(submission, flatten: is_flatten)
 
@@ -28,13 +35,15 @@ module Submissions
 
       submitters.preload(attachments_attachments: :blob).each_with_index do |s, index|
         GenerateResultAttachments.fill_submitter_fields(s, submission.account, pdfs_index,
-                                                        with_signature_id:, is_flatten:, with_headings: index.zero?)
+                                                        with_signature_id:, is_flatten:, with_headings: index.zero?,
+                                                        with_submitter_timezone:, with_file_links:,
+                                                        with_signature_id_reason:)
       end
 
       template = submission.template
 
       image_pdfs = []
-      original_documents = template.documents.preload(:blob)
+      original_documents = submission.schema_documents.preload(:blob)
 
       result_attachments =
         (submission.template_schema || template.schema).filter_map do |item|
@@ -70,7 +79,7 @@ module Submissions
           submitter:,
           uuid: GenerateResultAttachments.images_pdf_uuid(original_documents.select(&:image?)),
           values_hash:,
-          name: template.name
+          name: submission.name || template.name
         )
 
       ApplicationRecord.no_touching do

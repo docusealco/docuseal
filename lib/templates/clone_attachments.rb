@@ -4,10 +4,12 @@ module Templates
   module CloneAttachments
     module_function
 
-    def call(template:, original_template:, documents: [])
+    def call(template:, original_template:, documents: [], excluded_attachment_uuids: [], save: true)
       schema_uuids_replacements = {}
 
       template.schema.each_with_index do |schema_item, index|
+        next if excluded_attachment_uuids.include?(schema_item['attachment_uuid'])
+
         new_schema_item_uuid = SecureRandom.uuid
 
         schema_uuids_replacements[schema_item['attachment_uuid']] = new_schema_item_uuid
@@ -22,32 +24,36 @@ module Templates
         next if field['areas'].blank?
 
         field['areas'].each do |area|
-          area['attachment_uuid'] = schema_uuids_replacements[area['attachment_uuid']]
+          new_attachment_uuid = schema_uuids_replacements[area['attachment_uuid']]
+          area['attachment_uuid'] = new_attachment_uuid if new_attachment_uuid
         end
       end
 
-      template.save!
+      attachments =
+        original_template.schema_documents.filter_map do |document|
+          new_attachment_uuid = schema_uuids_replacements[document.uuid]
 
-      original_template.schema_documents.map do |document|
-        new_document =
-          ApplicationRecord.no_touching do
-            template.documents_attachments.create!(
-              uuid: schema_uuids_replacements[document.uuid],
+          next unless new_attachment_uuid
+
+          new_document =
+            template.documents_attachments.new(
+              uuid: new_attachment_uuid,
               blob_id: document.blob_id
             )
-          end
 
-        clone_document_preview_images_attachments(document:, new_document:)
+          clone_document_preview_images_attachments(document:, new_document:)
 
-        new_document
-      end
+          new_document
+        end
+
+      template.save! if save
+
+      attachments
     end
 
     def clone_document_preview_images_attachments(document:, new_document:)
-      ApplicationRecord.no_touching do
-        document.preview_images_attachments.each do |preview_image|
-          new_document.preview_images_attachments.create!(blob_id: preview_image.blob_id)
-        end
+      document.preview_images_attachments.each do |preview_image|
+        new_document.preview_images_attachments.new(blob_id: preview_image.blob_id)
       end
     end
   end

@@ -8,7 +8,8 @@ class AccountsController < ApplicationController
     'es-ES' => 'Español',
     'pt-PT' => 'Português',
     'de-DE' => 'Deutsch',
-    'it-IT' => 'Italiano'
+    'it-IT' => 'Italiano',
+    'nl-NL' => 'Nederlands'
   }.freeze
 
   before_action :load_account
@@ -27,7 +28,7 @@ class AccountsController < ApplicationController
       unless URI.parse(@encrypted_config.value.to_s).class.in?([URI::HTTP, URI::HTTPS])
         @encrypted_config.errors.add(:value, I18n.t('should_be_a_valid_url'))
 
-        return render :show, status: :unprocessable_entity
+        return render :show, status: :unprocessable_content
       end
 
       @encrypted_config.save!
@@ -39,13 +40,14 @@ class AccountsController < ApplicationController
       redirect_to settings_account_path, notice: I18n.t('account_information_has_been_updated')
     end
   rescue ActiveRecord::RecordInvalid
-    render :show, status: :unprocessable_entity
+    render :show, status: :unprocessable_content
   end
 
   def destroy
     authorize!(:manage, current_account)
 
-    true_user.update!(locked_at: Time.current)
+    true_user.update!(locked_at: Time.current, email: true_user.email.sub('@', '+removed@'))
+    true_user.account.update!(archived_at: Time.current)
 
     # rubocop:disable Layout/LineLength
     render turbo_stream: turbo_stream.replace(

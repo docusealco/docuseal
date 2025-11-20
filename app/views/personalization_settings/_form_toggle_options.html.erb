@@ -7,7 +7,9 @@
         <span>
           <%= t('show_confetti_on_successful_completion') %>
         </span>
-        <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false, onchange: 'this.form.requestSubmit()' }, '1', '0' %>
+        <submit-form data-on="change" class="flex">
+          <%= f.check_box :value, { class: 'toggle', checked: account_config.value != false }, '1', '0' %>
+        </submit-form>
       </div>
     <% end %>
   </div>

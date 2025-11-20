@@ -3,7 +3,7 @@
     v-if="showFieldNames && (field.name || field.title)"
     :for="field.uuid"
     dir="auto"
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
     :class="{ 'mb-2': !field.description }"
   >
     <MarkdownContent
@@ -24,7 +24,7 @@
   <div
     v-if="field.description"
     dir="auto"
-    class="mb-3 px-1"
+    class="mb-3 px-1 field-description-text"
   >
     <MarkdownContent :string="field.description" />
   </div>
@@ -39,8 +39,10 @@
       :id="field.uuid"
       v-model="number"
       type="number"
+      :step="field.validation?.step || 'any'"
+      :min="field.validation?.min"
+      :max="field.validation?.max"
       class="base-input !text-2xl w-full"
-      step="any"
       :required="field.required"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       :name="`values[${field.uuid}]`"

@@ -1,0 +1,6 @@
+<% if current_user.created_at > 2.weeks.ago || params[:tour] == 'true' %>
+  <% user_config = current_user.user_configs.find_by(key: UserConfig::SHOW_APP_TOUR) || UserConfig.new(key: UserConfig::SHOW_APP_TOUR, user: current_user) %>
+  <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
+    <app-tour data-show-tour="<%= params[:tour] == 'true' || user_config.value %>" data-type="<%= local_assigns[:type] %>" data-next-page-path="<%= local_assigns[:next_page_path] %>" data-i18n="<%= t('app_tour').to_json %>"></app-tour>
+  <% end %>
+<% end %>

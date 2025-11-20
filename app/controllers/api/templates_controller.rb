@@ -7,7 +7,7 @@ module Api
     def index
       templates = filter_templates(@templates, params)
 
-      templates = paginate(templates.preload(:author, :folder))
+      templates = paginate(templates.preload(:author, folder: :parent_folder))
 
       schema_documents =
         ActiveStorage::Attachment.where(record_id: templates.map(&:id),
@@ -24,13 +24,14 @@ module Api
                                         name: :preview_images)
                                  .preload(:blob)
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         data: templates.map do |t|
-          Templates::SerializeForApi.call(
-            t,
-            schema_documents.select { |e| e.record_id == t.id },
-            preview_image_attachments
-          )
+          Templates::SerializeForApi.call(t,
+                                          schema_documents: schema_documents.select { |e| e.record_id == t.id },
+                                          preview_image_attachments:,
+                                          expires_at:)
         end,
         pagination: {
           count: templates.size,
@@ -65,10 +66,9 @@ module Api
 
       @template.update!(template_params)
 
-      WebhookUrls.for_account_id(@template.account_id, 'template.updated').each do |webhook_url|
-        SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => @template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      SearchEntries.enqueue_reindex(@template)
+
+      WebhookUrls.enqueue_events(@template, 'template.updated')
 
       render json: @template.as_json(only: %i[id updated_at])
     end
@@ -86,11 +86,17 @@ module Api
     private
 
     def filter_templates(templates, params)
-      templates = Templates.search(templates, params[:q])
+      templates = Templates.search(current_user, templates, params[:q])
       templates = params[:archived].in?(['true', true]) ? templates.archived : templates.active
       templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
       templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?
-      templates = templates.joins(:folder).where(folder: { name: params[:folder] }) if params[:folder].present?
+      templates = templates.where(slug: params[:slug]) if params[:slug].present?
+
+      if params[:folder].present?
+        folders = TemplateFolders.filter_by_full_name(TemplateFolder.accessible_by(current_ability), params[:folder])
+
+        templates = templates.where(folder_id: folders.pluck(:id))
+      end
 
       templates
     end
@@ -99,15 +105,17 @@ module Api
       permitted_params = [
         :name,
         :external_id,
+        :shared_link,
         {
-          submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email]],
+          submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email order]],
           fields: [[:uuid, :submitter_uuid, :name, :type,
                     :required, :readonly, :default_value,
-                    :title, :description,
+                    :title, :description, :prefillable,
                     { preferences: {},
+                      default_value: [],
                       conditions: [%i[field_uuid value action operation]],
                       options: [%i[value uuid]],
-                      validation: %i[message pattern],
+                      validation: %i[message pattern min max step],
                       areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]]
         }
       ]

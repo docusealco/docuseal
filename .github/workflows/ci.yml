@@ -6,12 +6,13 @@ jobs:
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -30,12 +31,13 @@ jobs:
   erblint:
     name: Erblint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -54,6 +56,7 @@ jobs:
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Node.js
@@ -80,12 +83,13 @@ jobs:
   brakeman:
     name: Brakeman
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -107,6 +111,7 @@ jobs:
   rspec:
     name: RSpec
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     services:
       postgres:
@@ -127,7 +132,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.1
+          ruby-version: 3.4.2
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
@@ -157,7 +162,10 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install libvips
+          sudo apt-get install -y libvips
+          wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz"
+          sudo tar -xzf pdfium-linux.tgz --strip-components=1 -C /usr/lib lib/libpdfium.so
+          rm -f pdfium-linux.tgz
       - name: Run
         env:
           RAILS_ENV: test

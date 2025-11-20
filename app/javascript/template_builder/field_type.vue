@@ -1,6 +1,6 @@
 <template>
   <span
-    class="dropdown"
+    class="dropdown field-types-dropdown"
     @mouseenter="renderDropdown = true"
     @touchstart="renderDropdown = true"
   >
@@ -30,7 +30,7 @@
         v-for="(icon, type) in fieldIconsSorted"
         :key="type"
       >
-        <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')">
+        <li v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))">
           <a
             href="#"
             class="text-sm py-1 px-2"
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading, IconId } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconHeading, IconId, IconCalendarCheck, IconStrikethrough } from '@tabler/icons-vue'
 
 export default {
   name: 'FiledTypeDropdown',
@@ -97,10 +97,12 @@ export default {
     fieldNames () {
       return {
         heading: this.t('heading'),
+        strikethrough: this.t('strikeout'),
         text: this.t('text'),
         signature: this.t('signature'),
         initials: this.t('initials'),
         date: this.t('date'),
+        datenow: this.t('date_signed'),
         number: this.t('number'),
         image: this.t('image'),
         file: this.t('file'),
@@ -138,10 +140,12 @@ export default {
     fieldIcons () {
       return {
         heading: IconHeading,
+        strikethrough: IconStrikethrough,
         text: IconTextSize,
         signature: IconWritingSign,
         initials: IconLetterCaseUpper,
         date: IconCalendarEvent,
+        datenow: IconCalendarCheck,
         number: IconSquareNumber1,
         image: IconPhoto,
         checkbox: IconCheckbox,
@@ -156,6 +160,9 @@ export default {
         verification: IconId
       }
     },
+    skipTypes () {
+      return ['heading', 'datenow', 'strikethrough']
+    },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
         return this.fieldTypes.reduce((acc, type) => {
@@ -164,7 +171,7 @@ export default {
           return acc
         }, {})
       } else {
-        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading'))
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => !this.skipTypes.includes(key)))
       }
     }
   },

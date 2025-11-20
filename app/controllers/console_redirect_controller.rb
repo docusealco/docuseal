@@ -17,8 +17,10 @@ class ConsoleRedirectController < ApplicationController
                                scope: :console,
                                exp: 1.minute.from_now.to_i)
 
-    path = Addressable::URI.parse(params[:redir]).path if params[:redir].to_s.starts_with?(Docuseal::CONSOLE_URL)
+    redir_uri = Addressable::URI.parse(params[:redir])
+    path = redir_uri.path if params[:redir].to_s.starts_with?(Docuseal::CONSOLE_URL)
 
-    redirect_to("#{Docuseal::CONSOLE_URL}#{path}?#{{ auth: }.to_query}", allow_other_host: true)
+    redirect_to "#{Docuseal::CONSOLE_URL}#{path}?#{{ **redir_uri&.query_values, 'auth' => auth }.to_query}",
+                allow_other_host: true
   end
 end

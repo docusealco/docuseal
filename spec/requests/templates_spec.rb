@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-describe 'Templates API', type: :request do
+describe 'Templates API' do
   let(:account) { create(:account, :with_testing_account) }
   let(:testing_account) { account.testing_accounts.first }
   let(:author) { create(:user, account:) }
   let(:testing_author) { create(:user, account: testing_account) }
   let(:folder) { create(:template_folder, account:) }
   let(:template_preferences) { { 'request_email_subject' => 'Subject text', 'request_email_body' => 'Body Text' } }
+
+  before do
+    allow(Accounts).to receive(:link_expires_at).and_return(Accounts::LINK_EXPIRES_AT)
+  end
 
   describe 'GET /api/templates' do
     it 'returns a list of templates' do
@@ -85,13 +87,15 @@ describe 'Templates API', type: :request do
   end
 
   describe 'PUT /api/templates' do
-    it 'update a template' do
-      template = create(:template, account:,
-                                   author:,
-                                   folder:,
-                                   external_id: SecureRandom.base58(10),
-                                   preferences: template_preferences)
+    let(:template) do
+      create(:template, account:,
+                        author:,
+                        folder:,
+                        external_id: SecureRandom.base58(10),
+                        preferences: template_preferences)
+    end
 
+    it 'updates a template' do
       put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
         name: 'Updated Template Name',
         external_id: '123456'
@@ -107,6 +111,24 @@ describe 'Templates API', type: :request do
         id: template.id,
         updated_at: template.updated_at
       }.to_json))
+    end
+
+    it "enables the template's shared link" do
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: true
+        }.to_json
+      end.to change { template.reload.shared_link }.from(false).to(true)
+    end
+
+    it "disables the template's shared link" do
+      template.update(shared_link: true)
+
+      expect do
+        put "/api/templates/#{template.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+          shared_link: false
+        }.to_json
+      end.to change { template.reload.shared_link }.from(true).to(false)
     end
   end
 
@@ -193,8 +215,8 @@ describe 'Templates API', type: :request do
         {
           id: template.documents.first.id,
           uuid: template.documents.first.uuid,
-          url: ActiveStorage::Blob.proxy_url(attachment.blob),
-          preview_image_url: ActiveStorage::Blob.proxy_url(first_page_blob),
+          url: ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: Accounts::LINK_EXPIRES_AT),
+          preview_image_url: ActiveStorage::Blob.proxy_url(first_page_blob, expires_at: Accounts::LINK_EXPIRES_AT),
           filename: 'sample-document.pdf'
         }
       ],
@@ -208,6 +230,7 @@ describe 'Templates API', type: :request do
           name: 'sample-document'
         }
       ],
+      shared_link: template.shared_link,
       author_id: author.id,
       archived_at: nil,
       created_at: template.created_at,
@@ -216,7 +239,7 @@ describe 'Templates API', type: :request do
       folder_name: folder.name,
       source: 'native',
       external_id: template.external_id,
-      application_key: template.external_id # Backward compatibility
+      application_key: template.external_id
     }
   end
 

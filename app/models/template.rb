@@ -4,29 +4,33 @@
 #
 # Table name: templates
 #
-#  id          :bigint           not null, primary key
-#  archived_at :datetime
-#  fields      :text             not null
-#  name        :string           not null
-#  preferences :text             not null
-#  schema      :text             not null
-#  slug        :string           not null
-#  source      :text             not null
-#  submitters  :text             not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  account_id  :bigint           not null
-#  author_id   :bigint           not null
-#  external_id :string
-#  folder_id   :bigint           not null
+#  id               :bigint           not null, primary key
+#  archived_at      :datetime
+#  fields           :text             not null
+#  name             :string           not null
+#  preferences      :text             not null
+#  schema           :text             not null
+#  shared_link      :boolean          default(FALSE), not null
+#  slug             :string           not null
+#  source           :text             not null
+#  submitters       :text             not null
+#  variables_schema :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  account_id       :bigint           not null
+#  author_id        :bigint           not null
+#  external_id      :string
+#  folder_id        :bigint           not null
 #
 # Indexes
 #
-#  index_templates_on_account_id   (account_id)
-#  index_templates_on_author_id    (author_id)
-#  index_templates_on_external_id  (external_id)
-#  index_templates_on_folder_id    (folder_id)
-#  index_templates_on_slug         (slug) UNIQUE
+#  index_templates_on_account_id                       (account_id)
+#  index_templates_on_account_id_and_folder_id_and_id  (account_id,folder_id,id) WHERE (archived_at IS NULL)
+#  index_templates_on_account_id_and_id_archived       (account_id,id) WHERE (archived_at IS NOT NULL)
+#  index_templates_on_author_id                        (author_id)
+#  index_templates_on_external_id                      (external_id)
+#  index_templates_on_folder_id                        (folder_id)
+#  index_templates_on_slug                             (slug) UNIQUE
 #
 # Foreign Keys
 #
@@ -41,6 +45,8 @@ class Template < ApplicationRecord
   belongs_to :account
   belongs_to :folder, class_name: 'TemplateFolder'
 
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
+
   before_validation :maybe_set_default_folder, on: :create
 
   attribute :preferences, :string, default: -> { {} }
@@ -52,6 +58,7 @@ class Template < ApplicationRecord
 
   serialize :preferences, coder: JSON
   serialize :fields, coder: JSON
+  serialize :variables_schema, coder: JSON
   serialize :schema, coder: JSON
   serialize :submitters, coder: JSON
 
@@ -67,10 +74,12 @@ class Template < ApplicationRecord
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
 
-  delegate :name, to: :folder, prefix: true
-
   def application_key
     external_id
+  end
+
+  def folder_name
+    folder.full_name
   end
 
   private

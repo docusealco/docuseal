@@ -1,5 +1,5 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
-<% is_show_tabs = @pagy.count >= 5 || params[:status].present? || filter_params.present? %>
+<% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0">
@@ -26,7 +26,7 @@
   </div>
 </div>
 <% view_archived_html = capture do %>
-  <% if current_account.submissions.where.not(archived_at: nil).exists? %>
+  <% if can?(:manage, :countless) || current_account.submissions.where.not(archived_at: nil).exists? %>
     <div>
       <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>
@@ -57,15 +57,16 @@
     <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">
       <%= render 'submissions_filters/applied_filters', filter_params: %>
       <%= render 'submissions_filters/filter_button', filter_params: %>
+      <%= render 'submissions_filters/actions', filter_params: %>
     </div>
   </div>
 <% end %>
-<% if @pagy.count > 0 %>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
   </div>
 <% end %>
-<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count < 5 %>
+<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count.present? && @pagy.count < 5 %>
   <%= render 'templates/dropzone' %>
 <% end %>
 <% if @submissions.present? || (params[:q].blank? && filter_params.blank?) %>

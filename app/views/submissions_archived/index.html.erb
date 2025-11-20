@@ -1,14 +1,14 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <div>
-  <%= link_to root_path do %>
-    &larr;
-    <span><%= t('back_to_active') %></span>
+  <%= link_to root_path, class: 'flex items-center' do %>
+    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+    <span style="margin-left: 3px"><%= t('back_to_active') %></span>
   <% end %>
 </div>
 <div class="flex flex-col md:flex-row md:items-center mb-4 gap-3">
-  <div class="flex w-full justify-between">
+  <div class="flex w-full justify-between items-center">
     <div>
-      <h1 class="text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+      <h1 class="text-2xl md:text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
     </div>
     <div>
       <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
@@ -21,7 +21,7 @@
     <%= render 'submissions_filters/filter_button', filter_params: %>
   </div>
 </div>
-<% if @pagy.count > 0 %>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true, archived: true } %>
   </div>

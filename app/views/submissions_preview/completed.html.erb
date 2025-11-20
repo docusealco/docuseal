@@ -11,7 +11,7 @@
             <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
           </div>
           <div>
-            <p dir="auto" class="text-lg font-bold mb-1"><%= @submission.template.name %></p>
+            <p dir="auto" class="text-lg font-bold mb-1"><%= @submission.name || @submission.template.name %></p>
             <% last_submitter = @submission.submitters.completed.order(:completed_at).last %>
             <% if last_submitter %>
               <p dir="auto" class="text-sm">
@@ -28,19 +28,16 @@
           <%= f.hidden_field :submission_slug, value: @submission.slug %>
           <%= f.label :email, t('email'), class: 'label' %>
           <%= f.email_field :email, value: current_user&.email || params[:email], required: true, class: 'base-input', placeholder: t('send_copy_to_email') %>
+          <% if params[:status] == 'error' %>
+            <span class="label-text-alt text-red-400 mt-1">
+              <%= t('please_enter_your_email_address_associated_with_the_completed_submission') %>
+            </span>
+          <% end %>
         </div>
         <toggle-submit dir="auto" class="form-control">
           <%= f.button button_title(title: t('send_copy_to_email'), disabled_with: t('starting')), class: 'base-button' %>
         </toggle-submit>
       <% end %>
-      <% if Docuseal.multitenant? %>
-        <div class="divider uppercase"><%= t('or') %></div>
-      <% end %>
-    <% end %>
-    <% if Docuseal.multitenant? %>
-      <div>
-        <%= link_to t('create_free_account'), registration_path, class: 'white-button w-full' %>
-      </div>
     <% end %>
   </div>
 </div>

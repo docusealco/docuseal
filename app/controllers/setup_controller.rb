@@ -23,10 +23,10 @@ class SetupController < ApplicationController
     unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
       @encrypted_config.errors.add(:value, I18n.t('should_be_a_valid_url'))
 
-      return render :index, status: :unprocessable_entity
+      return render :index, status: :unprocessable_content
     end
 
-    return render :index, status: :unprocessable_entity unless @account.valid?
+    return render :index, status: :unprocessable_content unless @account.valid?
 
     if @user.save
       encrypted_configs = [
@@ -34,6 +34,7 @@ class SetupController < ApplicationController
         { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call.transform_values(&:to_pem) }
       ]
       @account.encrypted_configs.create!(encrypted_configs)
+      @account.account_configs.create!(key: :fulltext_search, value: true) if SearchEntry.table_exists?
 
       Docuseal.refresh_default_url_options!
 
@@ -41,7 +42,7 @@ class SetupController < ApplicationController
 
       redirect_to newsletter_path
     else
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   end
 

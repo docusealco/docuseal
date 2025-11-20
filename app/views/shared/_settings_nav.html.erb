@@ -1,7 +1,7 @@
 <div class="block w-full md:w-52 flex-none">
   <menu-active>
-    <ul class="menu px-0">
-      <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium">&larr; <%= t('back') %></a></li>
+    <ul id="account_settings_menu" class="menu px-0">
+      <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5"><%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %><span><%= t('back') %></span></a></li>
       <li class="menu-title py-0 !bg-transparent">
         <span class="!bg-transparent"><%= t('settings') %></span>
       </li>
@@ -56,6 +56,8 @@
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
+      <% end %>
+      <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
         <% if can?(:read, WebhookUrl) %>
           <li>
             <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
@@ -66,11 +68,11 @@
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('new') %></span>
+            <span class="badge badge-warning"><%= t('pro') %></span>
           <% end %>
         </li>
       <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.testing?) %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { prefetch: false } do %>
             <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
@@ -96,7 +98,9 @@
                 <span class="mr-2 w-full">
                   <%= t('test_mode') %>
                 </span>
-                <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing?, onchange: 'this.form.requestSubmit()' %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing? %>
+                </submit-form>
               </label>
             </li>
           <% end %>
@@ -105,7 +109,7 @@
     </ul>
   </menu-active>
   <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
-    <div class="mx-4 border-t border-base-300 hidden md:block">
+    <div id="support_channels" class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
         <%= t('need_help_ask_a_question_') %>
       </div>

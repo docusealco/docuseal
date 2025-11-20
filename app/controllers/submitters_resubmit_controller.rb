@@ -6,13 +6,15 @@ class SubmittersResubmitController < ApplicationController
   def update
     return redirect_to submit_form_path(slug: @submitter.slug) if @submitter.email != current_user.email
 
-    submission = @submitter.template.submissions.new(created_by_user: current_user,
-                                                     submitters_order: :preserved,
-                                                     **@submitter.submission.slice(:template_fields,
-                                                                                   :account_id,
-                                                                                   :template_schema,
-                                                                                   :template_submitters,
-                                                                                   :preferences))
+    submission = @submitter.account.submissions.new(created_by_user: current_user,
+                                                    submitters_order: :preserved,
+                                                    **@submitter.submission.slice(:template_fields,
+                                                                                  :account_id,
+                                                                                  :name,
+                                                                                  :template_id,
+                                                                                  :template_schema,
+                                                                                  :template_submitters,
+                                                                                  :preferences))
 
     @submitter.submission.submitters.each do |submitter|
       new_submitter = submission.submitters.new(submitter.slice(:uuid, :email, :phone, :name,
@@ -26,6 +28,10 @@ class SubmittersResubmitController < ApplicationController
     end
 
     submission.save!
+
+    @submitter.submission.documents_attachments.each do |attachment|
+      submission.documents_attachments.create!(uuid: attachment.uuid, blob_id: attachment.blob_id)
+    end
 
     redirect_to submit_form_path(slug: @new_submitter.slug)
   end

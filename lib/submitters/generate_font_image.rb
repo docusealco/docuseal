@@ -20,6 +20,8 @@ module Submitters
     def call(text, font: nil)
       font = FONT_ALIASES[font] || font
 
+      text = ERB::Util.html_escape(text)
+
       text_image = Vips::Image.text(text, font:, fontfile: FONTS[font],
                                           width: WIDTH, height: HEIGHT, wrap: :none)
 

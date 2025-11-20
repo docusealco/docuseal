@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
+  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] }
+
   helper_method :button_title,
                 :current_account,
                 :form_link_host,
@@ -53,6 +55,14 @@ class ApplicationController < ActionController::Base
     @impersonated_user = user
 
     request.session[:impersonated_user_id] = user.uuid
+  end
+
+  def pagy_auto(collection, **keyword_args)
+    if current_ability.can?(:manage, :countless)
+      pagy_countless(collection, **keyword_args)
+    else
+      pagy(collection, **keyword_args)
+    end
   end
 
   private
@@ -114,5 +124,22 @@ class ApplicationController < ActionController::Base
     return if request.domain != 'docuseal.co'
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently
+  end
+
+  def set_csp
+    request.content_security_policy = current_content_security_policy.tap do |policy|
+      policy.default_src :self
+      policy.script_src :self
+      policy.style_src :self, :unsafe_inline
+      policy.img_src :self, :https, :http, :blob, :data
+      policy.font_src :self, :https, :http, :blob, :data
+      policy.manifest_src :self
+      policy.media_src :self
+      policy.frame_src :self
+      policy.worker_src :self, :blob
+      policy.connect_src :self
+
+      policy.directives['connect-src'] << 'ws:' if Rails.env.development?
+    end
   end
 end

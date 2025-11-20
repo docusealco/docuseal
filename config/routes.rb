@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
   resources :verify_pdf_signature, only: %i[create]
   resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
-  resources :account_configs, only: %i[create]
+  resources :account_configs, only: %i[create destroy]
   resources :user_configs, only: %i[create]
   resources :encrypted_user_configs, only: %i[destroy]
   resources :timestamp_server, only: %i[create]
@@ -65,7 +65,9 @@ Rails.application.routes.draw do
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
   resources :enquiries, only: %i[create]
-  resources :users, only: %i[new create edit update destroy]
+  resources :users, only: %i[new create edit update destroy] do
+    resource :send_reset_password, only: %i[update], controller: 'users_send_reset_password'
+  end
   resource :user_signature, only: %i[edit update destroy]
   resource :user_initials, only: %i[edit update destroy]
   resources :submissions_archived, only: %i[index], path: 'submissions/archived'
@@ -96,7 +98,9 @@ Rails.application.routes.draw do
   resources :submissions_filters, only: %i[show], param: 'name'
   resources :templates, only: %i[new create edit update show destroy] do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
-    resources :documents, only: %i[create], controller: 'template_documents'
+    resources :documents, only: %i[index create], controller: 'template_documents'
+    resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
+    resources :detect_fields, only: %i[create], controller: 'templates_detect_fields' unless Docuseal.multitenant?
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
@@ -104,8 +108,10 @@ Rails.application.routes.draw do
     resource :preview, only: %i[show], controller: 'templates_preview'
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
-    resource :preferences, only: %i[show create], controller: 'templates_preferences'
+    resource :preferences, only: %i[show create destroy], controller: 'templates_preferences'
+    resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resources :recipients, only: %i[create], controller: 'templates_recipients'
+    resources :prefillable_fields, only: %i[create], controller: 'templates_prefillable_fields'
     resources :submissions_export, only: %i[index new]
   end
   resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'
@@ -129,6 +135,9 @@ Rails.application.routes.draw do
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
   end
+
+  resource :resubmit_form, controller: 'start_form', only: :update
+  resources :start_form_email_2fa_send, only: :create
 
   resources :submit_form, only: %i[], path: '' do
     get :success, on: :collection
@@ -161,7 +170,12 @@ Rails.application.routes.draw do
   scope '/settings', as: :settings do
     unless Docuseal.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
+      resources :search_entries_reindex, only: %i[create]
       resources :sms, only: %i[index], controller: 'sms_settings'
+    end
+    if Docuseal.demo? || !Docuseal.multitenant?
+      resources :api, only: %i[index create], controller: 'api_settings'
+      resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
@@ -173,9 +187,13 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
-    resources :api, only: %i[index create], controller: 'api_settings'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
+
+      resources :events, only: %i[show], controller: 'webhook_events' do
+        post :resend, on: :member
+        post :refresh, on: :member
+      end
     end
     resource :account, only: %i[show update destroy]
     resources :profile, only: %i[index] do

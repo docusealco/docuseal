@@ -7,7 +7,6 @@
     <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
       <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
       <%= javascript_pack_tag 'rollbar', 'application', defer: true %>
@@ -18,10 +17,14 @@
       <link href="<%= canonical_url %>" rel="canonical">
     <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
-    <%= render 'shared/plausible' if !signed_in? && ENV['PLAUSIBLE_DOMAIN'] %>
   </head>
   <body>
+    <% if params[:modal].present? %>
+      <% url_params = Rails.application.routes.recognize_path(params[:modal], method: :get) %>
+      <% if url_params[:action] == 'new' %>
+        <open-modal src="<%= params[:modal] %>"></open-modal>
+      <% end %>
+    <% end %>
     <turbo-frame id="modal"></turbo-frame>
     <turbo-frame id="drawer"></turbo-frame>
     <%= render 'shared/navbar' %>
@@ -29,5 +32,6 @@
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>
     </div>
+    <%= render 'shared/body_scripts' %>
   </body>
 </html>

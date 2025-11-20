@@ -37,8 +37,4 @@ yarn-debug.log*
 /docuseal
 /ee
 dump.rdb
-/custom/
-/docuseal.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/vcs.xml
+*.onnx

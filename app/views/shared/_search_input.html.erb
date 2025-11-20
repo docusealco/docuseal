@@ -14,15 +14,15 @@
       </a>
     </div>
   <% end %>
-  <search-input data-title="<%= local_assigns[:title_selector] || 'h1' %>">
+  <search-input data-title="<%= local_assigns[:title_selector] || 'h1' %>" class="flex items-center">
     <input id="search" name="q" value="<%= params[:q] %>" class="input text-lg pr-10 -mr-12 w-0 md:w-60 <%= 'pl-8 input-outlined w-60' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
+    <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle">
+      <span class="enabled">
+        <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
+      </span>
+      <span class="disabled">
+        <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+      </span>
+    </button>
   </search-input>
-  <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle" onclick="window.search.value || document.activeElement === window.search ? null : [event.preventDefault(), window.search.focus()]">
-    <span class="enabled">
-      <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
-    </span>
-    <span class="disabled">
-      <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-    </span>
-  </button>
 </form>

@@ -16,7 +16,7 @@ module Api
     check_authorization
 
     rescue_from Params::BaseValidator::InvalidParameterError do |e|
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     rescue_from RateLimit::LimitApproached do |e|
@@ -33,7 +33,7 @@ module Api
       rescue_from JSON::ParserError do |e|
         Rollbar.warning(e) if defined?(Rollbar)
 
-        render json: { error: "JSON parse error: #{e.message}" }, status: :unprocessable_entity
+        render json: { error: "JSON parse error: #{e.message}" }, status: :unprocessable_content
       end
     end
 

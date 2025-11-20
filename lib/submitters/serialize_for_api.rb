@@ -11,7 +11,7 @@ module Submitters
     module_function
 
     def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false,
-             with_values: true, params: {})
+             with_values: true, params: {}, expires_at: Accounts.link_expires_at(Account.new(id: submitter.account_id)))
       ActiveRecord::Associations::Preloader.new(
         records: [submitter],
         associations: if with_documents
@@ -24,11 +24,19 @@ module Submitters
       additional_attrs = {}
 
       if params[:include].to_s.include?('fields')
-        additional_attrs['fields'] = SerializeForWebhook.build_fields_array(submitter)
+        additional_attrs['fields'] = SerializeForWebhook.build_fields_array(submitter, expires_at:)
       end
 
-      additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter) if with_values
-      additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter) if with_documents
+      if with_template
+        additional_attrs['template'] = submitter.submission.template.as_json(only: %i[id name created_at updated_at])
+      end
+
+      additional_attrs['values'] = SerializeForWebhook.build_values_array(submitter, expires_at:) if with_values
+
+      if with_documents
+        additional_attrs['documents'] = SerializeForWebhook.build_documents_array(submitter, expires_at:)
+      end
+
       additional_attrs['preferences'] = submitter.preferences.except('default_values')
       additional_attrs['submission_events'] = serialize_events(submitter.submission_events) if with_events
 
@@ -41,15 +49,13 @@ module Submitters
           Rails.application.routes.url_helpers.submit_form_url(slug: submitter.slug, **Docuseal.default_url_options)
       end
 
-      include_params = {}
-      include_params[:template] = { only: %i[id name created_at updated_at] } if with_template
-
-      submitter.as_json(SERIALIZE_PARAMS.merge(include: include_params)).merge(additional_attrs)
+      submitter.as_json(SERIALIZE_PARAMS).merge(additional_attrs)
     end
 
     def serialize_events(events)
       events.map do |event|
-        event.as_json(only: %i[id submitter_id event_type event_timestamp]).merge('data' => event.data.slice('reason'))
+        event.as_json(only: %i[id submitter_id event_type event_timestamp])
+             .merge('data' => event.data.slice('reason', 'firstname', 'lastname', 'method', 'country'))
       end
     end
   end

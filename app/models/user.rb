@@ -50,7 +50,7 @@ class User < ApplicationRecord
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
   FULL_EMAIL_REGEXP =
-    /\A[a-z0-9][\.']?(?:(?:[a-z0-9_-]+[\.\+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[\.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+    /\A[a-z0-9][.']?(?:(?:[a-z0-9_-]+[.+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[.-])*[a-z0-9]+\.[a-z]{2,}\z/i
 
   has_one_attached :signature
   has_one_attached :initials
@@ -72,6 +72,8 @@ class User < ApplicationRecord
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
   scope :admins, -> { where(role: ADMIN_ROLE) }
+
+  validates :email, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\z/ }
 
   def access_token
     super || build_access_token.tap(&:save!)

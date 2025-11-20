@@ -8,7 +8,7 @@ class TemplatesController < ApplicationController
   def show
     submissions = @template.submissions.accessible_by(current_ability)
     submissions = submissions.active if @template.archived_at.blank?
-    submissions = Submissions.search(submissions, params[:q], search_values: true)
+    submissions = Submissions.search(current_user, submissions, params[:q], search_values: true)
     submissions = Submissions::Filter.call(submissions, current_user, params.except(:status))
 
     @base_submissions = submissions
@@ -21,9 +21,7 @@ class TemplatesController < ApplicationController
                     submissions.order(id: :desc)
                   end
 
-    submissions = submissions.preload(:template_accesses) unless current_user.role.in?(%w[admin superadmin])
-
-    @pagy, @submissions = pagy(submissions.preload(submitters: :start_form_submission_events))
+    @pagy, @submissions = pagy_auto(submissions.preload(:template_accesses, submitters: :start_form_submission_events))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
@@ -71,21 +69,31 @@ class TemplatesController < ApplicationController
       @template.account = current_account
     end
 
+    Templates.maybe_assign_access(@template)
+
     if @template.save
       Templates::CloneAttachments.call(template: @template, original_template: @base_template) if @base_template
 
-      enqueue_template_created_webhooks(@template)
+      SearchEntries.enqueue_reindex(@template)
+
+      WebhookUrls.enqueue_events(@template, 'template.created')
 
       maybe_redirect_to_template(@template)
     else
-      render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:modal, template: 'templates/new'), status: :unprocessable_content
     end
   end
 
   def update
-    @template.update!(template_params)
+    @template.assign_attributes(template_params)
 
-    enqueue_template_updated_webhooks(@template)
+    is_name_changed = @template.name_changed?
+
+    @template.save!
+
+    SearchEntries.enqueue_reindex(@template) if is_name_changed
+
+    WebhookUrls.enqueue_events(@template, 'template.updated')
 
     head :ok
   end
@@ -110,15 +118,17 @@ class TemplatesController < ApplicationController
   def template_params
     params.require(:template).permit(
       :name,
-      { schema: [[:attachment_uuid, :name, { conditions: [%i[field_uuid value action operation]] }]],
-        submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid optional_invite_by_uuid email]],
+      { schema: [[:attachment_uuid, :google_drive_file_id, :name,
+                  { conditions: [%i[field_uuid value action operation]] }]],
+        submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid optional_invite_by_uuid email order]],
         fields: [[:uuid, :submitter_uuid, :name, :type,
                   :required, :readonly, :default_value,
-                  :title, :description,
+                  :title, :description, :prefillable,
                   { preferences: {},
+                    default_value: [],
                     conditions: [%i[field_uuid value action operation]],
                     options: [%i[value uuid]],
-                    validation: %i[message pattern],
+                    validation: %i[message pattern min max step],
                     areas: [%i[x y w h cell_w attachment_uuid option_uuid page]] }]] }
     )
   end
@@ -133,20 +143,6 @@ class TemplatesController < ApplicationController
       redirect_to(edit_template_path(@template))
     else
       redirect_back(fallback_location: root_path, notice: I18n.t('template_has_been_cloned'))
-    end
-  end
-
-  def enqueue_template_created_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
-    end
-  end
-
-  def enqueue_template_updated_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.updated').each do |webhook_url|
-      SendTemplateUpdatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
     end
   end
 

@@ -11,7 +11,7 @@
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
     :scroll-padding="scrollPadding"
-    @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
+    @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
   <FieldAreas
     :steps="readonlyConditionalFields.map((e) => [e])"
@@ -23,7 +23,7 @@
   <FormulaFieldAreas
     v-if="formulaFields.length"
     :fields="formulaFields"
-    :readonly-values="readonlyConditionalFieldValues"
+    :readonly-values="readonlyFieldValues"
     :values="values"
   />
   <Teleport
@@ -67,7 +67,7 @@
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
-    class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3"
+    class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3 expand-form-button text-base"
     style="width: 96%; margin-left: 2%"
     @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
   >
@@ -93,14 +93,14 @@
   <div
     v-show="isFormVisible"
     id="form_container"
-    class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded"
+    class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded form-container overflow-hidden"
     :class="{ 'md:bottom-4': isBreakpointMd }"
     :style="{ backgroundColor: backgroundColor }"
   >
     <button
       v-if="!isCompleted"
       id="minimize_form_button"
-      class="absolute right-0 top-0"
+      class="absolute right-0 top-0 minimize-form-button"
       :class="currentField?.description?.length > 100 ? 'mr-1 mt-1 md:mr-2 md:mt-2': 'mr-2 mt-2 hidden md:block'"
       :title="t('minimize')"
       @click.prevent="minimizeForm"
@@ -119,7 +119,7 @@
         ref="form"
         :action="submitPath"
         method="post"
-        class="mx-auto"
+        class="mx-auto steps-form"
         :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
         @submit.prevent="submitStep"
       >
@@ -165,7 +165,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -188,7 +188,7 @@
             <div
               v-if="currentField.description"
               dir="auto"
-              class="mb-3 px-1"
+              class="mb-3 px-1 field-description-text"
             >
               <MarkdownContent :string="currentField.description" />
             </div>
@@ -226,7 +226,7 @@
               v-if="showFieldNames && (currentField.name || currentField.title)"
               :for="currentField.uuid"
               dir="auto"
-              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+              class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
               :class="{ 'mb-2': !currentField.description }"
             >
               <MarkdownContent
@@ -245,7 +245,7 @@
             <div
               v-if="currentField.description"
               dir="auto"
-              class="mb-3 px-1"
+              class="mb-3 px-1 field-description-text"
             >
               <MarkdownContent :string="currentField.description" />
             </div>
@@ -270,7 +270,7 @@
                 >
                   <label
                     :for="option.uuid"
-                    class="flex items-center space-x-3"
+                    class="flex items-center space-x-3 radio-label"
                   >
                     <input
                       :id="option.uuid"
@@ -304,7 +304,7 @@
             <div
               v-if="currentField.description"
               dir="auto"
-              class="mb-3 px-1"
+              class="mb-3 px-1 field-description-text"
             >
               <MarkdownContent :string="currentField.description" />
             </div>
@@ -338,7 +338,7 @@
                   >
                     <label
                       :for="field.uuid"
-                      class="flex items-center space-x-3"
+                      class="flex items-center space-x-3 checkbox-label"
                     >
                       <input
                         type="hidden"
@@ -349,10 +349,10 @@
                         :id="field.uuid"
                         type="checkbox"
                         class="base-checkbox !h-7 !w-7"
-                        :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
-                        :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
                         :required="field.required"
                         :checked="!!values[field.uuid]"
+                        @invalid="$event.target.setCustomValidity(t('please_check_the_box_to_continue'))"
+                        @change="$event.target.setCustomValidity($event.target.validity.valueMissing ? t('please_check_the_box_to_continue') : '')"
                         @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                       >
                       <span
@@ -454,7 +454,9 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :submitter-slug="submitterSlug"
+            :fields="formulaFields"
             :values="values"
+            :readonly-values="readonlyFieldValues"
             @attached="attachments.push($event)"
             @focus="scrollIntoField(currentField)"
             @submit="!isSubmitting && submitStep()"
@@ -481,7 +483,7 @@
             id="submit_form_button"
             ref="submitButton"
             type="submit"
-            class="base-button w-full flex justify-center"
+            class="base-button w-full flex justify-center submit-form-button"
             :disabled="isButtonDisabled"
           >
             <span class="flex">
@@ -533,13 +535,13 @@
         v-if="stepFields.length < 80"
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1"
       >
-        <div class="flex items-center flex-wrap">
+        <div class="flex items-center flex-wrap steps-progress">
           <a
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
-            :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
+            :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
             @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
           />
         </div>
@@ -572,6 +574,7 @@ import FormCompleted from './completed'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 
 const isEmpty = (obj) => {
   if (obj == null) return true
@@ -871,7 +874,14 @@ export default {
     },
     readonlyConditionalFieldValues () {
       return this.readonlyConditionalFields.reduce((acc, f) => {
-        acc[f.uuid] = (this.values[f.uuid] || f.default_value)
+        acc[f.uuid] = isEmpty(this.values[f.uuid]) ? f.default_value : this.values[f.uuid]
+
+        return acc
+      }, {})
+    },
+    readonlyFieldValues () {
+      return this.readonlyFields.reduce((acc, f) => {
+        acc[f.uuid] = isEmpty(this.values[f.uuid]) ? f.default_value : this.values[f.uuid]
 
         return acc
       }, {})
@@ -971,7 +981,10 @@ export default {
       return this.currentStepFields[0]
     },
     readonlyConditionalFields () {
-      return this.fields.filter((f) => f.readonly && f.conditions?.length && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      return this.readonlyFields.filter((f) => f.conditions?.length)
+    },
+    readonlyFields () {
+      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
     },
     stepFields () {
       const verificationFields = []
@@ -1014,7 +1027,11 @@ export default {
           const aArea = (fieldAreasIndex[aField.uuid] ||= [...(aField.areas || [])].sort(sortArea)[0])
           const bArea = (fieldAreasIndex[bField.uuid] ||= [...(bField.areas || [])].sort(sortArea)[0])
 
-          return sortArea(aArea, bArea)
+          if (aArea && bArea) {
+            return sortArea(aArea, bArea)
+          } else {
+            return 0
+          }
         })
       }
 
@@ -1133,7 +1150,7 @@ export default {
         parent.style.overflow = 'hidden'
 
         scrollbox.classList.add('h-full', 'overflow-y-auto')
-        scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
+        scrollbox.parentNode.classList.add('h-screen', 'h-[100dvh]', 'overflow-y-auto')
         scrollbox.parentNode.style.maxHeight = '-webkit-fill-available'
       })
     }
@@ -1191,22 +1208,24 @@ export default {
         return false
       }
 
+      const defaultValue = !field || isEmpty(field.default_value) ? null : field.default_value
+
       if (['empty', 'unchecked'].includes(condition.action)) {
-        return isEmpty(this.values[condition.field_uuid])
+        return isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
-        return !isEmpty(this.values[condition.field_uuid])
+        return !isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['equal', 'contains'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)
-          const values = [this.values[condition.field_uuid]].flat()
+          const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
 
           return values.includes(this.optionValue(option, field.options.indexOf(option)))
         } else {
-          return [this.values[condition.field_uuid]].flat().includes(condition.value)
+          return [this.values[condition.field_uuid] ?? defaultValue].flat().includes(condition.value)
         }
       } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
         const option = field.options.find((o) => o.uuid === condition.value)
-        const values = [this.values[condition.field_uuid]].flat()
+        const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
 
         return !values.includes(this.optionValue(option, field.options.indexOf(option)))
       } else {
@@ -1299,7 +1318,9 @@ export default {
 
         if (!this.isCompleted) {
           if (scrollToArea) {
-            this.scrollIntoField(this.currentField)
+            this.$nextTick(() => {
+              setTimeout(() => this.scrollIntoField(this.currentField), 1)
+            })
           }
 
           this.enableScrollIntoField = false
@@ -1316,7 +1337,7 @@ export default {
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
       const currentFieldType = this.currentField.type
 
-      if (!formData && !this.$refs.form.checkValidity()) {
+      if (!formData && !this.$refs.form.checkValidity() && currentFieldUuids.every((fieldUuid) => isEmpty(this.submittedValues[fieldUuid]) || !isEmpty(this.values[fieldUuid]))) {
         return
       }
 
@@ -1386,6 +1407,7 @@ export default {
 
         if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length && !this.optionalInviteSubmitters.length) {
           formData.append('completed', 'true')
+          formData.append('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
         }
 
         let saveStepRequest
@@ -1400,7 +1422,21 @@ export default {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json()
 
-            if (data.error) {
+            if (data.field_uuid) {
+              const field = this.fieldsUuidIndex[data.field_uuid]
+
+              if (field) {
+                const step = this.stepFields.findIndex((fields) => fields.includes(field))
+
+                if (step !== -1) {
+                  this.goToStep(step, this.autoscrollFields)
+
+                  this.showFillAllRequiredFields = true
+                }
+              }
+
+              return Promise.reject(new Error('Required field: ' + data.field_uuid))
+            } else if (data.error) {
               const i18nKey = data.error.replace(/\s+/g, '_').toLowerCase()
 
               alert(this.t(i18nKey) !== i18nKey ? this.t(i18nKey) : data.error)
@@ -1435,11 +1471,7 @@ export default {
           this.isSubmittingComplete = false
         })
       }).catch(error => {
-        if (error?.message === 'Image too small') {
-          alert(this.t('signature_is_too_small_please_redraw'))
-        } else {
-          console.log(error)
-        }
+        console.log(error)
       }).finally(() => {
         this.isSubmitting = false
         this.isSubmittingComplete = false
@@ -1461,7 +1493,7 @@ export default {
       }
 
       if (this.completedRedirectUrl) {
-        window.location.href = this.completedRedirectUrl
+        window.location.href = sanitizeUrl(this.completedRedirectUrl)
       }
     }
   }

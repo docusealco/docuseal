@@ -1,7 +1,5 @@
 <template>
-  <span
-    class="dropdown dropdown-top dropdown-end absolute bottom-4 right-4 z-10"
-  >
+  <span class="dropdown dropdown-top dropdown-end absolute bottom-4 right-4 z-10 fields-dropdown-mobile">
     <label
       class="btn btn-neutral text-white btn-circle btn-lg group"
       tabindex="0"
@@ -56,7 +54,7 @@
           v-for="(icon, type) in fieldIconsSorted"
           :key="type"
         >
-          <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')">
+          <li v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))">
             <a
               href="#"
               class="text-sm py-1 px-2"

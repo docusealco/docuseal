@@ -7,26 +7,29 @@ module Submissions
     CHECK_COMPLETE_TIMEOUT = 90.seconds
 
     WaitForCompleteTimeout = Class.new(StandardError)
+    NotCompletedYet = Class.new(StandardError)
 
     module_function
 
     def call(submitter)
       return [] unless submitter
-      return submitter.documents if ApplicationRecord.uncached { submitter.document_generation_events.complete.exists? }
 
-      events =
-        ApplicationRecord.uncached do
-          DocumentGenerationEvent.where(submitter:).order(:created_at).to_a
-        end
+      raise NotCompletedYet unless submitter.completed_at?
+
+      key = ['result_attachments', submitter.id].join(':')
+
+      return submitter.documents if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+
+      events = ApplicationRecord.uncached { LockEvent.where(key:).order(:id).to_a }
 
       if events.present? && events.last.event_name.in?(%w[start retry])
         wait_for_complete_or_fail(submitter)
       else
-        submitter.document_generation_events.create!(event_name: events.present? ? :retry : :start)
+        LockEvent.create!(key:, event_name: events.present? ? :retry : :start)
 
         documents = GenerateResultAttachments.call(submitter)
 
-        submitter.document_generation_events.create!(event_name: :complete)
+        LockEvent.create!(key:, event_name: :complete)
 
         documents
       end
@@ -38,7 +41,7 @@ module Submissions
       Rollbar.error(e) if defined?(Rollbar)
       Rails.logger.error(e)
 
-      submitter.document_generation_events.create!(event_name: :fail)
+      LockEvent.create!(key:, event_name: :fail)
 
       raise
     end
@@ -52,7 +55,7 @@ module Submissions
 
         last_event =
           ApplicationRecord.uncached do
-            DocumentGenerationEvent.where(submitter:).order(:created_at).last
+            LockEvent.where(key: ['result_attachments', submitter.id].join(':')).order(:id).last
           end
 
         break submitter.documents.reload if last_event.event_name.in?(%w[complete fail])

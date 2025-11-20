@@ -2,8 +2,13 @@
 
 module TextUtils
   RTL_REGEXP = /[\p{Hebrew}\p{Arabic}]/
-  MASK_REGEXP = /[^\s\-_\[\]\(\)\+\?\.\,]/
+  MASK_REGEXP = /[^\s\-_\[\]()+?.,]/
   MASK_SYMBOL = 'X'
+
+  TRANSLITERATIONS =
+    I18n::Backend::Transliterator::HashTransliterator::DEFAULT_APPROXIMATIONS.reject { |_, v| v.length > 1 }
+
+  TRANSLITERATION_REGEXP = Regexp.union(TRANSLITERATIONS.keys)
 
   module_function
 
@@ -13,6 +18,10 @@ module TextUtils
     text.match?(TextUtils::RTL_REGEXP)
   rescue Encoding::CompatibilityError
     false
+  end
+
+  def transliterate(text)
+    text.to_s.gsub(TRANSLITERATION_REGEXP) { |e| TRANSLITERATIONS[e] }
   end
 
   def mask_value(text, unmask_size = 0)

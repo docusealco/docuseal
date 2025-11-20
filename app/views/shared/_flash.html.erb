@@ -11,7 +11,7 @@
           <span><%= flash[:notice] || flash[:alert] %></span>
         </div>
       </div>
-      <a href="#" onclick="[event.preventDefault(), window.flash.remove()]" class="mr-1">&times;</a>
+      <remove-on-event data-event-type="click" data-selector-id="flash" class="mr-1 cursor-pointer">&times;</remove-on-event>
     </div>
   </div>
 </div>

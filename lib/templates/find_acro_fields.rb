@@ -21,6 +21,8 @@ module Templates
       Escolher
     )\b/ix
 
+    DATE_FORMAT_REGEXP = %r{[myd]{2,4}[-\\/\s.][myd]{2,4}[-\\/\s.][myd]{2,4}}i
+
     FIELD_ALIGNMENT = {
       0 => 'left',
       1 => 'center',
@@ -30,8 +32,8 @@ module Templates
     module_function
 
     # rubocop:disable Metrics
-    def call(pdf, attachment)
-      return [] unless pdf.acro_form
+    def call(pdf, attachment, data)
+      return [] if pdf.acro_form.blank? && data.exclude?('/Form')
 
       fields, annots_index = build_fields_with_pages(pdf)
 
@@ -76,7 +78,7 @@ module Templates
           next if attrs[:w].zero? || attrs[:h].zero?
 
           if child_field[:MaxLen] && child_field.try(:concrete_field_type) == :comb_text_field
-            attrs[:cell_w] = w / page_width / child_field[:MaxLen].to_f
+            attrs[:cell_w] = w / page_width.to_f / child_field[:MaxLen].to_f
           end
 
           attrs
@@ -147,7 +149,7 @@ module Templates
           options: build_options(field[:Opt], 'radio'),
           default_value: selected_option
         }
-      elsif field.field_type == :Btn && field.concrete_field_type == :check_box &&
+      elsif field.field_type == :Btn && %i[check_box radio_button].include?(field.concrete_field_type) &&
             field[:Kids].present? && field[:Kids].size > 1 && field.allowed_values.size > 1
         selected_option = (field.allowed_values || []).find { |v| v == field.field_value }
 
@@ -159,7 +161,7 @@ module Templates
           options: build_options(field.allowed_values, 'radio'),
           default_value: selected_option
         }
-      elsif field.field_type == :Btn && field.concrete_field_type == :check_box
+      elsif field.field_type == :Btn && %i[check_box radio_button].include?(field.concrete_field_type)
         {
           **attrs,
           type: 'checkbox',
@@ -187,15 +189,29 @@ module Templates
           default_value: field.field_value
         }
       elsif field.field_type == :Tx
-        {
-          **attrs,
-          type: 'text',
-          default_value: field.field_value
-        }
+        if field[:AA] && ((field[:AA][:F] && field[:AA][:F][:JS].include?('AFDate_')) ||
+            (field[:AA][:K] && field[:AA][:K][:JS].include?('AFDate_')))
+          if (format = field[:AA][:F][:JS][DATE_FORMAT_REGEXP])
+            attrs[:preferences] ||= {}
+            attrs[:preferences][:format] = format.upcase
+          end
+
+          {
+            **attrs,
+            type: 'date',
+            default_value: field.field_value
+          }
+        else
+          {
+            **attrs,
+            type: 'text',
+            default_value: field.field_value
+          }
+        end
       elsif field.field_type == :Sig
         {
           **attrs,
-          type: 'signature'
+          type: field.try(:field_name).to_s.downcase.include?('initials') ? 'initials' : 'signature'
         }
       else
         {}
@@ -209,7 +225,10 @@ module Templates
         is_option_number = option.is_a?(Symbol) && option.to_s.match?(/\A\d+\z/)
 
         option = option[1] if option.is_a?(Array) && option.size == 2
-        option = option.encode('utf-8', invalid: :replace, undef: :replace, replace: '') if option.is_a?(String)
+
+        if option.is_a?(String) || option.is_a?(Symbol)
+          option = option.to_s.encode('utf-8', invalid: :replace, undef: :replace, replace: '')
+        end
 
         next if type == 'select' && option.to_s.match?(SELECT_PLACEHOLDER_REGEXP)
 

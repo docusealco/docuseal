@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-describe 'Tools API', type: :request do
+describe 'Tools API' do
   let(:account) { create(:account) }
   let(:author) { create(:user, account:) }
   let(:file_path) { Rails.root.join('spec/fixtures/sample-document.pdf') }

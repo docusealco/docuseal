@@ -16,13 +16,15 @@ class SendTemplateUpdatedWebhookRequestJob
     return if webhook_url.url.blank? || webhook_url.events.exclude?('template.updated')
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'template.updated',
+                                                event_uuid: params['event_uuid'],
+                                                record: template,
+                                                attempt:,
                                                 data: Templates::SerializeForApi.call(template))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
        (!Docuseal.multitenant? || template.account.account_configs.exists?(key: :plan))
       SendTemplateUpdatedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                        'template_id' => template.id,
-                                                        'webhook_url_id' => webhook_url.id,
+                                                        **params,
                                                         'attempt' => attempt + 1,
                                                         'last_status' => resp&.status.to_i
                                                       })

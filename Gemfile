@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.4.1'
+ruby '3.4.2'
 
 gem 'arabic-letter-connector', require: 'arabic-letter-connector/logic'
 gem 'aws-sdk-s3', require: false
@@ -11,6 +11,7 @@ gem 'azure-storage-blob', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'csv'
+gem 'csv-safe'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'dotenv', require: false
@@ -23,7 +24,9 @@ gem 'image_processing'
 gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
+gem 'numo-narray'
 gem 'oj'
+gem 'onnxruntime'
 gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'
@@ -34,6 +37,7 @@ gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rotp'
+gem 'rouge', require: false
 gem 'rqrcode'
 gem 'ruby-vips'
 gem 'rubyXL'

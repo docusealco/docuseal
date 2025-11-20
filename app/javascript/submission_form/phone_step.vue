@@ -3,7 +3,7 @@
     <label
       v-if="showFieldNames"
       :for="isCodeSent ? 'one_time_code' : field.uuid"
-      class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+      class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
       :class="{ 'mb-2': !field.description }"
     >
       <MarkdownContent
@@ -17,7 +17,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>
@@ -45,7 +45,7 @@
           <a
             v-if="!defaultValue"
             href="#"
-            class="link"
+            class="link change-phone-number-link"
             @click.prevent="isCodeSent = false"
           >
             {{ t('change_phone_number') }}
@@ -59,7 +59,7 @@
           <a
             v-else
             href="#"
-            class="link"
+            class="link resend-code-link"
             @click.prevent="resendCode"
           >
             {{ isResendLoading ? t('sending') : t('resend_code') }}
@@ -68,13 +68,13 @@
       </div>
       <div
         v-show="!isCodeSent"
-        class="flex w-full rounded-full outline-neutral-content outline-2 outline-offset-2 focus-within:outline"
+        class="flex w-full rounded-full outline-neutral-content outline-2 outline-offset-2 focus-within:outline phone-number-input-container"
       >
         <div
           id="country_code"
           class="relative inline-block"
         >
-          <div class="btn bg-base-200 border border-neutral-300 text-2xl whitespace-nowrap font-normal rounded-l-full">
+          <div class="btn bg-base-200 border border-neutral-300 text-2xl whitespace-nowrap font-normal rounded-l-full country-code-select-label">
             {{ selectedCountry.flag }} +{{ selectedCountry.dial }}
           </div>
           <select

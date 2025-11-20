@@ -1,0 +1,116 @@
+<% submitter_preferences_index = template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] } %>
+<% template_submitters = local_assigns[:submitter]&.submission&.template_submitters || template.submitters %>
+<% message_field_id = "message_field_#{SecureRandom.hex(3)}" %>
+<div class="form-control">
+  <% can_send_emails = Accounts.can_send_emails?(current_account) %>
+  <div class="flex justify-between items-center">
+    <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
+      <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails || local_assigns[:disable_email], checked: can_send_emails && !local_assigns.key?(:resend_email) && !local_assigns[:disable_email] && template&.preferences&.dig('request_email_enabled') != false %>
+      <span class="label"><%= local_assigns[:resend_email] ? t('re_send_email') : t('send_email') %></span>
+    <% end %>
+    <div>
+      <% if can_send_emails %>
+        <%= render 'submissions/email_stats' %>
+        <%= content_for(:edit_button) || capture do %>
+          <toggle-visible data-element-ids="<%= [message_field_id].to_json %>" class="flex">
+            <label>
+              <%= f.check_box :is_custom_message, checked: false, class: 'hidden peer', data: { action: 'change:toggle-visible#trigger', type: 'checkbox' } %>
+              <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
+            </label>
+          </toggle-visible>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% if !Docuseal.multitenant? && !can_send_emails %>
+    <div class="alert my-4">
+      <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+      <div>
+        <p class="font-bold"><%= t('smtp_not_configured') %></p>
+        <p class="text-gray-700">
+          <%= t('configure_smtp_settings_in_order_to_send_emails_') %>
+          <br>
+          <a class="link font-medium" data-turbo-frame="_top" href="<%= settings_email_index_path %>">
+            <%= t('go_to_smtp_settings') %>
+          </a>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
+<div id="<%= message_field_id %>" class="card card-compact bg-base-300/40 hidden">
+  <div class="card-body">
+    <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template&.preferences&.dig('submitters').to_a.size > 1 %>
+    <div class="peer-checked:hidden form-control space-y-2">
+      <div class="form-control">
+        <div class="flex justify-between">
+          <%= f.label :subject, t('subject'), class: 'label' %>
+          <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+            <label for="<%= toggle_uuid %>" class="label underline">
+              <%= t('edit_per_party') %>
+            </label>
+          <% end %>
+        </div>
+        <%= f.text_field :subject, value: local_assigns[:submitter_email_message]&.subject.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_subject').presence || template&.preferences&.dig('request_email_subject').presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
+      </div>
+      <div class="form-control">
+        <div class="flex items-center">
+          <%= f.label :message, t('body'), class: 'label' %>
+          <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
+            <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+          </span>
+        </div>
+        <autoresize-textarea>
+          <%= f.text_area :body, value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
+        </autoresize-textarea>
+        <% unless local_assigns.fetch(:disable_save_as_default_template_option, false) %>
+          <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
+            <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
+            <span class="label"><%= t('save_as_default_template_message') %></span>
+          </label>
+        <% end %>
+      </div>
+      <%= render 'submissions/message_fields' %>
+    </div>
+    <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+      <div class="hidden peer-checked:block form-control space-y-2">
+        <% uuid = SecureRandom.uuid %>
+        <% options = template_submitters.map { |e| [e['name'], "request_email_#{uuid}_#{e['uuid']}"] } %>
+        <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
+          <ul class="tabs w-full flex flex-nowrap">
+            <% options.each_with_index do |(label, val), index| %>
+              <div class="w-full">
+                <%= f.radio_button :selected, val, checked: index.zero?, id: "#{val}_radio", data: { action: 'click:toggle-visible#trigger' }, class: 'hidden peer' %>
+                <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active !bg-transparent' %>
+              </div>
+            <% end %>
+          </ul>
+        </toggle-visible>
+        <% template_submitters.each_with_index do |submitter, index| %>
+          <%= fields_for :submitter_preferences, nil, index: submitter['uuid'] do |ff| %>
+            <div id="request_email_<%= uuid %>_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
+              <div class="form-control">
+                <div class="flex justify-between">
+                  <%= ff.label :subject, t('subject'), class: 'label' %>
+                </div>
+                <%= ff.text_field :subject, value: local_assigns[:submitter_email_message]&.subject.presence || submitter_preferences_index.dig(submitter['uuid'], 'request_email_subject').presence || template&.preferences&.dig('request_email_subject').presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
+              </div>
+              <div class="form-control">
+                <div class="flex items-center">
+                  <%= ff.label :message, t('body'), class: 'label' %>
+                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
+                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                  </span>
+                </div>
+                <autoresize-textarea>
+                  <%= ff.text_area :body, value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(submitter['uuid'], 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
+                </autoresize-textarea>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

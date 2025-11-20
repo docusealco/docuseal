@@ -17,38 +17,47 @@ module Submitters
 
     module_function
 
-    def call(template, values, submitter_name: nil, for_submitter: nil, throw_errors: false)
-      fields = fetch_fields(template, submitter_name:, for_submitter:)
+    def call(template, values, submitter_name: nil, role_names: nil, for_submitter: nil, throw_errors: false)
+      fields =
+        if role_names.present?
+          fetch_roles_fields(template, roles: role_names)
+        else
+          fetch_fields(template, submitter_name:, for_submitter:)
+        end
 
       fields_uuid_index = fields.index_by { |e| e['uuid'] }
       fields_name_index = build_fields_index(fields)
 
       attachments = []
 
-      normalized_values = values.to_h.filter_map do |key, value|
-        if fields_uuid_index[key].blank?
-          original_key = key
-
-          key = fields_name_index[key]&.dig('uuid') || fields_name_index[key.to_s.downcase]&.dig('uuid')
-
-          raise(UnknownFieldName, "Unknown field: #{original_key}") if key.blank? && throw_errors
-        end
-
+      normalized_values = values.to_h.each_with_object({}) do |(key, value), acc|
         next if key.blank?
 
-        field = fields_uuid_index[key]
+        uuid_field = fields_uuid_index[key]
 
-        if field['type'].in?(%w[initials signature image file stamp]) && value.present?
-          new_value, new_attachments =
-            normalize_attachment_value(value, field, template.account, attachments, for_submitter)
+        value_fields = [uuid_field] if uuid_field
 
-          attachments.push(*new_attachments)
+        if value_fields.blank?
+          value_fields = fields_name_index[key].presence || fields_name_index[key.to_s.downcase]
 
-          value = new_value
+          raise(UnknownFieldName, "Unknown field: #{key}") if value_fields.blank? && throw_errors
         end
 
-        [key, normalize_value(field, value)]
-      end.to_h
+        next if value_fields.blank?
+
+        value_fields.each do |field|
+          if field['type'].in?(%w[initials signature image file stamp]) && value.present?
+            new_value, new_attachments =
+              normalize_attachment_value(value, field, template.account, attachments, for_submitter)
+
+            attachments.push(*new_attachments)
+
+            acc[field['uuid']] = normalize_value(field, new_value)
+          else
+            acc[field['uuid']] = normalize_value(field, value)
+          end
+        end
+      end
 
       [normalized_values, attachments]
     end
@@ -85,7 +94,7 @@ module Submitters
     end
 
     def fetch_fields(template, submitter_name: nil, for_submitter: nil)
-      if submitter_name
+      if submitter_name && !for_submitter
         submitter =
           template.submitters.find { |e| e['name'] == submitter_name } ||
           raise(UnknownSubmitterName,
@@ -103,10 +112,24 @@ module Submitters
       end
     end
 
+    def fetch_roles_fields(template, roles:)
+      submitters = roles.map do |submitter_name|
+        template.submitters.find { |e| e['name'] == submitter_name } ||
+          raise(UnknownSubmitterName,
+                "Unknown submitter role: #{submitter_name}. Template defines #{template.submitters.pluck('name')}")
+      end
+
+      role_uuids = submitters.pluck('uuid')
+
+      template.fields.select do |e|
+        role_uuids.include?(e['submitter_uuid'])
+      end
+    end
+
     def build_fields_index(fields)
-      fields.index_by { |e| e['name'] }
-            .merge(fields.index_by { |e| e['name'].to_s.parameterize.underscore })
-            .merge(fields.index_by { |e| e['name'].to_s.downcase })
+      fields.group_by { |e| e['name'] }
+            .merge(fields.group_by { |e| e['name'].to_s.parameterize.underscore })
+            .merge(fields.group_by { |e| e['name'].to_s.downcase })
     end
 
     def normalize_attachment_value(value, field, account, attachments, for_submitter = nil)

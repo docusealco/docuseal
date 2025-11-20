@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsPreviewController < ApplicationController
+  around_action :with_browser_locale
   skip_before_action :authenticate_user!
   skip_authorization_check
 
@@ -27,7 +28,7 @@ class SubmissionsPreviewController < ApplicationController
       raise ActionController::RoutingError, I18n.t('not_found')
     end
 
-    if !submission_valid_ttl?(@submission) && !signature_valid
+    if use_signature?(@submission) && !signature_valid
       Rollbar.info("TTL: #{@submission.id}") if defined?(Rollbar)
 
       return redirect_to submissions_preview_completed_path(@submission.slug)
@@ -40,6 +41,9 @@ class SubmissionsPreviewController < ApplicationController
 
   def completed
     @submission = Submission.find_by!(slug: params[:submissions_preview_slug])
+
+    raise ActionController::RoutingError, I18n.t('not_found') if @submission.account.archived_at?
+
     @template = @submission.template
 
     render :completed, layout: 'form'
@@ -47,9 +51,15 @@ class SubmissionsPreviewController < ApplicationController
 
   private
 
-  def submission_valid_ttl?(submission)
-    return true if current_user && current_user.account.submissions.exists?(id: submission.id)
+  def use_signature?(submission)
+    return false if current_user && can?(:read, submission)
+    return true if submission.submitters.any? { |e| e.preferences['require_phone_2fa'] }
+    return true if submission.template&.preferences&.dig('require_phone_2fa')
 
+    !submission_valid_ttl?(submission)
+  end
+
+  def submission_valid_ttl?(submission)
     last_submitter = submission.submitters.select(&:completed_at?).max_by(&:completed_at)
 
     last_submitter && last_submitter.completed_at > TTL.ago

@@ -9,9 +9,15 @@ module AccountConfigs
     'twelve_hours' => '12 hours',
     'twenty_four_hours' => '24 hours',
     'two_days' => '2 days',
+    'three_days' => '3 days',
     'four_days' => '4 days',
+    'five_days' => '5 days',
+    'six_days' => '6 days',
+    'seven_days' => '7 days',
     'eight_days' => '8 days',
-    'fifteen_days' => '15 days'
+    'fifteen_days' => '15 days',
+    'twenty_one_days' => '21 days',
+    'thirty_days' => '30 days'
   }.freeze
 
   module_function

@@ -5,7 +5,7 @@ module Api
     load_and_authorize_resource :template
 
     def create
-      authorize!(:manage, @template)
+      authorize!(:create, @template)
 
       ActiveRecord::Associations::Preloader.new(
         records: [@template],
@@ -21,18 +21,20 @@ module Api
       )
 
       cloned_template.source = :api
-      cloned_template.save!
 
       schema_documents = Templates::CloneAttachments.call(template: cloned_template,
                                                           original_template: @template,
                                                           documents: params[:documents])
 
-      WebhookUrls.for_account_id(cloned_template.account_id, 'template.created').each do |webhook_url|
-        SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => cloned_template.id,
-                                                           'webhook_url_id' => webhook_url.id)
-      end
+      Templates.maybe_assign_access(cloned_template)
 
-      render json: Templates::SerializeForApi.call(cloned_template, schema_documents)
+      cloned_template.save!
+
+      WebhookUrls.enqueue_events(cloned_template, 'template.created')
+
+      SearchEntries.enqueue_reindex(cloned_template)
+
+      render json: Templates::SerializeForApi.call(cloned_template, schema_documents:)
     end
   end
 end

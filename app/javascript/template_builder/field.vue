@@ -3,7 +3,7 @@
     class="list-field group mb-2"
   >
     <div
-      class="border border-base-300 rounded rounded-tr-none relative group"
+      class="border border-base-300 rounded relative group fields-list-item"
       :style="{ backgroundColor: backgroundColor }"
     >
       <div class="flex items-center justify-between relative group/contenteditable-container">
@@ -14,7 +14,7 @@
         <div class="flex items-center p-1 space-x-1">
           <FieldType
             v-model="field.type"
-            :editable="editable && !defaultField && field.type != 'heading'"
+            :editable="editable && !defaultField"
             :button-width="20"
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
@@ -97,8 +97,8 @@
             @click-formula="isShowFormulaModal = true"
           />
           <span
-            v-else-if="field.type !== 'heading'"
-            class="dropdown dropdown-end"
+            v-else
+            class="dropdown dropdown-end field-settings-dropdown"
             @mouseenter="renderDropdown = true"
             @touchstart="renderDropdown = true"
           >
@@ -125,6 +125,8 @@
                 :field="field"
                 :default-field="defaultField"
                 :editable="editable"
+                :with-signature-id="withSignatureId"
+                :with-prefillable="withPrefillable"
                 :background-color="dropdownBgColor"
                 @click-formula="isShowFormulaModal = true"
                 @click-font="isShowFontModal = true"
@@ -137,7 +139,7 @@
             </ul>
           </span>
           <button
-            class="relative text-transparent group-hover:text-base-content pr-1"
+            class="relative text-transparent group-hover:text-base-content pr-1 field-remove-button"
             :title="t('remove')"
             @click="$emit('remove', field)"
           >
@@ -149,7 +151,7 @@
         </div>
       </div>
       <div
-        v-if="field.options"
+        v-if="field.options && withOptions && (isExpandOptions || field.options.length < 5)"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
         draggable="true"
@@ -214,10 +216,28 @@
         />
         <button
           v-else-if="field.options && editable && !defaultField"
-          class="text-center text-sm w-full pb-1"
+          class="field-add-option text-center text-sm w-full pb-1"
           @click="addOption"
         >
           + {{ t('add_option') }}
+        </button>
+      </div>
+      <div
+        v-else-if="field.options && withOptions && !isExpandOptions && field.options.length > 4"
+        class="border-t border-base-300 mx-2 space-y-1.5"
+      >
+        <button
+          class="field-expand-options text-center text-sm w-full py-1 flex space-x-0.5 justify-center items-center"
+          @click="isExpandOptions = true"
+        >
+          <span class="lowercase">
+            {{ field.options.length }} {{ t('options') }}
+          </span>
+          <IconChevronDown
+            class="ml-2 mr-2 mt-0.5"
+            width="15"
+            height="15"
+          />
         </button>
       </div>
     </div>
@@ -228,6 +248,7 @@
       <FormulaModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFormulaModal = false"
       />
@@ -239,6 +260,7 @@
       <FontModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowFontModal = false"
       />
@@ -249,6 +271,7 @@
     >
       <ConditionsModal
         :item="field"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowConditionsModal = false"
       />
@@ -260,6 +283,7 @@
       <DescriptionModal
         :field="field"
         :editable="editable && !defaultField"
+        :default-field="defaultField"
         :build-default-name="buildDefaultName"
         @close="isShowDescriptionModal = false"
       />
@@ -276,7 +300,7 @@ import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconChevronDown } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -286,6 +310,7 @@ export default {
     IconSettings,
     FieldSettings,
     PaymentSettings,
+    IconChevronDown,
     IconNewSection,
     FormulaModal,
     FontModal,
@@ -302,6 +327,21 @@ export default {
       type: Object,
       required: true
     },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withOptions: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     defaultField: {
       type: Object,
       required: false,
@@ -316,6 +356,7 @@ export default {
   emits: ['set-draw', 'remove', 'scroll-to'],
   data () {
     return {
+      isExpandOptions: false,
       isNameFocus: false,
       showPaymentModal: false,
       isShowFormulaModal: false,
@@ -380,7 +421,7 @@ export default {
       } else {
         const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
 
-        if (field.type === 'heading') {
+        if (field.type === 'heading' || field.type === 'strikethrough') {
           return `${this.fieldNames[field.type]} ${typeIndex + 1}`
         } else {
           return `${this.fieldLabels[field.type]} ${typeIndex + 1}`
@@ -410,6 +451,8 @@ export default {
       this.$el.getRootNode().activeElement.blur()
     },
     addOption () {
+      this.isExpandOptions = true
+
       this.field.options.push({ value: '', uuid: v4() })
 
       this.$nextTick(() => {
@@ -442,8 +485,13 @@ export default {
         this.field.options ||= [{ value: '', uuid: v4() }]
       }
 
-      if (['heading'].includes(this.field.type)) {
+      if (this.field.type === 'heading') {
         this.field.readonly = true
+      }
+
+      if (this.field.type === 'strikethrough') {
+        this.field.readonly = true
+        this.field.default_value = true
       }
 
       (this.field.areas || []).forEach((area) => {

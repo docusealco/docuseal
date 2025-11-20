@@ -14,6 +14,7 @@ FactoryBot.define do
         %w[text date checkbox radio signature number multiple select initials image file stamp cells phone payment]
       end
       except_field_types { [] }
+      private_access_user { nil }
     end
 
     after(:create) do |template, ev|
@@ -342,6 +343,18 @@ FactoryBot.define do
       end
 
       template.save!
+    end
+
+    trait :with_admin_only_access do
+      after(:create) do |template|
+        create(:template_access, template:, user_id: TemplateAccess::ADMIN_USER_ID)
+      end
+    end
+
+    trait :with_private_access do
+      after(:create) do |template, ev|
+        create(:template_access, template:, user: ev.private_access_user || template.author)
+      end
     end
   end
 end

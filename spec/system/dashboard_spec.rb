@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Dashboard Page' do
   let!(:account) { create(:account) }
   let!(:user) { create(:user, account:) }
@@ -50,6 +48,19 @@ RSpec.describe 'Dashboard Page' do
 
         expect(page).to have_current_path(edit_template_path(Template.last), ignore_query: true)
       end
+    end
+
+    it 'searches be submitter email' do
+      submission = create(:submission, :with_submitters, template: templates[0])
+      submitter = submission.submitters.first
+
+      SearchEntries.reindex_all
+
+      visit root_path(q: submitter.email)
+
+      expect(page).to have_content('Templates not Found')
+      expect(page).to have_content('Submissions')
+      expect(page).to have_content(submitter.name)
     end
   end
 end

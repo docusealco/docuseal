@@ -5,7 +5,7 @@ class SendFormCompletedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  MAX_ATTEMPTS = 20
+  MAX_ATTEMPTS = 12
 
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
@@ -20,6 +20,9 @@ class SendFormCompletedWebhookRequestJob
     ActiveStorage::Current.url_options = Docuseal.default_url_options
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'form.completed',
+                                                event_uuid: params['event_uuid'],
+                                                record: submitter,
+                                                attempt:,
                                                 data: Submitters::SerializeForWebhook.call(submitter))
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&

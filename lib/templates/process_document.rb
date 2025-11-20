@@ -6,6 +6,7 @@ module Templates
     FORMAT = '.png'
     ATTACHMENT_NAME = 'preview_images'
 
+    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
     PDF_CONTENT_TYPE = 'application/pdf'
     CONCURRENCY = 2
     Q = 95
@@ -14,6 +15,7 @@ module Templates
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 20.megabytes
     GENERATE_PREVIEW_SIZE_LIMIT = 50.megabytes
+    US_LETTER_SIZE = { 'width' => MAX_WIDTH, 'height' => 1812 }.freeze
 
     module_function
 
@@ -22,7 +24,7 @@ module Templates
         if extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
           pdf = HexaPDF::Document.new(io: StringIO.new(data))
 
-          fields = Templates::FindAcroFields.call(pdf, attachment)
+          fields = Templates::FindAcroFields.call(pdf, attachment, data)
         end
 
         generate_pdf_preview_images(attachment, data, pdf, max_pages:)
@@ -35,16 +37,40 @@ module Templates
       attachment
     end
 
+    def process(attachment, data, extract_fields: false)
+      if attachment.content_type == PDF_CONTENT_TYPE && extract_fields && data.size < MAX_FLATTEN_FILE_SIZE
+        pdf = HexaPDF::Document.new(io: StringIO.new(data))
+
+        fields = Templates::FindAcroFields.call(pdf, attachment, data)
+      end
+
+      pdf ||= HexaPDF::Document.new(io: StringIO.new(data))
+
+      number_of_pages = pdf.pages.size
+
+      attachment.metadata['pdf'] ||= {}
+      attachment.metadata['pdf']['number_of_pages'] = number_of_pages
+      attachment.metadata['pdf']['fields'] = fields if fields
+
+      attachment
+    end
+
     def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      image = Vips::Image.new_from_buffer(data, '')
+      image =
+        if BMP_REGEXP.match?(attachment.content_type)
+          LoadBmp.call(data)
+        else
+          Vips::Image.new_from_buffer(data, '')
+        end
+
       image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
 
       bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 
       io = StringIO.new(image.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
-                                                      palette: true, Q: bitdepth == 8 ? Q : 5, dither: 0))
+                                                      palette: true, Q: Q, dither: 0))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -73,18 +99,22 @@ module Templates
 
       max_pages_to_process = data.size < GENERATE_PREVIEW_SIZE_LIMIT ? max_pages : 1
 
-      generate_document_preview_images(attachment, data, (0..[number_of_pages - 1, max_pages_to_process].min))
+      generate_document_preview_images(attachment, data, 0..[number_of_pages - 1, max_pages_to_process].min)
     end
 
     def generate_document_preview_images(attachment, data, range, concurrency: CONCURRENCY)
+      doc = Pdfium::Document.open_bytes(data)
+
       pool = Concurrent::FixedThreadPool.new(concurrency)
 
       promises =
         range.map do |page_number|
-          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(data, page_number) }
+          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(doc, page_number) }
         end
 
       Concurrent::Promise.zip(*promises).value!.each do |blob|
+        next unless blob
+
         ApplicationRecord.no_touching do
           ActiveStorage::Attachment.create!(
             blob:,
@@ -93,27 +123,44 @@ module Templates
           )
         end
       end
-
-      pool.kill
+    ensure
+      doc&.close
+      pool&.kill
     end
 
-    def build_and_upload_blob(data, page_number)
-      page = Vips::Image.new_from_buffer(data, '', dpi: DPI, page: page_number)
-      page = page.resize(MAX_WIDTH / page.width.to_f)
+    def build_and_upload_blob(doc, page_number, format = FORMAT)
+      doc_page = doc.get_page(page_number)
 
-      bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+      data, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
 
-      io = StringIO.new(page.write_to_buffer(FORMAT, compression: 7, filter: 0, bitdepth:,
-                                                     palette: true, Q: bitdepth == 8 ? Q : 5, dither: 0))
+      page = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
+
+      page = page.copy(interpretation: :srgb)
+
+      data =
+        if format == FORMAT
+          bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+
+          page.write_to_buffer(format, compression: 7, filter: 0, bitdepth:,
+                                       palette: true, Q: Q, dither: 0)
+        else
+          page.write_to_buffer(format, interlace: true, Q: JPEG_Q)
+        end
 
       blob = ActiveStorage::Blob.new(
-        filename: "#{page_number}#{FORMAT}",
+        filename: "#{page_number}#{format}",
         metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
       )
 
-      blob.upload(io)
+      blob.upload(StringIO.new(data))
 
       blob
+    rescue Vips::Error, Pdfium::PdfiumError => e
+      Rollbar.warning(e) if defined?(Rollbar)
+
+      nil
+    ensure
+      doc_page&.close
     end
 
     def maybe_flatten_form(data, pdf)
@@ -156,35 +203,19 @@ module Templates
     end
 
     def generate_pdf_preview_from_file(attachment, file_path, page_number)
-      io = StringIO.new
+      doc = Pdfium::Document.open_file(file_path)
 
-      command = [
-        'pdftocairo', '-jpeg', '-jpegopt', "progressive=y,quality=#{JPEG_Q},optimize=y",
-        '-scale-to-x', MAX_WIDTH, '-scale-to-y', '-1',
-        '-r', DPI, '-f', page_number + 1, '-l', page_number + 1,
-        '-singlefile', Shellwords.escape(file_path), '-'
-      ].join(' ')
-
-      Open3.popen3(command) do |_, stdout, _, _|
-        io.write(stdout.read)
-
-        io.rewind
-      end
-
-      page = Vips::Image.new_from_buffer(io.read, '')
-
-      io.rewind
+      blob = build_and_upload_blob(doc, page_number, '.jpeg')
 
       ApplicationRecord.no_touching do
         ActiveStorage::Attachment.create!(
-          blob: ActiveStorage::Blob.create_and_upload!(
-            io:, filename: "#{page_number}.jpg",
-            metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
-          ),
+          blob: blob,
           name: ATTACHMENT_NAME,
           record: attachment
         )
       end
+    ensure
+      doc&.close
     end
   end
 end

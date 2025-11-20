@@ -72,8 +72,8 @@ module Params
       return if params[key].blank?
       return if params[key].to_s.include?('<')
 
-      if params[key].to_s.strip.split(/\s*[;,]\s*/).compact_blank
-                    .all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) }
+      if params[key].to_s.strip.split(%r{\s*[;,/]\s*}).compact_blank
+                    .all? { |email| EmailTypo::DotCom.call(email).match?(EMAIL_REGEXP) || email.include?('--') }
         return
       end
 

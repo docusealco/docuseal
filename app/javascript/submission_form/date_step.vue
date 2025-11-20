@@ -7,7 +7,7 @@
       <label
         v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -26,7 +26,8 @@
         </template>
       </label>
       <button
-        class="btn btn-outline btn-sm !normal-case font-normal"
+        v-if="withToday"
+        class="btn btn-outline btn-sm !normal-case font-normal set-current-date-button"
         @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
         <IconCalendarCheck :width="16" />
@@ -35,7 +36,7 @@
     </div>
     <div
       v-if="field.description"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
       dir="auto"
     >
       <MarkdownContent :string="field.description" />
@@ -46,6 +47,8 @@
         :id="field.uuid"
         ref="input"
         v-model="value"
+        :min="validationMin"
+        :max="validationMax"
         class="base-input !text-2xl text-center w-full"
         :required="field.required"
         type="date"
@@ -89,6 +92,44 @@ export default {
   },
   emits: ['update:model-value', 'focus', 'submit'],
   computed: {
+    dateNowString () {
+      const today = new Date()
+
+      const yyyy = today.getFullYear()
+      const mm = String(today.getMonth() + 1).padStart(2, '0')
+      const dd = String(today.getDate()).padStart(2, '0')
+
+      return `${yyyy}-${mm}-${dd}`
+    },
+    validationMin () {
+      if (this.field.validation?.min) {
+        return ['{{date}}', '{date}'].includes(this.field.validation.min) ? this.dateNowString : this.field.validation.min
+      } else {
+        return ''
+      }
+    },
+    validationMax () {
+      if (this.field.validation?.max) {
+        return ['{{date}}', '{date}'].includes(this.field.validation.max) ? this.dateNowString : this.field.validation.max
+      } else {
+        return ''
+      }
+    },
+    withToday () {
+      const todayDate = new Date().setHours(0, 0, 0, 0)
+
+      if (this.validationMin) {
+        if (new Date(this.validationMin).setHours(0, 0, 0, 0) <= todayDate) {
+          return this.validationMax ? (new Date(this.validationMax).setHours(0, 0, 0, 0) >= todayDate) : true
+        } else {
+          return false
+        }
+      } else if (this.validationMax) {
+        return new Date(this.validationMax).setHours(0, 0, 0, 0) >= todayDate
+      } else {
+        return true
+      }
+    },
     value: {
       set (value) {
         this.$emit('update:model-value', value)

@@ -16,12 +16,12 @@
             <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
               <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
               <span class="text-sm">
-                <%= @template.folder.name %>
+                <%= @template.folder.full_name %>
               </span>
             </a>
             <% if can?(:update, template) %>
               <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
-                <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal">
+                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
               </span>
@@ -49,7 +49,12 @@
             <% end %>
           </div>
         <% end %>
-        <%= render 'shared/clipboard_copy', text: start_form_url(slug: @template.slug), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', icon_class: 'w-4 h-4 md:w-6 md:h-6 text-white', copy_title: t('link'), copied_title: t('copied'), copy_title_md: t('link'), copied_title_md: t('copied') %>
+        <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', data: { turbo_frame: :modal } do %>
+          <span class="flex items-center justify-center space-x-2">
+            <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6 text-white') %>
+            <span><%= t('link') %></span>
+          </span>
+        <% end %>
       </div>
     <% end %>
   </div>

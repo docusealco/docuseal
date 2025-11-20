@@ -23,7 +23,9 @@ class TemplatesUploadsController < ApplicationController
 
     @template.update!(schema:)
 
-    enqueue_template_created_webhooks(@template)
+    WebhookUrls.enqueue_events(@template, 'template.created')
+
+    SearchEntries.enqueue_reindex(@template)
 
     redirect_to edit_template_path(@template)
   rescue Templates::CreateAttachments::PdfEncrypted
@@ -43,6 +45,8 @@ class TemplatesUploadsController < ApplicationController
     template.author = current_user
     template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     template.name = File.basename((url_params || params)[:files].first.original_filename, '.*')
+
+    Templates.maybe_assign_access(template)
 
     template.save!
 
@@ -65,12 +69,5 @@ class TemplatesUploadsController < ApplicationController
     )
 
     { files: [file] }
-  end
-
-  def enqueue_template_created_webhooks(template)
-    WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
-    end
   end
 end

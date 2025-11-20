@@ -1,7 +1,7 @@
 <template>
   <label
     v-if="!modelValue && !sessionId"
-    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5"
+    class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
   >
     <MarkdownContent
       v-if="field.title"
@@ -34,7 +34,7 @@
       <button
         v-if="sessionId"
         disabled
-        class="base-button w-full"
+        class="base-button w-full modal-save-button"
       >
         <IconLoader
           width="22"
@@ -62,7 +62,7 @@
           width="22"
         />
         <span>
-          {{ t('pay_with_strip') }}
+          {{ t('pay_with_stripe') }}
         </span>
       </button>
     </div>
@@ -92,9 +92,19 @@ export default {
       type: Object,
       required: true
     },
+    readonlyValues: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     values: {
       type: Object,
       required: true
+    },
+    fields: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     submitterSlug: {
       type: String,
@@ -109,6 +119,13 @@ export default {
     }
   },
   computed: {
+    fieldsUuidIndex () {
+      return this.fields.reduce((acc, field) => {
+        acc[field.uuid] = field
+
+        return acc
+      }, {})
+    },
     queryParams () {
       return new URLSearchParams(window.location.search)
     },
@@ -116,6 +133,10 @@ export default {
       return this.queryParams.get('stripe_session_id')
     },
     defaultName () {
+      if (this.field.preferences?.price_id || this.field.preferences?.payment_link_id) {
+        return ''
+      }
+
       const { price, currency } = this.field.preferences || {}
 
       const formatter = new Intl.NumberFormat([], {
@@ -178,11 +199,22 @@ export default {
   },
   methods: {
     calculateFormula () {
-      const transformedFormula = this.field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
-        return this.values[uuid] || 0.0
+      const transformedFormula = this.normalizeFormula(this.field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
+        return this.readonlyValues[uuid] || this.values[uuid] || 0.0
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    normalizeFormula (formula, depth = 0) {
+      if (depth > 10) return formula
+
+      return formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        if (this.fieldsUuidIndex[uuid]) {
+          return `(${this.normalizeFormula(this.fieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
+        } else {
+          return match
+        }
+      })
     },
     async submit () {
       if (this.sessionId) {

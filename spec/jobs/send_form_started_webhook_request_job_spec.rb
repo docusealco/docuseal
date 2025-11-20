@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe SendFormStartedWebhookRequestJob do
   let(:account) { create(:account) }
   let(:user) { create(:user, account:) }
@@ -23,7 +21,8 @@ RSpec.describe SendFormStartedWebhookRequestJob do
     end
 
     it 'sends a webhook request' do
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
+      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+                                  'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
         body: {
@@ -40,7 +39,8 @@ RSpec.describe SendFormStartedWebhookRequestJob do
 
     it 'sends a webhook request with the secret' do
       webhook_url.update(secret: { 'X-Secret-Header' => 'secret_value' })
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
+      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+                                  'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).with(
         body: {
@@ -59,7 +59,8 @@ RSpec.describe SendFormStartedWebhookRequestJob do
     it "doesn't send a webhook request if the event is not in the webhook's events" do
       webhook_url.update!(events: ['form.declined'])
 
-      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
+      described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+                                  'event_uuid' => SecureRandom.uuid)
 
       expect(WebMock).not_to have_requested(:post, webhook_url.url)
     end
@@ -67,8 +68,11 @@ RSpec.describe SendFormStartedWebhookRequestJob do
     it 'sends again if the response status is 400 or higher' do
       stub_request(:post, webhook_url.url).to_return(status: 401)
 
+      event_uuid = SecureRandom.uuid
+
       expect do
-        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id)
+        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+                                    'event_uuid' => event_uuid)
       end.to change(described_class.jobs, :size).by(1)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once
@@ -77,6 +81,7 @@ RSpec.describe SendFormStartedWebhookRequestJob do
 
       expect(args['attempt']).to eq(1)
       expect(args['last_status']).to eq(401)
+      expect(args['event_uuid']).to eq(event_uuid)
       expect(args['webhook_url_id']).to eq(webhook_url.id)
       expect(args['submitter_id']).to eq(submitter.id)
     end
@@ -85,7 +90,8 @@ RSpec.describe SendFormStartedWebhookRequestJob do
       stub_request(:post, webhook_url.url).to_return(status: 401)
 
       expect do
-        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id, 'attempt' => 11)
+        described_class.new.perform('submitter_id' => submitter.id, 'webhook_url_id' => webhook_url.id,
+                                    'event_uuid' => SecureRandom.uuid, 'attempt' => 11)
       end.not_to change(described_class.jobs, :size)
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once

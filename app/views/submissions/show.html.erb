@@ -1,12 +1,17 @@
 <% if params[:controller] == 'submissions_preview' %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
-<% with_signature_id, is_combined_enabled = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID], value: true).then { |configs| [configs.any? { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }, configs.any? { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }] } %>
+<% font_scale = 1040.0 / PdfUtils::US_LETTER_W %>
+<% configs = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID, AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY, AccountConfig::WITH_SIGNATURE_ID_REASON_KEY]) %>
+<% with_signature_id = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true %>
+<% is_combined_enabled = configs.find { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }&.value == true %>
+<% with_submitter_timezone = configs.find { |e| e.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true %>
+<% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= signed_in? && @submission.account_id == current_account&.id ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
+    <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
-      <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% @submission.template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %></span>
+      <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template.name).split(/(_)/).each do |item| %><%= item %><wbr><% end %></span>
     </a>
     <div class="space-x-3 flex items-center">
       <% last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
@@ -73,13 +78,15 @@
       <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
       <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
       <% schema.each do |item| %>
-        <% document = @submission.template_schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
-        <a href="#<%= "page-#{document.uuid}-0" %>" onclick="[event.preventDefault(), window[event.target.closest('a').href.split('#')[1]].scrollIntoView({ behavior: 'smooth', block: 'start' })]" class="block cursor-pointer">
-          <img src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, 0].join(':'), expires_in: 10.minutes) { document.preview_images.first.url } %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
-          <div class="pb-2 pt-1.5 text-center" dir="auto">
-            <%= item['name'].presence || document.filename.base %>
-          </div>
-        </a>
+        <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
+        <% if document.preview_images.first %>
+          <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
+            <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
+            <div class="pb-2 pt-1.5 text-center" dir="auto">
+              <%= item['name'].presence || document.filename.base %>
+            </div>
+          </scroll-to>
+        <% end %>
       <% end %>
     </div>
     <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
@@ -89,37 +96,38 @@
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
         <% schema.each do |item| %>
-          <% document = @submission.template_schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
+          <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
-          <% lazyload_metadata = document.preview_images.first.metadata %>
+          <% lazyload_metadata = document.preview_images.first&.metadata || Templates::ProcessDocument::US_LETTER_SIZE %>
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
-            <div id="<%= "page-#{document.uuid}-#{index}" %>" class="relative">
-              <img loading="lazy" src="<%= Docuseal::URL_CACHE.fetch([document.id, document.uuid, index].join(':'), expires_in: 10.minutes) { page.url } %>" width="<%= page.metadata['width'] %>" class="border rounded mb-4" height="<%= page.metadata['height'] %>">
+            <page-container id="<%= "page-#{document.uuid}-#{index}" %>" class="block before:border before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:rounded relative mb-4" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
+              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" class="rounded" height="<%= height %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
                 <% end %>
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
-                  <% value = values[field['uuid']] %>
+                  <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['conditions'].blank? && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                   <% value ||= field['default_value'] if field['type'] == 'heading' %>
                   <% next if value.blank? %>
+                  <% submitter = submitters_index[field['submitter_uuid']] %>
                   <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
                     <span class="group">
                       <span class="hidden group-hover:inline">
-                        <%= render 'submissions/value', area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
                       </span>
                       <span class="group-hover:hidden">
-                        <%= render 'submissions/value', area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
                       </span>
                     </span>
                   <% else %>
-                    <%= render 'submissions/value', area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: %>
+                    <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id:, with_submitter_timezone:, with_signature_id_reason: %>
                   <% end %>
                 <% end %>
               </div>
-            </div>
+            </page-container>
           <% end %>
         <% end %>
       </div>
@@ -172,12 +180,26 @@
               </div>
             <% end %>
             <div class="flex items-center space-x-1 mt-1">
-              <%= svg_icon('writing', class: 'w-5 h-5') %>
+              <% if @submission.expire_at? && submitter && !submitter.completed_at? %>
+                <%= svg_icon('clock_exclamation', class: 'w-5 h-5') %>
+              <% else %>
+                <%= svg_icon('writing', class: 'w-5 h-5') %>
+              <% end %>
               <span>
                 <% if submitter&.declined_at? %>
                   <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
                 <% elsif submitter %>
-                  <%= submitter.completed_at? ? l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) : t('not_completed_yet') %>
+                  <% if submitter.completed_at? %>
+                    <%= l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) %>
+                  <% elsif @submission.expire_at? %>
+                    <% if @submission.expired? %>
+                      <%= t(:expired) %>
+                    <% else %>
+                      <%= t('expire_on_time', time: l(@submission.expire_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                    <% end %>
+                  <% else %>
+                    <%= t('not_completed_yet') %>
+                  <% end %>
                 <% else %>
                   <%= t('not_invited_yet') %>
                 <% end %>
@@ -216,9 +238,9 @@
         <div class="px-1.5 mb-4">
           <% submitter_fields_index[item['uuid']].to_a.each_with_index do |field, index| %>
             <% submitter_field_counters[field['type']] += 1 %>
-            <% value = values[field['uuid']] %>
+            <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
             <% next if value.blank? %>
-            <% next if field['type'] == 'heading' %>
+            <% next if field['type'] == 'heading' || field['type'] == 'strikethrough' %>
             <div class="pt-2.5 border-b border-base-300">
               <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                 <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>
@@ -228,9 +250,9 @@
                   <div class="w-full bg-base-300 py-1">
                     <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
                   </div>
-                <% elsif field['type'].in?(['image', 'stamp']) %>
+                <% elsif field['type'].in?(['image', 'stamp']) && attachments_index[value].image? %>
                   <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
-                <% elsif field['type'] == 'file' || field['type'] == 'payment' %>
+                <% elsif field['type'].in?(['file', 'payment', 'image']) %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
                       <a target="_blank" class="flex items-center space-x-1" href="<%= attachments_index[val].url %>">
@@ -266,16 +288,20 @@
       <% end %>
     </div>
   </div>
-  <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
-    <input type="checkbox" class="peer hidden" onclick="[document_view.classList.toggle('hidden'), parties_view.classList.toggle('hidden')]">
-    <span class="peer-checked:hidden flex items-center space-x-2">
-      <%= svg_icon('users', class: 'w-8 h-8') %>
-      <span><%= t('signers') %></span>
-    </span>
-    <span class="hidden peer-checked:flex items-center">
-      <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
-      <span><%= t('back') %></span>
-    </span>
-  </label>
+  <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
+    <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
+      <input type="checkbox" class="peer hidden" data-action="click:toggle-visible#trigger">
+      <span class="peer-checked:hidden flex items-center space-x-2">
+        <%= svg_icon('users', class: 'w-8 h-8') %>
+        <span><%= t('signers') %></span>
+      </span>
+      <span class="hidden peer-checked:flex items-center">
+        <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
+        <span><%= t('back') %></span>
+      </span>
+    </label>
+  </toggle-visible>
 </div>
-<%= render 'scripts/autosize_field' %>
+<% unless request.headers['HTTP_X_TURBO'] %>
+  <%= render 'scripts/autosize_field' %>
+<% end %>

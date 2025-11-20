@@ -3,17 +3,28 @@
 class TemplatesDebugController < ApplicationController
   load_and_authorize_resource :template
 
+  DEBUG_FILE = ''
+
   def show
-    attachment = @template.documents.first
+    schema_uuids = @template.schema.index_by { |e| e['attachment_uuid'] }
+    attachment = @template.documents.find { |a| schema_uuids[a.uuid] }
 
-    pdf = HexaPDF::Document.new(io: StringIO.new(attachment.download))
+    data = attachment.download
 
-    fields = Templates::FindAcroFields.call(pdf, attachment)
+    unless attachment.image?
+      pdf = HexaPDF::Document.new(io: StringIO.new(data))
+
+      fields = Templates::FindAcroFields.call(pdf, attachment, data)
+    end
+
+    fields, = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
 
     attachment.metadata['pdf'] ||= {}
     attachment.metadata['pdf']['fields'] = fields
 
     @template.update!(fields: Templates::ProcessDocument.normalize_attachment_fields(@template, [attachment]))
+
+    debug_file if DEBUG_FILE.present?
 
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
@@ -29,5 +40,28 @@ class TemplatesDebugController < ApplicationController
       ).to_json
 
     render 'templates/edit', layout: 'plain'
+  end
+
+  def debug_file
+    tempfile = Tempfile.new
+    tempfile.binmode
+    tempfile.write(File.read(DEBUG_FILE))
+    tempfile.rewind
+
+    filename = File.basename(DEBUG_FILE)
+
+    file = ActionDispatch::Http::UploadedFile.new(
+      tempfile:,
+      filename:,
+      type: Marcel::MimeType.for(tempfile)
+    )
+
+    params = { files: [file] }
+
+    documents = Templates::CreateAttachments.call(@template, params)
+
+    schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+
+    @template.update!(schema:)
   end
 end

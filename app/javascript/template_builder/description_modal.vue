@@ -8,12 +8,12 @@
     />
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-        <span>
-          {{ field.name || buildDefaultName(field, template.fields) }}
+        <span class="modal-title">
+          {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field, template.fields) }}
         </span>
         <a
           href="#"
-          class="text-xl"
+          class="text-xl modal-close-button"
           @click.prevent="$emit('close')"
         >&times;</a>
       </div>
@@ -55,9 +55,7 @@
               >
             </div>
           </div>
-          <button
-            class="base-button w-full mt-4"
-          >
+          <button class="base-button w-full mt-4 modal-save-button">
             {{ t('save') }}
           </button>
         </form>
@@ -74,6 +72,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    defaultField: {
+      type: Object,
+      required: false,
+      default: null
     },
     editable: {
       type: Boolean,

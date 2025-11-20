@@ -19,7 +19,7 @@ button .disabled {
   display: none;
 }
 
-button[disabled] .disabled {
+button[disabled] .disabled, button.btn-disabled .disabled {
   display: initial;
 }
 
@@ -27,7 +27,7 @@ button .enabled {
   display: initial;
 }
 
-button[disabled] .enabled {
+button[disabled] .enabled, button.btn-disabled .enabled {
   display: none;
 }
 
@@ -146,4 +146,12 @@ button[disabled] .enabled {
   outline-width: 1px;
   outline-offset: 3px;
   outline-color: hsl(var(--bc) / 0.2);
+}
+
+.font-times {
+  font-family: "Times New Roman", Times, ui-serif, serif, Cambria, Georgia;
+}
+
+.font-courier {
+  font-family: "Courier New", Consolas, "Liberation Mono", monospace, ui-monospace, SFMono-Regular, Menlo, Monaco;
 }

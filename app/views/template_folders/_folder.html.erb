@@ -1,5 +1,5 @@
 <% is_long = folder.name.size > 32 %>
-<a href="<%= folder_path(folder) %>" class="flex h-full flex-col justify-between rounded-2xl py-5 px-6 w-full bg-base-200">
+<a href="<%= folder_path(folder) %>" class="flex h-full flex-col justify-between rounded-2xl py-5 px-6 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl relative" data-targets="dashboard-dropzone.folderCards" data-full-name="<%= folder.full_name %>">
   <% if !is_long %>
     <%= svg_icon('folder', class: 'w-6 h-6') %>
   <% end %>

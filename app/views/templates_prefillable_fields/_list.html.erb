@@ -1,0 +1,6 @@
+<div id="prefillable_fields_list" class="flex gap-1 px-0.5 mt-2 flex-wrap">
+  <% template.fields.each do |f| %>
+    <% next unless f['prefillable'] %>
+    <%= button_to button_title(title: f['name'].presence || f['type'].capitalize, disabled_with: f['name'].presence || f['type'].capitalize, icon: svg_icon('x', class: 'w-4 h-4'), icon_disabled: svg_icon('loader', class: 'w-4 h-4 animate-spin')), template_prefillable_fields_path(template), params: { field_uuid: f['uuid'], prefillable: 'false' }, class: 'badge badge-lg badge-primary space-x-1 pr-3 pl-2', form: { data: { close_on_submit: false } } %>
+  <% end %>
+</div>

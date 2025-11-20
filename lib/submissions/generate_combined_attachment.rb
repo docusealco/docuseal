@@ -17,32 +17,45 @@ module Submissions
 
       pdf.trailer.info[:Creator] = "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
 
+      if Docuseal.pdf_format == 'pdf/a-3b'
+        pdf.task(:pdfa, level: '3b')
+        pdf.config['font.map'] = GenerateResultAttachments::PDFA_FONT_MAP
+      end
+
       if pkcs
         sign_params = {
           reason: Submissions::GenerateResultAttachments.single_sign_reason(submitter),
           **Submissions::GenerateResultAttachments.build_signing_params(submitter, pkcs, tsa_url)
         }
 
-        begin
-          pdf.sign(io, **sign_params)
-        rescue HexaPDF::MalformedPDFError => e
-          Rollbar.error(e) if defined?(Rollbar)
+        sign_pdf(io, pdf, sign_params)
 
-          pdf.sign(io, write_options: { incremental: false }, **sign_params)
-        end
+        Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
       else
-        pdf.write(io, incremental: true, validate: false)
+        pdf.write(io, incremental: true, validate: true)
       end
-
-      Submissions::GenerateResultAttachments.maybe_enable_ltv(io, sign_params)
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
-          io: io.tap(&:rewind), filename: "#{submission.template.name}.pdf"
+          io: io.tap(&:rewind), filename: "#{submission.name || submission.template.name}.pdf"
         ),
         name: 'combined_document',
         record: submission
       )
+    end
+
+    def sign_pdf(io, pdf, sign_params)
+      pdf.sign(io, **sign_params)
+    rescue HexaPDF::MalformedPDFError, NoMethodError => e
+      Rollbar.error(e) if defined?(Rollbar)
+
+      pdf.sign(io, write_options: { incremental: false }, **sign_params)
+    rescue HexaPDF::Error => e
+      Rollbar.error(e) if defined?(Rollbar)
+
+      pdf.validate(auto_correct: true)
+
+      pdf.sign(io, write_options: { validate: false }, **sign_params)
     end
 
     def build_combined_pdf(submitter)

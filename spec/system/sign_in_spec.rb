@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Sign In', type: :system do
+RSpec.describe 'Sign In' do
   let(:account) { create(:account) }
   let!(:user) { create(:user, account:, email: 'john.dou@example.com', password: 'strong_password') }
 

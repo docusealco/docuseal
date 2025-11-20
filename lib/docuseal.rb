@@ -12,7 +12,7 @@ module Docuseal
   DISCORD_URL = 'https://discord.gg/qygYCDGck9'
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
-  CHATGPT_URL = 'https://chatgpt.com/g/g-9hg8AAw0r-docuseal'
+  CHATGPT_URL = "#{PRODUCT_URL}/chat".freeze
   SUPPORT_EMAIL = 'support@docuseal.com'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'docuseal_aatl'
@@ -55,6 +55,10 @@ module Docuseal
     ENV['MULTITENANT'] == 'true'
   end
 
+  def advanced_formats?
+    multitenant?
+  end
+
   def demo?
     ENV['DEMO'] == 'true'
   end
@@ -69,8 +73,23 @@ module Docuseal
     @default_pkcs ||= GenerateCertificate.load_pkcs(Docuseal::CERTS)
   end
 
+  def fulltext_search?
+    return @fulltext_search unless @fulltext_search.nil?
+
+    @fulltext_search =
+      if SearchEntry.table_exists?
+        Docuseal.multitenant? || AccountConfig.exists?(key: :fulltext_search, value: true)
+      else
+        false
+      end
+  end
+
   def enable_pwa?
     true
+  end
+
+  def pdf_format
+    @pdf_format ||= ENV['PDF_FORMAT'].to_s.downcase
   end
 
   def trusted_certs

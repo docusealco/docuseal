@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'API Settings' do
   let!(:account) { create(:account) }
   let!(:user) { create(:user, account:) }
@@ -15,5 +13,27 @@ RSpec.describe 'API Settings' do
     expect(page).to have_content('API')
     token = user.access_token.token
     expect(page).to have_field('X-Auth-Token', with: token.sub(token[5..], '*' * token[5..].size))
+  end
+
+  it 'reveals API key with correct password' do
+    find('#api_key').click
+
+    within('.modal') do
+      fill_in 'password', with: user.password
+      click_button 'Submit'
+    end
+
+    expect(page).to have_field('X-Auth-Token', with: user.access_token.token)
+  end
+
+  it 'shows error with incorrect password' do
+    find('#api_key').click
+
+    within('.modal') do
+      fill_in 'password', with: 'wrong_password'
+      click_button 'Submit'
+    end
+
+    expect(page).to have_content('Wrong password')
   end
 end

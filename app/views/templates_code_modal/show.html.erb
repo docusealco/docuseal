@@ -25,7 +25,9 @@
         <span>
           <%= t('share_template_with_test_mode') %>
         </span>
-        <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
+        <submit-form data-on="change">
+          <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts) %>
+        </submit-form>
       </div>
     <% end %>
     <div class="mb-4">

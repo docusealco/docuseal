@@ -1,19 +1,22 @@
 <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, class: 'inline', html: { enctype: 'multipart/form-data' } do %>
-  <button type="submit" class="btn btn-ghost text-base" onclick="[event.preventDefault(), window.upload_template.click()]">
-    <span class="enabled">
+  <label for="upload_template" id="templates_upload_button" class="btn btn-ghost text-base">
+    <button type="submit" class="hidden peer"></button>
+    <span class="peer-disabled:hidden">
       <span class="flex items-center justify-center space-x-2">
         <%= svg_icon('upload', class: 'w-6 h-6 stroke-2') %>
         <span class="hidden md:block"><%= t('upload') %></span>
       </span>
     </span>
-    <span class="disabled">
+    <span class="peer-enabled:hidden">
       <span class="flex items-center justify-center space-x-2">
         <%= local_assigns[:icon_disabled] || svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-        <span class="hidden md:block"><%= t('uploading') %>...</span>
+        <span class="hidden md:block"><%= t('upload') %>...</span>
       </span>
     </span>
-  </button>
+  </label>
   <input type="hidden" name="form_id" value="<%= form_id %>">
-  <input id="upload_template" name="files[]" class="hidden" onchange="this.form.requestSubmit()" type="file" accept="image/*, application/pdf<%= ', .docx, .doc, .xlsx, .xls, .odt, .rtf' if Docuseal.multitenant? %>" multiple>
+  <submit-form data-on="change" data-disable="true">
+    <input id="upload_template" name="files[]" class="hidden" type="file" accept="image/*, application/pdf, application/zip<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>" multiple>
+  </submit-form>
   <input hidden name="folder_name" value="<%= local_assigns[:folder_name] %>">
 <% end %>

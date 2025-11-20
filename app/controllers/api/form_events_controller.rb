@@ -11,18 +11,21 @@ module Api
       params[:before] = Time.zone.at(params[:before].to_i) if params[:before].present?
 
       submitters = paginate(
-        submitters.preload(template: :folder, submission: [:submitters, { audit_trail_attachment: :blob,
-                                                                          combined_document_attachment: :blob }],
+        submitters.preload(template: { folder: :parent_folder },
+                           submission: [:submitters, { audit_trail_attachment: :blob,
+                                                       combined_document_attachment: :blob }],
                            documents_attachments: :blob, attachments_attachments: :blob),
         field: :completed_at
       )
+
+      expires_at = Accounts.link_expires_at(current_account)
 
       render json: {
         data: submitters.map do |s|
                 {
                   event_type: 'form.completed',
                   timestamp: s.completed_at,
-                  data: Submitters::SerializeForWebhook.call(s)
+                  data: Submitters::SerializeForWebhook.call(s, expires_at:)
                 }
               end,
         pagination: {

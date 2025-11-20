@@ -16,6 +16,7 @@
 #  preferences   :text             not null
 #  sent_at       :datetime
 #  slug          :string           not null
+#  timezone      :string
 #  ua            :string
 #  uuid          :string           not null
 #  values        :text             not null
@@ -27,11 +28,12 @@
 #
 # Indexes
 #
-#  index_submitters_on_account_id_and_id  (account_id,id)
-#  index_submitters_on_email              (email)
-#  index_submitters_on_external_id        (external_id)
-#  index_submitters_on_slug               (slug) UNIQUE
-#  index_submitters_on_submission_id      (submission_id)
+#  index_submitters_on_account_id_and_id            (account_id,id)
+#  index_submitters_on_completed_at_and_account_id  (completed_at,account_id)
+#  index_submitters_on_email                        (email)
+#  index_submitters_on_external_id                  (external_id)
+#  index_submitters_on_slug                         (slug) UNIQUE
+#  index_submitters_on_submission_id                (submission_id)
 #
 # Foreign Keys
 #
@@ -41,6 +43,7 @@ class Submitter < ApplicationRecord
   belongs_to :submission
   belongs_to :account
   has_one :template, through: :submission
+  has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 
   attribute :values, :string, default: -> { {} }
   attribute :preferences, :string, default: -> { {} }
@@ -54,7 +57,7 @@ class Submitter < ApplicationRecord
   has_many_attached :documents
   has_many_attached :attachments
   has_many_attached :preview_documents
-  has_many :template_accesses, through: :template
+  has_many :template_accesses, through: :submission
   has_many :email_events, as: :emailable, dependent: (Docuseal.multitenant? ? nil : :destroy)
 
   has_many :document_generation_events, dependent: :destroy

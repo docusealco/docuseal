@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class AccountConfigsController < ApplicationController
-  before_action :load_account_config
-  authorize_resource :account_config
+  before_action :load_account_config, only: :create
+  authorize_resource :account_config, only: :create
+
+  load_and_authorize_resource :account_config, only: :destroy
 
   ALLOWED_KEYS = [
     AccountConfig::ALLOW_TYPED_SIGNATURE,
@@ -13,8 +15,11 @@ class AccountConfigsController < ApplicationController
     AccountConfig::ESIGNING_PREFERENCE_KEY,
     AccountConfig::FORM_WITH_CONFETTI_KEY,
     AccountConfig::DOWNLOAD_LINKS_AUTH_KEY,
+    AccountConfig::DOWNLOAD_LINKS_EXPIRE_KEY,
     AccountConfig::FORCE_SSO_AUTH_KEY,
     AccountConfig::FLATTEN_RESULT_PDF_KEY,
+    AccountConfig::ENFORCE_SIGNING_ORDER_KEY,
+    AccountConfig::WITH_FILE_LINKS_KEY,
     AccountConfig::WITH_SIGNATURE_ID,
     AccountConfig::COMBINE_PDF_RESULT_KEY,
     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
@@ -27,6 +32,14 @@ class AccountConfigsController < ApplicationController
     @account_config.update!(account_config_params)
 
     head :ok
+  end
+
+  def destroy
+    raise InvalidKey unless ALLOWED_KEYS.include?(@account_config.key)
+
+    @account_config.destroy!
+
+    redirect_back(fallback_location: root_path)
   end
 
   private

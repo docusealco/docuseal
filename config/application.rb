@@ -25,10 +25,14 @@ module DocuSeal
 
     config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
 
-    config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT es it de fr pl uk cs pt he nl ar ko]
+    config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL
+                                       es it de fr nl pl uk cs pt he ar ko ja]
     config.i18n.fallbacks = [:en]
 
     config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
+
+    config.content_security_policy_nonce_generator = ->(_) { SecureRandom.base64(16) }
+    config.content_security_policy_nonce_directives = %w[script-src]
 
     config.action_view.frozen_string_literal = true
 

@@ -1,0 +1,14 @@
+<%= render 'shared/turbo_modal', title: t('reveal_api_key') do %>
+  <%= form_tag settings_reveal_access_token_path, enctype: 'multipart/form-data', data: { turbo_frame: :_top } do %>
+    <div class="form-control">
+      <%= label_tag :password, t('enter_your_password_to_reveal_the_api_key'), class: 'label' %>
+      <%= password_field_tag :password, nil, class: 'base-input', autocomplete: 'current-password', required: true, autofocus: true, placeholder: t('password') %>
+      <% if local_assigns[:error_message].present? %>
+        <span class="label-text-alt text-red-400 mt-1"><%= local_assigns[:error_message] %></span>
+      <% end %>
+    </div>
+    <div class="form-control mt-4">
+      <%= submit_tag t('submit'), class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>

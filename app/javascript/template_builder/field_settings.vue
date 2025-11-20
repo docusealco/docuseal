@@ -1,32 +1,5 @@
 <template>
   <div
-    v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative"
-    @click.stop
-  >
-    <select
-      :placeholder="t('format')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
-    >
-      <option
-        v-for="format in numberFormats"
-        :key="format"
-        :value="format"
-        :selected="format === field.preferences?.format || (format === 'none' && !field.preferences?.format)"
-      >
-        {{ formatNumber(123456789.567, format) }}
-      </option>
-    </select>
-    <label
-      :style="{ backgroundColor }"
-      class="absolute -top-1 left-2.5 px-1 h-4"
-      style="font-size: 8px"
-    >
-      {{ t('format') }}
-    </label>
-  </div>
-  <div
     v-if="field.type === 'verification'"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -54,7 +27,7 @@
     </label>
   </div>
   <div
-    v-if="['number', 'cells'].includes(field.type)"
+    v-if="['cells'].includes(field.type)"
     class="py-1.5 px-1 relative"
     @click.stop
   >
@@ -153,13 +126,13 @@
       <option
         v-for="(key, value) in validations"
         :key="key"
-        :selected="field.validation?.pattern ? value === field.validation.pattern : value === 'none'"
-        :value="value"
+        :selected="lengthValidation ? key == 'length' : (field.validation?.pattern ? value === field.validation.pattern : key === 'none')"
+        :value="key"
       >
         {{ t(key) }}
       </option>
       <option
-        :selected="field.validation && !validations[field.validation.pattern]"
+        :selected="field.validation && !validations[field.validation.pattern] && !lengthValidation"
         :value="validations[field.validation?.pattern] || !field.validation?.pattern ? 'custom' : field.validation?.pattern"
       >
         {{ t('custom') }}
@@ -174,7 +147,122 @@
     </label>
   </div>
   <div
-    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern]"
+    v-if="['text', 'cells'].includes(field.type) && field.validation && lengthValidation"
+    class="py-1.5 px-1 relative flex space-x-1"
+    @click.stop
+  >
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('min')"
+        type="number"
+        min="0"
+        :value="lengthValidation.min"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        @input="field.validation.pattern = `.{${$event.target.value || 0},${lengthValidation.max || ''}}`"
+        @blur="save"
+      >
+      <label
+        v-if="lengthValidation.min"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('min') }}
+      </label>
+    </div>
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('max')"
+        type="number"
+        min="1"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        :value="lengthValidation.max"
+        @input="field.validation.pattern = `.{${lengthValidation.min},${$event.target.value || ''}}`"
+        @blur="save"
+      >
+      <label
+        v-if="lengthValidation.max"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('max') }}
+      </label>
+    </div>
+  </div>
+  <div
+    v-if="field.type === 'number'"
+    class="py-1.5 px-1 relative flex space-x-1"
+    @click.stop
+  >
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('min')"
+        type="number"
+        min="0"
+        :value="field.validation?.min"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        @input="[field.validation ||= {}, $event.target.value ? field.validation.min = $event.target.value : delete field.validation.min]"
+        @blur="save"
+      >
+      <label
+        v-if="field.validation?.min"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('min') }}
+      </label>
+    </div>
+    <div class="w-1/2 relative">
+      <input
+        :placeholder="t('max')"
+        type="number"
+        min="1"
+        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        :value="field.validation?.max"
+        @input="[field.validation ||= {}, $event.target.value ? field.validation.max = $event.target.value : delete field.validation.max]"
+        @blur="save"
+      >
+      <label
+        v-if="field.validation?.max"
+        :style="{ backgroundColor }"
+        class="absolute -top-2.5 left-1.5 px-1 h-4"
+        style="font-size: 8px"
+      >
+        {{ t('max') }}
+      </label>
+    </div>
+  </div>
+  <div
+    v-if="field.type === 'number'"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <select
+      :placeholder="t('format')"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
+    >
+      <option
+        v-for="format in numberFormats"
+        :key="format"
+        :value="format"
+        :selected="format === field.preferences?.format || (format === 'none' && !field.preferences?.format)"
+      >
+        {{ formatNumber(123456789.567, format) }}
+      </option>
+    </select>
+    <label
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('format') }}
+    </label>
+  </div>
+  <div
+    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
     class="py-1.5 px-1 relative"
     @click.stop
   >
@@ -193,6 +281,27 @@
       style="font-size: 8px"
     >
       {{ t('regexp_validation') }}
+    </label>
+  </div>
+  <div
+    v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
+    class="py-1.5 px-1 relative"
+    @click.stop
+  >
+    <input
+      v-model="field.validation.message"
+      :placeholder="t('error_message')"
+      dir="auto"
+      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      @blur="save"
+    >
+    <label
+      v-if="field.validation.message"
+      :style="{ backgroundColor }"
+      class="absolute -top-1 left-2.5 px-1 h-4"
+      style="font-size: 8px"
+    >
+      {{ t('error_message') }}
     </label>
   </div>
   <div
@@ -239,7 +348,7 @@
         {{ t('any') }}
       </option>
       <option
-        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'upload']"
+        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']"
         :key="type"
         :value="type"
         :selected="field.preferences?.format === type"
@@ -256,7 +365,22 @@
     </label>
   </div>
   <li
-    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification'"
+    v-if="[true, false].includes(withSignatureId) && field.type === 'signature'"
+    @click.stop
+  >
+    <label class="cursor-pointer py-1.5">
+      <input
+        :checked="field.preferences?.with_signature_id"
+        type="checkbox"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
+        class="toggle toggle-xs"
+        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, save()]"
+      >
+      <span class="label-text">{{ t('signature_id') }}</span>
+    </label>
+  </li>
+  <li
+    v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification' && field.type !== 'strikethrough' && field.type !== 'heading'"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -327,7 +451,7 @@
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type) && !defaultField"
+    v-if="['text', 'number'].includes(field.type)"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -335,16 +459,32 @@
         v-model="field.readonly"
         type="checkbox"
         class="toggle toggle-xs"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.readonly))"
         @update:model-value="save"
       >
       <span class="label-text">{{ t('read_only') }}</span>
+    </label>
+  </li>
+  <li
+    v-if="withPrefillable && ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone'].includes(field['type'])"
+    @click.stop
+  >
+    <label class="cursor-pointer py-1.5">
+      <input
+        v-model="field.prefillable"
+        type="checkbox"
+        :disabled="!editable || (defaultField && [true, false].includes(defaultField.prefillable))"
+        class="toggle toggle-xs"
+        @update:model-value="save"
+      >
+      <span class="label-text">{{ t('prefillable') }}</span>
     </label>
   </li>
   <hr
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="field.type == 'text'">
+  <li v-if="['text', 'number', 'date', 'select', 'heading'].includes(field.type)">
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
@@ -358,7 +498,7 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp'"
+    v-if="field.type != 'stamp' && field.type != 'heading' && field.type != 'strikethrough'"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -373,7 +513,7 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp'"
+    v-if="field.type != 'stamp' && field.type != 'heading'"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -438,7 +578,7 @@
       </a>
     </li>
   </template>
-  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells'].includes(field.type)">
+  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
     <a
       href="#"
       class="text-sm py-1 px-2"
@@ -474,6 +614,11 @@ export default {
       type: Object,
       required: true
     },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
     backgroundColor: {
       type: String,
       required: false,
@@ -483,6 +628,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withRequired: {
       type: Boolean,
@@ -503,6 +653,7 @@ export default {
   emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area'],
   data () {
     return {
+      selectedValidation: ''
     }
   },
   computed: {
@@ -547,8 +698,16 @@ export default {
 
       return formats
     },
+    lengthValidation () {
+      if (this.field.validation?.pattern && this.selectedValidation !== 'custom') {
+        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+      } else {
+        return null
+      }
+    },
     validations () {
       return {
+        '.{0,}': 'length',
         '^[0-9]{3}-[0-9]{2}-[0-9]{4}$': 'ssn',
         '^[0-9]{2}-[0-9]{7}$': 'ein',
         '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$': 'email',
@@ -567,13 +726,21 @@ export default {
   methods: {
     onChangeValidation (event) {
       if (event.target.value === 'custom') {
-        this.field.validation = { pattern: '' }
+        this.selectedValidation = 'custom'
+
+        this.field.validation = { pattern: '', message: '' }
 
         this.$nextTick(() => this.$refs.validationCustom.focus())
       } else if (event.target.value) {
         this.field.validation ||= {}
-        this.field.validation.pattern = event.target.value
+        this.field.validation.pattern =
+          Object.keys(this.validations).find(key => this.validations[key] === event.target.value)
+
+        this.selectedValidation = event.target.value
+        delete this.field.validation.message
       } else {
+        this.selectedValidation = ''
+
         delete this.field.validation
       }
 

@@ -6,10 +6,13 @@
     "@babel/plugin-transform-runtime": "7.21.4",
     "@babel/preset-env": "7.21.5",
     "@babel/runtime": "7.21.5",
-    "@eid-easy/eideasy-widget": "^2.132.1",
+    "@braintree/sanitize-url": "^7.1.1",
+    "@codemirror/lang-html": "^6.4.9",
+    "@eid-easy/eideasy-widget": "^2.171.0",
     "@github/catalyst": "^2.0.0-beta",
     "@hotwired/turbo": "https://github.com/docusealco/turbo#main",
     "@hotwired/turbo-rails": "^7.3.0",
+    "@specious/htmlflow": "^1.1.0",
     "@tabler/icons-vue": "^2.47.0",
     "autocompleter": "^9.1.0",
     "autoprefixer": "^10.4.14",
@@ -17,10 +20,12 @@
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-macros": "^3.1.0",
     "canvas-confetti": "^1.6.0",
+    "codemirror": "^6.0.2",
     "compression-webpack-plugin": "10.0.0",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^5.0.0",
     "daisyui": "^3.9.4",
+    "driver.js": "^1.3.5",
     "mathjs": "^12.4.0",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss": "^8.4.31",
@@ -33,7 +38,7 @@
     "shakapacker": "8.0.0",
     "signature_pad": "^4.1.5",
     "snarkdown": "^2.0.0",
-    "tailwindcss": "^3.3.2",
+    "tailwindcss": "^3.4.17",
     "terser-webpack-plugin": "5.3.8",
     "uuid": "^9.0.0",
     "vue": "^3.3.2",
@@ -56,7 +61,7 @@
     ]
   },
   "browserslist": [
-    "last 3 years"
+    "last 5 years"
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",

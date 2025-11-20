@@ -4,7 +4,7 @@
       <label
         v-if="showFieldNames"
         :for="field.uuid"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -15,7 +15,7 @@
         </template>
       </label>
       <button
-        class="btn btn-outline btn-sm"
+        class="btn btn-outline btn-sm reupload-button"
         @click.prevent="remove"
       >
         <IconReload :width="16" />
@@ -25,7 +25,7 @@
     <div>
       <img
         :src="attachmentsIndex[modelValue].url"
-        class="h-52 border border-base-300 rounded mx-auto"
+        class="h-52 border border-base-300 rounded mx-auto uploaded-image-preview"
       >
     </div>
     <input
@@ -40,7 +40,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>

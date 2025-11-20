@@ -42,6 +42,15 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 15
 
+Style/MultipleComparison:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Naming/PredicateMethod:
+  Enabled: false
+
 Layout/LineLength:
   AllowedPatterns: ['\A\s*#']
 
@@ -63,10 +72,13 @@ RSpec/MultipleExpectations:
   Max: 25
 
 RSpec/ExampleLength:
-  Max: 50
+  Max: 500
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 9
+  Max: 15
+
+RSpec/AnyInstance:
+  Enabled: false
 
 Metrics/BlockNesting:
   Max: 5

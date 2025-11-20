@@ -4,22 +4,50 @@ module SigningFormHelper
   module_function
 
   def draw_canvas
-    page.find('canvas').click([], { x: 150, y: 100 })
     page.execute_script <<~JS
       const canvas = document.getElementsByTagName('canvas')[0];
-      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
 
-      ctx.beginPath();
-      ctx.moveTo(150, 100);
-      ctx.lineTo(450, 100);
-      ctx.stroke();
+      const startX = rect.left + 50;
+      const startY = rect.top + 100;
 
-      ctx.beginPath();
-      ctx.moveTo(150, 100);
-      ctx.lineTo(150, 150);
-      ctx.stroke();
+      const amplitude = 20;
+      const wavelength = 30;
+      const length = 300;
+
+      function dispatchPointerEvent(type, x, y) {
+        const event = new PointerEvent(type, {
+          pointerId: 1,
+          pointerType: 'pen',
+          isPrimary: true,
+          clientX: x,
+          clientY: y,
+          bubbles: true,
+          pressure: 0.5
+        });
+
+        canvas.dispatchEvent(event);
+      }
+
+      dispatchPointerEvent('pointerdown', startX, startY);
+
+      let x = 0;
+      function drawStep() {
+        if (x > length) {
+          dispatchPointerEvent('pointerup', startX + x, startY);
+          return;
+        }
+
+        const y = startY + amplitude * Math.sin((x / wavelength) * 2 * Math.PI);
+        dispatchPointerEvent('pointermove', startX + x, y);
+        x += 5;
+        requestAnimationFrame(drawStep);
+      }
+
+      drawStep();
     JS
-    sleep 0.5
+
+    sleep 0.1
   end
 
   def field_value(submitter, field_name)

@@ -5,26 +5,20 @@ module Api
     load_and_authorize_resource :submitter
 
     def index
-      submitters = Submitters.search(@submitters, params[:q])
+      submitters = Submitters.search(current_user, @submitters, params[:q])
 
-      submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
-      submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
-      submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
-
-      if params[:template_id].present?
-        submitters = submitters.joins(:submission).where(submission: { template_id: params[:template_id] })
-      end
-
-      submitters = maybe_filder_by_completed_at(submitters, params)
+      submitters = filter_submitters(submitters, params)
 
       submitters = paginate(
         submitters.preload(:template, :submission, :submission_events,
                            documents_attachments: :blob, attachments_attachments: :blob)
       )
 
+      expires_at = Accounts.link_expires_at(current_account)
+
       render json: {
         data: submitters.map do |s|
-                Submitters::SerializeForApi.call(s, with_template: true, with_events: true, params:)
+                Submitters::SerializeForApi.call(s, with_template: true, with_events: true, params:, expires_at:)
               end,
         pagination: {
           count: submitters.size,
@@ -42,17 +36,19 @@ module Api
 
     def update
       if @submitter.completed_at?
-        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_entity
+        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
       end
 
-      role = @submitter.submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
+      submission = @submitter.submission
+      role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
 
-      normalized_params, new_attachments =
-        Submissions::NormalizeParamUtils.normalize_submitter_params!(submitter_params.merge(role:), @submitter.template,
-                                                                     for_submitter: @submitter)
+      normalized_params, new_attachments = Submissions::NormalizeParamUtils.normalize_submitter_params!(
+        submitter_params.merge(role:),
+        @submitter.template || Template.new(submitters: submission.template_submitters, account: @submitter.account),
+        for_submitter: @submitter
+      )
 
-      Submissions::CreateFromSubmitters.maybe_set_template_fields(@submitter.submission,
-                                                                  [normalized_params],
+      Submissions::CreateFromSubmitters.maybe_set_template_fields(submission, [normalized_params],
                                                                   default_submitter_uuid: @submitter.uuid)
 
       assign_submitter_attrs(@submitter, normalized_params)
@@ -73,14 +69,14 @@ module Api
         Submitters.send_signature_requests([@submitter])
       end
 
-      render json: Submitters::SerializeForApi.call(@submitter, with_template: false,
-                                                                with_urls: true,
-                                                                with_events: false,
-                                                                params:)
+      SearchEntries.enqueue_reindex(@submitter)
+
+      render json: Submitters::SerializeForApi.call(@submitter, with_template: false, with_urls: true,
+                                                                with_events: false, params:)
     rescue Submitters::NormalizeValues::BaseError, DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     def submitter_params
@@ -88,9 +84,9 @@ module Api
 
       submitter_params.permit(
         :send_email, :send_sms, :reply_to, :completed_redirect_url, :uuid, :name, :email, :role,
-        :completed, :phone, :application_key, :external_id, :go_to_last,
+        :completed, :phone, :application_key, :external_id, :go_to_last, :require_phone_2fa,
         { metadata: {}, values: {}, readonly_fields: [], message: %i[subject body],
-          fields: [[:name, :uuid, :default_value, :value,
+          fields: [[:name, :uuid, :default_value, :value, :required,
                     :readonly, :validation_pattern, :invalid_message,
                     { default_value: [], value: [], preferences: {} }]] }
       )
@@ -163,6 +159,19 @@ module Api
       submitter
     end
 
+    def filter_submitters(submitters, params)
+      submitters = submitters.where(external_id: params[:application_key]) if params[:application_key].present?
+      submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
+      submitters = submitters.where(slug: params[:slug]) if params[:slug].present?
+      submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
+
+      if params[:template_id].present?
+        submitters = submitters.joins(:submission).where(submissions: { template_id: params[:template_id] })
+      end
+
+      maybe_filder_by_completed_at(submitters, params)
+    end
+
     def assign_external_id(submitter, attrs)
       submitter.external_id = attrs[:application_key] if attrs.key?(:application_key)
       submitter.external_id = attrs[:external_id] if attrs.key?(:external_id)
@@ -186,6 +195,10 @@ module Api
 
       submitter.preferences['send_sms'] = submitter_preferences['send_sms'] if submitter_preferences.key?('send_sms')
       submitter.preferences['reply_to'] = submitter_preferences['reply_to'] if submitter_preferences.key?('reply_to')
+      if submitter_preferences.key?('require_phone_2fa')
+        submitter.preferences['require_phone_2fa'] = submitter_preferences['require_phone_2fa']
+      end
+
       if submitter_preferences.key?('go_to_last')
         submitter.preferences['go_to_last'] = submitter_preferences['go_to_last']
       end

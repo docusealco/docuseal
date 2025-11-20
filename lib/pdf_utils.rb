@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module PdfUtils
+  DEFAULT_DPI = 72
+  US_LETTER_W = DEFAULT_DPI * 8.5
+
   module_function
 
   def encrypted?(data, password: nil)
@@ -36,7 +39,8 @@ module PdfUtils
     end
 
     merged_content = StringIO.new
-    merged_pdf.write(merged_content)
+    merged_pdf.validate(auto_correct: true)
+    merged_pdf.write(merged_content, validate: false)
     merged_content.rewind
 
     merged_content

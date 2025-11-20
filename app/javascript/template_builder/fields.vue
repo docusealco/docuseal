@@ -2,7 +2,7 @@
   <div :class="withStickySubmitters ? 'sticky top-0 z-[1]' : ''">
     <FieldSubmitter
       :model-value="selectedSubmitter.uuid"
-      class="roles-dropdown w-full rounded-lg"
+      class="roles-dropdown w-full rounded-lg roles-dropdown"
       :style="withStickySubmitters ? { backgroundColor } : {}"
       :submitters="submitters"
       :menu-style="{ overflow: 'auto', display: 'flex', flexDirection: 'row', maxHeight: 'calc(100vh - 120px)', backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
@@ -25,11 +25,13 @@
       :data-uuid="field.uuid"
       :field="field"
       :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
-      :editable="editable && (!fieldsDragFieldRef.value || fieldsDragFieldRef.value !== field)"
+      :editable="editable"
+      :with-signature-id="withSignatureId"
+      :with-prefillable="withPrefillable"
       :default-field="defaultFieldsIndex[field.name]"
       :draggable="editable"
-      @dragstart="fieldsDragFieldRef.value = field"
-      @dragend="fieldsDragFieldRef.value = null"
+      @dragstart="[fieldsDragFieldRef.value = field, removeDragOverlay($event), setDragPlaceholder($event)]"
+      @dragend="[fieldsDragFieldRef.value = null, $emit('set-drag-placeholder', null)]"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
@@ -74,8 +76,8 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
-          class="default-field border border-base-300 rounded rounded-tr-none relative group mb-2"
-          @dragstart="onDragstart({ type: 'text', ...field })"
+          class="border border-base-300 rounded relative group mb-2 default-field fields-list-item"
+          @dragstart="onDragstart($event, field)"
           @dragend="$emit('drag-end')"
         >
           <div class="flex items-center justify-between relative cursor-grab">
@@ -104,19 +106,21 @@
   </div>
   <div
     v-if="editable && !onlyDefinedFields"
-    class="grid grid-cols-3 gap-1 pb-2"
+    id="field-types-grid"
+    class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
     <template
       v-for="(icon, type) in fieldIconsSorted"
       :key="type"
     >
       <button
-        v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification')"
+        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))"
+        :id="`${type}_type_field_button`"
         draggable="true"
-        class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative"
+        class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
-        @dragstart="onDragstart({ type: type })"
+        @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
         @click="['file', 'payment', 'verification'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
@@ -142,7 +146,7 @@
         <a
           href="https://www.docuseal.com/pricing"
           target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
         >
           <div class="w-0 absolute left-0">
@@ -166,9 +170,9 @@
         :data-tip="t('obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more')"
       >
         <a
-          href="https://www.docuseal.com/contact"
+          href="https://www.docuseal.com/qualified-electronic-signature"
           target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
+          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
         >
           <div class="w-0 absolute left-0">
@@ -189,7 +193,7 @@
     </template>
   </div>
   <div
-    v-if="fields.length < 4 && editable && withHelp"
+    v-if="fields.length < 4 && editable && withHelp && !showTourStartForm"
     class="text-xs p-2 border border-base-200 rounded"
   >
     <ul class="list-disc list-outside ml-3">
@@ -204,13 +208,67 @@
       </li>
     </ul>
   </div>
+  <div
+    v-if="withFieldsDetection && editable && fields.length < 2"
+    class="my-2"
+  >
+    <button
+      class="btn w-full"
+      :class="{ 'bg-base-300': fieldPagesLoaded !== null }"
+      @click="fieldPagesLoaded !== null ? null : detectFields()"
+    >
+      <template v-if="fieldPagesLoaded !== null">
+        <IconInnerShadowTop
+          width="22"
+          class="animate-spin"
+        />
+        <span
+          v-if="analyzingProgress"
+          class="hidden md:inline"
+        >
+          {{ Math.round(analyzingProgress * 100) }}% {{ t('analyzing_') }}
+        </span>
+        <span
+          v-else
+          class="hidden md:inline"
+        >
+          {{ fieldPagesLoaded }} / {{ numberOfPages }} {{ t('processing_') }}
+        </span>
+      </template>
+      <template v-else>
+        <IconSparkles width="22" />
+        <span
+          class="hidden md:inline"
+        >
+          {{ t('autodetect_fields') }}
+        </span>
+      </template>
+    </button>
+  </div>
+  <div
+    v-show="fields.length < 4 && editable && withHelp && showTourStartForm"
+    class="rounded py-2 px-4 w-full border border-dashed border-base-300"
+  >
+    <div class="text-center text-sm">
+      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
+    </div>
+    <div class="flex justify-center">
+      <label
+        for="start_tour_button"
+        class="btn btn-sm btn-warning w-40 mt-2"
+        @click="startTour"
+      >
+        {{ t('start_tour') }}
+      </label>
+    </div>
+  </div>
 </template>
 
 <script>
 import Field from './field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
-import { IconLock, IconCirclePlus } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 
 export default {
@@ -219,11 +277,13 @@ export default {
     Field,
     FieldType,
     IconCirclePlus,
+    IconSparkles,
+    IconInnerShadowTop,
     FieldSubmitter,
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withPayment', 't', 'fieldsDragFieldRef'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch'],
   props: {
     fields: {
       type: Array,
@@ -233,6 +293,21 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withSignatureId: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     template: {
       type: Object,
@@ -290,17 +365,29 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    showTourStartForm: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
   data () {
     return {
+      fieldPagesLoaded: null,
+      analyzingProgress: 0,
       defaultFieldsSearch: ''
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
+    numberOfPages () {
+      return this.template.documents.reduce((acc, doc) => {
+        return acc + doc.metadata?.pdf?.number_of_pages || doc.preview_images.length
+      }, 0)
+    },
     isShowFieldSearch () {
       if (this.withFieldsSearch === false) {
         return false
@@ -315,6 +402,9 @@ export default {
         return acc
       }, {})
     },
+    skipTypes () {
+      return ['heading', 'datenow', 'strikethrough']
+    },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
         return this.fieldTypes.reduce((acc, type) => {
@@ -323,7 +413,7 @@ export default {
           return acc
         }, {})
       } else {
-        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => key !== 'heading'))
+        return Object.fromEntries(Object.entries(this.fieldIcons).filter(([key]) => !this.skipTypes.includes(key)))
       }
     },
     submitterFields () {
@@ -343,22 +433,134 @@ export default {
     }
   },
   methods: {
-    onDragstart (field) {
+    onDragstart (event, field) {
+      this.removeDragOverlay(event)
+
+      this.setDragPlaceholder(event)
+
       this.$emit('set-drag', field)
     },
+    detectFields () {
+      const fields = []
+
+      this.fieldPagesLoaded = 0
+
+      this.baseFetch(`/templates/${this.template.id}/detect_fields`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(async (response) => {
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder('utf-8')
+        let buffer = ''
+
+        while (true) {
+          const { value, done } = await reader.read()
+
+          buffer += decoder.decode(value, { stream: true })
+
+          const lines = buffer.split('\n\n')
+
+          buffer = lines.pop()
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const jsonStr = line.replace(/^data: /, '')
+              const data = JSON.parse(jsonStr)
+
+              if (data.error) {
+                if ((data.fields || fields).length) {
+                  this.template.fields = data.fields || fields
+
+                  this.save()
+                } else {
+                  alert(data.error)
+                }
+
+                break
+              } else if (data.analyzing) {
+                this.analyzingProgress = data.progress
+              } else if (data.completed) {
+                this.fieldPagesLoaded = null
+
+                if (data.submitters) {
+                  this.template.submitters = data.submitters
+                  this.$emit('select-submitter', this.template.submitters[0])
+                }
+
+                this.template.fields = data.fields || fields
+
+                this.save()
+
+                break
+              } else if (data.fields) {
+                data.fields.forEach((f) => {
+                  if (!f.submitter_uuid) {
+                    f.submitter_uuid = this.template.submitters[0].uuid
+                  }
+                })
+
+                this.fieldPagesLoaded += 1
+
+                fields.push(...data.fields)
+              }
+            }
+          }
+
+          if (done) break
+        }
+      }).catch(error => {
+        console.error('Error in streaming message: ', error)
+      }).finally(() => {
+        this.fieldPagesLoaded = null
+        this.analyzingProgress = null
+        this.isFieldsLoading = false
+      })
+    },
+    setDragPlaceholder (event) {
+      this.$emit('set-drag-placeholder', {
+        offsetX: event.offsetX,
+        offsetY: event.offsetY,
+        x: event.clientX - event.offsetX,
+        y: event.clientY - event.offsetY,
+        w: event.currentTarget.clientWidth + 2,
+        h: event.currentTarget.clientHeight + 2
+      })
+    },
+    removeDragOverlay (event) {
+      const root = this.$el.getRootNode()
+      const hiddenEl = document.createElement('div')
+
+      hiddenEl.style.width = '1px'
+      hiddenEl.style.height = '1px'
+      hiddenEl.style.opacity = '0'
+      hiddenEl.style.position = 'fixed'
+
+      root.querySelector('#docuseal_modal_container').appendChild(hiddenEl)
+
+      event.dataTransfer.setDragImage(hiddenEl, 0, 0)
+
+      setTimeout(() => { hiddenEl.remove() }, 1000)
+    },
+    startTour () {
+      document.querySelector('app-tour').start()
+    },
     onFieldDragover (e) {
-      const targetField = e.target.closest('[data-uuid]')
-      const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
+      if (this.fieldsDragFieldRef.value) {
+        const targetField = e.target.closest('[data-uuid]')
+        const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
 
-      if (dragField && targetField && targetField !== dragField) {
-        const fields = Array.from(this.$refs.fields.children)
-        const currentIndex = fields.indexOf(dragField)
-        const targetIndex = fields.indexOf(targetField)
+        if (dragField && targetField && targetField !== dragField) {
+          const fields = Array.from(this.$refs.fields.children)
+          const currentIndex = fields.indexOf(dragField)
+          const targetIndex = fields.indexOf(targetField)
 
-        if (currentIndex < targetIndex) {
-          targetField.after(dragField)
-        } else {
-          targetField.before(dragField)
+          if (currentIndex < targetIndex) {
+            targetField.after(dragField)
+          } else {
+            targetField.before(dragField)
+          }
         }
       }
     },

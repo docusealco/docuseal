@@ -7,7 +7,7 @@ class SubmitFormInviteController < ApplicationController
   def create
     submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-    return head :unprocessable_entity unless can_invite?(submitter)
+    return head :unprocessable_content unless can_invite?(submitter)
 
     invite_submitters = filter_invite_submitters(submitter, 'invite_by_uuid')
     optional_invite_submitters = filter_invite_submitters(submitter, 'optional_invite_by_uuid')
@@ -34,7 +34,7 @@ class SubmitFormInviteController < ApplicationController
 
       head :ok
     else
-      head :unprocessable_entity
+      head :unprocessable_content
     end
   end
 
@@ -45,7 +45,7 @@ class SubmitFormInviteController < ApplicationController
       !submitter.completed_at? &&
       !submitter.submission.archived_at? &&
       !submitter.submission.expired? &&
-      !submitter.submission.template.archived_at?
+      !submitter.submission.template&.archived_at?
   end
 
   def filter_invite_submitters(submitter, key = 'invite_by_uuid')

@@ -10,27 +10,40 @@ class SendSubmissionEmailController < ApplicationController
   SEND_DURATION = 30.minutes
 
   def create
-    @submitter =
-      if params[:template_slug]
-        Submitter.joins(submission: :template).find_by!(email: params[:email].to_s.downcase,
-                                                        template: { slug: params[:template_slug] })
-      elsif params[:submission_slug]
-        Submitter.joins(:submission).find_by!(email: params[:email].to_s.downcase,
-                                              submission: { slug: params[:submission_slug] })
-      else
-        Submitter.find_by!(slug: params[:submitter_slug])
+    if params[:template_slug]
+      template = Template.find_by!(slug: params[:template_slug])
+
+      @submitter =
+        Submitter.completed.where(submission: template.submissions).find_by!(email: params[:email].to_s.downcase)
+    elsif params[:submission_slug]
+      submission = Submission.find_by(slug: params[:submission_slug])
+
+      if submission
+        @submitter = Submitter.completed.find_by(submission: submission, email: params[:email].to_s.downcase)
       end
+
+      return redirect_to submissions_preview_completed_path(params[:submission_slug], status: :error) unless @submitter
+    else
+      @submitter = Submitter.completed.find_by!(slug: params[:submitter_slug])
+    end
 
     RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 
-    unless EmailEvent.exists?(tag: :submitter_documents_copy, email: @submitter.email, emailable: @submitter,
-                              event_type: :send, created_at: SEND_DURATION.ago..Time.current)
-      SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later!
-    end
+    SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later! if can_send?(@submitter)
 
     respond_to do |f|
       f.html { render :success }
       f.json { head :ok }
     end
+  end
+
+  private
+
+  def can_send?(submitter)
+    return false if submitter.account.archived_at?
+    return false if EmailEvent.exists?(tag: :submitter_documents_copy, email: submitter.email, emailable: submitter,
+                                       event_type: :send, created_at: SEND_DURATION.ago..Time.current)
+
+    true
   end
 end

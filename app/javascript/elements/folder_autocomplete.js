@@ -2,6 +2,8 @@ import autocomplete from 'autocompleter'
 
 export default class extends HTMLElement {
   connectedCallback () {
+    if (this.dataset.enabled === 'false') return
+
     autocomplete({
       input: this.input,
       preventSubmit: this.dataset.submitOnSelect === 'true' ? 0 : 1,
@@ -14,11 +16,15 @@ export default class extends HTMLElement {
   }
 
   onSelect = (item) => {
-    this.input.value = item.name
+    this.input.value = this.dataset.parentName ? item.name : item.full_name
   }
 
   fetch = (text, resolve) => {
     const queryParams = new URLSearchParams({ q: text })
+
+    if (this.dataset.parentName) {
+      queryParams.append('parent_name', this.dataset.parentName)
+    }
 
     fetch('/template_folders_autocomplete?' + queryParams).then(async (resp) => {
       const items = await resp.json()
@@ -34,7 +40,7 @@ export default class extends HTMLElement {
 
     div.setAttribute('dir', 'auto')
 
-    div.textContent = item.name
+    div.textContent = this.dataset.parentName ? item.name : item.full_name
 
     return div
   }

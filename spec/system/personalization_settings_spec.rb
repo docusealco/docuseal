@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Personalization Settings', :js do
   let!(:account) { create(:account) }
   let!(:user) { create(:user, account:) }

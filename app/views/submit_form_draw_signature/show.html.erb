@@ -4,7 +4,6 @@
     <%= render 'layouts/head_tags' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
       <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
       <%= javascript_pack_tag 'rollbar', 'draw', defer: true %>
@@ -12,7 +11,6 @@
       <%= javascript_pack_tag 'draw', defer: true %>
     <% end %>
     <%= stylesheet_pack_tag 'form', media: 'all' %>
-    <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>
   <body>
     <% field = (@submitter.submission.template_fields || @submitter.template.fields).find { |f| f['type'] == 'signature' && f['uuid'].starts_with?(params[:f]) } %>

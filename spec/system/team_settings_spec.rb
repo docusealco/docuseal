@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Team Settings' do
   let(:account) { create(:account) }
   let(:second_account) { create(:account) }
@@ -94,13 +92,29 @@ RSpec.describe 'Team Settings' do
       end
     end
 
+    it 'does not allow to create a new user with an invalid email' do
+      click_link 'New User'
+
+      within '#modal' do
+        fill_in 'First name', with: 'Joseph'
+        fill_in 'Last name', with: 'Smith'
+        fill_in 'Email', with: 'joseph.smith@gmail'
+        fill_in 'Password', with: 'password'
+
+        expect do
+          click_button 'Submit'
+        end.not_to change(User, :count)
+
+        expect(page).to have_content('Email is invalid')
+      end
+    end
+
     it 'updates a user' do
       first(:link, 'Edit').click
 
       fill_in 'First name', with: 'Adam'
       fill_in 'Last name', with: 'Meier'
       fill_in 'Email', with: 'adam.meier@example.com'
-      fill_in 'Password', with: 'new_password'
 
       expect do
         click_button 'Submit'

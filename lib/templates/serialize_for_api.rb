@@ -6,7 +6,7 @@ module Templates
       only: %w[
         id archived_at fields name preferences schema
         slug source submitters created_at updated_at
-        author_id external_id folder_id
+        author_id external_id folder_id shared_link
       ],
       methods: %i[application_key folder_name],
       include: { author: { only: %i[id email first_name last_name] } }
@@ -14,7 +14,8 @@ module Templates
 
     module_function
 
-    def call(template, schema_documents = template.schema_documents.preload(:blob), preview_image_attachments = nil)
+    def call(template, schema_documents: template.schema_documents.preload(:blob), preview_image_attachments: nil,
+             expires_at: Accounts.link_expires_at(Account.new(id: template.account_id)))
       json = template.as_json(SERIALIZE_PARAMS)
 
       preview_image_attachments ||=
@@ -25,7 +26,7 @@ module Templates
                                         name: :preview_images)
                                  .preload(:blob)
 
-      json[:documents] = template.schema.filter_map do |item|
+      json['documents'] = template.schema.filter_map do |item|
         attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
 
         unless attachment
@@ -38,11 +39,11 @@ module Templates
         first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: ['0.jpg', '0.png'] })&.blob
 
         {
-          id: attachment.id,
-          uuid: attachment.uuid,
-          url: ActiveStorage::Blob.proxy_url(attachment.blob),
-          preview_image_url: first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob),
-          filename: attachment.filename
+          'id' => attachment.id,
+          'uuid' => attachment.uuid,
+          'url' => ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:),
+          'preview_image_url' => first_page_blob && ActiveStorage::Blob.proxy_url(first_page_blob, expires_at:),
+          'filename' => attachment.filename
         }
       end
 

@@ -2,6 +2,6 @@
   <%= render 'custom_content', content: @body, submitter: @submitter %>
 <% else %>
   <p><%= t('hi_there') %>,</p>
-  <p><%= I18n.t(:name_has_been_completed_by_submitters, name: @submitter.submission.template.name, submitters: @submitter.submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.uniq.join(', ')) %></p>
+  <p><%= I18n.t(:name_has_been_completed_by_submitters, name: @submitter.submission.name || @submitter.submission.template.name, submitters: @submitter.submission.submitters.order(:completed_at).map { |e| e.name || e.email || e.phone }.uniq.join(', ')) %></p>
   <p><%= link_to submission_url(@submitter.submission), submission_url(@submitter.submission) %></p>
 <% end %>

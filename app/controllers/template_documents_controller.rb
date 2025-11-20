@@ -3,9 +3,15 @@
 class TemplateDocumentsController < ApplicationController
   load_and_authorize_resource :template
 
+  FILES_TTL = 5.minutes
+
+  def index
+    render json: @template.schema_documents.map { |d| ActiveStorage::Blob.proxy_url(d.blob, expires_at: FILES_TTL.from_now.to_i) }
+  end
+
   def create
     if params[:blobs].blank? && params[:files].blank?
-      return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_entity
+      return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_content
     end
 
     old_fields_hash = @template.fields.hash
@@ -28,6 +34,6 @@ class TemplateDocumentsController < ApplicationController
       )
     }
   rescue Templates::CreateAttachments::PdfEncrypted
-    render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_entity
+    render json: { error: 'PDF encrypted', status: 'pdf_encrypted' }, status: :unprocessable_content
   end
 end

@@ -4,9 +4,91 @@ module Submitters
   TRUE_VALUES = ['1', 'true', true].freeze
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
+  FIELD_NAME_WEIGHTS = {
+    'email' => 'A',
+    'phone' => 'B',
+    'name' => 'C',
+    'values' => 'D'
+  }.freeze
+
+  UnableToSendCode = Class.new(StandardError)
+  InvalidOtp = Class.new(StandardError)
+  MaliciousFileExtension = Class.new(StandardError)
+
+  DANGEROUS_EXTENSIONS = Set.new(%w[
+    exe com bat cmd scr pif vbs vbe js jse wsf wsh msi msp
+    hta cpl jar app deb rpm dmg pkg mpkg dll so dylib sys
+    inf reg ps1 psm1 psd1 ps1xml psc1 pssc bat cmd vb vba
+    sh bash zsh fish run out bin elf gadget workflow lnk scf
+    url desktop application action workflow apk ipa xap appx
+    appxbundle msix msixbundle diagcab diagpkg cpl msc ocx
+    drv scr ins isp mst paf prf shb shs slk ws wsc inf1 inf2
+  ].freeze)
+
   module_function
 
-  def search(submitters, keyword)
+  def search(current_user, submitters, keyword)
+    if Docuseal.fulltext_search?
+      fulltext_search(current_user, submitters, keyword)
+    else
+      plain_search(submitters, keyword)
+    end
+  end
+
+  def fulltext_search(current_user, submitters, keyword)
+    return submitters if keyword.blank?
+
+    submitters.where(
+      id: SearchEntry.where(record_type: 'Submitter')
+                     .where(account_id: current_user.account_id)
+                     .where(*SearchEntries.build_tsquery(keyword))
+                     .select(:record_id)
+    )
+  end
+
+  def fulltext_search_field(current_user, submitters, keyword, field_name)
+    keyword = keyword.delete("\0")
+
+    return submitters.none if keyword.blank?
+
+    weight = FIELD_NAME_WEIGHTS[field_name]
+
+    return submitters.none if weight.blank?
+
+    query =
+      if keyword.match?(/\d/) && !keyword.match?(/\p{L}/)
+        number = keyword.gsub(/\D/, '')
+
+        sql =
+          if number.length <= 2
+            "ngram @@ ((quote_literal(?) || ':' || ?)::tsquery || (quote_literal(?) || ':' || ?)::tsquery)"
+          else
+            "tsvector @@ ((quote_literal(?) || ':*' || ?)::tsquery || (quote_literal(?) || ':*' || ?)::tsquery)"
+          end
+
+        [sql, number, weight, number.length > 1 ? number.delete_prefix('0') : number, weight]
+      elsif keyword.match?(/[^\p{L}\d&@.-]/) || keyword.match?(/[.-]{2,}/)
+        terms = TextUtils.transliterate(keyword.downcase).split(/\b/).map(&:squish).compact_blank.uniq
+
+        if terms.size > 1
+          SearchEntries.build_weights_tsquery(terms, weight)
+        else
+          SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
+        end
+      else
+        SearchEntries.build_weights_wildcard_tsquery(keyword, weight)
+      end
+
+    submitter_ids = SearchEntry.where(record_type: 'Submitter')
+                               .where(account_id: current_user.account_id)
+                               .where(*query)
+                               .limit(500)
+                               .pluck(:record_id)
+
+    submitters.where(id: submitter_ids.first(100))
+  end
+
+  def plain_search(submitters, keyword)
     return submitters if keyword.blank?
 
     term = "%#{keyword.downcase}%"
@@ -23,12 +105,13 @@ module Submitters
   def select_attachments_for_download(submitter)
     if AccountConfig.exists?(account_id: submitter.submission.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
-                             value: true) && submitter.submission.combined_document_attachment
-      return [submitter.submission.combined_document_attachment]
+                             value: true) &&
+       submitter.submission.submitters.all?(&:completed_at?)
+      return [submitter.submission.combined_document_attachment || Submissions::EnsureCombinedGenerated.call(submitter)]
     end
 
-    original_documents = submitter.submission.template_schema_documents.preload(:blob)
-    is_more_than_two_images = original_documents.count(&:image?) > 1
+    original_documents = submitter.submission.schema_documents.preload(:blob)
+    is_more_than_two_images = original_documents.many?(&:image?)
 
     submitter.documents.preload(:blob).reject do |attachment|
       is_more_than_two_images &&
@@ -36,28 +119,15 @@ module Submitters
     end
   end
 
-  def preload_with_pages(submitter)
-    ActiveRecord::Associations::Preloader.new(
-      records: [submitter],
-      associations: [submission: [:template, { template_schema_documents: :blob }]]
-    ).call
-
-    total_pages =
-      submitter.submission.template_schema_documents.sum { |e| e.metadata.dig('pdf', 'number_of_pages').to_i }
-
-    if total_pages < PRELOAD_ALL_PAGES_AMOUNT
-      ActiveRecord::Associations::Preloader.new(
-        records: submitter.submission.template_schema_documents,
-        associations: [:blob, { preview_images_attachments: :blob }]
-      ).call
-    end
-
-    submitter
-  end
-
   def create_attachment!(submitter, params)
     blob =
       if (file = params[:file])
+        extension = File.extname(file.original_filename).delete_prefix('.').downcase
+
+        if DANGEROUS_EXTENSIONS.include?(extension)
+          raise MaliciousFileExtension, "File type '.#{extension}' is not allowed."
+        end
+
         ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                filename: file.original_filename,
                                                content_type: file.content_type)
@@ -86,6 +156,7 @@ module Submitters
     preferences['email_message_uuid'] = email_message.uuid if email_message
     preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
     preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
+    preferences['require_phone_2fa'] = params['require_phone_2fa'].in?(TRUE_VALUES) if params.key?('require_phone_2fa')
     preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
     preferences['reply_to'] = params['reply_to'] if params.key?('reply_to')
     preferences['go_to_last'] = params['go_to_last'] if params.key?('go_to_last')
@@ -97,6 +168,7 @@ module Submitters
   def send_signature_requests(submitters, delay_seconds: nil)
     submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
+      next if submitter.declined_at?
       next if submitter.preferences['send_email'] == false
 
       if delay_seconds
@@ -108,12 +180,25 @@ module Submitters
   end
 
   def current_submitter_order?(submitter)
-    submitter_items = submitter.submission.template_submitters || submitter.submission.template.submitters
+    submission = submitter.submission
 
-    before_items = submitter_items[0...(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })]
+    submitter_items = submission.template_submitters || submission.template.submitters
 
-    before_items.reduce(true) do |acc, item|
-      acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
+    before_items =
+      if submitter_items.any? { |s| s['order'] }
+        submitter_groups = submitter_items.group_by.with_index { |s, index| s['order'] || index }.sort_by(&:first)
+
+        current_group_index = submitter_groups.find_index { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }
+
+        submitter_groups.first(current_group_index).flat_map(&:last)
+      else
+        submitter_items.first(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })
+      end
+
+    before_items.all? do |item|
+      submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
+
+      submitter.nil? || submitter.completed_at?
     end
   end
 
@@ -142,5 +227,28 @@ module Submitters
     )
 
     "#{filename}.#{blob.filename.extension}"
+  end
+
+  def send_shared_link_email_verification_code(submitter, request:)
+    RateLimit.call("send-otp-code-#{request.remote_ip}", limit: 2, ttl: 45.seconds, enabled: true)
+
+    TemplateMailer.otp_verification_email(submitter.submission.template, email: submitter.email).deliver_later!
+  rescue RateLimit::LimitApproached
+    Rollbar.warning("Limit verification code for template: #{submitter.submission.template.id}") if defined?(Rollbar)
+
+    raise UnableToSendCode, I18n.t('too_many_attempts')
+  end
+
+  def verify_link_otp!(otp, submitter)
+    return false if otp.blank?
+
+    RateLimit.call("verify-2fa-code-#{Digest::MD5.base64digest(submitter.email)}",
+                   limit: 2, ttl: 45.seconds, enabled: true)
+
+    link_2fa_key = [submitter.email.downcase.squish, submitter.submission.template.slug].join(':')
+
+    raise InvalidOtp, I18n.t(:invalid_code) unless EmailVerificationCodes.verify(otp, link_2fa_key)
+
+    true
   end
 end

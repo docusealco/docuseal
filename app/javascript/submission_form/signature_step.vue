@@ -9,7 +9,7 @@
     >
       <label
         v-if="showFieldNames"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -21,14 +21,14 @@
       </label>
       <div class="space-x-2 flex flex-none">
         <span
-          v-if="isTextSignature && format !== 'typed' && format !== 'upload'"
+          v-if="isTextSignature && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
           class="tooltip"
           :data-tip="t('draw_signature')"
         >
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium"
+            class="btn btn-outline btn-sm font-medium type-text-button"
             @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconSignature :width="16" />
@@ -38,7 +38,7 @@
           </a>
         </span>
         <span
-          v-else-if="withTypedSignature && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
+          v-else-if="withTypedSignature && format !== 'drawn_or_upload' && format !== 'typed_or_upload' && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="tooltip ml-2"
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('type_text')"
@@ -46,7 +46,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap type-text-button"
             @click.prevent="[toggleTextInput(), hideQr()]"
           >
             <IconTextSize :width="16" />
@@ -61,9 +61,7 @@
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
-          <label
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
-          >
+          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
             <IconCamera :width="16" />
             <input
               :key="uploadImageInputKey"
@@ -80,15 +78,15 @@
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn btn-outline btn-sm font-medium"
+          class="btn btn-outline btn-sm font-medium reupload-button"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
           {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
         </a>
         <span
-          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed' && format !== 'upload'"
-          class=" tooltip"
+          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
+          class="tooltip before:translate-x-[-90%]"
           :data-tip="t('drawn_signature_on_a_touchscreen_device')"
         >
           <a
@@ -119,7 +117,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>
@@ -135,7 +133,7 @@
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <FileDropzone
-      v-if="format === 'upload' && !modelValue"
+      v-if="format === 'upload' && !modelValue && !computedPreviousValue"
       :message="`${t('upload')} ${field.name || t('signature')}`"
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
@@ -167,7 +165,7 @@
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
         style="padding: 1px; 0"
-        class="bg-white border border-base-300 rounded-2xl w-full"
+        class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
       />
       <div
         v-if="isShowQr"
@@ -203,7 +201,7 @@
       </div>
     </div>
     <input
-      v-if="isTextSignature"
+      v-if="isTextSignature && !modelValue && !computedPreviousValue"
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
@@ -213,7 +211,7 @@
       @input="updateWrittenSignature"
     >
     <select
-      v-if="requireSigningReason && !isOtherReason"
+      v-if="withSigningReason && !isOtherReason"
       class="select base-input !text-2xl w-full mt-6 text-center"
       :class="{ 'text-gray-300': !reason }"
       required
@@ -228,24 +226,37 @@
       >
         {{ t('select_a_reason') }}
       </option>
-      <option
-        v-for="(label, option) in defaultReasons"
-        :key="option"
-        :value="option"
-        :selected="reason === option"
-        class="text-base-content"
-      >
-        {{ label }}
-      </option>
-      <option
-        value="other"
-        class="text-base-content"
-      >
-        {{ t('other') }}
-      </option>
+      <template v-if="field.preferences?.reasons">
+        <option
+          v-for="option in field.preferences.reasons"
+          :key="option"
+          :value="option"
+          :selected="reason === option"
+          class="text-base-content"
+        >
+          {{ option }}
+        </option>
+      </template>
+      <template v-else>
+        <option
+          v-for="(label, option) in defaultReasons"
+          :key="option"
+          :value="option"
+          :selected="reason === option"
+          class="text-base-content"
+        >
+          {{ label }}
+        </option>
+        <option
+          value="other"
+          class="text-base-content"
+        >
+          {{ t('other') }}
+        </option>
+      </template>
     </select>
     <input
-      v-if="requireSigningReason && isOtherReason"
+      v-if="withSigningReason && isOtherReason"
       class="base-input !text-2xl w-full mt-6"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
@@ -255,7 +266,7 @@
       @input="$emit('update:reason', $event.target.value)"
     >
     <input
-      v-if="requireSigningReason"
+      v-if="withSigningReason"
       hidden
       name="with_reason"
       :value="field.preferences.reason_field_uuid"
@@ -294,6 +305,7 @@
 <script>
 import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2, IconQrcode, IconX } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
+import { isValidSignatureCanvas } from './validate_signature'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
 import FileDropzone from './dropzone'
@@ -392,11 +404,11 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
   data () {
     return {
-      isSignatureStarted: !!this.previousValue,
+      isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
-      isTextSignature: this.field.preferences?.format === 'typed',
+      isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
       uploadImageInputKey: Math.random().toString()
     }
   },
@@ -407,6 +419,9 @@ export default {
     format () {
       return this.field.preferences?.format
     },
+    withSigningReason () {
+      return this.requireSigningReason || this.field.preferences?.reasons?.length
+    },
     defaultReasons () {
       return {
         [this.t('approved_by')]: this.t('approved'),
@@ -415,7 +430,7 @@ export default {
       }
     },
     computedPreviousValue () {
-      if (this.isUsePreviousValue) {
+      if (this.isUsePreviousValue && this.field.required === true) {
         return this.previousValue
       } else {
         return null
@@ -423,10 +438,13 @@ export default {
     }
   },
   created () {
-    if (this.requireSigningReason) {
+    this.isSignatureStarted = !!this.computedPreviousValue
+
+    if (this.withSigningReason) {
       this.field.preferences ||= {}
       this.field.preferences.reason_field_uuid ||= v4()
-      this.isOtherReason = this.reason && !this.defaultReasons[this.reason]
+      this.isOtherReason = this.reason && !this.defaultReasons[this.reason] &&
+        (!this.field.preferences?.reasons?.length || !this.field.preferences.reasons.includes(this.reason))
     }
   },
   async mounted () {
@@ -600,6 +618,7 @@ export default {
     },
     drawImage (event) {
       this.remove()
+      this.clear()
       this.isSignatureStarted = true
 
       this.drawOnCanvas(event.target.files[0], this.$refs.canvas)
@@ -682,6 +701,16 @@ export default {
         return Promise.resolve({})
       }
 
+      if (this.isSignatureStarted && this.pad.toData().length > 0 && !isValidSignatureCanvas(this.pad.toData())) {
+        if (this.field.required === true || this.pad.toData().length > 0) {
+          alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+
+          return Promise.reject(new Error('Image too small or simple'))
+        } else {
+          Promise.resolve({})
+        }
+      }
+
       return new Promise((resolve, reject) => {
         cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'signature.png', { type: 'image/png' })
@@ -706,11 +735,20 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
             formData.append('remember_signature', this.rememberSignature)
+            formData.append('type', 'signature')
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
-            }).then((resp) => resp.json()).then((attachment) => {
+            }).then(async (resp) => {
+              if (resp.status === 422 || resp.status === 500) {
+                const data = await resp.json()
+
+                return Promise.reject(new Error(data.error))
+              }
+
+              const attachment = await resp.json()
+
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)
 
@@ -720,10 +758,12 @@ export default {
             })
           }
         }).catch((error) => {
-          if (error.message === 'Image too small' && this.field.required === false) {
-            return resolve({})
-          } else {
+          if (this.field.required === true) {
+            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+
             return reject(error)
+          } else {
+            return resolve({})
           }
         })
       })

@@ -6,7 +6,7 @@
     >
       <label
         v-if="showFieldNames"
-        class="label text-xl sm:text-2xl py-0"
+        class="label text-xl sm:text-2xl py-0 field-name-label"
       >
         <MarkdownContent
           v-if="field.title"
@@ -25,7 +25,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline font-medium btn-sm"
+            class="btn btn-outline font-medium btn-sm type-text-button"
             @click.prevent="toggleTextInput"
           >
             <IconTextSize :width="16" />
@@ -42,7 +42,7 @@
           <a
             id="type_text_button"
             href="#"
-            class="btn btn-outline font-medium btn-sm"
+            class="btn btn-outline font-medium btn-sm type-text-button"
             @click.prevent="toggleTextInput"
           >
             <IconSignature :width="16" />
@@ -55,9 +55,7 @@
           class="tooltip"
           :data-tip="t('click_to_upload')"
         >
-          <label
-            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap"
-          >
+          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
             <IconUpload :width="16" />
             <input
               :key="uploadImageInputKey"
@@ -74,7 +72,7 @@
         <a
           v-if="modelValue || computedPreviousValue"
           href="#"
-          class="btn font-medium btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click.prevent="remove"
         >
           <IconReload :width="16" />
@@ -83,7 +81,7 @@
         <a
           v-else
           href="#"
-          class="btn font-medium btn-outline btn-sm"
+          class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click.prevent="clear"
         >
           <IconReload :width="16" />
@@ -105,7 +103,7 @@
     <div
       v-if="field.description"
       dir="auto"
-      class="mb-3 px-1"
+      class="mb-3 px-1 field-description-text"
     >
       <MarkdownContent :string="field.description" />
     </div>
@@ -120,11 +118,22 @@
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
-    <canvas
-      v-show="!modelValue && !computedPreviousValue"
-      ref="canvas"
-      class="bg-white border border-base-300 rounded-2xl w-full"
-    />
+    <div class="relative">
+      <div
+        v-if="!isDrawInitials"
+        class="absolute top-0 right-0 left-0 bottom-0"
+      />
+      <label
+        v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
+        for="initials_text_input"
+        class="absolute top-0 right-0 left-0 bottom-0"
+      />
+      <canvas
+        v-show="!modelValue && !computedPreviousValue"
+        ref="canvas"
+        class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+      />
+    </div>
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
       id="initials_text_input"
@@ -199,7 +208,7 @@ export default {
   emits: ['attached', 'update:model-value', 'start', 'minimize', 'focus'],
   data () {
     return {
-      isInitialsStarted: !!this.previousValue,
+      isInitialsStarted: false,
       isUsePreviousValue: true,
       isDrawInitials: false,
       uploadImageInputKey: Math.random().toString()
@@ -207,12 +216,15 @@ export default {
   },
   computed: {
     computedPreviousValue () {
-      if (this.isUsePreviousValue) {
+      if (this.isUsePreviousValue && this.field.required === true) {
         return this.previousValue
       } else {
         return null
       }
     }
+  },
+  created () {
+    this.isInitialsStarted = !!this.computedPreviousValue
   },
   async mounted () {
     this.$nextTick(() => {
@@ -335,8 +347,8 @@ export default {
         return Promise.resolve({})
       }
 
-      return new Promise((resolve) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas).then(async (blob) => {
+      return new Promise((resolve, reject) => {
+        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
           const file = new File([blob], 'initials.png', { type: 'image/png' })
 
           if (this.dryRun) {
@@ -358,16 +370,33 @@ export default {
             formData.append('file', file)
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
+            formData.append('type', 'initials')
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
               body: formData
-            }).then((resp) => resp.json()).then((attachment) => {
+            }).then(async (resp) => {
+              if (resp.status === 422 || resp.status === 500) {
+                const data = await resp.json()
+
+                return Promise.reject(new Error(data.error))
+              }
+
+              const attachment = await resp.json()
+
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)
 
               return resolve(attachment)
             })
+          }
+        }).catch((error) => {
+          if (this.field.required === true) {
+            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+
+            return reject(error)
+          } else {
+            return resolve({})
           }
         })
       })
