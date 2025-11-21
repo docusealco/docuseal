@@ -10,17 +10,20 @@
 #  event_type      :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  account_id      :bigint
 #  submission_id   :bigint           not null
 #  submitter_id    :bigint
 #
 # Indexes
 #
+#  index_submission_events_on_account_id     (account_id)
 #  index_submission_events_on_created_at     (created_at)
 #  index_submission_events_on_submission_id  (submission_id)
 #  index_submission_events_on_submitter_id   (submitter_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (account_id => accounts.id)
 #  fk_rails_...  (submission_id => submissions.id)
 #  fk_rails_...  (submitter_id => submitters.id)
 #
@@ -35,6 +38,7 @@ class SubmissionEvent < ApplicationRecord
   serialize :data, coder: JSON
 
   before_validation :set_submission_id, on: :create
+  before_validation :set_account_id, on: :create
 
   enum :event_type, {
     send_email: 'send_email',
@@ -62,5 +66,9 @@ class SubmissionEvent < ApplicationRecord
 
   def set_submission_id
     self.submission_id = submitter&.submission_id
+  end
+
+  def set_account_id
+    self.account_id = submitter&.account_id
   end
 end
