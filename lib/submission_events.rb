@@ -20,4 +20,10 @@ module SubmissionEvents
       **data
     }.compact_blank)
   end
+
+  def populate_account_id
+    Account.find_each do |account|
+      SubmissionEvent.where(submission_id: account.submissions).in_batches.update_all(account_id: account.id)
+    end
+  end
 end
