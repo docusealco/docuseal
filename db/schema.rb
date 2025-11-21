@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_21_093511) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_21_113910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -297,6 +297,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_21_093511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
+    t.index ["account_id", "created_at"], name: "index_submissions_events_on_sms_event_types", where: "((event_type)::text = ANY ((ARRAY['send_sms'::character varying, 'send_2fa_sms'::character varying])::text[]))"
     t.index ["account_id"], name: "index_submission_events_on_account_id"
     t.index ["created_at"], name: "index_submission_events_on_created_at"
     t.index ["submission_id"], name: "index_submission_events_on_submission_id"
