@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_21_090556) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_21_092044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -118,7 +118,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_21_090556) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "verification_method"
+    t.boolean "is_first"
+    t.index ["account_id", "completed_at"], name: "index_completed_submitters_on_account_id_and_completed_at", where: "(is_first = true)"
     t.index ["account_id"], name: "index_completed_submitters_on_account_id"
+    t.index ["submission_id"], name: "index_completed_submitters_on_submission_id", unique: true, where: "(is_first = true)"
     t.index ["submitter_id"], name: "index_completed_submitters_on_submitter_id", unique: true
   end
 
