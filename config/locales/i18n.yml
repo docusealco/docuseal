@@ -23,6 +23,7 @@ en: &en
   add_from_google_drive: Add from Google Drive
   or_add_from: Or add from
   upload_a_new_document: Upload a New Document
+  billing: Billing
   hi_there: Hi there
   pro: Pro
   thanks: Thanks
@@ -949,6 +950,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  billing: Facturación
   add_from_google_drive: Agregar desde Google Drive
   or_add_from: O agregar desde
   upload_a_new_document: Subir nuevo documento
@@ -1876,6 +1878,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  billing: Fatturazione
   add_from_google_drive: Aggiungi da Google Drive
   or_add_from: Oppure aggiungi da
   upload_a_new_document: Carica nuovo documento
@@ -2804,6 +2807,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
   upload_a_new_document: Téléverser un nouveau document
@@ -3729,6 +3733,7 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  billing: Pagamentos
   add_from_google_drive: Adicionar do Google Drive
   or_add_from: Ou adicionar de
   upload_a_new_document: Enviar novo documento
@@ -4658,6 +4663,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  billing: Abrechnung
   add_from_google_drive: Aus Google Drive hinzufügen
   or_add_from: Oder hinzufügen aus
   upload_a_new_document: Neues Dokument hochladen
@@ -5951,6 +5957,7 @@ he:
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl: &nl
+  billing: Facturatie
   add_from_google_drive: Toevoegen vanuit Google Drive
   or_add_from: Of toevoegen vanuit
   upload_a_new_document: Nieuw document uploaden
