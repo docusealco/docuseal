@@ -23,6 +23,7 @@ en: &en
   add_from_google_drive: Add from Google Drive
   or_add_from: Or add from
   upload_a_new_document: Upload a New Document
+  billing: Billing
   hi_there: Hi there
   pro: Pro
   thanks: Thanks
@@ -843,6 +844,23 @@ en: &en
   tablet: Tablet
   reset_default: Reset default
   send_signature_request_email: Send signature request email
+  last_3_months: Last 3 months
+  last_6_months: Last 6 months
+  last_year: Last year
+  all_time: All time
+  everyone: Everyone
+  daily: Daily
+  weekly: Weekly
+  monthly: Monthly
+  api: API
+  embed: Embed
+  bulk: Bulk
+  invite: Invite
+  api_and_embed: API and Embed
+  period: Period
+  reports: Reports
+  completed_submissions: Completed submissions
+  sms: SMS
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -949,10 +967,12 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  billing: Facturación
   add_from_google_drive: Agregar desde Google Drive
   or_add_from: O agregar desde
   upload_a_new_document: Subir nuevo documento
   use_direct_file_attachment_links_in_the_documents: Usar enlaces directos de archivos adjuntos en los documentos
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Haz clic aquí</label> para enviar un correo electrónico de restablecimiento de contraseña.'
   enabled: Habilitado
   disabled: Deshabilitado
   expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
@@ -1594,6 +1614,7 @@ es: &es
   image_field: Campo de Imagen
   file_field: Campo de Archivo
   select_field: Campo de Selección
+  checkbox_field: Campo de Casilla
   multiple_field: Campo Múltiple
   radio_field: Campo de Grupo Radio
   cells_field: Campo de Celdas
@@ -1770,6 +1791,23 @@ es: &es
   tablet: Tableta
   reset_default: Restablecer por defecto
   send_signature_request_email: Enviar correo de solicitud de firma
+  last_3_months: Últimos 3 meses
+  last_6_months: Últimos 6 meses
+  last_year: Último año
+  all_time: Todo el tiempo
+  everyone: Todos
+  daily: Diario
+  weekly: Semanal
+  monthly: Mensual
+  api: API
+  embed: Integrar
+  bulk: Masivo
+  invite: Invitación
+  api_and_embed: API e Integrar
+  period: Período
+  reports: Informes
+  completed_submissions: Envíos completados
+  sms: SMS
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1876,6 +1914,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  billing: Fatturazione
   add_from_google_drive: Aggiungi da Google Drive
   or_add_from: Oppure aggiungi da
   upload_a_new_document: Carica nuovo documento
@@ -1909,6 +1948,7 @@ it: &it
   edit_per_party: Modifica per partito
   signed: Firmato
   reply_to: Rispondi a
+  partially_completed: Parzialmente completato
   pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
@@ -2354,6 +2394,7 @@ it: &it
   upload_signature: Carica firma
   integration: Integrazione
   admin: Amministratore
+  tenant_admin: Amministratore tenant
   editor: Editor
   viewer: Visualizzatore
   member: Membro
@@ -2698,6 +2739,23 @@ it: &it
   tablet: Tablet
   reset_default: Reimposta predefinito
   send_signature_request_email: Invia email di richiesta firma
+  last_3_months: Ultimi 3 mesi
+  last_6_months: Ultimi 6 mesi
+  last_year: Ultimo anno
+  all_time: Tutto il tempo
+  everyone: Tutti
+  daily: Giornaliero
+  weekly: Settimanale
+  monthly: Mensile
+  api: API
+  embed: Incorporare
+  bulk: Massivo
+  invite: Invito
+  api_and_embed: API e Incorporare
+  period: Periodo
+  reports: Rapporti
+  completed_submissions: Invii completati
+  sms: SMS
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2804,6 +2862,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
   upload_a_new_document: Téléverser un nouveau document
@@ -3623,6 +3682,24 @@ fr: &fr
   tablet: Tablette
   reset_default: Réinitialiser par défaut
   send_signature_request_email: Envoyer un e-mail de demande de signature
+  last_month: Mois dernier
+  last_3_months: 3 derniers mois
+  last_6_months: 6 derniers mois
+  last_year: Année dernière
+  all_time: Tout le temps
+  everyone: Tout le monde
+  daily: Quotidien
+  weekly: Hebdomadaire
+  monthly: Mensuel
+  api: API
+  embed: Intégrer
+  bulk: En masse
+  invite: Invitation
+  api_and_embed: API et Intégrer
+  period: Période
+  reports: Rapports
+  completed_submissions: Soumissions terminées
+  sms: SMS
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3729,6 +3806,7 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  billing: Pagamentos
   add_from_google_drive: Adicionar do Google Drive
   or_add_from: Ou adicionar de
   upload_a_new_document: Enviar novo documento
@@ -4552,6 +4630,23 @@ pt: &pt
   tablet: Tablet
   reset_default: Redefinir para padrão
   send_signature_request_email: Enviar e-mail de solicitação de assinatura
+  last_3_months: Últimos 3 meses
+  last_6_months: Últimos 6 meses
+  last_year: Último ano
+  all_time: Todo o tempo
+  everyone: Todos
+  daily: Diário
+  weekly: Semanal
+  monthly: Mensal
+  api: API
+  embed: Incorporar
+  bulk: Em massa
+  invite: Convite
+  api_and_embed: API e Incorporar
+  period: Período
+  reports: Relatórios
+  completed_submissions: Envios concluídos
+  sms: SMS
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4658,6 +4753,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  billing: Abrechnung
   add_from_google_drive: Aus Google Drive hinzufügen
   or_add_from: Oder hinzufügen aus
   upload_a_new_document: Neues Dokument hochladen
@@ -5481,6 +5577,23 @@ de: &de
   tablet: Tablet
   reset_default: Standard zurücksetzen
   send_signature_request_email: Signaturanfrage-E-Mail senden
+  last_3_months: Letzte 3 Monate
+  last_6_months: Letzte 6 Monate
+  last_year: Letztes Jahr
+  all_time: Gesamte Zeit
+  everyone: Alle
+  daily: Täglich
+  weekly: Wöchentlich
+  monthly: Monatlich
+  api: API
+  embed: Einbetten
+  bulk: Massenversand
+  invite: Einladung
+  api_and_embed: API und Einbetten
+  period: Zeitraum
+  reports: Berichte
+  completed_submissions: Abgeschlossene Übermittlungen
+  sms: SMS
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5951,6 +6064,7 @@ he:
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl: &nl
+  billing: Facturatie
   add_from_google_drive: Toevoegen vanuit Google Drive
   or_add_from: Of toevoegen vanuit
   upload_a_new_document: Nieuw document uploaden
@@ -6771,6 +6885,23 @@ nl: &nl
   tablet: Tablet
   reset_default: Standaard herstellen
   send_signature_request_email: E-mail met handtekeningaanvraag verzenden
+  last_3_months: Afgelopen 3 maanden
+  last_6_months: Afgelopen 6 maanden
+  last_year: Afgelopen jaar
+  all_time: Altijd
+  everyone: Iedereen
+  daily: Dagelijks
+  weekly: Wekelijks
+  monthly: Maandelijks
+  api: API
+  embed: Insluiten
+  bulk: Bulk
+  invite: Uitnodiging
+  api_and_embed: API en Insluiten
+  period: Periode
+  reports: Rapporten
+  completed_submissions: Voltooide inzendingen
+  sms: SMS
   submission_sources:
     api: API
     bulk: Bulkverzending

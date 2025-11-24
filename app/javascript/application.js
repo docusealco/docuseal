@@ -51,6 +51,7 @@ import ToggleClasses from './elements/toggle_classes'
 import AutosizeField from './elements/autosize_field'
 import GoogleDriveFilePicker from './elements/google_drive_file_picker'
 import OpenModal from './elements/open_modal'
+import BarChart from './elements/bar_chart'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -140,6 +141,7 @@ safeRegisterElement('toggle-classes', ToggleClasses)
 safeRegisterElement('autosize-field', AutosizeField)
 safeRegisterElement('google-drive-file-picker', GoogleDriveFilePicker)
 safeRegisterElement('open-modal', OpenModal)
+safeRegisterElement('bar-chart', BarChart)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

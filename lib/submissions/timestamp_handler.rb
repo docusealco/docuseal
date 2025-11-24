@@ -3,6 +3,7 @@
 module Submissions
   class TimestampHandler
     HASH_ALGORITHM = 'SHA256'
+    TIMEOUT = 10
 
     TimestampError = Class.new(StandardError)
 
@@ -32,6 +33,8 @@ module Submissions
       uri = Addressable::URI.parse(tsa_url)
 
       conn = Faraday.new(uri.origin) do |c|
+        c.options.read_timeout = TIMEOUT
+        c.options.open_timeout = TIMEOUT
         c.basic_auth(uri.user, uri.password) if uri.password.present?
       end
 

@@ -47,6 +47,7 @@ class ProcessSubmitterCompletionJob
     completed_submitter.assign_attributes(
       submission_id: submitter.submission_id,
       account_id: submission.account_id,
+      is_first: !CompletedSubmitter.exists?(submission: submitter.submission_id, is_first: true),
       template_id: submission.template_id,
       source: submission.source,
       sms_count: sms_events.sum { |e| e.data['segments'] || 1 },
