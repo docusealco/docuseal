@@ -472,7 +472,8 @@ module Templates
 
           next if text_field.y + text_field.h < image_field.y
 
-          next unless boxes_overlap?(image_field, text_field) && calculate_iou(image_field, text_field) > 0.5
+          next unless boxes_overlap?(image_field, text_field)
+          next if calculate_iou(image_field, text_field) < 0.4
 
           break image_field.confidence += by
         end
