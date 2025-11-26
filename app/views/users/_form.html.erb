@@ -13,6 +13,11 @@
     <div class="form-control">
       <%= f.label :email, t('email'), class: 'label' %>
       <%= f.email_field :email, required: true, class: 'base-input' %>
+      <% if user.try(:pending_reconfirmation?) %>
+        <label class="label">
+          <span class="label-text-alt"><%= t('email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm', email: f.object.unconfirmed_email) %></span>
+        </label>
+      <% end %>
       <% if user.persisted? && Accounts.can_send_emails?(current_account) %>
         <span class="label-text-alt mt-2 mx-1">
           <%= t('click_here_to_send_a_reset_password_email_html') %>

@@ -9,7 +9,12 @@ class ProfileController < ApplicationController
 
   def update_contact
     if current_user.update(contact_params)
-      redirect_to settings_profile_index_path, notice: I18n.t('contact_information_has_been_update')
+      if current_user.try(:pending_reconfirmation?) && current_user.previous_changes.key?(:unconfirmed_email)
+        redirect_to settings_profile_index_path,
+                    notice: I18n.t('a_confirmation_email_has_been_sent_to_the_new_email_address')
+      else
+        redirect_to settings_profile_index_path, notice: I18n.t('contact_information_has_been_update')
+      end
     else
       render :index, status: :unprocessable_content
     end
