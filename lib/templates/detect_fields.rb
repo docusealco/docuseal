@@ -75,7 +75,7 @@ module Templates
         {
           uuid: SecureRandom.uuid,
           type: f.type,
-          required: f.type != 'checkbox',
+          required: f.type == 'signature',
           preferences: {},
           areas: [{
             x: f.x,
@@ -128,7 +128,7 @@ module Templates
           {
             uuid: SecureRandom.uuid,
             type:,
-            required: type != 'checkbox',
+            required: type == 'signature',
             preferences: {},
             areas: [{
               x: field.x, y: field.y,
