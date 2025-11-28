@@ -14,13 +14,8 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'
 
-  devise_for :users,
-             path: '/', only: %i[sessions passwords omniauth_callbacks],
-             controllers: begin
-               options = { sessions: 'sessions', passwords: 'passwords' }
-               options[:omniauth_callbacks] = 'omniauth_callbacks' if User.devise_modules.include?(:omniauthable)
-               options
-             end
+  devise_for :users, path: '/', only: %i[sessions passwords],
+                     controllers: { sessions: 'sessions', passwords: 'passwords' }
 
   devise_scope :user do
     resource :invitation, only: %i[update] do
