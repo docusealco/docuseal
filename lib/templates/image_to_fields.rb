@@ -8,6 +8,10 @@ module Templates
       def endy
         @endy ||= y + h
       end
+
+      def endx
+        @endx ||= x + w
+      end
     end
 
     MODEL_PATH = Rails.root.join('tmp/model.onnx')
@@ -64,9 +68,7 @@ module Templates
 
       detections = apply_nms(detections, nms)
 
-      fields = build_fields_from_detections(detections, image)
-
-      sort_fields(fields, y_threshold: 10.0 / image.height)
+      build_fields_from_detections(detections, image)
     end
 
     def build_split_image_regions(image)
@@ -300,27 +302,6 @@ module Templates
           }
         end
       end
-    end
-
-    def sort_fields(fields, y_threshold: 0.01)
-      sorted_fields = fields.sort { |a, b| a.endy == b.endy ? a.x <=> b.x : a.endy <=> b.endy }
-
-      lines = []
-      current_line = []
-
-      sorted_fields.each do |field|
-        if current_line.blank? || (field.y - current_line.first.y).abs < y_threshold
-          current_line << field
-        else
-          lines << current_line.sort_by(&:x)
-
-          current_line = [field]
-        end
-      end
-
-      lines << current_line.sort_by(&:x) if current_line.present?
-
-      lines.flatten
     end
 
     def apply_nms(detections, threshold = 0.5)

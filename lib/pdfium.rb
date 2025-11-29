@@ -49,7 +49,15 @@ class Pdfium
     end
   end
 
-  LineNode = Struct.new(:x, :y, :w, :h, :tilt)
+  LineNode = Struct.new(:x, :y, :w, :h, :tilt) do
+    def endy
+      @endy ||= y + h
+    end
+
+    def endx
+      @endx ||= x + w
+    end
+  end
 
   # rubocop:disable Naming/ClassAndModuleCamelCase
   class FPDF_LIBRARY_CONFIG < FFI::Struct
@@ -480,7 +488,11 @@ class Pdfium
         @text_nodes << TextNode.new(char, x, y, node_width, node_height)
       end
 
-      @text_nodes = @text_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
+      y_threshold = 4.0 / width
+
+      @text_nodes = @text_nodes.sort do |a, b|
+        (a.endy - b.endy).abs < y_threshold ? a.x <=> b.x : a.endy <=> b.endy
+      end
     ensure
       Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
     end
@@ -549,7 +561,7 @@ class Pdfium
         @line_nodes << LineNode.new(norm_x, norm_y, norm_w, norm_h, tilt)
       end
 
-      @line_nodes = @line_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
+      @line_nodes = @line_nodes.sort { |a, b| a.endy == b.endy ? a.x <=> b.x : a.endy <=> b.endy }
     end
 
     def close
