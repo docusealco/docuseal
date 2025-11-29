@@ -4,7 +4,11 @@ module Templates
   module ImageToFields
     module_function
 
-    Field = Struct.new(:type, :x, :y, :w, :h, :confidence, keyword_init: true)
+    Field = Struct.new(:type, :x, :y, :w, :h, :confidence, keyword_init: true) do
+      def endy
+        @endy ||= y + h
+      end
+    end
 
     MODEL_PATH = Rails.root.join('tmp/model.onnx')
 
@@ -299,7 +303,7 @@ module Templates
     end
 
     def sort_fields(fields, y_threshold: 0.01)
-      sorted_fields = fields.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
+      sorted_fields = fields.sort { |a, b| a.endy == b.endy ? a.x <=> b.x : a.endy <=> b.endy }
 
       lines = []
       current_line = []

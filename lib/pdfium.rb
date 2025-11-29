@@ -39,8 +39,17 @@ class Pdfium
   FPDF_RENDER_FORCEHALFTONE = 0x400
   FPDF_PRINTING = 0x800
 
-  TextNode = Struct.new(:content, :x, :y, :w, :h, keyword_init: true)
-  LineNode = Struct.new(:x, :y, :w, :h, :tilt, keyword_init: true)
+  TextNode = Struct.new(:content, :x, :y, :w, :h) do
+    def endx
+      @endx ||= x + w
+    end
+
+    def endy
+      @endy ||= y + h
+    end
+  end
+
+  LineNode = Struct.new(:x, :y, :w, :h, :tilt)
 
   # rubocop:disable Naming/ClassAndModuleCamelCase
   class FPDF_LIBRARY_CONFIG < FFI::Struct
@@ -433,15 +442,15 @@ class Pdfium
 
       return @text_nodes if char_count.zero?
 
+      left_ptr = FFI::MemoryPointer.new(:double)
+      right_ptr = FFI::MemoryPointer.new(:double)
+      bottom_ptr = FFI::MemoryPointer.new(:double)
+      top_ptr = FFI::MemoryPointer.new(:double)
+      origin_x_ptr = FFI::MemoryPointer.new(:double)
+      origin_y_ptr = FFI::MemoryPointer.new(:double)
+
       char_count.times do |i|
-        unicode = Pdfium.FPDFText_GetUnicode(text_page, i)
-
-        char = [unicode].pack('U*')
-
-        left_ptr = FFI::MemoryPointer.new(:double)
-        right_ptr = FFI::MemoryPointer.new(:double)
-        bottom_ptr = FFI::MemoryPointer.new(:double)
-        top_ptr = FFI::MemoryPointer.new(:double)
+        char = Pdfium.FPDFText_GetUnicode(text_page, i).chr(Encoding::UTF_8)
 
         result = Pdfium.FPDFText_GetCharBox(text_page, i, left_ptr, right_ptr, bottom_ptr, top_ptr)
 
@@ -450,12 +459,10 @@ class Pdfium
         left = left_ptr.read_double
         right = right_ptr.read_double
 
-        origin_x_ptr = FFI::MemoryPointer.new(:double)
-        origin_y_ptr = FFI::MemoryPointer.new(:double)
-
         Pdfium.FPDFText_GetCharOrigin(text_page, i, origin_x_ptr, origin_y_ptr)
 
         origin_y = origin_y_ptr.read_double
+        origin_x = origin_x_ptr.read_double
 
         font_size = Pdfium.FPDFText_GetFontSize(text_page, i)
         font_size = 8 if font_size == 1
@@ -465,12 +472,12 @@ class Pdfium
         abs_width = right - left
         abs_height = font_size
 
-        x = abs_x / width
+        x = origin_x / width
         y = abs_y / height
-        node_width = abs_width / width
+        node_width = (abs_width + ((abs_x - origin_x).abs * 2)) / width
         node_height = abs_height / height
 
-        @text_nodes << TextNode.new(content: char, x: x, y: y, w: node_width, h: node_height)
+        @text_nodes << TextNode.new(char, x, y, node_width, node_height)
       end
 
       @text_nodes = @text_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
@@ -539,7 +546,7 @@ class Pdfium
         norm_w = w / width
         norm_h = h / height
 
-        @line_nodes << LineNode.new(x: norm_x, y: norm_y, w: norm_w, h: norm_h, tilt: tilt)
+        @line_nodes << LineNode.new(norm_x, norm_y, norm_w, norm_h, tilt)
       end
 
       @line_nodes = @line_nodes.sort { |a, b| a.y == b.y ? a.x <=> b.x : a.y <=> b.y }
