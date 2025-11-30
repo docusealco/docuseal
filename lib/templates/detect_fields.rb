@@ -212,7 +212,8 @@ module Templates
     def build_page_nodes(page, fields, tail_node, attachment_uuid: nil)
       field_nodes = []
 
-      y_theshold = 10.0 / page.height
+      y_theshold = 4.0 / page.height
+      x_theshold = 30.0 / page.width
 
       text_nodes = page.text_nodes
 
@@ -227,13 +228,45 @@ module Templates
 
         break unless node
 
+        if node.content.in?(LINEBREAK)
+          next_node = text_nodes[index]
+
+          if next_node && (next_node.endy - node.endy) < y_theshold
+            index += 1
+
+            next
+          end
+        end
+
         loop do
           break unless current_field
 
           if ((current_field.endy - node.endy).abs < y_theshold &&
               (current_field.x <= node.x || node.content.in?(LINEBREAK))) ||
              current_field.endy < node.y
+            if tail_node.elem.is_a?(Templates::ImageToFields::Field)
+              divider =
+                if (tail_node.elem.endy - current_field.endy).abs > y_theshold
+                  "\n".b
+                elsif tail_node.elem.endx - current_field.x > x_theshold
+                  "\t".b
+                else
+                  ' '.b
+                end
+
+              text_node = PageNode.new(prev: tail_node, elem: divider, page: page.page_index, attachment_uuid:)
+              tail_node.next = text_node
+
+              tail_node = text_node
+            elsif prev_node && (prev_node.endy - current_field.endy).abs > y_theshold
+              text_node = PageNode.new(prev: tail_node, elem: "\n".b, page: page.page_index, attachment_uuid:)
+              tail_node.next = text_node
+
+              tail_node = text_node
+            end
+
             field_node = PageNode.new(prev: tail_node, elem: current_field, page: page.page_index, attachment_uuid:)
+
             tail_node.next = field_node
             tail_node = field_node
             field_nodes << tail_node
@@ -245,14 +278,24 @@ module Templates
         end
 
         if tail_node.elem.is_a?(Templates::ImageToFields::Field)
+          prev_field = tail_node.elem
+
           text_node = PageNode.new(prev: tail_node, elem: ''.b, page: page.page_index, attachment_uuid:)
           tail_node.next = text_node
 
           tail_node = text_node
-        end
 
-        if prev_node && (node.endy - prev_node.endy) > y_theshold && LINEBREAK.exclude?(prev_node.content)
-          tail_node.elem << "\n"
+          if (node.endy - prev_field.endy).abs > y_theshold
+            tail_node.elem << "\n"
+          elsif (node.x - prev_field.endx) > x_theshold
+            tail_node.elem << "\t"
+          end
+        elsif prev_node
+          if (node.endy - prev_node.endy) > y_theshold && LINEBREAK.exclude?(prev_node.content)
+            tail_node.elem << "\n"
+          elsif (node.x - prev_node.endx) > x_theshold && !tail_node.elem.ends_with?("\t")
+            tail_node.elem << "\t"
+          end
         end
 
         if node.content != '_' || !tail_node.elem.ends_with?('___')
@@ -273,6 +316,15 @@ module Templates
         field_nodes << tail_node
 
         current_field = fields.shift
+      end
+
+      if tail_node.elem.is_a?(Templates::ImageToFields::Field)
+        text_node = PageNode.new(prev: tail_node, elem: "\n".b, page: page.page_index, attachment_uuid:)
+        tail_node.next = text_node
+
+        tail_node = text_node
+      else
+        tail_node.elem << "\n"
       end
 
       [field_nodes, tail_node]
