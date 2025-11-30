@@ -10,6 +10,8 @@ class ProfileController < ApplicationController
   def update_contact
     if current_user.update(contact_params)
       if current_user.try(:pending_reconfirmation?) && current_user.previous_changes.key?(:unconfirmed_email)
+        SendConfirmationInstructionsJob.perform_async('user_id' => current_user.id)
+
         redirect_to settings_profile_index_path,
                     notice: I18n.t('a_confirmation_email_has_been_sent_to_the_new_email_address')
       else

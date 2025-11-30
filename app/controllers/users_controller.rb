@@ -66,6 +66,8 @@ class UsersController < ApplicationController
 
     if @user.update(attrs.except(*(current_user == @user ? %i[password otp_required_for_login role] : %i[password])))
       if @user.try(:pending_reconfirmation?) && @user.previous_changes.key?(:unconfirmed_email)
+        SendConfirmationInstructionsJob.perform_async('user_id' => @user.id)
+
         redirect_back fallback_location: settings_users_path,
                       notice: I18n.t('a_confirmation_email_has_been_sent_to_the_new_email_address')
       else
