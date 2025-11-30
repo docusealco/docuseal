@@ -457,22 +457,40 @@ class Pdfium
       origin_x_ptr = FFI::MemoryPointer.new(:double)
       origin_y_ptr = FFI::MemoryPointer.new(:double)
 
-      char_count.times do |i|
-        char = Pdfium.FPDFText_GetUnicode(text_page, i).chr(Encoding::UTF_8)
+      i = 0
 
-        result = Pdfium.FPDFText_GetCharBox(text_page, i, left_ptr, right_ptr, bottom_ptr, top_ptr)
+      loop do
+        break unless i < char_count
+
+        box_index = i
+
+        codepoint = Pdfium.FPDFText_GetUnicode(text_page, i)
+
+        if codepoint.between?(0xD800, 0xDBFF) && (i + 1 < char_count)
+          codepoint2 = Pdfium.FPDFText_GetUnicode(text_page, i + 1)
+
+          if codepoint2.between?(0xDC00, 0xDFFF)
+            codepoint = 0x10000 + ((codepoint - 0xD800) << 10) + (codepoint2 - 0xDC00)
+
+            i += 1
+          end
+        end
+
+        char = codepoint.chr(Encoding::UTF_8)
+
+        result = Pdfium.FPDFText_GetCharBox(text_page, box_index, left_ptr, right_ptr, bottom_ptr, top_ptr)
 
         next if result.zero?
 
         left = left_ptr.read_double
         right = right_ptr.read_double
 
-        Pdfium.FPDFText_GetCharOrigin(text_page, i, origin_x_ptr, origin_y_ptr)
+        Pdfium.FPDFText_GetCharOrigin(text_page, box_index, origin_x_ptr, origin_y_ptr)
 
         origin_y = origin_y_ptr.read_double
         origin_x = origin_x_ptr.read_double
 
-        font_size = Pdfium.FPDFText_GetFontSize(text_page, i)
+        font_size = Pdfium.FPDFText_GetFontSize(text_page, box_index)
         font_size = 8 if font_size == 1
 
         abs_x = left
@@ -486,6 +504,8 @@ class Pdfium
         node_height = abs_height / height
 
         @text_nodes << TextNode.new(char, x, y, node_width, node_height)
+      ensure
+        i += 1
       end
 
       y_threshold = 4.0 / width
