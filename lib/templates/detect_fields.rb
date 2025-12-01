@@ -124,7 +124,7 @@ module Templates
         text_fields = extract_text_fields_from_page(page)
         line_fields = extract_line_fields_from_page(page)
 
-        fields = sort_fields(fields, y_threshold: 10.0 / page.height)
+        fields = sort_fields(fields, y_threshold: 10.0 / image.height)
 
         fields = increase_confidence_for_overlapping_fields(fields, text_fields)
         fields = increase_confidence_for_overlapping_fields(fields, line_fields)
