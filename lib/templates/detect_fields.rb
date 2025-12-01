@@ -21,8 +21,7 @@ module Templates
           date
         | signed\sat
         | datum
-      )
-      \s*[:-]?\s*\z
+      )[:_\s-]*\z
     /ix
 
     NUMBER_REGEXP = /
@@ -40,8 +39,7 @@ module Templates
         | menge
         | anzahl
         | stückzahl
-      )
-      \s*[:-]?\s*\z
+      )[:_\s-]*\z
     /ix
 
     SIGNATURE_REGEXP = /
@@ -54,8 +52,7 @@ module Templates
         | unterschrift
         | unterschreiben
         | unterzeichnen
-      )
-      \s*[:-]?\s*\z
+      )[:_\s-]*\z
     /ix
 
     LINEBREAK = ["\n", "\r"].freeze
