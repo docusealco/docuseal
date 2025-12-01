@@ -52,7 +52,13 @@
                 <%= user.full_name %>
               </td>
               <td>
-                <%= user.email %>
+                <% if user.try(:pending_reconfirmation?) %>
+                  <%= user.unconfirmed_email %>
+                  <br>
+                  <span class="label-text-alt">(<%= t('unconfirmed') %>)</span>
+                <% else %>
+                  <%= user.email %>
+                <% end %>
               </td>
               <td>
                 <span class="badge badge-info badge-outline whitespace-nowrap">

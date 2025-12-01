@@ -18,6 +18,11 @@
       <div class="form-control">
         <%= f.label :email, t('email'), class: 'label' %>
         <%= f.email_field :email, autocomplete: 'off', class: 'base-input' %>
+        <% if current_user.try(:pending_reconfirmation?) %>
+          <label class="label">
+            <span class="label-text-alt"><%= t('email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm', email: f.object.unconfirmed_email) %></span>
+          </label>
+        <% end %>
       </div>
       <div class="form-control pt-2">
         <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>

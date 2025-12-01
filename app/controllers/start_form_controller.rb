@@ -81,7 +81,7 @@ class StartFormController < ApplicationController
 
     @submitter = Submitter.where(submission: @template.submissions)
                           .where.not(completed_at: nil)
-                          .find_by!(required_params)
+                          .find_by!(required_params.except('name'))
   end
 
   private
