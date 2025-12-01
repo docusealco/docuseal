@@ -56,7 +56,7 @@ module Templates
     /ix
 
     LINEBREAK = ["\n", "\r"].freeze
-    CHECBOXES = ['☐', '□'].freeze
+    CHECKBOXES = ['☐', '□'].freeze
 
     # rubocop:disable Metrics, Style
     def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields,
@@ -209,8 +209,8 @@ module Templates
     def build_page_nodes(page, fields, tail_node, attachment_uuid: nil)
       field_nodes = []
 
-      y_theshold = 4.0 / page.height
-      x_theshold = 30.0 / page.width
+      y_threshold = 4.0 / page.height
+      x_threshold = 30.0 / page.width
 
       text_nodes = page.text_nodes
 
@@ -228,7 +228,7 @@ module Templates
         if node.content.in?(LINEBREAK)
           next_node = text_nodes[index]
 
-          if next_node && (next_node.endy - node.endy) < y_theshold
+          if next_node && (next_node.endy - node.endy) < y_threshold
             index += 1
 
             next
@@ -238,14 +238,14 @@ module Templates
         loop do
           break unless current_field
 
-          if ((current_field.endy - node.endy).abs < y_theshold &&
+          if ((current_field.endy - node.endy).abs < y_threshold &&
               (current_field.x <= node.x || node.content.in?(LINEBREAK))) ||
              current_field.endy < node.y
             if tail_node.elem.is_a?(Templates::ImageToFields::Field)
               divider =
-                if (tail_node.elem.endy - current_field.endy).abs > y_theshold
+                if (tail_node.elem.endy - current_field.endy).abs > y_threshold
                   "\n".b
-                elsif tail_node.elem.endx - current_field.x > x_theshold
+                elsif tail_node.elem.endx - current_field.x > x_threshold
                   "\t".b
                 else
                   ' '.b
@@ -255,7 +255,7 @@ module Templates
               tail_node.next = text_node
 
               tail_node = text_node
-            elsif prev_node && (prev_node.endy - current_field.endy).abs > y_theshold
+            elsif prev_node && (prev_node.endy - current_field.endy).abs > y_threshold
               text_node = PageNode.new(prev: tail_node, elem: "\n".b, page: page.page_index, attachment_uuid:)
               tail_node.next = text_node
 
@@ -282,21 +282,21 @@ module Templates
 
           tail_node = text_node
 
-          if (node.endy - prev_field.endy).abs > y_theshold
+          if (node.endy - prev_field.endy).abs > y_threshold
             tail_node.elem << "\n"
-          elsif (node.x - prev_field.endx) > x_theshold
+          elsif (node.x - prev_field.endx) > x_threshold
             tail_node.elem << "\t"
           end
         elsif prev_node
-          if (node.endy - prev_node.endy) > y_theshold && LINEBREAK.exclude?(prev_node.content)
+          if (node.endy - prev_node.endy) > y_threshold && LINEBREAK.exclude?(prev_node.content)
             tail_node.elem << "\n"
-          elsif (node.x - prev_node.endx) > x_theshold && !tail_node.elem.ends_with?("\t")
+          elsif (node.x - prev_node.endx) > x_threshold && !tail_node.elem.ends_with?("\t")
             tail_node.elem << "\t"
           end
         end
 
         if node.content != '_' || !tail_node.elem.ends_with?('___')
-          tail_node.elem << node.content unless CHECBOXES.include?(node.content)
+          tail_node.elem << node.content unless CHECKBOXES.include?(node.content)
         end
 
         prev_node = node
