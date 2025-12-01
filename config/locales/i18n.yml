@@ -867,6 +867,9 @@ en: &en
   please_confirm_your_email_address_using_the_link_below_: 'Please confirm your email address using the link below:'
   confirm_email: Confirm email
   unconfirmed: Unconfirmed
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: You requested to reset your password. Use the link below to continue
+  if_you_didnt_request_this_you_can_ignore_this_email: "If you didn't request this, please ignore this email."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Your password won't change until you open the link above and set a new one."
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1828,6 +1831,9 @@ es: &es
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirma tu dirección de correo electrónico utilizando el enlace a continuación:'
   confirm_email: Confirmar correo
   unconfirmed: No confirmado
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Solicitaste restablecer tu contraseña. Usa el enlace a continuación para continuar.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Si no solicitaste esto, puedes ignorar este correo electrónico."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Tu contraseña no cambiará hasta que abras el enlace anterior y establezcas una nueva."
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -2790,6 +2796,9 @@ it: &it
   please_confirm_your_email_address_using_the_link_below_: 'Conferma il tuo indirizzo email utilizzando il link qui sotto:'
   confirm_email: Conferma email
   unconfirmed: Non confermato
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Hai richiesto di reimpostare la tua password. Usa il link qui sotto per continuare.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Se non hai richiesto questo, puoi ignorare questa email."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "La tua password non cambierà finché non apri il link sopra e ne imposti una nuova."
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -3748,6 +3757,9 @@ fr: &fr
   please_confirm_your_email_address_using_the_link_below_: 'Veuillez confirmer votre adresse e-mail en utilisant le lien ci-dessous :'
   confirm_email: "Confirmer l'e-mail"
   unconfirmed: Non confirmé
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Vous avez demandé à réinitialiser votre mot de passe. Utilisez le lien ci-dessous pour continuer.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Votre mot de passe ne changera pas tant que vous n’aurez pas ouvert le lien ci-dessus et défini un nouveau mot de passe."
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -4709,6 +4721,9 @@ pt: &pt
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirme seu endereço de e-mail usando o link abaixo:'
   confirm_email: Confirmar e-mail
   unconfirmed: Não confirmado
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Você solicitou a redefinição da sua senha. Use o link abaixo para continuar.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Se você não solicitou isso, pode ignorar este e-mail."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Sua senha não será alterada até que você abra o link acima e defina uma nova."
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -5670,6 +5685,9 @@ de: &de
   please_confirm_your_email_address_using_the_link_below_: 'Bitte bestätigen Sie Ihre E-Mail-Adresse über den folgenden Link:'
   confirm_email: E-Mail bestätigen
   unconfirmed: Unbestätigt
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Sie haben angefordert, Ihr Passwort zurückzusetzen. Verwenden Sie den untenstehenden Link, um fortzufahren.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Ihr Passwort wird erst geändert, wenn Sie den obigen Link öffnen und ein neues festlegen."
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -6992,6 +7010,9 @@ nl: &nl
   please_confirm_your_email_address_using_the_link_below_: 'Bevestig je e-mailadres via de onderstaande link:'
   confirm_email: E-mailadres bevestigen
   unconfirmed: Onbevestigd
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Je hebt gevraagd je wachtwoord te resetten. Gebruik de onderstaande link om verder te gaan.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Als je dit niet hebt aangevraagd, kun je deze e-mail negeren."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Je wachtwoord wordt niet gewijzigd totdat je de bovenstaande link opent en een nieuw wachtwoord instelt."
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
