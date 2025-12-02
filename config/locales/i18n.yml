@@ -32,6 +32,7 @@ en: &en
   enabled: Enabled
   disabled: Disabled
   party: Party
+  make_owner: Make Owner
   use_direct_file_attachment_links_in_the_documents: Use direct file attachment links in the documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
@@ -980,6 +981,7 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  make_owner: Hacer propietario
   billing: Facturación
   add_from_google_drive: Agregar desde Google Drive
   or_add_from: O agregar desde
@@ -1940,6 +1942,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  make_owner: Rendi proprietario
   billing: Fatturazione
   add_from_google_drive: Aggiungi da Google Drive
   or_add_from: Oppure aggiungi da
@@ -2901,6 +2904,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  make_owner: Devenir propriétaire
   billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
@@ -3858,6 +3862,7 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  make_owner: Tornar proprietário
   billing: Pagamentos
   add_from_google_drive: Adicionar do Google Drive
   or_add_from: Ou adicionar de
@@ -4818,6 +4823,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  make_owner: Eigentümer machen
   billing: Abrechnung
   add_from_google_drive: Aus Google Drive hinzufügen
   or_add_from: Oder hinzufügen aus
@@ -6142,6 +6148,7 @@ he:
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl: &nl
+  make_owner: Eigenaar maken
   billing: Facturatie
   add_from_google_drive: Toevoegen vanuit Google Drive
   or_add_from: Of toevoegen vanuit
