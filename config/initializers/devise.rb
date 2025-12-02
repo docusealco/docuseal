@@ -17,7 +17,10 @@ module Devise
         assign_message_metadata(action, record)
 
         initialize_from_record(record)
-        mail(headers_for(action, opts), &)
+
+        I18n.with_locale(record.account.locale) do
+          mail(headers_for(action, opts), &)
+        end
       end
     end
   end
