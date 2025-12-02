@@ -2904,7 +2904,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
-  make_owner: Devenir propriétaire
+  make_owner: Rendre propriétaire
   billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
