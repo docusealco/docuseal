@@ -351,8 +351,6 @@
                         class="base-checkbox !h-7 !w-7"
                         :required="field.required"
                         :checked="!!values[field.uuid]"
-                        @invalid="$event.target.setCustomValidity(t('please_check_the_box_to_continue'))"
-                        @change="$event.target.setCustomValidity($event.target.validity.valueMissing ? t('please_check_the_box_to_continue') : '')"
                         @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
                       >
                       <span
