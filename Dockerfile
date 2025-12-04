@@ -90,7 +90,7 @@ COPY --from=download /model.onnx /app/tmp/model.onnx
 COPY --from=webpack /app/public/packs ./public/packs
 
 RUN ln -s /fonts /app/public/fonts
-RUN bundle exec bootsnap precompile --gemfile app/ lib/
+RUN bundle exec bootsnap precompile -j 1 --gemfile app/ lib/
 
 WORKDIR /data/docuseal
 ENV WORKDIR=/data/docuseal
