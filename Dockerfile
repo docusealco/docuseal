@@ -9,7 +9,7 @@ RUN apk --no-cache add fontforge wget && \
     wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansSymbols2/hinted/ttf/NotoSansSymbols2-Regular.ttf && \
     wget https://github.com/Maxattax97/gnu-freefont/raw/master/ttf/FreeSans.ttf && \
     wget https://github.com/impallari/DancingScript/raw/master/OFL.txt && \
-    wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/1.0.0/model_704_int8.onnx" && \
+    wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/1.1.0/model_704_int8.onnx" && \
     wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
     mkdir -p /pdfium-linux && \
     tar -xzf pdfium-linux.tgz -C /pdfium-linux
