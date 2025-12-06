@@ -60,6 +60,10 @@ class Account < ApplicationRecord
     linked_account_account&.testing?
   end
 
+  def tz_info
+    @tz_info ||= TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[timezone] || timezone)
+  end
+
   def default_template_folder
     super || build_default_template_folder(name: TemplateFolder::DEFAULT_NAME,
                                            author_id: users.minimum(:id)).tap(&:save!)

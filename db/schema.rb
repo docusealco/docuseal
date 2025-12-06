@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -118,7 +118,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "verification_method"
-    t.index ["account_id"], name: "index_completed_submitters_on_account_id"
+    t.boolean "is_first"
+    t.index ["account_id", "completed_at"], name: "index_completed_submitters_account_id_completed_at_is_first", where: "(is_first = true)"
+    t.index ["account_id", "completed_at"], name: "index_completed_submitters_on_account_id_and_completed_at"
+    t.index ["submission_id"], name: "index_completed_submitters_on_submission_id", unique: true, where: "(is_first = true)"
     t.index ["submitter_id"], name: "index_completed_submitters_on_submitter_id", unique: true
   end
 
@@ -293,6 +296,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
     t.datetime "event_timestamp", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "account_id"
+    t.index ["account_id", "created_at"], name: "index_submissions_events_on_sms_event_types", where: "((event_type)::text = ANY ((ARRAY['send_sms'::character varying, 'send_2fa_sms'::character varying])::text[]))"
+    t.index ["account_id"], name: "index_submission_events_on_account_id"
     t.index ["created_at"], name: "index_submission_events_on_created_at"
     t.index ["submission_id"], name: "index_submission_events_on_submission_id"
     t.index ["submitter_id"], name: "index_submission_events_on_submitter_id"
@@ -445,6 +451,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
     t.string "otp_secret"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -506,6 +516,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_053744) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "submission_events", "accounts"
   add_foreign_key "submission_events", "submissions"
   add_foreign_key "submission_events", "submitters"
   add_foreign_key "submissions", "templates"

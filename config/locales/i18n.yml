@@ -23,6 +23,7 @@ en: &en
   add_from_google_drive: Add from Google Drive
   or_add_from: Or add from
   upload_a_new_document: Upload a New Document
+  billing: Billing
   hi_there: Hi there
   pro: Pro
   thanks: Thanks
@@ -70,7 +71,7 @@ en: &en
   team_access: Team access
   document_download_filename_format: Document download filename format
   docuseal_trusted_signature: DocuSeal Trusted Signature
-  hello_name: Hello %{name}
+  hello_name: Hi %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
   sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
@@ -844,6 +845,36 @@ en: &en
   tablet: Tablet
   reset_default: Reset default
   send_signature_request_email: Send signature request email
+  last_3_months: Last 3 months
+  last_6_months: Last 6 months
+  last_year: Last year
+  all_time: All time
+  everyone: Everyone
+  daily: Daily
+  weekly: Weekly
+  monthly: Monthly
+  api: API
+  embed: Embed
+  bulk: Bulk
+  invite: Invite
+  api_and_embed: API and Embed
+  period: Period
+  reports: Reports
+  completed_submissions: Completed submissions
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: A confirmation email has been sent to the new email address.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} email address is awaiting confirmation. Follow the link in the email to confirm."
+  please_confirm_your_email_address_using_the_link_below_: 'Please confirm your email address using the link below:'
+  confirm_email: Confirm email
+  unconfirmed: Unconfirmed
+  devise:
+    confirmations:
+      confirmed: Your email address has been successfully confirmed.
+    failure:
+      unconfirmed: You have to confirm your email address before continuing.
+    mailer:
+      confirmation_instructions:
+        subject: Confirm your email address
   submission_sources:
     api: API
     bulk: Bulk Send
@@ -950,10 +981,12 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  billing: Facturación
   add_from_google_drive: Agregar desde Google Drive
   or_add_from: O agregar desde
   upload_a_new_document: Subir nuevo documento
   use_direct_file_attachment_links_in_the_documents: Usar enlaces directos de archivos adjuntos en los documentos
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Haz clic aquí</label> para enviar un correo electrónico de restablecimiento de contraseña.'
   enabled: Habilitado
   disabled: Deshabilitado
   expirable_file_download_links: Enlaces de descarga de archivos con vencimiento
@@ -1596,6 +1629,7 @@ es: &es
   image_field: Campo de Imagen
   file_field: Campo de Archivo
   select_field: Campo de Selección
+  checkbox_field: Campo de Casilla
   multiple_field: Campo Múltiple
   radio_field: Campo de Grupo Radio
   cells_field: Campo de Celdas
@@ -1772,6 +1806,36 @@ es: &es
   tablet: Tableta
   reset_default: Restablecer por defecto
   send_signature_request_email: Enviar correo de solicitud de firma
+  last_3_months: Últimos 3 meses
+  last_6_months: Últimos 6 meses
+  last_year: Último año
+  all_time: Todo el tiempo
+  everyone: Todos
+  daily: Diario
+  weekly: Semanal
+  monthly: Mensual
+  api: API
+  embed: Integrar
+  bulk: Masivo
+  invite: Invitación
+  api_and_embed: API e Integrar
+  period: Período
+  reports: Informes
+  completed_submissions: Envíos completados
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Se ha enviado un correo electrónico de confirmación a la nueva dirección de correo electrónico.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está pendiente de confirmación. Sigue el enlace en el correo para confirmarla."
+  please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirma tu dirección de correo electrónico utilizando el enlace a continuación:'
+  confirm_email: Confirmar correo
+  unconfirmed: No confirmado
+  devise:
+    confirmations:
+      confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
+    failure:
+      unconfirmed: Debes confirmar tu dirección de correo electrónico antes de continuar.
+    mailer:
+      confirmation_instructions:
+        subject: Confirma tu dirección de correo electrónico
   submission_sources:
     api: API
     bulk: Envío masivo
@@ -1878,6 +1942,7 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  billing: Fatturazione
   add_from_google_drive: Aggiungi da Google Drive
   or_add_from: Oppure aggiungi da
   upload_a_new_document: Carica nuovo documento
@@ -1911,6 +1976,7 @@ it: &it
   edit_per_party: Modifica per partito
   signed: Firmato
   reply_to: Rispondi a
+  partially_completed: Parzialmente completato
   pending_by_me: In sospeso da me
   add: Aggiungi
   adding: Aggiungendo
@@ -2357,6 +2423,7 @@ it: &it
   upload_signature: Carica firma
   integration: Integrazione
   admin: Amministratore
+  tenant_admin: Amministratore tenant
   editor: Editor
   viewer: Visualizzatore
   member: Membro
@@ -2701,6 +2768,36 @@ it: &it
   tablet: Tablet
   reset_default: Reimposta predefinito
   send_signature_request_email: Invia email di richiesta firma
+  last_3_months: Ultimi 3 mesi
+  last_6_months: Ultimi 6 mesi
+  last_year: Ultimo anno
+  all_time: Tutto il tempo
+  everyone: Tutti
+  daily: Giornaliero
+  weekly: Settimanale
+  monthly: Mensile
+  api: API
+  embed: Incorporare
+  bulk: Massivo
+  invite: Invito
+  api_and_embed: API e Incorporare
+  period: Periodo
+  reports: Rapporti
+  completed_submissions: Invii completati
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: È stata inviata un'email di conferma al nuovo indirizzo email.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} è in attesa di conferma. Segui il link nell'email per confermare."
+  please_confirm_your_email_address_using_the_link_below_: 'Conferma il tuo indirizzo email utilizzando il link qui sotto:'
+  confirm_email: Conferma email
+  unconfirmed: Non confermato
+  devise:
+    confirmations:
+      confirmed: Il tuo indirizzo email è stato confermato con successo.
+    failure:
+      unconfirmed: Devi confermare il tuo indirizzo email prima di continuare.
+    mailer:
+      confirmation_instructions:
+        subject: Conferma il tuo indirizzo email
   submission_sources:
     api: API
     bulk: Invio massivo
@@ -2807,6 +2904,7 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
   upload_a_new_document: Téléverser un nouveau document
@@ -3627,6 +3725,37 @@ fr: &fr
   tablet: Tablette
   reset_default: Réinitialiser par défaut
   send_signature_request_email: Envoyer un e-mail de demande de signature
+  last_month: Mois dernier
+  last_3_months: 3 derniers mois
+  last_6_months: 6 derniers mois
+  last_year: Année dernière
+  all_time: Tout le temps
+  everyone: Tout le monde
+  daily: Quotidien
+  weekly: Hebdomadaire
+  monthly: Mensuel
+  api: API
+  embed: Intégrer
+  bulk: En masse
+  invite: Invitation
+  api_and_embed: API et Intégrer
+  period: Période
+  reports: Rapports
+  completed_submissions: Soumissions terminées
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Un e-mail de confirmation a été envoyé à la nouvelle adresse e-mail.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} est en attente de confirmation. Suivez le lien dans l'e-mail pour la confirmer."
+  please_confirm_your_email_address_using_the_link_below_: 'Veuillez confirmer votre adresse e-mail en utilisant le lien ci-dessous :'
+  confirm_email: "Confirmer l'e-mail"
+  unconfirmed: Non confirmé
+  devise:
+    confirmations:
+      confirmed: Votre adresse e-mail a été confirmée avec succès.
+    failure:
+      unconfirmed: Vous devez confirmer votre adresse e-mail avant de continuer.
+    mailer:
+      confirmation_instructions:
+        subject: Confirmez votre adresse e-mail
   submission_sources:
     api: API
     bulk: Envoi en masse
@@ -3733,6 +3862,7 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  billing: Pagamentos
   add_from_google_drive: Adicionar do Google Drive
   or_add_from: Ou adicionar de
   upload_a_new_document: Enviar novo documento
@@ -4557,6 +4687,36 @@ pt: &pt
   tablet: Tablet
   reset_default: Redefinir para padrão
   send_signature_request_email: Enviar e-mail de solicitação de assinatura
+  last_3_months: Últimos 3 meses
+  last_6_months: Últimos 6 meses
+  last_year: Último ano
+  all_time: Todo o tempo
+  everyone: Todos
+  daily: Diário
+  weekly: Semanal
+  monthly: Mensal
+  api: API
+  embed: Incorporar
+  bulk: Em massa
+  invite: Convite
+  api_and_embed: API e Incorporar
+  period: Período
+  reports: Relatórios
+  completed_submissions: Envios concluídos
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Um e-mail de confirmação foi enviado para o novo endereço de e-mail.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está aguardando confirmação. Siga o link enviado para esse endereço de e-mail para confirmar."
+  please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirme seu endereço de e-mail usando o link abaixo:'
+  confirm_email: Confirmar e-mail
+  unconfirmed: Não confirmado
+  devise:
+    confirmations:
+      confirmed: Seu endereço de e-mail foi confirmado com sucesso.
+    failure:
+      unconfirmed: Você deve confirmar seu endereço de e-mail antes de continuar.
+    mailer:
+      confirmation_instructions:
+        subject: Confirme seu endereço de e-mail
   submission_sources:
     api: API
     bulk: Envio em massa
@@ -4663,6 +4823,7 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  billing: Abrechnung
   add_from_google_drive: Aus Google Drive hinzufügen
   or_add_from: Oder hinzufügen aus
   upload_a_new_document: Neues Dokument hochladen
@@ -5487,6 +5648,36 @@ de: &de
   tablet: Tablet
   reset_default: Standard zurücksetzen
   send_signature_request_email: Signaturanfrage-E-Mail senden
+  last_3_months: Letzte 3 Monate
+  last_6_months: Letzte 6 Monate
+  last_year: Letztes Jahr
+  all_time: Gesamte Zeit
+  everyone: Alle
+  daily: Täglich
+  weekly: Wöchentlich
+  monthly: Monatlich
+  api: API
+  embed: Einbetten
+  bulk: Massenversand
+  invite: Einladung
+  api_and_embed: API und Einbetten
+  period: Zeitraum
+  reports: Berichte
+  completed_submissions: Abgeschlossene Übermittlungen
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Eine Bestätigungs-E-Mail wurde an die neue E-Mail-Adresse gesendet.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wartet auf Bestätigung. Folgen Sie dem Link in der E-Mail, um sie zu bestätigen."
+  please_confirm_your_email_address_using_the_link_below_: 'Bitte bestätigen Sie Ihre E-Mail-Adresse über den folgenden Link:'
+  confirm_email: E-Mail bestätigen
+  unconfirmed: Unbestätigt
+  devise:
+    confirmations:
+      confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
+    failure:
+      unconfirmed: Sie müssen Ihre E-Mail-Adresse bestätigen, bevor Sie fortfahren.
+    mailer:
+      confirmation_instructions:
+        subject: Bestätigen Sie Ihre E-Mail-Adresse
   submission_sources:
     api: API
     bulk: Massenversand
@@ -5957,6 +6148,7 @@ he:
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
 
 nl: &nl
+  billing: Facturatie
   add_from_google_drive: Toevoegen vanuit Google Drive
   or_add_from: Of toevoegen vanuit
   upload_a_new_document: Nieuw document uploaden
@@ -6777,6 +6969,36 @@ nl: &nl
   tablet: Tablet
   reset_default: Standaard herstellen
   send_signature_request_email: E-mail met handtekeningaanvraag verzenden
+  last_3_months: Afgelopen 3 maanden
+  last_6_months: Afgelopen 6 maanden
+  last_year: Afgelopen jaar
+  all_time: Altijd
+  everyone: Iedereen
+  daily: Dagelijks
+  weekly: Wekelijks
+  monthly: Maandelijks
+  api: API
+  embed: Insluiten
+  bulk: Bulk
+  invite: Uitnodiging
+  api_and_embed: API en Insluiten
+  period: Periode
+  reports: Rapporten
+  completed_submissions: Voltooide inzendingen
+  sms: SMS
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Er is een bevestigingsmail verzonden naar het nieuwe e-mailadres.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wacht op bevestiging. Volg de link in de e-mail om te bevestigen."
+  please_confirm_your_email_address_using_the_link_below_: 'Bevestig je e-mailadres via de onderstaande link:'
+  confirm_email: E-mailadres bevestigen
+  unconfirmed: Onbevestigd
+  devise:
+    confirmations:
+      confirmed: Je e-mailadres is succesvol bevestigd.
+    failure:
+      unconfirmed: Je moet je e-mailadres bevestigen voordat je verdergaat.
+    mailer:
+      confirmation_instructions:
+        subject: Bevestig je e-mailadres
   submission_sources:
     api: API
     bulk: Bulkverzending

@@ -251,4 +251,20 @@ module Submitters
 
     true
   end
+
+  def populate_completed_is_first
+    Account.find_each do |account|
+      submissions_index = {}
+
+      CompletedSubmitter.where(account_id: account.id).order(:account_id, :completed_at).each do |cs|
+        submissions_index[cs.submission_id] ||= cs.submitter_id
+
+        cs.update_columns(is_first: submissions_index[cs.submission_id] == cs.submitter_id)
+      rescue ActiveRecord::RecordNotUnique
+        CompletedSubmitter.where(submission_id: cs.submission_id).update_all(is_first: false)
+
+        cs.update_columns(is_first: submissions_index[cs.submission_id] == cs.submitter_id)
+      end
+    end
+  end
 end

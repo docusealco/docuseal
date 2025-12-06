@@ -65,7 +65,14 @@ class UsersController < ApplicationController
     end
 
     if @user.update(attrs.except(*(current_user == @user ? %i[password otp_required_for_login role] : %i[password])))
-      redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
+      if @user.try(:pending_reconfirmation?) && @user.previous_changes.key?(:unconfirmed_email)
+        SendConfirmationInstructionsJob.perform_async('user_id' => @user.id)
+
+        redirect_back fallback_location: settings_users_path,
+                      notice: I18n.t('a_confirmation_email_has_been_sent_to_the_new_email_address')
+      else
+        redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_updated')
+      end
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/edit'), status: :unprocessable_content
     end
