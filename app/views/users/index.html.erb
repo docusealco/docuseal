@@ -12,15 +12,24 @@
         <% end %>
       </h1>
       <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
-        <% if params[:status].blank? && can?(:create, User.new(account: current_account)) %>
-          <%= render 'users/extra_buttons' %>
-          <% if content_for(:add_user_button) %>
-            <%= content_for(:add_user_button) %>
-          <% else %>
-            <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
-              <%= svg_icon('plus', class: 'w-6 h-6') %>
-              <span><%= t('new_user') %></span>
+        <% if params[:status].blank? %>
+          <% if can?(:create, User.new(account: current_account)) %>
+            <%= render 'users/extra_buttons' %>
+            <% if content_for(:add_user_button) %>
+              <%= content_for(:add_user_button) %>
+            <% else %>
+              <%= link_to new_user_path, class: 'btn btn-primary btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+                <%= svg_icon('plus', class: 'w-6 h-6') %>
+                <span><%= t('new_user') %></span>
+              <% end %>
             <% end %>
+          <% else %>
+            <div class="tooltip" data-tip="<%= t('contact_your_administrator_to_add_new_users') %>">
+              <%= link_to '#', class: 'btn btn-primary btn-md gap-2 w-full md:w-fit btn-disabled', data: { turbo_frame: 'modal' } do %>
+                <%= svg_icon('plus', class: 'w-6 h-6') %>
+                <span><%= t('new_user') %></span>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -79,7 +88,7 @@
                     <%= t('remove') %>
                   <% end %>
                 <% end %>
-                <% if params[:status] == 'archived' && can?(:manage, user) && user != current_user && user.archived_at? %>
+                <% if params[:status] == 'archived' && can?(:create, user) && user != current_user && user.archived_at? %>
                   <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: t('unarchive'), data: { turbo_confirm: t('are_you_sure_') } do %>
                     <%= t('unarchive') %>
                   <% end %>

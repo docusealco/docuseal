@@ -54,7 +54,8 @@ class UsersController < ApplicationController
   def update
     return redirect_to settings_users_path, notice: I18n.t('unable_to_update_user') if Docuseal.demo?
 
-    attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
+    attrs = user_params.compact_blank
+    attrs = attrs.merge(user_params.slice(:archived_at)) if current_ability.can?(:create, @user)
 
     if params.dig(:user, :account_id).present?
       account = Account.accessible_by(current_ability).find(params.dig(:user, :account_id))
