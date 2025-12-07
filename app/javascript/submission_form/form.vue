@@ -133,6 +133,12 @@
           name="_method"
           type="hidden"
         >
+        <input
+          v-if="validate === false"
+          value="false"
+          name="validate"
+          type="hidden"
+        >
         <div class="md:mt-4">
           <div v-if="['cells', 'text'].includes(currentField.type)">
             <TextStep
@@ -715,6 +721,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    validate: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withDisclosure: {
       type: Boolean,
