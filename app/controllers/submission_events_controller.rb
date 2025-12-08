@@ -10,6 +10,7 @@ class SubmissionEventsController < ApplicationController
     'api_complete_form' => 'check',
     'send_reminder_email' => 'mail_forward',
     'send_2fa_sms' => '2fa',
+    'send_2fa_email' => '2fa',
     'send_sms' => 'send',
     'phone_verified' => 'phone_check',
     'email_verified' => 'email_check',

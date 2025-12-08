@@ -17,6 +17,7 @@ class SubmitFormController < ApplicationController
     submission = @submitter.submission
 
     return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+    return render :email_2fa if require_email_2fa?(@submitter)
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
@@ -47,6 +48,11 @@ class SubmitFormController < ApplicationController
   end
 
   def update
+    if require_email_2fa?(@submitter)
+      return render json: { error: I18n.t('verification_required_refresh_the_page_and_pass_2fa') },
+                    status: :unprocessable_content
+    end
+
     if @submitter.completed_at?
       return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_content
     end
@@ -77,6 +83,8 @@ class SubmitFormController < ApplicationController
 
   def completed
     raise ActionController::RoutingError, I18n.t('not_found') if @submitter.account.archived_at?
+
+    redirect_to submit_form_path(params[:submit_form_slug]) if require_email_2fa?(@submitter)
   end
 
   def success; end
@@ -108,5 +116,13 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def require_email_2fa?(submitter)
+    return false if submitter.submission.template&.preferences&.dig('require_email_2fa') != true &&
+                    submitter.preferences['require_email_2fa'] != true
+    return false if cookies.encrypted[:email_2fa_slug] == submitter.slug
+
+    true
   end
 end
