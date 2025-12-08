@@ -16,7 +16,9 @@ class StartFormController < ApplicationController
   COOKIES_DEFAULTS = { httponly: true, secure: Rails.env.production? }.freeze
 
   def show
-    raise ActionController::RoutingError, I18n.t('not_found') if @template.preferences['require_phone_2fa']
+    if @template.preferences['require_phone_2fa'] || @template.preferences['require_email_2fa']
+      raise ActionController::RoutingError, I18n.t('not_found')
+    end
 
     if @template.shared_link?
       @submitter = @template.submissions.new(account_id: @template.account_id)

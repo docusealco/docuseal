@@ -4,7 +4,9 @@ class ProcessSubmissionExpiredJob
   include Sidekiq::Job
 
   def perform(params = {})
-    submission = Submission.find(params['submission_id'])
+    submission = Submission.find_by(id: params['submission_id'])
+
+    return unless submission
 
     return if submission.archived_at?
     return if submission.template&.archived_at?

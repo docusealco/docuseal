@@ -49,7 +49,12 @@
           </li>
         </template>
       </template>
-      <template v-else>
+      <div
+        v-if="fieldTypes.length && submitterDefaultFields.length"
+        class="bg-base-300"
+        style="height: 1px; margin-top: 1px; margin-bottom: 1px"
+      />
+      <template v-if="fieldTypes.length || !submitterDefaultFields.length">
         <template
           v-for="(icon, type) in fieldIconsSorted"
           :key="type"

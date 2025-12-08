@@ -37,7 +37,7 @@ module Api
     rescue Submitters::MaliciousFileExtension => e
       Rollbar.error(e) if defined?(Rollbar)
 
-      render json: { error: e.message }, status: :unprocessable_entity
+      render json: { error: e.message }, status: :unprocessable_content
     end
 
     def build_new_cookie_signatures_json(submitter, attachment)

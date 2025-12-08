@@ -1130,4 +1130,76 @@ RSpec.describe 'Signing Form' do
       end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
     end
   end
+
+  context 'when the 2FA email verification is enabled', sidekiq: :inline do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text]) }
+    let(:submission) { create(:submission, template:) }
+    let(:submitter) do
+      create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:)
+    end
+
+    before do
+      template.update(preferences: { require_email_2fa: true })
+      create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
+                                value: GenerateCertificate.call.transform_values(&:to_pem))
+    end
+
+    it 'completes the form if the one-time password is filled correctly' do
+      visit submit_form_path(slug: submitter.slug)
+
+      click_button 'Send verification code'
+
+      email = ActionMailer::Base.deliveries.last
+      one_time_code = email.body.encoded[%r{<b>(\d{6})</b>}, 1]
+
+      fill_in 'one_time_code', with: one_time_code
+
+      click_button 'Submit'
+
+      fill_in 'First Name', with: 'Mary'
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'First Name')).to eq 'Mary'
+    end
+
+    it "doesn't complete the form if the one-time code is invalid" do
+      visit submit_form_path(slug: submitter.slug)
+
+      click_button 'Send verification code'
+      fill_in 'one_time_code', with: '123456'
+      click_button 'Submit'
+
+      expect(page).to have_content 'Invalid code'
+    end
+
+    it 'completes the form after resending the one time code' do
+      visit submit_form_path(slug: submitter.slug)
+
+      click_button 'Send verification code'
+
+      find('#resend_label').click
+
+      email = ActionMailer::Base.deliveries.last
+      one_time_code = email.body.encoded[%r{<b>(\d{6})</b>}, 1]
+
+      fill_in 'one_time_code', with: one_time_code
+
+      click_button 'Submit'
+
+      fill_in 'First Name', with: 'Mary'
+      click_button 'Complete'
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'First Name')).to eq 'Mary'
+    end
+  end
 end
