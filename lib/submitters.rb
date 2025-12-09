@@ -157,6 +157,7 @@ module Submitters
     preferences['send_email'] = params['send_email'].in?(TRUE_VALUES) if params.key?('send_email')
     preferences['send_sms'] = params['send_sms'].in?(TRUE_VALUES) if params.key?('send_sms')
     preferences['require_phone_2fa'] = params['require_phone_2fa'].in?(TRUE_VALUES) if params.key?('require_phone_2fa')
+    preferences['require_email_2fa'] = params['require_email_2fa'].in?(TRUE_VALUES) if params.key?('require_email_2fa')
     preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
     preferences['reply_to'] = params['reply_to'] if params.key?('reply_to')
     preferences['go_to_last'] = params['go_to_last'] if params.key?('go_to_last')
