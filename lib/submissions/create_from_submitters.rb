@@ -81,7 +81,7 @@ module Submissions
 
         next if submission.submitters.blank?
 
-        maybe_add_invite_submitters(submission, template)
+        maybe_add_invite_submitters(submission, template, attrs[:submitters])
 
         submission.template = nil unless with_template
 
@@ -102,8 +102,16 @@ module Submissions
       end
     end
 
-    def maybe_add_invite_submitters(submission, template)
+    def maybe_add_invite_submitters(submission, template, submitter_attrs)
       template.submitters.each_with_index do |item, index|
+        submitter_attr = submitter_attrs.find { |e| e['role'].to_s.casecmp?(item['name'].to_s) }
+
+        if submitter_attr && submitter_attr['invite_by'].present?
+          invite_by_uuid = template.submitters.find { |s| s['name'] == submitter_attr['invite_by'] }&.dig('uuid')
+
+          item = item.merge('invite_by_uuid' => invite_by_uuid) if invite_by_uuid
+        end
+
         next if item['invite_by_uuid'].blank? && item['optional_invite_by_uuid'].blank?
         next if submission.template_submitters.any? { |e| e['uuid'] == item['uuid'] }
 
