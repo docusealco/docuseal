@@ -6,7 +6,9 @@ class SendSubmitterVerificationEmailJob
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
 
-    SubmitterMailer.otp_verification_email(submitter).deliver_now!
+    locale = params['locale'].presence || submitter.account.locale
+
+    SubmitterMailer.otp_verification_email(submitter, locale:).deliver_now!
 
     SubmissionEvent.create!(submitter_id: params['submitter_id'],
                             event_type: 'send_2fa_email',
