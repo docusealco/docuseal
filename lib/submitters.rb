@@ -106,7 +106,8 @@ module Submitters
     if AccountConfig.exists?(account_id: submitter.submission.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
                              value: true) &&
-       submitter.submission.submitters.all?(&:completed_at?)
+       submitter.submission.submitters.all?(&:completed_at?) &&
+       submitter.submission.template_fields.none? { |f| f['type'] == 'verification' }
       return [submitter.submission.combined_document_attachment || Submissions::EnsureCombinedGenerated.call(submitter)]
     end
 

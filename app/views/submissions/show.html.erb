@@ -4,7 +4,7 @@
 <% font_scale = 1040.0 / PdfUtils::US_LETTER_W %>
 <% configs = AccountConfig.where(account_id: @submission.account_id, key: [AccountConfig::COMBINE_PDF_RESULT_KEY, AccountConfig::WITH_SIGNATURE_ID, AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY, AccountConfig::WITH_SIGNATURE_ID_REASON_KEY]) %>
 <% with_signature_id = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true %>
-<% is_combined_enabled = configs.find { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }&.value == true %>
+<% is_combined_enabled = configs.find { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }&.value == true && !@submission.template_fields&.any? { |f| f['type'] == 'verification' } %>
 <% with_submitter_timezone = configs.find { |e| e.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true %>
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
