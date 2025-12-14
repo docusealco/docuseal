@@ -25,6 +25,7 @@ en: &en
   upload_a_new_document: Upload a New Document
   billing: Billing
   hi_there: Hi there
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Templates that require email or phone 2FA cannot be used via a shared link.
   pro: Pro
   thanks: Thanks
   private: Private
@@ -32,6 +33,7 @@ en: &en
   enabled: Enabled
   disabled: Disabled
   party: Party
+  make_owner: Make Owner
   use_direct_file_attachment_links_in_the_documents: Use direct file attachment links in the documents
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
@@ -862,11 +864,19 @@ en: &en
   reports: Reports
   completed_submissions: Completed submissions
   sms: SMS
+  require_email_2fa_to_open: Require email 2FA to open
+  verification_required_refresh_the_page_and_pass_2fa: Verification required, refresh the page and pass 2FA.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: The sender has requested two-factor authentication via a one-time password sent to your <b>%{email}</b> email.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Please contact the requester to specify your email for two-factor authentication.
+  rate_limit_exceeded: Rate limit exceeded
   a_confirmation_email_has_been_sent_to_the_new_email_address: A confirmation email has been sent to the new email address.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} email address is awaiting confirmation. Follow the link in the email to confirm."
   please_confirm_your_email_address_using_the_link_below_: 'Please confirm your email address using the link below:'
   confirm_email: Confirm email
   unconfirmed: Unconfirmed
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: You requested to reset your password. Use the link below to continue
+  if_you_didnt_request_this_you_can_ignore_this_email: "If you didn't request this, please ignore this email."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Your password won't change until you open the link above and set a new one."
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -888,6 +898,7 @@ en: &en
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
     send_sms_to_html: '<b>SMS sent</b> to %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verification SMS sent</b> to %{submitter_name}'
+    send_2fa_email_to_html: '<b>Verification email sent</b> to %{submitter_name}'
     open_email_by_html: '<b>Email opened</b> by %{submitter_name}'
     click_email_by_html: '<b>Email link clicked</b> by %{submitter_name}'
     click_sms_by_html: '<b>SMS link clicked</b> by %{submitter_name}'
@@ -981,6 +992,8 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Las plantillas que requieren autenticación en dos pasos por correo electrónico o teléfono no se pueden usar mediante un enlace compartido.
+  make_owner: Hacer propietario
   billing: Facturación
   add_from_google_drive: Agregar desde Google Drive
   or_add_from: O agregar desde
@@ -1823,11 +1836,19 @@ es: &es
   reports: Informes
   completed_submissions: Envíos completados
   sms: SMS
+  require_email_2fa_to_open: Requerir 2FA por correo electrónico para abrir
+  verification_required_refresh_the_page_and_pass_2fa: Verificación requerida, actualiza la página y completa la autenticación de dos factores.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: El remitente ha solicitado autenticación de dos factores mediante una contraseña de un solo uso enviada a tu correo electrónico <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Por favor, contacta al remitente para especificar tu correo electrónico para la autenticación de dos factores.
+  rate_limit_exceeded: Límite de velocidad excedido
   a_confirmation_email_has_been_sent_to_the_new_email_address: Se ha enviado un correo electrónico de confirmación a la nueva dirección de correo electrónico.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está pendiente de confirmación. Sigue el enlace en el correo para confirmarla."
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirma tu dirección de correo electrónico utilizando el enlace a continuación:'
   confirm_email: Confirmar correo
   unconfirmed: No confirmado
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Solicitaste restablecer tu contraseña. Usa el enlace a continuación para continuar.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Si no solicitaste esto, puedes ignorar este correo electrónico."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Tu contraseña no cambiará hasta que abras el enlace anterior y establezcas una nueva."
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -1849,6 +1870,7 @@ es: &es
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificación enviado</b> a %{submitter_name}'
+    send_2fa_email_to_html: '<b>Correo electrónico de verificación enviado</b> a %{submitter_name}'
     open_email_by_html: '<b>Correo electrónico abierto</b> por %{submitter_name}'
     click_email_by_html: '<b>Enlace del correo electrónico clicado</b> por %{submitter_name}'
     click_sms_by_html: '<b>Enlace del SMS clicado</b> por %{submitter_name}'
@@ -1942,6 +1964,8 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: I modelli che richiedono 2FA via email o telefono non possono essere utilizzati tramite un link condiviso.
+  make_owner: Rendi proprietario
   billing: Fatturazione
   add_from_google_drive: Aggiungi da Google Drive
   or_add_from: Oppure aggiungi da
@@ -2785,11 +2809,19 @@ it: &it
   reports: Rapporti
   completed_submissions: Invii completati
   sms: SMS
+  require_email_2fa_to_open: Richiedi 2FA email per aprire
+  verification_required_refresh_the_page_and_pass_2fa: Verifica richiesta, aggiorna la pagina e completa l'autenticazione a due fattori.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Il mittente ha richiesto l'autenticazione a due fattori tramite una password monouso inviata al tuo indirizzo email <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Si prega di contattare il mittente per specificare il tuo indirizzo email per l'autenticazione a due fattori.
+  rate_limit_exceeded: Limite di velocità superato
   a_confirmation_email_has_been_sent_to_the_new_email_address: È stata inviata un'email di conferma al nuovo indirizzo email.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} è in attesa di conferma. Segui il link nell'email per confermare."
   please_confirm_your_email_address_using_the_link_below_: 'Conferma il tuo indirizzo email utilizzando il link qui sotto:'
   confirm_email: Conferma email
   unconfirmed: Non confermato
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Hai richiesto di reimpostare la tua password. Usa il link qui sotto per continuare.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Se non hai richiesto questo, puoi ignorare questa email."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "La tua password non cambierà finché non apri il link sopra e ne imposti una nuova."
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -2811,6 +2843,7 @@ it: &it
     send_reminder_email_to_html: '<b>E-mail di promemoria inviato</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS inviato</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS di verifica inviato</b> a %{submitter_name}'
+    send_2fa_email_to_html: '<b>Email di verifica inviata</b> a %{submitter_name}'
     open_email_by_html: '<b>E-mail aperta</b> da %{submitter_name}'
     click_email_by_html: "<b>Link dell'e-mail cliccato</b> da %{submitter_name}"
     click_sms_by_html: "<b>Link dell'SMS cliccato</b> da %{submitter_name}"
@@ -2904,6 +2937,8 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Les modèles nécessitant une authentification à deux facteurs par e-mail ou téléphone ne peuvent pas être utilisés via un lien partagé.
+  make_owner: Rendre propriétaire
   billing: Facturation
   add_from_google_drive: Ajouter depuis Google Drive
   or_add_from: Ou ajouter depuis
@@ -3743,11 +3778,19 @@ fr: &fr
   reports: Rapports
   completed_submissions: Soumissions terminées
   sms: SMS
+  require_email_2fa_to_open: Exiger la 2FA par e‑mail pour ouvrir
+  verification_required_refresh_the_page_and_pass_2fa: Vérification requise, actualisez la page et effectuez l'authentification à deux facteurs.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: L'expéditeur a demandé l'authentification à deux facteurs par mot de passe à usage unique envoyé à votre adresse e-mail <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Veuillez contacter l'expéditeur pour spécifier votre adresse e-mail pour l'authentification à deux facteurs.
+  rate_limit_exceeded: Limite de débit dépassée
   a_confirmation_email_has_been_sent_to_the_new_email_address: Un e-mail de confirmation a été envoyé à la nouvelle adresse e-mail.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} est en attente de confirmation. Suivez le lien dans l'e-mail pour la confirmer."
   please_confirm_your_email_address_using_the_link_below_: 'Veuillez confirmer votre adresse e-mail en utilisant le lien ci-dessous :'
   confirm_email: "Confirmer l'e-mail"
   unconfirmed: Non confirmé
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Vous avez demandé à réinitialiser votre mot de passe. Utilisez le lien ci-dessous pour continuer.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Votre mot de passe ne changera pas tant que vous n’aurez pas ouvert le lien ci-dessus et défini un nouveau mot de passe."
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -3769,6 +3812,7 @@ fr: &fr
     send_reminder_email_to_html: "<b>E‑mail de rappel envoyé</b> à %{submitter_name}"
     send_sms_to_html: "<b>SMS envoyé</b> à %{submitter_name}"
     send_2fa_sms_to_html: "<b>SMS de vérification envoyé</b> à %{submitter_name}"
+    send_2fa_email_to_html: "<b>E‑mail de vérification envoyé</b> à %{submitter_name}"
     open_email_by_html: "<b>E‑mail ouvert</b> par %{submitter_name}"
     click_email_by_html: "<b>Lien e‑mail cliqué</b> par %{submitter_name}"
     click_sms_by_html: "<b>Lien SMS cliqué</b> par %{submitter_name}"
@@ -3862,6 +3906,8 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Modelos que exigem 2FA por e-mail ou telefone não podem ser usados por meio de um link compartilhado.
+  make_owner: Tornar proprietário
   billing: Pagamentos
   add_from_google_drive: Adicionar do Google Drive
   or_add_from: Ou adicionar de
@@ -4704,11 +4750,19 @@ pt: &pt
   reports: Relatórios
   completed_submissions: Envios concluídos
   sms: SMS
+  require_email_2fa_to_open: Exigir 2FA por e-mail para abrir
+  verification_required_refresh_the_page_and_pass_2fa: Verificação necessária, atualize a página e conclua a autenticação de dois fatores.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: O remetente solicitou autenticação de dois fatores por meio de uma senha de uso único enviada para o seu e-mail <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Por favor, entre em contato com o remetente para especificar seu e-mail para autenticação de dois fatores.
+  rate_limit_exceeded: Limite de taxa excedido
   a_confirmation_email_has_been_sent_to_the_new_email_address: Um e-mail de confirmação foi enviado para o novo endereço de e-mail.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está aguardando confirmação. Siga o link enviado para esse endereço de e-mail para confirmar."
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirme seu endereço de e-mail usando o link abaixo:'
   confirm_email: Confirmar e-mail
   unconfirmed: Não confirmado
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Você solicitou a redefinição da sua senha. Use o link abaixo para continuar.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Se você não solicitou isso, pode ignorar este e-mail."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Sua senha não será alterada até que você abra o link acima e defina uma nova."
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -4730,6 +4784,7 @@ pt: &pt
     send_reminder_email_to_html: '<b>Email de lembrete enviado</b> para %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> para %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificação enviado</b> para %{submitter_name}'
+    send_2fa_email_to_html: '<b>Email de verificação enviado</b> para %{submitter_name}'
     open_email_by_html: '<b>E-mail aberto</b> por %{submitter_name}'
     click_email_by_html: '<b>Link do e-mail clicado</b> por %{submitter_name}'
     click_sms_by_html: '<b>Link do SMS clicado</b> por %{submitter_name}'
@@ -4823,6 +4878,8 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Vorlagen, die eine Zwei-Faktor-Authentifizierung per E-Mail oder Telefon erfordern, können nicht über einen geteilten Link verwendet werden.
+  make_owner: Eigentümer machen
   billing: Abrechnung
   add_from_google_drive: Aus Google Drive hinzufügen
   or_add_from: Oder hinzufügen aus
@@ -5665,11 +5722,19 @@ de: &de
   reports: Berichte
   completed_submissions: Abgeschlossene Übermittlungen
   sms: SMS
+  require_email_2fa_to_open: E-Mail-2FA erforderlich, um zu öffnen
+  verification_required_refresh_the_page_and_pass_2fa: Verifikation erforderlich. Aktualisieren Sie die Seite und führen Sie die Zwei-Faktor-Authentifizierung durch.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Der Absender hat die Zwei-Faktor-Authentifizierung per Einmalpasswort angefordert, das an Ihre E-Mail-Adresse <b>%{email}</b> gesendet wurde.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Bitte wenden Sie sich an den Absender, um Ihre E-Mail-Adresse für die Zwei-Faktor-Authentifizierung anzugeben.
+  rate_limit_exceeded: Limit überschritten
   a_confirmation_email_has_been_sent_to_the_new_email_address: Eine Bestätigungs-E-Mail wurde an die neue E-Mail-Adresse gesendet.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wartet auf Bestätigung. Folgen Sie dem Link in der E-Mail, um sie zu bestätigen."
   please_confirm_your_email_address_using_the_link_below_: 'Bitte bestätigen Sie Ihre E-Mail-Adresse über den folgenden Link:'
   confirm_email: E-Mail bestätigen
   unconfirmed: Unbestätigt
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Sie haben angefordert, Ihr Passwort zurückzusetzen. Verwenden Sie den untenstehenden Link, um fortzufahren.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Ihr Passwort wird erst geändert, wenn Sie den obigen Link öffnen und ein neues festlegen."
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -5691,6 +5756,7 @@ de: &de
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
     send_sms_to_html: '<b>SMS gesendet</b> an %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verifizierungs-SMS gesendet</b> an %{submitter_name}'
+    send_2fa_email_to_html: '<b>Verifizierungs-E-Mail gesendet</b> an %{submitter_name}'
     open_email_by_html: '<b>E-Mail geöffnet</b> von %{submitter_name}'
     click_email_by_html: '<b>E-Mail-Link angeklickt</b> von %{submitter_name}'
     click_sms_by_html: '<b>SMS-Link angeklickt</b> von %{submitter_name}'
@@ -5823,6 +5889,7 @@ pl:
   completed_on_time: 'Zakończono %{time}'
   document_has_been_signed_already: 'Dokument został już podpisany'
   form_has_been_submitted_already: Formularz został już przesłany
+  re_send_email: Wyślij wiadomość e-mail ponownie
   send_copy_to_email: Wyślij kopię na Email
   sending: Wysyłanie
   resubmit: Prześlij ponownie
@@ -5873,6 +5940,10 @@ pl:
   please_reply_to_this_email_if_you_didnt_request_this: Odpowiedz na ten e-mail, jeśli nie prosiłeś o to.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Twoje konto użytkownika zostało zarchiwizowane. Skontaktuj się z administratorem, aby przywrócić dostęp do konta.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z support@docuseal.com, aby się zalogować.
+  verification_required_refresh_the_page_and_pass_2fa: Weryfikacja wymagana, odśwież stronę i przejdź uwierzytelnienie dwuskładnikowe.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Nadawca zażądał uwierzytelniania dwuskładnikowego za pośrednictwem hasła jednorazowego wysłanego na Twój adres e-mail <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Skontaktuj się z nadawcą, aby podać swój adres e-mail do uwierzytelniania dwuskładnikowego.
+  rate_limit_exceeded: Przekroczono limit
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -5914,6 +5985,7 @@ uk:
   completed_on_time: 'Завершено %{time}'
   document_has_been_signed_already: 'Документ уже був підписаний'
   form_has_been_submitted_already: Форма вже була подана
+  re_send_email: Надіслати e-mail знову
   send_copy_to_email: Надіслати копію на Email
   sending: Надсилання
   resubmit: Подати знову
@@ -5964,6 +6036,10 @@ uk:
   please_reply_to_this_email_if_you_didnt_request_this: Відповідайте на цей лист, якщо ви цього не запитували.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ваш обліковий запис було архівовано. Зверніться до адміністратора, щоб відновити доступ.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до support@docuseal.com, щоб увійти.
+  verification_required_refresh_the_page_and_pass_2fa: Необхідна верифікація, оновіть сторінку та пройдіть двофакторну автентифікацію.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Відправник запросив двофакторну автентифікацію за допомогою одноразового пароля, відправленого на вашу електронну пошту <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Будь ласка, зв'яжіться з відправником, щоб вказати вашу електронну пошту для двофакторної автентифікації.
+  rate_limit_exceeded: Перевищено ліміт
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -6005,6 +6081,7 @@ cs:
   completed_on_time: 'Dokončeno %{time}'
   document_has_been_signed_already: 'Dokument již byl podepsán'
   form_has_been_submitted_already: Formulář již byl odeslán
+  re_send_email: Znovu odeslat e-mail
   send_copy_to_email: Odeslat kopii na Email
   sending: Odesílání
   resubmit: Odeslat znovu
@@ -6055,6 +6132,10 @@ cs:
   please_reply_to_this_email_if_you_didnt_request_this: Odpovězte na tento e-mail, pokud jste o to nežádali.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Váš uživatelský účet byl archivován. Kontaktujte svého administrátora pro obnovení přístupu.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nepodařilo se dosáhnout na váš e-mail. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Kontaktujte support@docuseal.com pro přihlášení.
+  verification_required_refresh_the_page_and_pass_2fa: Ověření vyžadováno. Aktualizujte stránku a dokončete dvoufaktorové ověření.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Odesílatel požádal o dvoufaktorové ověření pomocí jednorázového hesla odeslaného na vaši e-mailovou adresu <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Prosím kontaktujte odesílatele a uveďte svůj e-mail pro dvoufaktorové ověření.
+  rate_limit_exceeded: Překročena hranice
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -6096,6 +6177,7 @@ he:
   completed_on_time: 'הושלם ב-%{time}'
   document_has_been_signed_already: 'המסמך כבר נחתם'
   form_has_been_submitted_already: הטופס כבר נשלח
+  re_send_email: שלח דוא"ל שוב
   send_copy_to_email: שלח עותק לדוא"ל
   sending: שולח
   resubmit: שלח מחדש
@@ -6146,8 +6228,14 @@ he:
   please_reply_to_this_email_if_you_didnt_request_this: 'השב למייל זה אם לא ביקשת זאת.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: החשבון שלך הועבר לארכיון. פנה למנהל המערכת כדי לשחזר את הגישה.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
+  verification_required_refresh_the_page_and_pass_2fa: נדרשת אימות. רענן את הדף והשלם אימות דו-שלבי.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: השולח ביקש אימות דו-שלבי באמצעות סיסמה חד-פעמית שנשלחה לכתובת הדוא"ל שלך <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: אנא פנה לשולח וציין את כתובת הדוא"ל שלך לאימות דו-שלבי.
+  rate_limit_exceeded: חריגה ממגבלת
 
 nl: &nl
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Sjablonen waarvoor e-mail- of telefoon-2FA vereist is, kunnen niet via een gedeelde link worden gebruikt.
+  make_owner: Eigenaar maken
   billing: Facturatie
   add_from_google_drive: Toevoegen vanuit Google Drive
   or_add_from: Of toevoegen vanuit
@@ -6986,11 +7074,19 @@ nl: &nl
   reports: Rapporten
   completed_submissions: Voltooide inzendingen
   sms: SMS
+  require_email_2fa_to_open: E-mail 2FA vereisen om te openen
+  verification_required_refresh_the_page_and_pass_2fa: Verificatie vereist. Vernieuw de pagina en voer twee-factor-authenticatie uit.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: De afzender heeft twee-factor-authenticatie aangevraagd via een eenmalig wachtwoord dat naar uw e-mailadres <b>%{email}</b> is verzonden.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Neem alstublieft contact op met de afzender om uw e-mailadres op te geven voor twee-factor-authenticatie.
+  rate_limit_exceeded: Snelheidslimiet overschreden
   a_confirmation_email_has_been_sent_to_the_new_email_address: Er is een bevestigingsmail verzonden naar het nieuwe e-mailadres.
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wacht op bevestiging. Volg de link in de e-mail om te bevestigen."
   please_confirm_your_email_address_using_the_link_below_: 'Bevestig je e-mailadres via de onderstaande link:'
   confirm_email: E-mailadres bevestigen
   unconfirmed: Onbevestigd
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Je hebt gevraagd je wachtwoord te resetten. Gebruik de onderstaande link om verder te gaan.
+  if_you_didnt_request_this_you_can_ignore_this_email: "Als je dit niet hebt aangevraagd, kun je deze e-mail negeren."
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Je wachtwoord wordt niet gewijzigd totdat je de bovenstaande link opent en een nieuw wachtwoord instelt."
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
@@ -7012,6 +7108,7 @@ nl: &nl
     send_reminder_email_to_html: "<b>Herinneringsmail verzonden</b> naar %{submitter_name}"
     send_sms_to_html: "<b>SMS verzonden</b> naar %{submitter_name}"
     send_2fa_sms_to_html: "<b>Verificatie-SMS verzonden</b> naar %{submitter_name}"
+    send_2fa_email_to_html: "<b>Verificatie-e-mail verzonden</b> naar %{submitter_name}"
     open_email_by_html: "<b>E-mail geopend</b> door %{submitter_name}"
     click_email_by_html: "<b>E-maillink aangeklikt</b> door %{submitter_name}"
     click_sms_by_html: "<b>SMS-link aangeklikt</b> door %{submitter_name}"
@@ -7143,6 +7240,7 @@ ar:
   completed_on_time: 'تم إكماله في %{time}'
   document_has_been_signed_already: 'تم توقيع الوثيقة بالفعل'
   form_has_been_submitted_already: تم تقديم الاستمارة بالفعل
+  re_send_email: إعادة إرسال البريد الإلكتروني
   send_copy_to_email: إرسال نسخة إلى البريد الإلكتروني
   sending: جارٍ الإرسال
   resubmit: إعادة التقديم
@@ -7194,6 +7292,10 @@ ar:
   please_reply_to_this_email_if_you_didnt_request_this: 'يرجى الرد على هذا البريد إذا لم تطلب ذلك.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: تم أرشفة حسابك. يرجى التواصل مع المسؤول لاستعادة الوصول إلى حسابك.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كانت صندوق البريد غير متاح. يرجى التواصل مع support@docuseal.com لتسجيل الدخول.
+  verification_required_refresh_the_page_and_pass_2fa: مطلوب التحقق. قم بتحديث الصفحة وأكمل المصادقة الثنائية.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: طلب المرسل المصادقة الثنائية عبر كلمة مرور لمرة واحدة مرسلة إلى عنوان بريدك الإلكتروني <b>%{email}</b>.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: يرجى الاتصال بالمرسل لتحديد عنوان بريدك الإلكتروني للمصادقة الثنائية.
+  rate_limit_exceeded: تم تجاوز الحد المسموح به
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -7234,6 +7336,7 @@ ko:
   completed_on_time: '%{time}에 완료됨'
   document_has_been_signed_already: '문서가 이미 서명되었습니다'
   form_has_been_submitted_already: 양식이 이미 제출되었습니다.
+  re_send_email: 이메일 다시 보내기
   send_copy_to_email: 이메일로 사본 보내기
   sending: 전송 중
   resubmit: 다시 제출
@@ -7285,6 +7388,10 @@ ko:
   please_reply_to_this_email_if_you_didnt_request_this: 요청하지 않았다면 이 이메일에 회신하세요.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: 사용자 계정이 보관되었습니다. 계정 접근을 복원하려면 관리자에게 문의하세요.
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 support@docuseal.com에 문의하세요.
+  verification_required_refresh_the_page_and_pass_2fa: 인증이 필요합니다. 페이지를 새로 고치고 2단계 인증을 완료하세요.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 발신자가 <b>%{email}</b> 이메일 주소로 전송된 일회용 비밀번호를 통해 2단계 인증을 요청했습니다.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2단계 인증을 위해 이메일 주소를 지정하려면 발신자에게 문의하세요.
+  rate_limit_exceeded: 속도 제한 초과
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -7325,6 +7432,7 @@ ja:
   completed_on_time: '%{time} に完了'
   document_has_been_signed_already: ドキュメントはすでに署名されています
   form_has_been_submitted_already: フォームはすでに送信されています
+  re_send_email: メールを再度送信
   send_copy_to_email: メールにコピーを送信
   sending: 送信中
   resubmit: 再送信
@@ -7376,6 +7484,10 @@ ja:
   please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: あなたのユーザーアカウントはアーカイブされました。アクセスを復元するには管理者に連絡してください。
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには support@docuseal.com に連絡してください。
+  verification_required_refresh_the_page_and_pass_2fa: 認証が必要です。ページを更新して2段階認証を完了してください。
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 送信者は、<b>%{email}</b> メールアドレスに送信されたワンタイムパスワードによる2段階認証を要求しました。
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2段階認証用にメールアドレスを指定するために、送信者にお問い合わせください。
+  rate_limit_exceeded: レート制限を超えました
 
 en-US:
   <<: *en

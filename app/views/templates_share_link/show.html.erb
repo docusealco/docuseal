@@ -3,12 +3,19 @@
 <%= render 'shared/turbo_modal_large', title: t('share_link') do %>
   <div class="mt-2 mb-4 px-5">
     <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
-      <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
-        <span><%= t('enable_shared_link') %></span>
-        <submit-form data-on="change" class="flex">
-          <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
-        </submit-form>
-      </label>
+      <% if @template.preferences&.dig('require_email_2fa') || @template.preferences&.dig('require_phone_2fa') %>
+        <label for="template_shared_link" class="tooltip tooltip-bottom flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300" data-tip="<%= t(:templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link) %>">
+          <span><%= t('enable_shared_link') %></span>
+          <%= check_box_tag 'shared_link', 'true', false, disabled: true, class: 'toggle' %>
+        </label>
+      <% else %>
+        <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
+          <span><%= t('enable_shared_link') %></span>
+          <submit-form data-on="change" class="flex">
+            <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
+          </submit-form>
+        </label>
+      <% end %>
       <div class="flex gap-2 mt-3">
         <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
         <check-on-click data-element-id="template_shared_link">
@@ -31,48 +38,50 @@
         </div>
       </div>
     <% end %>
-    <div class="collapse collapse-arrow join-item mt-4">
-      <input id="accordion_checkbox" type="checkbox" name="accordion" class="min-h-0">
-      <div class="collapse-title min-h-0 after:!right-3 p-1">
-        <%= t('advanced_settings') %>
-      </div>
-      <div class="collapse-content !p-0">
-        <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4 pt-4 border-t border-base-300' }, data: { close_on_submit: false } do |f| %>
-          <% link_form_fields = @template.preferences.fetch('link_form_fields', ['email']) %>
-          <label class="pl-1"><%= t('link_form_fields') %></label>
-          <required-checkbox-group class="flex flex-col md:flex-row items-center gap-2 w-full mt-2">
-            <% %w[name email phone].each do |field| %>
-              <%= label_tag "link_form_fields_#{field}", t(field), class: 'relative flex w-full md:w-1/3 items-center h-14 border-base-300 py-3.5 border rounded-xl' do %>
-                <%= check_box_tag 'template[preferences][link_form_fields][]', field, link_form_fields.include?(field), class: 'absolute !animate-none checkbox left-3', id: "link_form_fields_#{field}" %>
-                <span class="font-medium w-full text-center"><%= t(field) %></span>
+    <% if @template.preferences&.dig('require_email_2fa') != true && @template.preferences&.dig('require_phone_2fa') != true %>
+      <div class="collapse collapse-arrow join-item mt-4">
+        <input id="accordion_checkbox" type="checkbox" name="accordion" class="min-h-0">
+        <div class="collapse-title min-h-0 after:!right-3 p-1">
+          <%= t('advanced_settings') %>
+        </div>
+        <div class="collapse-content !p-0">
+          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4 pt-4 border-t border-base-300' }, data: { close_on_submit: false } do |f| %>
+            <% link_form_fields = @template.preferences.fetch('link_form_fields', ['email']) %>
+            <label class="pl-1"><%= t('link_form_fields') %></label>
+            <required-checkbox-group class="flex flex-col md:flex-row items-center gap-2 w-full mt-2">
+              <% %w[name email phone].each do |field| %>
+                <%= label_tag "link_form_fields_#{field}", t(field), class: 'relative flex w-full md:w-1/3 items-center h-14 border-base-300 py-3.5 border rounded-xl' do %>
+                  <%= check_box_tag 'template[preferences][link_form_fields][]', field, link_form_fields.include?(field), class: 'absolute !animate-none checkbox left-3', id: "link_form_fields_#{field}" %>
+                  <span class="font-medium w-full text-center"><%= t(field) %></span>
+                <% end %>
+              <% end %>
+            </required-checkbox-group>
+          <% end %>
+          <% if multiple_submitters && enough_defined_submitters %>
+            <div class="collapse collapse-arrow join-item border border-base-300 mt-4">
+              <input type="checkbox" name="accordion" class="min-h-0">
+              <div class="collapse-title py-4 min-h-0">
+                <%= t('default_parties') %>
+              </div>
+              <div class="collapse-content !pb-0">
+                <%= render 'templates_preferences/recipients', template: @template, close_on_submit: false, with_toggles: false, with_submission_requester: false %>
+              </div>
+            </div>
+          <% end %>
+          <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
+            <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4' }, data: { close_on_submit: false } do |f| %>
+              <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
+                <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-1 alert bg-base-100 border-base-300">
+                  <span><%= t('request_email_otp_verification_with_shared_link') %></span>
+                  <submit-form data-on="change" class="flex">
+                    <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
+                  </submit-form>
+                </label>
               <% end %>
             <% end %>
-          </required-checkbox-group>
-        <% end %>
-        <% if multiple_submitters && enough_defined_submitters %>
-          <div class="collapse collapse-arrow join-item border border-base-300 mt-4">
-            <input type="checkbox" name="accordion" class="min-h-0">
-            <div class="collapse-title py-4 min-h-0">
-              <%= t('default_parties') %>
-            </div>
-            <div class="collapse-content !pb-0">
-              <%= render 'templates_preferences/recipients', template: @template, close_on_submit: false, with_toggles: false, with_submission_requester: false %>
-            </div>
-          </div>
-        <% end %>
-        <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
-          <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4' }, data: { close_on_submit: false } do |f| %>
-            <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
-              <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-1 alert bg-base-100 border-base-300">
-                <span><%= t('request_email_otp_verification_with_shared_link') %></span>
-                <submit-form data-on="change" class="flex">
-                  <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
-                </submit-form>
-              </label>
-            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

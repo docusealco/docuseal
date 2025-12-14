@@ -250,7 +250,7 @@ module Submissions
           submission.submission_events.find { |e| e.submitter_id == submitter.id && e.click_email? }
 
         verify_email_event =
-          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.phone_verified? }
+          submission.submission_events.find { |e| e.submitter_id == submitter.id && e.email_verified? }
 
         is_phone_verified =
           submission.template_fields.any? do |e|

@@ -8,8 +8,13 @@ class SendSubmissionCreatedWebhookRequestJob
   MAX_ATTEMPTS = 10
 
   def perform(params = {})
-    submission = Submission.find(params['submission_id'])
-    webhook_url = WebhookUrl.find(params['webhook_url_id'])
+    submission = Submission.find_by(id: params['submission_id'])
+
+    return unless submission
+
+    webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
+
+    return unless webhook_url
 
     attempt = params['attempt'].to_i
 

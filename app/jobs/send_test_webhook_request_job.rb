@@ -8,10 +8,13 @@ class SendTestWebhookRequestJob
   USER_AGENT = 'DocuSeal.com Webhook'
 
   def perform(params = {})
-    submitter = Submitter.find(params['submitter_id'])
-    webhook_url = WebhookUrl.find(params['webhook_url_id'])
+    submitter = Submitter.find_by(id: params['submitter_id'])
 
-    return unless webhook_url && submitter
+    return unless submitter
+
+    webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
+
+    return unless webhook_url
 
     Faraday.post(webhook_url.url,
                  {

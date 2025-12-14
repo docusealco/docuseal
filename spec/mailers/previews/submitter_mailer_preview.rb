@@ -22,4 +22,8 @@ class SubmitterMailerPreview < ActionMailer::Preview
 
     SubmitterMailer.documents_copy_email(submitter)
   end
+
+  def otp_verification_email
+    SubmitterMailer.otp_verification_email(Submitter.last)
+  end
 end

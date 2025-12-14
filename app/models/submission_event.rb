@@ -48,6 +48,7 @@ class SubmissionEvent < ApplicationRecord
     send_reminder_email: 'send_reminder_email',
     send_sms: 'send_sms',
     send_2fa_sms: 'send_2fa_sms',
+    send_2fa_email: 'send_2fa_email',
     open_email: 'open_email',
     click_email: 'click_email',
     click_sms: 'click_sms',

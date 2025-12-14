@@ -1,0 +1,72 @@
+<% content_for(:html_title, "#{@submitter.submission.name || @submitter.submission.template.name} | DocuSeal") %>
+<% I18n.with_locale(@submitter.account.locale) do %>
+  <% content_for(:html_description, t('account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution', account_name: @submitter.account.name)) %>
+<% end %>
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <%= render 'start_form/banner' %>
+      </div>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('writing_sign', class: 'w-10 h-10') %>
+          </div>
+          <div>
+            <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
+            <% last_submitter = @submitter.submission.submitters.completed.order(:completed_at).last %>
+            <% if last_submitter %>
+              <p dir="auto" class="text-sm">
+                <%= t(last_submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(last_submitter.completed_at.to_date, format: :long)) %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @submitter.email.present? %>
+      <div>
+        <%= t('the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html', email: TextUtils.mask_email(@submitter.email, 2)) %>
+      </div>
+      <% if params[:status] == 'sent' || params[:status] == 'error' %>
+        <%= form_for '', url: submit_form_email_2fa_path, method: :post, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
+          <div dir="auto" class="form-control !mt-0">
+            <%= f.hidden_field :submitter_slug, value: @submitter.slug %>
+            <%= f.text_field :one_time_code, required: true, class: 'base-input text-center', placeholder: 'XXX-XXX' %>
+            <div class="flex justify-between items-center mt-1">
+              <span>
+                <% if flash[:alert] %>
+                  <span class="text-red-500">
+                    <%= flash[:alert] %>
+                  </span>
+                <% end %>
+                <% if flash[:notice] %>
+                  <%= flash[:notice] %>
+                <% end %>
+              </span>
+              <span>
+                <label for="resend_code" id="resend_label" class="link"><%= t(:re_send_email) %></label>
+              </span>
+            </div>
+          </div>
+          <toggle-submit dir="auto" class="form-control">
+            <%= f.button button_title(title: t('submit')), class: 'base-button' %>
+          </toggle-submit>
+        <% end %>
+        <%= button_to t(:re_send_email), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, resend: true }, method: :put, id: 'resend_code', class: 'hidden' %>
+      <% else %>
+        <% if params[:t] %>
+          <fetch-form data-onload="true">
+            <%= button_to '', api_submitter_email_clicks_path, params: { submitter_slug: @submitter.slug, t: params[:t] }, method: :post, class: 'hidden' %>
+          </fetch-form>
+        <% end %>
+        <toggle-submit dir="auto" class="form-control">
+          <%= button_to button_title(title: t('send_verification_code')), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug }, method: :put, class: 'base-button w-full' %>
+        </toggle-submit>
+      <% end %>
+    <% else %>
+      <div><%= t('please_contact_the_requester_to_specify_your_email_for_two_factor_authentication') %></div>
+    <% end %>
+  </div>
+</div>

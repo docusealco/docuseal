@@ -8,8 +8,13 @@ class SendTemplateUpdatedWebhookRequestJob
   MAX_ATTEMPTS = 10
 
   def perform(params = {})
-    template = Template.find(params['template_id'])
-    webhook_url = WebhookUrl.find(params['webhook_url_id'])
+    template = Template.find_by(id: params['template_id'])
+
+    return unless template
+
+    webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
+
+    return unless webhook_url
 
     attempt = params['attempt'].to_i
 
