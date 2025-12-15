@@ -118,7 +118,8 @@
             "stamp",
             "payment",
             "phone",
-            "verification"
+            "verification",
+            "strikethrough"
           ]
         },
         "role": {
@@ -249,7 +250,8 @@
             "stamp",
             "payment",
             "phone",
-            "verification"
+            "verification",
+            "strikethrough"
           ]
         },
         "role": {
@@ -336,7 +338,8 @@
       "stamp",
       "payment",
       "phone",
-      "verification"
+      "verification",
+      "strikethrough"
     ]
   },
   "data-draw-field-type": {
@@ -408,6 +411,12 @@
     "default": true,
     "description": "Set `false` to now show the fields list on the right. Fields list is displayed by default."
   },
+  "data-with-fields-detection": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Display a button to automatically detect and add fields to the document with AI."
+  },
   "data-with-field-placeholder": {
     "type": "boolean",
     "required": false,
@@ -453,7 +462,7 @@
     "type": "string",
     "required": false,
     "default": "en",
-    "description": "UI language, 'en', 'es', 'de', 'fr', 'pt', 'he', 'ar' languages are available."
+    "description": "UI language, 'en', 'es', 'de', 'fr', 'pt', 'nl', 'he', 'ar' languages are available."
   },
   "data-background-color": {
     "type": "string",

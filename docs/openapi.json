@@ -251,7 +251,8 @@
                                     "stamp",
                                     "payment",
                                     "phone",
-                                    "verification"
+                                    "verification",
+                                    "strikethrough"
                                   ]
                                 },
                                 "required": {
@@ -277,6 +278,10 @@
                                       "type": "string",
                                       "description": "Font color of the field value."
                                     },
+                                    "background": {
+                                      "type": "string",
+                                      "description": "Field box background color."
+                                    },
                                     "align": {
                                       "type": "string",
                                       "description": "Horizontal alignment of the field text value."
@@ -300,6 +305,13 @@
                                     "mask": {
                                       "type": "boolean",
                                       "description": "Indicates if the field is masked on the document."
+                                    },
+                                    "reasons": {
+                                      "description": "An array of signature reasons to choose from.",
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
                                     }
                                   }
                                 },
@@ -714,7 +726,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -740,6 +753,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -763,6 +780,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -1782,6 +1806,11 @@
                           "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
                           "default": false
                         },
+                        "require_email_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                          "default": false
+                        },
                         "message": {
                           "type": "object",
                           "properties": {
@@ -1933,6 +1962,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -1986,6 +2024,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -2622,6 +2667,10 @@
                           "event_timestamp": {
                             "type": "string",
                             "description": "Date and time when the event was triggered."
+                          },
+                          "data": {
+                            "type": "object",
+                            "description": "Additional event details object."
                           }
                         }
                       }
@@ -2733,7 +2782,8 @@
                       "id": 1,
                       "submitter_id": 2,
                       "event_type": "view_form",
-                      "event_timestamp": "2023-12-14T15:47:24.566Z"
+                      "event_timestamp": "2023-12-14T15:47:24.566Z",
+                      "data": {}
                     }
                   ],
                   "documents": [
@@ -3318,7 +3368,8 @@
                                   "stamp",
                                   "payment",
                                   "phone",
-                                  "verification"
+                                  "verification",
+                                  "strikethrough"
                                 ]
                               },
                               "role": {
@@ -3471,6 +3522,15 @@
                           "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
                           "default": false
                         },
+                        "require_email_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                          "default": false
+                        },
+                        "invite_by": {
+                          "type": "string",
+                          "description": "Set the role name of the previous party that should invite this party via email."
+                        },
                         "fields": {
                           "type": "array",
                           "description": "A list of configurations for document form fields.",
@@ -3609,6 +3669,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -3662,6 +3731,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -3744,7 +3820,6 @@
                         "type": "object",
                         "required": [
                           "id",
-                          "submission_id",
                           "uuid",
                           "email",
                           "slug",
@@ -3832,6 +3907,53 @@
                               "sent",
                               "awaiting"
                             ]
+                          },
+                          "values": {
+                            "type": "array",
+                            "description": "An array of pre-filled values for the submitter.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "field",
+                                "value"
+                              ],
+                              "properties": {
+                                "field": {
+                                  "type": "string",
+                                  "description": "Document template field name."
+                                },
+                                "value": {
+                                  "oneOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": {
+                                        "oneOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "type": "number"
+                                          },
+                                          {
+                                            "type": "boolean"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "description": "Pre-filled value of the field."
+                                }
+                              }
+                            }
                           },
                           "role": {
                             "type": "string",
@@ -3944,7 +4066,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -3970,6 +4093,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -3993,6 +4120,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -4036,27 +4170,6 @@
                                 }
                               }
                             }
-                          }
-                        }
-                      }
-                    },
-                    "documents": {
-                      "type": "array",
-                      "description": "List of documents attached to the one-off submission.",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "attachment_uuid",
-                          "name"
-                        ],
-                        "properties": {
-                          "attachment_uuid": {
-                            "type": "string",
-                            "description": "Unique indentifier of attached document to the one-off submission."
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "Name of the attached document to the one-off submission."
                           }
                         }
                       }
@@ -4158,7 +4271,7 @@
           "Submissions"
         ],
         "summary": "Create a submission from DOCX",
-        "description": "The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href=\"https://www.docuseal.com/examples/demo_template.docx\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> fillable field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>",
+        "description": "The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href=\"https://www.docuseal.com/examples/demo_template.docx\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents\" class=\"link\">Use dynamic content variables in DOCX to create personalized documents</a>",
         "operationId": "createSubmissionFromDocx",
         "parameters": [],
         "requestBody": {
@@ -4189,7 +4302,7 @@
                   },
                   "variables": {
                     "type": "object",
-                    "description": "Dynamic content variables object",
+                    "description": "Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in DOCX.",
                     "example": {
                       "variable_name": "value"
                     }
@@ -4327,6 +4440,15 @@
                           "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
                           "default": false
                         },
+                        "require_email_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                          "default": false
+                        },
+                        "invite_by": {
+                          "type": "string",
+                          "description": "Set the role name of the previous party that should invite this party via email."
+                        },
                         "fields": {
                           "type": "array",
                           "description": "A list of configurations for document form fields.",
@@ -4465,6 +4587,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -4518,6 +4649,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -4595,7 +4733,6 @@
                         "type": "object",
                         "required": [
                           "id",
-                          "submission_id",
                           "uuid",
                           "email",
                           "slug",
@@ -4683,6 +4820,53 @@
                               "sent",
                               "awaiting"
                             ]
+                          },
+                          "values": {
+                            "type": "array",
+                            "description": "An array of pre-filled values for the submitter.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "field",
+                                "value"
+                              ],
+                              "properties": {
+                                "field": {
+                                  "type": "string",
+                                  "description": "Document template field name."
+                                },
+                                "value": {
+                                  "oneOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": {
+                                        "oneOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "type": "number"
+                                          },
+                                          {
+                                            "type": "boolean"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "description": "Pre-filled value of the field."
+                                }
+                              }
+                            }
                           },
                           "role": {
                             "type": "string",
@@ -4795,7 +4979,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -4821,6 +5006,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -4844,6 +5033,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -4887,27 +5083,6 @@
                                 }
                               }
                             }
-                          }
-                        }
-                      }
-                    },
-                    "documents": {
-                      "type": "array",
-                      "description": "List of documents attached to the one-off submission.",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "attachment_uuid",
-                          "name"
-                        ],
-                        "properties": {
-                          "attachment_uuid": {
-                            "type": "string",
-                            "description": "Unique indentifier of attached document to the one-off submission."
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "Name of the attached document to the one-off submission."
                           }
                         }
                       }
@@ -5198,6 +5373,15 @@
                           "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
                           "default": false
                         },
+                        "require_email_2fa": {
+                          "type": "boolean",
+                          "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                          "default": false
+                        },
+                        "invite_by": {
+                          "type": "string",
+                          "description": "Set the role name of the previous party that should invite this party via email."
+                        },
                         "fields": {
                           "type": "array",
                           "description": "A list of configurations for document form fields.",
@@ -5336,6 +5520,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -5389,6 +5582,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -5461,7 +5661,6 @@
                         "type": "object",
                         "required": [
                           "id",
-                          "submission_id",
                           "uuid",
                           "email",
                           "slug",
@@ -5549,6 +5748,53 @@
                               "sent",
                               "awaiting"
                             ]
+                          },
+                          "values": {
+                            "type": "array",
+                            "description": "An array of pre-filled values for the submitter.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "field",
+                                "value"
+                              ],
+                              "properties": {
+                                "field": {
+                                  "type": "string",
+                                  "description": "Document template field name."
+                                },
+                                "value": {
+                                  "oneOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": {
+                                        "oneOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "type": "number"
+                                          },
+                                          {
+                                            "type": "boolean"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "description": "Pre-filled value of the field."
+                                }
+                              }
+                            }
                           },
                           "role": {
                             "type": "string",
@@ -5661,7 +5907,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -5687,6 +5934,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -5710,6 +5961,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -5753,27 +6011,6 @@
                                 }
                               }
                             }
-                          }
-                        }
-                      }
-                    },
-                    "documents": {
-                      "type": "array",
-                      "description": "List of documents attached to the one-off submission.",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "attachment_uuid",
-                          "name"
-                        ],
-                        "properties": {
-                          "attachment_uuid": {
-                            "type": "string",
-                            "description": "Unique indentifier of attached document to the one-off submission."
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "Name of the attached document to the one-off submission."
                           }
                         }
                       }
@@ -6078,6 +6315,10 @@
                           "event_timestamp": {
                             "type": "string",
                             "description": "Date and time when the event was triggered."
+                          },
+                          "data": {
+                            "type": "object",
+                            "description": "Additional event details object."
                           }
                         }
                       }
@@ -6185,7 +6426,8 @@
                       "id": 12,
                       "submitter_id": 7,
                       "event_type": "view_form",
-                      "event_timestamp": "2023-12-14T15:47:17.351Z"
+                      "event_timestamp": "2023-12-14T15:47:17.351Z",
+                      "data": {}
                     }
                   ],
                   "values": [
@@ -6435,6 +6677,15 @@
                               ],
                               "default": "black"
                             },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
                             "align": {
                               "type": "string",
                               "description": "Horizontal alignment of the field text value.",
@@ -6488,6 +6739,13 @@
                                 }
                               ],
                               "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
                             }
                           }
                         }
@@ -6990,6 +7248,10 @@
                                 "event_timestamp": {
                                   "type": "string",
                                   "description": "Date and time when the event was triggered."
+                                },
+                                "data": {
+                                  "type": "object",
+                                  "description": "Additional event details object."
                                 }
                               }
                             }
@@ -7126,7 +7388,8 @@
                           "id": 12,
                           "submitter_id": 7,
                           "event_type": "view_form",
-                          "event_timestamp": "2023-12-14T15:48:17.351Z"
+                          "event_timestamp": "2023-12-14T15:48:17.351Z",
+                          "data": {}
                         }
                       ],
                       "values": [
@@ -7346,7 +7609,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -7372,6 +7636,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -7395,6 +7663,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -7793,7 +8068,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -7819,6 +8095,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -7842,6 +8122,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -8294,7 +8581,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -8320,6 +8608,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -8343,6 +8635,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -8674,7 +8973,8 @@
                                   "stamp",
                                   "payment",
                                   "phone",
-                                  "verification"
+                                  "verification",
+                                  "strikethrough"
                                 ]
                               },
                               "role": {
@@ -8812,6 +9112,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -8865,6 +9174,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -8989,7 +9305,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -9015,6 +9332,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -9038,6 +9359,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -9369,7 +9697,8 @@
                                   "stamp",
                                   "payment",
                                   "phone",
-                                  "verification"
+                                  "verification",
+                                  "strikethrough"
                                 ]
                               },
                               "role": {
@@ -9515,6 +9844,15 @@
                                     ],
                                     "default": "black"
                                   },
+                                  "background": {
+                                    "type": "string",
+                                    "description": "Field box background color.",
+                                    "enum": [
+                                      "black",
+                                      "white",
+                                      "blue"
+                                    ]
+                                  },
                                   "align": {
                                     "type": "string",
                                     "description": "Horizontal alignment of the field text value.",
@@ -9568,6 +9906,13 @@
                                       }
                                     ],
                                     "default": false
+                                  },
+                                  "reasons": {
+                                    "description": "An array of signature reasons to choose from.",
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   }
                                 }
                               }
@@ -9702,7 +10047,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -9728,6 +10074,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -9751,6 +10101,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },
@@ -10169,7 +10526,8 @@
                               "stamp",
                               "payment",
                               "phone",
-                              "verification"
+                              "verification",
+                              "strikethrough"
                             ]
                           },
                           "required": {
@@ -10195,6 +10553,10 @@
                                 "type": "string",
                                 "description": "Font color of the field value."
                               },
+                              "background": {
+                                "type": "string",
+                                "description": "Field box background color."
+                              },
                               "align": {
                                 "type": "string",
                                 "description": "Horizontal alignment of the field text value."
@@ -10218,6 +10580,13 @@
                               "mask": {
                                 "type": "boolean",
                                 "description": "Indicates if the field is masked on the document."
+                              },
+                              "reasons": {
+                                "description": "An array of signature reasons to choose from.",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               }
                             }
                           },

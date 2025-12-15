@@ -1,343 +1,3 @@
-### List all templates
-
-The API endpoint provides the ability to retrieve a list of available document templates.
-
-```go
-package main
-
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Templates"
-  ],
-  "summary": "List all templates",
-  "operationId": "getTemplates",
-  "parameters": [
-    {
-      "name": "q",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string"
-      },
-      "description": "Filter templates based on the name partial match."
-    },
-    {
-      "name": "slug",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string"
-      },
-      "description": "Filter templates by unique slug.",
-      "example": "opaKWh8WWTAcVG"
-    },
-    {
-      "name": "external_id",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string"
-      },
-      "description": "The unique applications-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external id."
-    },
-    {
-      "name": "folder",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string"
-      },
-      "description": "Filter templates by folder name."
-    },
-    {
-      "name": "archived",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "boolean"
-      },
-      "description": "Get only archived templates instead of active ones."
-    },
-    {
-      "name": "limit",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The number of templates to return. Default value is 10. Maximum value is 100."
-    },
-    {
-      "name": "after",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the template to start the list from. It allows you to receive only templates with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates."
-    },
-    {
-      "name": "before",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the template to end the list with. It allows you to receive only templates with id less than the specified value."
-    }
-  ]
-}
-```
-
-### Get a template
-
-The API endpoint provides the functionality to retrieve information about a document template.
-
-```go
-package main
-
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Templates"
-  ],
-  "summary": "Get a template",
-  "operationId": "getTemplate",
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the document template.",
-      "example": 1000001
-    }
-  ]
-}
-```
-
-### Archive a template
-
-The API endpoint allows you to archive a document template.
-
-```go
-package main
-
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001"
-
-	req, _ := http.NewRequest("DELETE", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Templates"
-  ],
-  "summary": "Archive a template",
-  "operationId": "archiveTemplate",
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the document template.",
-      "example": 1000001
-    }
-  ]
-}
-```
-
-### Update a template
-
-The API endpoint provides the functionality to move a document template to a different folder and update the name of the template.
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001"
-
-	payload := strings.NewReader("{\"name\":\"New Document Name\",\"folder_name\":\"New Folder\"}")
-
-	req, _ := http.NewRequest("PUT", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Templates"
-  ],
-  "summary": "Update a template",
-  "operationId": "updateTemplate",
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the document template.",
-      "example": 1000001
-    }
-  ],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "The name of the template",
-              "example": "New Document Name"
-            },
-            "folder_name": {
-              "type": "string",
-              "description": "The folder's name to which the template should be moved.",
-              "example": "New Folder"
-            },
-            "roles": {
-              "type": "array",
-              "description": "An array of submitter role names to update the template with.",
-              "items": {
-                "type": "string"
-              },
-              "example": [
-                "Agent",
-                "Customer"
-              ]
-            },
-            "archived": {
-              "type": "boolean",
-              "description": "Set `false` to unarchive template."
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ### List all submissions
 
 The API endpoint provides the ability to retrieve a list of available submissions.
@@ -470,6 +130,124 @@ func main() {
         "type": "integer"
       },
       "description": "The unique identifier of the submission that marks the end of the list. It allows you to receive only submissions with an ID less than the specified value."
+    }
+  ]
+}
+```
+
+### Get a submission
+
+The API endpoint provides the functionality to retrieve information about a submission.
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/submissions/1001"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Submissions"
+  ],
+  "summary": "Get a submission",
+  "operationId": "getSubmission",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the submission.",
+      "example": 1001
+    }
+  ]
+}
+```
+
+### Get submission documents
+
+This endpoint returns a list of partially filled documents for a submission. If the submission has been completed, the final signed documents are returned.
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/submissions/1001/documents"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Submissions"
+  ],
+  "summary": "Get submission documents",
+  "operationId": "getSubmissionDocuments",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the submission.",
+      "example": 1001
     }
   ]
 }
@@ -662,6 +440,11 @@ func main() {
                     "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
                     "default": false
                   },
+                  "require_email_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                    "default": false
+                  },
                   "message": {
                     "type": "object",
                     "properties": {
@@ -813,6 +596,15 @@ func main() {
                               ],
                               "default": "black"
                             },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
                             "align": {
                               "type": "string",
                               "description": "Horizontal alignment of the field text value.",
@@ -866,6 +658,13 @@ func main() {
                                 }
                               ],
                               "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
                             }
                           }
                         }
@@ -890,26 +689,31 @@ func main() {
 }
 ```
 
-### Get a submission
+### Create a submission from PDF
 
-The API endpoint provides the functionality to retrieve information about a submission.
+The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+
 
 ```go
 package main
 
 import (
 	"fmt"
+	"strings"
 	"net/http"
 	"io"
 )
 
 func main() {
 
-	url := "https://api.docuseal.com/submissions/1001"
+	url := "https://api.docuseal.com/submissions/pdf"
 
-	req, _ := http.NewRequest("GET", url, nil)
+	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
+
+	req, _ := http.NewRequest("POST", url, payload)
 
 	req.Header.Add("X-Auth-Token", "API_KEY")
+	req.Header.Add("content-type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
 
@@ -932,20 +736,1508 @@ func main() {
   "tags": [
     "Submissions"
   ],
-  "summary": "Get a submission",
-  "operationId": "getSubmission",
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the submission.",
-      "example": 1001
+  "summary": "Create a submission from PDF",
+  "operationId": "createSubmissionFromPdf",
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "documents",
+            "submitters"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the document submission.",
+              "example": "Test Submission Document"
+            },
+            "send_email": {
+              "type": "boolean",
+              "description": "Set `false` to disable signature request emails sending.",
+              "default": true
+            },
+            "send_sms": {
+              "type": "boolean",
+              "description": "Set `true` to send signature request via phone number and SMS.",
+              "default": false
+            },
+            "order": {
+              "type": "string",
+              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
+              "default": "preserved",
+              "enum": [
+                "preserved",
+                "random"
+              ]
+            },
+            "completed_redirect_url": {
+              "type": "string",
+              "description": "Specify URL to redirect to after the submission completion."
+            },
+            "bcc_completed": {
+              "type": "string",
+              "description": "Specify BCC address to send signed documents to after the completion."
+            },
+            "reply_to": {
+              "type": "string",
+              "description": "Specify Reply-To address to use in the notification emails."
+            },
+            "expire_at": {
+              "type": "string",
+              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+              "example": "2024-09-01 12:00:00 UTC"
+            },
+            "template_ids": {
+              "type": "array",
+              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
+              "items": {
+                "type": "integer",
+                "description": "The ID of the template to use for the submission."
+              }
+            },
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "file"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document."
+                  },
+                  "file": {
+                    "example": "base64",
+                    "type": "string",
+                    "format": "base64",
+                    "description": "Base64-encoded content of the PDF file or downloadable file URL."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the field."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the field (e.g., text, signature, date, initials).",
+                          "enum": [
+                            "heading",
+                            "text",
+                            "signature",
+                            "initials",
+                            "date",
+                            "number",
+                            "image",
+                            "checkbox",
+                            "multiple",
+                            "file",
+                            "radio",
+                            "select",
+                            "cells",
+                            "stamp",
+                            "payment",
+                            "phone",
+                            "verification",
+                            "strikethrough"
+                          ]
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Role name of the signer."
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Indicates if the field is required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "areas": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "x",
+                              "y",
+                              "w",
+                              "h",
+                              "page"
+                            ],
+                            "properties": {
+                              "x": {
+                                "type": "number",
+                                "description": "X-coordinate of the field area."
+                              },
+                              "y": {
+                                "type": "number",
+                                "description": "Y-coordinate of the field area."
+                              },
+                              "w": {
+                                "type": "number",
+                                "description": "Width of the field area."
+                              },
+                              "h": {
+                                "type": "number",
+                                "description": "Height of the field area."
+                              },
+                              "page": {
+                                "type": "integer",
+                                "description": "Page number of the field area. Starts from 1.",
+                                "example": 1
+                              },
+                              "option": {
+                                "type": "string",
+                                "description": "Option string value for 'radio' and 'multiple' select field types."
+                              }
+                            }
+                          }
+                        },
+                        "options": {
+                          "type": "array",
+                          "description": "An array of option values for 'select' field type.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "Option A",
+                            "Option B"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "position": {
+                    "type": "integer",
+                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                  }
+                }
+              }
+            },
+            "submitters": {
+              "type": "array",
+              "description": "The list of submitters for the submission.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the submitter."
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The role name or title of the submitter.",
+                    "example": "First Party"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the submitter.",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
+                    "example": "+1234567890"
+                  },
+                  "values": {
+                    "type": "object",
+                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
+                  },
+                  "external_id": {
+                    "type": "string",
+                    "description": "Your application-specific unique string key to identify this submitter within your app."
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Metadata object with additional submitter information.",
+                    "example": "{ \"customField\": \"value\" }"
+                  },
+                  "send_email": {
+                    "type": "boolean",
+                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
+                    "default": true
+                  },
+                  "send_sms": {
+                    "type": "boolean",
+                    "description": "Set `true` to send signature request via phone number and SMS.",
+                    "default": false
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
+                  },
+                  "require_phone_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                    "default": false
+                  },
+                  "require_email_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                    "default": false
+                  },
+                  "invite_by": {
+                    "type": "string",
+                    "description": "Set the role name of the previous party that should invite this party via email."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "A list of configurations for document form fields.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Document field name.",
+                          "example": "First Name"
+                        },
+                        "default_value": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
+                          "example": "Acme"
+                        },
+                        "readonly": {
+                          "type": "boolean",
+                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
+                          "default": false
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Set `true` to make the field required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "validation": {
+                          "type": "object",
+                          "properties": {
+                            "pattern": {
+                              "type": "string",
+                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                              "example": "[A-Z]{4}"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "A custom error message to display on validation failure."
+                            },
+                            "min": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Minimum allowed number value or date depending on field type."
+                            },
+                            "max": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Maximum allowed number value or date depending on field type."
+                            },
+                            "step": {
+                              "type": "number",
+                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
+                            }
+                          }
+                        },
+                        "preferences": {
+                          "type": "object",
+                          "properties": {
+                            "font_size": {
+                              "type": "integer",
+                              "description": "Font size of the field value in pixels.",
+                              "example": 12
+                            },
+                            "font_type": {
+                              "type": "string",
+                              "description": "Font type of the field value.",
+                              "enum": [
+                                "bold",
+                                "italic",
+                                "bold_italic"
+                              ]
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "Font family of the field value.",
+                              "enum": [
+                                "Times",
+                                "Helvetica",
+                                "Courier"
+                              ]
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "Font color of the field value.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ],
+                              "default": "black"
+                            },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
+                            "align": {
+                              "type": "string",
+                              "description": "Horizontal alignment of the field text value.",
+                              "enum": [
+                                "left",
+                                "center",
+                                "right"
+                              ],
+                              "default": "left"
+                            },
+                            "valign": {
+                              "type": "string",
+                              "description": "Vertical alignment of the field text value.",
+                              "enum": [
+                                "top",
+                                "center",
+                                "bottom"
+                              ],
+                              "default": "center"
+                            },
+                            "format": {
+                              "type": "string",
+                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                              "example": "DD/MM/YYYY"
+                            },
+                            "price": {
+                              "type": "number",
+                              "description": "Price value of the payment field. Only for payment fields.",
+                              "example": 99.99
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Currency value of the payment field. Only for payment fields.",
+                              "enum": [
+                                "USD",
+                                "EUR",
+                                "GBP",
+                                "CAD",
+                                "AUD"
+                              ],
+                              "default": "USD"
+                            },
+                            "mask": {
+                              "description": "Set `true` to make sensitive data masked on the document.",
+                              "oneOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ],
+                              "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "roles": {
+                    "type": "array",
+                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "message": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "description": "Custom signature request email subject."
+                },
+                "body": {
+                  "type": "string",
+                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
+                }
+              }
+            },
+            "flatten": {
+              "type": "boolean",
+              "description": "Remove PDF form fields from the documents.",
+              "default": false
+            },
+            "merge_documents": {
+              "type": "boolean",
+              "description": "Set `true` to merge the documents into a single PDF file.",
+              "default": false
+            },
+            "remove_tags": {
+              "type": "boolean",
+              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+              "default": true
+            }
+          }
+        }
+      }
     }
-  ]
+  }
+}
+```
+
+### Create a submission from DOCX
+
+The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.docuseal.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents" class="link">Use dynamic content variables in DOCX to create personalized documents</a>
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/submissions/docx"
+
+	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"variables\":{\"variable_name\":\"value\"},\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+	req.Header.Add("content-type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Submissions"
+  ],
+  "summary": "Create a submission from DOCX",
+  "operationId": "createSubmissionFromDocx",
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "documents",
+            "submitters"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the document submission.",
+              "example": "Test Submission Document"
+            },
+            "send_email": {
+              "type": "boolean",
+              "description": "Set `false` to disable signature request emails sending.",
+              "default": true
+            },
+            "send_sms": {
+              "type": "boolean",
+              "description": "Set `true` to send signature request via phone number and SMS.",
+              "default": false
+            },
+            "variables": {
+              "type": "object",
+              "description": "Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in DOCX.",
+              "example": {
+                "variable_name": "value"
+              }
+            },
+            "order": {
+              "type": "string",
+              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
+              "default": "preserved",
+              "enum": [
+                "preserved",
+                "random"
+              ]
+            },
+            "completed_redirect_url": {
+              "type": "string",
+              "description": "Specify URL to redirect to after the submission completion."
+            },
+            "bcc_completed": {
+              "type": "string",
+              "description": "Specify BCC address to send signed documents to after the completion."
+            },
+            "reply_to": {
+              "type": "string",
+              "description": "Specify Reply-To address to use in the notification emails."
+            },
+            "expire_at": {
+              "type": "string",
+              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+              "example": "2024-09-01 12:00:00 UTC"
+            },
+            "template_ids": {
+              "type": "array",
+              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
+              "items": {
+                "type": "integer",
+                "description": "The ID of the template to use for the submission."
+              }
+            },
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "file"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document."
+                  },
+                  "file": {
+                    "example": "base64",
+                    "type": "string",
+                    "format": "base64",
+                    "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL."
+                  },
+                  "position": {
+                    "type": "integer",
+                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                  }
+                }
+              }
+            },
+            "submitters": {
+              "type": "array",
+              "description": "The list of submitters for the submission.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the submitter."
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The role name or title of the submitter.",
+                    "example": "First Party"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the submitter.",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
+                    "example": "+1234567890"
+                  },
+                  "values": {
+                    "type": "object",
+                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
+                  },
+                  "external_id": {
+                    "type": "string",
+                    "description": "Your application-specific unique string key to identify this submitter within your app."
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Metadata object with additional submitter information.",
+                    "example": "{ \"customField\": \"value\" }"
+                  },
+                  "send_email": {
+                    "type": "boolean",
+                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
+                    "default": true
+                  },
+                  "send_sms": {
+                    "type": "boolean",
+                    "description": "Set `true` to send signature request via phone number and SMS.",
+                    "default": false
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
+                  },
+                  "require_phone_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                    "default": false
+                  },
+                  "require_email_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                    "default": false
+                  },
+                  "invite_by": {
+                    "type": "string",
+                    "description": "Set the role name of the previous party that should invite this party via email."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "A list of configurations for document form fields.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Document field name.",
+                          "example": "First Name"
+                        },
+                        "default_value": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
+                          "example": "Acme"
+                        },
+                        "readonly": {
+                          "type": "boolean",
+                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
+                          "default": false
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Set `true` to make the field required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "validation": {
+                          "type": "object",
+                          "properties": {
+                            "pattern": {
+                              "type": "string",
+                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                              "example": "[A-Z]{4}"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "A custom error message to display on validation failure."
+                            },
+                            "min": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Minimum allowed number value or date depending on field type."
+                            },
+                            "max": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Maximum allowed number value or date depending on field type."
+                            },
+                            "step": {
+                              "type": "number",
+                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
+                            }
+                          }
+                        },
+                        "preferences": {
+                          "type": "object",
+                          "properties": {
+                            "font_size": {
+                              "type": "integer",
+                              "description": "Font size of the field value in pixels.",
+                              "example": 12
+                            },
+                            "font_type": {
+                              "type": "string",
+                              "description": "Font type of the field value.",
+                              "enum": [
+                                "bold",
+                                "italic",
+                                "bold_italic"
+                              ]
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "Font family of the field value.",
+                              "enum": [
+                                "Times",
+                                "Helvetica",
+                                "Courier"
+                              ]
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "Font color of the field value.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ],
+                              "default": "black"
+                            },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
+                            "align": {
+                              "type": "string",
+                              "description": "Horizontal alignment of the field text value.",
+                              "enum": [
+                                "left",
+                                "center",
+                                "right"
+                              ],
+                              "default": "left"
+                            },
+                            "valign": {
+                              "type": "string",
+                              "description": "Vertical alignment of the field text value.",
+                              "enum": [
+                                "top",
+                                "center",
+                                "bottom"
+                              ],
+                              "default": "center"
+                            },
+                            "format": {
+                              "type": "string",
+                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                              "example": "DD/MM/YYYY"
+                            },
+                            "price": {
+                              "type": "number",
+                              "description": "Price value of the payment field. Only for payment fields.",
+                              "example": 99.99
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Currency value of the payment field. Only for payment fields.",
+                              "enum": [
+                                "USD",
+                                "EUR",
+                                "GBP",
+                                "CAD",
+                                "AUD"
+                              ],
+                              "default": "USD"
+                            },
+                            "mask": {
+                              "description": "Set `true` to make sensitive data masked on the document.",
+                              "oneOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ],
+                              "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "roles": {
+                    "type": "array",
+                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "message": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "description": "Custom signature request email subject."
+                },
+                "body": {
+                  "type": "string",
+                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
+                }
+              }
+            },
+            "merge_documents": {
+              "type": "boolean",
+              "description": "Set `true` to merge the documents into a single PDF file.",
+              "default": false
+            },
+            "remove_tags": {
+              "type": "boolean",
+              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Create a submission from HTML
+
+This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/submissions/html"
+
+	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"documents\":[{\"name\":\"Test Document\",\"html\":\"<p>Lorem Ipsum is simply dummy text of the\\n<text-field\\n  name=\\\"Industry\\\"\\n  role=\\\"First Party\\\"\\n  required=\\\"false\\\"\\n  style=\\\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\\\">\\n</text-field>\\nand typesetting industry</p>\\n\"}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+	req.Header.Add("content-type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Submissions"
+  ],
+  "summary": "Create a submission from HTML",
+  "operationId": "createSubmissionFromHtml",
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "documents",
+            "submitters"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the document submission",
+              "example": "Test Submission Document"
+            },
+            "send_email": {
+              "type": "boolean",
+              "description": "Set `false` to disable signature request emails sending.",
+              "default": true
+            },
+            "send_sms": {
+              "type": "boolean",
+              "description": "Set `true` to send signature request via phone number and SMS.",
+              "default": false
+            },
+            "order": {
+              "type": "string",
+              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
+              "default": "preserved",
+              "enum": [
+                "preserved",
+                "random"
+              ]
+            },
+            "completed_redirect_url": {
+              "type": "string",
+              "description": "Specify URL to redirect to after the submission completion."
+            },
+            "bcc_completed": {
+              "type": "string",
+              "description": "Specify BCC address to send signed documents to after the completion."
+            },
+            "reply_to": {
+              "type": "string",
+              "description": "Specify Reply-To address to use in the notification emails."
+            },
+            "expire_at": {
+              "type": "string",
+              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
+              "example": "2024-09-01 12:00:00 UTC"
+            },
+            "template_ids": {
+              "type": "array",
+              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
+              "items": {
+                "type": "integer",
+                "description": "The ID of the template to use for the submission."
+              }
+            },
+            "documents": {
+              "type": "array",
+              "description": "The list of documents built from HTML. Can be used to create a submission with multiple documents.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "html"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Document name. Random uuid will be assigned when not specified.",
+                    "example": "Test Document"
+                  },
+                  "html": {
+                    "type": "string",
+                    "description": "HTML document content with field tags.",
+                    "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                  },
+                  "html_header": {
+                    "type": "string",
+                    "description": "HTML document content of the header to be displayed on every page."
+                  },
+                  "html_footer": {
+                    "type": "string",
+                    "description": "HTML document content of the footer to be displayed on every page."
+                  },
+                  "size": {
+                    "type": "string",
+                    "default": "Letter",
+                    "description": "Page size. Letter 8.5 x 11 will be assigned when not specified.",
+                    "enum": [
+                      "Letter",
+                      "Legal",
+                      "Tabloid",
+                      "Ledger",
+                      "A0",
+                      "A1",
+                      "A2",
+                      "A3",
+                      "A4",
+                      "A5",
+                      "A6"
+                    ],
+                    "example": "A4"
+                  },
+                  "position": {
+                    "type": "integer",
+                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                  }
+                }
+              }
+            },
+            "submitters": {
+              "type": "array",
+              "description": "The list of submitters for the submission.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the submitter."
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The role name or title of the submitter.",
+                    "example": "First Party"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the submitter.",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
+                    "example": "+1234567890"
+                  },
+                  "values": {
+                    "type": "object",
+                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
+                  },
+                  "external_id": {
+                    "type": "string",
+                    "description": "Your application-specific unique string key to identify this submitter within your app."
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Metadata object with additional submitter information.",
+                    "example": "{ \"customField\": \"value\" }"
+                  },
+                  "send_email": {
+                    "type": "boolean",
+                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
+                    "default": true
+                  },
+                  "send_sms": {
+                    "type": "boolean",
+                    "description": "Set `true` to send signature request via phone number and SMS.",
+                    "default": false
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                  },
+                  "completed_redirect_url": {
+                    "type": "string",
+                    "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
+                  },
+                  "require_phone_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
+                    "default": false
+                  },
+                  "require_email_2fa": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+                    "default": false
+                  },
+                  "invite_by": {
+                    "type": "string",
+                    "description": "Set the role name of the previous party that should invite this party via email."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "A list of configurations for document form fields.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Document field name.",
+                          "example": "First Name"
+                        },
+                        "default_value": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
+                          "example": "Acme"
+                        },
+                        "readonly": {
+                          "type": "boolean",
+                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
+                          "default": false
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Set `true` to make the field required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "validation": {
+                          "type": "object",
+                          "properties": {
+                            "pattern": {
+                              "type": "string",
+                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                              "example": "[A-Z]{4}"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "A custom error message to display on validation failure."
+                            },
+                            "min": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Minimum allowed number value or date depending on field type."
+                            },
+                            "max": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Maximum allowed number value or date depending on field type."
+                            },
+                            "step": {
+                              "type": "number",
+                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
+                            }
+                          }
+                        },
+                        "preferences": {
+                          "type": "object",
+                          "properties": {
+                            "font_size": {
+                              "type": "integer",
+                              "description": "Font size of the field value in pixels.",
+                              "example": 12
+                            },
+                            "font_type": {
+                              "type": "string",
+                              "description": "Font type of the field value.",
+                              "enum": [
+                                "bold",
+                                "italic",
+                                "bold_italic"
+                              ]
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "Font family of the field value.",
+                              "enum": [
+                                "Times",
+                                "Helvetica",
+                                "Courier"
+                              ]
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "Font color of the field value.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ],
+                              "default": "black"
+                            },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
+                            "align": {
+                              "type": "string",
+                              "description": "Horizontal alignment of the field text value.",
+                              "enum": [
+                                "left",
+                                "center",
+                                "right"
+                              ],
+                              "default": "left"
+                            },
+                            "valign": {
+                              "type": "string",
+                              "description": "Vertical alignment of the field text value.",
+                              "enum": [
+                                "top",
+                                "center",
+                                "bottom"
+                              ],
+                              "default": "center"
+                            },
+                            "format": {
+                              "type": "string",
+                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                              "example": "DD/MM/YYYY"
+                            },
+                            "price": {
+                              "type": "number",
+                              "description": "Price value of the payment field. Only for payment fields.",
+                              "example": 99.99
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Currency value of the payment field. Only for payment fields.",
+                              "enum": [
+                                "USD",
+                                "EUR",
+                                "GBP",
+                                "CAD",
+                                "AUD"
+                              ],
+                              "default": "USD"
+                            },
+                            "mask": {
+                              "description": "Set `true` to make sensitive data masked on the document.",
+                              "oneOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ],
+                              "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "roles": {
+                    "type": "array",
+                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "message": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "description": "Custom signature request email subject."
+                },
+                "body": {
+                  "type": "string",
+                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
+                }
+              }
+            },
+            "merge_documents": {
+              "type": "boolean",
+              "description": "Set `true` to merge the documents into a single PDF file.",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -1008,9 +2300,9 @@ func main() {
 }
 ```
 
-### Get submission documents
+### List all submitters
 
-This endpoint returns a list of partially filled documents for a submission. If the submission has been completed, the final signed documents are returned.
+The API endpoint provides the ability to retrieve a list of submitters.
 
 ```go
 package main
@@ -1023,7 +2315,7 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/submissions/1001/documents"
+	url := "https://api.docuseal.com/submitters"
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -1048,118 +2340,98 @@ func main() {
     }
   ],
   "tags": [
-    "Submissions"
+    "Submitters"
   ],
-  "summary": "Get submission documents",
-  "operationId": "getSubmissionDocuments",
+  "summary": "List all submitters",
+  "operationId": "getSubmitters",
   "parameters": [
     {
-      "name": "id",
-      "in": "path",
-      "required": true,
+      "name": "submission_id",
+      "in": "query",
+      "required": false,
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the submission.",
-      "example": 1001
+      "description": "The submission ID allows you to receive only the submitters related to that specific submission."
+    },
+    {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "description": "Filter submitters on name, email or phone partial match."
+    },
+    {
+      "name": "slug",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "description": "Filter submitters by unique slug.",
+      "example": "zAyL9fH36Havvm"
+    },
+    {
+      "name": "completed_after",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "example": "2024-03-05 9:32:20",
+      "description": "The date and time string value to filter submitters that completed the submission after the specified date and time."
+    },
+    {
+      "name": "completed_before",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "example": "2024-03-06 19:32:20",
+      "description": "The date and time string value to filter submitters that completed the submission before the specified date and time."
+    },
+    {
+      "name": "external_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "description": "The unique applications-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external id."
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The number of submitters to return. Default value is 10. Maximum value is 100."
+    },
+    {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the submitter to start the list from. It allows you to receive only submitters with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters."
+    },
+    {
+      "name": "before",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the submitter to end the list with. It allows you to receive only submitters with id less than the specified value."
     }
   ]
-}
-```
-
-### Create submissions from emails
-
-This API endpoint allows you to create submissions for a document template and send them to the specified email addresses. This is a simplified version of the POST /submissions API to be used with Zapier or other automation tools.
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions/emails"
-
-	payload := strings.NewReader("{\"template_id\":1000001,\"emails\":\"hi@docuseal.com, example@docuseal.com\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Submissions"
-  ],
-  "summary": "Create submissions from emails",
-  "operationId": "createSubmissionsFromEmails",
-  "parameters": [],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "required": [
-            "template_id",
-            "emails"
-          ],
-          "properties": {
-            "template_id": {
-              "type": "integer",
-              "description": "The unique identifier of the template.",
-              "example": 1000001
-            },
-            "emails": {
-              "type": "string",
-              "description": "A comma-separated list of email addresses to send the submission to.",
-              "example": "{{emails}}"
-            },
-            "send_email": {
-              "type": "boolean",
-              "description": "Set `false` to disable signature request emails sending.",
-              "default": true
-            },
-            "message": {
-              "type": "object",
-              "properties": {
-                "subject": {
-                  "type": "string",
-                  "description": "Custom signature request email subject."
-                },
-                "body": {
-                  "type": "string",
-                  "description": "Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}."
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
 }
 ```
 
@@ -1486,6 +2758,15 @@ func main() {
                         ],
                         "default": "black"
                       },
+                      "background": {
+                        "type": "string",
+                        "description": "Field box background color.",
+                        "enum": [
+                          "black",
+                          "white",
+                          "blue"
+                        ]
+                      },
                       "align": {
                         "type": "string",
                         "description": "Horizontal alignment of the field text value.",
@@ -1539,6 +2820,13 @@ func main() {
                           }
                         ],
                         "default": false
+                      },
+                      "reasons": {
+                        "description": "An array of signature reasons to choose from.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -1553,9 +2841,9 @@ func main() {
 }
 ```
 
-### List all submitters
+### List all templates
 
-The API endpoint provides the ability to retrieve a list of submitters.
+The API endpoint provides the ability to retrieve a list of available document templates.
 
 ```go
 package main
@@ -1568,7 +2856,7 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/submitters"
+	url := "https://api.docuseal.com/templates"
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -1593,20 +2881,11 @@ func main() {
     }
   ],
   "tags": [
-    "Submitters"
+    "Templates"
   ],
-  "summary": "List all submitters",
-  "operationId": "getSubmitters",
+  "summary": "List all templates",
+  "operationId": "getTemplates",
   "parameters": [
-    {
-      "name": "submission_id",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The submission ID allows you to receive only the submitters related to that specific submission."
-    },
     {
       "name": "q",
       "in": "query",
@@ -1614,7 +2893,7 @@ func main() {
       "schema": {
         "type": "string"
       },
-      "description": "Filter submitters on name, email or phone partial match."
+      "description": "Filter templates based on the name partial match."
     },
     {
       "name": "slug",
@@ -1623,30 +2902,8 @@ func main() {
       "schema": {
         "type": "string"
       },
-      "description": "Filter submitters by unique slug.",
-      "example": "zAyL9fH36Havvm"
-    },
-    {
-      "name": "completed_after",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "example": "2024-03-05 9:32:20",
-      "description": "The date and time string value to filter submitters that completed the submission after the specified date and time."
-    },
-    {
-      "name": "completed_before",
-      "in": "query",
-      "required": false,
-      "schema": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "example": "2024-03-06 19:32:20",
-      "description": "The date and time string value to filter submitters that completed the submission before the specified date and time."
+      "description": "Filter templates by unique slug.",
+      "example": "opaKWh8WWTAcVG"
     },
     {
       "name": "external_id",
@@ -1655,7 +2912,25 @@ func main() {
       "schema": {
         "type": "string"
       },
-      "description": "The unique applications-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external id."
+      "description": "The unique applications-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external id."
+    },
+    {
+      "name": "folder",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "description": "Filter templates by folder name."
+    },
+    {
+      "name": "archived",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "boolean"
+      },
+      "description": "Get only archived templates instead of active ones."
     },
     {
       "name": "limit",
@@ -1664,7 +2939,7 @@ func main() {
       "schema": {
         "type": "integer"
       },
-      "description": "The number of submitters to return. Default value is 10. Maximum value is 100."
+      "description": "The number of templates to return. Default value is 10. Maximum value is 100."
     },
     {
       "name": "after",
@@ -1673,7 +2948,7 @@ func main() {
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the submitter to start the list from. It allows you to receive only submitters with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters."
+      "description": "The unique identifier of the template to start the list from. It allows you to receive only templates with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates."
     },
     {
       "name": "before",
@@ -1682,36 +2957,32 @@ func main() {
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the submitter to end the list with. It allows you to receive only submitters with id less than the specified value."
+      "description": "The unique identifier of the template to end the list with. It allows you to receive only templates with id less than the specified value."
     }
   ]
 }
 ```
 
-### Update template documents
+### Get a template
 
-The API endpoint allows you to add, remove or replace documents in the template with provided PDF/DOCX file or HTML content.
+The API endpoint provides the functionality to retrieve information about a document template.
 
 ```go
 package main
 
 import (
 	"fmt"
-	"strings"
 	"net/http"
 	"io"
 )
 
 func main() {
 
-	url := "https://api.docuseal.com/templates/1000001/documents"
+	url := "https://api.docuseal.com/templates/1000001"
 
-	payload := strings.NewReader("{\"documents\":[{\"file\":\"string\"}]}")
-
-	req, _ := http.NewRequest("PUT", url, payload)
+	req, _ := http.NewRequest("GET", url, nil)
 
 	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
 
@@ -1734,8 +3005,8 @@ func main() {
   "tags": [
     "Templates"
   ],
-  "summary": "Update template documents",
-  "operationId": "addDocumentToTemplate",
+  "summary": "Get a template",
+  "operationId": "getTemplate",
   "parameters": [
     {
       "name": "id",
@@ -1744,71 +3015,17 @@ func main() {
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the documents template.",
+      "description": "The unique identifier of the document template.",
       "example": 1000001
     }
-  ],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "properties": {
-            "documents": {
-              "type": "array",
-              "description": "The list of documents to add or replace in the template.",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Document name. Random uuid will be assigned when not specified.",
-                    "example": "Test Template"
-                  },
-                  "file": {
-                    "type": "string",
-                    "format": "base64",
-                    "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL. Leave it empty if you create a new document using HTML param."
-                  },
-                  "html": {
-                    "type": "string",
-                    "description": "HTML template with field tags. Leave it empty if you add a document via PDF or DOCX base64 encoded file param or URL."
-                  },
-                  "position": {
-                    "type": "integer",
-                    "description": "Position of the document. By default will be added as the last document in the template.",
-                    "example": 0
-                  },
-                  "replace": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Set to `true` to replace existing document with a new file at `position`. Existing document fields will be transferred to the new document if it doesn't contain any fields."
-                  },
-                  "remove": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Set to `true` to remove existing document at given `position` or with given `name`."
-                  }
-                }
-              }
-            },
-            "merge": {
-              "type": "boolean",
-              "default": false,
-              "description": "Set to `true` to merge all existing and new documents into a single PDF document in the template."
-            }
-          }
-        }
-      }
-    }
-  }
+  ]
 }
 ```
 
-### Clone a template
+### Create a template from PDF
 
-The API endpoint allows you to clone existing template into a new template.
+The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+
 
 ```go
 package main
@@ -1822,9 +3039,9 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/templates/1000001/clone"
+	url := "https://api.docuseal.com/templates/pdf"
 
-	payload := strings.NewReader("{\"name\":\"Cloned Template\"}")
+	payload := strings.NewReader("{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
@@ -1852,39 +3069,674 @@ func main() {
   "tags": [
     "Templates"
   ],
-  "summary": "Clone a template",
-  "operationId": "cloneTemplate",
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "required": true,
-      "schema": {
-        "type": "integer"
-      },
-      "description": "The unique identifier of the documents template.",
-      "example": 1000001
-    }
-  ],
+  "summary": "Create a template from PDF",
+  "operationId": "createTemplateFromPdf",
+  "parameters": [],
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
           "type": "object",
+          "required": [
+            "documents"
+          ],
           "properties": {
             "name": {
               "type": "string",
-              "description": "Template name. Existing name with (Clone) suffix will be used if not specified.",
-              "example": "Cloned Template"
+              "description": "Name of the template",
+              "example": "Test PDF"
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be cloned."
+              "description": "The folder's name to which the template should be created."
             },
             "external_id": {
               "type": "string",
-              "description": "Your application-specific unique string key to identify this template within your app."
+              "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new PDF.",
+              "example": "unique-key"
+            },
+            "shared_link": {
+              "type": "boolean",
+              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "default": true
+            },
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "file"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document."
+                  },
+                  "file": {
+                    "example": "base64",
+                    "type": "string",
+                    "format": "base64",
+                    "description": "Base64-encoded content of the PDF file or downloadable file URL."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the field."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the field (e.g., text, signature, date, initials).",
+                          "enum": [
+                            "heading",
+                            "text",
+                            "signature",
+                            "initials",
+                            "date",
+                            "number",
+                            "image",
+                            "checkbox",
+                            "multiple",
+                            "file",
+                            "radio",
+                            "select",
+                            "cells",
+                            "stamp",
+                            "payment",
+                            "phone",
+                            "verification",
+                            "strikethrough"
+                          ]
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Role name of the signer."
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Indicates if the field is required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "areas": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "x",
+                              "y",
+                              "w",
+                              "h",
+                              "page"
+                            ],
+                            "properties": {
+                              "x": {
+                                "type": "number",
+                                "description": "X-coordinate of the field area."
+                              },
+                              "y": {
+                                "type": "number",
+                                "description": "Y-coordinate of the field area."
+                              },
+                              "w": {
+                                "type": "number",
+                                "description": "Width of the field area."
+                              },
+                              "h": {
+                                "type": "number",
+                                "description": "Height of the field area."
+                              },
+                              "page": {
+                                "type": "integer",
+                                "description": "Page number of the field area. Starts from 1.",
+                                "example": 1
+                              },
+                              "option": {
+                                "type": "string",
+                                "description": "Option string value for 'radio' and 'multiple' select field types."
+                              }
+                            }
+                          }
+                        },
+                        "options": {
+                          "type": "array",
+                          "description": "An array of option values for 'select' field type.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "Option A",
+                            "Option B"
+                          ]
+                        },
+                        "validation": {
+                          "type": "object",
+                          "properties": {
+                            "pattern": {
+                              "type": "string",
+                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                              "example": "[A-Z]{4}"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "A custom error message to display on validation failure."
+                            },
+                            "min": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Minimum allowed number value or date depending on field type."
+                            },
+                            "max": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Maximum allowed number value or date depending on field type."
+                            },
+                            "step": {
+                              "type": "number",
+                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
+                            }
+                          }
+                        },
+                        "preferences": {
+                          "type": "object",
+                          "properties": {
+                            "font_size": {
+                              "type": "integer",
+                              "description": "Font size of the field value in pixels.",
+                              "example": 12
+                            },
+                            "font_type": {
+                              "type": "string",
+                              "description": "Font type of the field value.",
+                              "enum": [
+                                "bold",
+                                "italic",
+                                "bold_italic"
+                              ]
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "Font family of the field value.",
+                              "enum": [
+                                "Times",
+                                "Helvetica",
+                                "Courier"
+                              ]
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "Font color of the field value.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ],
+                              "default": "black"
+                            },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
+                            "align": {
+                              "type": "string",
+                              "description": "Horizontal alignment of the field text value.",
+                              "enum": [
+                                "left",
+                                "center",
+                                "right"
+                              ],
+                              "default": "left"
+                            },
+                            "valign": {
+                              "type": "string",
+                              "description": "Vertical alignment of the field text value.",
+                              "enum": [
+                                "top",
+                                "center",
+                                "bottom"
+                              ],
+                              "default": "center"
+                            },
+                            "format": {
+                              "type": "string",
+                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                              "example": "DD/MM/YYYY"
+                            },
+                            "price": {
+                              "type": "number",
+                              "description": "Price value of the payment field. Only for payment fields.",
+                              "example": 99.99
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Currency value of the payment field. Only for payment fields.",
+                              "enum": [
+                                "USD",
+                                "EUR",
+                                "GBP",
+                                "CAD",
+                                "AUD"
+                              ],
+                              "default": "USD"
+                            },
+                            "mask": {
+                              "description": "Set `true` to make sensitive data masked on the document.",
+                              "oneOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ],
+                              "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "flatten": {
+              "type": "boolean",
+              "description": "Remove PDF form fields from the documents.",
+              "default": false
+            },
+            "remove_tags": {
+              "type": "boolean",
+              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Create a template from Word DOCX
+
+The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/templates/docx"
+
+	payload := strings.NewReader("{\"name\":\"Test DOCX\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}]}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+	req.Header.Add("content-type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Templates"
+  ],
+  "summary": "Create a template from Word DOCX",
+  "operationId": "createTemplateFromDocx",
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "documents"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the template",
+              "example": "Test DOCX"
+            },
+            "external_id": {
+              "type": "string",
+              "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new document.",
+              "example": "unique-key"
+            },
+            "folder_name": {
+              "type": "string",
+              "description": "The folder's name to which the template should be created."
+            },
+            "shared_link": {
+              "type": "boolean",
+              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "default": true
+            },
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "file"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the document."
+                  },
+                  "file": {
+                    "type": "string",
+                    "example": "base64",
+                    "format": "base64",
+                    "description": "Base64-encoded content of the DOCX file or downloadable file URL"
+                  },
+                  "fields": {
+                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the field."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the field (e.g., text, signature, date, initials).",
+                          "enum": [
+                            "heading",
+                            "text",
+                            "signature",
+                            "initials",
+                            "date",
+                            "number",
+                            "image",
+                            "checkbox",
+                            "multiple",
+                            "file",
+                            "radio",
+                            "select",
+                            "cells",
+                            "stamp",
+                            "payment",
+                            "phone",
+                            "verification",
+                            "strikethrough"
+                          ]
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Role name of the signer."
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "description": "Indicates if the field is required."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Field description displayed on the signing form. Supports Markdown."
+                        },
+                        "areas": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "x": {
+                                "type": "number",
+                                "description": "X-coordinate of the field area."
+                              },
+                              "y": {
+                                "type": "number",
+                                "description": "Y-coordinate of the field area."
+                              },
+                              "w": {
+                                "type": "number",
+                                "description": "Width of the field area."
+                              },
+                              "h": {
+                                "type": "number",
+                                "description": "Height of the field area."
+                              },
+                              "page": {
+                                "type": "integer",
+                                "description": "Page number of the field area. Starts from 1."
+                              },
+                              "option": {
+                                "type": "string",
+                                "description": "Option string value for 'radio' and 'multiple' select field types."
+                              }
+                            }
+                          }
+                        },
+                        "options": {
+                          "type": "array",
+                          "description": "An array of option values for 'select' field type.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "Option A",
+                            "Option B"
+                          ]
+                        },
+                        "validation": {
+                          "type": "object",
+                          "properties": {
+                            "pattern": {
+                              "type": "string",
+                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
+                              "example": "[A-Z]{4}"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "A custom error message to display on validation failure."
+                            },
+                            "min": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Minimum allowed number value or date depending on field type."
+                            },
+                            "max": {
+                              "oneOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Maximum allowed number value or date depending on field type."
+                            },
+                            "step": {
+                              "type": "number",
+                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
+                            }
+                          }
+                        },
+                        "preferences": {
+                          "type": "object",
+                          "properties": {
+                            "font_size": {
+                              "type": "integer",
+                              "description": "Font size of the field value in pixels.",
+                              "example": 12
+                            },
+                            "font_type": {
+                              "type": "string",
+                              "description": "Font type of the field value.",
+                              "enum": [
+                                "bold",
+                                "italic",
+                                "bold_italic"
+                              ]
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "Font family of the field value.",
+                              "enum": [
+                                "Times",
+                                "Helvetica",
+                                "Courier"
+                              ]
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "Font color of the field value.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ],
+                              "default": "black"
+                            },
+                            "background": {
+                              "type": "string",
+                              "description": "Field box background color.",
+                              "enum": [
+                                "black",
+                                "white",
+                                "blue"
+                              ]
+                            },
+                            "align": {
+                              "type": "string",
+                              "description": "Horizontal alignment of the field text value.",
+                              "enum": [
+                                "left",
+                                "center",
+                                "right"
+                              ],
+                              "default": "left"
+                            },
+                            "valign": {
+                              "type": "string",
+                              "description": "Vertical alignment of the field text value.",
+                              "enum": [
+                                "top",
+                                "center",
+                                "bottom"
+                              ],
+                              "default": "center"
+                            },
+                            "format": {
+                              "type": "string",
+                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
+                              "example": "DD/MM/YYYY"
+                            },
+                            "price": {
+                              "type": "number",
+                              "description": "Price value of the payment field. Only for payment fields.",
+                              "example": 99.99
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Currency value of the payment field. Only for payment fields.",
+                              "enum": [
+                                "USD",
+                                "EUR",
+                                "GBP",
+                                "CAD",
+                                "AUD"
+                              ],
+                              "default": "USD"
+                            },
+                            "mask": {
+                              "description": "Set `true` to make sensitive data masked on the document.",
+                              "oneOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ],
+                              "default": false
+                            },
+                            "reasons": {
+                              "description": "An array of signature reasons to choose from.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -2034,10 +3886,9 @@ func main() {
 }
 ```
 
-### Create a template from Word DOCX
+### Clone a template
 
-The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
-
+The API endpoint allows you to clone existing template into a new template.
 
 ```go
 package main
@@ -2051,9 +3902,9 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/templates/docx"
+	url := "https://api.docuseal.com/templates/1000001/clone"
 
-	payload := strings.NewReader("{\"name\":\"Test DOCX\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}]}")
+	payload := strings.NewReader("{\"name\":\"Cloned Template\"}")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
@@ -2081,595 +3932,39 @@ func main() {
   "tags": [
     "Templates"
   ],
-  "summary": "Create a template from Word DOCX",
-  "operationId": "createTemplateFromDocx",
-  "parameters": [],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "required": [
-            "documents"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Name of the template",
-              "example": "Test DOCX"
-            },
-            "external_id": {
-              "type": "string",
-              "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new document.",
-              "example": "unique-key"
-            },
-            "folder_name": {
-              "type": "string",
-              "description": "The folder's name to which the template should be created."
-            },
-            "shared_link": {
-              "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
-              "default": true
-            },
-            "documents": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "file"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the document."
-                  },
-                  "file": {
-                    "type": "string",
-                    "example": "base64",
-                    "format": "base64",
-                    "description": "Base64-encoded content of the DOCX file or downloadable file URL"
-                  },
-                  "fields": {
-                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the field."
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the field (e.g., text, signature, date, initials).",
-                          "enum": [
-                            "heading",
-                            "text",
-                            "signature",
-                            "initials",
-                            "date",
-                            "number",
-                            "image",
-                            "checkbox",
-                            "multiple",
-                            "file",
-                            "radio",
-                            "select",
-                            "cells",
-                            "stamp",
-                            "payment",
-                            "phone",
-                            "verification"
-                          ]
-                        },
-                        "role": {
-                          "type": "string",
-                          "description": "Role name of the signer."
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Indicates if the field is required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "areas": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "x": {
-                                "type": "number",
-                                "description": "X-coordinate of the field area."
-                              },
-                              "y": {
-                                "type": "number",
-                                "description": "Y-coordinate of the field area."
-                              },
-                              "w": {
-                                "type": "number",
-                                "description": "Width of the field area."
-                              },
-                              "h": {
-                                "type": "number",
-                                "description": "Height of the field area."
-                              },
-                              "page": {
-                                "type": "integer",
-                                "description": "Page number of the field area. Starts from 1."
-                              },
-                              "option": {
-                                "type": "string",
-                                "description": "Option string value for 'radio' and 'multiple' select field types."
-                              }
-                            }
-                          }
-                        },
-                        "options": {
-                          "type": "array",
-                          "description": "An array of option values for 'select' field type.",
-                          "items": {
-                            "type": "string"
-                          },
-                          "example": [
-                            "Option A",
-                            "Option B"
-                          ]
-                        },
-                        "validation": {
-                          "type": "object",
-                          "properties": {
-                            "pattern": {
-                              "type": "string",
-                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "A custom error message to display on validation failure."
-                            },
-                            "min": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Minimum allowed number value or date depending on field type."
-                            },
-                            "max": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Maximum allowed number value or date depending on field type."
-                            },
-                            "step": {
-                              "type": "number",
-                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
-                            }
-                          }
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### Create a template from existing PDF
-
-The API endpoint provides the functionality to create a fillable document template for existing PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
-
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/pdf"
-
-	payload := strings.NewReader("{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
+  "summary": "Clone a template",
+  "operationId": "cloneTemplate",
+  "parameters": [
     {
-      "AuthToken": []
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the documents template.",
+      "example": 1000001
     }
   ],
-  "tags": [
-    "Templates"
-  ],
-  "summary": "Create a template from existing PDF",
-  "operationId": "createTemplateFromPdf",
-  "parameters": [],
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
           "type": "object",
-          "required": [
-            "documents"
-          ],
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the template",
-              "example": "Test PDF"
+              "description": "Template name. Existing name with (Clone) suffix will be used if not specified.",
+              "example": "Cloned Template"
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be created."
+              "description": "The folder's name to which the template should be cloned."
             },
             "external_id": {
               "type": "string",
-              "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new PDF.",
-              "example": "unique-key"
-            },
-            "documents": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "file"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the document."
-                  },
-                  "file": {
-                    "example": "base64",
-                    "type": "string",
-                    "format": "base64",
-                    "description": "Base64-encoded content of the PDF file or downloadable file URL."
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the field."
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the field (e.g., text, signature, date, initials).",
-                          "enum": [
-                            "heading",
-                            "text",
-                            "signature",
-                            "initials",
-                            "date",
-                            "number",
-                            "image",
-                            "checkbox",
-                            "multiple",
-                            "file",
-                            "radio",
-                            "select",
-                            "cells",
-                            "stamp",
-                            "payment",
-                            "phone",
-                            "verification"
-                          ]
-                        },
-                        "role": {
-                          "type": "string",
-                          "description": "Role name of the signer."
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Indicates if the field is required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "areas": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "x",
-                              "y",
-                              "w",
-                              "h",
-                              "page"
-                            ],
-                            "properties": {
-                              "x": {
-                                "type": "number",
-                                "description": "X-coordinate of the field area."
-                              },
-                              "y": {
-                                "type": "number",
-                                "description": "Y-coordinate of the field area."
-                              },
-                              "w": {
-                                "type": "number",
-                                "description": "Width of the field area."
-                              },
-                              "h": {
-                                "type": "number",
-                                "description": "Height of the field area."
-                              },
-                              "page": {
-                                "type": "integer",
-                                "description": "Page number of the field area. Starts from 1.",
-                                "example": 1
-                              },
-                              "option": {
-                                "type": "string",
-                                "description": "Option string value for 'radio' and 'multiple' select field types."
-                              }
-                            }
-                          }
-                        },
-                        "options": {
-                          "type": "array",
-                          "description": "An array of option values for 'select' field type.",
-                          "items": {
-                            "type": "string"
-                          },
-                          "example": [
-                            "Option A",
-                            "Option B"
-                          ]
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "flatten": {
-                    "type": "boolean",
-                    "description": "Remove PDF form fields from the document.",
-                    "default": false
-                  },
-                  "remove_tags": {
-                    "type": "boolean",
-                    "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
-                    "default": true
-                  }
-                }
-              }
+              "description": "Your application-specific unique string key to identify this template within your app."
             }
           }
         }
@@ -2786,564 +4081,9 @@ func main() {
 }
 ```
 
-### Create a submission from PDF
+### Update a template
 
-The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
-
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions/pdf"
-
-	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Submissions"
-  ],
-  "summary": "Create a submission from PDF",
-  "operationId": "createSubmissionFromPdf",
-  "parameters": [],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "required": [
-            "documents",
-            "submitters"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Name of the document submission.",
-              "example": "Test Submission Document"
-            },
-            "send_email": {
-              "type": "boolean",
-              "description": "Set `false` to disable signature request emails sending.",
-              "default": true
-            },
-            "send_sms": {
-              "type": "boolean",
-              "description": "Set `true` to send signature request via phone number and SMS.",
-              "default": false
-            },
-            "order": {
-              "type": "string",
-              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
-              "default": "preserved",
-              "enum": [
-                "preserved",
-                "random"
-              ]
-            },
-            "completed_redirect_url": {
-              "type": "string",
-              "description": "Specify URL to redirect to after the submission completion."
-            },
-            "bcc_completed": {
-              "type": "string",
-              "description": "Specify BCC address to send signed documents to after the completion."
-            },
-            "reply_to": {
-              "type": "string",
-              "description": "Specify Reply-To address to use in the notification emails."
-            },
-            "expire_at": {
-              "type": "string",
-              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
-            },
-            "template_ids": {
-              "type": "array",
-              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
-              "items": {
-                "type": "integer",
-                "description": "The ID of the template to use for the submission."
-              }
-            },
-            "documents": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "file"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the document."
-                  },
-                  "file": {
-                    "example": "base64",
-                    "type": "string",
-                    "format": "base64",
-                    "description": "Base64-encoded content of the PDF file or downloadable file URL."
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the field."
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the field (e.g., text, signature, date, initials).",
-                          "enum": [
-                            "heading",
-                            "text",
-                            "signature",
-                            "initials",
-                            "date",
-                            "number",
-                            "image",
-                            "checkbox",
-                            "multiple",
-                            "file",
-                            "radio",
-                            "select",
-                            "cells",
-                            "stamp",
-                            "payment",
-                            "phone",
-                            "verification"
-                          ]
-                        },
-                        "role": {
-                          "type": "string",
-                          "description": "Role name of the signer."
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Indicates if the field is required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "areas": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "x",
-                              "y",
-                              "w",
-                              "h",
-                              "page"
-                            ],
-                            "properties": {
-                              "x": {
-                                "type": "number",
-                                "description": "X-coordinate of the field area."
-                              },
-                              "y": {
-                                "type": "number",
-                                "description": "Y-coordinate of the field area."
-                              },
-                              "w": {
-                                "type": "number",
-                                "description": "Width of the field area."
-                              },
-                              "h": {
-                                "type": "number",
-                                "description": "Height of the field area."
-                              },
-                              "page": {
-                                "type": "integer",
-                                "description": "Page number of the field area. Starts from 1.",
-                                "example": 1
-                              },
-                              "option": {
-                                "type": "string",
-                                "description": "Option string value for 'radio' and 'multiple' select field types."
-                              }
-                            }
-                          }
-                        },
-                        "options": {
-                          "type": "array",
-                          "description": "An array of option values for 'select' field type.",
-                          "items": {
-                            "type": "string"
-                          },
-                          "example": [
-                            "Option A",
-                            "Option B"
-                          ]
-                        }
-                      }
-                    }
-                  },
-                  "position": {
-                    "type": "integer",
-                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
-                  }
-                }
-              }
-            },
-            "submitters": {
-              "type": "array",
-              "description": "The list of submitters for the submission.",
-              "items": {
-                "type": "object",
-                "required": [
-                  "email"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the submitter."
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "The role name or title of the submitter.",
-                    "example": "First Party"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "The email address of the submitter.",
-                    "format": "email",
-                    "example": "john.doe@example.com"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
-                  },
-                  "values": {
-                    "type": "object",
-                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
-                  },
-                  "external_id": {
-                    "type": "string",
-                    "description": "Your application-specific unique string key to identify this submitter within your app."
-                  },
-                  "completed": {
-                    "type": "boolean",
-                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
-                  },
-                  "metadata": {
-                    "type": "object",
-                    "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
-                  },
-                  "send_email": {
-                    "type": "boolean",
-                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
-                    "default": true
-                  },
-                  "send_sms": {
-                    "type": "boolean",
-                    "description": "Set `true` to send signature request via phone number and SMS.",
-                    "default": false
-                  },
-                  "reply_to": {
-                    "type": "string",
-                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
-                  },
-                  "completed_redirect_url": {
-                    "type": "string",
-                    "description": "Submitter specific URL to redirect to after the submission completion."
-                  },
-                  "order": {
-                    "type": "integer",
-                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
-                  },
-                  "require_phone_2fa": {
-                    "type": "boolean",
-                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
-                    "default": false
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "A list of configurations for document form fields.",
-                    "items": {
-                      "type": "object",
-                      "required": [
-                        "name"
-                      ],
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Document field name.",
-                          "example": "First Name"
-                        },
-                        "default_value": {
-                          "oneOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "boolean"
-                            },
-                            {
-                              "type": "array",
-                              "items": {
-                                "oneOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "number"
-                                  },
-                                  {
-                                    "type": "boolean"
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
-                        },
-                        "readonly": {
-                          "type": "boolean",
-                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
-                          "default": false
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Set `true` to make the field required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "validation": {
-                          "type": "object",
-                          "properties": {
-                            "pattern": {
-                              "type": "string",
-                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "A custom error message to display on validation failure."
-                            },
-                            "min": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Minimum allowed number value or date depending on field type."
-                            },
-                            "max": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Maximum allowed number value or date depending on field type."
-                            },
-                            "step": {
-                              "type": "number",
-                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
-                            }
-                          }
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "roles": {
-                    "type": "array",
-                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "message": {
-              "type": "object",
-              "properties": {
-                "subject": {
-                  "type": "string",
-                  "description": "Custom signature request email subject."
-                },
-                "body": {
-                  "type": "string",
-                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
-                }
-              }
-            },
-            "flatten": {
-              "type": "boolean",
-              "description": "Remove PDF form fields from the documents.",
-              "default": false
-            },
-            "merge_documents": {
-              "type": "boolean",
-              "description": "Set `true` to merge the documents into a single PDF file.",
-              "default": false
-            },
-            "remove_tags": {
-              "type": "boolean",
-              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
-              "default": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### Create a submission from HTML
-
-This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
+The API endpoint provides the functionality to move a document template to a different folder and update the name of the template.
 
 ```go
 package main
@@ -3357,480 +4097,11 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/submissions/html"
+	url := "https://api.docuseal.com/templates/1000001"
 
-	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"documents\":[{\"name\":\"Test Document\",\"html\":\"<p>Lorem Ipsum is simply dummy text of the\\n<text-field\\n  name=\\\"Industry\\\"\\n  role=\\\"First Party\\\"\\n  required=\\\"false\\\"\\n  style=\\\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\\\">\\n</text-field>\\nand typesetting industry</p>\\n\"}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
+	payload := strings.NewReader("{\"name\":\"New Document Name\",\"folder_name\":\"New Folder\"}")
 
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-```json
-{
-  "security": [
-    {
-      "AuthToken": []
-    }
-  ],
-  "tags": [
-    "Submissions"
-  ],
-  "summary": "Create a submission from HTML",
-  "operationId": "createSubmissionFromHtml",
-  "parameters": [],
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "type": "object",
-          "required": [
-            "documents",
-            "submitters"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Name of the document submission",
-              "example": "Test Submission Document"
-            },
-            "send_email": {
-              "type": "boolean",
-              "description": "Set `false` to disable signature request emails sending.",
-              "default": true
-            },
-            "send_sms": {
-              "type": "boolean",
-              "description": "Set `true` to send signature request via phone number and SMS.",
-              "default": false
-            },
-            "order": {
-              "type": "string",
-              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
-              "default": "preserved",
-              "enum": [
-                "preserved",
-                "random"
-              ]
-            },
-            "completed_redirect_url": {
-              "type": "string",
-              "description": "Specify URL to redirect to after the submission completion."
-            },
-            "bcc_completed": {
-              "type": "string",
-              "description": "Specify BCC address to send signed documents to after the completion."
-            },
-            "reply_to": {
-              "type": "string",
-              "description": "Specify Reply-To address to use in the notification emails."
-            },
-            "expire_at": {
-              "type": "string",
-              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
-            },
-            "template_ids": {
-              "type": "array",
-              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
-              "items": {
-                "type": "integer",
-                "description": "The ID of the template to use for the submission."
-              }
-            },
-            "documents": {
-              "type": "array",
-              "description": "The list of documents built from HTML. Can be used to create a submission with multiple documents.",
-              "items": {
-                "type": "object",
-                "required": [
-                  "html"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Document name. Random uuid will be assigned when not specified.",
-                    "example": "Test Document"
-                  },
-                  "html": {
-                    "type": "string",
-                    "description": "HTML document content with field tags.",
-                    "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
-                  },
-                  "html_header": {
-                    "type": "string",
-                    "description": "HTML document content of the header to be displayed on every page."
-                  },
-                  "html_footer": {
-                    "type": "string",
-                    "description": "HTML document content of the footer to be displayed on every page."
-                  },
-                  "size": {
-                    "type": "string",
-                    "default": "Letter",
-                    "description": "Page size. Letter 8.5 x 11 will be assigned when not specified.",
-                    "enum": [
-                      "Letter",
-                      "Legal",
-                      "Tabloid",
-                      "Ledger",
-                      "A0",
-                      "A1",
-                      "A2",
-                      "A3",
-                      "A4",
-                      "A5",
-                      "A6"
-                    ],
-                    "example": "A4"
-                  },
-                  "position": {
-                    "type": "integer",
-                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
-                  }
-                }
-              }
-            },
-            "submitters": {
-              "type": "array",
-              "description": "The list of submitters for the submission.",
-              "items": {
-                "type": "object",
-                "required": [
-                  "email"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the submitter."
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "The role name or title of the submitter.",
-                    "example": "First Party"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "The email address of the submitter.",
-                    "format": "email",
-                    "example": "john.doe@example.com"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
-                  },
-                  "values": {
-                    "type": "object",
-                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
-                  },
-                  "external_id": {
-                    "type": "string",
-                    "description": "Your application-specific unique string key to identify this submitter within your app."
-                  },
-                  "completed": {
-                    "type": "boolean",
-                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
-                  },
-                  "metadata": {
-                    "type": "object",
-                    "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
-                  },
-                  "send_email": {
-                    "type": "boolean",
-                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
-                    "default": true
-                  },
-                  "send_sms": {
-                    "type": "boolean",
-                    "description": "Set `true` to send signature request via phone number and SMS.",
-                    "default": false
-                  },
-                  "reply_to": {
-                    "type": "string",
-                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
-                  },
-                  "completed_redirect_url": {
-                    "type": "string",
-                    "description": "Submitter specific URL to redirect to after the submission completion."
-                  },
-                  "order": {
-                    "type": "integer",
-                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
-                  },
-                  "require_phone_2fa": {
-                    "type": "boolean",
-                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
-                    "default": false
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "A list of configurations for document form fields.",
-                    "items": {
-                      "type": "object",
-                      "required": [
-                        "name"
-                      ],
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Document field name.",
-                          "example": "First Name"
-                        },
-                        "default_value": {
-                          "oneOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "boolean"
-                            },
-                            {
-                              "type": "array",
-                              "items": {
-                                "oneOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "number"
-                                  },
-                                  {
-                                    "type": "boolean"
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
-                        },
-                        "readonly": {
-                          "type": "boolean",
-                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
-                          "default": false
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Set `true` to make the field required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "validation": {
-                          "type": "object",
-                          "properties": {
-                            "pattern": {
-                              "type": "string",
-                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "A custom error message to display on validation failure."
-                            },
-                            "min": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Minimum allowed number value or date depending on field type."
-                            },
-                            "max": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Maximum allowed number value or date depending on field type."
-                            },
-                            "step": {
-                              "type": "number",
-                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
-                            }
-                          }
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "roles": {
-                    "type": "array",
-                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "message": {
-              "type": "object",
-              "properties": {
-                "subject": {
-                  "type": "string",
-                  "description": "Custom signature request email subject."
-                },
-                "body": {
-                  "type": "string",
-                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
-                }
-              }
-            },
-            "merge_documents": {
-              "type": "boolean",
-              "description": "Set `true` to merge the documents into a single PDF file.",
-              "default": false
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### Create a template from PDF
-
-The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
-
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/pdf"
-
-	payload := strings.NewReader("{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
+	req, _ := http.NewRequest("PUT", url, payload)
 
 	req.Header.Add("X-Auth-Token", "API_KEY")
 	req.Header.Add("content-type", "application/json")
@@ -3856,304 +4127,51 @@ func main() {
   "tags": [
     "Templates"
   ],
-  "summary": "Create a template from PDF",
-  "operationId": "createTemplateFromPdf",
-  "parameters": [],
+  "summary": "Update a template",
+  "operationId": "updateTemplate",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the document template.",
+      "example": 1000001
+    }
+  ],
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
           "type": "object",
-          "required": [
-            "documents"
-          ],
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the template",
-              "example": "Test PDF"
+              "description": "The name of the template",
+              "example": "New Document Name"
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be created."
+              "description": "The folder's name to which the template should be moved.",
+              "example": "New Folder"
             },
-            "external_id": {
-              "type": "string",
-              "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new PDF.",
-              "example": "unique-key"
-            },
-            "shared_link": {
-              "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
-              "default": true
-            },
-            "documents": {
+            "roles": {
               "type": "array",
+              "description": "An array of submitter role names to update the template with.",
               "items": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "file"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the document."
-                  },
-                  "file": {
-                    "example": "base64",
-                    "type": "string",
-                    "format": "base64",
-                    "description": "Base64-encoded content of the PDF file or downloadable file URL."
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the field."
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the field (e.g., text, signature, date, initials).",
-                          "enum": [
-                            "heading",
-                            "text",
-                            "signature",
-                            "initials",
-                            "date",
-                            "number",
-                            "image",
-                            "checkbox",
-                            "multiple",
-                            "file",
-                            "radio",
-                            "select",
-                            "cells",
-                            "stamp",
-                            "payment",
-                            "phone",
-                            "verification"
-                          ]
-                        },
-                        "role": {
-                          "type": "string",
-                          "description": "Role name of the signer."
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Indicates if the field is required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "areas": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "x",
-                              "y",
-                              "w",
-                              "h",
-                              "page"
-                            ],
-                            "properties": {
-                              "x": {
-                                "type": "number",
-                                "description": "X-coordinate of the field area."
-                              },
-                              "y": {
-                                "type": "number",
-                                "description": "Y-coordinate of the field area."
-                              },
-                              "w": {
-                                "type": "number",
-                                "description": "Width of the field area."
-                              },
-                              "h": {
-                                "type": "number",
-                                "description": "Height of the field area."
-                              },
-                              "page": {
-                                "type": "integer",
-                                "description": "Page number of the field area. Starts from 1.",
-                                "example": 1
-                              },
-                              "option": {
-                                "type": "string",
-                                "description": "Option string value for 'radio' and 'multiple' select field types."
-                              }
-                            }
-                          }
-                        },
-                        "options": {
-                          "type": "array",
-                          "description": "An array of option values for 'select' field type.",
-                          "items": {
-                            "type": "string"
-                          },
-                          "example": [
-                            "Option A",
-                            "Option B"
-                          ]
-                        },
-                        "validation": {
-                          "type": "object",
-                          "properties": {
-                            "pattern": {
-                              "type": "string",
-                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "A custom error message to display on validation failure."
-                            },
-                            "min": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Minimum allowed number value or date depending on field type."
-                            },
-                            "max": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Maximum allowed number value or date depending on field type."
-                            },
-                            "step": {
-                              "type": "number",
-                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
-                            }
-                          }
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+                "type": "string"
+              },
+              "example": [
+                "Agent",
+                "Customer"
+              ]
             },
-            "flatten": {
+            "archived": {
               "type": "boolean",
-              "description": "Remove PDF form fields from the documents.",
-              "default": false
-            },
-            "remove_tags": {
-              "type": "boolean",
-              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
-              "default": true
+              "description": "Set `false` to unarchive template."
             }
           }
         }
@@ -4163,9 +4181,9 @@ func main() {
 }
 ```
 
-### Create a submission from DOCX
+### Update template documents
 
-The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.docuseal.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> fillable field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+The API endpoint allows you to add, remove or replace documents in the template with provided PDF/DOCX file or HTML content.
 
 ```go
 package main
@@ -4179,11 +4197,11 @@ import (
 
 func main() {
 
-	url := "https://api.docuseal.com/submissions/docx"
+	url := "https://api.docuseal.com/templates/1000001/documents"
 
-	payload := strings.NewReader("{\"name\":\"Test Submission Document\",\"variables\":{\"variable_name\":\"value\"},\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}],\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
+	payload := strings.NewReader("{\"documents\":[{\"file\":\"string\"}]}")
 
-	req, _ := http.NewRequest("POST", url, payload)
+	req, _ := http.NewRequest("PUT", url, payload)
 
 	req.Header.Add("X-Auth-Token", "API_KEY")
 	req.Header.Add("content-type", "application/json")
@@ -4207,412 +4225,136 @@ func main() {
     }
   ],
   "tags": [
-    "Submissions"
+    "Templates"
   ],
-  "summary": "Create a submission from DOCX",
-  "operationId": "createSubmissionFromDocx",
-  "parameters": [],
+  "summary": "Update template documents",
+  "operationId": "addDocumentToTemplate",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the documents template.",
+      "example": 1000001
+    }
+  ],
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
           "type": "object",
-          "required": [
-            "documents",
-            "submitters"
-          ],
           "properties": {
-            "name": {
-              "type": "string",
-              "description": "Name of the document submission.",
-              "example": "Test Submission Document"
-            },
-            "send_email": {
-              "type": "boolean",
-              "description": "Set `false` to disable signature request emails sending.",
-              "default": true
-            },
-            "send_sms": {
-              "type": "boolean",
-              "description": "Set `true` to send signature request via phone number and SMS.",
-              "default": false
-            },
-            "variables": {
-              "type": "object",
-              "description": "Dynamic content variables object",
-              "example": {
-                "variable_name": "value"
-              }
-            },
-            "order": {
-              "type": "string",
-              "description": "Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party.",
-              "default": "preserved",
-              "enum": [
-                "preserved",
-                "random"
-              ]
-            },
-            "completed_redirect_url": {
-              "type": "string",
-              "description": "Specify URL to redirect to after the submission completion."
-            },
-            "bcc_completed": {
-              "type": "string",
-              "description": "Specify BCC address to send signed documents to after the completion."
-            },
-            "reply_to": {
-              "type": "string",
-              "description": "Specify Reply-To address to use in the notification emails."
-            },
-            "expire_at": {
-              "type": "string",
-              "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
-            },
-            "template_ids": {
-              "type": "array",
-              "description": "An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates.",
-              "items": {
-                "type": "integer",
-                "description": "The ID of the template to use for the submission."
-              }
-            },
             "documents": {
               "type": "array",
+              "description": "The list of documents to add or replace in the template.",
               "items": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "file"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
-                    "description": "Name of the document."
+                    "description": "Document name. Random uuid will be assigned when not specified.",
+                    "example": "Test Template"
                   },
                   "file": {
-                    "example": "base64",
                     "type": "string",
                     "format": "base64",
-                    "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL."
+                    "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL. Leave it empty if you create a new document using HTML param."
+                  },
+                  "html": {
+                    "type": "string",
+                    "description": "HTML template with field tags. Leave it empty if you add a document via PDF or DOCX base64 encoded file param or URL."
                   },
                   "position": {
                     "type": "integer",
-                    "description": "Document position in the submission. If not specified, the document will be added in the order it appears in the documents array."
+                    "description": "Position of the document. By default will be added as the last document in the template.",
+                    "example": 0
+                  },
+                  "replace": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Set to `true` to replace existing document with a new file at `position`. Existing document fields will be transferred to the new document if it doesn't contain any fields."
+                  },
+                  "remove": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Set to `true` to remove existing document at given `position` or with given `name`."
                   }
                 }
               }
             },
-            "submitters": {
-              "type": "array",
-              "description": "The list of submitters for the submission.",
-              "items": {
-                "type": "object",
-                "required": [
-                  "email"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the submitter."
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "The role name or title of the submitter.",
-                    "example": "First Party"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "The email address of the submitter.",
-                    "format": "email",
-                    "example": "john.doe@example.com"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
-                  },
-                  "values": {
-                    "type": "object",
-                    "description": "An object with pre-filled values for the submission. Use field names for keys of the object. For more configurations see `fields` param."
-                  },
-                  "external_id": {
-                    "type": "string",
-                    "description": "Your application-specific unique string key to identify this submitter within your app."
-                  },
-                  "completed": {
-                    "type": "boolean",
-                    "description": "Pass `true` to mark submitter as completed and auto-signed via API."
-                  },
-                  "metadata": {
-                    "type": "object",
-                    "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
-                  },
-                  "send_email": {
-                    "type": "boolean",
-                    "description": "Set `false` to disable signature request emails sending only for this submitter.",
-                    "default": true
-                  },
-                  "send_sms": {
-                    "type": "boolean",
-                    "description": "Set `true` to send signature request via phone number and SMS.",
-                    "default": false
-                  },
-                  "reply_to": {
-                    "type": "string",
-                    "description": "Specify Reply-To address to use in the notification emails for this submitter."
-                  },
-                  "completed_redirect_url": {
-                    "type": "string",
-                    "description": "Submitter specific URL to redirect to after the submission completion."
-                  },
-                  "order": {
-                    "type": "integer",
-                    "description": "The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array."
-                  },
-                  "require_phone_2fa": {
-                    "type": "boolean",
-                    "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
-                    "default": false
-                  },
-                  "fields": {
-                    "type": "array",
-                    "description": "A list of configurations for document form fields.",
-                    "items": {
-                      "type": "object",
-                      "required": [
-                        "name"
-                      ],
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Document field name.",
-                          "example": "First Name"
-                        },
-                        "default_value": {
-                          "oneOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "boolean"
-                            },
-                            {
-                              "type": "array",
-                              "items": {
-                                "oneOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "number"
-                                  },
-                                  {
-                                    "type": "boolean"
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
-                        },
-                        "readonly": {
-                          "type": "boolean",
-                          "description": "Set `true` to make it impossible for the submitter to edit predefined field value.",
-                          "default": false
-                        },
-                        "required": {
-                          "type": "boolean",
-                          "description": "Set `true` to make the field required."
-                        },
-                        "title": {
-                          "type": "string",
-                          "description": "Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown."
-                        },
-                        "description": {
-                          "type": "string",
-                          "description": "Field description displayed on the signing form. Supports Markdown."
-                        },
-                        "validation": {
-                          "type": "object",
-                          "properties": {
-                            "pattern": {
-                              "type": "string",
-                              "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "A custom error message to display on validation failure."
-                            },
-                            "min": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Minimum allowed number value or date depending on field type."
-                            },
-                            "max": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Maximum allowed number value or date depending on field type."
-                            },
-                            "step": {
-                              "type": "number",
-                              "description": "Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency."
-                            }
-                          }
-                        },
-                        "preferences": {
-                          "type": "object",
-                          "properties": {
-                            "font_size": {
-                              "type": "integer",
-                              "description": "Font size of the field value in pixels.",
-                              "example": 12
-                            },
-                            "font_type": {
-                              "type": "string",
-                              "description": "Font type of the field value.",
-                              "enum": [
-                                "bold",
-                                "italic",
-                                "bold_italic"
-                              ]
-                            },
-                            "font": {
-                              "type": "string",
-                              "description": "Font family of the field value.",
-                              "enum": [
-                                "Times",
-                                "Helvetica",
-                                "Courier"
-                              ]
-                            },
-                            "color": {
-                              "type": "string",
-                              "description": "Font color of the field value.",
-                              "enum": [
-                                "black",
-                                "white",
-                                "blue"
-                              ],
-                              "default": "black"
-                            },
-                            "align": {
-                              "type": "string",
-                              "description": "Horizontal alignment of the field text value.",
-                              "enum": [
-                                "left",
-                                "center",
-                                "right"
-                              ],
-                              "default": "left"
-                            },
-                            "valign": {
-                              "type": "string",
-                              "description": "Vertical alignment of the field text value.",
-                              "enum": [
-                                "top",
-                                "center",
-                                "bottom"
-                              ],
-                              "default": "center"
-                            },
-                            "format": {
-                              "type": "string",
-                              "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
-                            },
-                            "price": {
-                              "type": "number",
-                              "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
-                            },
-                            "currency": {
-                              "type": "string",
-                              "description": "Currency value of the payment field. Only for payment fields.",
-                              "enum": [
-                                "USD",
-                                "EUR",
-                                "GBP",
-                                "CAD",
-                                "AUD"
-                              ],
-                              "default": "USD"
-                            },
-                            "mask": {
-                              "description": "Set `true` to make sensitive data masked on the document.",
-                              "oneOf": [
-                                {
-                                  "type": "integer"
-                                },
-                                {
-                                  "type": "boolean"
-                                }
-                              ],
-                              "default": false
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "roles": {
-                    "type": "array",
-                    "description": "A list of roles for the submitter. Use this param to merge multiple roles into one submitter.",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "message": {
-              "type": "object",
-              "properties": {
-                "subject": {
-                  "type": "string",
-                  "description": "Custom signature request email subject."
-                },
-                "body": {
-                  "type": "string",
-                  "description": "Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}."
-                }
-              }
-            },
-            "merge_documents": {
+            "merge": {
               "type": "boolean",
-              "description": "Set `true` to merge the documents into a single PDF file.",
-              "default": false
-            },
-            "remove_tags": {
-              "type": "boolean",
-              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
-              "default": true
+              "default": false,
+              "description": "Set to `true` to merge all existing and new documents into a single PDF document in the template."
             }
           }
         }
       }
     }
   }
+}
+```
+
+### Archive a template
+
+The API endpoint allows you to archive a document template.
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io"
+)
+
+func main() {
+
+	url := "https://api.docuseal.com/templates/1000001"
+
+	req, _ := http.NewRequest("DELETE", url, nil)
+
+	req.Header.Add("X-Auth-Token", "API_KEY")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := io.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```json
+{
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
+  "tags": [
+    "Templates"
+  ],
+  "summary": "Archive a template",
+  "operationId": "archiveTemplate",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      },
+      "description": "The unique identifier of the document template.",
+      "example": 1000001
+    }
+  ]
 }
 ```
 

@@ -71,7 +71,11 @@ module Params
     end
 
     def validate_submitter(submitter_params)
-      required(submitter_params, %i[email phone name])
+      if submitter_params['invite_by'].present?
+        required(submitter_params, :role)
+      else
+        required(submitter_params, %i[email phone name])
+      end
 
       type(submitter_params, :name, String)
       type(submitter_params, :reply_to, String)

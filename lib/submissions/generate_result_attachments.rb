@@ -522,10 +522,17 @@ module Submissions
             if field['type'].in?(%w[multiple radio])
               option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }
 
-              option_name = option['value'].presence
-              option_name ||= "#{I18n.t('option', locale: locale)} #{field['options'].index(option) + 1}"
+              value =
+                if option
+                  option_name = option['value'].presence
+                  option_name ||= "#{I18n.t('option', locale: locale)} #{field['options'].index(option) + 1}"
 
-              value = Array.wrap(value).include?(option_name)
+                  Array.wrap(value).include?(option_name)
+                else
+                  Rollbar.error("Invalid option: #{field['uuid']}") if defined?(Rollbar)
+
+                  false
+                end
             end
 
             next unless value == true

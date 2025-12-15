@@ -144,13 +144,13 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
-  def otp_verification_email(submitter)
+  def otp_verification_email(submitter, locale: nil)
     @submitter = submitter
     @otp_code = EmailVerificationCodes.generate([submitter.email.downcase.strip, submitter.slug].join(':'))
 
     assign_message_metadata('otp_verification_email', submitter)
 
-    I18n.with_locale(submitter.account.locale) do
+    I18n.with_locale(locale || submitter.account.locale) do
       mail(to: submitter.email, subject: I18n.t('email_verification'))
     end
   end

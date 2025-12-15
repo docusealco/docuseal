@@ -1,27 +1,14 @@
 name: Build Docker Images
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: Version
-        type: string
-        required: true
-      image:
-        description: QEMU image
-        type: string
-        required: false
-        default: tonistiigi/binfmt:latest
-      os:
-        description: OS
-        type: string
-        required: false
-        default: ubuntu-24.04-arm
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   build:
-    runs-on: ${{ inputs.os }}
-    timeout-minutes: 20
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
 
     steps:
     - name: Checkout code
@@ -34,18 +21,16 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: docuseal/docuseal
-        tags: latest,${{ inputs.version }}
+        tags: type=semver,pattern={{version}}
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
-      with:
-        image: ${{ inputs.image }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
     - name: Create .version file
-      run: echo ${{ inputs.version }} > .version
+      run: echo ${{ github.ref_name }} > .version
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
