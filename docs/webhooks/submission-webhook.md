@@ -281,6 +281,10 @@ Get submission creation, completion, expiration, and archiving notifications usi
             "event_timestamp": {
               "type": "string",
               "description": "Date and time when the event was triggered."
+            },
+            "data": {
+              "type": "object",
+              "description": "Additional event details object."
             }
           }
         }
