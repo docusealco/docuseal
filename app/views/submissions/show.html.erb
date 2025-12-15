@@ -93,8 +93,10 @@
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
+        <% submitters_order_index = nil %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
+        <% bg_classes = %w[bg-red-100 bg-sky-100 bg-emerald-100 bg-yellow-100 bg-purple-100 bg-pink-100 bg-cyan-100 bg-orange-100 bg-lime-100 bg-indigo-100] %>
         <% schema.each do |item| %>
           <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
@@ -111,19 +113,29 @@
                 <% fields_index.dig(document.uuid, index)&.each do |(area, field)| %>
                   <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['conditions'].blank? && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                   <% value ||= field['default_value'] if field['type'] == 'heading' %>
-                  <% next if value.blank? %>
                   <% submitter = submitters_index[field['submitter_uuid']] %>
-                  <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
-                    <span class="group">
-                      <span class="hidden group-hover:inline">
-                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
+                  <% if value.present? %>
+                    <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
+                      <span class="group">
+                        <span class="hidden group-hover:inline">
+                          <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value:, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
+                        </span>
+                        <span class="group-hover:hidden">
+                          <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
+                        </span>
                       </span>
-                      <span class="group-hover:hidden">
-                        <%= render 'submissions/value', font_scale:, area:, field:, attachments_index:, value: Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', '), locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id: %>
-                      </span>
-                    </span>
-                  <% else %>
-                    <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id:, with_submitter_timezone:, with_signature_id_reason: %>
+                    <% else %>
+                      <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index:, value: mask.present? ? Array.wrap(value).map { |e| TextUtils.mask_value(e, mask) }.join(', ') : value, locale: @submission.account.locale, timezone: @submission.account.timezone, submitter:, with_signature_id:, with_submitter_timezone:, with_signature_id_reason: %>
+                    <% end %>
+                  <% elsif field['readonly'] != true && submitter && !submitter.completed_at? %>
+                    <% submitters_order_index ||= (@submission.template_submitters || @submission.template.submitters).each_with_index.to_h { |s, i| [s['uuid'], i] } %>
+                    <% submitter_index = submitters_order_index[submitter.uuid] %>
+                    <% bg_class = bg_classes[submitter_index % bg_classes.size] %>
+                    <div class="absolute overflow-visible" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%;">
+                      <div class="flex h-full w-full bg-opacity-80 justify-center items-center <%= bg_class %>">
+                        <%= svg_icon(SubmissionsController::FIELD_ICONS[field['type']], class: 'max-h-10 w-full h-full stroke-2 opacity-50') %>
+                      </div>
+                    </div>
                   <% end %>
                 <% end %>
               </div>

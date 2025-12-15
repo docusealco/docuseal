@@ -12,6 +12,14 @@ class SubmissionsController < ApplicationController
     authorize!(:create, Submission)
   end
 
+  FIELD_ICONS = {
+    'text' => 'text_size', 'signature' => 'writing_sign', 'date' => 'calendar_event',
+    'number' => 'square_number_1', 'image' => 'photo', 'initials' => 'letter_case_upper',
+    'file' => 'paperclip', 'select' => 'select', 'checkbox' => 'checkbox', 'radio' => 'circle_dot',
+    'stamp' => 'rubber_stamp', 'cells' => 'columns_3', 'multiple' => 'checks', 'phone' => 'phone_check',
+    'payment' => 'credit_card', 'verification' => 'id'
+  }.freeze
+
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
