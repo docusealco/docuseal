@@ -537,7 +537,7 @@
       />
       <div
         v-if="stepFields.length < 80"
-        class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1"
+        class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
       >
         <div class="flex items-center flex-wrap steps-progress">
           <a
