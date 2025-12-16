@@ -49,6 +49,7 @@ class AccountConfig < ApplicationRecord
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
   REUSE_SIGNATURE_KEY = 'reuse_signature'
+  WITH_FIELD_LABELS_KEY = 'with_field_labels'
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
   POLICY_LINKS_KEY = 'policy_links'

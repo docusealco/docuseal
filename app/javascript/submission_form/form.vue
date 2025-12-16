@@ -8,7 +8,7 @@
     :scroll-el="scrollEl"
     :with-signature-id="withSignatureId"
     :attachments-index="attachmentsIndex"
-    :with-label="!isAnonymousChecboxes && showFieldNames"
+    :with-label="withFieldLabels && !isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
     :scroll-padding="scrollPadding"
     @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
@@ -733,6 +733,11 @@ export default {
       default: false
     },
     reuseSignature: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withFieldLabels: {
       type: Boolean,
       required: false,
       default: true
