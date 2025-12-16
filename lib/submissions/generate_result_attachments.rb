@@ -648,7 +648,7 @@ module Submissions
             text_params = { font:, fill_color:, font_size: }
             text_params[:line_height] = text_params[:font_size] * (FONTS_LINE_HEIGHT[font_name] || 1)
 
-            text = HexaPDF::Layout::TextFragment.create(value, **text_params)
+            text = HexaPDF::Layout::TextFragment.create(value.tr("\u00A0", ' '), **text_params)
 
             lines = layouter.fit([text], area['w'] * width, height).lines
             box_height = lines.sum(&:height)
