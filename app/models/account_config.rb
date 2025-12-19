@@ -45,6 +45,7 @@ class AccountConfig < ApplicationRecord
   WITH_SIGNATURE_ID = 'with_signature_id'
   WITH_FILE_LINKS_KEY = 'with_file_links'
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
+  RECIPIENT_FORM_FIELDS_KEY = 'recipient_form_fields'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'

@@ -17,7 +17,9 @@ module Submitters
 
     module_function
 
-    def call(template, values, submitter_name: nil, role_names: nil, for_submitter: nil, throw_errors: false)
+    # rubocop:disable Metrics
+    def call(template, values, submitter_name: nil, role_names: nil, for_submitter: nil, throw_errors: false,
+             add_fields: false)
       fields =
         if role_names.present?
           fetch_roles_fields(template, roles: role_names)
@@ -29,6 +31,8 @@ module Submitters
       fields_name_index = build_fields_index(fields)
 
       attachments = []
+      new_fields = []
+      recipient_form_fields = nil
 
       normalized_values = values.to_h.each_with_object({}) do |(key, value), acc|
         next if key.blank?
@@ -40,7 +44,22 @@ module Submitters
         if value_fields.blank?
           value_fields = fields_name_index[key].presence || fields_name_index[key.to_s.downcase]
 
-          raise(UnknownFieldName, "Unknown field: #{key}") if value_fields.blank? && throw_errors
+          if value_fields.blank?
+            if add_fields && (recipient_form_fields ||= Accounts.load_recipient_form_fields(template.account))
+              new_field = recipient_form_fields.to_a.find { |e| e['name'] == key }.deep_dup
+
+              if new_field && fields.present?
+                new_field = new_field.merge('uuid' => SecureRandom.uuid,
+                                            'readonly' => true,
+                                            'submitter_uuid' => fields.first['submitter_uuid'])
+
+                new_fields.push(new_field)
+                value_fields = [new_field]
+              end
+            elsif throw_errors
+              raise(UnknownFieldName, "Unknown field: #{key}")
+            end
+          end
         end
 
         next if value_fields.blank?
@@ -59,8 +78,9 @@ module Submitters
         end
       end
 
-      [normalized_values, attachments]
+      [normalized_values, attachments, new_fields]
     end
+    # rubocop:enable Metrics
 
     def normalize_value(field, value)
       if field['type'] == 'checkbox'

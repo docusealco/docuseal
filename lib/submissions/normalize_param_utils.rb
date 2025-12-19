@@ -4,21 +4,23 @@ module Submissions
   module NormalizeParamUtils
     module_function
 
-    def normalize_submissions_params!(submissions_params, template)
+    def normalize_submissions_params!(submissions_params, template, add_fields: false)
       attachments = []
+      fields = []
 
       Array.wrap(submissions_params).each do |submission|
         submission[:submitters].each_with_index do |submitter, index|
-          _, new_attachments = normalize_submitter_params!(submitter, template, index)
+          _, new_attachments, new_fields = normalize_submitter_params!(submitter, template, index, add_fields:)
 
           attachments.push(*new_attachments)
+          fields.push(*new_fields)
         end
       end
 
-      [submissions_params, attachments]
+      [submissions_params, attachments, fields]
     end
 
-    def normalize_submitter_params!(submitter_params, template, index = nil, for_submitter: nil)
+    def normalize_submitter_params!(submitter_params, template, index = nil, for_submitter: nil, add_fields: false)
       with_values = submitter_params[:values].present?
 
       default_values = with_values ? submitter_params[:values] : {}
@@ -30,18 +32,19 @@ module Submissions
 
       return submitter_params if default_values.blank?
 
-      values, new_attachments =
+      values, new_attachments, new_fields =
         Submitters::NormalizeValues.call(template,
                                          default_values,
                                          submitter_name: submitter_params[:role] ||
                                                          template.submitters.dig(index, 'name'),
                                          role_names: submitter_params[:roles],
                                          for_submitter:,
+                                         add_fields:,
                                          throw_errors: !with_values)
 
       submitter_params[:values] = values
 
-      [submitter_params, new_attachments]
+      [submitter_params, new_attachments, new_fields]
     end
 
     def save_default_value_attachments!(attachments, submitters)
