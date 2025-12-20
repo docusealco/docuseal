@@ -142,7 +142,8 @@ const token = jwt.sign({
       "stamp",
       "payment",
       "phone",
-      "verification"
+      "verification",
+      "strikethrough"
     ]
   },
   "drawFieldType": {
@@ -185,7 +186,8 @@ const token = jwt.sign({
             "stamp",
             "payment",
             "phone",
-            "verification"
+            "verification",
+            "strikethrough"
           ]
         },
         "role": {
@@ -312,7 +314,8 @@ const token = jwt.sign({
             "stamp",
             "payment",
             "phone",
-            "verification"
+            "verification",
+            "strikethrough"
           ]
         },
         "role": {
@@ -435,6 +438,12 @@ const token = jwt.sign({
     "default": true,
     "description": "Set `false` to now show the fields list on the right. Fields list is displayed by default."
   },
+  "withFieldsDetection": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Display a button to automatically detect and add fields to the document with AI."
+  },
   "withFieldPlaceholder": {
     "type": "boolean",
     "required": false,
@@ -474,7 +483,7 @@ const token = jwt.sign({
     "type": "string",
     "required": false,
     "default": "en",
-    "description": "UI language, 'en', 'es', 'de', 'fr', 'pt', 'he', 'ar' languages are available."
+    "description": "UI language, 'en', 'es', 'de', 'fr', 'pt', 'nl', 'he', 'ar' languages are available."
   },
   "i18n": {
     "type": "object",

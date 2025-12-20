@@ -26,7 +26,7 @@
   "data-src": {
     "type": "string",
     "required": true,
-    "description": "Public URL of the document signing form. There are two types of URLs: <li><code>/d/{slug}</code> - template form signing URL can be copied from the template page in the admin dashboard. Also template \"slug\" key can be obtained via the <code>/templates</code> API.</li><li><code>/s/{slug}</code> - individual signer URL. Signer \"slug\" key can be obtained via the <code>/submissions</code> API which is used to initiate signature requests for a template form with recipients.</li>"
+    "description": "Public URL of the document signing form. There are two types of URLs: <ul class=\"list-inside list-disc\"><li><code>/d/{slug}</code> - template form signing URL can be copied from the template page in the admin dashboard. Also template \"slug\" key can be obtained via the <code>/templates</code> API.</li><li><code>/s/{slug}</code> - individual signer URL. Signer \"slug\" key can be obtained via the <code>/submissions</code> API which is used to initiate signature requests for a template form with recipients.</li></ul>"
   },
   "data-email": {
     "type": "string",

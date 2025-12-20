@@ -50,12 +50,13 @@
       <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
     </div>
   <% elsif field['type'].in?(%w[multiple radio]) && area['option_uuid'] %>
-    <% option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] } %>
-    <% option_name = option['value'].presence || "Option #{field['options'].index(option) + 1}" %>
-    <% if option && Array.wrap(value).include?(option_name) %>
-      <div class="w-full flex items-center justify-center">
-        <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
-      </div>
+    <% if (option = field['options']&.find { |o| o['uuid'] == area['option_uuid'] }) %>
+      <% option_name = option['value'].presence || "Option #{field['options'].index(option) + 1}" %>
+      <% if Array.wrap(value).include?(option_name) %>
+        <div class="w-full flex items-center justify-center">
+          <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
+        </div>
+      <% end %>
     <% end %>
   <% elsif field['type'] == 'cells' && area['cell_w'].to_f > 0.0 %>
     <% cell_width = area['cell_w'] / area['w'] * 100 %>
