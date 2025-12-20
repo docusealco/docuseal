@@ -333,12 +333,12 @@ module Submissions
 
             result = nil
 
-            if area['h']&.positive? && (area['w'].to_f / area['h']) > 6
-              area_x = area['x'] * width
-              area_y = area['y'] * height
-              area_w = area['w'] * width
-              area_h = area['h'] * height
+            area_x = area['x'] * width
+            area_y = area['y'] * height
+            area_w = area['w'] * width
+            area_h = area['h'] * height
 
+            if area_h.positive? && (area_w.to_f / area_h) > 4.5
               half_width = area_w / 2.0
               scale = [half_width / image.width, area_h / image.height].min
               image_width = image.width * scale
@@ -396,7 +396,7 @@ module Submissions
                                                             font:,
                                                             font_size: base_font_size)
 
-                result = layouter.fit([text], area['w'] * width, base_font_size / 0.65)
+                result = layouter.fit([text], area_w, base_font_size / 0.65)
 
                 break if result.status == :success
 
@@ -405,30 +405,30 @@ module Submissions
                 break if id_string.length < 8
               end
 
-              reason_result = layouter.fit([reason_text], area['w'] * width, height)
+              reason_result = layouter.fit([reason_text], area_w, height)
               text_height = result.lines.sum(&:height) + reason_result.lines.sum(&:height)
 
-              image_height = (area['h'] * height) - text_height
-              image_height = (area['h'] * height) / 2 if image_height < (area['h'] * height) / 2
+              image_height = area_h - text_height
+              image_height = area_h / 2 if image_height < area_h / 2
 
-              scale = [(area['w'] * width) / image.width, image_height / image.height].min
+              scale = [area_w / image.width, image_height / image.height].min
 
               io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
 
-              layouter.fit([text], area['w'] * width, base_font_size / 0.65)
-                      .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
-                            height - (area['y'] * height) - TEXT_TOP_MARGIN - image_height)
+              layouter.fit([text], area_w, base_font_size / 0.65)
+                      .draw(canvas, area_x + TEXT_LEFT_MARGIN,
+                            height - area_y - TEXT_TOP_MARGIN - image_height)
 
-              layouter.fit([reason_text], area['w'] * width, reason_result.lines.sum(&:height))
-                      .draw(canvas, (area['x'] * width) + TEXT_LEFT_MARGIN,
-                            height - (area['y'] * height) - TEXT_TOP_MARGIN -
+              layouter.fit([reason_text], area_w, reason_result.lines.sum(&:height))
+                      .draw(canvas, area_x + TEXT_LEFT_MARGIN,
+                            height - area_y - TEXT_TOP_MARGIN -
                             result.lines.sum(&:height) - image_height)
 
               canvas.image(
                 io,
                 at: [
-                  (area['x'] * width) + (area['w'] * width / 2) - ((image.width * scale) / 2),
-                  height - (area['y'] * height) - (image.height * scale / 2) - (image_height / 2)
+                  area_x + (area_w / 2) - ((image.width * scale) / 2),
+                  height - area_y - (image.height * scale / 2) - (image_height / 2)
                 ],
                 width: image.width * scale,
                 height: image.height * scale

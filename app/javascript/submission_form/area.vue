@@ -560,7 +560,7 @@ export default {
       return style
     },
     isNarrow () {
-      return this.area.h > 0 && (this.area.w / this.area.h) > 6
+      return this.area.h > 0 && ((this.area.w * this.pageWidth) / (this.area.h * this.pageHeight)) > 4.5
     }
   },
   watch: {
