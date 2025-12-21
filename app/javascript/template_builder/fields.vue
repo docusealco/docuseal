@@ -17,7 +17,7 @@
     ref="fields"
     class="fields mb-1 mt-2"
     @dragover.prevent="onFieldDragover"
-    @drop="reorderFields"
+    @drop="fieldsDragFieldRef.value ? reorderFields() : null"
   >
     <Field
       v-for="field in submitterFields"

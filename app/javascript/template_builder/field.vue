@@ -154,15 +154,22 @@
         v-if="field.options && withOptions && (isExpandOptions || field.options.length < 5)"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
-        draggable="true"
-        @dragstart.prevent.stop
+        @dragover="onOptionDragover"
+        @drop="reorderOptions"
       >
         <div
           v-for="(option, index) in field.options"
           :key="option.uuid"
           class="flex space-x-1.5 items-center"
+          :data-option-uuid="option.uuid"
         >
-          <span class="text-sm w-3.5">
+          <span
+            class="text-sm w-3.5 cursor-grab select-none"
+            :draggable="editable && !defaultField"
+            @dragstart.stop="onOptionDragstart($event, option)"
+            @dragend.stop="optionDragRef = null"
+            @dragover.prevent.stop="onOptionDragover"
+          >
             {{ index + 1 }}.
           </span>
           <div
@@ -176,6 +183,7 @@
               dir="auto"
               required
               :placeholder="`${t('option')} ${index + 1}`"
+              @keydown.enter="option.value ? addOptionAt(index + 1) : null"
               @blur="save"
             >
             <button
@@ -198,6 +206,7 @@
             :readonly="!editable || defaultField"
             required
             dir="auto"
+            @keydown.enter="option.value ? addOptionAt(index + 1) : null"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
           >
@@ -217,7 +226,7 @@
         <button
           v-else-if="field.options && editable && !defaultField"
           class="field-add-option text-center text-sm w-full pb-1"
-          @click="addOption"
+          @click="addOptionAt(field.options.length)"
         >
           + {{ t('add_option') }}
         </button>
@@ -363,7 +372,8 @@ export default {
       isShowFontModal: false,
       isShowConditionsModal: false,
       isShowDescriptionModal: false,
-      renderDropdown: false
+      renderDropdown: false,
+      optionDragRef: null
     }
   },
   computed: {
@@ -450,15 +460,17 @@ export default {
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
     },
-    addOption () {
+    addOptionAt (index) {
       this.isExpandOptions = true
 
-      this.field.options.push({ value: '', uuid: v4() })
+      const insertAt = index ?? this.field.options.length
+
+      this.field.options.splice(insertAt, 0, { value: '', uuid: v4() })
 
       this.$nextTick(() => {
         const inputs = this.$refs.options.querySelectorAll('input')
 
-        inputs[inputs.length - 1]?.focus()
+        inputs[insertAt]?.focus()
       })
 
       this.save()
@@ -515,6 +527,70 @@ export default {
       this.isNameFocus = false
 
       this.save()
+    },
+    onOptionDragstart (event, option) {
+      this.optionDragRef = option
+
+      const root = this.$el.getRootNode()
+      const hiddenEl = document.createElement('div')
+
+      hiddenEl.style.width = '1px'
+      hiddenEl.style.height = '1px'
+      hiddenEl.style.opacity = '0'
+      hiddenEl.style.position = 'fixed'
+
+      root.querySelector('#docuseal_modal_container')?.appendChild(hiddenEl)
+      event.dataTransfer?.setDragImage(hiddenEl, 0, 0)
+
+      setTimeout(() => { hiddenEl.remove() }, 1000)
+
+      event.dataTransfer.effectAllowed = 'move'
+    },
+    onOptionDragover (e) {
+      if (!this.optionDragRef) return
+
+      e.preventDefault()
+      e.stopPropagation()
+
+      const targetRow = e.target.closest('[data-option-uuid]')
+
+      if (!targetRow) return
+
+      const dragRow = this.$refs.options?.querySelector(`[data-option-uuid="${this.optionDragRef.uuid}"]`)
+
+      if (!dragRow) return
+      if (targetRow === dragRow) return
+
+      const rows = Array.from(this.$refs.options.querySelectorAll('[data-option-uuid]'))
+
+      const currentIndex = rows.indexOf(dragRow)
+      const targetIndex = rows.indexOf(targetRow)
+
+      if (currentIndex < targetIndex) {
+        targetRow.after(dragRow)
+      } else {
+        targetRow.before(dragRow)
+      }
+    },
+    reorderOptions (e) {
+      if (!this.optionDragRef) return
+
+      e.preventDefault()
+      e.stopPropagation()
+
+      const rows = Array.from(this.$refs.options.querySelectorAll('[data-option-uuid]'))
+
+      const newOrder = rows
+        .map((el) => this.field.options.find((opt) => opt.uuid === el.dataset.optionUuid))
+        .filter(Boolean)
+
+      if (newOrder.length === this.field.options.length) {
+        this.field.options.splice(0, this.field.options.length, ...newOrder)
+
+        this.save()
+      }
+
+      this.optionDragRef = null
     }
   }
 }
