@@ -49,7 +49,8 @@ module Submitters
               new_field = recipient_form_fields.to_a.find { |e| e['name'] == key }.deep_dup
 
               if new_field && fields.present?
-                new_field = new_field.merge('uuid' => SecureRandom.uuid,
+                new_field = new_field.except('conditions')
+                                     .merge('uuid' => SecureRandom.uuid,
                                             'readonly' => true,
                                             'submitter_uuid' => fields.first['submitter_uuid'])
 
