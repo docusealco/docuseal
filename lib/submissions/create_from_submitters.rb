@@ -7,7 +7,8 @@ module Submissions
     module_function
 
     # rubocop:disable Metrics
-    def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {}, with_template: true)
+    def call(template:, user:, submissions_attrs:, source:, submitters_order:, params: {}, with_template: true,
+             new_fields: nil)
       preferences = Submitters.normalize_preferences(user.account, user, params)
 
       submissions = Array.wrap(submissions_attrs).filter_map do |attrs|
@@ -67,7 +68,7 @@ module Submissions
                           preferences: preferences.merge(submission_preferences))
         end
 
-        maybe_set_template_fields(submission, attrs[:submitters], with_template:)
+        maybe_set_template_fields(submission, attrs[:submitters], with_template:, new_fields:)
 
         if submission.submitters.size > template.submitters.size
           raise BaseError, 'Defined more signing parties than in template'
@@ -92,7 +93,6 @@ module Submissions
 
       submissions
     end
-    # rubocop:enable Metrics
 
     def maybe_enqueue_expire_at(submissions)
       submissions.each do |submission|
@@ -135,7 +135,8 @@ module Submissions
       }.compact_blank
     end
 
-    def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil, with_template: true)
+    def maybe_set_template_fields(submission, submitters_attrs, default_submitter_uuid: nil, with_template: true,
+                                  new_fields: nil)
       template_fields = (submission.template_fields || submission.template.fields).deep_dup
 
       submitters = submission.template_submitters || submission.template.submitters
@@ -149,9 +150,9 @@ module Submissions
         process_fields_param(submitter_attrs[:fields], template_fields, submitter_uuid)
       end
 
-      if template_fields != (submission.template_fields || submission.template.fields) ||
+      if template_fields != (submission.template_fields || submission.template.fields) || new_fields.present? ||
          submitters_attrs.any? { |e| e[:completed].present? } || !with_template || submission.variables.present?
-        submission.template_fields = template_fields
+        submission.template_fields = new_fields ? new_fields + template_fields : template_fields
         submission.template_schema = submission.template.schema if submission.template_schema.blank?
         submission.variables_schema = submission.template.variables_schema if submission.template &&
                                                                               submission.variables_schema.blank?
@@ -159,6 +160,7 @@ module Submissions
 
       submission
     end
+    # rubocop:enable Metrics
 
     def merge_submitters_and_fields(submitter_attrs, template_submitters, template_fields)
       selected_submitters = submitter_attrs[:roles].map do |role|

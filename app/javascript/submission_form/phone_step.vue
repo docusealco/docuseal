@@ -100,7 +100,7 @@
         <input
           :id="field.uuid"
           ref="phone"
-          :value="phoneValue"
+          :value="defaultValue && detectedPhoneValueDialCode ? phoneValue.split('+' + detectedPhoneValueDialCode).slice(-1).join('') : phoneValue"
           :readonly="!!defaultValue"
           class="base-input !text-2xl !rounded-l-none !border-l-0 !outline-none w-full"
           autocomplete="tel"

@@ -7,6 +7,9 @@ class SendTestWebhookRequestJob
 
   USER_AGENT = 'DocuSeal.com Webhook'
 
+  HttpsError = Class.new(StandardError)
+  LocalhostError = Class.new(StandardError)
+
   def perform(params = {})
     submitter = Submitter.find_by(id: params['submitter_id'])
 
@@ -15,6 +18,17 @@ class SendTestWebhookRequestJob
     webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
 
     return unless webhook_url
+
+    if Docuseal.multitenant?
+      uri = begin
+        URI(webhook_url.url)
+      rescue URI::Error
+        Addressable::URI.parse(webhook_url.url).normalize
+      end
+
+      raise HttpsError, 'Only HTTPS is allowed.' if uri.scheme != 'https'
+      raise LocalhostError, "Can't send to localhost." if uri.host.in?(SendWebhookRequest::LOCALHOSTS)
+    end
 
     Faraday.post(webhook_url.url,
                  {

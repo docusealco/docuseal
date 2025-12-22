@@ -37,6 +37,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       withSignatureId: this.dataset.withSignatureId === 'true',
       requireSigningReason: this.dataset.requireSigningReason === 'true',
       withConfetti: this.dataset.withConfetti !== 'false',
+      withFieldLabels: this.dataset.withFieldLabels !== 'false',
       withDisclosure: this.dataset.withDisclosure === 'true',
       reuseSignature: this.dataset.reuseSignature !== 'false',
       withTypedSignature: this.dataset.withTypedSignature !== 'false',

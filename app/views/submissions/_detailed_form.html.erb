@@ -12,7 +12,8 @@
           </div>
           <div class="grid <%= 'md:grid-cols-2' if submitters.size > 1 %> gap-4">
             <% submitters.each_with_index do |item, index| %>
-              <% prefillable_fields = local_assigns[:prefillable_fields].to_a.select { |f| f['submitter_uuid'] == item['uuid'] } %>
+              <% prefillable_fields = local_assigns[:prefillable_fields].to_a.select { |f| f['submitter_uuid'] == item['uuid'] }.presence %>
+              <% prefillable_fields ||= local_assigns[:recipient_form_fields].presence %>
               <submitter-item class="form-control">
                 <% if submitters.size > 1 %>
                   <label class="label pt-0 pb-1">
@@ -29,14 +30,14 @@
                   <div class="grid <%= 'md:grid-cols-2 gap-1' if submitters.size == 1 %>">
                     <submitters-autocomplete data-field="email">
                       <linked-input data-target-id="<%= "detailed_email_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                        <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: (local_assigns[:require_email_2fa] == true ? t(:email) : "#{t('email')} (#{t('optional')})"), value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "detailed_email_#{item['uuid']}", required: local_assigns[:require_email_2fa] == true %>
+                        <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: (local_assigns[:require_email_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:email) : "#{t('email')} (#{t('optional')})"), value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "detailed_email_#{item['uuid']}", required: local_assigns[:require_email_2fa] == true %>
                       </linked-input>
                     </submitters-autocomplete>
                     <% has_phone_field = true %>
                     <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
                       <submitters-autocomplete data-field="phone">
                         <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true %>
+                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true %>
                         </linked-input>
                       </submitters-autocomplete>
                     </custom-validation>
@@ -59,17 +60,23 @@
                     </custom-validation>
                   <% end %>
                   <% prefillable_fields.each do |field| %>
+                    <% field_id = "detailed_field_#{index}_#{field['uuid'] || field['name'].parameterize}" %>
                     <% if field['type'] == 'checkbox' %>
-                      <label for="detailed_field_<%= field['uuid'] %>" class="flex items-center justify-between mt-1.5 pl-3 pr-2.5 h-10 border border-base-content/20 rounded-full cursor-pointer transition-colors bg-white">
+                      <label for="<%= field_id %>" class="flex items-center justify-between mt-1.5 pl-3 pr-2.5 h-10 border border-base-content/20 rounded-full cursor-pointer transition-colors bg-white">
                         <span class="text-base select-none px-1"> <%= field['title'].presence || field['name'] %></span>
-                        <%= tag.input type: 'checkbox', name: "submission[1][submitters][][values][#{field['uuid']}]", id: "detailed_field_#{field['uuid']}", class: 'toggle toggle-sm', style: 'width: 38px; --handleoffset: 17px', checked: field['default_value'].present? && (field['default_value'] == true || field['default_value'].to_s == '1' || field['default_value'].to_s.downcase == 'true'), required: field['required'], value: 'true' %>
+                        <%= tag.input type: 'checkbox', name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", id: field_id, class: 'toggle toggle-sm', style: 'width: 38px; --handleoffset: 17px', checked: field['default_value'].present? && (field['default_value'] == true || field['default_value'].to_s == '1' || field['default_value'].to_s.downcase == 'true'), required: field['required'], value: 'true' %>
                       </label>
                     <% elsif field['type'] == 'select' || field['type'] == 'radio' %>
-                      <%= select_tag "submission[1][submitters][][values][#{field['uuid']}]", options_for_select(field['options'].pluck('value'), field['default_value']), prompt: t(:select), id: "detailed_field_#{field['uuid']}", class: 'select select-sm base-input !h-10 mt-1.5 ', required: field['required'] %>
+                      <%= select_tag "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", options_for_select(field['options'].pluck('value'), field['default_value']), prompt: t(:select), id: field_id, class: 'select select-sm base-input !h-10 mt-1.5 ', required: field['required'] %>
                     <% elsif field['type'] == 'date' %>
-                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: "detailed_field_#{field['uuid']}", required: field['required'] %>
+                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
                     <% elsif field['type'] != 'phone' %>
-                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: "detailed_field_#{field['uuid']}", required: field['required'] %>
+                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                    <% end %>
+                    <% field['conditions']&.each do |condition| %>
+                      <% if (condition_field = prefillable_fields.find { |f| f['uuid'] == condition['field_uuid'] || f['name'] == condition['field_name'] }) %>
+                        <field-condition data-target-id="<%= field_id %>" data-field-id="<%= "detailed_field_#{index}_#{condition['field_uuid'] || condition['field_name'].parameterize}" %>" data-action="<%= condition['action'] %>" data-value="<%= condition_field['options'].present? ? condition_field['options'].find { |o| o['uuid'] == condition['value'] }&.dig('value') || condition['value'] : condition['value'] %>" data-operation="<%= condition['operation'] %>"></field-condition>
+                      <% end %>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -79,7 +86,7 @@
         </div>
       </div>
     </div>
-    <% if params[:selfsign].blank? && local_assigns[:prefillable_fields].blank? %>
+    <% if params[:selfsign].blank? && local_assigns[:prefillable_fields].blank? && local_assigns[:recipient_form_fields].blank? %>
       <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
         <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
         <span><%= t('add_new') %></span>

@@ -101,6 +101,10 @@ module Accounts
     new_template
   end
 
+  def load_recipient_form_fields(_account)
+    []
+  end
+
   def load_signing_pkcs(account)
     cert_data =
       if Docuseal.multitenant?
