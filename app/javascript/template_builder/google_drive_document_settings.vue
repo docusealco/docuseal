@@ -27,7 +27,7 @@
       </li>
       <li>
         <button
-          form="sync_form"
+          :form="`sync_form_${inputId}`"
           type="submit"
           :disabled="isLoading"
         >
@@ -40,7 +40,7 @@
       </li>
     </ul>
     <form
-      id="sync_form"
+      :id="`sync_form_${inputId}`"
       ref="form"
       class="hidden"
       @submit.prevent="upload({ path: uploadUrl })"
