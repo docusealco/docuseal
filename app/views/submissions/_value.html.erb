@@ -7,7 +7,7 @@
 <% font_size_px = (field.dig('preferences', 'font_size').presence || Submissions::GenerateResultAttachments::FONT_SIZE).to_i * local_assigns.fetch(:font_scale) { 1000.0 / PdfUtils::US_LETTER_W } %>
 <field-value dir="auto" class="flex absolute <%= 'font-courier' if font == 'Courier' %> <%= 'font-times' if font == 'Times' %> <%= 'font-bold' if font_type == 'bold' || font_type == 'bold_italic' %> <%= 'italic' if font_type == 'italic' || font_type == 'bold_italic' %> <%= align == 'right' ? 'text-right' : (align == 'center' ? 'text-center' : '') %>" style="<%= "color: #{color}; " if color.present? %><%= "background: #{bg_color}; " if bg_color.present? %>width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; font-size: <%= fs = "clamp(1pt, #{font_size_px / 10}vw, #{font_size_px}px)" %>; line-height: calc(<%= fs %> * 1.3); font-size: <%= fs = "#{font_size_px / 10}cqmin" %>; line-height: calc(<%= fs %> * 1.3)">
   <% if field['type'] == 'signature' %>
-    <% is_narrow = area['h']&.positive? && (area['w'].to_f / area['h']) > 6 %>
+    <% is_narrow = area['h'].positive? && ((area['w'] * local_assigns[:page_width]).to_f / (area['h'] * local_assigns[:page_height])) > 4.5 %>
     <div class="flex justify-between w-full h-full gap-1 <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'flex-row' : 'flex-col' %>">
       <div class="flex overflow-hidden <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
         <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>">

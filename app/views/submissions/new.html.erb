@@ -1,7 +1,8 @@
 <% require_phone_2fa = @template.preferences['require_phone_2fa'] == true %>
 <% require_email_2fa = @template.preferences['require_email_2fa'] == true %>
 <% prefillable_fields = @template.fields.select { |f| f['prefillable'] } %>
-<% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? %>
+<% recipient_form_fields = Accounts.load_recipient_form_fields(current_account) if prefillable_fields.blank? %>
+<% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? || recipient_form_fields.present? %>
 <%= render 'shared/turbo_modal_large', title: params[:selfsign] ? t('add_recipients') : t('add_new_recipients') do %>
   <% options = [only_detailed ? nil : [t('via_email'), 'email'], only_detailed ? nil : [t('via_phone'), 'phone'], [t('detailed'), 'detailed'], [t('upload_list'), 'list']].compact %>
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 mt-4 block">
@@ -26,7 +27,7 @@
       </div>
     <% end %>
     <div id="detailed" class="<%= 'hidden' unless only_detailed %>">
-      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields: %>
+      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields: %>
     </div>
     <div id="list" class="hidden">
       <%= render 'list_form', template: @template %>

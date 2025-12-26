@@ -133,9 +133,9 @@ module Submissions
   end
 
   def create_from_submitters(template:, user:, submissions_attrs:, source:, with_template: true,
-                             submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {})
+                             submitters_order: DEFAULT_SUBMITTERS_ORDER, params: {}, new_fields: nil)
     Submissions::CreateFromSubmitters.call(
-      template:, user:, submissions_attrs:, source:, submitters_order:, params:, with_template:
+      template:, user:, submissions_attrs:, source:, submitters_order:, params:, with_template:, new_fields:
     )
   end
 

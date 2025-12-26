@@ -53,14 +53,15 @@ class SubmissionsController < ApplicationController
       else
         submissions_attrs = submissions_params[:submission].to_h.values
 
-        submissions_attrs, =
-          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_attrs, @template)
+        submissions_attrs, _, new_fields =
+          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_attrs, @template, add_fields: true)
 
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
                                            submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
                                            submissions_attrs:,
+                                           new_fields:,
                                            params: params.merge('send_completed_email' => true))
       end
 
