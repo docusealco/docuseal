@@ -4,11 +4,11 @@
       <img  alt="DocuSeal" src="https://github.com/docusealco/docuseal/assets/5418788/c12cd051-81cd-4402-bc3a-92f2cfdc1b06" width="80" />
       <br>
     </a>
-    DocuSeal
+    Growmore AI
   </div>
 </h1>
 <h3 align="center">
-  Open source document filling and signing
+  Build. Automate. Scale
 </h3>
 <p align="center">
   <a href="https://hub.docker.com/r/docuseal/docuseal">
@@ -22,13 +22,13 @@
   </a>
 </p>
 <p>
-DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
+Build. Automate. Scale
 </p>
-<h2 align="center">
+<!-- <h2 align="center">
   <a href="https://demo.docuseal.tech">✨ Live Demo</a>
   <span>|</span>
   <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
-</h2>
+</h2> -->
 
 [![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
 
