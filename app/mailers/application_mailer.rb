@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'DocuSeal <info@docuseal.com>'
+  default from: 'Growmore AI <info@Growmore AI.com>'
   layout 'mailer'
 
   register_interceptor ActionMailerConfigsInterceptor
