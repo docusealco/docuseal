@@ -2,24 +2,6 @@ en: &en
   language_en: English
   language_en-US: English (US)
   language_en-GB: English (UK)
-  language_es-ES: Español
-  language_fr-FR: Français
-  language_pt-PT: Português
-  language_de-DE: Deutsch
-  language_nl-NL: Nederlands
-  language_es: Español
-  language_it: Italiano
-  language_de: Deutsch
-  language_fr: Français
-  language_pl: Polski
-  language_uk: Українська
-  language_cs: Čeština
-  language_pt: Português
-  language_he: עברית
-  language_nl: Nederlands
-  language_ar: العربية
-  language_ko: 한국어
-  language_ja: 日本語
   add_from_google_drive: Add from Google Drive
   or_add_from: Or add from
   upload_a_new_document: Upload a New Document
@@ -1002,6 +984,3 @@ en-GB:
   date:
     formats:
       default: "%d/%m/%Y"
-
-es-ES:
-  <<: *es
