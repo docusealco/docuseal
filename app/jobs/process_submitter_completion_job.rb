@@ -40,9 +40,16 @@ class ProcessSubmitterCompletionJob
 
     complete_verification_events, sms_events =
       submitter.submission_events.where(event_type: %i[send_sms send_2fa_sms complete_verification])
-               .partition { |e| e.event_type == 'complete_verification' }
+               .partition { |e| e.event_type == 'complete_verification' || e.event_type == 'complete_kba' }
 
     complete_verification_event = complete_verification_events.first
+
+    verification_method =
+      if complete_verification_event&.event_type == 'complete_kba'
+        'kba'
+      elsif complete_verification_event
+        complete_verification_event.data['method']
+      end
 
     completed_submitter.assign_attributes(
       submission_id: submitter.submission_id,
@@ -51,7 +58,7 @@ class ProcessSubmitterCompletionJob
       template_id: submission.template_id,
       source: submission.source,
       sms_count: sms_events.sum { |e| e.data['segments'] || 1 },
-      verification_method: complete_verification_event&.data&.dig('method'),
+      verification_method:,
       completed_at: submitter.completed_at
     )
 

@@ -114,7 +114,7 @@
       :key="type"
     >
       <button
-        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification'))"
+        v-if="fieldTypes.includes(type) || ((withPhone || type != 'phone') && (withPayment || type != 'payment') && (withVerification || type != 'verification') && (withKba || type != 'kba'))"
         :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
@@ -122,7 +122,7 @@
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
         @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
-        @click="['file', 'payment', 'verification'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
+        @click="['file', 'payment', 'verification', 'kba'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
         <div
           class="flex items-console transition-all cursor-grab h-full absolute left-0"
@@ -283,7 +283,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch'],
   props: {
     fields: {
       type: Array,

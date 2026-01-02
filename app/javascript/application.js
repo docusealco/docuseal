@@ -159,6 +159,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
       withVerification: ['true', 'false'].includes(this.dataset.withVerification) ? this.dataset.withVerification === 'true' : null,
+      withKba: ['true', 'false'].includes(this.dataset.withKba) ? this.dataset.withKba === 'true' : null,
       withLogo: this.dataset.withLogo !== 'false',
       withFieldsDetection: this.dataset.withFieldsDetection === 'true',
       editable: this.dataset.editable !== 'false',

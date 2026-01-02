@@ -60,6 +60,11 @@
       class="object-contain mx-auto"
       :src="stamp.url"
     >
+    <img
+      v-else-if="field.type === 'kba' && kba"
+      class="object-contain mx-auto"
+      :src="kba.url"
+    >
     <div
       v-else-if="field.type === 'signature' && signature"
       class="flex justify-between h-full gap-1 overflow-hidden w-full"
@@ -272,7 +277,7 @@
 
 <script>
 import MarkdownContent from './markdown_content'
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconId } from '@tabler/icons-vue'
+import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconCheck, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1, IconId, IconUserScan } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldArea',
@@ -391,7 +396,8 @@ export default {
         stamp: this.t('stamp'),
         payment: this.t('payment'),
         phone: this.t('phone'),
-        verification: this.t('verify_id')
+        verification: this.t('verify_id'),
+        kba: this.t('kba')
       }
     },
     strikethroughWidth () {
@@ -454,7 +460,8 @@ export default {
         multiple: IconChecks,
         phone: IconPhoneCheck,
         payment: IconCreditCard,
-        verification: IconId
+        verification: IconId,
+        kba: IconUserScan,
       }
     },
     image () {
@@ -466,6 +473,13 @@ export default {
     },
     stamp () {
       if (this.field.type === 'stamp') {
+        return this.attachmentsIndex[this.modelValue]
+      } else {
+        return null
+      }
+    },
+    kba () {
+      if (this.field.type === 'kba') {
         return this.attachmentsIndex[this.modelValue]
       } else {
         return null

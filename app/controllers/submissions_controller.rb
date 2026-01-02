@@ -17,7 +17,7 @@ class SubmissionsController < ApplicationController
     'number' => 'square_number_1', 'image' => 'photo', 'initials' => 'letter_case_upper',
     'file' => 'paperclip', 'select' => 'select', 'checkbox' => 'checkbox', 'radio' => 'circle_dot',
     'stamp' => 'rubber_stamp', 'cells' => 'columns_3', 'multiple' => 'checks', 'phone' => 'phone_check',
-    'payment' => 'credit_card', 'verification' => 'id'
+    'payment' => 'credit_card', 'verification' => 'id', 'kba' => 'user_scan'
   }.freeze
 
   def show

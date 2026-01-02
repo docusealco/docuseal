@@ -677,6 +677,9 @@ en: &en
   payment_field: Payment Field
   phone_field: Phone Field
   verification_field: Identity Verification
+  knowledge_based_authentication: Knowledge Based Authentication
+  kba_field: KBA
+  passed: Passed
   identity_verification: Identity verification
   paid_price: 'Paid %{price}'
   verified: Verified
@@ -910,6 +913,9 @@ en: &en
     complete_form_by_html: '<b>Submission completed</b> by %{submitter_name}'
     start_verification_by_html: '<b>Identity verification started</b> by %{submitter_name}'
     complete_verification_by_html: '<b>Identity verification completed</b> by %{submitter_name} with %{provider}'
+    start_kba_by_html: '<b>KBA started</b> by %{submitter_name}'
+    complete_kba_by_html: '<b>KBA completed</b> by %{submitter_name}'
+    fail_kba_by_html: '<b>KBA failed</b> by %{submitter_name}'
     api_complete_form_by_html: '<b>Submission completed via API</b> by %{submitter_name}'
   import_list:
     select_worksheet: Select Worksheet
@@ -992,6 +998,9 @@ en: &en
       range_without_total: "%{from}-%{to} events"
 
 es: &es
+  knowledge_based_authentication: Autenticación basada en el conocimiento
+  kba_field: KBA
+  passed: Aprobado
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Las plantillas que requieren autenticación en dos pasos por correo electrónico o teléfono no se pueden usar mediante un enlace compartido.
   make_owner: Hacer propietario
   billing: Facturación
@@ -1883,6 +1892,9 @@ es: &es
     api_complete_form_by_html: '<b>Envío completado vía API</b> por %{submitter_name}'
     start_verification_by_html: '<b>Verificación de identidad iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificación de identidad completada</b> por %{submitter_name} con %{provider}'
+    start_kba_by_html: '<b>KBA iniciado</b> por %{submitter_name}'
+    complete_kba_by_html: '<b>KBA completado</b> por %{submitter_name}'
+    fail_kba_by_html: '<b>KBA fallido</b> por %{submitter_name}'
   import_list:
     select_worksheet: Seleccionar hoja de cálculo
     open: Abrir
@@ -1964,6 +1976,9 @@ es: &es
       range_without_total: "%{from}-%{to} eventos"
 
 it: &it
+  knowledge_based_authentication: Autenticazione basata sulla conoscenza
+  kba_field: KBA
+  passed: Superato
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: I modelli che richiedono 2FA via email o telefono non possono essere utilizzati tramite un link condiviso.
   make_owner: Rendi proprietario
   billing: Fatturazione
@@ -2856,6 +2871,9 @@ it: &it
     api_complete_form_by_html: '<b>Invio completato tramite API</b> da %{submitter_name}'
     start_verification_by_html: "<b>Verifica dell'identità iniziata</b> da %{submitter_name}"
     complete_verification_by_html: "<b>Verifica dell'identità completata</b> da %{submitter_name} con %{provider}"
+    start_kba_by_html: "<b>KBA avviata</b> da %{submitter_name}"
+    complete_kba_by_html: "<b>KBA completata</b> da %{submitter_name}"
+    fail_kba_by_html: "<b>KBA non riuscita</b> da %{submitter_name}"
   import_list:
     select_worksheet: Seleziona il foglio di lavoro
     open: Apri
@@ -2937,6 +2955,9 @@ it: &it
       range_without_total: "%{from}-%{to} eventi"
 
 fr: &fr
+  knowledge_based_authentication: Authentification basée sur la connaissance
+  kba_field: KBA
+  passed: Réussi
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Les modèles nécessitant une authentification à deux facteurs par e-mail ou téléphone ne peuvent pas être utilisés via un lien partagé.
   make_owner: Rendre propriétaire
   billing: Facturation
@@ -3825,6 +3846,9 @@ fr: &fr
     start_verification_by_html: "<b>Vérification d’identité démarrée</b> par %{submitter_name}"
     complete_verification_by_html: "<b>Vérification d’identité terminée</b> par %{submitter_name} avec %{provider}"
     api_complete_form_by_html: "<b>Soumission terminée via API</b> par %{submitter_name}"
+    start_kba_by_html: "<b>KBA démarré</b> par %{submitter_name}"
+    complete_kba_by_html: "<b>KBA terminé</b> par %{submitter_name}"
+    fail_kba_by_html: "<b>KBA échoué</b> par %{submitter_name}"
   import_list:
     select_worksheet: Sélectionner une feuille
     open: Ouvrir
@@ -3906,6 +3930,9 @@ fr: &fr
       range_without_total: "%{from}-%{to} événements"
 
 pt: &pt
+  knowledge_based_authentication: Autenticação baseada em conhecimento
+  kba_field: KBA
+  passed: Aprovado
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Modelos que exigem 2FA por e-mail ou telefone não podem ser usados por meio de um link compartilhado.
   make_owner: Tornar proprietário
   billing: Pagamentos
@@ -4797,6 +4824,9 @@ pt: &pt
     start_verification_by_html: '<b>Verificação de identidade iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificação de identidade concluída</b> por %{submitter_name} com %{provider}'
     api_complete_form_by_html: '<b>Submissão concluída via API</b> por %{submitter_name}'
+    start_kba_by_html: '<b>KBA iniciada</b> por %{submitter_name}'
+    complete_kba_by_html: '<b>KBA concluída</b> por %{submitter_name}'
+    fail_kba_by_html: '<b>KBA reprovada</b> por %{submitter_name}'
   import_list:
     select_worksheet: Selecionar planilha
     open: Abrir
@@ -4878,6 +4908,9 @@ pt: &pt
       range_without_total: "%{from}-%{to} eventos"
 
 de: &de
+  knowledge_based_authentication: Wissensbasierte Authentifizierung
+  kba_field: KBA
+  passed: Bestanden
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Vorlagen, die eine Zwei-Faktor-Authentifizierung per E-Mail oder Telefon erfordern, können nicht über einen geteilten Link verwendet werden.
   make_owner: Eigentümer machen
   billing: Abrechnung
@@ -5769,6 +5802,9 @@ de: &de
     start_verification_by_html: '<b>Identitätsüberprüfung gestartet</b> von %{submitter_name}'
     complete_verification_by_html: '<b>Identitätsüberprüfung abgeschlossen</b> von %{submitter_name} mit %{provider}'
     api_complete_form_by_html: '<b>Einreichung über API abgeschlossen</b> von %{submitter_name}'
+    start_kba_by_html: '<b>KBA gestartet</b> von %{submitter_name}'
+    complete_kba_by_html: '<b>KBA abgeschlossen</b> von %{submitter_name}'
+    fail_kba_by_html: '<b>KBA fehlgeschlagen</b> von %{submitter_name}'
   import_list:
     select_worksheet: Arbeitsblatt auswählen
     open: Öffnen
@@ -6238,6 +6274,9 @@ he:
   too_many_requests_try_again_later: יותר מדי בקשות. נסה שוב מאוחר יותר.
 
 nl: &nl
+  knowledge_based_authentication: Kennisgebaseerde authenticatie
+  kba_field: KBA
+  passed: Geslaagd
   templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Sjablonen waarvoor e-mail- of telefoon-2FA vereist is, kunnen niet via een gedeelde link worden gebruikt.
   make_owner: Eigenaar maken
   billing: Facturatie
@@ -7126,6 +7165,9 @@ nl: &nl
     start_verification_by_html: "<b>Identiteitsverificatie gestart</b> door %{submitter_name}"
     complete_verification_by_html: "<b>Identiteitsverificatie voltooid</b> door %{submitter_name} met %{provider}"
     api_complete_form_by_html: "<b>Inzending via API voltooid</b> door %{submitter_name}"
+    start_kba_by_html: "<b>KBA gestart</b> door %{submitter_name}"
+    complete_kba_by_html: "<b>KBA voltooid</b> door %{submitter_name}"
+    fail_kba_by_html: "<b>KBA mislukt</b> door %{submitter_name}"
   import_list:
     select_worksheet: Werkblad selecteren
     open: Openen
