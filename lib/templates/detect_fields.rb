@@ -59,8 +59,8 @@ module Templates
     CHECKBOXES = ['☐', '□'].freeze
 
     # rubocop:disable Metrics, Style
-    def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields,
-             nms: 0.1, split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
+    def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields, nms: 0.1,
+             split_page: false, aspect_ratio: true, padding: inference.model_v2? ? nil : 20, regexp_type: true, &)
       fields, head_node =
         if attachment&.image?
           process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
@@ -114,7 +114,10 @@ module Templates
       fields = doc.page_count.times.flat_map do |page_number|
         page = doc.get_page(page_number)
 
-        data, width, height = page.render_to_bitmap(width: inference::RESOLUTION * 1.5)
+        size_key = page.width > page.height ? :width : :height
+        size = padding ? inference.resolution * 1.5 : inference.resolution
+
+        data, width, height = page.render_to_bitmap(size_key => size)
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
@@ -126,8 +129,8 @@ module Templates
 
         fields = sort_fields(fields, y_threshold: 10.0 / image.height)
 
-        fields = increase_confidence_for_overlapping_fields(fields, text_fields)
-        fields = increase_confidence_for_overlapping_fields(fields, line_fields)
+        fields = increase_confidence_for_overlapping_fields(fields, text_fields, confidence:)
+        fields = increase_confidence_for_overlapping_fields(fields, line_fields, confidence:)
 
         fields = fields.reject { |f| f.confidence < confidence }
 
@@ -477,10 +480,11 @@ module Templates
       !(box1.endx < box2.x || box2.endx < box1.x || box1.endy < box2.y || box2.endy < box1.y)
     end
 
-    def increase_confidence_for_overlapping_fields(image_fields, text_fields, by: 1.0)
+    def increase_confidence_for_overlapping_fields(image_fields, text_fields, confidence: 1, by: 1.0)
       return image_fields if text_fields.blank?
 
       image_fields.map do |image_field|
+        next if image_field.confidence >= confidence
         next if image_field.type != 'text'
 
         text_fields.each do |text_field|
