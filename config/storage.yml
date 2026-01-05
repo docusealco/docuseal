@@ -9,6 +9,10 @@ aws_s3:
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: <%= ENV['AWS_REGION'] || 'us-east-1' %>
   bucket: <%= ENV['S3_ATTACHMENTS_BUCKET'] %>
+  <% if !ENV['S3_ENDPOINT'].to_s.empty? %>
+  endpoint: <%= ENV['S3_ENDPOINT'] %>
+  force_path_style: true
+  <% end %>
   public: <%= ENV['ACTIVE_STORAGE_PUBLIC'] == 'true' %>
   upload:
     cache_control: 'public, max-age=31536000'

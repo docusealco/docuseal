@@ -434,7 +434,7 @@ module Submissions
                 height: image.height * scale
               )
             end
-          when 'image', 'signature', 'initials', 'stamp'
+          when 'image', 'signature', 'initials', 'stamp', 'kba'
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             image =

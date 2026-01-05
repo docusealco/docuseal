@@ -17,6 +17,7 @@ module Submissions
 
       raise NotCompletedYet unless submission.submitters.all?(&:completed_at?)
 
+      total_wait_time ||= 0
       key = [KEY_PREFIX, submission.id].join(':')
 
       if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
@@ -39,7 +40,9 @@ module Submissions
     rescue ActiveRecord::RecordNotUnique
       sleep WAIT_FOR_RETRY
 
-      retry
+      total_wait_time += WAIT_FOR_RETRY
+
+      total_wait_time > CHECK_COMPLETE_TIMEOUT ? raise : retry
     rescue StandardError => e
       Rollbar.error(e) if defined?(Rollbar)
       Rails.logger.error(e)

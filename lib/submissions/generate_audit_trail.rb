@@ -265,6 +265,11 @@ module Submissions
             e['type'] == 'verification' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
           end
 
+        is_kba_passed =
+          submission.template_fields.any? do |e|
+            e['type'] == 'kba' && e['submitter_uuid'] == submitter.uuid && submitter.values[e['uuid']].present?
+          end
+
         info_rows = [
           [
             composer.document.layout.formatted_text_box(
@@ -287,6 +292,9 @@ module Submissions
                 },
                 is_id_verified && {
                   text: "#{I18n.t('identity_verification')}: #{I18n.t('verified')}\n"
+                },
+                is_kba_passed && {
+                  text: "#{I18n.t('knowledge_based_authentication')}: #{I18n.t('passed')}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "#{I18n.t('session_id')}: #{completed_event.data['sid']}\n" },
@@ -353,7 +361,7 @@ module Submissions
               text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
               line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
-            if field['type'].in?(%w[image signature initials stamp]) &&
+            if field['type'].in?(%w[image signature initials stamp kba]) &&
                (attachment = submitter.attachments.find { |a| a.uuid == value }) &&
                attachment.image?
 

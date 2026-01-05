@@ -77,7 +77,7 @@ export default {
     removeSubmitter (submitter) {
       [...this.fields].forEach((field) => {
         if (field.submitter_uuid === submitter.uuid) {
-          this.removeField(field)
+          this.removeField(field, false)
         }
       })
 
@@ -89,10 +89,12 @@ export default {
 
       this.save()
     },
-    removeField (field) {
+    removeField (field, save = true) {
       this.fields.splice(this.fields.indexOf(field), 1)
 
-      this.save()
+      if (save) {
+        this.save()
+      }
     }
   }
 }

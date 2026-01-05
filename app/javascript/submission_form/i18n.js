@@ -1,4 +1,5 @@
 const en = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Please upload an image file',
   must_be_characters_length: 'Must be {number} characters length',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
@@ -100,6 +101,7 @@ const en = {
 }
 
 const es = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Por favor, sube un archivo de imagen',
   must_be_characters_length: 'Debe tener {number} caracteres de longitud',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete todos los campos requeridos para continuar con la verificación de identidad.',
@@ -201,6 +203,7 @@ const es = {
 }
 
 const it = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Per favore carica un file immagine',
   must_be_characters_length: 'Deve essere lungo {number} caratteri',
   complete_all_required_fields_to_proceed_with_identity_verification: "Compila tutti i campi obbligatori per procedere con la verifica dell'identità.",
@@ -302,6 +305,7 @@ const it = {
 }
 
 const de = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Bitte laden Sie eine Bilddatei hoch',
   must_be_characters_length: 'Muss {number} Zeichen lang sein',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Füllen Sie alle Pflichtfelder aus, um mit der Identitätsprüfung fortzufahren.',
@@ -403,6 +407,7 @@ const de = {
 }
 
 const fr = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Veuillez téléverser un fichier image',
   must_be_characters_length: 'Doit comporter {number} caractères',
   complete_all_required_fields_to_proceed_with_identity_verification: "Veuillez remplir tous les champs obligatoires pour poursuivre la vérification d'identité.",
@@ -504,6 +509,7 @@ const fr = {
 }
 
 const pl = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Proszę przesłać plik obrazu',
   must_be_characters_length: 'Musi mieć długość {number} znaków',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Uzupełnij wszystkie wymagane pola, aby kontynuować weryfikację tożsamości.',
@@ -605,6 +611,7 @@ const pl = {
 }
 
 const uk = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Будь ласка, завантажте файл зображення',
   must_be_characters_length: 'Має містити {number} символів',
   complete_all_required_fields_to_proceed_with_identity_verification: "Заповніть всі обов'язкові поля, щоб продовжити перевірку особи.",
@@ -706,6 +713,7 @@ const uk = {
 }
 
 const cs = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Nahrajte prosím obrázkový soubor',
   must_be_characters_length: 'Musí mít délku {number} znaků',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vyplňte všechna povinná pole, abyste mohli pokračovat v ověření identity.',
@@ -807,6 +815,7 @@ const cs = {
 }
 
 const pt = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Por favor, envie um arquivo de imagem',
   must_be_characters_length: 'Deve ter {number} caracteres',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Preencha todos os campos obrigatórios para prosseguir com a verificação de identidade.',
@@ -908,6 +917,7 @@ const pt = {
 }
 
 const he = {
+  kba: 'KBA',
   please_upload_an_image_file: 'אנא העלה קובץ תמונה',
   must_be_characters_length: 'חייב להיות באורך של {number} תווים',
   complete_all_required_fields_to_proceed_with_identity_verification: 'מלא את כל השדות הנדרשים כדי להמשיך עם אימות זהות.',
@@ -1009,6 +1019,7 @@ const he = {
 }
 
 const nl = {
+  kba: 'KBA',
   please_upload_an_image_file: 'Upload alstublieft een afbeeldingsbestand',
   must_be_characters_length: 'Moet {number} tekens lang zijn',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Vul alle verplichte velden in om door te gaan met de identiteitsverificatie.',
@@ -1110,6 +1121,7 @@ const nl = {
 }
 
 const ar = {
+  kba: 'KBA',
   please_upload_an_image_file: 'يرجى تحميل ملف صورة',
   must_be_characters_length: 'يجب أن يكون الطول {number} حرفًا',
   complete_all_required_fields_to_proceed_with_identity_verification: 'أكمل جميع الحقول المطلوبة للمتابعة في التحقق من الهوية.',
@@ -1211,6 +1223,7 @@ const ar = {
 }
 
 const ko = {
+  kba: 'KBA',
   please_upload_an_image_file: '이미지 파일을 업로드해 주세요',
   must_be_characters_length: '{number}자여야 합니다',
   complete_all_required_fields_to_proceed_with_identity_verification: '신원 확인을 진행하려면 모든 필수 필드를 작성하십시오.',
@@ -1312,6 +1325,7 @@ const ko = {
 }
 
 const ja = {
+  kba: 'KBA',
   please_upload_an_image_file: '画像ファイルをアップロードしてください',
   must_be_characters_length: '{number}文字でなければなりません',
   complete_all_required_fields_to_proceed_with_identity_verification: '本人確認を進めるには、すべての必須項目を入力してください。',

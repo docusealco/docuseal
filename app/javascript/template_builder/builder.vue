@@ -583,6 +583,7 @@ export default {
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withVerification: this.withVerification,
+      withKba: this.withKba,
       withPayment: this.withPayment,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
@@ -790,6 +791,11 @@ export default {
       default: false
     },
     withVerification: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    withKba: {
       type: Boolean,
       required: false,
       default: null
@@ -1482,7 +1488,7 @@ export default {
       } else if (type === 'image') {
         area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
-      } else if (type === 'signature' || type === 'stamp' || type === 'verification') {
+      } else if (type === 'signature' || type === 'stamp' || type === 'verification' || type === 'kba') {
         area.w = pageMask.clientWidth / 5 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 5 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight) / 2
       } else if (type === 'initials') {
@@ -1717,7 +1723,7 @@ export default {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH)
           }
-        } else if (fieldType === 'signature' || fieldType === 'stamp' || fieldType === 'verification') {
+        } else if (fieldType === 'signature' || fieldType === 'stamp' || fieldType === 'verification' || fieldType === 'kba') {
           baseArea = {
             w: area.maskW / 5 / area.maskW,
             h: (area.maskW / 5 / area.maskW) * (area.maskW / area.maskH) / 2

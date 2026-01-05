@@ -216,6 +216,9 @@ export default {
     queryParams () {
       return new URLSearchParams(window.location.search)
     },
+    uploadUrl () {
+      return `/templates/${this.templateId}/documents`
+    },
     googleDriveOauthPath () {
       const params = {
         access_type: 'offline',
@@ -279,7 +282,7 @@ export default {
     async upload ({ path } = {}) {
       this.isLoading = true
 
-      return this.baseFetch(path || `/templates/${this.templateId}/documents`, {
+      return this.baseFetch(path || this.uploadUrl, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: new FormData(this.$refs.form)

@@ -1,4 +1,5 @@
 const en = {
+  kba: 'KBA',
   analyzing_: 'Analyzing...',
   download: 'Download',
   downloading_: 'Downloading...',
@@ -188,6 +189,7 @@ const en = {
 }
 
 const es = {
+  kba: 'KBA',
   autodetect_fields: 'Autodetectar campos',
   analyzing_: 'Analizando...',
   download: 'Descargar',
@@ -377,6 +379,7 @@ const es = {
 }
 
 const it = {
+  kba: 'KBA',
   autodetect_fields: 'Rileva campi',
   analyzing_: 'Analisi...',
   download: 'Scarica',
@@ -566,6 +569,7 @@ const it = {
 }
 
 const pt = {
+  kba: 'KBA',
   autodetect_fields: 'Detectar campos',
   analyzing_: 'Analisando...',
   download: 'Baixar',
@@ -755,6 +759,7 @@ const pt = {
 }
 
 const fr = {
+  kba: 'KBA',
   autodetect_fields: 'Détecter les champs',
   analyzing_: 'Analyse...',
   download: 'Télécharger',
@@ -944,6 +949,7 @@ const fr = {
 }
 
 const de = {
+  kba: 'KBA',
   autodetect_fields: 'Felder erkennen',
   analyzing_: 'Analysiere...',
   download: 'Download',
@@ -1133,6 +1139,7 @@ const de = {
 }
 
 const nl = {
+  kba: 'KBA',
   autodetect_fields: 'Velden detecteren',
   analyzing_: 'Analyseren...',
   download: 'Downloaden',
