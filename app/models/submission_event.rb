@@ -56,6 +56,7 @@ class SubmissionEvent < ApplicationRecord
     email_verified: 'email_verified',
     start_form: 'start_form',
     start_verification: 'start_verification',
+    complete_verification: 'complete_verification',
     start_kba: 'start_kba',
     complete_kba: 'complete_kba',
     fail_kba: 'fail_kba',
