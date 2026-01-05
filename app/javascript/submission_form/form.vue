@@ -469,7 +469,6 @@
             v-else-if="currentField.type === 'kba'"
             ref="currentStep"
             :key="currentField.uuid"
-            :locale="language?.toLowerCase() || browserLanguage"
             :submitter="submitter"
             :empty-value-required-step="emptyValueRequiredStep"
             :field="currentField"

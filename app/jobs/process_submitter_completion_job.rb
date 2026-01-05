@@ -39,7 +39,7 @@ class ProcessSubmitterCompletionJob
     submission = submitter.submission
 
     complete_verification_events, sms_events =
-      submitter.submission_events.where(event_type: %i[send_sms send_2fa_sms complete_verification])
+      submitter.submission_events.where(event_type: %i[send_sms send_2fa_sms complete_verification complete_kba])
                .partition { |e| e.event_type == 'complete_verification' || e.event_type == 'complete_kba' }
 
     complete_verification_event = complete_verification_events.first

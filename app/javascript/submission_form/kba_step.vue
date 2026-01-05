@@ -23,6 +23,12 @@
     <MarkdownContent :string="field.description" />
   </div>
   <div
+    v-if="isRequiredFieldEmpty"
+    class="px-1 field-description-text"
+  >
+    {{ t('complete_all_required_fields_to_proceed_with_identity_verification') }}
+  </div>
+  <div
     v-if="error"
     class="mb-4 text-center"
   >
@@ -52,14 +58,14 @@
         <div class="space-y-3.5 mx-auto">
           <div
             v-for="(answer, index) in currentQuestion.answers"
-            :key="answer.text"
+            :key="`${currentQuestion.id}_${index}`"
           >
             <label
-              :for="`${currentQuestion.id}_${answer.text}`"
+              :for="`${currentQuestion.id}_${index}`"
               class="flex items-center space-x-3 radio-label"
             >
               <input
-                :id="`${currentQuestion.id}_${answer.text}`"
+                :id="`${currentQuestion.id}_${index}`"
                 v-model="answers[currentQuestion.id]"
                 type="radio"
                 :name="currentQuestion.id"
@@ -94,7 +100,7 @@
       </div>
     </form>
   </div>
-  <div v-else-if="!error">
+  <div v-else-if="!error && !isRequiredFieldEmpty">
     <form @submit.prevent="startKba">
       <div class="grid grid-cols-6 gap-x-2 md:gap-x-4 md:gap-y-2 mb-4">
         <div class="col-span-3">
@@ -281,9 +287,18 @@ export default {
       type: Object,
       required: true
     },
+    submitter: {
+      type: Object,
+      required: true
+    },
     submitterSlug: {
       type: String,
       required: true
+    },
+    emptyValueRequiredStep: {
+      type: Object,
+      required: false,
+      default: null
     },
     values: {
       type: Object,
@@ -298,6 +313,7 @@ export default {
       questions: null,
       currentQuestionIndex: 0,
       token: null,
+      reference: null,
       answers: {},
       error: null,
       form: {
@@ -317,6 +333,9 @@ export default {
   computed: {
     currentQuestion () {
       return this.questions ? this.questions[this.currentQuestionIndex] : null
+    },
+    isRequiredFieldEmpty () {
+      return this.emptyValueRequiredStep && this.emptyValueRequiredStep[0] !== this.field
     },
     states () {
       return [
@@ -388,6 +407,7 @@ export default {
     restartKba () {
       this.questions = null
       this.token = null
+      this.reference = null
       this.answers = {}
       this.currentQuestionIndex = 0
       this.error = null
@@ -432,6 +452,7 @@ export default {
         if (data.output && data.output.questions && data.output.questions.questions) {
           this.questions = data.output.questions.questions
           this.token = data.continuations.questions.template.token
+          this.reference = data.meta.reference
 
           this.questions.forEach(q => {
             this.answers[q.id] = null
@@ -461,6 +482,7 @@ export default {
           body: JSON.stringify({
             token: this.token,
             answers: formattedAnswers,
+            reference: this.reference,
             submitter_slug: this.submitterSlug
           }),
           headers: { 'Content-Type': 'application/json' }
