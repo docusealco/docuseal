@@ -60,7 +60,7 @@ module Templates
 
     # rubocop:disable Metrics, Style
     def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields, nms: 0.1,
-             split_page: false, aspect_ratio: true, padding: inference.model_v2? ? nil : 20, regexp_type: true, &)
+             split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
       fields, head_node =
         if attachment&.image?
           process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,

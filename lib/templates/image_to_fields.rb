@@ -122,7 +122,7 @@ module Templates
       pad_w = (resolution - new_width) / 2
       pad_h = (resolution - new_height) / 2
 
-      padded = image.embed(pad_w, pad_h, resolution, resolution, background: [0, 0, 0])
+      padded = image.embed(pad_w, pad_h, resolution, resolution, background: [255, 255, 255])
 
       padded /= 255.0
 
@@ -244,6 +244,8 @@ module Templates
       return [image, 0, 0] if padding.nil?
 
       left, top, trim_width, trim_height = image.find_trim(threshold: 10, background: [255, 255, 255])
+
+      trim_width = [trim_width, image.width * 0.7].max
 
       padded_left = [left - padding, 0].max
       padded_top = [top - padding, 0].max
