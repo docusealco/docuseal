@@ -245,7 +245,7 @@ module Templates
 
       left, top, trim_width, trim_height = image.find_trim(threshold: 10, background: [255, 255, 255])
 
-      trim_width = [trim_width, image.width * 0.7].max
+      trim_width = [trim_width, image.width - (left * 2)].max
 
       padded_left = [left - padding, 0].max
       padded_top = [top - padding, 0].max
