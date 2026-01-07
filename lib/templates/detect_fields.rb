@@ -60,24 +60,24 @@ module Templates
 
     # rubocop:disable Metrics, Style
     def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields, nms: 0.1,
-             split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
+             nmm: 0.5, split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
       fields, head_node =
         if attachment&.image?
-          process_image_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
+          process_image_attachment(io, attachment:, confidence:, nms:, nmm:, split_page:, inference:,
                                        temperature:, aspect_ratio:, padding:, &)
         else
-          process_pdf_attachment(io, attachment:, confidence:, nms:, split_page:, inference:,
+          process_pdf_attachment(io, attachment:, confidence:, nms:, nmm:, split_page:, inference:,
                                      temperature:, aspect_ratio:, regexp_type:, padding:, &)
         end
 
       [fields, head_node]
     end
 
-    def process_image_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
+    def process_image_attachment(io, attachment:, confidence:, nms:, nmm:, temperature:, inference:,
                                  split_page: false, aspect_ratio: false, padding: nil)
       image = Vips::Image.new_from_buffer(io.read, '')
 
-      fields = inference.call(image, confidence:, nms:, split_page:,
+      fields = inference.call(image, confidence:, nms:, nmm:, split_page:,
                                      temperature:, aspect_ratio:, padding:)
 
       fields = sort_fields(fields, y_threshold: 10.0 / image.height)
@@ -104,7 +104,7 @@ module Templates
       [fields, nil]
     end
 
-    def process_pdf_attachment(io, attachment:, confidence:, nms:, temperature:, inference:,
+    def process_pdf_attachment(io, attachment:, confidence:, nms:, nmm:, temperature:, inference:,
                                split_page: false, aspect_ratio: false, padding: nil, regexp_type: false)
       doc = Pdfium::Document.open_bytes(io.read)
 
@@ -121,7 +121,7 @@ module Templates
 
         image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
 
-        fields = inference.call(image, confidence: confidence / 3.0, nms:, split_page:,
+        fields = inference.call(image, confidence: confidence / 3.0, nms:, nmm:, split_page:,
                                        temperature:, aspect_ratio:, padding:)
 
         text_fields = extract_text_fields_from_page(page)

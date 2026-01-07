@@ -48,6 +48,9 @@ Style/MultipleComparison:
 Style/NumericPredicate:
   Enabled: false
 
+Style/MinMaxComparison:
+  Enabled: false
+
 Naming/PredicateMethod:
   Enabled: false
 
