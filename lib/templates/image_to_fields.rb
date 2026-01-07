@@ -509,10 +509,10 @@ module Templates
     def model
       @model ||= OnnxRuntime::Model.new(
         MODEL_PATH.to_s,
-        inter_op_num_threads: CPU_THREADS,
+        inter_op_num_threads: 1,
         intra_op_num_threads: CPU_THREADS,
         enable_mem_pattern: false,
-        enable_cpu_mem_arena: false,
+        enable_cpu_mem_arena: Docuseal.multitenant? || Rails.env.development?,
         providers: ['CPUExecutionProvider']
       )
     end
