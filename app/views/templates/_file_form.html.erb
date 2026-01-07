@@ -1,12 +1,4 @@
 <%= form_for @template, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
-  <% if @base_template %>
-    <%= hidden_field_tag :base_template_id, @base_template.id %>
-  <% end %>
-  <% if @base_template && (can?(:manage, :tenants) || true_user != current_user) && true_user.account.linked_accounts.active.accessible_by(current_ability).exists? %>
-    <div class="form-control -mb-2 mt-2">
-      <%= select_tag :account_id, options_for_select([true_user.account, *true_user.account.linked_accounts.active.accessible_by(current_ability)].uniq.map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
-    </div>
-  <% end %>
   <div class="form-control mt-4">
     <%= f.text_field :name, required: true, placeholder: t('document_name'), class: 'base-input', dir: 'auto' %>
   </div>
@@ -16,7 +8,7 @@
     </label>
     <folder-autocomplete class="flex justify-between w-full">
       <set-value data-on="blur" data-value="<%= TemplateFolder::DEFAULT_NAME %>" data-empty-only="true" class="peer w-full whitespace-nowrap">
-        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
+        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1" name="folder_name" value="<%= params[:folder_name].presence || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
       </set-value>
       <set-value data-on="click" data-value="" data-input-id="folder_name" class="peer-focus-within:hidden whitespace-nowrap">
         <label for="folder_name" data-clear-on-focus="true" class="shrink-0 link mr-1.5 cursor-pointer">
@@ -26,6 +18,6 @@
     </folder-autocomplete>
   </div>
   <div class="form-control">
-    <%= f.button button_title(title: @base_template ? t('submit') : t('create'), disabled_with: t('creating')), class: 'base-button' %>
+    <%= f.button button_title(title: t('create'), disabled_with: t('creating')), class: 'base-button' %>
   </div>
 <% end %>

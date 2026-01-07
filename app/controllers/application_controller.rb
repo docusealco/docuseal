@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :button_title,
                 :current_account,
+                :true_ability,
                 :form_link_host,
                 :svg_icon
 
@@ -100,6 +101,10 @@ class ApplicationController < ActionController::Base
 
   def current_account
     current_user&.account
+  end
+
+  def true_ability
+    @true_ability ||= Ability.new(true_user)
   end
 
   def maybe_redirect_to_setup
