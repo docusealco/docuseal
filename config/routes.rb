@@ -48,6 +48,32 @@ Rails.application.routes.draw do
       resources :form_events, only: %i[index], path: 'form/:type'
       resources :submission_events, only: %i[index], path: 'submission/:type'
     end
+
+    # FloDoc Institution Management API
+    namespace :v1 do
+      resources :institutions, only: %i[index show create update destroy]
+
+      namespace :admin do
+        resources :invitations, only: %i[index create destroy] do
+          collection do
+            post :send_invitation
+          end
+        end
+
+        resources :invitation_acceptance, only: %i[create] do
+          collection do
+            get :validate
+          end
+        end
+
+        resources :security_events, only: %i[index show] do
+          collection do
+            get :export
+            get :alerts
+          end
+        end
+      end
+    end
   end
 
   resources :verify_pdf_signature, only: %i[create]
@@ -73,7 +99,6 @@ Rails.application.routes.draw do
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
-  resources :upgrade, only: %i[index], controller: 'console_redirect'
   resources :manage, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[show destroy]
   resources :testing_api_settings, only: %i[index]
@@ -145,6 +170,18 @@ Rails.application.routes.draw do
     resources :decline, only: %i[create], controller: 'submit_form_decline'
     resources :invite, only: %i[create], controller: 'submit_form_invite'
     get :completed
+  end
+
+  # FloDoc Cohort Management Web Interface
+  resources :cohorts, only: [] do
+    collection do
+      resources :admin, controller: 'cohorts/admin', as: :cohorts_admin do
+        member do
+          get :invite
+          post :send_invitation
+        end
+      end
+    end
   end
 
   resources :submit_form_draw_signature, only: %i[show], path: 'p', param: 'slug'

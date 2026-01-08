@@ -4,6 +4,7 @@ module Api
   class ApiBaseController < ActionController::API
     include ActiveStorage::SetCurrent
     include Pagy::Backend
+    include InstitutionSecurity  # NEW: FloDoc security layer
 
     DEFAULT_LIMIT = 10
     MAX_LIMIT = 100

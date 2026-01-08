@@ -179,6 +179,9 @@ GEM
       rake (>= 12.0.0, < 14.0.0)
     docile (1.4.1)
     dotenv (3.1.7)
+    dotenv-rails (3.1.7)
+      dotenv (= 3.1.7)
+      railties (>= 6.1)
     drb (2.2.3)
     email_typo (0.2.3)
     erb (5.0.2)
@@ -460,6 +463,8 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
     redis-client (0.23.0)
       connection_pool
     regexp_parser (2.11.3)
@@ -636,6 +641,7 @@ DEPENDENCIES
   devise
   devise-two-factor
   dotenv
+  dotenv-rails
   email_typo
   erb_lint
   factory_bot_rails
@@ -663,6 +669,7 @@ DEPENDENCIES
   rails
   rails-i18n
   rails_autolink
+  redis (~> 5.4)
   rotp
   rouge
   rqrcode

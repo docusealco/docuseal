@@ -1,0 +1,31 @@
+FloDoc Admin Invitation
+========================
+
+Hello,
+
+You have been invited to manage <%= @institution.name %> as a <%= @role.titleize %>
+
+INVITATION DETAILS:
+-------------------
+Institution: <%= @institution.name %>
+Your Role: <%= @role.titleize %>
+Expires: <%= 24.hours.from_now.strftime('%B %d, %Y at %I:%M %p') %>
+Created By: <%= @invitation.created_by.full_name %> (<%= @invitation.created_by.email %>)
+
+ACCEPT INVITATION:
+------------------
+Visit this URL to accept the invitation:
+
+<%= acceptance_url %>
+
+IMPORTANT SECURITY INFORMATION:
+-------------------------------
+- This link is valid for 24 hours only
+- It can only be used once
+- It only works with your email address (<%= @invitation.email %>)
+- Do not share this email with anyone
+
+If you did not expect this invitation, please contact our support team immediately and delete this email.
+
+---
+FloDoc Secure Document Management

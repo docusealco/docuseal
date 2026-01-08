@@ -12,9 +12,4 @@
       </span>
     </label>
   <% end %>
-  <a class="text-sm mt-3 px-4 py-2 bg-base-300 rounded-full block" target="_blank" href="<%= Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}" %>">
-    <%= svg_icon('info_circle', class: 'w-4 h-4 inline align-text-bottom') %>
-    <%= t('unlock_more_user_roles_with_docuseal_pro') %>
-    <span class="link font-medium"><%= t('learn_more') %></span>
-  </a>
 </div>

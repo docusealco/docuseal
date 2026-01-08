@@ -1,0 +1,110 @@
+/* Ellipse 1 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 100px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Purple/2px */
+box-shadow: 0px 2px 4px rgba(151, 71, 255, 0.08);
+
+
+/* Ellipse 6 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 776px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Gray/2px */
+box-shadow: 0px 2px 4px rgba(41, 41, 41, 0.08);
+
+
+/* Ellipse 3 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 230px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Purple/4px */
+box-shadow: 0px 4px 8px rgba(151, 71, 255, 0.08);
+
+
+/* Ellipse 7 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 906px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Gray/4px */
+box-shadow: 0px 4px 8px rgba(41, 41, 41, 0.08);
+
+
+/* Ellipse 4 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 360px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Purple/4px */
+box-shadow: 0px 4px 8px rgba(151, 71, 255, 0.08);
+
+
+/* Ellipse 8 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1036px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Gray/6px */
+box-shadow: 0px 6px 12px rgba(41, 41, 41, 0.08);
+
+
+/* Ellipse 5 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 490px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Purple/0 */
+box-shadow: 0px 0px 50px -10px rgba(151, 71, 255, 0.08);
+
+
+/* Ellipse 9 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1166px;
+top: 92px;
+
+/* White */
+background: #FFFFFF;
+/* Gray/0 */
+box-shadow: 0px 0px 50px -10px rgba(41, 41, 41, 0.08);

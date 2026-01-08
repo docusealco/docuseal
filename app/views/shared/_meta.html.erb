@@ -1,14 +1,14 @@
 <% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<% title = content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
+<% title = content_for(:html_title) || (signed_in? ? 'FloDoc' : 'FloDoc | Open Source Document Signing') %>
 <% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
-<meta property="og:site_name" content="DocuSeal">
+<meta property="og:site_name" content="FloDoc">
 <% if content_for(:disable_image_preview) %>
   <meta property="og:image" content="">
   <meta name="twitter:image" content="">

@@ -78,3 +78,6 @@ group :test do
   gem 'cuprite'
   gem 'webmock'
 end
+
+gem "redis", "~> 5.4"
+gem 'dotenv-rails', groups: [:development, :test]

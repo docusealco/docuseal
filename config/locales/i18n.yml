@@ -25,8 +25,6 @@ en: &en
   upload_a_new_document: Upload a New Document
   billing: Billing
   hi_there: Hi there
-  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: Templates that require email or phone 2FA cannot be used via a shared link.
-  pro: Pro
   thanks: Thanks
   private: Private
   select: Select
@@ -234,7 +232,6 @@ en: &en
   save: Save
   saving: Saving
   changes_have_been_saved: Changes have been saved.
-  unlock_with_docuseal_pro: Unlock with DocuSeal Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use your own certificates to sign and verify PDF files.
   upload_certificate: Upload Certificate
   name: Name
@@ -348,7 +345,6 @@ en: &en
   initial_setup: Initial Setup
   demo_environment: Demo Environment
   close: Close
-  upgrade: Upgrade
   settings: Settings
   console: Console
   verify_pdf: Verify PDF
@@ -408,10 +404,8 @@ en: &en
   send_sms: Send SMS
   preserve_order: Preserve order
   when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: When checked, notifications will be sent to the second party once the form is completed by the previous party. Uncheck this option to send notifications to all parties simultaneously right away.
-  upgrade_to_send_unlimited_signature_requests: Upgrade to send unlimited signature requests
   add_without_sending: Add without sending
   upgade_now: Upgrade Now
-  send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with DocuSeal Pro
   count_emails_used: '%{count} emails used'
   has_been_connected: has been connected
   sms_not_configured: SMS not Configure
@@ -512,7 +506,6 @@ en: &en
   new_user: New User
   unarchive: Unarchive
   last_session: Last session
-  unlock_more_user_roles_with_docuseal_pro: Unlock more user roles with DocuSeal Pro.
   view_active: View Active
   team_account: Team account
   team_accounts: Team Accounts
@@ -620,10 +613,8 @@ en: &en
   automated_reminders: Automated reminders
   bulk_send_from_spreadsheet: Bulk send from spreadsheet
   identify_verification_via_sms: Identify verification via SMS
-  start_with_pro: Start with Pro
   user_month: user / month
   developer_sandbox: Developer Sandbox.
-  upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> to start using in Production.'
   download_combined_pdf: Download combined PDF
   audit_log: Audit Log
   signers: Signers

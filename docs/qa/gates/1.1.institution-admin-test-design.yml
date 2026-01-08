@@ -1,0 +1,288 @@
+# Quality Gate: Test Design for Story 1.1 Institution Admin
+# Generated: 2025-01-03 by Quinn (Test Architect)
+
+gate_version: 2.0
+story_id: "1.1"
+story_title: "Institution Admin Management"
+reviewer: "Quinn (Test Architect)"
+review_date: "2025-01-03"
+
+test_design:
+  scenarios_total: 47
+  by_level:
+    unit: 18
+    integration: 19
+    e2e: 10
+  by_priority:
+    p0: 22
+    p1: 15
+    p2: 8
+    p3: 2
+
+  # Coverage by acceptance criteria
+  ac_coverage:
+    ac1_database_schema: 9
+    ac2_super_admin_actions: 13
+    ac3_regular_admin_actions: 8
+    ac4_data_isolation: 6
+    ac5_role_enforcement: 7
+
+  # Security architecture coverage
+  security_layers:
+    layer1_database: 5
+    layer2_model: 4
+    layer3_controller: 4
+    layer4_ui: 4
+
+  # Integration verification coverage
+  iv_coverage:
+    iv1_auth: 5
+    iv2_roles: 5
+    iv3_performance: 5
+    iv4_security: 16
+    iv5_features: 5
+
+  # Risk mitigation coverage
+  risk_coverage:
+    sec001_cross_institution: 10
+    sec002_token_security: 20
+    sec003_role_bypass: 10
+    data001_migration: 9
+    perf001_degradation: 9
+    tech001_integration: 15
+    ops001_logging: 5
+    perf002_rate_limit: 8
+
+# Mandatory requirements for production approval
+mandatory_requirements:
+  - description: "All IV4 security tests must pass with malicious inputs"
+    test_count: 16
+    required_status: "pass"
+    criticality: "HIGH"
+
+  - description: "All token security tests must pass"
+    test_count: 10
+    required_status: "pass"
+    criticality: "HIGH"
+
+  - description: "All rate limiting tests must pass"
+    test_count: 7
+    required_status: "pass"
+    criticality: "HIGH"
+
+  - description: "Performance degradation must be <10%"
+    test_count: 5
+    required_status: "pass"
+    criticality: "HIGH"
+
+  - description: "Migration rollback verified on production-like data"
+    test_count: 3
+    required_status: "pass"
+    criticality: "HIGH"
+
+  - description: "Existing DocuSeal test suite must pass (IV1-IV3, IV5)"
+    test_count: 20
+    required_status: "pass"
+    criticality: "HIGH"
+
+# Quality criteria
+quality_criteria:
+  code_coverage:
+    target: 80
+    current: "TBD"
+    status: "pending"
+
+  test_execution_time:
+    target_minutes: 15
+    status: "pending"
+
+  security_audit:
+    required: true
+    status: "pending"
+    third_party_review: true
+
+# Gate decision criteria
+gate_decision:
+  pass: "All mandatory requirements met + 80% code coverage"
+  conditional: "All mandatory met but coverage <80% or P1 tests failing"
+  fail: "Any mandatory requirement fails"
+
+  current_status: "PENDING_IMPLEMENTATION"
+  risk_level: "MEDIUM (architecturally mitigated, execution-critical)"
+
+# Implementation phases with testing gates
+implementation_phases:
+  phase1_foundation:
+    tests: ["1.1-UNIT-001-006", "1.1-SEC-L1-*", "1.1-SEC-L2-*"]
+    gate: "All unit tests pass"
+    status: "pending"
+
+  phase2_security_core:
+    tests: ["1.1-TOKEN-*", "1.1-RATE-*", "1.1-SEC-L3-*"]
+    gate: "Token system + rate limiting functional"
+    status: "pending"
+
+  phase3_controllers:
+    tests: ["1.1-INT-003-017", "1.1-SEC-L4-*"]
+    gate: "Integration tests pass"
+    status: "pending"
+
+  phase4_security_validation:
+    tests: ["1.1-IV4-*", "1.1-PEN-*"]
+    gate: "MANDATORY: All IV4 + penetration tests pass"
+    status: "pending"
+
+  phase5_features_ui:
+    tests: ["1.1-E2E-002-008", "1.1-IV5-*"]
+    gate: "User journeys + compatibility pass"
+    status: "pending"
+
+  phase6_performance:
+    tests: ["1.1-PERF-*", "1.1-IV3-*"]
+    gate: "Performance targets met"
+    status: "pending"
+
+# Test execution order recommendation
+execution_order:
+  - phase: "Foundation"
+    priority: "P0"
+    tests: 18
+    duration_estimate: "2-3 days"
+
+  - phase: "Security Core"
+    priority: "P0"
+    tests: 15
+    duration_estimate: "3-4 days"
+
+  - phase: "Integration"
+    priority: "P0"
+    tests: 17
+    duration_estimate: "2-3 days"
+
+  - phase: "Security Validation (MANDATORY)"
+    priority: "P0"
+    tests: 23
+    duration_estimate: "4-5 days"
+
+  - phase: "User Journeys"
+    priority: "P1"
+    tests: 12
+    duration_estimate: "2-3 days"
+
+  - phase: "Performance"
+    priority: "P0"
+    tests: 9
+    duration_estimate: "2 days"
+
+# Risk mitigation validation
+risk_mitigation_validation:
+  sec001_cross_institution:
+    mitigated_by: ["1.1-IV4-001-003", "1.1-PEN-001-005", "1.1-SEC-L1-005"]
+    validation_required: true
+    status: "pending"
+
+  sec002_token_security:
+    mitigated_by: ["1.1-TOKEN-001-010", "1.1-IV4-004-016", "1.1-PEN-006-010"]
+    validation_required: true
+    status: "pending"
+
+  sec003_role_bypass:
+    mitigated_by: ["1.1-IV4-007-009", "1.1-PEN-011-013", "1.1-SEC-L2-001-004"]
+    validation_required: true
+    status: "pending"
+
+  data001_migration:
+    mitigated_by: ["1.1-MIG-001-008", "1.1-INT-001-002", "1.1-E2E-001"]
+    validation_required: true
+    status: "pending"
+
+  perf001_degradation:
+    mitigated_by: ["1.1-IV3-001-005", "1.1-PERF-001-005"]
+    validation_required: true
+    status: "pending"
+
+  tech001_integration:
+    mitigated_by: ["1.1-IV1-001-005", "1.1-IV2-*", "1.1-IV5-*"]
+    validation_required: true
+    status: "pending"
+
+# Dependencies and prerequisites
+prerequisites:
+  - "Redis instance configured for token enforcement"
+  - "Test database with production-like data for rollback testing"
+  - "Performance baseline established on existing operations"
+  - "Security audit scheduled (third-party)"
+  - "Team understanding of 4-layer architecture verified"
+
+# Gate approval workflow
+approval_workflow:
+  - step: "Phase 4 Security Tests Complete"
+    approver: "Quinn (Test Architect)"
+    required: true
+    status: "pending"
+
+  - step: "Performance Benchmarks Verified"
+    approver: "System Architect"
+    required: true
+    status: "pending"
+
+  - step: "Security Audit Complete"
+    approver: "Security Team"
+    required: true
+    status: "pending"
+
+  - step: "Final Gate Approval"
+    approver: "Quinn (Test Architect)"
+    required: true
+    status: "pending"
+
+# Notes and recommendations
+notes:
+  - "Story evolved from HIGH RISK to ARCHITECTURALLY MITIGATED thanks to Winston's 4-layer design"
+  - "Primary remaining risk: EXECUTION EXCELLENCE - implementation must be perfect"
+  - "IV4 security tests are MANDATORY - no shortcuts allowed"
+  - "Phase 4 represents 49% of all tests and is critical path"
+  - "Team kickoff required to ensure understanding of 4-layer architecture"
+  - "Performance target of <10% degradation is strict - may require optimization"
+  - "Security audit by third party strongly recommended before production"
+
+# Test file locations
+test_locations:
+  models: "spec/models/institution_spec.rb"
+  requests: "spec/requests/api/v1/institutions_spec.rb"
+  security: "spec/security/4layer_architecture_spec.rb"
+  performance: "spec/performance/institution_operations_spec.rb"
+  integration: "spec/integration/invitation_flow_spec.rb"
+  system: "spec/system/3portal_cohort_management_spec.rb"
+
+# Metrics targets
+metrics_targets:
+  code_coverage: 80
+  test_execution_time_minutes: 15
+  p0_test_pass_rate: 100
+  p1_test_pass_rate: 95
+  security_test_pass_rate: 100
+  performance_test_pass_rate: 100
+
+# Current status summary
+status_summary:
+  overall: "PENDING_IMPLEMENTATION"
+  risk_level: "MEDIUM (execution-critical)"
+  confidence: "HIGH (architecture sound)"
+  recommendation: "READY FOR DEVELOPMENT with mandatory Phase 4 security validation"
+
+  blocks_production: true
+  blocks_reason: "Security validation not completed"
+  estimated_completion: "4-6 weeks (with proper team allocation)"
+
+# Sign-off
+sign_off:
+  test_architect:
+    name: "Quinn"
+    date: "2025-01-03"
+    recommendation: "APPROVED FOR DEVELOPMENT - Conditional pass pending Phase 4"
+
+  system_architect:
+    name: "Winston"
+    date: "2025-01-03"
+    recommendation: "ARCHITECTURE APPROVED - Implementation must follow 4-layer design exactly"

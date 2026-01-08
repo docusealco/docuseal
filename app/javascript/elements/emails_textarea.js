@@ -35,19 +35,7 @@ export default class extends HTMLElement {
       counter.innerText = `${count} / ${this.dataset.limit}`
     }
 
-    if (this.dataset.bulkEnabled !== 'true') {
-      if (!bulkMessage) {
-        bulkMessage = document.createElement('span')
-
-        bulkMessage.id = 'bulk_message'
-        bulkMessage.classList.add('text-xs', 'left-0', 'absolute')
-        bulkMessage.style.bottom = '-15px'
-
-        this.textarea.parentNode.append(bulkMessage)
-      }
-
-      bulkMessage.innerHTML = '<a class="link" data-turbo="false" href="/upgrade">Upgrade</a> to bulk send multiple recipients'
-    }
+    // Bulk send pro feature removed
   }
 
   get textarea () {

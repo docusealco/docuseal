@@ -47,6 +47,8 @@
 #  fk_rails_...  (account_id => accounts.id)
 #
 class User < ApplicationRecord
+  include UserFloDocAdditions
+
   ROLES = [
     ADMIN_ROLE = 'admin'
   ].freeze

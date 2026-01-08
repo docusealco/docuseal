@@ -1,5 +1,5 @@
 <%= render 'shared/navbar_warning' %>
-<div class="max-w-6xl mb-4 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
+<div class="max-w-6xl mb-8 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
   <div class="flex items-center space-x-4">
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
       <%= render 'shared/title' %>
@@ -20,7 +20,6 @@
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
           <%= render 'shared/navbar_buttons' %>
-          <%= link_to t('settings'), settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg', id: 'account_settings_button' %>
         </div>
       <% end %>
       <div class="dropdown dropdown-end">
@@ -34,22 +33,6 @@
               <span class="mr-1"><%= t('profile') %></span>
             <% end %>
           </li>
-          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
-            <li>
-              <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
-                <%= svg_icon('terminal', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-                <%= t('console') %>
-              <% end %>
-            </li>
-          <% end %>
-          <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
-            <li>
-              <%= link_to settings_esign_path, class: 'flex items-center' do %>
-                <%= svg_icon('zoom_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-                <span class="mr-1 whitespace-nowrap"><%= t('verify_pdf') %></span>
-              <% end %>
-            </li>
-          <% end %>
           <% if Docuseal.multitenant? || current_user.role == 'superadmin' %>
             <li>
               <%= link_to Docuseal::CHATGPT_URL, target: 'blank', class: 'flex items-center' do %>
@@ -57,18 +40,6 @@
                 <span class="mr-1 whitespace-nowrap"><%= t('ask_ai') %></span>
               <% end %>
             </li>
-          <% end %>
-          <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
-            <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full py-1' } do |f| %>
-              <label class="flex items-center pl-6 pr-4 py-2 border-y border-base-300 -ml-2 -mr-2" for="testing_toggle">
-                <submit-form data-on="change" class="flex">
-                  <%= f.check_box :testing_toggle, class: 'toggle', checked: current_account.testing?, style: 'height: 0.885rem; width: 1.35rem; --handleoffset: 0.395rem; margin-left: -2px; margin-right: 8px' %>
-                </submit-form>
-                <span class="whitespace-nowrap">
-                  <%= t('test_mode') %>
-                </span>
-              </label>
-            <% end %>
           <% end %>
           <li>
             <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'flex items-center' do %>

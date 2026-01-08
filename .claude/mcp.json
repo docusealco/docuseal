@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp", "--headless", "--allowed-hosts", "*"],
+      "env": {}
+    },
+    "chrome-devtools": {
+      "command": "chrome-devtools-mcp",
+      "args": ["--headless", "--viewport", "1280x800"],
+      "env": {}
+    }
+  }
+}

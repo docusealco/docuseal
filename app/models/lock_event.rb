@@ -12,7 +12,7 @@
 #
 # Indexes
 #
-#  index_lock_events_on_event_name_and_key  (event_name,key) UNIQUE WHERE ((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))
+#  index_lock_events_on_event_name_and_key  (event_name,key) UNIQUE WHERE ((event_name)::text = ANY (ARRAY[('start'::character varying)::text, ('complete'::character varying)::text]))
 #  index_lock_events_on_key                 (key)
 #
 class LockEvent < ApplicationRecord
