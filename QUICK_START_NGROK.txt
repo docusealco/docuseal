@@ -1,0 +1,56 @@
+🚀 FLODOC NGROK QUICK START
+==========================
+
+1️⃣ SETUP (ONE TIME)
+-------------------
+# Get your free ngrok token: https://dashboard.ngrok.com/get-started/your-authtoken
+~/bin/ngrok config add-authtoken YOUR_TOKEN_HERE
+
+2️⃣ START TESTING
+-----------------
+./start_with_ngrok.sh
+
+3️⃣ USE THE PUBLIC URL
+----------------------
+You'll see something like: https://abc123.ngrok.io
+
+Use this URL for:
+- Email invitation links
+- Testing from other devices
+- Sharing with testers
+
+4️⃣ TEST WORKFLOW
+-----------------
+1. Go to: https://abc123.ngrok.io/templates
+2. Upload PDF → Create template
+3. Add recipients → Send email
+4. Check email → Click link
+5. Test from phone/tablet/other PC
+
+📊 MONITOR TRAFFIC
+------------------
+http://localhost:4040
+
+🛑 STOP EVERYTHING
+------------------
+pkill -f "rails server" && pkill -f "ngrok http"
+
+📝 TROUBLESHOOTING
+------------------
+• Ngrok not working? Check: ~/bin/ngrok api tunnels list
+• Rails not starting? Check: lsof -i :3001
+• Links not working? Make sure you're using https://xxx.ngrok.io, not localhost
+
+📁 FILES CREATED
+----------------
+• start_with_ngrok.sh - Main setup script
+• start_ngrok_only.sh - Quick ngrok starter
+• NGROK_SETUP.md - Detailed guide
+• .env - Updated with ngrok config
+
+⚠️  SECURITY WARNING
+--------------------
+• Only for testing - NEVER for production
+• Public URLs - Anyone with link can access
+• Free tier limits apply
+• URLs change on restart
