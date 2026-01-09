@@ -508,8 +508,8 @@ module Submissions
     def add_logo(column, _submission = nil)
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
-      column.formatted_text([{ text: 'DocuSeal',
-                               link: Docuseal::PRODUCT_EMAIL_URL }],
+      column.formatted_text([{ text: 'FloDoc',
+                               link: 'https://flodoc.com' }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],
                             width: 100,

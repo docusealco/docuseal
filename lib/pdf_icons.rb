@@ -37,14 +37,14 @@ module PdfIcons
   end
 
   def logo_data
-    @logo_data ||= PATH.join('logo.svg').read
+    @logo_data ||= PATH.join('logo.png').read
   end
 
   def logo_new_data
-    @logo_new_data ||= PATH.join('logo_new.svg').read
+    @logo_new_data ||= PATH.join('logo_new.png').read
   end
 
   def stamp_logo_data
-    @stamp_logo_data ||= PATH.join('stamp-logo.svg').read
+    @stamp_logo_data ||= PATH.join('stamp-logo.png').read
   end
 end

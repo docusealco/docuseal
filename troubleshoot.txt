@@ -1,0 +1,40 @@
+sudo rm -rf
+  /home/dev-mode/.nvm/versions/node/v22.18.0/lib/node_modules/@anthropic-ai/claude-code
+
+  2. Clean up any leftover temp directories:
+
+  sudo rm -rf
+  /home/dev-mode/.nvm/versions/node/v22.18.0/lib/node_modules/@anthropic-ai/.claude-code-*
+
+  3. Clear npm cache:
+
+  npm cache clean --force
+
+  4. Reinstall Claude Code:
+
+  npm install -g @anthropic-ai/claude-code
+
+  5. Verify installation:
+
+  claude --version
+
+  6. If you still get errors, try this alternative approach:
+
+  # Uninstall completely
+  npm uninstall -g @anthropic-ai/claude-code
+
+  # Clear any lock files
+  rm -f /home/dev-mode/.nvm/versions/node/v22.18.0/lib/node_modules/@anthropic-ai/claude-co
+  de/package-lock.json
+
+  # Reinstall fresh
+  npm install -g @anthropic-ai/claude-code
+
+  7. If npm still fails, use npx as a temporary workaround:
+
+  npx @anthropic-ai/claude-code
+
+  The issue is that npm is trying to rename a directory but there's already something
+  there. The steps above will clean everything up and give you a fresh installation.
+
+  Good luck! You can always come back if you need more help after running these commands.

@@ -6,6 +6,8 @@ module Api
 
     skip_before_action :authenticate_user!
     skip_authorization_check
+    skip_before_action :verify_institution_access
+    skip_before_action :verify_institution_role
 
     before_action :set_cors_headers
     before_action :set_noindex_headers
