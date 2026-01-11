@@ -1116,14 +1116,17 @@ export default {
       const sortArea = (aArea, bArea) => {
         if (aArea.attachment_uuid === bArea.attachment_uuid) {
           if (aArea.page === bArea.page) {
-            if (Math.abs(aArea.y - bArea.y) < 0.01) {
+            const aY = aArea.y + aArea.h
+            const bY = bArea.y + bArea.h
+
+            if (Math.abs(aY - bY) < 0.01 || (aArea.h < bArea.h ? (aArea.y >= bArea.y && aY <= bY) : (bArea.y >= aArea.y && bY <= aY))) {
               if (aArea.x === bArea.x) {
                 return 0
               } else {
                 return aArea.x - bArea.x
               }
             } else {
-              return aArea.y - bArea.y
+              return (aArea.y + aArea.h) - (bArea.y + bArea.h)
             }
           } else {
             return aArea.page - bArea.page
@@ -1171,6 +1174,72 @@ export default {
       if (this.template.fields.length === sortedFields.length) {
         this.template.fields = sortedFields
         this.save()
+      }
+    },
+    findFieldInsertIndex (field) {
+      if (!field.areas?.length) return -1
+
+      const area = field.areas[0]
+
+      const attachmentUuidsIndex = this.template.schema.reduce((acc, e, index) => {
+        acc[e.attachment_uuid] = index
+
+        return acc
+      }, {})
+
+      const compareAreas = (a, b) => {
+        const aAttIdx = attachmentUuidsIndex[a.attachment_uuid]
+        const bAttIdx = attachmentUuidsIndex[b.attachment_uuid]
+
+        if (aAttIdx !== bAttIdx) return aAttIdx - bAttIdx
+        if (a.page !== b.page) return a.page - b.page
+
+        const aY = a.y + a.h
+        const bY = b.y + b.h
+
+        if (Math.abs(aY - bY) < 0.01) return a.x - b.x
+        if (a.h < b.h ? a.y >= b.y && aY <= bY : b.y >= a.y && bY <= aY) return a.x - b.x
+
+        return aY - bY
+      }
+
+      let closestBeforeIndex = -1
+      let closestBeforeArea = null
+      let closestAfterIndex = -1
+      let closestAfterArea = null
+
+      this.template.fields.forEach((f, index) => {
+        if (f.submitter_uuid === field.submitter_uuid) {
+          (f.areas || []).forEach((a) => {
+            const cmp = compareAreas(a, area)
+
+            if (cmp < 0) {
+              if (!closestBeforeArea || (compareAreas(a, closestBeforeArea) > 0 && closestBeforeIndex < index)) {
+                closestBeforeIndex = index
+                closestBeforeArea = a
+              }
+            } else {
+              if (!closestAfterArea || (compareAreas(a, closestAfterArea) < 0 && closestAfterIndex < index)) {
+                closestAfterIndex = index
+                closestAfterArea = a
+              }
+            }
+          })
+        }
+      })
+
+      if (closestBeforeIndex !== -1) return closestBeforeIndex + 1
+      if (closestAfterIndex !== -1) return closestAfterIndex
+
+      return -1
+    },
+    insertField (field) {
+      const insertIndex = this.findFieldInsertIndex(field)
+
+      if (insertIndex !== -1) {
+        this.template.fields.splice(insertIndex, 0, field)
+      } else {
+        this.template.fields.push(field)
       }
     },
     closeDropdown () {
@@ -1226,7 +1295,7 @@ export default {
         field.preferences.with_signature_id = this.withSignatureId
       }
 
-      this.template.fields.push(field)
+      this.insertField(field)
 
       this.save()
     },
@@ -1455,11 +1524,13 @@ export default {
 
           field.areas.push(area)
         } else {
-          this.template.fields.push({
+          const newField = {
             ...JSON.parse(JSON.stringify(field)),
             uuid: v4(),
             areas: [area]
-          })
+          }
+
+          this.insertField(newField)
         }
 
         this.selectedAreaRef.value = area
@@ -1482,7 +1553,7 @@ export default {
       const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
       const pageMask = documentRef.pageRefs[area.page].$refs.mask
 
-      if (type === 'checkbox') {
+      if (type === 'checkbox' || type === 'radio' || type === 'multiple') {
         area.w = pageMask.clientWidth / 30 / pageMask.clientWidth
         area.h = (pageMask.clientWidth / 30 / pageMask.clientWidth) * (pageMask.clientWidth / pageMask.clientHeight)
       } else if (type === 'image') {
@@ -1544,7 +1615,7 @@ export default {
         }
 
         if (this.template.fields.indexOf(this.drawField) === -1) {
-          this.template.fields.push(this.drawField)
+          this.insertField(this.drawField)
         }
 
         this.drawField = null
@@ -1572,8 +1643,8 @@ export default {
           const previousArea = previousField?.areas?.[previousField.areas.length - 1]
 
           if (previousArea || area.w) {
-            const areaW = previousArea?.w || (30 / pageMask.clientWidth)
-            const areaH = previousArea?.h || (30 / pageMask.clientHeight)
+            const areaW = previousArea?.w || area.w || (30 / pageMask.clientWidth)
+            const areaH = previousArea?.h || area.h || (30 / pageMask.clientHeight)
 
             if ((pageMask.clientWidth * area.w) < 5) {
               area.x = area.x - (areaW / 2)
@@ -1683,7 +1754,7 @@ export default {
       this.selectedAreaRef.value = fieldArea
 
       if (this.template.fields.indexOf(field) === -1) {
-        this.template.fields.push(field)
+        this.insertField(field)
       }
 
       this.save()
@@ -1713,7 +1784,7 @@ export default {
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
-        if (['checkbox'].includes(fieldType)) {
+        if (['checkbox', 'radio', 'multiple'].includes(fieldType)) {
           baseArea = {
             w: area.maskW / 30 / area.maskW,
             h: area.maskW / 30 / area.maskW * (area.maskW / area.maskH)
@@ -1845,7 +1916,7 @@ export default {
           attachment.metadata.pdf.fields.forEach((field) => {
             field.submitter_uuid = this.selectedSubmitter.uuid
 
-            this.template.fields.push(field)
+            this.insertField(field)
           })
         }
       })
