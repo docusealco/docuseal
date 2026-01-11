@@ -63,6 +63,8 @@ class Submission < ApplicationRecord
 
   has_one_attached :audit_trail
   has_one_attached :combined_document
+  has_one_attached :merged_document
+  has_one_attached :preview_merged_document
 
   has_many_attached :preview_documents
   has_many_attached :documents
