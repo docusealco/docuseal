@@ -1219,7 +1219,7 @@ export default {
                 closestBeforeArea = a
               }
             } else {
-              if (!closestAfterArea || (compareAreas(a, closestAfterArea) < 0 && closestAfterIndex < index)) {
+              if (!closestAfterArea || (compareAreas(a, closestAfterArea) < 0 && closestAfterIndex > index)) {
                 closestAfterIndex = index
                 closestAfterArea = a
               }
