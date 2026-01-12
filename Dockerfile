@@ -53,6 +53,8 @@ WORKDIR /app
 
 RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev yaml-dev redis libheif vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
+RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
+
 RUN echo $'.include = /etc/ssl/openssl.cnf\n\
 \n\
 [provider_sect]\n\
@@ -92,7 +94,10 @@ COPY --from=webpack /app/public/packs ./public/packs
 RUN ln -s /fonts /app/public/fonts
 RUN bundle exec bootsnap precompile -j 1 --gemfile app/ lib/
 
+RUN chown -R docuseal:docuseal /app
+
 WORKDIR /data/docuseal
+ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 
 EXPOSE 3000
