@@ -89,6 +89,14 @@
                 <%= ff.check_box :require_email_2fa, { checked: ff.object.require_email_2fa == true, class: 'toggle' }, 'true', 'false' %>
               </submit-form>
             </div>
+            <div class="flex items-center justify-between py-2.5 px-1 mb-2">
+              <span>
+                <%= t('carry_forward_field_attributes_on_the_document') %>
+              </span>
+              <submit-form data-on="change" class="flex">
+                <%= ff.check_box :carry_forward_attributes, { checked: ff.object.carry_forward_attributes == true, class: 'toggle' }, 'true', 'false' %>
+              </submit-form>
+            </div>
           <% end %>
           <div class="form-control pt-2">
             <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
