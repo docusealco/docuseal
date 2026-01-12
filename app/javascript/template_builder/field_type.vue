@@ -160,7 +160,7 @@ export default {
         payment: IconCreditCard,
         phone: IconPhoneCheck,
         verification: IconId,
-        kba: IconUserScan,
+        kba: IconUserScan
       }
     },
     skipTypes () {

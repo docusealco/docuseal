@@ -1,0 +1,29 @@
+<%= form_for @template, url: template_clone_index_path(@base_template), data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
+  <% accounts = Account.accessible_by(true_ability).where.not(id: true_user.account.testing_accounts).where(User.where(User.arel_table[:account_id].eq(Account.arel_table[:id])).arel.exists).active %>
+  <% if (can?(:manage, :tenants) || true_user != current_user) && accounts.where.not(id: current_account.id).exists? %>
+    <div class="form-control -mb-2 mt-2">
+      <%= select_tag :account_id, options_for_select([current_account, *accounts.order(:name)].uniq.map { |e| [e.name, e.id] }, current_account.id), required: true, class: 'base-select' %>
+    </div>
+  <% end %>
+  <div class="form-control mt-4">
+    <%= f.text_field :name, required: true, placeholder: t('document_name'), class: 'base-input', dir: 'auto' %>
+  </div>
+  <div class="mt-3 mb-4 flex items-center justify-between">
+    <label for="folder_name" class="cursor-pointer">
+      <%= svg_icon('folder', class: 'w-6 h-6') %>
+    </label>
+    <folder-autocomplete class="flex justify-between w-full">
+      <set-value data-on="blur" data-value="<%= TemplateFolder::DEFAULT_NAME %>" data-empty-only="true" class="peer w-full whitespace-nowrap">
+        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
+      </set-value>
+      <set-value data-on="click" data-value="" data-input-id="folder_name" class="peer-focus-within:hidden whitespace-nowrap">
+        <label for="folder_name" data-clear-on-focus="true" class="shrink-0 link mr-1.5 cursor-pointer">
+          <%= t('change_folder') %>
+        </label>
+      </set-value>
+    </folder-autocomplete>
+  </div>
+  <div class="form-control">
+    <%= f.button button_title(title: t('submit'), disabled_with: t('creating')), class: 'base-button' %>
+  </div>
+<% end %>

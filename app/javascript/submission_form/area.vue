@@ -461,7 +461,7 @@ export default {
         phone: IconPhoneCheck,
         payment: IconCreditCard,
         verification: IconId,
-        kba: IconUserScan,
+        kba: IconUserScan
       }
     },
     image () {

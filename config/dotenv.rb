@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 if ENV['RAILS_ENV'] == 'production'
+  if Process.uid.zero?
+    begin
+      workdir = ENV.fetch('WORKDIR', '.')
+
+      if File.exist?(workdir) && File.stat(workdir).uid != 2000
+        puts 'Changing the owner of the docuseal directory...' unless Dir.empty?(workdir)
+
+        FileUtils.chown_R(2000, 2000, workdir)
+      end
+    rescue StandardError
+      puts 'Unable to change docuseal directory owner'
+    end
+  end
+
   if !ENV['AWS_SECRET_MANAGER_ID'].to_s.empty?
     require 'aws-sdk-secretsmanager'
 
@@ -30,11 +44,29 @@ if ENV['RAILS_ENV'] == 'production'
       File.write(dotenv_path, default_env)
     end
 
+    if Process.uid.zero?
+      begin
+        File.chown(0, 0, dotenv_path)
+        File.chmod(0o600, dotenv_path)
+      rescue StandardError
+        puts 'Unable to set dotenv mod'
+      end
+    end
+
     database_url = ENV.fetch('DATABASE_URL', nil)
 
     Dotenv.load(dotenv_path)
 
     ENV['DATABASE_URL'] = ENV['DATABASE_URL'].to_s.empty? ? database_url : ENV.fetch('DATABASE_URL', nil)
+  end
+
+  unless Process.uid == 2000
+    begin
+      Process::Sys.setgid(2000)
+      Process::Sys.setuid(2000)
+    rescue StandardError
+      puts 'Unable to run as 2000:2000'
+    end
   end
 end
 

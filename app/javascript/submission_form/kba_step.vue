@@ -10,9 +10,15 @@
     <template v-else>{{ field.name || 'Knowledge Based Authentication' }}</template>
     <span
       v-if="questions"
-      class="float-right text-base font-normal text-neutral-500 mt-1 whitespace-nowrap"
+      class="float-right font-normal text-neutral-500 mt-1 whitespace-nowrap text-right text-sm"
     >
-      Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}
+      <span>Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}</span>
+      <span
+        v-if="timeLeftSeconds !== null"
+        class="block"
+      >
+        Time left: {{ formattedTimeLeft }}
+      </span>
     </span>
   </label>
   <div
@@ -54,7 +60,9 @@
   <div v-else-if="questions && !error">
     <form @submit.prevent="nextQuestion">
       <div class="mb-6 px-1">
-        <p class="font-semibold mb-4 text-lg">{{ currentQuestion.prompt }}</p>
+        <p class="font-semibold mb-4 text-lg">
+          {{ currentQuestion.prompt }}
+        </p>
         <div class="space-y-3.5 mx-auto">
           <div
             v-for="(answer, index) in currentQuestion.answers"
@@ -316,6 +324,8 @@ export default {
       reference: null,
       answers: {},
       error: null,
+      timeLeftSeconds: null,
+      countdownIntervalId: null,
       form: {
         fn: '',
         ln: '',
@@ -336,6 +346,9 @@ export default {
     },
     isRequiredFieldEmpty () {
       return this.emptyValueRequiredStep && this.emptyValueRequiredStep[0] !== this.field
+    },
+    kbaTimeLimitSeconds () {
+      return 90
     },
     states () {
       return [
@@ -394,9 +407,53 @@ export default {
     },
     isLastQuestion () {
       return this.questions && this.currentQuestionIndex === this.questions.length - 1
+    },
+    formattedTimeLeft () {
+      if (this.timeLeftSeconds === null) return ''
+
+      const minutes = Math.floor(this.timeLeftSeconds / 60)
+      const seconds = this.timeLeftSeconds % 60
+
+      return `${minutes}:${String(seconds).padStart(2, '0')}`
     }
   },
+  beforeUnmount () {
+    this.clearCountdown()
+  },
   methods: {
+    clearCountdown () {
+      if (this.countdownIntervalId) {
+        clearInterval(this.countdownIntervalId)
+        this.countdownIntervalId = null
+      }
+
+      this.timeLeftSeconds = null
+    },
+    startCountdown () {
+      this.clearCountdown()
+
+      this.timeLeftSeconds = this.kbaTimeLimitSeconds
+
+      this.countdownIntervalId = setInterval(() => {
+        if (this.timeLeftSeconds === null) return
+
+        this.timeLeftSeconds -= 1
+
+        if (this.timeLeftSeconds <= 0) {
+          this.handleTimeout()
+        }
+      }, 1000)
+    },
+    handleTimeout () {
+      this.clearCountdown()
+
+      this.questions = null
+      this.token = null
+      this.reference = null
+      this.answers = {}
+      this.currentQuestionIndex = 0
+      this.error = `Knowledge Based Authentication timed out. You only have ${this.kbaTimeLimitSeconds} seconds to complete the verification. Please retry.`
+    },
     nextQuestion () {
       if (this.isLastQuestion) {
         this.$emit('submit')
@@ -405,6 +462,8 @@ export default {
       }
     },
     restartKba () {
+      this.clearCountdown()
+
       this.questions = null
       this.token = null
       this.reference = null
@@ -415,6 +474,7 @@ export default {
     async startKba () {
       this.isLoading = true
       this.error = null
+      this.clearCountdown()
 
       try {
         const payload = { ...this.form, submitter_slug: this.submitterSlug }
@@ -457,6 +517,8 @@ export default {
           this.questions.forEach(q => {
             this.answers[q.id] = null
           })
+
+          this.startCountdown()
         } else {
           throw new Error('Invalid KBA response')
         }
@@ -467,6 +529,8 @@ export default {
       }
     },
     async submit () {
+      this.clearCountdown()
+
       this.isSubmitting = true
       this.error = null
 

@@ -9,7 +9,7 @@ RUN apk --no-cache add fontforge wget && \
     wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansSymbols2/hinted/ttf/NotoSansSymbols2-Regular.ttf && \
     wget https://github.com/Maxattax97/gnu-freefont/raw/master/ttf/FreeSans.ttf && \
     wget https://github.com/impallari/DancingScript/raw/master/OFL.txt && \
-    wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/2.0.0/model_704_int8.onnx" && \
+    wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/2.1.0/model_704_int8.onnx" && \
     wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
     mkdir -p /pdfium-linux && \
     tar -xzf pdfium-linux.tgz -C /pdfium-linux
@@ -53,6 +53,8 @@ WORKDIR /app
 
 RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev yaml-dev redis libheif vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
+RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
+
 RUN echo $'.include = /etc/ssl/openssl.cnf\n\
 \n\
 [provider_sect]\n\
@@ -92,7 +94,10 @@ COPY --from=webpack /app/public/packs ./public/packs
 RUN ln -s /fonts /app/public/fonts
 RUN bundle exec bootsnap precompile -j 1 --gemfile app/ lib/
 
+RUN chown -R docuseal:docuseal /app
+
 WORKDIR /data/docuseal
+ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 
 EXPOSE 3000

@@ -33,14 +33,18 @@ module Submissions
       return submitter_params if default_values.blank?
 
       values, new_attachments, new_fields =
-        Submitters::NormalizeValues.call(template,
-                                         default_values,
-                                         submitter_name: submitter_params[:role] ||
-                                                         template.submitters.dig(index, 'name'),
-                                         role_names: submitter_params[:roles],
-                                         for_submitter:,
-                                         add_fields:,
-                                         throw_errors: !with_values)
+        Submitters::NormalizeValues.call(
+          template,
+          default_values,
+          submitter_name: submitter_params[:role] ||
+                          (submitter_params[:uuid] &&
+                           template.submitters.find { |s| s['uuid'] == submitter_params[:uuid] }&.dig('name')) ||
+                          template.submitters.dig(index, 'name'),
+          role_names: submitter_params[:roles],
+          for_submitter:,
+          add_fields:,
+          throw_errors: !with_values
+        )
 
       submitter_params[:values] = values
 

@@ -53,7 +53,7 @@
       <% end %>
       <% if can?(:create, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('clone') %>">
-          <a href="<%= new_template_path(base_template_id: template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
         </span>

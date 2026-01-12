@@ -4,8 +4,8 @@ module Submissions
   module GenerateCombinedAttachment
     module_function
 
-    def call(submitter)
-      pdf = build_combined_pdf(submitter)
+    def call(submitter, with_audit: true)
+      pdf = build_combined_pdf(submitter, with_audit:)
 
       submission = submitter.submission
       account = submission.account
@@ -39,7 +39,7 @@ module Submissions
         blob: ActiveStorage::Blob.create_and_upload!(
           io: io.tap(&:rewind), filename: "#{submission.name || submission.template.name}.pdf"
         ),
-        name: 'combined_document',
+        name: with_audit ? 'combined_document' : 'merged_document',
         record: submission
       )
     end
@@ -58,14 +58,16 @@ module Submissions
       pdf.sign(io, write_options: { validate: false }, **sign_params)
     end
 
-    def build_combined_pdf(submitter)
+    def build_combined_pdf(submitter, with_audit:)
       pdfs_index = Submissions::GenerateResultAttachments.generate_pdfs(submitter)
 
-      audit_trail = I18n.with_locale(submitter.account.locale) do
-        Submissions::GenerateAuditTrail.build_audit_trail(submitter.submission)
-      end
+      if with_audit
+        audit_trail = I18n.with_locale(submitter.account.locale) do
+          Submissions::GenerateAuditTrail.build_audit_trail(submitter.submission)
+        end
 
-      audit_trail.dispatch_message(:complete_objects)
+        audit_trail.dispatch_message(:complete_objects)
+      end
 
       result = HexaPDF::Document.new
 
@@ -79,7 +81,7 @@ module Submissions
         pdf.pages.each { |page| result.pages << result.import(page) }
       end
 
-      audit_trail.pages.each { |page| result.pages << result.import(page) }
+      audit_trail&.pages&.each { |page| result.pages << result.import(page) }
 
       result
     end

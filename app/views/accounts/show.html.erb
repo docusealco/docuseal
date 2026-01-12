@@ -235,7 +235,7 @@
             <% end %>
           <% end %>
         <% end %>
-        <% if can?(:manage, :personalization_advanced) %>
+        <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
           <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::WITH_FILE_LINKS_KEY) %>
           <% if can?(:manage, account_config) %>
             <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

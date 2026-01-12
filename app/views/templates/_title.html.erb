@@ -63,7 +63,7 @@
       <%= button_to button_title(title: t('archive'), disabled_with: t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: t('are_you_sure_') } %>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
-      <%= link_to new_template_path(base_template_id: template.id), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
+      <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
         <span class="flex items-center justify-center space-x-2">
           <%= svg_icon('copy', class: 'w-6 h-6') %>
           <span class="inline"><%= t('clone') %></span>
