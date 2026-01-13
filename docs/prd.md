@@ -26126,3 +26126,667 @@ end
 **Focus**: Production infrastructure setup, deployment automation, monitoring configuration, and comprehensive documentation for operational excellence
 
 This phase prepares FloDoc v3 for production deployment with robust infrastructure, automated CI/CD pipelines, comprehensive monitoring and alerting, and complete documentation for ongoing operations and maintenance.
+
+#### Story 8.0: Development Infrastructure Setup (Local Docker)
+
+**Status**: Draft
+**Priority**: High
+**Epic**: Phase 8 - Deployment & Documentation
+**Estimated Effort**: 2 days
+**Risk Level**: Low
+
+##### User Story
+
+**As a** Developer,
+**I want** to set up a local Docker-based development infrastructure with PostgreSQL and Redis,
+**So that** I can demonstrate the complete FloDoc system to management without cloud costs or complexity.
+
+##### Background
+
+Before investing in production AWS infrastructure, we need a working demonstration environment that:
+- Can be started with a single command
+- Requires no cloud costs or complex setup
+- Accurately represents the production architecture
+- Allows management to validate the 3-portal cohort management system
+- Can be used for UAT and stakeholder demonstrations
+
+This story establishes the foundation using Docker Compose, which provides the same architecture as production (PostgreSQL + Redis + Rails app) but runs entirely on a local machine or demo server.
+
+##### Technical Implementation Notes
+
+**Docker Compose Configuration:**
+```yaml
+# docker-compose.dev.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: floDoc-dev-db
+    environment:
+      POSTGRES_USER: floDoc
+      POSTGRES_PASSWORD: floDoc_dev_password
+      POSTGRES_DB: floDoc_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U floDoc"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: floDoc-dev-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass floDoc_dev_redis_password
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: floDoc-dev-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://floDoc:floDoc_dev_password@postgres:5432/floDoc_development
+      - REDIS_URL=redis://:floDoc_dev_redis_password@redis:6379/0
+      - SECRET_KEY_BASE=dev_secret_key_base_change_in_production
+      - JWT_SECRET=dev_jwt_secret_change_in_production
+      - S3_BUCKET=floDoc-dev-storage
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=minio_access
+      - AWS_SECRET_ACCESS_KEY=minio_secret
+      - AWS_ENDPOINT_URL=http://minio:9000
+      - RAILS_MAX_THREADS=5
+      - WEB_CONCURRENCY=2
+    volumes:
+      - .:/app
+      - app_logs:/app/log
+      - app_storage:/app/storage
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c "bundle install &&
+             rm -f tmp/pids/server.pid &&
+             bundle exec rails db:prepare &&
+             bundle exec rails assets:precompile &&
+             bundle exec rails server -b 0.0.0.0 -p 3000"
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: floDoc-dev-sidekiq
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://floDoc:floDoc_dev_password@postgres:5432/floDoc_development
+      - REDIS_URL=redis://:floDoc_dev_redis_password@redis:6379/0
+      - SECRET_KEY_BASE=dev_secret_key_base_change_in_production
+      - JWT_SECRET=dev_jwt_secret_change_in_production
+      - S3_BUCKET=floDoc-dev-storage
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=minio_access
+      - AWS_SECRET_ACCESS_KEY=minio_secret
+      - AWS_ENDPOINT_URL=http://minio:9000
+    volumes:
+      - .:/app
+      - app_logs:/app/log
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
+  minio:
+    image: minio/minio:latest
+    container_name: floDoc-dev-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio_access
+      MINIO_ROOT_PASSWORD: minio_secret
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: floDoc-dev-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    logging:
+      driver: none
+
+volumes:
+  postgres_data:
+  redis_data:
+  app_logs:
+  app_storage:
+  minio_data:
+```
+
+**Development Dockerfile:**
+```dockerfile
+# Dockerfile.dev
+FROM ruby:3.4-slim
+
+RUN apt-get update -qq && \
+    apt-get install -y \
+    build-essential \
+    libpq-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    nodejs \
+    npm \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle config set --local deployment 'true' && \
+    bundle install --jobs 4 --retry 3
+
+COPY . .
+
+RUN mkdir -p tmp/pids
+
+EXPOSE 3000
+
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+```
+
+**Configuration Files:**
+
+```yaml
+# config/database.yml (development)
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: floDoc_development
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DB_USER") { "floDoc" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "floDoc_dev_password" } %>
+```
+
+```yaml
+# config/redis.yml (development)
+development:
+  url: <%= ENV.fetch("REDIS_URL", "redis://:floDoc_dev_redis_password@localhost:6379/0") %>
+  timeout: 5
+  reconnect_attempts: 1
+  pool:
+    size: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5
+```
+
+```yaml
+# config/storage.yml (development)
+development:
+  service: S3
+  access_key_id: <%= ENV.fetch("AWS_ACCESS_KEY_ID", "minio_access") %>
+  secret_access_key: <%= ENV.fetch("AWS_SECRET_ACCESS_KEY", "minio_secret") %>
+  region: <%= ENV.fetch("AWS_REGION", "us-east-1") %>
+  bucket: <%= ENV.fetch("S3_BUCKET", "floDoc-dev-storage") %>
+  endpoint: <%= ENV.fetch("AWS_ENDPOINT_URL", "http://localhost:9000") %>
+  force_path_style: true
+  public: false
+```
+
+```bash
+# .env.dev
+RAILS_ENV=development
+DATABASE_URL=postgres://floDoc:floDoc_dev_password@localhost:5432/floDoc_development
+REDIS_URL=redis://:floDoc_dev_redis_password@localhost:6379/0
+
+SECRET_KEY_BASE=dev_secret_key_base_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+JWT_SECRET=dev_jwt_secret_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+
+S3_BUCKET=floDoc-dev-storage
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=minio_access
+AWS_SECRET_ACCESS_KEY=minio_secret
+AWS_ENDPOINT_URL=http://localhost:9000
+
+SMTP_ADDRESS=localhost
+SMTP_PORT=1025
+SMTP_USERNAME=
+SMTP_PASSWORD=
+SMTP_TLS=false
+SMTP_AUTH=none
+
+RAILS_MAX_THREADS=5
+WEB_CONCURRENCY=2
+RAILS_LOG_LEVEL=debug
+```
+
+**Startup Scripts:**
+
+```bash
+# scripts/dev-setup.sh
+#!/bin/bash
+set -e
+
+echo "=== FloDoc Development Infrastructure Setup ==="
+
+if ! docker info > /dev/null 2>&1; then
+    echo "❌ Docker is not running"
+    exit 1
+fi
+
+echo "✅ Docker is running"
+
+if [ ! -f .env ]; then
+    cp .env.dev .env
+    echo "✅ Created .env file"
+else
+    echo "✅ .env file already exists"
+fi
+
+mkdir -p storage log
+
+echo "=== Starting Services ==="
+docker-compose -f docker-compose.dev.yml up -d --build
+
+echo "=== Waiting for Services ==="
+
+echo "Waiting for PostgreSQL..."
+until docker exec floDoc-dev-db pg_isready -U floDoc > /dev/null 2>&1; do
+    sleep 2
+done
+echo "✅ PostgreSQL ready"
+
+echo "Waiting for Redis..."
+until docker exec floDoc-dev-redis redis-cli -a floDoc_dev_redis_password ping > /dev/null 2>&1; do
+    sleep 2
+done
+echo "✅ Redis ready"
+
+echo "=== Running Database Setup ==="
+docker exec floDoc-dev-app bundle exec rails db:prepare
+docker exec floDoc-dev-app bundle exec rails db:seed
+
+echo ""
+echo "=== FloDoc Development Environment Ready! ==="
+echo ""
+echo "Access Points:"
+echo "  - Application: http://localhost:3000"
+echo "  - MailHog UI:  http://localhost:8025"
+echo "  - Minio UI:    http://localhost:9001 (login: minio_access / minio_secret)"
+echo ""
+echo "Useful Commands:"
+echo "  - View logs:        docker-compose -f docker-compose.dev.yml logs -f app"
+echo "  - Run console:      docker exec -it floDoc-dev-app bundle exec rails console"
+echo "  - Stop services:    docker-compose -f docker-compose.dev.yml down"
+echo "  - Full reset:       docker-compose -f docker-compose.dev.yml down -v"
+```
+
+```bash
+# scripts/dev-teardown.sh
+#!/bin/bash
+set -e
+
+echo "=== Stopping FloDoc Development Environment ==="
+docker-compose -f docker-compose.dev.yml down
+
+echo "✅ Development environment stopped"
+echo ""
+echo "To start again: ./scripts/dev-setup.sh"
+```
+
+```bash
+# scripts/dev-health.sh
+#!/bin/bash
+echo "=== FloDoc Development Health Check ==="
+echo ""
+
+echo "1. Checking containers..."
+for container in floDoc-dev-db floDoc-dev-redis floDoc-dev-minio floDoc-dev-app floDoc-dev-sidekiq floDoc-dev-mailhog; do
+    if docker ps | grep -q "$container"; then
+        echo "  ✅ $container"
+    else
+        echo "  ❌ $container NOT running"
+    fi
+done
+
+echo ""
+echo "2. Checking services..."
+
+if docker exec floDoc-dev-db pg_isready -U floDoc > /dev/null 2>&1; then
+    echo "  ✅ PostgreSQL"
+else
+    echo "  ❌ PostgreSQL NOT ready"
+fi
+
+if docker exec floDoc-dev-redis redis-cli -a floDoc_dev_redis_password ping > /dev/null 2>&1; then
+    echo "  ✅ Redis"
+else
+    echo "  ❌ Redis NOT ready"
+fi
+
+if curl -sf http://localhost:3000/health > /dev/null 2>&1; then
+    echo "  ✅ Application"
+else
+    echo "  ❌ Application NOT responding"
+fi
+
+echo ""
+echo "3. Access URLs:"
+echo "  - App:    http://localhost:3000"
+echo "  - MailHog: http://localhost:8025"
+echo "  - Minio:   http://localhost:9001"
+```
+
+**Quick Start:**
+```bash
+# One command setup
+./scripts/dev-setup.sh
+
+# Access application
+open http://localhost:3000
+
+# View emails
+open http://localhost:8025
+
+# View files
+open http://localhost:9001
+```
+
+**Design System Compliance:**
+
+Per FR28, all components must use design system assets from `@.claude/skills/frontend-design/design-system/`. The local Docker setup ensures the same TailwindCSS 3.4.17 + DaisyUI 3.9.4 configuration runs identically to production, with custom FloDoc branding replacing DaisyUI defaults.
+
+##### Acceptance Criteria
+
+**Infrastructure:**
+1. ✅ Docker Compose file created with all services
+2. ✅ PostgreSQL container running and accessible
+3. ✅ Redis container running and accessible
+4. ✅ Minio (S3-compatible) container running
+5. ✅ MailHog container running for email testing
+6. ✅ Rails app container running on port 3000
+7. ✅ Sidekiq container running for background jobs
+
+**Configuration:**
+1. ✅ Database configuration for development
+2. ✅ Redis configuration for development
+3. ✅ Storage configuration for Minio
+4. ✅ Email configuration for MailHog
+5. ✅ Environment variables properly set
+6. ✅ Secrets configured for development
+
+**Automation:**
+1. ✅ Setup script automates initialization
+2. ✅ Teardown script stops and cleans up
+3. ✅ Health check script verifies services
+4. ✅ All scripts executable and documented
+
+**Functionality:**
+1. ✅ Application starts successfully
+2. ✅ Database migrations run
+3. ✅ Seed data can be loaded
+4. ✅ File uploads work (via Minio)
+5. ✅ Emails captured by MailHog
+6. ✅ Background jobs process via Sidekiq
+7. ✅ All three portals accessible
+
+**Documentation:**
+1. ✅ README with setup instructions
+2. ✅ Quick start guide
+3. ✅ Management demo script
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- Verify Docker Compose starts all services
+- Test PostgreSQL connection from Rails
+- Test Redis connection from Sidekiq
+- Verify Minio accepts S3 API calls
+- Confirm MailHog receives SMTP emails
+
+**IV2: Pinia Store**
+- N/A (Infrastructure story)
+
+**IV3: Getters**
+- N/A (Infrastructure story)
+
+**IV4: Token Routing**
+- N/A (Infrastructure story)
+
+##### Test Requirements
+
+**Infrastructure Tests:**
+```ruby
+# spec/infrastructure/docker_dev_spec.rb
+RSpec.describe 'Development Infrastructure' do
+  it 'has PostgreSQL container running' do
+    container = Docker::Container.get('floDoc-dev-db')
+    expect(container.info['State']['Running']).to be true
+  end
+
+  it 'has Redis container running' do
+    container = Docker::Container.get('floDoc-dev-redis')
+    expect(container.info['State']['Running']).to be true
+  end
+
+  it 'can connect to PostgreSQL' do
+    conn = PG.connect(
+      host: 'localhost', port: 5432,
+      dbname: 'floDoc_development',
+      user: 'floDoc', password: 'floDoc_dev_password'
+    )
+    expect(conn).not_to be_nil
+    conn.close
+  end
+
+  it 'can connect to Redis' do
+    redis = Redis.new(
+      host: 'localhost', port: 6379,
+      password: 'floDoc_dev_redis_password'
+    )
+    expect(redis.ping).to eq('PONG')
+  end
+
+  it 'application responds on port 3000' do
+    response = Net::HTTP.get(URI('http://localhost:3000/health'))
+    expect(response).to include('ok')
+  end
+end
+```
+
+**Bash Tests:**
+```bash
+#!/bin/bash
+# test-dev-infrastructure.sh
+set -e
+
+echo "Testing Development Infrastructure..."
+
+for container in floDoc-dev-db floDoc-dev-redis floDoc-dev-minio floDoc-dev-app floDoc-dev-sidekiq; do
+    if docker ps | grep -q "$container"; then
+        echo "  ✅ $container"
+    else
+        echo "  ❌ $container FAILED"
+        exit 1
+    fi
+done
+
+if docker exec floDoc-dev-db pg_isready -U floDoc > /dev/null 2>&1; then
+    echo "  ✅ PostgreSQL"
+else
+    echo "  ❌ PostgreSQL FAILED"
+    exit 1
+fi
+
+if docker exec floDoc-dev-redis redis-cli -a floDoc_dev_redis_password ping > /dev/null 2>&1; then
+    echo "  ✅ Redis"
+else
+    echo "  ❌ Redis FAILED"
+    exit 1
+fi
+
+if curl -sf http://localhost:3000/health > /dev/null 2>&1; then
+    echo "  ✅ Application"
+else
+    echo "  ❌ Application FAILED"
+    exit 1
+fi
+
+echo "✅ All tests passed!"
+```
+
+##### Rollback Procedure
+
+**If setup fails:**
+1. Stop everything: `docker-compose -f docker-compose.dev.yml down`
+2. Clean slate: `docker-compose -f docker-compose.dev.yml down -v`
+3. Manual cleanup: `docker system prune -a`
+
+**Data Safety:**
+- All data in Docker volumes
+- Easy to reset to clean state
+- No production data at risk
+
+##### Risk Assessment
+
+**Low Risk because:**
+- Runs entirely in Docker containers
+- No cloud dependencies or costs
+- Easy to reset/destroy
+- No production data involved
+
+**Specific Risks:**
+1. **Port Conflicts**: Ports 3000, 5432, 6379, 9000, 8025 may be in use
+   - **Mitigation**: Check ports before setup, provide customization options
+
+2. **Docker Resource Limits**: May run out of memory/Disk
+   - **Mitigation**: Document minimum requirements
+
+3. **Cross-Platform Issues**: Docker behavior differs on Mac/Windows/Linux
+   - **Mitigation**: Test on all platforms, provide platform-specific notes
+
+**Mitigation Strategies:**
+- Clear documentation with step-by-step setup
+- Automated scripts for one-command operations
+- Health checks to verify all services
+- Platform-specific notes in README
+
+##### Success Metrics
+
+**Setup Experience:**
+- Single command to start: `./scripts/dev-setup.sh`
+- Time to ready: < 5 minutes
+- Success rate: 100% on supported platforms
+
+**Functionality:**
+- All 3 portals accessible
+- File uploads work
+- Emails captured by MailHog
+- Background jobs process
+
+**Management Demo:**
+- Can showcase complete workflow
+- No technical issues during demo
+- Clear access instructions
+
+**Developer Experience:**
+- Easy to start/stop
+- Fast iteration cycle
+- Debugging tools available
+- No cloud costs
+
+##### Comparison with Future Production (Story 8.1)
+
+**Architecture Parity:**
+```
+Development (Story 8.0)    →    Production (Story 8.1)
+─────────────────────────────────────────────────────
+Local PostgreSQL          →    AWS RDS PostgreSQL
+Local Redis               →    AWS ElastiCache Redis
+Minio (S3-compatible)     →    AWS S3
+MailHog (local email)     →    AWS SES
+Local Docker              →    AWS ECS/EC2
+```
+
+**Key Differences:**
+- **Cost**: $0 vs ~$500/month
+- **Setup Time**: 10 minutes vs 2-3 hours
+- **Complexity**: Low vs High
+- **Scalability**: Single machine vs Auto-scaling
+
+**Migration Path:**
+Story 8.0 → Management Demo → Approval → Story 8.1 (Production AWS)
+
+##### Management Demo Script
+
+```bash
+# Pre-demo setup
+./scripts/dev-setup.sh
+
+# Demo flow:
+echo "=== FloDoc 3-Portal Cohort Management Demo ==="
+echo ""
+echo "1. Admin Portal (TP): http://localhost:3000/admin"
+echo "   - Create cohort"
+echo "   - Upload student list"
+echo "   - Review submissions"
+echo ""
+echo "2. Student Portal: http://localhost:3000/student"
+echo "   - Receive email (check MailHog: http://localhost:8025)"
+echo "   - Upload documents"
+echo "   - Sign forms"
+echo ""
+echo "3. Sponsor Portal: http://localhost:3000/sponsor"
+echo "   - Receive single cohort email"
+echo "   - Review all students"
+echo "   - Bulk sign"
+echo ""
+echo "4. Admin Review: http://localhost:3000/admin"
+echo "   - Verify all signatures"
+echo "   - Export cohort data"
+echo "   - Download completed documents"
+echo ""
+echo "Files: http://localhost:9001 (Minio)"
+echo "Emails: http://localhost:8025 (MailHog)"
+```
+
+##### Why This Approach
+
+**Benefits:**
+1. **Fast Demonstration**: Working system in 10 minutes
+2. **Zero Cost**: No cloud spending during development
+3. **Accurate Architecture**: Same components as production
+4. **Easy Iteration**: Quick changes for management feedback
+5. **Risk-Free**: No production data or infrastructure at stake
+6. **Clear Path**: Easy migration to AWS when ready
+
+**When to Use Story 8.1:**
+- After management approval
+- When ready for production deployment
+- When scalability is required
+- When security compliance is needed
+- When team is ready for DevOps operations
+

@@ -511,3 +511,14 @@ describe('[Component]', () => {
 8. **Never** embed Acceptance Criteria inside User Story - use separate `##### Acceptance Criteria` section
 9. **Always** use code blocks for Vue components, Pinia stores, API layers, and type definitions
 10. **Always** reference design system compliance per FR28
+
+**Commit Workflow:**
+- **After each story is approved by user**: Commit the story to git before writing the next story
+- **Commit message format**: `git commit -m "Add Story X.X: [Story Title]"`
+- **Purpose**: Preserve each story independently, allow rollback if needed, maintain clear git history
+- **Command sequence**:
+  1. Write story to `docs/prd.md`
+  2. User reviews and approves
+  3. `git add docs/prd.md`
+  4. `git commit -m "Add Story X.X: [Title]"`
+  5. Proceed to next story
