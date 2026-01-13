@@ -290,11 +290,224 @@ This repository uses **BMAD Core** for AI-assisted development:
 **PDF generation fails:** Verify HexaPDF installation and PDF permissions
 **Webhook delivery fails:** Check network access and SSL certificates
 
+### FloDoc Enhancement - Current Development Workflow
+
+**Current Task:** Creating comprehensive PRD for 3-portal cohort management system
+
+**Workflow Process:**
+1. **Section-by-Section PRD Creation** - Following BMAD brownfield-prd-tmpl.yaml
+2. **Advanced Elicitation** - Each section requires user approval before proceeding
+3. **Iterative Development** - No implementation until complete PRD approval
+
+**Current Status:** Starting fresh PRD creation
+
+**Section Sequence:**
+1. ✅ Intro Analysis & Context (pending)
+2. ✅ Requirements (pending)
+3. ✅ Technical Constraints & Integration (pending)
+4. ✅ UI Enhancement Goals (pending)
+5. ✅ Epic & Story Structure (pending)
+6. ✅ Epic Details (pending)
+
+**Key Principles:**
+- **No code changes until PRD is complete and approved**
+- **Each section must be explicitly approved before moving to next**
+- **BMAD template guides all sections**
+- **Advanced elicitation for every section**
+
 ### Next Steps for FloDoc Enhancement
 
-1. **Architect Review:** Winston needs to review authentication strategy and multi-tenancy
-2. **Database Migrations:** Create new tables for cohorts, enrollments, institutions
-3. **Portal Development:** Build three separate Vue portals
-4. **Workflow Integration:** Connect to existing DocuSeal submission system
-5. **Excel Export:** Implement using `rubyXL` gem (already in Gemfile)
-6. **Testing:** Add specs for new cohort workflows
+1. **Complete PRD** - Section-by-section with user approval
+2. **Architect Review** - Winston reviews authentication strategy
+3. **Database Migrations** - Create cohorts, enrollments, institutions tables
+4. **Portal Development** - Build three Vue portals
+5. **Workflow Integration** - Connect to DocuSeal submission system
+6. **Excel Export** - Implement using rubyXL gem
+7. **Testing** - Add specs for cohort workflows
+
+### Brownfield PRD Story Structure
+
+**When writing stories in `docs/prd.md` during brownfield mode, STRICTLY adhere to Story 4.6 structure:**
+
+```
+#### Story X.X: [Descriptive Title]
+
+**Status**: Draft/Pending
+**Priority**: High/Medium/Low
+**Epic**: [Epic Name]
+**Estimated Effort**: [X days]
+**Risk Level**: Low/Medium/High
+
+##### User Story
+
+**As a** [role],
+**I want** [action],
+**So that** [benefit].
+
+##### Background
+
+[Context, requirements, and rationale for this story]
+
+##### Technical Implementation Notes
+
+**Vue 3 Component Structure:**
+```vue
+<!-- app/javascript/[portal]/views/[Component].vue -->
+<template>
+  <!-- Component markup -->
+</template>
+
+<script setup>
+// Component logic
+</script>
+
+<style scoped>
+/* Component styles */
+</style>
+```
+
+**Pinia Store:**
+```typescript
+// app/javascript/[portal]/stores/[store].ts
+import { defineStore } from 'pinia'
+
+export const use[Store]Store = defineStore('[store]', {
+  state: () => ({
+    // State properties
+  }),
+  actions: {
+    // Async actions
+  },
+  getters: {
+    // Computed properties
+  }
+})
+```
+
+**API Layer:**
+```typescript
+// app/javascript/[portal]/api/[resource].ts
+export const [Resource]API = {
+  async get[Resource](token: string): Promise<[Type]> {
+    // API implementation
+  }
+}
+```
+
+**Type Definitions:**
+```typescript
+export interface [Type] {
+  // Type properties
+}
+```
+
+**Design System Compliance:**
+
+Per FR28, all components must use design system assets from:
+- `@.claude/skills/frontend-design/SKILL.md`
+- `@.claude/skills/frontend-design/design-system/`
+
+Specifically: colors, icons, typography, and layout patterns from the design system.
+
+##### Acceptance Criteria
+
+**Functional:**
+1. ✅ [Functional requirement]
+2. ✅ [Functional requirement]
+
+**UI/UX:**
+1. ✅ [UI/UX requirement]
+2. ✅ [UI/UX requirement]
+
+**Integration:**
+1. ✅ [Integration requirement]
+2. ✅ [Integration requirement]
+
+**Security:**
+1. ✅ [Security requirement]
+2. ✅ [Security requirement]
+
+**Quality:**
+1. ✅ [Quality requirement]
+2. ✅ [Quality requirement]
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- [Verification steps]
+
+**IV2: Pinia Store**
+- [Verification steps]
+
+**IV3: Getters**
+- [Verification steps]
+
+**IV4: Token Routing**
+- [Verification steps]
+
+##### Test Requirements
+
+**Component Specs:**
+```javascript
+// spec/javascript/[portal]/views/[Component].spec.js
+import { mount, flushPromises } from '@vue/test-utils'
+import [Component] from '@/[portal]/views/[Component].vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+describe('[Component]', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
+  it('[test description]', async () => {
+    // Test implementation
+  })
+})
+```
+
+**Integration Tests:**
+- [Integration test requirements]
+
+**E2E Tests:**
+- [E2E test requirements]
+
+##### Rollback Procedure
+
+**If [failure scenario]:**
+1. [Rollback step]
+2. [Rollback step]
+
+**Data Safety**: [Explanation of atomic operations]
+
+##### Risk Assessment
+
+**[Risk Level] because:**
+- [Risk reason 1]
+- [Risk reason 2]
+
+**Specific Risks:**
+1. **[Risk Name]**: [Risk description]
+2. **[Risk Name]**: [Risk description]
+
+**Mitigation:**
+- [Mitigation strategy 1]
+- [Mitigation strategy 2]
+
+##### Success Metrics
+
+- [Metric 1]
+- [Metric 2]
+- [Metric 3]
+```
+
+**Key Rules:**
+1. **Always** use `#####` (H5) for all story subsections (User Story, Background, etc.)
+2. **Always** include Status, Priority, Epic, Estimated Effort, Risk Level
+3. **Always** include Integration Verification section (IV1-4)
+4. **Always** include Test Requirements with code examples
+5. **Always** include Rollback Procedure
+6. **Always** include Risk Assessment with specific risks and mitigations
+7. **Always** include Success Metrics
+8. **Never** embed Acceptance Criteria inside User Story - use separate `##### Acceptance Criteria` section
+9. **Always** use code blocks for Vue components, Pinia stores, API layers, and type definitions
+10. **Always** reference design system compliance per FR28
