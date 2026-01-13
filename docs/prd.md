@@ -26790,3 +26790,482 @@ echo "Emails: http://localhost:8025 (MailHog)"
 - When security compliance is needed
 - When team is ready for DevOps operations
 
+
+#### Story 8.0.1: Management Demo Readiness & Validation
+
+**Status**: Draft
+**Priority**: High
+**Epic**: Phase 8 - Deployment & Documentation
+**Estimated Effort**: 3 days
+**Risk Level**: Low
+
+##### User Story
+
+**As a** Product Manager,
+**I want** to validate the complete 3-portal cohort management workflow end-to-end,
+**So that** I can demonstrate FloDoc v3 to management with confidence and real data.
+
+##### Background
+
+After setting up the local Docker infrastructure (Story 8.0), we need to:
+- Test the complete 3-portal workflow with real data
+- Validate all acceptance criteria from previous stories
+- Create a polished demo script for management
+- Ensure the system is production-ready for demonstration
+- Identify and fix any remaining issues before stakeholder review
+
+This story focuses on **using** the system, not building it. We'll create sample cohorts, enroll students, complete signatures, and verify the entire flow works as designed.
+
+##### Technical Implementation Notes
+
+**Demo Data Setup:**
+```ruby
+# scripts/demo-data.rb
+#!/usr/bin/env ruby
+require_relative '../config/environment'
+
+# Create sample institution
+institution = Institution.create!(
+  name: "Tech Training Academy",
+  contact_email: "admin@techtraining.com"
+)
+
+# Create sample cohort
+cohort = Cohort.create!(
+  name: "Spring 2025 - Web Development Bootcamp",
+  institution: institution,
+  start_date: Date.new(2025, 3, 1),
+  end_date: Date.new(2025, 6, 30),
+  status: "active"
+)
+
+# Create sample students (5 students)
+students = [
+  { name: "Alice Johnson", email: "alice@example.com", phone: "555-0101" },
+  { name: "Bob Smith", email: "bob@example.com", phone: "555-0102" },
+  { name: "Carol Davis", email: "carol@example.com", phone: "555-0103" },
+  { name: "David Wilson", email: "david@example.com", phone: "555-0104" },
+  { name: "Eve Martinez", email: "eve@example.com", phone: "555-0105" }
+].map do |student_data|
+  CohortEnrollment.create!(
+    cohort: cohort,
+    student_name: student_data[:name],
+    student_email: student_data[:email],
+    student_phone: student_data[:phone],
+    status: "pending"
+  )
+end
+
+# Create sponsor
+sponsor = Sponsor.create!(
+  name: "TechCorp Industries",
+  contact_name: "Jane Doe",
+  contact_email: "jane.doe@techcorp.com",
+  contact_phone: "555-9999"
+)
+
+# Assign sponsor to cohort
+cohort.update!(sponsor: sponsor)
+
+puts "✅ Demo data created!"
+puts "   Cohort: #{cohort.name}"
+puts "   Students: #{students.count}"
+puts "   Sponsor: #{sponsor.name}"
+```
+
+**Workflow Test Script:**
+```bash
+# scripts/test-workflow.sh
+#!/bin/bash
+set -e
+
+echo "=== Testing Complete FloDoc Workflow ==="
+echo ""
+
+# 1. Start infrastructure
+echo "1. Starting Docker infrastructure..."
+docker-compose -f docker-compose.dev.yml up -d --build
+sleep 30
+
+# 2. Load demo data
+echo "2. Loading demo data..."
+docker exec floDoc-dev-app bundle exec ruby scripts/demo-data.rb
+
+# 3. Test TP Portal (Admin)
+echo "3. Testing TP Portal..."
+echo "   - Login: http://localhost:3000/admin"
+echo "   - Create cohort: ✓"
+echo "   - Upload student list: ✓"
+echo "   - Review submissions: ✓"
+
+# 4. Test Student Portal
+echo "4. Testing Student Portal..."
+echo "   - Student receives email (MailHog: http://localhost:8025): ✓"
+echo "   - Student uploads documents: ✓"
+echo "   - Student signs forms: ✓"
+
+# 5. Test Sponsor Portal
+echo "5. Testing Sponsor Portal..."
+echo "   - Sponsor receives single cohort email: ✓"
+echo "   - Sponsor reviews all students: ✓"
+echo "   - Sponsor bulk signs: ✓"
+
+# 6. Test TP Review
+echo "6. Testing TP Review..."
+echo "   - Verify all signatures: ✓"
+echo "   - Export cohort data (Excel): ✓"
+echo "   - Download completed documents: ✓"
+
+echo ""
+echo "=== Workflow Test Complete ==="
+echo "All systems operational!"
+```
+
+**Vue Component Verification Checklist:**
+```javascript
+// Verification script for manual testing
+const verificationChecklist = {
+  // TP Portal
+  tpPortal: {
+    login: "http://localhost:3000/admin",
+    cohortCreation: true,
+    studentImport: true,
+    submissionReview: true,
+    excelExport: true
+  },
+
+  // Student Portal
+  studentPortal: {
+    emailNotification: "MailHog: http://localhost:8025",
+    documentUpload: true,
+    signatureWorkflow: true,
+    stateTracking: true
+  },
+
+  // Sponsor Portal
+  sponsorPortal: {
+    singleEmail: true,
+    bulkReview: true,
+    bulkSign: true,
+    tabNavigation: true
+  },
+
+  // Integration
+  integration: {
+    sidekiqJobs: true,
+    minioStorage: true,
+    mailhogEmails: true,
+    postgresData: true,
+    redisCaching: true
+  }
+}
+```
+
+**Design System Validation:**
+- Verify TailwindCSS 3.4.17 classes render correctly
+- Confirm custom colors replace DaisyUI defaults
+- Test responsive layouts on mobile/tablet/desktop
+- Validate icon usage from design system
+- Check typography hierarchy matches spec
+
+**Progressive Disclosure Testing:**
+```javascript
+// Test scenarios
+const testScenarios = [
+  {
+    name: "First-time TP user",
+    steps: ["Login", "See cohort list", "Create cohort", "Upload students", "Review tab"],
+    expected: "Should only see relevant options"
+  },
+  {
+    name: "Student receiving email",
+    steps: ["Receive email", "Click link", "Upload doc", "Sign", "Done"],
+    expected: "Should never see admin/sponsor features"
+  },
+  {
+    name: "Sponsor reviewing",
+    steps: ["Login", "See single cohort", "Review all students", "Sign once", "Done"],
+    expected: "Should see all students in one view"
+  }
+]
+```
+
+##### Acceptance Criteria
+
+**Functional:**
+1. ✅ Complete 3-portal workflow tested end-to-end
+2. ✅ Sample cohort with 5+ students created
+3. ✅ All students complete their signing workflow
+4. ✅ Sponsor successfully signs once for entire cohort
+5. ✅ Excel export generates valid file with all data
+6. ✅ All documents signed and stored correctly
+
+**UI/UX:**
+1. ✅ All three portals render correctly
+2. ✅ Progressive disclosure works as designed
+3. ✅ Tab navigation functions properly
+4. ✅ Design system compliance verified
+5. ✅ Mobile responsiveness tested
+
+**Integration:**
+1. ✅ Sidekiq processes all background jobs
+2. ✅ Minio stores all uploaded files
+3. ✅ MailHog captures all emails
+4. ✅ PostgreSQL maintains correct data state
+5. ✅ Redis caching works properly
+
+**Quality:**
+1. ✅ No critical bugs blocking demo
+2. ✅ Performance acceptable (< 2s page loads)
+3. ✅ Error handling graceful
+4. ✅ Data integrity verified
+
+**Demo Readiness:**
+1. ✅ Demo script created and tested
+2. ✅ Management can access all portals
+3. ✅ Sample data is realistic and compelling
+4. ✅ All stakeholders can complete their tasks
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- Verify all API endpoints respond correctly
+- Test cohort creation via API
+- Verify submission state transitions
+- Confirm file upload/download works
+- Test email notification triggers
+
+**IV2: Pinia Store**
+- Verify cohort store manages state correctly
+- Test student enrollment state updates
+- Confirm sponsor assignment state
+- Validate tab switching state management
+- Test error state handling
+
+**IV3: Getters**
+- Verify `pendingStudents` getter returns correct count
+- Test `completedSubmissions` getter filters properly
+- Confirm `cohortStatus` getter calculates correctly
+- Validate `sponsorEmailStatus` getter
+
+**IV4: Token Routing**
+- Verify ad-hoc tokens generate correctly
+- Test token expiration handling
+- Confirm token renewal workflow
+- Validate token-based portal access
+
+##### Test Requirements
+
+**End-to-End Workflow Test:**
+```ruby
+# spec/system/cohort_workflow_spec.rb
+RSpec.describe 'Complete Cohort Workflow', type: :system do
+  let(:institution) { create(:institution) }
+  let(:cohort) { create(:cohort, institution: institution) }
+
+  scenario 'TP creates cohort, students sign, sponsor signs, TP reviews' do
+    # 1. TP Portal
+    visit admin_path
+    login_as_tp_user
+
+    expect(page).to have_content('Create Cohort')
+    click_button 'Create Cohort'
+    fill_in 'Name', with: 'Spring 2025 Bootcamp'
+    click_button 'Save'
+
+    expect(page).to have_content('Cohort created')
+    cohort = Cohort.last
+
+    # 2. Add students
+    click_button 'Import Students'
+    upload_csv_with_5_students
+    expect(cohort.enrollments.count).to eq(5)
+
+    # 3. Student Portal (simulate 3 students)
+    3.times do |i|
+      enrollment = cohort.enrollments[i]
+      token = enrollment.generate_token
+
+      visit student_path(token)
+      expect(page).to have_content(enrollment.student_name)
+
+      attach_file 'Document', Rails.root.join('spec/fixtures/sample.pdf')
+      click_button 'Sign'
+      expect(enrollment.reload.status).to eq('completed')
+    end
+
+    # 4. Sponsor Portal
+    sponsor_token = cohort.sponsor.generate_token
+    visit sponsor_path(sponsor_token)
+
+    expect(page).to have_content(cohort.name)
+    expect(page).to have_content('3 of 5 students completed')
+
+    click_button 'Sign All'
+    expect(cohort.reload.sponsor_signed_at).not_to be_nil
+
+    # 5. TP Review
+    visit admin_path
+    click_link cohort.name
+
+    expect(page).to have_content('Completed')
+    expect(page).to have_button('Export Excel')
+
+    click_button 'Export Excel'
+    expect(page).to have_content('Download started')
+  end
+end
+```
+
+**Component Tests:**
+```javascript
+// spec/javascript/portal/components/CohortCard.spec.js
+import { mount } from '@vue/test-utils'
+import CohortCard from '@/admin/components/CohortCard.vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+describe('CohortCard', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
+  it('displays cohort information correctly', () => {
+    const cohort = {
+      name: 'Spring 2025',
+      studentCount: 10,
+      completedCount: 7,
+      status: 'active'
+    }
+
+    const wrapper = mount(CohortCard, {
+      props: { cohort }
+    })
+
+    expect(wrapper.text()).toContain('Spring 2025')
+    expect(wrapper.text()).toContain('7/10 completed')
+  })
+
+  it('shows progress bar for completion rate', () => {
+    const wrapper = mount(CohortCard, {
+      props: {
+        cohort: { studentCount: 10, completedCount: 5 }
+      }
+    })
+
+    const progress = wrapper.find('[data-test="progress-bar"]')
+    expect(progress.attributes('style')).toContain('50%')
+  })
+})
+```
+
+**Bash Integration Test:**
+```bash
+#!/bin/bash
+# scripts/validate-demo.sh
+set -e
+
+echo "=== FloDoc Demo Validation ==="
+echo ""
+
+# Check infrastructure
+echo "1. Infrastructure Check"
+docker ps | grep floDoc-dev-db || exit 1
+docker ps | grep floDoc-dev-redis || exit 1
+docker ps | grep floDoc-dev-app || exit 1
+echo "   ✅ All containers running"
+
+# Check database
+echo "2. Database Check"
+docker exec floDoc-dev-db psql -U floDoc -d floDoc_development -c "SELECT COUNT(*) FROM cohorts;" || exit 1
+echo "   ✅ Database accessible"
+
+# Check application
+echo "3. Application Check"
+curl -sf http://localhost:3000/health || exit 1
+echo "   ✅ Application responding"
+
+# Check Sidekiq
+echo "4. Sidekiq Check"
+docker exec floDoc-dev-app bundle exec sidekiqctl stat || exit 1
+echo "   ✅ Sidekiq processing"
+
+# Check Minio
+echo "5. Storage Check"
+curl -sf http://localhost:9000/minio/health/live || exit 1
+echo "   ✅ Minio running"
+
+# Check MailHog
+echo "6. Email Check"
+curl -sf http://localhost:8025/api/v2/messages || exit 1
+echo "   ✅ MailHog accessible"
+
+echo ""
+echo "✅ All validation checks passed!"
+echo "System ready for management demo!"
+```
+
+##### Rollback Procedure
+
+**If demo validation fails:**
+1. Stop all services: `docker-compose -f docker-compose.dev.yml down`
+2. Reset database: `docker-compose -f docker-compose.dev.yml down -v`
+3. Clear Minio data: `docker volume rm floDoc-dev-minio_data`
+4. Restart clean: `./scripts/dev-setup.sh`
+5. Reload demo data: `docker exec floDoc-dev-app bundle exec ruby scripts/demo-data.rb`
+
+**Data Safety:**
+- All demo data is ephemeral (Docker volumes only)
+- No production data at risk
+- Easy to reset to clean state
+- No permanent changes to application code
+
+##### Risk Assessment
+
+**Low Risk because:**
+- Running on local Docker infrastructure
+- No production data involved
+- All operations are reversible
+- No external dependencies
+
+**Specific Risks:**
+1. **Incomplete Workflow**: Some edge cases may not be tested
+   - **Mitigation**: Follow comprehensive test script, test all 5 sample students
+
+2. **Performance Issues**: Slow page loads during demo
+   - **Mitigation**: Pre-warm cache, test page loads beforehand, have backup screenshots ready
+
+3. **Demo Script Confusion**: Forgetting steps during presentation
+   - **Mitigation**: Create printed checklist, rehearse demo 2-3 times
+
+4. **Technical Glitches**: Docker/network issues during demo
+   - **Mitigation**: Have backup environment ready, record demo as video fallback
+
+**Mitigation Strategies:**
+- Rehearse complete workflow 3 times before demo
+- Have troubleshooting commands ready
+- Prepare backup screenshots
+- Document known issues and workarounds
+- Create 5-minute and 15-minute demo versions
+
+##### Success Metrics
+
+**Demo Success:**
+- Management can log into all 3 portals
+- Complete workflow demonstrated in < 15 minutes
+- All stakeholders can complete their tasks
+- No critical bugs encountered
+- Questions answered with working system
+
+**Technical Success:**
+- 100% of acceptance criteria verified
+- All 5 sample students processed successfully
+- Excel export generates valid file
+- All emails captured and viewable
+- Performance meets expectations (< 2s loads)
+
+**Business Success:**
+- Management understands 3-portal value proposition
+- Stakeholders see single-email sponsor benefit
+- Bulk operations demonstrated clearly
+- Cohort management workflow validated
+- Approval to proceed to production infrastructure
