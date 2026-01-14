@@ -167,6 +167,550 @@ The enhancement adds a cohort management layer on top of DocuSeal, creating thre
 | Initial PRD Creation | 2025-01-01 | v1.0 | Brownfield enhancement for 3-portal cohort management | PM Agent |
 | **PRD v2.0 - Fresh Start** | 2026-01-10 | v2.0 | Complete rewrite with clarified workflow requirements | User + PM |
 | **Section 1 Complete** | 2026-01-10 | v2.0 | Intro Analysis with validated understanding | PM |
+| **PO Validation Fixes** | 2026-01-14 | v2.1 | Addressed 3 blocking issues, added scope declaration | PO/PM |
+
+---
+
+### 1.7 SCOPE BOUNDARIES & DEPLOYMENT STRATEGY
+
+**Deployment Decision:** ✅ **Local Docker MVP Only** (Option A)
+
+**Rationale:**
+- Management wants to validate FloDoc system locally first
+- Defers production infrastructure investment until MVP proven
+- Fastest path to working demo
+- No cloud costs during validation phase
+
+---
+
+#### In Scope (MVP - Local Docker)
+
+**Core Functionality:**
+- ✅ Local Docker development environment (PostgreSQL, Redis, Minio, MailHog)
+- ✅ 3-portal cohort management workflow
+- ✅ Single institution support
+- ✅ All 21 implementation stories (Epics 1-7)
+- ✅ Demo validation with sample data (Story 8.0.1)
+
+**Technical:**
+- ✅ Database schema for 3 new tables
+- ✅ RESTful API with `/api/v1/flodoc/` namespace
+- ✅ Vue.js 3 portals with TailwindCSS
+- ✅ Email notifications (via MailHog)
+- ✅ PDF generation and signing (HexaPDF)
+- ✅ Excel export (rubyXL)
+- ✅ Background jobs (Sidekiq)
+
+**Testing:**
+- ✅ End-to-end workflow testing
+- ✅ Mobile responsiveness testing
+- ✅ Performance testing (50+ students)
+- ✅ Security audit (with enhanced checklist)
+- ✅ User acceptance testing
+
+---
+
+#### Out of Scope (Post-MVP - Deferred)
+
+**Production Infrastructure (Stories 8.1-8.4 - Deferred):**
+- ❌ Production CI/CD pipeline
+- ❌ Cloud infrastructure (AWS/GCP/Azure)
+- ❌ Infrastructure as Code (Terraform)
+- ❌ DNS/domain registration
+- ❌ CDN/static asset hosting
+- ❌ Production monitoring (Sentry, New Relic)
+- ❌ Analytics and user tracking
+- ❌ Blue-green deployment
+- ❌ Production backup strategy
+
+**User Documentation & Operations (Stories 8.5-8.7 - Deferred):**
+- ⚠️ **Story 8.5**: User Communication & Training Materials (blocking - must be created before dev)
+- ❌ **Story 8.6**: In-app help system
+- ❌ **Story 8.7**: Knowledge transfer plan & operations runbook
+- ❌ Migration announcement emails
+- ❌ User training materials
+- ❌ FAQ and tutorials
+- ❌ Support team training
+- ❌ Incident response procedures
+
+**Future Enhancements:**
+- ❌ Multi-institution support
+- ❌ Advanced analytics dashboard
+- ❌ Custom branding
+- ❌ Additional portal features
+
+---
+
+#### Production Path Forward
+
+**After Local Validation Success:**
+1. Decision point: Proceed to production or iterate on MVP
+2. If proceeding: Create Stories 8.1-8.4 (production infrastructure)
+3. Implement Stories 8.5-8.7 (documentation & KT)
+4. Deploy to production environment
+
+**Note:** Production deployment is **NOT** part of current scope. All production-related work is deferred pending successful local validation.
+
+---
+
+#### Scope Acknowledgment
+
+**Current State:** Local Docker MVP ready for development
+**Target State:** Working demo with 3-portal workflow
+**Production Readiness:** Deferred to post-MVP phase
+
+This scope declaration addresses PO Validation Issue #1 (Production Deployment Strategy Undefined).
+
+---
+
+### 1.8 EXTENSIBILITY PATTERNS (Optional Enhancement)
+
+**Status**: Draft - Reference Documentation
+**Priority**: Medium (Post-MVP)
+**Purpose**: Guide future development and customization
+
+This section documents how to extend the FloDoc system for future enhancements.
+
+---
+
+#### 1.8.1 Adding New Portal Types
+
+**Current Pattern**: 3 portals (TP, Student, Sponsor) with ad-hoc token authentication
+
+**Extension Steps:**
+
+1. **Create Portal Controller** (app/controllers/flodoc/portals/):
+```ruby
+# app/controllers/flodoc/portals/new_portal_controller.rb
+class Flodoc::Portals::NewPortalController < ApplicationController
+  before_action :authenticate_token!
+
+  def dashboard
+    # Uses token-based auth like Student/Sponsor portals
+    @data = NewPortalService.load_data(@token)
+  end
+end
+```
+
+2. **Add Token Model** (if new token type needed):
+```ruby
+# app/models/flodoc/new_portal_token.rb
+class Flodoc::NewPortalToken < ApplicationRecord
+  belongs_to :cohort
+  has_secure_token :token
+  validates :email, presence: true, uniqueness: { scope: :cohort_id }
+end
+```
+
+3. **Add Vue Portal** (app/javascript/new_portal/):
+```typescript
+// app/javascript/new_portal/application.js
+import { createApp } from 'vue'
+import NewPortalApp from './NewPortalApp.vue'
+
+createApp(NewPortalApp).mount('#app')
+```
+
+4. **Update Routes** (config/routes.rb):
+```ruby
+namespace :new_portal do
+  get 'dashboard', to: 'dashboard#index'
+  post 'submit', to: 'submissions#create'
+end
+```
+
+---
+
+#### 1.8.2 Extending Cohort State Machine
+
+**Current States**: `draft` → `active` → `completed` → `finalized`
+
+**Adding New State:**
+
+1. **Update State Enum** (app/models/flodoc/cohort.rb):
+```ruby
+class Flodoc::Cohort < ApplicationRecord
+  STATES = %w[draft active completed finalized under_review].freeze
+  enum status: STATES.index_with(&:to_s)
+end
+```
+
+2. **Add State Transition Logic**:
+```ruby
+# app/models/flodoc/cohort.rb
+def can_under_review?
+  completed? && all_sponsors_signed?
+end
+
+def under_review!
+  update!(status: 'under_review')
+  Flodoc::CohortMailer.under_review_notification(self).deliver_later
+end
+```
+
+3. **Update Portal UI** (app/javascript/tp_portal/views/CohortDetail.vue):
+```vue
+<template>
+  <div v-if="cohort.status === 'under_review'">
+    <!-- New UI for review state -->
+  </div>
+</template>
+```
+
+---
+
+#### 1.8.3 Adding New Document Types
+
+**Current**: PDF documents with form fields
+
+**Extension Pattern:**
+
+1. **Create Document Type Model**:
+```ruby
+# app/models/flodoc/document_type.rb
+class Flodoc::DocumentType < ApplicationRecord
+  validates :name, presence: true
+  validates :handler, presence: true
+
+  # handler values: 'pdf', 'docx', 'spreadsheet', 'custom'
+end
+```
+
+2. **Register Handler**:
+```ruby
+# config/initializers/flodoc_document_types.rb
+Flodoc::DocumentType.register_handler('spreadsheet', Flodoc::SpreadsheetHandler)
+```
+
+3. **Implement Handler**:
+```ruby
+# app/services/flodoc/handlers/spreadsheet_handler.rb
+module Flodoc
+  module Handlers
+    class SpreadsheetHandler
+      def self.generate(cohort, data)
+        # Custom generation logic
+      end
+
+      def self.validate(file)
+        # Custom validation logic
+      end
+    end
+  end
+end
+```
+
+---
+
+#### 1.8.4 Extending the API
+
+**Current**: `/api/v1/flodoc/` namespace
+
+**Adding New Endpoint:**
+
+1. **Create API Controller**:
+```ruby
+# app/controllers/api/v1/flodoc/new_feature_controller.rb
+class Api::V1::Flodoc::NewFeatureController < Api::V1::BaseController
+  def index
+    # Uses JWT authentication from base controller
+    render json: { data: 'example' }
+  end
+end
+```
+
+2. **Add Route**:
+```ruby
+# config/routes.rb
+namespace :api do
+  namespace :v1 do
+    namespace :flodoc do
+      get 'new_feature', to: 'new_feature#index'
+    end
+  end
+end
+```
+
+3. **Update API Documentation**:
+```markdown
+#### GET /api/v1/flodoc/new_feature
+
+**Authentication**: Bearer JWT token
+
+**Response**:
+```json
+{
+  "data": "example"
+}
+```
+
+---
+
+#### 1.8.5 Adding New Authentication Providers
+
+**Current**: Email-based ad-hoc tokens for students/sponsors
+
+**Adding OAuth Provider:**
+
+1. **Add OmniAuth Strategy** (Gemfile):
+```ruby
+gem 'omniauth-google-oauth2'
+gem 'omniauth-saml'  # For enterprise SSO
+```
+
+2. **Configure Provider** (config/initializers/omniauth.rb):
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  provider :saml,
+    issuer: 'flodoc',
+    idp_sso_target_url: ENV['SAML_SSO_URL']
+end
+```
+
+3. **Create Authentication Handler**:
+```ruby
+# app/services/flodoc/auth/oauth_handler.rb
+module Flodoc
+  module Auth
+    class OAuthHandler
+      def self.authenticate(provider, auth_hash)
+        user = User.find_or_create_by(email: auth_hash.info.email) do |u|
+          u.password = SecureRandom.hex(16)
+          u.name = auth_hash.info.name
+        end
+        # Generate portal-specific token
+        Flodoc::PortalToken.create!(user: user, provider: provider)
+      end
+    end
+  end
+end
+```
+
+---
+
+#### 1.8.6 Customizing UI Components
+
+**Current**: Vue 3 + TailwindCSS 3.4.17 + DaisyUI 3.9.4
+
+**Customization Pattern:**
+
+1. **Override Design Tokens** (app/javascript/design-system/tailwind.config.js):
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        flodoc: {
+          primary: '#1e3a8a',  // Custom blue
+          accent: '#f59e0b',   // Custom amber
+        }
+      }
+    }
+  }
+}
+```
+
+2. **Create Custom Component**:
+```vue
+<!-- app/javascript/elements/FlodocCustomButton.vue -->
+<template>
+  <button
+    :class="['btn', `btn-${variant}`, customClass]"
+    @click="$emit('click')"
+  >
+    <slot />
+  </button>
+</template>
+
+<script setup>
+defineProps({
+  variant: { type: String, default: 'primary' },
+  customClass: { type: String, default: '' }
+})
+</script>
+
+<style scoped>
+.btn-primary {
+  @apply bg-flodoc-primary text-white hover:bg-blue-800;
+}
+</style>
+```
+
+3. **Register Globally**:
+```javascript
+// app/javascript/application.js
+import FlodocCustomButton from './elements/FlodocCustomButton.vue'
+app.component('FlodocCustomButton', FlodocCustomButton)
+```
+
+---
+
+#### 1.8.7 Extending Background Jobs
+
+**Current**: Sidekiq queues for emails, webhooks, PDF generation
+
+**Adding New Job Type:**
+
+1. **Create Job**:
+```ruby
+# app/jobs/flodoc/custom_analysis_job.rb
+class Flodoc::CustomAnalysisJob < ApplicationJob
+  queue_as :analytics
+
+  def perform(cohort_id)
+    cohort = Flodoc::Cohort.find(cohort_id)
+    # Custom analysis logic
+    Flodoc::AnalysisReport.generate(cohort)
+  end
+end
+```
+
+2. **Enqueue Job**:
+```ruby
+# In any service or controller
+Flodoc::CustomAnalysisJob.perform_later(@cohort.id)
+```
+
+3. **Monitor in Sidekiq**:
+```ruby
+# config/sidekiq.yml
+:queues:
+  - default
+  - mailers
+  - webhooks
+  - pdf
+  - analytics  # New queue
+```
+
+---
+
+#### 1.8.8 Adding Custom Validations
+
+**Current**: Standard Rails validations
+
+**Custom Validation Pattern:**
+
+1. **Create Validator**:
+```ruby
+# app/validators/flodoc/sponsor_email_validator.rb
+class Flodoc::SponsorEmailValidator < ActiveModel::Validator
+  def validate(record)
+    unless record.email.end_with?('@company.com')
+      record.errors.add(:email, 'must be a company email')
+    end
+  end
+end
+```
+
+2. **Use in Model**:
+```ruby
+# app/models/flodoc/submitter.rb
+class Flodoc::Submitter < ApplicationRecord
+  validates_with Flodoc::SponsorEmailValidator, if: :sponsor?
+end
+```
+
+---
+
+#### 1.8.9 Database Extension Patterns
+
+**Adding New Tables:**
+
+1. **Migration**:
+```ruby
+# db/migrate/20260114120000_create_flodoc_custom_data.rb
+class CreateFlodocCustomData < ActiveRecord::Migration[7.0]
+  def change
+    create_table :flodoc_custom_data do |t|
+      t.references :cohort, null: false, foreign_key: true
+      t.jsonb :data
+      t.timestamps
+    end
+
+    add_index :flodoc_custom_data, [:cohort_id, :created_at]
+  end
+end
+```
+
+2. **Model**:
+```ruby
+# app/models/flodoc/custom_datum.rb
+class Flodoc::CustomDatum < ApplicationRecord
+  belongs_to :cohort
+  validates :data, presence: true
+end
+```
+
+---
+
+#### 1.8.10 Event System Extension
+
+**Current**: SubmissionEvents for audit trail
+
+**Adding Custom Events:**
+
+1. **Define Event Types**:
+```ruby
+# app/models/flodoc/event_type.rb
+class Flodoc::EventType < ApplicationRecord
+  TYPES = %w[
+    cohort_created
+    cohort_completed
+    submitter_signed
+    sponsor_invited
+    document_downloaded
+    custom_alert_sent  # New event
+  ].freeze
+end
+```
+
+2. **Track Custom Events**:
+```ruby
+# app/services/flodoc/event_tracker.rb
+module Flodoc
+  class EventTracker
+    def self.track(cohort, event_type, user, metadata = {})
+      Flodoc::SubmissionEvent.create!(
+        cohort: cohort,
+        event_type: event_type,
+        user: user,
+        metadata: metadata
+      )
+    end
+  end
+end
+```
+
+3. **Query Events**:
+```ruby
+# In reports or analytics
+Flodoc::SubmissionEvent
+  .where(cohort_id: cohort.id)
+  .where(event_type: 'custom_alert_sent')
+  .where('created_at > ?', 30.days.ago)
+  .count
+```
+
+---
+
+#### 1.8.11 Integration Checklist
+
+When extending FloDoc, verify:
+
+- ✅ **Security**: New endpoints use JWT/auth tokens
+- ✅ **Multi-tenancy**: Check single-institution vs multi-institution
+- ✅ **Database**: Proper foreign keys and indexes
+- ✅ **Background Jobs**: Sidekiq queue exists
+- ✅ **API Versioning**: Use `/api/v1/flodoc/` namespace
+- ✅ **Vue Components**: Follow design system (FR28)
+- ✅ **Testing**: RSpec coverage for new code
+- ✅ **Rollback**: Migration can be reversed
+- ✅ **Documentation**: Update this extensibility guide
+
+---
+
+**Note**: This is optional documentation for future development. All current stories (1.1-8.0.1) are complete and ready for implementation.
 
 ---
 
@@ -1363,6 +1907,99 @@ Models must follow existing DocuSeal patterns:
 
 ##### Technical Implementation Notes
 
+**Feature Flag System:**
+
+```ruby
+# app/models/feature_flag.rb
+class FeatureFlag < ApplicationRecord
+  validates :name, uniqueness: true
+
+  def self.enabled?(feature_name)
+    flag = find_by(name: feature_name)
+    flag&.enabled || false
+  end
+
+  def self.enable!(feature_name)
+    find_or_create_by(name: feature_name).update(enabled: true)
+  end
+
+  def self.disable!(feature_name)
+    find_or_create_by(name: feature_name).update(enabled: false)
+  end
+end
+
+# app/controllers/concerns/feature_flag_check.rb
+module FeatureFlagCheck
+  extend ActiveSupport::Concern
+
+  def require_feature(feature_name)
+    unless FeatureFlag.enabled?(feature_name)
+      render json: { error: "Feature not available" }, status: 403
+    end
+  end
+end
+
+# Usage in FloDoc controllers
+class Flodoc::CohortsController < ApplicationController
+  before_action :require_feature(:flodoc_cohorts)
+
+  # ...
+end
+```
+
+**Database Migration for Feature Flags:**
+```ruby
+# db/migrate/20250113000001_create_feature_flags.rb
+class CreateFeatureFlags < ActiveRecord::Migration[7.0]
+  def change
+    create_table :feature_flags do |t|
+      t.string :name, null: false, index: { unique: true }
+      t.boolean :enabled, default: false
+      t.text :description
+
+      t.timestamps
+    end
+
+    # Seed default flags
+    reversible do |dir|
+      dir.up do
+        FeatureFlag.create!(name: 'flodoc_cohorts', enabled: false, description: '3-portal cohort management')
+        FeatureFlag.create!(name: 'flodoc_portals', enabled: false, description: 'Student/Sponsor portals')
+      end
+    end
+  end
+end
+```
+
+**Admin UI for Feature Flags:**
+```vue
+<!-- app/javascript/tp_portal/views/FeatureFlags.vue -->
+<template>
+  <div class="feature-flags">
+    <h2>Feature Flags</h2>
+    <div v-for="flag in flags" :key="flag.name" class="flag-row">
+      <span>{{ flag.description }}</span>
+      <ToggleSwitch v-model="flag.enabled" @change="updateFlag(flag)" />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { FeatureFlagAPI } from '@/tp_portal/api/feature_flags'
+
+const flags = ref([])
+
+onMounted(async () => {
+  flags.value = await FeatureFlagAPI.getAll()
+})
+
+async function updateFlag(flag) {
+  await FeatureFlagAPI.update(flag.name, { enabled: flag.enabled })
+}
+</script>
+```
+
 **Model Structure:**
 
 ```ruby
@@ -1520,22 +2157,29 @@ end
 4. ✅ All scopes defined
 5. ✅ State machine logic correct (if used)
 6. ✅ Model methods work as specified
+7. ✅ FeatureFlag model created with enabled?, enable!, disable! methods
+8. ✅ FeatureFlagCheck concern implemented
+9. ✅ Default flags seeded (flodoc_cohorts, flodoc_portals)
+10. ✅ All FloDoc routes protected by feature flags
 
 **Integration:**
 1. ✅ IV1: Models don't break existing DocuSeal models
 2. ✅ IV2: Associations work with existing tables (templates, submissions)
 3. ✅ IV3: Query performance acceptable with 1000+ records
+4. ✅ Feature flags integrate with existing authentication
 
 **Security:**
 1. ✅ No mass assignment vulnerabilities
 2. ✅ Proper attribute whitelisting
 3. ✅ Email validation on all email fields
+4. ✅ Feature flags can disable FloDoc instantly
 
 **Quality:**
 1. ✅ Follow existing code style (RuboCop compliant)
 2. ✅ All methods have YARD comments
 3. ✅ Test coverage > 80%
 4. ✅ No N+1 query issues
+5. ✅ Feature flag tests included
 
 ##### Integration Verification (IV1-3)
 
@@ -1555,6 +2199,15 @@ end
 - Verify that `Cohort.includes(:cohort_enrollments)` doesn't cause N+1
 - Verify that queries with 1000 cohorts perform in < 100ms
 - Verify that state machine transitions are fast
+
+**IV4: Feature Flag Integration Verification**
+- Verify that `FeatureFlag.enabled?(:flodoc_cohorts)` returns correct boolean
+- Verify that `FeatureFlag.enable!('flodoc_cohorts')` sets flag to true
+- Verify that `FeatureFlag.disable!('flodoc_cohorts')` sets flag to false
+- Verify that `require_feature(:flodoc_cohorts)` blocks access when disabled
+- Verify that `require_feature(:flodoc_cohorts)` allows access when enabled
+- Verify that feature flag UI displays all flags correctly
+- Verify that admin can toggle flags via UI
 
 ##### Test Requirements
 
@@ -1608,6 +2261,93 @@ FactoryBot.define do
 end
 ```
 
+**Feature Flag Specs:**
+```ruby
+# spec/models/feature_flag_spec.rb
+describe FeatureFlag do
+  describe 'validations' do
+    it { should validate_uniqueness_of(:name) }
+  end
+
+  describe '.enabled?' do
+    it 'returns true when flag is enabled' do
+      FeatureFlag.create!(name: 'test_feature', enabled: true)
+      expect(FeatureFlag.enabled?(:test_feature)).to be true
+    end
+
+    it 'returns false when flag is disabled' do
+      FeatureFlag.create!(name: 'test_feature', enabled: false)
+      expect(FeatureFlag.enabled?(:test_feature)).to be false
+    end
+
+    it 'returns false when flag does not exist' do
+      expect(FeatureFlag.enabled?(:nonexistent)).to be false
+    end
+  end
+
+  describe '.enable!' do
+    it 'creates and enables a flag' do
+      FeatureFlag.enable!(:new_feature)
+      flag = FeatureFlag.find_by(name: 'new_feature')
+      expect(flag.enabled).to be true
+    end
+  end
+
+  describe '.disable!' do
+    it 'creates and disables a flag' do
+      FeatureFlag.disable!(:new_feature)
+      flag = FeatureFlag.find_by(name: 'new_feature')
+      expect(flag.enabled).to be false
+    end
+  end
+end
+
+# spec/concerns/feature_flag_check_spec.rb
+describe FeatureFlagCheck do
+  controller(ApplicationController) do
+    include FeatureFlagCheck
+    before_action :require_feature(:test_feature)
+
+    def index
+      render json: { success: true }
+    end
+  end
+
+  it 'allows access when feature is enabled' do
+    FeatureFlag.enable!(:test_feature)
+    get :index
+    expect(response).to have_http_status(:ok)
+  end
+
+  it 'blocks access when feature is disabled' do
+    FeatureFlag.disable!(:test_feature)
+    get :index
+    expect(response).to have_http_status(:forbidden)
+  end
+end
+```
+
+**Integration Specs:**
+```ruby
+# spec/requests/flodoc/cohorts_spec.rb
+describe 'FloDoc Cohorts', type: :request do
+  before do
+    FeatureFlag.enable!(:flodoc_cohorts)
+  end
+
+  it 'allows access when feature flag is enabled' do
+    get '/flodoc/cohorts'
+    expect(response).to have_http_status(:ok)
+  end
+
+  it 'blocks access when feature flag is disabled' do
+    FeatureFlag.disable!(:flodoc_cohorts)
+    get '/flodoc/cohorts'
+    expect(response).to have_http_status(:forbidden)
+  end
+end
+```
+
 ##### Rollback Procedure
 
 **If models cause issues:**
@@ -1631,6 +2371,15 @@ end
 - Code review before merge
 - Comprehensive test coverage
 - Staging environment testing
+
+##### Success Metrics
+
+- **Feature Flag Accuracy**: 100% of flag checks return correct state
+- **Toggle Success Rate**: 99.9% of enable/disable operations succeed
+- **Access Control**: 0 unauthorized access when flag disabled
+- **UI Responsiveness**: Feature flag UI loads in <500ms
+- **Test Coverage**: 100% of feature flag code covered
+- **Zero Breaking Changes**: All existing tests pass
 
 #### Story 1.3: Authorization Layer Extension
 
@@ -6190,6 +6939,418 @@ Token format: JWT with 30-day expiration
 }
 ```
 
+**Complete API Contract Examples:**
+
+---
+
+##### Endpoint: POST /api/v1/cohorts
+
+**Purpose:** Create a new cohort with sponsor and student requirements
+
+**Request Headers:**
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
+Content-Type: application/json
+X-Request-ID: uuid-for-tracing
+```
+
+**Request Body:**
+```json
+{
+  "name": "Q1 2026 Learnership Program",
+  "template_id": 42,
+  "sponsor_email": "sponsor@company.co.za",
+  "program_type": "learnership",
+  "required_student_uploads": ["id_document", "matric_certificate", "cv"],
+  "cohort_metadata": {
+    "budget_code": "LDN-2026-001",
+    "start_date": "2026-02-01",
+    "end_date": "2026-07-31"
+  }
+}
+```
+
+**Success Response (201 Created):**
+```json
+{
+  "data": {
+    "id": 123,
+    "name": "Q1 2026 Learnership Program",
+    "template_id": 42,
+    "sponsor_email": "sponsor@company.co.za",
+    "program_type": "learnership",
+    "status": "draft",
+    "required_student_uploads": ["id_document", "matric_certificate", "cv"],
+    "created_at": "2026-01-14T10:30:00Z",
+    "updated_at": "2026-01-14T10:30:00Z"
+  },
+  "message": "Cohort created successfully"
+}
+```
+
+**Error Responses:**
+
+*400 Bad Request - Invalid JSON:*
+```json
+{
+  "error": "Invalid JSON format",
+  "details": "Unexpected token '}' at position 45"
+}
+```
+
+*401 Unauthorized - Missing/Invalid Token:*
+```json
+{
+  "error": "Authentication required",
+  "message": "Bearer token missing or invalid"
+}
+```
+
+*403 Forbidden - Insufficient Permissions:*
+```json
+{
+  "error": "Access denied",
+  "message": "User does not have permission to create cohorts"
+}
+```
+
+*404 Not Found - Template Doesn't Exist:*
+```json
+{
+  "error": "Template not found",
+  "message": "Template with ID 42 does not exist"
+}
+```
+
+*422 Unprocessable Entity - Validation Failed:*
+```json
+{
+  "error": "Validation failed",
+  "errors": [
+    "Name can't be blank",
+    "Sponsor email is invalid",
+    "Program type must be one of: learnership, internship, candidacy"
+  ],
+  "details": {
+    "sponsor_email": "must be a valid email address"
+  }
+}
+```
+
+---
+
+##### Endpoint: GET /api/v1/cohorts
+
+**Purpose:** List all cohorts with pagination and filtering
+
+**Request Headers:**
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
+Accept: application/json
+```
+
+**Query Parameters:**
+```
+GET /api/v1/cohorts?page=1&per_page=20&status=draft&program_type=learnership&search=Q1
+```
+
+**Success Response (200 OK):**
+```json
+{
+  "data": [
+    {
+      "id": 123,
+      "name": "Q1 2026 Learnership Program",
+      "program_type": "learnership",
+      "status": "draft",
+      "sponsor_email": "sponsor@company.co.za",
+      "student_count": 15,
+      "completed_count": 0,
+      "created_at": "2026-01-14T10:30:00Z"
+    },
+    {
+      "id": 122,
+      "name": "Q4 2025 Internship Program",
+      "program_type": "internship",
+      "status": "completed",
+      "sponsor_email": "hr@company.co.za",
+      "student_count": 25,
+      "completed_count": 25,
+      "created_at": "2025-10-01T09:00:00Z"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "current_page": 1,
+      "per_page": 20,
+      "total_pages": 3,
+      "total_entries": 45
+    },
+    "filters": {
+      "status": "draft",
+      "program_type": "learnership",
+      "search": "Q1"
+    }
+  }
+}
+```
+
+**Error Responses:**
+
+*429 Too Many Requests - Rate Limit Exceeded:*
+```json
+{
+  "error": "Rate limit exceeded",
+  "message": "100 requests per minute limit reached",
+  "retry_after": 45
+}
+```
+
+---
+
+##### Endpoint: POST /api/v1/cohorts/{id}/start_signing
+
+**Purpose:** Transition cohort from draft to TP signing phase
+
+**Request Headers:**
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "notify_tp": true,
+  "message": "Please review and sign the cohort agreement"
+}
+```
+
+**Success Response (200 OK):**
+```json
+{
+  "data": {
+    "id": 123,
+    "status": "tp_signing",
+    "tp_signed_at": "2026-01-14T11:00:00Z",
+    "next_state": "student_enrollment"
+  },
+  "message": "Cohort moved to TP signing phase"
+}
+```
+
+**Error Responses:**
+
+*422 Unprocessable Entity - Invalid State Transition:*
+```json
+{
+  "error": "Invalid state transition",
+  "message": "Cannot transition from 'completed' to 'tp_signing'",
+  "allowed_transitions": ["draft -> tp_signing", "tp_signing -> student_enrollment"]
+}
+```
+
+*409 Conflict - Already Signed:*
+```json
+{
+  "error": "Already signed",
+  "message": "TP has already signed this cohort"
+}
+```
+
+---
+
+##### Endpoint: GET /api/v1/sponsor/{token}/dashboard
+
+**Purpose:** Sponsor dashboard view (ad-hoc authentication)
+
+**Request Headers:**
+```
+Accept: application/json
+```
+
+**Path Parameters:**
+- `token`: Ad-hoc JWT token sent via email
+
+**Success Response (200 OK):**
+```json
+{
+  "data": {
+    "cohort": {
+      "id": 123,
+      "name": "Q1 2026 Learnership Program",
+      "program_type": "learnership",
+      "tp_signed_at": "2026-01-14T11:00:00Z"
+    },
+    "students": [
+      {
+        "email": "student1@example.com",
+        "status": "complete",
+        "completed_at": "2026-01-14T12:00:00Z",
+        "document_url": "/api/v1/submissions/456/document"
+      },
+      {
+        "email": "student2@example.com",
+        "status": "in_progress",
+        "last_activity": "2026-01-14T12:30:00Z"
+      }
+    ],
+    "summary": {
+      "total_students": 15,
+      "completed": 12,
+      "pending": 3,
+      "completion_rate": "80%"
+    },
+    "actions": {
+      "can_review": true,
+      "can_finalize": false,
+      "can_remind": true
+    }
+  },
+  "token_expiry": "2026-02-13T10:30:00Z"
+}
+```
+
+**Error Responses:**
+
+*401 Unauthorized - Invalid Token:*
+```json
+{
+  "error": "Invalid token",
+  "message": "Sponsor token expired or invalid",
+  "renewal_url": "/api/v1/sponsor/renew?email=sponsor@company.co.za"
+}
+```
+
+*403 Forbidden - Access Denied:*
+```json
+{
+  "error": "Access denied",
+  "message": "Cohort not ready for sponsor review yet"
+}
+```
+
+---
+
+##### Endpoint: POST /api/v1/students/{token}/submit
+
+**Purpose:** Student submits their completed document
+
+**Request Headers:**
+```
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "values": {
+    "full_name": "John Doe",
+    "id_number": "9001015000081",
+    "signature": "data:image/png;base64,iVBORw0KGgo...",
+    "declaration": true,
+    "upload_url": "https://storage.example.com/uploads/john_doe_cv.pdf"
+  }
+}
+```
+
+**Success Response (200 OK):**
+```json
+{
+  "data": {
+    "submission_id": 456,
+    "status": "completed",
+    "completed_at": "2026-01-14T13:00:00Z",
+    "document_url": "/api/v1/submissions/456/final-document"
+  },
+  "message": "Document submitted successfully"
+}
+```
+
+**Error Responses:**
+
+*400 Bad Request - Missing Required Fields:*
+```json
+{
+  "error": "Missing required fields",
+  "errors": [
+    "signature is required",
+    "id_number must be 13 digits"
+  ]
+}
+```
+
+*422 Unprocessable Entity - Invalid Data:*
+```json
+{
+  "error": "Validation failed",
+  "errors": [
+    "ID number format invalid",
+    "Signature must be a valid image"
+  ],
+  "invalid_fields": {
+    "id_number": "Must be 13 digits without spaces",
+    "signature": "Image must be PNG or JPG, max 2MB"
+  }
+}
+```
+
+---
+
+##### Endpoint: POST /api/v1/webhooks
+
+**Purpose:** Webhook event delivery (internal system)
+
+**Request Headers:**
+```
+Content-Type: application/json
+X-Signature: sha256=...
+X-Event-Type: submission.completed
+```
+
+**Request Body:**
+```json
+{
+  "event": "submission.completed",
+  "timestamp": "2026-01-14T13:00:00Z",
+  "data": {
+    "submission_id": 456,
+    "cohort_id": 123,
+    "student_email": "student1@example.com",
+    "document_url": "https://api.example.com/submissions/456/document"
+  }
+}
+```
+
+**Success Response (200 OK):**
+```json
+{
+  "status": "received",
+  "message": "Event processed successfully"
+}
+```
+
+**Error Responses:**
+
+*401 Unauthorized - Invalid Signature:*
+```json
+{
+  "error": "Invalid signature",
+  "message": "Webhook signature verification failed"
+}
+```
+
+*500 Internal Server Error:*
+```json
+{
+  "error": "Webhook delivery failed",
+  "message": "Max retry attempts exceeded",
+  "retry_count": 3
+}
+```
+
+---
+
 **Rate Limiting:**
 
 ```ruby
@@ -6233,38 +7394,61 @@ end
 1. ✅ OpenAPI/Swagger spec for all endpoints
 2. ✅ Static documentation in /docs/api
 3. ✅ Versioning strategy documented
-4. ✅ Authentication methods documented
-5. ✅ Error response format documented
-6. ✅ Rate limiting implemented and documented
-7. ✅ Code examples provided
+4. ✅ Authentication methods documented (JWT + ad-hoc tokens)
+5. ✅ Error response format documented with all error codes
+6. ✅ Rate limiting implemented and documented (100 req/min)
+7. ✅ Code examples provided for all 6 core endpoints
 8. ✅ Change log maintained
+9. ✅ Complete request/response examples for POST /cohorts
+10. ✅ Complete request/response examples for GET /cohorts
+11. ✅ Complete request/response examples for POST /cohorts/{id}/start_signing
+12. ✅ Complete request/response examples for GET /sponsor/{token}/dashboard
+13. ✅ Complete request/response examples for POST /students/{token}/submit
+14. ✅ Complete request/response examples for POST /webhooks
+15. ✅ All error scenarios documented (400, 401, 403, 404, 422, 429, 500)
 
 **Quality:**
 1. ✅ Documentation is comprehensive
 2. ✅ Examples are runnable/verifiable
 3. ✅ Coverage of all 11+ endpoints
 4. ✅ Clear migration path for API versions
+5. ✅ All HTTP status codes documented
+6. ✅ All request headers documented
+7. ✅ All response fields explained
+8. ✅ Ad-hoc token flow clearly documented
 
 **Integration:**
 1. ✅ IV1: Documentation matches actual implementation
 2. ✅ IV2: Examples work without modification
 3. ✅ IV3: Static docs don't affect app performance
+4. ✅ IV4: All documented endpoints exist in routes
 
-##### Integration Verification (IV1-3)
+##### Integration Verification (IV1-4)
 
 **IV1: Documentation Accuracy**
-- Verify all documented endpoints exist
-- Verify request/response schemas match
-- Verify examples work with real API
+- Verify all documented endpoints exist in routes
+- Verify request/response schemas match actual implementation
+- Verify examples work with real API calls
+- Verify all error codes are correct
 
 **IV2: Readability**
 - Verify docs are clear and understandable
-- Verify examples are helpful
+- Verify examples are helpful and complete
 - Verify structure is logical
+- Verify ad-hoc token flow is explained clearly
 
 **IV3: Impact**
 - Verify docs don't slow down app
-- Verify-generated docs are up-to-date
+- Verify generated docs are up-to-date
+- Verify static docs load quickly
+
+**IV4: API Contract Completeness**
+- Verify POST /cohorts examples match actual request/response
+- Verify GET /cohorts pagination works as documented
+- Verify state transition endpoints work as specified
+- Verify sponsor/student token authentication works
+- Verify webhook delivery matches documentation
+- Verify all headers and status codes are correct
 
 ##### Test Requirements
 
@@ -6318,6 +7502,15 @@ end
 - Keep docs in repository (version controlled)
 - Automate swagger generation from tests
 - Review docs before releases
+
+##### Success Metrics
+
+- **Documentation Coverage**: 100% of endpoints documented with examples
+- **Example Accuracy**: 100% of examples work without modification
+- **Error Code Coverage**: All 7 error types documented (400, 401, 403, 404, 422, 429, 500)
+- **Endpoint Coverage**: All 11+ API endpoints fully documented
+- **Readability Score**: Documentation passes clarity review
+- **Version Clarity**: Migration path between versions is clear
 
 ---
 
@@ -25113,10 +26306,341 @@ echo "Security audit complete."
 - Emergency patches follow standard deployment process
 - All changes require security review
 
+##### Acceptance Criteria
+
+**Functional:**
+1. ✅ OWASP Top 10 Verification
+   - SQL injection prevention tested
+   - XSS protection verified
+   - CSRF tokens validated
+   - Authentication bypass attempts blocked
+   - Security misconfigurations identified
+
+2. ✅ Authentication Flow Security
+   - Ad-hoc token generation security verified
+   - Token expiration (24h) enforced
+   - JWT secret strength validated (min 256 bits)
+   - Token renewal flow secure
+   - Token reuse prevention working
+   - Cross-portal access blocked
+
+3. ✅ Data Privacy (POPIA Compliance)
+   - Personal data encrypted at rest
+   - Right to deletion implemented
+   - Data retention policies defined (7 years for legal docs)
+   - Student data isolation verified
+   - Audit trail integrity maintained
+
+4. ✅ Penetration Testing Scope
+   - API endpoint fuzzing completed
+   - Token manipulation attempts blocked
+   - Role escalation testing passed
+   - Bulk operation rate limiting verified
+   - Webhook signature verification working
+   - Open redirect prevention validated
+
+5. ✅ Security Headers
+   - Content-Security-Policy configured
+   - X-Frame-Options set to DENY
+   - HSTS enabled
+   - CORS policies restricted
+   - X-Content-Type-Options set
+   - X-XSS-Protection enabled
+
+**Integration:**
+1. ✅ Security tests integrate with CI/CD pipeline
+2. ✅ Audit results logged to SecurityEvent model
+3. ✅ Brakeman runs on every commit
+4. ✅ Security scan reports generated
+
+**Security:**
+1. ✅ No critical vulnerabilities found
+2. ✅ All findings documented with remediation
+3. ✅ Security audit report approved by PO
+4. ✅ Penetration test summary provided
+
+**Quality:**
+1. ✅ Security audit report generated
+2. ✅ Penetration test summary provided
+3. ✅ All test cases passing
+4. ✅ Documentation complete
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- Security tests call `/api/v1/flodoc/*` endpoints
+- Verify token validation on all routes
+- Test rate limiting on auth endpoints
+- Validate webhook signature verification
+
+**IV2: Pinia Store**
+- N/A (backend security focus)
+
+**IV3: Getters**
+- N/A (backend security focus)
+
+**IV4: Token Routing**
+- Ad-hoc token security verified
+- JWT validation on all protected routes
+- Token expiration enforced
+- Token renewal flow tested
+
+##### Rollback Procedure
+
+**If security audit fails (critical vulnerabilities found):**
+1. **Stop deployment immediately** - Do not proceed to production
+2. **Document all critical findings** in security issue tracker
+3. **Prioritize remediation** by severity (Critical > High > Medium)
+4. **Fix critical issues first**:
+   - Authentication bypasses
+   - Data exposure vulnerabilities
+   - SQL injection flaws
+5. **Re-run specific tests** for fixed vulnerabilities
+6. **Full re-audit required** before proceeding
+7. **Get security sign-off** from external auditor if needed
+
+**If security audit reveals data breach risk:**
+1. **Immediately disable affected endpoints**
+2. **Force logout all active sessions**
+3. **Rotate all JWT secrets**
+4. **Notify stakeholders** (PO, legal, compliance)
+5. **Conduct forensic analysis**
+6. **Implement additional monitoring**
+7. **Document incident for compliance**
+
+**If POPIA compliance issues found:**
+1. **Pause all data collection**
+2. **Review data retention policies**
+3. **Implement right-to-deletion mechanism**
+4. **Update privacy documentation**
+5. **Get legal review**
+6. **Re-audit compliance**
+
+**Data Safety:**
+- All security tests use isolated test environment
+- No production data at risk during testing
+- Security findings documented, not exploited
+- All changes require security review before merge
+- Emergency patches follow standard deployment process
+
+##### Test Requirements
+
+**Component Specs:**
+```ruby
+# spec/security/authentication_spec.rb
+require 'rails_helper'
+
+RSpec.describe 'Authentication Security', type: :security do
+  describe 'JWT Token Security' do
+    it 'prevents token tampering' do
+      original_token = generate_valid_token
+      tampered_token = original_token[0..-5] + 'X' * 4
+
+      get '/api/v1/tp/cohorts',
+        headers: { 'Authorization' => "Bearer #{tampered_token}" }
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'enforces token expiration' do
+      expired_token = generate_expired_token
+
+      get '/api/v1/tp/cohorts',
+        headers: { 'Authorization' => "Bearer #{expired_token}" }
+
+      expect(response).to have_http_status(:unauthorized)
+      expect(JSON.parse(response.body)['error']).to include('expired')
+    end
+
+    it 'prevents token reuse after renewal' do
+      token = generate_valid_token
+      old_token = token.dup
+
+      # Renew token
+      post '/api/v1/auth/renew',
+        headers: { 'Authorization' => "Bearer #{old_token}" }
+
+      expect(response).to have_http_status(:success)
+
+      # Old token should be invalid
+      get '/api/v1/tp/cohorts',
+        headers: { 'Authorization' => "Bearer #{old_token}" }
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
+  describe 'POPIA Compliance' do
+    it 'encrypts personal data at rest' do
+      cohort = create(:cohort, student_name: 'John Doe', student_email: 'john@example.com')
+
+      # Verify database doesn't contain plaintext
+      raw_cohort = Cohort.find(cohort.id)
+      expect(raw_cohort.encrypted_student_name).not_to eq('John Doe')
+    end
+
+    it 'implements right to deletion' do
+      student = create(:student)
+
+      expect {
+        GDPRCompliance.delete_user_data(student.id)
+      }.to change { Student.where(id: student.id).count }.by(0) # Anonymized, not deleted
+        .and change { student.reload.email }.to('anonymized@local')
+    end
+
+    it 'enforces data retention policies' do
+      old_cohort = create(:cohort, created_at: 7.years.ago)
+
+      expect {
+        Cohort.enforce_retention_policy!
+      }.to change(Cohort, :count).by(-1)
+    end
+  end
+
+  describe 'OWASP Top 10 Coverage' do
+    it 'prevents SQL injection' do
+      malicious_params = {
+        name: "Cohort'; DROP TABLE cohorts; --",
+        student_emails: ["test@example.com'; DROP TABLE users; --"]
+      }
+
+      post '/api/v1/tp/cohorts',
+        params: malicious_params,
+        headers: { 'Authorization' => "Bearer #{tp_token}" }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Cohort.count).to eq(0)
+    end
+
+    it 'prevents XSS attacks' do
+      post '/api/v1/tp/cohorts',
+        params: {
+          name: "<script>alert('xss')</script>",
+          student_emails: ["test@example.com<script>alert(1)</script>"]
+        },
+        headers: { 'Authorization' => "Bearer #{tp_token}" }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+
+    it 'validates file uploads' do
+      # Test malicious file upload
+      post '/api/v1/student/documents',
+        params: {
+          file: fixture_file_upload('malicious.exe', 'application/x-msdownload')
+        },
+        headers: { 'Authorization' => "Bearer #{student_token}" }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
+
+  describe 'Penetration Testing Scenarios' do
+    it 'prevents horizontal privilege escalation' do
+      student_a_token = generate_student_token(cohort, student_a)
+      student_b_document = create(:submission, cohort: cohort, student: student_b)
+
+      get "/api/v1/student/documents/#{student_b_document.id}",
+        headers: { 'Authorization' => "Bearer #{student_a_token}" }
+
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'prevents vertical privilege escalation' do
+      student_token = generate_student_token
+
+      post '/api/v1/tp/cohorts',
+        params: { name: 'Hacked Cohort' },
+        headers: { 'Authorization' => "Bearer #{student_token}" }
+
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it 'prevents token brute force attacks' do
+      100.times do
+        get '/api/v1/tp/cohorts',
+          headers: { 'Authorization' => "Bearer #{invalid_token}" }
+      end
+
+      expect(response).to have_http_status(:too_many_requests)
+    end
+  end
+
+  describe 'Security Headers' do
+    it 'enforces HTTPS' do
+      get 'http://localhost:3000/api/v1/tp/cohorts',
+        headers: { 'Authorization' => "Bearer #{tp_token}" }
+
+      expect([301, 302, 400]).to include(response.status)
+    end
+
+    it 'has secure headers' do
+      get '/api/v1/tp/cohorts',
+        headers: { 'Authorization' => "Bearer #{tp_token}" }
+
+      expect(response.headers['Content-Security-Policy']).to be_present
+      expect(response.headers['X-Frame-Options']).to eq('DENY')
+      expect(response.headers['Strict-Transport-Security']).to be_present
+    end
+  end
+
+  describe 'Webhook Security' do
+    it 'verifies webhook signatures' do
+      payload = { event: 'submission.completed', id: 123 }
+      signature = generate_webhook_signature(payload)
+
+      post '/api/v1/webhooks/docuseal',
+        params: payload,
+        headers: { 'X-DocuSeal-Signature' => signature }
+
+      expect(response).to have_http_status(:success)
+
+      # Invalid signature
+      post '/api/v1/webhooks/docuseal',
+        params: payload,
+        headers: { 'X-DocuSeal-Signature' => 'invalid' }
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'prevents replay attacks' do
+      payload = { event: 'submission.completed', id: 123, timestamp: Time.now.to_i }
+      signature = generate_webhook_signature(payload)
+
+      # First request
+      post '/api/v1/webhooks/docuseal',
+        params: payload,
+        headers: { 'X-DocuSeal-Signature' => signature }
+
+      expect(response).to have_http_status(:success)
+
+      # Replay request
+      post '/api/v1/webhooks/docuseal',
+        params: payload,
+        headers: { 'X-DocuSeal-Signature' => signature }
+
+      expect(response).to have_http_status(:conflict)
+    end
+  end
+end
+```
+
+**Integration Tests:**
+- End-to-end security workflow tests
+- Token lifecycle tests (creation, renewal, expiration)
+- Role-based access control tests
+- Data encryption verification
+- Audit logging verification
+
+**E2E Tests:**
+- Penetration simulation tests using OWASP ZAP
+- Complete user journey security validation
+- Rate limiting stress tests
+- Webhook security validation
+
 ##### Risk Assessment
 
-**High Risk** because:
-- Security vulnerabilities can lead to data breaches
+**High Risk because:**
 - Document signing involves sensitive PII
 - GDPR violations carry heavy fines
 - Authentication bypass is critical
@@ -27269,3 +28793,325 @@ echo "System ready for management demo!"
 - Bulk operations demonstrated clearly
 - Cohort management workflow validated
 - Approval to proceed to production infrastructure
+
+---
+
+#### Story 8.5: User Communication & Training Materials
+
+**Status**: Draft
+**Priority**: High (Blocking - Required Before Development)
+**Epic**: Phase 8 - Deployment & Documentation
+**Estimated Effort**: 2 days
+**Risk Level**: Medium
+
+##### User Story
+
+**As a** Training Provider (TP Admin),
+**I want** clear guidance on using FloDoc's 3-portal system,
+**So that** I can manage cohorts effectively without confusion.
+
+##### Background
+
+Existing DocuSeal users need to understand:
+- What changed (3-portal workflow)
+- How to use new features (cohort management)
+- Where to get help (support channels)
+- What's different (ad-hoc student/sponsor access)
+
+Without this communication, adoption will suffer and support will be overwhelmed. This story addresses PO Validation Issue #3 (User Communication & Training Plan Missing).
+
+**Key Deliverables:**
+1. Migration announcement for existing users
+2. TP Portal "Getting Started" guide
+3. Student Portal onboarding tutorial
+4. Sponsor Portal quick-start guide
+5. FAQ with 20 common questions
+6. Support contact process
+
+##### Technical Implementation Notes
+
+**Documentation Structure:**
+```
+docs/user/
+├── migration-announcement.md
+├── tp-portal-guide.md
+├── student-portal-tutorial.md
+├── sponsor-portal-guide.md
+└── faq.md
+```
+
+**Email Templates:**
+```ruby
+# app/views/mailers/user_announcement/
+├── migration_email.html.erb      # Existing users
+├── welcome_floDoc.html.erb       # New users
+└── feature_highlights.html.erb   # Feature overview
+```
+
+**UI Help Integration:**
+```vue
+<!-- app/javascript/tp_portal/components/HelpOverlay.vue -->
+<template>
+  <div class="help-overlay" v-if="showHelp">
+    <div class="help-content">
+      <h2>FloDoc Quick Start</h2>
+      <ol>
+        <li>Create a cohort (5-step wizard)</li>
+        <li>Upload documents and map signatories</li>
+        <li>Sign as TP (auto-fills for all students)</li>
+        <li>Invite students via email</li>
+        <li>Review sponsor submissions</li>
+      </ol>
+      <button @click="dismissHelp">Got it!</button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const showHelp = ref(localStorage.getItem('floDoc_first_login') === 'true')
+
+function dismissHelp() {
+  localStorage.setItem('floDoc_first_login', 'false')
+  showHelp.value = false
+}
+</script>
+```
+
+**Help Button Component:**
+```vue
+<!-- app/javascript/shared/components/HelpButton.vue -->
+<template>
+  <button
+    class="help-btn"
+    @click="openHelp"
+    aria-label="Help"
+  >
+    <svg><!-- question mark icon --></svg>
+  </button>
+</template>
+
+<script setup>
+const props = defineProps(['section'])
+
+function openHelp() {
+  // Open modal with section-specific help
+  emit('open-help', props.section)
+}
+</script>
+```
+
+**Error Help Mapping:**
+```typescript
+// app/javascript/shared/error-help.ts
+export const ERROR_HELP: Record<string, { message: string; action: string }> = {
+  'token_expired': {
+    message: 'Your access link has expired',
+    action: 'Request a new link from your training provider'
+  },
+  'invalid_token': {
+    message: 'This link is invalid',
+    action: 'Contact your training provider'
+  },
+  'cohort_not_found': {
+    message: 'Cohort not found',
+    action: 'Check your email for the correct link'
+  }
+}
+```
+
+##### Acceptance Criteria
+
+**Functional:**
+1. ✅ Migration announcement email sent to all existing DocuSeal users
+2. ✅ TP Portal "Getting Started" guide created (5 steps)
+3. ✅ Student Portal onboarding tutorial (3 steps, mobile-friendly)
+4. ✅ Sponsor Portal quick-start guide (bulk signing focus)
+5. ✅ FAQ document with 20 common questions
+6. ✅ Support contact process defined
+7. ✅ Help overlay on first login for TP Portal
+8. ✅ Help button accessible on all major screens
+9. ✅ Error messages link to contextual help
+
+**UI/UX:**
+1. ✅ Help buttons visible in all portals
+2. ✅ Tutorial tooltips on first login
+3. ✅ Mobile-responsive documentation
+4. ✅ Consistent help iconography
+
+**Integration:**
+1. ✅ Email templates integrate with existing Devise mailer
+2. ✅ Help content served via `/help` routes
+3. ✅ Error help displays in all portals
+
+**Security:**
+1. ✅ No sensitive data in documentation
+2. ✅ Token links in emails are single-use
+3. ✅ Help pages don't expose internal URLs
+
+**Quality:**
+1. ✅ All documentation reviewed by PO
+2. ✅ No spelling/grammar errors
+3. ✅ Consistent branding and tone
+4. ✅ Links verified and working
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- Email sending uses existing Devise mailer infrastructure
+- Help content served via static pages or API endpoints
+- Error help API returns contextual guidance
+
+**IV2: Pinia Store**
+- Help state management for "show on first login"
+- `useHelpStore` with `showTutorial` state
+- `dismissTutorial()` action
+
+**IV3: Getters**
+- `showTutorial: boolean` - determines if help overlay shows
+- `currentHelpSection: string` - loads appropriate guide
+
+**IV4: Token Routing**
+- Email links use secure single-use tokens
+- Token validation before showing help content
+- Token expiration (24h) enforced
+
+##### Rollback Procedure
+
+**If communication fails:**
+1. Revert email templates to original
+2. Remove help overlays from portals
+3. Restore original DocuSeal documentation
+4. Notify users of rollback
+5. Investigate and fix issues
+
+**If documentation is inaccurate:**
+1. Update markdown files immediately
+2. Redeploy help content
+3. Send correction email if needed
+4. Track corrections in changelog
+
+**Data Safety:**
+- No database changes required
+- No production data at risk
+- Documentation can be updated independently
+
+##### Risk Assessment
+
+**MEDIUM because:**
+- User confusion could lead to support overload
+- Poor adoption affects project success
+- Requires coordination with support team
+- Documentation must be accurate
+
+**Specific Risks:**
+1. **Email Fatigue**: Too many emails annoy users
+   - **Mitigation**: Single well-crafted announcement, opt-out option
+
+2. **Documentation Overload**: Too much information
+   - **Mitigation**: Concise guides, progressive disclosure, video tutorials
+
+3. **Support Unprepared**: Team not ready for questions
+   - **Mitigation**: Support team training session before launch
+
+4. **Inaccurate Help**: Wrong information damages trust
+   - **Mitigation**: PO review, user testing, version tracking
+
+**Mitigation Strategies:**
+- Phased communication rollout
+- Clear, concise documentation (< 200 words per guide)
+- Support team training session
+- User feedback collection
+- Regular documentation updates
+
+##### Success Metrics
+
+**User Adoption:**
+- 80% user adoption rate within 30 days
+- <10 support tickets per week
+- Positive user feedback (>4/5 rating)
+- <5% rollback requests
+
+**Documentation Quality:**
+- 100% of links working
+- 0 spelling/grammar errors
+- User testing pass rate >90%
+- Support team confidence >80%
+
+**Communication Effectiveness:**
+- Email open rate >60%
+- Help button usage >30% of sessions
+- Tutorial completion rate >70%
+- FAQ page views >100/month
+
+---
+
+#### Story 8.6: In-App User Documentation & Help System
+
+**Status**: Draft (Deferred - Post-MVP)
+**Priority**: Medium
+**Epic**: Phase 8 - Deployment & Documentation
+**Estimated Effort**: 1.5 days
+**Risk Level**: Low
+
+##### User Story
+
+**As a** User (TP Admin, Student, or Sponsor),
+**I want** contextual help and documentation,
+**So that** I can solve problems without contacting support.
+
+##### Background
+
+Deferred to post-MVP per PO validation. This story adds in-app help system after core functionality is validated.
+
+**Note**: This story is deferred pending successful MVP validation.
+
+##### Acceptance Criteria (Deferred)
+
+**Functional:**
+1. ✅ Help button on every major screen
+2. ✅ Modal with contextual guides
+3. ✅ Error code explanations
+4. ✅ Searchable FAQ
+5. ✅ Keyboard shortcut reference
+
+**UI/UX:**
+1. ✅ Help accessible in 1 click
+2. ✅ Mobile-friendly help modals
+3. ✅ Consistent help iconography
+
+---
+
+#### Story 8.7: Knowledge Transfer & Operations Documentation
+
+**Status**: Draft (Deferred - Post-MVP)
+**Priority**: Medium
+**Epic**: Phase 8 - Deployment & Documentation
+**Estimated Effort**: 1 day
+**Risk Level**: Medium
+
+##### User Story
+
+**As a** Support/Operations Team,
+**I want** comprehensive runbooks and documentation,
+**So that** I can support FloDoc without ad-hoc knowledge transfer.
+
+##### Background
+
+Deferred to post-MVP per PO validation. This story creates operations documentation after system is proven.
+
+**Note**: This story is deferred pending successful MVP validation.
+
+##### Acceptance Criteria (Deferred)
+
+**Functional:**
+1. ✅ Operations runbook created
+2. ✅ Troubleshooting guide (10 common issues)
+3. ✅ Deployment procedure documented
+4. ✅ Incident response plan
+5. ✅ Code review checklist
+6. ✅ Support team training session held
+
+---
+
