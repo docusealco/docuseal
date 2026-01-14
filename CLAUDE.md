@@ -290,11 +290,387 @@ This repository uses **BMAD Core** for AI-assisted development:
 **PDF generation fails:** Verify HexaPDF installation and PDF permissions
 **Webhook delivery fails:** Check network access and SSL certificates
 
+### FloDoc Enhancement - Current Development Workflow
+
+**Completed Task:** `create-brownfield-prd` - Comprehensive PRD for 3-portal cohort management system
+
+**PRD Status:** ✅ COMPLETE
+- **Location:** `docs/prd.md`
+- **Sections:** 6 sections following BMAD brownfield-prd-tmpl.yaml
+- **Stories:** 21 stories across 7 phases (Phases 1-7 complete, Phase 8 with 2 infrastructure stories)
+- **Commits:** Stories 8.0 and 8.0.1 committed to git
+
+**Workflow Progress:**
+1. ✅ **Section 1:** Intro Analysis & Context - Complete
+2. ✅ **Section 2:** Requirements (FR1-FR24) - Complete
+3. ✅ **Section 3:** Technical Constraints & Integration (TC1-TC10) - Complete
+4. ✅ **Section 4:** UI Enhancement Goals (UI1-UI10) - Complete
+5. ✅ **Section 5:** Epic & Story Structure (5.1-5.8) - Complete
+6. ✅ **Section 6:** Epic Details (6.1-6.7) - Complete
+7. ✅ **Section 6.8:** Phase 8 - Deployment & Documentation - Complete (Stories 8.0, 8.0.1)
+
+**Current Phase:** ✅ **VALIDATION PHASE** (PO Agent)
+
+**Next Agent:** PO (Product Owner) Agent
+- **Task:** `po-master-checklist` - Validate all artifacts for integration safety
+- **Purpose:** Verify story completeness, security, integration requirements, and BMAD compliance
+- **Action:** PO will review `docs/prd.md` and flag any issues requiring updates
+
+**After PO Validation:**
+1. If issues found → Return to PM/Dev to fix
+2. If approved → Move to story sharding (optional for IDE)
+3. Then → Story implementation with Dev/QA agents
+
+**Key Principles Followed:**
+- ✅ No code changes until PRD complete
+- ✅ Each story approved before committing
+- ✅ Strict Story 4.6 structure compliance
+- ✅ Advanced elicitation for every section
+- ✅ Single institution model (not multi-tenant)
+- ✅ Ad-hoc access pattern (no account creation for students/sponsors)
+- ✅ Local Docker infrastructure (no production dependencies)
+
+**Deferred Stories (Production Infrastructure):**
+- Story 8.1: Production Infrastructure Setup (AWS)
+- Story 8.2: Deployment Automation & CI/CD
+- Story 8.3: Monitoring & Alerting
+- Story 8.4: Documentation & Training
+
+**Reason for Deferral:** Management wants to validate FloDoc system locally first before investing in production infrastructure.
+
 ### Next Steps for FloDoc Enhancement
 
-1. **Architect Review:** Winston needs to review authentication strategy and multi-tenancy
-2. **Database Migrations:** Create new tables for cohorts, enrollments, institutions
-3. **Portal Development:** Build three separate Vue portals
-4. **Workflow Integration:** Connect to existing DocuSeal submission system
-5. **Excel Export:** Implement using `rubyXL` gem (already in Gemfile)
-6. **Testing:** Add specs for new cohort workflows
+1. **PO Validation** - Run `po-master-checklist` on complete PRD
+2. **Address PO Feedback** - Fix any flagged issues
+3. **Story Sharding** (Optional) - Create docs/prd/ folder for IDE support
+4. **Story Implementation** - Dev agent implements stories 8.0 and 8.0.1
+5. **QA Review** - QA agent reviews implementation
+6. **Management Demo** - Run demo scripts to validate system
+
+### Brownfield PRD Story Structure
+
+**When writing stories in `docs/prd.md` during brownfield mode, STRICTLY adhere to Story 4.6 structure:**
+
+```
+#### Story X.X: [Descriptive Title]
+
+**Status**: Draft/Pending
+**Priority**: High/Medium/Low
+**Epic**: [Epic Name]
+**Estimated Effort**: [X days]
+**Risk Level**: Low/Medium/High
+
+##### User Story
+
+**As a** [role],
+**I want** [action],
+**So that** [benefit].
+
+##### Background
+
+[Context, requirements, and rationale for this story]
+
+##### Technical Implementation Notes
+
+**Vue 3 Component Structure:**
+```vue
+<!-- app/javascript/[portal]/views/[Component].vue -->
+<template>
+  <!-- Component markup -->
+</template>
+
+<script setup>
+// Component logic
+</script>
+
+<style scoped>
+/* Component styles */
+</style>
+```
+
+**Pinia Store:**
+```typescript
+// app/javascript/[portal]/stores/[store].ts
+import { defineStore } from 'pinia'
+
+export const use[Store]Store = defineStore('[store]', {
+  state: () => ({
+    // State properties
+  }),
+  actions: {
+    // Async actions
+  },
+  getters: {
+    // Computed properties
+  }
+})
+```
+
+**API Layer:**
+```typescript
+// app/javascript/[portal]/api/[resource].ts
+export const [Resource]API = {
+  async get[Resource](token: string): Promise<[Type]> {
+    // API implementation
+  }
+}
+```
+
+**Type Definitions:**
+```typescript
+export interface [Type] {
+  // Type properties
+}
+```
+
+**Design System Compliance:**
+
+Per FR28, all components must use design system assets from:
+- `@.claude/skills/frontend-design/SKILL.md`
+- `@.claude/skills/frontend-design/design-system/`
+
+Specifically: colors, icons, typography, and layout patterns from the design system.
+
+##### Acceptance Criteria
+
+**Functional:**
+1. ✅ [Functional requirement]
+2. ✅ [Functional requirement]
+
+**UI/UX:**
+1. ✅ [UI/UX requirement]
+2. ✅ [UI/UX requirement]
+
+**Integration:**
+1. ✅ [Integration requirement]
+2. ✅ [Integration requirement]
+
+**Security:**
+1. ✅ [Security requirement]
+2. ✅ [Security requirement]
+
+**Quality:**
+1. ✅ [Quality requirement]
+2. ✅ [Quality requirement]
+
+##### Integration Verification (IV1-4)
+
+**IV1: API Integration**
+- [Verification steps]
+
+**IV2: Pinia Store**
+- [Verification steps]
+
+**IV3: Getters**
+- [Verification steps]
+
+**IV4: Token Routing**
+- [Verification steps]
+
+##### Test Requirements
+
+**Component Specs:**
+```javascript
+// spec/javascript/[portal]/views/[Component].spec.js
+import { mount, flushPromises } from '@vue/test-utils'
+import [Component] from '@/[portal]/views/[Component].vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+describe('[Component]', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
+  it('[test description]', async () => {
+    // Test implementation
+  })
+})
+```
+
+**Integration Tests:**
+- [Integration test requirements]
+
+**E2E Tests:**
+- [E2E test requirements]
+
+##### Rollback Procedure
+
+**If [failure scenario]:**
+1. [Rollback step]
+2. [Rollback step]
+
+**Data Safety**: [Explanation of atomic operations]
+
+##### Risk Assessment
+
+**[Risk Level] because:**
+- [Risk reason 1]
+- [Risk reason 2]
+
+**Specific Risks:**
+1. **[Risk Name]**: [Risk description]
+2. **[Risk Name]**: [Risk description]
+
+**Mitigation:**
+- [Mitigation strategy 1]
+- [Mitigation strategy 2]
+
+##### Success Metrics
+
+- [Metric 1]
+- [Metric 2]
+- [Metric 3]
+```
+
+**Key Rules:**
+1. **Always** use `#####` (H5) for all story subsections (User Story, Background, etc.)
+2. **Always** include Status, Priority, Epic, Estimated Effort, Risk Level
+3. **Always** include Integration Verification section (IV1-4)
+4. **Always** include Test Requirements with code examples
+5. **Always** include Rollback Procedure
+6. **Always** include Risk Assessment with specific risks and mitigations
+7. **Always** include Success Metrics
+8. **Never** embed Acceptance Criteria inside User Story - use separate `##### Acceptance Criteria` section
+9. **Always** use code blocks for Vue components, Pinia stores, API layers, and type definitions
+10. **Always** reference design system compliance per FR28
+
+**Commit Workflow:**
+- **After each story is approved by user**: Commit the story to git before writing the next story
+- **Commit message format**: `git commit -m "Add Story X.X: [Story Title]"`
+- **Purpose**: Preserve each story independently, allow rollback if needed, maintain clear git history
+- **Command sequence**:
+  1. Write story to `docs/prd.md`
+  2. User reviews and approves
+  3. `git add docs/prd.md`
+  4. `git commit -m "Add Story X.X: [Title]"`
+  5. Proceed to next story
+
+## Enhanced IDE Development Workflow
+
+**MANDATORY**: All FloDoc development must follow the BMAD Enhanced IDE Development Workflow defined in `.bmad-core/enhanced-ide-development-workflow.md`.
+
+### Workflow Overview
+
+The workflow integrates the Test Architect (QA agent) throughout the development lifecycle to ensure quality, prevent regressions, and maintain high standards.
+
+### Complete Development Cycle Flow
+
+```
+1. SM: Create next story → Review → Approve
+2. QA (Optional): Risk assessment (*risk) → Test design (*design)
+3. Dev: Implement story → Write tests → Complete
+4. QA (Optional): Mid-dev checks (*trace, *nfr)
+5. Dev: Mark Ready for Review
+6. QA (Required): Review story (*review) → Gate decision
+7. Dev (If needed): Address issues
+8. QA (If needed): Update gate (*gate)
+9. Commit: All changes
+10. Push: To remote
+11. Continue: Until all features implemented
+```
+
+### Test Architect Command Reference
+
+| Stage | Command | Purpose | Output | Priority |
+|-------|---------|---------|--------|----------|
+| After Story Approval | `*risk` | Identify integration & regression risks | `docs/qa/assessments/{epic}.{story}-risk-{YYYYMMDD}.md` | High for complex/brownfield |
+| | `*design` | Create test strategy for dev | `docs/qa/assessments/{epic}.{story}-test-design-{YYYYMMDD}.md` | High for new features |
+| During Development | `*trace` | Verify test coverage | `docs/qa/assessments/{epic}.{story}-trace-{YYYYMMDD}.md` | Medium |
+| | `*nfr` | Validate quality attributes | `docs/qa/assessments/{epic}.{story}-nfr-{YYYYMMDD}.md` | High for critical features |
+| After Development | `*review` | Comprehensive assessment | QA Results in story + `docs/qa/gates/{epic}.{story}-{slug}.yml` | **Required** |
+| Post-Review | `*gate` | Update quality decision | Updated `docs/qa/gates/{epic}.{story}-{slug}.yml` | As needed |
+
+### When to Use Test Architect
+
+| Scenario | Before Dev | During Dev | After Dev |
+|----------|------------|------------|-----------|
+| Simple bug fix | Optional | Optional | Required `*review` |
+| New feature | Recommended `*risk`, `*design` | Optional `*trace` | Required `*review` |
+| **Brownfield change** | **Required** `*risk`, `*design` | Recommended `*trace`, `*nfr` | Required `*review` |
+| **API modification** | **Required** `*risk`, `*design` | **Required** `*trace` | Required `*review` |
+| Performance-critical | Recommended `*design` | **Required** `*nfr` | Required `*review` |
+| Data migration | **Required** `*risk`, `*design` | **Required** `*trace` | Required `*review` + `*gate` |
+
+### Quality Gate Decisions
+
+| Status | Meaning | Action Required | Can Proceed? |
+|--------|---------|-----------------|--------------|
+| **PASS** | All critical requirements met | None | ✅ Yes |
+| **CONCERNS** | Non-critical issues found | Team review recommended | ⚠️ With caution |
+| **FAIL** | Critical issues (security, missing P0 tests) | Must fix | ❌ No |
+| **WAIVED** | Issues acknowledged and accepted | Document reasoning | ✅ With approval |
+
+### Key Principles for FloDoc
+
+**For FloDoc Enhancement (Brownfield), ALWAYS:**
+
+1. **Run risk assessment first**: `@qa *risk {story}` before development
+2. **Get test design**: `@qa *design {story}` to guide implementation
+3. **Verify coverage mid-dev**: `@qa *trace {story}` after writing tests
+4. **Check NFRs**: `@qa *nfr {story}` before marking ready
+5. **Required review**: `@qa *review {story}` for all stories
+
+**Why this matters for FloDoc:**
+- Brownfield changes risk breaking existing DocuSeal functionality
+- 3-portal integration is complex and requires thorough testing
+- Security is critical (POPIA, sponsor portal access)
+- Performance must be maintained (NFR1: <20% degradation)
+
+### Documentation & Audit Trail
+
+All Test Architect activities create permanent records:
+- **Assessment Reports**: `docs/qa/assessments/`
+- **Gate Files**: `docs/qa/gates/`
+- **Story Updates**: QA Results sections in story files
+- **Traceability**: Requirements to test mapping maintained
+
+### Example FloDoc Development Session
+
+```bash
+# 1. SM creates story (Story 8.0.1)
+# User approves story
+
+# 2. QA risk assessment (RECOMMENDED for brownfield)
+@qa *risk Story-8.0.1
+# Creates: docs/qa/assessments/flodoc.8.0.1-risk-20260114.md
+
+# 3. QA test design (RECOMMENDED for new infrastructure)
+@qa *design Story-8.0.1
+# Creates: docs/qa/assessments/flodoc.8.0.1-test-design-20260114.md
+
+# 4. Dev implements story
+# - Writes Docker Compose configs
+# - Creates setup scripts
+# - Writes tests
+
+# 5. QA mid-dev check (OPTIONAL but RECOMMENDED)
+@qa *trace Story-8.0.1
+# Verifies: All acceptance criteria have tests
+
+# 6. Dev completes, marks ready for review
+
+# 7. QA full review (REQUIRED)
+@qa *review Story-8.0.1
+# Creates: docs/qa/gates/flodoc.8.0.1-docker-mvp-setup.yml
+# Adds: QA Results section to story
+
+# 8. If issues found, dev addresses them
+
+# 9. QA updates gate if needed
+@qa *gate Story-8.0.1
+
+# 10. Commit and push
+git add .
+git commit -m "Add Story 8.0.1: Management Demo Readiness & Validation"
+git push origin feature/brownfield-prd
+```
+
+### Success Metrics
+
+The Test Architect helps achieve:
+- **Zero regression defects** in production
+- **100% requirements coverage** with tests
+- **Clear quality gates** for go/no-go decisions
+- **Documented risk acceptance** for technical debt
+- **Consistent test quality** across the team
+- **Shift-left testing** with early risk identification
