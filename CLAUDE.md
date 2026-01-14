@@ -544,3 +544,133 @@ describe('[Component]', () => {
   3. `git add docs/prd.md`
   4. `git commit -m "Add Story X.X: [Title]"`
   5. Proceed to next story
+
+## Enhanced IDE Development Workflow
+
+**MANDATORY**: All FloDoc development must follow the BMAD Enhanced IDE Development Workflow defined in `.bmad-core/enhanced-ide-development-workflow.md`.
+
+### Workflow Overview
+
+The workflow integrates the Test Architect (QA agent) throughout the development lifecycle to ensure quality, prevent regressions, and maintain high standards.
+
+### Complete Development Cycle Flow
+
+```
+1. SM: Create next story → Review → Approve
+2. QA (Optional): Risk assessment (*risk) → Test design (*design)
+3. Dev: Implement story → Write tests → Complete
+4. QA (Optional): Mid-dev checks (*trace, *nfr)
+5. Dev: Mark Ready for Review
+6. QA (Required): Review story (*review) → Gate decision
+7. Dev (If needed): Address issues
+8. QA (If needed): Update gate (*gate)
+9. Commit: All changes
+10. Push: To remote
+11. Continue: Until all features implemented
+```
+
+### Test Architect Command Reference
+
+| Stage | Command | Purpose | Output | Priority |
+|-------|---------|---------|--------|----------|
+| After Story Approval | `*risk` | Identify integration & regression risks | `docs/qa/assessments/{epic}.{story}-risk-{YYYYMMDD}.md` | High for complex/brownfield |
+| | `*design` | Create test strategy for dev | `docs/qa/assessments/{epic}.{story}-test-design-{YYYYMMDD}.md` | High for new features |
+| During Development | `*trace` | Verify test coverage | `docs/qa/assessments/{epic}.{story}-trace-{YYYYMMDD}.md` | Medium |
+| | `*nfr` | Validate quality attributes | `docs/qa/assessments/{epic}.{story}-nfr-{YYYYMMDD}.md` | High for critical features |
+| After Development | `*review` | Comprehensive assessment | QA Results in story + `docs/qa/gates/{epic}.{story}-{slug}.yml` | **Required** |
+| Post-Review | `*gate` | Update quality decision | Updated `docs/qa/gates/{epic}.{story}-{slug}.yml` | As needed |
+
+### When to Use Test Architect
+
+| Scenario | Before Dev | During Dev | After Dev |
+|----------|------------|------------|-----------|
+| Simple bug fix | Optional | Optional | Required `*review` |
+| New feature | Recommended `*risk`, `*design` | Optional `*trace` | Required `*review` |
+| **Brownfield change** | **Required** `*risk`, `*design` | Recommended `*trace`, `*nfr` | Required `*review` |
+| **API modification** | **Required** `*risk`, `*design` | **Required** `*trace` | Required `*review` |
+| Performance-critical | Recommended `*design` | **Required** `*nfr` | Required `*review` |
+| Data migration | **Required** `*risk`, `*design` | **Required** `*trace` | Required `*review` + `*gate` |
+
+### Quality Gate Decisions
+
+| Status | Meaning | Action Required | Can Proceed? |
+|--------|---------|-----------------|--------------|
+| **PASS** | All critical requirements met | None | ✅ Yes |
+| **CONCERNS** | Non-critical issues found | Team review recommended | ⚠️ With caution |
+| **FAIL** | Critical issues (security, missing P0 tests) | Must fix | ❌ No |
+| **WAIVED** | Issues acknowledged and accepted | Document reasoning | ✅ With approval |
+
+### Key Principles for FloDoc
+
+**For FloDoc Enhancement (Brownfield), ALWAYS:**
+
+1. **Run risk assessment first**: `@qa *risk {story}` before development
+2. **Get test design**: `@qa *design {story}` to guide implementation
+3. **Verify coverage mid-dev**: `@qa *trace {story}` after writing tests
+4. **Check NFRs**: `@qa *nfr {story}` before marking ready
+5. **Required review**: `@qa *review {story}` for all stories
+
+**Why this matters for FloDoc:**
+- Brownfield changes risk breaking existing DocuSeal functionality
+- 3-portal integration is complex and requires thorough testing
+- Security is critical (POPIA, sponsor portal access)
+- Performance must be maintained (NFR1: <20% degradation)
+
+### Documentation & Audit Trail
+
+All Test Architect activities create permanent records:
+- **Assessment Reports**: `docs/qa/assessments/`
+- **Gate Files**: `docs/qa/gates/`
+- **Story Updates**: QA Results sections in story files
+- **Traceability**: Requirements to test mapping maintained
+
+### Example FloDoc Development Session
+
+```bash
+# 1. SM creates story (Story 8.0.1)
+# User approves story
+
+# 2. QA risk assessment (RECOMMENDED for brownfield)
+@qa *risk Story-8.0.1
+# Creates: docs/qa/assessments/flodoc.8.0.1-risk-20260114.md
+
+# 3. QA test design (RECOMMENDED for new infrastructure)
+@qa *design Story-8.0.1
+# Creates: docs/qa/assessments/flodoc.8.0.1-test-design-20260114.md
+
+# 4. Dev implements story
+# - Writes Docker Compose configs
+# - Creates setup scripts
+# - Writes tests
+
+# 5. QA mid-dev check (OPTIONAL but RECOMMENDED)
+@qa *trace Story-8.0.1
+# Verifies: All acceptance criteria have tests
+
+# 6. Dev completes, marks ready for review
+
+# 7. QA full review (REQUIRED)
+@qa *review Story-8.0.1
+# Creates: docs/qa/gates/flodoc.8.0.1-docker-mvp-setup.yml
+# Adds: QA Results section to story
+
+# 8. If issues found, dev addresses them
+
+# 9. QA updates gate if needed
+@qa *gate Story-8.0.1
+
+# 10. Commit and push
+git add .
+git commit -m "Add Story 8.0.1: Management Demo Readiness & Validation"
+git push origin feature/brownfield-prd
+```
+
+### Success Metrics
+
+The Test Architect helps achieve:
+- **Zero regression defects** in production
+- **100% requirements coverage** with tests
+- **Clear quality gates** for go/no-go decisions
+- **Documented risk acceptance** for technical debt
+- **Consistent test quality** across the team
+- **Shift-left testing** with early risk identification

@@ -1,1698 +1,10 @@
-# FloDoc Brownfield Enhancement PRD
-**3-Portal Cohort Management System for Training Institutions**
+# 6. Epic Details
 
-*Version: v2.0*
-*Date: 2026-01-10*
-*Status: Section 6 of 6 - In Progress*
-
----
-
-## Table of Contents
-1. [Intro Project Analysis and Context](#intro-project-analysis-and-context)
-2. [Requirements](#requirements)
-3. [User Interface Enhancement Goals](#user-interface-enhancement-goals)
-4. [Technical Constraints and Integration](#technical-constraints-and-integration)
-5. [Epic and Story Structure](#epic-and-story-structure)
-6. [Epic Details](#epic-details)
-
----
-
-## 1. Intro Project Analysis and Context
-
-### 1.1 SCOPE ASSESSMENT
-
-**⚠️ SIGNIFICANT ENHANCEMENT - System-Wide Impact**
-
-This PRD documents a **Major Feature Addition** that transforms the single-portal DocuSeal platform into a specialized 3-portal cohort management system for South African private training institutions.
-
-**Enhancement Complexity Analysis:**
-- **Type**: Major Feature Addition (3-Portal Cohort Management)
-- **Impact**: Significant Impact (substantial existing code changes required)
-- **Timeline**: Multiple development cycles
-- **Risk Level**: High (touches core DocuSeal workflows)
-
-**Why This Requires Full PRD Process:**
-This is NOT a simple feature addition. The enhancement requires:
-- New multi-tenant institution architecture
-- Complex 3-party signature workflows (TP → Students → Sponsor → TP Review)
-- Three separate portal interfaces with custom UI/UX
-- State management across multiple entities
-- Integration with existing DocuSeal form builder and signing infrastructure
-- Bulk operations and email management rules
-
----
-
-### 1.2 EXISTING PROJECT OVERVIEW
-
-**Analysis Source**: IDE-based analysis + User requirements clarification
-
-**Current Project State**:
-
-FloDoc is built on **DocuSeal** - an open-source document filling and signing platform. The base system provides:
-
-- **Document Form Builder**: WYSIWYG PDF form field creation with 12 field types (Signature, Date, File, Checkbox, etc.)
-- **Multi-Submitter Workflows**: Support for multiple signers per document
-- **Authentication & User Management**: Devise-based authentication with 2FA support
-- **Email Automation**: SMTP-based automated email notifications
-- **File Storage**: Flexible storage options (local disk, AWS S3, Google Cloud Storage, Azure Cloud)
-- **PDF Processing**: HexaPDF for PDF generation, manipulation, and signature embedding
-- **API & Webhooks**: RESTful API with webhook support for integrations
-- **Mobile-Optimized UI**: Responsive interface supporting 7 UI languages and signing in 14 languages
-- **Role-Based Access**: User roles and permissions system (via Cancancan)
-- **Tech Stack**: Ruby on Rails 3.4.2, Vue.js 3, TailwindCSS 3.4.17, DaisyUI 3.9.4, Sidekiq for background jobs
-
-**Key Existing Architecture for FloDoc Integration:**
-- **Templates** = Document templates with form fields
-- **Submissions** = Document workflows with multiple signers
-- **Submitters** = Individual participants who sign documents
-- **Completed Documents** = Final signed PDFs
-
----
-
-### 1.3 AVAILABLE DOCUMENTATION ANALYSIS
-
-**Available Documentation**:
-- ✅ API Documentation (Node.js, Ruby, Python, PHP, Java, Go, C#, TypeScript, JavaScript)
-- ✅ Webhook Documentation (Submission, Form, Template webhooks)
-- ✅ Embedding Documentation (React, Vue, Angular, JavaScript form builders and signing forms)
-- ✅ Architecture Documentation (docs/current-app-sitemap.md - comprehensive analysis)
-- ✅ Existing PRD (v1.0) - being replaced by this version
-- ⚠️ Coding Standards (not present - **requires documentation**)
-- ⚠️ Technical Debt Analysis (not present - **requires analysis**)
-
-**Recommendation**: This PRD will serve as the comprehensive planning document. Architecture analysis already completed in separate document.
-
----
-
-### 1.4 ENHANCEMENT SCOPE DEFINITION
-
-**Enhancement Type**: ✅ **Major Feature Addition** (3-Portal Cohort Management System)
-
-**Enhancement Description**:
-
-Transform the single-portal DocuSeal platform into a specialized **3-portal cohort management system** for South African private training institutions (Training Providers). The system manages cohorts through a **3-party signature workflow**: TP → Students → Sponsor → TP Review.
-
-**Core Architecture**:
-- **Templates = Cohorts**: Each cohort is a DocuSeal template containing all documents and signatory mappings
-- **Submissions = Students**: Each student within a cohort is a submission with their own document workflow
-
-**Complete Workflow**:
-1. **Training Provider (TP) Onboarding**: TP creates account with name, surname, email
-2. **Cohort Creation** (5-step multi-form):
-   - Step 1: Cohort name
-   - Step 2: Program type (learnership/internship/candidacy)
-   - Step 3: Student emails (manual entry or bulk upload)
-   - Step 4: Sponsor email (required - single email for all cohort documents)
-   - Step 5: Upload main SETA agreement + additional supporting docs + specify required student uploads (ID, Matric, Tertiary Qualifications)
-3. **Document Mapping Phase**: TP maps signatories (Learner, Sponsor, TP) to document sections using DocuSeal's existing mapping with tweaks
-4. **TP Signing Phase**: TP signs first student → system auto-fills/signs remaining students
-5. **Student Enrollment**: Bulk invite emails sent → students complete assigned docs + upload required files
-6. **Sponsor Review**: Single sponsor link (one email regardless of multiple assignments) → 3-panel portal (student list | document viewer | student info) → individual or bulk completion
-7. **TP Review**: TP reviews all completed documents from students and sponsor → finalizes 3-party agreements
-8. **Download**: Bulk ZIP with structure: Cohort_Name/Student_Name/All_Docs.pdf + Audit_Trail.pdf
-
-**Key System Behaviors**:
-- **Single Email Rule**: Sponsor receives ONE email per cohort, regardless of how many students they're assigned to
-- **TP Initiates Signing**: TP starts the signing workflow BEFORE students and sponsor
-- **Bulk Operations**: TP can fill once and replicate for all students
-
-**Impact Assessment**: ✅ **Significant Impact** (substantial existing code changes)
-
-**Rationale for Impact Level**:
-- **Single Institution Model**: One training institution manages multiple cohorts (NOT multi-tenant)
-- **Ad-hoc Access**: Students and sponsors access via email links without creating accounts
-- **New Domain Models**: Cohort, CohortEnrollment, Institution (single), Sponsor (ad-hoc)
-- **Complex Workflow State Management**: TP → Students → Sponsor → TP Review with state tracking
-- **Three Portal Interfaces**: Custom portals for TP (admin), Students, and Sponsor
-- **Integration with DocuSeal**: Leverages existing form builder and signing infrastructure
-- **Email Management Rules**: Single email per sponsor (no duplicates), bulk operations
-- **Dashboard & Analytics**: Real-time cohort status tracking
-
----
-
-### 1.5 GOALS AND BACKGROUND CONTEXT
-
-**Goals**:
-
-- Enable private training institutions to digitally manage training program cohorts from creation to completion
-- Streamline multi-party document workflows (TP → Students → Sponsor → TP Review)
-- Provide role-based portals tailored to each participant's specific needs and permissions
-- Maintain 100% backward compatibility with core DocuSeal form builder and signing capabilities
-- Reduce document processing time from weeks to days through automated workflows
-- Provide real-time visibility into cohort and student submission status
-- Implement single-email rule for sponsors (no duplicate emails)
-- Enable bulk operations for TP and Sponsor to reduce repetitive work
-
-**Background Context**:
-
-South African private training institutions currently manage learnerships, internships, and candidacy programs through manual, paper-intensive processes. Each program requires collecting student documents (matric certificates, IDs, disability docs, qualifications), getting program agreements filled and signed by multiple parties (student, sponsor, institution), and tracking completion across dozens of students per cohort.
-
-This manual process is time-consuming (taking weeks), error-prone, lacks visibility into status, and requires physical document handling. FloDoc leverages DocuSeal's proven document signing platform to create a specialized workflow that automates this process while maintaining the flexibility and power of DocuSeal's core form builder and signing engine.
-
-The enhancement adds a cohort management layer on top of DocuSeal, creating three specialized portals that work with the existing document infrastructure rather than replacing it. Institutions continue using DocuSeal's form builder to create agreement templates, but now have a structured workflow for managing batches of students through the document submission and signing process.
-
-**Critical Requirements from User Clarification**:
-- Templates represent cohorts, submissions represent students
-- TP initiates signing BEFORE students and sponsor
-- Sponsor receives ONE email per cohort (no duplicates)
-- TP Review phase after sponsor completion (not TP Finalization)
-- Bulk operations: fill once, replicate for all students
-
----
-
-### 1.6 CHANGE LOG
-
-| Change | Date | Version | Description | Author |
-|--------|------|---------|-------------|--------|
-| Initial PRD Creation | 2025-01-01 | v1.0 | Brownfield enhancement for 3-portal cohort management | PM Agent |
-| **PRD v2.0 - Fresh Start** | 2026-01-10 | v2.0 | Complete rewrite with clarified workflow requirements | User + PM |
-| **Section 1 Complete** | 2026-01-10 | v2.0 | Intro Analysis with validated understanding | PM |
-| **PO Validation Fixes** | 2026-01-14 | v2.1 | Addressed 3 blocking issues, added scope declaration | PO/PM |
-
----
-
-### 1.7 SCOPE BOUNDARIES & DEPLOYMENT STRATEGY
-
-**Deployment Decision:** ✅ **Local Docker MVP Only** (Option A)
-
-**Rationale:**
-- Management wants to validate FloDoc system locally first
-- Defers production infrastructure investment until MVP proven
-- Fastest path to working demo
-- No cloud costs during validation phase
-
----
-
-#### In Scope (MVP - Local Docker)
-
-**Core Functionality:**
-- ✅ Local Docker development environment (PostgreSQL, Redis, Minio, MailHog)
-- ✅ 3-portal cohort management workflow
-- ✅ Single institution support
-- ✅ All 21 implementation stories (Epics 1-7)
-- ✅ Demo validation with sample data (Story 8.0.1)
-
-**Technical:**
-- ✅ Database schema for 3 new tables
-- ✅ RESTful API with `/api/v1/flodoc/` namespace
-- ✅ Vue.js 3 portals with TailwindCSS
-- ✅ Email notifications (via MailHog)
-- ✅ PDF generation and signing (HexaPDF)
-- ✅ Excel export (rubyXL)
-- ✅ Background jobs (Sidekiq)
-
-**Testing:**
-- ✅ End-to-end workflow testing
-- ✅ Mobile responsiveness testing
-- ✅ Performance testing (50+ students)
-- ✅ Security audit (with enhanced checklist)
-- ✅ User acceptance testing
-
----
-
-#### Out of Scope (Post-MVP - Deferred)
-
-**Production Infrastructure (Stories 8.1-8.4 - Deferred):**
-- ❌ Production CI/CD pipeline
-- ❌ Cloud infrastructure (AWS/GCP/Azure)
-- ❌ Infrastructure as Code (Terraform)
-- ❌ DNS/domain registration
-- ❌ CDN/static asset hosting
-- ❌ Production monitoring (Sentry, New Relic)
-- ❌ Analytics and user tracking
-- ❌ Blue-green deployment
-- ❌ Production backup strategy
-
-**User Documentation & Operations (Stories 8.5-8.7 - Deferred):**
-- ⚠️ **Story 8.5**: User Communication & Training Materials (blocking - must be created before dev)
-- ❌ **Story 8.6**: In-app help system
-- ❌ **Story 8.7**: Knowledge transfer plan & operations runbook
-- ❌ Migration announcement emails
-- ❌ User training materials
-- ❌ FAQ and tutorials
-- ❌ Support team training
-- ❌ Incident response procedures
-
-**Future Enhancements:**
-- ❌ Multi-institution support
-- ❌ Advanced analytics dashboard
-- ❌ Custom branding
-- ❌ Additional portal features
-
----
-
-#### Production Path Forward
-
-**After Local Validation Success:**
-1. Decision point: Proceed to production or iterate on MVP
-2. If proceeding: Create Stories 8.1-8.4 (production infrastructure)
-3. Implement Stories 8.5-8.7 (documentation & KT)
-4. Deploy to production environment
-
-**Note:** Production deployment is **NOT** part of current scope. All production-related work is deferred pending successful local validation.
-
----
-
-#### Scope Acknowledgment
-
-**Current State:** Local Docker MVP ready for development
-**Target State:** Working demo with 3-portal workflow
-**Production Readiness:** Deferred to post-MVP phase
-
-This scope declaration addresses PO Validation Issue #1 (Production Deployment Strategy Undefined).
-
----
-
-### 1.8 EXTENSIBILITY PATTERNS (Optional Enhancement)
-
-**Status**: Draft - Reference Documentation
-**Priority**: Medium (Post-MVP)
-**Purpose**: Guide future development and customization
-
-This section documents how to extend the FloDoc system for future enhancements.
-
----
-
-#### 1.8.1 Adding New Portal Types
-
-**Current Pattern**: 3 portals (TP, Student, Sponsor) with ad-hoc token authentication
-
-**Extension Steps:**
-
-1. **Create Portal Controller** (app/controllers/flodoc/portals/):
-```ruby
-# app/controllers/flodoc/portals/new_portal_controller.rb
-class Flodoc::Portals::NewPortalController < ApplicationController
-  before_action :authenticate_token!
-
-  def dashboard
-    # Uses token-based auth like Student/Sponsor portals
-    @data = NewPortalService.load_data(@token)
-  end
-end
-```
-
-2. **Add Token Model** (if new token type needed):
-```ruby
-# app/models/flodoc/new_portal_token.rb
-class Flodoc::NewPortalToken < ApplicationRecord
-  belongs_to :cohort
-  has_secure_token :token
-  validates :email, presence: true, uniqueness: { scope: :cohort_id }
-end
-```
-
-3. **Add Vue Portal** (app/javascript/new_portal/):
-```typescript
-// app/javascript/new_portal/application.js
-import { createApp } from 'vue'
-import NewPortalApp from './NewPortalApp.vue'
-
-createApp(NewPortalApp).mount('#app')
-```
-
-4. **Update Routes** (config/routes.rb):
-```ruby
-namespace :new_portal do
-  get 'dashboard', to: 'dashboard#index'
-  post 'submit', to: 'submissions#create'
-end
-```
-
----
-
-#### 1.8.2 Extending Cohort State Machine
-
-**Current States**: `draft` → `active` → `completed` → `finalized`
-
-**Adding New State:**
-
-1. **Update State Enum** (app/models/flodoc/cohort.rb):
-```ruby
-class Flodoc::Cohort < ApplicationRecord
-  STATES = %w[draft active completed finalized under_review].freeze
-  enum status: STATES.index_with(&:to_s)
-end
-```
-
-2. **Add State Transition Logic**:
-```ruby
-# app/models/flodoc/cohort.rb
-def can_under_review?
-  completed? && all_sponsors_signed?
-end
-
-def under_review!
-  update!(status: 'under_review')
-  Flodoc::CohortMailer.under_review_notification(self).deliver_later
-end
-```
-
-3. **Update Portal UI** (app/javascript/tp_portal/views/CohortDetail.vue):
-```vue
-<template>
-  <div v-if="cohort.status === 'under_review'">
-    <!-- New UI for review state -->
-  </div>
-</template>
-```
-
----
-
-#### 1.8.3 Adding New Document Types
-
-**Current**: PDF documents with form fields
-
-**Extension Pattern:**
-
-1. **Create Document Type Model**:
-```ruby
-# app/models/flodoc/document_type.rb
-class Flodoc::DocumentType < ApplicationRecord
-  validates :name, presence: true
-  validates :handler, presence: true
-
-  # handler values: 'pdf', 'docx', 'spreadsheet', 'custom'
-end
-```
-
-2. **Register Handler**:
-```ruby
-# config/initializers/flodoc_document_types.rb
-Flodoc::DocumentType.register_handler('spreadsheet', Flodoc::SpreadsheetHandler)
-```
-
-3. **Implement Handler**:
-```ruby
-# app/services/flodoc/handlers/spreadsheet_handler.rb
-module Flodoc
-  module Handlers
-    class SpreadsheetHandler
-      def self.generate(cohort, data)
-        # Custom generation logic
-      end
-
-      def self.validate(file)
-        # Custom validation logic
-      end
-    end
-  end
-end
-```
-
----
-
-#### 1.8.4 Extending the API
-
-**Current**: `/api/v1/flodoc/` namespace
-
-**Adding New Endpoint:**
-
-1. **Create API Controller**:
-```ruby
-# app/controllers/api/v1/flodoc/new_feature_controller.rb
-class Api::V1::Flodoc::NewFeatureController < Api::V1::BaseController
-  def index
-    # Uses JWT authentication from base controller
-    render json: { data: 'example' }
-  end
-end
-```
-
-2. **Add Route**:
-```ruby
-# config/routes.rb
-namespace :api do
-  namespace :v1 do
-    namespace :flodoc do
-      get 'new_feature', to: 'new_feature#index'
-    end
-  end
-end
-```
-
-3. **Update API Documentation**:
-```markdown
-#### GET /api/v1/flodoc/new_feature
-
-**Authentication**: Bearer JWT token
-
-**Response**:
-```json
-{
-  "data": "example"
-}
-```
-
----
-
-#### 1.8.5 Adding New Authentication Providers
-
-**Current**: Email-based ad-hoc tokens for students/sponsors
-
-**Adding OAuth Provider:**
-
-1. **Add OmniAuth Strategy** (Gemfile):
-```ruby
-gem 'omniauth-google-oauth2'
-gem 'omniauth-saml'  # For enterprise SSO
-```
-
-2. **Configure Provider** (config/initializers/omniauth.rb):
-```ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  provider :saml,
-    issuer: 'flodoc',
-    idp_sso_target_url: ENV['SAML_SSO_URL']
-end
-```
-
-3. **Create Authentication Handler**:
-```ruby
-# app/services/flodoc/auth/oauth_handler.rb
-module Flodoc
-  module Auth
-    class OAuthHandler
-      def self.authenticate(provider, auth_hash)
-        user = User.find_or_create_by(email: auth_hash.info.email) do |u|
-          u.password = SecureRandom.hex(16)
-          u.name = auth_hash.info.name
-        end
-        # Generate portal-specific token
-        Flodoc::PortalToken.create!(user: user, provider: provider)
-      end
-    end
-  end
-end
-```
-
----
-
-#### 1.8.6 Customizing UI Components
-
-**Current**: Vue 3 + TailwindCSS 3.4.17 + DaisyUI 3.9.4
-
-**Customization Pattern:**
-
-1. **Override Design Tokens** (app/javascript/design-system/tailwind.config.js):
-```javascript
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        flodoc: {
-          primary: '#1e3a8a',  // Custom blue
-          accent: '#f59e0b',   // Custom amber
-        }
-      }
-    }
-  }
-}
-```
-
-2. **Create Custom Component**:
-```vue
-<!-- app/javascript/elements/FlodocCustomButton.vue -->
-<template>
-  <button
-    :class="['btn', `btn-${variant}`, customClass]"
-    @click="$emit('click')"
-  >
-    <slot />
-  </button>
-</template>
-
-<script setup>
-defineProps({
-  variant: { type: String, default: 'primary' },
-  customClass: { type: String, default: '' }
-})
-</script>
-
-<style scoped>
-.btn-primary {
-  @apply bg-flodoc-primary text-white hover:bg-blue-800;
-}
-</style>
-```
-
-3. **Register Globally**:
-```javascript
-// app/javascript/application.js
-import FlodocCustomButton from './elements/FlodocCustomButton.vue'
-app.component('FlodocCustomButton', FlodocCustomButton)
-```
-
----
-
-#### 1.8.7 Extending Background Jobs
-
-**Current**: Sidekiq queues for emails, webhooks, PDF generation
-
-**Adding New Job Type:**
-
-1. **Create Job**:
-```ruby
-# app/jobs/flodoc/custom_analysis_job.rb
-class Flodoc::CustomAnalysisJob < ApplicationJob
-  queue_as :analytics
-
-  def perform(cohort_id)
-    cohort = Flodoc::Cohort.find(cohort_id)
-    # Custom analysis logic
-    Flodoc::AnalysisReport.generate(cohort)
-  end
-end
-```
-
-2. **Enqueue Job**:
-```ruby
-# In any service or controller
-Flodoc::CustomAnalysisJob.perform_later(@cohort.id)
-```
-
-3. **Monitor in Sidekiq**:
-```ruby
-# config/sidekiq.yml
-:queues:
-  - default
-  - mailers
-  - webhooks
-  - pdf
-  - analytics  # New queue
-```
-
----
-
-#### 1.8.8 Adding Custom Validations
-
-**Current**: Standard Rails validations
-
-**Custom Validation Pattern:**
-
-1. **Create Validator**:
-```ruby
-# app/validators/flodoc/sponsor_email_validator.rb
-class Flodoc::SponsorEmailValidator < ActiveModel::Validator
-  def validate(record)
-    unless record.email.end_with?('@company.com')
-      record.errors.add(:email, 'must be a company email')
-    end
-  end
-end
-```
-
-2. **Use in Model**:
-```ruby
-# app/models/flodoc/submitter.rb
-class Flodoc::Submitter < ApplicationRecord
-  validates_with Flodoc::SponsorEmailValidator, if: :sponsor?
-end
-```
-
----
-
-#### 1.8.9 Database Extension Patterns
-
-**Adding New Tables:**
-
-1. **Migration**:
-```ruby
-# db/migrate/20260114120000_create_flodoc_custom_data.rb
-class CreateFlodocCustomData < ActiveRecord::Migration[7.0]
-  def change
-    create_table :flodoc_custom_data do |t|
-      t.references :cohort, null: false, foreign_key: true
-      t.jsonb :data
-      t.timestamps
-    end
-
-    add_index :flodoc_custom_data, [:cohort_id, :created_at]
-  end
-end
-```
-
-2. **Model**:
-```ruby
-# app/models/flodoc/custom_datum.rb
-class Flodoc::CustomDatum < ApplicationRecord
-  belongs_to :cohort
-  validates :data, presence: true
-end
-```
-
----
-
-#### 1.8.10 Event System Extension
-
-**Current**: SubmissionEvents for audit trail
-
-**Adding Custom Events:**
-
-1. **Define Event Types**:
-```ruby
-# app/models/flodoc/event_type.rb
-class Flodoc::EventType < ApplicationRecord
-  TYPES = %w[
-    cohort_created
-    cohort_completed
-    submitter_signed
-    sponsor_invited
-    document_downloaded
-    custom_alert_sent  # New event
-  ].freeze
-end
-```
-
-2. **Track Custom Events**:
-```ruby
-# app/services/flodoc/event_tracker.rb
-module Flodoc
-  class EventTracker
-    def self.track(cohort, event_type, user, metadata = {})
-      Flodoc::SubmissionEvent.create!(
-        cohort: cohort,
-        event_type: event_type,
-        user: user,
-        metadata: metadata
-      )
-    end
-  end
-end
-```
-
-3. **Query Events**:
-```ruby
-# In reports or analytics
-Flodoc::SubmissionEvent
-  .where(cohort_id: cohort.id)
-  .where(event_type: 'custom_alert_sent')
-  .where('created_at > ?', 30.days.ago)
-  .count
-```
-
----
-
-#### 1.8.11 Integration Checklist
-
-When extending FloDoc, verify:
-
-- ✅ **Security**: New endpoints use JWT/auth tokens
-- ✅ **Multi-tenancy**: Check single-institution vs multi-institution
-- ✅ **Database**: Proper foreign keys and indexes
-- ✅ **Background Jobs**: Sidekiq queue exists
-- ✅ **API Versioning**: Use `/api/v1/flodoc/` namespace
-- ✅ **Vue Components**: Follow design system (FR28)
-- ✅ **Testing**: RSpec coverage for new code
-- ✅ **Rollback**: Migration can be reversed
-- ✅ **Documentation**: Update this extensibility guide
-
----
-
-**Note**: This is optional documentation for future development. All current stories (1.1-8.0.1) are complete and ready for implementation.
-
----
-
-## 2. Requirements
-
-### 2.1 FUNCTIONAL REQUIREMENTS
-
-**FR1**: The system shall support a **single training institution** that can manage multiple training cohorts independently.
-
-**FR2**: The system shall provide three distinct portal interfaces: TP Portal (Training Provider admin), Student Portal (for enrolled students), and Sponsor Portal (for program sponsors).
-
-**FR3**: The TP Portal shall support **cohort creation** via a 5-step multi-form:
-- Step 1: Cohort name
-- Step 2: Program type (learnership/internship/candidacy)
-- Step 3: Student emails (manual entry or bulk upload)
-- Step 4: Sponsor email (required - single email for all cohort documents)
-- Step 5: Upload main SETA agreement + additional supporting docs + specify required student uploads (ID, Matric, Tertiary Qualifications)
-
-**FR4**: The system shall allow TP to **map signatories** (Learner, Sponsor, TP) to document sections using DocuSeal's existing mapping capabilities with tweaks for bulk operations.
-
-**FR5**: The system shall enable **TP Signing Phase** where:
-- TP signs the first student's document
-- System **duplicates the completed submission** (not empty template) to remaining students
-- TP's fields and signatures are **auto-filled across all student submissions**
-- This eliminates the need for TP to sign each submission individually
-- Prevents duplicate sponsor emails through workflow state management
-- Note: DocuSeal's native multi-submission duplicates empty templates; FloDoc will duplicate the signed submission instead
-
-**FR6**: The system shall generate **unique invite links** for students via bulk email invitations.
-
-**FR7**: The system shall allow students to **upload required documents** (ID, Matric, Tertiary Qualifications) as specified during cohort creation.
-
-**FR8**: The system shall allow students to **fill and sign assigned documents** using DocuSeal's existing form builder.
-
-**FR9**: The system shall implement **state management** for each student enrollment with states: "Waiting", "In Progress", "Complete".
-
-**FR10**: The system shall **prevent sponsor access** until all students in a cohort have completed their submissions.
-
-**FR11**: The system shall provide **sponsor portal** with 3-panel layout:
-- Left: List of all students in cohort
-- Middle: Document viewer (currently selected document)
-- Right: Vertical list of thumbnail representations of all documents for the currently selected student
-
-**FR12**: The system shall allow sponsor to **review and sign** each student's documents individually OR bulk sign after first completion.
-
-**FR13**: The system shall enforce **single email rule**: Sponsor receives ONE email per cohort, regardless of how many students they're assigned to.
-
-**FR14**: The system shall allow sponsor to **submit all signatures** to finalize their portion of the workflow.
-
-**FR15**: The system shall allow TP to **review all completed documents** from students and sponsor after sponsor submission.
-
-**FR16**: The system shall enable TP to **finalize 3-party agreements** after review.
-
-**FR17**: The system shall provide **bulk download** functionality with ZIP structure:
-```
-Cohort_Name/
-├── Student_1/
-│   ├── Main_Agreement_Signed.pdf
-│   ├── ID_Document.pdf
-│   ├── Matric_Certificate.pdf
-│   ├── Tertiary_Qualifications.pdf
-│   └── Audit_Trail.pdf
-├── Student_2/
-│   └── ...
-```
-
-**FR18**: The system shall provide **email notifications** for:
-- Cohort creation (TP only)
-- Student invitations (bulk email)
-- Submission reminders (configurable)
-- Sponsor access notification (when all students complete)
-- State change updates
-
-**FR19**: The system shall provide **real-time dashboard** showing cohort completion status for all three portals.
-
-**FR20**: The system shall maintain **audit trail** for all document actions with timestamps.
-
-**FR21**: The system shall store all documents using **DocuSeal's existing storage infrastructure**.
-
-**FR22**: The system shall maintain **100% backward compatibility** with existing DocuSeal form builder and signing workflows.
-
-**FR23**: The system shall allow TP to **export cohort data to Excel** format containing: cohort name, student name, student surname, student age, student race, student city, program type, sponsor company name, disability status, and gender.
-
-### 2.2 NON-FUNCTIONAL REQUIREMENTS
-
-**NFR1**: The system must maintain existing performance characteristics and not exceed current memory usage by more than 20%.
-
-**NFR2**: The system must be **mobile-optimized** and support all existing DocuSeal UI languages.
-
-**NFR3**: The system must leverage **existing DocuSeal authentication infrastructure** (Devise + JWT) with role-based access control.
-
-**NFR4**: The system must integrate seamlessly with **existing DocuSeal email notification system**.
-
-**NFR5**: The system must support **concurrent cohort management** without data leakage between cohorts.
-
-**NFR6**: The system must provide **audit trails** for all document verification actions (rejections, approvals).
-
-**NFR7**: The system must maintain **document integrity and signature verification** capabilities.
-
-**NFR8**: The system must support **background processing** for email notifications and document operations via Sidekiq.
-
-**NFR9**: The system must comply with **South African electronic document and signature regulations**.
-
-**NFR10**: The system must provide **comprehensive error handling and user feedback** for all portal interactions.
-
-**NFR11**: The system must implement **single email rule** for sponsors (no duplicate emails regardless of multiple student assignments).
-
-**NFR12**: The system must support **bulk operations** to minimize repetitive work for TP and Sponsor.
-
-### 2.3 COMPATIBILITY REQUIREMENTS
-
-**CR1: API Compatibility**: All new endpoints must follow existing DocuSeal API patterns and authentication mechanisms. No breaking changes to existing public APIs.
-
-**CR2: Database Schema Compatibility**: New tables and relationships must not modify existing DocuSeal core schemas. Extensions should use foreign keys and new tables only.
-
-**CR3: UI/UX Consistency**: All three portals must use **custom TailwindCSS design system** (replacing DaisyUI) while maintaining mobile-first responsive design principles.
-
-**CR4: Integration Compatibility**: The system must work with existing DocuSeal integrations (webhooks, API, embedded forms) without requiring changes to external systems.
-
----
-
-## 3. User Interface Enhancement Goals
-
-### 3.1 Integration with Existing UI
-
-**Design System Migration**:
-The three portals will use a **custom TailwindCSS design system** replacing DaisyUI (CR3), while maintaining the same responsive design principles and mobile-first approach as the existing DocuSeal interface. The new design system will:
-
-- **Preserve Core UX Patterns**: Maintain familiar interaction patterns from DocuSeal (form builders, signing flows, modal dialogs)
-- **Enhance Accessibility**: WCAG 2.1 AA compliance for all portals
-- **Support Dark/Light Mode**: Consistent with existing DocuSeal theme support
-- **Language Support**: Maintain existing i18n infrastructure for 7 UI languages
-
-**Visual Consistency**:
-- **Color Palette**: Extend DocuSeal's existing brand colors with cohort-specific accent colors for status indicators
-- **Typography**: Use existing font stack for consistency
-- **Iconography**: Leverage existing icon library or extend with cohort-specific icons
-- **Spacing & Layout**: Follow existing 8px grid system and spacing conventions
-
-**Development Mandate - Design System Compliance**:
-**CRITICAL**: During frontend development, the Dev Agent (James) MUST strictly adhere to the FloDoc design system specification located at `.claude/skills/frontend-design/SKILL.md` and the visual assets in `.claude/skills/frontend-design/design-system/`. This includes:
-
-- **Color System**: Extract primary, secondary, neutral, and accent colors from `design-system/Colors and shadows/Brand colors/` and `Complementary colors/` SVG/JPG specifications
-- **Typography**: Follow `design-system/Typography/typoraphy.txt` and `design-system/Fonts/fonts.txt` for font families, sizes, weights, and line heights
-- **Component Library**: Use atomic design components from `design-system/Atoms/` (Buttons, Inputs, Checkboxes, Menus, Progress Tags, etc.)
-- **Iconography**: Source all icons from `design-system/Icons/` organized by category (security, users, files, notifications, etc.)
-- **Brand Assets**: Reference `design-system/Logo/` for all logo variations
-- **Shadows & Elevation**: Apply shadow styles from `design-system/Colors and shadows/Shadows/`
-
-**Agent Coordination**:
-- **Dev Agent (James)**: Must reference the design system folder before writing any frontend code. All Vue components, TailwindCSS classes, and styling decisions must align with the design system specifications.
-- **Scrum Master (Bob)**: Must be aware of this design system requirement during story creation and acceptance criteria definition. Frontend stories should include verification that all UI elements conform to the design system specifications.
-
-**Consequences of Non-Compliance**: UI elements not derived from the design system will be rejected during code review. The design system is the single source of truth for all visual decisions.
-
-### 3.2 Modified/New Screens and Views
-
-#### TP Portal (Admin Interface)
-
-**New Screens**:
-1. **Institution Onboarding** - Single-page form for initial TP setup
-2. **Cohort Dashboard** - Main landing with cohort list, status cards, and quick actions
-3. **Cohort Creation Wizard** - 5-step multi-form:
-   - Step 1: Basic Info (name, program type)
-   - Step 2: Student Management (email entry/bulk upload)
-   - Step 3: Sponsor Configuration (single email, notification settings)
-   - Step 4: Document Upload (SETA agreement + supporting docs)
-   - Step 5: Student Upload Requirements (ID, Matric, Tertiary Qualifications)
-4. **Document Mapping Interface** - Visual drag-and-drop for signatory assignment
-5. **TP Signing Interface** - Single signing flow with "apply to all students" option
-6. **Student Enrollment Status** - Bulk invite management and tracking
-7. **Sponsor Access Monitor** - Real-time dashboard showing which sponsors have accessed their portal, when they last logged in, which students they've reviewed, and current pending actions. Prevents duplicate email sends and allows TP to intervene if sponsor hasn't accessed after notification.
-8. **TP Review Dashboard** - 3-panel review interface:
-   - **Left Panel**: Student list with completion status (Waiting for Student, Waiting for Sponsor, Complete)
-   - **Middle Panel**: Full document viewer showing the selected student's completed documents
-   - **Right Panel**: Verification controls - approve/reject individual documents, add verification notes, mark student as verified
-9. **Cohort Analytics** - Completion rates, timeline, bottlenecks
-10. **Excel Export Interface** - Data selection and export configuration
-
-**Modified Existing Screens**:
-- **Template Builder** - Enhanced with cohort-specific metadata fields
-- **User Settings** - Institution role management added
-
-#### Student Portal
-
-**New Screens**:
-1. **Student Invitation Landing** - Accept cohort invitation, view requirements
-2. **Document Upload Interface** - Multi-file upload with validation
-3. **Student Signing Flow** - DocuSeal signing form with document preview
-4. **Submission Status** - Real-time progress tracking
-5. **Completion Confirmation** - Summary of submitted documents
-
-**Modified Existing Screens**:
-- **Submission Form** - Rebranded for cohort context, simplified navigation
-
-#### Sponsor Portal
-
-**New Screens**:
-1. **Cohort Dashboard** - Overview of all students in cohort with bulk signing capability
-2. **Student List View** - Searchable, filterable list of students with status indicators
-3. **Signature Capture Interface** - Two methods for signature: draw on canvas or type name
-4. **Bulk Signing Preview** - Confirmation modal showing all affected students before signing
-5. **Success Confirmation** - Post-signing summary with next steps
-
-**Modified Existing Screens**:
-- **Signing Form** - Enhanced for bulk cohort signing workflow
-
-### 3.3 UI Consistency Requirements
-
-**Portal-Specific Requirements**:
-
-**TP Portal**:
-- **Admin-First Design**: Complex operations made simple through progressive disclosure
-- **Bulk Operations**: Prominent "fill once, apply to all" patterns
-- **Status Visualization**: Color-coded cohort states (Pending, In Progress, Ready for Sponsor, Complete)
-- **Action History**: Audit trail visible within interface
-
-**What is Progressive Disclosure?**
-This is a UX pattern that hides complexity until the user needs it. For the TP Portal, this means:
-- **Default View**: Show only essential actions (Create Cohort, View Active Cohorts, Export Data)
-- **On-Demand Complexity**: Advanced features (detailed analytics, bulk email settings, custom document mappings) are revealed only when users click "Advanced Options" or navigate to specific sections
-- **Example**: The Cohort Creation Wizard (5 steps) uses progressive disclosure - each step shows only the fields needed for that step, preventing overwhelming the user with all 20+ fields at once
-- **Benefit**: Reduces cognitive load for new users while keeping power features accessible for experienced admins
-
-**Student Portal**:
-- **Mobile-First**: Optimized for smartphone access
-- **Minimal Steps**: Maximum 3 clicks to complete any document
-- **Clear Requirements**: Visual checklist of required vs. optional documents
-- **Progress Indicators**: Step-by-step completion tracking
-
-**Sponsor Portal**:
-- **Review-Optimized**: Keyboard shortcuts for document navigation
-- **Bulk Actions**: "Sign All" and "Bulk Review" modes
-- **Document Comparison**: Side-by-side view capability
-- **No Account Required**: Email-link only access pattern
-- **Progress Tracking**: Persistent progress bar showing completion status (e.g., "3/15 students completed - 20%") with visual indicator
-- **Tab-Based Navigation**: Pending/Completed tabs for clear workflow separation
-
-**Cross-Portal Consistency**:
-- **Navigation**: All portals use consistent header/navigation patterns
-- **Notifications**: Toast notifications for state changes
-- **Error Handling**: Consistent error message formatting and recovery options
-- **Loading States**: Skeleton screens and spinners for async operations
-- **Empty States**: Helpful guidance when no cohorts/students/documents exist
-
-**Mobile Responsiveness**:
-- **Breakpoints**: 640px (sm), 768px (md), 1024px (lg), 1280px (xl)
-- **Touch Targets**: Minimum 44x44px for all interactive elements
-- **Tablet Optimization**: 3-panel sponsor portal collapses to 2-panel on tablets
-- **Vertical Layout**: All portals stack vertically on mobile devices
-
-**Accessibility Standards**:
-- **Keyboard Navigation**: Full keyboard support for all portals
-- **Screen Readers**: ARIA labels and semantic HTML throughout
-- **Focus Management**: Clear focus indicators and logical tab order
-- **Color Contrast**: Minimum 4.5:1 ratio for all text
-- **Reduced Motion**: Respect user's motion preferences
-
----
-
-## 4. Technical Constraints and Integration Requirements
-
-### 4.1 Existing Technology Stack
-
-**Based on Architecture Analysis** (docs/current-app-sitemap.md):
-
-**Languages:**
-- Ruby 3.4.2
-- JavaScript (Vue.js 3)
-- HTML/CSS (TailwindCSS 3.4.17)
-
-**Frameworks:**
-- Ruby on Rails 7.x (with Shakapacker 8.0)
-- Vue.js 3 with Composition API
-- Devise for authentication
-- Cancancan for authorization
-- Sidekiq for background processing
-
-**Database:**
-- PostgreSQL/MySQL/SQLite (configured via DATABASE_URL)
-- Redis for Sidekiq job queue
-
-**Infrastructure:**
-- Puma web server
-- Active Storage (S3, Google Cloud, Azure, or local disk)
-- SMTP server for email delivery
-
-**External Dependencies:**
-- HexaPDF (PDF generation and signing)
-- PDFium (PDF rendering)
-- rubyXL (Excel export - **to be added**)
-- Ngrok (for local testing with public URLs)
-
-**Key Libraries & Gems:**
-- `devise` - Authentication
-- `devise-two-factor` - 2FA support
-- `cancancan` - Authorization
-- `sidekiq` - Background jobs
-- `hexapdf` - PDF processing
-- `prawn` - PDF generation (alternative)
-- `rubyXL` - Excel file generation (**required for FR23**)
-
-### 4.2 Integration Approach
-
-**Database Integration Strategy:**
-- **New Tables Only**: Create `cohorts`, `cohort_enrollments`, `institutions`, `sponsors` tables
-- **Foreign Keys**: Link to existing `templates`, `submissions`, `users` tables
-- **No Schema Modifications**: Existing DocuSeal tables remain unchanged
-- **Migration Safety**: All migrations must be reversible
-- **Data Isolation**: Use `institution_id` scoping for all FloDoc queries
-
-**API Integration Strategy:**
-- **Namespace Extension**: Add `/api/v1/flodoc/` namespace for new endpoints
-- **Pattern Consistency**: Follow existing DocuSeal REST conventions
-- **Authentication**: Reuse existing Devise + JWT infrastructure
-- **Rate Limiting**: Apply existing rate limits to new endpoints
-- **Webhook Compatibility**: New cohort events trigger existing webhook infrastructure
-
-**Frontend Integration Strategy:**
-- **Vue.js Architecture**: Extend existing Vue 3 app with new portal components
-- **Design System**: Replace DaisyUI with custom TailwindCSS (per CR3)
-- **Component Structure**: Create new portal-specific components in `app/javascript/cohorts/`
-- **Routing**: Use existing Vue Router with new portal routes
-- **State Management**: Vuex or Pinia for cohort state (to be determined)
-- **No Breaking Changes**: Existing DocuSeal UI remains functional
-
-**Testing Integration Strategy:**
-- **RSpec**: Extend existing test suite with new model/request specs
-- **System Tests**: Add Capybara tests for 3-portal workflows
-- **Vue Test Utils**: Component tests for new portal interfaces
-- **FactoryBot**: Create factories for new models
-- **Existing Tests**: All DocuSeal tests must continue passing
-
-### 4.3 Code Organization and Standards
-
-**File Structure Approach:**
-
-```
-app/
-├── models/
-│   ├── cohort.rb                    # New: Cohort management
-│   ├── cohort_enrollment.rb         # New: Student enrollment tracking
-│   ├── institution.rb               # New: Single institution model
-│   ├── sponsor.rb                   # New: Ad-hoc sponsor model
-│   └── concerns/
-│       └── user_flo_doc_additions.rb # New: User model extension
-│
-├── controllers/
-│   ├── api/
-│   │   └── v1/
-│   │       ├── flodoc/
-│   │       │   ├── cohorts_controller.rb
-│   │       │   ├── enrollments_controller.rb
-│   │       │   └── excel_export_controller.rb
-│   │       └── admin/
-│   │           ├── invitations_controller.rb
-│   │           └── security_events_controller.rb
-│   └── cohorts/
-│       └── admin_controller.rb       # Web interface
-│
-├── services/
-│   ├── invitation_service.rb        # Admin invitation logic
-│   ├── cohort_service.rb            # Cohort lifecycle management
-│   ├── sponsor_service.rb           # Sponsor access management
-│   └── excel_export_service.rb      # Excel generation (FR23)
-│
-├── jobs/
-│   ├── cohort_admin_invitation_job.rb
-│   ├── sponsor_access_job.rb
-│   └── excel_export_job.rb
-│
-├── mailers/
-│   └── cohort_mailer.rb             # Cohort-specific emails
-│
-└── javascript/
-    └── cohorts/
-        ├── portals/
-        │   ├── tp_portal/           # Admin interface
-        │   ├── student_portal/      # Student interface
-        │   └── sponsor_portal/      # Sponsor interface
-        └── components/              # Shared Vue components
-```
-
-**Naming Conventions:**
-- **Models**: `Cohort`, `CohortEnrollment`, `Institution`, `Sponsor` (PascalCase, singular)
-- **Controllers**: `CohortsController`, `Cohorts::AdminController` (namespaced)
-- **Services**: `CohortService`, `InvitationService` (PascalCase, descriptive)
-- **Jobs**: `CohortInvitationJob` (PascalCase, ends with Job)
-- **Vue Components**: `CohortDashboard.vue`, `SponsorPanel.vue` (PascalCase)
-- **Variables**: `cohort_enrollments` (snake_case, plural for collections)
-- **Routes**: `/flodoc/cohorts`, `/admin/invitations` (kebab-case in URLs)
-
-**Coding Standards:**
-- **Ruby**: Follow existing RuboCop configuration
-- **JavaScript**: Follow existing ESLint configuration
-- **Vue.js**: Use Composition API, `<script setup>` syntax
-- **TailwindCSS**: Use utility classes, avoid custom CSS
-- **Testing**: TDD approach, minimum 80% coverage for new code
-- **Documentation**: YARD comments for Ruby, JSDoc for JavaScript
-
-**Documentation Standards:**
-- **Model Comments**: Document associations, validations, and business logic
-- **API Documentation**: Update OpenAPI/Swagger spec for new endpoints
-- **Vue Components**: Document props, events, and usage examples
-- **Migration Comments**: Explain why new tables are needed
-- **Workflow Diagrams**: Mermaid diagrams for complex 3-portal workflows
-
-### 4.4 Deployment and Operations
-
-**Build Process Integration:**
-- **Asset Compilation**: Shakapacker handles Vue/JS compilation
-- **TailwindCSS**: Custom build with design system colors
-- **Ruby Gems**: Bundle install includes new dependencies (rubyXL)
-- **Database Migrations**: Run automatically in CI/CD pipeline
-- **Sidekiq Workers**: Deploy with new job classes
-
-**Deployment Strategy:**
-- **Zero-Downtime**: Migrations run before new code deploys
-- **Rollback Plan**: Database migrations must be reversible
-- **Feature Flags**: Consider `Docuseal.floDocEnabled?` for gradual rollout
-- **Blue-Green**: Deploy to staging first, validate 3-portal workflows
-- **Monitoring**: Track cohort creation, completion rates, email delivery
-
-**Monitoring and Logging:**
-- **Existing**: Reuse DocuSeal's logging infrastructure
-- **New Events**: Log cohort lifecycle events (created, student_enrolled, sponsor_accessed, completed)
-- **Error Tracking**: Sentry/Rollbar integration for portal errors
-- **Performance**: Monitor query performance on cohort dashboards
-- **Email Tracking**: Track sponsor email delivery (single email rule compliance)
-
-**Configuration Management:**
-- **Environment Variables**: No new required variables
-- **Feature Toggles**: Use existing Rails configuration pattern
-- **Secrets**: Reuse existing Rails secrets for email/storage
-- **Database**: No new database connections needed
-
-### 4.5 Risk Assessment and Mitigation
-
-**Technical Risks:**
-
-1. **Risk**: DocuSeal's multi-submission mechanism duplicates empty documents, not pre-filled ones
-   - **Impact**: High - FR5 requires TP to sign once and auto-fill remaining students
-   - **Mitigation**:
-     - Prototype TP signing phase early
-     - Custom logic: After TP signs first submission, duplicate the completed submission (not empty template)
-     - Use DocuSeal's submission duplication API on the signed submission
-     - Alternative: Programmatic field population via API if duplication doesn't preserve signatures
-     - Fallback: Manual submission creation with field copying logic
-
-2. **Risk**: Single email rule for sponsors conflicts with DocuSeal's per-submission email logic
-   - **Impact**: High - NFR11 compliance required
-   - **Mitigation**:
-     - Implement email deduplication service
-     - Use cohort-level email tracking
-     - Override DocuSeal's default email behavior
-
-3. **Risk**: Vue 3 portal components may conflict with existing DocuSeal Vue 2 patterns
-   - **Impact**: Medium - Frontend integration complexity
-   - **Mitigation**:
-     - Audit existing Vue component patterns
-     - Use consistent state management approach
-     - Gradual migration if conflicts exist
-
-4. **Risk**: Excel export (FR23) may require significant memory for large cohorts
-   - **Impact**: Medium - Performance for 50+ students
-   - **Mitigation**:
-     - Use streaming Excel generation (rubyXL streaming mode)
-     - Background job processing
-     - Pagination or chunking for very large cohorts
-
-**Integration Risks:**
-
-1. **Risk**: New FloDoc models may create circular dependencies with existing models
-   - **Impact**: Medium - Model loading issues
-   - **Mitigation**:
-     - Use `belongs_to` with optional: true where needed
-     - Lazy load associations
-     - Test model initialization in isolation
-
-2. **Risk**: Sponsor portal access without authentication may create security vulnerabilities
-   - **Impact**: High - Data exposure risk
-   - **Mitigation**:
-     - Use signed tokens with expiration
-     - One-time access tokens
-     - IP-based rate limiting
-     - Audit all sponsor access attempts
-
-3. **Risk**: Bulk operations may timeout for large cohorts (100+ students)
-   - **Impact**: Medium - User experience degradation
-   - **Mitigation**:
-     - Background job processing
-     - Progress indicators
-     - Chunked processing
-     - Async email delivery
-
-**Deployment Risks:**
-
-1. **Risk**: Database migrations may lock tables during cohort creation
-   - **Impact**: Low - Existing DocuSeal functionality unaffected
-   - **Mitigation**:
-     - Use non-locking migrations
-     - Run migrations during maintenance window
-     - Test on staging with production-like data volume
-
-2. **Risk**: New Vue portals may increase bundle size significantly
-   - **Impact**: Low - Modern browsers handle it
-   - **Mitigation**:
-     - Code splitting by portal
-     - Lazy loading for complex views
-     - Tree-shaking unused dependencies
-
-**Mitigation Strategies:**
-
-**Development Phase:**
-1. **Incremental Implementation**: Build one portal at a time
-2. **Integration Testing**: Test each workflow stage before moving to next
-3. **User Validation**: Get feedback on sponsor portal early
-4. **Performance Baseline**: Measure current DocuSeal performance before changes
-
-**Testing Phase:**
-1. **End-to-End Tests**: Full 3-portal workflow testing
-2. **Load Testing**: Simulate 50+ student cohorts
-3. **Security Audit**: Review sponsor portal access patterns
-4. **Mobile Testing**: Verify all portals work on mobile devices
-
-**Rollout Phase:**
-1. **Feature Flag**: Deploy with FloDoc disabled by default
-2. **Staged Rollout**: Enable for specific institutions first
-3. **Monitoring**: Track errors, performance, user adoption
-4. **Rollback Plan**: Database migrations reversible, code deployable without FloDoc
-
-**Known Issues from Existing Codebase** (from current-app-sitemap.md):
-
-1. **Technical Debt**: No coding standards documentation
-   - **Impact**: Consistency issues across FloDoc development
-   - **Mitigation**: This PRD includes coding standards section
-
-2. **Missing Documentation**: No technical debt analysis
-   - **Impact**: Unknown risks
-   - **Mitigation**: Document risks in this section
-
-3. **Partial Implementation**: Cohort and Sponsor models referenced in Ability.rb but not created
-   - **Impact**: Will cause runtime errors if not implemented
-   - **Mitigation**: These models are explicitly created in this PRD
-
-**Workarounds and Gotchas:**
-
-1. **DocuSeal Multi-tenancy**: Current system supports multi-tenant mode
-   - **Gotcha**: FloDoc uses single-institution model
-   - **Workaround**: Ensure `Docuseal.multitenant?` doesn't interfere with FloDoc logic
-
-2. **Active Storage Configuration**: Multiple storage backends supported
-   - **Gotcha**: Cohort documents must use same storage as existing templates
-   - **Workaround**: Reuse existing Active Storage configuration
-
-3. **Sidekiq Queues**: Existing queue structure
-   - **Gotcha**: FloDoc jobs must not block core DocuSeal jobs
-   - **Workaround**: Use separate queues (`cohort_emails`, `excel_export`)
-
-4. **Devise 2FA**: Users may have 2FA enabled
-   - **Gotcha**: Students/sponsors don't have accounts (ad-hoc access)
-   - **Workaround**: Not applicable - ad-hoc users bypass 2FA
-
-5. **Vue + Rails Integration**: Shakapacker handles asset compilation
-   - **Gotcha**: New Vue portals must be registered in application.js
-   - **Workaround**: Follow existing Vue initialization pattern
-
-**Risk Summary:**
-
-| Risk | Severity | Likelihood | Mitigation Priority |
-|------|----------|------------|---------------------|
-| DocuSeal duplicates empty docs, not signed ones | High | High | **Critical** - Prototype early |
-| Sponsor email deduplication | High | High | **Critical** - Core requirement |
-| Vue 3 integration conflicts | Medium | Low | Medium - Audit first |
-| Excel export performance | Medium | Medium | Medium - Background jobs |
-| Sponsor portal security | High | Low | **Critical** - Security audit |
-| Bulk operation timeouts | Medium | Medium | Medium - Chunking |
-
-**Next Steps for Risk Mitigation:**
-1. **Week 1**: Prototype TP signing phase - test submission duplication from signed document
-2. **Week 2**: Build sponsor email deduplication service
-3. **Week 3**: Security review of ad-hoc access patterns
-4. **Week 4**: Performance testing with large cohorts
-
----
-
-## 5. Epic and Story Structure
-
-### 5.1 EPIC APPROACH
-
-**Epic Structure Decision**: **Single Comprehensive Epic** with rationale
-
-**Rationale for Single Epic Structure:**
-
-Based on my analysis of the existing DocuSeal + FloDoc architecture, this enhancement should be structured as a **single comprehensive epic** because:
-
-1. **Tightly Coupled Workflow**: The 3-portal cohort management system is a single, cohesive workflow where:
-   - TP Portal creates cohorts and initiates signing
-   - Student Portal handles enrollment and document submission
-   - Sponsor Portal completes the 3-party signature workflow
-   - All three portals must work together for the workflow to function
-
-2. **Sequential Dependencies**: Stories have clear dependencies:
-   - Database models must exist before any portal can be built
-   - Core workflow logic must be in place before UI can be tested
-   - Integration points must be validated before end-to-end testing
-
-3. **Shared Infrastructure**: All portals share:
-   - Same database models (Cohort, CohortEnrollment, Institution)
-   - Same authentication/authorization patterns
-   - Same DocuSeal integration layer
-   - Same design system and UI components
-
-4. **Brownfield Context**: This is an enhancement to existing DocuSeal functionality, not independent features. The integration with existing templates, submissions, and submitters must be maintained throughout.
-
-**Alternative Considered**: Multiple epics (e.g., "TP Portal Epic", "Student Portal Epic", "Sponsor Portal Epic")
-- **Rejected Because**: Creates artificial separation. Each portal is useless without the others. The workflow is atomic.
-
-**Epic Goal**: Transform DocuSeal into a specialized 3-portal cohort management system for training institutions while maintaining 100% backward compatibility with existing functionality.
-
-### 5.2 STORY SEQUENCING STRATEGY
-
-**Critical Principles for Brownfield Development:**
-
-1. **Zero Regression**: Every story must verify existing DocuSeal functionality still works
-2. **Incremental Integration**: Each story delivers value while maintaining system integrity
-3. **Risk-First Approach**: Prototype high-risk items early (TP signing duplication, sponsor email deduplication)
-4. **Test-Driven**: All stories include integration verification steps
-5. **Rollback Ready**: Each story must be reversible without data loss
-
-**Story Sequence Overview:**
-
-```
-Phase 1: Foundation (Database + Core Models)
-├── Story 1.1: Database Schema Extension
-├── Story 1.2: Core Models Implementation
-└── Story 1.3: Authorization Layer Extension
-
-Phase 2: Backend Business Logic
-├── Story 2.1: Cohort Lifecycle Service
-├── Story 2.2: TP Signing Phase Logic (High Risk - Prototype First)
-├── Story 2.3: Sponsor Email Deduplication (High Risk - Core Requirement)
-├── Story 2.4: Student Enrollment Workflow
-├── Story 2.5: Sponsor Portal Access Management
-├── Story 2.6: TP Review & Verification Logic
-├── Story 2.7: Bulk Download & ZIP Generation
-└── Story 2.8: Excel Export (FR23)
-
-Phase 3: API Layer
-├── Story 3.1: Cohort Management Endpoints
-├── Story 3.2: Student Portal API Endpoints
-├── Story 3.3: Sponsor Portal API Endpoints
-└── Story 3.4: Excel Export API
-
-Phase 4: Frontend - TP Portal
-├── Story 4.1: Institution Onboarding UI
-├── Story 4.2: Cohort Dashboard UI
-├── Story 4.3: 5-Step Cohort Creation Wizard
-├── Story 4.4: Document Mapping Interface
-├── Story 4.5: TP Signing Interface
-├── Story 4.6: Student Enrollment Monitor
-├── Story 4.7: Sponsor Access Monitor
-├── Story 4.8: TP Review Dashboard (3-panel)
-├── Story 4.9: Cohort Analytics UI
-└── Story 4.10: Excel Export Interface
-Phase 5: Frontend - Student Portal
-├── Story 5.1: Student Invitation Landing
-├── Story 5.2: Document Upload Interface
-├── Story 5.3: Progress Tracking & Save Draft
-├── Story 5.4: Submission Confirmation & Status
-└── Story 5.5: Email Notifications & Reminders
-
-Phase 6: Frontend - Sponsor Portal
-├── Story 6.1: Cohort Dashboard & Bulk Signing Interface
-└── Story 6.2: Email Notifications & Reminders
-
-Phase 7: Integration & Testing
-├── Story 7.1: End-to-End Workflow Testing
-├── Story 7.2: Mobile Responsiveness Testing
-├── Story 7.3: Performance Testing (50+ students)
-├── Story 7.4: Security Audit & Penetration Testing
-└── Story 7.5: User Acceptance Testing
-
-Phase 8: Deployment & Documentation
-├── Story 8.1: Feature Flag Implementation
-├── Story 8.2: Deployment Pipeline Update
-├── Story 8.3: API Documentation
-└── Story 8.4: User Documentation
-```
-
-### 5.3 INTEGRATION REQUIREMENTS
-
-**Integration Verification Strategy:**
-
-Each story must include verification that:
-1. **Existing DocuSeal functionality remains intact** (templates, submissions, submitters)
-2. **New FloDoc features integrate correctly** with existing infrastructure
-3. **Performance impact is within acceptable limits** (<20% increase per NFR1)
-4. **Security is maintained** (no new vulnerabilities introduced)
-5. **Data integrity is preserved** (no corruption or loss)
-
-**Critical Integration Points:**
-
-1. **Template → Cohort Mapping**:
-   - Templates become cohorts
-   - Existing template builder must still work
-   - New cohort metadata must not break template rendering
-
-2. **Submission → Student Mapping**:
-   - Submissions represent students in cohorts
-   - Existing submission workflows must continue
-   - New state management must not conflict with existing states
-
-3. **Submitter → Signatory Mapping**:
-   - Submitters are participants (TP, Students, Sponsor)
-   - Existing submitter logic must adapt to cohort context
-   - New email rules must override existing behavior
-
-4. **Storage Integration**:
-   - Cohort documents use existing Active Storage
-   - Bulk downloads must not interfere with existing document access
-   - Excel exports must use same storage backend
-
-5. **Email System Integration**:
-   - Sponsor single-email rule must override DocuSeal's default
-   - Student invitations must use existing email infrastructure
-   - Cohort notifications must not conflict with existing emails
-
-**Rollback Strategy for Each Story:**
-
-Every story must include:
-- **Database migration**: Reversible with `down` method
-- **Code changes**: Can be disabled via feature flag
-- **Data preservation**: No deletion of existing data
-- **Testing verification**: Script to confirm rollback success
-
-### 5.4 RISK-MITIGATED STORY PRIORITIZATION
-
-**Critical Path (High Risk, High Priority):**
-
-1. **Story 1.1 (Database)** - Foundation blocker
-2. **Story 1.2 (Models)** - Foundation blocker
-3. **Story 2.2 (TP Signing)** - **HIGHEST RISK** - Must prototype early
-4. **Story 2.3 (Sponsor Email)** - **HIGHEST RISK** - Core requirement
-5. **Story 2.1 (Cohort Service)** - Enables all other stories
-6. **Story 3.1 (Cohort API)** - Enables frontend development
-
-**Why This Order?**
-- Database and models are prerequisites
-- TP signing and sponsor email are the two highest-risk items per Section 4.5
-- Early validation prevents wasted effort on dependent stories
-- If these fail, the entire epic needs rethinking
-
-**Parallel Workstreams (Low Risk, Independent):**
-
-- **Stream A**: Student Portal (Stories 5.x) - Can proceed once API is ready
-- **Stream B**: Excel Export (Story 2.8 + 3.4 + 4.10) - Independent feature
-- **Stream C**: Documentation (Story 8.3 + 8.4) - Can run in parallel
-
-### 5.5 ACCEPTANCE CRITERIA FRAMEWORK
-
-**All stories must follow this acceptance criteria pattern:**
-
-**Functional Criteria:**
-1. Story-specific functionality works as specified
-2. All related FRs/NFRs from Section 2 are satisfied
-3. Edge cases are handled (empty states, errors, validation)
-
-**Integration Criteria:**
-1. Existing DocuSeal functionality verified working (see IV1-3 below)
-2. No breaking changes to existing APIs
-3. Database migrations are reversible
-4. Performance impact measured and acceptable
-
-**Security Criteria:**
-1. Authorization checks on all new endpoints
-2. Input validation on all user-facing fields
-3. No SQL injection, XSS, or CSRF vulnerabilities
-4. Audit logging for all sensitive operations
-
-**Quality Criteria:**
-1. Minimum 80% test coverage for new code
-2. RuboCop/ESLint pass with no new warnings
-3. Design system compliance (per Section 3.1)
-4. Mobile-responsive on all breakpoints
-
-**Integration Verification (IV) Template:**
-
-Each story must include these IV steps:
-
-**IV1: Existing Functionality Verification**
-- "Verify that [existing DocuSeal feature] still works after this change"
-- Example: "Verify that existing template creation still works"
-- Example: "Verify that existing submission workflows complete successfully"
-
-**IV2: Integration Point Verification**
-- "Verify that new [feature] integrates correctly with [existing system]"
-- Example: "Verify that new Cohort model links correctly to existing Template model"
-- Example: "Verify that new API endpoints follow existing DocuSeal patterns"
-
-**IV3: Performance Impact Verification**
-- "Verify that performance impact is within acceptable limits"
-- Example: "Verify that cohort dashboard loads in <2 seconds with 50 students"
-- Example: "Verify that memory usage does not exceed 20% increase"
-
-### 5.6 STORY DEPENDENCIES AND CRITICAL PATH
-
-**Dependency Graph:**
-
-```
-Story 1.1 (DB Schema) ──┐
-                         ├─→ Story 1.2 (Models) ──┐
-Story 1.3 (Auth) ───────┘                        │
-                                                 ├─→ Story 2.1 (Cohort Service)
-                                                  └─→ Story 2.2 (TP Signing - Critical Path)
-                                                      └─→ Story 2.3 (Sponsor Email - Critical Path)
-                                                          └─→ All subsequent stories...
-```
-
-**Critical Path Duration Estimate:**
-- Stories 1.1-1.3: 3-5 days
-- Stories 2.1-2.3: 5-8 days (includes prototyping high-risk items)
-- Stories 2.4-2.8: 5-7 days
-- Stories 3.1-3.4: 3-5 days
-- Stories 4.1-4.10: 8-12 days (TP Portal)
-- Stories 5.1-5.5: 5-7 days (Student Portal)
-- Stories 6.1-6.6: 5-7 days (Sponsor Portal)
-- Stories 7.1-7.5: 5-7 days (Integration & Testing)
-- Stories 8.1-8.4: 3-5 days (Deployment)
-
-**Total Estimated Duration**: 42-63 days (8-12 weeks)
-
-**Milestones:**
-- **Milestone 1** (Week 2): Foundation Complete (Stories 1.x)
-- **Milestone 2** (Week 4): Backend Complete (Stories 2.x, 3.x)
-- **Milestone 3** (Week 8): All Portals Built (Stories 4.x, 5.x, 6.x)
-- **Milestone 4** (Week 10): Testing Complete (Story 7.x)
-- **Milestone 5** (Week 12): Production Ready (Story 8.x)
-
-### 5.7 TECHNICAL DEBT MANAGEMENT
-
-**Stories Must Address Existing Technical Debt:**
-
-From Section 4.5, we identified:
-1. **No coding standards documentation** → Covered in Section 4.3
-2. **No technical debt analysis** → Covered in Section 4.5
-3. **Partial implementation** (Cohort/Sponsor models referenced but not created) → Stories 1.2 will fix
-
-**New Technical Debt Prevention:**
-
-Each story must include:
-- **Documentation**: Code comments, API docs, workflow diagrams
-- **Testing**: Unit, integration, and system tests
-- **Refactoring**: Clean code following existing patterns
-- **Review**: Peer review checklist for quality gates
-
-**Debt Paydown Stories:**
-
-If technical debt is discovered during implementation:
-- **Story 9.1**: Refactor for clarity
-- **Story 9.2**: Add missing tests
-- **Story 9.3**: Update documentation
-- **Story 9.4**: Performance optimization
-
-These are tracked separately from main epic but must be completed before epic closure.
-
-### 5.8 AGENT COORDINATION REQUIREMENTS
-
-**BMAD Agent Roles (Corrected):**
-
-Based on the BMAD brownfield workflow, the correct agent roles are:
-
-- **Product Manager (PM)**: Creates PRD, prioritizes features, validates business alignment
-- **Scrum Master (SM)**: Creates individual stories from sharded PRD/Architecture docs
-- **Developer (Dev)**: Implements approved stories, writes code and tests
-- **QA/Test Architect**: Reviews implementation, creates test strategies, manages quality gates
-- **Architect (Winston)**: Designs system architecture, validates technical feasibility
-- **Product Owner (PO)**: Validates story alignment, runs master checklists, manages backlog
-
-**Story Creation Process (Brownfield Workflow):**
-
-1. **SM Agent** creates stories from sharded PRD using `*create` task
-2. **User** reviews and approves story (updates status: Draft → Approved)
-3. **Dev Agent** implements approved story in new clean chat
-4. **QA Agent** reviews implementation, may refactor, appends QA Results
-5. **User** verifies completion, approves for production
-
-**Story Handoff Protocol:**
-
-Each story must include:
-- **Clear acceptance criteria** (per Section 5.5)
-- **Integration verification steps** (IV1-3)
-- **Design system references** (if UI involved)
-- **API endpoint specifications** (if backend involved)
-- **Test data requirements**
-- **Rollback procedure**
-
-**Critical Context Management:**
-
-- **ALWAYS use fresh, clean chat sessions** when switching agents
-- **SM → Dev → QA** each in separate conversations
-- **Powerful model for SM story creation** (thinking models preferred)
-- **Dev agent loads**: `devLoadAlwaysFiles` from core-config.yaml
-
-**Implementation Order:**
-
-Stories must be implemented in the sequence defined in Section 5.2. No jumping ahead, even if later stories seem "easier." This ensures:
-- Foundation is solid before building on it
-- High-risk items are validated early
-- Dependencies are respected
-- Rollback is possible at each stage
-
-### 5.9 SUCCESS METRICS
-
-**Epic Success Criteria:**
-
-1. **Functional**: All 23 FRs and 12 NFRs from Section 2 are met
-2. **Technical**: Zero regression in existing DocuSeal functionality
-3. **Performance**: <20% performance degradation (NFR1)
-4. **Security**: No new vulnerabilities, sponsor portal security audited
-5. **User Experience**: All three portals meet UI consistency requirements (Section 3.3)
-6. **Documentation**: Complete API docs, user guides, and technical documentation
-7. **Deployment**: Successful production deployment with feature flag control
-
-**Story Success Criteria:**
-
-Each story is successful when:
-- Acceptance criteria are met
-- Integration verification passes
-- Tests pass with >80% coverage
-- Code review approved
-- Design system compliance verified (if UI)
-- Rollback tested and documented
-
-### 5.10 NEXT STEPS
-
-**Decision Point:**
-
-Per your instruction, we're going with **Option D**: Keep Section 5 as-is (structure and strategy are correct), clarify the exact data-copying mechanism in Section 6 when writing detailed stories.
-
-**Before Creating Individual Stories:**
-
-1. **User Approval**: Confirm this epic structure aligns with your vision ✅ (pending)
-2. **Document Sharding**: PO agent shards `docs/prd.md` into `docs/prd/` folder
-3. **Story Detailing**: SM agent creates detailed stories for Phase 1 from sharded docs
-4. **Technical Spikes**: Dev agent prototypes high-risk items (TP signing, sponsor email)
-5. **Design Validation**: Verify design system assets are complete and accessible
-
-**Transition to Epic Details (Section 6):**
-
-Section 6 will provide detailed stories for Phase 1 (Foundation):
-- **Story 1.1**: Database Schema Extension
-- **Story 1.2**: Core Models Implementation
-- **Story 1.3**: Authorization Layer Extension
-
-**What Section 6 Will Include:**
-- Full user stories (As a... I want... so that...)
-- Detailed acceptance criteria (per Section 5.5 framework)
-- Integration verification steps (IV1-3)
-- Technical implementation notes (including data-copying mechanism clarification)
-- Test requirements and strategies
-- Rollback procedures
-- Risk mitigation details
-
-**Critical BMAD Workflow Compliance:**
-
-Section 6 stories will follow the brownfield-fullstack workflow:
-1. **SM** creates story from sharded PRD
-2. **User** approves (Draft → Approved)
-3. **Dev** implements in clean chat
-4. **QA** reviews and validates
-5. **User** verifies completion
-
----
-
-## 6. Epic Details
-
-### 6.1 Phase 1: Foundation
+## 6.1 Phase 1: Foundation
 
 This section provides detailed user stories for Phase 1 (Foundation) of the FloDoc enhancement. These stories must be completed before any other work can begin.
 
-#### Story 1.1: Database Schema Extension
+### Story 1.1: Database Schema Extension
 
 **Status**: Draft
 **Priority**: Critical
@@ -1700,13 +12,13 @@ This section provides detailed user stories for Phase 1 (Foundation) of the FloD
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** system architect,
 **I want** to create the database schema for FloDoc's new models,
 **So that** the application has the foundation to support cohort management.
 
-##### Background
+#### Background
 
 Based on the PRD analysis, we need three new tables to support the 3-portal cohort management system:
 - `institutions` - Single training institution (not multi-tenant)
@@ -1715,7 +27,7 @@ Based on the PRD analysis, we need three new tables to support the 3-portal coho
 
 These tables must integrate with existing DocuSeal tables without breaking existing functionality.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Database Schema Requirements:**
 
@@ -1785,7 +97,7 @@ add_index :cohort_enrollments, [:submission_id], unique: true
 5. **Soft Deletes**: All tables use `deleted_at` for data preservation
 6. **JSONB Fields**: Flexible storage for metadata and dynamic requirements
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ All three tables created with correct schema
@@ -1810,7 +122,7 @@ add_index :cohort_enrollments, [:submission_id], unique: true
 3. ✅ All migrations include `down` method for rollback
 4. ✅ Schema changes documented in migration comments
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Existing Functionality Verification**
 - Verify that existing `templates` table can be queried normally
@@ -1829,7 +141,7 @@ add_index :cohort_enrollments, [:submission_id], unique: true
 - Verify that indexes are being used (check with EXPLAIN)
 - Verify that migration runs in < 30 seconds on production-sized database
 
-##### Test Requirements
+#### Test Requirements
 
 **Migration Tests:**
 ```ruby
@@ -1857,7 +169,7 @@ end
 - Verify foreign key constraints
 - Verify soft delete functionality
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If migration fails or causes issues:**
 
@@ -1869,7 +181,7 @@ end
 
 **Data Safety**: No existing data is modified or deleted by this migration.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Schema additions only, no modifications to existing tables
@@ -1882,7 +194,7 @@ end
 - Have rollback plan ready
 - Monitor migration execution time
 
-#### Story 1.2: Core Models Implementation
+### Story 1.2: Core Models Implementation
 
 **Status**: Draft
 **Priority**: Critical
@@ -1890,13 +202,13 @@ end
 **Estimated Effort**: 3-4 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** developer,
 **I want** to create ActiveRecord models for the new FloDoc tables,
 **So that** the application can interact with cohorts and enrollments programmatically.
 
-##### Background
+#### Background
 
 Models must follow existing DocuSeal patterns:
 - Inherit from `ApplicationRecord`
@@ -1905,7 +217,7 @@ Models must follow existing DocuSeal patterns:
 - Define proper associations and validations
 - Follow naming conventions
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Feature Flag System:**
 
@@ -2148,7 +460,7 @@ end
 4. **Scopes**: Common query patterns for performance
 5. **Validation**: Consistent with existing DocuSeal models
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ All three models created with correct class structure
@@ -2181,7 +493,7 @@ end
 4. ✅ No N+1 query issues
 5. ✅ Feature flag tests included
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Existing Functionality Verification**
 - Verify that `Template` model still works
@@ -2209,7 +521,7 @@ end
 - Verify that feature flag UI displays all flags correctly
 - Verify that admin can toggle flags via UI
 
-##### Test Requirements
+#### Test Requirements
 
 **Model Specs:**
 ```ruby
@@ -2348,7 +660,7 @@ describe 'FloDoc Cohorts', type: :request do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If models cause issues:**
 
@@ -2359,7 +671,7 @@ end
 
 **Note**: Models don't modify database, so rollback is code-only.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Models are pure Ruby code additions
@@ -2372,7 +684,7 @@ end
 - Comprehensive test coverage
 - Staging environment testing
 
-##### Success Metrics
+#### Success Metrics
 
 - **Feature Flag Accuracy**: 100% of flag checks return correct state
 - **Toggle Success Rate**: 99.9% of enable/disable operations succeed
@@ -2381,7 +693,7 @@ end
 - **Test Coverage**: 100% of feature flag code covered
 - **Zero Breaking Changes**: All existing tests pass
 
-#### Story 1.3: Authorization Layer Extension
+### Story 1.3: Authorization Layer Extension
 
 **Status**: Draft
 **Priority**: Critical
@@ -2389,13 +701,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** system administrator,
 **I want** the authorization system to support FloDoc roles and permissions,
 **So that** users can only access appropriate cohort management functions.
 
-##### Background
+#### Background
 
 DocuSeal uses Cancancan for authorization. We need to:
 - Extend `Ability` class to handle FloDoc models
@@ -2403,7 +715,7 @@ DocuSeal uses Cancancan for authorization. We need to:
 - Support ad-hoc access patterns (students/sponsors without accounts)
 - Maintain existing DocuSeal permissions
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Ability Class Extension:**
 
@@ -2573,7 +885,7 @@ class Cohorts::StudentPortalController < ApplicationController
 end
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Ability class extended with FloDoc permissions
@@ -2601,7 +913,7 @@ end
 3. ✅ Token service has comprehensive tests
 4. ✅ No security bypasses
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Existing Functionality Verification**
 - Verify that existing user authentication still works
@@ -2620,7 +932,7 @@ end
 - Verify that JWT encoding/decoding is fast
 - Verify that no N+1 queries in authorization logic
 
-##### Test Requirements
+#### Test Requirements
 
 **Ability Specs:**
 ```ruby
@@ -2677,7 +989,7 @@ describe AdHocTokenService do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If authorization causes issues:**
 
@@ -2687,7 +999,7 @@ end
 
 **Note**: Authorization is code-only, no database changes.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - Security-critical component
@@ -2710,11 +1022,11 @@ end
 
 ---
 
-### 6.2 Phase 2: Backend Business Logic
+## 6.2 Phase 2: Backend Business Logic
 
 This section provides detailed user stories for Phase 2 (Backend Business Logic) of the FloDoc enhancement. This phase implements the core business logic for cohort management and workflow orchestration.
 
-#### Story 2.1: Cohort Creation & Management
+### Story 2.1: Cohort Creation & Management
 
 **Status**: Draft
 **Priority**: High
@@ -2722,13 +1034,13 @@ This section provides detailed user stories for Phase 2 (Backend Business Logic)
 **Estimated Effort**: 3-4 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP (Training Provider) administrator,
 **I want** to create and manage cohorts with all their configuration details,
 **So that** I can organize students into training programs and prepare them for the signature workflow.
 
-##### Background
+#### Background
 
 Cohort creation is the entry point for the FloDoc workflow. TP administrators need to:
 - Create a cohort by selecting an existing DocuSeal template
@@ -2739,7 +1051,7 @@ Cohort creation is the entry point for the FloDoc workflow. TP administrators ne
 
 The cohort acts as a container that orchestrates the entire 3-party signature workflow.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Cohort Creation Service:**
 
@@ -2837,7 +1149,7 @@ end
 4. **Validation Rules**: Enforce business rules (max 10 upload types, sponsor must differ from TP)
 5. **Template Linking**: Cohorts must link to accessible templates
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ TP can create cohort with template selection
@@ -2866,7 +1178,7 @@ end
 3. ✅ Proper error handling and user feedback
 4. ✅ 80% test coverage for service layer
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Template Validation**
 - Verify template selection UI shows only accessible templates
@@ -2886,7 +1198,7 @@ end
 - Verify audit log queries don't impact cohort performance
 - Verify no N+1 queries in cohort index view
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -2913,7 +1225,7 @@ end
 - Verify required uploads max 10 items
 - Verify template accessibility validation
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If cohort management causes issues:**
 1. Revert service object code
@@ -2923,7 +1235,7 @@ end
 
 **Data Safety**: No destructive operations - all data preserved via soft delete.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Service layer pattern is tested in existing codebase
@@ -2939,7 +1251,7 @@ end
 
 ---
 
-#### Story 2.2: TP Signing Phase Logic (High Risk - Prototype First)
+### Story 2.2: TP Signing Phase Logic (High Risk - Prototype First)
 
 **Status**: Draft
 **Priority**: Critical
@@ -2947,13 +1259,13 @@ end
 **Estimated Effort**: 4-5 days
 **Risk Level**: High
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to sign the first student's document and have that signing replicated to all other students in the cohort,
 **So that** I don't need to sign each student's document individually, saving time and eliminating duplicate sponsor emails.
 
-##### Background
+#### Background
 
 This is the core innovation of FloDoc. The workflow is:
 
@@ -2970,7 +1282,7 @@ This is the core innovation of FloDoc. The workflow is:
 - Validates sponsor email delivery logic
 - Then expand to full implementation
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **TP Signing Phase Orchestration:**
 
@@ -3168,7 +1480,7 @@ end
 4. **Single Email Guarantee**: Timestamp-based prevention of duplicate emails
 5. **State Machine Integration**: Cohort state drives when each operation is allowed
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ TP can initiate TP signing phase from draft state
@@ -3196,7 +1508,7 @@ end
 3. ✅ Debug logging for debugging duplication issues
 4. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Existing Functionality Verification**
 - Verify existing submission creation still works
@@ -3216,7 +1528,7 @@ end
 - Verify sponsor email logic is fast
 - Verify state transitions execute quickly
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -3261,7 +1573,7 @@ end
 - Verify sponsor email sent only once
 - Verify state transitions
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If TP signing logic fails:**
 1. **Immediate**: Revert service object code
@@ -3271,7 +1583,7 @@ end
 
 **Critical**: If duplicated in production, inspect cohort.email_sent_at flags to manually prevent duplicates.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **High Risk because:**
 - **Custom duplication logic** - DocuSeal doesn't support this natively
@@ -3309,7 +1621,7 @@ end
 
 ---
 
-#### Story 2.3: Student Enrollment Management
+### Story 2.3: Student Enrollment Management
 
 **Status**: Draft
 **Priority**: High
@@ -3317,13 +1629,13 @@ end
 **Estimated Effort**: 3-4 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to manage student enrollment in cohorts and bulk-create student submissions,
 **So that** students can access their documents to complete after TP signs.
 
-##### Background
+#### Background
 
 After TP completes signing (Phase 2.2), the system needs to:
 - Create student records in the cohort
@@ -3339,7 +1651,7 @@ The enrollment process uses the existing DocuSeal submission invitation mechanis
 - Email invites sent via DocuSeal's existing email system
 - Student status tracked in cohort_enrollments
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Student Enrollment Service:**
 
@@ -3466,7 +1778,7 @@ end
 4. **Upload Tracking**: Separate tracking for document uploads vs. form completion
 5. **Bulk Operations**: Efficient handling of large student lists
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ TP can bulk enroll students via CSV or manual entry
@@ -3496,7 +1808,7 @@ end
 3. ✅ Proper error messages for invalid data
 4. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Email System Integration**
 - Verify emails use existing DocuSeal SMTP configuration
@@ -3515,7 +1827,7 @@ end
 - Verify student listing query is fast
 - Verify completion tracking doesn't cause race conditions
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -3547,7 +1859,7 @@ end
 - Verify token in email link
 - Verify tracking pixels (if used)
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If enrollment service fails:**
 1. Revert student_enrollment_service.rb code
@@ -3557,7 +1869,7 @@ end
 
 **Data Safety**: Enrollments are soft-deletable if cleanup needed.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - Interaction with existing email system could have side effects
@@ -3574,7 +1886,7 @@ end
 
 ---
 
-#### Story 2.4: Sponsor Review Workflow
+### Story 2.4: Sponsor Review Workflow
 
 **Status**: Draft
 **Priority**: Medium
@@ -3582,13 +1894,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to review all student documents in my cohort and sign them in bulk,
 **So that** I can complete the verification workflow efficiently.
 
-##### Background
+#### Background
 
 After all students complete their portion, the cohort enters "ready_for_sponsor" state. The sponsor:
 - Receives ONE email invitation (Story 2.2 ensures this)
@@ -3599,7 +1911,7 @@ After all students complete their portion, the cohort enters "ready_for_sponsor"
 
 **No account creation needed** - sponsor uses ad-hoc token-based access.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Sponsor Portal Logic:**
 
@@ -3926,7 +2238,7 @@ if (tokenExpired) {
 
 Same mechanism as sponsor portal.
 
-##### Key Principle
+#### Key Principle
 
 **Tokens are session keys, not data storage. Progress is ALWAYS in the database.**
 
@@ -3957,7 +2269,7 @@ end
 3. **Bulk Ready**: Structure supports bulk verification if needed
 4. **State-Driven**: Sponsor can only review when all students complete
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Sponsor receives single email invitation
@@ -3987,7 +2299,7 @@ end
 3. ✅ Audit trail of sponsor actions
 4. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Document Viewing**
 - Verify sponsor can view PDF documents
@@ -4004,7 +2316,7 @@ end
 - Verify document preview is fast
 - Verify verification updates don't cause delays
 
-##### Test Requirements
+#### Test Requirements
 
 **Controller Specs:**
 ```ruby
@@ -4025,7 +2337,7 @@ describe SponsorPortalController do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **Review logic fails:**
 1. Revert sponsor review service code
@@ -4034,7 +2346,7 @@ end
 
 **Data Safety**: All verification data stored with references.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Uses existing document viewing infrastructure
@@ -4049,7 +2361,7 @@ end
 
 ---
 
-#### Story 2.5: TP Review & Finalization
+### Story 2.5: TP Review & Finalization
 
 **Status**: Draft
 **Priority**: Medium
@@ -4057,13 +2369,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to review the sponsor-verified submissions and finalize the cohort,
 **So that** the entire 3-party signature workflow is completed and documents are ready for archival.
 
-##### Background
+#### Background
 
 Final phase of the workflow:
 1. Sponsor completes verification (Story 2.4)
@@ -4075,7 +2387,7 @@ Final phase of the workflow:
 
 This is the final quality check in the workflow.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **TP Review Service:**
 
@@ -4202,7 +2514,7 @@ end
 4. **Async Archiving**: Job-based archiving doesn't block web request
 5. **Reversible**: Rollback still possible if issues found
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ TP sees sponsor verification dashboard
@@ -4231,7 +2543,7 @@ end
 3. ✅ Very fast finalization (< 3 seconds)
 4. ✅ 80% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: DocuSeal Integration**
 - Verify existing document archiving works
@@ -4248,7 +2560,7 @@ end
 - Verify finalization performs well with 500 students
 - Verify archive job doesn't block
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -4264,7 +2576,7 @@ describe '.finalize_cohort' do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If finalization fails:**
 1. Revert finalization service
@@ -4273,7 +2585,7 @@ end
 
 **Data Safety**: All operations are idempotent.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Final state transitions only
@@ -4288,7 +2600,7 @@ end
 
 ---
 
-#### Story 2.6: Excel Export for Cohort Data
+### Story 2.6: Excel Export for Cohort Data
 
 **Status**: Draft
 **Priority**: Medium
@@ -4296,13 +2608,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to export cohort enrollment data to Excel,
 **So that** I can perform additional analysis or reporting outside the system.
 
-##### Background
+#### Background
 
 FR23 requires Excel export capability. This should include:
 - Student enrollment information
@@ -4312,7 +2624,7 @@ FR23 requires Excel export capability. This should include:
 
 This allows TP admins to use Excel for additional reporting.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Excel Export Service:**
 
@@ -4432,7 +2744,7 @@ end
 4. **Inline Formatting**: Bold headers, proper date formatting
 5. **Tempfile Pattern**: Stream file download without storing on server
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ TP can export cohort to Excel (.xlsx format)
@@ -4459,7 +2771,7 @@ end
 3. ✅ Nice error message for empty cohorts
 4. ✅ 80% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Export Permissions**
 - Verify unauthorized users cannot access export
@@ -4475,7 +2787,7 @@ end
 - Verify memory usage is reasonable
 - Verify temp file is cleaned up
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -4495,7 +2807,7 @@ describe '.export_cohort_data' do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If export fails:**
 1. Revert excel_export_service.rb
@@ -4504,7 +2816,7 @@ end
 
 **Data Safety**: Export does not modify data.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Simple data extraction only
@@ -4519,7 +2831,7 @@ end
 
 ---
 
-#### Story 2.7: Audit Log & Compliance
+### Story 2.7: Audit Log & Compliance
 
 **Status**: Draft
 **Priority**: High
@@ -4527,13 +2839,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** comprehensive audit logs of all cohort workflow activities,
 **So that** we can demonstrate compliance and trace any issues.
 
-##### Background
+#### Background
 
 FloDoc handles sensitive training documents. Compliance requires:
 - Immutable audit trail of all actions
@@ -4544,7 +2856,7 @@ FloDoc handles sensitive training documents. Compliance requires:
 
 All audit logs must be tamper-proof and easily searchable.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Audit Log Model:**
 
@@ -4820,7 +3132,7 @@ FloDoc::Audit.cohort_completed(user, cohort)
 4. **Searchable**: Scopes and search for compliance reports
 5. **User-Friendly**: Report generation for common compliance queries
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Every cohort action is logged
@@ -4849,7 +3161,7 @@ FloDoc::Audit.cohort_completed(user, cohort)
 3. ✅ Clear error handling if audit logging fails
 4. ✅ 90% test coverage for audit module
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Audit Calls**
 - Verify audit log created for cohort creation
@@ -4868,7 +3180,7 @@ FloDoc::Audit.cohort_completed(user, cohort)
 - Verify search works faster than 2 seconds
 - Verify no memory bloat with large reports
 
-##### Test Requirements
+#### Test Requirements
 
 **Model Specs:**
 ```ruby
@@ -4916,7 +3228,7 @@ describe '.generate_cohort_report' do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If audit system fails:**
 1. Revert audit logging wrapper
@@ -4926,7 +3238,7 @@ end
 
 **Data Safety**: Audit logs are append-only, no risk to core data.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - Every operation now has extra database write
@@ -4949,7 +3261,7 @@ end
 
 ---
 
-#### Story 2.8: Cohort State Machine & Workflow Orchestration
+### Story 2.8: Cohort State Machine & Workflow Orchestration
 
 **Status**: Draft
 **Priority**: High
@@ -4957,13 +3269,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** system,
 **I want** to manage cohort state transitions and workflow enforcement,
 **So that** the 3-party signature workflow follows the correct sequence and prevents invalid operations.
 
-##### Background
+#### Background
 
 The FloDoc workflow has strict state requirements:
 1. **Draft** → TP signs first document
@@ -4977,7 +3289,7 @@ Cannot skip steps. Prevents chaos.
 
 This story ties together all Phase 2 logic with proper state enforcement.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Enhanced State Machine (Story 1.2 had basic version):**
 
@@ -5289,7 +3601,7 @@ class WorkflowValidationJob < ApplicationJob
 end
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ State transitions work via AASM events
@@ -5315,7 +3627,7 @@ end
 2. ✅ State validation in errors
 3. ✅ 85% test coverage for state machine
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: State Transitions**
 - Verify draft → tp_signing works
@@ -5336,7 +3648,7 @@ end
 - Verify AASM doesn't add significant overhead
 - Verify guards are fast
 
-##### Test Requirements
+#### Test Requirements
 
 **State Machine Specs:**
 ```ruby
@@ -5405,7 +3717,7 @@ describe WorkflowOrchestrator do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If state machine causes issues:**
 1. Revert cohort model changes
@@ -5415,7 +3727,7 @@ end
 
 **Data Safety**: State machine is code, not data migration.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - State management is critical to workflow
@@ -5438,11 +3750,11 @@ end
 
 ---
 
-### 6.3 Phase 3: API Layer
+## 6.3 Phase 3: API Layer
 
 This section provides detailed user stories for Phase 3 (API Layer) of the FloDoc enhancement. This phase creates the RESTful API endpoints that expose the 3-portal cohort management system to external integrations and frontend clients.
 
-#### Story 3.1: RESTful Cohort Management API
+### Story 3.1: RESTful Cohort Management API
 
 **Status**: Draft
 **Priority**: Critical
@@ -5450,13 +3762,13 @@ This section provides detailed user stories for Phase 3 (API Layer) of the FloDo
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator or external system integrator,
 **I want** to create, read, update, and delete cohorts via REST API,
 **So that** I can automate cohort management and integrate with other systems.
 
-##### Background
+#### Background
 
 The FloDoc system needs a complete REST API for cohort management. This API will be used by:
 
@@ -5466,7 +3778,7 @@ The FloDoc system needs a complete REST API for cohort management. This API will
 
 The API should follow JSON:API standards and include proper authentication/authorization.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **API Endpoints:**
 
@@ -5747,7 +4059,7 @@ end
 5. **Error Handling**: Standardized error responses across all endpoints
 6. **Pagination**: Built-in for collections
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ GET /api/v1/cohorts - List cohorts with pagination
@@ -5782,7 +4094,7 @@ end
 4. ✅ API documentation in code comments
 5. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Service Object Integration**
 - Verify all endpoints call appropriate service methods
@@ -5799,7 +4111,7 @@ end
 - Verify show endpoint returns in < 200ms
 - Verify bulk operations handle 1000 records
 
-##### Test Requirements
+#### Test Requirements
 
 **Request Specs:**
 ```ruby
@@ -5838,7 +4150,7 @@ describe Api::V1::Sponsor::PortalController do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If API causes issues:**
 1. Remove API routes for affected endpoints
@@ -5848,7 +4160,7 @@ end
 
 **Data Safety**: API layer is read/write wrapper around existing services.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Thin controllers calling tested service objects
@@ -5870,7 +4182,7 @@ end
 
 ---
 
-#### Story 3.2: Webhook Events for Workflow State Changes
+### Story 3.2: Webhook Events for Workflow State Changes
 
 **Status**: Draft
 **Priority**: Medium
@@ -5878,13 +4190,13 @@ end
 **Estimated Effort**: 2-3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** webhook notifications for all cohort workflow events,
 **So that** external systems can react to state changes in real-time.
 
-##### Background
+#### Background
 
 FloDoc should emit webhooks for:
 - Cohort created
@@ -5897,7 +4209,7 @@ FloDoc should emit webhooks for:
 
 This allows external integrations (e.g., CRM, LMS, reporting systems) to stay in sync.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Webhook Event Model:**
 
@@ -6154,7 +4466,7 @@ Cohort metadata should include:
 5. **Multiple URLs**: Support multiple endpoints per cohort
 6. **Event Naming**: Consistent "entity.action" pattern
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Webhook events created for all 7 event types
@@ -6182,7 +4494,7 @@ Cohort metadata should include:
 3. ✅ Error messages for debugging
 4. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Event Emission**
 - Verify all 7 event types are emitted
@@ -6200,7 +4512,7 @@ Cohort metadata should include:
 - Verify queue performance under load
 - Verify no N+1 queries in event creation
 
-##### Test Requirements
+#### Test Requirements
 
 **Service Specs:**
 ```ruby
@@ -6238,7 +4550,7 @@ end
 - Full workflow triggers all expected webhooks
 - Webhook retries work correctly
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If webhooks cause issues:**
 1. Disable WebhookDeliveryJob
@@ -6248,7 +4560,7 @@ end
 
 **Data Safety**: Webhook events are append-only log.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Decoupled from main workflow via background jobs
@@ -6270,7 +4582,7 @@ end
 
 ---
 
-#### Story 3.3: Student API (Ad-hoc Token-Based Access)
+### Story 3.3: Student API (Ad-hoc Token-Based Access)
 
 **Status**: Draft
 **Priority**: Medium
@@ -6278,13 +4590,13 @@ end
 **Estimated Effort**: 3-4 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** student with a cohort link,
 **I want** a simple token-based API to access and complete my documents,
 **So that** I can fulfill my requirements without account creation.
 
-##### Background
+#### Background
 
 Students need to:
 - Access their pre-filled document
@@ -6298,7 +4610,7 @@ This requires a secure token-based API that:
 - Exposes only student's own document
 - Tracks completion status
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Student API Controller:**
 
@@ -6547,7 +4859,7 @@ Questions? Contact #{cohort.institution&.name}
 5. **Clear Errors**: Helpful messages for missing requirements
 6. **Minimal Surface**: Only essential operations
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ GET /api/v1/students/:token/status - Check progress
@@ -6575,7 +4887,7 @@ Questions? Contact #{cohort.institution&.name}
 3. ✅ Proper validation
 4. ✅ 85% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: Token-Based Access**
 - Verify token validation works
@@ -6592,7 +4904,7 @@ Questions? Contact #{cohort.institution&.name}
 - Verify state transitions work
 - Verify audit logs created
 
-##### Test Requirements
+#### Test Requirements
 
 **Controller Specs:**
 ```ruby
@@ -6620,7 +4932,7 @@ describe Api::V1::Students::PortalController do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If Student API causes issues:**
 1. Remove student portal routes
@@ -6630,7 +4942,7 @@ end
 
 **Data Safety**: Student API is read/write wrapper around existing data.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - New ad-hoc access pattern
@@ -6653,7 +4965,7 @@ end
 
 ---
 
-#### Story 3.4: API Documentation & Versioning
+### Story 3.4: API Documentation & Versioning
 
 **Status**: Draft
 **Priority**: Medium
@@ -6661,13 +4973,13 @@ end
 **Estimated Effort**: 1-2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** developer integrating with FloDoc,
 **I want** comprehensive API documentation and stable versioning,
 **So that** I can build reliable integrations without breaking changes.
 
-##### Background
+#### Background
 
 API documentation must include:
 - Endpoint reference
@@ -6679,7 +4991,7 @@ API documentation must include:
 
 This will be the source of truth for both internal frontend and external integrations.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Documentation Framework:**
 
@@ -6888,9 +5200,9 @@ end
 **Authentication Documentation:**
 
 ```markdown
-### Authentication
+## Authentication
 
-#### TP Portal (Authenticated Users)
+### TP Portal (Authenticated Users)
 
 Use Bearer token authentication:
 
@@ -6907,7 +5219,7 @@ POST /api/v1/auth/login
 }
 ```
 
-#### Sponsor Portal (Ad-hoc Tokens)
+### Sponsor Portal (Ad-hoc Tokens)
 
 Sponsor tokens are generated automatically and sent via email:
 ```
@@ -6916,7 +5228,7 @@ GET /api/v1/sponsor/{token}/dashboard
 
 Token format: JWT with 30-day expiration
 
-#### Student Portal (Ad-hoc Tokens)
+### Student Portal (Ad-hoc Tokens)
 
 Student tokens are delivered via email invitation:
 ```
@@ -6943,7 +5255,7 @@ Token format: JWT with 30-day expiration
 
 ---
 
-##### Endpoint: POST /api/v1/cohorts
+#### Endpoint: POST /api/v1/cohorts
 
 **Purpose:** Create a new cohort with sponsor and student requirements
 
@@ -7039,7 +5351,7 @@ X-Request-ID: uuid-for-tracing
 
 ---
 
-##### Endpoint: GET /api/v1/cohorts
+#### Endpoint: GET /api/v1/cohorts
 
 **Purpose:** List all cohorts with pagination and filtering
 
@@ -7108,7 +5420,7 @@ GET /api/v1/cohorts?page=1&per_page=20&status=draft&program_type=learnership&sea
 
 ---
 
-##### Endpoint: POST /api/v1/cohorts/{id}/start_signing
+#### Endpoint: POST /api/v1/cohorts/{id}/start_signing
 
 **Purpose:** Transition cohort from draft to TP signing phase
 
@@ -7160,7 +5472,7 @@ Content-Type: application/json
 
 ---
 
-##### Endpoint: GET /api/v1/sponsor/{token}/dashboard
+#### Endpoint: GET /api/v1/sponsor/{token}/dashboard
 
 **Purpose:** Sponsor dashboard view (ad-hoc authentication)
 
@@ -7232,7 +5544,7 @@ Accept: application/json
 
 ---
 
-##### Endpoint: POST /api/v1/students/{token}/submit
+#### Endpoint: POST /api/v1/students/{token}/submit
 
 **Purpose:** Student submits their completed document
 
@@ -7297,7 +5609,7 @@ Content-Type: application/json
 
 ---
 
-##### Endpoint: POST /api/v1/webhooks
+#### Endpoint: POST /api/v1/webhooks
 
 **Purpose:** Webhook event delivery (internal system)
 
@@ -7388,7 +5700,7 @@ end
 5. **Rate Limiting**: Protect against abuse
 6. **Change Log**: Document breaking changes for consumers
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ OpenAPI/Swagger spec for all endpoints
@@ -7423,7 +5735,7 @@ end
 3. ✅ IV3: Static docs don't affect app performance
 4. ✅ IV4: All documented endpoints exist in routes
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: Documentation Accuracy**
 - Verify all documented endpoints exist in routes
@@ -7450,7 +5762,7 @@ end
 - Verify webhook delivery matches documentation
 - Verify all headers and status codes are correct
 
-##### Test Requirements
+#### Test Requirements
 
 **Documentation Tests:**
 ```ruby
@@ -7482,7 +5794,7 @@ describe 'Documentation Examples' do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If documentation approach fails:**
 1. Remove Swagger gem
@@ -7491,7 +5803,7 @@ end
 
 **Data Safety**: Documentation is independent of application data.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Documentation is read-only
@@ -7503,7 +5815,7 @@ end
 - Automate swagger generation from tests
 - Review docs before releases
 
-##### Success Metrics
+#### Success Metrics
 
 - **Documentation Coverage**: 100% of endpoints documented with examples
 - **Example Accuracy**: 100% of examples work without modification
@@ -7514,11 +5826,11 @@ end
 
 ---
 
-### 6.4 Phase 4: Frontend - TP Portal
+## 6.4 Phase 4: Frontend - TP Portal
 
 This section provides detailed user stories for Phase 4 (Frontend - TP Portal) of the FloDoc enhancement. This phase builds the Vue.js based TP Portal interface for managing cohorts.
 
-#### Story 4.1: Cohort Management Dashboard
+### Story 4.1: Cohort Management Dashboard
 
 **Status**: Draft
 **Priority**: High
@@ -7526,13 +5838,13 @@ This section provides detailed user stories for Phase 4 (Frontend - TP Portal) o
 **Estimated Effort**: 3-4 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** a dashboard to view and manage all cohorts,
 **So that** I can monitor the 3-party workflow at a glance.
 
-##### Background
+#### Background
 
 TP Portal needs a comprehensive dashboard showing:
 - Cohort list with status and progress
@@ -7543,7 +5855,7 @@ TP Portal needs a comprehensive dashboard showing:
 
 This is the main entry point for TP administrators.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 
@@ -7770,7 +6082,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Dashboard displays cohort list with pagination
@@ -7799,7 +6111,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 4. ✅ Design system compliance
 5. ✅ 80% test coverage
 
-##### Integration Verification (IV1-3)
+#### Integration Verification (IV1-3)
 
 **IV1: API Integration**
 - Verify all API calls are made to correct endpoints
@@ -7819,7 +6131,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Verify typography matches spec
 - Verify icons from design library
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -7837,7 +6149,7 @@ describe('MetricCard', () => {
 })
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If dashboard fails:**
 1. Remove TP Portal routes and components
@@ -7846,7 +6158,7 @@ describe('MetricCard', () => {
 
 **Data Safety**: Frontend code doesn't affect data.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Single-page application with no backend changes
@@ -7868,7 +6180,7 @@ describe('MetricCard', () => {
 
 ---
 
-#### Story 4.2: Cohort Creation & Bulk Import
+### Story 4.2: Cohort Creation & Bulk Import
 
 **Status**: Draft
 **Priority**: High
@@ -7876,13 +6188,13 @@ describe('MetricCard', () => {
 **Estimated Effort**: 2-3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to create new cohorts and bulk-import students via Excel,
 **So that** I can efficiently onboard large groups without manual data entry.
 
-##### Background
+#### Background
 
 The cohort creation process needs to support:
 - Basic cohort information (name, dates, description)
@@ -7892,7 +6204,7 @@ The cohort creation process needs to support:
 
 This enables TP administrators to quickly set up new training cohorts with minimal effort.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Frontend - Vue 3 Components:**
 ```typescript
@@ -8343,7 +6655,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Form validation prevents submission with missing required fields
@@ -8389,7 +6701,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 4. ✅ 80% test coverage
 5. ✅ Design system compliance verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify POST /api/v1/cohorts creates cohort
@@ -8413,7 +6725,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Validate preview contains student data
 - Validate import result has correct structure
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -8477,7 +6789,7 @@ RSpec.describe 'Cohort Creation', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If creation fails:**
 1. No data changes occur (transactional)
@@ -8487,7 +6799,7 @@ end
 
 **Data Safety**: Cohort creation is atomic - either all students created or none.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Standard form with file upload pattern
@@ -8510,7 +6822,7 @@ end
 
 ---
 
-#### Story 4.3: Cohort Detail Overview
+### Story 4.3: Cohort Detail Overview
 
 **Status**: Draft
 **Priority**: High
@@ -8518,13 +6830,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to view detailed information about a specific cohort, including student list, progress status, and document workflow,
 **So that** I can monitor and manage the cohort effectively.
 
-##### Background
+#### Background
 
 After creating a cohort, administrators need a comprehensive view to:
 - See all students and their current status
@@ -8535,7 +6847,7 @@ After creating a cohort, administrators need a comprehensive view to:
 
 This view serves as the central hub for cohort management.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 
@@ -8832,7 +7144,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Loads cohort details on page visit
@@ -8880,7 +7192,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 4. ✅ 80% test coverage
 5. ✅ Design system compliance verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify GET /api/v1/cohorts/:id returns correct data
@@ -8904,7 +7216,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Verify filters update display correctly
 - Verify search filters work in real-time
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -8979,7 +7291,7 @@ RSpec.describe 'Cohort Detail', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If loading fails:**
 1. Display error message
@@ -8989,7 +7301,7 @@ end
 
 **Data Safety**: Read-only view, no data modification.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Read-only data display
@@ -9010,7 +7322,7 @@ end
 
 ---
 
-#### Story 4.4: TP Signing Interface
+### Story 4.4: TP Signing Interface
 
 **Status**: Draft
 **Priority**: High
@@ -9018,13 +7330,13 @@ end
 **Estimated Effort**: 3-4 days
 **Risk Level**: High
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to sign the first student's document and have it automatically replicated to all other students,
 **So that** I can sign once instead of signing each student's document individually.
 
-##### Background
+#### Background
 
 The TP Signing Phase is the critical first step in the 3-party workflow. Key requirements:
 - TP signs ONE document (the first student's document)
@@ -9035,7 +7347,7 @@ The TP Signing Phase is the critical first step in the 3-party workflow. Key req
 
 This is the core innovation of FloDoc - bulk signing capability.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 
@@ -9381,7 +7693,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Loads cohort and form fields on page visit
@@ -9440,7 +7752,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 5. ✅ 80% test coverage
 6. ✅ Design system compliance verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify GET /api/v1/cohorts/:id returns cohort data
@@ -9466,7 +7778,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Verify validation logic works
 - Verify success state displays correct data
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -9541,7 +7853,7 @@ RSpec.describe 'TP Signing', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If signing fails:**
 1. No data is replicated (transactional)
@@ -9551,7 +7863,7 @@ end
 
 **Data Safety**: Signing is atomic - either all students get replicated or none.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **High Risk because:**
 - Complex replication logic
@@ -9576,7 +7888,7 @@ end
 
 ---
 
-#### Story 4.5: Student Management View
+### Story 4.5: Student Management View
 
 **Status**: Draft
 **Priority**: Medium
@@ -9584,13 +7896,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** TP administrator,
 **I want** to view and manage individual student details, including their document status and uploaded files,
 **So that** I can track student progress and troubleshoot issues.
 
-##### Background
+#### Background
 
 After TP signing and student enrollment, administrators need granular visibility into each student's progress:
 - View student's personal information
@@ -9601,7 +7913,7 @@ After TP signing and student enrollment, administrators need granular visibility
 
 This provides detailed cohort management capabilities.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 
@@ -9960,7 +8272,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Loads student details on page visit
@@ -10023,7 +8335,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 4. ✅ 80% test coverage
 5. ✅ Design system compliance verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify GET /api/v1/cohorts/:id/students/:studentId returns correct data
@@ -10048,7 +8360,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Verify fallback for older browsers
 - Verify user feedback on copy
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -10115,7 +8427,7 @@ RSpec.describe 'Student Detail', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If actions fail:**
 1. Student data remains unchanged
@@ -10125,7 +8437,7 @@ end
 
 **Data Safety**: All actions are idempotent and reversible.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Read-heavy view with simple actions
@@ -10148,7 +8460,7 @@ end
 
 ---
 
-#### Story 4.6: Sponsor Portal Dashboard
+### Story 4.6: Sponsor Portal Dashboard
 
 **Status**: Draft
 **Priority**: High
@@ -10156,13 +8468,13 @@ end
 **Estimated Effort**: 3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to access a dedicated portal where I can review and verify all student documents for a cohort,
 **So that** I can sign once for the entire cohort instead of signing each student individually.
 
-##### Background
+#### Background
 
 The Sponsor Portal is a critical component of the 3-party workflow. Key requirements:
 - Sponsor receives ONE email with a single access link
@@ -10176,7 +8488,7 @@ The Sponsor Portal is a critical component of the 3-party workflow. Key requirem
 
 This is the second signing phase and requires careful state management.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 
@@ -10624,7 +8936,7 @@ Per FR28, all components must use design system assets from:
 
 Specifically: colors, icons, typography, and layout patterns from the design system.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Loads cohort data using token from URL
@@ -10683,7 +8995,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 4. ✅ 80% test coverage
 5. ✅ Design system compliance verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify GET /api/v1/sponsor/cohort returns correct data
@@ -10709,7 +9021,7 @@ Specifically: colors, icons, typography, and layout patterns from the design sys
 - Verify token passed to all API calls
 - Verify invalid token shows error
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -10778,7 +9090,7 @@ RSpec.describe 'Sponsor Portal Dashboard', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If signing fails:**
 1. No data is modified (transactional)
@@ -10788,7 +9100,7 @@ end
 
 **Data Safety**: Signing is atomic - either all students get sponsor verification or none.
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk because:**
 - Token-based authentication complexity
@@ -10815,7 +9127,7 @@ end
 ---
 
 
-#### Story 4.7: Sponsor Portal - Bulk Document Signing
+### Story 4.7: Sponsor Portal - Bulk Document Signing
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -10823,13 +9135,13 @@ end
 **Estimated Effort**: 3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to sign once and have that signature applied to all pending student documents,
 **So that** I don't need to manually sign each student's documents individually.
 
-##### Background
+#### Background
 
 In the previous story, sponsors gain access to a dashboard that tracks student completion status (Waiting → In Progress). Once all students have completed their part (uploaded required documents + completed their fields), the sponsor receives the bulk signing prompt.
 
@@ -10843,7 +9155,7 @@ The current DocuSeal limitation is that each submission requires independent sig
 
 This aligns with FR10 (Bulk Signing) and FR13 (Single Email Rule).
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -11477,7 +9789,7 @@ Specific requirements:
 - **Layout**: Maximum width 4xl (896px), rounded-lg corners, shadow-xl for modals
 - **Accessibility**: All buttons must have ARIA labels, canvas must have keyboard fallback
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Sponsor can only access bulk signing when all students are in "completed_student" status
@@ -11519,7 +9831,7 @@ Specific requirements:
 3. ✅ Error handling: email to TP admin if bulk signing fails
 4. ✅ Canonical signature application (same signature instance across all)
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `BulkSigningModal` calls `CohortAPI.getCohortForSigning()` on mount
@@ -11546,7 +9858,7 @@ Specific requirements:
 - Parent `SponsorPortal` loads token from URL param (`?token=...`)
 - All API calls pass token to child stores
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -11761,7 +10073,7 @@ RSpec.describe 'Sponsor Bulk Signing', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If bulk signing fails mid-transaction:**
 1. Database transaction ensures atomicity - partial signatures are rolled back
@@ -11786,7 +10098,7 @@ end
 - If any submission fails to update, entire transaction rolls back
 - No orphaned signature data
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - Complex transaction management across 20+ records
@@ -11820,7 +10132,7 @@ end
 - Canvas library fallback: `signature_pad` for cross-browser compatibility
 - Comprehensive audit trail in `submission_events` table
 
-##### Success Metrics
+#### Success Metrics
 
 - **Zero duplicate signings** (0.1% error rate max)
 - **Sub-3-second preview generation** for cohorts with <30 students
@@ -11832,7 +10144,7 @@ end
 
 ---
 
-#### Story 4.8: Sponsor Portal - Progress Tracking & State Management
+### Story 4.8: Sponsor Portal - Progress Tracking & State Management
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -11840,13 +10152,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to see real-time progress tracking with clear visual indicators of which students have completed their documents and which are still pending,
 **So that** I can monitor the signing workflow and know exactly when to proceed with bulk signing.
 
-##### Background
+#### Background
 
 After students complete their required actions (uploading documents, filling their fields), the sponsor needs visibility into the overall cohort progress. The sponsor portal dashboard must provide:
 
@@ -11862,7 +10174,7 @@ This story implements the dashboard UI that was outlined in Story 4.6, providing
 
 The state management ensures sponsors don't attempt to sign prematurely and provides confidence that all students have completed their required actions.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -12387,7 +10699,7 @@ Specific requirements:
   - Screen reader announcements for progress updates
   - Color contrast ratio minimum 4.5:1
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Dashboard loads cohort data on mount
@@ -12435,7 +10747,7 @@ Specific requirements:
 4. ✅ State consistency: UI always reflects latest data from server
 5. ✅ Performance: renders 50+ students without lag
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `Dashboard.vue` calls `CohortAPI.getCohortProgress()` on mount
@@ -12463,7 +10775,7 @@ Specific requirements:
 - All API calls pass token to store actions
 - Token passed to child modals (BulkSigningModal, DocumentPreviewModal)
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -12681,7 +10993,7 @@ RSpec.describe 'Sponsor Dashboard', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If dashboard fails to load:**
 1. Show error message with "Retry" button
@@ -12704,7 +11016,7 @@ end
 - All state changes happen through modals
 - Polling only reads data, no write operations
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Read-only operations (no data mutation)
@@ -12732,7 +11044,7 @@ end
 - Performance testing with large datasets
 - Error boundary handling for API failures
 
-##### Success Metrics
+#### Success Metrics
 
 - **Dashboard loads in <2 seconds** for cohorts with 50 students
 - **Polling accuracy**: 100% of updates captured within 30-second window
@@ -12744,7 +11056,7 @@ end
 
 ---
 
-#### Story 4.9: Sponsor Portal - Token Renewal & Session Management
+### Story 4.9: Sponsor Portal - Token Renewal & Session Management
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -12752,13 +11064,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to renew my access token if it expires while I'm reviewing documents,
 **So that** I can complete my signing workflow without losing progress or being locked out.
 
-##### Background
+#### Background
 
 Sponsors access the portal via time-limited tokens sent by email (Story 2.4). These tokens expire after a configurable period (default 30 days, but often 24-48 hours for security). 
 
@@ -12781,7 +11093,7 @@ This story implements the token renewal flow referenced in Stories 2.3 and 2.4, 
 
 **Architecture Note**: This is the final story in Phase 4 (TP Portal - Frontend Development), completing the sponsor portal feature set.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -13338,7 +11650,7 @@ Specific requirements:
   - Screen reader announcements for time warnings
   - Focus trap in modal
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Banner appears when token enters warning period (<4 hours or <25% duration)
@@ -13385,7 +11697,7 @@ Specific requirements:
 4. ✅ Graceful degradation if localStorage unavailable
 5. ✅ Time calculations accurate across timezones
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `TokenRenewalBanner` calls `TokenAPI.requestRenewal()` on button click
@@ -13414,7 +11726,7 @@ Specific requirements:
 - Store initialized with token and cohortId
 - New token from renewal auto-applies via URL redirect
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -13664,7 +11976,7 @@ RSpec.describe 'Sponsor Token Renewal', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If token renewal fails:**
 1. Show error message with "Try Again" button
@@ -13695,7 +12007,7 @@ end
 - Old tokens remain valid until new one is issued
 - No signing operations can occur with expired token
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - Token security is critical (unauthorized access risk)
@@ -13731,7 +12043,7 @@ end
 - Clear user communication about token security
 - Fallback mechanisms for email failures
 
-##### Success Metrics
+#### Success Metrics
 
 - **Renewal Success Rate**: 95% of renewal requests result in successful email delivery
 - **User Completion Rate**: 90% of users who renew complete their signing workflow
@@ -13743,7 +12055,7 @@ end
 
 ---
 
-#### Story 4.10: TP Portal - Cohort Status Monitoring & Analytics
+### Story 4.10: TP Portal - Cohort Status Monitoring & Analytics
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -13751,13 +12063,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Training Provider,
 **I want** to monitor all cohorts with real-time status updates and analytics,
 **So that** I can track progress, identify bottlenecks, and manage my document signing workflows efficiently.
 
-##### Background
+#### Background
 
 After creating cohorts and initiating workflows, training providers need visibility into the entire system. The TP Portal dashboard must provide:
 
@@ -13780,7 +12092,7 @@ This is the final story in Phase 4, completing the TP Portal frontend developmen
 
 The TP monitoring dashboard is the command center for training providers, giving them complete visibility and control over their cohort workflows.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -14564,7 +12876,7 @@ Specific requirements:
   - Color contrast ratio minimum 4.5:1
   - Focus indicators on all interactive elements
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Dashboard loads all cohorts on mount
@@ -14615,7 +12927,7 @@ Specific requirements:
 4. ✅ Performance: renders 100+ cohorts without lag
 5. ✅ No duplicate polling intervals
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `CohortMonitor.vue` calls `CohortAPI.getAll()` on mount
@@ -14642,7 +12954,7 @@ Specific requirements:
 - Not applicable (TP portal uses session auth, not tokens)
 - All API calls use browser session cookies
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -14908,7 +13220,7 @@ RSpec.describe 'TP Cohort Monitor', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If dashboard fails to load:**
 1. Show error message with "Retry" button
@@ -14938,7 +13250,7 @@ end
 - Export generates fresh data from server
 - Polling only reads data
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Read-only operations (no data mutation)
@@ -14966,7 +13278,7 @@ end
 - E2E tests for polling behavior
 - Error boundary handling for API failures
 
-##### Success Metrics
+#### Success Metrics
 
 - **Dashboard Load Time**: <2 seconds for 50 cohorts
 - **Polling Accuracy**: 100% of updates captured within 30-second window
@@ -14981,7 +13293,7 @@ end
 
 ---
 
-### 6.5 Phase 5: Frontend - Student Portal
+## 6.5 Phase 5: Frontend - Student Portal
 
 **Focus**: Student-facing interface for document completion and submission
 
@@ -14989,7 +13301,7 @@ This phase implements the student portal, where students access their assigned d
 
 ---
 
-#### Story 5.1: Student Portal - Document Upload Interface
+### Story 5.1: Student Portal - Document Upload Interface
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -14997,13 +13309,13 @@ This phase implements the student portal, where students access their assigned d
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Student,
 **I want** to upload required documents (ID, certificates, etc.) through a simple interface,
 **So that** I can provide the necessary proof documents for my cohort enrollment.
 
-##### Background
+#### Background
 
 Students receive email invitations to join a cohort (Story 2.2). Upon clicking the link, they access the student portal where they must complete several steps:
 
@@ -15024,7 +13336,7 @@ The uploaded documents are stored in Active Storage and linked to the student's 
 
 **Integration Point**: This uploads documents that will be referenced in the final signed PDF generated by DocuSeal.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -15732,7 +14044,7 @@ Specific requirements:
   - Drag-and-drop has click fallback
   - Color contrast ratio minimum 4.5:1
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads and fetches document requirements on mount
@@ -15788,7 +14100,7 @@ Specific requirements:
 4. ✅ Performance: handles files up to 50MB
 5. ✅ Browser compatibility: Chrome, Firefox, Safari, Edge
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `DocumentUpload.vue` calls `SubmissionAPI.getRequirements()` on mount
@@ -15817,7 +14129,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -16094,7 +14406,7 @@ RSpec.describe 'Student Document Upload', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If upload fails:**
 1. Show error message with retry button
@@ -16126,7 +14438,7 @@ end
 - Draft saves preserve all uploaded file references
 - No data loss if user leaves and returns
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Standard file upload patterns
@@ -16153,7 +14465,7 @@ end
 - Browser compatibility matrix testing
 - Server-side validation always matches client-side
 
-##### Success Metrics
+#### Success Metrics
 
 - **Upload Success Rate**: 99% of valid files upload successfully
 - **Average Upload Time**: <5 seconds for 5MB files on typical connection
@@ -16164,7 +14476,7 @@ end
 
 ---
 
-#### Story 5.2: Student Portal - Form Filling & Field Completion
+### Story 5.2: Student Portal - Form Filling & Field Completion
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -16172,13 +14484,13 @@ end
 **Estimated Effort**: 3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Student,
 **I want** to fill in my assigned form fields (personal info, signatures, dates, etc.),
 **So that** I can complete my portion of the document before the sponsor signs.
 
-##### Background
+#### Background
 
 After uploading required documents (Story 5.1), students must fill their assigned fields in the document. This is the core of the student workflow where they provide:
 
@@ -16200,7 +14512,7 @@ The form builder (created by TP in Story 4.4) defines which fields each student 
 
 **Integration Point**: Field data is merged with uploaded documents and TP's signature to generate the final PDF in DocuSeal.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -17077,7 +15389,7 @@ Specific requirements:
   - Screen reader announcements for auto-save
   - Color contrast ratio minimum 4.5:1
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads and fetches form fields on mount
@@ -17130,7 +15442,7 @@ Specific requirements:
 4. ✅ Performance: handles 50+ fields without lag
 5. ✅ Browser compatibility: Chrome, Firefox, Safari, Edge
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `FormFieldCompletion.vue` calls `SubmissionAPI.getFormFields()` on mount
@@ -17156,7 +15468,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -17383,7 +15695,7 @@ RSpec.describe 'Student Form Completion', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If form submission fails:**
 1. Show error message with retry option
@@ -17414,7 +15726,7 @@ end
 - Draft saves preserve all data
 - No data loss on page refresh
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - Complex form validation across multiple field types
@@ -17446,7 +15758,7 @@ end
 - Comprehensive validation test suite
 - Performance testing with large forms
 
-##### Success Metrics
+#### Success Metrics
 
 - **Form Completion Rate**: 95% of students who start complete the form
 - **Auto-save Success**: 99.5% of auto-save attempts succeed
@@ -17458,7 +15770,7 @@ end
 
 ---
 
-#### Story 5.3: Student Portal - Progress Tracking & Save Draft
+### Story 5.3: Student Portal - Progress Tracking & Save Draft
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -17466,13 +15778,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Student,
 **I want** to see my overall progress and save my work as a draft at any time,
 **So that** I can complete the submission at my own pace without losing work.
 
-##### Background
+#### Background
 
 Students may need multiple sessions to complete their submission:
 1. Upload documents (Story 5.1)
@@ -17490,7 +15802,7 @@ This story implements the progress tracking UI that shows all three steps (Uploa
 
 **Integration Point**: This ties together Stories 5.1 and 5.2, providing the navigation layer that orchestrates the complete student workflow.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -18198,7 +16510,7 @@ Specific requirements:
   - Focus indicators on interactive elements
   - Color contrast ratio minimum 4.5:1
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Dashboard loads progress data on mount
@@ -18248,7 +16560,7 @@ Specific requirements:
 4. ✅ No memory leaks (clean up intervals)
 5. ✅ Performance: loads in <2 seconds
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `ProgressDashboard.vue` calls `SubmissionAPI.getProgress()` on mount
@@ -18274,7 +16586,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -18525,7 +16837,7 @@ RSpec.describe 'Student Progress Tracking', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If progress data fails to load:**
 1. Show error message with retry button
@@ -18551,7 +16863,7 @@ end
 - No data loss on navigation failures
 - Draft saves preserve all work
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Read-only operations for most of the flow
@@ -18575,7 +16887,7 @@ end
 - Clear error messages for navigation failures
 - Audit trail for all saves
 
-##### Success Metrics
+#### Success Metrics
 
 - **Dashboard Load Time**: <1 second
 - **Save Success Rate**: 99.5%
@@ -18587,7 +16899,7 @@ end
 
 ---
 
-#### Story 5.4: Student Portal - Submission Confirmation & Status
+### Story 5.4: Student Portal - Submission Confirmation & Status
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -18595,13 +16907,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Student,
 **I want** to review my complete submission and receive confirmation of successful submission,
 **So that** I can verify everything is correct and track when the sponsor signs.
 
-##### Background
+#### Background
 
 After completing all three steps (upload, form filling, review), students need to:
 1. **Final Review**: See a summary of all uploaded documents and filled fields
@@ -18625,7 +16937,7 @@ This is the final step in the student workflow. The student portal must provide:
 
 **Integration Point**: This story completes the student portal frontend (Phase 5). It connects to the sponsor portal (Phase 6) and TP review (Phase 4).
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -19316,7 +17628,7 @@ Specific requirements:
   - Focus indicators on all interactive elements
   - Color contrast ratio minimum 4.5:1
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads status data on mount
@@ -19366,7 +17678,7 @@ Specific requirements:
 4. ✅ Performance: loads in <1 second
 5. ✅ Data consistency across refreshes
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `SubmissionStatus.vue` calls `SubmissionAPI.getStatus()` on mount
@@ -19392,7 +17704,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -19660,7 +17972,7 @@ RSpec.describe 'Student Submission Status', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If status fails to load:**
 1. Show error message with retry button
@@ -19692,7 +18004,7 @@ end
 - Download generates fresh PDF from server
 - Notification settings stored server-side
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Read-only operations (except notifications)
@@ -19719,7 +18031,7 @@ end
 - Fallback mechanisms for downloads
 - Performance testing with long polling sessions
 
-##### Success Metrics
+#### Success Metrics
 
 - **Status Accuracy**: 100% match between UI and actual state
 - **Polling Success**: 99% of polling attempts succeed
@@ -19731,7 +18043,7 @@ end
 
 ---
 
-#### Story 5.5: Student Portal - Email Notifications & Reminders
+### Story 5.5: Student Portal - Email Notifications & Reminders
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -19739,13 +18051,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Student,
 **I want** to receive email notifications for status updates and reminders to complete my submission,
 **So that** I can stay informed and complete my work on time without constantly checking the portal.
 
-##### Background
+#### Background
 
 Students need to stay informed about their submission progress without manually checking the portal. The system should provide:
 
@@ -19772,7 +18084,7 @@ Students need to stay informed about their submission progress without manually 
 
 **Integration Point**: This story connects to the email system (Story 2.2, 2.3) and provides the student-facing notification preferences.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -20357,7 +18669,7 @@ Specific requirements:
   - Color contrast ratio minimum 4.5:1
   - Warning section clearly marked
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads existing preferences on mount
@@ -20403,7 +18715,7 @@ Specific requirements:
 4. ✅ Performance: loads in <1 second
 5. ✅ Browser compatibility: Chrome, Firefox, Safari, Edge
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `EmailPreferences.vue` calls `NotificationAPI.getPreferences()` on mount
@@ -20425,7 +18737,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -20632,7 +18944,7 @@ RSpec.describe 'Student Notification Preferences', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If preferences fail to load:**
 1. Show error message with retry button
@@ -20664,7 +18976,7 @@ end
 - Changes only applied after successful save
 - Unsubscribe requires confirmation
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Simple CRUD operations
@@ -20692,7 +19004,7 @@ end
 - Clear unsubscribe in all emails
 - Regular compliance audits
 
-##### Success Metrics
+#### Success Metrics
 
 - **Save Success Rate**: 99% of preference updates succeed
 - **Email Delivery**: 98% of emails reach inbox (not spam)
@@ -20706,7 +19018,7 @@ end
 
 ---
 
-### 6.6 Phase 6: Frontend - Sponsor Portal
+## 6.6 Phase 6: Frontend - Sponsor Portal
 
 **Focus**: Sponsor-facing interface for bulk signing and progress tracking
 
@@ -20714,7 +19026,7 @@ This phase implements the sponsor portal, where sponsors access their assigned c
 
 ---
 
-#### Story 6.1: Sponsor Portal - Cohort Dashboard & Bulk Signing Interface
+### Story 6.1: Sponsor Portal - Cohort Dashboard & Bulk Signing Interface
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -20722,13 +19034,13 @@ This phase implements the sponsor portal, where sponsors access their assigned c
 **Estimated Effort**: 3 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to view all pending student documents in a cohort and sign them all at once,
 **So that** I can efficiently complete my signing responsibility without reviewing each submission individually.
 
-##### Background
+#### Background
 
 Sponsors receive a single email per cohort (per FR12) with a secure link to the sponsor portal. Upon accessing the portal, they see:
 
@@ -20757,7 +19069,7 @@ Sponsors receive a single email per cohort (per FR12) with a secure link to the 
 
 **Integration Point**: This story connects to the email system (Story 2.2, 2.3) and the backend signing workflow (Stories 2.5, 2.6).
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -21585,7 +19897,7 @@ Specific requirements:
   - Color contrast ratio minimum 4.5:1
   - Signature canvas has clear instructions
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads cohort data on mount
@@ -21637,7 +19949,7 @@ Specific requirements:
 4. ✅ Performance: handles 100+ students
 5. ✅ Browser compatibility: Chrome, Firefox, Safari, Edge
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `CohortDashboard.vue` calls `CohortAPI.getById()` on mount
@@ -21662,7 +19974,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -21920,7 +20232,7 @@ RSpec.describe 'Sponsor Bulk Signing', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If cohort fails to load:**
 1. Show error message with retry button
@@ -21953,7 +20265,7 @@ end
 - All operations atomic (all or nothing)
 - No partial signing allowed
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - Bulk operations affect multiple records
@@ -21986,7 +20298,7 @@ end
 - Audit trail for all signing actions
 - Fallback to type signature if canvas fails
 
-##### Success Metrics
+#### Success Metrics
 
 - **Signing Success Rate**: 98% of bulk signing attempts succeed
 - **User Error Rate**: <2% of signers report confusion about scope
@@ -21998,7 +20310,7 @@ end
 
 ---
 
-#### Story 6.2: Sponsor Portal - Email Notifications & Reminders
+### Story 6.2: Sponsor Portal - Email Notifications & Reminders
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -22006,13 +20318,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Sponsor,
 **I want** to receive email notifications about signing requests and reminders to complete my cohort signing,
 **So that** I can stay informed and fulfill my signing responsibility on time without constantly checking the portal.
 
-##### Background
+#### Background
 
 Sponsors need to stay informed about their signing responsibilities without manually monitoring the portal. The system should provide:
 
@@ -22038,7 +20350,7 @@ Sponsors need to stay informed about their signing responsibilities without manu
 
 **Integration Point**: This story connects to the email system (Stories 2.2, 2.3) and provides sponsor-facing notification management.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Vue 3 Component Structure:**
 ```vue
@@ -22597,7 +20909,7 @@ Specific requirements:
   - Color contrast ratio minimum 4.5:1
   - Warning section clearly marked
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Component loads existing preferences on mount
@@ -22644,7 +20956,7 @@ Specific requirements:
 4. ✅ Performance: loads in <1 second
 5. ✅ Browser compatibility: Chrome, Firefox, Safari, Edge
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - `EmailPreferences.vue` calls `NotificationAPI.getPreferences()` on mount
@@ -22666,7 +20978,7 @@ Specific requirements:
 - Parent loads token from URL param (`?token=...`)
 - All API calls pass token to store actions
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```javascript
@@ -22868,7 +21180,7 @@ RSpec.describe 'Sponsor Notification Preferences', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If preferences fail to load:**
 1. Show error message with retry button
@@ -22900,7 +21212,7 @@ end
 - Changes only applied after successful save
 - Unsubscribe requires confirmation
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk** because:
 - Simple CRUD operations
@@ -22928,7 +21240,7 @@ end
 - Clear unsubscribe in all emails
 - Regular compliance audits
 
-##### Success Metrics
+#### Success Metrics
 
 - **Save Success Rate**: 99% of preference updates succeed
 - **Email Delivery**: 98% of emails reach inbox (not spam)
@@ -22942,7 +21254,7 @@ end
 
 ---
 
-### 6.7 Phase 7: Integration & Testing
+## 6.7 Phase 7: Integration & Testing
 
 **Focus**: End-to-end integration testing, performance validation, and security auditing
 
@@ -22950,7 +21262,7 @@ This phase ensures all three portals work together seamlessly, performance meets
 
 ---
 
-#### Story 7.1: End-to-End Workflow Testing
+### Story 7.1: End-to-End Workflow Testing
 
 **Status**: Draft/Pending
 **Priority**: Critical
@@ -22958,13 +21270,13 @@ This phase ensures all three portals work together seamlessly, performance meets
 **Estimated Effort**: 3 days
 **Risk Level**: High
 
-##### User Story
+#### User Story
 
 **As a** QA Engineer,
 **I want** to test the complete 3-portal workflow from start to finish,
 **So that** I can verify all integrations work correctly and identify any breaking issues before production deployment.
 
-##### Background
+#### Background
 
 This story validates the entire FloDoc system through complete end-to-end testing. The workflow must be tested in sequence:
 
@@ -22997,7 +21309,7 @@ This story validates the entire FloDoc system through complete end-to-end testin
 - State machine transitions
 - Excel export data accuracy
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Test Framework Setup:**
 ```ruby
@@ -23506,7 +21818,7 @@ module DatabaseVerifiers
 end
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Complete workflow tested with 5 students
@@ -23548,7 +21860,7 @@ end
 3. ✅ No flaky tests
 4. ✅ Test data cleanup verified
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - All API endpoints tested in sequence
@@ -23573,7 +21885,7 @@ end
 - Expiration handled gracefully
 - Renewal mechanism tested
 
-##### Test Requirements
+#### Test Requirements
 
 **System Specs:**
 ```ruby
@@ -23640,7 +21952,7 @@ RSpec.describe WorkflowMailer, type: :mailer do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If tests fail:**
 1. Identify failing scenario
@@ -23670,7 +21982,7 @@ end
 - Test data automatically cleaned up
 - Rollback not needed for test failures
 
-##### Risk Assessment
+#### Risk Assessment
 
 **High Risk** because:
 - Tests entire system end-to-end
@@ -23703,7 +22015,7 @@ end
 - Use database transactions for test isolation
 - Monitor test execution time
 
-##### Success Metrics
+#### Success Metrics
 
 - **Test Pass Rate**: 100% of tests pass consistently
 - **Test Coverage**: >90% of critical paths covered
@@ -23716,7 +22028,7 @@ end
 
 ---
 
-#### Story 7.2: Mobile Responsiveness Testing
+### Story 7.2: Mobile Responsiveness Testing
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -23724,13 +22036,13 @@ end
 **Estimated Effort**: 2 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** QA Engineer,
 **I want** to test all three portals across different screen sizes and devices,
 **So that** I can ensure the FloDoc system works perfectly on mobile, tablet, and desktop devices.
 
-##### Background
+#### Background
 
 FloDoc must work seamlessly across all device types:
 - **Mobile**: 320px - 640px (smartphones)
@@ -23782,7 +22094,7 @@ FloDoc must work seamlessly across all device types:
 - Error messages
 - Loading states
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Test Framework Setup:**
 ```javascript
@@ -24276,7 +22588,7 @@ test_scenarios:
   - network_conditions: [3G, 4G, WiFi]
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ All portals render correctly on 375px (mobile)
@@ -24320,7 +22632,7 @@ test_scenarios:
 4. ✅ No horizontal scroll on content
 5. ✅ Performance is acceptable on mobile
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Mobile views call same APIs as desktop
@@ -24342,7 +22654,7 @@ test_scenarios:
 - Mobile links work correctly
 - No mobile-specific security issues
 
-##### Test Requirements
+#### Test Requirements
 
 **System Specs:**
 ```ruby
@@ -24398,7 +22710,7 @@ RSpec.describe 'Mobile End-to-End', type: :system do
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If mobile tests fail:**
 1. Check viewport sizing
@@ -24432,7 +22744,7 @@ end
 - Visual tests don't affect functionality
 - Rollback not needed for test failures
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - Many device/browser combinations
@@ -24465,7 +22777,7 @@ end
 - Monitor mobile performance metrics
 - Use responsive design patterns
 
-##### Success Metrics
+#### Success Metrics
 
 - **Test Coverage**: 100% of mobile views tested
 - **Device Coverage**: Top 20 devices covering 90% of users
@@ -24478,7 +22790,7 @@ end
 
 ---
 
-#### Story 7.3: Performance Testing (50+ Students)
+### Story 7.3: Performance Testing (50+ Students)
 
 **Status**: Draft/Pending
 **Priority**: Critical
@@ -24486,13 +22798,13 @@ end
 **Estimated Effort**: 3 days
 **Risk Level**: High
 
-##### User Story
+#### User Story
 
 **As a** QA Engineer,
 **I want** to test system performance with large cohorts (50+ students),
 **So that** I can ensure FloDoc scales efficiently and meets NFR requirements.
 
-##### Background
+#### Background
 
 Performance is critical for production success. This story validates:
 - **Load Time**: Pages must load within acceptable timeframes
@@ -24532,7 +22844,7 @@ Performance is critical for production success. This story validates:
 - **JMeter**: Load testing
 - **PgHero**: Database performance
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Test Framework Setup:**
 ```ruby
@@ -25055,7 +23367,7 @@ RSpec.configure do |config|
 end
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Cohort creation with 100 students <2 seconds
@@ -25090,7 +23402,7 @@ end
 4. ✅ Bottlenecks identified and documented
 5. ✅ Recommendations provided
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - All API endpoints tested under load
@@ -25115,7 +23427,7 @@ end
 - Token validation doesn't bottleneck
 - No performance impact from security
 
-##### Test Requirements
+#### Test Requirements
 
 **Performance Specs:**
 ```ruby
@@ -25173,7 +23485,7 @@ puts "Excel export: #{time.real.round(3)}s"
 puts "=== Complete ==="
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If performance tests fail:**
 1. Identify bottleneck (database, memory, CPU)
@@ -25210,7 +23522,7 @@ puts "=== Complete ==="
 - Performance data is informational only
 - Rollback not needed for test failures
 
-##### Risk Assessment
+#### Risk Assessment
 
 **High Risk** because:
 - Performance issues are hard to fix late
@@ -25244,7 +23556,7 @@ puts "=== Complete ==="
 - Use caching strategically
 - Implement background jobs for heavy operations
 
-##### Success Metrics
+#### Success Metrics
 
 - **Load Time**: All pages <2 seconds
 - **API Response**: 95% of requests <500ms
@@ -25259,7 +23571,7 @@ puts "=== Complete ==="
 
 ---
 
-#### Story 7.4: Security Audit & Penetration Testing
+### Story 7.4: Security Audit & Penetration Testing
 
 **Status**: Draft/Pending
 **Priority**: Critical
@@ -25267,13 +23579,13 @@ puts "=== Complete ==="
 **Estimated Effort**: 3 days
 **Risk Level**: High
 
-##### User Story
+#### User Story
 
 **As a** Security Engineer,
 **I want** to perform comprehensive security testing on all three portals,
 **So that** I can identify and remediate vulnerabilities before production deployment.
 
-##### Background
+#### Background
 
 Security is paramount for a document signing platform handling sensitive student data. This story validates:
 
@@ -25328,7 +23640,7 @@ Security is paramount for a document signing platform handling sensitive student
 - GDPR data protection requirements
 - Audit logging for all sensitive operations
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Security Test Framework:**
 ```ruby
@@ -25997,7 +24309,7 @@ development:
 :run_all_checks: true
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Authentication Security:**
 1. ✅ JWT tokens are cryptographically signed and validated
@@ -26072,7 +24384,7 @@ development:
 4. ✅ Penetration test scenarios pass
 5. ✅ Security monitoring alerts functional
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - All API endpoints tested for authentication bypass
@@ -26098,7 +24410,7 @@ development:
 - Token renewal maintains security context
 - No token leakage in URLs or logs
 
-##### Test Requirements
+#### Test Requirements
 
 **Security Specs:**
 ```ruby
@@ -26256,7 +24568,7 @@ bundle exec gem outdated --filter=security
 echo "Security audit complete."
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If authentication vulnerabilities found:**
 1. Immediately disable affected endpoints
@@ -26306,7 +24618,7 @@ echo "Security audit complete."
 - Emergency patches follow standard deployment process
 - All changes require security review
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ OWASP Top 10 Verification
@@ -26365,7 +24677,7 @@ echo "Security audit complete."
 3. ✅ All test cases passing
 4. ✅ Documentation complete
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Security tests call `/api/v1/flodoc/*` endpoints
@@ -26385,7 +24697,7 @@ echo "Security audit complete."
 - Token expiration enforced
 - Token renewal flow tested
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If security audit fails (critical vulnerabilities found):**
 1. **Stop deployment immediately** - Do not proceed to production
@@ -26423,7 +24735,7 @@ echo "Security audit complete."
 - All changes require security review before merge
 - Emergency patches follow standard deployment process
 
-##### Test Requirements
+#### Test Requirements
 
 **Component Specs:**
 ```ruby
@@ -26638,7 +24950,7 @@ end
 - Rate limiting stress tests
 - Webhook security validation
 
-##### Risk Assessment
+#### Risk Assessment
 
 **High Risk because:**
 - Document signing involves sensitive PII
@@ -26691,7 +25003,7 @@ end
 - **Security Training**: Developer awareness of common vulnerabilities
 - **Code Review**: Security-focused peer review process
 
-##### Success Metrics
+#### Success Metrics
 
 **Authentication:**
 - 100% of auth endpoints tested
@@ -26742,7 +25054,7 @@ end
 
 ---
 
-#### Story 7.5: User Acceptance Testing
+### Story 7.5: User Acceptance Testing
 
 **Status**: Draft/Pending
 **Priority**: High
@@ -26750,13 +25062,13 @@ end
 **Estimated Effort**: 5 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Product Owner,
 **I want** to conduct comprehensive user acceptance testing with real stakeholders,
 **So that** I can validate the system meets business requirements and user needs before production launch.
 
-##### Background
+#### Background
 
 User Acceptance Testing (UAT) is the final validation phase where real users test the complete system in a production-like environment. This story validates:
 
@@ -26805,7 +25117,7 @@ User Acceptance Testing (UAT) is the final validation phase where real users tes
 - Accurate state management
 - Proper error recovery
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **UAT Test Framework:**
 ```ruby
@@ -27313,7 +25625,7 @@ class UATFeedback < ApplicationRecord
 end
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **TP Portal UAT:**
 1. ✅ Can create cohort with 50+ students in <2 seconds
@@ -27411,7 +25723,7 @@ end
 9. ✅ Error recovery works
 10. ✅ Data consistency maintained
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - All API endpoints tested through UAT scenarios
@@ -27438,7 +25750,7 @@ end
 - Renewal flow tested with actual user actions
 - Security validated with tampering attempts
 
-##### Test Requirements
+#### Test Requirements
 
 **UAT Test Suite:**
 ```ruby
@@ -27491,7 +25803,7 @@ class UATFeedbackController < ApplicationController
 end
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If critical UAT failures found:**
 1. Pause production deployment
@@ -27540,7 +25852,7 @@ end
 - All changes tracked in version control
 - Stakeholder feedback preserved
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Medium Risk** because:
 - UAT involves real users with varying skill levels
@@ -27593,7 +25905,7 @@ end
 - **Post-UAT Review**: Learn from feedback
 - **Stakeholder Sign-off**: Formal approval process
 
-##### Success Metrics
+#### Success Metrics
 
 **Test Completion:**
 - 100% of UAT scenarios executed
@@ -27645,13 +25957,13 @@ end
 
 ---
 
-### 6.8 Phase 8: Deployment & Documentation
+## 6.8 Phase 8: Deployment & Documentation
 
 **Focus**: Production infrastructure setup, deployment automation, monitoring configuration, and comprehensive documentation for operational excellence
 
 This phase prepares FloDoc v3 for production deployment with robust infrastructure, automated CI/CD pipelines, comprehensive monitoring and alerting, and complete documentation for ongoing operations and maintenance.
 
-#### Story 8.0: Development Infrastructure Setup (Local Docker)
+### Story 8.0: Development Infrastructure Setup (Local Docker)
 
 **Status**: Draft
 **Priority**: High
@@ -27659,13 +25971,13 @@ This phase prepares FloDoc v3 for production deployment with robust infrastructu
 **Estimated Effort**: 2 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Developer,
 **I want** to set up a local Docker-based development infrastructure with PostgreSQL and Redis,
 **So that** I can demonstrate the complete FloDoc system to management without cloud costs or complexity.
 
-##### Background
+#### Background
 
 Before investing in production AWS infrastructure, we need a working demonstration environment that:
 - Can be started with a single command
@@ -27676,7 +25988,7 @@ Before investing in production AWS infrastructure, we need a working demonstrati
 
 This story establishes the foundation using Docker Compose, which provides the same architecture as production (PostgreSQL + Redis + Rails app) but runs entirely on a local machine or demo server.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Docker Compose Configuration:**
 ```yaml
@@ -28043,7 +26355,7 @@ open http://localhost:9001
 
 Per FR28, all components must use design system assets from `@.claude/skills/frontend-design/design-system/`. The local Docker setup ensures the same TailwindCSS 3.4.17 + DaisyUI 3.9.4 configuration runs identically to production, with custom FloDoc branding replacing DaisyUI defaults.
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Infrastructure:**
 1. ✅ Docker Compose file created with all services
@@ -28082,7 +26394,7 @@ Per FR28, all components must use design system assets from `@.claude/skills/fro
 2. ✅ Quick start guide
 3. ✅ Management demo script
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify Docker Compose starts all services
@@ -28100,7 +26412,7 @@ Per FR28, all components must use design system assets from `@.claude/skills/fro
 **IV4: Token Routing**
 - N/A (Infrastructure story)
 
-##### Test Requirements
+#### Test Requirements
 
 **Infrastructure Tests:**
 ```ruby
@@ -28182,7 +26494,7 @@ fi
 echo "✅ All tests passed!"
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If setup fails:**
 1. Stop everything: `docker-compose -f docker-compose.dev.yml down`
@@ -28194,7 +26506,7 @@ echo "✅ All tests passed!"
 - Easy to reset to clean state
 - No production data at risk
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Runs entirely in Docker containers
@@ -28218,7 +26530,7 @@ echo "✅ All tests passed!"
 - Health checks to verify all services
 - Platform-specific notes in README
 
-##### Success Metrics
+#### Success Metrics
 
 **Setup Experience:**
 - Single command to start: `./scripts/dev-setup.sh`
@@ -28242,7 +26554,7 @@ echo "✅ All tests passed!"
 - Debugging tools available
 - No cloud costs
 
-##### Comparison with Future Production (Story 8.1)
+#### Comparison with Future Production (Story 8.1)
 
 **Architecture Parity:**
 ```
@@ -28264,7 +26576,7 @@ Local Docker              →    AWS ECS/EC2
 **Migration Path:**
 Story 8.0 → Management Demo → Approval → Story 8.1 (Production AWS)
 
-##### Management Demo Script
+#### Management Demo Script
 
 ```bash
 # Pre-demo setup
@@ -28297,7 +26609,7 @@ echo "Files: http://localhost:9001 (Minio)"
 echo "Emails: http://localhost:8025 (MailHog)"
 ```
 
-##### Why This Approach
+#### Why This Approach
 
 **Benefits:**
 1. **Fast Demonstration**: Working system in 10 minutes
@@ -28315,7 +26627,7 @@ echo "Emails: http://localhost:8025 (MailHog)"
 - When team is ready for DevOps operations
 
 
-#### Story 8.0.1: Management Demo Readiness & Validation
+### Story 8.0.1: Management Demo Readiness & Validation
 
 **Status**: Draft
 **Priority**: High
@@ -28323,13 +26635,13 @@ echo "Emails: http://localhost:8025 (MailHog)"
 **Estimated Effort**: 3 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** Product Manager,
 **I want** to validate the complete 3-portal cohort management workflow end-to-end,
 **So that** I can demonstrate FloDoc v3 to management with confidence and real data.
 
-##### Background
+#### Background
 
 After setting up the local Docker infrastructure (Story 8.0), we need to:
 - Test the complete 3-portal workflow with real data
@@ -28340,7 +26652,7 @@ After setting up the local Docker infrastructure (Story 8.0), we need to:
 
 This story focuses on **using** the system, not building it. We'll create sample cohorts, enroll students, complete signatures, and verify the entire flow works as designed.
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Demo Data Setup:**
 ```ruby
@@ -28514,7 +26826,7 @@ const testScenarios = [
 ]
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Complete 3-portal workflow tested end-to-end
@@ -28550,7 +26862,7 @@ const testScenarios = [
 3. ✅ Sample data is realistic and compelling
 4. ✅ All stakeholders can complete their tasks
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Verify all API endpoints respond correctly
@@ -28578,7 +26890,7 @@ const testScenarios = [
 - Confirm token renewal workflow
 - Validate token-based portal access
 
-##### Test Requirements
+#### Test Requirements
 
 **End-to-End Workflow Test:**
 ```ruby
@@ -28728,7 +27040,7 @@ echo "✅ All validation checks passed!"
 echo "System ready for management demo!"
 ```
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If demo validation fails:**
 1. Stop all services: `docker-compose -f docker-compose.dev.yml down`
@@ -28743,7 +27055,7 @@ echo "System ready for management demo!"
 - Easy to reset to clean state
 - No permanent changes to application code
 
-##### Risk Assessment
+#### Risk Assessment
 
 **Low Risk because:**
 - Running on local Docker infrastructure
@@ -28771,7 +27083,7 @@ echo "System ready for management demo!"
 - Document known issues and workarounds
 - Create 5-minute and 15-minute demo versions
 
-##### Success Metrics
+#### Success Metrics
 
 **Demo Success:**
 - Management can log into all 3 portals
@@ -28796,7 +27108,7 @@ echo "System ready for management demo!"
 
 ---
 
-#### Story 8.5: User Communication & Training Materials
+### Story 8.5: User Communication & Training Materials
 
 **Status**: Draft
 **Priority**: High (Blocking - Required Before Development)
@@ -28804,13 +27116,13 @@ echo "System ready for management demo!"
 **Estimated Effort**: 2 days
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Training Provider (TP Admin),
 **I want** clear guidance on using FloDoc's 3-portal system,
 **So that** I can manage cohorts effectively without confusion.
 
-##### Background
+#### Background
 
 Existing DocuSeal users need to understand:
 - What changed (3-portal workflow)
@@ -28828,7 +27140,7 @@ Without this communication, adoption will suffer and support will be overwhelmed
 5. FAQ with 20 common questions
 6. Support contact process
 
-##### Technical Implementation Notes
+#### Technical Implementation Notes
 
 **Documentation Structure:**
 ```
@@ -28921,7 +27233,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 }
 ```
 
-##### Acceptance Criteria
+#### Acceptance Criteria
 
 **Functional:**
 1. ✅ Migration announcement email sent to all existing DocuSeal users
@@ -28956,7 +27268,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 3. ✅ Consistent branding and tone
 4. ✅ Links verified and working
 
-##### Integration Verification (IV1-4)
+#### Integration Verification (IV1-4)
 
 **IV1: API Integration**
 - Email sending uses existing Devise mailer infrastructure
@@ -28977,7 +27289,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 - Token validation before showing help content
 - Token expiration (24h) enforced
 
-##### Rollback Procedure
+#### Rollback Procedure
 
 **If communication fails:**
 1. Revert email templates to original
@@ -28997,7 +27309,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 - No production data at risk
 - Documentation can be updated independently
 
-##### Risk Assessment
+#### Risk Assessment
 
 **MEDIUM because:**
 - User confusion could lead to support overload
@@ -29025,7 +27337,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 - User feedback collection
 - Regular documentation updates
 
-##### Success Metrics
+#### Success Metrics
 
 **User Adoption:**
 - 80% user adoption rate within 30 days
@@ -29047,7 +27359,7 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 
 ---
 
-#### Story 8.6: In-App User Documentation & Help System
+### Story 8.6: In-App User Documentation & Help System
 
 **Status**: Draft (Deferred - Post-MVP)
 **Priority**: Medium
@@ -29055,19 +27367,19 @@ export const ERROR_HELP: Record<string, { message: string; action: string }> = {
 **Estimated Effort**: 1.5 days
 **Risk Level**: Low
 
-##### User Story
+#### User Story
 
 **As a** User (TP Admin, Student, or Sponsor),
 **I want** contextual help and documentation,
 **So that** I can solve problems without contacting support.
 
-##### Background
+#### Background
 
 Deferred to post-MVP per PO validation. This story adds in-app help system after core functionality is validated.
 
 **Note**: This story is deferred pending successful MVP validation.
 
-##### Acceptance Criteria (Deferred)
+#### Acceptance Criteria (Deferred)
 
 **Functional:**
 1. ✅ Help button on every major screen
@@ -29083,7 +27395,7 @@ Deferred to post-MVP per PO validation. This story adds in-app help system after
 
 ---
 
-#### Story 8.7: Knowledge Transfer & Operations Documentation
+### Story 8.7: Knowledge Transfer & Operations Documentation
 
 **Status**: Draft (Deferred - Post-MVP)
 **Priority**: Medium
@@ -29091,19 +27403,19 @@ Deferred to post-MVP per PO validation. This story adds in-app help system after
 **Estimated Effort**: 1 day
 **Risk Level**: Medium
 
-##### User Story
+#### User Story
 
 **As a** Support/Operations Team,
 **I want** comprehensive runbooks and documentation,
 **So that** I can support FloDoc without ad-hoc knowledge transfer.
 
-##### Background
+#### Background
 
 Deferred to post-MVP per PO validation. This story creates operations documentation after system is proven.
 
 **Note**: This story is deferred pending successful MVP validation.
 
-##### Acceptance Criteria (Deferred)
+#### Acceptance Criteria (Deferred)
 
 **Functional:**
 1. ✅ Operations runbook created
