@@ -133,7 +133,7 @@
                     <% bg_class = bg_classes[submitter_index % bg_classes.size] %>
                     <div class="absolute overflow-visible" style="width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%;">
                       <div class="flex h-full w-full bg-opacity-80 justify-center items-center <%= bg_class %>">
-                        <%= svg_icon(SubmissionsController::FIELD_ICONS[field['type']], class: 'max-h-10 w-full h-full stroke-2 opacity-50') %>
+                        <%= svg_icon(SubmissionsController::FIELD_ICONS.fetch(field['type'], 'text_size'), class: 'max-h-10 w-full h-full stroke-2 opacity-50') %>
                       </div>
                     </div>
                   <% end %>
