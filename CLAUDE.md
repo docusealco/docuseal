@@ -242,12 +242,18 @@ Account (Tenant/Organization)
 This repository uses **BMAD Core** for AI-assisted development:
 - Configuration: `.bmad-core/core-config.yaml`
 - Tasks: `.bmad-core/tasks/` (e.g., `create-doc.md`, `document-project.md`)
-- Templates: `.bmad-core/templates/` (e.g., `brownfield-prd-tmpl.yaml`)
+- Templates: `.bmad-core/templates/` (e.g., `brownfield-prd-tmpl.yaml`, `story-tmpl.yaml`)
 - Agents: `.bmad-core/agent-teams/`
 
 **Slash Commands:**
 - `/BMad:agents:pm` - Product Manager agent
 - `/BMad:agents:dev` - Developer agent
+
+**Story Creation Workflow:**
+- **Story Template**: `.bmad-core/templates/story-tmpl.yaml` - Defines story structure
+- **Story Task**: `.bmad-core/tasks/create-next-story.md` - Automated story creation
+- **Usage**: Use `/sm *draft` to create next story following the template
+- **Output**: Stories created in `docs/stories/` with full context from architecture docs
 
 ### FloDoc Enhancement (Current Work)
 
@@ -260,7 +266,25 @@ This repository uses **BMAD Core** for AI-assisted development:
 - Excel export for cohort data (FR23)
 - Custom UI/UX (not DaisyUI)
 
-**PRD Location:** `docs/prd.md`
+**Documentation Structure (Sharded):**
+- **PRD**: `docs/prd.md` (main) + `docs/prd/` (sections)
+- **Architecture**: `docs/architecture/` (sharded files)
+  - `index.md` - Architecture overview
+  - `tech-stack.md` - Technology stack
+  - `data-models.md` - Database schemas and models
+  - `api-design.md` - API specifications
+  - `project-structure.md` - File organization
+  - `security.md` - Security requirements
+  - `coding-standards.md` - Code conventions
+  - `testing-strategy.md` - Testing approach
+  - `infrastructure.md` - Deployment setup
+- **Stories**: `docs/stories/` - Individual story files (created via `*draft`)
+
+**Story Creation:**
+- Use `/sm *draft` to create next story
+- Stories auto-populated from PRD + Architecture docs
+- Follows `.bmad-core/templates/story-tmpl.yaml` structure
+- Each story is a complete, self-contained implementation guide
 
 ### Important Files
 
@@ -342,10 +366,11 @@ This repository uses **BMAD Core** for AI-assisted development:
 
 1. **PO Validation** - Run `po-master-checklist` on complete PRD
 2. **Address PO Feedback** - Fix any flagged issues
-3. **Story Sharding** (Optional) - Create docs/prd/ folder for IDE support
-4. **Story Implementation** - Dev agent implements stories 8.0 and 8.0.1
-5. **QA Review** - QA agent reviews implementation
-6. **Management Demo** - Run demo scripts to validate system
+3. **Story Sharding** ✅ COMPLETE - `docs/prd/` and `docs/architecture/` sharded
+4. **Story Creation** - Use `/sm *draft` to create Story 1.1 (Database Schema Extension)
+5. **QA Pre-Analysis** - Run `*risk` and `*design` on each story before development
+6. **Story Implementation** - Dev agent implements stories with QA gates
+7. **Management Demo** - Run demo scripts to validate system
 
 ### Brownfield PRD Story Structure
 
