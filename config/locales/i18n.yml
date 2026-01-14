@@ -29,6 +29,10 @@ en: &en
   pro: Pro
   thanks: Thanks
   private: Private
+  require_email_2fa: Require email 2FA
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: When checked, each signer must verify their email with a one-time code before accessing the document.
+  require_phone_2fa: Require phone 2FA
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: When checked, each signer must verify their phone with a one-time code before accessing the document.
   select: Select
   enabled: Enabled
   disabled: Disabled
@@ -1025,6 +1029,10 @@ es: &es
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
   private: Privado
+  require_email_2fa: Requerir 2FA por correo electrónico
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Cuando está marcado, cada firmante debe verificar su correo electrónico con un código de un solo uso antes de acceder al documento.
+  require_phone_2fa: Requerir 2FA por teléfono
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Cuando está marcado, cada firmante debe verificar su teléfono con un código de un solo uso antes de acceder al documento.
   resend_pending: Reenviar pendiente
   ensure_unique_recipients: Asegurar destinatarios únicos
   require_phone_2fa_to_open: Requiere 2FA por teléfono para abrir
@@ -2003,6 +2011,10 @@ it: &it
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
   private: Privato
+  require_email_2fa: Richiedi 2FA email
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Quando selezionato, ogni firmatario deve verificare la propria email con un codice monouso prima di accedere al documento.
+  require_phone_2fa: Richiedi 2FA telefono
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Quando selezionato, ogni firmatario deve verificare il proprio numero di telefono con un codice monouso prima di accedere al documento.
   resend_pending: Reinvia in sospeso
   ensure_unique_recipients: Assicurarsi destinatari unici
   require_phone_2fa_to_open: Richiedi l'autenticazione a due fattori tramite telefono per aprire
@@ -2982,6 +2994,10 @@ fr: &fr
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
   private: Privé
+  require_email_2fa: Exiger la 2FA par email
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Lorsque coché, chaque signataire doit vérifier son email avec un code à usage unique avant d'accéder au document.
+  require_phone_2fa: Exiger la 2FA par téléphone
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Lorsque coché, chaque signataire doit vérifier son numéro de téléphone avec un code à usage unique avant d'accéder au document.
   resend_pending: Renvoyer en attente
   ensure_unique_recipients: Garantir des destinataires uniques
   require_phone_2fa_to_open: Exiger la 2FA par téléphone pour ouvrir
@@ -3957,6 +3973,10 @@ pt: &pt
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
   private: Privado
+  require_email_2fa: Exigir 2FA por email
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Quando marcado, cada signatário deve verificar seu email com um código de uso único antes de acessar o documento.
+  require_phone_2fa: Exigir 2FA por telefone
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Quando marcado, cada signatário deve verificar seu telefone com um código de uso único antes de acessar o documento.
   resend_pending: Re-enviar pendente
   ensure_unique_recipients: Garantir destinatários únicos
   require_phone_2fa_to_open: Necessário autenticação de dois fatores via telefone para abrir
@@ -4921,6 +4941,10 @@ de: &de
   pro: Pro
   thanks: Danke
   private: Privat
+  require_email_2fa: E-Mail 2FA erforderlich
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Wenn aktiviert, muss jeder Unterzeichner seine E-Mail mit einem einmaligen Code verifizieren, bevor er auf das Dokument zugreifen kann.
+  require_phone_2fa: Telefon 2FA erforderlich
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Wenn aktiviert, muss jeder Unterzeichner sein Telefon mit einem einmaligen Code verifizieren, bevor er auf das Dokument zugreifen kann.
   select: Auswählen
   enabled: Aktiviert
   disabled: Deaktiviert
@@ -6287,6 +6311,10 @@ nl: &nl
   pro: Pro
   thanks: Bedankt
   private: Privé
+  require_email_2fa: E-mail 2FA vereist
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Wanneer aangevinkt, moet elke ondertekenaar zijn e-mail verifiëren met een eenmalige code voordat hij toegang krijgt tot het document.
+  require_phone_2fa: Telefoon 2FA vereist
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: Wanneer aangevinkt, moet elke ondertekenaar zijn telefoon verifiëren met een eenmalige code voordat hij toegang krijgt tot het document.
   select: Selecteer
   enabled: Ingeschakeld
   disabled: Uitgeschakeld
