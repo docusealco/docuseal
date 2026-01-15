@@ -179,18 +179,18 @@ RSpec.describe 'Cohort Workflow Integration', type: :integration do
 
       # Complex query: Get all active cohorts with their templates and enrollments
       results = Cohort
-        .joins(:template, :institution)
-        .where(status: 'active')
-        .includes(:cohort_enrollments)
-        .map do |c|
-          {
-            cohort_name: c.name,
-            template_name: c.template.name,
-            institution_name: c.institution.name,
-            enrollment_count: c.cohort_enrollments.count,
-            active_enrollments: c.cohort_enrollments.where(status: 'complete').count
-          }
-        end
+                .joins(:template, :institution)
+                .where(status: 'active')
+                .includes(:cohort_enrollments)
+                .map do |c|
+        {
+          cohort_name: c.name,
+          template_name: c.template.name,
+          institution_name: c.institution.name,
+          enrollment_count: c.cohort_enrollments.count,
+          active_enrollments: c.cohort_enrollments.where(status: 'complete').count
+        }
+      end
 
       expect(results.length).to eq(1)
       expect(results.first[:cohort_name]).to eq('Cohort 1')
@@ -328,16 +328,16 @@ RSpec.describe 'Cohort Workflow Integration', type: :integration do
       # Query with joins - verify the query executes without error
       # Index usage depends on data size and query planner decisions
       results = Cohort
-        .joins(:cohort_enrollments)
-        .where(cohort_enrollments: { status: 'complete' })
-        .to_a
+                .joins(:cohort_enrollments)
+                .where(cohort_enrollments: { status: 'complete' })
+                .to_a
       expect(results.length).to be > 0
     end
 
     it 'performs well with large datasets' do
       # Measure query time
       start_time = Time.current
-      results = Cohort
+      Cohort
         .joins(:institution, :template)
         .where(status: 'active')
         .includes(:cohort_enrollments)
@@ -360,8 +360,8 @@ RSpec.describe 'Cohort Workflow Integration', type: :integration do
       expect(submission_columns).to include('account_id', 'template_id', 'slug')
 
       # Verify no new columns were added to existing tables
-      expect(template_columns).to_not include('flo_doc_specific')
-      expect(submission_columns).to_not include('flo_doc_specific')
+      expect(template_columns).not_to include('flo_doc_specific')
+      expect(submission_columns).not_to include('flo_doc_specific')
     end
 
     it 'allows existing DocuSeal workflows to continue working' do
@@ -380,7 +380,7 @@ RSpec.describe 'Cohort Workflow Integration', type: :integration do
         slug: "standard-slug-#{SecureRandom.hex(4)}",
         variables: '{}'
       )
-      submitter = Submitter.create!(
+      Submitter.create!(
         account_id: account.id,
         submission_id: submission.id,
         email: 'submitter@example.com',

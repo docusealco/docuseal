@@ -13,19 +13,19 @@ RSpec.describe CreateFloDocTables, type: :migration do
 
   # Helper to drop tables for testing
   def drop_tables_if_exist
-    [:cohort_enrollments, :cohorts, :institutions].each do |table|
+    %i[cohort_enrollments cohorts institutions].each do |table|
       conn.drop_table(table, if_exists: true)
     end
   end
 
   # Helper to drop FKs
   def drop_fks_if_exist
-    [:cohorts, :cohort_enrollments].each do |table|
+    %i[cohorts cohort_enrollments].each do |table|
       conn.foreign_keys(table).each do |fk|
         conn.remove_foreign_key(table, name: fk.name)
       end
     end
-  rescue => e
+  rescue StandardError
     # Ignore errors if FKs don't exist
   end
 
@@ -60,24 +60,24 @@ RSpec.describe CreateFloDocTables, type: :migration do
     it 'has correct columns for institutions' do
       columns = conn.columns(:institutions).map(&:name)
       expect(columns).to include('name', 'email', 'contact_person', 'phone',
-                                  'settings', 'created_at', 'updated_at', 'deleted_at')
+                                 'settings', 'created_at', 'updated_at', 'deleted_at')
     end
 
     it 'has correct columns for cohorts' do
       columns = conn.columns(:cohorts).map(&:name)
       expect(columns).to include('institution_id', 'template_id', 'name', 'program_type',
-                                  'sponsor_email', 'required_student_uploads', 'cohort_metadata',
-                                  'status', 'tp_signed_at', 'students_completed_at',
-                                  'sponsor_completed_at', 'finalized_at', 'created_at',
-                                  'updated_at', 'deleted_at')
+                                 'sponsor_email', 'required_student_uploads', 'cohort_metadata',
+                                 'status', 'tp_signed_at', 'students_completed_at',
+                                 'sponsor_completed_at', 'finalized_at', 'created_at',
+                                 'updated_at', 'deleted_at')
     end
 
     it 'has correct columns for cohort_enrollments' do
       columns = conn.columns(:cohort_enrollments).map(&:name)
       expect(columns).to include('cohort_id', 'submission_id', 'student_email',
-                                  'student_name', 'student_surname', 'student_id',
-                                  'status', 'role', 'uploaded_documents', 'values',
-                                  'completed_at', 'created_at', 'updated_at', 'deleted_at')
+                                 'student_name', 'student_surname', 'student_id',
+                                 'status', 'role', 'uploaded_documents', 'values',
+                                 'completed_at', 'created_at', 'updated_at', 'deleted_at')
     end
   end
 
@@ -147,14 +147,14 @@ RSpec.describe CreateFloDocTables, type: :migration do
     before { migration.change }
 
     it 'creates correct indexes on cohorts' do
-      expect(conn.index_exists?(:cohorts, [:institution_id, :status])).to be true
+      expect(conn.index_exists?(:cohorts, %i[institution_id status])).to be true
       expect(conn.index_exists?(:cohorts, :template_id)).to be true
       expect(conn.index_exists?(:cohorts, :sponsor_email)).to be true
     end
 
     it 'creates correct indexes on cohort_enrollments' do
-      expect(conn.index_exists?(:cohort_enrollments, [:cohort_id, :status])).to be true
-      expect(conn.index_exists?(:cohort_enrollments, [:cohort_id, :student_email], unique: true)).to be true
+      expect(conn.index_exists?(:cohort_enrollments, %i[cohort_id status])).to be true
+      expect(conn.index_exists?(:cohort_enrollments, %i[cohort_id student_email], unique: true)).to be true
       expect(conn.index_exists?(:cohort_enrollments, [:submission_id], unique: true)).to be true
     end
   end
@@ -183,7 +183,7 @@ RSpec.describe CreateFloDocTables, type: :migration do
       # Tables should not exist before running migration
       expect(conn.table_exists?(:institutions)).to be false
 
-      expect { migration.change }.to_not raise_error
+      expect { migration.change }.not_to raise_error
       migration.down
 
       expect(conn.table_exists?(:institutions)).to be false
@@ -199,8 +199,8 @@ RSpec.describe CreateFloDocTables, type: :migration do
       migration.change
       migration.down
 
-      expect(conn.index_exists?(:cohorts, [:institution_id, :status])).to be false
-      expect(conn.index_exists?(:cohort_enrollments, [:cohort_id, :student_email], unique: true)).to be false
+      expect(conn.index_exists?(:cohorts, %i[institution_id status])).to be false
+      expect(conn.index_exists?(:cohort_enrollments, %i[cohort_id student_email], unique: true)).to be false
     end
 
     it 'removes foreign keys on rollback' do
@@ -221,36 +221,54 @@ RSpec.describe CreateFloDocTables, type: :migration do
 
     it 'enforces NOT NULL via database constraints' do
       # Institutions - name
-      expect {
-        conn.execute("INSERT INTO institutions (email, created_at, updated_at) VALUES ('test@example.com', NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO institutions (email, created_at, updated_at) ' \
+          'VALUES (' + 'test@example.com' + ', NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
 
       # Institutions - email
-      expect {
-        conn.execute("INSERT INTO institutions (name, created_at, updated_at) VALUES ('Test', NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO institutions (name, created_at, updated_at) ' \
+          'VALUES (' + 'Test' + ', NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
 
       # Cohorts - name (without required fields)
-      expect {
-        conn.execute("INSERT INTO cohorts (institution_id, template_id, program_type, sponsor_email, created_at, updated_at) VALUES (1, 1, 'learnership', 'test@example.com', NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO cohorts (institution_id, template_id, program_type, sponsor_email, created_at, updated_at) ' \
+          'VALUES (1, 1, ' + 'learnership' + ', ' + 'test@example.com' + ', NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
 
       # CohortEnrollments - student_email
-      expect {
-        conn.execute("INSERT INTO cohort_enrollments (cohort_id, submission_id, created_at, updated_at) VALUES (1, 1, NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO cohort_enrollments (cohort_id, submission_id, created_at, updated_at) ' \
+          'VALUES (1, 1, NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
     end
 
     it 'prevents orphaned records via foreign keys' do
       # Try to create cohort with non-existent institution
-      expect {
-        conn.execute("INSERT INTO cohorts (institution_id, template_id, name, program_type, sponsor_email, created_at, updated_at) VALUES (999999, 1, 'Test', 'learnership', 'test@example.com', NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO cohorts (institution_id, template_id, name, program_type, sponsor_email, created_at, updated_at) ' \
+          'VALUES (999999, 1, ' + 'Test' + ', ' + 'learnership' + ', ' + 'test@example.com' + ', NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
 
       # Try to create enrollment with non-existent cohort
-      expect {
-        conn.execute("INSERT INTO cohort_enrollments (cohort_id, submission_id, student_email, created_at, updated_at) VALUES (999999, 1, 'test@example.com', NOW(), NOW())")
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      expect do
+        conn.execute(
+          'INSERT INTO cohort_enrollments (cohort_id, submission_id, student_email, created_at, updated_at) ' \
+          'VALUES (999999, 1, ' + 'test@example.com' + ', NOW(), NOW())'
+        )
+      end.to raise_error(ActiveRecord::StatementInvalid)
     end
   end
 
@@ -258,8 +276,11 @@ RSpec.describe CreateFloDocTables, type: :migration do
     before { migration.change }
 
     it 'creates institutions with correct defaults' do
-      conn.execute("INSERT INTO institutions (name, email, created_at, updated_at) VALUES ('Test', 'test@example.com', NOW(), NOW())")
-      result = conn.select_one("SELECT settings, deleted_at FROM institutions WHERE name = 'Test'")
+      conn.execute(
+        'INSERT INTO institutions (name, email, created_at, updated_at) ' \
+        'VALUES (' + 'Test' + ', ' + 'test@example.com' + ', NOW(), NOW())'
+      )
+      result = conn.select_one('SELECT settings, deleted_at FROM institutions WHERE name = Test')
       # JSONB returns string in raw SQL, but empty object
       expect(result['settings']).to be_in([{}, '{}'])
       expect(result['deleted_at']).to be_nil
