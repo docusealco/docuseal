@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_14_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -30,7 +30,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "institution_id"
+    t.string "role", limit: 255, default: "member", null: false
     t.index ["account_id", "user_id"], name: "index_account_accesses_on_account_id_and_user_id", unique: true
+    t.index ["role"], name: "index_account_accesses_on_role"
   end
 
   create_table "account_configs", force: :cascade do |t|
@@ -96,6 +99,49 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "cohort_enrollments", force: :cascade do |t|
+    t.bigint "cohort_id", null: false
+    t.bigint "submission_id", null: false
+    t.string "student_email", null: false
+    t.string "student_name"
+    t.string "student_surname"
+    t.string "student_id"
+    t.string "status", default: "waiting"
+    t.string "role", default: "student"
+    t.jsonb "uploaded_documents", default: {}
+    t.jsonb "values", default: {}
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["cohort_id", "status"], name: "index_cohort_enrollments_on_cohort_id_and_status"
+    t.index ["cohort_id", "student_email"], name: "index_cohort_enrollments_on_cohort_id_and_student_email", unique: true
+    t.index ["cohort_id"], name: "index_cohort_enrollments_on_cohort_id"
+    t.index ["submission_id"], name: "index_cohort_enrollments_on_submission_id", unique: true
+  end
+
+  create_table "cohorts", force: :cascade do |t|
+    t.bigint "institution_id", null: false
+    t.bigint "template_id", null: false
+    t.string "name", null: false
+    t.string "program_type", null: false
+    t.string "sponsor_email", null: false
+    t.jsonb "required_student_uploads", default: []
+    t.jsonb "cohort_metadata", default: {}
+    t.string "status", default: "draft"
+    t.datetime "tp_signed_at"
+    t.datetime "students_completed_at"
+    t.datetime "sponsor_completed_at"
+    t.datetime "finalized_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["institution_id", "status"], name: "index_cohorts_on_institution_id_and_status"
+    t.index ["institution_id"], name: "index_cohorts_on_institution_id"
+    t.index ["sponsor_email"], name: "index_cohorts_on_sponsor_email"
+    t.index ["template_id"], name: "index_cohorts_on_template_id"
   end
 
   create_table "completed_documents", force: :cascade do |t|
@@ -181,7 +227,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.datetime "created_at", null: false
     t.index ["account_id", "event_datetime"], name: "index_email_events_on_account_id_and_event_datetime"
     t.index ["email"], name: "index_email_events_on_email"
-    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY (ARRAY[('bounce'::character varying)::text, ('soft_bounce'::character varying)::text, ('permanent_bounce'::character varying)::text, ('complaint'::character varying)::text, ('soft_complaint'::character varying)::text]))"
+    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'permanent_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
   end
@@ -220,12 +266,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.index ["user_id"], name: "index_encrypted_user_configs_on_user_id"
   end
 
+  create_table "institutions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "contact_person"
+    t.string "phone"
+    t.jsonb "settings", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
   create_table "lock_events", force: :cascade do |t|
     t.string "key", null: false
     t.string "event_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_name", "key"], name: "index_lock_events_on_event_name_and_key", unique: true, where: "((event_name)::text = ANY (ARRAY[('start'::character varying)::text, ('complete'::character varying)::text]))"
+    t.index ["event_name", "key"], name: "index_lock_events_on_event_name_and_key", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
     t.index ["key"], name: "index_lock_events_on_key"
   end
 
@@ -297,7 +354,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
-    t.index ["account_id", "created_at"], name: "index_submissions_events_on_sms_event_types", where: "((event_type)::text = ANY (ARRAY[('send_sms'::character varying)::text, ('send_2fa_sms'::character varying)::text]))"
+    t.index ["account_id", "created_at"], name: "index_submissions_events_on_sms_event_types", where: "((event_type)::text = ANY ((ARRAY['send_sms'::character varying, 'send_2fa_sms'::character varying])::text[]))"
     t.index ["account_id"], name: "index_submission_events_on_account_id"
     t.index ["created_at"], name: "index_submission_events_on_created_at"
     t.index ["submission_id"], name: "index_submission_events_on_submission_id"
@@ -506,6 +563,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
   add_foreign_key "account_linked_accounts", "accounts", column: "linked_account_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cohort_enrollments", "cohorts"
+  add_foreign_key "cohort_enrollments", "submissions"
+  add_foreign_key "cohorts", "institutions"
+  add_foreign_key "cohorts", "templates"
   add_foreign_key "document_generation_events", "submitters"
   add_foreign_key "email_events", "accounts"
   add_foreign_key "email_messages", "accounts"
