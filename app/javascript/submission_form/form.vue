@@ -1244,17 +1244,31 @@ export default {
       } else if (['equal', 'contains'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)
-          const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
 
-          return values.includes(this.optionValue(option, field.options.indexOf(option)))
+          if (option) {
+            const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
+
+            return values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return false
+          }
         } else {
           return [this.values[condition.field_uuid] ?? defaultValue].flat().includes(condition.value)
         }
       } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
-        const option = field.options.find((o) => o.uuid === condition.value)
-        const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
+        if (field.options) {
+          const option = field.options.find((o) => o.uuid === condition.value)
 
-        return !values.includes(this.optionValue(option, field.options.indexOf(option)))
+          if (option) {
+            const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
+
+            return !values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return false
+          }
+        } else {
+          return false
+        }
       } else {
         return true
       }
