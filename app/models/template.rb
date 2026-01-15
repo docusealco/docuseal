@@ -64,8 +64,10 @@ class Template < ApplicationRecord
 
   has_many_attached :documents
 
-  has_many :schema_documents, ->(e) { where(uuid: e.schema.pluck('attachment_uuid')) },
-           class_name: 'ActiveStorage::Attachment', dependent: :destroy, as: :record, inverse_of: :record
+  has_many :schema_documents, ->(e) {
+    uuids = Array(e.schema).filter_map { |s| s['attachment_uuid'] if s.is_a?(Hash) }
+    where(uuid: uuids)
+  }, class_name: 'ActiveStorage::Attachment', dependent: :destroy, as: :record, inverse_of: :record
 
   has_many :submissions, dependent: :destroy
   has_many :template_sharings, dependent: :destroy

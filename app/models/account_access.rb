@@ -4,24 +4,22 @@
 #
 # Table name: account_accesses
 #
-#  id              :bigint           not null, primary key
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  account_id      :bigint           not null
-#  user_id         :bigint           not null
-#  institution_id  :bigint           not null
-#  role            :string           not null, default: 'member'
+#  id             :bigint           not null, primary key
+#  role           :string(255)      default("member"), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  account_id     :bigint           not null
+#  institution_id :bigint
+#  user_id        :bigint           not null
 #
 # Indexes
 #
 #  index_account_accesses_on_account_id_and_user_id  (account_id,user_id) UNIQUE
-#  index_account_accesses_on_user_id_and_institution_id  (user_id,institution_id) UNIQUE
 #  index_account_accesses_on_role                    (role)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (account_id => accounts.id)
-#  fk_account_accesses_to_institutions  (institution_id => institutions.id)
 #
 class AccountAccess < ApplicationRecord
   belongs_to :account
