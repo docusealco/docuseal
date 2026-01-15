@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloDoc Stories Kanban Board (Shared)</title>
+    <style>
+        /* ========================================
+           FLODOC DESIGN SYSTEM
+           ======================================== */
+        :root {
+            --color-primary: #784DC7;
+            --color-primary-light: #E9DFFC;
+            --color-primary-dark: #6A3FB8;
+            --color-text-primary: #292929;
+            --color-text-secondary: #464646;
+            --color-text-muted: #9F9F9F;
+            --color-border: #E6E6E6;
+            --color-bg: #FFFFFF;
+            --color-bg-alt: #F8F8F8;
+            --color-success: #83E281;
+            --color-success-text: #158212;
+            --color-error: #FF5964;
+            --color-warning: #FFE74C;
+            --color-info: #35A7FF;
+            --color-backlog: #E6E6E6;
+            --color-todo: #FFE74C;
+            --color-progress: #35A7FF;
+            --color-review: #FF5964;
+            --color-done: #83E281;
+            --shadow-sm: 0px 2px 4px rgba(151, 71, 255, 0.08);
+            --shadow-md: 0px 4px 8px rgba(151, 71, 255, 0.08);
+            --shadow-lg: 0px 6px 12px rgba(41, 41, 41, 0.12);
+            --shadow-xl: 0px 10px 25px rgba(41, 41, 41, 0.15);
+            --radius-sm: 4.75px;
+            --radius-md: 7.5px;
+            --radius-lg: 12px;
+            --border-width: 1px;
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Consolas', 'Monaco', monospace;
+            --header-height: 64px;
+            --column-width: 320px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-alt);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Header */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--color-bg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-lg);
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-text {
+            font-family: var(--font-body);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .header-controls {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .search-box {
+            padding: var(--space-sm) var(--space-md);
+            border: var(--border-width) solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            width: 250px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(120, 77, 199, 0.1);
+        }
+
+        .btn {
+            padding: var(--space-sm) var(--space-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:disabled {
+            background: var(--color-border);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            border: var(--border-width) solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-bg-alt);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-danger {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #E04852;
+        }
+
+        .stats {
+            display: flex;
+            gap: var(--space-md);
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            background: var(--color-bg-alt);
+        }
+
+        .sync-status.syncing {
+            color: var(--color-info);
+        }
+
+        .sync-status.synced {
+            color: var(--color-success-text);
+        }
+
+        .sync-status.error {
+            color: var(--color-error);
+        }
+
+        .spinner-small {
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        /* Kanban Board */
+        .kanban-container {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: var(--space-lg);
+            background: var(--color-bg-alt);
+        }
+
+        .kanban-board {
+            display: flex;
+            gap: var(--space-lg);
+            height: 100%;
+            min-width: min-content;
+        }
+
+        .kanban-column {
+            flex-shrink: 0;
+            width: var(--column-width);
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-top: 4px solid transparent;
+        }
+
+        .kanban-column.backlog { border-top-color: var(--color-backlog); }
+        .kanban-column.todo { border-top-color: var(--color-todo); }
+        .kanban-column.progress { border-top-color: var(--color-progress); }
+        .kanban-column.review { border-top-color: var(--color-review); }
+        .kanban-column.done { border-top-color: var(--color-done); }
+
+        .column-header {
+            padding: var(--space-lg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            background: var(--color-bg-alt);
+        }
+
+        .column-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .column-count {
+            background: var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 2px 8px;
+            border-radius: var(--radius-lg);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .column-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .column-body.drag-over {
+            background: var(--color-primary-light);
+        }
+
+        /* Story Card */
+        .story-card {
+            background: var(--color-bg);
+            border: var(--border-width) solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            cursor: grab;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .story-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: var(--color-primary);
+        }
+
+        .story-card.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+            transform: rotate(2deg);
+        }
+
+        .story-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: var(--space-sm);
+        }
+
+        .story-number {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        .story-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1.4;
+            margin-bottom: var(--space-sm);
+        }
+
+        .story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-sm);
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-priority-high {
+            background: rgba(255, 89, 100, 0.15);
+            color: var(--color-error);
+        }
+
+        .badge-priority-critical {
+            background: rgba(255, 89, 100, 0.25);
+            color: var(--color-error);
+            font-weight: 800;
+        }
+
+        .badge-priority-medium {
+            background: rgba(255, 231, 76, 0.2);
+            color: #B8860B;
+        }
+
+        .badge-priority-low {
+            background: rgba(131, 226, 129, 0.2);
+            color: var(--color-success-text);
+        }
+
+        .badge-effort {
+            background: var(--color-bg-alt);
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+        }
+
+        .story-epic {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-sm);
+        }
+
+        .story-preview {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .story-actions {
+            display: flex;
+            gap: var(--space-xs);
+            margin-top: var(--space-sm);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .story-card:hover .story-actions {
+            opacity: 1;
+        }
+
+        .story-action-btn {
+            padding: 4px 8px;
+            font-size: 11px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            background: var(--color-bg-alt);
+            color: var(--color-text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .story-action-btn:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(41, 41, 41, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: var(--space-lg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--color-bg-alt);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-text-primary);
+        }
+
+        .modal-body {
+            padding: var(--space-lg);
+        }
+
+        .modal-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .modal-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-content {
+            background: var(--color-bg-alt);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .modal-content strong {
+            color: var(--color-text-primary);
+            font-weight: 700;
+        }
+
+        .modal-content code {
+            background: var(--color-bg);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .modal-content ul,
+        .modal-content ol {
+            margin-left: var(--space-lg);
+            margin-top: var(--space-sm);
+        }
+
+        .modal-content li {
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg-alt); }
+        ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: var(--radius-sm); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            align-items: center;
+            gap: var(--space-md);
+            z-index: 300;
+            animation: toastSlideIn 0.3s ease;
+        }
+
+        .toast.active {
+            display: flex;
+        }
+
+        @keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toast.success {
+            background: var(--color-success);
+            color: var(--color-success-text);
+        }
+
+        .toast.error {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .toast.warning {
+            background: var(--color-warning);
+            color: #B8860B;
+        }
+
+        /* Empty State */
+        .empty-column {
+            text-align: center;
+            padding: var(--space-xl);
+            color: var(--color-text-muted);
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 400;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-lg);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Config Modal */
+        .config-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        .form-input {
+            padding: var(--space-sm) var(--space-md);
+            border: var(--border-width) solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: var(--font-mono);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(120, 77, 199, 0.1);
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            :root { --column-width: 280px; }
+            .header-controls { gap: var(--space-sm); }
+            .search-box { width: 150px; }
+            .stats { display: none; }
+            .btn span { display: none; }
+            .modal { width: 95%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logo-container">
+            <div class="logo-icon">F</div>
+            <div class="logo-text">FloDoc Kanban</div>
+        </div>
+        <div class="header-controls">
+            <input
+                type="text"
+                class="search-box"
+                id="searchBox"
+                placeholder="Search stories..."
+                autocomplete="off"
+            >
+            <div class="stats">
+                <div class="stat-item">
+                    <span>Total:</span>
+                    <span class="stat-value" id="statTotal">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Done:</span>
+                    <span class="stat-value" id="statDone">0</span>
+                </div>
+            </div>
+            <div class="sync-status" id="syncStatus">
+                <span>Offline</span>
+            </div>
+            <button class="btn btn-secondary" id="configBtn">
+                <span>⚙️</span>
+                <span>Config</span>
+            </button>
+            <button class="btn btn-secondary" id="refreshBtn">
+                <span>↻</span>
+                <span>Refresh</span>
+            </button>
+            <button class="btn btn-primary" id="saveBtn">
+                <span>💾</span>
+                <span>Save</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Kanban Board -->
+    <div class="kanban-container">
+        <div class="kanban-board" id="kanbanBoard">
+            <!-- Columns will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Modal for Story Details -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Story Details</div>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Config Modal -->
+    <div class="modal-overlay" id="configModalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Configuration</div>
+                <button class="modal-close" id="configModalClose">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="config-form">
+                    <div class="form-group">
+                        <label class="form-label">JSONBin API Key</label>
+                        <input type="text" class="form-input" id="apiKeyInput" placeholder="Enter your JSONBin API key">
+                        <span class="form-hint">Get your API key from jsonbin.io (free tier available)</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">JSONBin Bin ID</label>
+                        <input type="text" class="form-input" id="binIdInput" placeholder="Enter your Bin ID">
+                        <span class="form-hint">The ID of your board data bin</span>
+                    </div>
+                    <div style="display: flex; gap: var(--space-md); margin-top: var(--space-lg);">
+                        <button class="btn btn-primary" id="saveConfigBtn">Save Configuration</button>
+                        <button class="btn btn-secondary" id="createBinBtn">Create New Bin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div id="loadingText">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">Action completed</span>
+    </div>
+
+    <script>
+        // ========================================
+        // FLODOC STORIES DATA
+        // ========================================
+        const storiesData = [
+            { number: "1.1", title: "Database Schema Extension", priority: "Critical", epic: "Phase 1 - Foundation", effort: "2-3 days", user_story: "**As a** system architect,\n**I want** to create the database schema for FloDoc's new models,\n**So that** the application has the foundation to support cohort management.", background: "Based on the PRD analysis, we need three new tables to support the 3-portal cohort management system:\n- `institutions` - Single training institution (not multi-tenant)\n- `cohorts` - Training program cohorts\n- `cohort_enrollments` - Student enrollments in cohorts\n\nThese tables must integrate with existing DocuSeal tables without breaking existing functionality.", acceptance: "**Functional:**\n- ✅ All three tables created with correct schema\n- ✅ Foreign key relationships established\n- ✅ All indexes created for performance\n- ✅ Migrations are reversible\n- ✅ No modifications to existing DocuSeal tables" },
+            { number: "1.2", title: "Core Models Implementation", priority: "High", epic: "Phase 1 - Foundation", effort: "2 days", user_story: "**As a** developer,\n**I want** to create ActiveRecord models for the new FloDoc tables,\n**So that** the application can interact with cohorts and enrollments programmatically.", background: "Models must follow existing DocuSeal patterns:\n- Inherit from `ApplicationRecord`\n- Use `strip_attributes` for data cleaning\n- Include soft delete functionality\n- Define proper associations and validations\n- Follow naming conventions", acceptance: "**Functional:**\n- ✅ All three models created with correct class structure\n- ✅ All associations defined correctly\n- ✅ All validations implemented" },
+            { number: "1.3", title: "Authorization Layer Extension", priority: "High", epic: "Phase 1 - Foundation", effort: "1-2 days", user_story: "**As a** system administrator,\n**I want** the authorization system to support FloDoc roles and permissions,\n**So that** users can only access appropriate cohort management functions.", background: "Extend Cancancan abilities to support:\n- TP Admin: Full cohort management\n- Student: View own enrollments, upload documents\n- Sponsor: Review and sign documents\n- Admin: All access plus system configuration", acceptance: "**Functional:**\n- ✅ Ability rules defined for all FloDoc actions\n- ✅ Role-based access control working" },
+            { number: "2.1", title: "Cohort Creation & Management", priority: "High", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to create and manage cohorts with all their configuration details,\n**So that** I can organize students into training programs and prepare them for the signature workflow.", background: "Cohort creation requires:\n- Name and program type selection\n- Sponsor email configuration\n- Required student uploads (ID, matric, tertiary)\n- Cohort metadata for additional info\n- Status tracking (draft/active/completed)", acceptance: "**Functional:**\n- ✅ Cohort creation form with all fields\n- ✅ Cohort update functionality" },
+            { number: "2.2", title: "TP Signing Phase Logic", priority: "Critical", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to sign the first student's document and have that signing replicated to all other students in the cohort,\n**So that** I don't need to sign each student's document individually, saving time and eliminating duplicate sponsor emails.", background: "This is the CORE INNOVATION of FloDoc:\n- TP signs ONE document\n- System replicates signature to all students\n- Must work with DocuSeal's existing signing mechanism", acceptance: "**Functional:**\n- ✅ TP signs first document\n- ✅ Signature replicated to all cohort students" },
+            { number: "2.3", title: "Student Enrollment Management", priority: "High", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to manage student enrollment in cohorts and bulk-create student submissions,\n**So that** students can access their documents to complete after TP signs.", background: "Student enrollment workflow:\n- Bulk import via CSV or manual entry\n- Create cohort_enrollment records\n- Generate submissions linked to students\n- Track enrollment status (waiting/in_progress/complete)", acceptance: "**Functional:**\n- ✅ Bulk student import (CSV)\n- ✅ Individual student enrollment" },
+            { number: "2.4", title: "Sponsor Review Workflow", priority: "Medium", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** to receive and review student documents,\n**So that** I can verify information before signing.", background: "Sponsor workflow:\n- Receive email with cohort overview\n- Access documents via secure token\n- Review student information\n- Verify uploaded documents", acceptance: "**Functional:**\n- ✅ Email notification to sponsor\n- ✅ Token-based access to documents" },
+            { number: "2.5", title: "TP Review & Finalization", priority: "Medium", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to review all student submissions and finalize the cohort,\n**So that** I can ensure everything is complete before closing.", background: "Finalization workflow:\n- View all student statuses\n- Check completion rates\n- Review any issues\n- Mark cohort as finalized", acceptance: "**Functional:**\n- ✅ Cohort overview dashboard\n- ✅ Completion status tracking" },
+            { number: "2.6", title: "Excel Export for Cohort Data", priority: "Medium", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to export cohort data to Excel,\n**So that** I can analyze enrollment and completion data externally.", background: "Export requirements (FR23):\n- Export all cohort data\n- Include student information\n- Show completion status\n- Include timestamps\n- Professional formatting", acceptance: "**Functional:**\n- ✅ Excel export button\n- ✅ All relevant data included" },
+            { number: "2.7", title: "Audit Log & Compliance", priority: "Medium", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** compliance officer,\n**I want** all actions logged in an audit trail,\n**So that** I can track who did what and when.", background: "Audit requirements:\n- Log all cohort actions\n- Track user who performed action\n- Timestamp all events\n- Store before/after values\n- Queryable audit trail", acceptance: "**Functional:**\n- ✅ Audit log table created\n- ✅ All actions logged" },
+            { number: "2.8", title: "Cohort State Machine", priority: "High", epic: "Phase 2 - Backend Logic", effort: "4 hours", user_story: "**As a** system,\n**I want** to manage cohort state transitions automatically,\n**So that** the workflow progresses smoothly without manual intervention.", background: "State machine for cohorts:\n- draft → active (when TP signs)\n- active → students_complete (when all students finish)\n- students_complete → sponsor_complete (when sponsor signs)\n- sponsor_complete → finalized (when TP reviews)", acceptance: "**Functional:**\n- ✅ State transitions defined\n- ✅ Automatic progression works" },
+            { number: "3.1", title: "RESTful Cohort Management API", priority: "High", epic: "Phase 3 - API Layer", effort: "4 hours", user_story: "**As a** developer,\n**I want** RESTful APIs for cohort management,\n**So that** I can integrate FloDoc with other systems.", background: "API endpoints needed:\n- GET /api/cohorts - List cohorts\n- POST /api/cohorts - Create cohort\n- GET /api/cohorts/:id - Show cohort\n- PUT /api/cohorts/:id - Update cohort\n- DELETE /api/cohorts/:id - Delete cohort", acceptance: "**Functional:**\n- ✅ All CRUD endpoints implemented\n- ✅ Proper HTTP status codes" },
+            { number: "3.2", title: "Webhook Events", priority: "Medium", epic: "Phase 3 - API Layer", effort: "4 hours", user_story: "**As a** system integrator,\n**I want** webhook notifications for state changes,\n**So that** external systems can react to FloDoc events.", background: "Webhook events:\n- cohort.created\n- cohort.state_changed\n- student.enrolled\n- student.completed\n- sponsor.signed\n- cohort.finalized", acceptance: "**Functional:**\n- ✅ Webhook event system\n- ✅ All required events implemented" },
+            { number: "3.3", title: "Student API (Ad-hoc)", priority: "High", epic: "Phase 3 - API Layer", effort: "4 hours", user_story: "**As a** student,\n**I want** to access my documents via token-based API,\n**So that** I can complete forms without creating an account.", background: "Ad-hoc access pattern:\n- Student receives email with token\n- Token grants access to specific submission\n- No user account required\n- Token expires after completion", acceptance: "**Functional:**\n- ✅ Token generation endpoint\n- ✅ Token validation" },
+            { number: "3.4", title: "API Documentation", priority: "Low", epic: "Phase 3 - API Layer", effort: "4 hours", user_story: "**As a** developer,\n**I want** comprehensive API documentation,\n**So that** I can easily integrate with FloDoc.", background: "Documentation requirements:\n- OpenAPI/Swagger specs\n- Endpoint descriptions\n- Request/response examples\n- Authentication details", acceptance: "**Functional:**\n- ✅ OpenAPI specification\n- ✅ Interactive API docs" },
+            { number: "4.1", title: "Cohort Management Dashboard", priority: "High", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** a dashboard showing all cohorts,\n**So that** I can monitor all training programs at a glance.", background: "Dashboard features:\n- List of all cohorts\n- Status indicators\n- Quick stats (total, active, completed)\n- Search and filter\n- Navigation to detail views", acceptance: "**Functional:**\n- ✅ Cohort list view\n- ✅ Status badges" },
+            { number: "4.2", title: "Cohort Creation & Bulk Import", priority: "High", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to create cohorts and bulk import students,\n**So that** I can quickly set up new training programs.", background: "Creation interface:\n- Cohort form (name, program type, sponsor email)\n- Required uploads configuration\n- Bulk student import (CSV)\n- Validation and preview", acceptance: "**Functional:**\n- ✅ Cohort creation form\n- ✅ CSV upload with validation" },
+            { number: "4.3", title: "Cohort Detail Overview", priority: "Medium", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to view detailed cohort information,\n**So that** I can monitor progress and manage individual students.", background: "Detail view features:\n- Cohort metadata\n- Student list with statuses\n- Progress indicators\n- Action buttons (enroll, finalize, export)", acceptance: "**Functional:**\n- ✅ Cohort information display\n- ✅ Student list with filtering" },
+            { number: "4.4", title: "TP Signing Interface", priority: "High", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** a signing interface for the first student,\n**So that** I can sign once and replicate to all students.", background: "Signing interface:\n- Preview first student's document\n- Digital signature capture\n- Replication confirmation\n- Progress indicator\n- Success notification", acceptance: "**Functional:**\n- ✅ Document preview\n- ✅ Signature capture" },
+            { number: "4.5", title: "Student Management View", priority: "Medium", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** to manage individual student enrollments,\n**So that** I can add/remove students and track their progress.", background: "Student management:\n- Add individual students\n- Remove students\n- View student details\n- Track document uploads\n- Resend invitations", acceptance: "**Functional:**\n- ✅ Add/remove students\n- ✅ Student detail view" },
+            { number: "4.6", title: "Sponsor Portal Dashboard", priority: "High", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** a dashboard showing cohorts awaiting my signature,\n**So that** I can quickly see what needs my review.", background: "Sponsor dashboard:\n- List of cohorts needing signature\n- Student count per cohort\n- Progress indicators\n- Quick access to review\n- Token-based authentication", acceptance: "**Functional:**\n- ✅ Cohort list for sponsor\n- ✅ Student counts" },
+            { number: "4.7", title: "Sponsor Bulk Signing", priority: "High", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** to sign multiple student documents at once,\n**So that** I can complete my review efficiently.", background: "Bulk signing:\n- Select multiple students\n- Single signature application\n- Confirmation before signing\n- Progress indicator\n- Completion notification", acceptance: "**Functional:**\n- ✅ Multi-select students\n- ✅ Single signature application" },
+            { number: "4.8", title: "Sponsor Progress Tracking", priority: "Medium", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** to track progress of all students in a cohort,\n**So that** I can see who has completed and who hasn't.", background: "Progress tracking:\n- Visual progress bars\n- Student status list\n- Completion percentages\n- Filter by status\n- Timeline view", acceptance: "**Functional:**\n- ✅ Progress visualization\n- ✅ Student status list" },
+            { number: "4.9", title: "Sponsor Token Renewal", priority: "Medium", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** to renew my access token and manage my session,\n**So that** I can continue working without interruption.", background: "Session management:\n- Token refresh mechanism\n- Session timeout warnings\n- Logout functionality\n- Token renewal UI", acceptance: "**Functional:**\n- ✅ Token refresh\n- ✅ Session timeout warnings" },
+            { number: "4.10", title: "TP Portal Analytics", priority: "Medium", epic: "Phase 4 - Admin Portal", effort: "4 hours", user_story: "**As a** TP administrator,\n**I want** analytics and monitoring for all cohorts,\n**So that** I can identify bottlenecks and optimize workflows.", background: "Analytics features:\n- Cohort completion rates\n- Average completion time\n- Bottleneck identification\n- Export analytics\n- Visual dashboards", acceptance: "**Functional:**\n- ✅ Analytics dashboard\n- ✅ Completion metrics" },
+            { number: "5.1", title: "Student Document Upload", priority: "High", epic: "Phase 5 - Student Portal", effort: "4 hours", user_story: "**As a** student,\n**I want** to upload required documents,\n**So that** I can complete my enrollment requirements.", background: "Document upload:\n- List of required documents\n- Drag-and-drop upload\n- File type validation\n- Upload progress\n- Success/error feedback", acceptance: "**Functional:**\n- ✅ Required document list\n- ✅ File upload interface" },
+            { number: "5.2", title: "Student Form Filling", priority: "High", epic: "Phase 5 - Student Portal", effort: "4 hours", user_story: "**As a** student,\n**I want** to fill out form fields,\n**So that** I can complete my document submission.", background: "Form filling:\n- All required fields displayed\n- Field validation\n- Save progress\n- Field completion tracking\n- Signature capture", acceptance: "**Functional:**\n- ✅ All form fields present\n- ✅ Field validation" },
+            { number: "5.3", title: "Student Progress & Save Draft", priority: "Medium", epic: "Phase 5 - Student Portal", effort: "4 hours", user_story: "**As a** student,\n**I want** to save my progress and resume later,\n**So that** I can complete the form at my own pace.", background: "Progress saving:\n- Auto-save functionality\n- Manual save button\n- Draft status\n- Resume from last position\n- Completion percentage", acceptance: "**Functional:**\n- ✅ Auto-save every 30 seconds\n- ✅ Manual save button" },
+            { number: "5.4", title: "Student Submission Confirmation", priority: "Medium", epic: "Phase 5 - Student Portal", effort: "4 hours", user_story: "**As a** student,\n**I want** to confirm my submission and see its status,\n**So that** I know my documents are received and what happens next.", background: "Submission flow:\n- Final review before submit\n- Confirmation dialog\n- Success message\n- Status tracking\n- Next steps communication", acceptance: "**Functional:**\n- ✅ Final review screen\n- ✅ Confirmation dialog" },
+            { number: "5.5", title: "Student Email Notifications", priority: "Low", epic: "Phase 5 - Student Portal", effort: "4 hours", user_story: "**As a** student,\n**I want** to receive email notifications and reminders,\n**So that** I stay informed about my document status.", background: "Email notifications:\n- Enrollment invitation\n- Reminder emails\n- Status updates\n- Completion confirmation\n- Unsubscribe option", acceptance: "**Functional:**\n- ✅ Enrollment email\n- ✅ Reminder emails" },
+            { number: "6.1", title: "Sponsor Dashboard & Bulk Signing", priority: "High", epic: "Phase 6 - Sponsor Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** a dashboard to view cohorts and sign documents in bulk,\n**So that** I can efficiently complete my review responsibilities.", background: "Sponsor dashboard:\n- Cohort list with student counts\n- Progress indicators\n- Bulk selection\n- Single signing action\n- Completion tracking", acceptance: "**Functional:**\n- ✅ Cohort overview\n- ✅ Bulk selection" },
+            { number: "6.2", title: "Sponsor Email Notifications", priority: "Medium", epic: "Phase 6 - Sponsor Portal", effort: "4 hours", user_story: "**As a** sponsor,\n**I want** email notifications for cohorts needing my signature,\n**So that** I don't miss review deadlines.", background: "Sponsor emails:\n- New cohort notification\n- Reminder emails\n- Completion confirmation\n- Deadline alerts\n- Token-based access links", acceptance: "**Functional:**\n- ✅ New cohort email\n- ✅ Reminder emails" },
+            { number: "7.1", title: "End-to-End Testing", priority: "High", epic: "Phase 7 - Testing & QA", effort: "4 hours", user_story: "**As a** QA engineer,\n**I want** comprehensive end-to-end tests,\n**So that** I can verify the complete workflow functions correctly.", background: "E2E testing:\n- Complete cohort lifecycle\n- All three portals\n- All user roles\n- Edge cases\n- Integration points", acceptance: "**Functional:**\n- ✅ Complete workflow tests\n- ✅ All portals covered" },
+            { number: "7.2", title: "Mobile Responsiveness", priority: "Medium", epic: "Phase 7 - Testing & QA", effort: "4 hours", user_story: "**As a** QA engineer,\n**I want** to test all interfaces on mobile devices,\n**So that** students and sponsors can work on any device.", background: "Mobile testing:\n- All three portals\n- All screen sizes\n- Touch interactions\n- Performance on mobile\n- Accessibility", acceptance: "**Functional:**\n- ✅ All portals responsive\n- ✅ Touch-friendly UI" },
+            { number: "7.3", title: "Performance Testing (50+ Students)", priority: "High", epic: "Phase 7 - Testing & QA", effort: "4 hours", user_story: "**As a** QA engineer,\n**I want** to test performance with 50+ students,\n**So that** the system handles real-world loads.", background: "Performance testing:\n- Load testing with 50 students\n- Bulk operations\n- Database query performance\n- API response times\n- Memory usage", acceptance: "**Functional:**\n- ✅ 50+ students handled\n- ✅ Bulk operations < 5s" },
+            { number: "7.4", title: "Security Audit", priority: "High", epic: "Phase 7 - Testing & QA", effort: "4 hours", user_story: "**As a** security auditor,\n**I want** to perform security testing,\n**So that** I can identify and fix vulnerabilities.", background: "Security testing:\n- Authentication bypass attempts\n- SQL injection tests\n- XSS vulnerability checks\n- Token security\n- Data exposure", acceptance: "**Functional:**\n- ✅ No authentication bypass\n- ✅ No SQL injection" },
+            { number: "7.5", title: "User Acceptance Testing", priority: "Medium", epic: "Phase 7 - Testing & QA", effort: "4 hours", user_story: "**As a** product owner,\n**I want** user acceptance testing with real stakeholders,\n**So that** I can validate the solution meets requirements.", background: "UAT process:\n- Real TP administrators\n- Real students\n- Real sponsors\n- Complete workflows\n- Feedback collection", acceptance: "**Functional:**\n- ✅ All workflows validated\n- ✅ User feedback collected" },
+            { number: "8.0", title: "Development Infrastructure", priority: "High", epic: "Phase 8 - Infrastructure", effort: "4 hours", user_story: "**As a** developer,\n**I want** local Docker infrastructure setup,\n**So that** I can develop and test FloDoc locally.", background: "Local infrastructure:\n- Docker Compose setup\n- Database containers\n- Redis for Sidekiq\n- Local storage\n- Development configuration", acceptance: "**Functional:**\n- ✅ Docker Compose file\n- ✅ All services running" },
+            { number: "8.0.1", title: "Management Demo Readiness", priority: "Critical", epic: "Phase 8 - Infrastructure", effort: "4 hours", user_story: "**As a** product owner,\n**I want** management demo scripts and validation,\n**So that** I can demonstrate the FloDoc system to stakeholders.", background: "Demo preparation:\n- Demo scripts\n- Sample data\n- Validation checklist\n- Presentation materials\n- Success metrics", acceptance: "**Functional:**\n- ✅ Demo scripts written\n- ✅ Sample data created" },
+            { number: "8.5", title: "User Communication & Training", priority: "Low", epic: "Phase 8 - Infrastructure", effort: "4 hours", user_story: "**As a** training coordinator,\n**I want** user communication and training materials,\n**So that** users can successfully use FloDoc.", background: "Training materials:\n- User guides\n- Video tutorials\n- FAQ documents\n- Email templates\n- Support contact info", acceptance: "**Functional:**\n- ✅ User guides created\n- ✅ Video tutorials recorded" },
+            { number: "8.6", title: "In-App User Documentation", priority: "Low", epic: "Phase 8 - Infrastructure", effort: "4 hours", user_story: "**As a** user,\n**I want** in-app help and documentation,\n**So that** I can get assistance without leaving the application.", background: "In-app help:\n- Contextual help icons\n- Tooltips\n- Help sidebar\n- Searchable documentation\n- Contact support", acceptance: "**Functional:**\n- ✅ Help icons on all screens\n- ✅ Tooltips for complex UI" },
+            { number: "8.7", title: "Knowledge Transfer & Ops Docs", priority: "Low", epic: "Phase 8 - Infrastructure", effort: "4 hours", user_story: "**As a** operations team,\n**I want** comprehensive operations documentation,\n**So that** I can maintain and support FloDoc.", background: "Operations docs:\n- Deployment procedures\n- Backup/restore\n- Monitoring\n- Troubleshooting\n- Incident response", acceptance: "**Functional:**\n- ✅ Deployment guide\n- ✅ Backup procedures" }
+        ];
+
+        // ========================================
+        // KANBAN COLUMNS
+        // ========================================
+        const columns = [
+            { id: 'backlog', name: 'Backlog', color: '#E6E6E6' },
+            { id: 'todo', name: 'To Do', color: '#FFE74C' },
+            { id: 'progress', name: 'In Progress', color: '#35A7FF' },
+            { id: 'review', name: 'Review', color: '#FF5964' },
+            { id: 'done', name: 'Done', color: '#83E281' }
+        ];
+
+        // ========================================
+        // CONFIG
+        // ========================================
+        let config = {
+            apiKey: '$2a$10$zZz2g5orQv6Zvfq8PoJOyuugC.HipHW6L2UMkT3g1VWZIl4iTMxfe',
+            binId: '6968da80ae596e708fde1d84'
+        };
+
+        // ========================================
+        // STATE MANAGEMENT
+        // ========================================
+        let storyStates = {};
+        let filteredStories = [...storiesData];
+        let draggedStory = null;
+        let isSyncing = false;
+
+        // ========================================
+        // DOM ELEMENTS
+        // ========================================
+        const kanbanBoard = document.getElementById('kanbanBoard');
+        const searchBox = document.getElementById('searchBox');
+        const saveBtn = document.getElementById('saveBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const configBtn = document.getElementById('configBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+        const configModalOverlay = document.getElementById('configModalOverlay');
+        const configModalClose = document.getElementById('configModalClose');
+        const saveConfigBtn = document.getElementById('saveConfigBtn');
+        const createBinBtn = document.getElementById('createBinBtn');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const binIdInput = document.getElementById('binIdInput');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const statTotal = document.getElementById('statTotal');
+        const statDone = document.getElementById('statDone');
+        const syncStatus = document.getElementById('syncStatus');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingText = document.getElementById('loadingText');
+
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+        async function init() {
+            loadConfig();
+            renderBoard();
+            updateStats();
+            attachEventListeners();
+
+            // Try to load from cloud
+            if (config.apiKey && config.binId) {
+                await loadFromCloud();
+            } else {
+                // Try to load from localStorage
+                loadFromLocal();
+            }
+        }
+
+        // ========================================
+        // CONFIG MANAGEMENT
+        // ========================================
+        function loadConfig() {
+            const saved = localStorage.getItem('flodoc-kanban-config');
+            if (saved) {
+                config = JSON.parse(saved);
+                apiKeyInput.value = config.apiKey;
+                binIdInput.value = config.binId;
+            }
+        }
+
+        function saveConfig() {
+            config.apiKey = apiKeyInput.value.trim();
+            config.binId = binIdInput.value.trim();
+
+            if (!config.apiKey || !config.binId) {
+                showToast('Please enter both API Key and Bin ID', 'error');
+                return;
+            }
+
+            localStorage.setItem('flodoc-kanban-config', JSON.stringify(config));
+            configModalOverlay.classList.remove('active');
+            showToast('Configuration saved! Loading from cloud...', 'success');
+            loadFromCloud();
+        }
+
+        async function createNewBin() {
+            if (!config.apiKey) {
+                showToast('Please enter your API Key first', 'error');
+                return;
+            }
+
+            showLoading('Creating new bin...');
+
+            try {
+                // Initialize all stories to backlog
+                const initialState = {};
+                storiesData.forEach(story => {
+                    initialState[story.number] = 'backlog';
+                });
+
+                const response = await fetch('https://api.jsonbin.io/v3/b', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': config.apiKey
+                    },
+                    body: JSON.stringify(initialState)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create bin');
+                }
+
+                const data = await response.json();
+                config.binId = data.metadata.id;
+                binIdInput.value = config.binId;
+                localStorage.setItem('flodoc-kanban-config', JSON.stringify(config));
+
+                hideLoading();
+                showToast('Bin created successfully!', 'success');
+            } catch (error) {
+                hideLoading();
+                showToast('Error creating bin: ' + error.message, 'error');
+            }
+        }
+
+        // ========================================
+        // CLOUD SYNC
+        // ========================================
+        async function loadFromCloud() {
+            if (!config.apiKey || !config.binId) {
+                updateSyncStatus('error', 'No config');
+                return;
+            }
+
+            isSyncing = true;
+            updateSyncStatus('syncing', 'Loading...');
+
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${config.binId}/latest`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Master-Key': config.apiKey
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load from cloud');
+                }
+
+                const data = await response.json();
+                storyStates = data.record;
+
+                renderBoard();
+                updateStats();
+                updateSyncStatus('synced', 'Synced');
+                showToast('Loaded from cloud!', 'success');
+            } catch (error) {
+                updateSyncStatus('error', 'Error');
+                showToast('Error loading from cloud: ' + error.message, 'error');
+
+                // Fallback to local
+                loadFromLocal();
+            } finally {
+                isSyncing = false;
+            }
+        }
+
+        async function saveToCloud() {
+            if (!config.apiKey || !config.binId) {
+                showToast('Please configure JSONBin first', 'error');
+                configModalOverlay.classList.add('active');
+                return;
+            }
+
+            isSyncing = true;
+            updateSyncStatus('syncing', 'Saving...');
+
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${config.binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': config.apiKey
+                    },
+                    body: JSON.stringify(storyStates)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to save to cloud');
+                }
+
+                updateSyncStatus('synced', 'Synced');
+                showToast('Saved to cloud! All users can see changes.', 'success');
+            } catch (error) {
+                updateSyncStatus('error', 'Error');
+                showToast('Error saving to cloud: ' + error.message, 'error');
+            } finally {
+                isSyncing = false;
+            }
+        }
+
+        // ========================================
+        // LOCAL STORAGE
+        // ========================================
+        function loadFromLocal() {
+            const saved = localStorage.getItem('flodoc-kanban-state');
+            if (saved) {
+                storyStates = JSON.parse(saved);
+                renderBoard();
+                updateStats();
+                updateSyncStatus('synced', 'Local');
+            } else {
+                // Initialize with default states
+                storiesData.forEach(story => {
+                    storyStates[story.number] = 'backlog';
+                });
+                renderBoard();
+                updateStats();
+            }
+        }
+
+        function saveToLocal() {
+            localStorage.setItem('flodoc-kanban-state', JSON.stringify(storyStates));
+        }
+
+        // ========================================
+        // RENDERING
+        // ========================================
+        function renderBoard() {
+            kanbanBoard.innerHTML = '';
+
+            columns.forEach(column => {
+                const columnEl = createColumn(column);
+                kanbanBoard.appendChild(columnEl);
+            });
+        }
+
+        function createColumn(column) {
+            const columnEl = document.createElement('div');
+            columnEl.className = `kanban-column ${column.id}`;
+            columnEl.dataset.column = column.id;
+
+            const storiesInColumn = filteredStories.filter(
+                story => storyStates[story.number] === column.id
+            );
+
+            columnEl.innerHTML = `
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>${column.name}</span>
+                        <span class="column-count">${storiesInColumn.length}</span>
+                    </div>
+                </div>
+                <div class="column-body" data-column="${column.id}">
+                    ${storiesInColumn.length === 0
+                        ? '<div class="empty-column">No stories here</div>'
+                        : storiesInColumn.map(story => createStoryCard(story)).join('')
+                    }
+                </div>
+            `;
+
+            const columnBody = columnEl.querySelector('.column-body');
+            columnBody.addEventListener('dragover', handleDragOver);
+            columnBody.addEventListener('dragleave', handleDragLeave);
+            columnBody.addEventListener('drop', handleDrop);
+
+            return columnEl;
+        }
+
+        function createStoryCard(story) {
+            const priorityClass = `badge-priority-${story.priority.toLowerCase()}`;
+
+            return `
+                <div class="story-card" draggable="true" data-number="${story.number}">
+                    <div class="story-card-header">
+                        <span class="story-number">${story.number}</span>
+                    </div>
+                    <div class="story-title">${story.title}</div>
+                    <div class="story-meta">
+                        <span class="badge ${priorityClass}">${story.priority}</span>
+                        <span class="badge badge-effort">${story.effort}</span>
+                    </div>
+                    <div class="story-epic">${story.epic}</div>
+                    <div class="story-preview">${story.user_story.substring(0, 100)}...</div>
+                    <div class="story-actions">
+                        <button class="story-action-btn" onclick="viewStory('${story.number}')">View</button>
+                        <button class="story-action-btn" onclick="moveToNext('${story.number}')">→</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ========================================
+        // DRAG AND DROP
+        // ========================================
+        function handleDragStart(e) {
+            draggedStory = e.target.dataset.number;
+            e.target.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedStory = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+
+            const targetColumn = e.currentTarget.dataset.column;
+
+            if (draggedStory && targetColumn) {
+                storyStates[draggedStory] = targetColumn;
+                saveToLocal();
+                renderBoard();
+                updateStats();
+                showToast(`Moved story ${draggedStory} to ${targetColumn}`, 'success');
+            }
+        }
+
+        // ========================================
+        // STORY ACTIONS
+        // ========================================
+        function viewStory(number) {
+            const story = storiesData.find(s => s.number === number);
+            if (!story) return;
+
+            modalTitle.textContent = `Story ${story.number}: ${story.title}`;
+            modalBody.innerHTML = `
+                <div class="modal-section">
+                    <div class="modal-section-title">User Story</div>
+                    <div class="modal-content">${formatContent(story.user_story)}</div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">Background</div>
+                    <div class="modal-content">${formatContent(story.background)}</div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">Acceptance Criteria</div>
+                    <div class="modal-content">${formatContent(story.acceptance)}</div>
+                </div>
+            `;
+
+            modalOverlay.classList.add('active');
+        }
+
+        function moveToNext(number) {
+            const currentIndex = columns.findIndex(c => c.id === storyStates[number]);
+            if (currentIndex < columns.length - 1) {
+                const nextColumn = columns[currentIndex + 1].id;
+                storyStates[number] = nextColumn;
+                saveToLocal();
+                renderBoard();
+                updateStats();
+                showToast(`Moved to ${nextColumn}`, 'success');
+            }
+        }
+
+        // ========================================
+        // SEARCH
+        // ========================================
+        function searchStories(query) {
+            const searchTerm = query.toLowerCase().trim();
+
+            if (!searchTerm) {
+                filteredStories = [...storiesData];
+            } else {
+                filteredStories = storiesData.filter(story =>
+                    story.number.toLowerCase().includes(searchTerm) ||
+                    story.title.toLowerCase().includes(searchTerm) ||
+                    story.epic.toLowerCase().includes(searchTerm) ||
+                    story.user_story.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderBoard();
+            updateStats();
+        }
+
+        // ========================================
+        // STATS
+        // ========================================
+        function updateStats() {
+            const total = storiesData.length;
+            const done = Object.values(storyStates).filter(state => state === 'done').length;
+
+            statTotal.textContent = total;
+            statDone.textContent = done;
+        }
+
+        // ========================================
+        // SYNC STATUS
+        // ========================================
+        function updateSyncStatus(status, text) {
+            syncStatus.className = `sync-status ${status}`;
+
+            if (status === 'syncing') {
+                syncStatus.innerHTML = `<div class="spinner-small"></div><span>${text}</span>`;
+            } else {
+                syncStatus.innerHTML = `<span>${text}</span>`;
+            }
+        }
+
+        // ========================================
+        // LOADING
+        // ========================================
+        function showLoading(text) {
+            loadingText.textContent = text;
+            loadingOverlay.classList.add('active');
+        }
+
+        function hideLoading() {
+            loadingOverlay.classList.remove('active');
+        }
+
+        // ========================================
+        // UTILITIES
+        // ========================================
+        function formatContent(text) {
+            if (!text) return '';
+
+            let html = text
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`(.+?)`/g, '<code>$1</code>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+
+            const lines = text.split('\n');
+            let inList = false;
+            let listType = 'ul';
+            let result = '';
+
+            lines.forEach(line => {
+                if (line.match(/^[\*\-]\s+/)) {
+                    if (!inList) {
+                        inList = true;
+                        result += '<ul>';
+                    }
+                    result += `<li>${line.replace(/^[\*\-]\s+/, '')}</li>`;
+                } else if (line.match(/^\d+\.\s+/)) {
+                    if (!inList) {
+                        inList = true;
+                        listType = 'ol';
+                        result += '<ol>';
+                    }
+                    result += `<li>${line.replace(/^\d+\.\s+/, '')}</li>`;
+                } else {
+                    if (inList) {
+                        result += `</${listType}>`;
+                        inList = false;
+                        listType = 'ul';
+                    }
+                    if (line.trim()) {
+                        result += `<p>${line}</p>`;
+                    }
+                }
+            });
+
+            if (inList) {
+                result += `</${listType}>`;
+            }
+
+            return result || text;
+        }
+
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            toast.className = `toast ${type} active`;
+
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // ========================================
+        // EVENT LISTENERS
+        // ========================================
+        function attachEventListeners() {
+            // Search
+            searchBox.addEventListener('input', (e) => {
+                searchStories(e.target.value);
+            });
+
+            // Save button
+            saveBtn.addEventListener('click', () => {
+                if (config.apiKey && config.binId) {
+                    saveToCloud();
+                } else {
+                    saveToLocal();
+                    showToast('Saved locally. Configure JSONBin for cloud sync.', 'warning');
+                    configModalOverlay.classList.add('active');
+                }
+            });
+
+            // Refresh button
+            refreshBtn.addEventListener('click', () => {
+                if (config.apiKey && config.binId) {
+                    loadFromCloud();
+                } else {
+                    loadFromLocal();
+                }
+            });
+
+            // Config button
+            configBtn.addEventListener('click', () => {
+                configModalOverlay.classList.add('active');
+            });
+
+            // Config modal
+            configModalClose.addEventListener('click', () => {
+                configModalOverlay.classList.remove('active');
+            });
+
+            saveConfigBtn.addEventListener('click', saveConfig);
+            createBinBtn.addEventListener('click', createNewBin);
+
+            // Story modal
+            modalClose.addEventListener('click', () => {
+                modalOverlay.classList.remove('active');
+            });
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                }
+            });
+
+            configModalOverlay.addEventListener('click', (e) => {
+                if (e.target === configModalOverlay) {
+                    configModalOverlay.classList.remove('active');
+                }
+            });
+
+            // Drag events
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.classList.contains('story-card')) {
+                    handleDragStart(e);
+                }
+            });
+
+            document.addEventListener('dragend', (e) => {
+                if (e.target.classList.contains('story-card')) {
+                    handleDragEnd(e);
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    modalOverlay.classList.remove('active');
+                    configModalOverlay.classList.remove('active');
+                }
+            });
+        }
+
+        // ========================================
+        // START APPLICATION
+        // ========================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

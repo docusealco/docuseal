@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloDoc Stories Viewer - Enhanced</title>
+    <style>
+        /* ========================================
+           FLODOC DESIGN SYSTEM IMPLEMENTATION
+           Primary Color: #784DC7
+           Neutral: #292929, #464646, #9F9F9F, #E6E6E6
+           ======================================== */
+
+        :root {
+            /* Brand Colors */
+            --color-primary: #784DC7;
+            --color-primary-light: #E9DFFC;
+            --color-primary-dark: #6A3FB8;
+
+            /* Neutral Colors */
+            --color-text-primary: #292929;
+            --color-text-secondary: #464646;
+            --color-text-muted: #9F9F9F;
+            --color-border: #E6E6E6;
+            --color-bg: #FFFFFF;
+            --color-bg-alt: #F8F8F8;
+
+            /* Status Colors */
+            --color-success: #83E281;
+            --color-success-text: #158212;
+            --color-error: #FF5964;
+            --color-warning: #FFE74C;
+
+            /* Shadows */
+            --shadow-sm: 0px 2px 4px rgba(151, 71, 255, 0.08);
+            --shadow-md: 0px 4px 8px rgba(151, 71, 255, 0.08);
+            --shadow-lg: 0px 6px 12px rgba(41, 41, 41, 0.08);
+            --shadow-xl: 0px 0px 50px -10px rgba(151, 71, 255, 0.12);
+
+            /* Borders & Radius */
+            --radius-sm: 4.75px;
+            --radius-md: 7.5px;
+            --radius-lg: 12px;
+            --border-width: 1px;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+
+            /* Typography */
+            --font-display: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Consolas', 'Monaco', monospace;
+
+            /* Layout */
+            --nav-width: 320px;
+            --header-height: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background: var(--color-bg-alt);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--color-bg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-lg);
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .header-info {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .story-counter {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* ========================================
+           LAYOUT
+           ======================================== */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            padding-top: var(--header-height);
+        }
+
+        /* ========================================
+           LEFT NAVIGATION PANEL
+           ======================================== */
+        .nav-panel {
+            width: var(--nav-width);
+            background: var(--color-bg);
+            border-right: var(--border-width) solid var(--color-border);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+            z-index: 50;
+        }
+
+        .nav-header {
+            padding: var(--space-lg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            background: var(--color-bg-alt);
+        }
+
+        .nav-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-sm);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            border: var(--border-width) solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(120, 77, 199, 0.1);
+        }
+
+        .nav-sections {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .phase-section {
+            border-bottom: var(--border-width) solid var(--color-border);
+        }
+
+        .phase-header {
+            padding: var(--space-md) var(--space-lg);
+            background: var(--color-bg-alt);
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .phase-header:hover {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+
+        .phase-count {
+            background: var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 2px 8px;
+            border-radius: var(--radius-lg);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .story-list {
+            list-style: none;
+        }
+
+        .story-item {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: var(--border-width) solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .story-item:hover {
+            background: var(--color-bg-alt);
+            padding-left: calc(var(--space-lg) + 4px);
+        }
+
+        .story-item.active {
+            background: var(--color-primary-light);
+            border-left: 3px solid var(--color-primary);
+            padding-left: calc(var(--space-lg) - 3px);
+        }
+
+        .story-item.active .story-number {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .story-number {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            display: block;
+        }
+
+        .story-title {
+            font-size: 13px;
+            color: var(--color-text-primary);
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: var(--space-xs);
+        }
+
+        .story-meta {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
+        }
+
+        .time-badge {
+            background: var(--color-border);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+        }
+
+        .priority-badge {
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        .priority-high {
+            background: rgba(255, 89, 100, 0.15);
+            color: var(--color-error);
+        }
+
+        .priority-critical {
+            background: rgba(255, 89, 100, 0.25);
+            color: var(--color-error);
+            font-weight: 700;
+        }
+
+        .priority-medium {
+            background: rgba(255, 231, 76, 0.2);
+            color: #B8860B;
+        }
+
+        .priority-low {
+            background: rgba(131, 226, 129, 0.2);
+            color: var(--color-success-text);
+        }
+
+        /* ========================================
+           MAIN CONTENT AREA
+           ======================================== */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            background: var(--color-bg);
+            position: relative;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-2xl);
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--color-text-muted);
+            text-align: center;
+            padding: var(--space-2xl);
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--color-bg-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-lg);
+            font-size: 32px;
+            color: var(--color-text-muted);
+        }
+
+        .empty-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .empty-text {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        /* Story Detail View */
+        .story-detail {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-header {
+            padding-bottom: var(--space-xl);
+            border-bottom: var(--border-width) solid var(--color-border);
+            margin-bottom: var(--space-xl);
+        }
+
+        .story-meta-bar {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .meta-label {
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .meta-value {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        .story-main-title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--color-text-primary);
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.5px;
+        }
+
+        .story-number-display {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: var(--space-sm);
+            font-family: var(--font-mono);
+        }
+
+        .section {
+            margin-bottom: var(--space-2xl);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        .section-content {
+            background: var(--color-bg-alt);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border: var(--border-width) solid var(--color-border);
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            font-size: 15px;
+        }
+
+        .section-content strong {
+            color: var(--color-text-primary);
+            font-weight: 700;
+        }
+
+        .section-content code {
+            background: var(--color-bg);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .section-content ul,
+        .section-content ol {
+            margin-left: var(--space-lg);
+            margin-top: var(--space-sm);
+        }
+
+        .section-content li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .acceptance-grid {
+            display: grid;
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .acceptance-category {
+            background: var(--color-bg);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .acceptance-category-title {
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-sm);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .acceptance-item {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            align-items: flex-start;
+        }
+
+        .acceptance-check {
+            color: var(--color-success);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           NAVIGATION CONTROLS
+           ======================================== */
+        .nav-controls {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            display: flex;
+            gap: var(--space-sm);
+            z-index: 90;
+        }
+
+        .nav-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
+            font-family: var(--font-display);
+        }
+
+        .nav-btn:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn:disabled {
+            background: var(--color-border);
+            color: var(--color-text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .nav-btn.secondary {
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            border: var(--border-width) solid var(--color-border);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--color-bg-alt);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* ========================================
+           SCROLLBAR STYLING
+           ======================================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg-alt);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: var(--radius-sm);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-muted);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            :root {
+                --nav-width: 280px;
+            }
+
+            .content-wrapper {
+                padding: var(--space-lg);
+            }
+
+            .story-main-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-panel {
+                position: fixed;
+                left: -100%;
+                transition: left 0.3s ease;
+                height: calc(100vh - var(--header-height));
+                z-index: 200;
+            }
+
+            .nav-panel.mobile-open {
+                left: 0;
+            }
+
+            .nav-controls {
+                bottom: var(--space-md);
+                right: var(--space-md);
+            }
+
+            .nav-btn {
+                padding: var(--space-sm) var(--space-md);
+                font-size: 13px;
+            }
+
+            .story-main-title {
+                font-size: 20px;
+            }
+
+            .section-content {
+                font-size: 14px;
+                padding: var(--space-md);
+            }
+        }
+
+        /* ========================================
+           LOADING & STATES
+           ======================================== */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--color-primary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .header-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logo-container">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="logo-icon">F</div>
+            <div class="logo-text">FloDoc Stories</div>
+        </div>
+        <div class="header-info">
+            <div class="story-counter" id="storyCounter">0 / 42</div>
+            <div>Enhanced Viewer</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Left Navigation Panel -->
+        <aside class="nav-panel" id="navPanel">
+            <div class="nav-header">
+                <div class="nav-title">Navigation</div>
+                <input
+                    type="text"
+                    class="search-box"
+                    id="searchBox"
+                    placeholder="Search stories..."
+                    autocomplete="off"
+                >
+            </div>
+            <div class="nav-sections" id="navSections">
+                <!-- Stories will be dynamically inserted here -->
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="mainContent">
+            <div class="content-wrapper">
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📋</div>
+                    <div class="empty-title">Select a Story</div>
+                    <div class="empty-text">
+                        Choose any story from the left panel to view its details.
+                        Use arrow keys or the navigation buttons to move between stories.
+                    </div>
+                </div>
+                <div class="story-detail hidden" id="storyDetail">
+                    <!-- Story details will be dynamically inserted here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn secondary" id="prevBtn" disabled>
+            ← Previous
+        </button>
+        <button class="nav-btn" id="nextBtn" disabled>
+            Next →
+        </button>
+    </div>
+
+    <script>
+        // ========================================
+        // FLODOC STORIES DATA
+        // ========================================
+        const storiesData = [
+            {
+                number: "1.1",
+                title: "Database Schema Extension",
+                priority: "Critical",
+                epic: "Phase 1 - Foundation",
+                effort: "2-3 days",
+                risk: "Low",
+                user_story: "**As a** system architect,\n**I want** to create the database schema for FloDoc's new models,\n**So that** the application has the foundation to support cohort management.",
+                background: "Based on the PRD analysis, we need three new tables to support the 3-portal cohort management system:\n- `institutions` - Single training institution (not multi-tenant)\n- `cohorts` - Training program cohorts\n- `cohort_enrollments` - Student enrollments in cohorts\n\nThese tables must integrate with existing DocuSeal tables without breaking existing functionality.",
+                acceptance: "**Functional:**\n- ✅ All three tables created with correct schema\n- ✅ Foreign key relationships established\n- ✅ All indexes created for performance\n- ✅ Migrations are reversible\n- ✅ No modifications to existing DocuSeal tables\n\n**Integration:**\n- ✅ IV1: Existing DocuSeal tables remain unchanged\n- ✅ IV2: New tables can reference existing tables (templates, submissions)\n- ✅ IV3: Database performance not degraded\n\n**Security:**\n- ✅ All tables include `deleted_at` for soft deletes\n- ✅ Sensitive fields encrypted if required\n- ✅ Foreign keys prevent orphaned records\n\n**Quality:**\n- ✅ Migrations follow Rails conventions\n- ✅ Consistent naming with existing codebase\n- ✅ All migrations include `down` method"
+            },
+            {
+                number: "1.2",
+                title: "Core Models Implementation",
+                priority: "High",
+                epic: "Phase 1 - Foundation",
+                effort: "2 days",
+                risk: "Low",
+                user_story: "**As a** developer,\n**I want** to create ActiveRecord models for the new FloDoc tables,\n**So that** the application can interact with cohorts and enrollments programmatically.",
+                background: "Models must follow existing DocuSeal patterns:\n- Inherit from `ApplicationRecord`\n- Use `strip_attributes` for data cleaning\n- Include soft delete functionality\n- Define proper associations and validations\n- Follow naming conventions",
+                acceptance: "**Functional:**\n- ✅ All three models created with correct class structure\n- ✅ All associations defined correctly\n- ✅ All validations implemented\n- ✅ All scopes defined\n- ✅ Model methods work as specified\n\n**Integration:**\n- ✅ IV1: Models don't break existing DocuSeal models\n- ✅ IV2: Associations work with existing tables\n- ✅ IV3: Query performance acceptable with 1000+ records\n\n**Security:**\n- ✅ No mass assignment vulnerabilities\n- ✅ Proper attribute whitelisting\n- ✅ Email validation on all email fields\n\n**Quality:**\n- ✅ Follow existing code style (RuboCop)\n- ✅ All methods have YARD comments\n- ✅ Test coverage > 80%"
+            },
+            {
+                number: "1.3",
+                title: "Authorization Layer Extension",
+                priority: "High",
+                epic: "Phase 1 - Foundation",
+                effort: "1-2 days",
+                risk: "Medium",
+                user_story: "**As a** system administrator,\n**I want** the authorization system to support FloDoc roles and permissions,\n**So that** users can only access appropriate cohort management functions.",
+                background: "Extend Cancancan abilities to support:\n- TP Admin: Full cohort management\n- Student: View own enrollments, upload documents\n- Sponsor: Review and sign documents\n- Admin: All access plus system configuration\n\nMust work with existing DocuSeal permissions without conflicts.",
+                acceptance: "**Functional:**\n- ✅ Ability rules defined for all FloDoc actions\n- ✅ Role-based access control working\n- ✅ Existing DocuSeal permissions unaffected\n- ✅ Authorization checks on all endpoints\n\n**Integration:**\n- ✅ IV1: Works with existing authentication\n- ✅ IV2: No conflicts with DocuSeal abilities\n- ✅ IV3: Performance impact minimal\n\n**Security:**\n- ✅ No privilege escalation possible\n- ✅ All routes protected\n- ✅ API endpoints properly secured\n\n**Quality:**\n- ✅ Ability tests for all roles\n- ✅ Clear error messages for unauthorized access"
+            },
+            {
+                number: "2.1",
+                title: "Cohort Creation & Management",
+                priority: "High",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to create and manage cohorts with all their configuration details,\n**So that** I can organize students into training programs and prepare them for the signature workflow.",
+                background: "Cohort creation requires:\n- Name and program type selection\n- Sponsor email configuration\n- Required student uploads (ID, matric, tertiary)\n- Cohort metadata for additional info\n- Status tracking (draft/active/completed)\n\nMust link to existing DocuSeal templates.",
+                acceptance: "**Functional:**\n- ✅ Cohort creation form with all fields\n- ✅ Cohort update functionality\n- ✅ Status management (draft → active → completed)\n- ✅ Template linking works correctly\n\n**UI/UX:**\n- ✅ Intuitive form validation\n- ✅ Clear success/error feedback\n- ✅ Progress indicators\n\n**Integration:**\n- ✅ IV1: Creates records in cohorts table\n- ✅ IV2: Links to templates table\n- ✅ IV3: No performance issues\n\n**Security:**\n- ✅ Only TP admins can create cohorts\n- ✅ Input validation prevents injection\n- ✅ Sponsor email format validation"
+            },
+            {
+                number: "2.2",
+                title: "TP Signing Phase Logic (High Risk - Prototype First)",
+                priority: "Critical",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "High",
+                user_story: "**As a** TP administrator,\n**I want** to sign the first student's document and have that signing replicated to all other students in the cohort,\n**So that** I don't need to sign each student's document individually, saving time and eliminating duplicate sponsor emails.",
+                background: "This is the CORE INNOVATION of FloDoc:\n- TP signs ONE document\n- System replicates signature to all students\n- Must work with DocuSeal's existing signing mechanism\n- Prototype required before full implementation\n- High risk due to integration complexity",
+                acceptance: "**Functional:**\n- ✅ TP signs first document\n- ✅ Signature replicated to all cohort students\n- ✅ All documents show identical TP signature\n- ✅ No duplicate sponsor emails sent\n\n**Integration:**\n- ✅ IV1: Works with existing DocuSeal signing\n- ✅ IV2: Replication doesn't break submissions\n- ✅ IV3: Performance acceptable for 50+ students\n\n**Security:**\n- ✅ Only TP can trigger replication\n- ✅ Signatures are cryptographically valid\n- ✅ Audit trail shows replication event\n\n**Quality:**\n- ✅ Prototype tested with real PDFs\n- ✅ Rollback plan documented"
+            },
+            {
+                number: "2.3",
+                title: "Student Enrollment Management",
+                priority: "High",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to manage student enrollment in cohorts and bulk-create student submissions,\n**So that** students can access their documents to complete after TP signs.",
+                background: "Student enrollment workflow:\n- Bulk import via CSV or manual entry\n- Create cohort_enrollment records\n- Generate submissions linked to students\n- Track enrollment status (waiting/in_progress/complete)\n- Store uploaded documents",
+                acceptance: "**Functional:**\n- ✅ Bulk student import (CSV)\n- ✅ Individual student enrollment\n- ✅ Submission creation for each student\n- ✅ Status tracking per enrollment\n- ✅ Document upload tracking\n\n**UI/UX:**\n- ✅ Bulk import with validation\n- ✅ Clear error reporting\n- ✅ Progress indicators for bulk operations\n\n**Integration:**\n- ✅ IV1: Creates submissions in existing table\n- ✅ IV2: Links to cohort_enrollments correctly\n- ✅ IV3: Handles 100+ students efficiently\n\n**Security:**\n- ✅ Email validation for students\n- ✅ Prevent duplicate enrollments\n- ✅ File type validation for uploads"
+            },
+            {
+                number: "2.4",
+                title: "Sponsor Review Workflow",
+                priority: "Medium",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** sponsor,\n**I want** to receive and review student documents,\n**So that** I can verify information before signing.",
+                background: "Sponsor workflow:\n- Receive email with cohort overview\n- Access documents via secure token\n- Review student information\n- Verify uploaded documents\n- Prepare for bulk signing",
+                acceptance: "**Functional:**\n- ✅ Email notification to sponsor\n- ✅ Token-based access to documents\n- ✅ Document preview functionality\n- ✅ Student information display\n\n**Integration:**\n- ✅ IV1: Works with existing email system\n- ✅ IV2: Token system secure\n- ✅ IV3: Document rendering works\n\n**Security:**\n- ✅ Tokens expire after use\n- ✅ Secure token generation\n- ✅ No unauthorized access possible\n\n**Quality:**\n- ✅ Email templates designed\n- ✅ Token refresh mechanism"
+            },
+            {
+                number: "2.5",
+                title: "TP Review & Finalization",
+                priority: "Medium",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to review all student submissions and finalize the cohort,\n**So that** I can ensure everything is complete before closing.",
+                background: "Finalization workflow:\n- View all student statuses\n- Check completion rates\n- Review any issues\n- Mark cohort as finalized\n- Generate final reports",
+                acceptance: "**Functional:**\n- ✅ Cohort overview dashboard\n- ✅ Completion status tracking\n- ✅ Finalization action\n- ✅ Status updates propagate\n\n**Integration:**\n- ✅ IV1: Updates cohort status\n- ✅ IV2: Triggers completion events\n- ✅ IV3: No data integrity issues\n\n**Security:**\n- ✅ Only TP can finalize\n- ✅ Prevents premature finalization\n- ✅ Audit trail maintained\n\n**Quality:**\n- ✅ Validation before finalization\n- ✅ Clear error messages"
+            },
+            {
+                number: "2.6",
+                title: "Excel Export for Cohort Data",
+                priority: "Medium",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to export cohort data to Excel,\n**So that** I can analyze enrollment and completion data externally.",
+                background: "Export requirements (FR23):\n- Export all cohort data\n- Include student information\n- Show completion status\n- Include timestamps\n- Professional formatting",
+                acceptance: "**Functional:**\n- ✅ Excel export button\n- ✅ All relevant data included\n- ✅ Proper formatting and headers\n- ✅ Download functionality works\n\n**Integration:**\n- ✅ IV1: Queries all necessary tables\n- ✅ IV2: Handles large datasets\n- ✅ IV3: No performance impact\n\n**Security:**\n- ✅ Only authorized users can export\n- ✅ Sensitive data handled properly\n\n**Quality:**\n- ✅ File naming convention\n- ✅ Error handling for large exports"
+            },
+            {
+                number: "2.7",
+                title: "Audit Log & Compliance",
+                priority: "Medium",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** compliance officer,\n**I want** all actions logged in an audit trail,\n**So that** I can track who did what and when.",
+                background: "Audit requirements:\n- Log all cohort actions\n- Track user who performed action\n- Timestamp all events\n- Store before/after values\n- Queryable audit trail",
+                acceptance: "**Functional:**\n- ✅ Audit log table created\n- ✅ All actions logged\n- ✅ User attribution working\n- ✅ Timestamps accurate\n\n**Integration:**\n- ✅ IV1: Logs all FloDoc actions\n- ✅ IV2: Doesn't slow down operations\n- ✅ IV3: Queryable efficiently\n\n**Security:**\n- ✅ Audit logs tamper-proof\n- ✅ Only admins can view\n- ✅ Retention policy defined\n\n**Quality:**\n- ✅ Search/filter functionality\n- ✅ Export audit logs"
+            },
+            {
+                number: "2.8",
+                title: "Cohort State Machine & Workflow Orchestration",
+                priority: "High",
+                epic: "Phase 2 - Backend Logic",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** system,\n**I want** to manage cohort state transitions automatically,\n**So that** the workflow progresses smoothly without manual intervention.",
+                background: "State machine for cohorts:\n- draft → active (when TP signs)\n- active → students_complete (when all students finish)\n- students_complete → sponsor_complete (when sponsor signs)\n- sponsor_complete → finalized (when TP reviews)\n\nMust handle edge cases and rollbacks.",
+                acceptance: "**Functional:**\n- ✅ State transitions defined\n- ✅ Automatic progression works\n- ✅ Edge cases handled\n- ✅ Rollback capability\n\n**Integration:**\n- ✅ IV1: Triggers on events\n- ✅ IV2: Updates all related records\n- ✅ IV3: No race conditions\n\n**Security:**\n- ✅ Invalid transitions prevented\n- ✅ State validation\n\n**Quality:**\n- ✅ State machine tests\n- ✅ Clear state documentation"
+            },
+            {
+                number: "3.1",
+                title: "RESTful Cohort Management API",
+                priority: "High",
+                epic: "Phase 3 - API Layer",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** developer,\n**I want** RESTful APIs for cohort management,\n**So that** I can integrate FloDoc with other systems.",
+                background: "API endpoints needed:\n- GET /api/cohorts - List cohorts\n- POST /api/cohorts - Create cohort\n- GET /api/cohorts/:id - Show cohort\n- PUT /api/cohorts/:id - Update cohort\n- DELETE /api/cohorts/:id - Delete cohort\n- POST /api/cohorts/:id/enroll - Enroll students",
+                acceptance: "**Functional:**\n- ✅ All CRUD endpoints implemented\n- ✅ Proper HTTP status codes\n- ✅ JSON responses\n- ✅ Pagination support\n\n**Integration:**\n- ✅ IV1: Uses existing models\n- ✅ IV2: Authentication required\n- ✅ IV3: Rate limiting in place\n\n**Security:**\n- ✅ JWT authentication\n- ✅ Input validation\n- ✅ No SQL injection\n\n**Quality:**\n- ✅ API documentation\n- ✅ Error handling"
+            },
+            {
+                number: "3.2",
+                title: "Webhook Events for Workflow State Changes",
+                priority: "Medium",
+                epic: "Phase 3 - API Layer",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** system integrator,\n**I want** webhook notifications for state changes,\n**So that** external systems can react to FloDoc events.",
+                background: "Webhook events:\n- cohort.created\n- cohort.state_changed\n- student.enrolled\n- student.completed\n- sponsor.signed\n- cohort.finalized\n\nMust support retries and exponential backoff.",
+                acceptance: "**Functional:**\n- ✅ Webhook event system\n- ✅ All required events implemented\n- ✅ Configurable endpoints\n- ✅ Retry logic with backoff\n\n**Integration:**\n- ✅ IV1: Events trigger correctly\n- ✅ IV2: Payloads include all data\n- ✅ IV3: No blocking on delivery\n\n**Security:**\n- ✅ HMAC signature verification\n- ✅ HTTPS only\n- ✅ Endpoint validation\n\n**Quality:**\n- ✅ Webhook delivery logs\n- ✅ Failed delivery alerts"
+            },
+            {
+                number: "3.3",
+                title: "Student API (Ad-hoc Token-Based Access)",
+                priority: "High",
+                epic: "Phase 3 - API Layer",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** student,\n**I want** to access my documents via token-based API,\n**So that** I can complete forms without creating an account.",
+                background: "Ad-hoc access pattern:\n- Student receives email with token\n- Token grants access to specific submission\n- No user account required\n- Token expires after completion\n- Limited scope (own documents only)",
+                acceptance: "**Functional:**\n- ✅ Token generation endpoint\n- ✅ Token validation\n- ✅ Document access via token\n- ✅ Form submission via token\n- ✅ Token expiration\n\n**Integration:**\n- ✅ IV1: Works with submissions table\n- ✅ IV2: Secure token storage\n- ✅ IV3: No account creation needed\n\n**Security:**\n- ✅ Short-lived tokens\n- ✅ One-time use tokens\n- ✅ Scope-limited access\n\n**Quality:**\n- ✅ Token refresh mechanism\n- ✅ Clear error messages"
+            },
+            {
+                number: "3.4",
+                title: "API Documentation & Versioning",
+                priority: "Low",
+                epic: "Phase 3 - API Layer",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** developer,\n**I want** comprehensive API documentation,\n**So that** I can easily integrate with FloDoc.",
+                background: "Documentation requirements:\n- OpenAPI/Swagger specs\n- Endpoint descriptions\n- Request/response examples\n- Authentication details\n- Error code reference",
+                acceptance: "**Functional:**\n- ✅ OpenAPI specification\n- ✅ Interactive API docs\n- ✅ Code examples\n- ✅ Error documentation\n\n**Integration:**\n- ✅ IV1: Matches actual API\n- ✅ IV2: Auto-generated from code\n- ✅ IV3: Versioned API\n\n**Quality:**\n- ✅ Clear examples\n- ✅ Searchable docs"
+            },
+            {
+                number: "4.1",
+                title: "Cohort Management Dashboard",
+                priority: "High",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** a dashboard showing all cohorts,\n**So that** I can monitor all training programs at a glance.",
+                background: "Dashboard features:\n- List of all cohorts\n- Status indicators\n- Quick stats (total, active, completed)\n- Search and filter\n- Navigation to detail views",
+                acceptance: "**Functional:**\n- ✅ Cohort list view\n- ✅ Status badges\n- ✅ Summary statistics\n- ✅ Search/filter functionality\n\n**UI/UX:**\n- ✅ Clean, professional design\n- ✅ Responsive layout\n- ✅ Clear visual hierarchy\n- ✅ Fast loading\n\n**Integration:**\n- ✅ IV1: Fetches from cohorts table\n- ✅ IV2: Real-time updates\n- ✅ IV3: No performance issues\n\n**Security:**\n- ✅ Only accessible to TP admins"
+            },
+            {
+                number: "4.2",
+                title: "Cohort Creation & Bulk Import",
+                priority: "High",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to create cohorts and bulk import students,\n**So that** I can quickly set up new training programs.",
+                background: "Creation interface:\n- Cohort form (name, program type, sponsor email)\n- Required uploads configuration\n- Bulk student import (CSV)\n- Validation and preview\n- Confirmation workflow",
+                acceptance: "**Functional:**\n- ✅ Cohort creation form\n- ✅ CSV upload with validation\n- ✅ Preview before confirm\n- ✅ Bulk enrollment creation\n\n**UI/UX:**\n- ✅ Drag-and-drop CSV upload\n- ✅ Clear validation errors\n- ✅ Progress indicators\n- ✅ Success confirmation\n\n**Integration:**\n- ✅ IV1: Creates cohort records\n- ✅ IV2: Creates enrollments\n- ✅ IV3: Handles large files\n\n**Security:**\n- ✅ File type validation\n- ✅ Input sanitization"
+            },
+            {
+                number: "4.3",
+                title: "Cohort Detail Overview",
+                priority: "Medium",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to view detailed cohort information,\n**So that** I can monitor progress and manage individual students.",
+                background: "Detail view features:\n- Cohort metadata\n- Student list with statuses\n- Progress indicators\n- Action buttons (enroll, finalize, export)\n- Timeline of events",
+                acceptance: "**Functional:**\n- ✅ Cohort information display\n- ✅ Student list with filtering\n- ✅ Status tracking\n- ✅ Action buttons\n\n**UI/UX:**\n- ✅ Tabbed interface\n- ✅ Sortable tables\n- ✅ Status color coding\n- ✅ Responsive design\n\n**Integration:**\n- ✅ IV1: Fetches all related data\n- ✅ IV2: Real-time status updates\n- ✅ IV3: Efficient queries\n\n**Security:**\n- ✅ Access control checks"
+            },
+            {
+                number: "4.4",
+                title: "TP Signing Interface",
+                priority: "High",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** TP administrator,\n**I want** a signing interface for the first student,\n**So that** I can sign once and replicate to all students.",
+                background: "Signing interface:\n- Preview first student's document\n- Digital signature capture\n- Replication confirmation\n- Progress indicator\n- Success notification",
+                acceptance: "**Functional:**\n- ✅ Document preview\n- ✅ Signature capture\n- ✅ Replication trigger\n- ✅ Status update\n\n**UI/UX:**\n- ✅ Clear signing workflow\n- ✅ Preview before sign\n- ✅ Confirmation dialog\n- ✅ Success feedback\n\n**Integration:**\n- ✅ IV1: Integrates with DocuSeal\n- ✅ IV2: Triggers replication\n- ✅ IV3: Updates all students\n\n**Security:**\n- ✅ Explicit confirmation required\n- ✅ Audit log entry"
+            },
+            {
+                number: "4.5",
+                title: "Student Management View",
+                priority: "Medium",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** to manage individual student enrollments,\n**So that** I can add/remove students and track their progress.",
+                background: "Student management:\n- Add individual students\n- Remove students\n- View student details\n- Track document uploads\n- Resend invitations",
+                acceptance: "**Functional:**\n- ✅ Add/remove students\n- ✅ Student detail view\n- ✅ Document upload tracking\n- ✅ Invitation resend\n\n**UI/UX:**\n- ✅ Inline editing\n- ✅ Quick actions\n- ✅ Status indicators\n- ✅ Confirmation dialogs\n\n**Integration:**\n- ✅ IV1: Updates enrollments\n- ✅ IV2: Triggers notifications\n- ✅ IV3: Real-time updates\n\n**Security:**\n- ✅ Validation on all inputs"
+            },
+            {
+                number: "4.6",
+                title: "Sponsor Portal Dashboard",
+                priority: "High",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** sponsor,\n**I want** a dashboard showing cohorts awaiting my signature,\n**So that** I can quickly see what needs my review.",
+                background: "Sponsor dashboard:\n- List of cohorts needing signature\n- Student count per cohort\n- Progress indicators\n- Quick access to review\n- Token-based authentication",
+                acceptance: "**Functional:**\n- ✅ Cohort list for sponsor\n- ✅ Student counts\n- ✅ Progress visualization\n- ✅ Review button\n\n**UI/UX:**\n- ✅ Clean, focused design\n- ✅ Mobile responsive\n- ✅ Clear call-to-action\n- ✅ Minimal clicks to sign\n\n**Integration:**\n- ✅ IV1: Token-based access\n- ✅ IV2: Filters by sponsor email\n- ✅ IV3: Secure document access\n\n**Security:**\n- ✅ Token validation\n- ✅ Email verification"
+            },
+            {
+                number: "4.7",
+                title: "Sponsor Portal - Bulk Document Signing",
+                priority: "High",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** sponsor,\n**I want** to sign multiple student documents at once,\n**So that** I can complete my review efficiently.",
+                background: "Bulk signing:\n- Select multiple students\n- Single signature application\n- Confirmation before signing\n- Progress indicator\n- Completion notification",
+                acceptance: "**Functional:**\n- ✅ Multi-select students\n- ✅ Single signature application\n- ✅ Confirmation dialog\n- ✅ Batch processing\n\n**UI/UX:**\n- ✅ Checkbox selection\n- ✅ Select all option\n- ✅ Clear signing preview\n- ✅ Success feedback\n\n**Integration:**\n- ✅ IV1: Updates all submissions\n- ✅ IV2: Triggers notifications\n- ✅ IV3: Audit trail\n\n**Security:**\n- ✅ Explicit confirmation\n- ✅ Cannot sign twice"
+            },
+            {
+                number: "4.8",
+                title: "Sponsor Portal - Progress Tracking & State Management",
+                priority: "Medium",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** sponsor,\n**I want** to track progress of all students in a cohort,\n**So that** I can see who has completed and who hasn't.",
+                background: "Progress tracking:\n- Visual progress bars\n- Student status list\n- Completion percentages\n- Filter by status\n- Timeline view",
+                acceptance: "**Functional:**\n- ✅ Progress visualization\n- ✅ Student status list\n- ✅ Completion metrics\n- ✅ Status filtering\n\n**UI/UX:**\n- ✅ Color-coded status\n- ✅ Progress bars\n- ✅ Sortable columns\n- ✅ Responsive layout\n\n**Integration:**\n- ✅ IV1: Real-time status\n- ✅ IV2: Efficient queries\n- ✅ IV3: No performance issues\n\n**Security:**\n- ✅ Only shows sponsor's cohorts"
+            },
+            {
+                number: "4.9",
+                title: "Sponsor Portal - Token Renewal & Session Management",
+                priority: "Medium",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** sponsor,\n**I want** to renew my access token and manage my session,\n**So that** I can continue working without interruption.",
+                background: "Session management:\n- Token refresh mechanism\n- Session timeout warnings\n- Logout functionality\n- Token renewal UI\n- Persistent login option",
+                acceptance: "**Functional:**\n- ✅ Token refresh\n- ✅ Session timeout warnings\n- ✅ Logout functionality\n- ✅ Renewal UI\n\n**UI/UX:**\n- ✅ Clear session status\n- ✅ Warnings before timeout\n- ✅ Easy renewal\n- ✅ No unexpected logouts\n\n**Integration:**\n- ✅ IV1: Secure token handling\n- ✅ IV2: Automatic refresh\n- ✅ IV3: No data loss\n\n**Security:**\n- ✅ Short session lifetimes\n- ✅ Secure token storage"
+            },
+            {
+                number: "4.10",
+                title: "TP Portal - Cohort Status Monitoring & Analytics",
+                priority: "Medium",
+                epic: "Phase 4 - Admin Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** TP administrator,\n**I want** analytics and monitoring for all cohorts,\n**So that** I can identify bottlenecks and optimize workflows.",
+                background: "Analytics features:\n- Cohort completion rates\n- Average completion time\n- Bottleneck identification\n- Export analytics\n- Visual dashboards",
+                acceptance: "**Functional:**\n- ✅ Analytics dashboard\n- ✅ Completion metrics\n- ✅ Time-based analysis\n- ✅ Export functionality\n\n**UI/UX:**\n- ✅ Visual charts\n- ✅ Interactive filters\n- ✅ Clear insights\n- ✅ Professional design\n\n**Integration:**\n- ✅ IV1: Aggregates data\n- ✅ IV2: Efficient queries\n- ✅ IV3: Real-time updates\n\n**Security:**\n- ✅ Only accessible to admins"
+            },
+            {
+                number: "5.1",
+                title: "Student Portal - Document Upload Interface",
+                priority: "High",
+                epic: "Phase 5 - Student Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** student,\n**I want** to upload required documents,\n**So that** I can complete my enrollment requirements.",
+                background: "Document upload:\n- List of required documents\n- Drag-and-drop upload\n- File type validation\n- Upload progress\n- Success/error feedback",
+                acceptance: "**Functional:**\n- ✅ Required document list\n- ✅ File upload interface\n- ✅ Type validation\n- ✅ Progress indicator\n\n**UI/UX:**\n- ✅ Drag-and-drop support\n- ✅ Clear instructions\n- ✅ Visual feedback\n- ✅ Mobile friendly\n\n**Integration:**\n- ✅ IV1: Stores in Active Storage\n- ✅ IV2: Updates enrollment record\n- ✅ IV3: Validates requirements\n\n**Security:**\n- ✅ File type restrictions\n- ✅ Size limits\n- ✅ Virus scanning"
+            },
+            {
+                number: "5.2",
+                title: "Student Portal - Form Filling & Field Completion",
+                priority: "High",
+                epic: "Phase 5 - Student Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** student,\n**I want** to fill out form fields,\n**So that** I can complete my document submission.",
+                background: "Form filling:\n- All required fields displayed\n- Field validation\n- Save progress\n- Field completion tracking\n- Signature capture",
+                acceptance: "**Functional:**\n- ✅ All form fields present\n- ✅ Field validation\n- ✅ Save functionality\n- ✅ Signature capture\n\n**UI/UX:**\n- ✅ Clear field labels\n- ✅ Inline validation\n- ✅ Progress indicators\n- ✅ Intuitive flow\n\n**Integration:**\n- ✅ IV1: Updates submitter values\n- ✅ IV2: Validates all fields\n- ✅ IV3: Saves to database\n\n**Security:**\n- ✅ Input sanitization\n- ✅ Required field validation"
+            },
+            {
+                number: "5.3",
+                title: "Student Portal - Progress Tracking & Save Draft",
+                priority: "Medium",
+                epic: "Phase 5 - Student Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** student,\n**I want** to save my progress and resume later,\n**So that** I can complete the form at my own pace.",
+                background: "Progress saving:\n- Auto-save functionality\n- Manual save button\n- Draft status\n- Resume from last position\n- Completion percentage",
+                acceptance: "**Functional:**\n- ✅ Auto-save every 30 seconds\n- ✅ Manual save button\n- ✅ Draft state persistence\n- ✅ Resume functionality\n\n**UI/UX:**\n- ✅ Save indicator\n- ✅ Last saved timestamp\n- ✅ Progress percentage\n- ✅ Clear save status\n\n**Integration:**\n- ✅ IV1: Updates values field\n- ✅ IV2: Preserves draft state\n- ✅ IV3: No data loss\n\n**Security:**\n- ✅ Token-based access\n- ✅ Data encryption"
+            },
+            {
+                number: "5.4",
+                title: "Student Portal - Submission Confirmation & Status",
+                priority: "Medium",
+                epic: "Phase 5 - Student Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** student,\n**I want** to confirm my submission and see its status,\n**So that** I know my documents are received and what happens next.",
+                background: "Submission flow:\n- Final review before submit\n- Confirmation dialog\n- Success message\n- Status tracking\n- Next steps communication",
+                acceptance: "**Functional:**\n- ✅ Final review screen\n- ✅ Confirmation dialog\n- ✅ Success message\n- ✅ Status display\n\n**UI/UX:**\n- ✅ Clear confirmation\n- ✅ Status indicators\n- ✅ Next steps guidance\n- ✅ Thank you message\n\n**Integration:**\n- ✅ IV1: Updates submission status\n- ✅ IV2: Triggers notifications\n- ✅ IV3: Audit trail\n\n**Security:**\n- ✅ Prevent double submission\n- ✅ Confirmation required"
+            },
+            {
+                number: "5.5",
+                title: "Student Portal - Email Notifications & Reminders",
+                priority: "Low",
+                epic: "Phase 5 - Student Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** student,\n**I want** to receive email notifications and reminders,\n**So that** I stay informed about my document status.",
+                background: "Email notifications:\n- Enrollment invitation\n- Reminder emails\n- Status updates\n- Completion confirmation\n- Unsubscribe option",
+                acceptance: "**Functional:**\n- ✅ Enrollment email\n- ✅ Reminder emails\n- ✅ Status updates\n- ✅ Completion email\n\n**UI/UX:**\n- ✅ Professional templates\n- ✅ Clear CTAs\n- ✅ Mobile responsive\n- ✅ Unsubscribe link\n\n**Integration:**\n- ✅ IV1: Uses existing mailer\n- ✅ IV2: Scheduled reminders\n- ✅ IV3: Tracks email events\n\n**Security:**\n- ✅ Unsubscribe mechanism\n- ✅ Email validation"
+            },
+            {
+                number: "6.1",
+                title: "Sponsor Portal - Cohort Dashboard & Bulk Signing Interface",
+                priority: "High",
+                epic: "Phase 6 - Sponsor Portal",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** sponsor,\n**I want** a dashboard to view cohorts and sign documents in bulk,\n**So that** I can efficiently complete my review responsibilities.",
+                background: "Sponsor dashboard:\n- Cohort list with student counts\n- Progress indicators\n- Bulk selection\n- Single signing action\n- Completion tracking",
+                acceptance: "**Functional:**\n- ✅ Cohort overview\n- ✅ Student counts\n- ✅ Bulk selection\n- ✅ Single signing action\n\n**UI/UX:**\n- ✅ Clean interface\n- ✅ Select all option\n- ✅ Progress bars\n- ✅ Clear signing flow\n\n**Integration:**\n- ✅ IV1: Token-based access\n- ✅ IV2: Bulk updates\n- ✅ IV3: Audit logging\n\n**Security:**\n- ✅ Token validation\n- ✅ Explicit confirmation"
+            },
+            {
+                number: "6.2",
+                title: "Sponsor Portal - Email Notifications & Reminders",
+                priority: "Medium",
+                epic: "Phase 6 - Sponsor Portal",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** sponsor,\n**I want** email notifications for cohorts needing my signature,\n**So that** I don't miss review deadlines.",
+                background: "Sponsor emails:\n- New cohort notification\n- Reminder emails\n- Completion confirmation\n- Deadline alerts\n- Token-based access links",
+                acceptance: "**Functional:**\n- ✅ New cohort email\n- ✅ Reminder emails\n- ✅ Completion email\n- ✅ Deadline alerts\n\n**UI/UX:**\n- ✅ Professional design\n- ✅ Clear CTAs\n- ✅ Token links\n- ✅ Unsubscribe option\n\n**Integration:**\n- ✅ IV1: Scheduled reminders\n- ✅ IV2: Token generation\n- ✅ IV3: Event tracking\n\n**Security:**\n- ✅ Secure token links\n- ✅ Expiration handling"
+            },
+            {
+                number: "7.1",
+                title: "End-to-End Workflow Testing",
+                priority: "High",
+                epic: "Phase 7 - Testing & QA",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** QA engineer,\n**I want** comprehensive end-to-end tests,\n**So that** I can verify the complete workflow functions correctly.",
+                background: "E2E testing:\n- Complete cohort lifecycle\n- All three portals\n- All user roles\n- Edge cases\n- Integration points",
+                acceptance: "**Functional:**\n- ✅ Complete workflow tests\n- ✅ All portals covered\n- ✅ All roles tested\n- ✅ Edge cases handled\n\n**Quality:**\n- ✅ >80% test coverage\n- ✅ Automated tests\n- ✅ CI/CD integration\n- ✅ Clear test reports"
+            },
+            {
+                number: "7.2",
+                title: "Mobile Responsiveness Testing",
+                priority: "Medium",
+                epic: "Phase 7 - Testing & QA",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** QA engineer,\n**I want** to test all interfaces on mobile devices,\n**So that** students and sponsors can work on any device.",
+                background: "Mobile testing:\n- All three portals\n- All screen sizes\n- Touch interactions\n- Performance on mobile\n- Accessibility",
+                acceptance: "**Functional:**\n- ✅ All portals responsive\n- ✅ Touch-friendly UI\n- ✅ Performance acceptable\n- ✅ No layout issues\n\n**Quality:**\n- ✅ Tested on real devices\n- ✅ Browser compatibility\n- ✅ Accessibility compliant"
+            },
+            {
+                number: "7.3",
+                title: "Performance Testing (50+ Students)",
+                priority: "High",
+                epic: "Phase 7 - Testing & QA",
+                effort: "4 hours",
+                risk: "Medium",
+                user_story: "**As a** QA engineer,\n**I want** to test performance with 50+ students,\n**So that** the system handles real-world loads.",
+                background: "Performance testing:\n- Load testing with 50 students\n- Bulk operations\n- Database query performance\n- API response times\n- Memory usage",
+                acceptance: "**Functional:**\n- ✅ 50+ students handled\n- ✅ Bulk operations < 5s\n- ✅ API < 200ms\n- ✅ No memory leaks\n\n**Quality:**\n- ✅ Performance benchmarks\n- ✅ Load test reports\n- ✅ Optimization recommendations"
+            },
+            {
+                number: "7.4",
+                title: "Security Audit & Penetration Testing",
+                priority: "High",
+                epic: "Phase 7 - Testing & QA",
+                effort: "4 hours",
+                risk: "High",
+                user_story: "**As a** security auditor,\n**I want** to perform security testing,\n**So that** I can identify and fix vulnerabilities.",
+                background: "Security testing:\n- Authentication bypass attempts\n- SQL injection tests\n- XSS vulnerability checks\n- Token security\n- Data exposure",
+                acceptance: "**Functional:**\n- ✅ No authentication bypass\n- ✅ No SQL injection\n- ✅ No XSS vulnerabilities\n- ✅ Secure token handling\n- ✅ No data leaks\n\n**Quality:**\n- ✅ Security report\n- ✅ Vulnerability fixes\n- ✅ OWASP compliance"
+            },
+            {
+                number: "7.5",
+                title: "User Acceptance Testing",
+                priority: "Medium",
+                epic: "Phase 7 - Testing & QA",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** product owner,\n**I want** user acceptance testing with real stakeholders,\n**So that** I can validate the solution meets requirements.",
+                background: "UAT process:\n- Real TP administrators\n- Real students\n- Real sponsors\n- Complete workflows\n- Feedback collection",
+                acceptance: "**Functional:**\n- ✅ All workflows validated\n- ✅ User feedback collected\n- ✅ Issues identified\n- ✅ Sign-off obtained\n\n**Quality:**\n- ✅ UAT report\n- ✅ Issue tracking\n- ✅ Final approval"
+            },
+            {
+                number: "8.0",
+                title: "Development Infrastructure Setup (Local Docker)",
+                priority: "High",
+                epic: "Phase 8 - Infrastructure",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** developer,\n**I want** local Docker infrastructure setup,\n**So that** I can develop and test FloDoc locally.",
+                background: "Local infrastructure:\n- Docker Compose setup\n- Database containers\n- Redis for Sidekiq\n- Local storage\n- Development configuration",
+                acceptance: "**Functional:**\n- ✅ Docker Compose file\n- ✅ All services running\n- ✅ Database initialized\n- ✅ Redis working\n- ✅ Development mode configured\n\n**Quality:**\n- ✅ Documentation\n- ✅ Easy setup\n- ✅ Consistent environment"
+            },
+            {
+                number: "8.0.1",
+                title: "Management Demo Readiness & Validation",
+                priority: "Critical",
+                epic: "Phase 8 - Infrastructure",
+                effort: "4 hours",
+                risk: "High",
+                user_story: "**As a** product owner,\n**I want** management demo scripts and validation,\n**So that** I can demonstrate the FloDoc system to stakeholders.",
+                background: "Demo preparation:\n- Demo scripts\n- Sample data\n- Validation checklist\n- Presentation materials\n- Success metrics",
+                acceptance: "**Functional:**\n- ✅ Demo scripts written\n- ✅ Sample data created\n- ✅ Validation complete\n- ✅ Presentation ready\n\n**Quality:**\n- ✅ Management approval\n- ✅ Demo walkthrough\n- ✅ Success criteria met"
+            },
+            {
+                number: "8.5",
+                title: "User Communication & Training Materials",
+                priority: "Low",
+                epic: "Phase 8 - Infrastructure",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** training coordinator,\n**I want** user communication and training materials,\n**So that** users can successfully use FloDoc.",
+                background: "Training materials:\n- User guides\n- Video tutorials\n- FAQ documents\n- Email templates\n- Support contact info",
+                acceptance: "**Functional:**\n- ✅ User guides created\n- ✅ Video tutorials recorded\n- ✅ FAQ compiled\n- ✅ Support contacts listed\n\n**Quality:**\n- ✅ Clear language\n- ✅ Visual examples\n- ✅ Accessible format"
+            },
+            {
+                number: "8.6",
+                title: "In-App User Documentation & Help System",
+                priority: "Low",
+                epic: "Phase 8 - Infrastructure",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** user,\n**I want** in-app help and documentation,\n**So that** I can get assistance without leaving the application.",
+                background: "In-app help:\n- Contextual help icons\n- Tooltips\n- Help sidebar\n- Searchable documentation\n- Contact support",
+                acceptance: "**Functional:**\n- ✅ Help icons on all screens\n- ✅ Tooltips for complex UI\n- ✅ Searchable docs\n- ✅ Support contact\n\n**Quality:**\n- ✅ Contextual relevance\n- ✅ Easy to find help\n- ✅ Clear explanations"
+            },
+            {
+                number: "8.7",
+                title: "Knowledge Transfer & Operations Documentation",
+                priority: "Low",
+                epic: "Phase 8 - Infrastructure",
+                effort: "4 hours",
+                risk: "Low",
+                user_story: "**As a** operations team,\n**I want** comprehensive operations documentation,\n**So that** I can maintain and support FloDoc.",
+                background: "Operations docs:\n- Deployment procedures\n- Backup/restore\n- Monitoring\n- Troubleshooting\n- Incident response",
+                acceptance: "**Functional:**\n- ✅ Deployment guide\n- ✅ Backup procedures\n- ✅ Monitoring setup\n- ✅ Troubleshooting guide\n- ✅ Incident response plan\n\n**Quality:**\n- ✅ Clear step-by-step\n- ✅ Complete coverage\n- ✅ Regular updates"
+            }
+        ];
+
+        // ========================================
+        // STATE MANAGEMENT
+        // ========================================
+        let currentStoryIndex = -1;
+        let filteredStories = [...storiesData];
+        let expandedPhases = new Set(['1', '2', '3', '4', '5', '6', '7', '8']);
+
+        // ========================================
+        // DOM ELEMENTS
+        // ========================================
+        const navSections = document.getElementById('navSections');
+        const mainContent = document.getElementById('mainContent');
+        const emptyState = document.getElementById('emptyState');
+        const storyDetail = document.getElementById('storyDetail');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const searchBox = document.getElementById('searchBox');
+        const storyCounter = document.getElementById('storyCounter');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navPanel = document.getElementById('navPanel');
+
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+        function init() {
+            renderNavigation();
+            updateCounter();
+            attachEventListeners();
+        }
+
+        // ========================================
+        // RENDERING
+        // ========================================
+        function renderNavigation() {
+            const phases = groupStoriesByPhase(filteredStories);
+            navSections.innerHTML = '';
+
+            Object.keys(phases).sort().forEach(phaseNum => {
+                const phase = phases[phaseNum];
+                const phaseSection = document.createElement('div');
+                phaseSection.className = 'phase-section';
+
+                const phaseHeader = document.createElement('div');
+                phaseHeader.className = 'phase-header';
+                phaseHeader.innerHTML = `
+                    <span>Phase ${phaseNum}: ${phase.name}</span>
+                    <span class="phase-count">${phase.stories.length}</span>
+                `;
+                phaseHeader.addEventListener('click', () => togglePhase(phaseNum));
+
+                const storyList = document.createElement('ul');
+                storyList.className = 'story-list';
+                storyList.id = `phase-${phaseNum}`;
+
+                if (!expandedPhases.has(phaseNum)) {
+                    storyList.style.display = 'none';
+                }
+
+                phase.stories.forEach((story, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'story-item';
+                    li.dataset.index = storiesData.indexOf(story);
+
+                    if (storiesData.indexOf(story) === currentStoryIndex) {
+                        li.classList.add('active');
+                    }
+
+                    li.innerHTML = `
+                        <span class="story-number">${story.number}</span>
+                        <div class="story-title">${story.title}</div>
+                        <div class="story-meta">
+                            <span class="time-badge">${story.effort}</span>
+                            <span class="priority-badge priority-${story.priority.toLowerCase()}">${story.priority}</span>
+                        </div>
+                    `;
+
+                    li.addEventListener('click', () => selectStory(storiesData.indexOf(story)));
+                    storyList.appendChild(li);
+                });
+
+                phaseSection.appendChild(phaseHeader);
+                phaseSection.appendChild(storyList);
+                navSections.appendChild(phaseSection);
+            });
+        }
+
+        function groupStoriesByPhase(stories) {
+            const phases = {
+                '1': { name: 'Foundation', stories: [] },
+                '2': { name: 'Backend Logic', stories: [] },
+                '3': { name: 'API Layer', stories: [] },
+                '4': { name: 'Admin Portal', stories: [] },
+                '5': { name: 'Student Portal', stories: [] },
+                '6': { name: 'Sponsor Portal', stories: [] },
+                '7': { name: 'Testing & QA', stories: [] },
+                '8': { name: 'Infrastructure', stories: [] }
+            };
+
+            stories.forEach(story => {
+                const phaseNum = story.number.split('.')[0];
+                if (phases[phaseNum]) {
+                    phases[phaseNum].stories.push(story);
+                }
+            });
+
+            return phases;
+        }
+
+        function renderStoryDetail(story) {
+            emptyState.classList.add('hidden');
+            storyDetail.classList.remove('hidden');
+
+            storyDetail.innerHTML = `
+                <div class="story-header">
+                    <div class="story-meta-bar">
+                        <div class="meta-item">
+                            <span class="meta-label">Story:</span>
+                            <span class="meta-value">${story.number}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Priority:</span>
+                            <span class="meta-value priority-badge priority-${story.priority.toLowerCase()}">${story.priority}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Epic:</span>
+                            <span class="meta-value">${story.epic}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Effort:</span>
+                            <span class="meta-value">${story.effort}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Risk:</span>
+                            <span class="meta-value">${story.risk}</span>
+                        </div>
+                    </div>
+                    <h1 class="story-main-title">
+                        <span class="story-number-display">${story.number}</span>
+                        ${story.title}
+                    </h1>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">User Story</h2>
+                    <div class="section-content">${formatContent(story.user_story)}</div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Background</h2>
+                    <div class="section-content">${formatContent(story.background)}</div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Acceptance Criteria</h2>
+                    <div class="section-content">${formatAcceptanceCriteria(story.acceptance)}</div>
+                </div>
+            `;
+
+            // Animate sections
+            const sections = storyDetail.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        function formatContent(text) {
+            if (!text) return '';
+
+            // Convert markdown-like formatting
+            let html = text
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`(.+?)`/g, '<code>$1</code>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+
+            // Handle lists
+            const lines = text.split('\n');
+            let inList = false;
+            let listType = 'ul';
+            let result = '';
+
+            lines.forEach(line => {
+                if (line.match(/^[\*\-]\s+/)) {
+                    if (!inList) {
+                        inList = true;
+                        result += '<ul>';
+                    }
+                    result += `<li>${line.replace(/^[\*\-]\s+/, '')}</li>`;
+                } else if (line.match(/^\d+\.\s+/)) {
+                    if (!inList) {
+                        inList = true;
+                        listType = 'ol';
+                        result += '<ol>';
+                    }
+                    result += `<li>${line.replace(/^\d+\.\s+/, '')}</li>`;
+                } else {
+                    if (inList) {
+                        result += `</${listType}>`;
+                        inList = false;
+                        listType = 'ul';
+                    }
+                    if (line.trim()) {
+                        result += `<p>${line}</p>`;
+                    }
+                }
+            });
+
+            if (inList) {
+                result += `</${listType}>`;
+            }
+
+            return result || text;
+        }
+
+        function formatAcceptanceCriteria(text) {
+            if (!text) return '';
+
+            const categories = {
+                'Functional': text.includes('**Functional:**'),
+                'UI/UX': text.includes('**UI/UX:**') || text.includes('UI/UX:'),
+                'Integration': text.includes('**Integration:**') || text.includes('Integration:'),
+                'Security': text.includes('**Security:**') || text.includes('Security:'),
+                'Quality': text.includes('**Quality:**') || text.includes('Quality:')
+            };
+
+            if (!Object.values(categories).some(v => v)) {
+                return formatContent(text);
+            }
+
+            let html = '<div class="acceptance-grid">';
+
+            const sections = text.split(/\*\*(.+?):\*\*/);
+
+            for (let i = 1; i < sections.length; i += 2) {
+                const category = sections[i];
+                const content = sections[i + 1] || '';
+
+                html += `
+                    <div class="acceptance-category">
+                        <div class="acceptance-category-title">${category}</div>
+                        ${formatContent(content.trim())}
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        // ========================================
+        // INTERACTIONS
+        // ========================================
+        function selectStory(index) {
+            currentStoryIndex = index;
+            const story = storiesData[index];
+
+            renderStoryDetail(story);
+            updateNavigationButtons();
+            updateCounter();
+            updateActiveState();
+
+            // Scroll to top
+            mainContent.scrollTop = 0;
+
+            // Close mobile menu if open
+            if (window.innerWidth <= 768) {
+                navPanel.classList.remove('mobile-open');
+            }
+        }
+
+        function nextStory() {
+            if (currentStoryIndex < storiesData.length - 1) {
+                selectStory(currentStoryIndex + 1);
+            }
+        }
+
+        function prevStory() {
+            if (currentStoryIndex > 0) {
+                selectStory(currentStoryIndex - 1);
+            }
+        }
+
+        function togglePhase(phaseNum) {
+            if (expandedPhases.has(phaseNum)) {
+                expandedPhases.delete(phaseNum);
+            } else {
+                expandedPhases.add(phaseNum);
+            }
+
+            const phaseList = document.getElementById(`phase-${phaseNum}`);
+            if (phaseList) {
+                phaseList.style.display = expandedPhases.has(phaseNum) ? 'block' : 'none';
+            }
+        }
+
+        function searchStories(query) {
+            const searchTerm = query.toLowerCase().trim();
+
+            if (!searchTerm) {
+                filteredStories = [...storiesData];
+            } else {
+                filteredStories = storiesData.filter(story =>
+                    story.number.toLowerCase().includes(searchTerm) ||
+                    story.title.toLowerCase().includes(searchTerm) ||
+                    story.epic.toLowerCase().includes(searchTerm) ||
+                    story.user_story.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderNavigation();
+            updateCounter();
+
+            // Reset selection if current story is filtered out
+            if (currentStoryIndex >= 0) {
+                const currentStory = storiesData[currentStoryIndex];
+                if (!filteredStories.includes(currentStory)) {
+                    currentStoryIndex = -1;
+                    emptyState.classList.remove('hidden');
+                    storyDetail.classList.add('hidden');
+                    updateNavigationButtons();
+                }
+            }
+        }
+
+        // ========================================
+        // UPDATES
+        // ========================================
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentStoryIndex <= 0;
+            nextBtn.disabled = currentStoryIndex >= storiesData.length - 1;
+        }
+
+        function updateCounter() {
+            const current = currentStoryIndex >= 0 ? currentStoryIndex + 1 : 0;
+            storyCounter.textContent = `${current} / ${storiesData.length}`;
+        }
+
+        function updateActiveState() {
+            document.querySelectorAll('.story-item').forEach(item => {
+                const index = parseInt(item.dataset.index);
+                if (index === currentStoryIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // ========================================
+        // EVENT LISTENERS
+        // ========================================
+        function attachEventListeners() {
+            // Navigation buttons
+            prevBtn.addEventListener('click', prevStory);
+            nextBtn.addEventListener('click', nextStory);
+
+            // Search
+            searchBox.addEventListener('input', (e) => {
+                searchStories(e.target.value);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                // Don't trigger if typing in search box
+                if (e.target === searchBox) return;
+
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextStory();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevStory();
+                } else if (e.key === 'Escape') {
+                    // Close mobile menu
+                    if (window.innerWidth <= 768) {
+                        navPanel.classList.remove('mobile-open');
+                    }
+                }
+            });
+
+            // Mobile menu toggle
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    navPanel.classList.toggle('mobile-open');
+                });
+            }
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!navPanel.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navPanel.classList.remove('mobile-open');
+                    }
+                }
+            });
+        }
+
+        // ========================================
+        // START APPLICATION
+        // ========================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
