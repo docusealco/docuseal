@@ -17,6 +17,7 @@
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onStartDraw"
+      @contextmenu="openContextMenu"
     >
       <FieldArea
         v-for="(item, i) in areas"
@@ -38,6 +39,7 @@
         @stop-resize="resizeDirection = null"
         @remove="$emit('remove-area', item.area)"
         @scroll-to="$emit('scroll-to', $event)"
+        @contextmenu="openAreaContextMenu($event, item.area, item.field)"
       />
       <FieldArea
         v-if="newArea"
@@ -46,6 +48,16 @@
         :page-height="height"
         :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || dragFieldPlaceholder?.type || defaultFieldType }"
         :area="newArea"
+      />
+      <ContextMenu
+        v-if="contextMenu"
+        :context-menu="contextMenu"
+        :field="contextMenu.field"
+        :editable="editable"
+        @copy="handleCopy"
+        @delete="handleDelete"
+        @paste="handlePaste"
+        @close="closeContextMenu"
       />
     </div>
     <div
@@ -56,6 +68,7 @@
       :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
+      @contextmenu="openContextMenu"
       @dragover.prevent="onDragover"
       @dragenter="onDragenter"
       @dragleave="newArea = null"
@@ -67,13 +80,15 @@
 
 <script>
 import FieldArea from './area'
+import ContextMenu from './context_menu'
 
 export default {
   name: 'TemplatePage',
   components: {
-    FieldArea
+    FieldArea,
+    ContextMenu
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize', 'selectedAreaRef'],
   props: {
     image: {
       type: Object,
@@ -157,13 +172,14 @@ export default {
       required: true
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'scroll-to'],
+  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to'],
   data () {
     return {
       areaRefs: [],
       showMask: false,
       resizeDirection: null,
-      newArea: null
+      newArea: null,
+      contextMenu: null
     }
   },
   computed: {
@@ -211,6 +227,81 @@ export default {
       this.image.metadata.width = e.target.naturalWidth
       this.image.metadata.height = e.target.naturalHeight
     },
+    openContextMenu (event) {
+      if (!this.editable) {
+        return
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      const rect = this.$refs.image.getBoundingClientRect()
+
+      this.newArea = null
+      this.showMask = false
+
+      this.contextMenu = {
+        x: event.clientX,
+        y: event.clientY,
+        relativeX: (event.clientX - rect.left) / rect.width,
+        relativeY: (event.clientY - rect.top) / rect.height
+      }
+    },
+    openAreaContextMenu (event, area, field) {
+      if (!this.editable) {
+        return
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      const rect = this.$refs.image.getBoundingClientRect()
+
+      this.newArea = null
+      this.showMask = false
+
+      this.contextMenu = {
+        x: event.clientX,
+        y: event.clientY,
+        relativeX: (event.clientX - rect.left) / rect.width,
+        relativeY: (event.clientY - rect.top) / rect.height,
+        area,
+        field
+      }
+    },
+    closeContextMenu () {
+      this.contextMenu = null
+      this.newArea = null
+      this.showMask = false
+    },
+    handleCopy () {
+      if (this.contextMenu.area) {
+        this.selectedAreaRef.value = this.contextMenu.area
+
+        this.$emit('copy-field')
+      }
+
+      this.closeContextMenu()
+    },
+    handleDelete () {
+      if (this.contextMenu.area) {
+        this.$emit('remove-area', this.contextMenu.area)
+      }
+
+      this.closeContextMenu()
+    },
+    handlePaste () {
+      this.newArea = null
+      this.showMask = false
+
+      this.$emit('paste-field', {
+        page: this.number,
+        x: this.contextMenu.relativeX,
+        y: this.contextMenu.relativeY
+      })
+
+      this.closeContextMenu()
+    },
     setAreaRefs (el) {
       if (el) {
         this.areaRefs.push(el)
@@ -243,6 +334,10 @@ export default {
       })
     },
     onStartDraw (e) {
+      if (e.button === 2) {
+        return
+      }
+
       if (!this.allowDraw) {
         return
       }

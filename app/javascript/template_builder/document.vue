@@ -22,8 +22,10 @@
       :selected-submitter="selectedSubmitter"
       :total-pages="sortedPreviewImages.length"
       :image="image"
-      @drop-field="$emit('drop-field', {...$event, attachment_uuid: document.uuid })"
+      @drop-field="$emit('drop-field', { ...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
+      @copy-field="$emit('copy-field', $event)"
+      @paste-field="$emit('paste-field', { ...$event, attachment_uuid: document.uuid })"
       @scroll-to="scrollToArea"
       @draw="$emit('draw', { area: {...$event.area, attachment_uuid: document.uuid }, isTooSmall: $event.isTooSmall })"
     />
@@ -118,7 +120,7 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area'],
+  emits: ['draw', 'drop-field', 'remove-area', 'paste-field', 'copy-field'],
   data () {
     return {
       pageRefs: []

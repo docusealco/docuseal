@@ -376,6 +376,8 @@
                 @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
+                @paste-field="pasteField"
+                @copy-field="copyField"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -852,7 +854,6 @@ export default {
       showDrawField: false,
       pendingFieldAttachmentUuids: [],
       drawField: null,
-      copiedArea: null,
       drawFieldType: null,
       drawOption: null,
       dragField: null,
@@ -1414,8 +1415,8 @@ export default {
       } else if ((event.ctrlKey || event.metaKey) && event.key === 'c' && document.activeElement === document.body) {
         event.preventDefault()
 
-        this.copiedArea = this.selectedAreaRef?.value
-      } else if ((event.ctrlKey || event.metaKey) && event.key === 'v' && this.copiedArea && document.activeElement === document.body) {
+        this.copyField()
+      } else if ((event.ctrlKey || event.metaKey) && event.key === 'v' && this.hasClipboardData() && document.activeElement === document.body) {
         event.preventDefault()
 
         this.pasteField()
@@ -1497,45 +1498,114 @@ export default {
         }
       })
     },
-    pasteField () {
-      const field = this.template.fields.find((f) => f.areas?.includes(this.copiedArea))
-      const currentArea = this.selectedAreaRef?.value || this.copiedArea
+    copyField () {
+      const area = this.selectedAreaRef.value
+
+      if (!area) return
+
+      const field = this.template.fields.find((f) => f.areas?.includes(area))
+
+      if (!field) return
+
+      const clipboardData = {
+        field: JSON.parse(JSON.stringify(field)),
+        area: JSON.parse(JSON.stringify(area)),
+        templateId: this.template.id,
+        timestamp: Date.now()
+      }
+
+      delete clipboardData.field.areas
+      delete clipboardData.field.uuid
+      delete clipboardData.field.submitter_uuid
+
+      try {
+        localStorage.setItem('docuseal_clipboard', JSON.stringify(clipboardData))
+      } catch (e) {
+        console.error('Failed to save clipboard:', e)
+      }
+    },
+    pasteField (targetPosition = null) {
+      let field = null
+      let area = null
+      let isSameTemplate = false
+
+      const clipboard = localStorage.getItem('docuseal_clipboard')
+
+      if (clipboard) {
+        const data = JSON.parse(clipboard)
+
+        if (Date.now() - data.timestamp < 3600000) {
+          field = data.field
+          area = data.area
+          isSameTemplate = data.templateId === this.template.id
+        } else {
+          localStorage.removeItem('docuseal_clipboard')
+        }
+      }
+
+      if (!field || !area) return
+
+      if (!isSameTemplate) {
+        delete field.conditions
+        delete field.preferences?.formula
+      }
+
+      const currentArea = this.selectedAreaRef.value
+      const defaultAttachmentUuid = this.template.schema[0]?.attachment_uuid
 
       if (field && currentArea) {
-        const area = {
-          ...JSON.parse(JSON.stringify(this.copiedArea)),
-          attachment_uuid: currentArea.attachment_uuid,
-          page: currentArea.page,
-          x: currentArea.x,
-          y: currentArea.y + currentArea.h * 1.3
+        const attachmentUuid = targetPosition?.attachment_uuid ||
+          (this.template.documents.find((d) => d.uuid === currentArea.attachment_uuid) ? currentArea.attachment_uuid : null) ||
+          defaultAttachmentUuid
+
+        const newArea = {
+          ...JSON.parse(JSON.stringify(area)),
+          attachment_uuid: attachmentUuid,
+          page: targetPosition?.page ?? (attachmentUuid === currentArea.attachment_uuid ? currentArea.page : 0),
+          x: targetPosition ? (targetPosition.x - area.w / 2) : currentArea.x,
+          y: targetPosition ? (targetPosition.y - area.h / 2) : (currentArea.y + currentArea.h * 1.3)
         }
 
-        if (['radio', 'multiple'].includes(field.type)) {
-          this.copiedArea.option_uuid ||= field.options[0].uuid
-          area.option_uuid = v4()
-
-          const lastOption = field.options[field.options.length - 1]
-
-          if (!field.areas.find((a) => lastOption.uuid === a.option_uuid)) {
-            area.option_uuid = lastOption.uuid
-          } else {
-            field.options.push({ uuid: area.option_uuid })
-          }
-
-          field.areas.push(area)
-        } else {
-          const newField = {
-            ...JSON.parse(JSON.stringify(field)),
-            uuid: v4(),
-            areas: [area]
-          }
-
-          this.insertField(newField)
+        const newField = {
+          ...JSON.parse(JSON.stringify(field)),
+          uuid: v4(),
+          submitter_uuid: this.selectedSubmitter.uuid,
+          areas: [newArea]
         }
 
-        this.selectedAreaRef.value = area
+        if (['radio', 'multiple'].includes(field.type) && field.options?.length) {
+          const oldOptionUuid = area.option_uuid
+          const optionsMap = {}
+
+          newField.options = field.options.map((opt) => {
+            const newUuid = v4()
+            optionsMap[opt.uuid] = newUuid
+            return { ...opt, uuid: newUuid }
+          })
+
+          newArea.option_uuid = optionsMap[oldOptionUuid] || newField.options[0].uuid
+        }
+
+        this.insertField(newField)
+
+        this.selectedAreaRef.value = newArea
 
         this.save()
+      }
+    },
+    hasClipboardData () {
+      try {
+        const clipboard = localStorage.getItem('docuseal_clipboard')
+
+        if (clipboard) {
+          const data = JSON.parse(clipboard)
+
+          return Date.now() - data.timestamp < 3600000
+        }
+
+        return false
+      } catch {
+        return false
       }
     },
     pushUndo () {

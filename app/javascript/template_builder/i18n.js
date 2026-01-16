@@ -185,7 +185,9 @@ const en = {
   start_tour: 'Start Tour',
   or_add_from: 'Or add from',
   sync: 'Sync',
-  syncing: 'Syncing...'
+  syncing: 'Syncing...',
+  copy: 'Copy',
+  paste: 'Paste'
 }
 
 const es = {
@@ -375,7 +377,9 @@ const es = {
   start_tour: 'Iniciar guía',
   or_add_from: 'O agregar desde',
   sync: 'Sincronizar',
-  syncing: 'Sincronizando...'
+  syncing: 'Sincronizando...',
+  copy: 'Copiar',
+  paste: 'Pegar'
 }
 
 const it = {
@@ -565,7 +569,9 @@ const it = {
   start_tour: 'Inizia il tour',
   or_add_from: 'O aggiungi da',
   sync: 'Sincronizza',
-  syncing: 'Sincronizzazione...'
+  syncing: 'Sincronizzazione...',
+  copy: 'Copia',
+  paste: 'Incolla'
 }
 
 const pt = {
@@ -755,7 +761,9 @@ const pt = {
   start_tour: 'Iniciar tour',
   or_add_from: 'Ou adicionar de',
   sync: 'Sincronizar',
-  syncing: 'Sincronizando...'
+  syncing: 'Sincronizando...',
+  copy: 'Copiar',
+  paste: 'Colar'
 }
 
 const fr = {
@@ -945,7 +953,9 @@ const fr = {
   start_tour: 'Démarrer',
   or_add_from: 'Ou ajouter depuis',
   sync: 'Synchroniser',
-  syncing: 'Synchronisation...'
+  syncing: 'Synchronisation...',
+  copy: 'Copier',
+  paste: 'Coller'
 }
 
 const de = {
@@ -1135,7 +1145,9 @@ const de = {
   start_tour: 'Tour starten',
   or_add_from: 'Oder hinzufügen aus',
   sync: 'Synchronisieren',
-  syncing: 'Synchronisiere...'
+  syncing: 'Synchronisiere...',
+  copy: 'Kopieren',
+  paste: 'Einfügen'
 }
 
 const nl = {
@@ -1325,7 +1337,9 @@ const nl = {
   start_tour: 'Rondleiding starten',
   or_add_from: 'Of toevoegen van',
   sync: 'Synchroniseren',
-  syncing: 'Synchroniseren...'
+  syncing: 'Synchroniseren...',
+  copy: 'Kopiëren',
+  paste: 'Plakken'
 }
 
 export { en, es, it, pt, fr, de, nl }
