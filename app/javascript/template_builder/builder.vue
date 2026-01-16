@@ -1553,7 +1553,7 @@ export default {
       const currentArea = this.selectedAreaRef.value
       const defaultAttachmentUuid = this.template.schema[0]?.attachment_uuid
 
-      if (field && currentArea) {
+      if (field && (currentArea || targetPosition)) {
         const attachmentUuid = targetPosition?.attachment_uuid ||
           (this.template.documents.find((d) => d.uuid === currentArea.attachment_uuid) ? currentArea.attachment_uuid : null) ||
           defaultAttachmentUuid
