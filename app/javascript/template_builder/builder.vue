@@ -2027,6 +2027,7 @@ export default {
     },
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
+      // eslint-disable-next-line camelcase
       const { google_drive_file_id, ...cleanedReplaceSchemaItem } = replaceSchemaItem
 
       this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...cleanedReplaceSchemaItem, ...schema[0] })
