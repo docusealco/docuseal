@@ -108,7 +108,7 @@
         >{{ t('editable') }}</label>
         <span
           v-if="field.type !== 'payment' && !isValueInput"
-          class="dropdown dropdown-end field-area-settings-dropdown"
+          class="dropdown dropdown-end field-area-settings-dropdown md:hidden"
           @mouseenter="renderDropdown = true"
           @touchstart="renderDropdown = true"
         >
