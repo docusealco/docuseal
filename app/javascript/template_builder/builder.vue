@@ -378,6 +378,9 @@
                 @remove-area="removeArea"
                 @paste-field="pasteField"
                 @copy-field="copyField"
+                @copy-selected-areas="copySelectedAreas"
+                @delete-selected-areas="deleteSelectedAreas"
+                @align-selected-areas="alignSelectedAreas"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -592,8 +595,10 @@ export default {
       withConditions: this.withConditions,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
-      selectedAreaRef: computed(() => this.selectedAreaRef),
-      fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef)
+      selectedAreasRef: computed(() => this.selectedAreasRef),
+      fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef),
+      isSelectModeRef: computed(() => this.isSelectModeRef),
+      isCmdKeyRef: computed(() => this.isCmdKeyRef)
     }
   },
   props: {
@@ -862,8 +867,10 @@ export default {
   },
   computed: {
     submitterDefaultNames: FieldSubmitter.computed.names,
-    selectedAreaRef: () => ref(),
+    isSelectModeRef: () => ref(false),
+    isCmdKeyRef: () => ref(false),
     fieldsDragFieldRef: () => ref(),
+    selectedAreasRef: () => ref([]),
     language () {
       return this.locale.split('-')[0].toLowerCase()
     },
@@ -876,6 +883,14 @@ export default {
     },
     isInlineSize () {
       return CSS.supports('container-type: size')
+    },
+    lowestSelectedArea () {
+      return this.selectedAreasRef.value.reduce((acc, area) => {
+        return area.y + area.h < acc.y + acc.h ? acc : area
+      }, this.selectedAreasRef.value[0])
+    },
+    lastSelectedArea () {
+      return this.selectedAreasRef.value[this.selectedAreasRef.value.length - 1]
     },
     isMobile () {
       const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
@@ -918,7 +933,7 @@ export default {
       })
     },
     selectedField () {
-      return this.template.fields.find((f) => f.areas?.includes(this.selectedAreaRef.value))
+      return this.template.fields.find((f) => f.areas?.includes(this.lastSelectedArea))
     },
     sortedDocuments () {
       return this.template.schema.map((item) => {
@@ -1005,6 +1020,81 @@ export default {
   },
   methods: {
     toRaw,
+    toggleSelectMode () {
+      this.isSelectModeRef.value = !this.isSelectModeRef.value
+
+      if (!this.isSelectModeRef.value && this.selectedAreasRef.value.length > 1) {
+        this.selectedAreasRef.value = []
+      }
+    },
+    deleteSelectedAreas () {
+      [...this.selectedAreasRef.value].forEach((area) => {
+        this.removeArea(area, false)
+      })
+
+      this.save()
+    },
+    moveSelectedAreas (dx, dy) {
+      let clampedDx = dx
+      let clampedDy = dy
+
+      const rectIndex = {}
+
+      this.selectedAreasRef.value.map((area) => {
+        const key = `${area.attachment_uuid}-${area.page}`
+
+        let rect = rectIndex[key]
+
+        if (!rect) {
+          const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
+          const page = documentRef.pageRefs[area.page].$refs.image
+          rect = page.getBoundingClientRect()
+
+          rectIndex[key] = rect
+        }
+
+        const normalizedDx = dx / rect.width
+        const normalizedDy = dy / rect.height
+
+        const maxDxLeft = -area.x
+        const maxDxRight = 1 - area.w - area.x
+        const maxDyTop = -area.y
+        const maxDyBottom = 1 - area.h - area.y
+
+        if (normalizedDx < maxDxLeft) clampedDx = Math.max(clampedDx, maxDxLeft * rect.width)
+        if (normalizedDx > maxDxRight) clampedDx = Math.min(clampedDx, maxDxRight * rect.width)
+        if (normalizedDy < maxDyTop) clampedDy = Math.max(clampedDy, maxDyTop * rect.height)
+        if (normalizedDy > maxDyBottom) clampedDy = Math.min(clampedDy, maxDyBottom * rect.height)
+
+        return [area, rect]
+      }).forEach(([area, rect]) => {
+        area.x += clampedDx / rect.width
+        area.y += clampedDy / rect.height
+      })
+
+      this.debouncedSave()
+    },
+    alignSelectedAreas (direction) {
+      const areas = this.selectedAreasRef.value
+
+      let targetValue
+
+      if (direction === 'left') {
+        targetValue = Math.min(...areas.map(a => a.x))
+        areas.forEach((area) => { area.x = targetValue })
+      } else if (direction === 'right') {
+        targetValue = Math.max(...areas.map(a => a.x + a.w))
+        areas.forEach((area) => { area.x = targetValue - area.w })
+      } else if (direction === 'top') {
+        targetValue = Math.min(...areas.map(a => a.y))
+        areas.forEach((area) => { area.y = targetValue })
+      } else if (direction === 'bottom') {
+        targetValue = Math.max(...areas.map(a => a.y + a.h))
+        areas.forEach((area) => { area.y = targetValue - area.h })
+      }
+
+      this.save()
+    },
     download () {
       this.isDownloading = true
 
@@ -1389,49 +1479,92 @@ export default {
       }
     },
     onKeyUp (e) {
-      if (e.code === 'Escape') {
-        this.clearDrawField()
+      this.isCmdKeyRef.value = false
 
-        this.selectedAreaRef.value = null
+      if (e.code === 'Escape') {
+        this.selectedAreasRef.value = []
+        this.clearDrawField()
       }
 
-      if (this.editable && ['Backspace', 'Delete'].includes(e.key) && this.selectedAreaRef.value && document.activeElement === document.body) {
-        this.removeArea(this.selectedAreaRef.value)
-
-        this.selectedAreaRef.value = null
+      if (this.editable && ['Backspace', 'Delete'].includes(e.key) && document.activeElement === document.body) {
+        if (this.selectedAreasRef.value.length > 1) {
+          this.deleteSelectedAreas()
+        } else if (this.selectedAreasRef.value.length) {
+          this.removeArea(this.lastSelectedArea)
+        }
       }
     },
     onKeyDown (event) {
-      if ((event.metaKey && event.shiftKey && event.key === 'z') || (event.ctrlKey && event.key === 'Z')) {
+      if (event.key === 'Tab' && document.activeElement === document.body) {
         event.stopImmediatePropagation()
         event.preventDefault()
+
+        this.toggleSelectMode()
+      } else if ((event.metaKey && event.shiftKey && event.key === 'z') || (event.ctrlKey && event.key === 'Z')) {
+        event.stopImmediatePropagation()
+        event.preventDefault()
+
+        this.selectedAreasRef.value = []
 
         this.redo()
       } else if ((event.ctrlKey || event.metaKey) && event.key === 'z') {
         event.stopImmediatePropagation()
         event.preventDefault()
 
+        this.selectedAreasRef.value = []
+
         this.undo()
       } else if ((event.ctrlKey || event.metaKey) && event.key === 'c' && document.activeElement === document.body) {
-        event.preventDefault()
-
-        this.copyField()
+        if (this.selectedAreasRef.value.length > 1) {
+          event.preventDefault()
+          this.copySelectedAreas()
+        } else if (this.selectedAreasRef.value.length) {
+          event.preventDefault()
+          this.copyField()
+        }
       } else if ((event.ctrlKey || event.metaKey) && event.key === 'v' && this.hasClipboardData() && document.activeElement === document.body) {
         event.preventDefault()
 
         this.pasteField()
-      } else if (this.selectedAreaRef.value && ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'].includes(event.key) && document.activeElement === document.body) {
-        event.preventDefault()
-
-        this.handleAreaArrows(event)
+      } else if (['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'].includes(event.key) && document.activeElement === document.body) {
+        if (this.selectedAreasRef.value.length > 1) {
+          event.preventDefault()
+          this.handleSelectedAreasArrows(event)
+        } else if (this.selectedAreasRef.value.length) {
+          event.preventDefault()
+          this.handleAreaArrows(event)
+        }
+      } else if (event.metaKey || event.ctrlKey) {
+        this.isCmdKeyRef.value = true
       }
+    },
+    handleSelectedAreasArrows (event) {
+      if (!this.editable) {
+        return
+      }
+
+      const diff = (event.shiftKey ? 5.0 : 1.0)
+      let dx = 0
+      let dy = 0
+
+      if (event.key === 'ArrowRight') {
+        dx = diff
+      } else if (event.key === 'ArrowLeft') {
+        dx = -diff
+      } else if (event.key === 'ArrowUp') {
+        dy = -diff
+      } else if (event.key === 'ArrowDown') {
+        dy = diff
+      }
+
+      this.moveSelectedAreas(dx, dy)
     },
     handleAreaArrows (event) {
       if (!this.editable) {
         return
       }
 
-      const area = this.selectedAreaRef.value
+      const area = this.lastSelectedArea
       const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
       const page = documentRef.pageRefs[area.page].$refs.image
       const rect = page.getBoundingClientRect()
@@ -1464,7 +1597,7 @@ export default {
         this.save()
       }, 700)
     },
-    removeArea (area) {
+    removeArea (area, save = true) {
       const field = this.template.fields.find((f) => f.areas?.includes(area))
 
       field.areas.splice(field.areas.indexOf(area), 1)
@@ -1475,7 +1608,11 @@ export default {
         this.removeFieldConditions(field)
       }
 
-      this.save()
+      this.selectedAreasRef.value.splice(this.selectedAreasRef.value.indexOf(area), 1)
+
+      if (save) {
+        this.save()
+      }
     },
     removeFieldConditions (field) {
       this.template.fields.forEach((f) => {
@@ -1499,7 +1636,7 @@ export default {
       })
     },
     copyField () {
-      const area = this.selectedAreaRef.value
+      const area = this.lastSelectedArea
 
       if (!area) return
 
@@ -1524,24 +1661,67 @@ export default {
         console.error('Failed to save clipboard:', e)
       }
     },
-    pasteField (targetPosition = null) {
-      let field = null
-      let area = null
-      let isSameTemplate = false
+    copySelectedAreas () {
+      const items = []
 
+      const areas = this.selectedAreasRef.value
+
+      const minX = Math.min(...areas.map(a => a.x))
+      const minY = Math.min(...areas.map(a => a.y))
+
+      areas.forEach((area) => {
+        const field = this.template.fields.find((f) => f.areas?.includes(area))
+
+        if (!field) return
+
+        const fieldCopy = JSON.parse(JSON.stringify(field))
+        const areaCopy = JSON.parse(JSON.stringify(area))
+
+        delete fieldCopy.areas
+        delete fieldCopy.uuid
+        delete fieldCopy.submitter_uuid
+
+        areaCopy.relativeX = area.x - minX
+        areaCopy.relativeY = area.y - minY
+
+        items.push({ field: fieldCopy, area: areaCopy })
+      })
+
+      const clipboardData = {
+        items,
+        templateId: this.template.id,
+        timestamp: Date.now(),
+        isGroup: true
+      }
+
+      try {
+        localStorage.setItem('docuseal_clipboard', JSON.stringify(clipboardData))
+      } catch (e) {
+        console.error('Failed to save clipboard:', e)
+      }
+    },
+    pasteField (targetPosition = null) {
       const clipboard = localStorage.getItem('docuseal_clipboard')
 
-      if (clipboard) {
-        const data = JSON.parse(clipboard)
+      if (!clipboard) return
 
-        if (Date.now() - data.timestamp < 3600000) {
-          field = data.field
-          area = data.area
-          isSameTemplate = data.templateId === this.template.id
-        } else {
-          localStorage.removeItem('docuseal_clipboard')
-        }
+      const data = JSON.parse(clipboard)
+
+      if (Date.now() - data.timestamp >= 3600000) {
+        localStorage.removeItem('docuseal_clipboard')
+
+        return
       }
+
+      if (data.isGroup && data.items?.length) {
+        this.pasteFieldGroup(data, targetPosition)
+
+        return
+      }
+
+      const field = data.field
+      const area = data.area
+      const isSameTemplate = data.templateId === this.template.id
 
       if (!field || !area) return
 
@@ -1550,20 +1730,19 @@ export default {
         delete field.preferences?.formula
       }
 
-      const currentArea = this.selectedAreaRef.value
       const defaultAttachmentUuid = this.template.schema[0]?.attachment_uuid
 
-      if (field && (currentArea || targetPosition)) {
+      if (field && (this.lowestSelectedArea || targetPosition)) {
         const attachmentUuid = targetPosition?.attachment_uuid ||
-          (this.template.documents.find((d) => d.uuid === currentArea.attachment_uuid) ? currentArea.attachment_uuid : null) ||
+          (this.template.documents.find((d) => d.uuid === this.lowestSelectedArea.attachment_uuid) ? this.lowestSelectedArea.attachment_uuid : null) ||
           defaultAttachmentUuid
 
         const newArea = {
           ...JSON.parse(JSON.stringify(area)),
           attachment_uuid: attachmentUuid,
-          page: targetPosition?.page ?? (attachmentUuid === currentArea.attachment_uuid ? currentArea.page : 0),
-          x: targetPosition ? (targetPosition.x - area.w / 2) : currentArea.x,
-          y: targetPosition ? (targetPosition.y - area.h / 2) : (currentArea.y + currentArea.h * 1.3)
+          page: targetPosition?.page ?? (attachmentUuid === this.lowestSelectedArea.attachment_uuid ? this.lowestSelectedArea.page : 0),
+          x: targetPosition ? (targetPosition.x - area.w / 2) : Math.min(...this.selectedAreasRef.value.map((area) => area.x)),
+          y: targetPosition ? (targetPosition.y - area.h / 2) : (this.lowestSelectedArea.y + this.lowestSelectedArea.h * 1.3)
         }
 
         const newField = {
@@ -1588,10 +1767,84 @@ export default {
 
         this.insertField(newField)
 
-        this.selectedAreaRef.value = newArea
+        this.selectedAreasRef.value = [newArea]
 
         this.save()
       }
+    },
+    pasteFieldGroup (data, targetPosition) {
+      const isSameTemplate = data.templateId === this.template.id
+      const defaultAttachmentUuid = this.template.schema[0]?.attachment_uuid
+
+      const attachmentUuid = targetPosition?.attachment_uuid ||
+        (this.lowestSelectedArea && this.template.documents.find((d) => d.uuid === this.lowestSelectedArea.attachment_uuid) ? this.lowestSelectedArea.attachment_uuid : null) ||
+        defaultAttachmentUuid
+
+      const page = targetPosition?.page ?? (this.lowestSelectedArea && attachmentUuid === this.lowestSelectedArea.attachment_uuid ? this.lowestSelectedArea.page : 0)
+
+      let baseX, baseY
+
+      if (targetPosition) {
+        baseX = targetPosition.x
+        baseY = targetPosition.y
+      } else if (this.lowestSelectedArea) {
+        baseX = Math.min(...this.selectedAreasRef.value.map((area) => area.x))
+        baseY = this.lowestSelectedArea.y + this.lowestSelectedArea.h * 1.3
+      } else {
+        baseX = 0.1
+        baseY = 0.1
+      }
+
+      const newAreas = []
+
+      data.items.forEach((item) => {
+        const field = JSON.parse(JSON.stringify(item.field))
+        const area = JSON.parse(JSON.stringify(item.area))
+
+        if (!isSameTemplate) {
+          delete field.conditions
+          delete field.preferences?.formula
+        }
+
+        const newArea = {
+          ...area,
+          attachment_uuid: attachmentUuid,
+          page,
+          x: baseX + (area.relativeX || 0),
+          y: baseY + (area.relativeY || 0)
+        }
+
+        delete newArea.relativeX
+        delete newArea.relativeY
+
+        const newField = {
+          ...field,
+          uuid: v4(),
+          submitter_uuid: this.selectedSubmitter.uuid,
+          areas: [newArea]
+        }
+
+        if (['radio', 'multiple'].includes(field.type) && field.options?.length) {
+          const oldOptionUuid = area.option_uuid
+          const optionsMap = {}
+
+          newField.options = field.options.map((opt) => {
+            const newUuid = v4()
+            optionsMap[opt.uuid] = newUuid
+
+            return { ...opt, uuid: newUuid }
+          })
+
+          newArea.option_uuid = optionsMap[oldOptionUuid] || newField.options[0].uuid
+        }
+
+        this.insertField(newField)
+        newAreas.push(newArea)
+      })
+
+      this.selectedAreasRef.value = [...newAreas]
+
+      this.save()
     },
     hasClipboardData () {
       try {
@@ -1659,8 +1912,8 @@ export default {
           const previousArea = this.drawField.areas?.[this.drawField.areas.length - 1]
 
           if (this.selectedField?.type === this.drawField.type) {
-            area.w = this.selectedAreaRef.value.w
-            area.h = this.selectedAreaRef.value.h
+            area.w = this.lastSelectedArea.w
+            area.h = this.lastSelectedArea.h
           } else if (previousArea) {
             area.w = previousArea.w
             area.h = previousArea.h
@@ -1691,7 +1944,7 @@ export default {
         this.drawField = null
         this.drawOption = null
 
-        this.selectedAreaRef.value = area
+        this.selectedAreasRef.value = [area]
 
         this.save()
       } else {
@@ -1728,8 +1981,8 @@ export default {
 
         if (this.drawFieldType && (area.w === 0 || area.h === 0)) {
           if (this.selectedField?.type === this.drawFieldType) {
-            area.w = this.selectedAreaRef.value.w
-            area.h = this.selectedAreaRef.value.h
+            area.w = this.lastSelectedArea.w
+            area.h = this.lastSelectedArea.h
           } else {
             this.setDefaultAreaSize(area, this.drawFieldType)
           }
@@ -1741,7 +1994,7 @@ export default {
         if (area.w && (type !== 'checkbox' || this.drawFieldType || !isTooSmall)) {
           this.addField(type, area)
 
-          this.selectedAreaRef.value = area
+          this.selectedAreasRef.value = [area]
         }
       }
     },
@@ -1821,7 +2074,11 @@ export default {
 
       field.areas.push(fieldArea)
 
-      this.selectedAreaRef.value = fieldArea
+      if (this.selectedAreasRef.value.length < 2) {
+        this.selectedAreasRef.value = [fieldArea]
+      } else {
+        this.selectedAreasRef.value.push(fieldArea)
+      }
 
       if (this.template.fields.indexOf(field) === -1) {
         this.insertField(field)
@@ -1834,7 +2091,7 @@ export default {
       if (field.type === 'heading') {
         this.$nextTick(() => {
           const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
-          const areaRef = documentRef.pageRefs[area.page].areaRefs.find((ref) => ref.area === this.selectedAreaRef.value)
+          const areaRef = documentRef.pageRefs[area.page].areaRefs.find((ref) => ref.area === fieldArea)
 
           areaRef.isHeadingSelected = true
 
@@ -1850,7 +2107,7 @@ export default {
       let baseArea
 
       if (this.selectedField?.type === fieldType) {
-        baseArea = this.selectedAreaRef.value
+        baseArea = this.lastSelectedArea
       } else if (previousField?.areas?.length) {
         baseArea = previousField.areas[previousField.areas.length - 1]
       } else {
@@ -2175,7 +2432,7 @@ export default {
 
       documentRef.scrollToArea(area)
 
-      this.selectedAreaRef.value = area
+      this.selectedAreasRef.value = [area]
     },
     baseFetch (path, options = {}) {
       return fetch(this.baseUrl + path, {

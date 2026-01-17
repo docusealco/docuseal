@@ -212,12 +212,17 @@ export default {
       required: false,
       default: true
     },
+    withClickSaveEvent: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     buildDefaultName: {
       type: Function,
       required: true
     }
   },
-  emits: ['close'],
+  emits: ['close', 'click-save'],
   data () {
     return {
       preferences: {}
@@ -322,7 +327,11 @@ export default {
 
       Object.assign(this.field.preferences, this.preferences)
 
-      this.save()
+      if (this.withClickSaveEvent) {
+        this.$emit('click-save')
+      } else {
+        this.save()
+      }
 
       this.$emit('close')
     }

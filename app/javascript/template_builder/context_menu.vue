@@ -41,7 +41,7 @@
         class="my-1 border-base-300"
       >
       <button
-        v-if="showFont"
+        v-if="showFont && !isMultiSelection"
         class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
         @click.stop="openFontModal"
       >
@@ -57,7 +57,7 @@
         <span>{{ t('description') }}</span>
       </button>
       <button
-        v-if="showCondition"
+        v-if="showCondition && !isMultiSelection"
         class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
         @click.stop="openConditionModal"
       >
@@ -73,7 +73,63 @@
         <span>{{ t('formula') }}</span>
       </button>
       <hr
-        v-if="(showFont || showDescription || showCondition || showFormula) && (showCopy || showDelete || showPaste)"
+        v-if="((showFont && !isMultiSelection) || showDescription || (showCondition && !isMultiSelection) || showFormula) && (showCopy || showDelete || showPaste)"
+        class="my-1 border-base-300"
+      >
+      <button
+        v-if="isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="$emit('align', 'left')"
+      >
+        <IconLayoutAlignLeft class="w-4 h-4" />
+        <span>{{ t('align_left') }}</span>
+      </button>
+      <button
+        v-if="isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="$emit('align', 'right')"
+      >
+        <IconLayoutAlignRight class="w-4 h-4" />
+        <span>{{ t('align_right') }}</span>
+      </button>
+      <button
+        v-if="isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="$emit('align', 'top')"
+      >
+        <IconLayoutAlignTop class="w-4 h-4" />
+        <span>{{ t('align_top') }}</span>
+      </button>
+      <button
+        v-if="isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="$emit('align', 'bottom')"
+      >
+        <IconLayoutAlignBottom class="w-4 h-4" />
+        <span>{{ t('align_bottom') }}</span>
+      </button>
+      <hr
+        v-if="isMultiSelection && (showFont || showCondition)"
+        class="my-1 border-base-300"
+      >
+      <button
+        v-if="showFont && isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="openFontModal"
+      >
+        <IconTypography class="w-4 h-4" />
+        <span>{{ t('font') }}</span>
+      </button>
+      <button
+        v-if="showCondition && isMultiSelection"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="openConditionModal"
+      >
+        <IconRouteAltLeft class="w-4 h-4" />
+        <span>{{ t('condition') }}</span>
+      </button>
+      <hr
+        v-if="isMultiSelection"
         class="my-1 border-base-300"
       >
       <button
@@ -111,6 +167,24 @@
         </span>
         <span class="text-xs text-base-content/60 ml-4">{{ isMac ? '⌘V' : 'Ctrl+V' }}</span>
       </button>
+      <button
+        v-if="showSelectFields"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center justify-between text-sm"
+        @click.stop="handleToggleSelectMode"
+      >
+        <span class="flex items-center space-x-2">
+          <IconClick
+            v-if="!isSelectModeRef.value"
+            class="w-4 h-4"
+          />
+          <IconNewSection
+            v-else
+            class="w-4 h-4"
+          />
+          <span>{{ isSelectModeRef.value ? t('draw_fields') : t('select_fields') }}</span>
+        </span>
+        <span class="text-xs text-base-content/60 ml-4">Tab</span>
+      </button>
     </div>
     <Teleport
       v-if="isShowFormulaModal"
@@ -128,10 +202,12 @@
       to="#docuseal_modal_container"
     >
       <FontModal
-        :field="field"
+        :field="multiSelectField || field"
         :area="contextMenu.area"
         :editable="editable"
         :build-default-name="buildDefaultName"
+        :with-click-save-event="isMultiSelection"
+        @click-save="handleSaveMultiSelectFontModal"
         @close="closeModal"
       />
     </Teleport>
@@ -140,8 +216,11 @@
       to="#docuseal_modal_container"
     >
       <ConditionsModal
-        :item="field"
+        :item="multiSelectField || field"
         :build-default-name="buildDefaultName"
+        :exclude-field-uuids="isMultiSelection ? selectedFields.map(f => f.uuid) : []"
+        :with-click-save-event="isMultiSelection"
+        @click-save="handleSaveMultiSelectConditionsModal"
         @close="closeModal"
       />
     </Teleport>
@@ -160,7 +239,7 @@
 </template>
 
 <script>
-import { IconCopy, IconClipboard, IconTrashX, IconTypography, IconInfoCircle, IconRouteAltLeft, IconMathFunction } from '@tabler/icons-vue'
+import { IconCopy, IconClipboard, IconTrashX, IconTypography, IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconClick, IconNewSection, IconLayoutAlignLeft, IconLayoutAlignRight, IconLayoutAlignTop, IconLayoutAlignBottom } from '@tabler/icons-vue'
 import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
@@ -178,12 +257,18 @@ export default {
     IconInfoCircle,
     IconRouteAltLeft,
     IconMathFunction,
+    IconClick,
+    IconNewSection,
+    IconLayoutAlignLeft,
+    IconLayoutAlignRight,
+    IconLayoutAlignTop,
+    IconLayoutAlignBottom,
     FormulaModal,
     FontModal,
     ConditionsModal,
     DescriptionModal
   },
-  inject: ['t', 'save'],
+  inject: ['t', 'save', 'selectedAreasRef', 'isSelectModeRef'],
   props: {
     contextMenu: {
       type: Object,
@@ -197,20 +282,40 @@ export default {
     editable: {
       type: Boolean,
       default: true
+    },
+    isMultiSelection: {
+      type: Boolean,
+      default: false
+    },
+    selectedAreas: {
+      type: Array,
+      default: () => []
+    },
+    template: {
+      type: Object,
+      default: null
     }
   },
-  emits: ['copy', 'paste', 'delete', 'close'],
+  emits: ['copy', 'paste', 'delete', 'close', 'align'],
   data () {
     return {
       isShowFormulaModal: false,
       isShowFontModal: false,
       isShowConditionsModal: false,
-      isShowDescriptionModal: false
+      isShowDescriptionModal: false,
+      multiSelectField: null
     }
   },
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
+    selectedFields () {
+      if (!this.isMultiSelection) return []
+
+      return this.selectedAreasRef.value.map((area) => {
+        return this.template.fields.find((f) => f.areas?.includes(area))
+      }).filter(Boolean)
+    },
     isMac () {
       return (navigator.userAgentData?.platform || navigator.platform)?.toLowerCase()?.includes('mac')
     },
@@ -236,36 +341,44 @@ export default {
       }
     },
     showCopy () {
-      return !!this.contextMenu.area
+      return !!this.contextMenu.area || this.isMultiSelection
     },
     showPaste () {
-      return !this.contextMenu.area
+      return !this.contextMenu.area && !this.isMultiSelection
     },
     showDelete () {
-      return !!this.contextMenu.area
+      return !!this.contextMenu.area || this.isMultiSelection
     },
     showFont () {
+      if (this.isMultiSelection) return true
       if (!this.field) return false
+
       return ['text', 'number', 'date', 'select', 'heading'].includes(this.field.type)
     },
     showDescription () {
       if (!this.field) return false
+
       return !['stamp', 'heading', 'strikethrough'].includes(this.field.type)
     },
     showCondition () {
+      if (this.isMultiSelection) return true
       if (!this.field) return false
+
       return !['stamp', 'heading'].includes(this.field.type)
     },
     showFormula () {
       if (!this.field) return false
+
       return this.field.type === 'number'
     },
     showRequired () {
       if (!this.field) return false
+
       return !['phone', 'stamp', 'verification', 'strikethrough', 'heading'].includes(this.field.type)
     },
     showReadOnly () {
       if (!this.field) return false
+
       return ['text', 'number'].includes(this.field.type)
     },
     isRequired () {
@@ -273,6 +386,9 @@ export default {
     },
     isReadOnly () {
       return this.field?.readonly || false
+    },
+    showSelectFields () {
+      return !this.contextMenu.area && !this.isMultiSelection
     }
   },
   mounted () {
@@ -333,12 +449,38 @@ export default {
       }
     },
     openFontModal () {
+      if (this.isMultiSelection) {
+        this.multiSelectField = {
+          name: this.t('fields_selected').replace('{count}', this.selectedFields.length),
+          preferences: {}
+        }
+
+        const preferencesStrings = this.selectedFields.map((f) => JSON.stringify(f.preferences || {}))
+
+        if (preferencesStrings.every((s) => s === preferencesStrings[0])) {
+          this.multiSelectField.preferences = JSON.parse(preferencesStrings[0])
+        }
+      }
+
       this.isShowFontModal = true
     },
     openDescriptionModal () {
       this.isShowDescriptionModal = true
     },
     openConditionModal () {
+      if (this.isMultiSelection) {
+        this.multiSelectField = {
+          name: this.t('fields_selected').replace('{count}', this.selectedFields.length),
+          conditions: []
+        }
+
+        const conditionStrings = this.selectedFields.map((f) => JSON.stringify(f.conditions || []))
+
+        if (conditionStrings.every((s) => s === conditionStrings[0])) {
+          this.multiSelectField.conditions = JSON.parse(conditionStrings[0])
+        }
+      }
+
       this.isShowConditionsModal = true
     },
     openFormulaModal () {
@@ -349,6 +491,30 @@ export default {
       this.isShowFontModal = false
       this.isShowConditionsModal = false
       this.isShowDescriptionModal = false
+      this.multiSelectField = null
+
+      this.$emit('close')
+    },
+    handleSaveMultiSelectFontModal () {
+      this.selectedFields.forEach((field) => {
+        field.preferences = { ...field.preferences, ...this.multiSelectField.preferences }
+      })
+
+      this.save()
+
+      this.closeModal()
+    },
+    handleSaveMultiSelectConditionsModal () {
+      this.selectedFields.forEach((field) => {
+        field.conditions = JSON.parse(JSON.stringify(this.multiSelectField.conditions))
+      })
+
+      this.save()
+
+      this.closeModal()
+    },
+    handleToggleSelectMode () {
+      this.isSelectModeRef.value = !this.isSelectModeRef.value
 
       this.$emit('close')
     }
