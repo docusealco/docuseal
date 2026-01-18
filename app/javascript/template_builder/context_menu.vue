@@ -188,7 +188,7 @@
     </div>
     <Teleport
       v-if="isShowFormulaModal"
-      to="#docuseal_modal_container"
+      :to="modalContainerEl"
     >
       <FormulaModal
         :field="field"
@@ -199,7 +199,7 @@
     </Teleport>
     <Teleport
       v-if="isShowFontModal"
-      to="#docuseal_modal_container"
+      :to="modalContainerEl"
     >
       <FontModal
         :field="multiSelectField || field"
@@ -213,7 +213,7 @@
     </Teleport>
     <Teleport
       v-if="isShowConditionsModal"
-      to="#docuseal_modal_container"
+      :to="modalContainerEl"
     >
       <ConditionsModal
         :item="multiSelectField || field"
@@ -226,7 +226,7 @@
     </Teleport>
     <Teleport
       v-if="isShowDescriptionModal"
-      to="#docuseal_modal_container"
+      :to="modalContainerEl"
     >
       <DescriptionModal
         :field="field"
@@ -309,6 +309,9 @@ export default {
   computed: {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
+    modalContainerEl () {
+      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+    },
     selectedFields () {
       if (!this.isMultiSelection) return []
 
