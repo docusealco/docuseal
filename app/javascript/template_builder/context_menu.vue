@@ -185,6 +185,18 @@
         </span>
         <span class="text-xs text-base-content/60 ml-4">Tab</span>
       </button>
+      <hr
+        v-if="showAutodetectFields"
+        class="my-1 border-base-300"
+      >
+      <button
+        v-if="showAutodetectFields"
+        class="w-full px-2 py-1 rounded-md hover:bg-base-100 flex items-center space-x-2 text-sm"
+        @click.stop="$emit('autodetect-fields')"
+      >
+        <IconSparkles class="w-4 h-4" />
+        <span>{{ t('autodetect_fields') }}</span>
+      </button>
     </div>
     <Teleport
       v-if="isShowFormulaModal"
@@ -239,7 +251,7 @@
 </template>
 
 <script>
-import { IconCopy, IconClipboard, IconTrashX, IconTypography, IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconClick, IconNewSection, IconLayoutAlignLeft, IconLayoutAlignRight, IconLayoutAlignTop, IconLayoutAlignBottom } from '@tabler/icons-vue'
+import { IconCopy, IconClipboard, IconTrashX, IconTypography, IconInfoCircle, IconRouteAltLeft, IconMathFunction, IconClick, IconNewSection, IconLayoutAlignLeft, IconLayoutAlignRight, IconLayoutAlignTop, IconLayoutAlignBottom, IconSparkles } from '@tabler/icons-vue'
 import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
@@ -263,6 +275,7 @@ export default {
     IconLayoutAlignRight,
     IconLayoutAlignTop,
     IconLayoutAlignBottom,
+    IconSparkles,
     FormulaModal,
     FontModal,
     ConditionsModal,
@@ -294,9 +307,13 @@ export default {
     template: {
       type: Object,
       default: null
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      default: false
     }
   },
-  emits: ['copy', 'paste', 'delete', 'close', 'align'],
+  emits: ['copy', 'paste', 'delete', 'close', 'align', 'autodetect-fields'],
   data () {
     return {
       isShowFormulaModal: false,
@@ -392,6 +409,9 @@ export default {
     },
     showSelectFields () {
       return !this.contextMenu.area && !this.isMultiSelection
+    },
+    showAutodetectFields () {
+      return this.withFieldsDetection && this.editable && !this.contextMenu.area && !this.isMultiSelection
     }
   },
   mounted () {

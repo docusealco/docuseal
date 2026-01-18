@@ -194,7 +194,9 @@ const en = {
   align_right: 'Align Right',
   align_top: 'Align Top',
   align_bottom: 'Align Bottom',
-  fields_selected: '{count} Fields Selected'
+  fields_selected: '{count} Fields Selected',
+  field_added: '{count} Field Added',
+  fields_added: '{count} Fields Added'
 }
 
 const es = {
@@ -393,7 +395,9 @@ const es = {
   align_right: 'Alinear a la derecha',
   align_top: 'Alinear arriba',
   align_bottom: 'Alinear abajo',
-  fields_selected: '{count} Campos Seleccionados'
+  fields_selected: '{count} Campos Seleccionados',
+  field_added: '{count} Campo Añadido',
+  fields_added: '{count} Campos Añadidos'
 }
 
 const it = {
@@ -592,7 +596,9 @@ const it = {
   align_right: 'Allinea a destra',
   align_top: 'Allinea in alto',
   align_bottom: 'Allinea in basso',
-  fields_selected: '{count} Campi Selezionati'
+  fields_selected: '{count} Campi Selezionati',
+  field_added: '{count} Campo Aggiunto',
+  fields_added: '{count} Campi Aggiunti'
 }
 
 const pt = {
@@ -791,7 +797,9 @@ const pt = {
   align_right: 'Alinhar à direita',
   align_top: 'Alinhar ao topo',
   align_bottom: 'Alinhar à parte inferior',
-  fields_selected: '{count} Campos Selecionados'
+  fields_selected: '{count} Campos Selecionados',
+  field_added: '{count} Campo Adicionado',
+  fields_added: '{count} Campos Adicionados'
 }
 
 const fr = {
@@ -990,7 +998,9 @@ const fr = {
   align_right: 'Aligner à droite',
   align_top: 'Aligner en haut',
   align_bottom: 'Aligner en bas',
-  fields_selected: '{count} Champs Sélectionnés'
+  fields_selected: '{count} Champs Sélectionnés',
+  field_added: '{count} Champ Ajouté',
+  fields_added: '{count} Champs Ajoutés'
 }
 
 const de = {
@@ -1189,7 +1199,9 @@ const de = {
   align_right: 'Rechts ausrichten',
   align_top: 'Oben ausrichten',
   align_bottom: 'Unten ausrichten',
-  fields_selected: '{count} Felder Ausgewählt'
+  fields_selected: '{count} Felder Ausgewählt',
+  field_added: '{count} Feld Hinzugefügt',
+  fields_added: '{count} Felder Hinzugefügt'
 }
 
 const nl = {
@@ -1388,7 +1400,9 @@ const nl = {
   align_right: 'Rechts uitlijnen',
   align_top: 'Boven uitlijnen',
   align_bottom: 'Onder uitlijnen',
-  fields_selected: '{count} Velden Geselecteerd'
+  fields_selected: '{count} Velden Geselecteerd',
+  field_added: '{count} Veld Toegevoegd',
+  fields_added: '{count} Velden Toegevoegd'
 }
 
 export { en, es, it, pt, fr, de, nl }

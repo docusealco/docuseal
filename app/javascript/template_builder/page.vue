@@ -72,9 +72,11 @@
         :context-menu="contextMenu"
         :field="contextMenu.field"
         :editable="editable"
+        :with-fields-detection="withFieldsDetection"
         @copy="handleCopy"
         @delete="handleDelete"
         @paste="handlePaste"
+        @autodetect-fields="handleAutodetectFields"
         @close="closeContextMenu"
       />
       <ContextMenu
@@ -207,9 +209,14 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas'],
+  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields'],
   data () {
     return {
       areaRefs: [],
@@ -410,6 +417,14 @@ export default {
         page: this.number,
         x: this.contextMenu.relativeX,
         y: this.contextMenu.relativeY
+      })
+
+      this.closeContextMenu()
+    },
+    handleAutodetectFields () {
+      this.$emit('autodetect-fields', {
+        page: this.number,
+        attachmentUuid: this.attachmentUuid
       })
 
       this.closeContextMenu()

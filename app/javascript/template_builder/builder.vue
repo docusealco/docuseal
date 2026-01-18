@@ -373,6 +373,7 @@
                 :draw-field-type="drawFieldType"
                 :editable="editable"
                 :base-url="baseUrl"
+                :with-fields-detection="withFieldsDetection"
                 @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
@@ -381,6 +382,7 @@
                 @copy-selected-areas="copySelectedAreas"
                 @delete-selected-areas="deleteSelectedAreas"
                 @align-selected-areas="alignSelectedAreas"
+                @autodetect-fields="detectFieldsForPage"
               />
               <DocumentControls
                 v-if="isBreakpointLg && editable"
@@ -523,6 +525,43 @@
         @select="startFieldDraw($event)"
       />
     </div>
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="translate-y-4 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transition-all duration-300 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="translate-y-4 opacity-0"
+    >
+      <div
+        v-if="isDetectingPageFields || detectingFieldsAddedCount !== null"
+        class="sticky bottom-0 z-50"
+      >
+        <div class="absolute left-0 right-0 h-0 overflow-visible bottom-16 z-50 flex justify-center">
+          <div
+            class="rounded-full bg-base-content h-12 flex items-center justify-center space-x-1.5 uppercase font-semibold text-white text-sm cursor-default"
+            style="min-width: 180px"
+          >
+            <template v-if="detectingFieldsAddedCount !== null">
+              <span>{{ (detectingFieldsAddedCount === 1 ? t('field_added') : t('fields_added')).replace('{count}', detectingFieldsAddedCount) }}</span>
+            </template>
+            <template v-else>
+              <IconInnerShadowTop
+                v-if="!detectingAnalyzingProgress"
+                width="20"
+                class="animate-spin"
+              />
+              <span v-if="detectingAnalyzingProgress">
+                {{ Math.round(detectingAnalyzingProgress * 100) }}% {{ t('analyzing_') }}
+              </span>
+              <span v-else>
+                {{ t('processing_') }}
+              </span>
+            </template>
+          </div>
+        </div>
+      </div>
+    </Transition>
     <div
       id="docuseal_modal_container"
       class="modal-container"
@@ -855,6 +894,9 @@ export default {
       isDownloading: false,
       isLoadingBlankPage: false,
       isSaving: false,
+      isDetectingPageFields: false,
+      detectingAnalyzingProgress: null,
+      detectingFieldsAddedCount: null,
       selectedSubmitter: null,
       showDrawField: false,
       pendingFieldAttachmentUuids: [],
@@ -2442,6 +2484,194 @@ export default {
           ...this.fetchOptions.headers,
           ...options.headers
         }
+      })
+    },
+    detectFieldsForPage ({ page, attachmentUuid }) {
+      this.isDetectingPageFields = true
+      this.detectingAnalyzingProgress = null
+      this.detectingFieldsAddedCount = null
+
+      let totalFieldsAdded = 0
+      const hadFieldsBeforeDetection = this.template.fields.length > 0
+
+      const calculateIoU = (area1, area2) => {
+        const x1 = Math.max(area1.x, area2.x)
+        const y1 = Math.max(area1.y, area2.y)
+        const x2 = Math.min(area1.x + area1.w, area2.x + area2.w)
+        const y2 = Math.min(area1.y + area1.h, area2.y + area2.h)
+
+        const intersectionArea = Math.max(0, x2 - x1) * Math.max(0, y2 - y1)
+        const area1Size = area1.w * area1.h
+        const area2Size = area2.w * area2.h
+        const unionArea = area1Size + area2Size - intersectionArea
+
+        return unionArea > 0 ? intersectionArea / unionArea : 0
+      }
+
+      const hasOverlappingField = (newArea) => {
+        const pageAreas = this.fieldAreasIndex[newArea.attachment_uuid]?.[newArea.page] || []
+
+        return pageAreas.some(({ area: existingArea }) => {
+          return calculateIoU(existingArea, newArea) >= 0.1
+        })
+      }
+
+      const filterNonOverlappingFields = (detectedFields) => {
+        return detectedFields.filter((field) => {
+          return (field.areas || []).every((area) => !hasOverlappingField(area))
+        })
+      }
+
+      this.baseFetch(`/templates/${this.template.id}/detect_fields`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ attachment_uuid: attachmentUuid, page })
+      }).then(async (response) => {
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder('utf-8')
+        let buffer = ''
+        const fields = []
+
+        while (true) {
+          const { value, done } = await reader.read()
+
+          buffer += decoder.decode(value, { stream: true })
+
+          const lines = buffer.split('\n\n')
+
+          buffer = lines.pop()
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const jsonStr = line.replace(/^data: /, '')
+              const data = JSON.parse(jsonStr)
+
+              if (data.error) {
+                const errorFields = filterNonOverlappingFields(data.fields || fields)
+
+                if (errorFields.length) {
+                  errorFields.forEach((f) => {
+                    if (!f.submitter_uuid) {
+                      f.submitter_uuid = this.template.submitters[0].uuid
+                    }
+                    this.insertField(f)
+                  })
+
+                  totalFieldsAdded += errorFields.length
+
+                  this.save()
+                } else if (!(data.fields || fields).length) {
+                  alert(data.error)
+                }
+
+                break
+              } else if (data.analyzing) {
+                this.detectingAnalyzingProgress = data.progress
+              } else if (data.completed) {
+                if (data.submitters) {
+                  if (!hadFieldsBeforeDetection) {
+                    this.template.submitters = data.submitters
+                    this.selectedSubmitter = this.template.submitters[0]
+
+                    const finalFields = data.fields || fields
+
+                    finalFields.forEach((f) => {
+                      if (!f.submitter_uuid) {
+                        f.submitter_uuid = this.template.submitters[0].uuid
+                      }
+                    })
+
+                    const nonOverlappingFields = filterNonOverlappingFields(finalFields)
+
+                    nonOverlappingFields.forEach((f) => this.insertField(f))
+                    totalFieldsAdded += nonOverlappingFields.length
+
+                    if (nonOverlappingFields.length) {
+                      this.save()
+                    }
+                  } else {
+                    const existingSubmitters = this.template.submitters
+                    const submitterUuidMap = {}
+
+                    data.submitters.forEach((newSubmitter) => {
+                      const existingMatch = existingSubmitters.find(
+                        (s) => s.name.toLowerCase() === newSubmitter.name.toLowerCase()
+                      )
+
+                      if (existingMatch) {
+                        submitterUuidMap[newSubmitter.uuid] = existingMatch.uuid
+                      } else {
+                        submitterUuidMap[newSubmitter.uuid] = newSubmitter.uuid
+
+                        if (!existingSubmitters.find((s) => s.uuid === newSubmitter.uuid)) {
+                          this.template.submitters.push(newSubmitter)
+                        }
+                      }
+                    })
+
+                    const finalFields = data.fields || fields
+
+                    finalFields.forEach((f) => {
+                      if (f.submitter_uuid && submitterUuidMap[f.submitter_uuid]) {
+                        f.submitter_uuid = submitterUuidMap[f.submitter_uuid]
+                      } else if (!f.submitter_uuid) {
+                        f.submitter_uuid = this.template.submitters[0].uuid
+                      }
+                    })
+
+                    const nonOverlappingFields = filterNonOverlappingFields(finalFields)
+
+                    nonOverlappingFields.forEach((f) => this.insertField(f))
+                    totalFieldsAdded += nonOverlappingFields.length
+
+                    if (nonOverlappingFields.length) {
+                      this.save()
+                    }
+                  }
+                } else {
+                  const finalFields = data.fields || fields
+
+                  finalFields.forEach((f) => {
+                    if (!f.submitter_uuid) {
+                      f.submitter_uuid = this.template.submitters[0].uuid
+                    }
+                  })
+
+                  const nonOverlappingFields = filterNonOverlappingFields(finalFields)
+
+                  nonOverlappingFields.forEach((f) => this.insertField(f))
+                  totalFieldsAdded += nonOverlappingFields.length
+
+                  if (nonOverlappingFields.length) {
+                    this.save()
+                  }
+                }
+
+                break
+              } else if (data.fields) {
+                data.fields.forEach((f) => {
+                  if (!f.submitter_uuid) {
+                    f.submitter_uuid = this.template.submitters[0].uuid
+                  }
+                })
+
+                fields.push(...data.fields)
+              }
+            }
+          }
+
+          if (done) break
+        }
+      }).catch(error => {
+        console.error('Error in streaming message: ', error)
+      }).finally(() => {
+        this.isDetectingPageFields = false
+        this.detectingAnalyzingProgress = null
+        this.detectingFieldsAddedCount = totalFieldsAdded
+
+        setTimeout(() => {
+          this.detectingFieldsAddedCount = null
+        }, 1000)
       })
     },
     save ({ force } = { force: false }) {

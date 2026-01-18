@@ -23,6 +23,7 @@
       :total-pages="sortedPreviewImages.length"
       :image="image"
       :attachment-uuid="document.uuid"
+      :with-fields-detection="withFieldsDetection"
       @drop-field="$emit('drop-field', { ...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
       @copy-field="$emit('copy-field', $event)"
@@ -30,6 +31,7 @@
       @copy-selected-areas="$emit('copy-selected-areas')"
       @delete-selected-areas="$emit('delete-selected-areas')"
       @align-selected-areas="$emit('align-selected-areas', $event)"
+      @autodetect-fields="$emit('autodetect-fields', $event)"
       @scroll-to="scrollToArea"
       @draw="$emit('draw', { area: {...$event.area, attachment_uuid: document.uuid }, isTooSmall: $event.isTooSmall })"
     />
@@ -122,9 +124,14 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'paste-field', 'copy-field', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas'],
+  emits: ['draw', 'drop-field', 'remove-area', 'paste-field', 'copy-field', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields'],
   data () {
     return {
       pageRefs: []

@@ -11,11 +11,14 @@ class TemplatesDetectFieldsController < ApplicationController
     sse = SSE.new(response.stream)
 
     documents = @template.schema_documents.preload(:blob)
+    documents = documents.where(uuid: params[:attachment_uuid]) if params[:attachment_uuid].present?
+
+    page_number = params[:page].present? ? params[:page].to_i : nil
 
     documents.each do |document|
       io = StringIO.new(document.download)
 
-      Templates::DetectFields.call(io, attachment: document) do |(attachment_uuid, page, fields)|
+      Templates::DetectFields.call(io, attachment: document, page_number:) do |(attachment_uuid, page, fields)|
         sse.write({ attachment_uuid:, page:, fields: })
       end
     end
