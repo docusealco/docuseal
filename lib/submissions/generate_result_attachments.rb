@@ -318,7 +318,7 @@ module Submissions
                 timezone = submitter.account.timezone
                 timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
 
-                if with_signature_id_reason
+                if with_signature_id_reason || field.dig('preferences', 'reasons').present?
                   "#{"#{I18n.t('reason')}: " if reason_value}#{reason_value || I18n.t('digitally_signed_by')} " \
                     "#{submitter.name}#{" <#{submitter.email}>" if submitter.email.present?}\n" \
                     "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: :long)} " \
