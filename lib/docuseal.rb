@@ -39,6 +39,7 @@ module Docuseal
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
   VERSION_FILE_PATH = Rails.root.join('.version')
+  VERSION_FILE2_PATH = Rails.public_path.join('version')
 
   DEFAULT_URL_OPTIONS = {
     host: HOST,
@@ -48,7 +49,12 @@ module Docuseal
   module_function
 
   def version
-    @version ||= VERSION_FILE_PATH.read.strip if VERSION_FILE_PATH.exist?
+    @version ||=
+      if VERSION_FILE_PATH.exist?
+        VERSION_FILE_PATH.read.strip
+      elsif VERSION_FILE2_PATH.exist?
+        VERSION_FILE2_PATH.each_line.first.to_s.strip
+      end
   end
 
   def multitenant?

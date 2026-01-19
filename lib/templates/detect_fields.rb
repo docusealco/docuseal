@@ -60,21 +60,23 @@ module Templates
 
     # rubocop:disable Metrics, Style
     def call(io, attachment: nil, confidence: 0.3, temperature: 1, inference: Templates::ImageToFields, nms: 0.1,
-             nmm: 0.5, split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, &)
+             nmm: 0.5, split_page: false, aspect_ratio: true, padding: 20, regexp_type: true, page_number: nil, &)
       fields, head_node =
         if attachment&.image?
           process_image_attachment(io, attachment:, confidence:, nms:, nmm:, split_page:, inference:,
-                                       temperature:, aspect_ratio:, padding:, &)
+                                       temperature:, aspect_ratio:, padding:, page_number:, &)
         else
           process_pdf_attachment(io, attachment:, confidence:, nms:, nmm:, split_page:, inference:,
-                                     temperature:, aspect_ratio:, regexp_type:, padding:, &)
+                                     temperature:, aspect_ratio:, regexp_type:, padding:, page_number:, &)
         end
 
       [fields, head_node]
     end
 
     def process_image_attachment(io, attachment:, confidence:, nms:, nmm:, temperature:, inference:,
-                                 split_page: false, aspect_ratio: false, padding: nil)
+                                 split_page: false, aspect_ratio: false, padding: nil, page_number: nil)
+      return [[], nil] if page_number && page_number != 0
+
       image = Vips::Image.new_from_buffer(io.read, '')
 
       fields = inference.call(image, confidence:, nms:, nmm:, split_page:,
@@ -105,14 +107,19 @@ module Templates
     end
 
     def process_pdf_attachment(io, attachment:, confidence:, nms:, nmm:, temperature:, inference:,
-                               split_page: false, aspect_ratio: false, padding: nil, regexp_type: false)
+                               split_page: false, aspect_ratio: false, padding: nil, regexp_type: false,
+                               page_number: nil)
       doc = Pdfium::Document.open_bytes(io.read)
 
       head_node = PageNode.new(elem: ''.b, page: 0, attachment_uuid: attachment&.uuid)
       tail_node = head_node
 
-      fields = doc.page_count.times.flat_map do |page_number|
-        page = doc.get_page(page_number)
+      page_range = page_number ? [page_number] : (0...doc.page_count)
+
+      fields = page_range.flat_map do |current_page_number|
+        next [] if current_page_number >= doc.page_count
+
+        page = doc.get_page(current_page_number)
 
         size_key = page.width > page.height ? :width : :height
         size = padding ? inference.resolution * 1.5 : inference.resolution
@@ -149,13 +156,13 @@ module Templates
             areas: [{
               x: field.x, y: field.y,
               w: field.w, h: field.h,
-              page: page_number,
+              page: current_page_number,
               attachment_uuid: attachment&.uuid
             }]
           }
         end
 
-        yield [attachment&.uuid, page_number, fields] if block_given?
+        yield [attachment&.uuid, current_page_number, fields] if block_given?
 
         fields
       ensure

@@ -47,7 +47,7 @@ FROM ruby:3.4.2-alpine AS app
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
-ENV OPENSSL_CONF=/app/openssl_legacy.cnf
+ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
@@ -65,36 +65,35 @@ legacy = legacy_sect\n\
 activate = 1\n\
 \n\
 [legacy_sect]\n\
-activate = 1' >> /app/openssl_legacy.cnf
+activate = 1' >> /etc/openssl_legacy.cnf
 
-COPY ./Gemfile ./Gemfile.lock ./
+COPY --chown=docuseal:docuseal ./Gemfile ./Gemfile.lock ./
 
 RUN apk add --no-cache build-base && bundle install && apk del --no-cache build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
 
 RUN echo 'https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && echo 'https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && apk add --no-cache onnxruntime
 
-COPY ./bin ./bin
-COPY ./app ./app
-COPY ./config ./config
-COPY ./db/migrate ./db/migrate
-COPY ./log ./log
-COPY ./lib ./lib
-COPY ./public ./public
-COPY ./tmp ./tmp
-COPY LICENSE README.md Rakefile config.ru .version ./
-COPY .version ./public/version
+COPY --chown=docuseal:docuseal ./bin ./bin
+COPY --chown=docuseal:docuseal ./app ./app
+COPY --chown=docuseal:docuseal ./config ./config
+COPY --chown=docuseal:docuseal ./db/migrate ./db/migrate
+COPY --chown=docuseal:docuseal ./log ./log
+COPY --chown=docuseal:docuseal ./lib ./lib
+COPY --chown=docuseal:docuseal ./public ./public
+COPY --chown=docuseal:docuseal ./tmp ./tmp
+COPY --chown=docuseal:docuseal LICENSE README.md Rakefile config.ru .version ./
+COPY --chown=docuseal:docuseal .version ./public/version
 
-COPY --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
+COPY --chown=docuseal:docuseal --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
 COPY --from=download /fonts/FreeSans.ttf /usr/share/fonts/freefont
 COPY --from=download /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
 COPY --from=download /pdfium-linux/licenses/pdfium.txt /usr/lib/libpdfium-LICENSE.txt
-COPY --from=download /model.onnx /app/tmp/model.onnx
-COPY --from=webpack /app/public/packs ./public/packs
+COPY --chown=docuseal:docuseal --from=download /model.onnx /app/tmp/model.onnx
+COPY --chown=docuseal:docuseal --from=webpack /app/public/packs ./public/packs
 
-RUN ln -s /fonts /app/public/fonts
-RUN bundle exec bootsnap precompile -j 1 --gemfile app/ lib/
-
-RUN chown -R docuseal:docuseal /app
+RUN ln -s /fonts /app/public/fonts && \
+    bundle exec bootsnap precompile -j 1 --gemfile app/ lib/ && \
+    chown -R docuseal:docuseal /app/tmp/cache
 
 WORKDIR /data/docuseal
 ENV HOME=/home/docuseal

@@ -135,7 +135,7 @@
       <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
         <%= Docuseal::SUPPORT_EMAIL %>
       </a>
-      <% if Docuseal.version.present? %>
+      <% if Docuseal.version.present? && !Docuseal.multitenant? && can?(:manage, EncryptedConfig) %>
         <a href="https://github.com/docusealco/docuseal/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
           v<%= Docuseal.version %>
         </a>

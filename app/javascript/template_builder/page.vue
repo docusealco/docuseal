@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative select-none mb-4 before:border before:rounded before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute"
-    :class="{ 'cursor-crosshair': allowDraw && editable, 'touch-none': !!drawField }"
+    :class="{ 'cursor-crosshair': allowDraw && editable && !isSelectMode, 'touch-none': !!drawField }"
     style="container-type: size"
     :style="{ aspectRatio: `${width} / ${height}`}"
   >
@@ -17,7 +17,20 @@
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onStartDraw"
+      @contextmenu="openContextMenu"
     >
+      <SelectionBox
+        v-if="showSelectionBox"
+        :selection-box="selectionBox"
+        :page-width="width"
+        :page-height="height"
+        :is-resizing="!!resizeDirection"
+        :is-drawing="!!drawFieldType"
+        :is-drag="isDrag"
+        @move="onSelectionBoxMove"
+        @contextmenu="openSelectionContextMenu"
+        @close-context-menu="closeSelectionContextMenu"
+      />
       <FieldArea
         v-for="(item, i) in areas"
         :key="i"
@@ -34,10 +47,12 @@
         :default-field="defaultFieldsIndex[item.field.name]"
         :default-submitters="defaultSubmitters"
         :max-page="totalPages - 1"
+        :is-select-mode="isSelectMode"
         @start-resize="resizeDirection = $event"
         @stop-resize="resizeDirection = null"
         @remove="$emit('remove-area', item.area)"
         @scroll-to="$emit('scroll-to', $event)"
+        @contextmenu="openAreaContextMenu($event, item.area, item.field)"
       />
       <FieldArea
         v-if="newArea"
@@ -47,15 +62,45 @@
         :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || dragFieldPlaceholder?.type || defaultFieldType }"
         :area="newArea"
       />
+      <div
+        v-if="selectionRect"
+        class="absolute outline-dashed outline-gray-400 pointer-events-none z-20"
+        :style="selectionRectStyle"
+      />
+      <ContextMenu
+        v-if="contextMenu"
+        :context-menu="contextMenu"
+        :field="contextMenu.field"
+        :editable="editable"
+        :with-fields-detection="withFieldsDetection"
+        @copy="handleCopy"
+        @delete="handleDelete"
+        @paste="handlePaste"
+        @autodetect-fields="handleAutodetectFields"
+        @close="closeContextMenu"
+      />
+      <ContextMenu
+        v-if="selectionContextMenu"
+        :context-menu="selectionContextMenu"
+        :editable="editable"
+        :is-multi-selection="true"
+        :selected-areas="selectedAreasRef.value"
+        :template="template"
+        @copy="handleSelectionCopy"
+        @delete="handleSelectionDelete"
+        @align="handleSelectionAlign"
+        @close="closeSelectionContextMenu"
+      />
     </div>
     <div
-      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
+      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value || selectionRect"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
+      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField && !isSelectMode, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
+      @contextmenu="openContextMenu"
       @dragover.prevent="onDragover"
       @dragenter="onDragenter"
       @dragleave="newArea = null"
@@ -67,13 +112,17 @@
 
 <script>
 import FieldArea from './area'
+import ContextMenu from './context_menu'
+import SelectionBox from './selection_box'
 
 export default {
   name: 'TemplatePage',
   components: {
-    FieldArea
+    FieldArea,
+    ContextMenu,
+    SelectionBox
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize', 'selectedAreasRef', 'template', 'isSelectModeRef'],
   props: {
     image: {
       type: Object,
@@ -155,18 +204,69 @@ export default {
     number: {
       type: Number,
       required: true
+    },
+    attachmentUuid: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'scroll-to'],
+  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields'],
   data () {
     return {
       areaRefs: [],
       showMask: false,
       resizeDirection: null,
-      newArea: null
+      newArea: null,
+      contextMenu: null,
+      selectionRect: null,
+      selectionContextMenu: null
     }
   },
   computed: {
+    isSelectMode () {
+      return this.isSelectModeRef.value && !this.drawFieldType && this.editable && !this.drawField
+    },
+    pageSelectedAreas () {
+      if (!this.selectedAreasRef.value) return []
+
+      return this.selectedAreasRef.value.filter((a) =>
+        a.attachment_uuid === this.attachmentUuid && a.page === this.number
+      )
+    },
+    showSelectionBox () {
+      return this.pageSelectedAreas.length >= 2 && this.editable
+    },
+    minSelectionBoxHeight () {
+      const ys = this.pageSelectedAreas.map((a) => a.y)
+
+      return Math.max(...ys) - Math.min(...ys)
+    },
+    minSelectionBoxWidth () {
+      const xs = this.pageSelectedAreas.map((a) => a.x)
+
+      return Math.max(...xs) - Math.min(...xs)
+    },
+    selectionBox () {
+      if (!this.pageSelectedAreas.length) return null
+
+      const minX = Math.min(...this.pageSelectedAreas.map((a) => a.x))
+      const minY = Math.min(...this.pageSelectedAreas.map((a) => a.y))
+      const maxX = Math.max(...this.pageSelectedAreas.map((a) => a.x + a.w))
+      const maxY = Math.max(...this.pageSelectedAreas.map((a) => a.y + a.h))
+
+      return {
+        x: minX,
+        y: minY,
+        w: Math.max(maxX - minX, this.minSelectionBoxWidth),
+        h: Math.max(maxY - minY, this.minSelectionBoxHeight)
+      }
+    },
     defaultFieldsIndex () {
       return this.defaultFields.reduce((acc, field) => {
         acc[field.name] = field
@@ -201,6 +301,16 @@ export default {
     },
     height () {
       return this.image.metadata.height
+    },
+    selectionRectStyle () {
+      if (!this.selectionRect) return {}
+
+      return {
+        left: this.selectionRect.x * 100 + '%',
+        top: this.selectionRect.y * 100 + '%',
+        width: this.selectionRect.w * 100 + '%',
+        height: this.selectionRect.h * 100 + '%'
+      }
     }
   },
   beforeUpdate () {
@@ -210,6 +320,114 @@ export default {
     onImageLoad (e) {
       this.image.metadata.width = e.target.naturalWidth
       this.image.metadata.height = e.target.naturalHeight
+    },
+    openContextMenu (event) {
+      if (!this.editable) {
+        return
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      const rect = this.$refs.image.getBoundingClientRect()
+
+      this.newArea = null
+      this.showMask = false
+
+      this.contextMenu = {
+        x: event.clientX,
+        y: event.clientY,
+        relativeX: (event.clientX - rect.left) / rect.width,
+        relativeY: (event.clientY - rect.top) / rect.height
+      }
+    },
+    openAreaContextMenu (event, area, field) {
+      if (!this.editable) {
+        return
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      const rect = this.$refs.image.getBoundingClientRect()
+
+      this.newArea = null
+      this.showMask = false
+
+      this.contextMenu = {
+        x: event.clientX,
+        y: event.clientY,
+        relativeX: (event.clientX - rect.left) / rect.width,
+        relativeY: (event.clientY - rect.top) / rect.height,
+        area,
+        field
+      }
+    },
+    openSelectionContextMenu (event) {
+      const rect = this.$el.getBoundingClientRect()
+
+      this.selectionContextMenu = {
+        x: event.clientX,
+        y: event.clientY,
+        relativeX: (event.clientX - rect.left) / rect.width,
+        relativeY: (event.clientY - rect.top) / rect.height
+      }
+    },
+    closeSelectionContextMenu () {
+      this.selectionContextMenu = null
+    },
+    handleSelectionCopy () {
+      this.$emit('copy-selected-areas')
+      this.closeSelectionContextMenu()
+    },
+    handleSelectionDelete () {
+      this.$emit('delete-selected-areas')
+      this.closeSelectionContextMenu()
+    },
+    handleSelectionAlign (direction) {
+      this.$emit('align-selected-areas', direction)
+      this.closeSelectionContextMenu()
+    },
+    closeContextMenu () {
+      this.contextMenu = null
+      this.newArea = null
+      this.showMask = false
+    },
+    handleCopy () {
+      if (this.contextMenu.area) {
+        this.selectedAreasRef.value = [this.contextMenu.area]
+
+        this.$emit('copy-field')
+      }
+
+      this.closeContextMenu()
+    },
+    handleDelete () {
+      if (this.contextMenu.area) {
+        this.$emit('remove-area', this.contextMenu.area)
+      }
+
+      this.closeContextMenu()
+    },
+    handlePaste () {
+      this.newArea = null
+      this.showMask = false
+
+      this.$emit('paste-field', {
+        page: this.number,
+        x: this.contextMenu.relativeX,
+        y: this.contextMenu.relativeY
+      })
+
+      this.closeContextMenu()
+    },
+    handleAutodetectFields () {
+      this.$emit('autodetect-fields', {
+        page: this.number,
+        attachmentUuid: this.attachmentUuid
+      })
+
+      this.closeContextMenu()
     },
     setAreaRefs (el) {
       if (el) {
@@ -243,6 +461,20 @@ export default {
       })
     },
     onStartDraw (e) {
+      if (e.button === 2) {
+        return
+      }
+
+      if (this.selectedAreasRef.value.length >= 2) {
+        this.selectedAreasRef.value = []
+      }
+
+      if (this.isSelectMode) {
+        this.startSelectionRect(e)
+
+        return
+      }
+
       if (!this.allowDraw) {
         return
       }
@@ -268,7 +500,69 @@ export default {
         }
       })
     },
+    startSelectionRect (e) {
+      this.selectedAreasRef.value = []
+
+      this.showMask = true
+
+      this.$nextTick(() => {
+        const x = e.offsetX / this.$refs.mask.clientWidth
+        const y = e.offsetY / this.$refs.mask.clientHeight
+
+        this.selectionRect = {
+          initialX: x,
+          initialY: y,
+          x,
+          y,
+          w: 0,
+          h: 0
+        }
+      })
+    },
+    onSelectionBoxMove (dx, dy) {
+      let clampedDx = dx
+      let clampedDy = dy
+
+      this.pageSelectedAreas.forEach((area) => {
+        const maxDxLeft = -area.x
+        const maxDxRight = 1 - area.w - area.x
+        const maxDyTop = -area.y
+        const maxDyBottom = 1 - area.h - area.y
+
+        if (dx < maxDxLeft) clampedDx = Math.max(clampedDx, maxDxLeft)
+        if (dx > maxDxRight) clampedDx = Math.min(clampedDx, maxDxRight)
+        if (dy < maxDyTop) clampedDy = Math.max(clampedDy, maxDyTop)
+        if (dy > maxDyBottom) clampedDy = Math.min(clampedDy, maxDyBottom)
+      })
+
+      this.pageSelectedAreas.forEach((area) => {
+        area.x += clampedDx
+        area.y += clampedDy
+      })
+    },
     onPointermove (e) {
+      if (this.selectionRect) {
+        const dx = e.offsetX / this.$refs.mask.clientWidth - this.selectionRect.initialX
+        const dy = e.offsetY / this.$refs.mask.clientHeight - this.selectionRect.initialY
+
+        if (dx > 0) {
+          this.selectionRect.x = this.selectionRect.initialX
+        } else {
+          this.selectionRect.x = e.offsetX / this.$refs.mask.clientWidth
+        }
+
+        if (dy > 0) {
+          this.selectionRect.y = this.selectionRect.initialY
+        } else {
+          this.selectionRect.y = e.offsetY / this.$refs.mask.clientHeight
+        }
+
+        this.selectionRect.w = Math.abs(dx)
+        this.selectionRect.h = Math.abs(dy)
+
+        return
+      }
+
       if (this.newArea) {
         const dx = e.offsetX / this.$refs.mask.clientWidth - this.newArea.initialX
         const dy = e.offsetY / this.$refs.mask.clientHeight - this.newArea.initialY
@@ -294,7 +588,20 @@ export default {
       }
     },
     onPointerup (e) {
-      if (this.newArea) {
+      if (this.selectionRect) {
+        const selRect = this.selectionRect
+        const areasToSelect = this.areas || []
+
+        areasToSelect.forEach((item) => {
+          const area = item.area
+
+          if (this.rectsOverlap(selRect, area)) {
+            this.selectedAreasRef.value.push(area)
+          }
+        })
+
+        this.selectionRect = null
+      } else if (this.newArea) {
         const area = {
           x: this.newArea.x,
           y: this.newArea.y,
@@ -317,6 +624,14 @@ export default {
 
       this.showMask = false
       this.newArea = null
+    },
+    rectsOverlap (r1, r2) {
+      return !(
+        r1.x + r1.w < r2.x ||
+        r2.x + r2.w < r1.x ||
+        r1.y + r1.h < r2.y ||
+        r2.y + r2.h < r1.y
+      )
     }
   }
 }

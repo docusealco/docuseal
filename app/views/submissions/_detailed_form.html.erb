@@ -30,14 +30,14 @@
                   <div class="grid <%= 'md:grid-cols-2 gap-1' if submitters.size == 1 %>">
                     <submitters-autocomplete data-field="email">
                       <linked-input data-target-id="<%= "detailed_email_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                        <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: (local_assigns[:require_email_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:email) : "#{t('email')} (#{t('optional')})"), value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "detailed_email_#{item['uuid']}", required: local_assigns[:require_email_2fa] == true %>
+                        <%= tag.input type: 'email', multiple: true, name: 'submission[1][submitters][][email]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: (local_assigns[:require_email_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:email) : "#{t('email')} (#{t('optional')})"), value: item['email'].presence || ((params[:selfsign] && index.zero?) || item['is_requester'] ? current_user.email : ''), id: "detailed_email_#{item['uuid']}", required: local_assigns[:require_email_2fa] == true && index.zero? %>
                       </linked-input>
                     </submitters-autocomplete>
                     <% has_phone_field = true %>
                     <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
                       <submitters-autocomplete data-field="phone">
                         <linked-input data-target-id="<%= "detailed_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true %>
+                          <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full', placeholder: local_assigns[:require_phone_2fa] == true || local_assigns[:prefillable_fields].present? ? t(:phone) : "#{t('phone')} (#{t('optional')})", id: "detailed_phone_#{item['uuid']}", required: local_assigns[:require_phone_2fa] == true && index.zero? %>
                         </linked-input>
                       </submitters-autocomplete>
                     </custom-validation>
@@ -99,6 +99,7 @@
     <% if has_phone_field %>
       <%= render 'send_sms', f: %>
     <% end %>
+    <%= render 'extra_fields', f: %>
   </div>
   <div class="form-control">
     <%= f.button button_title(title: t('add_recipients')), class: 'base-button' %>

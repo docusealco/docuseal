@@ -318,21 +318,38 @@ module Submitters
     end
 
     def check_field_condition(condition, submitter_values, fields_uuid_index)
+      value = submitter_values[condition['field_uuid']]
+
       case condition['action']
       when 'empty', 'unchecked'
-        submitter_values[condition['field_uuid']].blank?
+        value.blank?
       when 'not_empty', 'checked'
-        submitter_values[condition['field_uuid']].present?
+        value.present?
       when 'equal', 'contains'
         field = fields_uuid_index[condition['field_uuid']]
+
+        return true unless field
+
+        values = Array.wrap(value)
+
+        return values.include?(condition['value']) unless field['options']
+
         option = field['options'].find { |o| o['uuid'] == condition['value'] }
-        values = Array.wrap(submitter_values[condition['field_uuid']])
+
+        return false unless option
 
         values.include?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option) + 1}")
       when 'not_equal', 'does_not_contain'
         field = fields_uuid_index[condition['field_uuid']]
+
+        return true unless field
+        return false unless field['options']
+
         option = field['options'].find { |o| o['uuid'] == condition['value'] }
-        values = Array.wrap(submitter_values[condition['field_uuid']])
+
+        return false unless option
+
+        values = Array.wrap(value)
 
         values.exclude?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option) + 1}")
       else

@@ -330,7 +330,7 @@ export default {
     IconMathFunction,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor', 'selectedAreaRef', 't', 'locale'],
+  inject: ['template', 'save', 'backgroundColor', 'selectedAreasRef', 't', 'locale'],
   props: {
     field: {
       type: Object,
@@ -451,7 +451,7 @@ export default {
       const area = this.field.areas.find((a) => a.option_uuid === option.uuid)
 
       if (area) {
-        this.selectedAreaRef.value = area
+        this.selectedAreasRef.value = [area]
       }
     },
     scrollToFirstArea () {

@@ -185,7 +185,18 @@ const en = {
   start_tour: 'Start Tour',
   or_add_from: 'Or add from',
   sync: 'Sync',
-  syncing: 'Syncing...'
+  syncing: 'Syncing...',
+  copy: 'Copy',
+  paste: 'Paste',
+  select_fields: 'Select Fields',
+  draw_fields: 'Draw Fields',
+  align_left: 'Align Left',
+  align_right: 'Align Right',
+  align_top: 'Align Top',
+  align_bottom: 'Align Bottom',
+  fields_selected: '{count} Fields Selected',
+  field_added: '{count} Field Added',
+  fields_added: '{count} Fields Added'
 }
 
 const es = {
@@ -375,7 +386,18 @@ const es = {
   start_tour: 'Iniciar guía',
   or_add_from: 'O agregar desde',
   sync: 'Sincronizar',
-  syncing: 'Sincronizando...'
+  syncing: 'Sincronizando...',
+  copy: 'Copiar',
+  paste: 'Pegar',
+  select_fields: 'Seleccionar Campos',
+  draw_fields: 'Dibujar Campos',
+  align_left: 'Alinear a la izquierda',
+  align_right: 'Alinear a la derecha',
+  align_top: 'Alinear arriba',
+  align_bottom: 'Alinear abajo',
+  fields_selected: '{count} Campos Seleccionados',
+  field_added: '{count} Campo Añadido',
+  fields_added: '{count} Campos Añadidos'
 }
 
 const it = {
@@ -565,7 +587,18 @@ const it = {
   start_tour: 'Inizia il tour',
   or_add_from: 'O aggiungi da',
   sync: 'Sincronizza',
-  syncing: 'Sincronizzazione...'
+  syncing: 'Sincronizzazione...',
+  copy: 'Copia',
+  paste: 'Incolla',
+  select_fields: 'Seleziona Campi',
+  draw_fields: 'Disegna Campi',
+  align_left: 'Allinea a sinistra',
+  align_right: 'Allinea a destra',
+  align_top: 'Allinea in alto',
+  align_bottom: 'Allinea in basso',
+  fields_selected: '{count} Campi Selezionati',
+  field_added: '{count} Campo Aggiunto',
+  fields_added: '{count} Campi Aggiunti'
 }
 
 const pt = {
@@ -755,7 +788,18 @@ const pt = {
   start_tour: 'Iniciar tour',
   or_add_from: 'Ou adicionar de',
   sync: 'Sincronizar',
-  syncing: 'Sincronizando...'
+  syncing: 'Sincronizando...',
+  copy: 'Copiar',
+  paste: 'Colar',
+  select_fields: 'Selecionar Campos',
+  draw_fields: 'Desenhar Campos',
+  align_left: 'Alinhar à esquerda',
+  align_right: 'Alinhar à direita',
+  align_top: 'Alinhar ao topo',
+  align_bottom: 'Alinhar à parte inferior',
+  fields_selected: '{count} Campos Selecionados',
+  field_added: '{count} Campo Adicionado',
+  fields_added: '{count} Campos Adicionados'
 }
 
 const fr = {
@@ -945,7 +989,18 @@ const fr = {
   start_tour: 'Démarrer',
   or_add_from: 'Ou ajouter depuis',
   sync: 'Synchroniser',
-  syncing: 'Synchronisation...'
+  syncing: 'Synchronisation...',
+  copy: 'Copier',
+  paste: 'Coller',
+  select_fields: 'Sélectionner Champs',
+  draw_fields: 'Dessiner Champs',
+  align_left: 'Aligner à gauche',
+  align_right: 'Aligner à droite',
+  align_top: 'Aligner en haut',
+  align_bottom: 'Aligner en bas',
+  fields_selected: '{count} Champs Sélectionnés',
+  field_added: '{count} Champ Ajouté',
+  fields_added: '{count} Champs Ajoutés'
 }
 
 const de = {
@@ -1135,7 +1190,18 @@ const de = {
   start_tour: 'Tour starten',
   or_add_from: 'Oder hinzufügen aus',
   sync: 'Synchronisieren',
-  syncing: 'Synchronisiere...'
+  syncing: 'Synchronisiere...',
+  copy: 'Kopieren',
+  paste: 'Einfügen',
+  select_fields: 'Felder Auswählen',
+  draw_fields: 'Felder Zeichnen',
+  align_left: 'Links ausrichten',
+  align_right: 'Rechts ausrichten',
+  align_top: 'Oben ausrichten',
+  align_bottom: 'Unten ausrichten',
+  fields_selected: '{count} Felder Ausgewählt',
+  field_added: '{count} Feld Hinzugefügt',
+  fields_added: '{count} Felder Hinzugefügt'
 }
 
 const nl = {
@@ -1325,7 +1391,18 @@ const nl = {
   start_tour: 'Rondleiding starten',
   or_add_from: 'Of toevoegen van',
   sync: 'Synchroniseren',
-  syncing: 'Synchroniseren...'
+  syncing: 'Synchroniseren...',
+  copy: 'Kopiëren',
+  paste: 'Plakken',
+  select_fields: 'Velden Selecteren',
+  draw_fields: 'Velden Tekenen',
+  align_left: 'Links uitlijnen',
+  align_right: 'Rechts uitlijnen',
+  align_top: 'Boven uitlijnen',
+  align_bottom: 'Onder uitlijnen',
+  fields_selected: '{count} Velden Geselecteerd',
+  field_added: '{count} Veld Toegevoegd',
+  fields_added: '{count} Velden Toegevoegd'
 }
 
 export { en, es, it, pt, fr, de, nl }

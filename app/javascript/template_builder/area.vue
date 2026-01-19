@@ -8,7 +8,7 @@
     @touchstart="startTouchDrag"
   >
     <div
-      v-if="isSelected || isDraw"
+      v-if="isSelected || isDraw || isInMultiSelection"
       class="top-0 bottom-0 right-0 left-0 absolute border border-1.5 pointer-events-none"
       :class="activeBorderClasses"
     />
@@ -24,7 +24,7 @@
         :style="{ left: (cellW / area.w * 100) + '%' }"
       >
         <span
-          v-if="index === 0 && editable"
+          v-if="index === 0 && editable && !isInMultiSelection"
           class="h-2.5 w-2.5 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-ew-resize z-10"
           style="left: -4px"
           @mousedown.stop="startResizeCell"
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div
-      v-if="field?.type && (isSelected || isNameFocus)"
+      v-if="field?.type && (isSelected || isNameFocus) && !isInMultiSelection"
       class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
       style="top: -25px; height: 25px"
       @mousedown.stop
@@ -48,7 +48,7 @@
         :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px] mt-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
-        @click="selectedAreaRef.value = area"
+        @click="selectedAreasRef.value = [area]"
       />
       <FieldType
         v-model="field.type"
@@ -57,7 +57,7 @@
         :button-classes="'px-1'"
         :menu-classes="'bg-white rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
-        @click="selectedAreaRef.value = area"
+        @click="selectedAreasRef.value = [area]"
       />
       <span
         v-if="field.type !== 'checkbox' || field.name"
@@ -146,7 +146,7 @@
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
               @click-condition="isShowConditionsModal = true"
-              @scroll-to="[selectedAreaRef.value = $event, $emit('scroll-to', $event)]"
+              @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
             />
           </ul>
         </span>
@@ -266,7 +266,7 @@
               ref="defaultValueSelect"
               class="bg-transparent outline-none focus:outline-none w-full"
               @change="[field.default_value = $event.target.value, field.readonly = !!field.default_value?.length, save()]"
-              @focus="selectedAreaRef.value = area"
+              @focus="selectedAreasRef.value = [area]"
               @keydown.enter="onDefaultValueEnter"
             >
               <option
@@ -293,7 +293,7 @@
               :class="{ 'cursor-text': isValueInput }"
               :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
               @blur="onDefaultValueBlur"
-              @focus="selectedAreaRef.value = area"
+              @focus="selectedAreasRef.value = [area]"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
             >{{ field.default_value }}</span>
@@ -319,6 +319,7 @@
     <span
       v-if="field?.type && editable"
       class="h-4 w-4 lg:h-2.5 lg:w-2.5 -right-1 rounded-full -bottom-1 border-gray-400 bg-white shadow-md border absolute cursor-nwse-resize"
+      :class="{ 'z-30': isInMultiSelection }"
       @mousedown.stop="startResize"
       @touchstart="startTouchResize"
     />
@@ -398,7 +399,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'selectedAreaRef', 'save', 't', 'isInlineSize'],
+  inject: ['template', 'save', 't', 'isInlineSize', 'selectedAreasRef', 'isCmdKeyRef'],
   props: {
     area: {
       type: Object,
@@ -463,6 +464,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    isSelectMode: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to'],
@@ -646,7 +652,10 @@ export default {
       ]
     },
     isSelected () {
-      return this.selectedAreaRef.value === this.area
+      return this.selectedAreasRef.value.includes(this.area)
+    },
+    isInMultiSelection () {
+      return this.selectedAreasRef.value.length >= 2 && this.isSelected
     },
     positionStyle () {
       const { x, y, w, h } = this.area
@@ -683,10 +692,10 @@ export default {
     buildAreaOptionValue (area) {
       const option = this.optionsUuidIndex[area.option_uuid]
 
-      return option.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
+      return option?.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
     },
     maybeToggleDefaultValue () {
-      if (!this.editable) {
+      if (!this.editable || this.isCmdKeyRef.value) {
         return
       }
 
@@ -770,7 +779,7 @@ export default {
       }
     },
     onNameFocus (e) {
-      this.selectedAreaRef.value = this.area
+      this.selectedAreasRef.value = [this.area]
 
       this.isNameFocus = true
       this.$refs.name.style.minWidth = this.$refs.name.clientWidth + 'px'
@@ -906,6 +915,15 @@ export default {
       if (e.target.id === 'mask') {
         this.area.w = e.offsetX / e.target.clientWidth - this.area.x
         this.area.h = e.offsetY / e.target.clientHeight - this.area.y
+
+        if (this.isInMultiSelection) {
+          this.selectedAreasRef.value.forEach((area) => {
+            if (area !== this.area) {
+              area.w = this.area.w
+              area.h = this.area.h
+            }
+          })
+        }
       }
     },
     drag (e) {
@@ -931,7 +949,7 @@ export default {
 
       const rect = e.target.getBoundingClientRect()
 
-      this.selectedAreaRef.value = this.area
+      this.selectedAreasRef.value = [this.area]
 
       this.dragFrom = { x: rect.left - e.touches[0].clientX, y: rect.top - e.touches[0].clientY }
 
@@ -980,13 +998,23 @@ export default {
 
       e.preventDefault()
 
+      if (e.metaKey || e.ctrlKey) {
+        if (!this.selectedAreasRef.value.includes(this.area)) {
+          this.selectedAreasRef.value.push(this.area)
+        } else {
+          this.selectedAreasRef.value.splice(this.selectedAreasRef.value.indexOf(this.area), 1)
+        }
+
+        return
+      }
+
       if (this.editable) {
         this.isDragged = true
       }
 
       const rect = e.target.getBoundingClientRect()
 
-      this.selectedAreaRef.value = this.area
+      this.selectedAreasRef.value = [this.area]
 
       this.dragFrom = { x: rect.left - e.clientX, y: rect.top - e.clientY }
 
@@ -1055,7 +1083,9 @@ export default {
       this.$emit('stop-drag')
     },
     startResize () {
-      this.selectedAreaRef.value = this.area
+      if (!this.selectedAreasRef.value.includes(this.area)) {
+        this.selectedAreasRef.value = [this.area]
+      }
 
       this.$el.getRootNode().addEventListener('mousemove', this.resize)
       this.$el.getRootNode().addEventListener('mouseup', this.stopResize)
@@ -1071,7 +1101,9 @@ export default {
       this.save()
     },
     startTouchResize (e) {
-      this.selectedAreaRef.value = this.area
+      if (!this.selectedAreasRef.value.includes(this.area)) {
+        this.selectedAreasRef.value = [this.area]
+      }
 
       this.$refs?.name?.blur()
 
@@ -1088,6 +1120,15 @@ export default {
 
       this.area.w = (e.touches[0].clientX - rect.left) / rect.width - this.area.x
       this.area.h = (e.touches[0].clientY - rect.top) / rect.height - this.area.y
+
+      if (this.isInMultiSelection) {
+        this.selectedAreasRef.value.forEach((area) => {
+          if (area !== this.area) {
+            area.w = this.area.w
+            area.h = this.area.h
+          }
+        })
+      }
     },
     stopTouchResize () {
       this.$el.getRootNode().removeEventListener('touchmove', this.touchResize)

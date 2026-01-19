@@ -168,9 +168,19 @@ export default {
     buildDefaultName: {
       type: Function,
       required: true
+    },
+    withClickSaveEvent: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    excludeFieldUuids: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
-  emits: ['close'],
+  emits: ['close', 'click-save'],
   data () {
     return {
       conditions: this.item.conditions?.[0] ? JSON.parse(JSON.stringify(this.item.conditions)) : [{}]
@@ -183,14 +193,14 @@ export default {
     fields () {
       if (this.item.submitter_uuid) {
         return this.template.fields.reduce((acc, f) => {
-          if (f !== this.item && !this.excludeTypes.includes(f.type) && (!f.conditions?.length || !f.conditions.find((c) => c.field_uuid === this.item.uuid))) {
+          if (f !== this.item && !this.excludeTypes.includes(f.type) && !this.excludeFieldUuids.includes(f.uuid) && (!f.conditions?.length || !f.conditions.find((c) => c.field_uuid === this.item.uuid))) {
             acc.push(f)
           }
 
           return acc
         }, [])
       } else {
-        return this.template.fields
+        return this.template.fields.filter((f) => !this.excludeFieldUuids.includes(f.uuid))
       }
     }
   },
@@ -234,7 +244,12 @@ export default {
         delete this.item.conditions
       }
 
-      this.save()
+      if (this.withClickSaveEvent) {
+        this.$emit('click-save')
+      } else {
+        this.save()
+      }
+
       this.$emit('close')
     }
   }

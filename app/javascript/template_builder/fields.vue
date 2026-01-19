@@ -283,7 +283,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch', 'selectedAreasRef'],
   props: {
     fields: {
       type: Array,
@@ -608,6 +608,10 @@ export default {
             item.conditions.splice(item.conditions.indexOf(c), 1)
           }
         })
+      })
+
+      field.areas?.forEach((area) => {
+        this.selectedAreasRef.value.splice(this.selectedAreasRef.value.indexOf(area), 1)
       })
 
       if (save) {
