@@ -81,3 +81,4 @@ end
 
 gem "redis", "~> 5.4"
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'aasm'

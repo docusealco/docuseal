@@ -33,22 +33,51 @@
 #  fk_rails_...  (submission_id => submissions.id)
 #
 class CohortEnrollment < ApplicationRecord
+  include SoftDeletable
+
+  # Strip whitespace from string attributes
+  strip_attributes only: %i[student_email student_name student_surname student_id role]
+
+  # Associations
   belongs_to :cohort
   belongs_to :submission
 
   # Validations
   validates :student_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :submission_id, uniqueness: true
-
-  # Unique constraint: one enrollment per student per cohort
   validates :student_email, uniqueness: { scope: :cohort_id, case_sensitive: false }
+  validates :status, inclusion: { in: %w[waiting in_progress complete] }
+  validates :role, inclusion: { in: %w[student sponsor] }
 
-  # Soft delete scope
-  scope :active, -> { where(deleted_at: nil) }
-  scope :archived, -> { where.not(deleted_at: nil) }
-
-  # Status scopes
+  # Scopes
+  # Note: 'active' scope is provided by SoftDeletable concern
+  scope :students, -> { where(role: 'student') }
+  scope :sponsor, -> { where(role: 'sponsor') }
   scope :waiting, -> { where(status: 'waiting') }
   scope :in_progress, -> { where(status: 'in_progress') }
   scope :complete, -> { where(status: 'complete') }
+
+  # Mark enrollment as complete
+  # @return [Boolean] true if successful
+  def complete!
+    update(status: 'complete', completed_at: Time.current)
+  end
+
+  # Mark enrollment as in progress
+  # @return [Boolean] true if successful
+  def mark_in_progress!
+    update(status: 'in_progress')
+  end
+
+  # Check if enrollment is waiting
+  # @return [Boolean] true if status is waiting
+  def waiting?
+    status == 'waiting'
+  end
+
+  # Check if enrollment is completed
+  # @return [Boolean] true if status is complete
+  def completed?
+    status == 'complete'
+  end
 end
