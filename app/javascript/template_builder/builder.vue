@@ -1720,7 +1720,6 @@ export default {
         const areaCopy = JSON.parse(JSON.stringify(area))
 
         delete fieldCopy.areas
-        delete fieldCopy.uuid
         delete fieldCopy.submitter_uuid
 
         areaCopy.relativeX = area.x - minX
@@ -1839,6 +1838,9 @@ export default {
 
       const newAreas = []
 
+      const fieldUuidIndex = {}
+      const fieldOptionsMap = {}
+
       data.items.forEach((item) => {
         const field = JSON.parse(JSON.stringify(item.field))
         const area = JSON.parse(JSON.stringify(item.area))
@@ -1859,29 +1861,39 @@ export default {
         delete newArea.relativeX
         delete newArea.relativeY
 
-        const newField = {
+        const newField = fieldUuidIndex[field.uuid] || {
           ...field,
           uuid: v4(),
           submitter_uuid: this.selectedSubmitter.uuid,
-          areas: [newArea]
+          areas: []
         }
+
+        fieldUuidIndex[field.uuid] = newField
+
+        newField.areas.push(newArea)
+        newAreas.push(newArea)
 
         if (['radio', 'multiple'].includes(field.type) && field.options?.length) {
           const oldOptionUuid = area.option_uuid
-          const optionsMap = {}
 
-          newField.options = field.options.map((opt) => {
-            const newUuid = v4()
-            optionsMap[opt.uuid] = newUuid
+          if (!fieldOptionsMap[field.uuid]) {
+            fieldOptionsMap[field.uuid] = {}
 
-            return { ...opt, uuid: newUuid }
-          })
+            newField.options = field.options.map((opt) => {
+              const newUuid = v4()
 
-          newArea.option_uuid = optionsMap[oldOptionUuid] || newField.options[0].uuid
+              fieldOptionsMap[field.uuid][opt.uuid] = newUuid
+
+              return { ...opt, uuid: newUuid }
+            })
+          }
+
+          newArea.option_uuid = fieldOptionsMap[field.uuid][oldOptionUuid] || newField.options[0].uuid
         }
+      })
 
-        this.insertField(newField)
-        newAreas.push(newArea)
+      Object.values(fieldUuidIndex).forEach((field) => {
+        this.insertField(field)
       })
 
       this.selectedAreasRef.value = [...newAreas]
