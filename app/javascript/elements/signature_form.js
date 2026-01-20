@@ -5,16 +5,23 @@ export default targetable(class extends HTMLElement {
   static [target.static] = ['canvas', 'input', 'clear', 'button']
 
   async connectedCallback () {
-    const scale = 3
-
-    this.canvas.width = this.canvas.parentNode.clientWidth * scale
-    this.canvas.height = this.canvas.parentNode.clientHeight * scale
-
-    this.canvas.getContext('2d').scale(scale, scale)
-
     const { default: SignaturePad } = await import('signature_pad')
 
+    this.setCanvasSize()
+
     this.pad = new SignaturePad(this.canvas)
+
+    this.resizeObserver = new ResizeObserver(() => {
+      const { width, height } = this.canvas
+
+      this.setCanvasSize()
+
+      if (this.canvas.width !== width || this.canvas.height !== height) {
+        this.redrawCanvas(width, height)
+      }
+    })
+
+    this.resizeObserver.observe(this.canvas.parentNode)
 
     this.clear.addEventListener('click', (e) => {
       e.preventDefault()
@@ -46,5 +53,39 @@ export default targetable(class extends HTMLElement {
     }
 
     this.closest('form').requestSubmit()
+  }
+
+  disconnectedCallback () {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect()
+    }
+  }
+
+  setCanvasSize () {
+    const scale = 3
+
+    const width = this.canvas.parentNode.clientWidth
+    const height = this.canvas.parentNode.clientWidth / 2.5
+
+    if (this.canvas.width !== width * scale || this.canvas.height !== height * scale) {
+      this.canvas.width = width * scale
+      this.canvas.height = height * scale
+
+      this.canvas.getContext('2d').scale(scale, scale)
+    }
+  }
+
+  redrawCanvas (oldWidth, oldHeight) {
+    if (this.pad && !this.pad.isEmpty()) {
+      const sx = this.canvas.width / oldWidth
+      const sy = this.canvas.height / oldHeight
+
+      const scaledData = this.pad.toData().map((stroke) => ({
+        ...stroke,
+        points: stroke.points.map((p) => ({ ...p, x: p.x * sx, y: p.y * sy }))
+      }))
+
+      this.pad.fromData(scaledData)
+    }
   }
 })
