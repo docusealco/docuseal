@@ -154,8 +154,10 @@
         v-if="field.options && withOptions && (isExpandOptions || field.options.length < 5)"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
+        draggable="true"
         @dragover="onOptionDragover"
         @drop="reorderOptions"
+        @dragstart.prevent.stop
       >
         <div
           v-for="(option, index) in field.options"
