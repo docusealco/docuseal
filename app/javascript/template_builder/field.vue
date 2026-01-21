@@ -185,6 +185,7 @@
               :placeholder="`${t('option')} ${index + 1}`"
               @keydown.enter="option.value ? addOptionAt(index + 1) : null"
               @blur="save"
+              @paste="onOptionPaste($event, index)"
             >
             <button
               :title="t('draw')"
@@ -209,6 +210,7 @@
             @keydown.enter="option.value ? addOptionAt(index + 1) : null"
             @focus="maybeFocusOnOptionArea(option)"
             @blur="save"
+            @paste="onOptionPaste($event, index)"
           >
           <button
             v-if="editable && !defaultField"
@@ -459,6 +461,35 @@ export default {
     },
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
+    },
+    onOptionPaste (e, index) {
+      const text = e.clipboardData.getData('text')
+
+      if (text.includes('\n')) {
+        e.preventDefault()
+
+        this.isExpandOptions = true
+
+        const lines = text.split(/\r?\n/).map((l) => l.trim()).filter((l) => l)
+
+        if (lines.length > 0) {
+          const currentOption = this.field.options[index]
+
+          currentOption.value = (currentOption.value + lines[0]).trim()
+
+          const newOptions = lines.slice(1).map((line) => ({ value: line, uuid: v4() }))
+
+          this.field.options.splice(index + 1, 0, ...newOptions)
+
+          this.$nextTick(() => {
+            const inputs = this.$refs.options.querySelectorAll('input')
+
+            inputs[index + newOptions.length]?.focus()
+          })
+
+          this.save()
+        }
+      }
     },
     addOptionAt (index) {
       this.isExpandOptions = true
