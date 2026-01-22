@@ -115,6 +115,8 @@ module Submissions
         next if item['invite_by_uuid'].blank? && item['optional_invite_by_uuid'].blank?
         next if submission.template_submitters.any? { |e| e['uuid'] == item['uuid'] }
 
+        item = item.merge('order' => submitter_attr['order']) if submitter_attr && submitter_attr['order'].present?
+
         if index.zero?
           submission.template_submitters.insert(1, item)
         elsif submission.template_submitters.size > index
