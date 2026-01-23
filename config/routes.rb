@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   devise_for :users, path: '/', only: %i[sessions passwords],
                      controllers: { sessions: 'sessions', passwords: 'passwords' }
 
+  # SSO login endpoint
+  get 'sso/login', to: 'sso_login#login', as: :sso_login
+
   devise_scope :user do
     resource :invitation, only: %i[update] do
       get '' => :edit
