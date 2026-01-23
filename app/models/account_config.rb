@@ -47,6 +47,7 @@ class AccountConfig < ApplicationRecord
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
   RECIPIENT_FORM_FIELDS_KEY = 'recipient_form_fields'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
+  WITH_AUDIT_SENDER_KEY = 'with_audit_sender'
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
   REUSE_SIGNATURE_KEY = 'reuse_signature'
