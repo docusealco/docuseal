@@ -60,12 +60,28 @@ if ENV['RAILS_ENV'] == 'production'
     ENV['DATABASE_URL'] = ENV['DATABASE_URL'].to_s.empty? ? database_url : ENV.fetch('DATABASE_URL', nil)
   end
 
-  unless Process.uid == 2000
+  unless Process.euid == 2000
     begin
-      Process::Sys.setgid(2000)
-      Process::Sys.setuid(2000)
+      test_file = "#{ENV.fetch('WORKDIR', '.')}/test"
+
+      orig_euid = Process.euid
+      orig_egid = Process.egid
+
+      Process::Sys.setegid(2000)
+      Process::Sys.seteuid(2000)
+
+      File.open(test_file, 'w') { true }
     rescue StandardError
-      puts 'Unable to run as 2000:2000'
+      Process::Sys.seteuid(orig_euid)
+      Process::Sys.setegid(orig_egid)
+
+      puts "Unable to run as 2000:2000, running as #{orig_euid}:#{orig_egid}"
+    ensure
+      begin
+        File.unlink(test_file)
+      rescue StandardError
+        nil
+      end
     end
   end
 end
