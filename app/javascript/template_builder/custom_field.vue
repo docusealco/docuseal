@@ -178,7 +178,7 @@ export default {
     IconTrashX,
     FieldType
   },
-  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale'],
+  inject: ['backgroundColor', 't'],
   props: {
     field: {
       type: Object,
