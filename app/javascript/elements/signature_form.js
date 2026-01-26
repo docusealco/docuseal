@@ -12,13 +12,17 @@ export default targetable(class extends HTMLElement {
     this.pad = new SignaturePad(this.canvas)
 
     this.resizeObserver = new ResizeObserver(() => {
-      const { width, height } = this.canvas
+      requestAnimationFrame(() => {
+        if (!this.canvas) return
 
-      this.setCanvasSize()
+        const { width, height } = this.canvas
 
-      if (this.canvas.width !== width || this.canvas.height !== height) {
-        this.redrawCanvas(width, height)
-      }
+        this.setCanvasSize()
+
+        if (this.canvas.width !== width || this.canvas.height !== height) {
+          this.redrawCanvas(width, height)
+        }
+      })
     })
 
     this.resizeObserver.observe(this.canvas.parentNode)

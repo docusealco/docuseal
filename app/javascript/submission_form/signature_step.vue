@@ -474,13 +474,17 @@ export default {
       this.intersectionObserver.observe(this.$refs.canvas)
 
       this.resizeObserver = new ResizeObserver(() => {
-        const { width, height } = this.$refs.canvas
+        requestAnimationFrame(() => {
+          if (!this.$refs.canvas) return
 
-        this.setCanvasSize()
+          const { width, height } = this.$refs.canvas
 
-        if (this.$refs.canvas.width !== width || this.$refs.canvas.height !== height) {
-          this.redrawCanvas(width, height)
-        }
+          this.setCanvasSize()
+
+          if (this.$refs.canvas.width !== width || this.$refs.canvas.height !== height) {
+            this.redrawCanvas(width, height)
+          }
+        })
       })
 
       this.resizeObserver.observe(this.$refs.canvas.parentNode)
