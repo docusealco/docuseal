@@ -13,7 +13,7 @@ class TemplatesDetectFieldsController < ApplicationController
     documents = @template.schema_documents.preload(:blob)
     documents = documents.where(uuid: params[:attachment_uuid]) if params[:attachment_uuid].present?
 
-    page_number = params[:page].present? ? params[:page].to_i : nil
+    page_number = params[:page].presence&.to_i
 
     documents.each do |document|
       io = StringIO.new(document.download)

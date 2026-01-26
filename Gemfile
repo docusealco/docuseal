@@ -2,16 +2,16 @@
 
 source 'https://rubygems.org'
 
-ruby '3.4.2'
+ruby '4.0.1'
 
-gem 'arabic-letter-connector', require: 'arabic-letter-connector/logic'
+gem 'arabic-letter-connector', require: false
 gem 'aws-sdk-s3', require: false
 gem 'aws-sdk-secretsmanager', require: false
-gem 'azure-storage-blob', require: false
+gem 'azure-blob', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
-gem 'csv'
-gem 'csv-safe'
+gem 'csv', require: false
+gem 'csv-safe', require: false
 gem 'devise'
 gem 'devise-two-factor'
 gem 'dotenv', require: false
@@ -21,12 +21,12 @@ gem 'faraday-follow_redirects'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'
 gem 'image_processing'
-gem 'jwt'
+gem 'jwt', require: false
 gem 'lograge'
 gem 'mysql2', require: false
-gem 'numo-narray'
+gem 'numo-narray-alt', require: false
 gem 'oj'
-gem 'onnxruntime'
+gem 'onnxruntime', require: false
 gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'
@@ -38,9 +38,9 @@ gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rotp'
 gem 'rouge', require: false
-gem 'rqrcode'
+gem 'rqrcode', require: false
 gem 'ruby-vips'
-gem 'rubyXL'
+gem 'rubyXL', require: false
 gem 'shakapacker'
 gem 'sidekiq'
 gem 'sqlite3', require: false

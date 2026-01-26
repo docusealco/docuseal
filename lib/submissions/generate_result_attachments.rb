@@ -238,7 +238,7 @@ module Submissions
           width = page.box.width
           height = page.box.height
 
-          preferences_font_size = field.dig('preferences', 'font_size').then { |num| num.present? ? num.to_i : nil }
+          preferences_font_size = field.dig('preferences', 'font_size').then { |num| num.presence&.to_i }
 
           font_size   = preferences_font_size
           font_size ||= (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i

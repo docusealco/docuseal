@@ -3,7 +3,7 @@
 module Api
   class ApiBaseController < ActionController::API
     include ActiveStorage::SetCurrent
-    include Pagy::Backend
+    include Pagy::Method
 
     DEFAULT_LIMIT = 10
     MAX_LIMIT = 100

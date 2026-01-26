@@ -1,4 +1,4 @@
-FROM ruby:3.4.2-alpine AS download
+FROM ruby:4.0.1-alpine AS download
 
 WORKDIR /fonts
 
@@ -16,7 +16,7 @@ RUN apk --no-cache add fontforge wget && \
 
 RUN fontforge -lang=py -c 'font1 = fontforge.open("FreeSans.ttf"); font2 = fontforge.open("NotoSansSymbols2-Regular.ttf"); font1.mergeFonts(font2); font1.generate("FreeSans.ttf")'
 
-FROM ruby:3.4.2-alpine AS webpack
+FROM ruby:4.0.1-alpine AS webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -42,7 +42,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:3.4.2-alpine AS app
+FROM ruby:4.0.1-alpine AS app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
@@ -51,7 +51,7 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev yaml-dev redis libheif vips-heif gcompat ttf-freefont && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
+RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev yaml-dev redis libheif vips-heif gcompat ttf-freefont onnxruntime && mkdir /fonts && rm /usr/share/fonts/freefont/FreeSans.otf
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
 
@@ -70,8 +70,6 @@ activate = 1' >> /etc/openssl_legacy.cnf
 COPY --chown=docuseal:docuseal ./Gemfile ./Gemfile.lock ./
 
 RUN apk add --no-cache build-base && bundle install && apk del --no-cache build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
-
-RUN echo 'https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && echo 'https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && apk add --no-cache onnxruntime
 
 COPY --chown=docuseal:docuseal ./bin ./bin
 COPY --chown=docuseal:docuseal ./app ./app

@@ -35,7 +35,7 @@ module Submissions
       conn = Faraday.new(uri.origin) do |c|
         c.options.read_timeout = TIMEOUT
         c.options.open_timeout = TIMEOUT
-        c.basic_auth(uri.user, uri.password) if uri.password.present?
+        c.request :authorization, :basic, uri.user, uri.password if uri.password.present?
       end
 
       response = conn.post(uri.request_uri, build_payload(digest.digest),
