@@ -592,6 +592,18 @@ import AppearsOn from './appears_on'
 import i18n from './i18n'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 
+if (typeof URL.canParse !== 'function') {
+  URL.canParse = function (url, base) {
+    try {
+      const parsed = new URL(url, base)
+
+      return !!parsed
+    } catch {
+      return false
+    }
+  }
+}
+
 const isEmpty = (obj) => {
   if (obj == null) return true
 
