@@ -1,7 +1,7 @@
 <template>
   <span
     class="dropdown dropdown-end field-settings-dropdown"
-    :class="{ 'dropdown-open': ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
+    :class="{ 'dropdown-open': withForceOpen && ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
   >
     <label
       tabindex="0"
@@ -291,6 +291,11 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withForceOpen: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withCustomFields: {
       type: Boolean,

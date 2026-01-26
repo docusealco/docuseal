@@ -48,6 +48,7 @@
             v-if="field.type === 'payment' && !isNew"
             :field="field"
             :with-condition="false"
+            :with-force-open="false"
             @click-description="isShowDescriptionModal = true"
             @click-formula="isShowFormulaModal = true"
           />
