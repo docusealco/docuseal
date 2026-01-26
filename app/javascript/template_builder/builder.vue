@@ -2287,6 +2287,8 @@ export default {
 
       delete field.conditions
 
+      const isClick = area.w === 0 || area.h === 0
+
       const firstArea = {
         x: area.x,
         y: area.y,
@@ -2303,7 +2305,9 @@ export default {
         } else {
           this.setDefaultAreaSize(firstArea, field.type)
         }
+      }
 
+      if (isClick) {
         firstArea.x -= firstArea.w / 2
         firstArea.y -= firstArea.h / 2
       }
