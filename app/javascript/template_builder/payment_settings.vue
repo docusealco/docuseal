@@ -231,7 +231,10 @@
           </span>
         </label>
       </li>
-      <li class="mt-1">
+      <li
+        v-if="withCondition"
+        class="mt-1"
+      >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-condition')"
@@ -244,12 +247,29 @@
           </span>
         </label>
       </li>
+      <hr
+        v-if="withCustomFields"
+        class="pb-0.5 mt-0.5"
+      >
+      <li v-if="withCustomFields">
+        <a
+          href="#"
+          class="text-sm py-1 px-2"
+          @click.prevent="$emit('add-custom-field', field)"
+        >
+          <IconForms
+            :width="20"
+            :stroke-width="1.6"
+          />
+          {{ t('save_as_custom_field') }}
+        </a>
+      </li>
     </ul>
   </span>
 </template>
 
 <script>
-import { IconMathFunction, IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft } from '@tabler/icons-vue'
+import { IconMathFunction, IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft, IconForms } from '@tabler/icons-vue'
 import { ref } from 'vue'
 
 const isConnected = ref(false)
@@ -261,6 +281,7 @@ export default {
     IconCircleCheck,
     IconRouteAltLeft,
     IconInfoCircle,
+    IconForms,
     IconMathFunction,
     IconInnerShadowTop,
     IconBrandStripe
@@ -270,9 +291,19 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withCondition: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
-  emits: ['click-condition', 'click-description', 'click-formula'],
+  emits: ['click-condition', 'click-description', 'click-formula', 'add-custom-field'],
   data () {
     return {
       isLoading: false

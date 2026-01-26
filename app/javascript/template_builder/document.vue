@@ -19,6 +19,7 @@
       :default-submitters="defaultSubmitters"
       :draw-field="drawField"
       :draw-field-type="drawFieldType"
+      :draw-custom-field="drawCustomField"
       :selected-submitter="selectedSubmitter"
       :total-pages="sortedPreviewImages.length"
       :image="image"
@@ -28,6 +29,7 @@
       @remove-area="$emit('remove-area', $event)"
       @copy-field="$emit('copy-field', $event)"
       @paste-field="$emit('paste-field', { ...$event, attachment_uuid: document.uuid })"
+      @add-custom-field="$emit('add-custom-field', $event)"
       @copy-selected-areas="$emit('copy-selected-areas')"
       @delete-selected-areas="$emit('delete-selected-areas')"
       @align-selected-areas="$emit('align-selected-areas', $event)"
@@ -115,6 +117,11 @@ export default {
       required: false,
       default: null
     },
+    drawCustomField: {
+      type: Object,
+      required: false,
+      default: null
+    },
     baseUrl: {
       type: String,
       required: false,
@@ -131,7 +138,7 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'paste-field', 'copy-field', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields'],
+  emits: ['draw', 'drop-field', 'remove-area', 'paste-field', 'copy-field', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields', 'add-custom-field'],
   data () {
     return {
       pageRefs: []

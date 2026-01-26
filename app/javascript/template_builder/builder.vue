@@ -20,8 +20,9 @@
     />
     <DragPlaceholder
       ref="dragPlaceholder"
-      :field="fieldsDragFieldRef.value || toRaw(dragField)"
+      :field="customDragFieldRef.value || fieldsDragFieldRef.value || toRaw(dragField)"
       :is-field="template.fields.includes(fieldsDragFieldRef.value)"
+      :is-custom="!!customDragFieldRef.value"
       :is-default="defaultFields.includes(toRaw(dragField))"
       :is-required="defaultRequiredFields.includes(toRaw(dragField))"
     />
@@ -362,7 +363,7 @@
                 :is-drag="!!dragField"
                 :input-mode="inputMode"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
-                :allow-draw="!onlyDefinedFields || drawField"
+                :allow-draw="!onlyDefinedFields || drawField || drawCustomField"
                 :with-signature-id="withSignatureId"
                 :with-prefillable="withPrefillable"
                 :data-document-uuid="document.uuid"
@@ -371,14 +372,16 @@
                 :with-field-placeholder="withFieldPlaceholder"
                 :draw-field="drawField"
                 :draw-field-type="drawFieldType"
+                :draw-custom-field="drawCustomField"
                 :editable="editable"
                 :base-url="baseUrl"
                 :with-fields-detection="withFieldsDetection"
-                @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
+                @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', drawCustomField = null, showDrawField = false]"
                 @drop-field="onDropfield"
                 @remove-area="removeArea"
                 @paste-field="pasteField"
                 @copy-field="copyField"
+                @add-custom-field="addCustomField"
                 @copy-selected-areas="copySelectedAreas"
                 @delete-selected-areas="deleteSelectedAreas"
                 @align-selected-areas="alignSelectedAreas"
@@ -436,15 +439,15 @@
         v-if="withFieldsList && !isMobile"
         id="fields_list_container"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
-        :class="drawField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
+        :class="drawField || drawCustomField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
-          v-if="showDrawField || drawField"
+          v-if="showDrawField || drawField || drawCustomField"
           class="sticky inset-0 h-full z-20"
           :style="{ backgroundColor }"
         >
           <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
-            <p v-if="(drawField?.type || drawFieldType) === 'strikethrough'">
+            <p v-if="(drawField?.type || drawFieldType || drawCustomField?.type) === 'strikethrough'">
               {{ t('draw_strikethrough_the_document') }}
             </p>
             <p v-else>
@@ -458,10 +461,10 @@
                 {{ t('cancel') }}
               </button>
               <a
-                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading', 'strikethrough'].includes(drawField?.type || drawFieldType)"
+                v-if="!drawField && !drawOption && !['stamp', 'signature', 'initials', 'heading', 'strikethrough'].includes(drawField?.type || drawFieldType || drawCustomField?.type)"
                 href="#"
                 class="link block mt-3 text-sm"
-                @click.prevent="[addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
+                @click.prevent="drawCustomField ? addCustomFieldWithoutDraw() : [addField(drawFieldType), drawField = null, drawOption = null, withSelectedFieldType ? '' : drawFieldType = '', showDrawField = false]"
               >
                 {{ t('or_add_field_without_drawing') }}
               </a>
@@ -477,6 +480,8 @@
             :with-help="withHelp"
             :default-submitters="defaultSubmitters"
             :draw-field-type="drawFieldType"
+            :custom-fields="customFields"
+            :with-custom-fields="withCustomFields"
             :with-fields-search="withFieldsSearch"
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
             :template="template"
@@ -493,6 +498,7 @@
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @select-submitter="selectedSubmitter = $event"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
+            @set-draw-custom-field="[drawCustomField = $event, showDrawField = true]"
             @set-drag="dragField = $event"
             @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
             @change-submitter="selectedSubmitter = $event"
@@ -632,10 +638,12 @@ export default {
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
+      withCustomFields: this.withCustomFields,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
       selectedAreasRef: computed(() => this.selectedAreasRef),
       fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef),
+      customDragFieldRef: computed(() => this.customDragFieldRef),
       isSelectModeRef: computed(() => this.isSelectModeRef),
       isCmdKeyRef: computed(() => this.isCmdKeyRef)
     }
@@ -704,6 +712,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    customFields: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withAddPageButton: {
       type: Boolean,
@@ -902,6 +920,7 @@ export default {
       pendingFieldAttachmentUuids: [],
       drawField: null,
       drawFieldType: null,
+      drawCustomField: null,
       drawOption: null,
       dragField: null,
       isDragFile: false
@@ -912,6 +931,7 @@ export default {
     isSelectModeRef: () => ref(false),
     isCmdKeyRef: () => ref(false),
     fieldsDragFieldRef: () => ref(),
+    customDragFieldRef: () => ref(),
     selectedAreasRef: () => ref([]),
     language () {
       return this.locale.split('-')[0].toLowerCase()
@@ -1062,6 +1082,30 @@ export default {
   },
   methods: {
     toRaw,
+    addCustomField (field) {
+      return this.$refs.fields.addCustomField(field)
+    },
+    addCustomFieldWithoutDraw () {
+      const customField = this.drawCustomField
+
+      const field = JSON.parse(JSON.stringify(customField))
+
+      field.uuid = v4()
+      field.submitter_uuid = this.selectedSubmitter.uuid
+      field.areas = []
+
+      if (field.options?.length) {
+        field.options = field.options.map(opt => ({ ...opt, uuid: v4() }))
+      }
+
+      delete field.conditions
+
+      this.insertField(field)
+      this.save()
+
+      this.drawCustomField = null
+      this.showDrawField = false
+    },
     toggleSelectMode () {
       this.isSelectModeRef.value = !this.isSelectModeRef.value
 
@@ -1514,6 +1558,7 @@ export default {
     clearDrawField () {
       this.drawField = null
       this.drawOption = null
+      this.drawCustomField = null
       this.showDrawField = false
 
       if (!this.withSelectedFieldType) {
@@ -1951,6 +1996,10 @@ export default {
       }
     },
     onDraw ({ area, isTooSmall }) {
+      if (this.drawCustomField) {
+        return this.onDrawCustomField(area)
+      }
+
       if (this.drawField) {
         if (this.drawOption) {
           const areaWithoutOption = this.drawField.areas?.find((a) => !a.option_uuid)
@@ -2061,6 +2110,10 @@ export default {
         return
       }
 
+      if (this.customDragFieldRef.value) {
+        return this.dropCustomField(area)
+      }
+
       const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
@@ -2152,6 +2205,122 @@ export default {
           areaRef.focusValueInput()
         })
       }
+    },
+    dropCustomField (area) {
+      const customField = this.customDragFieldRef.value
+      const customAreas = customField.areas || []
+
+      const field = JSON.parse(JSON.stringify(customField))
+
+      field.uuid = v4()
+      field.submitter_uuid = this.selectedSubmitter.uuid
+      field.areas = []
+
+      if (field.options?.length) {
+        field.options = field.options.map(opt => ({ ...opt, uuid: v4() }))
+      }
+
+      delete field.conditions
+
+      const dropX = (area.x - 6) / area.maskW
+      const dropY = area.y / area.maskH
+
+      if (customAreas.length > 0) {
+        const refArea = customAreas[0]
+
+        customAreas.forEach((customArea) => {
+          const fieldArea = {
+            x: dropX + (customArea.x - refArea.x),
+            y: dropY + (customArea.y - refArea.y) - (customArea.h / 2),
+            w: customArea.w,
+            h: customArea.h,
+            page: area.page,
+            attachment_uuid: area.attachment_uuid
+          }
+
+          if (customArea.cell_w) {
+            fieldArea.cell_w = customArea.cell_w
+          }
+
+          if (customArea.option_uuid && field.options?.length) {
+            const optionIndex = customField.options.findIndex(o => o.uuid === customArea.option_uuid)
+            if (optionIndex !== -1) {
+              fieldArea.option_uuid = field.options[optionIndex].uuid
+            }
+          }
+
+          field.areas.push(fieldArea)
+        })
+      } else {
+        const fieldArea = {
+          x: dropX,
+          y: dropY,
+          page: area.page,
+          attachment_uuid: area.attachment_uuid
+        }
+
+        this.assignDropAreaSize(fieldArea, field, area)
+
+        field.areas.push(fieldArea)
+      }
+
+      this.selectedAreasRef.value = [field.areas[0]]
+
+      this.insertField(field)
+      this.save()
+
+      document.activeElement?.blur()
+    },
+    onDrawCustomField (area) {
+      const customField = this.drawCustomField
+      const customAreas = customField.areas || []
+
+      const field = JSON.parse(JSON.stringify(customField))
+
+      field.uuid = v4()
+      field.submitter_uuid = this.selectedSubmitter.uuid
+      field.areas = []
+
+      if (field.options?.length) {
+        field.options = field.options.map(opt => ({ ...opt, uuid: v4() }))
+      }
+
+      delete field.conditions
+
+      const firstArea = {
+        x: area.x,
+        y: area.y,
+        w: area.w || customAreas[0]?.w,
+        h: area.h || customAreas[0]?.h,
+        page: area.page,
+        attachment_uuid: area.attachment_uuid
+      }
+
+      if (!firstArea.w || !firstArea.h) {
+        if (customAreas[0]) {
+          firstArea.w = customAreas[0].w
+          firstArea.h = customAreas[0].h
+        } else {
+          this.setDefaultAreaSize(firstArea, field.type)
+        }
+
+        firstArea.x -= firstArea.w / 2
+        firstArea.y -= firstArea.h / 2
+      }
+
+      if (field.options?.length) {
+        firstArea.option_uuid = field.options[0].uuid
+      }
+
+      field.areas.push(firstArea)
+
+      this.selectedAreasRef.value = [field.areas[0]]
+
+      this.insertField(field)
+      this.save()
+
+      this.drawCustomField = null
+      this.showDrawField = false
     },
     assignDropAreaSize (fieldArea, field, area) {
       const fieldType = field.type || 'text'

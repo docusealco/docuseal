@@ -52,15 +52,22 @@
         @stop-resize="resizeDirection = null"
         @remove="$emit('remove-area', item.area)"
         @scroll-to="$emit('scroll-to', $event)"
+        @add-custom-field="$emit('add-custom-field', $event)"
         @contextmenu="openAreaContextMenu($event, item.area, item.field)"
       />
       <FieldArea
-        v-if="newArea"
+        v-for="(area, index) in newAreas"
+        :key="index"
         :is-draw="true"
         :page-width="width"
         :page-height="height"
-        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || dragFieldPlaceholder?.type || defaultFieldType }"
-        :area="newArea"
+        :field="{ submitter_uuid: selectedSubmitter.uuid, type: newAreaFieldType }"
+        :area="area"
+      />
+      <div
+        v-if="newAreas.length > 1"
+        class="absolute outline-dashed outline-gray-400 pointer-events-none z-20"
+        :style="newAreasBoxStyle"
       />
       <div
         v-if="selectionRect"
@@ -93,7 +100,7 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value || selectionRect"
+      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value || customDragFieldRef?.value || selectionRect"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
@@ -103,7 +110,7 @@
       @contextmenu="openContextMenu"
       @dragover.prevent="onDragover"
       @dragenter="onDragenter"
-      @dragleave="newArea = null"
+      @dragleave="newAreas = []"
       @drop="onDrop"
       @pointerup="onPointerup"
     />
@@ -122,7 +129,7 @@ export default {
     ContextMenu,
     SelectionBox
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'assignDropAreaSize', 'selectedAreasRef', 'template', 'isSelectModeRef'],
+  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef', 'customDragFieldRef', 'assignDropAreaSize', 'selectedAreasRef', 'template', 'isSelectModeRef'],
   props: {
     image: {
       type: Object,
@@ -191,6 +198,11 @@ export default {
       required: false,
       default: null
     },
+    drawCustomField: {
+      type: Object,
+      required: false,
+      default: null
+    },
     editable: {
       type: Boolean,
       required: false,
@@ -216,13 +228,13 @@ export default {
       default: false
     }
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields'],
+  emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'align-selected-areas', 'autodetect-fields', 'add-custom-field'],
   data () {
     return {
       areaRefs: [],
       showMask: false,
       resizeDirection: null,
-      newArea: null,
+      newAreas: [],
       contextMenu: null,
       selectionRect: null,
       selectionContextMenu: null
@@ -274,6 +286,14 @@ export default {
         return acc
       }, {})
     },
+    newAreaFieldType () {
+      if (this.drawField?.type) return this.drawField.type
+      if (this.drawCustomField?.type) return this.drawCustomField.type
+      if (this.dragFieldPlaceholder?.type) return this.dragFieldPlaceholder.type
+      if (this.customDragFieldRef?.value?.type) return this.customDragFieldRef.value.type
+
+      return this.defaultFieldType
+    },
     defaultFieldType () {
       if (this.drawFieldType) {
         return this.drawFieldType
@@ -301,6 +321,21 @@ export default {
     },
     height () {
       return this.image.metadata.height
+    },
+    newAreasBoxStyle () {
+      if (this.newAreas.length < 2) return {}
+
+      const minX = Math.min(...this.newAreas.map(a => a.x))
+      const minY = Math.min(...this.newAreas.map(a => a.y))
+      const maxX = Math.max(...this.newAreas.map(a => a.x + a.w))
+      const maxY = Math.max(...this.newAreas.map(a => a.y + a.h))
+
+      return {
+        left: minX * 100 + '%',
+        top: minY * 100 + '%',
+        width: (maxX - minX) * 100 + '%',
+        height: (maxY - minY) * 100 + '%'
+      }
     },
     selectionRectStyle () {
       if (!this.selectionRect) return {}
@@ -331,7 +366,7 @@ export default {
 
       const rect = this.$refs.image.getBoundingClientRect()
 
-      this.newArea = null
+      this.newAreas = []
       this.showMask = false
 
       this.contextMenu = {
@@ -351,7 +386,7 @@ export default {
 
       const rect = this.$refs.image.getBoundingClientRect()
 
-      this.newArea = null
+      this.newAreas = []
       this.showMask = false
 
       this.contextMenu = {
@@ -390,7 +425,7 @@ export default {
     },
     closeContextMenu () {
       this.contextMenu = null
-      this.newArea = null
+      this.newAreas = []
       this.showMask = false
     },
     handleCopy () {
@@ -410,7 +445,7 @@ export default {
       this.closeContextMenu()
     },
     handlePaste () {
-      this.newArea = null
+      this.newAreas = []
       this.showMask = false
 
       this.$emit('paste-field', {
@@ -435,22 +470,66 @@ export default {
       }
     },
     onDragenter (e) {
-      this.newArea = {}
+      const customField = this.customDragFieldRef?.value
+      const customAreas = customField?.areas || []
+      const dropX = (e.offsetX - 6) / this.$refs.mask.clientWidth
+      const dropY = e.offsetY / this.$refs.mask.clientHeight
 
-      this.assignDropAreaSize(this.newArea, this.dragFieldPlaceholder, {
-        maskW: this.$refs.mask.clientWidth,
-        maskH: this.$refs.mask.clientHeight
-      })
+      if (customAreas.length > 1) {
+        const refArea = customAreas[0]
 
-      this.newArea.x = (e.offsetX - 6) / this.$refs.mask.clientWidth
-      this.newArea.y = e.offsetY / this.$refs.mask.clientHeight - this.newArea.h / 2
+        this.newAreas = customAreas.map((customArea) => ({
+          x: dropX + (customArea.x - refArea.x),
+          y: dropY + (customArea.y - refArea.y) - (customArea.h / 2),
+          w: customArea.w,
+          h: customArea.h
+        }))
+      } else {
+        const newArea = {}
+
+        if (customAreas.length === 1) {
+          newArea.w = customAreas[0].w
+          newArea.h = customAreas[0].h
+        } else if (customField) {
+          this.assignDropAreaSize(newArea, customField, {
+            maskW: this.$refs.mask.clientWidth,
+            maskH: this.$refs.mask.clientHeight
+          })
+        } else {
+          this.assignDropAreaSize(newArea, this.dragFieldPlaceholder, {
+            maskW: this.$refs.mask.clientWidth,
+            maskH: this.$refs.mask.clientHeight
+          })
+        }
+
+        newArea.x = dropX
+        newArea.y = dropY - newArea.h / 2
+
+        this.newAreas = [newArea]
+      }
     },
     onDragover (e) {
-      this.newArea.x = (e.offsetX - 6) / this.$refs.mask.clientWidth
-      this.newArea.y = e.offsetY / this.$refs.mask.clientHeight - this.newArea.h / 2
+      const customField = this.customDragFieldRef?.value
+      const customAreas = customField?.areas || []
+      const dropX = (e.offsetX - 6) / this.$refs.mask.clientWidth
+      const dropY = e.offsetY / this.$refs.mask.clientHeight
+
+      if (customAreas.length > 1) {
+        const refArea = customAreas[0]
+
+        this.newAreas.forEach((newArea, index) => {
+          const customArea = customAreas[index]
+
+          newArea.x = dropX + (customArea.x - refArea.x)
+          newArea.y = dropY + (customArea.y - refArea.y) - (customArea.h / 2)
+        })
+      } else if (this.newAreas.length) {
+        this.newAreas[0].x = dropX
+        this.newAreas[0].y = dropY - this.newAreas[0].h / 2
+      }
     },
     onDrop (e) {
-      this.newArea = null
+      this.newAreas = []
 
       this.$emit('drop-field', {
         x: e.offsetX,
@@ -479,7 +558,7 @@ export default {
         return
       }
 
-      if (this.isMobile && !this.drawField) {
+      if (this.isMobile && !this.drawField && !this.drawCustomField) {
         return
       }
 
@@ -490,14 +569,14 @@ export default {
       this.showMask = true
 
       this.$nextTick(() => {
-        this.newArea = {
+        this.newAreas = [{
           initialX: e.offsetX / this.$refs.mask.clientWidth,
           initialY: e.offsetY / this.$refs.mask.clientHeight,
           x: e.offsetX / this.$refs.mask.clientWidth,
           y: e.offsetY / this.$refs.mask.clientHeight,
           w: 0,
           h: 0
-        }
+        }]
       })
     },
     startSelectionRect (e) {
@@ -563,28 +642,30 @@ export default {
         return
       }
 
-      if (this.newArea) {
-        const dx = e.offsetX / this.$refs.mask.clientWidth - this.newArea.initialX
-        const dy = e.offsetY / this.$refs.mask.clientHeight - this.newArea.initialY
+      const drawArea = this.newAreas[0]
+
+      if (drawArea?.initialX !== undefined) {
+        const dx = e.offsetX / this.$refs.mask.clientWidth - drawArea.initialX
+        const dy = e.offsetY / this.$refs.mask.clientHeight - drawArea.initialY
 
         if (dx > 0) {
-          this.newArea.x = this.newArea.initialX
+          drawArea.x = drawArea.initialX
         } else {
-          this.newArea.x = e.offsetX / this.$refs.mask.clientWidth
+          drawArea.x = e.offsetX / this.$refs.mask.clientWidth
         }
 
         if (dy > 0) {
-          this.newArea.y = this.newArea.initialY
+          drawArea.y = drawArea.initialY
         } else {
-          this.newArea.y = e.offsetY / this.$refs.mask.clientHeight
+          drawArea.y = e.offsetY / this.$refs.mask.clientHeight
         }
 
-        if ((this.drawField?.type || this.drawFieldType) === 'cells') {
-          this.newArea.cell_w = this.newArea.h * (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth)
+        if ((this.drawField?.type || this.drawCustomField?.type || this.drawFieldType) === 'cells') {
+          drawArea.cell_w = drawArea.h * (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth)
         }
 
-        this.newArea.w = Math.abs(dx)
-        this.newArea.h = Math.abs(dy)
+        drawArea.w = Math.abs(dx)
+        drawArea.h = Math.abs(dy)
       }
     },
     onPointerup (e) {
@@ -601,29 +682,33 @@ export default {
         })
 
         this.selectionRect = null
-      } else if (this.newArea) {
-        const area = {
-          x: this.newArea.x,
-          y: this.newArea.y,
-          w: this.newArea.w,
-          h: this.newArea.h,
-          page: this.number
+      } else {
+        const drawArea = this.newAreas[0]
+
+        if (drawArea?.initialX !== undefined) {
+          const area = {
+            x: drawArea.x,
+            y: drawArea.y,
+            w: drawArea.w,
+            h: drawArea.h,
+            page: this.number
+          }
+
+          if ('cell_w' in drawArea) {
+            area.cell_w = drawArea.cell_w
+          }
+
+          const dx = Math.abs(e.offsetX - this.$refs.mask.clientWidth * drawArea.initialX)
+          const dy = Math.abs(e.offsetY - this.$refs.mask.clientHeight * drawArea.initialY)
+
+          const isTooSmall = dx < 8 && dy < 8
+
+          this.$emit('draw', { area, isTooSmall })
         }
-
-        if ('cell_w' in this.newArea) {
-          area.cell_w = this.newArea.cell_w
-        }
-
-        const dx = Math.abs(e.offsetX - this.$refs.mask.clientWidth * this.newArea.initialX)
-        const dy = Math.abs(e.offsetY - this.$refs.mask.clientHeight * this.newArea.initialY)
-
-        const isTooSmall = dx < 8 && dy < 8
-
-        this.$emit('draw', { area, isTooSmall })
       }
 
       this.showMask = false
-      this.newArea = null
+      this.newAreas = []
     },
     rectsOverlap (r1, r2) {
       return !(

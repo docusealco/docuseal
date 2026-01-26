@@ -7,7 +7,7 @@
     <select
       :placeholder="t('method')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, save()]"
+      @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, $emit('save')]"
     >
       <option
         v-for="method in ['QeS', 'AeS']"
@@ -33,7 +33,7 @@
   >
     <select
       class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
+      @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, $emit('save')]"
     >
       <option
         v-for="value in ['left', 'right', field.type === 'cells' ? null : 'center'].filter(Boolean)"
@@ -61,7 +61,7 @@
       :placeholder="t('default_value')"
       dir="auto"
       class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, save()]"
+      @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, $emit('save')]"
     >
       <option
         value=""
@@ -97,7 +97,7 @@
       dir="auto"
       :type="field.type"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.default_value"
@@ -159,7 +159,7 @@
         :value="lengthValidation.min"
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         @input="field.validation.pattern = `.{${$event.target.value || 0},${lengthValidation.max || ''}}`"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="lengthValidation.min"
@@ -178,7 +178,7 @@
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         :value="lengthValidation.max"
         @input="field.validation.pattern = `.{${lengthValidation.min},${$event.target.value || ''}}`"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="lengthValidation.max"
@@ -203,7 +203,7 @@
         :value="field.validation?.min"
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.min = $event.target.value : delete field.validation.min]"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="field.validation?.min"
@@ -222,7 +222,7 @@
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         :value="field.validation?.max"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.max = $event.target.value : delete field.validation.max]"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="field.validation?.max"
@@ -242,7 +242,7 @@
     <select
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
+      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
         v-for="format in numberFormats"
@@ -272,7 +272,7 @@
       :placeholder="t('regexp_validation')"
       dir="auto"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.validation.pattern"
@@ -293,7 +293,7 @@
       :placeholder="t('error_message')"
       dir="auto"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.validation.message"
@@ -313,7 +313,7 @@
       v-model="field.preferences.format"
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="save"
+      @change="$emit('save')"
     >
       <option
         v-for="format in dateFormats"
@@ -339,7 +339,7 @@
     <select
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences.format = $event.target.value, save()]"
+      @change="[field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
         value="any"
@@ -374,7 +374,7 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
         class="toggle toggle-xs"
-        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, save()]"
+        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, $emit('save')]"
       >
       <span class="label-text">{{ t('signature_id') }}</span>
     </label>
@@ -389,7 +389,7 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
         class="toggle toggle-xs"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('required') }}</span>
     </label>
@@ -403,7 +403,7 @@
         :checked="field.preferences?.with_logo != false"
         type="checkbox"
         class="toggle toggle-xs"
-        @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, save()]"
+        @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, $emit('save')]"
       >
       <span class="label-text">{{ t('with_logo') }}</span>
     </label>
@@ -417,7 +417,7 @@
         v-model="field.default_value"
         type="checkbox"
         class="toggle toggle-xs"
-        @update:model-value="[field.default_value = $event, field.readonly = $event, save()]"
+        @update:model-value="[field.default_value = $event, field.readonly = $event, $emit('save')]"
       >
       <span class="label-text">{{ t('checked') }}</span>
     </label>
@@ -431,7 +431,7 @@
         v-model="field.readonly"
         type="checkbox"
         class="toggle toggle-xs"
-        @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, save()]"
+        @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, $emit('save')]"
       >
       <span class="label-text">{{ t('set_signing_date') }}</span>
     </label>
@@ -446,7 +446,7 @@
         type="checkbox"
         class="toggle toggle-xs"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.readonly))"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('read_only') }}</span>
     </label>
@@ -461,7 +461,7 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.prefillable))"
         class="toggle toggle-xs"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('prefillable') }}</span>
     </label>
@@ -499,7 +499,7 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp' && field.type != 'heading'"
+    v-if="withCondition && field.type != 'stamp' && field.type != 'heading'"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -526,7 +526,10 @@
       </span>
     </label>
   </li>
-  <hr class="pb-0.5 mt-0.5">
+  <hr
+    v-if="withCopyToAllPages || withAreas || withCustomFields"
+    class="pb-0.5 mt-0.5"
+  >
   <template v-if="withAreas">
     <li
       v-for="(area, index) in sortedAreas"
@@ -564,7 +567,7 @@
       </a>
     </li>
   </template>
-  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
+  <li v-if="withCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
     <a
       href="#"
       class="text-sm py-1 px-2"
@@ -577,10 +580,23 @@
       {{ t('copy_to_all_pages') }}
     </a>
   </li>
+  <li v-if="withCustomFields">
+    <a
+      href="#"
+      class="text-sm py-1 px-2"
+      @click.prevent="$emit('add-custom-field', field)"
+    >
+      <IconForms
+        :width="20"
+        :stroke-width="1.6"
+      />
+      {{ t('save_as_custom_field') }}
+    </a>
+  </li>
 </template>
 
 <script>
-import { IconRouteAltLeft, IconTypography, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconTypography, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy, IconForms } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldSettings',
@@ -589,16 +605,32 @@ export default {
     IconInfoCircle,
     IconMathFunction,
     IconRouteAltLeft,
+    IconForms,
     IconCopy,
     IconNewSection,
     IconTypography,
     IconX
   },
-  inject: ['template', 'save', 't'],
+  inject: ['template', 't'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    withCondition: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withCopyToAllPages: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withSignatureId: {
       type: Boolean,
@@ -636,7 +668,7 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area'],
+  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area', 'save', 'add-custom-field'],
   data () {
     return {
       selectedValidation: ''
@@ -730,7 +762,7 @@ export default {
         delete this.field.validation
       }
 
-      this.save()
+      this.$emit('save')
     },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
@@ -747,7 +779,7 @@ export default {
 
       this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
 
-      this.save()
+      this.$emit('save')
     },
     formatNumber (number, format) {
       if (format === 'comma') {

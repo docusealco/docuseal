@@ -54,6 +54,7 @@ class AccountConfig < ApplicationRecord
   WITH_FIELD_LABELS_KEY = 'with_field_labels'
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
+  TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
   POLICY_LINKS_KEY = 'policy_links'
 
   DEFAULT_VALUES = {
