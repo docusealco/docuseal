@@ -96,6 +96,12 @@ const en = {
   reupload: 'Reupload',
   upload: 'Upload',
   files: 'Files',
+  signature_is_too_small_please_redraw: 'Signature is too small. Please redraw.',
+  wait_countdown_seconds: 'Wait {countdown} seconds',
+  photo: 'Photo',
+  take: 'Take',
+  retake: 'Retake',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scan the QR code with your mobile camera app to open the form and take a photo',
   signature_is_too_small_or_simple_please_redraw: 'Signature is too small or simple. Please redraw.',
   wait_countdown_seconds: 'Wait {countdown} seconds'
 }
@@ -198,6 +204,11 @@ const es = {
   reupload: 'Volver a subir',
   upload: 'Subir',
   files: 'Archivos',
+  signature_is_too_small_please_redraw: 'La firma es demasiado pequeña. Por favor, dibújala de nuevo.',
+  foto: 'Foto',
+  tomar: 'Tomar',
+  retomar: 'Retomar',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Escanea el código QR con la aplicación de cámara de tu móvil para abrir el formulario y tomar una foto',
   signature_is_too_small_or_simple_please_redraw: 'La firma es demasiado pequeña o simple. Por favor, vuelve a dibujarla.',
   wait_countdown_seconds: 'Espera {countdown} segundos'
 }
@@ -300,6 +311,11 @@ const it = {
   reupload: 'Ricarica',
   upload: 'Carica',
   files: 'File',
+  signature_is_too_small_please_redraw: 'La firma è troppo piccola. Ridisegnala per favore.',
+  foto: 'Foto',
+  prendere: 'Prendere',
+  riprendere: 'Riprendere',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: "Scansiona il codice QR con l'app della fotocamera del tuo cellulare per aprire il modulo e scattare una foto",
   signature_is_too_small_or_simple_please_redraw: 'La firma è troppo piccola o semplice. Ridisegnala, per favore.',
   wait_countdown_seconds: 'Attendi {countdown} secondi'
 }
@@ -402,6 +418,12 @@ const de = {
   reupload: 'Erneut hochladen',
   upload: 'Hochladen',
   files: 'Dateien',
+  signature_is_too_small_please_redraw: 'Die Unterschrift ist zu klein. Bitte erneut zeichnen.',
+  Foto: 'Foto',
+  take: 'Nimm',
+  Wiederholung: 'Wiederholen',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scannen Sie den QR-Code mit Ihrer mobilen Kamera-App, um das Formular zu öffnen und ein Foto aufzunehmen',
+  wait_countdown_seconds: 'Warte {countdown} Sekunden',
   signature_is_too_small_or_simple_please_redraw: 'Die Unterschrift ist zu klein oder zu einfach. Bitte neu zeichnen.',
   wait_countdown_seconds: 'Bitte {countdown} Sekunden warten'
 }
@@ -504,6 +526,12 @@ const fr = {
   reupload: 'Retéléverser',
   upload: 'Téléverser',
   files: 'Fichiers',
+  signature_is_too_small_please_redraw: 'La signature est trop petite. Veuillez la redessiner.',
+  wait_countdown_seconds: 'Attendez {countdown} secondes',
+  photo: 'Photo',
+  take: 'Prendre',
+  retake: 'Reprendre',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scannez le code QR avec l\'application photo de votre mobile pour ouvrir le formulaire et prendre une photo',
   signature_is_too_small_or_simple_please_redraw: 'La signature est trop petite ou trop simple. Veuillez la redessiner.',
   wait_countdown_seconds: 'Veuillez patienter {countdown} secondes'
 }
@@ -606,6 +634,11 @@ const pl = {
   reupload: 'Ponowne przesłanie',
   upload: 'Przesyłanie',
   files: 'Pliki',
+  signature_is_too_small_please_redraw: 'Podpis jest zbyt mały. Proszę narysować go ponownie.',
+  photo: 'Zdjęcie',
+  take: 'Weź',
+  retake: 'Odtwórz ponownie',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Zeskanuj kod QR za pomocą aplikacji aparatu mobilnego, aby otworzyć formularz i zrobić zdjęcie',
   signature_is_too_small_or_simple_please_redraw: 'Podpis jest zbyt mały lub zbyt prosty. Proszę narysować go ponownie.',
   wait_countdown_seconds: 'Poczekaj {countdown} sekund'
 }
@@ -708,6 +741,11 @@ const uk = {
   reupload: 'Перезавантажити',
   upload: 'Завантажити',
   files: 'Файли',
+  signature_is_too_small_please_redraw: 'Підпис занадто малий. Будь ласка, перемалюйте його.',
+  photo: 'Фото',
+  take: 'Взяти',
+  retake: 'Перезняти',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Відскануйте QR-код за допомогою мобільної програми камери, щоб відкрити форму та зробити фото',
   signature_is_too_small_or_simple_please_redraw: 'Підпис занадто маленький або надто простий. Будь ласка, перемалюйте.',
   wait_countdown_seconds: 'Зачекайте {countdown} секунд'
 }
@@ -810,6 +848,11 @@ const cs = {
   reupload: 'Znovu nahrát',
   upload: 'Nahrát',
   files: 'Soubory',
+  signature_is_too_small_please_redraw: 'Podpis je příliš malý. Prosím, překreslete ho.',
+  photo: 'Fotografie',
+  take: 'Vezmi',
+  retake: 'Znovu získat',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Naskenujte QR kód pomocí mobilní aplikace pro fotoaparát, otevřete formulář a vyfotografujte',
   signature_is_too_small_or_simple_please_redraw: 'Podpis je příliš malý nebo jednoduchý. Nakreslete jej prosím znovu.',
   wait_countdown_seconds: 'Počkejte {countdown} sekund'
 }
@@ -912,6 +955,11 @@ const pt = {
   reupload: 'Reenviar',
   upload: 'Carregar',
   files: 'Arquivos',
+  signature_is_too_small_please_redraw: 'A assinatura é muito pequena. Por favor, redesenhe-a.',
+  photo: 'Foto',
+  take: 'Pegar',
+  retake: 'Retomar',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Escaneie o código QR com seu aplicativo de câmera móvel para abrir o formulário e tirar uma foto',
   signature_is_too_small_or_simple_please_redraw: 'A assinatura é muito pequena ou simples. Por favor, redesenhe.',
   wait_countdown_seconds: 'Aguarde {countdown} segundos'
 }
@@ -1116,6 +1164,11 @@ const nl = {
   reupload: 'Opnieuw uploaden',
   upload: 'Uploaden',
   files: 'Bestanden',
+  signature_is_too_small_please_redraw: 'De handtekening is te klein. Teken deze opnieuw, alstublieft.',
+  photo: 'Foto',
+  take: 'Neem',
+  retake: 'Opnieuw nemen',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: 'Scan de QR-code met uw mobiele camera-app om het formulier te openen en een foto te maken',
   signature_is_too_small_or_simple_please_redraw: 'De handtekening is te klein of te eenvoudig. Teken opnieuw.',
   wait_countdown_seconds: 'Wacht {countdown} seconden'
 }
@@ -1320,6 +1373,11 @@ const ko = {
   reupload: '다시 업로드',
   upload: '업로드',
   files: '파일',
+  signature_is_too_small_please_redraw: '서명이 너무 작습니다. 다시 그려주세요.',
+  photo: '사진',
+  take: '가져가다',
+  retake: '재응시',
+  scan_the_qr_code_with_your_mobile_camera_app_to_open_the_form_and_take_a_photo: '모바일 카메라 앱으로 QR 코드를 스캔하여 양식을 열고 사진을 찍으세요.',
   signature_is_too_small_or_simple_please_redraw: '서명이 너무 작거나 단순합니다. 다시 그려주세요.',
   wait_countdown_seconds: '{countdown}초 기다리세요'
 }
