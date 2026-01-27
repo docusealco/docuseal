@@ -1462,6 +1462,21 @@ export default {
         }
       }
 
+      const lastField = this.selectedField || this.template.fields[this.template.fields.length - 1]
+
+      if (this.template.preferences?.carry_forward_attributes && lastField?.preferences) {
+        field.preferences ||= {}
+        field.preferences = { ...field.preferences }
+
+        const attrsToCopy = ['font', 'font_size', 'font_type', 'align', 'valign', 'color']
+
+        attrsToCopy.forEach((attr) => {
+          if (lastField.preferences[attr]) {
+            field.preferences[attr] = lastField.preferences[attr]
+          }
+        })
+      }
+
       if (field.type === 'strikethrough') {
         field.readonly = true
         field.default_value = true
@@ -1506,6 +1521,21 @@ export default {
         }
 
         this.drawField = field
+
+        const lastField = this.selectedField || this.template.fields[this.template.fields.length - 1]
+
+        if (this.template.preferences?.carry_forward_attributes && lastField?.preferences) {
+          field.preferences ||= {}
+          field.preferences = { ...field.preferences }
+
+          const attrsToCopy = ['font', 'font_size', 'font_type', 'align', 'valign', 'color']
+
+          attrsToCopy.forEach((attr) => {
+            if (lastField.preferences[attr]) {
+              field.preferences[attr] = lastField.preferences[attr]
+            }
+          })
+        }
       }
 
       this.drawOption = null
