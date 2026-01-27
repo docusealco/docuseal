@@ -583,8 +583,8 @@ export default {
       delete customField.conditions
 
       customField.areas?.forEach((area) => {
-        delete customField.attachment_uuid
-        delete customField.page
+        delete area.attachment_uuid
+        delete area.page
       })
 
       if (customField.name) {
