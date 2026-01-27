@@ -145,7 +145,9 @@
               @click-formula="isShowFormulaModal = true"
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
+              @add-custom-field="$emit('add-custom-field')"
               @click-condition="isShowConditionsModal = true"
+              @save="save"
               @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
             />
           </ul>
@@ -471,7 +473,7 @@ export default {
       default: false
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field'],
   data () {
     return {
       isShowFormulaModal: false,

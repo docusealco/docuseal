@@ -1,6 +1,6 @@
 <template>
   <div
-    class="list-field group mb-2"
+    class="list-field group"
   >
     <div
       class="border border-base-300 rounded relative group fields-list-item"
@@ -18,7 +18,7 @@
             :button-width="20"
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
-            @update:model-value="[maybeUpdateOptions(), save()]"
+            @update:model-value="[maybeUpdateOptions(), $emit('save')]"
             @click="scrollToFirstArea"
           />
           <Contenteditable
@@ -92,9 +92,12 @@
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
+            :with-custom-fields="withCustomFields"
             @click-condition="isShowConditionsModal = true"
             @click-description="isShowDescriptionModal = true"
+            @add-custom-field="$emit('add-custom-field', $event)"
             @click-formula="isShowFormulaModal = true"
+            @save="$emit('save')"
           />
           <span
             v-else
@@ -128,12 +131,15 @@
                 :with-signature-id="withSignatureId"
                 :with-prefillable="withPrefillable"
                 :background-color="dropdownBgColor"
+                :with-custom-fields="withCustomFields"
                 @click-formula="isShowFormulaModal = true"
                 @click-font="isShowFontModal = true"
                 @click-description="isShowDescriptionModal = true"
                 @click-condition="isShowConditionsModal = true"
                 @set-draw="$emit('set-draw', $event)"
+                @add-custom-field="$emit('add-custom-field', $event)"
                 @remove-area="removeArea"
+                @save="$emit('save')"
                 @scroll-to="$emit('scroll-to', $event)"
               />
             </ul>
@@ -154,8 +160,10 @@
         v-if="field.options && withOptions && (isExpandOptions || field.options.length < 5)"
         ref="options"
         class="border-t border-base-300 mx-2 pt-2 space-y-1.5"
+        draggable="true"
         @dragover="onOptionDragover"
         @drop="reorderOptions"
+        @dragstart.prevent.stop
       >
         <div
           v-for="(option, index) in field.options"
@@ -184,7 +192,8 @@
               required
               :placeholder="`${t('option')} ${index + 1}`"
               @keydown.enter="option.value ? addOptionAt(index + 1) : null"
-              @blur="save"
+              @blur="$emit('save')"
+              @paste="onOptionPaste($event, index)"
             >
             <button
               :title="t('draw')"
@@ -208,7 +217,8 @@
             dir="auto"
             @keydown.enter="option.value ? addOptionAt(index + 1) : null"
             @focus="maybeFocusOnOptionArea(option)"
-            @blur="save"
+            @blur="$emit('save')"
+            @paste="onOptionPaste($event, index)"
           >
           <button
             v-if="editable && !defaultField"
@@ -330,7 +340,7 @@ export default {
     IconMathFunction,
     FieldType
   },
-  inject: ['template', 'save', 'backgroundColor', 'selectedAreasRef', 't', 'locale'],
+  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale'],
   props: {
     field: {
       type: Object,
@@ -340,6 +350,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withPrefillable: {
       type: Boolean,
@@ -362,12 +377,11 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'remove', 'scroll-to'],
+  emits: ['set-draw', 'remove', 'scroll-to', 'save', 'add-custom-field'],
   data () {
     return {
       isExpandOptions: false,
       isNameFocus: false,
-      showPaymentModal: false,
       isShowFormulaModal: false,
       isShowFontModal: false,
       isShowConditionsModal: false,
@@ -416,7 +430,7 @@ export default {
     removeArea (area) {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)
 
-      this.save()
+      this.$emit('save')
     },
     buildDefaultName (field, fields) {
       if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {
@@ -460,6 +474,35 @@ export default {
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
     },
+    onOptionPaste (e, index) {
+      const text = e.clipboardData.getData('text')
+
+      if (text.includes('\n')) {
+        e.preventDefault()
+
+        this.isExpandOptions = true
+
+        const lines = text.split(/\r?\n/).map((l) => l.trim()).filter((l) => l)
+
+        if (lines.length > 0) {
+          const currentOption = this.field.options[index]
+
+          currentOption.value = (currentOption.value + lines[0]).trim()
+
+          const newOptions = lines.slice(1).map((line) => ({ value: line, uuid: v4() }))
+
+          this.field.options.splice(index + 1, 0, ...newOptions)
+
+          this.$nextTick(() => {
+            const inputs = this.$refs.options.querySelectorAll('input')
+
+            inputs[index + newOptions.length]?.focus()
+          })
+
+          this.$emit('save')
+        }
+      }
+    },
     addOptionAt (index) {
       this.isExpandOptions = true
 
@@ -473,7 +516,7 @@ export default {
         inputs[insertAt]?.focus()
       })
 
-      this.save()
+      this.$emit('save')
     },
     removeOption (option) {
       this.field.options.splice(this.field.options.indexOf(option), 1)
@@ -484,7 +527,7 @@ export default {
         this.field.areas.splice(this.field.areas.findIndex((a) => a.option_uuid === option.uuid), 1)
       }
 
-      this.save()
+      this.$emit('save')
     },
     maybeUpdateOptions () {
       delete this.field.default_value
@@ -526,7 +569,7 @@ export default {
 
       this.isNameFocus = false
 
-      this.save()
+      this.$emit('save')
     },
     onOptionDragstart (event, option) {
       this.optionDragRef = option
@@ -587,7 +630,7 @@ export default {
       if (newOrder.length === this.field.options.length) {
         this.field.options.splice(0, this.field.options.length, ...newOrder)
 
-        this.save()
+        this.$emit('save')
       }
 
       this.optionDragRef = null

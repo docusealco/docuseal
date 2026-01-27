@@ -1,7 +1,4 @@
 <form action="<%= url_for %>" method="get" class="items-center flex">
-  <% if params[:status].present? %>
-    <input name="status" value="<%= params[:status] %>" class="hidden">
-  <% end %>
   <% Submissions::Filter::ALLOWED_PARAMS.each do |key| %>
     <% if params[key].present? %>
       <input name="<%= key %>" value="<%= params[key] %>" class="hidden">

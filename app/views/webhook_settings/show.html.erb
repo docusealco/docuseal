@@ -105,8 +105,8 @@
             </div>
             <div class="flex items-center space-x-1.5">
               <div class="join">
-                <% if @pagy.prev %>
-                  <%= link_to '«', url_for(page: @pagy.prev, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                <% if @pagy.previous %>
+                  <%= link_to '«', url_for(params: request.query_parameters.merge('page' => @pagy.previous), anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
                 <% else %>
                   <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
                 <% end %>
@@ -114,7 +114,7 @@
                   <%= "Page #{@pagy.page}" %>
                 </span>
                 <% if @pagy.next %>
-                  <%= link_to '»', url_for(page: @pagy.next, anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
+                  <%= link_to '»', url_for(params: request.query_parameters.merge('page' => @pagy.next), anchor: 'log'), class: 'join-item btn min-h-full h-10' %>
                 <% else %>
                   <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
                 <% end %>

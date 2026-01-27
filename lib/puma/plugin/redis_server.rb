@@ -9,7 +9,7 @@ Puma::Plugin.create do
 
     @puma_pid = $PROCESS_ID
 
-    launcher.events.on_booted do
+    launcher.events.after_booted do
       @redis_server_pid = fork_redis
     end
 
@@ -19,8 +19,8 @@ Puma::Plugin.create do
       stop_redis_server if Process.pid == @puma_pid
     end
 
-    launcher.events.on_stopped { stop_redis_server }
-    launcher.events.on_restart { stop_redis_server }
+    launcher.events.after_stopped { stop_redis_server }
+    launcher.events.before_restart { stop_redis_server }
   end
 
   private

@@ -1,10 +1,12 @@
 const en = {
+  default: 'Default',
+  save_as_custom_field: 'Save as Custom Field',
   kba: 'KBA',
   analyzing_: 'Analyzing...',
   download: 'Download',
   downloading_: 'Downloading...',
   view: 'View',
-  autodetect_fields: 'Autodetect fields',
+  autodetect_fields: 'Autodetect Fields',
   payment_link: 'Payment link',
   strikeout: 'Strikeout',
   draw_strikethrough_the_document: 'Draw strikethrough the document',
@@ -200,6 +202,8 @@ const en = {
 }
 
 const es = {
+  default: 'Predeterminado',
+  save_as_custom_field: 'Guardar como personalizado',
   kba: 'KBA',
   autodetect_fields: 'Autodetectar campos',
   analyzing_: 'Analizando...',
@@ -401,6 +405,8 @@ const es = {
 }
 
 const it = {
+  default: 'Predefinito',
+  save_as_custom_field: 'Salva come personalizzato',
   kba: 'KBA',
   autodetect_fields: 'Rileva campi',
   analyzing_: 'Analisi...',
@@ -602,6 +608,8 @@ const it = {
 }
 
 const pt = {
+  default: 'Padrão',
+  save_as_custom_field: 'Salvar como personalizado',
   kba: 'KBA',
   autodetect_fields: 'Detectar campos',
   analyzing_: 'Analisando...',
@@ -803,6 +811,8 @@ const pt = {
 }
 
 const fr = {
+  default: 'Par défaut',
+  save_as_custom_field: 'Enregistrer comme personnalisé',
   kba: 'KBA',
   autodetect_fields: 'Détecter les champs',
   analyzing_: 'Analyse...',
@@ -1004,6 +1014,8 @@ const fr = {
 }
 
 const de = {
+  default: 'Standard',
+  save_as_custom_field: 'Als benutzerdefiniert speichern',
   kba: 'KBA',
   autodetect_fields: 'Felder erkennen',
   analyzing_: 'Analysiere...',
@@ -1205,6 +1217,8 @@ const de = {
 }
 
 const nl = {
+  default: 'Standaard',
+  save_as_custom_field: 'Opslaan als aangepast',
   kba: 'KBA',
   autodetect_fields: 'Velden detecteren',
   analyzing_: 'Analyseren...',

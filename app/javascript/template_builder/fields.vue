@@ -15,7 +15,8 @@
   </div>
   <div
     ref="fields"
-    class="fields mb-1 mt-2"
+    class="fields mt-2"
+    :class="{ 'mb-1': !withCustomFields || !customFields.length }"
     @dragover.prevent="onFieldDragover"
     @drop="fieldsDragFieldRef.value ? reorderFields() : null"
   >
@@ -30,7 +31,11 @@
       :with-prefillable="withPrefillable"
       :default-field="defaultFieldsIndex[field.name]"
       :draggable="editable"
+      :with-custom-fields="withCustomFields"
+      class="mb-1.5"
+      @add-custom-field="addCustomField"
       @dragstart="[fieldsDragFieldRef.value = field, removeDragOverlay($event), setDragPlaceholder($event)]"
+      @save="save"
       @dragend="[fieldsDragFieldRef.value = null, $emit('set-drag-placeholder', null)]"
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
@@ -105,7 +110,92 @@
     </div>
   </div>
   <div
-    v-if="editable && !onlyDefinedFields"
+    v-if="editable && withCustomFields && (customFields.length || newCustomField)"
+    class="tabs w-full mb-1.5"
+  >
+    <a
+      class="tab tab-bordered w-1/2 border-base-300"
+      :class="{ 'tab-active': !showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0px' : '0.5px' }"
+      @click="setFieldsTab('default')"
+    >{{ t('default') }}</a>
+    <a
+      class="tab tab-bordered w-1/2 border-base-300"
+      :class="{ 'tab-active': showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0.5px' : '0px' }"
+      @click="setFieldsTab('custom')"
+    >{{ t('custom') }}</a>
+  </div>
+  <div
+    v-if="showCustomTab && editable"
+    ref="customFields"
+    class="custom-fields"
+    @dragover.prevent="onCustomFieldDragover"
+    @drop="customDragFieldRef.value ? reorderCustomFields() : null"
+  >
+    <template v-if="isShowCustomFieldSearch">
+      <input
+        v-model="customFieldsSearch"
+        :placeholder="t('search_field')"
+        class="input input-ghost input-xs px-0 text-base mb-1 !outline-0 !rounded bg-transparent w-full"
+      >
+      <hr class="mb-2">
+    </template>
+    <div
+      ref="customFieldsList"
+      class="overflow-auto relative"
+      :style="{
+        maxHeight: isShowCustomFieldSearch ? '320px' : '',
+        minHeight: '320px'
+      }"
+    >
+      <div
+        v-if="!filteredCustomFields.length && customFieldsSearch"
+        class="top-0 bottom-0 text-center absolute flex items-center justify-center w-full flex-col"
+      >
+        <div>
+          {{ t('field_not_found') }}
+        </div>
+        <a
+          href="#"
+          class="link"
+          @click.prevent="customFieldsSearch = ''"
+        >
+          {{ t('clear') }}
+        </a>
+      </div>
+      <CustomField
+        v-if="newCustomField"
+        :key="newCustomField.uuid"
+        ref="newCustomField"
+        :data-uuid="newCustomField.uuid"
+        :is-new="true"
+        :field="newCustomField"
+        :draggable="false"
+        class="mb-1.5"
+        @save="onNewCustomFieldSave"
+        @remove="newCustomField = null"
+      />
+      <CustomField
+        v-for="field in filteredCustomFields"
+        :key="field.uuid"
+        :data-uuid="field.uuid"
+        :field="field"
+        :draggable="true"
+        class="mb-1.5"
+        :with-signature-id="withSignatureId"
+        :with-prefillable="withPrefillable"
+        @save="saveCustomFields"
+        @click="$emit('set-draw-custom-field', field)"
+        @dragstart="[customDragFieldRef.value = field, removeDragOverlay($event), setDragPlaceholder($event)]"
+        @dragend="[customDragFieldRef.value = null, $emit('set-drag-placeholder', null)]"
+        @remove="removeCustomField"
+        @set-draw="$emit('set-draw', $event)"
+      />
+    </div>
+  </div>
+  <div
+    v-if="editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField))"
     id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
@@ -266,15 +356,18 @@
 
 <script>
 import Field from './field'
+import CustomField from './custom_field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
 import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
+import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateFields',
   components: {
     Field,
+    CustomField,
     FieldType,
     IconCirclePlus,
     IconSparkles,
@@ -283,11 +376,21 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'baseFetch', 'selectedAreasRef'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef'],
   props: {
     fields: {
       type: Array,
       required: true
+    },
+    customFields: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withFieldsSearch: {
       type: Boolean,
@@ -372,12 +475,15 @@ export default {
       default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
   data () {
     return {
       fieldPagesLoaded: null,
       analyzingProgress: 0,
-      defaultFieldsSearch: ''
+      newCustomField: null,
+      showCustomTab: false,
+      defaultFieldsSearch: '',
+      customFieldsSearch: ''
     }
   },
   computed: {
@@ -430,6 +536,23 @@ export default {
       } else {
         return this.submitterDefaultFields
       }
+    },
+    isShowCustomFieldSearch () {
+      return this.customFields.length > 8
+    },
+    filteredCustomFields () {
+      if (this.customFieldsSearch) {
+        return this.customFields.filter((f) => f.name.toLowerCase().includes(this.customFieldsSearch.toLowerCase()))
+      } else {
+        return this.customFields
+      }
+    }
+  },
+  mounted () {
+    try {
+      this.showCustomTab = localStorage.getItem('docuseal_builder_tab') === 'custom'
+    } catch (e) {
+      console.error(e)
     }
   },
   methods: {
@@ -439,6 +562,61 @@ export default {
       this.setDragPlaceholder(event)
 
       this.$emit('set-drag', field)
+    },
+    onNewCustomFieldSave () {
+      if (this.newCustomField.name) {
+        this.customFields.unshift(this.newCustomField)
+        this.newCustomField = null
+
+        this.saveCustomFields()
+      } else {
+        this.newCustomField = null
+      }
+    },
+    addCustomField (field) {
+      const customField = JSON.parse(JSON.stringify(field))
+
+      customField.uuid = v4()
+
+      delete customField.submitter_uuid
+      delete customField.prefillable
+      delete customField.conditions
+
+      customField.areas?.forEach((area) => {
+        delete area.attachment_uuid
+        delete area.page
+      })
+
+      if (customField.name) {
+        this.customFields.unshift(customField)
+        this.saveCustomFields()
+      } else {
+        this.newCustomField = customField
+      }
+
+      this.setFieldsTab('custom')
+    },
+    setFieldsTab (type) {
+      try {
+        localStorage.setItem('docuseal_builder_tab', type)
+      } catch (e) {
+        console.error(e)
+      }
+
+      this.showCustomTab = type === 'custom'
+    },
+    saveCustomFields () {
+      return this.baseFetch('/account_custom_fields', {
+        method: 'POST',
+        body: JSON.stringify({
+          value: this.customFields
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(async (resp) => {
+        const fields = await resp.json()
+
+        this.customFields.splice(0, this.customFields.length, ...fields)
+      })
     },
     detectFields () {
       const fields = []
@@ -617,6 +795,47 @@ export default {
       if (save) {
         this.save()
       }
+    },
+    removeCustomField (field) {
+      this.customFields.splice(this.customFields.indexOf(field), 1)
+
+      if (!this.customFields.length) {
+        this.setFieldsTab('default')
+      }
+
+      this.saveCustomFields()
+    },
+    onCustomFieldDragover (e) {
+      if (this.customDragFieldRef.value && this.customFields.includes(this.customDragFieldRef.value)) {
+        const container = this.$refs.customFieldsList
+        const targetField = e.target.closest('[data-uuid]')
+        const dragField = container.querySelector(`[data-uuid="${this.customDragFieldRef.value.uuid}"]`)
+
+        if (dragField && targetField && targetField !== dragField) {
+          const fields = Array.from(container.children)
+          const currentIndex = fields.indexOf(dragField)
+          const targetIndex = fields.indexOf(targetField)
+
+          if (currentIndex < targetIndex) {
+            targetField.after(dragField)
+          } else {
+            targetField.before(dragField)
+          }
+        }
+      }
+    },
+    reorderCustomFields () {
+      if (!this.customFields.includes(this.customDragFieldRef.value)) {
+        return
+      }
+
+      const reorderedFields = Array.from(this.$refs.customFieldsList.children).map((el) => {
+        return this.customFields.find((f) => f.uuid === el.dataset.uuid)
+      }).filter(Boolean)
+
+      this.customFields.splice(0, this.customFields.length, ...reorderedFields)
+
+      this.saveCustomFields()
     }
   }
 }

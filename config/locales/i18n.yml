@@ -29,6 +29,8 @@ en: &en
   pro: Pro
   thanks: Thanks
   private: Private
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Make all newly created templates private to their creator and admins by default.
+  create_templates_with_admin_access_by_default: Create templates with admin access by default
   require_email_2fa: Require email 2FA
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: When checked, each signer must verify their email with a one-time code before accessing the document.
   require_phone_2fa: Require phone 2FA
@@ -1029,6 +1031,8 @@ es: &es
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
   private: Privado
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Hacer que todas las plantillas recién creadas sean privadas para su creador y los administradores por defecto.
+  create_templates_with_admin_access_by_default: Crear plantillas con acceso de administrador por defecto
   require_email_2fa: Requerir 2FA por correo electrónico
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Cuando está marcado, cada firmante debe verificar su correo electrónico con un código de un solo uso antes de acceder al documento.
   require_phone_2fa: Requerir 2FA por teléfono
@@ -2011,6 +2015,8 @@ it: &it
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
   private: Privato
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendere tutte le nuove template private per il creatore e gli amministratori per impostazione predefinita.
+  create_templates_with_admin_access_by_default: Crea modelli con accesso amministratore per impostazione predefinita
   require_email_2fa: Richiedi 2FA email
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Quando selezionato, ogni firmatario deve verificare la propria email con un codice monouso prima di accedere al documento.
   require_phone_2fa: Richiedi 2FA telefono
@@ -2994,6 +3000,8 @@ fr: &fr
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
   private: Privé
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendre tous les nouveaux modèles privés pour leur créateur et les administrateurs par défaut.
+  create_templates_with_admin_access_by_default: Créer des modèles avec un accès administrateur par défaut
   require_email_2fa: Exiger la 2FA par email
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Lorsque coché, chaque signataire doit vérifier son email avec un code à usage unique avant d'accéder au document.
   require_phone_2fa: Exiger la 2FA par téléphone
@@ -3973,6 +3981,8 @@ pt: &pt
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
   private: Privado
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Tornar todos os modelos recém-criados privados para seu criador e administradores por padrão.
+  create_templates_with_admin_access_by_default: Criar modelos com acesso de administrador por padrão
   require_email_2fa: Exigir 2FA por email
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Quando marcado, cada signatário deve verificar seu email com um código de uso único antes de acessar o documento.
   require_phone_2fa: Exigir 2FA por telefone
@@ -4941,6 +4951,8 @@ de: &de
   pro: Pro
   thanks: Danke
   private: Privat
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Alle neu erstellten Vorlagen standardmäßig nur für ihren Ersteller und Administratoren sichtbar machen.
+  create_templates_with_admin_access_by_default: Vorlagen standardmäßig mit Administratorzugriff erstellen
   require_email_2fa: E-Mail 2FA erforderlich
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Wenn aktiviert, muss jeder Unterzeichner seine E-Mail mit einem einmaligen Code verifizieren, bevor er auf das Dokument zugreifen kann.
   require_phone_2fa: Telefon 2FA erforderlich
@@ -6311,6 +6323,8 @@ nl: &nl
   pro: Pro
   thanks: Bedankt
   private: Privé
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker en admins.
+  create_templates_with_admin_access_by_default: Sjablonen standaard met admin-toegang maken
   require_email_2fa: E-mail 2FA vereist
   when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: Wanneer aangevinkt, moet elke ondertekenaar zijn e-mail verifiëren met een eenmalige code voordat hij toegang krijgt tot het document.
   require_phone_2fa: Telefoon 2FA vereist

@@ -116,6 +116,7 @@ module Submissions
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
                                                                AccountConfig::WITH_FILE_LINKS_KEY,
+                                                               AccountConfig::WITH_AUDIT_SENDER_KEY,
                                                                AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
       last_submitter = submission.submitters.select(&:completed_at).max_by(&:completed_at)
@@ -123,6 +124,7 @@ module Submissions
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
+      with_audit_sender = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SENDER_KEY }&.value == true
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
 
       timezone = account.timezone
@@ -464,6 +466,11 @@ module Submissions
                                       name].join(' ')
             I18n.t('submission_event_names.invite_party_by_html', invited_submitter_name:,
                                                                   submitter_name:)
+          elsif with_audit_sender && (event.event_type == 'send_email' || event.event_type == 'send_sms')
+            [
+              I18n.t("submission_event_names.#{event.event_type}_to_html", submitter_name:),
+              "<b>#{I18n.t(:from)}</b> #{submission.created_by_user.full_name} #{submission.created_by_user.email}"
+            ].join("\n")
           elsif event.event_type.include?('send_')
             I18n.t("submission_event_names.#{event.event_type}_to_html", submitter_name:)
           else
@@ -472,11 +479,20 @@ module Submissions
 
         bold_text, normal_text = text.match(%r{<b>(.*?)</b>(.*)}).captures
 
+        text_box = [{ text: bold_text, font: [FONT_NAME, { variant: :bold }] }, normal_text]
+
+        if text.include?("\n")
+          text_box = text.split("\n")[1..].reduce(text_box) do |acc, row|
+            bold_text, normal_text = row.match(%r{<b>(.*?)</b>(.*)}).captures
+
+            [*acc, "\n", { text: bold_text, font: [FONT_NAME, { variant: :bold }] }, normal_text]
+          end
+        end
+
         [
           "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: :long, locale: account.locale)} " \
           "#{TimeUtils.timezone_abbr(timezone, event.event_timestamp)}",
-          composer.document.layout.formatted_text_box([{ text: bold_text, font: [FONT_NAME, { variant: :bold }] },
-                                                       normal_text])
+          composer.document.layout.formatted_text_box(text_box)
         ]
       end
 

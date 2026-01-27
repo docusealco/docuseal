@@ -45,6 +45,9 @@ module ActionMailerConfigsInterceptor
   def build_smtp_configs_hash(email_configs)
     value = email_configs.value
 
+    is_tls = value['security'] == 'tls' || (value['security'].blank? && value['port'].to_s == '465')
+    is_ssl = value['security'] == 'ssl'
+
     {
       user_name: value['username'],
       password: value['password'],
@@ -53,11 +56,11 @@ module ActionMailerConfigsInterceptor
       domain: value['domain'],
       openssl_verify_mode: value['security'] == 'noverify' ? OpenSSL::SSL::VERIFY_NONE : nil,
       authentication: value['password'].present? ? value.fetch('authentication', 'plain') : nil,
-      enable_starttls_auto: value['security'] != 'tls',
+      enable_starttls: !is_tls && !is_ssl,
       open_timeout: OPEN_TIMEOUT,
       read_timeout: READ_TIMEOUT,
-      ssl: value['security'] == 'ssl',
-      tls: value['security'] == 'tls' || (value['security'].blank? && value['port'].to_s == '465')
+      ssl: is_ssl,
+      tls: is_tls
     }.compact_blank
   end
 end

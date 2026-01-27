@@ -175,9 +175,7 @@
         v-if="isShowQr"
         class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
       >
-        <div
-          class="absolute top-1.5 right-1.5 md:tooltip"
-        >
+        <div class="absolute top-1.5 right-1.5">
           <a
             href="#"
             class="btn btn-sm btn-circle btn-normal btn-outline"
@@ -448,14 +446,7 @@ export default {
     }
   },
   async mounted () {
-    this.$nextTick(() => {
-      if (this.$refs.canvas) {
-        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
-
-        this.$refs.canvas.getContext('2d').scale(scale, scale)
-      }
-    })
+    this.$nextTick(() => this.setCanvasSize())
 
     if (this.$refs.canvas) {
       this.pad = new SignaturePad(this.$refs.canvas)
@@ -470,13 +461,10 @@ export default {
         this.$emit('start')
       })
 
-      this.intersectionObserver = new IntersectionObserver((entries, observer) => {
+      this.intersectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
-
-            this.$refs.canvas.getContext('2d').scale(scale, scale)
+            this.setCanvasSize()
 
             this.intersectionObserver?.disconnect()
           }
@@ -484,13 +472,62 @@ export default {
       })
 
       this.intersectionObserver.observe(this.$refs.canvas)
+
+      this.resizeObserver = new ResizeObserver(() => {
+        requestAnimationFrame(() => {
+          if (!this.$refs.canvas) return
+
+          const { width, height } = this.$refs.canvas
+
+          this.setCanvasSize()
+
+          if (this.$refs.canvas.width !== width || this.$refs.canvas.height !== height) {
+            this.redrawCanvas(width, height)
+          }
+        })
+      })
+
+      this.resizeObserver.observe(this.$refs.canvas.parentNode)
     }
   },
   beforeUnmount () {
     this.intersectionObserver?.disconnect()
+    this.resizeObserver?.disconnect()
     this.stopCheckSignature()
   },
   methods: {
+    setCanvasSize () {
+      const canvas = this.$refs.canvas
+
+      if (canvas) {
+        const width = canvas.parentNode.clientWidth
+        const height = width / 3
+
+        if (canvas.width !== width * scale || canvas.height !== height * scale) {
+          canvas.width = width * scale
+          canvas.height = height * scale
+
+          canvas.getContext('2d').scale(scale, scale)
+        }
+      }
+    },
+    redrawCanvas (oldWidth, oldHeight) {
+      const canvas = this.$refs.canvas
+
+      if (this.pad && !this.isTextSignature && !this.pad.isEmpty()) {
+        const sx = canvas.width / oldWidth
+        const sy = canvas.height / oldHeight
+
+        const scaledData = this.pad.toData().map((stroke) => ({
+          ...stroke,
+          points: stroke.points.map((p) => ({ ...p, x: p.x * sx, y: p.y * sy }))
+        }))
+
+        this.pad.fromData(scaledData)
+      } else if (this.isTextSignature && this.$refs.textInput) {
+        this.updateWrittenSignature({ target: { value: this.$refs.textInput.value } })
+      }
+    },
     remove () {
       this.$emit('update:model-value', '')
 

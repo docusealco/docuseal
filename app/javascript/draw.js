@@ -4,14 +4,25 @@ import { isValidSignatureCanvas } from './submission_form/validate_signature'
 
 window.customElements.define('draw-signature', class extends HTMLElement {
   connectedCallback () {
-    const scale = 3
-
-    this.canvas.width = this.canvas.parentNode.clientWidth * scale
-    this.canvas.height = this.canvas.parentNode.clientHeight * scale
-
-    this.canvas.getContext('2d').scale(scale, scale)
+    this.setCanvasSize()
 
     this.pad = new SignaturePad(this.canvas)
+
+    this.resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(() => {
+        if (!this.canvas) return
+
+        const { width, height } = this.canvas
+
+        this.setCanvasSize()
+
+        if (this.canvas.width !== width || this.canvas.height !== height) {
+          this.redrawCanvas(width, height)
+        }
+      })
+    })
+
+    this.resizeObserver.observe(this.canvas.parentNode)
 
     if (this.dataset.color) {
       this.pad.penColor = this.dataset.color
@@ -55,6 +66,40 @@ window.customElements.define('draw-signature', class extends HTMLElement {
   clearSignaturePad () {
     this.pad.clear()
     this.updateSubmitButtonVisibility()
+  }
+
+  disconnectedCallback () {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect()
+    }
+  }
+
+  setCanvasSize () {
+    const scale = 3
+
+    const width = this.canvas.parentNode.clientWidth
+    const height = this.canvas.parentNode.clientHeight
+
+    if (this.canvas.width !== width * scale || this.canvas.height !== height * scale) {
+      this.canvas.width = width * scale
+      this.canvas.height = height * scale
+
+      this.canvas.getContext('2d').scale(scale, scale)
+    }
+  }
+
+  redrawCanvas (oldWidth, oldHeight) {
+    if (this.pad && !this.pad.isEmpty()) {
+      const sx = this.canvas.width / oldWidth
+      const sy = this.canvas.height / oldHeight
+
+      const scaledData = this.pad.toData().map((stroke) => ({
+        ...stroke,
+        points: stroke.points.map((p) => ({ ...p, x: p.x * sx, y: p.y * sy }))
+      }))
+
+      this.pad.fromData(scaledData)
+    }
   }
 
   updateSubmitButtonVisibility () {

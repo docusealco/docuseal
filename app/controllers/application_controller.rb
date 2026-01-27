@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   BROWSER_LOCALE_REGEXP = /\A\w{2}(?:-\w{2})?/
 
   include ActiveStorage::SetCurrent
-  include Pagy::Backend
+  include Pagy::Method
 
   check_authorization unless: :devise_controller?
 
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
 
-  rescue_from Pagy::OverflowError do
+  rescue_from Pagy::RangeError do
     redirect_to request.path
   end
 
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
 
   def pagy_auto(collection, **keyword_args)
     if current_ability.can?(:manage, :countless)
-      pagy_countless(collection, **keyword_args)
+      pagy(:countless, collection, **keyword_args)
     else
       pagy(collection, **keyword_args)
     end

@@ -155,6 +155,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
+      customFields: reactive(JSON.parse(this.dataset.customFields || '[]')),
       backgroundColor: '#faf7f5',
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
@@ -164,6 +165,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withFieldsDetection: this.dataset.withFieldsDetection === 'true',
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
+      withCustomFields: true,
       withPayment: this.dataset.withPayment === 'true',
       isPaymentConnected: this.dataset.isPaymentConnected === 'true',
       withFormula: this.dataset.withFormula === 'true',

@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
@@ -10,7 +10,7 @@ AllCops:
     - node_modules/**/*
     - bin/*
     - vendor/**/*
-  TargetRubyVersion: '3.3'
+  TargetRubyVersion: '4.0'
   SuggestExtensions: false
 
 Metrics/BlockLength:
@@ -99,4 +99,10 @@ Rails/ApplicationController:
   Enabled: false
 
 Rails/Output:
+  Enabled: false
+
+Rails/StrongParametersExpect:
+  Enabled: false
+
+Rails/RedirectBackOrTo:
   Enabled: false
