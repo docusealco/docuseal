@@ -12,7 +12,7 @@
       <%= local_assigns[:right_additional_html] %>
       <div class="join">
         <% if pagy.previous %>
-          <%= link_to '«', url_for(page: pagy.previous), class: 'join-item btn min-h-full h-10' %>
+          <%= link_to '«', url_for(params: request.query_parameters.merge('page' => pagy.previous)), class: 'join-item btn min-h-full h-10' %>
         <% else %>
           <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
         <% end %>
@@ -22,7 +22,7 @@
         <% if local_assigns[:next_page_path].present? %>
           <%= link_to '»', local_assigns[:next_page_path], class: 'join-item btn min-h-full h-10' %>
         <% elsif pagy.next %>
-          <%= link_to '»', url_for(page: pagy.next), class: 'join-item btn min-h-full h-10' %>
+          <%= link_to '»', url_for(params: request.query_parameters.merge('page' => pagy.next)), class: 'join-item btn min-h-full h-10' %>
         <% else %>
           <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">»</span>
         <% end %>
