@@ -180,7 +180,15 @@ export default {
   methods: {
     scrollToArea (area) {
       this.$nextTick(() => {
-        this.pageRefs[area.page].areaRefs.find((e) => e.area === area).$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        const pageRef = this.pageRefs[area.page]
+
+        if (pageRef && pageRef.areaRefs) {
+          const areaRef = pageRef.areaRefs.find((e) => e.area === area)
+
+          if (areaRef && areaRef.$el) {
+            areaRef.$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          }
+        }
       })
     },
     setPageRefs (el) {

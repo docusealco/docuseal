@@ -179,8 +179,11 @@ export default {
     },
     onBlur (e) {
       setTimeout(() => {
-        this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue
-        this.$emit('update:model-value', this.value)
+        if (this.$refs.contenteditable) {
+          this.value = this.$refs.contenteditable.innerText.trim() || this.modelValue
+          this.$emit('update:model-value', this.value)
+        }
+
         this.$emit('blur', e)
 
         this.isEditable = false
