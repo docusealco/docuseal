@@ -790,10 +790,10 @@ module Submissions
     def build_pdfs_index(submission, submitter: nil, flatten: true)
       latest_submitter = find_last_submitter(submission, submitter:)
 
-      Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
+      documents   = Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
+      documents ||= submission.schema_documents
 
-      documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submission.schema_documents.preload(:blob)
+      ActiveRecord::Associations::Preloader.new(records: documents, associations: [:blob]).call
 
       attachment_uuids = Submissions.filtered_conditions_schema(submission).pluck('attachment_uuid')
       attachments_index = documents.index_by { |a| a.metadata['original_uuid'] || a.uuid }

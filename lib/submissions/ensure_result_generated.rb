@@ -32,6 +32,8 @@ module Submissions
 
         LockEvent.create!(key:, event_name: :complete)
 
+        submitter.documents.reset
+
         documents
       end
     rescue ActiveRecord::RecordNotUnique
