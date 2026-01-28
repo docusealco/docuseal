@@ -926,10 +926,12 @@ export default {
       }, {})
     },
     attachmentConditionsIndex () {
+      const cache = {}
+
       return this.schema.reduce((acc, item) => {
         if (item.conditions?.length) {
           if (item.conditions.every((c) => this.fieldsUuidIndex[c.field_uuid])) {
-            acc[item.attachment_uuid] = this.checkFieldConditions(item)
+            acc[item.attachment_uuid] = this.checkFieldConditions(item, cache)
           } else {
             acc[item.attachment_uuid] = true
           }
@@ -1023,7 +1025,9 @@ export default {
       return this.readonlyFields.filter((f) => f.conditions?.length)
     },
     readonlyFields () {
-      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      const cache = {}
+
+      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f))
     },
     stepFields () {
       const verificationFields = []
@@ -1078,10 +1082,12 @@ export default {
         sortedFields.push(verificationFields.pop())
       }
 
+      const cache = {}
+
       return sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
-        if (this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f)) {
+        if (this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f)) {
           if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
             prevStep.push(f)
           } else {
@@ -1093,7 +1099,9 @@ export default {
       }, [])
     },
     formulaFields () {
-      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      const cache = {}
+
+      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f))
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
@@ -1223,27 +1231,33 @@ export default {
         return true
       }
     },
-    checkFieldConditions (field) {
+    checkFieldConditions (field, cache = {}) {
+      if (cache[field.uuid] !== undefined) {
+        return cache[field.uuid]
+      }
+
+      cache[field.uuid] = true
+
       if (field.conditions?.length) {
         const result = field.conditions.reduce((acc, cond) => {
           if (cond.operation === 'or') {
-            acc.push(acc.pop() || this.checkFieldCondition(cond))
+            acc.push(acc.pop() || this.checkFieldCondition(cond, cache))
           } else {
-            acc.push(this.checkFieldCondition(cond))
+            acc.push(this.checkFieldCondition(cond, cache))
           }
 
           return acc
         }, [])
 
-        return !result.includes(false)
-      } else {
-        return true
+        cache[field.uuid] = !result.includes(false)
       }
+
+      return cache[field.uuid]
     },
-    checkFieldCondition (condition) {
+    checkFieldCondition (condition, cache = {}) {
       const field = this.fieldsUuidIndex[condition.field_uuid]
 
-      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field)) {
+      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field, cache)) {
         return false
       }
 
