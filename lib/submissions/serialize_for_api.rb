@@ -14,6 +14,7 @@ module Submissions
 
     module_function
 
+    # rubocop:disable Metrics
     def call(submission, submitters = nil, params = {}, with_events: true, with_documents: true, with_values: true,
              expires_at: Accounts.link_expires_at(Account.new(id: submission.account_id)))
       submitters ||= submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
@@ -30,6 +31,10 @@ module Submissions
 
       if with_events
         json['submission_events'] = Submitters::SerializeForApi.serialize_events(submission.submission_events)
+      end
+
+      if params[:include].to_s.include?('fields')
+        json['fields'] = submission.template_fields || submission.template&.fields
       end
 
       if submitters.all?(&:completed_at?)
@@ -57,6 +62,7 @@ module Submissions
 
       json
     end
+    # rubocop:enable Metrics
 
     def build_status(submission, submitters)
       if submitters.any?(&:declined_at?)
