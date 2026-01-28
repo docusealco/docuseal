@@ -437,7 +437,7 @@
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type)"
+    v-if="['text', 'number', 'radio', 'multiple', 'select'].includes(field.type)"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">

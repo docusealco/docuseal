@@ -399,7 +399,7 @@ export default {
     showReadOnly () {
       if (!this.field) return false
 
-      return ['text', 'number'].includes(this.field.type)
+      return ['text', 'number', 'radio', 'multiple', 'select'].includes(this.field.type)
     },
     isRequired () {
       return this.field?.required || false
