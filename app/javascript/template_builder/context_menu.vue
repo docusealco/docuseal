@@ -373,7 +373,7 @@ export default {
       if (this.isMultiSelection) return true
       if (!this.field) return false
 
-      return ['text', 'number', 'date', 'select', 'heading'].includes(this.field.type)
+      return ['text', 'number', 'date', 'select', 'heading', 'cells'].includes(this.field.type)
     },
     showDescription () {
       if (!this.field) return false

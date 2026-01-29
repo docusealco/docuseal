@@ -27,32 +27,6 @@
     </label>
   </div>
   <div
-    v-if="['cells'].includes(field.type)"
-    class="py-1.5 px-1 relative"
-    @click.stop
-  >
-    <select
-      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, $emit('save')]"
-    >
-      <option
-        v-for="value in ['left', 'right', field.type === 'cells' ? null : 'center'].filter(Boolean)"
-        :key="value"
-        :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
-        :value="value"
-      >
-        {{ t(value) }}
-      </option>
-    </select>
-    <label
-      :style="{ backgroundColor }"
-      class="absolute -top-1 left-2.5 px-1 h-4"
-      style="font-size: 8px"
-    >
-      {{ t('align') }}
-    </label>
-  </div>
-  <div
     v-if="['select', 'radio'].includes(field.type) && !defaultField"
     class="py-1.5 px-1 relative"
     @click.stop
@@ -470,7 +444,7 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="['text', 'number', 'date', 'select', 'heading'].includes(field.type)">
+  <li v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)">
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
