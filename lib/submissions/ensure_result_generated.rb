@@ -19,7 +19,7 @@ module Submissions
       total_wait_time ||= 0
       key = ['result_attachments', submitter.id].join(':')
 
-      return submitter.documents.reset if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+      return submitter.documents.reload if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
 
       events = ApplicationRecord.uncached { LockEvent.where(key:).order(:id).to_a }
 
@@ -62,7 +62,7 @@ module Submissions
             LockEvent.where(key: ['result_attachments', submitter.id].join(':')).order(:id).last
           end
 
-        break submitter.documents.reset if last_event.event_name.in?(%w[complete fail])
+        break submitter.documents.reload if last_event.event_name.in?(%w[complete fail])
 
         raise WaitForCompleteTimeout if total_wait_time > CHECK_COMPLETE_TIMEOUT
       end
