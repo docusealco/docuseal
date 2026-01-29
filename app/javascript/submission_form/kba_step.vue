@@ -555,7 +555,11 @@ export default {
         const data = await resp.json()
 
         if (data.result?.action !== 'PASS') {
-          this.error = 'Knowledge Based Authentication Failed - make sure you provide correct answers for the Knowledge Based authentication.'
+          if (data.result?.issues?.length) {
+            this.error = `Knowledge Based Authentication Failed - make sure you provide correct details for the Knowledge Based authentication: ${data.result.issues.join(', ')}`
+          } else {
+            this.error = 'Knowledge Based Authentication Failed - make sure you provide correct answers for the Knowledge Based authentication.'
+          }
 
           throw new Error('Knowledge Based Authentication Failed')
         }
