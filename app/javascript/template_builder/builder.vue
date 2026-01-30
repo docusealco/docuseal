@@ -374,6 +374,7 @@
                 :draw-field-type="drawFieldType"
                 :draw-custom-field="drawCustomField"
                 :editable="editable"
+                :is-mobile="isMobile"
                 :base-url="baseUrl"
                 :with-fields-detection="withFieldsDetection"
                 @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', drawCustomField = null, showDrawField = false]"
@@ -382,9 +383,9 @@
                 @paste-field="pasteField"
                 @copy-field="copyField"
                 @add-custom-field="addCustomField"
+                @set-draw="[drawField = $event.field, drawOption = $event.option]"
                 @copy-selected-areas="copySelectedAreas"
                 @delete-selected-areas="deleteSelectedAreas"
-                @align-selected-areas="alignSelectedAreas"
                 @autodetect-fields="detectFieldsForPage"
               />
               <DocumentControls
@@ -1175,27 +1176,6 @@ export default {
       })
 
       this.debouncedSave()
-    },
-    alignSelectedAreas (direction) {
-      const areas = this.selectedAreasRef.value
-
-      let targetValue
-
-      if (direction === 'left') {
-        targetValue = Math.min(...areas.map(a => a.x))
-        areas.forEach((area) => { area.x = targetValue })
-      } else if (direction === 'right') {
-        targetValue = Math.max(...areas.map(a => a.x + a.w))
-        areas.forEach((area) => { area.x = targetValue - area.w })
-      } else if (direction === 'top') {
-        targetValue = Math.min(...areas.map(a => a.y))
-        areas.forEach((area) => { area.y = targetValue })
-      } else if (direction === 'bottom') {
-        targetValue = Math.max(...areas.map(a => a.y + a.h))
-        areas.forEach((area) => { area.y = targetValue - area.h })
-      }
-
-      this.save()
     },
     download () {
       this.isDownloading = true

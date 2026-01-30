@@ -10,7 +10,7 @@
       @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, $emit('save')]"
     >
       <option
-        v-for="method in ['QeS', 'AeS']"
+        v-for="method in verificationMethods"
         :key="method"
         :value="method.toLowerCase()"
         :selected="method.toLowerCase() === field.preferences?.method || (method === 'QeS' && !field.preferences?.method)"
@@ -322,7 +322,7 @@
         {{ t('any') }}
       </option>
       <option
-        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']"
+        v-for="type in signatureFormats"
         :key="type"
         :value="type"
         :selected="field.preferences?.format === type"
@@ -426,7 +426,7 @@
     </label>
   </li>
   <li
-    v-if="withPrefillable && ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone'].includes(field['type'])"
+    v-if="withPrefillable && prefillableFieldTypes.includes(field['type'])"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -692,7 +692,7 @@ export default {
     },
     lengthValidation () {
       if (this.field.validation?.pattern && this.selectedValidation !== 'custom') {
-        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+        return this.parseLengthPattern(this.field.validation.pattern)
       } else {
         return null
       }
@@ -708,6 +708,15 @@ export default {
         '^[0-9]+$': 'numbers_only',
         '^[a-zA-Z]+$': 'letters_only'
       }
+    },
+    signatureFormats () {
+      return ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']
+    },
+    verificationMethods () {
+      return ['QeS', 'AeS']
+    },
+    prefillableFieldTypes () {
+      return ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone']
     },
     sortedAreas () {
       return (this.field.areas || []).sort((a, b) => {
@@ -771,6 +780,9 @@ export default {
       } else {
         return number
       }
+    },
+    parseLengthPattern (pattern) {
+      return pattern?.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups || null
     },
     formatDate (date, format) {
       const monthFormats = {

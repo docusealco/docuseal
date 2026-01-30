@@ -212,7 +212,10 @@ export default {
       } else {
         this.field.preferences.formula = normalizedFormula
 
-        if (this.field.type !== 'payment') {
+        if (this.field.type === 'payment') {
+          delete this.field.preferences.price
+          delete this.field.preferences.payment_link_id
+        } else {
           this.field.readonly = !!normalizedFormula
         }
 

@@ -134,6 +134,7 @@
             @focusout="maybeBlurSettings"
           >
             <FieldSettings
+              v-if="isMobile"
               :field="field"
               :default-field="defaultField"
               :editable="editable"
@@ -150,6 +151,12 @@
               @save="save"
               @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
             />
+            <div
+              v-else
+              class="whitespace-normal"
+            >
+              The dots menu is retired in favor of the field context menu. Right-click the field to access field settings. Double-click the field to set a default value.
+            </div>
           </ul>
         </span>
       </div>
@@ -467,6 +474,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    isMobile: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     isSelectMode: {
       type: Boolean,
