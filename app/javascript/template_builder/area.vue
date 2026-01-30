@@ -252,7 +252,8 @@
             </span>
             <div
               v-else-if="field.type === 'cells' && field.default_value"
-              class="w-full flex items-center"
+              class="w-full flex"
+              :class="fontClasses"
             >
               <div
                 v-for="(char, index) in field.default_value"

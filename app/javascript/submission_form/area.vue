@@ -182,8 +182,8 @@
     </div>
     <div
       v-else-if="field.type === 'cells'"
-      class="w-full flex items-center"
-      :class="{ 'justify-end': field.preferences?.align === 'right', ...fontClasses }"
+      class="w-full flex"
+      :class="{ 'justify-end': field.preferences?.align === 'right', ...alignClasses, ...fontClasses }"
     >
       <div
         v-for="(char, index) in modelValue"

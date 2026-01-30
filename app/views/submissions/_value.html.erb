@@ -60,7 +60,7 @@
     <% end %>
   <% elsif field['type'] == 'cells' && area['cell_w'].to_f > 0.0 %>
     <% cell_width = area['cell_w'] / area['w'] * 100 %>
-    <div class="w-full flex items-center <%= 'justify-end' if align == 'right' %>">
+    <div class="w-full flex <%= valign == 'top' ? 'items-start' : (valign == 'bottom' ? 'items-end' : 'items-center') %> <%= 'justify-end' if align == 'right' %>">
       <% (0..(area['w'] / area['cell_w']).ceil).each do |index| %>
         <% if value[index] %>
           <div class="text-center flex-none" style="width: <%= cell_width %>%;"><%= value[index] %></div>
