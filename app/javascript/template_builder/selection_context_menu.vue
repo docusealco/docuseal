@@ -3,7 +3,7 @@
     <div
       v-if="!isShowFontModal && !isShowConditionsModal"
       ref="menu"
-      class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-base-300 cursor-default"
+      class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-neutral-200 cursor-default"
       style="min-width: 170px"
       :style="menuStyle"
       @mousedown.stop
@@ -63,7 +63,7 @@
       </ContextSubmenu>
       <hr
         v-if="showFont || showCondition"
-        class="my-1 border-base-300"
+        class="my-1 border-neutral-200"
       >
       <button
         v-if="showFont"
@@ -81,7 +81,7 @@
         <IconRouteAltLeft class="w-4 h-4" />
         <span>{{ t('condition') }}</span>
       </button>
-      <hr class="my-1 border-base-300">
+      <hr class="my-1 border-neutral-200">
       <button
         class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
         @click.stop="$emit('copy')"

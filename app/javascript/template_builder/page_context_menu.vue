@@ -1,7 +1,7 @@
 <template>
   <div
     ref="menu"
-    class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-base-300 cursor-default"
+    class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-neutral-200 cursor-default"
     style="min-width: 170px"
     :style="menuStyle"
     @mousedown.stop
@@ -38,7 +38,7 @@
     </button>
     <hr
       v-if="showAutodetectFields"
-      class="my-1 border-base-300"
+      class="my-1 border-neutral-200"
     >
     <button
       v-if="showAutodetectFields"

@@ -3,7 +3,7 @@
     <div
       v-if="!isShowFormulaModal && !isShowFontModal && !isShowConditionsModal && !isShowDescriptionModal && !isShowCustomValidationModal && !isShowLengthValidationModal && !isShowNumberRangeModal && !isShowPriceModal && !isShowPaymentLinkModal"
       ref="menu"
-      class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-base-300 cursor-default"
+      class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-neutral-200 cursor-default"
       style="min-width: 170px"
       :style="menuStyle"
       @mousedown.stop
@@ -121,7 +121,7 @@
       />
       <hr
         v-if="showRequired || showReadOnly || showPrefillable || showSetSigningDate || showWithLogo || showSignatureId"
-        class="my-1 border-base-300"
+        class="my-1 border-neutral-200"
       >
       <ContextSubmenu
         v-if="showFormatSubmenu"
@@ -190,7 +190,7 @@
         </span>
         <span
           v-if="field.conditions?.length"
-          class="bg-base-200 rounded px-1 leading-3"
+          class="bg-neutral-200 rounded px-1 leading-3"
           style="font-size: 9px;"
         >{{ field.conditions.length }}</span>
       </button>
@@ -204,7 +204,7 @@
       </button>
       <hr
         v-if="(showFont || showDescription || showCondition || showFormula || showPaymentSettings)"
-        class="my-1 border-base-300"
+        class="my-1 border-neutral-200"
       >
       <button
         class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
