@@ -119,6 +119,7 @@
       <ConditionsModal
         :item="item"
         :build-default-name="buildDefaultName"
+        @save="$emit('change')"
         @close="isShowConditionsModal = false"
       />
     </Teleport>

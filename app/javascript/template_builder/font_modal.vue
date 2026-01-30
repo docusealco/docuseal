@@ -196,7 +196,7 @@ export default {
   components: {
     IconChevronDown
   },
-  inject: ['t', 'save', 'template'],
+  inject: ['t', 'template'],
   props: {
     field: {
       type: Object,
@@ -212,17 +212,12 @@ export default {
       required: false,
       default: true
     },
-    withClickSaveEvent: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     buildDefaultName: {
       type: Function,
       required: true
     }
   },
-  emits: ['close', 'click-save'],
+  emits: ['close', 'save'],
   data () {
     return {
       preferences: {}
@@ -327,12 +322,7 @@ export default {
 
       Object.assign(this.field.preferences, this.preferences)
 
-      if (this.withClickSaveEvent) {
-        this.$emit('click-save')
-      } else {
-        this.save()
-      }
-
+      this.$emit('save')
       this.$emit('close')
     }
   }

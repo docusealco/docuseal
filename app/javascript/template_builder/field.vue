@@ -269,6 +269,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="isShowFormulaModal = false"
       />
     </Teleport>
@@ -281,6 +282,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="isShowFontModal = false"
       />
     </Teleport>
@@ -292,6 +294,7 @@
         :item="field"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -304,6 +307,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="isShowDescriptionModal = false"
       />
     </Teleport>

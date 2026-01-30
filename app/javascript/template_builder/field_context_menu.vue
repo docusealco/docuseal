@@ -265,6 +265,7 @@
         :field="field"
         :editable="editable"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="closeModal"
       />
     </Teleport>
@@ -277,6 +278,7 @@
         :area="contextMenu.area"
         :editable="editable"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="closeModal"
       />
     </Teleport>
@@ -287,6 +289,7 @@
       <ConditionsModal
         :item="field"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="closeModal"
       />
     </Teleport>
@@ -298,6 +301,7 @@
         :field="field"
         :editable="editable"
         :build-default-name="buildDefaultName"
+        @save="$emit('save')"
         @close="closeModal"
       />
     </Teleport>

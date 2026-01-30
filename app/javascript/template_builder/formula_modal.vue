@@ -131,7 +131,7 @@ export default {
     IconCodePlus,
     IconMathFunction
   },
-  inject: ['t', 'save', 'template', 'withFormula'],
+  inject: ['t', 'template', 'withFormula'],
   props: {
     field: {
       type: Object,
@@ -152,7 +152,7 @@ export default {
       required: true
     }
   },
-  emits: ['close'],
+  emits: ['close', 'save'],
   data () {
     return {
       formula: ''
@@ -219,7 +219,7 @@ export default {
           this.field.readonly = !!normalizedFormula
         }
 
-        this.save()
+        this.$emit('save')
 
         this.$emit('close')
       }

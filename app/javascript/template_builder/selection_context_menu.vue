@@ -112,8 +112,7 @@
         :area="contextMenu.area"
         :editable="editable"
         :build-default-name="buildDefaultName"
-        :with-click-save-event="true"
-        @click-save="handleSaveMultiSelectFontModal"
+        @save="handleSaveMultiSelectFontModal"
         @close="closeModal"
       />
     </Teleport>
@@ -125,8 +124,7 @@
         :item="multiSelectField"
         :build-default-name="buildDefaultName"
         :exclude-field-uuids="selectedFields.map(f => f.uuid)"
-        :with-click-save-event="true"
-        @click-save="handleSaveMultiSelectConditionsModal"
+        @save="handleSaveMultiSelectConditionsModal"
         @close="closeModal"
       />
     </Teleport>

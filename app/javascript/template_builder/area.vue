@@ -342,6 +342,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowFormulaModal = false"
       />
     </Teleport>
@@ -354,6 +355,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowFontModal = false"
       />
     </Teleport>
@@ -365,6 +367,7 @@
         :item="field"
         :build-default-name="buildDefaultName"
         :default-field="defaultField"
+        @save="save"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -377,6 +380,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowDescriptionModal = false"
       />
     </Teleport>

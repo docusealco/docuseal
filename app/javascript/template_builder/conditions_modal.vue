@@ -154,7 +154,7 @@
 <script>
 export default {
   name: 'ConditionModal',
-  inject: ['t', 'save', 'template', 'withConditions'],
+  inject: ['t', 'template', 'withConditions'],
   props: {
     item: {
       type: Object,
@@ -169,18 +169,13 @@ export default {
       type: Function,
       required: true
     },
-    withClickSaveEvent: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     excludeFieldUuids: {
       type: Array,
       required: false,
       default: () => []
     }
   },
-  emits: ['close', 'click-save'],
+  emits: ['close', 'save'],
   data () {
     return {
       conditions: this.item.conditions?.[0] ? JSON.parse(JSON.stringify(this.item.conditions)) : [{}]
@@ -244,12 +239,7 @@ export default {
         delete this.item.conditions
       }
 
-      if (this.withClickSaveEvent) {
-        this.$emit('click-save')
-      } else {
-        this.save()
-      }
-
+      this.$emit('save')
       this.$emit('close')
     }
   }

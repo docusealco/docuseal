@@ -67,7 +67,7 @@
 <script>
 export default {
   name: 'DescriptionModal',
-  inject: ['t', 'save', 'template'],
+  inject: ['t', 'template'],
   props: {
     field: {
       type: Object,
@@ -88,7 +88,7 @@ export default {
       required: true
     }
   },
-  emits: ['close'],
+  emits: ['close', 'save'],
   data () {
     return {
       description: this.field.description,
@@ -103,7 +103,7 @@ export default {
       this.field.description = this.description
       this.field.title = this.title
 
-      this.save()
+      this.$emit('save')
       this.$emit('close')
     },
     resizeTextarea () {
