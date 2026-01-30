@@ -145,7 +145,7 @@ export default {
     GoogleDriveDocumentSettings,
     IconSortDescending2
   },
-  inject: ['t'],
+  inject: ['t', 'getFieldTypeIndex'],
   props: {
     item: {
       type: Object,

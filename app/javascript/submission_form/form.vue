@@ -998,7 +998,9 @@ export default {
     },
     previousInitialsValue () {
       if (this.reuseSignature !== false) {
-        const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
+        const initialsField = this.fields.findLast
+          ? this.fields.findLast((field) => field.type === 'initials' && !!this.values[field.uuid])
+          : [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
         return this.values[initialsField?.uuid]
       } else {
@@ -1163,7 +1165,9 @@ export default {
       this.currentStep = Math.max(stepIndex, 0)
     } else if (this.goToLast) {
       const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.submittedValues[f.uuid])))
-      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
+      const lastFilledStepIndex = this.stepFields.indexOf(this.stepFields.findLast
+        ? this.stepFields.findLast((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))
+        : [...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
 
       const indexesList = [this.stepFields.length - 1]
 
@@ -1367,9 +1371,9 @@ export default {
     },
     previousSignatureValueFor (field) {
       if (this.reuseSignature !== false) {
-        const signatureField = [...this.fields].reverse().find((f) =>
-          f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
-        )
+        const signatureField = this.fields.findLast
+          ? this.fields.findLast((f) => f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid])
+          : [...this.fields].reverse().find((f) => f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid])
 
         return this.values[signatureField?.uuid]
       } else {

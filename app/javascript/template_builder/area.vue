@@ -401,7 +401,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'save', 't', 'isInlineSize', 'selectedAreasRef', 'isCmdKeyRef'],
+  inject: ['template', 'save', 't', 'isInlineSize', 'selectedAreasRef', 'isCmdKeyRef', 'getFieldTypeIndex'],
   props: {
     area: {
       type: Object,
@@ -579,7 +579,7 @@ export default {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
     defaultName () {
-      return this.buildDefaultName(this.field, this.template.fields)
+      return this.buildDefaultName(this.field)
     },
     fontClasses () {
       if (!this.field.preferences) {

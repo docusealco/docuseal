@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ t('condition') }} - {{ (defaultField ? (defaultField.title || item.title || item.name) : item.name) || buildDefaultName(item, template.fields) }}
+          {{ t('condition') }} - {{ (defaultField ? (defaultField.title || item.title || item.name) : item.name) || buildDefaultName(item) }}
         </span>
         <a
           href="#"
@@ -83,7 +83,7 @@
                   class="text-base-content"
                   :selected="condition.field_uuid === f.uuid"
                 >
-                  {{ f.name || buildDefaultName(f, template.fields) }}
+                  {{ f.name || buildDefaultName(f) }}
                 </option>
               </select>
               <select

@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field, template.fields) }}
+          {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field) }}
         </span>
         <a
           href="#"

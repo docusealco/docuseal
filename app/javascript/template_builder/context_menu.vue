@@ -281,7 +281,7 @@ export default {
     ConditionsModal,
     DescriptionModal
   },
-  inject: ['t', 'save', 'selectedAreasRef', 'isSelectModeRef'],
+  inject: ['t', 'save', 'selectedAreasRef', 'isSelectModeRef', 'getFieldTypeIndex'],
   props: {
     contextMenu: {
       type: Object,

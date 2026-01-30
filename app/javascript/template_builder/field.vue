@@ -340,7 +340,7 @@ export default {
     IconMathFunction,
     FieldType
   },
-  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale'],
+  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale', 'getFieldTypeIndex'],
   props: {
     field: {
       type: Object,
@@ -412,7 +412,7 @@ export default {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
     defaultName () {
-      return this.buildDefaultName(this.field, this.template.fields)
+      return this.buildDefaultName(this.field)
     },
     areas () {
       return this.field.areas || []
@@ -432,7 +432,7 @@ export default {
 
       this.$emit('save')
     },
-    buildDefaultName (field, fields) {
+    buildDefaultName (field) {
       if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {
         const { price, currency } = field.preferences || {}
 
@@ -443,7 +443,7 @@ export default {
 
         return `${this.fieldNames[field.type]} ${formattedPrice}`
       } else {
-        const typeIndex = fields.filter((f) => f.type === field.type).indexOf(field)
+        const typeIndex = this.getFieldTypeIndex(field)
 
         if (field.type === 'heading' || field.type === 'strikethrough') {
           return `${this.fieldNames[field.type]} ${typeIndex + 1}`
