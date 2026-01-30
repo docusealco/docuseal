@@ -29,7 +29,7 @@
         :is-drag="isDrag"
         @move="onSelectionBoxMove"
         @contextmenu="openSelectionContextMenu"
-        @close-context-menu="closeSelectionContextMenu"
+        @close-context-menu="closeContextMenu"
       />
       <FieldArea
         v-for="(item, i) in areas"
@@ -92,16 +92,16 @@
         @add-custom-field="$emit('add-custom-field', $event)"
       />
       <SelectionContextMenu
-        v-if="selectionContextMenu"
-        :context-menu="selectionContextMenu"
+        v-else-if="contextMenu && contextMenu.areas"
+        :context-menu="contextMenu"
         :editable="editable"
         :template="template"
         @copy="handleSelectionCopy"
         @delete="handleSelectionDelete"
-        @close="closeSelectionContextMenu"
+        @close="closeContextMenu"
       />
       <PageContextMenu
-        v-if="contextMenu && !contextMenu.field"
+        v-else-if="contextMenu && !contextMenu.field && !contextMenu.areas"
         :context-menu="contextMenu"
         :editable="editable"
         :with-fields-detection="withFieldsDetection"
@@ -256,8 +256,7 @@ export default {
       resizeDirection: null,
       newAreas: [],
       contextMenu: null,
-      selectionRect: null,
-      selectionContextMenu: null
+      selectionRect: null
     }
   },
   computed: {
@@ -414,25 +413,32 @@ export default {
       }
     },
     openSelectionContextMenu (event) {
+      if (!this.editable) {
+        return
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+
       const rect = this.$el.getBoundingClientRect()
 
-      this.selectionContextMenu = {
+      this.contextMenu = {
         x: event.clientX,
         y: event.clientY,
         relativeX: (event.clientX - rect.left) / rect.width,
-        relativeY: (event.clientY - rect.top) / rect.height
+        relativeY: (event.clientY - rect.top) / rect.height,
+        areas: this.selectedAreasRef.value
       }
-    },
-    closeSelectionContextMenu () {
-      this.selectionContextMenu = null
     },
     handleSelectionCopy () {
       this.$emit('copy-selected-areas')
-      this.closeSelectionContextMenu()
+
+      this.closeContextMenu()
     },
     handleSelectionDelete () {
       this.$emit('delete-selected-areas')
-      this.closeSelectionContextMenu()
+
+      this.closeContextMenu()
     },
     closeContextMenu () {
       this.contextMenu = null
