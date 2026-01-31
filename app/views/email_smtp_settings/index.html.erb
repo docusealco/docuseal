@@ -39,7 +39,7 @@
           <div class="form-control">
             <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
             <div class="flex items-center space-x-6">
-              <% [%w[Auto none], %w[SSL ssl], %w[TLS tls], %w[Noverify noverify]].each do |(label, val)| %>
+              <% [%w[STARTTLS none], %w[TLS tls], %w[SSL ssl], %w[Noverify noverify]].each do |(label, val)| %>
                 <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
                   <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
                   <%= label %>
