@@ -257,6 +257,7 @@ export default {
     colors () {
       return [
         { label: '⬛', value: 'black' },
+        { label: '⬜', value: 'white' },
         { label: '🟦', value: 'blue' },
         { label: '🟥', value: 'red' }
       ]
@@ -271,6 +272,7 @@ export default {
         'items-center': !this.preferences.valign || this.preferences.valign === 'center',
         'items-start': this.preferences.valign === 'top',
         'items-end': this.preferences.valign === 'bottom',
+        'bg-black': this.preferences.color === 'white',
         'font-bold': ['bold_italic', 'bold'].includes(this.preferences.font_type),
         italic: ['bold_italic', 'italic'].includes(this.preferences.font_type)
       }
