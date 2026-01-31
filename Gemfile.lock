@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/trilogy-libraries/trilogy.git
+  revision: 3963d490459df7a2b5bedb42424c3285f25eab22
+  glob: contrib/ruby/*.gemspec
+  specs:
+    trilogy (2.10.0)
+      bigdecimal
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -318,8 +326,6 @@ GEM
       prism (~> 1.5)
     msgpack (1.8.0)
     multi_json (1.19.1)
-    mysql2 (0.5.7)
-      bigdecimal
     net-http (0.9.1)
       uri (>= 0.11.1)
     net-imap (0.6.2)
@@ -644,7 +650,6 @@ DEPENDENCIES
   jwt
   letter_opener_web
   lograge
-  mysql2
   numo-narray-alt
   oj
   onnxruntime
@@ -673,6 +678,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   strip_attributes
+  trilogy!
   turbo-rails
   twitter_cldr
   tzinfo-data

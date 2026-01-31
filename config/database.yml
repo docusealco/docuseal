@@ -30,9 +30,8 @@ production:
 <% elsif ENV['DATABASE_URL'].match?(/\Apostgres/) %>
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-<% elsif ENV['DATABASE_URL'].match?(/\Amysql/) %>
-  adapter: mysql2
+<% elsif ENV['DATABASE_URL'].match?(/\Amysql|\Atrilogy/) %>
   encoding: utf8mb4
   pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'].sub(/\Amysql2?/, 'trilogy') %>
 <% end %>
