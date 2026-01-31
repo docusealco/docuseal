@@ -1261,7 +1261,7 @@ export default {
     checkFieldCondition (condition, cache = {}) {
       const field = this.fieldsUuidIndex[condition.field_uuid]
 
-      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field, cache)) {
+      if (['not_empty', 'checked', 'equal', 'contains', 'greater_than', 'less_than'].includes(condition.action) && field && !this.checkFieldConditions(field, cache)) {
         return false
       }
 
@@ -1271,6 +1271,22 @@ export default {
         return isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
         return !isEmpty(this.values[condition.field_uuid] ?? defaultValue)
+      } else if (field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) {
+        const value = this.values[condition.field_uuid] ?? defaultValue
+
+        if (isEmpty(value) || isEmpty(condition.value)) return false
+
+        const actual = parseFloat(value)
+        const expected = parseFloat(condition.value)
+
+        if (Number.isNaN(actual) || Number.isNaN(expected)) return false
+
+        if (condition.action === 'equal') return Math.abs(actual - expected) < Number.EPSILON
+        if (condition.action === 'not_equal') return Math.abs(actual - expected) > Number.EPSILON
+        if (condition.action === 'greater_than') return actual > expected
+        if (condition.action === 'less_than') return actual < expected
+
+        return false
       } else if (['equal', 'contains'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)

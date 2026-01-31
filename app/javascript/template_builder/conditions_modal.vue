@@ -124,6 +124,16 @@
                   {{ option.value || `${t('option')} ${index + 1}` }}
                 </option>
               </select>
+              <input
+                v-else-if="conditionField(condition)?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)"
+                v-model="condition.value"
+                type="number"
+                step="any"
+                class="input input-bordered input-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                :class="{ 'text-gray-300': !condition.value }"
+                :placeholder="t('type_value')"
+                required
+              >
             </div>
           </div>
           <a
@@ -222,6 +232,8 @@ export default {
         actions.push('equal', 'not_equal')
       } else if (['multiple'].includes(field.type)) {
         actions.push('contains', 'does_not_contain')
+      } else if (field.type === 'number') {
+        actions.push('not_empty', 'empty', 'equal', 'not_equal', 'greater_than', 'less_than')
       } else {
         actions.push('not_empty', 'empty')
       }
