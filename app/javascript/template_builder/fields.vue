@@ -127,7 +127,7 @@
     >{{ t('custom') }}</a>
   </div>
   <div
-    v-if="showCustomTab && editable"
+    v-if="showCustomTab && editable && (customFields.length || newCustomField)"
     ref="customFields"
     class="custom-fields"
     @dragover.prevent="onCustomFieldDragover"
