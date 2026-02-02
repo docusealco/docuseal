@@ -48,6 +48,10 @@ module Submitters
         maybe_set_signature_reason!(values, submitter, params)
         validate_values!(values, submitter, params, request)
 
+        if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
+          ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
+        end
+
         SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request) if params[:completed] == 'true'
 
         submitter.save!
