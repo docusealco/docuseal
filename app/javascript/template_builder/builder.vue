@@ -374,6 +374,7 @@
                 :draw-field-type="drawFieldType"
                 :draw-custom-field="drawCustomField"
                 :editable="editable"
+                :is-mobile="isMobile"
                 :base-url="baseUrl"
                 :with-fields-detection="withFieldsDetection"
                 @draw="[onDraw($event), withSelectedFieldType ? '' : drawFieldType = '', drawCustomField = null, showDrawField = false]"
@@ -382,9 +383,9 @@
                 @paste-field="pasteField"
                 @copy-field="copyField"
                 @add-custom-field="addCustomField"
+                @set-draw="[drawField = $event.field, drawOption = $event.option]"
                 @copy-selected-areas="copySelectedAreas"
                 @delete-selected-areas="deleteSelectedAreas"
-                @align-selected-areas="alignSelectedAreas"
                 @autodetect-fields="detectFieldsForPage"
               />
               <DocumentControls
@@ -645,7 +646,8 @@ export default {
       fieldsDragFieldRef: computed(() => this.fieldsDragFieldRef),
       customDragFieldRef: computed(() => this.customDragFieldRef),
       isSelectModeRef: computed(() => this.isSelectModeRef),
-      isCmdKeyRef: computed(() => this.isCmdKeyRef)
+      isCmdKeyRef: computed(() => this.isCmdKeyRef),
+      getFieldTypeIndex: this.getFieldTypeIndex
     }
   },
   props: {
@@ -989,6 +991,18 @@ export default {
 
       return areas
     },
+    fieldTypeIndexMap () {
+      const map = {}
+      const typeCounters = {}
+
+      this.template.fields.forEach((f) => {
+        typeCounters[f.type] ||= 0
+        map[f.uuid] = typeCounters[f.type]
+        typeCounters[f.type]++
+      })
+
+      return map
+    },
     isAllRequiredFieldsAdded () {
       return !this.defaultRequiredFields?.some((f) => {
         return !this.template.fields?.some((field) => field.name === f.name)
@@ -1085,6 +1099,9 @@ export default {
     addCustomField (field) {
       return this.$refs.fields.addCustomField(field)
     },
+    getFieldTypeIndex (field) {
+      return this.fieldTypeIndexMap[field.uuid]
+    },
     addCustomFieldWithoutDraw () {
       const customField = this.drawCustomField
 
@@ -1159,27 +1176,6 @@ export default {
       })
 
       this.debouncedSave()
-    },
-    alignSelectedAreas (direction) {
-      const areas = this.selectedAreasRef.value
-
-      let targetValue
-
-      if (direction === 'left') {
-        targetValue = Math.min(...areas.map(a => a.x))
-        areas.forEach((area) => { area.x = targetValue })
-      } else if (direction === 'right') {
-        targetValue = Math.max(...areas.map(a => a.x + a.w))
-        areas.forEach((area) => { area.x = targetValue - area.w })
-      } else if (direction === 'top') {
-        targetValue = Math.min(...areas.map(a => a.y))
-        areas.forEach((area) => { area.y = targetValue })
-      } else if (direction === 'bottom') {
-        targetValue = Math.max(...areas.map(a => a.y + a.h))
-        areas.forEach((area) => { area.y = targetValue - area.h })
-      }
-
-      this.save()
     },
     download () {
       this.isDownloading = true
@@ -2065,7 +2061,9 @@ export default {
         }
 
         if (type === 'checkbox' && !this.drawFieldType && (this.template.fields[this.template.fields.length - 1]?.type === 'checkbox' || area.w)) {
-          const previousField = [...this.template.fields].reverse().find((f) => f.type === type)
+          const previousField = this.template.fields.findLast
+            ? this.template.fields.findLast((f) => f.type === type)
+            : [...this.template.fields].reverse().find((f) => f.type === type)
           const previousArea = previousField?.areas?.[previousField.areas.length - 1]
 
           if (previousArea || area.w) {
@@ -2329,7 +2327,9 @@ export default {
     assignDropAreaSize (fieldArea, field, area) {
       const fieldType = field.type || 'text'
 
-      const previousField = [...this.template.fields].reverse().find((f) => f.type === fieldType)
+      const previousField = this.template.fields.findLast
+        ? this.template.fields.findLast((f) => f.type === fieldType)
+        : [...this.template.fields].reverse().find((f) => f.type === fieldType)
 
       let baseArea
 

@@ -200,7 +200,9 @@ module Submissions
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
                               with_submitter_timezone: false, with_signature_id_reason: true, with_file_links: nil)
-      cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
+      cell_layouters = Hash.new do |hash, valign|
+        hash[valign] = HexaPDF::Layout::TextLayouter.new(text_valign: valign.to_sym, text_align: :center)
+      end
 
       attachments_data_cache = {}
 
@@ -550,6 +552,8 @@ module Submissions
             )
           when ->(type) { type == 'cells' && !area['cell_w'].to_f.zero? }
             cell_width = area['cell_w'] * width
+            cell_valign = field.dig('preferences', 'valign').to_s.presence || 'center'
+            cell_layouter = cell_layouters[cell_valign]
 
             if (mask = field.dig('preferences', 'mask').presence)
               value = TextUtils.mask_value(value, mask)
@@ -790,10 +794,10 @@ module Submissions
     def build_pdfs_index(submission, submitter: nil, flatten: true)
       latest_submitter = find_last_submitter(submission, submitter:)
 
-      Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
+      documents   = Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
+      documents ||= submission.schema_documents
 
-      documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
-      documents ||= submission.schema_documents.preload(:blob)
+      ActiveRecord::Associations::Preloader.new(records: documents, associations: [:blob]).call
 
       attachment_uuids = Submissions.filtered_conditions_schema(submission).pluck('attachment_uuid')
       attachments_index = documents.index_by { |a| a.metadata['original_uuid'] || a.uuid }

@@ -395,7 +395,9 @@
             v-model="values[currentField.uuid]"
             :reason="values[currentField.preferences?.reason_field_uuid]"
             :field="currentField"
+            :values="values"
             :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
+            :touch-attachment-uuid="previousSignatureValue"
             :with-typed-signature="withTypedSignature"
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
@@ -407,6 +409,7 @@
             :submitter="submitter"
             :show-field-names="showFieldNames"
             @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
+            @touch-attachment="attachmentsIndex[previousSignatureValue] ? attachmentsIndex[previousSignatureValue].created_at = new Date() : null"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @minimize="minimizeForm"
@@ -926,10 +929,12 @@ export default {
       }, {})
     },
     attachmentConditionsIndex () {
+      const cache = {}
+
       return this.schema.reduce((acc, item) => {
         if (item.conditions?.length) {
           if (item.conditions.every((c) => this.fieldsUuidIndex[c.field_uuid])) {
-            acc[item.attachment_uuid] = this.checkFieldConditions(item)
+            acc[item.attachment_uuid] = this.checkFieldConditions(item, cache)
           } else {
             acc[item.attachment_uuid] = true
           }
@@ -996,7 +1001,9 @@ export default {
     },
     previousInitialsValue () {
       if (this.reuseSignature !== false) {
-        const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
+        const initialsField = this.fields.findLast
+          ? this.fields.findLast((field) => field.type === 'initials' && !!this.values[field.uuid])
+          : [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
 
         return this.values[initialsField?.uuid]
       } else {
@@ -1023,7 +1030,9 @@ export default {
       return this.readonlyFields.filter((f) => f.conditions?.length)
     },
     readonlyFields () {
-      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      const cache = {}
+
+      return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f))
     },
     stepFields () {
       const verificationFields = []
@@ -1078,10 +1087,12 @@ export default {
         sortedFields.push(verificationFields.pop())
       }
 
+      const cache = {}
+
       return sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
-        if (this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f)) {
+        if (this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f)) {
           if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
             prevStep.push(f)
           } else {
@@ -1093,7 +1104,9 @@ export default {
       }, [])
     },
     formulaFields () {
-      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))
+      const cache = {}
+
+      return this.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f))
     },
     attachmentsIndex () {
       return this.attachments.reduce((acc, a) => {
@@ -1155,7 +1168,9 @@ export default {
       this.currentStep = Math.max(stepIndex, 0)
     } else if (this.goToLast) {
       const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.submittedValues[f.uuid])))
-      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
+      const lastFilledStepIndex = this.stepFields.indexOf(this.stepFields.findLast
+        ? this.stepFields.findLast((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))
+        : [...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
 
       const indexesList = [this.stepFields.length - 1]
 
@@ -1223,27 +1238,33 @@ export default {
         return true
       }
     },
-    checkFieldConditions (field) {
+    checkFieldConditions (field, cache = {}) {
+      if (cache[field.uuid] !== undefined) {
+        return cache[field.uuid]
+      }
+
+      cache[field.uuid] = true
+
       if (field.conditions?.length) {
         const result = field.conditions.reduce((acc, cond) => {
           if (cond.operation === 'or') {
-            acc.push(acc.pop() || this.checkFieldCondition(cond))
+            acc.push(acc.pop() || this.checkFieldCondition(cond, cache))
           } else {
-            acc.push(this.checkFieldCondition(cond))
+            acc.push(this.checkFieldCondition(cond, cache))
           }
 
           return acc
         }, [])
 
-        return !result.includes(false)
-      } else {
-        return true
+        cache[field.uuid] = !result.includes(false)
       }
+
+      return cache[field.uuid]
     },
-    checkFieldCondition (condition) {
+    checkFieldCondition (condition, cache = {}) {
       const field = this.fieldsUuidIndex[condition.field_uuid]
 
-      if (['not_empty', 'checked', 'equal', 'contains'].includes(condition.action) && field && !this.checkFieldConditions(field)) {
+      if (['not_empty', 'checked', 'equal', 'contains', 'greater_than', 'less_than'].includes(condition.action) && field && !this.checkFieldConditions(field, cache)) {
         return false
       }
 
@@ -1253,6 +1274,22 @@ export default {
         return isEmpty(this.values[condition.field_uuid] ?? defaultValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
         return !isEmpty(this.values[condition.field_uuid] ?? defaultValue)
+      } else if (field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) {
+        const value = this.values[condition.field_uuid] ?? defaultValue
+
+        if (isEmpty(value) || isEmpty(condition.value)) return false
+
+        const actual = parseFloat(value)
+        const expected = parseFloat(condition.value)
+
+        if (Number.isNaN(actual) || Number.isNaN(expected)) return false
+
+        if (condition.action === 'equal') return Math.abs(actual - expected) < Number.EPSILON
+        if (condition.action === 'not_equal') return Math.abs(actual - expected) > Number.EPSILON
+        if (condition.action === 'greater_than') return actual > expected
+        if (condition.action === 'less_than') return actual < expected
+
+        return false
       } else if (['equal', 'contains'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)
@@ -1353,9 +1390,9 @@ export default {
     },
     previousSignatureValueFor (field) {
       if (this.reuseSignature !== false) {
-        const signatureField = [...this.fields].reverse().find((f) =>
-          f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
-        )
+        const signatureField = this.fields.findLast
+          ? this.fields.findLast((f) => f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid])
+          : [...this.fields].reverse().find((f) => f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid])
 
         return this.values[signatureField?.uuid]
       } else {

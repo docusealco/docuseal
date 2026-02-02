@@ -25,7 +25,7 @@
       :key="field.uuid"
       :data-uuid="field.uuid"
       :field="field"
-      :type-index="fields.filter((f) => f.type === field.type).indexOf(field)"
+      :type-index="getFieldTypeIndex(field)"
       :editable="editable"
       :with-signature-id="withSignatureId"
       :with-prefillable="withPrefillable"
@@ -127,7 +127,7 @@
     >{{ t('custom') }}</a>
   </div>
   <div
-    v-if="showCustomTab && editable"
+    v-if="showCustomTab && editable && (customFields.length || newCustomField)"
     ref="customFields"
     class="custom-fields"
     @dragover.prevent="onCustomFieldDragover"
@@ -376,7 +376,7 @@ export default {
     IconDrag,
     IconLock
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
   props: {
     fields: {
       type: Array,

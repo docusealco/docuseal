@@ -23,7 +23,6 @@ gem 'hexapdf'
 gem 'image_processing'
 gem 'jwt', require: false
 gem 'lograge'
-gem 'mysql2', require: false
 gem 'numo-narray-alt', require: false
 gem 'oj'
 gem 'onnxruntime', require: false
@@ -45,6 +44,7 @@ gem 'shakapacker'
 gem 'sidekiq'
 gem 'sqlite3', require: false
 gem 'strip_attributes'
+gem 'trilogy', github: 'trilogy-libraries/trilogy', glob: 'contrib/ruby/*.gemspec', require: false
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'

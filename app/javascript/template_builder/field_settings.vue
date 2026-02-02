@@ -10,7 +10,7 @@
       @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, $emit('save')]"
     >
       <option
-        v-for="method in ['QeS', 'AeS']"
+        v-for="method in verificationMethods"
         :key="method"
         :value="method.toLowerCase()"
         :selected="method.toLowerCase() === field.preferences?.method || (method === 'QeS' && !field.preferences?.method)"
@@ -24,32 +24,6 @@
       style="font-size: 8px"
     >
       {{ t('method') }}
-    </label>
-  </div>
-  <div
-    v-if="['cells'].includes(field.type)"
-    class="py-1.5 px-1 relative"
-    @click.stop
-  >
-    <select
-      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, $emit('save')]"
-    >
-      <option
-        v-for="value in ['left', 'right', field.type === 'cells' ? null : 'center'].filter(Boolean)"
-        :key="value"
-        :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
-        :value="value"
-      >
-        {{ t(value) }}
-      </option>
-    </select>
-    <label
-      :style="{ backgroundColor }"
-      class="absolute -top-1 left-2.5 px-1 h-4"
-      style="font-size: 8px"
-    >
-      {{ t('align') }}
     </label>
   </div>
   <div
@@ -348,7 +322,7 @@
         {{ t('any') }}
       </option>
       <option
-        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']"
+        v-for="type in signatureFormats"
         :key="type"
         :value="type"
         :selected="field.preferences?.format === type"
@@ -437,7 +411,7 @@
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type)"
+    v-if="['text', 'number', 'radio', 'multiple', 'select'].includes(field.type)"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -452,7 +426,7 @@
     </label>
   </li>
   <li
-    v-if="withPrefillable && ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone'].includes(field['type'])"
+    v-if="withPrefillable && prefillableFieldTypes.includes(field['type'])"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -470,7 +444,7 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="['text', 'number', 'date', 'select', 'heading'].includes(field.type)">
+  <li v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)">
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
@@ -718,7 +692,7 @@ export default {
     },
     lengthValidation () {
       if (this.field.validation?.pattern && this.selectedValidation !== 'custom') {
-        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+        return this.parseLengthPattern(this.field.validation.pattern)
       } else {
         return null
       }
@@ -734,6 +708,15 @@ export default {
         '^[0-9]+$': 'numbers_only',
         '^[a-zA-Z]+$': 'letters_only'
       }
+    },
+    signatureFormats () {
+      return ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']
+    },
+    verificationMethods () {
+      return ['QeS', 'AeS']
+    },
+    prefillableFieldTypes () {
+      return ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone']
     },
     sortedAreas () {
       return (this.field.areas || []).sort((a, b) => {
@@ -797,6 +780,9 @@ export default {
       } else {
         return number
       }
+    },
+    parseLengthPattern (pattern) {
+      return pattern?.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups || null
     },
     formatDate (date, format) {
       const monthFormats = {

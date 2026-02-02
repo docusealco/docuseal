@@ -164,11 +164,13 @@ class ProcessSubmitterCompletionJob
     next_submitter_items =
       if submission.template_submitters.any? { |s| s['order'] }
         submitter_groups =
-          submission.template_submitters.group_by.with_index { |s, index| s['order'] || index }
+          submission.template_submitters
+                    .group_by.with_index { |s, index| s['order'] || index }
+                    .sort_by(&:first).pluck(1)
 
-        current_group_index = submitter_groups.find { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }&.first
+        current_group_index = submitter_groups.index { |group| group.any? { |s| s['uuid'] == submitter.uuid } }
 
-        if submitter_groups[current_group_index + 1] &&
+        if current_group_index && submitter_groups[current_group_index + 1] &&
            submitters_index.values_at(*submitter_groups[current_group_index].pluck('uuid'))
                            .compact.all?(&:completed_at?)
           submitter_groups[current_group_index + 1]

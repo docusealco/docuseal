@@ -89,7 +89,7 @@ window.customElements.define('draw-signature', class extends HTMLElement {
   }
 
   redrawCanvas (oldWidth, oldHeight) {
-    if (this.pad && !this.pad.isEmpty()) {
+    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
       const sx = this.canvas.width / oldWidth
       const sy = this.canvas.height / oldHeight
 

@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field, template.fields) }}
+          {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field) }}
         </span>
         <a
           href="#"
@@ -67,7 +67,7 @@
 <script>
 export default {
   name: 'DescriptionModal',
-  inject: ['t', 'save', 'template'],
+  inject: ['t', 'template'],
   props: {
     field: {
       type: Object,
@@ -88,7 +88,7 @@ export default {
       required: true
     }
   },
-  emits: ['close'],
+  emits: ['close', 'save'],
   data () {
     return {
       description: this.field.description,
@@ -103,7 +103,7 @@ export default {
       this.field.description = this.description
       this.field.title = this.title
 
-      this.save()
+      this.$emit('save')
       this.$emit('close')
     },
     resizeTextarea () {

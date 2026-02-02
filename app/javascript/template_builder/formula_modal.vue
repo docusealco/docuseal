@@ -9,7 +9,7 @@
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
         <span class="modal-title">
-          {{ t('formula') }} - {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field, template.fields) }}
+          {{ t('formula') }} - {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field) }}
         </span>
         <a
           href="#"
@@ -33,7 +33,7 @@
             v-for="f in fields"
             :key="f.uuid"
             class="mr-1 flex btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
-            @click.prevent="insertTextUnderCursor(`{{${f.name || buildDefaultName(f, template.fields)}}}`)"
+            @click.prevent="insertTextUnderCursor(`{{${f.name || buildDefaultName(f)}}}`)"
           >
             <IconMathFunction
               v-if="f.preferences?.formula"
@@ -47,7 +47,7 @@
               height="20"
               stroke-width="1.5"
             />
-            {{ f.name || buildDefaultName(f, template.fields) }}
+            {{ f.name || buildDefaultName(f) }}
           </button>
         </div>
         <div>
@@ -131,7 +131,7 @@ export default {
     IconCodePlus,
     IconMathFunction
   },
-  inject: ['t', 'save', 'template', 'withFormula'],
+  inject: ['t', 'template', 'withFormula'],
   props: {
     field: {
       type: Object,
@@ -152,7 +152,7 @@ export default {
       required: true
     }
   },
-  emits: ['close'],
+  emits: ['close', 'save'],
   data () {
     return {
       formula: ''
@@ -181,7 +181,7 @@ export default {
         const foundField = this.fields.find((f) => f.uuid === uuid)
 
         if (foundField) {
-          return `{{${foundField.name || this.buildDefaultName(foundField, this.template.fields)}}}`
+          return `{{${foundField.name || this.buildDefaultName(foundField)}}}`
         } else {
           return '{{FIELD NOT FOUND}}'
         }
@@ -190,7 +190,7 @@ export default {
     normalizeFormula (text) {
       return text.replace(/{{(.*?)}}/g, (match, name) => {
         const foundField = this.fields.find((f) => {
-          return (f.name || this.buildDefaultName(f, this.template.fields)).trim() === name.trim()
+          return (f.name || this.buildDefaultName(f)).trim() === name.trim()
         })
 
         if (foundField) {
@@ -212,11 +212,14 @@ export default {
       } else {
         this.field.preferences.formula = normalizedFormula
 
-        if (this.field.type !== 'payment') {
+        if (this.field.type === 'payment') {
+          delete this.field.preferences.price
+          delete this.field.preferences.payment_link_id
+        } else {
           this.field.readonly = !!normalizedFormula
         }
 
-        this.save()
+        this.$emit('save')
 
         this.$emit('close')
       }

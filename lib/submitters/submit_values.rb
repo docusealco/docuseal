@@ -48,6 +48,10 @@ module Submitters
         maybe_set_signature_reason!(values, submitter, params)
         validate_values!(values, submitter, params, request)
 
+        if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
+          ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
+        end
+
         SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request) if params[:completed] == 'true'
 
         submitter.save!
@@ -317,17 +321,33 @@ module Submitters
       end.exclude?(false)
     end
 
+    # rubocop:disable Metrics
     def check_field_condition(condition, submitter_values, fields_uuid_index)
       value = submitter_values[condition['field_uuid']]
+      field = fields_uuid_index[condition['field_uuid']]
 
       case condition['action']
       when 'empty', 'unchecked'
         value.blank?
       when 'not_empty', 'checked'
         value.present?
-      when 'equal', 'contains'
-        field = fields_uuid_index[condition['field_uuid']]
+      when ->(action) { action == 'equal' && field&.dig('type') == 'number' }
+        return false if value.blank? || condition['value'].blank?
 
+        (value.to_f - condition['value'].to_f).abs < Float::EPSILON
+      when ->(action) { action == 'not_equal' && field&.dig('type') == 'number' }
+        return false if value.blank? || condition['value'].blank?
+
+        (value.to_f - condition['value'].to_f).abs > Float::EPSILON
+      when 'greater_than'
+        return false if field.nil? || value.blank? || condition['value'].blank?
+
+        value.to_f > condition['value'].to_f
+      when 'less_than'
+        return false if field.nil? || value.blank? || condition['value'].blank?
+
+        value.to_f < condition['value'].to_f
+      when 'equal', 'contains'
         return true unless field
 
         values = Array.wrap(value)
@@ -340,8 +360,6 @@ module Submitters
 
         values.include?(option['value'].presence || "#{I18n.t('option')} #{field['options'].index(option) + 1}")
       when 'not_equal', 'does_not_contain'
-        field = fields_uuid_index[condition['field_uuid']]
-
         return true unless field
         return false unless field['options']
 
@@ -356,6 +374,7 @@ module Submitters
         true
       end
     end
+    # rubocop:enable Metrics
 
     def replace_default_variables(value, attrs, submission, with_time: false)
       return value if value.in?([true, false]) || value.is_a?(Numeric) || value.is_a?(Array)

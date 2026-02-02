@@ -127,6 +127,12 @@
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
+    <input
+      v-if="isTouchAttachment"
+      :value="touchAttachmentUuid"
+      type="hidden"
+      name="touch_attachment_uuid"
+    >
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
@@ -334,6 +340,10 @@ export default {
       type: Object,
       required: true
     },
+    values: {
+      type: Object,
+      required: true
+    },
     requireSigningReason: {
       type: Boolean,
       required: false,
@@ -388,6 +398,11 @@ export default {
       required: false,
       default: ''
     },
+    touchAttachmentUuid: {
+      type: String,
+      required: false,
+      default: ''
+    },
     reason: {
       type: String,
       required: false,
@@ -399,13 +414,14 @@ export default {
       default: ''
     }
   },
-  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
+  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason', 'touch-attachment'],
   data () {
     return {
       isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
+      isTouchAttachment: false,
       isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
       uploadImageInputKey: Math.random().toString()
     }
@@ -514,7 +530,7 @@ export default {
     redrawCanvas (oldWidth, oldHeight) {
       const canvas = this.$refs.canvas
 
-      if (this.pad && !this.isTextSignature && !this.pad.isEmpty()) {
+      if (this.pad && !this.isTextSignature && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
         const sx = canvas.width / oldWidth
         const sy = canvas.height / oldHeight
 
@@ -731,6 +747,13 @@ export default {
     },
     async submit () {
       if (this.modelValue || this.computedPreviousValue) {
+        if (this.touchAttachmentUuid && this.computedPreviousValue === this.touchAttachmentUuid && !Object.values(this.values).includes(this.touchAttachmentUuid)) {
+          this.isTouchAttachment = true
+          this.$emit('touch-attachment', this.touchAttachmentUuid)
+        } else {
+          this.isTouchAttachment = false
+        }
+
         if (this.computedPreviousValue) {
           this.$emit('update:model-value', this.computedPreviousValue)
         }
