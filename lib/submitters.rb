@@ -162,6 +162,7 @@ module Submitters
     preferences['bcc_completed'] = params['bcc_completed'] if params.key?('bcc_completed')
     preferences['reply_to'] = params['reply_to'] if params.key?('reply_to')
     preferences['go_to_last'] = params['go_to_last'] if params.key?('go_to_last')
+    preferences['hide_optional_fields'] = params['hide_optional_fields'].in?(TRUE_VALUES) if params.key?('hide_optional_fields')
     preferences['completed_redirect_url'] = params['completed_redirect_url'] if params.key?('completed_redirect_url')
 
     preferences

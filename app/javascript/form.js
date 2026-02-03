@@ -28,6 +28,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       canSendEmail: this.dataset.canSendEmail === 'true',
       previousSignatureValue: this.dataset.previousSignatureValue,
       goToLast: this.dataset.goToLast === 'true',
+      hideOptionalFields: this.dataset.hideOptionalFields === 'true',
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
       scrollPadding: this.dataset.scrollPadding || '-80px',

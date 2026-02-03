@@ -1715,6 +1715,11 @@
                     "type": "string",
                     "description": "Specify Reply-To address to use in the notification emails."
                   },
+                  "hide_optional_fields": {
+                    "type": "boolean",
+                    "description": "Set `true` to hide optional fields in the guided stepper when viewing the signing form.",
+                    "default": false
+                  },
                   "expire_at": {
                     "type": "string",
                     "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
@@ -1792,6 +1797,11 @@
                         "reply_to": {
                           "type": "string",
                           "description": "Specify Reply-To address to use in the notification emails for this submitter."
+                        },
+                        "hide_optional_fields": {
+                          "type": "boolean",
+                          "description": "Set `true` to hide optional fields in the guided stepper when viewing the signing form.",
+                          "default": false
                         },
                         "completed_redirect_url": {
                           "type": "string",
@@ -6528,6 +6538,11 @@
                   "completed_redirect_url": {
                     "type": "string",
                     "description": "Submitter specific URL to redirect to after the submission completion."
+                  },
+                  "hide_optional_fields": {
+                    "type": "boolean",
+                    "description": "Set `true` to hide optional fields in the guided stepper when viewing the signing form.",
+                    "default": false
                   },
                   "require_phone_2fa": {
                     "type": "boolean",

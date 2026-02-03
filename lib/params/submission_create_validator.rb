@@ -40,6 +40,7 @@ module Params
 
       boolean(params, :send_email)
       boolean(params, :send_sms)
+      boolean(params, :hide_optional_fields)
       type(params, :order, String)
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)
@@ -90,6 +91,7 @@ module Params
       type(submitter_params, :metadata, Hash)
       boolean(submitter_params, :send_email)
       boolean(submitter_params, :send_sms)
+      boolean(submitter_params, :hide_optional_fields)
       type(submitter_params, :completed_redirect_url, String)
       type(submitter_params, :fields, Array)
 
@@ -109,6 +111,7 @@ module Params
 
       boolean(params, :send_email)
       boolean(params, :send_sms)
+      boolean(params, :hide_optional_fields)
       type(params, :order, String)
       type(params, :completed_redirect_url, String)
       type(params, :bcc_completed, String)

@@ -830,6 +830,11 @@ export default {
       required: false,
       default: true
     },
+    hideOptionalFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isDemo: {
       type: Boolean,
       required: false,
@@ -1089,7 +1094,7 @@ export default {
 
       const cache = {}
 
-      return sortedFields.reduce((acc, f) => {
+      const steps = sortedFields.reduce((acc, f) => {
         const prevStep = acc[acc.length - 1]
 
         if (this.checkFieldConditions(f, cache) && this.checkFieldDocumentsConditions(f)) {
@@ -1102,6 +1107,16 @@ export default {
 
         return acc
       }, [])
+
+      if (!this.hideOptionalFields) {
+        return steps
+      }
+
+      const requiredOnlySteps = steps
+        .map((fields) => fields.filter((f) => f.required))
+        .filter((fields) => fields.length)
+
+      return requiredOnlySteps.length ? requiredOnlySteps : steps
     },
     formulaFields () {
       const cache = {}
