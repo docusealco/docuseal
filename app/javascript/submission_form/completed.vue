@@ -85,17 +85,7 @@
         </span>
       </a>
     </div>
-    <div
-      v-if="attribution"
-      class="text-center mt-4"
-    >
-      {{ t('powered_by') }}
-      <a
-        href="https://www.docuseal.com/start"
-        target="_blank"
-        class="underline"
-      >DocuSeal</a> - {{ t('open_source_documents_software') }}
-    </div>
+    <!-- Attribution removed -->
   </div>
 </template>
 
