@@ -7,9 +7,9 @@ module.exports = {
       {
         docuseal: {
           'color-scheme': 'dark',
-          primary: '#93bec7',
-          secondary: '#93bec7',
-          accent: '#ededde',
+          primary: '#97b0b4',
+          secondary: '#97b0b4',
+          accent: '#adada2',
           neutral: '#93bec7',
           'base-100': '#1a1a1a',
           'base-200': '#93bec7',
