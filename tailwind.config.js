@@ -12,7 +12,7 @@ module.exports = {
           accent: '#eeaf3a',
           neutral: '#291334',
           'base-100': '#1a1a1a',
-          'base-200': '#eeaf3a',
+          'base-200': '#ededde',
           'base-300': '#ededde',
           'base-content': '#ededde',
           '--rounded-btn': '1.9rem',
