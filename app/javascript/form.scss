@@ -48,7 +48,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .base-textarea {
-  @apply textarea textarea-bordered bg-base-300 rounded-3xl;
+  @apply textarea textarea-bordered bg-base-300 rounded-3xl focus:border-primary/50;
 }
 
 .btn {
@@ -56,15 +56,15 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .base-input {
-  @apply input input-bordered bg-base-300;
+  @apply input input-bordered bg-base-300 focus:border-primary/50;
 }
 
 .base-button {
-  @apply btn btn-neutral text-white text-base;
+  @apply btn btn-primary text-base-100 text-base;
 }
 
 .white-button {
-  @apply btn btn-outline text-base bg-base-300 border-2;
+  @apply btn btn-outline text-base bg-base-300 border-2 hover:border-primary/50 hover:bg-base-200;
 }
 
 .base-checkbox {

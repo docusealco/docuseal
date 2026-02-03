@@ -5,7 +5,7 @@
       class="roles-dropdown w-full rounded-lg roles-dropdown"
       :style="withStickySubmitters ? { backgroundColor } : {}"
       :submitters="submitters"
-      :menu-style="{ overflow: 'auto', display: 'flex', flexDirection: 'row', maxHeight: 'calc(100vh - 120px)', backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? 'white' : backgroundColor }"
+      :menu-style="{ overflow: 'auto', display: 'flex', flexDirection: 'row', maxHeight: 'calc(100vh - 120px)', backgroundColor: ['', null, 'transparent'].includes(backgroundColor) ? '#252525' : backgroundColor }"
       :editable="editable && !defaultSubmitters.length"
       @new-submitter="save"
       @remove="removeSubmitter"
@@ -79,7 +79,7 @@
         :key="field.name"
       >
         <div
-          :style="{ backgroundColor }"
+          :style="{ backgroundColor: backgroundColor || '#252525' }"
           draggable="true"
           class="border border-base-300 rounded relative group mb-2 default-field fields-list-item"
           @dragstart="onDragstart($event, field)"
@@ -208,7 +208,7 @@
         :id="`${type}_type_field_button`"
         draggable="true"
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
-        :style="{ backgroundColor }"
+        :style="{ backgroundColor: backgroundColor || '#252525' }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
         @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
@@ -237,7 +237,7 @@
           href="https://www.docuseal.com/pricing"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
-          :style="{ backgroundColor }"
+          :style="{ backgroundColor: backgroundColor || '#252525' }"
         >
           <div class="w-0 absolute left-0">
             <IconLock
@@ -263,7 +263,7 @@
           href="https://www.docuseal.com/qualified-electronic-signature"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
-          :style="{ backgroundColor }"
+          :style="{ backgroundColor: backgroundColor || '#252525' }"
         >
           <div class="w-0 absolute left-0">
             <IconLock
