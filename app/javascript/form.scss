@@ -48,7 +48,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .base-textarea {
-  @apply textarea textarea-bordered bg-white rounded-3xl;
+  @apply textarea textarea-bordered bg-base-300 rounded-3xl;
 }
 
 .btn {
@@ -56,7 +56,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .base-input {
-  @apply input input-bordered bg-white;
+  @apply input input-bordered bg-base-300;
 }
 
 .base-button {
@@ -64,15 +64,15 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .white-button {
-  @apply btn btn-outline text-base bg-white border-2;
+  @apply btn btn-outline text-base bg-base-300 border-2;
 }
 
 .base-checkbox {
-  @apply checkbox rounded bg-white checkbox-sm;
+  @apply checkbox rounded bg-base-300 checkbox-sm;
 }
 
 .base-radio {
-  @apply radio bg-white radio-sm;
+  @apply radio bg-base-300 radio-sm;
 }
 
 .font-times {

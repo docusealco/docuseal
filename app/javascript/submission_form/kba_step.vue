@@ -120,7 +120,7 @@
             id="kba_fn"
             v-model="form.fn"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -133,7 +133,7 @@
             id="kba_ln"
             v-model="form.ln"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -146,7 +146,7 @@
             id="kba_addr"
             v-model="form.addr"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -159,7 +159,7 @@
             id="kba_city"
             v-model="form.city"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -171,7 +171,7 @@
           <select
             id="kba_state"
             v-model="form.state"
-            class="select select-bordered !h-10 min-h-[2.5rem] w-full bg-white font-normal !text-base"
+            class="select select-bordered !h-10 min-h-[2.5rem] w-full bg-base-300 font-normal !text-base"
             required
           >
             <option
@@ -198,7 +198,7 @@
             id="kba_zip"
             v-model="form.zip"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -211,7 +211,7 @@
             id="kba_phone"
             v-model="form.phone"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -224,7 +224,7 @@
             id="kba_email"
             v-model="form.email"
             type="email"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>
@@ -237,7 +237,7 @@
             id="kba_dob"
             v-model="form.dob"
             type="date"
-            class="input input-bordered !h-10 md:w-full bg-white"
+            class="input input-bordered !h-10 md:w-full bg-base-300"
             required
           >
         </div>
@@ -250,7 +250,7 @@
             id="kba_ssn"
             v-model="form.ssn"
             type="text"
-            class="input input-bordered !h-10 w-full bg-white"
+            class="input input-bordered !h-10 w-full bg-base-300"
             required
           >
         </div>

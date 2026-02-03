@@ -559,7 +559,7 @@
             :key="step[0].uuid"
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
-            :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
+            :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-base-200': index > currentStep }"
             @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
           />
         </div>

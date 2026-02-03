@@ -48,11 +48,11 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .base-input {
-  @apply input input-bordered bg-white;
+  @apply input input-bordered bg-base-300;
 }
 
 .base-textarea {
-  @apply textarea textarea-bordered bg-white rounded-3xl;
+  @apply textarea textarea-bordered bg-base-300 rounded-3xl;
 }
 
 .base-button {
@@ -60,15 +60,15 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .white-button {
-  @apply btn btn-outline text-base bg-white border-2;
+  @apply btn btn-outline text-base bg-base-300 border-2;
 }
 
 .base-checkbox {
-  @apply checkbox rounded bg-white checkbox-sm no-animation;
+  @apply checkbox rounded bg-base-300 checkbox-sm no-animation;
 }
 
 .base-radio {
-  @apply radio bg-white radio-sm no-animation;
+  @apply radio bg-base-300 radio-sm no-animation;
 }
 
 .base-select {
@@ -115,7 +115,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .autocomplete {
-  background: white;
+  background: #333333;
   z-index: 1000;
   font: 16px/25px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow: auto;
@@ -132,7 +132,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .autocomplete .group {
-  background: #eee;
+  background: #3a3a3a;
 }
 
 .autocomplete > div:hover:not(.group),
