@@ -112,7 +112,7 @@
                   :data-tip="[0, 1, 2].map((i) => rows[i]?.[mapping.column_index] ?? '---').join('\n')"
                 >
                   <button
-                    class="btn btn-xs btn-circle bg-white border-0 border-gray-300"
+                    class="btn btn-xs btn-circle bg-base-300 border-0 border-gray-300"
                     @click.prevent
                   >
                     <IconInfoCircle class="h-4 w-4" />

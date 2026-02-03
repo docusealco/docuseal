@@ -8,7 +8,7 @@
           <%= render 'shared/test_mode_toggle' %>
         <% end %>
         <% if @webhook_url.persisted? && params[:action] == 'index' %>
-          <%= link_to new_settings_webhook_path, class: 'md:ml-3 btn bg-white btn-outline btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+          <%= link_to new_settings_webhook_path, class: 'md:ml-3 btn bg-base-300 btn-outline btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
             <%= svg_icon('plus', class: 'w-6 h-6') %>
             <span><%= t('new_webhook') %></span>
           <% end %>
@@ -21,7 +21,7 @@
           <%= label_tag :url, 'Webhook URL', class: 'text-sm font-semibold' %>
           <% if @webhook_url.persisted? %>
             <div class="flex items-center space-x-2 md:absolute md:right-0">
-              <%= link_to webhook_secret_path(@webhook_url), class: 'btn btn-outline btn-sm bg-white', data: { turbo_frame: 'modal' } do %>
+              <%= link_to webhook_secret_path(@webhook_url), class: 'btn btn-outline btn-sm bg-base-300', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('lock', class: 'w-4 h-4') %>
                 <span><%= @webhook_url.secret.present? ? t('edit_secret') : t('add_secret') %></span>
               <% end %>

@@ -98,7 +98,7 @@
               >
               <button
                 id="gdrive_oauth_button"
-                class="btn bg-white btn-outline w-full text-base font-medium mt-4"
+                class="btn bg-base-300 btn-outline w-full text-base font-medium mt-4"
                 data-turbo="false"
                 type="submit"
                 :disabled="isConnectGoogleDriveClicked"
@@ -130,7 +130,7 @@
               />
               <div v-if="isLoadingGoogleDrive">
                 <div
-                  class="bg-white absolute top-0 bottom-0 left-0 right-0 opacity-80 rounded-lg"
+                  class="bg-base-300 absolute top-0 bottom-0 left-0 right-0 opacity-80 rounded-lg"
                   style="margin: 1px"
                 />
                 <div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">

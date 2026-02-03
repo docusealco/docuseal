@@ -33,7 +33,7 @@
     </div>
     <div
       v-if="field?.type && (isSelected || isNameFocus) && !isInMultiSelection"
-      class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
+      class="absolute bg-base-300 rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
       style="top: -25px; height: 25px"
       @mousedown.stop
       @pointerdown.stop
@@ -45,7 +45,7 @@
         :compact="true"
         :editable="editable && (!defaultField || defaultField.role !== submitter?.name)"
         :allow-add-new="!defaultSubmitters.length"
-        :menu-classes="'dropdown-content bg-white menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px] mt-[1px]'"
+        :menu-classes="'dropdown-content bg-base-300 menu menu-xs p-2 shadow rounded-box w-52 rounded-t-none -left-[1px] mt-[1px]'"
         :submitters="template.submitters"
         @update:model-value="save"
         @click="selectedAreasRef.value = [area]"
@@ -55,7 +55,7 @@
         :button-width="27"
         :editable="editable && !defaultField"
         :button-classes="'px-1'"
-        :menu-classes="'bg-white rounded-t-none'"
+        :menu-classes="'bg-base-300 rounded-t-none'"
         @update:model-value="[maybeUpdateOptions(), save()]"
         @click="selectedAreasRef.value = [area]"
       />

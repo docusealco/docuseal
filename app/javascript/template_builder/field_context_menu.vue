@@ -3,7 +3,7 @@
     <div
       v-if="!isShowFormulaModal && !isShowFontModal && !isShowConditionsModal && !isShowDescriptionModal && !isShowCustomValidationModal && !isShowLengthValidationModal && !isShowNumberRangeModal && !isShowPriceModal && !isShowPaymentLinkModal"
       ref="menu"
-      class="fixed z-50 p-1 bg-white shadow-lg rounded-lg border border-neutral-200 cursor-default"
+      class="fixed z-50 p-1 bg-base-300 shadow-lg rounded-lg border border-neutral-200 cursor-default"
       style="min-width: 170px"
       :style="menuStyle"
       @mousedown.stop

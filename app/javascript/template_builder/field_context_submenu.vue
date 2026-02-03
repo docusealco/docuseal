@@ -20,7 +20,7 @@
     <div
       v-if="isOpen"
       ref="submenu"
-      class="absolute p-1 z-50 left-full bg-white shadow-lg rounded-lg border border-neutral-200 cursor-default"
+      class="absolute p-1 z-50 left-full bg-base-300 shadow-lg rounded-lg border border-neutral-200 cursor-default"
       style="min-width: 170px"
       :style="submenuStyle"
       :class="menuClass"

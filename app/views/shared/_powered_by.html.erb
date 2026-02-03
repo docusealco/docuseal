@@ -1,13 +1,1 @@
-<div class="text-center px-2">
-  <% if local_assigns[:with_counter] %>
-    <% count = CompletedSubmitter.distinct.count(:submission_id) %>
-    <% if count > 1 %>
-      <%= t('count_documents_signed_with_html', count:) %>
-    <% else %>
-      <%= t('powered_by') %>
-    <% end %>
-  <% else %>
-    <%= t('powered_by') %>
-  <% end %>
-  <a href="<%= Docuseal::PRODUCT_URL %><%= local_assigns[:link_path] %>" class="underline"><%= Docuseal.product_name %></a> - <%= t('open_source_documents_software') %>
-</div>
+

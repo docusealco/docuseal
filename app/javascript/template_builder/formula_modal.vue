@@ -32,7 +32,7 @@
           <button
             v-for="f in fields"
             :key="f.uuid"
-            class="mr-1 flex btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-white !rounded-xl"
+            class="mr-1 flex btn btn-neutral btn-outline border-base-content/20 btn-sm normal-case font-normal bg-base-300 !rounded-xl"
             @click.prevent="insertTextUnderCursor(`{{${f.name || buildDefaultName(f)}}}`)"
           >
             <IconMathFunction

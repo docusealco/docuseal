@@ -38,10 +38,10 @@
             <%= ff.password_field :password, required: true, placeholder: '************', class: 'base-input w-full pr-10', data: { target: 'password-input.passwordInput' } %>
             <button data-target="password-input.togglePasswordVisibility" type="button" class="absolute inset-y-0 h-12 right-0 pr-3 flex items-center">
               <span data-target="password-input.hiddenPasswordIcon">
-                <%= svg_icon('eye', class: 'w-6 h-6 shrink-0 bg-white') %>
+                <%= svg_icon('eye', class: 'w-6 h-6 shrink-0 bg-transparent') %>
               </span>
               <span data-target="password-input.visiblePasswordIcon" class="hidden">
-                <%= svg_icon('eye_off', class: 'w-6 h-6 shrink-0 bg-white') %>
+                <%= svg_icon('eye_off', class: 'w-6 h-6 shrink-0 bg-transparent') %>
               </span>
             </button>
           </password-input>

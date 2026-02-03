@@ -62,7 +62,7 @@
                   <% prefillable_fields.each do |field| %>
                     <% field_id = "detailed_field_#{index}_#{field['uuid'] || field['name'].parameterize}" %>
                     <% if field['type'] == 'checkbox' %>
-                      <label for="<%= field_id %>" class="flex items-center justify-between mt-1.5 pl-3 pr-2.5 h-10 border border-base-content/20 rounded-full cursor-pointer transition-colors bg-white">
+                      <label for="<%= field_id %>" class="flex items-center justify-between mt-1.5 pl-3 pr-2.5 h-10 border border-base-content/20 rounded-full cursor-pointer transition-colors bg-base-300">
                         <span class="text-base select-none px-1"> <%= field['title'].presence || field['name'] %></span>
                         <%= tag.input type: 'checkbox', name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", id: field_id, class: 'toggle toggle-sm', style: 'width: 38px; --handleoffset: 17px', checked: field['default_value'].present? && (field['default_value'] == true || field['default_value'].to_s == '1' || field['default_value'].to_s.downcase == 'true'), required: field['required'], value: 'true' %>
                       </label>

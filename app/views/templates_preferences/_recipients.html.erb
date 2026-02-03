@@ -16,7 +16,7 @@
               <% if template.submitters.size > 2 %>
                 <div id="order_<%= submitter['uuid'] %>" class="mr-0.5">
                   <% if is_order_set %>
-                    <%= ff.select :order, options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), {}, class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
+                    <%= ff.select :order, options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), {}, class: 'select select-xs text-sm input-bordered bg-base-300 pl-3.5' %>
                   <% elsif index == 0 %>
                     <mount-on-click data-template-id="order_fields" class="link whitespace-nowrap text-sm mt-1 mr-1 block">
                       <%= t('edit_order') %>
@@ -109,7 +109,7 @@
       <turbo-stream action="replace" target="order_<%= submitter['uuid'] %>">
         <template>
           <div id="order_<%= submitter['uuid'] %>">
-            <%= select_tag "template[submitters][#{index}][order]", options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
+            <%= select_tag "template[submitters][#{index}][order]", options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), class: 'select select-xs text-sm input-bordered bg-base-300 pl-3.5' %>
           </div>
         </template>
       </turbo-stream>

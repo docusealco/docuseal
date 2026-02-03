@@ -39,7 +39,7 @@
                 </label>
                 <div
                   tabindex="0"
-                  class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-white border border-base-300 rounded-md w-52"
+                  class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-base-300 border border-base-300 rounded-md w-52"
                 >
                   <div
                     v-for="(font, index) in fonts"
@@ -56,7 +56,7 @@
             </span>
             <span class="relative">
               <select
-                class="select input-bordered bg-white select-sm text-center pl-2"
+                class="select input-bordered bg-base-300 select-sm text-center pl-2"
                 style="font-size: 16px; line-height: 12px; width: 86px; text-align-last: center;"
                 @change="$event.target.value ? preferences.font_size = parseInt($event.target.value) : delete preferences.font_size"
               >
@@ -76,7 +76,7 @@
                 </option>
               </select>
               <span
-                class="border-l pl-1.5 absolute bg-white bottom-0 pointer-events-none text-sm h-5"
+                class="border-l pl-1.5 absolute bg-base-300 bottom-0 pointer-events-none text-sm h-5"
                 style="right: 13px; top: 6px"
               >
                 pt
@@ -90,7 +90,7 @@
                 <button
                   v-for="(type, index) in types"
                   :key="index"
-                  class="btn btn-sm join-item bg-white input-bordered hover:border-base-content/20 hover:bg-base-200/50 px-2"
+                  class="btn btn-sm join-item bg-base-300 input-bordered hover:border-base-content/20 hover:bg-base-200/50 px-2"
                   :class="{ '!bg-base-300': preferences.font_type?.includes(type.value) }"
                   @click="setFontType(type.value)"
                 >
@@ -106,7 +106,7 @@
                 <button
                   v-for="(align, index) in aligns"
                   :key="index"
-                  class="btn btn-sm join-item bg-white input-bordered hover:border-base-content/20 hover:bg-base-200/50 px-2"
+                  class="btn btn-sm join-item bg-base-300 input-bordered hover:border-base-content/20 hover:bg-base-200/50 px-2"
                   :class="{ '!bg-base-300': preferences.align === align.value }"
                   @click="align.value && preferences.align != align.value ? preferences.align = align.value : delete preferences.align"
                 >
@@ -118,14 +118,14 @@
               <div class="dropdown modal-field-font-dropdown">
                 <label
                   tabindex="0"
-                  class="cursor-pointer flex bg-white border input-bordered rounded-md h-8 items-center justify-center px-1"
+                  class="cursor-pointer flex bg-base-300 border input-bordered rounded-md h-8 items-center justify-center px-1"
                   style="-webkit-appearance: none; -moz-appearance: none;"
                 >
                   <component :is="valigns.find((v) => v.value === (preferences.valign || 'center'))?.icon" />
                 </label>
                 <div
                   tabindex="0"
-                  class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-white border border-base-300 rounded-md"
+                  class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-base-300 border border-base-300 rounded-md"
                 >
                   <div
                     v-for="(valign, index) in valigns"
@@ -142,7 +142,7 @@
             </span>
             <span>
               <select
-                class="input input-bordered bg-white input-sm text-lg rounded-md"
+                class="input input-bordered bg-base-300 input-sm text-lg rounded-md"
                 style="-webkit-appearance: none; -moz-appearance: none; text-indent: 0px; text-overflow: ''; padding: 0px 6px; height: 32px"
                 @change="$event.target.value ? preferences.color = $event.target.value : delete preferences.color"
               >
@@ -160,7 +160,7 @@
         </div>
         <div class="mt-4">
           <div
-            class="flex border border-base-content/20 rounded-xl bg-white px-4 h-16 modal-field-font-preview"
+            class="flex border border-base-content/20 rounded-xl bg-base-300 px-4 h-16 modal-field-font-preview"
             :style="{
               color: preferences.color || 'black',
               fontSize: (preferences.font_size || 11) + 'pt',

@@ -60,7 +60,7 @@
                 > {{ t('remove') }}</a>
               </div>
               <select
-                class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                class="select select-bordered select-sm w-full bg-base-300 h-11 pl-4 text-base font-normal"
                 :class="{ 'text-gray-300': !condition.field_uuid }"
                 required
                 @change="[
@@ -89,7 +89,7 @@
               <select
                 v-model="condition.action"
                 class="select select-bordered select-sm w-full h-11 pl-4 text-base font-normal"
-                :class="{ 'bg-white': condition.field_uuid, 'bg-base-300': !condition.field_uuid }"
+                :class="{ 'bg-base-300': condition.field_uuid, 'bg-base-300': !condition.field_uuid }"
                 :required="condition.field_uuid"
               >
                 <option
@@ -102,7 +102,7 @@
               </select>
               <select
                 v-if="['radio', 'select', 'multiple'].includes(conditionField(condition)?.type) && conditionField(condition)?.options"
-                class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                class="select select-bordered select-sm w-full bg-base-300 h-11 pl-4 text-base font-normal"
                 :class="{ 'text-gray-300': !condition.value }"
                 required
                 @change="condition.value = $event.target.value"
@@ -129,7 +129,7 @@
                 v-model="condition.value"
                 type="number"
                 step="any"
-                class="input input-bordered input-sm w-full bg-white h-11 pl-4 text-base font-normal"
+                class="input input-bordered input-sm w-full bg-base-300 h-11 pl-4 text-base font-normal"
                 :class="{ 'text-gray-300': !condition.value }"
                 :placeholder="t('type_value')"
                 required
