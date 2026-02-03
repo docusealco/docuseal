@@ -9,7 +9,7 @@ module.exports = {
           'color-scheme': 'dark',
           primary: '#e4e0e1',
           secondary: '#ef9fbc',
-          accent: '#eeaf3a',
+          accent: '#ededde',
           neutral: '#291334',
           'base-100': '#1a1a1a',
           'base-200': '#ededde',
