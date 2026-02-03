@@ -18,7 +18,7 @@
     <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
-  <body>
+  <body class="bg-base-100">
     <% if params[:modal].present? %>
       <% url_params = Rails.application.routes.recognize_path(params[:modal], method: :get) %>
       <% if url_params[:action] == 'new' %>

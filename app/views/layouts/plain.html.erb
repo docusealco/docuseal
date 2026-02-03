@@ -12,7 +12,7 @@
     <% end %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
-  <body>
+  <body class="bg-base-100">
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <%= yield %>
     <turbo-frame id="modal"></turbo-frame>

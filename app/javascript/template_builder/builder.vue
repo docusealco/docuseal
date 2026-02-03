@@ -2,7 +2,7 @@
   <div
     ref="dragContainer"
     style="max-width: 1600px"
-    class="mx-auto pl-3 h-full"
+    class="mx-auto pl-3 h-full bg-base-100"
     :class="isMobile ? 'pl-4' : 'md:pl-4'"
     @dragover="onDragover"
     @drop="isDragFile = false"
@@ -54,7 +54,7 @@
     <div
       v-if="$slots.buttons || withTitle"
       id="title_container"
-      class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
+      class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 bg-base-100 title-container"
       :class="{ sticky: withStickySubmitters || isBreakpointLg }"
       :style="{ backgroundColor: backgroundColor || '' }"
     >
@@ -284,7 +284,7 @@
           @change="save"
         />
         <div
-          class="sticky bottom-0 py-2 space-y-2"
+          class="sticky bottom-0 py-2 space-y-2 bg-base-100"
           :style="{ backgroundColor: backgroundColor || '' }"
         >
           <Upload
@@ -444,7 +444,7 @@
       >
         <div
           v-if="showDrawField || drawField || drawCustomField"
-          class="sticky inset-0 h-full z-20"
+          class="sticky inset-0 h-full z-20 bg-base-100"
           :style="{ backgroundColor: backgroundColor || '' }"
         >
           <div class="bg-base-200 rounded-lg p-5 text-center space-y-4 draw-field-container">
