@@ -316,7 +316,7 @@ import FileDropzone from './dropzone'
 import MarkdownContent from './markdown_content'
 import { v4 } from 'uuid'
 
-let isFontLoaded = false
+let fontLoadPromise = null
 
 const scale = 3
 
@@ -482,6 +482,14 @@ export default {
           if (entry.isIntersecting) {
             this.setCanvasSize()
 
+            if (this.isTextSignature) {
+              this.$nextTick(() => {
+                if (this.$refs.textInput) {
+                  this.initTypedSignature()
+                }
+              })
+            }
+
             this.intersectionObserver?.disconnect()
           }
         })
@@ -504,6 +512,10 @@ export default {
       })
 
       this.resizeObserver.observe(this.$refs.canvas.parentNode)
+
+      if (this.isTextSignature) {
+        this.loadFont()
+      }
     }
   },
   beforeUnmount () {
@@ -541,7 +553,7 @@ export default {
 
         this.pad.fromData(scaledData)
       } else if (this.isTextSignature && this.$refs.textInput) {
-        this.updateWrittenSignature({ target: { value: this.$refs.textInput.value } })
+        this.updateWrittenSignature({ target: this.$refs.textInput })
       }
     },
     remove () {
@@ -551,17 +563,17 @@ export default {
       this.isSignatureStarted = false
     },
     loadFont () {
-      if (!isFontLoaded) {
+      if (!fontLoadPromise) {
         const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript-Regular.otf) format("opentype")`)
 
-        font.load().then((loadedFont) => {
+        fontLoadPromise = font.load().then((loadedFont) => {
           document.fonts.add(loadedFont)
-
-          isFontLoaded = true
         }).catch((error) => {
           console.error('Font loading failed:', error)
         })
       }
+
+      return fontLoadPromise
     },
     showQr () {
       this.isShowQr = true
@@ -661,12 +673,25 @@ export default {
 
       if (this.isTextSignature) {
         this.$nextTick(() => {
-          this.$refs.textInput.focus()
+          if (this.$refs.textInput) {
+            this.$refs.textInput.focus()
 
-          this.loadFont()
+            this.initTypedSignature()
 
-          this.$emit('start')
+            this.$emit('start')
+          }
         })
+      }
+    },
+    async initTypedSignature () {
+      if (this.submitter.name) {
+        this.$refs.textInput.value = this.submitter.name
+      }
+
+      await this.loadFont()
+
+      if (this.$refs.textInput.value) {
+        this.updateWrittenSignature({ target: this.$refs.textInput })
       }
     },
     drawImage (event) {

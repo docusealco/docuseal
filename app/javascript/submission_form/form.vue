@@ -421,6 +421,7 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :dry-run="dryRun"
+            :submitter="submitter"
             :previous-value="previousInitialsValue"
             :attachments-index="attachmentsIndex"
             :show-field-names="showFieldNames"
