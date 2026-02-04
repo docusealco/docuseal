@@ -345,7 +345,9 @@ export default {
       if (!this.isDrawInitials) {
         this.$nextTick(() => {
           if (this.$refs.textInput) {
-            this.$refs.textInput.focus()
+            if (!this.submitter.name) {
+              this.$refs.textInput.focus()
+            }
 
             this.initTextInitial()
 
