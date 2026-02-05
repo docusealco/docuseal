@@ -1255,11 +1255,11 @@ export default {
       }
     },
     checkFieldConditions (field, cache = {}) {
-      if (cache[field.uuid] !== undefined) {
-        return cache[field.uuid]
-      }
+      const cacheKey = field.uuid || field.attachment_uuid
 
-      cache[field.uuid] = true
+      if (cache[cacheKey] !== undefined) {
+        return cache[cacheKey]
+      }
 
       if (field.conditions?.length) {
         const result = field.conditions.reduce((acc, cond) => {
@@ -1272,10 +1272,12 @@ export default {
           return acc
         }, [])
 
-        cache[field.uuid] = !result.includes(false)
+        cache[cacheKey] = !result.includes(false)
+      } else {
+        cache[cacheKey] = true
       }
 
-      return cache[field.uuid]
+      return cache[cacheKey]
     },
     checkFieldCondition (condition, cache = {}) {
       const field = this.fieldsUuidIndex[condition.field_uuid]
