@@ -43,7 +43,7 @@ module SendWebhookRequest
         data: data
       }.to_json
 
-      req.options.read_timeout = 8
+      req.options.read_timeout = 15
       req.options.open_timeout = 8
     end
 
