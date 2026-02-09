@@ -4,7 +4,23 @@ export default targetable(class extends HTMLElement {
   static [target.static] = ['defaultButton', 'loadingButton']
 
   connectedCallback () {
+    // Make element keyboard accessible
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0')
+    }
+    if (!this.hasAttribute('role')) {
+      this.setAttribute('role', 'button')
+    }
+
     this.addEventListener('click', () => this.downloadFiles())
+
+    // Add keyboard support for Enter and Space keys
+    this.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        this.downloadFiles()
+      }
+    })
   }
 
   toggleState () {

@@ -9,12 +9,31 @@ export default targetable(class extends HTMLElement {
   ]
 
   connectedCallback () {
+    // Make toggle button keyboard accessible
+    if (!this.togglePasswordVisibility.hasAttribute('tabindex')) {
+      this.togglePasswordVisibility.setAttribute('tabindex', '0')
+    }
+    if (!this.togglePasswordVisibility.hasAttribute('role')) {
+      this.togglePasswordVisibility.setAttribute('role', 'button')
+    }
+
     this.togglePasswordVisibility.addEventListener('click', this.handleTogglePasswordVisibility)
+
+    // Add keyboard support for Enter and Space keys
+    this.handleKeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        this.handleTogglePasswordVisibility()
+      }
+    }
+    this.togglePasswordVisibility.addEventListener('keydown', this.handleKeydown)
+
     document.addEventListener('turbo:submit-start', this.setInitialPasswordType)
   }
 
   disconnectedCallback () {
     this.togglePasswordVisibility.removeEventListener('click', this.handleTogglePasswordVisibility)
+    this.togglePasswordVisibility.removeEventListener('keydown', this.handleKeydown)
     document.removeEventListener('turbo:submit-start', this.setInitialPasswordType)
   }
 
