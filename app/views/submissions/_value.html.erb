@@ -10,7 +10,7 @@
     <% is_narrow = area['h'].positive? && ((area['w'] * local_assigns[:page_width]).to_f / (area['h'] * local_assigns[:page_height])) > 4.5 %>
     <div class="flex justify-between w-full h-full gap-1 <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'flex-row' : 'flex-col' %>">
       <div class="flex overflow-hidden <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
-        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>">
+        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || t('signature_field') %>">
       </div>
       <% if (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) && attachment = attachments_index[value] %>
         <div class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem] <%= is_narrow ? 'w-1/2' : 'w-full' %>">
@@ -34,7 +34,7 @@
       <% end %>
     </div>
   <% elsif field['type'].in?(['image', 'initials', 'stamp', 'kba']) && attachments_index[value].image? %>
-    <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
+    <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || t("#{field['type']}_field") %>" loading="lazy">
   <% elsif field['type'].in?(['file', 'payment', 'image']) %>
     <autosize-field></autosize-field>
     <div class="px-0.5 flex flex-col justify-center">

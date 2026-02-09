@@ -36,7 +36,7 @@
     <% if signature %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= signature.url %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
+        <img src="<%= signature.url %>" alt="<%= t('your_signature') %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
       </div>
     <% end %>
     <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
@@ -49,7 +49,7 @@
     <% if initials %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_initials_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= initials.url %>" style="max-height: 200px; width: auto" width="<%= initials.metadata['width'] %>" height="<%= initials.metadata['height'] %>">
+        <img src="<%= initials.url %>" alt="<%= t('your_initials') %>" style="max-height: 200px; width: auto" width="<%= initials.metadata['width'] %>" height="<%= initials.metadata['height'] %>">
       </div>
     <% end %>
     <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">

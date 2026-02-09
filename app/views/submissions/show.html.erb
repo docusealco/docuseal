@@ -81,7 +81,7 @@
         <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <% if document.preview_images.first %>
           <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
-            <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy">
+            <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" alt="<%= t('preview_of') %> <%= item['name'].presence || document.filename.base %>" class="rounded border" loading="lazy">
             <div class="pb-2 pt-1.5 text-center" dir="auto">
               <%= item['name'].presence || document.filename.base %>
             </div>
@@ -105,7 +105,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
             <page-container id="<%= "page-#{document.uuid}-#{index}" %>" class="block before:border before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:rounded relative mb-4" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
-              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" class="rounded" height="<%= height %>">
+              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" class="rounded" height="<%= height %>" alt="<%= t('page') %> <%= index + 1 %> <%= t('of') %> <%= item['name'].presence || document.filename.base %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
@@ -260,10 +260,10 @@
               <div dir="auto">
                 <% if field['type'].in?(%w[signature initials]) %>
                   <div class="w-full bg-base-300 py-1">
-                    <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
+                    <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || t("#{field['type']}_field") %>" loading="lazy">
                   </div>
                 <% elsif field['type'].in?(['image', 'stamp', 'kba']) && attachments_index[value].image? %>
-                  <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy">
+                  <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || t("#{field['type']}_field") %>" loading="lazy">
                 <% elsif field['type'].in?(['file', 'payment', 'image']) %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
