@@ -54,16 +54,19 @@
       v-if="field.type === 'image' && image"
       class="object-contain mx-auto"
       :src="image.url"
+      :alt="field.name || 'Image'"
     >
     <img
       v-else-if="field.type === 'stamp' && stamp"
       class="object-contain mx-auto"
       :src="stamp.url"
+      :alt="field.name || 'Stamp'"
     >
     <img
       v-else-if="field.type === 'kba' && kba"
       class="object-contain mx-auto"
       :src="kba.url"
+      :alt="field.name || 'Knowledge-based authentication'"
     >
     <div
       v-else-if="field.type === 'signature' && signature"
@@ -78,6 +81,7 @@
         <img
           class="object-contain mx-auto"
           :src="signature.url"
+          :alt="field.name || 'Signature'"
         >
       </div>
       <div
@@ -103,6 +107,7 @@
       v-else-if="field.type === 'initials' && initials"
       class="object-contain mx-auto"
       :src="initials.url"
+      :alt="field.name || 'Initials'"
     >
     <div
       v-else-if="(field.type === 'file' || field.type === 'payment') && attachments.length"

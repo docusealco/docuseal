@@ -116,6 +116,7 @@
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      :alt="`${field.name || t('initials')} - ${t('preview')}`"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <div class="relative">

@@ -25,6 +25,7 @@
     <div>
       <img
         :src="attachmentsIndex[modelValue].url"
+        :alt="`${field.name || t('image')} - ${t('preview')}`"
         class="h-52 border border-base-300 rounded mx-auto uploaded-image-preview"
       >
     </div>
