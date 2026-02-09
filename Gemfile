@@ -74,6 +74,7 @@ group :development do
 end
 
 group :test do
+  gem 'axe-core-rspec'
   gem 'capybara'
   gem 'cuprite'
   gem 'webmock'
