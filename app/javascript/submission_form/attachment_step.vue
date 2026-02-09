@@ -28,6 +28,7 @@
         </a>
         <button
           class="remove-attachment-button"
+          :aria-label="t('remove_attachment')"
           @click.prevent="removeAttachment(val)"
         >
           <IconTrashX

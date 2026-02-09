@@ -164,6 +164,7 @@
         v-else-if="editable"
         class="pr-1"
         :title="t('remove')"
+        :aria-label="t('remove')"
         @click.prevent="$emit('remove')"
       >
         <IconX width="14" />

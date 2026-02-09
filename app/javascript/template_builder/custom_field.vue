@@ -61,6 +61,8 @@
             <label
               tabindex="0"
               :title="t('settings')"
+              :aria-label="t('settings')"
+              role="button"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
               <IconSettings
@@ -96,6 +98,7 @@
             v-if="isNew && !$refs.name"
             class="relative text-base-content pr-1 field-save-button"
             :title="t('save')"
+            :aria-label="t('save')"
             @click="field.name ? $emit('save', field) : focusName()"
           >
             <IconCheck
@@ -107,6 +110,7 @@
             class="relative group-hover:text-base-content pr-1 field-remove-button"
             :class="isNew ? 'text-base-content' : 'text-transparent group-hover:text-base-content'"
             :title="t('remove')"
+            :aria-label="t('remove')"
             @click="onRemoveClick"
           >
             <IconTrashX

@@ -24,8 +24,8 @@
         </div>
       <% end %>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
-          <span class="text-sm align-text-top"><%= current_user.initials %></span>
+        <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex" role="button" aria-label="<%= t('user_menu') %>" aria-haspopup="true" aria-expanded="false">
+          <span class="text-sm align-text-top" aria-hidden="true"><%= current_user.initials %></span>
         </label>
         <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[160px] text-right">
           <li>

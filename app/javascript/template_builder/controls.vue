@@ -17,6 +17,7 @@
       v-if="withArrows"
       class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
+      aria-label="Move document up"
       @click.stop="$emit('up', item)"
     >
       &uarr;
@@ -25,6 +26,7 @@
       v-if="withArrows"
       class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
+      aria-label="Move document down"
       @click.stop="$emit('down', item)"
     >
       &darr;
@@ -32,6 +34,7 @@
     <button
       class="btn border-base-200 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
       style="width: 24px; height: 24px"
+      aria-label="Remove document"
       @click.stop="$emit('remove', item)"
     >
       &times;

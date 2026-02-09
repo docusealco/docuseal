@@ -7,7 +7,7 @@
           <span>
             <%= local_assigns[:title] %>
           </span>
-          <a href="#" class="text-xl" data-action="click:turbo-modal#close">&times;</a>
+          <a href="#" class="text-xl" data-action="click:turbo-modal#close" aria-label="<%= t('close') %>">&times;</a>
         </div>
       <% end %>
       <div>
