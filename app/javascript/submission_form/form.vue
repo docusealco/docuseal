@@ -421,6 +421,7 @@
             v-model="values[currentField.uuid]"
             :field="currentField"
             :dry-run="dryRun"
+            :submitter="submitter"
             :previous-value="previousInitialsValue"
             :attachments-index="attachmentsIndex"
             :show-field-names="showFieldNames"
@@ -554,14 +555,18 @@
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
       >
         <div class="flex items-center flex-wrap steps-progress">
-          <a
+          <template
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
-            href="#"
-            class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
-            :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
-          />
+          >
+            <a
+              v-if="!onlyRequiredFields || step.some((f) => f.required)"
+              href="#"
+              class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
+              :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
+              @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
+            />
+          </template>
         </div>
       </div>
       <div
@@ -689,6 +694,11 @@ export default {
       default: '-80px'
     },
     orderAsOnPage: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    onlyRequiredFields: {
       type: Boolean,
       required: false,
       default: false
@@ -955,7 +965,13 @@ export default {
     submitButtonText () {
       if (this.alwaysMinimize) {
         return this.t('submit')
-      } else if (this.stepFields.length === this.currentStep + 1) {
+      } else if (!this.onlyRequiredFields && this.stepFields.length === this.currentStep + 1) {
+        if (this.currentField.type === 'signature') {
+          return this.t('sign_and_complete')
+        } else {
+          return this.t('complete')
+        }
+      } else if (this.onlyRequiredFields && !this.findNextStep(this.currentStep)) {
         if (this.currentField.type === 'signature') {
           return this.t('sign_and_complete')
         } else {
@@ -1174,11 +1190,11 @@ export default {
 
       const indexesList = [this.stepFields.length - 1]
 
-      if (requiredEmptyStepIndex !== -1) {
+      if (requiredEmptyStepIndex !== -1 && (!this.onlyRequiredFields || this.stepFields[requiredEmptyStepIndex].some((f) => f.required))) {
         indexesList.push(requiredEmptyStepIndex)
       }
 
-      if (lastFilledStepIndex !== -1) {
+      if (lastFilledStepIndex !== -1 && (!this.onlyRequiredFields || this.stepFields[lastFilledStepIndex].some((f) => f.required))) {
         indexesList.push(lastFilledStepIndex)
       }
 
@@ -1239,11 +1255,11 @@ export default {
       }
     },
     checkFieldConditions (field, cache = {}) {
-      if (cache[field.uuid] !== undefined) {
-        return cache[field.uuid]
-      }
+      const cacheKey = field.uuid || field.attachment_uuid
 
-      cache[field.uuid] = true
+      if (cache[cacheKey] !== undefined) {
+        return cache[cacheKey]
+      }
 
       if (field.conditions?.length) {
         const result = field.conditions.reduce((acc, cond) => {
@@ -1256,10 +1272,12 @@ export default {
           return acc
         }, [])
 
-        cache[field.uuid] = !result.includes(false)
+        cache[cacheKey] = !result.includes(false)
+      } else {
+        cache[cacheKey] = true
       }
 
-      return cache[field.uuid]
+      return cache[cacheKey]
     },
     checkFieldCondition (condition, cache = {}) {
       const field = this.fieldsUuidIndex[condition.field_uuid]
@@ -1327,6 +1345,13 @@ export default {
         return option.value
       } else {
         return `${this.t('option')} ${index + 1}`
+      }
+    },
+    findNextStep (currentStepIndex) {
+      if (this.onlyRequiredFields) {
+        return this.stepFields.find((step, index) => index > currentStepIndex && step.some((f) => f.required))
+      } else {
+        return this.stepFields[currentStepIndex + 1]
       }
     },
     maybeTrackEmailClick () {
@@ -1475,7 +1500,7 @@ export default {
         this.isSubmittingComplete = true
       }
 
-      const submitStep = this.currentStep
+      const submitStepIndex = this.currentStep
 
       const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification', 'kba'].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
@@ -1483,7 +1508,7 @@ export default {
 
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
-          if (forceComplete ? index === submitStep : index >= submitStep) {
+          if (forceComplete ? index === submitStepIndex : index >= submitStepIndex) {
             return false
           }
 
@@ -1493,7 +1518,7 @@ export default {
         })
 
         const formData = new FormData(this.$refs.form)
-        const isLastStep = (submitStep === this.stepFields.length - 1) || forceComplete
+        const isLastStep = (this.onlyRequiredFields ? !this.findNextStep(submitStepIndex) : (submitStepIndex === this.stepFields.length - 1)) || forceComplete
 
         if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length && !this.optionalInviteSubmitters.length) {
           formData.append('completed', 'true')
@@ -1537,7 +1562,7 @@ export default {
             return Promise.reject(new Error(data.error))
           }
 
-          const nextStep = (isLastStep && emptyRequiredField) || (forceComplete ? null : this.stepFields[submitStep + 1])
+          const nextStep = (isLastStep && emptyRequiredField) || (forceComplete ? null : this.findNextStep(submitStepIndex))
 
           if (nextStep) {
             if (this.alwaysMinimize) {

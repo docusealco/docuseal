@@ -336,7 +336,7 @@ en: &en
   two_factor_authentication: Two-Factor Authentication
   2fa_is_not_configured: 2FA is not configured
   set_up_2fa: Set up 2FA
-  contact_information_has_been_update: Contact information has been update.
+  contact_information_has_been_update: Contact information has been updated.
   password_has_been_changed: Password has been changed.
   email_integration: Email Integration
   send_via_connected_email: Send via connected email

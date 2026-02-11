@@ -12,6 +12,6 @@ export default class extends HTMLElement {
   }
 
   get button () {
-    return this.querySelector('button')
+    return this.querySelector('button, label')
   }
 }

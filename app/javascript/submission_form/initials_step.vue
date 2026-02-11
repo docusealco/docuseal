@@ -175,6 +175,10 @@ export default {
       type: Object,
       required: true
     },
+    submitter: {
+      type: Object,
+      required: true
+    },
     dryRun: {
       type: Boolean,
       required: false,
@@ -257,6 +261,14 @@ export default {
 
             this.$refs.canvas.getContext('2d').scale(scale, scale)
 
+            if (!this.isDrawInitials) {
+              this.$nextTick(() => {
+                if (this.$refs.textInput) {
+                  this.initTextInitial()
+                }
+              })
+            }
+
             this.intersectionObserver?.disconnect()
           }
         })
@@ -332,10 +344,25 @@ export default {
 
       if (!this.isDrawInitials) {
         this.$nextTick(() => {
-          this.$refs.textInput.focus()
+          if (this.$refs.textInput) {
+            if (!this.submitter.name) {
+              this.$refs.textInput.focus()
+            }
 
-          this.$emit('start')
+            this.initTextInitial()
+
+            this.$emit('start')
+          }
         })
+      }
+    },
+    initTextInitial () {
+      if (this.submitter.name) {
+        this.$refs.textInput.value = this.submitter.name.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() || '').join('')
+      }
+
+      if (this.$refs.textInput.value) {
+        this.updateWrittenInitials({ target: this.$refs.textInput })
       }
     },
     async submit () {

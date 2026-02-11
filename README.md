@@ -1,7 +1,7 @@
 <h1 align="center" style="border-bottom: none">
   <div>
     <a href="https://www.docuseal.com">
-      <img  alt="DocuSeal" src="https://github.com/docusealco/docuseal/assets/5418788/c12cd051-81cd-4402-bc3a-92f2cfdc1b06" width="80" />
+      <img  alt="DocuSeal" src="https://github.com/user-attachments/assets/38b45682-ffa4-4919-abde-d2d422325c44" width="80" />
       <br>
     </a>
     DocuSeal
