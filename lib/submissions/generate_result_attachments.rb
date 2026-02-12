@@ -162,7 +162,7 @@ module Submissions
 
           pdf.trailer.info[:DocumentID] = document_id
           pdf.pages.each do |page|
-            font_size = (([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * 9).to_i
+            font_size = [(([page.box.width, page.box.height].min / A4_SIZE[0].to_f) * 9).to_i, 4].max
             cnv = page.canvas(type: :overlay)
 
             text =
