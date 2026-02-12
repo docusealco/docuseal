@@ -12,7 +12,7 @@ class TemplatesUploadsController < ApplicationController
 
     save_template!(@template, url_params)
 
-    documents = Templates::CreateAttachments.call(@template, url_params || params, extract_fields: true)
+    documents, = Templates::CreateAttachments.call(@template, url_params || params, extract_fields: true)
     schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
 
     if @template.fields.blank?

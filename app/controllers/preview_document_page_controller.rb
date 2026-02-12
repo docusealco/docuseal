@@ -6,9 +6,17 @@ class PreviewDocumentPageController < ActionController::API
   FORMAT = Templates::ProcessDocument::FORMAT
 
   def show
-    attachment_uuid = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid], purpose: :attachment)
+    result_data =
+      ApplicationRecord.signed_id_verifier.verified(params[:signed_key], purpose: :attachment)
 
-    attachment = ActiveStorage::Attachment.find_by(uuid: attachment_uuid) if attachment_uuid
+    attachment =
+      if result_data.is_a?(Array) && result_data.compact_blank.size == 2
+        attachment_id, attachment_uuid = result_data
+
+        ActiveStorage::Attachment.find_by(id: attachment_id, uuid: attachment_uuid)
+      elsif result_data
+        ActiveStorage::Attachment.find_by(uuid: result_data)
+      end
 
     return head :not_found unless attachment
 

@@ -9,20 +9,22 @@ class TemplatesDebugController < ApplicationController
     schema_uuids = @template.schema.index_by { |e| e['attachment_uuid'] }
     attachment = @template.documents.find { |a| schema_uuids[a.uuid] }
 
-    data = attachment.download
+    if attachment
+      data = attachment.download
 
-    unless attachment.image?
-      pdf = HexaPDF::Document.new(io: StringIO.new(data))
+      unless attachment.image?
+        pdf = HexaPDF::Document.new(io: StringIO.new(data))
 
-      fields = Templates::FindAcroFields.call(pdf, attachment, data)
+        fields = Templates::FindAcroFields.call(pdf, attachment, data)
+      end
+
+      # fields, = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
+
+      attachment.metadata['pdf'] ||= {}
+      attachment.metadata['pdf']['fields'] = fields
+
+      @template.update!(fields: Templates::ProcessDocument.normalize_attachment_fields(@template, [attachment]))
     end
-
-    fields, = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?
-
-    attachment.metadata['pdf'] ||= {}
-    attachment.metadata['pdf']['fields'] = fields
-
-    @template.update!(fields: Templates::ProcessDocument.normalize_attachment_fields(@template, [attachment]))
 
     debug_file if DEBUG_FILE.present?
 
@@ -34,7 +36,7 @@ class TemplatesDebugController < ApplicationController
     @template_data =
       @template.as_json.merge(
         documents: @template.schema_documents.as_json(
-          methods: %i[metadata signed_uuid],
+          methods: %i[metadata signed_key],
           include: { preview_images: { methods: %i[url metadata filename] } }
         )
       ).to_json
@@ -58,9 +60,16 @@ class TemplatesDebugController < ApplicationController
 
     params = { files: [file] }
 
-    documents = Templates::CreateAttachments.call(@template, params)
+    documents, dynamic_documents = Templates::CreateAttachments.call(@template, params,
+                                                                     dynamic: DEBUG_FILE.ends_with?('.docx'))
 
-    schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+    schema = documents.map do |doc|
+      {
+        attachment_uuid: doc.uuid,
+        name: doc.filename.base,
+        dynamic: dynamic_documents.find { |e| e.uuid == doc.uuid }.present?
+      }
+    end
 
     @template.update!(schema:)
   end

@@ -10,7 +10,7 @@
 #  name                :text
 #  preferences         :text             not null
 #  slug                :string           not null
-#  source              :text             not null
+#  source              :string           not null
 #  submitters_order    :string           not null
 #  template_fields     :text
 #  template_schema     :text
@@ -75,6 +75,17 @@ class Submission < ApplicationRecord
            ->(e) { where(uuid: (e.template_schema.presence || e.template.schema).pluck('attachment_uuid')) },
            through: :template, source: :documents_attachments
 
+  has_many :template_schema_static_documents,
+           ->(e) { where(uuid: e.template_schema.reject { |s| s['dynamic'] }.pluck('attachment_uuid')) },
+           through: :template, source: :documents_attachments
+
+  has_many :template_schema_dynamic_document_versions,
+           ->(e) { where(sha1: e.template_schema.select { |s| s['dynamic'] }.pluck('dynamic_document_sha1')) },
+           through: :template, source: :dynamic_document_versions
+
+  has_many :template_schema_dynamic_document_attachments,
+           through: :template_schema_dynamic_document_versions, source: :document_attachment
+
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
   scope :pending, lambda {
@@ -110,11 +121,49 @@ class Submission < ApplicationRecord
   end
 
   def schema_documents
-    if template_id?
-      template_schema_documents
+    return documents_attachments unless template_id?
+
+    dynamic_count = template_schema&.count { |e| e['dynamic'] }.to_i
+
+    if template.variables_schema.blank?
+      if dynamic_count > 0
+        if dynamic_count == template_schema.size
+          template_schema_dynamic_document_attachments
+        else
+          template_schema_dynamic_and_static_document_attachments
+        end
+      else
+        template_schema_documents
+      end
+    elsif dynamic_count > 0 && dynamic_count != template_schema.size
+      template_schema_submission_dynamic_and_static_document_attachments
     else
       documents_attachments
     end
+  end
+
+  def template_schema_submission_dynamic_and_static_document_attachments
+    @template_schema_submission_dynamic_and_static_document_attachments ||=
+      ActiveStorage::Attachment.where(
+        ActiveStorage::Attachment.arel_table[:id].in(
+          template_schema_static_documents.select(:id).arel.union(
+            :all,
+            documents_attachments.select(:id).arel
+          )
+        )
+      )
+  end
+
+  def template_schema_dynamic_and_static_document_attachments
+    @template_schema_dynamic_and_static_document_attachments ||=
+      ActiveStorage::Attachment.where(
+        ActiveStorage::Attachment.arel_table[:id].in(
+          template_schema_static_documents.select(:id).arel.union(
+            :all,
+            template_schema_dynamic_document_attachments.select(:id).arel
+          )
+        )
+      )
   end
 
   def fields_uuid_index

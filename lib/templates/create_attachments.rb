@@ -24,10 +24,18 @@ module Templates
 
     module_function
 
-    def call(template, params, extract_fields: false)
-      extract_zip_files(params[:files].presence || params[:file]).flat_map do |file|
-        handle_file_types(template, file, params, extract_fields:)
+    def call(template, params, extract_fields: false, dynamic: false)
+      documents = []
+      dynamic_documents = []
+
+      extract_zip_files(params[:files].presence || params[:file]).each do |file|
+        docs, dynamic_docs = handle_file_types(template, file, params, extract_fields:, dynamic:)
+
+        documents.push(*docs)
+        dynamic_documents.push(*dynamic_docs)
       end
+
+      [documents, dynamic_documents]
     end
 
     def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false)
@@ -108,12 +116,12 @@ module Templates
       extracted_files
     end
 
-    def handle_file_types(template, file, params, extract_fields:)
+    def handle_file_types(template, file, params, extract_fields:, dynamic: false)
       if file.content_type.include?('image') || file.content_type == PDF_CONTENT_TYPE
-        return handle_pdf_or_image(template, file, file.read, params, extract_fields:)
+        return [handle_pdf_or_image(template, file, file.read, params, extract_fields:), []]
       end
 
-      raise InvalidFileType, file.content_type
+      raise InvalidFileType, "#{file.content_type}/#{dynamic}"
     end
   end
 end

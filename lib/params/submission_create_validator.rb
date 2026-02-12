@@ -47,6 +47,7 @@ module Params
       email_format(params, :bcc_completed, message: 'bcc_completed email is invalid')
       email_format(params, :reply_to, message: 'reply_to email is invalid')
       type(params, :message, Hash)
+      type(params, :variables, Hash)
       type(params, :submitters, Array)
 
       in_path(params, :message, skip_blank: true) do |message_params|

@@ -29,6 +29,7 @@ en: &en
   pro: Pro
   thanks: Thanks
   private: Private
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Make all newly created templates private to their creator and admins by default.
   create_templates_with_admin_access_by_default: Create templates with admin access by default
   require_email_2fa: Require email 2FA
@@ -1049,6 +1050,7 @@ es: &es
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
   private: Privado
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Hacer que todas las plantillas recién creadas sean privadas para su creador y los administradores por defecto.
   create_templates_with_admin_access_by_default: Crear plantillas con acceso de administrador por defecto
   require_email_2fa: Requerir 2FA por correo electrónico
@@ -2051,6 +2053,7 @@ it: &it
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
   private: Privato
+  _variables: Variabili
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendere tutte le nuove template private per il creatore e gli amministratori per impostazione predefinita.
   create_templates_with_admin_access_by_default: Crea modelli con accesso amministratore per impostazione predefinita
   require_email_2fa: Richiedi 2FA email
@@ -3054,6 +3057,7 @@ fr: &fr
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
   private: Privé
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendre tous les nouveaux modèles privés pour leur créateur et les administrateurs par défaut.
   create_templates_with_admin_access_by_default: Créer des modèles avec un accès administrateur par défaut
   require_email_2fa: Exiger la 2FA par email
@@ -4053,6 +4057,7 @@ pt: &pt
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
   private: Privado
+  _variables: Variáveis
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Tornar todos os modelos recém-criados privados para seu criador e administradores por padrão.
   create_templates_with_admin_access_by_default: Criar modelos com acesso de administrador por padrão
   require_email_2fa: Exigir 2FA por email
@@ -5041,6 +5046,7 @@ de: &de
   pro: Pro
   thanks: Danke
   private: Privat
+  _variables: Variablen
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Alle neu erstellten Vorlagen standardmäßig nur für ihren Ersteller und Administratoren sichtbar machen.
   create_templates_with_admin_access_by_default: Vorlagen standardmäßig mit Administratorzugriff erstellen
   require_email_2fa: E-Mail 2FA erforderlich
@@ -6431,6 +6437,7 @@ nl: &nl
   pro: Pro
   thanks: Bedankt
   private: Privé
+  _variables: Variabelen
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker en admins.
   create_templates_with_admin_access_by_default: Sjablonen standaard met admin-toegang maken
   require_email_2fa: E-mail 2FA vereist

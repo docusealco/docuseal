@@ -160,6 +160,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     this.app = createApp(TemplateBuilder, {
       template,
       customFields: reactive(JSON.parse(this.dataset.customFields || '[]')),
+      dynamicDocuments: reactive(JSON.parse(this.dataset.dynamicDocuments || '[]')),
       backgroundColor: '#faf7f5',
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
@@ -177,6 +178,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withSendButton: this.dataset.withSendButton !== 'false',
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
+      withDynamicDocuments: this.dataset.withDynamicDocuments === 'true',
       withGoogleDrive: this.dataset.withGoogleDrive === 'true',
       withReplaceAndCloneUpload: true,
       withDownload: true,

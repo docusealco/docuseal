@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_16_162053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -166,6 +166,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.datetime "updated_at", null: false
     t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY ((ARRAY['start'::character varying, 'complete'::character varying])::text[]))"
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
+  end
+
+  create_table "dynamic_document_versions", force: :cascade do |t|
+    t.text "areas", null: false
+    t.datetime "created_at", null: false
+    t.bigint "dynamic_document_id", null: false
+    t.string "sha1", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dynamic_document_id", "sha1"], name: "idx_on_dynamic_document_id_sha1_3503adf557", unique: true
+  end
+
+  create_table "dynamic_documents", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.text "head"
+    t.text "sha1", null: false
+    t.bigint "template_id", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "uuid", null: false
+    t.index ["template_id"], name: "index_dynamic_documents_on_template_id"
   end
 
   create_table "email_events", force: :cascade do |t|
@@ -507,6 +527,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "dynamic_documents", "templates"
   add_foreign_key "email_events", "accounts"
   add_foreign_key "email_messages", "accounts"
   add_foreign_key "email_messages", "users", column: "author_id"

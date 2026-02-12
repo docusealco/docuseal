@@ -14,7 +14,7 @@ const configs = generateWebpackConfig({
     concatenateModules: !process.env.BUNDLE_ANALYZE,
     splitChunks: {
       chunks (chunk) {
-        return chunk.name !== 'rollbar'
+        return chunk.name !== 'rollbar' && chunk.name !== 'dynamic-editor'
       },
       cacheGroups: {
         default: false,
@@ -39,8 +39,14 @@ const configs = generateWebpackConfig({
   ].filter(Boolean)
 })
 
+configs.module.rules[3].exclude = /dynamic_styles\.scss$/
+
 configs.module = merge({
   rules: [
+    {
+      test: /dynamic_styles\.scss$/,
+      use: ['css-loader', 'postcss-loader', 'sass-loader']
+    },
     {
       test: /\.vue$/,
       use: [{

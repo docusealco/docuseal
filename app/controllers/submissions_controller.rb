@@ -51,18 +51,7 @@ class SubmissionsController < ApplicationController
                                        emails: params[:emails],
                                        params: params.merge('send_completed_email' => true))
       else
-        submissions_attrs = submissions_params[:submission].to_h.values
-
-        submissions_attrs, _, new_fields =
-          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_attrs, @template, add_fields: true)
-
-        Submissions.create_from_submitters(template: @template,
-                                           user: current_user,
-                                           source: :invite,
-                                           submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
-                                           submissions_attrs:,
-                                           new_fields:,
-                                           params: params.merge('send_completed_email' => true))
+        create_submissions(@template, submissions_params, params)
       end
 
     WebhookUrls.enqueue_events(submissions, 'submission.created')
@@ -96,6 +85,21 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
+  def create_submissions(template, submissions_params, params)
+    submissions_attrs = submissions_params[:submission].to_h.values
+
+    submissions_attrs, _, new_fields =
+      Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_attrs, template, add_fields: true)
+
+    Submissions.create_from_submitters(template: template,
+                                       user: current_user,
+                                       source: :invite,
+                                       submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
+                                       submissions_attrs:,
+                                       new_fields:,
+                                       params: params.merge('send_completed_email' => true))
+  end
 
   def save_template_message(template, params)
     template.preferences['request_email_subject'] = params[:subject] if params[:subject].present?

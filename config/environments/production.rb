@@ -152,7 +152,7 @@ Rails.application.configure do
         template_id: params[:template_id],
         submission_id: params[:submission_id],
         submitter_id: params[:submitter_id],
-        sig: (params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
+        sig: (params[:signed_key] || params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
         slug: (params[:slug] ||
                params[:submitter_slug] ||
                params[:submission_slug] ||

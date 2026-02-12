@@ -516,7 +516,7 @@
     </label>
   </li>
   <hr
-    v-if="withCopyToAllPages || withAreas || withCustomFields"
+    v-if="(withCopyToAllPages && canCopyToAllPages) || withAreas || withCustomFields"
     class="pb-0.5 mt-0.5"
   >
   <template v-if="withAreas">
@@ -561,7 +561,7 @@
     </li>
   </template>
   <li
-    v-if="withCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)"
+    v-if="withCopyToAllPages && canCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)"
     class="field-settings-copy-to-all-pages"
   >
     <a
@@ -681,6 +681,15 @@ export default {
         return acc
       }, {})
     },
+    canCopyToAllPages () {
+      const firstArea = this.field.areas[0]
+
+      if (firstArea) {
+        return firstArea.page !== null && firstArea.page !== undefined
+      } else {
+        return false
+      }
+    },
     numberFormats () {
       return [
         'none',
@@ -744,7 +753,7 @@ export default {
       return ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone']
     },
     sortedAreas () {
-      return (this.field.areas || []).sort((a, b) => {
+      return (this.field.areas || []).filter((e) => e.page !== null && e.page !== undefined).sort((a, b) => {
         return this.schemaAttachmentsIndexes[a.attachment_uuid] - this.schemaAttachmentsIndexes[b.attachment_uuid]
       })
     }

@@ -8,6 +8,10 @@ ActiveSupport.on_load(:active_storage_attachment) do
   def signed_uuid
     @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours, purpose: :attachment)
   end
+
+  def signed_key
+    @signed_key ||= ApplicationRecord.signed_id_verifier.generate([id, uuid], expires_in: 6.hours, purpose: :attachment)
+  end
 end
 
 # rubocop:disable Metrics/BlockLength
