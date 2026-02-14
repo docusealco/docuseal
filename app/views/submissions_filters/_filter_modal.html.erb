@@ -10,7 +10,7 @@
     </div>
     <% if params[:with_remove] %>
       <div class="text-center w-full mt-4">
-        <%= link_to t('remove_filter'), "#{params[:path]}?#{params.to_unsafe_h.slice(:q).merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
+        <%= link_to t('remove_filter'), "#{params[:path]}?#{request.query_parameters.slice('q').merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
       </div>
     <% end %>
   <% end %>
