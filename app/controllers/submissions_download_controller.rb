@@ -57,7 +57,7 @@ class SubmissionsDownloadController < ApplicationController
   end
 
   def current_user_submitter?(submitter)
-    current_user && current_user.account.submitters.exists?(id: submitter.id)
+    current_user && current_ability.can?(:read, submitter)
   end
 
   def build_urls(submitter)
