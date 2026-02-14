@@ -17,9 +17,10 @@ module Submitters
                      submitter.preferences['require_email_2fa'] != true
       return true if request.cookie_jar.encrypted[:email_2fa_slug] == submitter.slug
 
-      return true if request.params[:two_factor_token].present? &&
-                     Submitter.signed_id_verifier.verified(request.params[:two_factor_token],
-                                                           purpose: :email_two_factor) == submitter.slug
+      token = request.params[:two_factor_token].presence || request.headers['x-two-factor-token'].presence
+
+      return true if token.present? &&
+                     Submitter.signed_id_verifier.verified(token, purpose: :email_two_factor) == submitter.slug
 
       false
     end
@@ -32,11 +33,10 @@ module Submitters
       return true if request.cookie_jar.encrypted[:email_2fa_slug] == submitter.slug
       return true if submitter.email == current_user&.email && current_user&.account_id == submitter.account_id
 
-      if request.params[:two_factor_token].present?
+      if (token = request.params[:two_factor_token].presence || request.headers['x-two-factor-token'].presence)
         link_2fa_key = [submitter.email.downcase.squish, submitter.submission.template.slug].join(':')
 
-        return true if Submitter.signed_id_verifier.verified(request.params[:two_factor_token],
-                                                             purpose: :email_two_factor) == link_2fa_key
+        return true if Submitter.signed_id_verifier.verified(token, purpose: :email_two_factor) == link_2fa_key
       end
 
       false
