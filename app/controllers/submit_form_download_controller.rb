@@ -17,7 +17,8 @@ class SubmitFormDownloadController < ApplicationController
                                           @submitter.submission.template&.archived_at? ||
                                           AccountConfig.exists?(account_id: @submitter.account_id,
                                                                 key: AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
-                                                                value: false)
+                                                                value: false) ||
+                                          !Submitters::AuthorizedForForm.call(@submitter, current_user, request)
 
     last_completed_submitter = @submitter.submission.submitters
                                          .where.not(id: @submitter.id)
