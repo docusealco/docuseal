@@ -13,7 +13,7 @@
     </div>
     <div class="form-control">
       <%= fff.label :credentials, 'Credentials (JSON key content)', class: 'label' %>
-      <%= fff.text_area :credentials, value: configs['credentials'], required: true, class: 'base-textarea w-full font-mono', rows: 4 %>
+      <%= fff.text_area :credentials, required: true, class: 'base-textarea w-full font-mono', rows: 4, placeholder: configs['credentials'].present? ? "{\n**REDACTED**\n}" : '' %>
     </div>
   <% end %>
 <% end %>
