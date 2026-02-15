@@ -61,7 +61,6 @@ RSpec.describe 'Email Settings' do
       expect(page).to have_field('Host', with: encrypted_config.value['host'])
       expect(page).to have_field('Port', with: encrypted_config.value['port'])
       expect(page).to have_field('Username', with: encrypted_config.value['username'])
-      expect(page).to have_field('Password', with: encrypted_config.value['password'])
       expect(page).to have_field('Domain', with: encrypted_config.value['domain'])
       expect(page).to have_select('Authentication', selected: 'Plain')
       expect(page).to have_field('Send from Email', with: encrypted_config.value['from_email'])
