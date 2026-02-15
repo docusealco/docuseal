@@ -26,7 +26,7 @@ class SendTestWebhookRequestJob
         Addressable::URI.parse(webhook_url.url).normalize
       end
 
-      raise HttpsError, 'Only HTTPS is allowed.' if uri.scheme != 'https'
+      raise HttpsError, 'Only HTTPS is allowed.' if uri.scheme != 'https' || uri.port != 443
       raise LocalhostError, "Can't send to localhost." if uri.host.in?(SendWebhookRequest::LOCALHOSTS)
     end
 
