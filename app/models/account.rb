@@ -81,7 +81,7 @@ class Account < ApplicationRecord
     return if ENV['CAREERPLUG_WEBHOOK_SECRET'].blank?
 
     webhook_urls.create!(
-      url: 'https://www.careerplug.com/api/docuseal/events',
+      url: ENV.fetch('CAREERPLUG_WEBHOOK_URL', 'https://www.careerplug.com/api/docuseal/events'),
       events: %w[form.viewed form.started form.completed form.declined],
       secret: { 'X-CareerPlug-Secret' => ENV.fetch('CAREERPLUG_WEBHOOK_SECRET') }
     )

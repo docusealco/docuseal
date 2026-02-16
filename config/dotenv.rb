@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+if ENV['RAILS_ENV'] == 'development'
+  require 'dotenv'
+  Dotenv.load('.env')
+end
+
 if ENV['RAILS_ENV'] == 'production' || ENV['RAILS_ENV'] == 'staging'
   if !ENV['AWS_SECRET_MANAGER_ID'].to_s.empty?
     require 'aws-sdk-secretsmanager'
