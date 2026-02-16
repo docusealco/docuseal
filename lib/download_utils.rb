@@ -52,7 +52,8 @@ module DownloadUtils
   end
 
   def validate_uri!(uri)
-    raise UnableToDownload, "Error loading: #{uri}. Only HTTPS is allowed." if uri.scheme != 'https' || uri.port != 443
+    raise UnableToDownload, "Error loading: #{uri}. Only HTTPS is allowed." if uri.scheme != 'https' ||
+                                                                               [443, nil].exclude?(uri.port)
     raise UnableToDownload, "Error loading: #{uri}. Can't download from localhost." if uri.host.in?(LOCALHOSTS)
   end
 
