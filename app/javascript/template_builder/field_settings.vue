@@ -383,6 +383,20 @@
     </label>
   </li>
   <li
+          v-if="field.type == 'image'"
+          @click.stop
+  >
+      <label class="cursor-pointer py-1.5">
+          <input
+                  :checked="field.preferences?.only_with_camera == true"
+                  type="checkbox"
+                  class="toggle toggle-xs"
+                  @change="[field.preferences ||= {}, field.preferences.only_with_camera = $event.target.checked, save()]"
+          >
+          <span class="label-text">{{ t('only_with_camera') }}</span>
+      </label>
+  </li>
+  <li
     v-if="field.type == 'checkbox'"
     @click.stop
   >

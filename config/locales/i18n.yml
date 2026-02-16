@@ -440,6 +440,7 @@ en: &en
   draw_signature: Draw Signature
   clear: Clear
   signature_uploaded: Signature Uploaded
+  photo_uploaded: Photo Uploaded
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'Submission deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Return back to your desktop device to complete the form or <a class="link" href="%{link}">continue on mobile</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: Template deletion is irreversible and will permanently remove all associated signed documents with it. Are you sure?
@@ -1427,6 +1428,7 @@ es: &es
   draw_signature: Dibujar firma
   clear: Limpiar
   signature_uploaded: Firma subida
+  photo_uploaded: Foto subida
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'La eliminación del envío es irreversible y eliminará permanentemente todos los documentos firmados asociados. ¿Estás seguro?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Vuelve a tu dispositivo de escritorio para completar el formulario o <a class="link" href="%{link}">continúa en móvil</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: La eliminación de la plantilla es irreversible y eliminará permanentemente todos los documentos firmados asociados. ¿Estás seguro?
@@ -2411,6 +2413,7 @@ it: &it
   draw_signature: Disegna firma
   clear: Cancella
   signature_uploaded: Firma caricata
+  photo_uploaded: Foto caricata
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: "La cancellazione dell'invio è irreversibile e rimuoverà permanentemente tutti i documenti firmati associati. Sei sicuro?"
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Torna al tuo dispositivo desktop per completare il modulo o <a class="link" href="%{link}">continua su mobile</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: La cancellazione del modello è irreversibile e rimuoverà permanentemente tutti i documenti firmati associati. Sei sicuro?
@@ -3396,6 +3399,7 @@ fr: &fr
   draw_signature: Dessiner la signature
   clear: Effacer
   signature_uploaded: Signature téléversée
+  photo_uploaded: Photo téléchargée
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: La suppression de la soumission est irréversible et supprimera définitivement tous les documents signés associés. Êtes‑vous sûr ?
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: Revenez sur votre ordinateur de bureau pour terminer le formulaire ou <a class="link" href="%{link}">continuez sur mobile</a>
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: La suppression du modèle est irréversible et supprimera définitivement tous les documents signés associés. Êtes‑vous sûr ?
@@ -4377,6 +4381,7 @@ pt: &pt
   draw_signature: Desenhar assinatura
   clear: Limpar
   signature_uploaded: Assinatura enviada
+  photo_uploaded: Foto enviada
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'A exclusão da submissão é irreversível e removerá permanentemente todos os documentos assinados associados a ela. Tem certeza?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Volte para seu dispositivo desktop para concluir o formulário ou <a class="link" href="%{link}">continue no celular</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: A exclusão do modelo é irreversível e removerá permanentemente todos os documentos assinados associados a ele. Tem certeza?
@@ -5361,6 +5366,7 @@ de: &de
   draw_signature: Unterschrift zeichnen
   clear: Löschen
   signature_uploaded: Unterschrift hochgeladen
+  photo_uploaded: Foto hochgeladen
   submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: 'Das Löschen der Einreichung ist unwiderruflich und entfernt alle zugehörigen signierten Dokumente dauerhaft. Sind Sie sicher?'
   return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Wechseln Sie zurück zu Ihrem Desktop-Gerät, um das Formular abzuschließen, oder <a class="link" href="%{link}">fahren Sie auf dem Mobilgerät fort</a>'
   template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: Die Löschung der Vorlage ist unwiderruflich und entfernt alle zugehörigen signierten Dokumente dauerhaft. Sind Sie sicher?
