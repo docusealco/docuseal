@@ -57,7 +57,7 @@ class Account < ApplicationRecord
 
   validates :external_account_id, uniqueness: true, allow_nil: true
 
-  after_create :create_careerplug_webhook
+  after_commit :create_careerplug_webhook, on: :create
 
   scope :active, -> { where(archived_at: nil) }
 
