@@ -22,7 +22,7 @@
     <% if params[:modal].present? %>
       <% url_params = Rails.application.routes.recognize_path(params[:modal], method: :get) %>
       <% if url_params[:action] == 'new' %>
-        <open-modal src="<%= params[:modal] %>"></open-modal>
+        <open-modal src="<%= url_for(url_params) %>"></open-modal>
       <% end %>
     <% end %>
     <turbo-frame id="modal"></turbo-frame>

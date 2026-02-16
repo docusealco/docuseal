@@ -52,7 +52,9 @@ module Templates
   def plain_search(templates, keyword)
     return templates if keyword.blank?
 
-    templates.where(Template.arel_table[:name].lower.matches("%#{keyword.downcase}%"))
+    sanitized = ActiveRecord::Base.sanitize_sql_like(keyword.downcase)
+
+    templates.where(Template.arel_table[:name].lower.matches("%#{sanitized}%"))
   end
 
   def fulltext_search(current_user, templates, keyword)

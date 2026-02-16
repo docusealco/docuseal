@@ -56,7 +56,7 @@ class TemplatesUploadsController < ApplicationController
   def create_file_params_from_url
     tempfile = Tempfile.new
     tempfile.binmode
-    tempfile.write(DownloadUtils.call(params[:url]).body)
+    tempfile.write(DownloadUtils.call(params[:url], validate: true).body)
     tempfile.rewind
 
     filename = URI.decode_www_form_component(params[:filename]) if params[:filename].present?

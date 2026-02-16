@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   resources :account_custom_fields, only: %i[create]
   resources :user_configs, only: %i[create]
   resources :encrypted_user_configs, only: %i[destroy]
-  resources :timestamp_server, only: %i[create]
+  resources :timestamp_server, only: %i[create] unless Docuseal.multitenant?
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]

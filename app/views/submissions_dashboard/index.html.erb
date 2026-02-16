@@ -35,19 +35,19 @@
 <% if is_show_tabs %>
   <div class="flex items-center flex-col md:flex-row md:flex-wrap gap-2 mb-4">
     <div class="flex items-center md:items-end flex-col md:flex-row gap-2 w-full md:w-fit">
-      <a href="<%= url_for(params.to_unsafe_h.except(:status)) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <a href="<%= url_for(params: request.query_parameters.except('status')) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
         <div class="flex items-center space-x-1">
           <%= svg_icon('list', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('all') %></span>
         </div>
       </a>
-      <a href="<%= url_for(params.to_unsafe_h.merge(status: :pending)) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <a href="<%= url_for(params: request.query_parameters.merge('status' => 'pending')) %>" class="<%= params[:status] == 'pending' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
         <div class="flex items-center space-x-1">
           <%= svg_icon('clock', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('pending') %></span>
         </div>
       </a>
-      <a href="<%= url_for(params.to_unsafe_h.merge(status: :completed)) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
+      <a href="<%= url_for(params: request.query_parameters.merge('status' => 'completed')) %>" class="<%= params[:status] == 'completed' ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
         <div class="flex items-center space-x-1">
           <%= svg_icon('circle_check', class: 'w-5 h-5') %>
           <span class="font-normal"><%= t('completed') %></span>

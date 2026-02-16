@@ -85,9 +85,9 @@
       <div class="mt-6">
         <h2 id="log" class="text-3xl font-bold"><%= t('events_log') %></h2>
         <div class="tabs border-b mt-4">
-          <%= link_to t('all'), url_for(params.to_unsafe_h.except(:status)), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status].blank? ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
-          <%= link_to t('succeeded'), url_for(params.to_unsafe_h.merge(status: 'success')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'success' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
-          <%= link_to t('failed'), url_for(params.to_unsafe_h.merge(status: 'error')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'error' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('all'), url_for(params: request.query_parameters.except('status')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status].blank? ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('succeeded'), url_for(params: request.query_parameters.merge('status' => 'success')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'success' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
+          <%= link_to t('failed'), url_for(params: request.query_parameters.merge('status' => 'error')), style: 'margin-bottom: -1px', class: "tab h-10 text-base #{params[:status] == 'error' ? 'tab-active tab-bordered' : 'pb-[3px]'}" %>
         </div>
         <% if @webhook_events.present? %>
           <div class="divide-y divide-base-300 rounded-lg">

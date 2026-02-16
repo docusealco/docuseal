@@ -530,6 +530,7 @@
         v-else-if="isInvite"
         :submitters="inviteSubmitters"
         :optional-submitters="optionalInviteSubmitters"
+        :fetch-options="fetchOptions"
         :submitter-slug="submitterSlug"
         :authenticity-token="authenticityToken"
         :url="baseUrl + submitPath + '/invite'"
@@ -543,6 +544,7 @@
         :has-signature-fields="stepFields.some((fields) => fields.some((f) => ['signature', 'initials'].includes(f.type)))"
         :has-multiple-documents="hasMultipleDocuments"
         :completed-button="completedRedirectUrl ? {} : completedButton"
+        :fetch-options="fetchOptions"
         :completed-message="completedRedirectUrl ? {} : completedMessage"
         :with-send-copy-button="withSendCopyButton && !completedRedirectUrl"
         :with-download-button="withDownloadButton && !completedRedirectUrl && !dryRun"
@@ -677,6 +679,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    fetchOptions: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     optionalInviteSubmitters: {
       type: Array,
@@ -1467,7 +1474,8 @@ export default {
       } else {
         return fetch(this.baseUrl + this.submitPath, {
           method: 'POST',
-          body: formData || new FormData(this.$refs.form)
+          body: formData || new FormData(this.$refs.form),
+          ...this.fetchOptions
         }).then((response) => {
           if (response.status === 200) {
             currentFieldUuids.forEach((fieldUuid) => {

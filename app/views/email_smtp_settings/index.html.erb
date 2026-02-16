@@ -22,7 +22,7 @@
           </div>
           <div class="form-control">
             <%= ff.label :password, 'Password', class: 'label' %>
-            <%= ff.password_field :password, value: value['password'], class: 'base-input' %>
+            <%= ff.password_field :password, class: 'base-input', required: value['password'].present?, placeholder: value['password'].present? ? '*************' : '' %>
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-4">

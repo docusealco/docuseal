@@ -261,7 +261,7 @@ export default {
   },
   computed: {
     isSelectMode () {
-      return this.isSelectModeRef.value && !this.drawFieldType && this.editable && !this.drawField
+      return this.isSelectModeRef.value && !this.drawFieldType && this.editable && !this.drawField && !this.drawCustomField
     },
     pageSelectedAreas () {
       if (!this.selectedAreasRef.value) return []
