@@ -403,7 +403,13 @@ module Submitters
       end
     end
 
-    def validate_value!(_value, _field, _params, _submitter, _request)
+    def validate_value!(_value, field, _params, submitter, _request)
+      if field['readonly'] == true
+        Rollbar.warning("Readonly field #{submitter.id}: #{field['uuid']}") if defined?(Rollbar)
+
+        raise ValidationError, 'Read-only field'
+      end
+
       true
     end
   end
