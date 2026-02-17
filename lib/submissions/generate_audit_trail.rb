@@ -116,6 +116,7 @@ module Submissions
       configs = submission.account.account_configs.where(key: [AccountConfig::WITH_AUDIT_VALUES_KEY,
                                                                AccountConfig::WITH_SIGNATURE_ID,
                                                                AccountConfig::WITH_FILE_LINKS_KEY,
+                                                               AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
                                                                AccountConfig::WITH_AUDIT_SENDER_KEY,
                                                                AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY])
 
@@ -126,6 +127,7 @@ module Submissions
       with_audit_values = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_VALUES_KEY }&.value != false
       with_audit_sender = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SENDER_KEY }&.value == true
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
+      with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
 
       timezone = account.timezone
       timezone = last_submitter.timezone || account.timezone if with_submitter_timezone
@@ -489,8 +491,10 @@ module Submissions
           end
         end
 
+        time_format = with_timestamp_seconds ? :detailed : :long
+
         [
-          "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: :long, locale: account.locale)} " \
+          "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: time_format, locale: account.locale)} " \
           "#{TimeUtils.timezone_abbr(timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(text_box)
         ]

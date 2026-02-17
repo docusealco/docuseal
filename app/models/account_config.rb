@@ -49,6 +49,7 @@ class AccountConfig < ApplicationRecord
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   WITH_AUDIT_SENDER_KEY = 'with_audit_sender'
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
+  WITH_TIMESTAMP_SECONDS_KEY = 'with_timestamp_seconds'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
   REUSE_SIGNATURE_KEY = 'reuse_signature'
   WITH_FIELD_LABELS_KEY = 'with_field_labels'

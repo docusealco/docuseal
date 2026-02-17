@@ -1002,6 +1002,9 @@ en: &en
     events:
       range_with_total: "%{from}-%{to} of %{count} events"
       range_without_total: "%{from}-%{to} events"
+  time:
+    formats:
+      detailed: "%B %d, %Y %H:%M:%S"
 
 es: &es
   knowledge_based_authentication: Autenticación basada en el conocimiento
@@ -1986,6 +1989,9 @@ es: &es
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  time:
+    formats:
+      detailed: "%-d de %B de %Y %H:%M:%S"
 
 it: &it
   knowledge_based_authentication: Autenticazione basata sulla conoscenza
@@ -2971,6 +2977,9 @@ it: &it
     events:
       range_with_total: "%{from}-%{to} di %{count} eventi"
       range_without_total: "%{from}-%{to} eventi"
+  time:
+    formats:
+      detailed: "%d %B %Y %H:%M:%S"
 
 fr: &fr
   knowledge_based_authentication: Authentification basée sur la connaissance
@@ -3952,6 +3961,9 @@ fr: &fr
     events:
       range_with_total: "%{from}-%{to} sur %{count} événements"
       range_without_total: "%{from}-%{to} événements"
+  time:
+    formats:
+      detailed: "%A %d %B %Y %Hh%Mm%Ss"
 
 pt: &pt
   knowledge_based_authentication: Autenticação baseada em conhecimento
@@ -4936,6 +4948,9 @@ pt: &pt
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  time:
+    formats:
+      detailed: "%A, %d de %B de %Y, %H:%M:%Sh"
 
 de: &de
   knowledge_based_authentication: Wissensbasierte Authentifizierung
@@ -5920,6 +5935,9 @@ de: &de
     events:
       range_with_total: "%{from}-%{to} von %{count} Ereignissen"
       range_without_total: "%{from}-%{to} Ereignisse"
+  time:
+    formats:
+      detailed: "%A, %d. %B %Y, %H:%M:%S Uhr"
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
@@ -7289,6 +7307,9 @@ nl: &nl
     events:
       range_with_total: "%{from}-%{to} van %{count} gebeurtenissen"
       range_without_total: "%{from}-%{to} gebeurtenissen"
+  time:
+    formats:
+      detailed: "%d %B %Y %H:%M:%S"
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -7586,12 +7607,18 @@ en-US:
   date:
     formats:
       default: "%m/%d/%Y"
+  time:
+    formats:
+      detailed: "%B %d, %Y %I:%M:%S %p"
 
 en-GB:
   <<: *en
   date:
     formats:
       default: "%d/%m/%Y"
+  time:
+    formats:
+      detailed: "%d %B, %Y %H:%M:%S"
 
 es-ES:
   <<: *es
