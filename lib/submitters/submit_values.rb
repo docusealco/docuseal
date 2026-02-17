@@ -45,8 +45,8 @@ module Submitters
       assign_completed_attributes(submitter, request, validate_required:) if params[:completed] == 'true'
 
       ApplicationRecord.transaction do
-        maybe_set_signature_reason!(values, submitter, params)
-        validate_values!(values, submitter, params, request)
+        reason_field = maybe_set_signature_reason!(values, submitter, params)
+        validate_values!(reason_field ? values.except(reason_field['uuid']) : values, submitter, params, request)
 
         if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
           ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
@@ -119,6 +119,8 @@ module Submitters
       end
 
       submitter.submission.save!
+
+      reason_field
     end
 
     def normalized_values(params)
