@@ -128,6 +128,12 @@ fetch_allowed_hosts() {
         exit 1
     fi
 
+    # Remove existing ALLOWED_HOSTS line if it exists
+    if [ -f "./.env.production" ]; then
+        grep -v "^ALLOWED_HOSTS=" ./.env.production > ./.env.production.tmp || true
+        mv ./.env.production.tmp ./.env.production
+    fi
+
     # Write allowed hosts to .env.production file
     echo "Writing allowed hosts to .env.production..."
     echo "ALLOWED_HOSTS=$ALLOWED_HOSTS" >> ./.env.production
@@ -170,6 +176,8 @@ fetch_env_variables() {
     export SECURED_STORAGE_BUCKET=$(echo "$SECRET_JSON" | jq -r '.secured_storage_bucket')
     export SECURED_STORAGE_REGION=$(echo "$SECRET_JSON" | jq -r '.secured_storage_region')
     export ENCRYPTION_SECRET=$(echo "$SECRET_JSON" | jq -r '.ENCRYPTION_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_SECRET=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_URL=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_URL // empty')
 
     # Validate that we got the values
     if [ "$DB_HOST" = "null" ] || [ "$REDIS_URL" = "null" ] || [ "$S3_ATTACHMENTS_BUCKET" = "null" ] || [ -z "$DB_HOST" ] || [ -z "$REDIS_URL" ] || [ -z "$S3_ATTACHMENTS_BUCKET" ]; then
@@ -193,24 +201,11 @@ fetch_env_variables() {
     # Write variables to .env.production file
     echo "Writing environment variables to .env.production..."
 
-    # Remove existing DB_HOST, REDIS_URL, and S3_ATTACHMENTS_BUCKET lines if they exist
+    # Remove existing environment variables if they exist
     if [ -f "./.env.production" ]; then
         echo "Removing existing variables from .env.production"
-        grep -v "^DB_HOST=" ./.env.production > ./.env.production.tmp || true
-        grep -v "^REDIS_URL=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^AIRBRAKE_ID=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^AIRBRAKE_KEY=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_APP_NAME=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^CF_URL=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^CF_KEY_PAIR_ID=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^CF_KEY_SECRET=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^SECURED_STORAGE_BUCKET=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^SECURED_STORAGE_REGION=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^ENCRYPTION_SECRET=" ./.env.production.tmp > ./.env.production || true
-        rm -f ./.env.production.tmp
+        grep -Ev "^(DB_HOST|REDIS_URL|S3_ATTACHMENTS_BUCKET|AIRBRAKE_ID|AIRBRAKE_KEY|NEWRELIC_LICENSE_KEY|NEWRELIC_APP_NAME|NEWRELIC_MONITOR_MODE|CF_URL|CF_KEY_PAIR_ID|CF_KEY_SECRET|SECURED_STORAGE_BUCKET|SECURED_STORAGE_REGION|ENCRYPTION_SECRET|CAREERPLUG_WEBHOOK_SECRET|CAREERPLUG_WEBHOOK_URL)=" ./.env.production > ./.env.production.tmp || true
+        mv ./.env.production.tmp ./.env.production
     fi
 
     # Append the new credentials
@@ -232,6 +227,18 @@ fetch_env_variables() {
     if [ -n "$ENCRYPTION_SECRET" ]; then
         echo "ENCRYPTION_SECRET=$ENCRYPTION_SECRET" >> ./.env.production
         echo "✓ ENCRYPTION_SECRET written to .env.production"
+    fi
+
+    # Add CareerPlug webhook secret if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_SECRET" ]; then
+        echo "CAREERPLUG_WEBHOOK_SECRET=$CAREERPLUG_WEBHOOK_SECRET" >> ./.env.production
+        echo "✓ CAREERPLUG_WEBHOOK_SECRET written to .env.production"
+    fi
+
+    # Add CareerPlug webhook URL if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_URL" ]; then
+        echo "CAREERPLUG_WEBHOOK_URL=$CAREERPLUG_WEBHOOK_URL" >> ./.env.production
+        echo "✓ CAREERPLUG_WEBHOOK_URL written to .env.production"
     fi
 
     echo "✓ Environment variables successfully retrieved and written to .env.production"

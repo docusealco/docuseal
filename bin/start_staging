@@ -174,6 +174,8 @@ fetch_env_variables() {
     export SECURED_STORAGE_BUCKET=$(echo "$SECRET_JSON" | jq -r '.secured_storage_bucket')
     export SECURED_STORAGE_REGION=$(echo "$SECRET_JSON" | jq -r '.secured_storage_region')
     export ENCRYPTION_SECRET=$(echo "$SECRET_JSON" | jq -r '.ENCRYPTION_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_SECRET=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_URL=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_URL // empty')
 
 
     # Validate that we got the values
@@ -198,24 +200,11 @@ fetch_env_variables() {
     # Write variables to .env.staging file
     echo "Writing environment variables to .env.staging..."
 
-    # Remove existing DB_HOST, REDIS_URL, and S3_ATTACHMENTS_BUCKET lines if they exist
+    # Remove existing environment variables if they exist
     if [ -f "./.env.staging" ]; then
         echo "Removing existing variables from .env.staging"
-        grep -v "^DB_HOST=" ./.env.staging > ./.env.staging.tmp || true
-        grep -v "^REDIS_URL=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^AIRBRAKE_ID=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^AIRBRAKE_KEY=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_APP_NAME=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^CF_URL=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^CF_KEY_PAIR_ID=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^CF_KEY_SECRET=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^SECURED_STORAGE_BUCKET=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^SECURED_STORAGE_REGION=" ./.env.staging.tmp > ./.env.staging || true
-        grep -v "^ENCRYPTION_SECRET=" ./.env.staging.tmp > ./.env.staging || true
-        rm -f ./.env.staging.tmp
+        grep -Ev "^(DB_HOST|REDIS_URL|S3_ATTACHMENTS_BUCKET|AIRBRAKE_ID|AIRBRAKE_KEY|NEWRELIC_LICENSE_KEY|NEWRELIC_APP_NAME|NEWRELIC_MONITOR_MODE|CF_URL|CF_KEY_PAIR_ID|CF_KEY_SECRET|SECURED_STORAGE_BUCKET|SECURED_STORAGE_REGION|ENCRYPTION_SECRET|CAREERPLUG_WEBHOOK_SECRET|CAREERPLUG_WEBHOOK_URL)=" ./.env.staging > ./.env.staging.tmp || true
+        mv ./.env.staging.tmp ./.env.staging
     fi
 
     # Append the new credentials
@@ -237,6 +226,18 @@ fetch_env_variables() {
     if [ -n "$ENCRYPTION_SECRET" ]; then
         echo "ENCRYPTION_SECRET=$ENCRYPTION_SECRET" >> ./.env.staging
         echo "✓ ENCRYPTION_SECRET written to .env.staging"
+    fi
+
+    # Add CareerPlug webhook secret if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_SECRET" ]; then
+        echo "CAREERPLUG_WEBHOOK_SECRET=$CAREERPLUG_WEBHOOK_SECRET" >> ./.env.staging
+        echo "✓ CAREERPLUG_WEBHOOK_SECRET written to .env.staging"
+    fi
+
+    # Add CareerPlug webhook URL if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_URL" ]; then
+        echo "CAREERPLUG_WEBHOOK_URL=$CAREERPLUG_WEBHOOK_URL" >> ./.env.staging
+        echo "✓ CAREERPLUG_WEBHOOK_URL written to .env.staging"
     fi
 
     echo "✓ Environment variables successfully retrieved and written to .env.staging"

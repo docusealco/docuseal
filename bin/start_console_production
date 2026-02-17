@@ -169,6 +169,8 @@ fetch_env_variables() {
     export NEWRELIC_APP_NAME=$(echo "$SECRET_JSON" | jq -r '.newrelic_app_name')
     export NEWRELIC_MONITOR_MODE=$(echo "$SECRET_JSON" | jq -r '.newrelic_monitor_mode')
     export ENCRYPTION_SECRET=$(echo "$SECRET_JSON" | jq -r '.ENCRYPTION_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_SECRET=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_SECRET // empty')
+    export CAREERPLUG_WEBHOOK_URL=$(echo "$SECRET_JSON" | jq -r '.CAREERPLUG_WEBHOOK_URL // empty')
 
 
     # Validate that we got the values
@@ -187,19 +189,11 @@ fetch_env_variables() {
     # Write variables to .env.production file
     echo "Writing environment variables to .env.production..."
 
-    # Remove existing DB_HOST, REDIS_URL, and S3_ATTACHMENTS_BUCKET lines if they exist
+    # Remove existing environment variables if they exist
     if [ -f "./.env.production" ]; then
         echo "Removing existing variables from .env.production"
-        grep -v "^DB_HOST=" ./.env.production > ./.env.production.tmp || true
-        grep -v "^REDIS_URL=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^S3_ATTACHMENTS_BUCKET=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^AIRBRAKE_ID=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^AIRBRAKE_KEY=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_LICENSE_KEY=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_APP_NAME=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^NEWRELIC_MONITOR_MODE=" ./.env.production.tmp > ./.env.production || true
-        grep -v "^ENCRYPTION_SECRET=" ./.env.production.tmp > ./.env.production || true
-        rm -f ./.env.production.tmp
+        grep -Ev "^(DB_HOST|REDIS_URL|S3_ATTACHMENTS_BUCKET|AIRBRAKE_ID|AIRBRAKE_KEY|NEWRELIC_LICENSE_KEY|NEWRELIC_APP_NAME|NEWRELIC_MONITOR_MODE|ENCRYPTION_SECRET|CAREERPLUG_WEBHOOK_SECRET|CAREERPLUG_WEBHOOK_URL)=" ./.env.production > ./.env.production.tmp || true
+        mv ./.env.production.tmp ./.env.production
     fi
 
     # Append the new credentials
@@ -216,6 +210,18 @@ fetch_env_variables() {
     if [ -n "$ENCRYPTION_SECRET" ]; then
         echo "ENCRYPTION_SECRET=$ENCRYPTION_SECRET" >> ./.env.production
         echo "✓ ENCRYPTION_SECRET written to .env.production"
+    fi
+
+    # Add CareerPlug webhook secret if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_SECRET" ]; then
+        echo "CAREERPLUG_WEBHOOK_SECRET=$CAREERPLUG_WEBHOOK_SECRET" >> ./.env.production
+        echo "✓ CAREERPLUG_WEBHOOK_SECRET written to .env.production"
+    fi
+
+    # Add CareerPlug webhook URL if it exists
+    if [ -n "$CAREERPLUG_WEBHOOK_URL" ]; then
+        echo "CAREERPLUG_WEBHOOK_URL=$CAREERPLUG_WEBHOOK_URL" >> ./.env.production
+        echo "✓ CAREERPLUG_WEBHOOK_URL written to .env.production"
     fi
 
     echo "✓ Environment variables successfully retrieved and written to .env.production"

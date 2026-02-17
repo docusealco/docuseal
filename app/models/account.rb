@@ -57,6 +57,8 @@ class Account < ApplicationRecord
 
   validates :external_account_id, uniqueness: true, allow_nil: true
 
+  after_commit :create_careerplug_webhook, on: :create
+
   scope :active, -> { where(archived_at: nil) }
 
   def self.find_or_create_by_external_id(external_id, name, attributes = {})
@@ -71,5 +73,17 @@ class Account < ApplicationRecord
   def default_template_folder
     super || build_default_template_folder(name: TemplateFolder::DEFAULT_NAME,
                                            author_id: users.minimum(:id)).tap(&:save!)
+  end
+
+  private
+
+  def create_careerplug_webhook
+    return if ENV['CAREERPLUG_WEBHOOK_SECRET'].blank?
+
+    webhook_urls.create!(
+      url: ENV.fetch('CAREERPLUG_WEBHOOK_URL'),
+      events: %w[form.viewed form.started form.completed form.declined],
+      secret: { 'X-CareerPlug-Secret' => ENV.fetch('CAREERPLUG_WEBHOOK_SECRET') }
+    )
   end
 end
