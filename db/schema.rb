@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_21_191632) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_06_171605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -181,7 +181,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_191632) do
     t.datetime "created_at", null: false
     t.index ["account_id", "event_datetime"], name: "index_email_events_on_account_id_and_event_datetime"
     t.index ["email"], name: "index_email_events_on_email"
-    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY (ARRAY[('bounce'::character varying)::text, ('soft_bounce'::character varying)::text, ('complaint'::character varying)::text, ('soft_complaint'::character varying)::text]))"
+    t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY ((ARRAY['bounce'::character varying, 'soft_bounce'::character varying, 'complaint'::character varying, 'soft_complaint'::character varying])::text[]))"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
   end
@@ -290,11 +290,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_191632) do
     t.tsvector "tsvector", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_search_entries_on_account_id"
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
+    t.index ["account_id", "tsvector"], name: "index_search_entries_on_account_id_tsvector_template", where: "((record_type)::text = 'Template'::text)", using: :gin
     t.index ["record_id", "record_type"], name: "index_search_entries_on_record_id_and_record_type", unique: true
-    t.index ["tsvector"], name: "index_search_entries_on_account_id_tsvector_submission", where: "((record_type)::text = 'Submission'::text)", using: :gin
-    t.index ["tsvector"], name: "index_search_entries_on_account_id_tsvector_submitter", where: "((record_type)::text = 'Submitter'::text)", using: :gin
-    t.index ["tsvector"], name: "index_search_entries_on_account_id_tsvector_template", where: "((record_type)::text = 'Template'::text)", using: :gin
   end
 
   create_table "submission_events", force: :cascade do |t|
@@ -470,15 +469,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_191632) do
   end
 
   create_table "webhook_urls", force: :cascade do |t|
-    t.integer "account_id", null: false
+    t.integer "account_id"
     t.text "url", null: false
     t.text "events", null: false
     t.string "sha1", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "secret", null: false
+    t.bigint "partnership_id"
     t.index ["account_id"], name: "index_webhook_urls_on_account_id"
+    t.index ["partnership_id"], name: "index_webhook_urls_on_partnership_id"
     t.index ["sha1"], name: "index_webhook_urls_on_sha1"
+    t.check_constraint "account_id IS NOT NULL AND partnership_id IS NULL OR account_id IS NULL AND partnership_id IS NOT NULL", name: "webhook_urls_owner_check"
   end
 
   add_foreign_key "access_tokens", "users"
@@ -516,4 +518,5 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_191632) do
   add_foreign_key "user_configs", "users"
   add_foreign_key "users", "accounts"
   add_foreign_key "webhook_urls", "accounts"
+  add_foreign_key "webhook_urls", "partnerships"
 end

@@ -15,8 +15,6 @@
 #  index_partnerships_on_external_partnership_id  (external_partnership_id) UNIQUE
 #
 describe Partnership do
-  let(:partnership) { create(:partnership) }
-
   describe 'validations' do
     it 'validates presence of external_partnership_id' do
       partnership = build(:partnership, external_partnership_id: nil)

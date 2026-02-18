@@ -86,7 +86,7 @@ module Api
     end
 
     def enqueue_webhooks(template)
-      WebhookUrls.for_account_id(template.account_id, 'template.created').each do |webhook_url|
+      WebhookUrls.for_template(template, 'template.created').each do |webhook_url|
         SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
                                                            'webhook_url_id' => webhook_url.id)
       end

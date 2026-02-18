@@ -5,8 +5,6 @@ class SendFormViewedWebhookRequestJob
 
   sidekiq_options queue: :webhooks
 
-  MAX_ATTEMPTS = 10
-
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
     webhook_url = WebhookUrl.find(params['webhook_url_id'])
@@ -20,14 +18,13 @@ class SendFormViewedWebhookRequestJob
     resp = SendWebhookRequest.call(webhook_url, event_type: 'form.viewed',
                                                 data: Submitters::SerializeForWebhook.call(submitter))
 
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
-      SendFormViewedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                   'submitter_id' => submitter.id,
-                                                   'webhook_url_id' => webhook_url.id,
-                                                   'attempt' => attempt + 1,
-                                                   'last_status' => resp&.status.to_i
-                                                 })
-    end
+    return unless WebhookRetryLogic.should_retry?(response: resp, attempt: attempt, record: submitter)
+
+    SendFormViewedWebhookRequestJob.perform_in((2**attempt).minutes, {
+                                                 'submitter_id' => submitter.id,
+                                                 'webhook_url_id' => webhook_url.id,
+                                                 'attempt' => attempt + 1,
+                                                 'last_status' => resp&.status.to_i
+                                               })
   end
 end

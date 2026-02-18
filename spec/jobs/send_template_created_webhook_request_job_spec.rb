@@ -84,5 +84,73 @@ RSpec.describe SendTemplateCreatedWebhookRequestJob do
 
       expect(WebMock).to have_requested(:post, webhook_url.url).once
     end
+
+    context 'with partnership template' do
+      let(:partnership) { create(:partnership) }
+      let(:partnership_template) { create(:template, partnership: partnership, account: nil, author: user) }
+      let(:partnership_webhook) do
+        create(:webhook_url,
+               partnership: partnership,
+               account: nil,
+               events: ['template.created'],
+               url: 'https://partnership.example.com/webhook')
+      end
+
+      before do
+        stub_request(:post, partnership_webhook.url).to_return(status: 200)
+      end
+
+      it 'sends a webhook request for partnership template' do
+        described_class.new.perform(
+          'template_id' => partnership_template.id,
+          'webhook_url_id' => partnership_webhook.id
+        )
+
+        expect(WebMock).to have_requested(:post, partnership_webhook.url).with(
+          body: {
+            'event_type' => 'template.created',
+            'timestamp' => /.*/,
+            'data' => JSON.parse(Templates::SerializeForApi.call(partnership_template.reload).to_json)
+          },
+          headers: {
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'DocuSeal.com Webhook'
+          }
+        ).once
+      end
+
+      it 'sends a webhook request with the partnership secret' do
+        partnership_webhook.update(secret: { 'X-Partnership-Secret' => 'partnership_secret' })
+        described_class.new.perform(
+          'template_id' => partnership_template.id,
+          'webhook_url_id' => partnership_webhook.id
+        )
+
+        expect(WebMock).to have_requested(:post, partnership_webhook.url).with(
+          headers: {
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'DocuSeal.com Webhook',
+            'X-Partnership-Secret' => 'partnership_secret'
+          }
+        ).once
+      end
+
+      it 'retries on failure for partnership template' do
+        stub_request(:post, partnership_webhook.url).to_return(status: 500)
+
+        expect do
+          described_class.new.perform(
+            'template_id' => partnership_template.id,
+            'webhook_url_id' => partnership_webhook.id
+          )
+        end.to change(described_class.jobs, :size).by(1)
+
+        expect(WebMock).to have_requested(:post, partnership_webhook.url).once
+
+        args = described_class.jobs.last['args'].first
+        expect(args['attempt']).to eq(1)
+        expect(args['last_status']).to eq(500)
+      end
+    end
   end
 end

@@ -17,6 +17,7 @@
 class Partnership < ApplicationRecord
   has_many :templates, dependent: :destroy
   has_many :template_folders, dependent: :destroy
+  has_many :webhook_urls, dependent: :destroy
 
   validates :external_partnership_id, presence: true, uniqueness: true
   validates :name, presence: true

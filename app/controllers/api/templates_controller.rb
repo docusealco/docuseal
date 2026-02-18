@@ -220,9 +220,9 @@ module Api
     end
 
     def enqueue_template_webhooks(template, event_type, job_class)
-      return if template.account_id.blank?
+      return if template.partnership.blank? && template.account.blank?
 
-      WebhookUrls.for_account_id(template.account_id, event_type).each do |webhook_url|
+      WebhookUrls.for_template(template, event_type).each do |webhook_url|
         job_class.perform_async('template_id' => template.id, 'webhook_url_id' => webhook_url.id)
       end
     end
