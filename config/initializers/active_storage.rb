@@ -10,6 +10,7 @@ ActiveSupport.on_load(:active_storage_attachment) do
   end
 end
 
+# rubocop:disable Metrics/BlockLength
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
   attribute :io_data, :string, default: ''
@@ -19,6 +20,12 @@ ActiveSupport.on_load(:active_storage_blob) do
       signed_uuid: blob.signed_uuid(expires_at:), filename: filename || blob.filename,
       **Docuseal.default_url_options,
       **{ host: }.compact
+    )
+  end
+
+  def self.proxy_path(blob, expires_at: nil, filename: nil)
+    Rails.application.routes.url_helpers.blobs_proxy_path(
+      signed_uuid: blob.signed_uuid(expires_at:), filename: filename || blob.filename
     )
   end
 
@@ -40,6 +47,7 @@ ActiveSupport.on_load(:active_storage_blob) do
     service.delete(key)
   end
 end
+# rubocop:enable Metrics/BlockLength
 
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
 

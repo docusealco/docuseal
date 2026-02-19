@@ -33,7 +33,7 @@ class SubmitFormDownloadController < ApplicationController
       end
 
     urls = attachments.map do |attachment|
-      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
+      ActiveStorage::Blob.proxy_path(attachment.blob, expires_at: FILES_TTL.from_now.to_i)
     end
 
     render json: urls
