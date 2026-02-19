@@ -18,6 +18,7 @@ module Templates
     ].freeze
 
     ANNOTATIONS_SIZE_LIMIT = 6.megabytes
+    MAX_ZIP_SIZE = 100.megabytes
     InvalidFileType = Class.new(StandardError)
     PdfEncrypted = Class.new(StandardError)
 
@@ -72,8 +73,14 @@ module Templates
 
       Array.wrap(files).each do |file|
         if file.content_type == ZIP_CONTENT_TYPE || file.content_type == X_ZIP_CONTENT_TYPE
+          total_size = 0
+
           Zip::File.open(file.tempfile).each do |entry|
             next if entry.directory?
+
+            total_size += entry.size
+
+            raise InvalidFileType, 'zip_too_large' if total_size > MAX_ZIP_SIZE
 
             tempfile = Tempfile.new(entry.name)
             tempfile.binmode
