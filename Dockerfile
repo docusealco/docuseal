@@ -48,6 +48,7 @@ ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
 ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
+ENV VIPS_MAX_COORD=10000
 
 WORKDIR /app
 
