@@ -60,7 +60,7 @@ if ENV['RAILS_ENV'] == 'production'
     ENV['DATABASE_URL'] = ENV['DATABASE_URL'].to_s.empty? ? database_url : ENV.fetch('DATABASE_URL', nil)
   end
 
-  unless Process.euid == 2000
+  if Process.uid.zero? && Process.euid != 2000
     begin
       test_file = "#{ENV.fetch('WORKDIR', '.')}/test"
 
