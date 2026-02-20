@@ -500,6 +500,7 @@ en: &en
   submission_requester: Submission requester
   specified_email: Specified email
   invite_by_name: 'Invite by %{name}'
+  invite_via_form_field: Invite via Form Field
   same_as_name: 'Same as %{name}'
   default_email: Default Email
   processing: Processing
@@ -1490,6 +1491,7 @@ es: &es
   submission_requester: Solicitante del envío
   specified_email: Correo electrónico especificado
   invite_by_name: 'Invitar por %{name}'
+  invite_via_form_field: Invitar a través de campo del formulario
   same_as_name: 'Igual que %{name}'
   default_email: Correo electrónico predeterminado
   processing: Procesando
@@ -2477,6 +2479,7 @@ it: &it
   submission_requester: "Richiedente dell'invio"
   specified_email: Email specificata
   invite_by_name: 'Invito da %{name}'
+  invite_via_form_field: Invito tramite campo del modulo
   same_as_name: 'Uguale a %{name}'
   default_email: Email predefinita
   processing: Elaborazione in corso
@@ -3465,6 +3468,7 @@ fr: &fr
   submission_requester: Demandeur de soumission
   specified_email: E‑mail spécifié
   invite_by_name: Inviter par %{name}
+  invite_via_form_field: Inviter via champ du formulaire
   same_as_name: Identique à %{name}
   default_email: E‑mail par défaut
   processing: Traitement en cours
@@ -4449,6 +4453,7 @@ pt: &pt
   submission_requester: Solicitante de submissão
   specified_email: E-mail especificado
   invite_by_name: 'Convidado por %{name}'
+  invite_via_form_field: Convidar via campo do formulário
   same_as_name: 'Igual a %{name}'
   default_email: E-mail padrão
   processing: Processando
@@ -5436,6 +5441,7 @@ de: &de
   submission_requester: Anfragende Person
   specified_email: Angegebene E-Mail
   invite_by_name: 'Einladung von %{name}'
+  invite_via_form_field: Einladung über Formularfeld
   same_as_name: 'Gleich wie %{name}'
   default_email: Standard-E-Mail
   processing: Verarbeitung
@@ -6812,6 +6818,7 @@ nl: &nl
   submission_requester: Aanvrager van inzending
   specified_email: Opgegeven e-mail
   invite_by_name: Uitnodigen door %{name}
+  invite_via_form_field: Uitnodigen via formulierveld
   same_as_name: Zelfde als %{name}
   default_email: Standaard e-mail
   processing: Verwerken

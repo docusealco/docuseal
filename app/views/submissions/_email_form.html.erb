@@ -1,5 +1,5 @@
 <%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
-  <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? } %>
+  <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? || e['invite_via_field_uuid'].present? } %>
   <% if submitters.size == 1 %>
     <submitter-item class="form-control">
       <emails-textarea data-bulk-enabled="<%= Docuseal.demo? || !Docuseal.multitenant? || can?(:manage, :bulk_send) %>" data-limit="<%= Docuseal.multitenant? ? (can?(:manage, :bulk_send) ? 40 : 1) : nil %>">
