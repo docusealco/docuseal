@@ -44,7 +44,7 @@ en: &en
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
   expirable_file_download_links: Expirable file download links
-  invite_form_fields: Invite form fields
+  sender_form_fields: Sender form fields
   default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
@@ -1025,7 +1025,7 @@ es: &es
   party: Parte
   edit_order: Edita Pedido
   select: Seleccionar
-  invite_form_fields: Invitar campos del formulario
+  sender_form_fields: Campos del formulario del remitente
   pro: Pro
   default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
@@ -2012,7 +2012,7 @@ it: &it
   party: Parte
   edit_order: Modifica Ordine
   select: Seleziona
-  invite_form_fields: Invita campi modulo
+  sender_form_fields: Campi del modulo del mittente
   pro: Pro
   default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
@@ -3000,7 +3000,7 @@ fr: &fr
   party: Partie
   edit_order: Modifier l’ordre
   select: Sélectionner
-  invite_form_fields: Champs du formulaire d’invitation
+  sender_form_fields: Champs du formulaire de l’expéditeur
   pro: Pro
   default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
@@ -3984,7 +3984,7 @@ pt: &pt
   party: Parte
   edit_order: Edita Pedido
   select: Selecionar
-  invite_form_fields: Convidar campos do formulário
+  sender_form_fields: Campos do formulário do remetente
   pro: Pro
   default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
@@ -4980,7 +4980,7 @@ de: &de
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
   edit_order: Bestellung bearbeiten
   expirable_file_download_links: Ablaufbare Datei-Download-Links
-  invite_form_fields: Einladungsformular-Felder
+  sender_form_fields: Absenderformular-Felder
   default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Eingebettete Formularvorschau mit Token authentifizieren
   stripe_integration: Stripe-Integration
@@ -6355,7 +6355,7 @@ nl: &nl
   click_here_to_send_a_reset_password_email_html: <label class="link" for="resend_password_button">Klik hier</label> om een e-mail voor wachtwoordherstel te verzenden.
   edit_order: Volgorde bewerken
   expirable_file_download_links: Verlopende downloadlinks voor bestanden
-  invite_form_fields: Velden van uitnodigingsformulier
+  sender_form_fields: Velden van afzenderformulier
   default_parties: Standaard partijen
   authenticate_embedded_form_preview_with_token: Preview van ingesloten formulier authenticeren met token
   stripe_integration: Stripe-integratie
