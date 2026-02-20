@@ -218,7 +218,7 @@ en: &en
   copy: Copy
   copied: Copied
   rotate: Rotate
-  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Remove existing API token and generated a new one. Are you sure?
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Remove existing API token and generate a new one. Are you sure?
   request_signature_multiple_submitters_with_default_values: Request signature, multiple submitters with default values
   request_signature_single_submitter: Request signature, single submitter
   template_details: Template details
@@ -330,8 +330,8 @@ en: &en
   initials: Initials
   update_initials: Update Initials
   unable_to_save_initials: Unable to save initials.
-  initials_has_been_saved: Initials has been saved.
-  initials_has_been_removed: Initials has been removed.
+  initials_has_been_saved: Initials have been saved.
+  initials_has_been_removed: Initials have been removed.
   change_password: Change Password
   two_factor_authentication: Two-Factor Authentication
   2fa_is_not_configured: 2FA is not configured
@@ -388,7 +388,7 @@ en: &en
   from: From
   account_sid: Account SID
   send_sms_via_webhook: Send SMS via webhook
-  webhook_integration_allows_to_send_sms_using_any_provider: Webhook integration allows to send SMS using any provider
+  webhook_integration_allows_to_send_sms_using_any_provider: Webhook integration allows you to send SMS using any provider
   test: Test
   single_sign_on_with_saml_2_0: Single Sign On with SAML 2.0
   force_sso_disable_login_with_email_and_password: Force SSO (disable login with email and password)
@@ -420,7 +420,7 @@ en: &en
   send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with DocuSeal Pro
   count_emails_used: '%{count} emails used'
   has_been_connected: has been connected
-  sms_not_configured: SMS not Configure
+  sms_not_configured: SMS not Configured
   configure_sms_settings_in_order_to_send_text_messages_: 'Configure SMS settings in order to send text messages:'
   go_to_sms_settings: Go to SMS settings
   back_to_active: Back to Active
@@ -597,7 +597,7 @@ en: &en
   upload_file: Upload file
   upgrade_your_plan_to_invite_more_users_contact_email: 'Upgrade your plan to invite more users (contact %{email}).'
   contact_your_admin_email_to_invite_more_users: 'Contact your admin %{email} to invite more users.'
-  contact_your_administrator_to_add_new_users: Contact your administrator to add new user
+  contact_your_administrator_to_add_new_users: Contact your administrator to add new users
   one_hour: 1 hour
   two_hours: 2 hours
   four_hours: 4 hours
@@ -626,7 +626,7 @@ en: &en
   personalize_email_content: Personalize email content
   automated_reminders: Automated reminders
   bulk_send_from_spreadsheet: Bulk send from spreadsheet
-  identify_verification_via_sms: Identify verification via SMS
+  identify_verification_via_sms: Identity verification via SMS
   start_with_pro: Start with Pro
   user_month: user / month
   developer_sandbox: Developer Sandbox.
@@ -738,7 +738,7 @@ en: &en
   find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
   get_started: Get started
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
-  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request email.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request emails.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Test mode emails limit will be reset within 24 hours.
   on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: On a scale of 1 to 10, how satisfied are you with the DocuSeal product?
   tell_us_more_about_your_experience: Tell us more about your experience
@@ -756,7 +756,7 @@ en: &en
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   welcome_to_docuseal: Welcome to DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create and send your first document
   start_tour: Start Tour
   name_a_z: Name A-Z
   recently_used: Recently used
@@ -816,7 +816,7 @@ en: &en
   connect_gmail_or_outlook: Connect Gmail or Outlook
   connect_your_email_to_bulk_send: Connect your email to bulk send
   connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connect your Gmail or Outlook account or add SMTP settings to bulk send.
-  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails it requires to connect Gmail or Outlook.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails you need to connect Gmail or Outlook.
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
   you_have_been_invited_to_sign_the_template_name_html: 'You have been invited to sign the "<strong>{template.name}</strong>".'

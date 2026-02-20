@@ -1,7 +1,7 @@
 const en = {
   kba: 'KBA',
   please_upload_an_image_file: 'Please upload an image file',
-  must_be_characters_length: 'Must be {number} characters length',
+  must_be_characters_length: 'Must be {number} characters long',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
   verify_id: 'Verify ID',
   identity_verification: 'Identity verification',
