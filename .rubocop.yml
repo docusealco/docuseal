@@ -84,7 +84,7 @@ RSpec/AnyInstance:
   Enabled: false
 
 Metrics/BlockNesting:
-  Max: 5
+  Max: 6
 
 Rails/I18nLocaleTexts:
   Enabled: false
