@@ -1,5 +1,5 @@
 <div class="form-control">
   <%= ff.label :body, t('body'), class: 'label' %>
-  <% variables = AccountConfig::DEFAULT_VALUES[local_assigns[:config].key].call['body'].scan(/\{([^}]+)\}/).flatten.uniq %>
+  <% variables = AccountConfig::EMAIL_VARIABLES[local_assigns[:config].key] %>
   <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:body), value: local_assigns[:config].value['body'], variables: variables %>
 </div>

@@ -56,7 +56,7 @@
       </div>
       <div class="form-control">
         <%= f.label :message, t('body'), class: 'label' %>
-        <% body_variables = AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/\{([^}]+)\}/).flatten.uniq %>
+        <% body_variables = AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY] %>
         <%= render 'personalization_settings/markdown_editor', name: f.field_name(:body), value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], variables: body_variables %>
         <% unless local_assigns.fetch(:disable_save_as_default_template_option, false) %>
           <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
