@@ -55,15 +55,9 @@
         <%= f.text_field :subject, value: local_assigns[:submitter_email_message]&.subject.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_subject').presence || template&.preferences&.dig('request_email_subject').presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
       </div>
       <div class="form-control">
-        <div class="flex items-center">
-          <%= f.label :message, t('body'), class: 'label' %>
-          <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-            <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-          </span>
-        </div>
-        <autoresize-textarea>
-          <%= f.text_area :body, value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
-        </autoresize-textarea>
+        <%= f.label :message, t('body'), class: 'label' %>
+        <% body_variables = AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/\{([^}]+)\}/).flatten.uniq %>
+        <%= render 'personalization_settings/markdown_editor', name: f.field_name(:body), value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], variables: body_variables %>
         <% unless local_assigns.fetch(:disable_save_as_default_template_option, false) %>
           <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
             <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
@@ -97,15 +91,8 @@
                 <%= ff.text_field :subject, value: local_assigns[:submitter_email_message]&.subject.presence || submitter_preferences_index.dig(submitter['uuid'], 'request_email_subject').presence || template&.preferences&.dig('request_email_subject').presence || config.value['subject'], required: true, class: '!text-sm base-input w-full', dir: 'auto' %>
               </div>
               <div class="form-control">
-                <div class="flex items-center">
-                  <%= ff.label :message, t('body'), class: 'label' %>
-                  <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                    <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                  </span>
-                </div>
-                <autoresize-textarea>
-                  <%= ff.text_area :body, value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(submitter['uuid'], 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], required: true, class: 'base-textarea w-full', rows: 10, dir: 'auto' %>
-                </autoresize-textarea>
+                <%= ff.label :message, t('body'), class: 'label' %>
+                <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:body), value: local_assigns[:submitter_email_message]&.body.presence || submitter_preferences_index.dig(submitter['uuid'], 'request_email_body').presence || template&.preferences&.dig('request_email_body').presence || config.value['body'], variables: body_variables %>
               </div>
             </div>
           <% end %>

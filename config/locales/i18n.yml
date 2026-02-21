@@ -887,6 +887,13 @@ en: &en
   if_you_didnt_request_this_you_can_ignore_this_email: "If you didn't request this, please ignore this email."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Your password won't change until you open the link above and set a new one."
   too_many_requests_try_again_later: Too many requests, try again later.
+  bold: Bold
+  italic: Italic
+  underline: Underline
+  undo: Undo
+  redo: Redo
+  add_variable: Add variable
+  enter_a_url_or_variable_name: Enter a URL or variable name
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1003,6 +1010,13 @@ en: &en
     events:
       range_with_total: "%{from}-%{to} of %{count} events"
       range_without_total: "%{from}-%{to} events"
+  variables:
+    account_name: Account name
+    submitter_link: Submitter link
+    template_name: Template name
+    submission_submitters: Submission submitters
+    submission_link: Submission link
+    documents_link: Documents link
   time:
     formats:
       detailed: "%B %d, %Y %H:%M:%S"
@@ -1875,6 +1889,13 @@ es: &es
   if_you_didnt_request_this_you_can_ignore_this_email: "Si no solicitaste esto, puedes ignorar este correo electrónico."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Tu contraseña no cambiará hasta que abras el enlace anterior y establezcas una nueva."
   too_many_requests_try_again_later: Demasiadas solicitudes. Intenta de nuevo más tarde.
+  bold: Negrita
+  italic: Cursiva
+  underline: Subrayado
+  undo: Deshacer
+  redo: Rehacer
+  add_variable: Agregar variable
+  enter_a_url_or_variable_name: Ingrese una URL o nombre de variable
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -1991,6 +2012,13 @@ es: &es
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  variables:
+    account_name: Nombre de la cuenta
+    submitter_link: Enlace del firmante
+    template_name: Nombre de la plantilla
+    submission_submitters: Firmantes del envío
+    submission_link: Enlace del envío
+    documents_link: Enlace de los documentos
   time:
     formats:
       detailed: "%-d de %B de %Y %H:%M:%S"
@@ -2864,6 +2892,13 @@ it: &it
   if_you_didnt_request_this_you_can_ignore_this_email: "Se non hai richiesto questo, puoi ignorare questa email."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "La tua password non cambierà finché non apri il link sopra e ne imposti una nuova."
   too_many_requests_try_again_later: Troppe richieste. Riprova più tardi.
+  bold: Grassetto
+  italic: Corsivo
+  underline: Sottolineato
+  undo: Annulla
+  redo: Ripeti
+  add_variable: Aggiungi variabile
+  enter_a_url_or_variable_name: Inserisci un URL o nome variabile
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -2980,6 +3015,13 @@ it: &it
     events:
       range_with_total: "%{from}-%{to} di %{count} eventi"
       range_without_total: "%{from}-%{to} eventi"
+  variables:
+    account_name: Nome dell'account
+    submitter_link: Link del firmatario
+    template_name: Nome del modello
+    submission_submitters: Firmatari dell'invio
+    submission_link: Link dell'invio
+    documents_link: Link dei documenti
   time:
     formats:
       detailed: "%d %B %Y %H:%M:%S"
@@ -3849,6 +3891,13 @@ fr: &fr
   if_you_didnt_request_this_you_can_ignore_this_email: "Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Votre mot de passe ne changera pas tant que vous n’aurez pas ouvert le lien ci-dessus et défini un nouveau mot de passe."
   too_many_requests_try_again_later: Trop de demandes. Réessayez plus tard.
+  bold: Gras
+  italic: Italique
+  underline: Souligné
+  undo: Annuler
+  redo: Rétablir
+  add_variable: Ajouter une variable
+  enter_a_url_or_variable_name: Entrez une URL ou un nom de variable
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -3965,6 +4014,13 @@ fr: &fr
     events:
       range_with_total: "%{from}-%{to} sur %{count} événements"
       range_without_total: "%{from}-%{to} événements"
+  variables:
+    account_name: Nom du compte
+    submitter_link: Lien du signataire
+    template_name: Nom du modèle
+    submission_submitters: Signataires de la soumission
+    submission_link: Lien de la soumission
+    documents_link: Lien des documents
   time:
     formats:
       detailed: "%A %d %B %Y %Hh%Mm%Ss"
@@ -4837,6 +4893,13 @@ pt: &pt
   if_you_didnt_request_this_you_can_ignore_this_email: "Se você não solicitou isso, pode ignorar este e-mail."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Sua senha não será alterada até que você abra o link acima e defina uma nova."
   too_many_requests_try_again_later: Muitas solicitações. Tente novamente mais tarde.
+  bold: Negrito
+  italic: Itálico
+  underline: Sublinhado
+  undo: Desfazer
+  redo: Refazer
+  add_variable: Adicionar variável
+  enter_a_url_or_variable_name: Digite uma URL ou nome de variável
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -4953,6 +5016,13 @@ pt: &pt
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  variables:
+    account_name: Nome da conta
+    submitter_link: Link do signatário
+    template_name: Nome do modelo
+    submission_submitters: Signatários da submissão
+    submission_link: Link da submissão
+    documents_link: Link dos documentos
   time:
     formats:
       detailed: "%A, %d de %B de %Y, %H:%M:%Sh"
@@ -5825,6 +5895,13 @@ de: &de
   if_you_didnt_request_this_you_can_ignore_this_email: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Ihr Passwort wird erst geändert, wenn Sie den obigen Link öffnen und ein neues festlegen."
   too_many_requests_try_again_later: Zu viele Anfragen. Versuchen Sie es später erneut.
+  bold: Fett
+  italic: Kursiv
+  underline: Unterstrichen
+  undo: Rückgängig
+  redo: Wiederholen
+  add_variable: Variable hinzufügen
+  enter_a_url_or_variable_name: Geben Sie eine URL oder einen Variablennamen ein
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -5941,6 +6018,13 @@ de: &de
     events:
       range_with_total: "%{from}-%{to} von %{count} Ereignissen"
       range_without_total: "%{from}-%{to} Ereignisse"
+  variables:
+    account_name: Kontoname
+    submitter_link: Link des Unterzeichners
+    template_name: Vorlagenname
+    submission_submitters: Unterzeichner der Einreichung
+    submission_link: Link der Einreichung
+    documents_link: Link der Dokumente
   time:
     formats:
       detailed: "%A, %d. %B %Y, %H:%M:%S Uhr"
@@ -7198,6 +7282,13 @@ nl: &nl
   if_you_didnt_request_this_you_can_ignore_this_email: "Als je dit niet hebt aangevraagd, kun je deze e-mail negeren."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Je wachtwoord wordt niet gewijzigd totdat je de bovenstaande link opent en een nieuw wachtwoord instelt."
   too_many_requests_try_again_later: Te veel verzoeken. Probeer het later opnieuw.
+  bold: Vet
+  italic: Cursief
+  underline: Onderstreept
+  undo: Ongedaan maken
+  redo: Opnieuw
+  add_variable: Variabele toevoegen
+  enter_a_url_or_variable_name: Voer een URL of variabelenaam in
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
@@ -7314,6 +7405,13 @@ nl: &nl
     events:
       range_with_total: "%{from}-%{to} van %{count} gebeurtenissen"
       range_without_total: "%{from}-%{to} gebeurtenissen"
+  variables:
+    account_name: Accountnaam
+    submitter_link: Link van de ondertekenaar
+    template_name: Sjabloonnaam
+    submission_submitters: Ondertekenaars van de inzending
+    submission_link: Link van de inzending
+    documents_link: Link van de documenten
   time:
     formats:
       detailed: "%d %B %Y %H:%M:%S"
