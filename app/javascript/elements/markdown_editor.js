@@ -241,6 +241,7 @@ export default actionable(targetable(class extends HTMLElement {
       editorProps: {
         attributes: {
           style: 'min-height: 220px',
+          dir: 'auto',
           class: 'p-3 outline-none focus:outline-none'
         }
       },
