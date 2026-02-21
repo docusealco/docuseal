@@ -23,18 +23,32 @@ module MarkdownToHtml
     ActionController::Base.helpers.sanitize(html, tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)
   end
 
+  BRACKETS = { ')' => '(', ']' => '[', '}' => '{' }.freeze
+
   def auto_link_urls(text)
-    link_parts = text.split(%r{((?:https?://|www\.)[^\s)]+)})
+    link_parts = text.split(%r{((?:https?://|www\.)[^\s<>\u00A0"]+)})
 
     link_parts.map.with_index do |part, index|
       if part.match?(%r{\A(?:https?://|www\.)}) && !(index > 0 && link_parts[index - 1]&.match?(/\]\(\s*\z/))
-        trail = part.match(/([.,;:!?]+)\z/)[1] if part.match?(/[.,;:!?]+\z/)
+        url_part = part.dup
+        punctuation = []
 
-        clean = trail ? part.chomp(trail) : part
+        while url_part.sub!(%r{[^\p{Word}/\-=;]\z}, '')
+          punctuation.push(::Regexp.last_match(0))
 
-        url = clean.start_with?('www.') ? "https://#{clean}" : clean
+          opening = BRACKETS[punctuation.last]
 
-        "[#{clean}](#{url})#{trail}"
+          next unless opening && url_part.count(opening) > url_part.count(punctuation.last)
+
+          url_part << punctuation.pop
+
+          break
+        end
+
+        trail = punctuation.reverse.join
+        url = url_part.start_with?('www.') ? "https://#{url_part}" : url_part
+
+        "[#{url_part}](#{url})#{trail}"
       else
         part
       end
@@ -69,6 +83,7 @@ module MarkdownToHtml
 
     tag = lambda do |t|
       desc = TAGS[t[1] || '']
+
       return t unless desc
 
       is_end = context.last == t
