@@ -155,3 +155,7 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 .font-courier {
   font-family: "Courier New", Consolas, "Liberation Mono", monospace, ui-monospace, SFMono-Regular, Menlo, Monaco;
 }
+
+markdown-editor [contenteditable] p {
+  margin-bottom: 18px;
+}

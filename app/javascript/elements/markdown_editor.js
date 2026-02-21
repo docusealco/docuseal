@@ -1,4 +1,5 @@
 import { target, targetable } from '@github/catalyst/lib/targetable'
+import { actionable } from '@github/catalyst/lib/actionable'
 
 function loadTiptap () {
   return Promise.all([
@@ -35,78 +36,63 @@ function loadTiptap () {
 }
 
 class LinkTooltip {
-  constructor (tooltip, input, saveButton, removeButton, normalizeUrlFn) {
+  constructor (tooltip, input, saveButton, removeButton, editor) {
     this.tooltip = tooltip
     this.input = input
     this.saveButton = saveButton
     this.removeButton = removeButton
-    this.normalizeUrl = normalizeUrlFn
-    this.targetElement = null
-    this.clickOutsideTimeout = null
-    this.closeOnClickOutside = null
-    this.scrollHandler = null
-    this.saveHandler = null
-    this.removeHandler = null
-    this.keyHandler = null
+    this.editor = editor
+  }
+
+  isVisible () {
+    return !this.tooltip.classList.contains('hidden')
   }
 
   updatePosition () {
-    const rect = this.targetElement.getBoundingClientRect()
+    const rect = this.editor.view.coordsAtPos(this.pos)
+
     this.tooltip.style.left = `${rect.left}px`
-    this.tooltip.style.top = `${rect.bottom + 5}px`
+    this.tooltip.style.top = `${rect.bottom + 6}px`
   }
 
-  setupClickOutside () {
-    this.closeOnClickOutside = (e) => {
-      if (!this.tooltip.contains(e.target)) {
-        this.hide()
-      }
-    }
+  normalizeUrl (url) {
+    if (!url) return url
+    if (/^{/i.test(url)) return url
+    if (/^https?:\/\//i.test(url)) return url
+    if (/^mailto:/i.test(url)) return url
 
-    this.clickOutsideTimeout = setTimeout(() => {
-      if (this.closeOnClickOutside) {
-        document.addEventListener('click', this.closeOnClickOutside)
-      }
-    }, 100)
+    return `https://${url}`
   }
 
-  setupScrollTracking () {
-    this.scrollHandler = () => this.updatePosition()
-    window.addEventListener('scroll', this.scrollHandler, true)
-  }
-
-  show ({ url, targetElement, onSave, onRemove }) {
-    this.hide()
-
+  show (url, pos) {
     this.input.value = url || ''
     this.removeButton.classList.toggle('hidden', !url)
-    this.targetElement = targetElement
+    this.pos = pos
+
+    this.tooltip.classList.remove('hidden')
 
     this.updatePosition()
 
-    this.tooltip.classList.remove('hidden')
-    this.input.focus()
-    this.input.select()
-
-    const save = () => {
+    this.saveHandler = () => {
       const inputUrl = this.input.value.trim()
 
-      this.hide()
-
       if (inputUrl) {
-        onSave(this.normalizeUrl(inputUrl))
+        this.editor.chain().focus().extendMarkRange('link').setLink({ href: this.normalizeUrl(inputUrl) }).run()
       }
-    }
 
-    this.saveHandler = () => save()
-    this.removeHandler = () => {
-      if (onRemove) onRemove()
       this.hide()
     }
+
+    this.removeHandler = () => {
+      this.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+
+      this.hide()
+    }
+
     this.keyHandler = (e) => {
       if (e.key === 'Enter') {
         e.preventDefault()
-        save()
+        this.saveHandler()
       } else if (e.key === 'Escape') {
         e.preventDefault()
         this.hide()
@@ -117,24 +103,14 @@ class LinkTooltip {
     this.removeButton.addEventListener('click', this.removeHandler, { once: true })
     this.input.addEventListener('keydown', this.keyHandler)
 
-    this.setupScrollTracking()
-    this.setupClickOutside()
+    this.scrollHandler = () => this.updatePosition()
+    window.addEventListener('scroll', this.scrollHandler, true)
   }
 
   hide () {
-    if (this.clickOutsideTimeout) {
-      clearTimeout(this.clickOutsideTimeout)
-      this.clickOutsideTimeout = null
-    }
-
     if (this.scrollHandler) {
       window.removeEventListener('scroll', this.scrollHandler, true)
       this.scrollHandler = null
-    }
-
-    if (this.closeOnClickOutside) {
-      document.removeEventListener('click', this.closeOnClickOutside)
-      this.closeOnClickOutside = null
     }
 
     if (this.saveHandler) {
@@ -153,16 +129,14 @@ class LinkTooltip {
     }
 
     this.tooltip?.classList.add('hidden')
-    this.targetElement = null
+    this.currentMark = null
   }
 }
 
-export default targetable(class extends HTMLElement {
+export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
     'textarea',
     'editorElement',
-    'variableButton',
-    'variableDropdown',
     'boldButton',
     'italicButton',
     'underlineButton',
@@ -180,14 +154,6 @@ export default targetable(class extends HTMLElement {
 
     this.textarea.style.display = 'none'
     this.adjustShortcutsForPlatform()
-
-    this.linkTooltip = new LinkTooltip(
-      this.linkTooltipElement,
-      this.linkInput,
-      this.linkSaveButton,
-      this.linkRemoveButton,
-      (url) => this.normalizeUrl(url)
-    )
 
     const { Editor, Extension, Bold, Italic, Paragraph, Text, HardBreak, UndoRedo, Document, Link, Underline, Markdown, Plugin, Decoration, DecorationSet } = await loadTiptap()
 
@@ -245,12 +211,20 @@ export default targetable(class extends HTMLElement {
         HardBreak,
         UndoRedo,
         Link.extend({
-          inclusive: false
+          inclusive: true,
+          addKeyboardShortcuts: () => ({
+            'Mod-k': () => {
+              this.toggleLink()
+
+              return true
+            }
+          })
         }).configure({
           openOnClick: false,
           HTMLAttributes: {
             class: 'link',
-            style: 'color: #2563eb; text-decoration: underline; cursor: pointer;'
+            'data-turbo': 'false',
+            style: 'color: #2563eb; text-decoration: underline; cursor: text;'
           }
         }),
         Underline,
@@ -260,58 +234,36 @@ export default targetable(class extends HTMLElement {
       contentType: 'markdown',
       editorProps: {
         attributes: {
-          class: 'prose prose-sm max-w-none p-3 outline-none focus:outline-none min-h-[120px]'
-        },
-        handleClick: (view, pos, event) => {
-          const clickedPos = view.posAtCoords({ left: event.clientX, top: event.clientY })
-
-          if (!clickedPos) return false
-
-          const linkMark = view.state.doc.resolve(clickedPos.pos).marks().find(m => m.type.name === 'link')
-
-          if (linkMark) {
-            event.preventDefault()
-
-            this.editor.chain().setTextSelection(clickedPos.pos).extendMarkRange('link').run()
-            this.toggleLink()
-
-            return true
-          }
-
-          return false
+          style: 'min-height: 220px',
+          class: 'p-3 outline-none focus:outline-none'
         }
       },
       onUpdate: ({ editor }) => {
         this.textarea.value = editor.getMarkdown()
         this.textarea.dispatchEvent(new Event('input', { bubbles: true }))
       },
-      onSelectionUpdate: () => {
+      onSelectionUpdate: ({ editor }) => {
         this.updateToolbarState()
+        this.handleLinkTooltip(editor)
+      },
+      onBlur: () => {
+        setTimeout(() => {
+          if (!this.linkTooltipElement.contains(document.activeElement)) {
+            this.linkTooltip.hide()
+          }
+        }, 0)
       }
     })
 
+    this.linkTooltip = new LinkTooltip(
+      this.linkTooltipElement,
+      this.linkInput,
+      this.linkSaveButton,
+      this.linkRemoveButton,
+      this.editor
+    )
+
     this.setupToolbar()
-
-    if (this.variableButton) {
-      this.variableButton.addEventListener('click', () => {
-        this.variableDropdown.classList.toggle('hidden')
-      })
-
-      this.variableDropdown.addEventListener('click', (e) => {
-        const variable = e.target.closest('[data-variable]')?.dataset.variable
-
-        if (variable) {
-          this.insertVariable(variable)
-          this.variableDropdown.classList.add('hidden')
-        }
-      })
-
-      document.addEventListener('click', (e) => {
-        if (!this.variableButton.contains(e.target) && !this.variableDropdown.contains(e.target)) {
-          this.variableDropdown.classList.add('hidden')
-        }
-      })
-    }
   }
 
   adjustShortcutsForPlatform () {
@@ -368,36 +320,61 @@ export default targetable(class extends HTMLElement {
     this.linkButton?.classList.toggle('bg-base-200', this.editor.isActive('link'))
   }
 
-  normalizeUrl (url) {
-    if (!url) return url
-    if (/^https?:\/\//i.test(url)) return url
-    if (/^mailto:/i.test(url)) return url
+  handleLinkTooltip (editor) {
+    const { from } = editor.state.selection
+    const mark = editor.state.doc.resolve(from).marks().find(m => m.type.name === 'link')
 
-    return `https://${url}`
+    if (!mark) {
+      if (this.linkTooltip.isVisible()) this.linkTooltip.hide()
+
+      return
+    }
+
+    let linkStart = from
+    const start = editor.state.doc.resolve(from).start()
+
+    for (let i = from - 1; i >= start; i--) {
+      if (editor.state.doc.resolve(i).marks().some(m => m.eq(mark))) {
+        linkStart = i
+      } else {
+        break
+      }
+    }
+
+    if (this.linkTooltip.isVisible() && this.linkTooltip.currentMark === mark) return
+
+    this.linkTooltip.hide()
+
+    this.linkTooltip.show(mark.attrs.href, linkStart > start ? linkStart - 1 : linkStart)
+
+    this.linkTooltip.currentMark = mark
   }
 
   toggleLink () {
-    const { from } = this.editor.state.selection
+    if (this.editor.isActive('link')) {
+      this.linkTooltip.hide()
+      this.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+      this.updateToolbarState()
+    } else {
+      const { from } = this.editor.state.selection
 
-    const rect = this.editor.view.coordsAtPos(from)
-    const fakeElement = { getBoundingClientRect: () => rect }
-
-    const previousUrl = this.editor.getAttributes('link').href
-
-    this.linkTooltip.show({
-      url: previousUrl,
-      targetElement: fakeElement,
-      onSave: (url) => {
-        this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
-      },
-      onRemove: previousUrl
-        ? () => { this.editor.chain().focus().extendMarkRange('link').unsetLink().run() }
-        : null
-    })
+      this.linkTooltip.hide()
+      this.linkTooltip.show(this.editor.getAttributes('link').href, from)
+    }
   }
 
-  insertVariable (variable) {
-    this.editor.chain().focus().insertContent(`{${variable}}`).run()
+  insertVariable (e) {
+    const variable = e.target.closest('[data-variable]')?.dataset.variable
+
+    if (variable) {
+      const { from, to } = this.editor.state.selection
+
+      if (variable.includes('link') && from !== to) {
+        this.editor.chain().focus().setLink({ href: `{${variable}}` }).run()
+      } else {
+        this.editor.chain().focus().insertContent(`{${variable}}`).run()
+      }
+    }
   }
 
   disconnectedCallback () {
@@ -408,4 +385,4 @@ export default targetable(class extends HTMLElement {
       this.editor = null
     }
   }
-})
+}))

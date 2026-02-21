@@ -1014,7 +1014,7 @@ en: &en
     account_name: Account name
     submitter_link: Submitter link
     template_name: Template name
-    submission_submitters: Submission submitters
+    submission_submitters: Submitters list
     submission_link: Submission link
     documents_link: Documents link
   time:
@@ -2016,7 +2016,7 @@ es: &es
     account_name: Nombre de la cuenta
     submitter_link: Enlace del firmante
     template_name: Nombre de la plantilla
-    submission_submitters: Firmantes del envío
+    submission_submitters: Lista de firmantes
     submission_link: Enlace del envío
     documents_link: Enlace de los documentos
   time:
@@ -3019,7 +3019,7 @@ it: &it
     account_name: Nome dell'account
     submitter_link: Link del firmatario
     template_name: Nome del modello
-    submission_submitters: Firmatari dell'invio
+    submission_submitters: Lista dei firmatari
     submission_link: Link dell'invio
     documents_link: Link dei documenti
   time:
@@ -4018,7 +4018,7 @@ fr: &fr
     account_name: Nom du compte
     submitter_link: Lien du signataire
     template_name: Nom du modèle
-    submission_submitters: Signataires de la soumission
+    submission_submitters: Liste des signataires
     submission_link: Lien de la soumission
     documents_link: Lien des documents
   time:
@@ -5020,7 +5020,7 @@ pt: &pt
     account_name: Nome da conta
     submitter_link: Link do signatário
     template_name: Nome do modelo
-    submission_submitters: Signatários da submissão
+    submission_submitters: Lista de signatários
     submission_link: Link da submissão
     documents_link: Link dos documentos
   time:
@@ -6022,7 +6022,7 @@ de: &de
     account_name: Kontoname
     submitter_link: Link des Unterzeichners
     template_name: Vorlagenname
-    submission_submitters: Unterzeichner der Einreichung
+    submission_submitters: Liste der Unterzeichner
     submission_link: Link der Einreichung
     documents_link: Link der Dokumente
   time:
@@ -7409,7 +7409,7 @@ nl: &nl
     account_name: Accountnaam
     submitter_link: Link van de ondertekenaar
     template_name: Sjabloonnaam
-    submission_submitters: Ondertekenaars van de inzending
+    submission_submitters: Lijst van ondertekenaars
     submission_link: Link van de inzending
     documents_link: Link van de documenten
   time:

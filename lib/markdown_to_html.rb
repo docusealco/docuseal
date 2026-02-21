@@ -28,7 +28,7 @@ module MarkdownToHtml
 
     link_parts.map.with_index do |part, index|
       if part.match?(%r{\A(?:https?://|www\.)}) &&
-         !link_parts[index - 1]&.match?(/\]\(\s*\z/)
+         !(index > 0 && link_parts[index - 1]&.match?(/\]\(\s*\z/))
         trail = part.match(/([.,;:!?]+)\z/)[1] if part.match?(/[.,;:!?]+\z/)
         clean = trail ? part.chomp(trail) : part
         url = clean.start_with?('www.') ? "http://#{clean}" : clean
@@ -68,7 +68,6 @@ module MarkdownToHtml
     tag = lambda do |t|
       desc = TAGS[t[1] || '']
       return t unless desc
-      return desc[0] unless desc[1]
 
       is_end = context.last == t
       is_end ? context.pop : context.push(t)
@@ -95,15 +94,16 @@ module MarkdownToHtml
       elsif m[1]
         chunk = '<a>'
       elsif m[5]
-        chunk = if m[5] == '***'
-                  if context.include?('*') && context.include?('**')
-                    tag.call('*') + tag.call('**')
-                  else
-                    tag.call('**') + tag.call('*')
-                  end
-                else
-                  tag.call(m[5])
-                end
+        chunk =
+          if m[5] == '***'
+            if context.include?('*') && context.include?('**')
+              tag.call('*') + tag.call('**')
+            else
+              tag.call('**') + tag.call('*')
+            end
+          else
+            tag.call(m[5])
+          end
       end
 
       out += prev.to_s + chunk

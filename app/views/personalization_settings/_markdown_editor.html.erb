@@ -37,15 +37,15 @@
         </div>
       </div>
       <% if local_assigns[:variables]&.any? %>
-        <% variable_labels = { 'account.name' => t('variables.account_name'), 'submitter.link' => t('variables.submitter_link'), 'code' => t('variables.code'), 'template.name' => t('variables.template_name'), 'submission.submitters' => t('variables.submission_submitters'), 'submission.link' => t('variables.submission_link'), 'documents.link' => t('variables.documents_link') } %>
-        <div class="ml-auto relative">
-          <button type="button" data-target="markdown-editor.variableButton" class="flex items-center gap-1 text-sm px-2 py-1 rounded hover:bg-base-200 cursor-pointer">
+        <% variable_labels = { 'account.name' => t('variables.account_name'), 'submitter.link' => t('variables.submitter_link'), 'template.name' => t('variables.template_name'), 'submission.submitters' => t('variables.submission_submitters'), 'submission.link' => t('variables.submission_link'), 'documents.link' => t('variables.documents_link') } %>
+        <div class="dropdown dropdown-end ml-auto">
+          <label tabindex="0" class="flex items-center gap-1 text-sm px-2 py-1 rounded hover:bg-base-200 cursor-pointer">
             <%= t('add_variable') %>
             <%= svg_icon('chevron_down', class: 'w-3.5 h-3.5') %>
-          </button>
-          <div data-target="markdown-editor.variableDropdown" class="hidden absolute right-0 top-full mt-1 p-1 bg-white border border-neutral-200 rounded-lg shadow-lg z-50">
+          </label>
+          <div tabindex="0" class="dropdown-content right-0 top-full mt-1 p-1 bg-white border border-neutral-200 rounded-lg shadow-lg z-50">
             <% local_assigns[:variables]&.each do |variable| %>
-              <button type="button" data-variable="<%= variable %>" class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 text-left text-sm cursor-pointer whitespace-nowrap">
+              <button type="button" data-variable="<%= variable %>" data-action="click:markdown-editor#insertVariable" class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 text-left text-sm cursor-pointer whitespace-nowrap">
                 <%= variable_labels.fetch(variable, "{#{variable}}") %>
               </button>
             <% end %>
@@ -55,7 +55,7 @@
     </div>
     <div data-target="markdown-editor.editorElement"></div>
   </div>
-  <div data-target="markdown-editor.linkTooltipElement" class="hidden fixed flex bg-white border border-base-300 rounded-xl shadow-lg p-1 gap-1 items-center z-50">
+  <div data-target="markdown-editor.linkTooltipElement" class="hidden fixed flex bg-white border border-base-300 rounded-xl shadow p-1 gap-1 items-center z-50">
     <input data-target="markdown-editor.linkInput" type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 w-80 text-sm outline-none" autocomplete="off">
     <button type="button" data-target="markdown-editor.linkSaveButton" class="flex items-center px-1 w-6 h-6 rounded hover:bg-success/10 cursor-pointer">
       <%= svg_icon('check', class: 'w-4 h-4 text-success') %>
