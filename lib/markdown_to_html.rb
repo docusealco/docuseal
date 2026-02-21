@@ -27,11 +27,13 @@ module MarkdownToHtml
     link_parts = text.split(%r{((?:https?://|www\.)[^\s)]+)})
 
     link_parts.map.with_index do |part, index|
-      if part.match?(%r{\A(?:https?://|www\.)}) &&
-         !(index > 0 && link_parts[index - 1]&.match?(/\]\(\s*\z/))
+      if part.match?(%r{\A(?:https?://|www\.)}) && !(index > 0 && link_parts[index - 1]&.match?(/\]\(\s*\z/))
         trail = part.match(/([.,;:!?]+)\z/)[1] if part.match?(/[.,;:!?]+\z/)
+
         clean = trail ? part.chomp(trail) : part
-        url = clean.start_with?('www.') ? "http://#{clean}" : clean
+
+        url = clean.start_with?('www.') ? "https://#{clean}" : clean
+
         "[#{clean}](#{url})#{trail}"
       else
         part

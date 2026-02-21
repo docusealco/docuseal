@@ -33,7 +33,6 @@ gem 'pretender'
 gem 'puma', require: false
 gem 'rack'
 gem 'rails'
-gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rotp'
 gem 'rouge', require: false

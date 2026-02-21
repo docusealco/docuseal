@@ -219,7 +219,6 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
-    ffi (1.17.3)
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-aarch64-linux-musl)
     ffi (1.17.3-arm64-darwin)
@@ -352,8 +351,6 @@ GEM
     oj (3.16.13)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
-    onnxruntime (0.10.1)
-      ffi
     onnxruntime (0.10.1-aarch64-linux)
       ffi
     onnxruntime (0.10.1-arm64-darwin)
@@ -372,7 +369,6 @@ GEM
     parser (3.3.10.1)
       ast (~> 2.4.1)
       racc
-    pg (1.6.3)
     pg (1.6.3-aarch64-linux)
     pg (1.6.3-aarch64-linux-musl)
     pg (1.6.3-arm64-darwin)
@@ -439,10 +435,6 @@ GEM
     rails-i18n (8.1.0)
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
-    rails_autolink (1.1.8)
-      actionview (> 3.1)
-      activesupport (> 3.1)
-      railties (> 3.1)
     railties (8.1.2)
       actionpack (= 8.1.2)
       activesupport (= 8.1.2)
@@ -662,7 +654,6 @@ DEPENDENCIES
   rack
   rails
   rails-i18n
-  rails_autolink
   rotp
   rouge
   rqrcode
