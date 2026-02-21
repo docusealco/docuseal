@@ -81,7 +81,7 @@
         />
         <template v-else>
           <form
-            v-if="withSignYourselfButton && template.submitters.length < 2"
+            v-if="withSignYourselfButton && undefinedSubmitters.length < 2"
             target="_blank"
             data-turbo="false"
             class="inline"
@@ -937,6 +937,16 @@ export default {
     selectedAreasRef: () => ref([]),
     language () {
       return this.locale.split('-')[0].toLowerCase()
+    },
+    undefinedSubmitters () {
+      return this.template.submitters.filter((submitter) => {
+        return !submitter.invite_by_uuid &&
+          !submitter.optional_invite_by_uuid &&
+          !submitter.invite_via_field_uuid &&
+          !submitter.linked_to_uuid &&
+          !submitter.is_requester &&
+          !submitter.email
+      })
     },
     withPrefillable () {
       if (this.template.fields) {
