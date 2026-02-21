@@ -208,7 +208,13 @@ export default actionable(targetable(class extends HTMLElement {
         Text,
         Bold,
         Italic,
-        HardBreak,
+        HardBreak.extend({
+          addKeyboardShortcuts () {
+            return {
+              Enter: () => this.editor.commands.setHardBreak()
+            }
+          }
+        }),
         UndoRedo,
         Link.extend({
           inclusive: true,
@@ -230,7 +236,7 @@ export default actionable(targetable(class extends HTMLElement {
         Underline,
         VariableHighlight
       ],
-      content: this.textarea.value || '',
+      content: (this.textarea.value || '').trim().replace(/ *\n/g, '<br>'),
       contentType: 'markdown',
       editorProps: {
         attributes: {
