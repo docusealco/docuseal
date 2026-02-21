@@ -56,7 +56,7 @@
     <div data-target="markdown-editor.editorElement"></div>
   </div>
   <div data-target="markdown-editor.linkTooltipElement" class="hidden fixed flex bg-white border border-base-300 rounded-xl shadow p-1 gap-1 items-center z-50">
-    <input data-target="markdown-editor.linkInput" type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 w-80 text-sm outline-none" autocomplete="off">
+    <input data-target="markdown-editor.linkInput" type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 text-sm outline-none" style="field-sizing: content; min-width: 205px; max-width: 320px;" autocomplete="off">
     <button type="button" data-target="markdown-editor.linkSaveButton" class="flex items-center px-1 w-6 h-6 rounded hover:bg-success/10 cursor-pointer">
       <%= svg_icon('check', class: 'w-4 h-4 text-success') %>
     </button>
