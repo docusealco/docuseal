@@ -309,7 +309,7 @@
 <script>
 import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2, IconQrcode, IconX } from '@tabler/icons-vue'
 import { cropCanvasAndExportToPNG } from './crop_canvas'
-import { isValidSignatureCanvas } from './validate_signature'
+import { isValidSignatureCanvas, isCanvasBlocked } from './validate_signature'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
 import FileDropzone from './dropzone'
@@ -790,7 +790,15 @@ export default {
 
       if (this.isSignatureStarted && this.pad.toData().length > 0 && !isValidSignatureCanvas(this.pad.toData())) {
         if (this.field.required === true || this.pad.toData().length > 0) {
-          alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+          if (isCanvasBlocked()) {
+            alert(this.t('browser_privacy_settings_block_canvas'))
+
+            if (window.Rollbar) {
+              window.Rollbar.info('Canvas blocked')
+            }
+          } else {
+            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+          }
 
           return Promise.reject(new Error('Image too small or simple'))
         } else {
@@ -846,7 +854,15 @@ export default {
           }
         }).catch((error) => {
           if (this.field.required === true) {
-            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            if (isCanvasBlocked()) {
+              alert(this.t('browser_privacy_settings_block_canvas'))
+
+              if (window.Rollbar) {
+                window.Rollbar.info('Canvas blocked')
+              }
+            } else {
+              alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            }
 
             return reject(error)
           } else {
