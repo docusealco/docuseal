@@ -575,7 +575,11 @@ module Submissions
                                                                 fill_color:,
                                                                 font_size:)
 
-              line_height = layouter.fit([text], cell_width, height).lines.first.height
+              line = layouter.fit([text], width, height).lines.first
+
+              line_height = line.height
+
+              cell_width = [line.width, cell_width].max
 
               if preferences_font_size.blank? && line_height > (area['h'] * height)
                 text = HexaPDF::Layout::TextFragment.create(char,
