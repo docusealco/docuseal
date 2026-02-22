@@ -161,7 +161,7 @@ export default {
   computed: {
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && ['number'].includes(f.type) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
+        if (f !== this.field && this.isNumberField(f) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
           acc.push(f)
         }
 
@@ -176,9 +176,12 @@ export default {
     this.formula = this.humanizeFormula(this.field.preferences.formula || '')
   },
   methods: {
+    isNumberField (field) {
+      return field.type === 'number' || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
+    },
     humanizeFormula (text) {
       return text.replace(/{{(.*?)}}/g, (match, uuid) => {
-        const foundField = this.fields.find((f) => f.uuid === uuid)
+        const foundField = this.template.fields.find((f) => f.uuid === uuid)
 
         if (foundField) {
           return `{{${foundField.name || this.buildDefaultName(foundField)}}}`
@@ -189,7 +192,7 @@ export default {
     },
     normalizeFormula (text) {
       return text.replace(/{{(.*?)}}/g, (match, name) => {
-        const foundField = this.fields.find((f) => {
+        const foundField = this.template.fields.find((f) => {
           return (f.name || this.buildDefaultName(f)).trim() === name.trim()
         })
 
