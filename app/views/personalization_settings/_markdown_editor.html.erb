@@ -1,37 +1,48 @@
-<markdown-editor>
+<% link_tooltip_html = capture do %>
+  <div class="hidden absolute flex bg-white border border-base-300 rounded-xl shadow p-1 gap-1 items-center z-50" contenteditable="false">
+    <input type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 text-sm outline-none" style="field-sizing: content; min-width: 205px; max-width: 320px;" autocomplete="off">
+    <button type="button" data-role="link-save" class="flex items-center px-1 w-6 h-6 rounded hover:bg-success/10 cursor-pointer">
+      <%= svg_icon('check', class: 'w-4 h-4 text-success') %>
+    </button>
+    <button type="button" data-role="link-remove" class="flex items-center px-1 w-6 h-6 rounded hover:bg-error/10 cursor-pointer">
+      <%= svg_icon('x', class: 'w-4 h-4 text-error') %>
+    </button>
+  </div>
+<% end %>
+<markdown-editor data-link-tooltip-html="<%= link_tooltip_html.squish %>">
   <div class="border border-base-content/20 rounded-2xl bg-white">
     <div class="flex items-center px-2 py-2 border-b" style="height: 42px;">
       <div class="flex items-center gap-1">
-        <div class="tooltip tooltip-top" data-tip="<%= t('bold') %> (Ctrl+B)">
-          <button type="button" data-target="markdown-editor.boldButton" aria-label="<%= t('bold') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('bold') %> (Ctrl+B)">
+          <button type="button" data-action="click:markdown-editor#bold" data-target="markdown-editor.boldButton" aria-label="<%= t('bold') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('bold', class: 'w-4 h-4') %>
           </button>
         </div>
-        <div class="tooltip tooltip-top" data-tip="<%= t('italic') %> (Ctrl+I)">
-          <button type="button" data-target="markdown-editor.italicButton" aria-label="<%= t('italic') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('italic') %> (Ctrl+I)">
+          <button type="button" data-action="click:markdown-editor#italic" data-target="markdown-editor.italicButton" aria-label="<%= t('italic') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('italic', class: 'w-4 h-4') %>
           </button>
         </div>
-        <div class="tooltip tooltip-top" data-tip="<%= t('underline') %> (Ctrl+U)">
-          <button type="button" data-target="markdown-editor.underlineButton" aria-label="<%= t('underline') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('underline') %> (Ctrl+U)">
+          <button type="button" data-action="click:markdown-editor#underline" data-target="markdown-editor.underlineButton" aria-label="<%= t('underline') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('underline', class: 'w-4 h-4') %>
           </button>
         </div>
-        <div class="tooltip tooltip-top" data-tip="<%= t('link') %> (Ctrl+K)">
-          <button type="button" data-target="markdown-editor.linkButton" aria-label="<%= t('link') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('link') %> (Ctrl+K)">
+          <button type="button" data-action="click:markdown-editor#linkSelection" data-target="markdown-editor.linkButton" aria-label="<%= t('link') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('link', class: 'w-4 h-4') %>
           </button>
         </div>
       </div>
       <div class="mx-2 h-5 border-l border-base-content/20"></div>
       <div class="flex items-center gap-1">
-        <div class="tooltip tooltip-top" data-tip="<%= t('undo') %> (Ctrl+Z)">
-          <button type="button" data-target="markdown-editor.undoButton" aria-label="<%= t('undo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('undo') %> (Ctrl+Z)">
+          <button type="button" data-action="click:markdown-editor#undo" data-target="markdown-editor.undoButton" aria-label="<%= t('undo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('arrow_back_up', class: 'w-4 h-4') %>
           </button>
         </div>
-        <div class="tooltip tooltip-top" data-tip="<%= t('redo') %> (Ctrl+Shift+Z)">
-          <button type="button" data-target="markdown-editor.redoButton" aria-label="<%= t('redo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('redo') %> (Ctrl+Shift+Z)">
+          <button type="button" data-action="click:markdown-editor#redo" data-target="markdown-editor.redoButton" aria-label="<%= t('redo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
             <%= svg_icon('arrow_forward_up', class: 'w-4 h-4') %>
           </button>
         </div>
@@ -54,15 +65,6 @@
       <% end %>
     </div>
     <div data-target="markdown-editor.editorElement"></div>
-  </div>
-  <div data-target="markdown-editor.linkTooltipElement" class="hidden fixed flex bg-white border border-base-300 rounded-xl shadow p-1 gap-1 items-center z-50">
-    <input data-target="markdown-editor.linkInput" type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 text-sm outline-none" style="field-sizing: content; min-width: 205px; max-width: 320px;" autocomplete="off">
-    <button type="button" data-target="markdown-editor.linkSaveButton" class="flex items-center px-1 w-6 h-6 rounded hover:bg-success/10 cursor-pointer">
-      <%= svg_icon('check', class: 'w-4 h-4 text-success') %>
-    </button>
-    <button type="button" data-target="markdown-editor.linkRemoveButton" class="flex items-center px-1 w-6 h-6 rounded hover:bg-error/10 cursor-pointer">
-      <%= svg_icon('x', class: 'w-4 h-4 text-error') %>
-    </button>
   </div>
   <%= hidden_field_tag name, value, required: true, data: { target: 'markdown-editor.textarea' } %>
 </markdown-editor>

@@ -36,23 +36,26 @@ function loadTiptap () {
 }
 
 class LinkTooltip {
-  constructor (tooltip, input, saveButton, removeButton, editor) {
-    this.tooltip = tooltip
-    this.input = input
-    this.saveButton = saveButton
-    this.removeButton = removeButton
+  constructor (container, editor) {
+    this.container = container
     this.editor = editor
+
+    const template = document.createElement('template')
+
+    template.innerHTML = container.dataset.linkTooltipHtml
+
+    this.tooltip = template.content.firstElementChild
+
+    this.input = this.tooltip.querySelector('input')
+    this.saveButton = this.tooltip.querySelector('[data-role="link-save"]')
+    this.removeButton = this.tooltip.querySelector('[data-role="link-remove"]')
+
+    container.style.position = 'relative'
+    container.appendChild(this.tooltip)
   }
 
   isVisible () {
     return !this.tooltip.classList.contains('hidden')
-  }
-
-  updatePosition () {
-    const rect = this.editor.view.coordsAtPos(this.pos)
-
-    this.tooltip.style.left = `${rect.left}px`
-    this.tooltip.style.top = `${rect.bottom + 6}px`
   }
 
   normalizeUrl (url) {
@@ -64,14 +67,19 @@ class LinkTooltip {
     return `https://${url}`
   }
 
-  show (url, pos) {
+  show (url, pos, { focus = false } = {}) {
     this.input.value = url || ''
     this.removeButton.classList.toggle('hidden', !url)
-    this.pos = pos
 
     this.tooltip.classList.remove('hidden')
 
-    this.updatePosition()
+    const coords = this.editor.view.coordsAtPos(pos)
+    const containerRect = this.container.getBoundingClientRect()
+
+    this.tooltip.style.left = `${coords.left - containerRect.left}px`
+    this.tooltip.style.top = `${coords.bottom - containerRect.top + 4}px`
+
+    if (focus) this.input.focus()
 
     this.saveHandler = () => {
       const inputUrl = this.input.value.trim()
@@ -102,17 +110,9 @@ class LinkTooltip {
     this.saveButton.addEventListener('click', this.saveHandler, { once: true })
     this.removeButton.addEventListener('click', this.removeHandler, { once: true })
     this.input.addEventListener('keydown', this.keyHandler)
-
-    this.scrollHandler = () => this.updatePosition()
-    window.addEventListener('scroll', this.scrollHandler, true)
   }
 
   hide () {
-    if (this.scrollHandler) {
-      window.removeEventListener('scroll', this.scrollHandler, true)
-      this.scrollHandler = null
-    }
-
     if (this.saveHandler) {
       this.saveButton.removeEventListener('click', this.saveHandler)
       this.saveHandler = null
@@ -128,7 +128,7 @@ class LinkTooltip {
       this.keyHandler = null
     }
 
-    this.tooltip?.classList.add('hidden')
+    this.tooltip.classList.add('hidden')
     this.currentMark = null
   }
 }
@@ -140,13 +140,7 @@ export default actionable(targetable(class extends HTMLElement {
     'boldButton',
     'italicButton',
     'underlineButton',
-    'linkButton',
-    'undoButton',
-    'redoButton',
-    'linkTooltipElement',
-    'linkInput',
-    'linkSaveButton',
-    'linkRemoveButton'
+    'linkButton'
   ]
 
   async connectedCallback () {
@@ -255,22 +249,14 @@ export default actionable(targetable(class extends HTMLElement {
       },
       onBlur: () => {
         setTimeout(() => {
-          if (!this.linkTooltipElement.contains(document.activeElement)) {
+          if (!this.linkTooltip.tooltip.contains(document.activeElement)) {
             this.linkTooltip.hide()
           }
         }, 0)
       }
     })
 
-    this.linkTooltip = new LinkTooltip(
-      this.linkTooltipElement,
-      this.linkInput,
-      this.linkSaveButton,
-      this.linkRemoveButton,
-      this.editor
-    )
-
-    this.setupToolbar()
+    this.linkTooltip = new LinkTooltip(this, this.editor)
   }
 
   adjustShortcutsForPlatform () {
@@ -285,46 +271,53 @@ export default actionable(targetable(class extends HTMLElement {
     }
   }
 
-  setupToolbar () {
-    this.boldButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.editor.chain().focus().toggleBold().run()
-      this.updateToolbarState()
-    })
+  bold (e) {
+    e.preventDefault()
 
-    this.italicButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.editor.chain().focus().toggleItalic().run()
-      this.updateToolbarState()
-    })
+    this.editor.chain().focus().toggleBold().run()
+    this.updateToolbarState()
+  }
 
-    this.underlineButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.editor.chain().focus().toggleUnderline().run()
-      this.updateToolbarState()
-    })
+  italic (e) {
+    e.preventDefault()
 
-    this.linkButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.toggleLink()
-    })
+    this.editor.chain().focus().toggleItalic().run()
+    this.updateToolbarState()
+  }
 
-    this.undoButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.editor.chain().focus().undo().run()
-    })
+  underline (e) {
+    e.preventDefault()
 
-    this.redoButton?.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.editor.chain().focus().redo().run()
-    })
+    this.editor.chain().focus().toggleUnderline().run()
+    this.updateToolbarState()
+  }
+
+  linkSelection (e) {
+    e.preventDefault()
+
+    this.toggleLink()
+    this.updateToolbarState()
+  }
+
+  undo (e) {
+    e.preventDefault()
+
+    this.editor.chain().focus().undo().run()
+    this.updateToolbarState()
+  }
+
+  redo (e) {
+    e.preventDefault()
+
+    this.editor.chain().focus().redo().run()
+    this.updateToolbarState()
   }
 
   updateToolbarState () {
-    this.boldButton?.classList.toggle('bg-base-200', this.editor.isActive('bold'))
-    this.italicButton?.classList.toggle('bg-base-200', this.editor.isActive('italic'))
-    this.underlineButton?.classList.toggle('bg-base-200', this.editor.isActive('underline'))
-    this.linkButton?.classList.toggle('bg-base-200', this.editor.isActive('link'))
+    this.boldButton.classList.toggle('bg-base-200', this.editor.isActive('bold'))
+    this.italicButton.classList.toggle('bg-base-200', this.editor.isActive('italic'))
+    this.underlineButton.classList.toggle('bg-base-200', this.editor.isActive('underline'))
+    this.linkButton.classList.toggle('bg-base-200', this.editor.isActive('link'))
   }
 
   handleLinkTooltip (editor) {
@@ -337,6 +330,8 @@ export default actionable(targetable(class extends HTMLElement {
       return
     }
 
+    if (this.linkTooltip.isVisible() && this.linkTooltip.currentMark === mark) return
+
     let linkStart = from
     const start = editor.state.doc.resolve(from).start()
 
@@ -348,12 +343,8 @@ export default actionable(targetable(class extends HTMLElement {
       }
     }
 
-    if (this.linkTooltip.isVisible() && this.linkTooltip.currentMark === mark) return
-
     this.linkTooltip.hide()
-
     this.linkTooltip.show(mark.attrs.href, linkStart > start ? linkStart - 1 : linkStart)
-
     this.linkTooltip.currentMark = mark
   }
 
@@ -366,7 +357,7 @@ export default actionable(targetable(class extends HTMLElement {
       const { from } = this.editor.state.selection
 
       this.linkTooltip.hide()
-      this.linkTooltip.show(this.editor.getAttributes('link').href, from)
+      this.linkTooltip.show(this.editor.getAttributes('link').href, from, { focus: true })
     }
   }
 
@@ -389,7 +380,6 @@ export default actionable(targetable(class extends HTMLElement {
 
     if (this.editor) {
       this.editor.destroy()
-      this.editor = null
     }
   }
 }))
