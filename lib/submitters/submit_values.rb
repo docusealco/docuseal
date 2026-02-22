@@ -112,7 +112,9 @@ module Submitters
       signature_field['preferences'] ||= {}
       signature_field['preferences']['reason_field_uuid'] = reason_field_uuid
 
-      unless submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
+      reason_field = submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
+
+      unless reason_field
         reason_field = { 'type' => 'text',
                          'uuid' => reason_field_uuid,
                          'name' => I18n.t(:reason),
