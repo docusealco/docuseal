@@ -1,9 +1,9 @@
-<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
-  <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
       <%= t('account') %>
     </h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('company_name', default: 'Company') %></h2>
     <%= form_for '', url: settings_account_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= fields_for current_account do |ff| %>
         <div class="form-control">
@@ -41,9 +41,10 @@
         </div>
       <% end %>
     <% end %>
+    </section>
     <% if can?(:manage, AccountConfig) %>
-      <div class="px-1 mt-8">
-        <h2 class="text-2xl font-bold mb-2">
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+        <h2 class="text-lg font-semibold text-base-content mb-5">
           <%= t('preferences') %>
         </h2>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORCE_MFA) %>
@@ -260,19 +261,17 @@
             <%= button_to params[:reindex] == 'true' ? t('reindex') : t('build_search_index'), settings_search_entries_reindex_index_path, method: :post, class: 'btn btn-sm btn-neutral text-white px-4' %>
           </div>
         <% end %>
-      </div>
+      </section>
     <% end %>
     <%= render 'compliances' %>
     <%= render 'integrations' %>
     <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
-      <div class="px-1 mt-8">
-        <h2 class="text-2xl font-bold mb-2">
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft border-error/30">
+        <h2 class="text-lg font-semibold text-error mb-5">
           <%= t('danger_zone') %>
         </h2>
         <%= button_to button_title(title: t('delete_my_account')), settings_account_path, class: 'btn btn-outline btn-error block', data: { turbo_confirm: t('you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue') }, method: :delete, id: :account_delete_button %>
-      </div>
+      </section>
     <% end %>
-  </div>
-  <div class="w-0 md:w-52"></div>
 </div>
 <%= render 'shared/app_tour', type: 'account' %>

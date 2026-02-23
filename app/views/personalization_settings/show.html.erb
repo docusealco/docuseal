@@ -1,27 +1,29 @@
-<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
-  <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <p class="text-4xl font-bold mb-4">
-      <%= t('email_templates') %>
-    </p>
-    <div class="space-y-4">
-      <%= render 'signature_request_email_form' %>
-      <%= render 'documents_copy_email_form' %>
-      <%= render 'submitter_completed_email_form' %>
-    </div>
-    <p class="text-4xl font-bold mb-4 mt-8">
-      <%= t('company_logo') %>
-    </p>
-    <%= render 'logo_form' %>
-    <p class="text-4xl font-bold mb-4 mt-8">
-      <%= t('submission_form') %>
-    </p>
-    <div class="space-y-4">
-      <%= render 'form_completed_message_form' %>
-      <%= render 'form_completed_button_form' %>
-      <%= render 'form_policy_links_form' %>
-    </div>
-    <%= render 'form_customization_settings' %>
-  </div>
-  <div class="w-0 md:w-52"></div>
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
+      <%= t('personalization') %>
+    </h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('email_templates') %></h2>
+      <div class="space-y-4">
+        <%= render 'signature_request_email_form' %>
+        <%= render 'documents_copy_email_form' %>
+        <%= render 'submitter_completed_email_form' %>
+      </div>
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('company_logo') %></h2>
+      <%= render 'logo_form' %>
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('submission_form') %></h2>
+      <div class="space-y-4">
+        <%= render 'form_completed_message_form' %>
+        <%= render 'form_completed_button_form' %>
+        <%= render 'form_policy_links_form' %>
+      </div>
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('form_customization', default: 'Form Customization') %></h2>
+      <%= render 'form_customization_settings' %>
+    </section>
 </div>

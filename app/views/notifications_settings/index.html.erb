@@ -1,9 +1,9 @@
-<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
-  <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
       <%= t('email_notifications') %>
     </h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('notification_preferences', default: 'Notification Preferences') %></h2>
     <div class="mt-2 mb-1">
       <% user_config = UserConfig.find_or_initialize_by(user: current_user, key: UserConfig::RECEIVE_COMPLETED_EMAIL) %>
       <% if can?(:manage, user_config) %>
@@ -21,13 +21,12 @@
       <% end %>
     </div>
     <%= render 'bcc_form', config: @bcc_config %>
-    <div class="flex justify-between items-end mb-4 mt-8">
-      <h2 class="text-3xl font-bold">
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5">
         <%= t('sign_request_email_reminders') %>
       </h2>
-    </div>
     <%= render 'reminder_banner' %>
     <%= render 'reminder_form', config: @reminder_config %>
-  </div>
-  <div class="w-0 md:w-52"></div>
+    </section>
 </div>

@@ -1,1 +1,42 @@
-<%= render 'logo_placeholder' %>
+<% if current_account.logo.attached? %>
+  <div class="mb-4">
+    <div class="flex items-center space-x-4">
+      <div class="w-32 h-32 border border-base-300 rounded-md flex items-center justify-center bg-base-200">
+        <%= image_tag current_account.logo, class: 'max-w-full max-h-full object-contain' %>
+      </div>
+      <div>
+        <p class="text-sm text-base-content/70 mb-2">Current Logo</p>
+        <%= form_for '', url: account_logo_path, method: :delete, data: { turbo_confirm: 'Are you sure?' }, html: { class: 'inline' } do |f| %>
+          <%= f.button 'Remove Logo', class: 'btn btn-sm btn-ghost' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for '', url: account_logo_path, method: :patch, html: { enctype: 'multipart/form-data', class: 'space-y-4' } do |f| %>
+  <file-dropzone data-submit-on-upload="true" class="w-full">
+    <label for="logo_file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed cursor-pointer">
+      <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center p-2">
+        <div class="flex flex-col items-center text-center">
+          <span data-target="file-dropzone.icon">
+            <%= svg_icon('cloud_upload', class: 'w-10 h-10') %>
+          </span>
+          <span data-target="file-dropzone.loading" class="hidden">
+            <%= svg_icon('loader', class: 'w-10 h-10 animate-spin') %>
+          </span>
+          <div class="font-medium mb-1">
+            <%= t('upload_logo') %>
+          </div>
+          <div class="text-xs">
+            <%= t('click_to_upload_or_drag_and_drop_html') %>
+          </div>
+        </div>
+        <input id="logo_file" name="file" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="image/png,image/jpeg,image/jpg,image/svg+xml">
+      </div>
+    </label>
+  </file-dropzone>
+  <div class="form-control">
+    <%= f.button button_title(title: t('upload_logo'), disabled_with: t('saving')), class: 'base-button' %>
+  </div>
+<% end %>

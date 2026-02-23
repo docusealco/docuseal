@@ -1,33 +1,139 @@
 <%= render 'shared/navbar_warning' %>
-<div class="max-w-6xl mb-4 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
-  <div class="flex items-center space-x-4">
-    <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
-      <%= render 'shared/title' %>
-    </a>
-    <span class="hidden sm:inline">
-      <%= render 'shared/github' if request.path.starts_with?('/settings') %>
-    </span>
-  </div>
-  <% if signed_in? %>
-    <div class="space-x-4 flex items-center">
-      <% if Docuseal.demo? %>
-        <a href="https://docuseal.com/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
-          <%= t('sign_up') %>
-        </a>
-        <span class="hidden sm:inline">
-          <%= render 'shared/github_button' %>
-        </span>
-      <% else %>
-        <div class="flex items-center justify-center space-x-4 mr-1">
-          <%= render 'shared/navbar_buttons' %>
-          <%= link_to t('settings'), settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg', id: 'account_settings_button' %>
-        </div>
+<header class="w-full border-b border-base-300 bg-base-100/95 backdrop-blur-sm sticky top-0 z-10 transition-shadow duration-200">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-3.5 md:py-4 flex items-center justify-between">
+    <div class="flex items-center space-x-8">
+      <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
+        <%= render 'shared/title' %>
+      </a>
+      <% if signed_in? %>
+        <nav class="hidden md:flex items-center space-x-6">
+          <% is_templates = request.path == root_path || request.path.start_with?('/templates') || request.path.start_with?('/folders') %>
+          <% is_submissions = request.path.start_with?('/submissions') %>
+          <% is_settings = request.path.start_with?('/settings') %>
+          
+          <%= link_to root_path, class: "font-medium text-base transition-colors duration-200 #{is_templates ? 'text-primary' : 'text-base-content hover:text-primary'}" do %>
+            <%= t('templates') %>
+          <% end %>
+          
+          <%= link_to submissions_path, class: "font-medium text-base transition-colors duration-200 #{is_submissions ? 'text-primary' : 'text-base-content hover:text-primary'}" do %>
+            <%= t('submissions') %>
+          <% end %>
+          
+          <div class="dropdown dropdown-hover">
+            <label tabindex="0" class="font-medium text-base transition-colors duration-200 <%= is_settings ? 'text-primary' : 'text-base-content hover:text-primary' %> cursor-pointer">
+              <%= t('settings') %>
+              <%= svg_icon('chevron_down', class: 'w-4 h-4 inline-block ml-1') %>
+            </label>
+            <ul tabindex="0" class="z-10 dropdown-content p-1.5 mt-2 shadow-soft-lg menu bg-base-100 rounded-lg min-w-[200px] border border-base-300 animate-fade-in-up">
+              <li><%= link_to t('profile'), settings_profile_index_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %></li>
+              <li><%= link_to t('account'), settings_account_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %></li>
+              <% unless Docuseal.multitenant? %>
+                <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
+                  <li>
+                    <%= link_to t('email'), settings_email_index_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+                <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
+                  <li>
+                    <%= link_to t('storage'), settings_storage_index_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+                <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
+                  <li>
+                    <%= link_to 'SMS', settings_sms_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+              <% end %>
+              <% if can?(:read, AccountConfig) %>
+                <li>
+                  <%= link_to t('notifications'), settings_notifications_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                </li>
+              <% end %>
+              <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+                <li>
+                  <%= link_to t('e_signature'), settings_esign_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                </li>
+              <% end %>
+              <% if can?(:read, AccountConfig) %>
+                <li>
+                  <%= link_to t('personalization'), settings_personalization_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                </li>
+              <% end %>
+              <% if can?(:read, User) %>
+                <li>
+                  <%= link_to t('users'), settings_users_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                </li>
+              <% end %>
+              <% if Docuseal.demo? || !Docuseal.multitenant? %>
+                <% if can?(:read, AccessToken) %>
+                  <li>
+                    <%= link_to 'API', settings_api_index_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+              <% end %>
+              <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
+                <% if can?(:read, WebhookUrl) %>
+                  <li>
+                    <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+              <% end %>
+              <%= render 'shared/settings_nav_extra' %>
+              <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
+                <li>
+                  <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3', data: { turbo: false }) do %>
+                    <%= t('plans') %>
+                    <span class="badge badge-warning"><%= t('pro') %></span>
+                  <% end %>
+                </li>
+              <% end %>
+              <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
+                <li>
+                  <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3', data: { turbo: false } do %>
+                    <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
+                  <% end %>
+                </li>
+                <% if Docuseal.multitenant? %>
+                  <li>
+                    <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3', data: { turbo: false } do %>
+                      <%= t('embedding') %>
+                    <% end %>
+                  </li>
+                <% end %>
+                <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
+                  <li>
+                    <%= link_to 'SSO', settings_sso_index_path, class: 'text-base rounded-md hover:bg-base-200 transition-colors duration-150 py-2.5 px-3' %>
+                  </li>
+                <% end %>
+                <%= render 'shared/settings_nav_extra2' %>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
       <% end %>
+      <span class="hidden sm:inline">
+        <%= render 'shared/github' if request.path.starts_with?('/settings') %>
+      </span>
+    </div>
+    <% if signed_in? %>
+      <div class="space-x-4 flex items-center">
+        <% if Docuseal.demo? %>
+          <a href="https://docuseal.com/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
+            <%= t('sign_up') %>
+          </a>
+          <span class="hidden sm:inline">
+            <%= render 'shared/github_button' %>
+          </span>
+        <% else %>
+          <div class="flex items-center justify-center space-x-4 mr-1">
+            <%= render 'shared/navbar_buttons' %>
+          </div>
+        <% end %>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
+        <label tabindex="0" class="cursor-pointer bg-neutral text-neutral-content rounded-full p-2 w-9 h-9 justify-center items-center flex font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-95">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>
         </label>
-        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[160px] text-right">
+        <ul tabindex="0" class="z-10 dropdown-content p-1.5 mt-2 shadow-soft-lg menu text-base bg-base-100 rounded-lg min-w-[180px] text-right border border-base-300 animate-fade-in-up">
           <li>
             <%= link_to settings_profile_index_path, class: 'flex items-center' do %>
               <%= svg_icon('adjustments', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
@@ -78,8 +184,8 @@
           </li>
         </ul>
       </div>
-    </div>
-  <% else %>
+      </div>
+    <% else %>
     <div class="flex space-x-2">
       <% if request.path != new_user_session_path && request.path != setup_index_path %>
         <%= link_to new_user_session_path({ lang: params[:lang] }.compact_blank), class: 'font-medium text-lg' do %>
@@ -99,4 +205,4 @@
       <% end %>
     </div>
   <% end %>
-</div>
+</header>

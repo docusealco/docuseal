@@ -11,7 +11,6 @@ class TemplateFoldersController < ApplicationController
   def show
     @templates = Template.active.accessible_by(current_ability)
                          .where(folder: [@template_folder, *(params[:q].present? ? @template_folder.subfolders : [])])
-                         .preload(:author, :template_accesses)
 
     @template_folders =
       @template_folder.subfolders.where(id: Template.accessible_by(current_ability).active.select(:folder_id))
@@ -22,6 +21,7 @@ class TemplateFoldersController < ApplicationController
     if @templates.exists?
       @templates = Templates.search(current_user, @templates, params[:q])
       @templates = Templates::Order.call(@templates, current_user, selected_order)
+      @templates = @templates.preload(:author, :template_accesses)
 
       limit =
         if @template_folders.size < 4

@@ -7,66 +7,66 @@
       </li>
       <li></li>
       <li>
-        <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
+        <%= link_to t('profile'), settings_profile_index_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
       </li>
       <li>
-        <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
+        <%= link_to t('account'), settings_account_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
       </li>
       <% unless Docuseal.multitenant? %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
           <li>
-            <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('email'), settings_email_index_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
           <li>
-            <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('storage'), settings_storage_index_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
         <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
           <li>
-            <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to 'SMS', settings_sms_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
       <% end %>
       <% if can?(:read, AccountConfig) %>
         <li>
-          <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('notifications'), settings_notifications_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
         </li>
       <% end %>
       <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
-          <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('e_signature'), settings_esign_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
         </li>
       <% end %>
       <% if can?(:read, AccountConfig) %>
         <li>
-          <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('personalization'), settings_personalization_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
         </li>
       <% end %>
       <% if can?(:read, User) %>
         <li>
-          <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('users'), settings_users_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
         <% if can?(:read, AccessToken) %>
           <li>
-            <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to 'API', settings_api_index_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
       <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
         <% if can?(:read, WebhookUrl) %>
           <li>
-            <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
         <li>
-          <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
+          <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5', data: { turbo: false }) do %>
             <%= t('plans') %>
             <span class="badge badge-warning"><%= t('pro') %></span>
           <% end %>
@@ -74,20 +74,20 @@
       <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
         <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5', data: { turbo: false } do %>
             <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
           <% end %>
         </li>
         <% if Docuseal.multitenant? %>
           <li>
-            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5', data: { turbo: false } do %>
               <%= t('embedding') %>
             <% end %>
           </li>
         <% end %>
         <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
           <li>
-            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base rounded-lg hover:bg-base-200 transition-colors duration-150 py-2.5' %>
           </li>
         <% end %>
         <%= render 'shared/settings_nav_extra2' %>

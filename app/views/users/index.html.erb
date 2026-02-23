@@ -1,8 +1,6 @@
-<div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
-  <%= render 'shared/settings_nav' %>
-  <div class="md:flex-grow">
-    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
-      <h1 class="text-4xl font-bold">
+<div class="max-w-6xl mx-auto space-y-8">
+    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end min-h-12">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
         <% if params[:status] == 'archived' %>
           <%= t('archived_users') %>
         <% elsif params[:status] == 'integration' %>
@@ -34,8 +32,9 @@
         <% end %>
       </div>
     </div>
+    <section class="bg-base-100 rounded-xl border border-base-300 overflow-hidden shadow-soft">
     <div class="overflow-x-auto">
-      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+      <table class="table w-full table-lg overflow-hidden">
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
             <th>
@@ -99,6 +98,7 @@
         </tbody>
       </table>
     </div>
+    </section>
     <% if @pagy.pages > 1 %>
       <%= render 'shared/pagination', pagy: @pagy, items_name: 'users', left_additional_html: render('bottom_links') %>
     <% else %>
@@ -106,5 +106,4 @@
         <%= render 'bottom_links' %>
       </div>
     <% end %>
-  </div>
 </div>

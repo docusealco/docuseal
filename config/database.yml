@@ -4,12 +4,16 @@ default: &default
   pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
 
 development:
-  <<: *default
-  database: docuseal_dev
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
+  timeout: 5000
 
 test:
-  <<: *default
-  database: docuseal_test
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15).to_i + ENV.fetch('SIDEKIQ_THREADS', 5).to_i %>
+  timeout: 5000
 
 production:
 <% if !ENV['DATABASE_HOST'].to_s.empty? %>

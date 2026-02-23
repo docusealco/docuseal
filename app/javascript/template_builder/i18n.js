@@ -134,6 +134,7 @@ const en = {
   payment: 'Payment',
   phone: 'Phone',
   text_field: 'Text Field',
+  redact_field: 'Redact Field',
   signature_field: 'Signature Field',
   initials_field: 'Initials Field',
   date_field: 'Date Field',

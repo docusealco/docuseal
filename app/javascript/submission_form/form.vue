@@ -14,8 +14,8 @@
     @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
   <FieldAreas
-    :steps="readonlyConditionalFields.map((e) => [e])"
-    :values="readonlyConditionalFieldValues"
+    :steps="readonlyDisplaySteps"
+    :values="readonlyDisplayFieldValues"
     :submitter="submitter"
     :attachments-index="attachmentsIndex"
     :submittable="false"
@@ -1009,6 +1009,20 @@ export default {
     },
     readonlyConditionalFields () {
       return this.readonlyFields.filter((f) => f.conditions?.length)
+    },
+    readonlyDisplaySteps () {
+      const conditional = this.readonlyConditionalFields.map((e) => [e])
+      const conditionalUuids = new Set(this.readonlyConditionalFields.flat().map((f) => f.uuid))
+      const redactOnly = this.readonlyFields
+        .filter((f) => f.type === 'redact' && !conditionalUuids.has(f.uuid))
+        .map((f) => [f])
+      return [...conditional, ...redactOnly]
+    },
+    readonlyDisplayFieldValues () {
+      const redactValues = this.readonlyFields
+        .filter((f) => f.type === 'redact')
+        .reduce((acc, f) => { acc[f.uuid] = ''; return acc }, {})
+      return { ...this.readonlyConditionalFieldValues, ...redactValues }
     },
     readonlyFields () {
       return this.fields.filter((f) => f.readonly && this.checkFieldConditions(f) && this.checkFieldDocumentsConditions(f))

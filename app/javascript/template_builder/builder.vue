@@ -1406,6 +1406,11 @@ export default {
         field.readonly = true
       }
 
+      if (type === 'redact') {
+        field.readonly = true
+        field.required = false
+      }
+
       if (type === 'datenow') {
         field.type = 'date'
         field.readonly = true
@@ -1453,6 +1458,11 @@ export default {
 
         if (type === 'stamp') {
           field.readonly = true
+        }
+
+        if (type === 'redact') {
+          field.readonly = true
+          field.required = false
         }
 
         if (type === 'date') {
@@ -2088,7 +2098,7 @@ export default {
           field.default_value = '{{date}}'
         }
 
-        if (['stamp', 'heading', 'strikethrough'].includes(field.type)) {
+        if (['stamp', 'heading', 'strikethrough', 'redact'].includes(field.type)) {
           field.readonly = true
 
           if (field.type === 'strikethrough') {

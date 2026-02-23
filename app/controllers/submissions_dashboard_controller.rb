@@ -8,7 +8,7 @@ class SubmissionsDashboardController < ApplicationController
 
     @submissions = @submissions.where(archived_at: nil)
                                .where(templates: { archived_at: nil })
-                               .preload(:template_accesses, :created_by_user, template: :author)
+                               .preload(:created_by_user, template: :author)
 
     @submissions = Submissions.search(current_user, @submissions, params[:q], search_template: true)
     @submissions = Submissions::Filter.call(@submissions, current_user, params)

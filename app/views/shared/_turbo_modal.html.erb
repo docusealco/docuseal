@@ -1,13 +1,13 @@
 <turbo-frame id="modal">
   <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
-    <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
-    <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
+    <div class="turbo-modal-backdrop absolute inset-0 cursor-pointer z-0" data-turbo-modal-close aria-hidden="true"></div>
+    <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none relative z-10" data-turbo-modal-content>
       <% if local_assigns[:title] %>
         <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
           <span>
             <%= local_assigns[:title] %>
           </span>
-          <a href="#" class="text-xl" data-action="click:turbo-modal#close">&times;</a>
+          <button type="button" class="text-xl hover:opacity-70" data-turbo-modal-close aria-label="Close">&times;</button>
         </div>
       <% end %>
       <div>

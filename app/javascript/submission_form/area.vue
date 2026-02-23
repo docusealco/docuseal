@@ -3,10 +3,10 @@
     class="flex absolute lg:text-base -outline-offset-1 field-area"
     dir="auto"
     :style="[computedStyle, fontStyle]"
-    :class="{ 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :class="{ 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable && field.type !== 'redact', 'border border-red-100': !isActive && submittable && field.type !== 'redact', 'bg-opacity-80': !isActive && !isValueSet && submittable && field.type !== 'redact', 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable && field.type !== 'redact', '!bg-black !opacity-100 border-0': field.type === 'redact' }"
   >
     <div
-      v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
+      v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && field.type !== 'redact' && submittable && !area.option_uuid"
       class="absolute top-0 bottom-0 right-0 left-0 items-center justify-center h-full w-full"
     >
       <span
@@ -104,6 +104,11 @@
       class="object-contain mx-auto"
       :src="initials.url"
     >
+    <div
+      v-else-if="field.type === 'redact'"
+      class="absolute inset-0 bg-black pointer-events-none"
+      aria-hidden="true"
+    />
     <div
       v-else-if="(field.type === 'file' || field.type === 'payment') && attachments.length"
       class="px-0.5 flex flex-col justify-center"
@@ -224,6 +229,12 @@
       >
         {{ formatNumber(modelValue, field.preferences?.format) }}
       </span>
+      <div
+        v-else-if="field.type === 'redact'"
+        class="w-full h-full bg-black"
+      >
+        <!-- Redacted area - solid black overlay hides underlying text during signing -->
+      </div>
       <span
         v-else-if="field.type === 'strikethrough'"
         class="w-full h-full flex items-center justify-center"
@@ -384,6 +395,7 @@ export default {
         text: this.t('text'),
         signature: this.t('signature'),
         initials: this.t('initials'),
+        redact: this.t('redact'),
         date: this.t('date'),
         number: this.t('number'),
         image: this.t('image'),
@@ -447,6 +459,7 @@ export default {
       return {
         text: IconTextSize,
         signature: IconWritingSign,
+        redact: IconRubberStamp,
         date: IconCalendarEvent,
         number: IconSquareNumber1,
         image: IconPhoto,

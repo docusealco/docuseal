@@ -29,10 +29,12 @@ module Templates
       end
     end
 
-    def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false)
+    def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false, content_type_override: nil, filename_override: nil)
       document_data ||= file.read
+      content_type = content_type_override || file.content_type
+      filename = filename_override || file.original_filename
 
-      if file.content_type == PDF_CONTENT_TYPE
+      if content_type == PDF_CONTENT_TYPE
         document_data = maybe_decrypt_pdf_or_raise(document_data, params)
 
         annotations =
@@ -43,13 +45,13 @@ module Templates
 
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(document_data),
-        filename: file.original_filename,
+        filename: filename,
         metadata: {
-          identified: file.content_type == PDF_CONTENT_TYPE,
-          analyzed: file.content_type == PDF_CONTENT_TYPE,
+          identified: content_type == PDF_CONTENT_TYPE,
+          analyzed: content_type == PDF_CONTENT_TYPE,
           pdf: { annotations: }.compact_blank, sha256:
         }.compact_blank,
-        content_type: file.content_type
+        content_type: content_type
       )
 
       document = template.documents.create!(blob:)
@@ -106,7 +108,65 @@ module Templates
         return handle_pdf_or_image(template, file, file.read, params, extract_fields:)
       end
 
+      # Handle document types (DOCX, DOC, XLSX, etc.) by converting to PDF
+      if DOCUMENT_CONTENT_TYPES.include?(file.content_type)
+        pdf_data = convert_document_to_pdf(file)
+        if pdf_data
+          # Process the converted PDF with PDF content type and filename
+          pdf_filename = File.basename(file.original_filename, '.*') + '.pdf'
+          return handle_pdf_or_image(template, file, pdf_data, params, extract_fields: extract_fields, content_type_override: PDF_CONTENT_TYPE, filename_override: pdf_filename)
+        else
+          raise InvalidFileType, "Unable to convert #{file.content_type} to PDF. Please install LibreOffice (brew install --cask libreoffice on macOS or apt-get install libreoffice on Linux) or convert the document to PDF manually."
+        end
+      end
+
       raise InvalidFileType, file.content_type
+    end
+
+    def convert_document_to_pdf(file)
+      # Try to use LibreOffice to convert document to PDF
+      libreoffice_path = find_libreoffice
+      return nil unless libreoffice_path
+
+      # Create a temporary file for the input document
+      input_temp = Tempfile.new(['input', File.extname(file.original_filename)])
+      input_temp.binmode
+      file.rewind
+      input_temp.write(file.read)
+      input_temp.close
+
+      output_dir = Dir.mktmpdir
+      output_file = File.join(output_dir, File.basename(file.original_filename, '.*') + '.pdf')
+
+      begin
+        # Use LibreOffice headless mode to convert to PDF
+        success = system(libreoffice_path, '--headless', '--convert-to', 'pdf', '--outdir', output_dir, input_temp.path, out: File::NULL, err: File::NULL)
+        
+        if success && File.exist?(output_file)
+          pdf_data = File.binread(output_file)
+          return pdf_data
+        end
+      rescue StandardError => e
+        Rails.logger.warn("Document conversion failed: #{e.message}")
+      ensure
+        input_temp.unlink if input_temp
+        FileUtils.rm_rf(output_dir) if Dir.exist?(output_dir)
+      end
+
+      nil
+    end
+
+    def find_libreoffice
+      # Check common LibreOffice installation paths
+      paths = [
+        '/Applications/LibreOffice.app/Contents/MacOS/soffice', # macOS
+        '/usr/bin/libreoffice', # Linux
+        '/usr/local/bin/libreoffice', # Linux alternative
+        `which libreoffice`.strip, # System PATH
+        `which soffice`.strip # Alternative command name
+      ].compact.reject(&:empty?)
+
+      paths.find { |path| File.executable?(path) }
     end
   end
 end

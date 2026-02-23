@@ -1,7 +1,7 @@
-<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
-  <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Email SMTP</h1>
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">Email SMTP</h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('smtp_configuration', default: 'SMTP Configuration') %></h2>
     <% value = @encrypted_config.value || {} %>
     <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.fields_for :value do |ff| %>
@@ -57,6 +57,5 @@
         <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
-  </div>
-  <div class="w-0 md:w-52"></div>
+    </section>
 </div>

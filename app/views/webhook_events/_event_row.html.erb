@@ -8,7 +8,7 @@
           <%= webhook_event.webhook_attempts.max_by(&:id)&.response_status_code if local_assigns[:with_status] %>
         </div>
       <% elsif webhook_event.status == 'pending' %>
-        <div class="btn btn-outline btn-xs btn-info bg-blue-50 gap-1">
+        <div class="btn btn-outline btn-xs btn-info bg-base-200 gap-1">
           <%= svg_icon('clock', class: 'w-4 h-4 shrink-0 stroke-2') %>
           <%= webhook_event.webhook_attempts.max_by(&:id)&.response_status_code if local_assigns[:with_status] %>
         </div>

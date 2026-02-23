@@ -1,10 +1,10 @@
-<div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
-  <%= render 'shared/settings_nav' %>
-  <div class="md:flex-grow">
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
+      <%= t('pdf_signature') %>
+    </h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
     <div class="max-w-xl">
-      <h1 class="text-4xl font-bold mb-4">
-        <%= t('pdf_signature') %>
-      </h1>
+      <h2 class="text-lg font-semibold text-base-content mb-4"><%= t('verify_signed_pdf') %></h2>
       <div id="result">
         <p class="mb-2">
           <%= t('upload_signed_pdf_file_to_validate_its_signature_') %>
@@ -40,8 +40,10 @@
         </file-dropzone>
       <% end %>
     </div>
-    <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4 mt-8">
-      <h2 class="text-3xl font-bold">
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft overflow-hidden">
+    <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4">
+      <h2 class="text-lg font-semibold text-base-content">
         <%= t('signing_certificates') %>
       </h2>
       <% if can?(:create, @encrypted_config) %>
@@ -105,11 +107,12 @@
         </tbody>
       </table>
     </div>
+    </section>
     <% encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY) %>
     <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
-      <div class="flex-grow max-w-xl">
-        <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+        <div class="flex justify-between items-end mb-4">
+          <h2 class="text-lg font-semibold text-base-content">
             <%= t('timestamp_server') %>
           </h2>
         </div>
@@ -131,13 +134,13 @@
             <%= f.button button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button' %>
           </div>
         <% end %>
-      </div>
+      </section>
     <% end %>
     <% account_config = AccountConfig.where(account: current_account, key: AccountConfig::ESIGNING_PREFERENCE_KEY).first_or_initialize(value: 'single') %>
     <% if can?(:manage, account_config) %>
-      <div class="px-1 mt-8 max-w-xl">
-        <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+        <div class="flex justify-between items-end mb-4">
+          <h2 class="text-lg font-semibold text-base-content">
             <%= t('preferences') %>
           </h2>
         </div>
@@ -182,7 +185,6 @@
             </div>
           <% end %>
         <% end %>
-      </div>
+      </section>
     <% end %>
-  </div>
 </div>

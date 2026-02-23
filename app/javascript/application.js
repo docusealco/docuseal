@@ -155,7 +155,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
     this.app = createApp(TemplateBuilder, {
       template: reactive(JSON.parse(this.dataset.template)),
-      backgroundColor: '#faf7f5',
+      backgroundColor: '#FFFFFF',
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
       withVerification: ['true', 'false'].includes(this.dataset.withVerification) ? this.dataset.withVerification === 'true' : null,
@@ -171,9 +171,10 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
       withGoogleDrive: this.dataset.withGoogleDrive === 'true',
+      withAddPageButton: true,
       withReplaceAndCloneUpload: true,
       withDownload: true,
-      currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
+      caurrencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true'
     })

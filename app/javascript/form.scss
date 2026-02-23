@@ -31,36 +31,36 @@ button[disabled] .enabled, button.btn-disabled .enabled {
   display: none;
 }
 
-.input-bordered {
-  @apply border-base-content/20;
-}
-
-.select-bordered {
-  @apply border-base-content/20;
-}
-
+.input-bordered,
+.select-bordered,
 .textarea-bordered {
-  @apply border-base-content/20;
+  @apply border-base-content/15 transition-all duration-200;
 }
 
-.base-textarea {
-  @apply textarea textarea-bordered bg-white rounded-3xl;
-}
-
-.btn {
-  @apply no-animation;
+.input-bordered:focus,
+.select-bordered:focus,
+.textarea-bordered:focus {
+  @apply border-primary outline-none ring-2 ring-primary/20;
 }
 
 .base-input {
-  @apply input input-bordered bg-white;
+  @apply input input-bordered bg-white h-11 px-4 text-base rounded-lg font-normal transition-all duration-200;
+}
+
+.base-textarea {
+  @apply textarea textarea-bordered bg-white rounded-lg px-4 py-3 text-base font-normal transition-all duration-200 min-h-[100px];
+}
+
+.btn {
+  @apply transition-all duration-200 font-medium;
 }
 
 .base-button {
-  @apply btn btn-neutral text-white text-base;
+  @apply btn btn-primary text-primary-content text-base px-6 h-11 rounded-lg hover:opacity-90 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2;
 }
 
 .white-button {
-  @apply btn btn-outline text-base bg-white border-2;
+  @apply btn btn-outline text-base bg-white border-2 border-base-300 rounded-lg px-6 h-11 hover:bg-base-200 hover:border-base-content/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 transition-all duration-200;
 }
 
 .base-checkbox {

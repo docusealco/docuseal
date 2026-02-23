@@ -4,7 +4,7 @@
 #
 # Table name: webhook_events
 #
-#  id             :bigint           not null, primary key
+#  id             :integer          not null, primary key
 #  event_type     :string           not null
 #  record_type    :string           not null
 #  status         :string           not null
@@ -17,7 +17,7 @@
 #
 # Indexes
 #
-#  index_webhook_events_error                       (webhook_url_id,id) WHERE ((status)::text = 'error'::text)
+#  index_webhook_events_error                       (webhook_url_id,id) WHERE status = 'error'
 #  index_webhook_events_on_uuid_and_webhook_url_id  (uuid,webhook_url_id) UNIQUE
 #  index_webhook_events_on_webhook_url_id_and_id    (webhook_url_id,id)
 #

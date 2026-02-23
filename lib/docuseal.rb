@@ -62,7 +62,8 @@ module Docuseal
   end
 
   def advanced_formats?
-    multitenant?
+    # Enable advanced formats (DOCX, etc.) in development or if multitenant
+    Rails.env.development? || multitenant?
   end
 
   def demo?

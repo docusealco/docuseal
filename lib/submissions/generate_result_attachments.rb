@@ -196,6 +196,8 @@ module Submissions
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
                                                                       with_signature_id_reason:)
+
+      rasterize_redacted_pages(submitter.submission, pdfs_index)
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
@@ -269,7 +271,7 @@ module Submissions
 
           layouter = HexaPDF::Layout::TextLayouter.new(text_valign:, text_align:, font:, font_size:)
 
-          next if Array.wrap(value).compact_blank.blank?
+          next if Array.wrap(value).compact_blank.blank? && field['type'] != 'redact'
 
           if is_flatten
             begin
@@ -632,6 +634,15 @@ module Submissions
                 c.stroke
               end
             end
+          when 'redact'
+            area_x = area['x'] * width
+            area_y = area['y'] * height
+            area_w = area['w'] * width
+            area_h = area['h'] * height
+
+            canvas.fill_color('black')
+                  .rectangle(area_x, height - area_y - area_h, area_w, area_h)
+                  .fill
           else
             if field['type'] == 'date'
               value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale)
@@ -903,6 +914,81 @@ module Submissions
       io.rewind
 
       HexaPDF::Document.new(io:)
+    end
+
+    REDACT_RENDER_SCALE = 2
+
+    def pages_with_redactions(submission)
+      fields = submission.template_fields || submission.template.fields
+      acc = Hash.new { |h, k| h[k] = [] }
+      fields.each do |field|
+        next unless field['type'] == 'redact'
+
+        field.fetch('areas', []).each do |area|
+          next unless area['attachment_uuid'].present? && area['page'].present?
+
+          acc[area['attachment_uuid']] << area['page']
+        end
+      end
+      acc.transform_values { |a| a.uniq.sort.reverse }
+    end
+
+    def rasterize_redacted_pages(submission, pdfs_index)
+      redacted_by_uuid = pages_with_redactions(submission)
+
+      pdfs_index.each_key do |attachment_uuid|
+        page_indices = redacted_by_uuid[attachment_uuid]
+        next if page_indices.blank?
+
+        pdf = pdfs_index[attachment_uuid]
+        next unless pdf.is_a?(HexaPDF::Document)
+
+        pdfs_index[attachment_uuid] = build_pdf_with_rasterized_redactions(pdf, page_indices)
+      end
+    end
+
+    def build_pdf_with_rasterized_redactions(original_pdf, redacted_page_indices)
+      redacted_set = redacted_page_indices.to_set
+      io = StringIO.new
+      original_pdf.write(io, incremental: false, validate: false)
+      pdf_bytes = io.string
+
+      result = HexaPDF::Document.new
+      original_pdf.pages.each_with_index do |page, page_index|
+        page_to_add = if redacted_set.include?(page_index)
+                        rasterized_page_from_pdf_bytes(pdf_bytes, page_index, page.box.width, page.box.height)
+                      end
+        page_to_add ||= page
+        result.pages.insert(page_index, result.import(page_to_add))
+      end
+      result
+    rescue Pdfium::PdfiumError, Vips::Error => e
+      Rollbar.error(e) if defined?(Rollbar)
+      original_pdf
+    end
+
+    def rasterized_page_from_pdf_bytes(pdf_bytes, page_index, page_width_pt, page_height_pt)
+      pdfium_doc = Pdfium::Document.open_bytes(pdf_bytes)
+      pdfium_page = pdfium_doc.get_page(page_index)
+      data, render_width, render_height = pdfium_page.render_to_bitmap(scale: REDACT_RENDER_SCALE)
+      pdfium_page.close
+      pdfium_doc.close
+
+      vips_image = Vips::Image.new_from_memory(data, render_width, render_height, 4, :uchar)
+      vips_image = vips_image.copy(interpretation: :srgb)
+      png_data = vips_image.write_to_buffer('.png')
+
+      new_doc = HexaPDF::Document.new
+      new_page = new_doc.pages.add
+      new_page.box.width = page_width_pt
+      new_page.box.height = page_height_pt
+      new_page.canvas.image(
+        StringIO.new(png_data),
+        at: [0, 0],
+        width: page_width_pt,
+        height: page_height_pt
+      )
+      new_page
     end
 
     def sign_reason(name)

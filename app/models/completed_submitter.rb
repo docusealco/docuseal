@@ -4,7 +4,7 @@
 #
 # Table name: completed_submitters
 #
-#  id                  :bigint           not null, primary key
+#  id                  :integer          not null, primary key
 #  completed_at        :datetime         not null
 #  is_first            :boolean
 #  sms_count           :integer          not null
@@ -19,9 +19,9 @@
 #
 # Indexes
 #
-#  index_completed_submitters_account_id_completed_at_is_first  (account_id,completed_at) WHERE (is_first = true)
+#  index_completed_submitters_account_id_completed_at_is_first  (account_id,completed_at) WHERE is_first = TRUE
 #  index_completed_submitters_on_account_id_and_completed_at    (account_id,completed_at)
-#  index_completed_submitters_on_submission_id                  (submission_id) UNIQUE WHERE (is_first = true)
+#  index_completed_submitters_on_submission_id                  (submission_id) UNIQUE WHERE is_first = TRUE
 #  index_completed_submitters_on_submitter_id                   (submitter_id) UNIQUE
 #
 class CompletedSubmitter < ApplicationRecord

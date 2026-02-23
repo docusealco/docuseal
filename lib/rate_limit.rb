@@ -8,6 +8,8 @@ module RateLimit
   module_function
 
   def call(key, limit:, ttl:, enabled: Docuseal.multitenant?)
+    # Disable rate limiting in development
+    return true if Rails.env.development?
     return true unless enabled
 
     value = STORE.increment(key, 1, expires_in: ttl)

@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  id                     :integer          not null, primary key
 #  archived_at            :datetime
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
@@ -32,7 +32,7 @@
 #  uuid                   :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  account_id             :bigint           not null
+#  account_id             :integer          not null
 #
 # Indexes
 #
@@ -44,7 +44,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (account_id => accounts.id)
+#  account_id  (account_id => accounts.id)
 #
 class User < ApplicationRecord
   ROLES = [

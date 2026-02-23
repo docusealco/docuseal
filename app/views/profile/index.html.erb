@@ -1,9 +1,9 @@
-<div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
-  <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-base-content">
       <%= t('profile') %>
     </h1>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('personal_details', default: 'Personal Details') %></h2>
     <%= form_for current_user, url: update_contact_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="form-control">
@@ -28,10 +28,10 @@
         <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button' %>
       </div>
     <% end %>
+    </section>
     <%= render 'email_configs' %>
-    <p class="text-2xl font-bold mt-8 mb-4">
-      <%= t('signature') %>
-    </p>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('signature') %></h2>
     <% signature = UserConfigs.load_signature(current_user) %>
     <% if signature %>
       <div class="flex justify-center mb-4 relative">
@@ -42,9 +42,9 @@
     <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
       <%= t('update_signature') %>
     </a>
-    <p class="text-2xl font-bold mt-8 mb-4">
-      <%= t('initials') %>
-    </p>
+    </section>
+    <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('initials') %></h2>
     <% initials = UserConfigs.load_initials(current_user) %>
     <% if initials %>
       <div class="flex justify-center mb-4 relative">
@@ -55,10 +55,10 @@
     <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">
       <%= t('update_initials') %>
     </a>
+    </section>
     <% if true_user == current_user && !current_account.testing? %>
-      <p class="text-2xl font-bold mt-8 mb-4">
-        <%= t('change_password') %>
-      </p>
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('change_password') %></h2>
       <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off' } do |f| %>
         <%= f.label :password, t('new_password'), class: 'label' %>
         <%= f.password_field :password, autocomplete: 'off', class: 'base-input peer w-full', required: true %>
@@ -82,9 +82,9 @@
         </div>
       <% end %>
       <%= button_to nil, user_send_reset_password_path(current_user), id: 'resend_password_button', method: :put, class: 'hidden', data: { turbo_confirm: t('are_you_sure_') } %>
-      <p class="text-2xl font-bold mt-8 mb-4">
-        <%= t('two_factor_authentication') %>
-      </p>
+      </section>
+      <section class="bg-base-100 rounded-xl border border-base-300 p-6 md:p-8 shadow-soft">
+      <h2 class="text-lg font-semibold text-base-content mb-5"><%= t('two_factor_authentication') %></h2>
       <div class="space-y-4">
         <% if current_user.otp_required_for_login %>
           <p class="flex items-center space-x-1">
@@ -104,7 +104,6 @@
           <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
         <% end %>
       </div>
+      </section>
     <% end %>
-  </div>
-  <div class="w-0 md:w-52"></div>
 </div>
