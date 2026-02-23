@@ -57,7 +57,8 @@ class TemplatesPreferencesController < ApplicationController
                       require_all_submitters submitters_order require_phone_2fa require_email_2fa
                       default_expire_at_duration shared_link_2fa default_expire_at request_email_enabled
                       completed_notification_email_subject completed_notification_email_body
-                      completed_notification_email_enabled completed_notification_email_attach_audit] +
+                      completed_notification_email_enabled completed_notification_email_attach_audit
+                      carry_forward_attributes] +
                       [completed_message: %i[title body],
                        submitters: [%i[uuid request_email_subject request_email_body]], link_form_fields: []]
     ).tap do |attrs|
