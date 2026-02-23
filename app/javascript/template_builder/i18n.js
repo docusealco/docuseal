@@ -193,7 +193,7 @@ const en = {
   learn_more: 'Learn more',
   and: 'and',
   or: 'or',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start a quick tour to learn how to create an send your first document',
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start a quick tour to learn how to create and send your first document',
   start_tour: 'Start Tour',
   or_add_from: 'Or add from',
   sync: 'Sync',

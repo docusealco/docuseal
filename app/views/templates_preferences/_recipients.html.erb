@@ -7,8 +7,8 @@
   <div class="space-y-3 divide-y">
     <% template.submitters.each_with_index do |submitter, index| %>
       <div class="<%= 'pt-3' if index.positive? %>">
-        <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :optional_invite_by_uuid, :linked_to_uuid, :order, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'optional_invite_by_uuid', 'linked_to_uuid', 'order')), index: do |ff| %>
-          <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : (item.invite_by_uuid.present? ? "invite_by_#{item.invite_by_uuid}" : (item.optional_invite_by_uuid.present? ? "optional_invite_by_#{item.optional_invite_by_uuid}" : '')))) %>
+        <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :invite_via_field_uuid, :optional_invite_by_uuid, :linked_to_uuid, :order, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'invite_via_field_uuid', 'optional_invite_by_uuid', 'linked_to_uuid', 'order')), index: do |ff| %>
+          <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : (item.invite_by_uuid.present? ? "invite_by_#{item.invite_by_uuid}" : (item.optional_invite_by_uuid.present? ? "optional_invite_by_#{item.optional_invite_by_uuid}" : (item.invite_via_field_uuid.present? ? 'invite_via_field' : ''))))) %>
           <%= ff.hidden_field :uuid %>
           <div class="form-control">
             <div class="flex justify-between">
@@ -26,35 +26,71 @@
               <% end %>
             </div>
             <% if template.submitters.size == 2 %>
-              <%= tag.input name: ff.field_name(:email), value: ff.object.email, type: :email, class: 'base-input', multiple: true, autocomplete: 'off', placeholder: t('default_email'), disabled: ff.object.is_requester || ff.object.invite_by_uuid.present? || ff.object.optional_invite_by_uuid.present?, id: field_uuid = SecureRandom.uuid %>
+              <%= tag.input name: ff.field_name(:email), value: ff.object.email, type: :email, multiple: true, autocomplete: 'off', placeholder: t('default_email'), id: email_field_uuid = SecureRandom.uuid, disabled: is_email_disabled = ff.object.is_requester || ff.object.invite_by_uuid.present? || ff.object.optional_invite_by_uuid.present? || ff.object.invite_via_field_uuid.present?, class: "base-input w-full #{'hidden' if ff.object.invite_by_uuid.present? || ff.object.optional_invite_by_uuid.present? || ff.object.invite_via_field_uuid.present?}" %>
+              <% if index == 1 %>
+                <% invite_fields = template.fields.select { |field| field['name'].present? && field['submitter_uuid'] != submitter['uuid'] } %>
+                <disable-hidden id="<%= invite_by_selector_id = SecureRandom.uuid %>" class="<%= 'hidden' if ff.object.invite_by_uuid.blank? && ff.object.optional_invite_by_uuid.blank? && ff.object.invite_via_field_uuid.blank? %>">
+                  <toggle-attribute data-target-id="<%= invite_via_field_selector_id = SecureRandom.uuid %>" data-class-name="hidden" data-value="invite_via_field">
+                    <%= ff.select :option, [*(template.submitters - [submitter]).flat_map { |e| [[t('invite_by_name', name: e['name']), "invite_by_#{e['uuid']}"], [t('invite_by_name', name: e['name']) + " (#{t(:optional).capitalize})", "optional_invite_by_#{e['uuid']}"]] }, (invite_fields.present? ? [t('invite_via_form_field'), 'invite_via_field'] : nil)].compact, {}, class: 'base-select' %>
+                  </toggle-attribute>
+                  <% if invite_fields.present? %>
+                    <disable-hidden id="<%= invite_via_field_selector_id %>" class="mt-2 <%= 'hidden' if ff.object.invite_via_field_uuid.blank? %>">
+                      <%= select_tag ff.field_name(:invite_via_field_uuid), options_for_select(invite_fields.map { |field| [field['name'], field['uuid']] }, ff.object.invite_via_field_uuid), prompt: t(:select_field), class: 'base-select mt-3' %>
+                    </disable-hidden>
+                  <% end %>
+                </disable-hidden>
+              <% end %>
             <% else %>
+              <% invite_fields = template.fields.select { |field| field['name'].present? && field['submitter_uuid'] != submitter['uuid'] } %>
               <toggle-attribute data-target-id="<%= email_field_uuid = SecureRandom.uuid %>" data-class-name="hidden" data-value="email">
-                <%= ff.select :option, [[t('not_specified'), 'not_set'], (local_assigns[:with_submission_requester] == false ? nil : [t('submission_requester'), 'is_requester']), [t('specified_email'), 'email'], *(template.submitters - [submitter]).flat_map { |e| [[t('invite_by_name', name: e['name']), "invite_by_#{e['uuid']}"], [t('invite_by_name', name: e['name']) + " (#{t(:optional).capitalize})", "optional_invite_by_#{e['uuid']}"]] }, *(template.submitters - [submitter]).map { |e| [t('same_as_name', name: e['name']), "linked_to_#{e['uuid']}"] }].compact, {}, class: 'base-select mb-3' %>
+                <toggle-attribute data-target-id="<%= invite_field_wrapper_uuid = SecureRandom.uuid %>" data-class-name="hidden" data-value="invite_via_field">
+                  <%= ff.select :option, [[t('not_specified'), 'not_set'], (local_assigns[:with_submission_requester] == false ? nil : [t('submission_requester'), 'is_requester']), [t('specified_email'), 'email'], *(template.submitters - [submitter]).flat_map { |e| [[t('invite_by_name', name: e['name']), "invite_by_#{e['uuid']}"], [t('invite_by_name', name: e['name']) + " (#{t(:optional).capitalize})", "optional_invite_by_#{e['uuid']}"]] }, *(template.submitters - [submitter]).map { |e| [t('same_as_name', name: e['name']), "linked_to_#{e['uuid']}"] }, (invite_fields.present? ? [t('invite_via_form_field'), 'invite_via_field'] : nil)].compact, {}, class: 'base-select mb-3' %>
+                </toggle-attribute>
               </toggle-attribute>
               <%= tag.input name: ff.field_name(:email), type: :email, value: ff.object.email, multiple: true, class: "base-input #{'hidden' if item.option != 'email'}", autocomplete: 'off', placeholder: t('default_email'), id: email_field_uuid %>
+              <% if invite_fields.present? %>
+                <disable-hidden id="<%= invite_field_wrapper_uuid %>" class="<%= 'hidden' if item.option != 'invite_via_field' %>">
+                  <%= select_tag ff.field_name(:invite_via_field_uuid), options_for_select(invite_fields.map { |field| [field['name'], field['uuid']] }, item.invite_via_field_uuid), prompt: t(:select_field), class: 'base-select', required: true %>
+                </disable-hidden>
+              <% end %>
             <% end %>
           </div>
           <% if template.submitters.size == 2 %>
             <checkbox-group class="mt-3 flex items-center space-x-4">
-              <% if local_assigns[:with_submission_requester] != false %>
+              <% if index == 0 && local_assigns[:with_submission_requester] != false %>
                 <label class="flex items-center space-x-2 cursor-pointer">
-                  <toggle-attribute data-target-id="<%= field_uuid %>" class="flex" data-attribute="disabled">
+                  <toggle-attribute data-target-id="<%= email_field_uuid %>" class="flex" data-attribute="disabled">
                     <%= ff.check_box :is_requester, class: 'base-checkbox' %>
                   </toggle-attribute>
                   <span class="select-none">
                     <%= t('submission_requester') %>
                   </span>
                 </label>
-              <% end %>
-              <% if index == 1 %>
+              <% elsif index == 1 %>
+                <% if local_assigns[:with_submission_requester] != false %>
+                  <toggle-classes data-target-id="<%= invite_by_selector_id %>" class="flex" data-classes="hidden" data-action="add">
+                    <toggle-classes data-target-id="<%= email_field_uuid %>" class="flex" data-classes="hidden" data-action="remove">
+                      <label class="flex items-center space-x-2 cursor-pointer">
+                        <toggle-attribute data-target-id="<%= email_field_uuid %>" class="flex" data-attribute="disabled">
+                          <%= ff.check_box :is_requester, class: 'base-checkbox' %>
+                        </toggle-attribute>
+                        <span class="select-none">
+                          <%= t('submission_requester') %>
+                        </span>
+                      </label>
+                    </toggle-classes>
+                  </toggle-classes>
+                <% end %>
                 <label class="flex items-center space-x-2 cursor-pointer">
-                  <toggle-attribute data-target-id="<%= field_uuid %>" class="flex" data-attribute="disabled">
-                    <indeterminate-checkbox data-indeterminate="<%= ff.object.optional_invite_by_uuid.present? %>" data-show-indeterminate-id="invite_optional" data-name="<%= ff.field_name(:invite_by_uuid) %>" data-indeterminate-name="<%= ff.field_name(:optional_invite_by_uuid) %>" class="flex">
-                      <%= ff.check_box ff.object.optional_invite_by_uuid.present? ? :optional_invite_by_uuid : :invite_by_uuid, { class: 'base-checkbox' }, template.submitters.first['uuid'], '' %>
-                    </indeterminate-checkbox>
+                  <toggle-attribute data-target-id="<%= email_field_uuid %>" class="flex" data-class-name="hidden" data-value="false">
+                    <toggle-attribute data-target-id="<%= invite_by_selector_id %>" class="flex" data-class-name="hidden">
+                      <toggle-attribute data-target-id="<%= email_field_uuid %>" class="flex" data-attribute="disabled">
+                        <%= ff.check_box :invite_checbox, { class: 'base-checkbox', checked: ff.object.invite_by_uuid.present? || ff.object.optional_invite_by_uuid.present? || ff.object.invite_via_field_uuid.present? }, true, '' %>
+                      </toggle-attribute>
+                    </toggle-attribute>
                   </toggle-attribute>
                   <span class="select-none">
-                    <%= t('invite_by_name', name: template.submitters.first['name']) %> <span id="invite_optional" class="<%= 'hidden' if ff.object.optional_invite_by_uuid.blank? %>">(<%= t(:optional).capitalize %>)</span>
+                    <%= t('invite_by_name', name: template.submitters.first['name']) %>
                   </span>
                 </label>
               <% end %>

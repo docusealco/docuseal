@@ -44,7 +44,7 @@ en: &en
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Click here</label> to send a reset password email.'
   edit_order: Edit Order
   expirable_file_download_links: Expirable file download links
-  invite_form_fields: Invite form fields
+  sender_form_fields: Sender form fields
   default_parties: Default parties
   authenticate_embedded_form_preview_with_token: Authenticate embedded form preview with token
   stripe_integration: Stripe Integration
@@ -218,7 +218,7 @@ en: &en
   copy: Copy
   copied: Copied
   rotate: Rotate
-  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Remove existing API token and generated a new one. Are you sure?
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Remove existing API token and generate a new one. Are you sure?
   request_signature_multiple_submitters_with_default_values: Request signature, multiple submitters with default values
   request_signature_single_submitter: Request signature, single submitter
   template_details: Template details
@@ -330,8 +330,8 @@ en: &en
   initials: Initials
   update_initials: Update Initials
   unable_to_save_initials: Unable to save initials.
-  initials_has_been_saved: Initials has been saved.
-  initials_has_been_removed: Initials has been removed.
+  initials_has_been_saved: Initials have been saved.
+  initials_has_been_removed: Initials have been removed.
   change_password: Change Password
   two_factor_authentication: Two-Factor Authentication
   2fa_is_not_configured: 2FA is not configured
@@ -388,7 +388,7 @@ en: &en
   from: From
   account_sid: Account SID
   send_sms_via_webhook: Send SMS via webhook
-  webhook_integration_allows_to_send_sms_using_any_provider: Webhook integration allows to send SMS using any provider
+  webhook_integration_allows_to_send_sms_using_any_provider: Webhook integration allows you to send SMS using any provider
   test: Test
   single_sign_on_with_saml_2_0: Single Sign On with SAML 2.0
   force_sso_disable_login_with_email_and_password: Force SSO (disable login with email and password)
@@ -420,7 +420,7 @@ en: &en
   send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with DocuSeal Pro
   count_emails_used: '%{count} emails used'
   has_been_connected: has been connected
-  sms_not_configured: SMS not Configure
+  sms_not_configured: SMS not Configured
   configure_sms_settings_in_order_to_send_text_messages_: 'Configure SMS settings in order to send text messages:'
   go_to_sms_settings: Go to SMS settings
   back_to_active: Back to Active
@@ -500,6 +500,7 @@ en: &en
   submission_requester: Submission requester
   specified_email: Specified email
   invite_by_name: 'Invite by %{name}'
+  invite_via_form_field: Invite via Form Field
   same_as_name: 'Same as %{name}'
   default_email: Default Email
   processing: Processing
@@ -596,7 +597,7 @@ en: &en
   upload_file: Upload file
   upgrade_your_plan_to_invite_more_users_contact_email: 'Upgrade your plan to invite more users (contact %{email}).'
   contact_your_admin_email_to_invite_more_users: 'Contact your admin %{email} to invite more users.'
-  contact_your_administrator_to_add_new_users: Contact your administrator to add new user
+  contact_your_administrator_to_add_new_users: Contact your administrator to add new users
   one_hour: 1 hour
   two_hours: 2 hours
   four_hours: 4 hours
@@ -625,7 +626,7 @@ en: &en
   personalize_email_content: Personalize email content
   automated_reminders: Automated reminders
   bulk_send_from_spreadsheet: Bulk send from spreadsheet
-  identify_verification_via_sms: Identify verification via SMS
+  identify_verification_via_sms: Identity verification via SMS
   start_with_pro: Start with Pro
   user_month: user / month
   developer_sandbox: Developer Sandbox.
@@ -737,7 +738,7 @@ en: &en
   find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
   get_started: Get started
   click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
-  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request email.'
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request emails.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Test mode emails limit will be reset within 24 hours.
   on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: On a scale of 1 to 10, how satisfied are you with the DocuSeal product?
   tell_us_more_about_your_experience: Tell us more about your experience
@@ -755,7 +756,7 @@ en: &en
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   welcome_to_docuseal: Welcome to DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create an send your first document
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create and send your first document
   start_tour: Start Tour
   name_a_z: Name A-Z
   recently_used: Recently used
@@ -815,7 +816,7 @@ en: &en
   connect_gmail_or_outlook: Connect Gmail or Outlook
   connect_your_email_to_bulk_send: Connect your email to bulk send
   connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Connect your Gmail or Outlook account or add SMTP settings to bulk send.
-  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails it requires to connect Gmail or Outlook.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Are you sure you want to add recipients without sending? To send emails you need to connect Gmail or Outlook.
   template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" has been completed by <strong>{submission.submitters}</strong>'
   please_check_the_copy_of_your_template_name_in_the_email_attachments_html: 'Please check the copy of your "<strong>{template.name}</strong>" in the email attachments.'
   you_have_been_invited_to_sign_the_template_name_html: 'You have been invited to sign the "<strong>{template.name}</strong>".'
@@ -886,6 +887,13 @@ en: &en
   if_you_didnt_request_this_you_can_ignore_this_email: "If you didn't request this, please ignore this email."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Your password won't change until you open the link above and set a new one."
   too_many_requests_try_again_later: Too many requests, try again later.
+  bold: Bold
+  italic: Italic
+  underline: Underline
+  undo: Undo
+  redo: Redo
+  add_variable: Add variable
+  enter_a_url_or_variable_name: Enter a URL or variable name
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1002,6 +1010,16 @@ en: &en
     events:
       range_with_total: "%{from}-%{to} of %{count} events"
       range_without_total: "%{from}-%{to} events"
+  variables:
+    account_name: Account name
+    submitter_link: Submitter link
+    template_name: Template name
+    submission_submitters: Submitters list
+    submission_link: Submission link
+    documents_link: Documents link
+  time:
+    formats:
+      detailed: "%B %d, %Y %H:%M:%S"
 
 es: &es
   knowledge_based_authentication: Autenticación basada en el conocimiento
@@ -1022,7 +1040,7 @@ es: &es
   party: Parte
   edit_order: Edita Pedido
   select: Seleccionar
-  invite_form_fields: Invitar campos del formulario
+  sender_form_fields: Campos del formulario del remitente
   pro: Pro
   default_parties: Partes predeterminadas
   authenticate_embedded_form_preview_with_token: Autenticar vista previa del formulario incrustado con token
@@ -1487,6 +1505,7 @@ es: &es
   submission_requester: Solicitante del envío
   specified_email: Correo electrónico especificado
   invite_by_name: 'Invitar por %{name}'
+  invite_via_form_field: Invitar a través de campo del formulario
   same_as_name: 'Igual que %{name}'
   default_email: Correo electrónico predeterminado
   processing: Procesando
@@ -1870,6 +1889,13 @@ es: &es
   if_you_didnt_request_this_you_can_ignore_this_email: "Si no solicitaste esto, puedes ignorar este correo electrónico."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Tu contraseña no cambiará hasta que abras el enlace anterior y establezcas una nueva."
   too_many_requests_try_again_later: Demasiadas solicitudes. Intenta de nuevo más tarde.
+  bold: Negrita
+  italic: Cursiva
+  underline: Subrayado
+  undo: Deshacer
+  redo: Rehacer
+  add_variable: Agregar variable
+  enter_a_url_or_variable_name: Ingrese una URL o nombre de variable
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -1986,6 +2012,16 @@ es: &es
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  variables:
+    account_name: Nombre de la cuenta
+    submitter_link: Enlace del firmante
+    template_name: Nombre de la plantilla
+    submission_submitters: Lista de firmantes
+    submission_link: Enlace del envío
+    documents_link: Enlace de los documentos
+  time:
+    formats:
+      detailed: "%-d de %B de %Y %H:%M:%S"
 
 it: &it
   knowledge_based_authentication: Autenticazione basata sulla conoscenza
@@ -2006,7 +2042,7 @@ it: &it
   party: Parte
   edit_order: Modifica Ordine
   select: Seleziona
-  invite_form_fields: Invita campi modulo
+  sender_form_fields: Campi del modulo del mittente
   pro: Pro
   default_parties: Parti predefiniti
   authenticate_embedded_form_preview_with_token: "Autentica l'anteprima del modulo incorporato con il token"
@@ -2471,6 +2507,7 @@ it: &it
   submission_requester: "Richiedente dell'invio"
   specified_email: Email specificata
   invite_by_name: 'Invito da %{name}'
+  invite_via_form_field: Invito tramite campo del modulo
   same_as_name: 'Uguale a %{name}'
   default_email: Email predefinita
   processing: Elaborazione in corso
@@ -2855,6 +2892,13 @@ it: &it
   if_you_didnt_request_this_you_can_ignore_this_email: "Se non hai richiesto questo, puoi ignorare questa email."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "La tua password non cambierà finché non apri il link sopra e ne imposti una nuova."
   too_many_requests_try_again_later: Troppe richieste. Riprova più tardi.
+  bold: Grassetto
+  italic: Corsivo
+  underline: Sottolineato
+  undo: Annulla
+  redo: Ripeti
+  add_variable: Aggiungi variabile
+  enter_a_url_or_variable_name: Inserisci un URL o nome variabile
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -2971,6 +3015,16 @@ it: &it
     events:
       range_with_total: "%{from}-%{to} di %{count} eventi"
       range_without_total: "%{from}-%{to} eventi"
+  variables:
+    account_name: Nome dell'account
+    submitter_link: Link del firmatario
+    template_name: Nome del modello
+    submission_submitters: Lista dei firmatari
+    submission_link: Link dell'invio
+    documents_link: Link dei documenti
+  time:
+    formats:
+      detailed: "%d %B %Y %H:%M:%S"
 
 fr: &fr
   knowledge_based_authentication: Authentification basée sur la connaissance
@@ -2991,7 +3045,7 @@ fr: &fr
   party: Partie
   edit_order: Modifier l’ordre
   select: Sélectionner
-  invite_form_fields: Champs du formulaire d’invitation
+  sender_form_fields: Champs du formulaire de l’expéditeur
   pro: Pro
   default_parties: Parties par défaut
   authenticate_embedded_form_preview_with_token: Authentifier l’aperçu du formulaire intégré avec un jeton
@@ -3456,6 +3510,7 @@ fr: &fr
   submission_requester: Demandeur de soumission
   specified_email: E‑mail spécifié
   invite_by_name: Inviter par %{name}
+  invite_via_form_field: Inviter via champ du formulaire
   same_as_name: Identique à %{name}
   default_email: E‑mail par défaut
   processing: Traitement en cours
@@ -3836,6 +3891,13 @@ fr: &fr
   if_you_didnt_request_this_you_can_ignore_this_email: "Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Votre mot de passe ne changera pas tant que vous n’aurez pas ouvert le lien ci-dessus et défini un nouveau mot de passe."
   too_many_requests_try_again_later: Trop de demandes. Réessayez plus tard.
+  bold: Gras
+  italic: Italique
+  underline: Souligné
+  undo: Annuler
+  redo: Rétablir
+  add_variable: Ajouter une variable
+  enter_a_url_or_variable_name: Entrez une URL ou un nom de variable
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -3952,6 +4014,16 @@ fr: &fr
     events:
       range_with_total: "%{from}-%{to} sur %{count} événements"
       range_without_total: "%{from}-%{to} événements"
+  variables:
+    account_name: Nom du compte
+    submitter_link: Lien du signataire
+    template_name: Nom du modèle
+    submission_submitters: Liste des signataires
+    submission_link: Lien de la soumission
+    documents_link: Lien des documents
+  time:
+    formats:
+      detailed: "%A %d %B %Y %Hh%Mm%Ss"
 
 pt: &pt
   knowledge_based_authentication: Autenticação baseada em conhecimento
@@ -3972,7 +4044,7 @@ pt: &pt
   party: Parte
   edit_order: Edita Pedido
   select: Selecionar
-  invite_form_fields: Convidar campos do formulário
+  sender_form_fields: Campos do formulário do remetente
   pro: Pro
   default_parties: Partes padrão
   authenticate_embedded_form_preview_with_token: Autenticar visualização incorporada do formulário com token
@@ -4437,6 +4509,7 @@ pt: &pt
   submission_requester: Solicitante de submissão
   specified_email: E-mail especificado
   invite_by_name: 'Convidado por %{name}'
+  invite_via_form_field: Convidar via campo do formulário
   same_as_name: 'Igual a %{name}'
   default_email: E-mail padrão
   processing: Processando
@@ -4820,6 +4893,13 @@ pt: &pt
   if_you_didnt_request_this_you_can_ignore_this_email: "Se você não solicitou isso, pode ignorar este e-mail."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Sua senha não será alterada até que você abra o link acima e defina uma nova."
   too_many_requests_try_again_later: Muitas solicitações. Tente novamente mais tarde.
+  bold: Negrito
+  italic: Itálico
+  underline: Sublinhado
+  undo: Desfazer
+  redo: Refazer
+  add_variable: Adicionar variável
+  enter_a_url_or_variable_name: Digite uma URL ou nome de variável
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -4936,6 +5016,16 @@ pt: &pt
     events:
       range_with_total: "%{from}-%{to} de %{count} eventos"
       range_without_total: "%{from}-%{to} eventos"
+  variables:
+    account_name: Nome da conta
+    submitter_link: Link do signatário
+    template_name: Nome do modelo
+    submission_submitters: Lista de signatários
+    submission_link: Link da submissão
+    documents_link: Link dos documentos
+  time:
+    formats:
+      detailed: "%A, %d de %B de %Y, %H:%M:%Sh"
 
 de: &de
   knowledge_based_authentication: Wissensbasierte Authentifizierung
@@ -4965,7 +5055,7 @@ de: &de
   click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Klicken Sie hier</label>, um eine E-Mail zum Zurücksetzen des Passworts zu senden.'
   edit_order: Bestellung bearbeiten
   expirable_file_download_links: Ablaufbare Datei-Download-Links
-  invite_form_fields: Einladungsformular-Felder
+  sender_form_fields: Absenderformular-Felder
   default_parties: Standardparteien
   authenticate_embedded_form_preview_with_token: Eingebettete Formularvorschau mit Token authentifizieren
   stripe_integration: Stripe-Integration
@@ -5421,6 +5511,7 @@ de: &de
   submission_requester: Anfragende Person
   specified_email: Angegebene E-Mail
   invite_by_name: 'Einladung von %{name}'
+  invite_via_form_field: Einladung über Formularfeld
   same_as_name: 'Gleich wie %{name}'
   default_email: Standard-E-Mail
   processing: Verarbeitung
@@ -5804,6 +5895,13 @@ de: &de
   if_you_didnt_request_this_you_can_ignore_this_email: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Ihr Passwort wird erst geändert, wenn Sie den obigen Link öffnen und ein neues festlegen."
   too_many_requests_try_again_later: Zu viele Anfragen. Versuchen Sie es später erneut.
+  bold: Fett
+  italic: Kursiv
+  underline: Unterstrichen
+  undo: Rückgängig
+  redo: Wiederholen
+  add_variable: Variable hinzufügen
+  enter_a_url_or_variable_name: Geben Sie eine URL oder einen Variablennamen ein
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -5920,6 +6018,16 @@ de: &de
     events:
       range_with_total: "%{from}-%{to} von %{count} Ereignissen"
       range_without_total: "%{from}-%{to} Ereignisse"
+  variables:
+    account_name: Kontoname
+    submitter_link: Link des Unterzeichners
+    template_name: Vorlagenname
+    submission_submitters: Liste der Unterzeichner
+    submission_link: Link der Einreichung
+    documents_link: Link der Dokumente
+  time:
+    formats:
+      detailed: "%A, %d. %B %Y, %H:%M:%S Uhr"
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
@@ -6337,7 +6445,7 @@ nl: &nl
   click_here_to_send_a_reset_password_email_html: <label class="link" for="resend_password_button">Klik hier</label> om een e-mail voor wachtwoordherstel te verzenden.
   edit_order: Volgorde bewerken
   expirable_file_download_links: Verlopende downloadlinks voor bestanden
-  invite_form_fields: Velden van uitnodigingsformulier
+  sender_form_fields: Velden van afzenderformulier
   default_parties: Standaard partijen
   authenticate_embedded_form_preview_with_token: Preview van ingesloten formulier authenticeren met token
   stripe_integration: Stripe-integratie
@@ -6794,6 +6902,7 @@ nl: &nl
   submission_requester: Aanvrager van inzending
   specified_email: Opgegeven e-mail
   invite_by_name: Uitnodigen door %{name}
+  invite_via_form_field: Uitnodigen via formulierveld
   same_as_name: Zelfde als %{name}
   default_email: Standaard e-mail
   processing: Verwerken
@@ -7173,6 +7282,13 @@ nl: &nl
   if_you_didnt_request_this_you_can_ignore_this_email: "Als je dit niet hebt aangevraagd, kun je deze e-mail negeren."
   your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: "Je wachtwoord wordt niet gewijzigd totdat je de bovenstaande link opent en een nieuw wachtwoord instelt."
   too_many_requests_try_again_later: Te veel verzoeken. Probeer het later opnieuw.
+  bold: Vet
+  italic: Cursief
+  underline: Onderstreept
+  undo: Ongedaan maken
+  redo: Opnieuw
+  add_variable: Variabele toevoegen
+  enter_a_url_or_variable_name: Voer een URL of variabelenaam in
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
@@ -7289,6 +7405,16 @@ nl: &nl
     events:
       range_with_total: "%{from}-%{to} van %{count} gebeurtenissen"
       range_without_total: "%{from}-%{to} gebeurtenissen"
+  variables:
+    account_name: Accountnaam
+    submitter_link: Link van de ondertekenaar
+    template_name: Sjabloonnaam
+    submission_submitters: Lijst van ondertekenaars
+    submission_link: Link van de inzending
+    documents_link: Link van de documenten
+  time:
+    formats:
+      detailed: "%d %B %Y %H:%M:%S"
 
 ar:
   require_phone_2fa_to_open: "تطلب فتح عبر تحقق الهاتف ذو العاملين"
@@ -7586,12 +7712,18 @@ en-US:
   date:
     formats:
       default: "%m/%d/%Y"
+  time:
+    formats:
+      detailed: "%B %d, %Y %I:%M:%S %p"
 
 en-GB:
   <<: *en
   date:
     formats:
       default: "%d/%m/%Y"
+  time:
+    formats:
+      detailed: "%d %B, %Y %H:%M:%S"
 
 es-ES:
   <<: *es

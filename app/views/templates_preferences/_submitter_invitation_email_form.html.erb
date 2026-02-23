@@ -27,15 +27,8 @@
           <%= ff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="form-control">
-          <div class="flex items-center">
-            <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
-            <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-            </span>
-          </div>
-          <autoresize-textarea>
-            <%= ff.text_area :request_email_body, required: true, class: 'base-input w-full py-2 !rounded-2xl', dir: 'auto' %>
-          </autoresize-textarea>
+          <%= ff.label :request_email_body, t('email_body'), class: 'label' %>
+          <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:request_email_body), value: ff.object.request_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY] %>
         </div>
       <% end %>
     </div>
@@ -52,38 +45,28 @@
             <% end %>
           </ul>
         </toggle-visible>
-        <%= f.fields_for :preferences do |ff| %>
-          <% @template.submitters.each_with_index do |submitter, index| %>
-            <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
-              <% submitter_preferences = f.object.preferences['submitters'].to_a.find { |e| e['uuid'] == submitter['uuid'] } || {} %>
-              <% submitter_email_preferences_values = submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence %>
-              <%= ff.fields_for :submitters, Struct.new(:request_email_subject, :request_email_body).new(*(submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence || template_email_preferences_values.presence || default_template_email_preferences_values)), index: nil do |fff| %>
-                <%= fff.hidden_field :uuid, value: submitter['uuid'] %>
-                <div class="form-control">
-                  <div class="flex justify-between">
-                    <%= fff.label :request_email_subject, t('email_subject'), class: 'label' %>
-                    <% if submitter_email_preferences_values.present? %>
-                      <label for="submitter_invitation_email_reset_link" class="label underline">
-                        <%= t('reset_default') %>
-                      </label>
-                    <% end %>
-                  </div>
-                  <%= fff.text_field :request_email_subject, required: true, class: 'base-input', dir: 'auto' %>
-                </div>
-                <div class="form-control">
-                  <div class="flex items-center">
-                    <%= fff.label :request_email_body, t('email_body'), class: 'label' %>
-                    <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-                      <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-                    </span>
-                  </div>
-                  <autoresize-textarea>
-                    <%= fff.text_area :request_email_body, required: true, class: 'base-input w-full py-2', dir: 'auto' %>
-                  </autoresize-textarea>
-                </div>
-              <% end %>
+        <% @template.submitters.each_with_index do |submitter, index| %>
+          <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
+            <% submitter_preferences = f.object.preferences['submitters'].to_a.find { |e| e['uuid'] == submitter['uuid'] } || {} %>
+            <% submitter_email_preferences_values = submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence %>
+            <% submitter_email_values = submitter_email_preferences_values || template_email_preferences_values.presence || default_template_email_preferences_values %>
+            <%= hidden_field_tag 'template[preferences][submitters][][uuid]', submitter['uuid'] %>
+            <div class="form-control">
+              <div class="flex justify-between">
+                <label class="label"><%= t('email_subject') %></label>
+                <% if submitter_email_preferences_values.present? %>
+                  <label for="submitter_invitation_email_reset_link" class="label underline">
+                    <%= t('reset_default') %>
+                  </label>
+                <% end %>
+              </div>
+              <%= text_field_tag 'template[preferences][submitters][][request_email_subject]', submitter_email_values.first, required: true, class: 'base-input', dir: 'auto', autocomplete: 'off' %>
             </div>
-          <% end %>
+            <div class="form-control">
+              <label class="label"><%= t('email_body') %></label>
+              <%= render 'personalization_settings/markdown_editor', name: 'template[preferences][submitters][][request_email_body]', value: submitter_email_values.last, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY] %>
+            </div>
+          </div>
         <% end %>
       </div>
     <% end %>

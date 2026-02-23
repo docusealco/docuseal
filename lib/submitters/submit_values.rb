@@ -6,6 +6,7 @@ module Submitters
     RequiredFieldError = Class.new(StandardError)
 
     VARIABLE_REGEXP = /\{\{?(\w+)\}\}?/
+    PHONE_REGEXP = /[+\d()\s-]+/
     NONEDITABLE_FIELD_TYPES = %w[stamp heading strikethrough].freeze
 
     STRFTIME_MAP = {
@@ -45,14 +46,18 @@ module Submitters
       assign_completed_attributes(submitter, request, validate_required:) if params[:completed] == 'true'
 
       ApplicationRecord.transaction do
-        maybe_set_signature_reason!(values, submitter, params)
-        validate_values!(values, submitter, params, request)
+        reason_field = maybe_set_signature_reason!(values, submitter, params)
+        validate_values!(reason_field ? values.except(reason_field['uuid']) : values, submitter, params, request)
 
         if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
           ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
         end
 
-        SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request) if params[:completed] == 'true'
+        if params[:completed] == 'true'
+          maybe_invite_via_field(submitter, request)
+
+          SubmissionEvents.create_with_tracking_data(submitter, 'complete_form', request)
+        end
 
         submitter.save!
       end
@@ -107,7 +112,9 @@ module Submitters
       signature_field['preferences'] ||= {}
       signature_field['preferences']['reason_field_uuid'] = reason_field_uuid
 
-      unless submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
+      reason_field = submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
+
+      unless reason_field
         reason_field = { 'type' => 'text',
                          'uuid' => reason_field_uuid,
                          'name' => I18n.t(:reason),
@@ -119,6 +126,8 @@ module Submitters
       end
 
       submitter.submission.save!
+
+      reason_field
     end
 
     def normalized_values(params)
@@ -403,7 +412,54 @@ module Submitters
       end
     end
 
-    def validate_value!(_value, _field, _params, _submitter, _request)
+    def maybe_invite_via_field(submitter, request)
+      submission = submitter.submission
+
+      is_invited = false
+
+      submission.template_submitters.each do |s|
+        field_uuid = s['invite_via_field_uuid']
+
+        next if field_uuid.blank?
+
+        field = submission.template_fields.find { |e| e['uuid'] == field_uuid }
+
+        next unless field
+        next unless field['submitter_uuid'] == submitter.uuid
+
+        next if submission.submitters.exists?(uuid: s['uuid'])
+
+        value = submitter.values[field_uuid]
+
+        next if value.blank?
+
+        if value.include?('@')
+          email = Submissions.normalize_email(value)
+        elsif value.match?(PHONE_REGEXP)
+          phone = value.gsub(/[^+\d]/, '')
+        end
+
+        next if email.blank? && phone.blank?
+
+        submission.submitters.create!(uuid: s['uuid'], email:, phone:, account_id: submitter.account_id)
+
+        SubmissionEvents.create_with_tracking_data(submitter, 'invite_party', request, { uuid: submitter.uuid })
+
+        is_invited = true
+      end
+
+      submission.update!(submitters_order: :preserved) if is_invited
+
+      submitter
+    end
+
+    def validate_value!(_value, field, _params, submitter, _request)
+      if field['readonly'] == true
+        Rollbar.warning("Readonly field #{submitter.id}: #{field['uuid']}") if defined?(Rollbar)
+
+        raise ValidationError, 'Read-only field'
+      end
+
       true
     end
   end

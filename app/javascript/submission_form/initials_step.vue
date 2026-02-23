@@ -150,6 +150,7 @@
 
 <script>
 import { cropCanvasAndExportToPNG } from './crop_canvas'
+import { isCanvasBlocked } from './validate_signature'
 import { IconReload, IconTextSize, IconUpload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
@@ -419,7 +420,15 @@ export default {
           }
         }).catch((error) => {
           if (this.field.required === true) {
-            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            if (isCanvasBlocked()) {
+              alert(this.t('browser_privacy_settings_block_canvas'))
+
+              if (window.Rollbar) {
+                window.Rollbar.info('Canvas blocked')
+              }
+            } else {
+              alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            }
 
             return reject(error)
           } else {

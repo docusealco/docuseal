@@ -94,7 +94,7 @@
                   <span class="mr-1"><%= t('send_to_recipients') %></span>
                 <% end %>
               <% end %>
-              <% if @template.submitters.size == 1 %>
+              <% if Templates.filter_undefined_submitters(@template.submitters).size == 1 %>
                 <%= button_to start_form_path(@template.slug), params: { selfsign: true }, method: :put, class: 'white-button w-full', form: { style: 'display: inline', target: '_blank', data: { turbo: false } } do %>
                   <%= svg_icon('writing', class: 'w-6 h-6') %>
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>

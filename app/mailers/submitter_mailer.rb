@@ -14,12 +14,7 @@ class SubmitterMailer < ApplicationMailer
       @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
     end
 
-    template_submitters_index =
-      if @email_message.blank?
-        build_submitter_preferences_index(@submitter)
-      else
-        {}
-      end
+    template_submitters_index = @email_message.blank? ? build_submitter_preferences_index(@submitter) : {}
 
     @body = @email_message&.body.presence ||
             template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence ||
@@ -35,6 +30,8 @@ class SubmitterMailer < ApplicationMailer
     assign_message_metadata('submitter_invitation', @submitter)
 
     reply_to = build_submitter_reply_to(@submitter)
+
+    maybe_set_custom_domain(@submitter)
 
     I18n.with_locale(@current_account.locale) do
       subject = build_invite_subject(@subject, @email_config, submitter)
@@ -132,6 +129,8 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_documents_copy', @submitter)
     reply_to = build_submitter_reply_to(submitter, email_config: @email_config, documents_copy_email: true)
+
+    maybe_set_custom_domain(@submitter)
 
     I18n.with_locale(@current_account.locale) do
       subject =
@@ -261,5 +260,11 @@ class SubmitterMailer < ApplicationMailer
 
   def fetch_config_email_body(email_config, _submitter = nil)
     email_config ? email_config.value['body'].presence : nil
+  end
+
+  def maybe_set_custom_domain(submitter)
+    if Docuseal.multitenant? && (config = AccountConfig.find_by(account_id: submitter.account_id, key: :custom_domain))
+      @custom_domain = config.value
+    end
   end
 end

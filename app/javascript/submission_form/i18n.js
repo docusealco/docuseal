@@ -1,7 +1,7 @@
 const en = {
   kba: 'KBA',
   please_upload_an_image_file: 'Please upload an image file',
-  must_be_characters_length: 'Must be {number} characters length',
+  must_be_characters_length: 'Must be {number} characters long',
   complete_all_required_fields_to_proceed_with_identity_verification: 'Complete all required fields to proceed with identity verification.',
   verify_id: 'Verify ID',
   identity_verification: 'Identity verification',
@@ -97,6 +97,7 @@ const en = {
   upload: 'Upload',
   files: 'Files',
   signature_is_too_small_or_simple_please_redraw: 'Signature is too small or simple. Please redraw.',
+  browser_privacy_settings_block_canvas: 'Your browser privacy settings restrict use of the drawing canvas. Please use a different browser or device, or disable privacy settings that block canvas in order to sign.',
   wait_countdown_seconds: 'Wait {countdown} seconds'
 }
 
@@ -199,6 +200,7 @@ const es = {
   upload: 'Subir',
   files: 'Archivos',
   signature_is_too_small_or_simple_please_redraw: 'La firma es demasiado pequeña o simple. Por favor, vuelve a dibujarla.',
+  browser_privacy_settings_block_canvas: 'La configuración de privacidad de su navegador restringe el uso del lienzo de dibujo. Utilice un navegador o dispositivo diferente, o desactive la configuración de privacidad que bloquea el lienzo para firmar.',
   wait_countdown_seconds: 'Espera {countdown} segundos'
 }
 
@@ -301,6 +303,7 @@ const it = {
   upload: 'Carica',
   files: 'File',
   signature_is_too_small_or_simple_please_redraw: 'La firma è troppo piccola o semplice. Ridisegnala, per favore.',
+  browser_privacy_settings_block_canvas: 'Le impostazioni sulla privacy del browser limitano l\'uso dell\'area di disegno. Utilizza un browser o dispositivo diverso oppure disattiva le impostazioni sulla privacy che bloccano il canvas per firmare.',
   wait_countdown_seconds: 'Attendi {countdown} secondi'
 }
 
@@ -403,6 +406,7 @@ const de = {
   upload: 'Hochladen',
   files: 'Dateien',
   signature_is_too_small_or_simple_please_redraw: 'Die Unterschrift ist zu klein oder zu einfach. Bitte neu zeichnen.',
+  browser_privacy_settings_block_canvas: 'Die Datenschutzeinstellungen Ihres Browsers schränken die Nutzung der Zeichenfläche ein. Bitte verwenden Sie einen anderen Browser oder ein anderes Gerät oder deaktivieren Sie die Datenschutzeinstellungen, die Canvas blockieren, um zu unterschreiben.',
   wait_countdown_seconds: 'Bitte {countdown} Sekunden warten'
 }
 
@@ -505,6 +509,7 @@ const fr = {
   upload: 'Téléverser',
   files: 'Fichiers',
   signature_is_too_small_or_simple_please_redraw: 'La signature est trop petite ou trop simple. Veuillez la redessiner.',
+  browser_privacy_settings_block_canvas: 'Les paramètres de confidentialité de votre navigateur empêchent l\'utilisation du canevas de dessin. Veuillez utiliser un autre navigateur ou appareil, ou désactiver les paramètres de confidentialité qui bloquent le canevas pour signer.',
   wait_countdown_seconds: 'Veuillez patienter {countdown} secondes'
 }
 
@@ -607,6 +612,7 @@ const pl = {
   upload: 'Przesyłanie',
   files: 'Pliki',
   signature_is_too_small_or_simple_please_redraw: 'Podpis jest zbyt mały lub zbyt prosty. Proszę narysować go ponownie.',
+  browser_privacy_settings_block_canvas: 'Ustawienia prywatności przeglądarki blokują użycie obszaru rysowania. Użyj innej przeglądarki lub urządzenia albo wyłącz ustawienia prywatności blokujące canvas, aby podpisać.',
   wait_countdown_seconds: 'Poczekaj {countdown} sekund'
 }
 
@@ -709,6 +715,7 @@ const uk = {
   upload: 'Завантажити',
   files: 'Файли',
   signature_is_too_small_or_simple_please_redraw: 'Підпис занадто маленький або надто простий. Будь ласка, перемалюйте.',
+  browser_privacy_settings_block_canvas: 'Налаштування конфіденційності вашого браузера блокують використання полотна для малювання. Будь ласка, скористайтеся іншим браузером або пристроєм, або вимкніть налаштування конфіденційності, що блокують canvas, щоб підписати.',
   wait_countdown_seconds: 'Зачекайте {countdown} секунд'
 }
 
@@ -811,6 +818,7 @@ const cs = {
   upload: 'Nahrát',
   files: 'Soubory',
   signature_is_too_small_or_simple_please_redraw: 'Podpis je příliš malý nebo jednoduchý. Nakreslete jej prosím znovu.',
+  browser_privacy_settings_block_canvas: 'Nastavení soukromí vašeho prohlížeče omezuje použití kreslicího plátna. Použijte prosím jiný prohlížeč nebo zařízení, nebo vypněte nastavení soukromí blokující canvas pro podepsání.',
   wait_countdown_seconds: 'Počkejte {countdown} sekund'
 }
 
@@ -913,6 +921,7 @@ const pt = {
   upload: 'Carregar',
   files: 'Arquivos',
   signature_is_too_small_or_simple_please_redraw: 'A assinatura é muito pequena ou simples. Por favor, redesenhe.',
+  browser_privacy_settings_block_canvas: 'As configurações de privacidade do seu navegador restringem o uso da área de desenho. Use um navegador ou dispositivo diferente, ou desative as configurações de privacidade que bloqueiam o canvas para assinar.',
   wait_countdown_seconds: 'Aguarde {countdown} segundos'
 }
 
@@ -1015,6 +1024,7 @@ const he = {
   upload: 'העלאה',
   files: 'קבצים',
   signature_is_too_small_or_simple_please_redraw: 'החתימה קטנה או פשוטה מדי. אנא חתום מחדש.',
+  browser_privacy_settings_block_canvas: 'הגדרות הפרטיות של הדפדפן שלך מגבילות את השימוש באזור הציור. אנא השתמש בדפדפן או מכשיר אחר, או בטל את הגדרות הפרטיות החוסמות canvas כדי לחתום.',
   wait_countdown_seconds: 'המתן {countdown} שניות'
 }
 
@@ -1117,6 +1127,7 @@ const nl = {
   upload: 'Uploaden',
   files: 'Bestanden',
   signature_is_too_small_or_simple_please_redraw: 'De handtekening is te klein of te eenvoudig. Teken opnieuw.',
+  browser_privacy_settings_block_canvas: 'De privacyinstellingen van uw browser beperken het gebruik van het tekenveld. Gebruik een andere browser of ander apparaat, of schakel de privacyinstellingen uit die canvas blokkeren om te ondertekenen.',
   wait_countdown_seconds: 'Wacht {countdown} seconden'
 }
 
@@ -1219,6 +1230,7 @@ const ar = {
   upload: 'تحميل',
   files: 'الملفات',
   signature_is_too_small_or_simple_please_redraw: 'التوقيع صغير جدًا أو بسيط جدًا. يرجى إعادة رسمه.',
+  browser_privacy_settings_block_canvas: 'إعدادات الخصوصية في متصفحك تمنع استخدام لوحة الرسم. يرجى استخدام متصفح أو جهاز مختلف، أو تعطيل إعدادات الخصوصية التي تحظر canvas للتوقيع.',
   wait_countdown_seconds: 'انتظر {countdown} ثانية'
 }
 
@@ -1321,6 +1333,7 @@ const ko = {
   upload: '업로드',
   files: '파일',
   signature_is_too_small_or_simple_please_redraw: '서명이 너무 작거나 단순합니다. 다시 그려주세요.',
+  browser_privacy_settings_block_canvas: '브라우저 개인정보 보호 설정으로 인해 그리기 캔버스를 사용할 수 없습니다. 다른 브라우저나 기기를 사용하거나, 서명을 위해 캔버스를 차단하는 개인정보 보호 설정을 비활성화해 주세요.',
   wait_countdown_seconds: '{countdown}초 기다리세요'
 }
 
@@ -1423,6 +1436,7 @@ const ja = {
   upload: 'アップロード',
   files: 'ファイル',
   signature_is_too_small_or_simple_please_redraw: '署名が小さすぎるか単純すぎます。もう一度描いてください。',
+  browser_privacy_settings_block_canvas: 'ブラウザのプライバシー設定により、描画キャンバスの使用が制限されています。別のブラウザまたはデバイスを使用するか、署名するためにキャンバスをブロックするプライバシー設定を無効にしてください。',
   wait_countdown_seconds: '{countdown} 秒お待ちください'
 }
 

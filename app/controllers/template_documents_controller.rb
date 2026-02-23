@@ -6,7 +6,7 @@ class TemplateDocumentsController < ApplicationController
   FILES_TTL = 5.minutes
 
   def index
-    render json: @template.schema_documents.map { |d| ActiveStorage::Blob.proxy_url(d.blob, expires_at: FILES_TTL.from_now.to_i) }
+    render json: @template.schema_documents.map { |d| ActiveStorage::Blob.proxy_path(d.blob, expires_at: FILES_TTL.from_now.to_i) }
   end
 
   def create

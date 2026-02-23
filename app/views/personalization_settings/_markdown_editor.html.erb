@@ -1,0 +1,70 @@
+<% link_tooltip_html = capture do %>
+  <div class="hidden absolute flex bg-white border border-base-300 rounded-xl shadow p-1 gap-1 items-center z-50" contenteditable="false">
+    <input type="text" placeholder="<%= t('enter_a_url_or_variable_name') %>" class="rounded-lg border border-base-300 px-2 py-1 text-sm outline-none" style="field-sizing: content; min-width: 205px; max-width: 320px;" autocomplete="off">
+    <button type="button" data-role="link-save" class="flex items-center px-1 w-6 h-6 rounded hover:bg-success/10 cursor-pointer">
+      <%= svg_icon('check', class: 'w-4 h-4 text-success') %>
+    </button>
+    <button type="button" data-role="link-remove" class="flex items-center px-1 w-6 h-6 rounded hover:bg-error/10 cursor-pointer">
+      <%= svg_icon('x', class: 'w-4 h-4 text-error') %>
+    </button>
+  </div>
+<% end %>
+<markdown-editor data-link-tooltip-html="<%= link_tooltip_html.squish %>">
+  <div class="border border-base-content/20 rounded-2xl bg-white">
+    <div class="flex items-center px-2 py-2 border-b" style="height: 42px;">
+      <div class="flex items-center gap-1">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('bold') %> (Ctrl+B)">
+          <button type="button" data-action="click:markdown-editor#bold" data-target="markdown-editor.boldButton" aria-label="<%= t('bold') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('bold', class: 'w-4 h-4') %>
+          </button>
+        </div>
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('italic') %> (Ctrl+I)">
+          <button type="button" data-action="click:markdown-editor#italic" data-target="markdown-editor.italicButton" aria-label="<%= t('italic') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('italic', class: 'w-4 h-4') %>
+          </button>
+        </div>
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('underline') %> (Ctrl+U)">
+          <button type="button" data-action="click:markdown-editor#underline" data-target="markdown-editor.underlineButton" aria-label="<%= t('underline') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('underline', class: 'w-4 h-4') %>
+          </button>
+        </div>
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('link') %> (Ctrl+K)">
+          <button type="button" data-action="click:markdown-editor#linkSelection" data-target="markdown-editor.linkButton" aria-label="<%= t('link') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('link', class: 'w-4 h-4') %>
+          </button>
+        </div>
+      </div>
+      <div class="mx-2 h-5 border-l border-base-content/20"></div>
+      <div class="flex items-center gap-1">
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('undo') %> (Ctrl+Z)">
+          <button type="button" data-action="click:markdown-editor#undo" data-target="markdown-editor.undoButton" aria-label="<%= t('undo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('arrow_back_up', class: 'w-4 h-4') %>
+          </button>
+        </div>
+        <div class="tooltip tooltip-top before:text-xs" data-tip="<%= t('redo') %> (Ctrl+Shift+Z)">
+          <button type="button" data-action="click:markdown-editor#redo" data-target="markdown-editor.redoButton" aria-label="<%= t('redo') %>" class="flex items-center px-1 w-6 h-6 rounded hover:bg-base-300">
+            <%= svg_icon('arrow_forward_up', class: 'w-4 h-4') %>
+          </button>
+        </div>
+      </div>
+      <% if local_assigns[:variables]&.any? %>
+        <% variable_labels = { 'account.name' => t('variables.account_name'), 'submitter.link' => t('variables.submitter_link'), 'template.name' => t('variables.template_name'), 'submission.submitters' => t('variables.submission_submitters'), 'submission.link' => t('variables.submission_link'), 'documents.link' => t('variables.documents_link') } %>
+        <div class="dropdown dropdown-end ml-auto">
+          <label tabindex="0" class="flex items-center gap-1 text-sm px-2 py-1 rounded hover:bg-base-200 cursor-pointer">
+            <%= t('add_variable') %>
+            <%= svg_icon('chevron_down', class: 'w-3.5 h-3.5') %>
+          </label>
+          <div tabindex="0" class="dropdown-content right-0 top-full mt-1 p-1 bg-white border border-neutral-200 rounded-lg shadow-lg z-50">
+            <% local_assigns[:variables]&.each do |variable| %>
+              <button type="button" data-variable="<%= variable %>" data-action="click:markdown-editor#insertVariable" class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 text-left text-sm cursor-pointer whitespace-nowrap">
+                <%= variable_labels.fetch(variable, "{#{variable}}") %>
+              </button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div data-target="markdown-editor.editorElement"></div>
+  </div>
+  <%= hidden_field_tag name, value, required: true, data: { target: 'markdown-editor.textarea' } %>
+</markdown-editor>

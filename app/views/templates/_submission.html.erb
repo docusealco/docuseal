@@ -81,7 +81,7 @@
         <% elsif !submission.archived_at? && !template&.archived_at? && !submission.expired? && !submitter.declined_at? %>
           <% if current_user.email == submitter.email %>
             <div class="flex-1 md:flex-none md:w-36 flex">
-              <a href="<%= submit_form_url(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex z-[1]">
+              <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-sm btn-neutral btn-outline bg-white w-full md:w-36 flex z-[1]">
                 <span class="flex items-center justify-center space-x-1 md:space-x-2">
                   <% if t('sign_now').length < 12 %>
                     <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
@@ -167,7 +167,7 @@
                 <% elsif !template&.archived_at? && !submission.archived_at? && !is_submission_completed && !submission.expired? && !submitter.declined_at? %>
                   <div class="relative flex items-center space-x-3">
                     <% if current_user.email == submitter.email %>
-                      <a href="<%= submit_form_url(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="absolute md:relative top-0 right-0 btn btn-xs btn-outline btn-neutral bg-white w-28 md:w-36 z-[1]">
+                      <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="absolute md:relative top-0 right-0 btn btn-xs btn-outline btn-neutral bg-white w-28 md:w-36 z-[1]">
                         <span class="flex items-center justify-center space-x-1 md:space-x-2">
                           <% if t('sign_now').length < 12 %>
                             <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>

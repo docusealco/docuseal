@@ -5,7 +5,7 @@
   <p><%= t('please_check_the_copy_of_your_name_in_the_email_attachments', name: @submitter.submission.name || @submitter.submission.template.name) %>
   <p><%= t('alternatively_you_can_review_and_download_your_copy_using_the_link_below') %></p>
   <p>
-    <%= link_to @submitter.submission.name || @submitter.submission.template.name, submissions_preview_url(@submitter.submission.slug, { sig: @sig }.compact) %>
+    <%= link_to @submitter.submission.name || @submitter.submission.template.name, submissions_preview_url(@submitter.submission.slug, { sig: @sig, host: @custom_domain || ENV.fetch('EMAIL_HOST', Docuseal.default_url_options[:host]) }.compact) %>
   </p>
   <p>
   <%= t('thanks') %>,<br><%= @current_account.name %>

@@ -28,7 +28,8 @@
           <% end %>
           <div>
             <% timezone = local_assigns[:with_submitter_timezone] ? (submitter.timezone || local_assigns[:timezone]) : local_assigns[:timezone] %>
-            <%= l(attachment.created_at.in_time_zone(timezone), format: :long, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(timezone, attachment.created_at) %>
+            <% time_format = local_assigns[:with_timestamp_seconds] ? :detailed : :long %>
+            <%= l(attachment.created_at.in_time_zone(timezone), format: time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(timezone, attachment.created_at) %>
           </div>
         </div>
       <% end %>

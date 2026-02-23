@@ -80,7 +80,7 @@
                   <% next if field['conditions'].present? && values[field['uuid']].blank? && field['submitter_uuid'] != @submitter.uuid %>
                   <% next if field['conditions'].present? && field['submitter_uuid'] == @submitter.uuid %>
                   <% next if field.dig('preferences', 'formula').present? && field['submitter_uuid'] == @submitter.uuid %>
-                  <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index: @attachments_index, value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id], with_submitter_timezone: @form_configs[:with_submitter_timezone], with_signature_id_reason: @form_configs[:with_signature_id_reason] %>
+                  <%= render 'submissions/value', page_width: width, page_height: height, font_scale:, area:, field:, attachments_index: @attachments_index, value: field.dig('preferences', 'mask').present? ? TextUtils.mask_value(value, field.dig('preferences', 'mask')) : value, locale: @submitter.account.locale, timezone: @submitter.account.timezone, submitter: submitters_index[field['submitter_uuid']], with_signature_id: @form_configs[:with_signature_id], with_submitter_timezone: @form_configs[:with_submitter_timezone], with_timestamp_seconds: @form_configs[:with_timestamp_seconds], with_signature_id_reason: @form_configs[:with_signature_id_reason] %>
                 <% end %>
               </div>
             </page-container>
@@ -91,7 +91,7 @@
       <% if @form_configs[:policy_links].present? %>
         <div class="text-center md:text-neutral-500 md:pr-3 md:pb-3 md:text-sm md:text-left mt-2 md:mt-0 md:fixed md:bottom-0 md:right-0">
           <div class="md:max-w-[8rem] flex flex-wrap md:flex-col justify-center md:justify-start md:items-start space-x-2 md:space-x-0">
-            <%= auto_link(MarkdownToHtml.call(@form_configs[:policy_links])) %>
+            <%= MarkdownToHtml.call(@form_configs[:policy_links]) %>
           </div>
         </div>
       <% end %>
