@@ -153,7 +153,7 @@ export default actionable(targetable(class extends HTMLElement {
 
     const buildDecorations = (doc) => {
       const decorations = []
-      const regex = /\{[a-zA-Z0-9_.-]+\}/g
+      const regex = /\{\{?[a-zA-Z0-9_.-]+\}\}?/g
 
       doc.descendants((node, pos) => {
         if (!node.isText) return
