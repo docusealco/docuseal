@@ -36,15 +36,11 @@ function loadTiptap () {
 }
 
 class LinkTooltip {
-  constructor (container, editor) {
+  constructor (container, editor, templateEl) {
     this.container = container
     this.editor = editor
 
-    const template = document.createElement('template')
-
-    template.innerHTML = container.dataset.linkTooltipHtml
-
-    this.tooltip = template.content.firstElementChild
+    this.tooltip = templateEl.content.firstElementChild.cloneNode(true)
 
     this.input = this.tooltip.querySelector('input')
     this.saveButton = this.tooltip.querySelector('[data-role="link-save"]')
@@ -140,7 +136,8 @@ export default actionable(targetable(class extends HTMLElement {
     'boldButton',
     'italicButton',
     'underlineButton',
-    'linkButton'
+    'linkButton',
+    'linkTooltipTemplate'
   ]
 
   async connectedCallback () {
@@ -256,7 +253,7 @@ export default actionable(targetable(class extends HTMLElement {
       }
     })
 
-    this.linkTooltip = new LinkTooltip(this, this.editor)
+    this.linkTooltip = new LinkTooltip(this, this.editor, this.linkTooltipTemplate)
   }
 
   adjustShortcutsForPlatform () {
