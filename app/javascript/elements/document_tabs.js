@@ -18,10 +18,10 @@ export default class extends HTMLElement {
       const isSelected = tab === selectedTab
       tab.setAttribute('aria-selected', isSelected ? 'true' : 'false')
       tab.setAttribute('tabindex', isSelected ? '0' : '-1')
-      tab.classList.toggle('border-primary', isSelected)
-      tab.classList.toggle('text-primary', isSelected)
+      tab.classList.toggle('border-neutral', isSelected)
+      tab.classList.toggle('font-semibold', isSelected)
       tab.classList.toggle('border-transparent', !isSelected)
-      tab.classList.toggle('text-base-content', !isSelected)
+      tab.classList.toggle('font-medium', !isSelected)
     })
     this._panels.forEach((panel) => {
       panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls')
