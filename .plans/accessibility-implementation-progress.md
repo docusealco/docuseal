@@ -310,13 +310,68 @@ a3109c63 - Add ARIA labels to icon-only buttons across the application
 The PDF/Text tab switcher (both ERB and Vue versions) is WCAG-compliant per the audit.
 
 ### Recommended Next Steps (Priority Order)
-1. Fix viewport meta tag — 1 line change, critical impact
-2. Fix form.html.erb: add lang attribute + skip link — 2 line changes
-3. Replace alert()/prompt() with live regions — 5 files
-4. Add modal focus management to turbo_modal.js
-5. Add labels to signature form controls
-6. Fix text-gray-100 on dark backgrounds in _embedding.html.erb
-7. Fix outline-none focus:ring-0 on inputs — restore focus visibility
-8. Fix duplicate id="decline_button"
-9. Change modal close `<a>` to `<button>`
-10. Add H1 to submit form page
+✅ 1. Fix viewport meta tag — DONE (commit e41dd557)
+✅ 2. Fix form.html.erb: add lang attribute + skip link — DONE
+✅ 3. Replace alert()/prompt() with live regions — DONE (aria_announce.js utility)
+✅ 4. Add modal focus management to turbo_modal.js — DONE
+✅ 5. Add labels to signature form controls — DONE
+✅ 6. Fix text-gray-100 on dark backgrounds in _embedding.html.erb — DONE
+✅ 7. Fix outline-none focus:ring-0 on inputs — DONE
+✅ 8. Fix duplicate id="decline_button" — DONE
+✅ 9. Change modal close `<a>` to `<button>` — DONE
+✅ 10. Add H1 to submit form page — DONE
+
+---
+
+## Session: WCAG 2.1 AA Sprint 1 Remediation (2026-02-25)
+
+### Completed (Commit e41dd557)
+
+All 7 critical (C1–C7) and most high (H1–H6, L10) issues from the audit now fixed.
+
+| Issue | Fix | Files |
+|-------|-----|-------|
+| C1 viewport zoom | Removed `maximum-scale` and `user-scalable=no` | `layouts/application.html.erb` |
+| C2 focus indicators | Replaced `outline-none focus:ring-0` with ring classes | 7 files |
+| C3 modal focus | Focus trap, dialog role, aria-modal, aria-labelledby, focus restore | `turbo_modal.js`, 2 ERB partials |
+| C4/C6 alert/prompt | New `aria_announce.js` utility; custom password dialog; Vue live region | 5 JS files |
+| C5 form labels | `aria-label` on checkbox, radio, signature input, signing reason select | `area.vue`, `signature_step.vue` |
+| C7 low contrast | `text-gray-100` → `text-white` on dark code blocks | `_embedding.html.erb` |
+| H1 heading | Submission name div → `<h1>` | `submit_form/show.html.erb` |
+| H3 skip link | Added skip link to `form.html.erb` pointing to `#scrollbox` | `layouts/form.html.erb` |
+| H4 low contrast | `text-gray-300/400` → `text-gray-600` on light backgrounds | 5 files |
+| H5 button semantics | Modal close `<a>` → `<button>` | 2 turbo_modal ERB partials |
+| H6 duplicate IDs | `decline_button` → `_header`/`_scroll` variants | `submit_form/show.html.erb` |
+| L10 label close | Added `role="button" tabindex="0"` to html_modal label close | `_html_modal.html.erb` |
+
+### Remaining Issues (Sprint 2 — Medium Priority)
+
+From audit report `.reports/wcag-2.1-aa-audit.md`:
+
+**High (H7, H8 not yet fixed):**
+- H7: Navbar DaisyUI dropdown — no Enter/Space/Escape/Arrow keyboard handling, no aria-expanded
+- H8: Canvas elements lack fallback text (signature drawing pad)
+
+**Medium (M1–M11):**
+- M1: Color-only submitter indicators (submissions/show.html.erb)
+- M2: Color-only field type indicators (template_builder/area.vue)
+- M3: Contenteditable field name lacks ARIA role/attributes (area.vue)
+- M4: toggle_visible/field_condition — no aria-expanded/aria-hidden
+- M5: Password visibility toggle — no aria-label/aria-pressed update
+- M6: dynamic_list — no focus management on add/remove
+- M7: Clipboard copy — no "copied" announcement via live region
+- M8: Profile form — no inline validation error messages
+- M9: Placeholder opacity too low in contenteditable (area.vue)
+- M10: Icon-only buttons still missing aria-label in some components
+- M11: QR code appearance not announced
+
+**Low (L1–L9, L11–L13) deferred to backlog.**
+
+### Next Session Recommendations
+
+1. **H7**: Add keyboard handling to DaisyUI navbar dropdown (Enter/Space/Escape/Arrow keys + aria-expanded)
+2. **H8**: Add fallback text to signature canvas
+3. **M7**: Add "Copied to clipboard" live region in clipboard_copy.js (quick win)
+4. **M3**: Add role="textbox" aria-multiline="false" aria-label to contenteditable in area.vue
+5. **M4**: Add aria-expanded to toggle_visible.js triggers
+6. **Manual test**: Verify focus trap in turbo_modal with keyboard-only navigation
