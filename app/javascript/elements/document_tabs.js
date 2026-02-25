@@ -21,7 +21,7 @@ export default class extends HTMLElement {
       tab.classList.toggle('border-primary', isSelected)
       tab.classList.toggle('text-primary', isSelected)
       tab.classList.toggle('border-transparent', !isSelected)
-      tab.classList.toggle('text-base-content/60', !isSelected)
+      tab.classList.toggle('text-base-content', !isSelected)
     })
     this._panels.forEach((panel) => {
       panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls')
