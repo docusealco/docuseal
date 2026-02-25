@@ -209,3 +209,56 @@ a3109c63 - Add ARIA labels to icon-only buttons across the application
 - `app/views/submit_form/show.html.erb` - Added alt text to 1 image
 
 **Total Lines Changed**: ~50 lines (additions/modifications)
+
+---
+
+## Session Summary - 2026-02-25 (PDF View/Text View Tab Switcher)
+
+### Completed: PDF View / Text View Tab Switcher (branch: extract-content-from-pdf)
+
+✅ **Create `lib/pdf_text_to_html.rb` heuristic parser**
+- ALL_CAPS lines → `<h2>`, numbered headings (`^\d+\. [A-Z]`, ≤80 chars) → `<h3>`, bullet lines (`^[•*-] `) → `<ul><li>`, body text → `<p dir="auto">` (RTL-safe)
+- Uses `ERB::Util.html_escape` for XSS safety; refactored into `call` + `process_line` to satisfy rubocop MethodLength
+- Rubocop clean, verified against NDA-style sample text
+
+✅ **Create `app/javascript/elements/document_tabs.js`** custom element
+- ARIA APG tab pattern: `role="tab"`, `role="tabpanel"`, `aria-selected`, `aria-controls`
+- Roving tabindex, ArrowLeft/Right/Home/End keyboard navigation
+- `localStorage` key `docuseal_document_view` for Turbo Drive persistence
+- Active state classes toggled via `classList.toggle` (DaisyUI-compatible)
+- ESLint clean
+
+✅ **Register element in `app/javascript/application.js`**
+
+✅ **Add 5 i18n keys to `config/locales/i18n.yml`**
+- `pdf_view`, `text_view`, `document_view_options`, `text_view_disclaimer`, `signing_fields_below`
+
+✅ **Add tab switcher to `app/views/submissions/show.html.erb`**
+- `has_full_text` gate: all docs need `pages_text.size >= n_pages`
+- When true: `<document-tabs>` wraps tablist + `#panel-pdf` (existing page loop) + `#panel-text`
+- Text panel renders per-page `<section>` with `PdfTextToHtml.call(page_text).html_safe`
+- Fixed `role="region"` excess landmark bug on sr-only divs
+
+✅ **Add tab switcher to `app/views/submit_form/show.html.erb`**
+- Same gate and structure; tablist is `sticky top-[60px]` to stay below sticky form header
+- Text panel includes disclaimer + `signing_fields_below` hint; Vue form panel stays below scrollbox
+
+✅ **Fix `role="region"` bug in `app/javascript/template_builder/page.vue`**
+- Removed `role="region"` from sr-only div (was creating excess ARIA landmarks)
+
+**Commit**: `929bb13f` — "Add PDF View / Text View tab switcher for accessibility"
+
+### WCAG Criteria Further Addressed
+
+✅ **1.3.1 Info and Relationships** — Document text now accessible as formatted HTML sections
+✅ **2.1.1 Keyboard** — Tab switcher fully operable via keyboard (ARIA APG pattern)
+✅ **4.1.2 Name, Role, Value** — Tablist, tabs, and tabpanels have correct ARIA roles/attributes
+
+### Next Session Recommendations
+
+1. **Manual verification**: Start dev server (`foreman start -f Procfile.dev`), navigate to `/submissions/{id}` with a text-based PDF, verify tab switcher appears and functions
+2. **Keyboard test**: Tab to tablist → ArrowRight/Left → Tab into panel → content readable
+3. **localStorage persistence test**: Switch to Text View → navigate away → return → confirm Text View active
+4. **Gate test**: Use scanned PDF → verify no tab switcher shown
+5. **VoiceOver test**: Announce tabs and panel content
+6. **Next feature**: ARIA live regions for form validation errors (Phase 2 roadmap)
