@@ -54,6 +54,7 @@ import OpenModal from './elements/open_modal'
 import BarChart from './elements/bar_chart'
 import FieldCondition from './elements/field_condition'
 import DocumentTabs from './elements/document_tabs'
+import UserMenu from './elements/user_menu'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -65,7 +66,9 @@ document.addEventListener('turbo:before-cache', () => {
 
 document.addEventListener('keyup', (e) => {
   if (e.code === 'Escape') {
-    document.activeElement?.blur()
+    if (!document.activeElement?.closest('user-menu')) {
+      document.activeElement?.blur()
+    }
   }
 })
 
@@ -146,6 +149,7 @@ safeRegisterElement('open-modal', OpenModal)
 safeRegisterElement('bar-chart', BarChart)
 safeRegisterElement('field-condition', FieldCondition)
 safeRegisterElement('document-tabs', DocumentTabs)
+safeRegisterElement('user-menu', UserMenu)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

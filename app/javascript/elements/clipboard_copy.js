@@ -1,4 +1,4 @@
-import { announceError } from './aria_announce'
+import { announceError, announcePolite } from './aria_announce'
 
 export default class extends HTMLElement {
   connectedCallback () {
@@ -16,7 +16,7 @@ export default class extends HTMLElement {
       const text = this.dataset.text || this.innerText.trim()
 
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(text)
+        navigator.clipboard.writeText(text).then(() => announcePolite('Copied to clipboard'))
       } else {
         if (e.target.tagName !== 'INPUT') {
           announceError(`Clipboard not available. Please use HTTPS. Copy text: ${text}`)

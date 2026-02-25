@@ -6,11 +6,19 @@ export default actionable(class extends HTMLElement {
 
     if (event.target.type === 'checkbox') {
       elementIds.forEach((elementId) => {
-        document.getElementById(elementId)?.classList.toggle('hidden')
+        const el = document.getElementById(elementId)
+        if (!el) return
+        el.classList.toggle('hidden')
+        el.setAttribute('aria-hidden', el.classList.contains('hidden') ? 'true' : 'false')
       })
+      event.target.setAttribute('aria-expanded', event.target.checked ? 'true' : 'false')
     } else {
       elementIds.forEach((elementId) => {
-        document.getElementById(elementId).classList.toggle('hidden', (event.target.dataset.toggleId || event.target.value) !== elementId)
+        const el = document.getElementById(elementId)
+        if (!el) return
+        const hide = (event.target.dataset.toggleId || event.target.value) !== elementId
+        el.classList.toggle('hidden', hide)
+        el.setAttribute('aria-hidden', hide ? 'true' : 'false')
       })
     }
 

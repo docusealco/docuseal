@@ -17,6 +17,7 @@ export default targetable(class extends HTMLElement {
       this.togglePasswordVisibility.setAttribute('role', 'button')
     }
 
+    this.updateToggleAria()
     this.togglePasswordVisibility.addEventListener('click', this.handleTogglePasswordVisibility)
 
     // Add keyboard support for Enter and Space keys
@@ -50,5 +51,12 @@ export default targetable(class extends HTMLElement {
   toggleIcon = () => {
     this.visiblePasswordIcon.classList.toggle('hidden', this.passwordInput.type === 'password')
     this.hiddenPasswordIcon.classList.toggle('hidden', this.passwordInput.type === 'text')
+    this.updateToggleAria()
+  }
+
+  updateToggleAria = () => {
+    const isVisible = this.passwordInput.type === 'text'
+    this.togglePasswordVisibility.setAttribute('aria-label', isVisible ? 'Hide password' : 'Show password')
+    this.togglePasswordVisibility.setAttribute('aria-pressed', isVisible ? 'true' : 'false')
   }
 })

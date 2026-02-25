@@ -211,7 +211,8 @@ const en = {
   align_bottom: 'Align Bottom',
   fields_selected: '{count} Fields Selected',
   field_added: '{count} Field Added',
-  fields_added: '{count} Fields Added'
+  fields_added: '{count} Fields Added',
+  field_name: 'Field name'
 }
 
 const es = {

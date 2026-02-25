@@ -133,7 +133,8 @@
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
-      />
+        :aria-label="t('initials_drawing_pad')"
+      >{{ t('initials_drawing_pad') }}</canvas>
     </div>
     <input
       v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
@@ -146,6 +147,14 @@
       @focus="$emit('focus')"
       @input="updateWrittenInitials"
     >
+    <div
+      v-if="initialsError"
+      role="alert"
+      aria-live="assertive"
+      class="text-error text-sm mt-2 px-1"
+    >
+      {{ initialsError }}
+    </div>
   </div>
 </template>
 
@@ -212,7 +221,8 @@ export default {
       isInitialsStarted: false,
       isUsePreviousValue: true,
       isDrawInitials: false,
-      uploadImageInputKey: Math.random().toString()
+      uploadImageInputKey: Math.random().toString(),
+      initialsError: null
     }
   },
   computed: {
@@ -393,7 +403,7 @@ export default {
           }
         }).catch((error) => {
           if (this.field.required === true) {
-            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            this.initialsError = this.t('signature_is_too_small_or_simple_please_redraw')
 
             return reject(error)
           } else {

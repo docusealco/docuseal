@@ -173,7 +173,8 @@
         ref="canvas"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
-      />
+        :aria-label="t('signature_drawing_pad')"
+      >{{ t('signature_drawing_pad') }}</canvas>
       <div
         v-if="isShowQr"
         class="top-0 bottom-0 right-0 left-0 absolute bg-white rounded-2xl m-0.5"
@@ -200,7 +201,8 @@
               class="h-full"
               width="132"
               height="132"
-            />
+              :aria-label="t('qr_code_for_mobile_signature')"
+            >{{ t('qr_code_for_mobile_signature') }}</canvas>
           </div>
         </div>
       </div>
@@ -314,6 +316,11 @@
     >
       {{ signatureError }}
     </div>
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    >{{ qrAnnouncement }}</div>
   </div>
 </template>
 
@@ -435,7 +442,8 @@ export default {
       isTouchAttachment: false,
       isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
       uploadImageInputKey: Math.random().toString(),
-      signatureError: null
+      signatureError: null,
+      qrAnnouncement: null
     }
   },
   computed: {
@@ -577,6 +585,7 @@ export default {
     },
     showQr () {
       this.isShowQr = true
+      this.qrAnnouncement = this.t('scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature')
 
       this.$nextTick(() => {
         import('qr-creator').then(({ default: Qr }) => {
@@ -596,6 +605,7 @@ export default {
     },
     hideQr () {
       this.isShowQr = false
+      this.qrAnnouncement = null
 
       this.stopCheckSignature()
     },

@@ -1,5 +1,6 @@
 import { actionable } from '@github/catalyst/lib/actionable'
 import { targets, targetable } from '@github/catalyst/lib/targetable'
+import { announcePolite } from './aria_announce'
 
 export default actionable(targetable(class extends HTMLElement {
   static [targets.static] = ['items']
@@ -24,11 +25,18 @@ export default actionable(targetable(class extends HTMLElement {
     duplicateItem.querySelectorAll('a.hidden').forEach((button) => button.classList.toggle('hidden'))
 
     originalItem.parentNode.append(duplicateItem)
+
+    const firstInput = duplicateItem.querySelector("select, textarea, input:not([type='hidden'])")
+    if (firstInput) firstInput.focus()
   }
 
   removeItem (e) {
     e.preventDefault()
 
-    this.items.find((item) => item.contains(e.target))?.remove()
+    const item = this.items.find((item) => item.contains(e.target))
+    if (item) {
+      item.remove()
+      announcePolite('Item removed')
+    }
   }
 }))

@@ -63,6 +63,9 @@
         v-if="field.type !== 'checkbox' || field.name"
         ref="name"
         :contenteditable="editable && !defaultField && field.type !== 'heading'"
+        :role="editable && !defaultField && field.type !== 'heading' ? 'textbox' : undefined"
+        :aria-multiline="editable && !defaultField && field.type !== 'heading' ? 'false' : undefined"
+        :aria-label="editable && !defaultField && field.type !== 'heading' ? t('field_name') : undefined"
         dir="auto"
         class="pr-1 cursor-text block focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
         style="min-width: 2px"
@@ -300,7 +303,7 @@
               v-else
               ref="defaultValue"
               :contenteditable="isValueInput"
-              class="whitespace-pre-wrap empty:before:content-[attr(placeholder)] before:text-base-content/30 focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
+              class="whitespace-pre-wrap empty:before:content-[attr(placeholder)] before:text-base-content/60 focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
               :class="{ 'cursor-text': isValueInput }"
               :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
               @blur="onDefaultValueBlur"

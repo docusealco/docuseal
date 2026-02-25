@@ -97,7 +97,10 @@ const en = {
   upload: 'Upload',
   files: 'Files',
   signature_is_too_small_or_simple_please_redraw: 'Signature is too small or simple. Please redraw.',
-  wait_countdown_seconds: 'Wait {countdown} seconds'
+  wait_countdown_seconds: 'Wait {countdown} seconds',
+  signature_drawing_pad: 'Signature drawing pad. Use the tools above to draw or type your signature.',
+  initials_drawing_pad: 'Initials drawing pad. Use the tools above to draw or type your initials.',
+  qr_code_for_mobile_signature: 'QR code for signing on a mobile device.'
 }
 
 const es = {

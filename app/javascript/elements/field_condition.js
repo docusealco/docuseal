@@ -154,11 +154,13 @@ export default class extends HTMLElement {
 
     if (passed) {
       this.targetEl.style.display = ''
+      this.targetEl.removeAttribute('aria-hidden')
       this.targetEl.labels.forEach((label) => { label.style.display = '' })
 
       controls.forEach((c) => (c.disabled = false))
     } else {
       this.targetEl.style.display = 'none'
+      this.targetEl.setAttribute('aria-hidden', 'true')
       this.targetEl.labels.forEach((label) => { label.style.display = 'none' })
 
       controls.forEach((c) => (c.disabled = true))
