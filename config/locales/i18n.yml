@@ -323,6 +323,8 @@ en: &en
   display_your_company_name_and_logo_when_signing_documents: Display your company name and logo when signing documents.
   profile: Profile
   signature: Signature
+  your_signature: Your signature
+  your_initials: Your initials
   update_signature: Update Signature
   unable_to_save_signature: Unable to save signature.
   signature_has_been_saved: Signature has been saved.
@@ -464,6 +466,7 @@ en: &en
   move: Move
   moving: moving
   preview: Preview
+  preview_of: Preview of
   upload: Upload
   clone_template: Clone Template
   new_document_template: New Document Template
