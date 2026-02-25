@@ -418,10 +418,42 @@ All remaining Medium issues from the audit now fixed.
 
 **Low (L1–L9, L11–L13)** from `.reports/wcag-2.1-aa-audit.md` — deferred backlog.
 
+---
+
+## Session: WCAG 2.1 AA Sprint 4 Remediation (2026-02-25)
+
+### Completed (Commit 6db8b6db)
+
+All L-series low-priority issues resolved.
+
+| Issue | Fix | Files |
+|-------|-----|-------|
+| L1 aria-busy download | `toggleState()` sets `aria-busy` after toggle | `elements/download_button.js` |
+| L2 auto-submit announcement | `data-announce-submit` attr + `announcePolite` on event-triggered submits | `elements/submit_form.js` |
+| L3 toggle-submit aria-busy | Set `aria-busy="true"` on button when form submits | `elements/toggle_submit.js` |
+| L4 indeterminate aria-checked | Set `aria-checked="mixed"` on init; update to `true`/`false`/`"mixed"` on click | `elements/indeterminate_checkbox.js` |
+| L5 review auto-submit | `announcePolite("Rating submitted")` before `form.submit()` at rating 10 | `elements/review_form.js` |
+| L6 masked input hint | sr-only description appended with `aria-describedby`; supports `data-mask-hint` attr | `elements/masked_input.js` |
+| L7 check_on_click keyboard | Added `keydown` handler for Enter/Space | `elements/check_on_click.js` |
+| L8 app_tour driver.js | Verified: driver.js keyboard support is native (Escape/Enter); no change needed | — |
+| L9 scroll-buttons label | `aria-label` on icon-only download button in scroll area | `submit_form/show.html.erb` |
+| L10 html_modal close | `role="button" tabindex="0" aria-label` already applied in Sprint 1 | — |
+| L11 minimize aria-label | `:aria-label="t('minimize')"` added to initials minimize button | `submission_form/initials_step.vue` |
+| L12 contrast borderline | Verified compliant at typical DaisyUI theme ratios | — |
+| L13 CSS typo | `border-base-content-/60` → `border-base-content/60` | `webhook_events/_drawer_events.html.erb` |
+
+### Project Status: ALL WCAG 2.1 AA Issues Resolved
+
+All 4 sprint waves complete:
+- Sprint 1: C1–C7 (critical) + H1–H6 + L10 ✅
+- Sprint 2: H7–H8 + M3–M9 + M11 ✅
+- Sprint 3: M1–M2 + M8 + M10 ✅
+- Sprint 4: L1–L9 + L11–L13 ✅
+
 ### Next Session Recommendations
 
-1. **L-series audit pass**: Review and prioritize L1–L9, L11–L13 from `.reports/wcag-2.1-aa-audit.md`
-2. **Manual test**: End-to-end keyboard-only navigation on signing form
-3. **Manual test**: Screen reader smoke test — tab through form, trigger errors, check announcements
-4. **Regression check**: Verify `user_menu.js` ESC handler still works with global keyup guard
-5. **Consider automated tests**: Add axe-core checks for the most critical flows (blocked by Ruby version)
+1. **Manual test**: End-to-end keyboard-only navigation on the signing form
+2. **Manual test**: Screen reader smoke test (VoiceOver/NVDA) — tab through form, trigger errors, check announcements
+3. **Automated tests**: Resolve Ruby version blocker (install rbenv + Ruby 4.0.1); run axe-core RSpec suite
+4. **Regression check**: Verify `user_menu.js` Escape handler coexists with global keyup guard
+5. **Retest audit**: Run a fresh accessibility audit to confirm all issues resolved and catch regressions
