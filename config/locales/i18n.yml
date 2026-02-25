@@ -359,6 +359,7 @@ en: &en
   console: Console
   verify_pdf: Verify PDF
   sign_out: Sign out
+  user_menu: User menu
   page_number: 'Page %{number}'
   powered_by: Powered by
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
