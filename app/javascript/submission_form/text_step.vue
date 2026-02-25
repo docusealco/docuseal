@@ -68,6 +68,7 @@
       <a
         href="#"
         class="btn btn-ghost btn-circle btn-sm toggle-multiline-text-button"
+        :aria-label="t('toggle_multiline_text')"
         @click.prevent="toggleTextArea"
       >
         <IconAlignBoxLeftTop />

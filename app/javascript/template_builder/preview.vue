@@ -24,6 +24,7 @@
             <div>
               <button
                 class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
+                :aria-label="t('condition')"
                 @click.stop="isShowConditionsModal = true"
               >
                 <IconRouteAltLeft
@@ -64,6 +65,7 @@
               >
                 <button
                   class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
+                  :aria-label="t('reorder_fields')"
                   @click.stop="$emit('reorder', item)"
                 >
                   <IconSortDescending2

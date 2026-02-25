@@ -113,6 +113,7 @@
                 >
                   <button
                     class="btn btn-xs btn-circle bg-white border-0 border-gray-300"
+                    :aria-label="t('preview_column_data')"
                     @click.prevent
                   >
                     <IconInfoCircle class="h-4 w-4" />

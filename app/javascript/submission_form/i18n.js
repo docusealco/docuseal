@@ -100,7 +100,9 @@ const en = {
   wait_countdown_seconds: 'Wait {countdown} seconds',
   signature_drawing_pad: 'Signature drawing pad. Use the tools above to draw or type your signature.',
   initials_drawing_pad: 'Initials drawing pad. Use the tools above to draw or type your initials.',
-  qr_code_for_mobile_signature: 'QR code for signing on a mobile device.'
+  qr_code_for_mobile_signature: 'QR code for signing on a mobile device.',
+  show_qr_code: 'Show QR code for mobile signing',
+  close_qr_code: 'Close QR code'
 }
 
 const es = {

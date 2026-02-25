@@ -10,6 +10,7 @@
           <span
             class="w-3 h-3 flex-shrink-0 rounded-full"
             :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
+            aria-hidden="true"
           />
           <Contenteditable
             v-model="selectedSubmitter.name"
@@ -54,6 +55,7 @@
                 <span
                   class="rounded-full w-3 h-3 ml-1 mr-3 flex-shrink-0"
                   :class="colors[index % colors.length]"
+                  aria-hidden="true"
                 />
                 <span>
                   {{ submitter.name }}
@@ -97,11 +99,13 @@
       v-if="compact"
       tabindex="0"
       :title="selectedSubmitter?.name"
+      :aria-label="selectedSubmitter?.name"
       class="cursor-pointer text-base-100 flex h-full items-center justify-center"
     >
-      <button
+      <span
         class="mx-1 w-3 h-3 rounded-full flex-shrink-0"
         :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
+        aria-hidden="true"
       />
     </label>
     <label
@@ -114,6 +118,7 @@
         <span
           class="w-3 h-3 rounded-full flex-shrink-0"
           :class="colors[submitters.indexOf(selectedSubmitter) % colors.length]"
+          aria-hidden="true"
         />
         <Contenteditable
           v-model="selectedSubmitter.name"
@@ -155,6 +160,7 @@
             <span
               class="rounded-full w-3 h-3 ml-1 mr-3 flex-shrink-0"
               :class="colors[index % colors.length]"
+              aria-hidden="true"
             />
             <span>
               {{ submitter.name }}

@@ -107,6 +107,7 @@ const en = {
   option: 'Option',
   options: 'Options',
   condition: 'Condition',
+  preview_column_data: 'Preview column data',
   first_party: 'First Party',
   second_party: 'Second Party',
   third_party: 'Third Party',

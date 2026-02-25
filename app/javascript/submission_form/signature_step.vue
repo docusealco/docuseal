@@ -93,6 +93,8 @@
             href="#"
             class="btn btn-sm btn-neutral font-medium hidden md:flex"
             :class="{ 'btn-outline': !isShowQr, 'text-white': isShowQr }"
+            :aria-label="isShowQr ? t('close_qr_code') : t('show_qr_code')"
+            :aria-pressed="isShowQr ? 'true' : 'false'"
             @click.prevent="isShowQr ? hideQr() : [isTextSignature = false, showQr()]"
           >
             <IconQrcode
@@ -187,6 +189,7 @@
           <a
             href="#"
             class="btn btn-sm btn-circle btn-normal btn-outline"
+            :aria-label="t('close_qr_code')"
             @click.prevent="hideQr"
           >
             <IconX />

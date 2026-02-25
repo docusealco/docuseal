@@ -59,6 +59,7 @@
           <button
             v-if="field && !field.areas?.length"
             :title="t('draw')"
+            :aria-label="t('draw')"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
             @click="$emit('set-draw', { field })"
           >
@@ -71,6 +72,7 @@
             v-if="field.preferences?.formula"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
             :title="t('formula')"
+            :aria-label="t('formula')"
             @click="isShowFormulaModal = true"
           >
             <IconMathFunction
@@ -82,6 +84,7 @@
             v-if="field.conditions?.length"
             class="relative cursor-pointer text-transparent group-hover:text-base-content"
             :title="t('condition')"
+            :aria-label="t('condition')"
             @click="isShowConditionsModal = true"
           >
             <IconRouteAltLeft
@@ -108,6 +111,7 @@
             <label
               tabindex="0"
               :title="t('settings')"
+              :aria-label="t('settings')"
               class="cursor-pointer text-transparent group-hover:text-base-content"
             >
               <IconSettings
@@ -147,6 +151,7 @@
           <button
             class="relative text-transparent group-hover:text-base-content pr-1 field-remove-button"
             :title="t('remove')"
+            :aria-label="t('remove')"
             @click="$emit('remove', field)"
           >
             <IconTrashX
@@ -197,6 +202,7 @@
             >
             <button
               :title="t('draw')"
+              :aria-label="t('draw')"
               tabindex="-1"
               @click.prevent="$emit('set-draw', { field, option })"
             >

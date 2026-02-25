@@ -8,19 +8,34 @@
       <div class="grid md:grid-cols-2 gap-4">
         <div class="form-control">
           <%= f.label :first_name, t('first_name'), class: 'label' %>
-          <%= f.text_field :first_name, required: true, class: 'base-input', dir: 'auto' %>
+          <%= f.text_field :first_name, required: true, class: 'base-input', dir: 'auto',
+              'aria-describedby': (f.object.errors[:first_name].any? ? 'profile_first_name_error' : nil),
+              'aria-invalid': (f.object.errors[:first_name].any? ? 'true' : nil) %>
+          <% if f.object.errors[:first_name].any? %>
+            <p id="profile_first_name_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:first_name].first %></p>
+          <% end %>
         </div>
         <div class="form-control">
           <%= f.label :last_name, t('last_name'), class: 'label' %>
-          <%= f.text_field :last_name, required: false, class: 'base-input', dir: 'auto' %>
+          <%= f.text_field :last_name, required: false, class: 'base-input', dir: 'auto',
+              'aria-describedby': (f.object.errors[:last_name].any? ? 'profile_last_name_error' : nil),
+              'aria-invalid': (f.object.errors[:last_name].any? ? 'true' : nil) %>
+          <% if f.object.errors[:last_name].any? %>
+            <p id="profile_last_name_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:last_name].first %></p>
+          <% end %>
         </div>
       </div>
       <div class="form-control">
         <%= f.label :email, t('email'), class: 'label' %>
-        <%= f.email_field :email, autocomplete: 'off', class: 'base-input' %>
+        <%= f.email_field :email, autocomplete: 'off', class: 'base-input',
+            'aria-describedby': [('profile_email_error' if f.object.errors[:email].any?), ('profile_email_pending' if current_user.try(:pending_reconfirmation?))].compact.join(' ').presence,
+            'aria-invalid': (f.object.errors[:email].any? ? 'true' : nil) %>
+        <% if f.object.errors[:email].any? %>
+          <p id="profile_email_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:email].first %></p>
+        <% end %>
         <% if current_user.try(:pending_reconfirmation?) %>
           <label class="label">
-            <span class="label-text-alt"><%= t('email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm', email: f.object.unconfirmed_email) %></span>
+            <span id="profile_email_pending" class="label-text-alt"><%= t('email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm', email: f.object.unconfirmed_email) %></span>
           </label>
         <% end %>
       </div>
@@ -61,17 +76,32 @@
       </p>
       <%= form_for current_user, url: update_password_settings_profile_index_path, method: :patch, html: { autocomplete: 'off' } do |f| %>
         <%= f.label :password, t('new_password'), class: 'label' %>
-        <%= f.password_field :password, autocomplete: 'off', class: 'base-input peer w-full', required: true %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'base-input peer w-full', required: true,
+            'aria-describedby': (f.object.errors[:password].any? ? 'profile_password_error' : nil),
+            'aria-invalid': (f.object.errors[:password].any? ? 'true' : nil) %>
+        <% if f.object.errors[:password].any? %>
+          <p id="profile_password_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:password].first %></p>
+        <% end %>
         <div class="<%= 'peer-invalid:hidden' if current_user.errors.blank? %> space-y-4 mt-4">
           <div class="form-control">
             <%= f.label :password_confirmation, t('confirm_password'), class: 'label' %>
-            <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input' %>
+            <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'base-input',
+                'aria-describedby': (f.object.errors[:password_confirmation].any? ? 'profile_password_confirmation_error' : nil),
+                'aria-invalid': (f.object.errors[:password_confirmation].any? ? 'true' : nil) %>
+            <% if f.object.errors[:password_confirmation].any? %>
+              <p id="profile_password_confirmation_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:password_confirmation].first %></p>
+            <% end %>
           </div>
           <div class="form-control">
             <%= f.label :current_password, t('current_password'), class: 'label' %>
-            <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input' %>
+            <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input',
+                'aria-describedby': [('profile_current_password_error' if f.object.errors[:current_password].any?), ('profile_password_hint' if Accounts.can_send_emails?(current_account))].compact.join(' ').presence,
+                'aria-invalid': (f.object.errors[:current_password].any? ? 'true' : nil) %>
+            <% if f.object.errors[:current_password].any? %>
+              <p id="profile_current_password_error" class="text-sm text-error mt-1" role="alert"><%= f.object.errors[:current_password].first %></p>
+            <% end %>
             <% if Accounts.can_send_emails?(current_account) %>
-              <span class="label-text-alt mt-1">
+              <span id="profile_password_hint" class="label-text-alt mt-1">
                 <%= t('dont_remember_your_current_password_click_here_to_reset_it_html') %>
               </span>
             <% end %>
