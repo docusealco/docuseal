@@ -10,7 +10,7 @@
 #  name                :text
 #  preferences         :text             not null
 #  slug                :string           not null
-#  source              :text             not null
+#  source              :string           not null
 #  submitters_order    :string           not null
 #  template_fields     :text
 #  template_schema     :text
