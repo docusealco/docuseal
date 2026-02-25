@@ -58,6 +58,29 @@
           </download-button>
         </scroll-buttons>
       <% end %>
+      <% has_full_text = schema.all? do |item|
+           doc = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
+           n_pages = doc.metadata.dig('pdf', 'number_of_pages').to_i
+           pages_text = doc.blob.metadata.dig('pdf', 'pages_text') || {}
+           n_pages > 0 && pages_text.size >= n_pages
+         end %>
+      <% if has_full_text %>
+        <document-tabs>
+          <div role="tablist" aria-label="<%= t('document_view_options') %>"
+               class="flex border-b border-base-300 mb-2 sticky top-[60px] z-40 bg-base-100 -mx-2 px-2">
+            <button role="tab" id="tab-pdf" aria-selected="true"
+                    aria-controls="panel-pdf" tabindex="0"
+                    class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-primary text-primary">
+              <%= t('pdf_view') %>
+            </button>
+            <button role="tab" id="tab-text" aria-selected="false"
+                    aria-controls="panel-text" tabindex="-1"
+                    class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-transparent text-base-content/60 hover:text-base-content">
+              <%= t('text_view') %>
+            </button>
+          </div>
+          <div id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" tabindex="0">
+      <% end %>
       <% schema.each do |item| %>
         <% document = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <div id="document-<%= document.uuid %>">
@@ -69,7 +92,7 @@
             <page-container class="block relative my-4 shadow-md" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
               <img loading="lazy" src="<%= page.url %>" width="<%= width %>" height="<%= height %>" alt="<%= t('page') %> <%= index + 1 %> <%= t('of') %> <%= item['name'].presence || document.filename.base %>">
               <% if (page_text = document.blob.metadata.dig('pdf', 'pages_text', index.to_s)).present? %>
-                <div class="sr-only" role="region" aria-label="<%= t('page') %> <%= index + 1 %> <%= t('text_content') %>"><%= page_text %></div>
+                <div class="sr-only" aria-label="<%= t('page') %> <%= index + 1 %> <%= t('text_content') %>"><%= page_text %></div>
               <% end %>
               <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
                 <% if annots = document_annots_index[index] %>
@@ -89,6 +112,25 @@
             </page-container>
           <% end %>
         </div>
+      <% end %>
+      <% if has_full_text %>
+          </div>
+          <div id="panel-text" role="tabpanel" aria-labelledby="tab-text" tabindex="0" hidden>
+            <p class="text-sm text-base-content/60 p-4 border-b border-base-300">
+              <%= t('text_view_disclaimer') %> <%= t('signing_fields_below') %>
+            </p>
+            <article class="prose max-w-none px-4 py-2">
+              <% schema.each do |item| %>
+                <% doc = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+                <% (doc.blob.metadata.dig('pdf', 'pages_text') || {}).each do |page_index, page_text| %>
+                  <section aria-label="<%= "#{t('page')} #{page_index.to_i + 1}" %>">
+                    <%= PdfTextToHtml.call(page_text).html_safe %>
+                  </section>
+                <% end %>
+              <% end %>
+            </article>
+          </div>
+        </document-tabs>
       <% end %>
       <%= render 'shared/attribution', link_path: '/start', account: @submitter.account, with_style: false %>
       <% if @form_configs[:policy_links].present? %>

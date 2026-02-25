@@ -18,9 +18,10 @@
     <div
       v-if="pageText"
       class="sr-only"
-      role="region"
       :aria-label="`Page ${number + 1} text content`"
-    >{{ pageText }}</div>
+    >
+      {{ pageText }}
+    </div>
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onStartDraw"

@@ -366,6 +366,11 @@ en: &en
   page: Page
   of: of
   text_content: text content
+  pdf_view: "PDF View"
+  text_view: "Text View"
+  document_view_options: "Document view options"
+  text_view_disclaimer: "Text provided for accessibility. The PDF view is the authoritative document."
+  signing_fields_below: "Your signing fields are in the panel below."
   powered_by: Powered by
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
   storage: Storage

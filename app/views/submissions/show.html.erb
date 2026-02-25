@@ -90,6 +90,29 @@
       <% end %>
     </div>
     <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+      <% has_full_text = schema.all? do |item|
+           doc = @submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
+           n_pages = doc.metadata.dig('pdf', 'number_of_pages').to_i
+           pages_text = doc.blob.metadata.dig('pdf', 'pages_text') || {}
+           n_pages > 0 && pages_text.size >= n_pages
+         end %>
+      <% if has_full_text %>
+        <document-tabs>
+          <div role="tablist" aria-label="<%= t('document_view_options') %>"
+               class="flex border-b border-base-300 px-0.5 mb-2">
+            <button role="tab" id="tab-pdf" aria-selected="true"
+                    aria-controls="panel-pdf" tabindex="0"
+                    class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-primary text-primary">
+              <%= t('pdf_view') %>
+            </button>
+            <button role="tab" id="tab-text" aria-selected="false"
+                    aria-controls="panel-text" tabindex="-1"
+                    class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-transparent text-base-content/60 hover:text-base-content">
+              <%= t('text_view') %>
+            </button>
+          </div>
+          <div id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" tabindex="0">
+      <% end %>
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
@@ -107,7 +130,7 @@
             <page-container id="<%= "page-#{document.uuid}-#{index}" %>" class="block before:border before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:rounded relative mb-4" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
               <img loading="lazy" src="<%= page.url %>" width="<%= width %>" class="rounded" height="<%= height %>" alt="<%= t('page') %> <%= index + 1 %> <%= t('of') %> <%= item['name'].presence || document.filename.base %>">
               <% if (page_text = document.blob.metadata.dig('pdf', 'pages_text', index.to_s)).present? %>
-                <div class="sr-only" role="region" aria-label="<%= t('page') %> <%= index + 1 %> <%= t('text_content') %>"><%= page_text %></div>
+                <div class="sr-only" aria-label="<%= t('page') %> <%= index + 1 %> <%= t('text_content') %>"><%= page_text %></div>
               <% end %>
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
@@ -146,6 +169,25 @@
           <% end %>
         <% end %>
       </div>
+      <% if has_full_text %>
+          </div>
+          <div id="panel-text" role="tabpanel" aria-labelledby="tab-text" tabindex="0" hidden>
+            <article class="prose max-w-none px-4 py-2">
+              <p class="text-sm text-base-content/60 mb-4 pb-4 border-b border-base-300 not-prose">
+                <%= t('text_view_disclaimer') %>
+              </p>
+              <% schema.each do |item| %>
+                <% doc = @submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
+                <% (doc.blob.metadata.dig('pdf', 'pages_text') || {}).each do |page_index, page_text| %>
+                  <section aria-label="<%= "#{t('page')} #{page_index.to_i + 1}" %>">
+                    <%= PdfTextToHtml.call(page_text).html_safe %>
+                  </section>
+                <% end %>
+              <% end %>
+            </article>
+          </div>
+        </document-tabs>
+      <% end %>
     </div>
     <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
