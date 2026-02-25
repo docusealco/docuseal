@@ -287,3 +287,36 @@ a3109c63 - Add ARIA labels to icon-only buttons across the application
 1. **Manual verification** of tab switcher (items 1–5 above)
 2. **Phase 2**: ARIA live regions for form validation errors
 3. **Future parser improvement**: Font-size–aware heading detection using Pdfium `text_nodes` bounding boxes (better than ALL_CAPS heuristic, works for non-Latin scripts)
+
+---
+
+## Session: WCAG 2.1 AA Full Audit (2026-02-25)
+
+### What Was Done
+- Ran 4 parallel audit agents covering: ERB views, Vue components, custom JS elements, color contrast
+- Consolidated findings into `.reports/wcag-2.1-aa-audit.md`
+- Total: ~80 issues — 20 critical, 30 major, 30 minor
+
+### Key Critical Findings
+1. `maximum-scale=1.0, user-scalable=no` in application.html.erb — violates 1.4.4
+2. Focus indicators removed on 7+ input elements — violates 2.4.7
+3. turbo_modal.js has no focus management — violates 2.4.3, 2.1.2
+4. alert() / prompt() used in 5 elements — violates 3.3.1, 4.1.3
+5. Signature form controls lack labels — violates 1.3.1
+6. Validation errors never announced — violates 3.3.1
+7. text-gray-100 on dark backgrounds in _embedding.html.erb — ~0.4:1 contrast
+
+### Positive: Tab Switcher Correctly Implemented
+The PDF/Text tab switcher (both ERB and Vue versions) is WCAG-compliant per the audit.
+
+### Recommended Next Steps (Priority Order)
+1. Fix viewport meta tag — 1 line change, critical impact
+2. Fix form.html.erb: add lang attribute + skip link — 2 line changes
+3. Replace alert()/prompt() with live regions — 5 files
+4. Add modal focus management to turbo_modal.js
+5. Add labels to signature form controls
+6. Fix text-gray-100 on dark backgrounds in _embedding.html.erb
+7. Fix outline-none focus:ring-0 on inputs — restore focus visibility
+8. Fix duplicate id="decline_button"
+9. Change modal close `<a>` to `<button>`
+10. Add H1 to submit form page
