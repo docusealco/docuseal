@@ -68,6 +68,9 @@
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_uuid, "#{index}.jpg")) %>
             <page-container class="block relative my-4 shadow-md" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
               <img loading="lazy" src="<%= page.url %>" width="<%= width %>" height="<%= height %>" alt="<%= t('page') %> <%= index + 1 %> <%= t('of') %> <%= item['name'].presence || document.filename.base %>">
+              <% if (page_text = document.blob.metadata.dig('pdf', 'pages_text', index.to_s)).present? %>
+                <div class="sr-only" role="region" aria-label="<%= t('page') %> <%= index + 1 %> <%= t('text_content') %>"><%= page_text %></div>
+              <% end %>
               <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
                 <% if annots = document_annots_index[index] %>
                   <%= render 'submit_form/annotations', annots: %>

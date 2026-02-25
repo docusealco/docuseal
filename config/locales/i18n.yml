@@ -365,6 +365,7 @@ en: &en
   page_number: 'Page %{number}'
   page: Page
   of: of
+  text_content: text content
   powered_by: Powered by
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
   storage: Storage

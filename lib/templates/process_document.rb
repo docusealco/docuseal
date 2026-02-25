@@ -93,6 +93,9 @@ module Templates
       attachment.metadata['pdf'] ||= {}
       attachment.metadata['pdf']['number_of_pages'] = number_of_pages
 
+      pages_text = extract_page_texts(data, number_of_pages, max_pages)
+      attachment.metadata['pdf']['pages_text'] = pages_text unless pages_text.empty?
+
       ApplicationRecord.no_touching do
         attachment.save!
       end
@@ -188,6 +191,28 @@ module Templates
       raise if Rails.env.development?
 
       data
+    end
+
+    def extract_page_texts(data, number_of_pages, max_pages = MAX_NUMBER_OF_PAGES_PROCESSED)
+      pages_text = {}
+      doc = Pdfium::Document.open_bytes(data)
+      pages_to_process = [number_of_pages, max_pages].min
+
+      pages_to_process.times do |index|
+        page = doc.get_page(index)
+        text = page.text.strip
+        pages_text[index.to_s] = text unless text.empty?
+      rescue StandardError
+        nil
+      ensure
+        page&.close
+      end
+
+      pages_text
+    rescue StandardError
+      {}
+    ensure
+      doc&.close
     end
 
     def normalize_attachment_fields(template, attachments = template.documents)

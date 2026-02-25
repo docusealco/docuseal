@@ -26,6 +26,7 @@
       :image="image"
       :attachment-uuid="document.uuid"
       :with-fields-detection="withFieldsDetection"
+      :page-text="pagesText[String(index)]"
       @drop-field="$emit('drop-field', { ...$event, attachment_uuid: document.uuid })"
       @remove-area="$emit('remove-area', $event)"
       @copy-field="$emit('copy-field', $event)"
@@ -178,6 +179,9 @@ export default {
 
         return acc
       }, {})
+    },
+    pagesText () {
+      return this.document.metadata?.pdf?.pages_text || {}
     }
   },
   beforeUpdate () {

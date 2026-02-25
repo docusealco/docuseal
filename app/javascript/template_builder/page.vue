@@ -12,8 +12,15 @@
       :width="width"
       :height="height"
       class="rounded"
+      :alt="`Page ${number + 1} of ${totalPages}`"
       @load="onImageLoad"
     >
+    <div
+      v-if="pageText"
+      class="sr-only"
+      role="region"
+      :aria-label="`Page ${number + 1} text content`"
+    >{{ pageText }}</div>
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onStartDraw"
@@ -246,6 +253,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    pageText: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   emits: ['draw', 'drop-field', 'remove-area', 'copy-field', 'paste-field', 'scroll-to', 'copy-selected-areas', 'delete-selected-areas', 'autodetect-fields', 'add-custom-field', 'set-draw'],
