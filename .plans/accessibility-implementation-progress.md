@@ -367,11 +367,43 @@ From audit report `.reports/wcag-2.1-aa-audit.md`:
 
 **Low (L1–L9, L11–L13) deferred to backlog.**
 
+---
+
+## Session: WCAG 2.1 AA Sprint 2 Remediation (2026-02-25)
+
+### Completed (Commit bf4bbedc)
+
+All remaining High (H7, H8) and most Medium (M3–M9, M11) issues fixed.
+
+| Issue | Fix | Files |
+|-------|-----|-------|
+| H7 navbar keyboard | New `user_menu.js` custom element: ArrowDown/Up/Enter/Space/Escape, roving tabindex, aria-expanded | `elements/user_menu.js`, `application.js`, `_navbar.html.erb` |
+| H8 canvas fallback | `aria-label` + fallback text on signature, initials, QR canvases | `signature_step.vue`, `initials_step.vue` |
+| M3 contenteditable | `role="textbox"`, `aria-multiline="false"`, `aria-label` on field name span | `template_builder/area.vue`, `template_builder/i18n.js` |
+| M4 aria-expanded | `aria-hidden`/`aria-expanded` updates in `toggle_visible.js` and `field_condition.js` | 2 files |
+| M5 password toggle | `aria-label="Show/Hide password"` + `aria-pressed` updates on toggle button | `elements/password_input.js` |
+| M6 dynamic list | Focus first input on addItem; `announcePolite('Item removed')` on removeItem | `elements/dynamic_list.js` |
+| M7 clipboard copy | `announcePolite('Copied to clipboard')` on successful copy | `elements/clipboard_copy.js` |
+| M9 placeholder contrast | `before:text-neutral-400` → `before:text-neutral-600` in contenteditable.vue | `template_builder/contenteditable.vue` |
+| M9 placeholder contrast | `before:text-base-content/30` → `/60` in area.vue | `template_builder/area.vue` |
+| M11 QR live region | Persistent `aria-live="polite"` div; set on showQr(), cleared on hideQr() | `submission_form/signature_step.vue` |
+| Bonus: initials alert() | Replaced alert() with `initialsError` data prop + `role="alert"` live region | `submission_form/initials_step.vue` |
+
+### Remaining Issues (Sprint 3 — Next Priority)
+
+**Medium (not yet addressed):**
+- M1: Color-only submitter indicators — add text label/icon beside color dot in `submissions/show.html.erb`
+- M2: Color-only field type indicators — add sr-only label beside color swatch in `template_builder/area.vue`
+- M8: Profile form — no inline validation error messages (needs ARIA `aria-describedby` + error regions)
+- M10: Icon-only buttons still missing `aria-label` in some components (audit further)
+
+**Low (L1–L9, L11–L13):** Deferred to backlog (see `.reports/wcag-2.1-aa-audit.md`).
+
 ### Next Session Recommendations
 
-1. **H7**: Add keyboard handling to DaisyUI navbar dropdown (Enter/Space/Escape/Arrow keys + aria-expanded)
-2. **H8**: Add fallback text to signature canvas
-3. **M7**: Add "Copied to clipboard" live region in clipboard_copy.js (quick win)
-4. **M3**: Add role="textbox" aria-multiline="false" aria-label to contenteditable in area.vue
-5. **M4**: Add aria-expanded to toggle_visible.js triggers
-6. **Manual test**: Verify focus trap in turbo_modal with keyboard-only navigation
+1. **M1**: Add text labels alongside color-only submitter indicators in `submissions/show.html.erb`
+2. **M2**: Add sr-only labels to color swatches in `template_builder/area.vue`
+3. **M8**: Add inline form validation with `aria-describedby` to profile form fields
+4. **M10**: Audit remaining icon-only buttons and add `aria-label` where missing
+5. **Manual test**: Verify keyboard-only navigation end-to-end on signing form
+6. **Manual test**: Verify screen reader announcements for QR code, clipboard copy, item removal
