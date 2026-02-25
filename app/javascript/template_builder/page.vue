@@ -17,7 +17,7 @@
     >
     <div
       v-if="pageText"
-      class="sr-only"
+      style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;"
       :aria-label="`Page ${number + 1} text content`"
     >
       {{ pageText }}
