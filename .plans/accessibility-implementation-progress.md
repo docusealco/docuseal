@@ -262,3 +262,28 @@ a3109c63 - Add ARIA labels to icon-only buttons across the application
 4. **Gate test**: Use scanned PDF → verify no tab switcher shown
 5. **VoiceOver test**: Announce tabs and panel content
 6. **Next feature**: ARIA live regions for form validation errors (Phase 2 roadmap)
+
+---
+
+## Session Summary - 2026-02-25 (Architecture decision: Markdown intermediate)
+
+### Decision: Keep direct Text → HTML approach in pdf_text_to_html parsers
+
+**Analysis**: Evaluated whether `lib/pdf_text_to_html.rb` and `app/javascript/template_builder/pdf_text_to_html.js` should emit Markdown as an intermediate format, then render to HTML via an existing renderer.
+
+**Conclusion: No change warranted.** Reasons:
+- No full Markdown renderer on the Ruby side without adding a new gem (e.g. `kramdown`)
+- `snarkdown` (the only JS Markdown lib in the bundle) is inline-only — no block-level heading/list support
+- `<p dir="auto">` for RTL support cannot be expressed in standard Markdown
+- PDF text contains `*`, `_`, `[ref]`, `#3` naturally — a Markdown renderer would corrupt them
+- Heuristic detection logic is identical regardless of output format; no complexity reduction
+
+**Report**: `.reports/pdf-text-html-vs-markdown-analysis.md`
+**Code changes**: None
+**Commit**: n/a (documentation-only session)
+
+### Next Session Recommendations
+
+1. **Manual verification** of tab switcher (items 1–5 above)
+2. **Phase 2**: ARIA live regions for form validation errors
+3. **Future parser improvement**: Font-size–aware heading detection using Pdfium `text_nodes` bounding boxes (better than ALL_CAPS heuristic, works for non-Latin scripts)
