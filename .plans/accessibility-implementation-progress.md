@@ -94,6 +94,49 @@
 3. Resolve Ruby version blocker
 4. Complete Task 7 (Write and run accessibility tests)
 
+---
+
+## Session Summary - 2026-02-25
+
+### Completed: PDF Text Extraction Feature (branch: extract-content-from-pdf)
+
+✅ **Extract and store PDF page text in upload pipeline**
+- **`lib/templates/process_document.rb`**: Added `extract_page_texts()` method using Pdfium's `page.text` API. Called from `generate_pdf_preview_images()`, stores result in `attachment.metadata['pdf']['pages_text']` as `{ "0" => "text...", "1" => "text..." }`. Gracefully handles scanned PDFs (omits pages with no extractable text). Rubocop clean.
+- **`config/locales/i18n.yml`**: Added `text_content: "text content"` i18n key.
+
+✅ **Surface text accessibly in signing view**
+- **`app/views/submit_form/show.html.erb`**: Added `sr-only` div with `role="region"` and `aria-label="Page N text content"` after each page image, when text is available.
+
+✅ **Surface text accessibly in submission preview view**
+- **`app/views/submissions/show.html.erb`**: Same sr-only pattern.
+
+✅ **Add alt text and page text to template builder**
+- **`app/javascript/template_builder/page.vue`**: Added `:alt="Page N of M"` to page img. Added `pageText` prop and sr-only div.
+- **`app/javascript/template_builder/document.vue`**: Added `pagesText` computed prop from `document.metadata?.pdf?.pages_text`. Passes `:page-text` to each `<Page>`.
+
+✅ **Add ARIA role to page-container custom element**
+- **`app/javascript/elements/page_container.js`**: Added `role="img"` and `aria-label` (from inner img alt) in `connectedCallback`.
+
+**Commit**: `6c1fc317` — "Add accessible PDF text extraction for screen reader users"
+
+### WCAG Criteria Further Addressed
+
+✅ **1.1.1 Non-text Content** — Page images in template builder now have alt text
+✅ **1.3.1 Info and Relationships** — PDF text content is structurally associated with each page
+✅ **4.1.2 Name, Role, Value** — page-container custom element now has proper role and label
+
+### Verification Steps (for next session)
+1. Upload a text-based PDF → check via Rails console: `Template.last.documents.first.blob.metadata`
+2. Navigate to signing view → inspect DOM for `.sr-only` regions with page text
+3. Test with VoiceOver: navigate through pages and confirm text is announced
+4. Upload a scanned PDF → verify no errors, `pages_text` absent from metadata
+
+### Next Recommendations
+1. **Run verification steps** above with a real PDF upload
+2. **Resolve Ruby blocker** (install rbenv/asdf + Ruby 4.0.1) to run RSpec tests
+3. **Complete Task 7** (Phase 1 accessibility tests)
+4. **Begin Phase 2**: Form error associations and ARIA live regions
+
 ### WCAG 2.2 Criteria Addressed
 
 ✅ **1.1.1 Non-text Content (Level A)** - All images now have alt text
