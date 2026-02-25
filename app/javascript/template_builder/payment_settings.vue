@@ -22,7 +22,7 @@
     >
       <div
         v-if="!('price_id' in field.preferences) && !('payment_link_id' in field.preferences)"
-        class="py-1.5 px-1 relative"
+        class="field-settings-currency py-1.5 px-1 relative"
         @click.stop
       >
         <select
@@ -48,7 +48,7 @@
         </label>
       </div>
       <div
-        class="py-1.5 px-1 relative"
+        class="field-settings-price py-1.5 px-1 relative"
         @click.stop
       >
         <input
@@ -121,7 +121,7 @@
       </div>
       <div
         v-if="!isConnected || isOauthSuccess"
-        class="py-1.5 px-1 relative"
+        class="field-settings-stripe-connect py-1.5 px-1 relative"
         @click.stop
       >
         <div
@@ -203,7 +203,7 @@
         >{{ t('learn_more') }}</a>
       </div>
       <li
-        class="mb-1"
+        class="field-settings-formula mb-1"
       >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
@@ -218,7 +218,7 @@
         </label>
       </li>
       <hr>
-      <li>
+      <li class="field-settings-description">
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-description')"
@@ -233,7 +233,7 @@
       </li>
       <li
         v-if="withCondition"
-        class="mt-1"
+        class="field-settings-condition mt-1"
       >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
@@ -251,7 +251,10 @@
         v-if="withCustomFields"
         class="pb-0.5 mt-0.5"
       >
-      <li v-if="withCustomFields">
+      <li
+        v-if="withCustomFields"
+        class="field-settings-save-as-custom-field"
+      >
         <a
           href="#"
           class="text-sm py-1 px-2"

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="field.type === 'verification'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-verification-method py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -28,7 +28,7 @@
   </div>
   <div
     v-if="['select', 'radio'].includes(field.type) && !defaultField"
-    class="py-1.5 px-1 relative"
+    class="field-settings-default-value py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -62,7 +62,7 @@
   </div>
   <div
     v-if="['text', 'number'].includes(field.type) && !defaultField"
-    class="py-1.5 px-1 relative"
+    class="field-settings-default-value py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -84,7 +84,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type)"
-    class="py-1.5 px-1 relative"
+    class="field-settings-validation py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -122,7 +122,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && lengthValidation"
-    class="py-1.5 px-1 relative flex space-x-1"
+    class="field-settings-length-validation py-1.5 px-1 relative flex space-x-1"
     @click.stop
   >
     <div class="w-1/2 relative">
@@ -166,7 +166,7 @@
   </div>
   <div
     v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative flex space-x-1"
+    class="field-settings-number-range py-1.5 px-1 relative flex space-x-1"
     @click.stop
   >
     <div class="w-1/2 relative">
@@ -210,7 +210,7 @@
   </div>
   <div
     v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-number-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -237,7 +237,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
-    class="py-1.5 px-1 relative"
+    class="field-settings-custom-validation py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -259,7 +259,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
-    class="py-1.5 px-1 relative"
+    class="field-settings-error-message py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -280,7 +280,7 @@
   </div>
   <div
     v-if="field.type === 'date'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-date-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -307,7 +307,7 @@
   </div>
   <div
     v-if="field.type === 'signature'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-signature-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -340,6 +340,7 @@
   </div>
   <li
     v-if="[true, false].includes(withSignatureId) && field.type === 'signature'"
+    class="field-settings-signature-id"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -355,6 +356,7 @@
   </li>
   <li
     v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification' && field.type !== 'strikethrough' && field.type !== 'heading'"
+    class="field-settings-required"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -370,6 +372,7 @@
   </li>
   <li
     v-if="field.type == 'stamp'"
+    class="field-settings-with-logo"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -384,6 +387,7 @@
   </li>
   <li
     v-if="field.type == 'checkbox'"
+    class="field-settings-checked"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -398,6 +402,7 @@
   </li>
   <li
     v-if="field.type == 'date'"
+    class="field-settings-set-signing-date"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -412,6 +417,7 @@
   </li>
   <li
     v-if="['text', 'number', 'radio', 'multiple', 'select'].includes(field.type)"
+    class="field-settings-read-only"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -427,6 +433,7 @@
   </li>
   <li
     v-if="withPrefillable && prefillableFieldTypes.includes(field['type'])"
+    class="field-settings-prefillable"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -444,7 +451,10 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)">
+  <li
+    v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)"
+    class="field-settings-font"
+  >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
@@ -459,6 +469,7 @@
   </li>
   <li
     v-if="field.type != 'stamp' && field.type != 'heading' && field.type != 'strikethrough'"
+    class="field-settings-description"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -474,6 +485,7 @@
   </li>
   <li
     v-if="withCondition && field.type != 'stamp' && field.type != 'heading'"
+    class="field-settings-condition"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -487,7 +499,10 @@
       </span>
     </label>
   </li>
-  <li v-if="field.type == 'number'">
+  <li
+    v-if="field.type == 'number'"
+    class="field-settings-formula"
+  >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-formula')"
@@ -508,6 +523,7 @@
     <li
       v-for="(area, index) in sortedAreas"
       :key="index"
+      class="field-settings-area"
     >
       <a
         href="#"
@@ -527,7 +543,10 @@
         />
       </a>
     </li>
-    <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
+    <li
+      v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)"
+      class="field-settings-draw-new-area"
+    >
       <a
         href="#"
         class="text-sm py-1 px-2"
@@ -541,7 +560,10 @@
       </a>
     </li>
   </template>
-  <li v-if="withCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
+  <li
+    v-if="withCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)"
+    class="field-settings-copy-to-all-pages"
+  >
     <a
       href="#"
       class="text-sm py-1 px-2"
@@ -554,7 +576,10 @@
       {{ t('copy_to_all_pages') }}
     </a>
   </li>
-  <li v-if="withCustomFields">
+  <li
+    v-if="withCustomFields"
+    class="field-settings-save-as-custom-field"
+  >
     <a
       href="#"
       class="text-sm py-1 px-2"
