@@ -10,10 +10,17 @@ class SubmittersAutocompleteController < ApplicationController
     submitters = search_submitters(@submitters)
 
     arel_columns = SELECT_COLUMNS.map { |col| Submitter.arel_table[col] }
-    values = submitters.limit(LIMIT).group(arel_columns).pluck(arel_columns)
+
+    values =
+      if params[:field].present? && SELECT_COLUMNS.include?(params[:field])
+        max_ids = submitters.group(params[:field]).limit(LIMIT).select(Submitter.arel_table[:id].maximum)
+
+        submitters.where(id: max_ids).order(id: :desc).pluck(arel_columns)
+      else
+        submitters.limit(LIMIT).group(arel_columns).pluck(arel_columns)
+      end
 
     attrs = values.map { |row| SELECT_COLUMNS.zip(row).to_h }
-    attrs = attrs.uniq { |e| e[params[:field]] } if params[:field].present?
 
     render json: attrs
   end
