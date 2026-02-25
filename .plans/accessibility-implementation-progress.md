@@ -137,6 +137,29 @@
 3. **Complete Task 7** (Phase 1 accessibility tests)
 4. **Begin Phase 2**: Form error associations and ARIA live regions
 
+---
+
+## Session Summary - 2026-02-25 (follow-up)
+
+### Expert design review: PDF View / Text View tab switcher
+
+Produced detailed design report at `.reports/pdf-text-view-tab-switcher-design.md` covering:
+
+- ARIA tab pattern requirements (roles, keyboard behavior, roving tabindex)
+- Text View content strategy: heuristic parsing (Approach B) recommended for MVP
+- Signing form UX: read-only Text View + always-visible Vue form panel + sticky "return to sign" CTA
+- Scoped implementation sequence (preview page first, then signing form)
+- Key pitfalls: DaisyUI radio-tab incompatibility with ARIA APG, 15-page cap handling, `hidden` attribute requirement, RTL `dir="auto"`, text quality disclosure, localStorage state persistence
+
+### Recommended next implementation steps
+
+1. **Create `lib/pdf_text_to_html.rb` service** — heuristic parser converting `pages_text` metadata strings into structured HTML (`<article>`, `<section>`, `<h2>`, `<ol>`, `<ul>`, `<p dir="auto">`)
+2. **Add ARIA tab switcher to `submissions/show.html.erb`** — preview page only, no signing complications
+3. **Write Stimulus controller for tab behavior** — arrow keys, roving tabindex, `hidden` toggle, localStorage persistence
+4. **Verify with VoiceOver + keyboard-only** before touching signing form
+5. **Add tab switcher to `submit_form/show.html.erb`** — with sticky "return to sign" CTA inside text panel
+6. **Handle 15-page cap**: hide tab entirely if `pages_text` key count < `number_of_pages`
+
 ### WCAG 2.2 Criteria Addressed
 
 ✅ **1.1.1 Non-text Content (Level A)** - All images now have alt text
