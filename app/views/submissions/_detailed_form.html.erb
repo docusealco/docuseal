@@ -67,11 +67,26 @@
                         <%= tag.input type: 'checkbox', name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", id: field_id, class: 'toggle toggle-sm', style: 'width: 38px; --handleoffset: 17px', checked: field['default_value'].present? && (field['default_value'] == true || field['default_value'].to_s == '1' || field['default_value'].to_s.downcase == 'true'), required: field['required'], value: 'true' %>
                       </label>
                     <% elsif field['type'] == 'select' || field['type'] == 'radio' %>
-                      <%= select_tag "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", options_for_select(field['options'].pluck('value'), field['default_value']), prompt: t(:select), id: field_id, class: 'select select-sm base-input !h-10 mt-1.5 ', required: field['required'] %>
+                      <div class="flex items-center space-x-2 mt-1.5">
+                        <div class="w-24 flex-shrink-0 text-sm font-medium text-right pr-2">
+                          <%= field['title'].presence || field['name'] %>
+                        </div>
+                        <%= select_tag "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", options_for_select(field['options'].pluck('value'), field['default_value']), prompt: t(:select), id: field_id, class: 'select select-sm base-input !h-10 w-full', required: field['required'] %>
+                      </div>
                     <% elsif field['type'] == 'date' %>
-                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                      <div class="flex items-center space-x-2 mt-1.5">
+                        <div class="w-24 flex-shrink-0 text-sm font-medium text-right pr-2">
+                          <%= field['title'].presence || field['name'] %>
+                        </div>
+                        <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                      </div>
                     <% elsif field['type'] != 'phone' %>
-                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                      <div class="flex items-center space-x-2 mt-1.5">
+                        <div class="w-24 flex-shrink-0 text-sm font-medium text-right pr-2">
+                          <%= field['title'].presence || field['name'] %>
+                        </div>
+                        <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                      </div>
                     <% end %>
                     <% field['conditions']&.each do |condition| %>
                       <% if (condition_field = prefillable_fields.find { |f| f['uuid'] == condition['field_uuid'] || f['name'] == condition['field_name'] }) %>
