@@ -1,3 +1,5 @@
+import { announceError } from './aria_announce'
+
 export default class extends HTMLElement {
   connectedCallback () {
     this.form.addEventListener('submit', (e) => {
@@ -21,7 +23,7 @@ export default class extends HTMLElement {
           const data = JSON.parse(await resp.text())
 
           if (data.error) {
-            alert(data.error)
+            announceError(data.error)
           }
         } catch (err) {
           console.error(err)

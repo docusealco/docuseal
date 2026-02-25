@@ -55,7 +55,7 @@
 <div id="js_1" class="block my-4">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-white flex', rel: 'noopener' %>
         <clipboard-copy data-text="<script src=&quot;<%= Docuseal::CDN_URL %>/js/form.js&quot;></script>
 
 <docuseal-form data-src=&quot;<%= start_form_url(slug: template.slug) %>&quot;></docuseal-form>
@@ -88,7 +88,7 @@
 <div id="react_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-white flex', rel: 'noopener' %>
         <clipboard-copy data-text="import React from &quot;react&quot;
 import { DocusealForm } from '@docuseal/react'
 
@@ -135,7 +135,7 @@ export function App() {
 <div id="vue_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-white flex', rel: 'noopener' %>
         <clipboard-copy data-text="<template>
   <DocusealForm
     :src=&quot;'<%= start_form_url(slug: template.slug) %>'&quot;
@@ -193,7 +193,7 @@ export default {
 <div id="angular_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-white flex', rel: 'noopener' %>
         <clipboard-copy data-text="import { Component } from '@angular/core';
 import { DocusealFormComponent } from '@docuseal/angular';
 

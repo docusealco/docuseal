@@ -1,3 +1,5 @@
+import { announceError } from './aria_announce'
+
 export default class extends HTMLElement {
   connectedCallback () {
     this.clearChecked()
@@ -17,7 +19,7 @@ export default class extends HTMLElement {
         navigator.clipboard.writeText(text)
       } else {
         if (e.target.tagName !== 'INPUT') {
-          alert(`Clipboard not available. Make sure you're using https://\nCopy text: ${text}`)
+          announceError(`Clipboard not available. Please use HTTPS. Copy text: ${text}`)
         }
       }
     }

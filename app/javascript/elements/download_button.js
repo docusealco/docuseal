@@ -1,4 +1,5 @@
 import { target, targetable } from '@github/catalyst/lib/targetable'
+import { announceError } from './aria_announce'
 
 export default targetable(class extends HTMLElement {
   static [target.static] = ['defaultButton', 'loadingButton']
@@ -45,7 +46,8 @@ export default targetable(class extends HTMLElement {
           this.downloadUrls(urls)
         }
       } else {
-        alert('Failed to download files')
+        announceError('Failed to download files')
+        this.toggleState()
       }
     })
   }

@@ -14,7 +14,7 @@
     </label>
     <folder-autocomplete class="flex justify-between w-full">
       <set-value data-on="blur" data-value="<%= TemplateFolder::DEFAULT_NAME %>" data-empty-only="true" class="peer w-full whitespace-nowrap">
-        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
+        <input id="folder_name" placeholder="<%= t('folder_name') %>" type="text" class="w-full outline-none border-transparent focus:border-base-content/50 focus:ring-1 focus:ring-base-content/20 bg-base-100 px-1 focus:rounded-sm" name="folder_name" value="<%= params[:folder_name].presence || @base_template&.folder&.full_name || TemplateFolder::DEFAULT_NAME %>" autocomplete="off">
       </set-value>
       <set-value data-on="click" data-value="" data-input-id="folder_name" class="peer-focus-within:hidden whitespace-nowrap">
         <label for="folder_name" data-clear-on-focus="true" class="shrink-0 link mr-1.5 cursor-pointer">

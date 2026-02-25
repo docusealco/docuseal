@@ -61,7 +61,7 @@
               </div>
               <select
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
-                :class="{ 'text-gray-300': !condition.field_uuid }"
+                :class="{ 'text-gray-600': !condition.field_uuid }"
                 required
                 @change="[
                   condition.field_uuid = $event.target.value,
@@ -103,7 +103,7 @@
               <select
                 v-if="['radio', 'select', 'multiple'].includes(conditionField(condition)?.type) && conditionField(condition)?.options"
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
-                :class="{ 'text-gray-300': !condition.value }"
+                :class="{ 'text-gray-600': !condition.value }"
                 required
                 @change="condition.value = $event.target.value"
               >
@@ -130,7 +130,7 @@
                 type="number"
                 step="any"
                 class="input input-bordered input-sm w-full bg-white h-11 pl-4 text-base font-normal"
-                :class="{ 'text-gray-300': !condition.value }"
+                :class="{ 'text-gray-600': !condition.value }"
                 :placeholder="t('type_value')"
                 required
               >

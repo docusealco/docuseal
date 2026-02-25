@@ -102,7 +102,7 @@
           ref="phone"
           :value="defaultValue && detectedPhoneValueDialCode ? phoneValue.split('+' + detectedPhoneValueDialCode).slice(-1).join('') : phoneValue"
           :readonly="!!defaultValue"
-          class="base-input !text-2xl !rounded-l-none !border-l-0 !outline-none w-full"
+          class="base-input !text-2xl !rounded-l-none !border-l-0 w-full"
           autocomplete="tel"
           type="tel"
           inputmode="tel"

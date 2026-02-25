@@ -1,13 +1,14 @@
 <turbo-frame id="modal">
-  <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
+  <% modal_title_id = "modal_title_#{SecureRandom.hex(4)}" %>
+  <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>" <%= "aria-labelledby=\"#{modal_title_id}\"" if local_assigns[:title] %>>
     <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
     <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
       <% if local_assigns[:title] %>
         <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-          <span>
+          <span id="<%= modal_title_id %>">
             <%= local_assigns[:title] %>
           </span>
-          <a href="#" class="text-xl" data-action="click:turbo-modal#close" aria-label="<%= t('close') %>">&times;</a>
+          <button type="button" class="text-xl" data-action="click:turbo-modal#close" aria-label="<%= t('close') %>">&times;</button>
         </div>
       <% end %>
       <div>

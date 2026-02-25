@@ -64,7 +64,7 @@
         ref="name"
         :contenteditable="editable && !defaultField && field.type !== 'heading'"
         dir="auto"
-        class="pr-1 cursor-text outline-none block"
+        class="pr-1 cursor-text block focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
         style="min-width: 2px"
         @paste.prevent="onPaste"
         @keydown.enter.prevent="onNameEnter"
@@ -275,7 +275,7 @@
             <select
               v-else-if="isSelectInput"
               ref="defaultValueSelect"
-              class="bg-transparent outline-none focus:outline-none w-full"
+              class="bg-transparent w-full focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
               @change="[field.default_value = $event.target.value, field.readonly = !!field.default_value?.length, save()]"
               @focus="selectedAreasRef.value = [area]"
               @keydown.enter="onDefaultValueEnter"
@@ -300,7 +300,7 @@
               v-else
               ref="defaultValue"
               :contenteditable="isValueInput"
-              class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-base-content/30"
+              class="whitespace-pre-wrap empty:before:content-[attr(placeholder)] before:text-base-content/30 focus:ring-1 focus:ring-base-content/40 focus:rounded-sm"
               :class="{ 'cursor-text': isValueInput }"
               :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
               @blur="onDefaultValueBlur"

@@ -205,6 +205,7 @@
         </div>
       </div>
     </div>
+    <label for="signature_text_input" class="sr-only">{{ t('signature') }}</label>
     <input
       v-if="isTextSignature && !modelValue && !computedPreviousValue"
       id="signature_text_input"
@@ -217,8 +218,9 @@
     >
     <select
       v-if="withSigningReason && !isOtherReason"
+      :aria-label="t('require_signing_reason')"
       class="select base-input !text-2xl w-full mt-6 text-center"
-      :class="{ 'text-gray-300': !reason }"
+      :class="{ 'text-gray-600': !reason }"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
       @change="$event.target.value === 'other' ? [reason = '', isOtherReason = true] : $emit('update:reason', $event.target.value)"
@@ -227,7 +229,7 @@
         value=""
         disabled
         :selected="!reason"
-        class="text-gray-300"
+        class="text-gray-600"
       >
         {{ t('select_a_reason') }}
       </option>
@@ -304,6 +306,14 @@
       v-else
       class="mt-5 md:mt-7"
     />
+    <div
+      v-if="signatureError"
+      role="alert"
+      aria-live="assertive"
+      class="text-error text-sm mt-2 px-1"
+    >
+      {{ signatureError }}
+    </div>
   </div>
 </template>
 
@@ -424,7 +434,8 @@ export default {
       isUsePreviousValue: true,
       isTouchAttachment: false,
       isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
-      uploadImageInputKey: Math.random().toString()
+      uploadImageInputKey: Math.random().toString(),
+      signatureError: null
     }
   },
   computed: {
@@ -764,7 +775,7 @@ export default {
 
       if (this.isSignatureStarted && this.pad.toData().length > 0 && !isValidSignatureCanvas(this.pad.toData())) {
         if (this.field.required === true || this.pad.toData().length > 0) {
-          alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+          this.signatureError = this.t('signature_is_too_small_or_simple_please_redraw')
 
           return Promise.reject(new Error('Image too small or simple'))
         } else {
@@ -820,7 +831,7 @@ export default {
           }
         }).catch((error) => {
           if (this.field.required === true) {
-            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            this.signatureError = this.t('signature_is_too_small_or_simple_please_redraw')
 
             return reject(error)
           } else {

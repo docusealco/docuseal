@@ -11,7 +11,7 @@
         type="button"
         :aria-selected="!textViewActive ? 'true' : 'false'"
         :tabindex="!textViewActive ? 0 : -1"
-        :class="['px-4 py-2 text-sm border-b-2 -mb-px focus:outline-none', !textViewActive ? 'border-neutral text-base-content font-semibold' : 'border-transparent text-base-content font-medium']"
+        :class="['px-4 py-2 text-sm border-b-2 -mb-px focus:ring-2 focus:ring-inset focus:ring-base-content/50', !textViewActive ? 'border-neutral text-base-content font-semibold' : 'border-transparent text-base-content font-medium']"
         @click="textViewActive = false"
         @keydown="onTabKeydown($event, false)"
       >
@@ -22,7 +22,7 @@
         type="button"
         :aria-selected="textViewActive ? 'true' : 'false'"
         :tabindex="textViewActive ? 0 : -1"
-        :class="['px-4 py-2 text-sm border-b-2 -mb-px focus:outline-none', textViewActive ? 'border-neutral text-base-content font-semibold' : 'border-transparent text-base-content font-medium']"
+        :class="['px-4 py-2 text-sm border-b-2 -mb-px focus:ring-2 focus:ring-inset focus:ring-base-content/50', textViewActive ? 'border-neutral text-base-content font-semibold' : 'border-transparent text-base-content font-medium']"
         @click="textViewActive = true"
         @keydown="onTabKeydown($event, true)"
       >

@@ -16,12 +16,12 @@
       <%= local_assigns[:banner_html] || capture do %>
         <%= render('submit_form/banner') %>
         <div id="signing_form_header" class="sticky min-[1230px]:static top-0 z-50 bg-base-100 py-2 px-2 flex items-center md:-mx-[8px]" style="margin-bottom: -16px">
-          <div class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <h1 class="text-xl md:text-2xl font-medium focus:text-clip" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
             <%= @submitter.submission.name || @submitter.submission.template.name %>
-          </div>
+          </h1>
           <div class="flex items-center space-x-2" style="margin-left: 20px; flex-shrink: 0">
             <% if @form_configs[:with_decline] %>
-              <label id="decline_button" for="<%= decline_modal_checkbox_uuid = SecureRandom.uuid %>" class="btn btn-sm !px-5"><%= t(:decline) %></label>
+              <label id="decline_button_header" for="<%= decline_modal_checkbox_uuid = SecureRandom.uuid %>" class="btn btn-sm !px-5"><%= t(:decline) %></label>
             <% end %>
             <% if @form_configs[:with_partial_download] %>
               <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm !px-4">
@@ -39,7 +39,7 @@
         </div>
         <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
           <% if @form_configs[:with_decline] %>
-            <label id="decline_button" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-0">
+            <label id="decline_button_scroll" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-0">
               <span class="min-[1366px]:inline hidden px-3">
                 <%= t(:decline) %>
               </span>

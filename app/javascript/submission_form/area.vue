@@ -134,6 +134,7 @@
         v-if="submittable"
         type="checkbox"
         :value="false"
+        :aria-label="field.title || field.name || fieldNames[field.type]"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue"
@@ -154,6 +155,7 @@
         v-if="submittable"
         type="radio"
         :value="false"
+        :aria-label="(field.title || field.name || fieldNames[field.type]) + (option?.value ? ': ' + option.value : '')"
         class="aspect-square checked:checkbox checked:checkbox-xs"
         :class="{ 'base-radio': !modelValue || modelValue !== optionValue(option), '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue && modelValue === optionValue(option)"
@@ -208,7 +210,7 @@
     >
       <span
         v-if="field && field.name && withFieldPlaceholder && !modelValue && modelValue !== 0"
-        class="whitespace-pre-wrap text-gray-400"
+        class="whitespace-pre-wrap text-gray-600"
         :class="{ 'w-full': field.preferences?.align }"
       >{{ field.name }}</span>
       <span
