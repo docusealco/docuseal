@@ -27,6 +27,8 @@ export default targetable(class extends HTMLElement {
   toggleState () {
     this.defaultButton?.classList?.toggle('hidden')
     this.loadingButton?.classList?.toggle('hidden')
+    // aria-busy reflects whether the loading state is now active (loadingButton visible)
+    this.setAttribute('aria-busy', this.loadingButton?.classList?.contains('hidden') ? 'false' : 'true')
   }
 
   downloadFiles () {

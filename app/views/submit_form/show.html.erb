@@ -48,7 +48,7 @@
               </span>
             </label>
           <% end %>
-          <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2">
+          <download-button data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2" aria-label="<%= t('download') %>">
             <span data-target="download-button.defaultButton">
               <%= svg_icon('download', class: 'w-5 h-5') %>
             </span>

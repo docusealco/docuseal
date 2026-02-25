@@ -5,7 +5,7 @@
       <% last_attempt = webhook_attempts.select { |e| e.attempt < SendWebhookRequest::MANUAL_ATTEMPT }.max_by(&:attempt) %>
       <% if webhook_event.webhook_attempts.none?(&:success?) && last_attempt.attempt <= 10 %>
         <li class="ml-7">
-          <span class="btn btn-outline btn-xs btn-circle pointer-events-none absolute justify-center border-base-content-/60 text-base-content/60 bg-base-100" style="left: -12px;">
+          <span class="btn btn-outline btn-xs btn-circle pointer-events-none absolute justify-center border-base-content/60 text-base-content/60 bg-base-100" style="left: -12px;">
             <%= svg_icon('clock', class: 'w-4 h-4 shrink-0') %>
           </span>
           <p class="leading-none text-base-content/90 pt-1">

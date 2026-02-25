@@ -3,6 +3,7 @@ export default class extends HTMLElement {
     if (this.dataset.indeterminate === 'true') {
       this.checkbox.indeterminate = true
       this.checkbox.readOnly = true
+      this.checkbox.setAttribute('aria-checked', 'mixed')
     }
 
     this.checkbox.addEventListener('click', () => {
@@ -14,6 +15,7 @@ export default class extends HTMLElement {
 
       if (this.checkbox.readOnly) {
         this.checkbox.checked = this.checkbox.readOnly = false
+        this.checkbox.setAttribute('aria-checked', 'false')
       } else if (!this.checkbox.checked) {
         if (this.showIndeterminateEl) {
           this.showIndeterminateEl.classList.remove('hidden')
@@ -21,6 +23,9 @@ export default class extends HTMLElement {
 
         this.checkbox.setAttribute('name', this.dataset.indeterminateName)
         this.checkbox.checked = this.checkbox.readOnly = this.checkbox.indeterminate = true
+        this.checkbox.setAttribute('aria-checked', 'mixed')
+      } else {
+        this.checkbox.setAttribute('aria-checked', 'true')
       }
     })
   }

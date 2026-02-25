@@ -1,3 +1,5 @@
+import { announcePolite } from './aria_announce'
+
 export default class extends HTMLElement {
   connectedCallback () {
     const form = this.querySelector('form') || (this.querySelector('input, button, select') || this.lastElementChild).form
@@ -14,9 +16,11 @@ export default class extends HTMLElement {
 
         if (this.dataset.submitIfValue === 'true') {
           if (event.target.value) {
+            if (this.dataset.announceSubmit) announcePolite(this.dataset.announceSubmit)
             form.requestSubmit()
           }
         } else {
+          if (this.dataset.announceSubmit) announcePolite(this.dataset.announceSubmit)
           form.requestSubmit()
         }
       })

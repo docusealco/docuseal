@@ -4,6 +4,7 @@ export default class extends HTMLElement {
 
     this.form.addEventListener('submit', () => {
       this.button.disabled = true
+      this.button.setAttribute('aria-busy', 'true')
     })
   }
 

@@ -89,6 +89,7 @@
         </a>
         <a
           :title="t('minimize')"
+          :aria-label="t('minimize')"
           href="#"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
