@@ -399,11 +399,29 @@ All remaining High (H7, H8) and most Medium (M3–M9, M11) issues fixed.
 
 **Low (L1–L9, L11–L13):** Deferred to backlog (see `.reports/wcag-2.1-aa-audit.md`).
 
+---
+
+## Session: WCAG 2.1 AA Sprint 3 Remediation (2026-02-25)
+
+### Completed (Commit 60f09745)
+
+All remaining Medium issues from the audit now fixed.
+
+| Issue | Fix | Files |
+|-------|-----|-------|
+| M1 color-only indicators | `aria-hidden` on decorative dot; `sr-only` span (field name + submitter) on colored overlays | `submissions/show.html.erb` |
+| M2 color-only dots | `aria-hidden` on all decorative color spans; `aria-label` + span (not button) in compact mode | `template_builder/field_submitter.vue` |
+| M8 form validation | Inline `role="alert"` errors + `aria-describedby`/`aria-invalid` on all profile & password fields | `profile/index.html.erb` |
+| M10 icon buttons | `aria-label` added to 11 buttons across 5 files; `aria-pressed` on QR toggle | 7 files |
+
+### Remaining Issues (Sprint 4 — Low Priority)
+
+**Low (L1–L9, L11–L13)** from `.reports/wcag-2.1-aa-audit.md` — deferred backlog.
+
 ### Next Session Recommendations
 
-1. **M1**: Add text labels alongside color-only submitter indicators in `submissions/show.html.erb`
-2. **M2**: Add sr-only labels to color swatches in `template_builder/area.vue`
-3. **M8**: Add inline form validation with `aria-describedby` to profile form fields
-4. **M10**: Audit remaining icon-only buttons and add `aria-label` where missing
-5. **Manual test**: Verify keyboard-only navigation end-to-end on signing form
-6. **Manual test**: Verify screen reader announcements for QR code, clipboard copy, item removal
+1. **L-series audit pass**: Review and prioritize L1–L9, L11–L13 from `.reports/wcag-2.1-aa-audit.md`
+2. **Manual test**: End-to-end keyboard-only navigation on signing form
+3. **Manual test**: Screen reader smoke test — tab through form, trigger errors, check announcements
+4. **Regression check**: Verify `user_menu.js` ESC handler still works with global keyup guard
+5. **Consider automated tests**: Add axe-core checks for the most critical flows (blocked by Ruby version)
