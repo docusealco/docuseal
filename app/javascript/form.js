@@ -1,6 +1,7 @@
 import { createApp, reactive } from 'vue'
 
 import Form from './submission_form/form'
+import DocumentTabs from './elements/document_tabs'
 import DownloadButton from './elements/download_button'
 import ToggleSubmit from './elements/toggle_submit'
 import FetchForm from './elements/fetch_form'
@@ -10,6 +11,7 @@ import SubmitForm from './elements/submit_form'
 
 const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options)
 
+safeRegisterElement('document-tabs', DocumentTabs)
 safeRegisterElement('download-button', DownloadButton)
 safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('fetch-form', FetchForm)
