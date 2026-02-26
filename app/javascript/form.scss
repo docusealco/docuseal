@@ -12,7 +12,9 @@
 .radio:focus-visible,
 .toggle:focus-visible,
 .tab:focus-visible,
-.link:focus-visible {
+.link:focus-visible,
+.menu li > a:focus-visible,
+.menu li > button:focus-visible {
   outline-color: rgb(14, 99, 200);
   outline-style: solid;
   outline-width: 8px;

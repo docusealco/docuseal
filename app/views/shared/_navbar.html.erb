@@ -28,7 +28,7 @@
         <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex" role="button" aria-label="<%= t('user_menu') %>" aria-haspopup="menu" aria-expanded="false">
           <span class="text-sm align-text-top" aria-hidden="true"><%= current_user.initials %></span>
         </label>
-        <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[160px] text-right">
+        <ul tabindex="-1" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[160px] text-right">
           <li>
             <%= link_to settings_profile_index_path, class: 'flex items-center' do %>
               <%= svg_icon('adjustments', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
