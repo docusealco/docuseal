@@ -1,6 +1,6 @@
 <turbo-frame id="modal">
   <% modal_title_id = "modal_title_#{SecureRandom.hex(4)}" %>
-  <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto !justify-normal md:!justify-center" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>"<%= html_attributes('aria-labelledby': modal_title_id) if local_assigns[:title] %>>
+  <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto !justify-normal md:!justify-center" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>" aria-labelledby="<%= modal_title_id %>">
     <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
     <div class="bg-base-100 min-h-screen max-h-screen md:min-h-fit md:mt-3 md:rounded-2xl relative w-full relative overflow-y-auto">
       <% if local_assigns[:title] %>
