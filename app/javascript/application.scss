@@ -17,16 +17,16 @@
 .menu li > button:focus-visible {
   outline-color: rgb(14, 99, 200);
   outline-style: solid;
-  outline-width: 8px;
-  outline-offset: 4px;
+  outline-width: 3px;
+  outline-offset: 1px;
 }
 
 /* Transfer focus ring from toggle to its full menu row label */
 .menu label:has(.toggle:focus-visible) {
   outline-color: rgb(14, 99, 200);
   outline-style: solid;
-  outline-width: 8px;
-  outline-offset: 4px;
+  outline-width: 3px;
+  outline-offset: 1px;
 }
 
 .menu label .toggle:focus-visible {
