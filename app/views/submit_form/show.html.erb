@@ -10,7 +10,7 @@
 <% font_scale = 1000.0 / PdfUtils::US_LETTER_W %>
 <% decline_modal_checkbox_uuid = nil %>
 <div style="max-height: -webkit-fill-available;">
-  <div id="scrollbox" tabindex="-1">
+  <div id="scrollbox">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 transition-transform duration-300 %>
       <%= local_assigns[:banner_html] || capture do %>
@@ -81,6 +81,7 @@
           </div>
           <div id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" tabindex="0">
       <% end %>
+      <% unless has_full_text %><div id="tab-pdf" tabindex="-1"></div><% end %>
       <% schema.each do |item| %>
         <% document = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <div id="document-<%= document.uuid %>">
