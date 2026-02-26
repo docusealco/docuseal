@@ -42,15 +42,15 @@
       <div class="flex items-center space-x-2">
         <% if can?(:update, template) %>
           <div class="tooltip" data-tip="<%= t('preferences') %>">
-            <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
-              <span class="flex items-center justify-center space-x-2">
+            <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', aria: { label: "#{t('preferences')} - #{template.name}" }, data: { turbo_frame: :modal } do %>
+              <span class="flex items-center justify-center space-x-2" aria-hidden="true">
                 <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
               </span>
             <% end %>
           </div>
         <% end %>
-        <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', data: { turbo_frame: :modal } do %>
-          <span class="flex items-center justify-center space-x-2">
+        <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', aria: { label: "#{t('link')} - #{template.name}" }, data: { turbo_frame: :modal } do %>
+          <span class="flex items-center justify-center space-x-2" aria-hidden="true">
             <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6 text-white') %>
             <span><%= t('link') %></span>
           </span>
@@ -60,11 +60,11 @@
   </div>
   <div class="flex flex-wrap gap-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
     <% if !template.archived_at? && can?(:destroy, template) %>
-      <%= button_to button_title(title: t('archive'), disabled_with: t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: t('are_you_sure_') } %>
+      <%= button_to button_title(title: t('archive'), disabled_with: t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, aria: { label: "#{t('archive')} - #{template.name}" }, data: { turbo_confirm: t('are_you_sure_') } %>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
-      <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
-        <span class="flex items-center justify-center space-x-2">
+      <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm flex-1', aria: { label: "#{t('clone')} - #{template.name}" }, data: { turbo_frame: :modal } do %>
+        <span class="flex items-center justify-center space-x-2" aria-hidden="true">
           <%= svg_icon('copy', class: 'w-6 h-6') %>
           <span class="inline"><%= t('clone') %></span>
         </span>
@@ -72,15 +72,15 @@
     <% end %>
     <% if !template.archived_at? %>
       <% if can?(:update, template) %>
-        <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
-          <span class="flex items-center justify-center space-x-2">
+        <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm flex-1', aria: { label: "#{t('edit')} - #{template.name}" } do %>
+          <span class="flex items-center justify-center space-x-2" aria-hidden="true">
             <%= svg_icon('pencil', class: 'w-6 h-6') %>
             <span><%= t('edit') %></span>
           </span>
         <% end %>
       <% elsif can?(:read, template) && !template.archived_at? %>
-        <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
-          <span class="flex items-center justify-center space-x-2">
+        <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1', aria: { label: "#{t('preview')} - #{template.name}" } do %>
+          <span class="flex items-center justify-center space-x-2" aria-hidden="true">
             <%= svg_icon('file_text', class: 'w-6 h-6') %>
             <span><%= t('preview') %></span>
           </span>
@@ -89,10 +89,10 @@
     <% end %>
     <% if template.archived_at? %>
       <% if can?(:create, template) %>
-        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring'), icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
+        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring'), icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1', aria: { label: "#{t('restore')} - #{template.name}" } %>
       <% end %>
-      <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
-        <span class="flex items-center justify-center space-x-2">
+      <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1', aria: { label: "#{t('preview')} - #{template.name}" } do %>
+        <span class="flex items-center justify-center space-x-2" aria-hidden="true">
           <%= svg_icon('file_text', class: 'w-6 h-6') %>
           <span><%= t('preview') %></span>
         </span>
