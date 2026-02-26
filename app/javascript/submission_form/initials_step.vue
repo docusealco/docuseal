@@ -22,34 +22,34 @@
           class="md:tooltip"
           :data-tip="t('type_initial')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
             <IconTextSize :width="16" />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-else
           class="md:tooltip ml-2"
           :data-tip="t('draw_initials')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
             <IconSignature :width="16" />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           class="md:tooltip"
@@ -69,36 +69,36 @@
             </span>
           </label>
         </span>
-        <a
+        <button
           v-if="modelValue || computedPreviousValue"
-          href="#"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="remove"
+          @click="remove"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
           v-else
-          href="#"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="clear"
+          @click="clear"
         >
           <IconReload :width="16" />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
+          type="button"
           :title="t('minimize')"
           :aria-label="t('minimize')"
-          href="#"
           class="py-1.5 inline md:hidden"
-          @click.prevent="$emit('minimize')"
+          @click="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
             :width="20"
             :height="20"
           />
-        </a>
+        </button>
       </div>
     </div>
     <div
@@ -135,6 +135,8 @@
         ref="canvas"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
         :aria-label="t('initials_drawing_pad')"
+        :aria-invalid="initialsError ? 'true' : undefined"
+        :aria-errormessage="initialsError ? 'initials-error' : undefined"
       >{{ t('initials_drawing_pad') }}</canvas>
     </div>
     <input
@@ -150,6 +152,7 @@
     >
     <div
       v-if="initialsError"
+      id="initials-error"
       role="alert"
       aria-live="assertive"
       class="text-error text-sm mt-2 px-1"

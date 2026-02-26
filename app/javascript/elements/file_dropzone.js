@@ -10,6 +10,15 @@ export default actionable(targetable(class extends HTMLElement {
   ]
 
   connectedCallback () {
+    this.setAttribute('role', 'region')
+    if (!this.hasAttribute('aria-label')) {
+      this.setAttribute('aria-label', this.dataset.name || 'File upload')
+    }
+
+    if (this.input && !this.input.getAttribute('aria-label')) {
+      this.input.setAttribute('aria-label', this.dataset.name || 'Upload file')
+    }
+
     this.addEventListener('dragover', (e) => e.preventDefault())
     this.addEventListener('drop', this.onDrop)
     document.addEventListener('turbo:submit-end', this.toggleLoading)

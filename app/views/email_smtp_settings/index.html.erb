@@ -37,15 +37,17 @@
         </div>
         <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
           <div class="form-control">
-            <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
-            <div class="flex items-center space-x-6">
-              <% [%w[STARTTLS none], %w[TLS tls], %w[SSL ssl], %w[Noverify noverify]].each do |(label, val)| %>
-                <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
-                  <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
-                  <%= label %>
+            <fieldset>
+              <legend class="label">SMTP Security</legend>
+              <div class="flex items-center space-x-6">
+                <% [%w[STARTTLS none], %w[TLS tls], %w[SSL ssl], %w[Noverify noverify]].each do |(label, val)| %>
+                  <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
+                    <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>
+                    <%= label %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
+              </div>
+            </fieldset>
           </div>
         <% end %>
         <div class="form-control">

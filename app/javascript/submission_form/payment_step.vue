@@ -34,11 +34,13 @@
       <button
         v-if="sessionId"
         disabled
+        aria-busy="true"
         class="base-button w-full modal-save-button"
       >
         <IconLoader
           width="22"
           class="animate-spin"
+          aria-hidden="true"
         />
         <span>
           {{ t('processing') }}...
@@ -50,12 +52,14 @@
         class="btn bg-[#7B73FF] text-white hover:bg-[#0A2540] text-lg w-full"
         :class="{ disabled: isCreatingCheckout }"
         :disabled="isCreatingCheckout"
+        :aria-busy="isCreatingCheckout"
         @click.prevent="postCheckout"
       >
         <IconInnerShadowTop
           v-if="isCreatingCheckout"
           width="22"
           class="animate-spin"
+          aria-hidden="true"
         />
         <IconBrandStripe
           v-else

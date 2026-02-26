@@ -104,6 +104,7 @@ const en = {
   copy_to_all_pages: 'Copy to all pages',
   more: 'More',
   add_option: 'Add option',
+  remove_option: 'Remove option',
   option: 'Option',
   options: 'Options',
   condition: 'Condition',

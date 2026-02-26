@@ -365,6 +365,11 @@ en: &en
   page_number: 'Page %{number}'
   page: Page
   of: of
+  dismiss: Dismiss
+  step: Step
+  form_progress: Form progress
+  breadcrumb: Breadcrumb navigation
+  actions: Actions
   text_content: text content
   pdf_view: "PDF View"
   text_view: "Text View"

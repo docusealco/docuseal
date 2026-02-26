@@ -230,6 +230,7 @@
             v-if="editable && !defaultField"
             class="text-sm w-3.5"
             tabindex="-1"
+            :aria-label="`${t('remove_option')} ${index + 1}`"
             @click="removeOption(option)"
           >
             &times;

@@ -1,4 +1,4 @@
-import { announceError } from './aria_announce'
+import { announceError, announcePolite } from './aria_announce'
 
 export default class extends HTMLElement {
   connectedCallback () {
@@ -28,6 +28,8 @@ export default class extends HTMLElement {
         } catch (err) {
           console.error(err)
         }
+      } else if (this.dataset.successMessage) {
+        announcePolite(this.dataset.successMessage)
       }
     })
   }

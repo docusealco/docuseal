@@ -1,9 +1,10 @@
-<div>
+<nav aria-label="<%= t('breadcrumb') %>">
   <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center' do %>
-    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+    <%= svg_icon('chevron_left', class: 'w-5 h-5', aria_hidden: true) %>
     <span style="margin-left: 3px"><%= @template_folder.parent_folder&.name || t('home') %></span>
   <% end %>
-</div>
+  <span class="sr-only" aria-current="page"><%= @template_folder.name %></span>
+</nav>
 <dashboard-dropzone>
   <div class="relative flex justify-between items-center w-full mb-4">
     <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>

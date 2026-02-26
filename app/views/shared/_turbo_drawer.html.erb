@@ -7,12 +7,12 @@
           <span>
             <%= local_assigns[:title] %>
           </span>
-          <a href="#" class="text-xl" data-action="click:turbo-modal#close">&times;</a>
+          <button type="button" class="text-xl" aria-label="<%= t('close') %>" data-action="click:turbo-modal#close">&times;</button>
         </div>
       <% else %>
-        <span data-action="click:turbo-modal#close" class="absolute btn border border-base-100 bg-base-100 hover:bg-base-300 hover:border-base-300 btn-primary !text-base btn-sm btn-circle" style="left: -40px; top: 6px">
+        <button type="button" data-action="click:turbo-modal#close" aria-label="<%= t('close') %>" class="absolute btn border border-base-100 bg-base-100 hover:bg-base-300 hover:border-base-300 btn-primary !text-base btn-sm btn-circle" style="left: -40px; top: 6px">
           &times;
-        </span>
+        </button>
       <% end %>
       <div class="w-screen md:w-[620px] overflow-y-auto" style="max-height: calc(100vh - <%= local_assigns[:title] ? '45px' : '0px' %>)">
         <%= yield %>

@@ -69,7 +69,9 @@
     id="expand_form_button"
     class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3 expand-form-button text-base"
     style="width: 96%; margin-left: 2%"
-    @click.prevent="[isFormVisible = true, $nextTick(() => scrollIntoField(currentField))]"
+    aria-expanded="false"
+    aria-controls="form_container"
+    @click="[isFormVisible = true, $nextTick(() => scrollIntoField(currentField))]"
   >
     <template v-if="['initials', 'signature'].includes(currentField.type)">
       <IconWritingSign stroke-width="1.5" />
@@ -96,6 +98,7 @@
     class="shadow-md bg-base-100 absolute bottom-0 w-full border-base-200 border p-4 rounded form-container overflow-hidden"
     :class="{ 'md:bottom-4': isBreakpointMd }"
     :style="{ backgroundColor: backgroundColor }"
+    :aria-hidden="!isFormVisible"
   >
     <button
       v-if="!isCompleted"
@@ -553,14 +556,20 @@
         v-if="stepFields.length < 80"
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
       >
-        <div class="flex items-center flex-wrap steps-progress">
-          <a
+        <div
+          role="group"
+          :aria-label="t('form_progress')"
+          class="flex items-center flex-wrap steps-progress"
+        >
+          <button
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
-            href="#"
+            type="button"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
             :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
+            :aria-label="`${t('step')} ${index + 1} ${t('of')} ${stepFields.length}`"
+            :aria-current="index === currentStep ? 'step' : undefined"
+            @click="isCompleted ? undefined : [saveStep(), goToStep(index, true)]"
           />
         </div>
       </div>

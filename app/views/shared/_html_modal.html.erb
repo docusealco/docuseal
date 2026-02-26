@@ -1,10 +1,10 @@
 <% uuid = local_assigns[:uuid] || SecureRandom.uuid %>
 <input type="checkbox" id="<%= uuid %>" class="modal-toggle">
 <div id="<%= local_assigns[:id] %>" class="modal items-start !animate-none overflow-y-auto">
-  <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
+  <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none" role="dialog" aria-modal="true"<% if local_assigns[:title] %> aria-labelledby="modal-title-<%= uuid %>"<% end %>>
     <% if local_assigns[:title] %>
       <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-        <span>
+        <span id="modal-title-<%= uuid %>">
           <%= local_assigns[:title] %>
         </span>
         <label for="<%= uuid %>" class="text-xl" role="button" tabindex="0" aria-label="<%= t('close') %>">&times;</label>

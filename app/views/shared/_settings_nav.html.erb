@@ -1,4 +1,5 @@
 <div class="block w-full md:w-52 flex-none">
+  <nav aria-label="<%= t('settings') %>">
   <menu-active>
     <ul id="account_settings_menu" class="menu px-0">
       <li class="menu-title py-0 !bg-transparent mb-3 -mt-5"><a href="<%= '/' %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5"><%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %><span><%= t('back') %></span></a></li>
@@ -108,6 +109,7 @@
       <% end %>
     </ul>
   </menu-active>
+  </nav>
   <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
     <div id="support_channels" class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
@@ -115,19 +117,19 @@
       </div>
       <div class="flex mt-3 space-x-3">
         <div class="tooltip" data-tip="GitHub">
-          <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_github', class: 'w-8 h-8') %>
+          <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" aria-label="GitHub" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_github', class: 'w-8 h-8', aria_hidden: true) %>
           </a>
         </div>
         <div class="tooltip" data-tip="<%= t('discord_community') %>">
-          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" aria-label="<%= t('discord_community') %>" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_discord', class: 'w-8 h-8', aria_hidden: true) %>
           </a>
         </div>
         <%= capture do %>
           <div class="tooltip" data-tip="<%= t('ai_assistant') %>">
-            <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
+            <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" aria-label="<%= t('ai_assistant') %>" class="btn btn-circle btn-primary btn-md">
+              <%= svg_icon('brand_openai', class: 'w-8 h-8', aria_hidden: true) %>
             </a>
           </div>
         <% end %>

@@ -42,28 +42,28 @@
           @input="onInputCode"
         >
         <div class="flex justify-between mt-2 -mb-2 md:-mb-4">
-          <a
+          <button
             v-if="!defaultValue"
-            href="#"
+            type="button"
             class="link change-phone-number-link"
-            @click.prevent="isCodeSent = false"
+            @click="isCodeSent = false"
           >
             {{ t('change_phone_number') }}
-          </a>
+          </button>
           <span
             v-if="resendCodeCountdown > 0"
             class="link"
           >
             {{ t('wait_countdown_seconds').replace('{countdown}', resendCodeCountdown) }}
           </span>
-          <a
+          <button
             v-else
-            href="#"
+            type="button"
             class="link resend-code-link"
-            @click.prevent="resendCode"
+            @click="resendCode"
           >
             {{ isResendLoading ? t('sending') : t('resend_code') }}
-          </a>
+          </button>
         </div>
       </div>
       <div
@@ -80,6 +80,7 @@
           <select
             id="country_code_select"
             class="absolute top-0 bottom-0 right-0 left-0 opacity-0 w-full h-full cursor-pointer"
+            :aria-label="t('country_code')"
             :disabled="!!defaultValue"
             @change="onCountrySelect(countries.find((country) => country.flag === $event.target.value))"
           >

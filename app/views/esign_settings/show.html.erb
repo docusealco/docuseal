@@ -34,7 +34,7 @@
                   <%= t('click_to_upload_or_drag_and_drop_files_html') %>
                 </div>
               </div>
-              <input id="file" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
+              <input id="file" name="files[]" class="sr-only" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
             </div>
           </label>
         </file-dropzone>
@@ -54,18 +54,20 @@
     <%= render 'alert' %>
     <div class="overflow-x-auto">
       <table class="table w-full table-lg rounded-b-none overflow-hidden">
+        <caption class="sr-only"><%= t('signing_certificates') %></caption>
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
-            <th>
+            <th scope="col">
               <%= t('name') %>
             </th>
-            <th>
+            <th scope="col">
               <%= t('valid_to') %>
             </th>
-            <th>
+            <th scope="col">
               <%= t('status') %>
             </th>
-            <th class="text-right" width="1px">
+            <th scope="col" class="text-right sr-only" width="1px">
+              <%= t('actions') %>
             </th>
           </tr>
         </thead>

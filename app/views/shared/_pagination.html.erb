@@ -1,5 +1,5 @@
 <% if pagy.pages > 1 %>
-  <div class="flex my-6 justify-center md:justify-between">
+  <nav aria-label="<%= t('pagination') %>" class="flex my-6 justify-center md:justify-between">
     <div class="hidden md:block text-sm">
       <% if pagy.count.nil? %>
         <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_without_total", from: local_assigns.fetch(:from, pagy.from), to: local_assigns.fetch(:to, pagy.to)) %>
@@ -16,7 +16,7 @@
         <% else %>
           <span class="join-item btn btn-disabled !bg-base-200 min-h-full h-10">«</span>
         <% end %>
-        <span class="join-item btn font-medium uppercase min-h-full h-10">
+        <span class="join-item btn font-medium uppercase min-h-full h-10" aria-current="page">
           <%= t('page_number', number: pagy.page) %>
         </span>
         <% if local_assigns[:next_page_path].present? %>
@@ -28,5 +28,5 @@
         <% end %>
       </div>
     </div>
-  </div>
+  </nav>
 <% end %>

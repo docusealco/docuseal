@@ -102,7 +102,11 @@ const en = {
   initials_drawing_pad: 'Initials drawing pad. Use the tools above to draw or type your initials.',
   qr_code_for_mobile_signature: 'QR code for signing on a mobile device.',
   show_qr_code: 'Show QR code for mobile signing',
-  close_qr_code: 'Close QR code'
+  close_qr_code: 'Close QR code',
+  step: 'Step',
+  of: 'of',
+  form_progress: 'Form progress',
+  country_code: 'Country code'
 }
 
 const es = {

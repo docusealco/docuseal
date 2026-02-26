@@ -6,14 +6,15 @@
   <% end %>
   <% if params[:q].present? %>
     <div class="relative">
-      <a href="<%= url_for(params.to_unsafe_h.except(:q)) %>" title="<%= t('clear') %>" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
+      <a href="<%= url_for(params.to_unsafe_h.except(:q)) %>" aria-label="<%= t('clear') %>" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
         &times;
       </a>
     </div>
   <% end %>
   <search-input data-title="<%= local_assigns[:title_selector] || 'h1' %>" class="flex items-center">
+    <label for="search" class="sr-only"><%= t('search') %></label>
     <input id="search" name="q" value="<%= params[:q] %>" class="input text-lg pr-10 -mr-12 w-0 md:w-60 <%= 'pl-8 input-outlined w-60' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
-    <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle">
+    <button type="submit" aria-label="<%= t('search') %>" class="btn btn-ghost btn-circle">
       <span class="enabled">
         <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
       </span>
