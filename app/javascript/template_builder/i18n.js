@@ -214,7 +214,9 @@ const en = {
   fields_selected: '{count} Fields Selected',
   field_added: '{count} Field Added',
   fields_added: '{count} Fields Added',
-  field_name: 'Field name'
+  field_name: 'Field name',
+  field_type_added: '{type} field added',
+  field_removed: 'Field removed'
 }
 
 const es = {
@@ -427,7 +429,9 @@ const es = {
   align_bottom: 'Alinear abajo',
   fields_selected: '{count} Campos Seleccionados',
   field_added: '{count} Campo Añadido',
-  fields_added: '{count} Campos Añadidos'
+  fields_added: '{count} Campos Añadidos',
+  field_type_added: 'Campo {type} añadido',
+  field_removed: 'Campo eliminado'
 }
 
 const it = {
@@ -640,7 +644,9 @@ const it = {
   align_bottom: 'Allinea in basso',
   fields_selected: '{count} Campi Selezionati',
   field_added: '{count} Campo Aggiunto',
-  fields_added: '{count} Campi Aggiunti'
+  fields_added: '{count} Campi Aggiunti',
+  field_type_added: 'Campo {type} aggiunto',
+  field_removed: 'Campo rimosso'
 }
 
 const pt = {
@@ -853,7 +859,9 @@ const pt = {
   align_bottom: 'Alinhar à parte inferior',
   fields_selected: '{count} Campos Selecionados',
   field_added: '{count} Campo Adicionado',
-  fields_added: '{count} Campos Adicionados'
+  fields_added: '{count} Campos Adicionados',
+  field_type_added: 'Campo {type} adicionado',
+  field_removed: 'Campo removido'
 }
 
 const fr = {
@@ -1066,7 +1074,9 @@ const fr = {
   align_bottom: 'Aligner en bas',
   fields_selected: '{count} Champs Sélectionnés',
   field_added: '{count} Champ Ajouté',
-  fields_added: '{count} Champs Ajoutés'
+  fields_added: '{count} Champs Ajoutés',
+  field_type_added: 'Champ {type} ajouté',
+  field_removed: 'Champ supprimé'
 }
 
 const de = {
@@ -1279,7 +1289,9 @@ const de = {
   align_bottom: 'Unten ausrichten',
   fields_selected: '{count} Felder Ausgewählt',
   field_added: '{count} Feld Hinzugefügt',
-  fields_added: '{count} Felder Hinzugefügt'
+  fields_added: '{count} Felder Hinzugefügt',
+  field_type_added: 'Feld {type} hinzugefügt',
+  field_removed: 'Feld entfernt'
 }
 
 const nl = {
@@ -1492,7 +1504,9 @@ const nl = {
   align_bottom: 'Onder uitlijnen',
   fields_selected: '{count} Velden Geselecteerd',
   field_added: '{count} Veld Toegevoegd',
-  fields_added: '{count} Velden Toegevoegd'
+  fields_added: '{count} Velden Toegevoegd',
+  field_type_added: 'Veld {type} toegevoegd',
+  field_removed: 'Veld verwijderd'
 }
 
 export { en, es, it, pt, fr, de, nl }

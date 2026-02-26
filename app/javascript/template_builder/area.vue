@@ -3,9 +3,12 @@
     class="absolute overflow-visible group field-area-container"
     :style="positionStyle"
     :class="{ 'z-[1]': isMoved || isDragged }"
+    tabindex="0"
+    :aria-label="areaLabel"
     @pointerdown.stop
     @mousedown="startMouseMove"
     @touchstart="startTouchDrag"
+    @keydown="onAreaKeydown"
   >
     <div
       v-if="isSelected || isDraw || isInMultiSelection"
@@ -602,6 +605,12 @@ export default {
     defaultName () {
       return this.buildDefaultName(this.field)
     },
+    areaLabel () {
+      const typeName = this.fieldNames[this.field.type] || this.field.type
+      const name = (this.defaultField ? (this.defaultField.title || this.field.title || this.field.name) : this.field.name) || this.defaultName
+
+      return `${typeName}: ${name}`
+    },
     fontClasses () {
       if (!this.field.preferences) {
         return { 'items-center': true }
@@ -709,6 +718,22 @@ export default {
   },
   methods: {
     buildDefaultName: Field.methods.buildDefaultName,
+    onAreaKeydown (event) {
+      if (event.key === 'ContextMenu' || (event.shiftKey && event.key === 'F10')) {
+        event.preventDefault()
+        event.stopPropagation()
+
+        const rect = this.$el.getBoundingClientRect()
+        const contextEvent = new MouseEvent('contextmenu', {
+          bubbles: true,
+          cancelable: true,
+          clientX: Math.round(rect.left + rect.width / 2),
+          clientY: Math.round(rect.top + rect.height / 2)
+        })
+
+        this.$el.dispatchEvent(contextEvent)
+      }
+    },
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
     },

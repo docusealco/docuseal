@@ -496,6 +496,7 @@
             :editable="editable"
             :show-tour-start-form="showTourStartForm"
             @add-field="addField"
+            @add-default-field="addDefaultField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
             @select-submitter="selectedSubmitter = $event"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
@@ -594,6 +595,7 @@ import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, Ic
 import { v4 } from 'uuid'
 import { ref, computed, toRaw } from 'vue'
 import * as i18n from './i18n'
+import { announcePolite } from '../elements/aria_announce'
 
 export default {
   name: 'TemplateBuilder',
@@ -1471,6 +1473,37 @@ export default {
       this.insertField(field)
 
       this.save()
+
+      announcePolite(this.t('field_type_added').replace('{type}', this.t(field.type || type)))
+    },
+    addDefaultField (defaultFieldItem) {
+      const type = defaultFieldItem.type
+      const field = {
+        name: defaultFieldItem.name || '',
+        uuid: v4(),
+        required: type !== 'checkbox',
+        areas: [],
+        submitter_uuid: this.selectedSubmitter.uuid,
+        type
+      }
+
+      if (['select', 'multiple', 'radio'].includes(type)) {
+        field.options = defaultFieldItem.options?.map((o) => ({ value: o.value ?? o, uuid: v4() })) || [{ value: '', uuid: v4() }, { value: '', uuid: v4() }]
+      }
+
+      if (type === 'stamp') {
+        field.readonly = true
+      }
+
+      if (type === 'date') {
+        field.preferences = { format: this.defaultDateFormat }
+      }
+
+      this.insertField(field)
+
+      this.save()
+
+      announcePolite(this.t('field_type_added').replace('{type}', this.t(type)))
     },
     startFieldDraw ({ name, type }) {
       const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)

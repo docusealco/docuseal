@@ -81,9 +81,14 @@
         <div
           :style="{ backgroundColor }"
           draggable="true"
+          tabindex="0"
+          role="button"
+          :aria-label="field.title || field.name"
           class="border border-base-300 rounded relative group mb-2 default-field fields-list-item"
           @dragstart="onDragstart($event, field)"
           @dragend="$emit('drag-end')"
+          @keydown.enter.prevent="$emit('add-default-field', field)"
+          @keydown.space.prevent="$emit('add-default-field', field)"
         >
           <div class="flex items-center justify-between relative cursor-grab">
             <div class="flex items-center p-1 space-x-1">
@@ -213,7 +218,7 @@
         :aria-pressed="drawFieldType === type"
         @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
-        @click="['file', 'payment', 'verification', 'kba'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
+        @click="onFieldTypeClick($event, type)"
       >
         <div
           aria-hidden="true"
@@ -367,6 +372,7 @@ import FieldSubmitter from './field_submitter'
 import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 import { v4 } from 'uuid'
+import { announcePolite } from '../elements/aria_announce'
 
 export default {
   name: 'TemplateFields',
@@ -480,7 +486,7 @@ export default {
       default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
+  emits: ['add-field', 'add-default-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter'],
   data () {
     return {
       fieldPagesLoaded: null,
@@ -561,6 +567,13 @@ export default {
     }
   },
   methods: {
+    onFieldTypeClick (event, type) {
+      if (['file', 'payment', 'verification', 'kba'].includes(type) || event.detail === 0) {
+        this.$emit('add-field', type)
+      } else {
+        this.$emit('set-draw-type', type)
+      }
+    },
     onDragstart (event, field) {
       this.removeDragOverlay(event)
 
@@ -799,6 +812,7 @@ export default {
 
       if (save) {
         this.save()
+        announcePolite(this.t('field_removed'))
       }
     },
     removeCustomField (field) {

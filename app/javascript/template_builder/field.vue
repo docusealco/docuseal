@@ -107,12 +107,14 @@
             class="dropdown dropdown-end field-settings-dropdown"
             @mouseenter="renderDropdown = true"
             @touchstart="renderDropdown = true"
+            @keydown.escape.stop="closeDropdown"
           >
             <label
               tabindex="0"
               :title="t('settings')"
               :aria-label="t('settings')"
               class="cursor-pointer text-transparent group-hover:text-base-content"
+              @focus="renderDropdown = true"
             >
               <IconSettings
                 :width="18"
