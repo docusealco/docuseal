@@ -1,8 +1,8 @@
 <% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<% title = content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
-<% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
+<% title = content_for(:html_title) || (signed_in? ? 'Intébec Signature' : 'Intébec | Signature') %>
+<% description = content_for(:html_description) || 'Outil de signature fait par Intébec. Permet de signer des documents facilement.' %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
