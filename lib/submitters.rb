@@ -162,13 +162,22 @@ module Submitters
     end
   end
 
-  def current_submitter_order?(submitter)
+  def validate_submitter_order(submitter)
     submitter_items = submitter.submission.template_submitters || submitter.submission.template.submitters
+    submitters_order = submitter.submission.template_signing_order
 
-    before_items = submitter_items[0...(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })]
+    ordered_items = submitters_order == 'manager_then_employee' ? submitter_items.reverse : submitter_items
+    index = ordered_items.find_index { |e| e['uuid'] == submitter.uuid }
 
-    before_items.reduce(true) do |acc, item|
-      acc && submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
+    if index.nil?
+      Rails.logger.error("Submitter UUID #{submitter.uuid} not found in submission #{submitter.submission_id}")
+      return nil
+    end
+
+    before_items = ordered_items[0...index]
+
+    before_items.all? do |item|
+      submitter.submission.submitters.find { |e| e.uuid == item['uuid'] }&.completed_at?
     end
   end
 

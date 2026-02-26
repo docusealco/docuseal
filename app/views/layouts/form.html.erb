@@ -15,6 +15,7 @@
     <%= render 'shared/posthog' if ENV['POSTHOG_TOKEN'] %>
   </head>
   <body>
+    <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <%= yield %>
   </body>
 </html>

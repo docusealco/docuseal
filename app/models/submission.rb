@@ -53,7 +53,7 @@ class Submission < ApplicationRecord
   serialize :preferences, coder: JSON
 
   attribute :source, :string, default: 'link'
-  attribute :submitters_order, :string, default: 'random'
+  attribute :submitters_order, :string, default: 'single_sided'
 
   attribute :slug, :string, default: -> { SecureRandom.base58(14) }
 
@@ -94,9 +94,15 @@ class Submission < ApplicationRecord
   }, scope: false, prefix: true
 
   enum :submitters_order, {
-    random: 'random',
-    preserved: 'preserved'
+    single_sided: 'single_sided',
+    employee_then_manager: 'employee_then_manager',
+    manager_then_employee: 'manager_then_employee',
+    simultaneous: 'simultaneous'
   }, scope: false, prefix: true
+
+  def signing_order_enforced?
+    template_signing_order.in?(%w[employee_then_manager manager_then_employee])
+  end
 
   def expired?
     expire_at && expire_at <= Time.current
@@ -104,6 +110,10 @@ class Submission < ApplicationRecord
 
   def last_completed_submitter
     submitters.where.not(completed_at: nil).order(:completed_at).last
+  end
+
+  def template_signing_order
+    template&.preferences&.dig('submitters_order')
   end
 
   def schema_documents

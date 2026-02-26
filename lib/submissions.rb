@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Submissions
-  DEFAULT_SUBMITTERS_ORDER = 'random'
+  DEFAULT_SUBMITTERS_ORDER = 'single_sided'
 
   PRELOAD_ALL_PAGES_AMOUNT = 200
 
@@ -143,9 +143,18 @@ module Submissions
 
       submitters = submission.submitters.reject(&:completed_at?)
 
-      if submission.submitters_order_preserved?
-        first_submitter =
-          submission.template_submitters.filter_map { |s| submitters.find { |e| e.uuid == s['uuid'] } }.first
+      if submission.signing_order_enforced?
+        first_submitter = if submission.template_signing_order == 'manager_then_employee'
+                            # For manager_then_employee, send to the second submitter first
+                            submission.template_submitters[1..].filter_map do |s|
+                              submitters.find { |e| e.uuid == s['uuid'] }
+                            end.first
+                          else
+                            # For employee_then_manager and preserved, send to the first submitter
+                            submission.template_submitters.filter_map do |s|
+                              submitters.find { |e| e.uuid == s['uuid'] }
+                            end.first
+                          end
 
         Submitters.send_signature_requests([first_submitter], delay_seconds:) if first_submitter
       else

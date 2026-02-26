@@ -13,7 +13,7 @@ module Api
       submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
-      submissions = paginate(submissions.preload(:created_by_user, :submitters,
+      submissions = paginate(submissions.preload(:account, :created_by_user, :submitters,
                                                  template: :folder,
                                                  combined_document_attachment: :blob,
                                                  audit_trail_attachment: :blob))
@@ -167,7 +167,7 @@ module Api
           template:,
           user: current_user,
           source: :api,
-          submitters_order: params[:submitters_order] || params[:order] || 'preserved',
+          submitters_order: params[:submitters_order] || params[:order] || template.effective_submitters_order,
           submissions_attrs:,
           params:
         )

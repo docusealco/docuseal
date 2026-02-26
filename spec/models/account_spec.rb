@@ -63,6 +63,41 @@ RSpec.describe Account do
     end
   end
 
+  describe '#create_careerplug_webhook' do
+    context 'when both env vars are present' do
+      before do
+        stub_const('ENV', ENV.to_h.merge(
+                            'CAREERPLUG_WEBHOOK_URL' => 'https://example.com/webhook',
+                            'CAREERPLUG_WEBHOOK_SECRET' => 'secret'
+                          ))
+      end
+
+      it 'creates a webhook with the correct events on account creation' do
+        account = create(:account)
+        webhook = account.webhook_urls.last
+
+        expect(webhook).to be_present
+        expect(webhook.events).to match_array(%w[
+                                                form.viewed
+                                                form.started
+                                                form.completed
+                                                form.declined
+                                                template.preferences_updated
+                                              ])
+      end
+    end
+
+    context 'when env vars are missing' do
+      before do
+        stub_const('ENV', ENV.to_h.except('CAREERPLUG_WEBHOOK_URL', 'CAREERPLUG_WEBHOOK_SECRET'))
+      end
+
+      it 'does not create a webhook' do
+        expect { create(:account) }.not_to change(WebhookUrl, :count)
+      end
+    end
+  end
+
   describe '#default_template_folder' do
     it 'creates default folder when none exists' do
       account = create(:account)

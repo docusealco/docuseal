@@ -36,6 +36,9 @@ module Submissions
             submission.template_schema = submission.template.schema if submission.template_schema.blank?
 
             uuid = template_submitter['uuid']
+
+            # Skip submitters without fields for single_sided forms
+            next if submitters_order == 'single_sided' && template.unique_submitter_uuids.exclude?(uuid)
           else
             if submitter_attrs[:roles].present? && submitter_attrs[:roles].size == 1
               submitter_attrs[:role] = submitter_attrs[:roles].first
@@ -46,6 +49,9 @@ module Submissions
             next if uuid.blank?
             next if submitter_attrs.slice('email', 'phone', 'name').compact_blank.blank?
 
+            # Skip submitters without fields for single_sided forms
+            next if submitters_order == 'single_sided' && template.unique_submitter_uuids.exclude?(uuid)
+
             submission.template_fields = submission.template.fields if submitter_attrs[:completed].present? &&
                                                                        submission.template_fields.blank?
 
@@ -54,7 +60,22 @@ module Submissions
 
           submission.template_submitters << template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
 
-          is_order_sent = submitters_order == 'random' || index.zero?
+          # Find the position of this submitter in the original template submitters array
+          template_submitter_index = template.submitters.index { |s| s['uuid'] == uuid }
+
+          is_order_sent = case submitters_order
+                          # Legacy
+                          when 'random', 'simultaneous'
+                            true
+                          when 'manager_then_employee'
+                            # Send to second party (index 1) first
+                            template_submitter_index == 1
+                          when 'employee_then_manager'
+                            # Send to first party (index 0) first
+                            template_submitter_index.zero?
+                          else # 'preserved' Legacy
+                            index.zero?
+                          end
 
           build_submitter(submission:, attrs: submitter_attrs,
                           uuid:, is_order_sent:, user:, params:,

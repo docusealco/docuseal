@@ -4,12 +4,12 @@ module WebhookUrls
   module_function
 
   def for_template(template, events)
+    return WebhookUrl.none if template.partnership_id.blank? && template.account_id.blank?
+
     if template.partnership_id.present?
       for_partnership_id(template.partnership_id, events)
-    elsif template.account_id.present?
-      for_account_id(template.account_id, events)
     else
-      raise ArgumentError, 'Template must have either account_id or partnership_id'
+      for_account_id(template.account_id, events)
     end
   end
 

@@ -54,6 +54,7 @@ class Template < ApplicationRecord
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy
 
   before_validation :maybe_set_default_folder, on: :create
+  before_save :update_submitters_order, if: :fields_changed?
 
   attribute :preferences, :string, default: -> { {} }
   attribute :fields, :string, default: -> { [] }
@@ -87,6 +88,15 @@ class Template < ApplicationRecord
     external_id
   end
 
+  def unique_submitter_uuids
+    fields.filter_map { |f| f['submitter_uuid'] }.uniq
+  end
+
+  def effective_submitters_order
+    preferences['submitters_order'].presence ||
+      (unique_submitter_uuids.size < 2 ? 'single_sided' : 'employee_then_manager')
+  end
+
   private
 
   def maybe_set_default_folder
@@ -94,6 +104,25 @@ class Template < ApplicationRecord
       self.folder ||= account.default_template_folder
     elsif partnership.present?
       self.folder ||= partnership.default_template_folder(author)
+    end
+  end
+
+  def update_submitters_order
+    submitter_count = unique_submitter_uuids.size
+    current_order = preferences['submitters_order']
+
+    if submitter_count < 2
+      # Always set to single_sided for templates with 0 or 1 submitter
+      preferences['submitters_order'] = 'single_sided'
+    elsif submitter_count == 2
+      # Set to employee_then_manager when there are exactly 2 submitters
+      # Only set if not already configured to something else
+      if current_order.blank? || current_order == 'single_sided'
+        preferences['submitters_order'] = 'employee_then_manager'
+      end
+    elsif current_order == 'single_sided'
+      # Clear single_sided if template now has 3+ submitters
+      preferences.delete('submitters_order')
     end
   end
 end

@@ -20,9 +20,17 @@ class SubmitFormController < ApplicationController
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
-    return render :awaiting if (@form_configs[:enforce_signing_order] ||
-                                submission.template&.preferences&.dig('submitters_order') == 'preserved') &&
-                               !Submitters.current_submitter_order?(@submitter)
+    if @form_configs[:enforce_signing_order] ||
+       submission.template_signing_order.in?(%w[employee_then_manager manager_then_employee])
+      signing_order = Submitters.validate_submitter_order(@submitter)
+
+      if signing_order.nil?
+        flash.now[:alert] = I18n.t('user_id_did_not_match_please_try_again_or_contact_support')
+        return render :awaiting
+      end
+
+      return render :awaiting unless signing_order
+    end
 
     Submissions.preload_with_pages(submission)
 

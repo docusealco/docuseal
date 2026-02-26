@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TemplatesUploadsController < ApplicationController
+  include TemplateWebhooks
+
   skip_before_action :verify_authenticity_token, only: [:create]
 
   load_and_authorize_resource :template, parent: false
@@ -69,12 +71,5 @@ class TemplatesUploadsController < ApplicationController
     )
 
     { files: [file] }
-  end
-
-  def enqueue_template_created_webhooks(template)
-    WebhookUrls.for_template(template, 'template.created').each do |webhook_url|
-      SendTemplateCreatedWebhookRequestJob.perform_async('template_id' => template.id,
-                                                         'webhook_url_id' => webhook_url.id)
-    end
   end
 end

@@ -56,7 +56,7 @@ class SubmissionsController < ApplicationController
         Submissions.create_from_submitters(template: @template,
                                            user: current_user,
                                            source: :invite,
-                                           submitters_order: params[:preserve_order] == '1' ? 'preserved' : 'random',
+                                           submitters_order: @template.effective_submitters_order,
                                            submissions_attrs: submissions_params[:submission].to_h.values,
                                            params: params.merge('send_completed_email' => true))
       end

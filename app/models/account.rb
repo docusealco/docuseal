@@ -78,11 +78,11 @@ class Account < ApplicationRecord
   private
 
   def create_careerplug_webhook
-    return if ENV['CAREERPLUG_WEBHOOK_SECRET'].blank?
+    return if ENV['CAREERPLUG_WEBHOOK_SECRET'].blank? || ENV['CAREERPLUG_WEBHOOK_URL'].blank?
 
     webhook_urls.create!(
       url: ENV.fetch('CAREERPLUG_WEBHOOK_URL'),
-      events: %w[form.viewed form.started form.completed form.declined],
+      events: %w[form.viewed form.started form.completed form.declined template.preferences_updated],
       secret: { 'X-CareerPlug-Secret' => ENV.fetch('CAREERPLUG_WEBHOOK_SECRET') }
     )
   end

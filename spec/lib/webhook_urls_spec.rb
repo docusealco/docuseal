@@ -65,12 +65,12 @@ RSpec.describe WebhookUrls do
     end
 
     context 'with a template that has neither account nor partnership' do
-      let(:template) { build(:template, account: nil, partnership: nil, author: user) }
+      let(:template) { build(:template, account_id: nil, partnership_id: nil, author: user) }
 
-      it 'raises an ArgumentError' do
-        expect do
-          described_class.for_template(template, 'template.created')
-        end.to raise_error(ArgumentError, 'Template must have either account_id or partnership_id')
+      it 'returns empty relation' do
+        webhooks = described_class.for_template(template, 'template.created')
+        expect(webhooks).to eq(WebhookUrl.none)
+        expect(webhooks.to_a).to be_empty
       end
     end
   end

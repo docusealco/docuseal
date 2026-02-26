@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class TemplatesPreferencesController < ApplicationController
+  include IframeAuthentication
+  include PartnershipContext
+  include TemplateWebhooks
+
+  # We use IframeAuthentication#authenticate_from_referer to authenticate the user.
+  # These are holdovers from legacy Docuseal that uses an actual login system
+  # and will be removed in a future ticket.
+  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_via_token!
+
+  before_action :authenticate_from_referer
   load_and_authorize_resource :template
 
   def show; end
@@ -8,9 +19,22 @@ class TemplatesPreferencesController < ApplicationController
   def create
     authorize!(:update, @template)
 
+    old_submitters_order = @template.preferences['submitters_order']
     @template.preferences = @template.preferences.merge(template_params[:preferences])
     @template.preferences = @template.preferences.reject { |_, v| (v.is_a?(String) || v.is_a?(Hash)) && v.blank? }
+
+    # Handle single_sided case (when template has < 2 unique submitters)
+    if @template.unique_submitter_uuids.size < 2 && @template.preferences['submitters_order'].present?
+      @template.preferences['submitters_order'] = 'single_sided'
+    end
+
     @template.save!
+
+    # Enqueue webhook if submitters_order changed
+    new_submitters_order = @template.preferences['submitters_order']
+    if old_submitters_order != new_submitters_order && new_submitters_order.present?
+      enqueue_template_preferences_updated_webhooks(@template)
+    end
 
     head :ok
   end

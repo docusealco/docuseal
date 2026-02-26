@@ -24,7 +24,7 @@ class ProcessSubmitterCompletionJob
 
     create_completed_documents!(submitter)
 
-    if !is_all_completed && submitter.submission.submitters_order_preserved? && params['send_invitation_email'] != false
+    if !is_all_completed && submitter.submission.signing_order_enforced? && params['send_invitation_email'] != false
       enqueue_next_submitter_request_notification(submitter)
     end
 

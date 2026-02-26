@@ -31,6 +31,12 @@ en: &en
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
+  employee_then_manager_title: "%{first_party} then %{second_party}"
+  employee_then_manager_description: "%{first_party} completes the form first, then %{second_party}"
+  manager_then_employee_title: "%{second_party} then %{first_party}"
+  manager_then_employee_description: "%{second_party} completes the form first, then %{first_party}"
+  simultaneous_signing_title: Simultaneous signing
+  simultaneous_signing_description: Both parties may complete the form at the same time
   ensure_unique_recipients: Ensure unique recipients
   edit_per_party: Edit per party
   reply_to: Reply to
@@ -527,6 +533,7 @@ en: &en
   submission_has_been_removed: Submission has been removed.
   submission_has_been_archived: Submission has been archived.
   form_has_been_completed_already: Form has been completed already.
+  user_id_did_not_match_please_try_again_or_contact_support: User ID did not match. Please try again or contact support for assistance.
   form_has_been_archived: Form has been archived.
   form_has_been_expired: Form has been expired.
   form_has_been_declined: Form has been declined.

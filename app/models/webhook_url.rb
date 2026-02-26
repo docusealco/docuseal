@@ -38,12 +38,12 @@ class WebhookUrl < ApplicationRecord
     submission.archived
     template.created
     template.updated
+    template.preferences_updated
   ].freeze
 
   # Partnership webhooks can only use template events since partnerships don't have submissions/submitters
   PARTNERSHIP_EVENTS = %w[
-    template.created
-    template.updated
+    template.preferences_updated
   ].freeze
 
   belongs_to :account, optional: true

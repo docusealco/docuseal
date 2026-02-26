@@ -3,7 +3,7 @@
 module Submissions
   module SerializeForApi
     SERIALIZE_PARAMS = {
-      only: %i[id name slug source submitters_order expire_at created_at updated_at archived_at],
+      only: %i[id account_id name slug source submitters_order expire_at created_at updated_at archived_at],
       methods: %i[audit_log_url combined_document_url],
       include: {
         submitters: { only: %i[id] },
@@ -24,6 +24,7 @@ module Submissions
 
       json = submission.as_json(SERIALIZE_PARAMS)
 
+      json['external_account_id'] = submission.account&.external_account_id
       json['created_by_user'] ||= nil
 
       if with_events

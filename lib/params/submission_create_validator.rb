@@ -56,7 +56,9 @@ module Params
         required(message_params, :body)
       end
 
-      value_in(params, :order, %w[preserved random], allow_nil: true)
+      value_in(
+        params, :order, %w[employee_then_manager manager_then_employee simultaneous single_sided], allow_nil: true
+      )
 
       if params[:submitters].present?
         in_path(params, :submitters) do |submitters_params|
@@ -117,7 +119,9 @@ module Params
         required(message_params, :body)
       end
 
-      value_in(params, :order, %w[preserved random], allow_nil: true)
+      value_in(
+        params, :order, %w[employee_then_manager manager_then_employee simultaneous single_sided], allow_nil: true
+      )
 
       return true if params[:submission].is_a?(Array)
 

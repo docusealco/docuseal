@@ -22,6 +22,8 @@ class Partnership < ApplicationRecord
   validates :external_partnership_id, presence: true, uniqueness: true
   validates :name, presence: true
 
+  after_commit :create_careerplug_webhook, on: :create
+
   def self.find_or_create_by_external_id(external_id, name, attributes = {})
     find_by(external_partnership_id: external_id) ||
       create!(attributes.merge(external_partnership_id: external_id, name: name))
@@ -33,5 +35,15 @@ class Partnership < ApplicationRecord
     template_folders.find_by(name: TemplateFolder::DEFAULT_NAME) ||
       template_folders.create!(name: TemplateFolder::DEFAULT_NAME,
                                author: author)
+  end
+
+  def create_careerplug_webhook
+    return if ENV['CAREERPLUG_WEBHOOK_SECRET'].blank? || ENV['CAREERPLUG_WEBHOOK_URL'].blank?
+
+    webhook_urls.create!(
+      url: ENV.fetch('CAREERPLUG_WEBHOOK_URL'),
+      events: %w[template.preferences_updated],
+      secret: { 'X-CareerPlug-Secret' => ENV.fetch('CAREERPLUG_WEBHOOK_SECRET') }
+    )
   end
 end

@@ -253,7 +253,8 @@ describe 'Templates API' do
       ],
       preferences: {
         'request_email_subject' => 'Subject text',
-        'request_email_body' => 'Body Text'
+        'request_email_body' => 'Body Text',
+        'submitters_order' => 'single_sided'
       },
       schema: [
         {

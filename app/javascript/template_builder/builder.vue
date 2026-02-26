@@ -63,6 +63,14 @@
           name="buttons"
         />
         <template v-else>
+          <button
+            v-if="hasMultipleSubmitterFields"
+            class="base-button"
+            @click.prevent="isShowSigningOrderModal = true"
+          >
+            <IconAdjustments class="w-6 h-6 flex-shrink-0" />
+            <span class="whitespace-nowrap">{{ t('signing_order') }}</span>
+          </button>
           <a
             :href="formPreviewUrl"
             data-turbo="false"
@@ -331,6 +339,14 @@
       id="docuseal_modal_container"
       class="modal-container"
     />
+    <Teleport
+      v-if="isShowSigningOrderModal"
+      to="#docuseal_modal_container"
+    >
+      <SigningOrderModal
+        @close="isShowSigningOrderModal = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -348,6 +364,7 @@ import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
+import SigningOrderModal from './signing_order_modal'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, watch } from 'vue'
@@ -376,7 +393,8 @@ export default {
     IconChevronDown,
     IconAdjustments,
     IconEye,
-    IconDeviceFloppy
+    IconDeviceFloppy,
+    SigningOrderModal
   },
   provide () {
     return {
@@ -387,6 +405,7 @@ export default {
       currencies: this.currencies,
       locale: this.locale,
       baseFetch: this.baseFetch,
+      authenticityToken: this.authenticityToken,
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
@@ -636,13 +655,18 @@ export default {
       drawFieldType: null,
       drawOption: null,
       dragField: null,
-      isDragFile: false
+      isDragFile: false,
+      isShowSigningOrderModal: false
     }
   },
   computed: {
     submitterDefaultNames: FieldSubmitter.computed.names,
     selectedAreaRef: () => ref(),
     fieldsDragFieldRef: () => ref(),
+    hasMultipleSubmitterFields () {
+      const submitterUuids = new Set(this.template.fields.map((f) => f.submitter_uuid).filter(Boolean))
+      return submitterUuids.size >= 2
+    },
     language () {
       return this.locale.split('-')[0].toLowerCase()
     },
@@ -1823,7 +1847,11 @@ export default {
           }
         }),
         headers: { 'Content-Type': 'application/json' }
-      }).then(() => {
+      }).then((response) => response.json()).then((data) => {
+        if (data.preferences) {
+          this.template.preferences = data.preferences
+        }
+
         if (this.onSave) {
           this.onSave(this.template)
         }

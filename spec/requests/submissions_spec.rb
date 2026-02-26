@@ -285,9 +285,11 @@ describe 'Submission API' do
 
     {
       id: submission.id,
+      account_id: submission.account_id,
+      external_account_id: submission.account&.external_account_id,
       name: submission.name,
       source: 'link',
-      submitters_order: 'random',
+      submitters_order: 'single_sided',
       slug: submission.slug,
       audit_log_url: nil,
       combined_document_url: nil,
@@ -344,10 +346,12 @@ describe 'Submission API' do
 
     {
       id: submission.id,
+      account_id: submission.account_id,
+      external_account_id: submission.account&.external_account_id,
       name: submission.name,
       source: 'link',
       status: 'pending',
-      submitters_order: 'random',
+      submitters_order: 'single_sided',
       slug: submission.slug,
       audit_log_url: nil,
       combined_document_url: nil,
