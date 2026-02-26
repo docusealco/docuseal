@@ -9,14 +9,17 @@
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
       <% options = [%w[Disk disk], %w[AWS aws_s3], %w[GCP google], %w[Azure azure]] %>
       <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
-        <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
-          <% options.each do |(label, val)| %>
-            <li class="w-full text-sm font-medium flex items-center relative group py-3.5">
-              <%= f.radio_button :selected, val, checked: value['service'] == val, id: "#{val}_radio", data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio ml-3 relative peer z-10' %>
-              <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'absolute border-neutral-focus border rounded-xl left-0 right-0 top-0 bottom-0 flex items-center justify-center group-hover:bg-neutral group-hover:text-white' %>
-            </li>
-          <% end %>
-        </ul>
+        <fieldset>
+          <legend class="sr-only"><%= t('storage') %></legend>
+          <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
+            <% options.each do |(label, val)| %>
+              <li class="w-full text-sm font-medium flex items-center relative group py-3.5">
+                <%= f.radio_button :selected, val, checked: value['service'] == val, id: "#{val}_radio", data: { action: 'change:toggle-visible#trigger' }, class: 'base-radio ml-3 relative peer z-10' %>
+                <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'absolute border-neutral-focus border rounded-xl left-0 right-0 top-0 bottom-0 flex items-center justify-center group-hover:bg-neutral group-hover:text-white' %>
+              </li>
+            <% end %>
+          </ul>
+        </fieldset>
       </toggle-visible>
       <disable-hidden id="disk" class="block my-4 <%= 'hidden' if value['service'] != 'disk' %>">
         <%= render 'disk_form', f: %>

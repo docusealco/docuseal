@@ -106,10 +106,12 @@
         <a
           href="#"
           :title="t('minimize')"
+          :aria-label="t('minimize')"
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
+            aria-hidden="true"
             :width="20"
             :height="20"
           />

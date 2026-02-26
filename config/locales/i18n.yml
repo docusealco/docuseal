@@ -369,6 +369,7 @@ en: &en
   pdf_view: "PDF View"
   text_view: "Text View"
   document_view_options: "Document view options"
+  download_options: "Download options"
   text_view_disclaimer: "Text provided for accessibility. The PDF view is the authoritative document."
   signing_fields_below: "Your signing fields are in the panel below."
   powered_by: Powered by

@@ -39,11 +39,11 @@
         </div>
         <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
           <% if @form_configs[:with_decline] %>
-            <label id="decline_button_scroll" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-0" tabindex="0">
-              <span class="min-[1366px]:inline hidden px-3">
+            <label id="decline_button_scroll" for="<%= decline_modal_checkbox_uuid %>" class="btn btn-sm px-0" tabindex="0" aria-label="<%= t(:decline) %>">
+              <span class="min-[1366px]:inline hidden px-3" aria-hidden="true">
                 <%= t(:decline) %>
               </span>
-              <span class="inline min-[1366px]:hidden px-2">
+              <span class="inline min-[1366px]:hidden px-2" aria-hidden="true">
                 <%= svg_icon('x', class: 'w-5 h-5') %>
               </span>
             </label>

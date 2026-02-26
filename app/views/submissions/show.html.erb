@@ -20,14 +20,14 @@
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
       <% end %>
       <% if @submission.audit_trail.present? %>
-        <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
+        <a href="<%= ActiveStorage::Blob.proxy_url(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank" aria-label="<%= t('audit_log') %>">
           <%= svg_icon('external_link', class: 'w-6 h-6') %>
-          <span class="hidden md:inline"><%= t('audit_log') %></span>
+          <span class="hidden md:inline" aria-hidden="true"><%= t('audit_log') %></span>
         </a>
       <% elsif signed_in? %>
-        <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
+        <%= link_to submission_events_path(@submission), class: 'white-button', aria: { label: t('event_log') }, data: { turbo_frame: :modal } do %>
           <%= svg_icon('logs', class: 'w-6 h-6') %>
-          <span class="hidden md:block"><%= t('event_log') %></span>
+          <span class="hidden md:block" aria-hidden="true"><%= t('event_log') %></span>
         <% end %>
       <% end %>
       <% if last_submitter %>
@@ -45,8 +45,8 @@
             </download-button>
             <% if is_all_completed && !is_combined_enabled %>
               <div class="dropdown dropdown-end">
-                <label tabindex="0" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
-                  <span class="text-sm align-text-top">
+                <label tabindex="0" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500" role="button" aria-haspopup="menu" aria-label="<%= t('download_options') %>">
+                  <span class="text-sm align-text-top" aria-hidden="true">
                     <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
                   </span>
                 </label>
@@ -212,7 +212,7 @@
               </div>
               <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
                 <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
-                  <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
+                  <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', aria: { label: "#{t('edit')} #{submitter.name || submitter.email || submitter.phone}" }, data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
                   <% end %>
                 </span>

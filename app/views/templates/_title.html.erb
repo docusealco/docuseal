@@ -21,7 +21,7 @@
             </a>
             <% if can?(:update, template) %>
               <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
-                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
+                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" aria-label="<%= "#{t('move')} - #{template.name}" %>">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
               </span>

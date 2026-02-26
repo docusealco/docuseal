@@ -1,11 +1,11 @@
 <form action="<%= root_path %>" method="get" id="templates_submissions_toggle" class="bg-base-200 px-1.5 rounded-xl py-1 whitespace-nowrap">
   <toggle-cookies data-value="templates" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="<%= t('templates') %>">
-    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9' : 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>">
+    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9' : 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>" aria-label="<%= t('templates') %>">
       <%= svg_icon('layout_grid', class: 'w-6 h-6 stroke-2') %>
     </button>
   </toggle-cookies>
   <toggle-cookies data-value="submissions" data-key="dashboard_view" class="sm:tooltip tooltip-top" data-tip="<%= t('submissions') %>">
-    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9' : 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>">
+    <button class="<%= local_assigns[:selected] == 'submissions' ? 'btn btn-neutral !rounded-lg btn-square !p-0 hover:text-neutral-300 !btn-sm !h-8 !w-9' : 'btn !border !rounded-lg btn-square !p-0 !btn-sm !h-8 !w-9 disabled:btn-neutral' %>" aria-label="<%= t('submissions') %>">
       <%= svg_icon('layout_list', class: 'w-6 h-6 stroke-2') %>
     </button>
   </toggle-cookies>

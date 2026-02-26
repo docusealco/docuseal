@@ -24,17 +24,22 @@
     </span>
     <span
       v-if="withButton"
+      role="button"
+      tabindex="0"
+      :aria-label="t('edit')"
       class="relative inline"
       :class="{ 'peer-focus:hidden': hideIcon, 'peer-focus:invisible': !hideIcon }"
+      @click="clickEdit"
+      @keydown.enter.prevent="clickEdit"
+      @keydown.space.prevent="clickEdit"
     >
       <IconPencil
+        aria-hidden="true"
         class="cursor-pointer flex-none opacity-0 group-hover/contenteditable-container:opacity-100 group-hover/contenteditable:opacity-100 align-middle pl-1"
         :style="iconInline ? {} : { right: -(1.1 * iconWidth) + 'px' }"
-        :title="t('edit')"
         :class="{ invisible: !editable, 'absolute top-1/2 -translate-y-1/2': !iconInline || floatIcon, 'inline align-bottom': iconInline, 'left-0': floatIcon }"
         :width="iconWidth + 4"
         :stroke-width="iconStrokeWidth"
-        @click="clickEdit"
       />
     </span>
   </div>

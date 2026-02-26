@@ -38,13 +38,12 @@
                 :width="20"
               />
               {{ field.title || field.name }}
-              <span
+              <abbr
                 v-if="defaultRequiredFields.includes(field)"
-                :data-tip="t('required')"
-                class="text-red-400 text-2xl tooltip tooltip-left h-6"
-              >
-                *
-              </span>
+                :title="t('required')"
+                class="text-red-400 text-2xl h-6 no-underline"
+                aria-label="required"
+              >*</abbr>
             </a>
           </li>
         </template>

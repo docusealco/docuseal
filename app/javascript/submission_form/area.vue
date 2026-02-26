@@ -54,19 +54,19 @@
       v-if="field.type === 'image' && image"
       class="object-contain mx-auto"
       :src="image.url"
-      :alt="field.name || 'Image'"
+      :alt="field.name || t('image')"
     >
     <img
       v-else-if="field.type === 'stamp' && stamp"
       class="object-contain mx-auto"
       :src="stamp.url"
-      :alt="field.name || 'Stamp'"
+      :alt="field.name || t('stamp')"
     >
     <img
       v-else-if="field.type === 'kba' && kba"
       class="object-contain mx-auto"
       :src="kba.url"
-      :alt="field.name || 'Knowledge-based authentication'"
+      :alt="field.name || t('kba')"
     >
     <div
       v-else-if="field.type === 'signature' && signature"
@@ -176,6 +176,7 @@
         v-if="submittable"
         type="checkbox"
         :value="false"
+        :aria-label="(field.title || field.name || fieldNames[field.type]) + (option?.value ? ': ' + option.value : '')"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue && modelValue.includes(optionValue(option))"

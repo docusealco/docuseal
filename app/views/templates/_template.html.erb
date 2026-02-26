@@ -32,35 +32,35 @@
     <div class="space-y-1">
       <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
         <span class="tooltip tooltip-left" data-tip="<%= t('move') %>">
-          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle" aria-label="<%= "#{t('move')} - #{template.name}" %>">
             <%= svg_icon('folder_share', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if template.archived_at? && can?(:update, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
-          <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
+          <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria: { label: "#{t('restore')} - #{template.name}" } do %>
             <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
         </span>
       <% elsif can?(:update, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
-          <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle" aria-label="<%= "#{t('edit')} - #{template.name}" %>">
             <%= svg_icon('pencil', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if can?(:create, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('clone') %>">
-          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle" aria-label="<%= "#{t('clone')} - #{template.name}" %>">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
       <% if can?(:destroy, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? t('delete') : t('archive') %>">
-          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: t('restore') do %>
+          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria: { label: "#{template.archived_at? ? t('delete') : t('archive')} - #{template.name}" } do %>
             <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
