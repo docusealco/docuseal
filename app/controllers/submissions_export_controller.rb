@@ -5,10 +5,11 @@ class SubmissionsExportController < ApplicationController
   load_and_authorize_resource :submission, through: :template, parent: false, only: :index
 
   def index
-    submissions = @submissions.active
-                              .preload(submitters: { documents_attachments: :blob,
-                                                     attachments_attachments: :blob })
-                              .order(id: :asc)
+    submissions = params[:archived] == 'true' ? @submissions.archived : @submissions.active
+
+    submissions = submissions.preload(submitters: { documents_attachments: :blob,
+                                                    attachments_attachments: :blob })
+                             .order(id: :asc)
 
     submissions = Submissions.search(current_user, submissions, params[:q], search_values: true)
     submissions = Submissions::Filter.call(submissions, current_user, params)

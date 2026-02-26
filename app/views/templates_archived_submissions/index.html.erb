@@ -16,7 +16,7 @@
       <% if with_filters %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <%= link_to new_template_submissions_export_path(@template), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+      <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span><%= t('export') %></span>
       <% end %>
