@@ -4,7 +4,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:focus-visible {
+:focus-visible,
+.btn:focus-visible {
   outline-color: rgb(14, 99, 200);
   outline-style: solid;
   outline-width: 8px;
