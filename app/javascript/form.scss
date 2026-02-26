@@ -4,6 +4,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+input:focus {
+  outline-color: rgb(14, 99, 200);
+  outline-style: solid;
+  outline-width: 8px;
+  outline-offset: 4px;
+}
+
 a[href],
 input[type='checkbox'],
 input[type='submit'],
