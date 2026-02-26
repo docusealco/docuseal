@@ -1,11 +1,13 @@
+<% flash_role = flash[:notice] ? 'status' : 'alert' %>
+<% flash_live = flash[:notice] ? 'polite' : 'assertive' %>
 <div id="flash" class="absolute top-0 w-full h-0 z-20">
   <div class="max-w-xl mx-auto mt-1.5">
-    <div class="px-4 py-3 rounded-2xl bg-base-200 flex items-center justify-between mx-4 md:mx-0" <% if flash[:notice] %>role="status" aria-live="polite" aria-atomic="true"<% else %>role="alert" aria-live="assertive" aria-atomic="true"<% end %>>
+    <div class="px-4 py-3 rounded-2xl bg-base-200 flex items-center justify-between mx-4 md:mx-0" role="<%= flash_role %>" aria-live="<%= flash_live %>" aria-atomic="true">
       <div class="flex items-center space-x-3">
         <% if flash[:notice] %>
-          <%= svg_icon('info_circle', class: 'stroke-info flex-none w-6 h-6', aria_hidden: true) %>
+          <%= svg_icon('info_circle', class: 'stroke-info flex-none w-6 h-6') %>
         <% else %>
-          <%= svg_icon('exclamation_circle', class: 'stroke-error flex-none w-6 h-6', aria_hidden: true) %>
+          <%= svg_icon('exclamation_circle', class: 'stroke-error flex-none w-6 h-6') %>
         <% end %>
         <div>
           <span><%= flash[:notice] || flash[:alert] %></span>
