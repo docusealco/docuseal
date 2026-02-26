@@ -9,6 +9,10 @@ export default class extends HTMLElement {
     this._menu.querySelectorAll('a[href], button').forEach((el) => {
       el.setAttribute('role', 'menuitem')
     })
+    this._menu.querySelectorAll('input[type="checkbox"]').forEach((el) => {
+      el.setAttribute('role', 'menuitemcheckbox')
+      el.setAttribute('aria-checked', el.checked.toString())
+    })
 
     this.addEventListener('focusin', this._onFocusin)
     this.addEventListener('focusout', this._onFocusout)
@@ -59,7 +63,7 @@ export default class extends HTMLElement {
   }
 
   _menuItems () {
-    return Array.from(this._menu.querySelectorAll('a[href], button:not([disabled])'))
+    return Array.from(this._menu.querySelectorAll('a[href], button:not([disabled]), input[type="checkbox"]'))
   }
 
   _focusItem (idx) {
