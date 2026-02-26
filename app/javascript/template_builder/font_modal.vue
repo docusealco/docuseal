@@ -169,7 +169,7 @@
           >
             <span
               contenteditable="true"
-              class="whitespace-nowrap truncate focus:ring-2 focus:ring-base-content focus:ring-inset focus:rounded-sm"
+              class="whitespace-nowrap truncate"
             >
               {{ field.default_value || field.name || buildDefaultName(field) }}
             </span>

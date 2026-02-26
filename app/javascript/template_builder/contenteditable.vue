@@ -11,7 +11,7 @@
       :data-empty="isEmpty"
       :style="{ minWidth }"
       :class="[iconInline ? (isEmpty ? 'inline-block' : 'inline') : 'block', hideIcon ? 'focus:block' : '']"
-      class="peer relative inline-block outline-none before:pointer-events-none before:absolute before:left-0 before:top-0 before:select-none before:whitespace-pre before:text-neutral-600 before:content-[attr(data-placeholder)] before:opacity-0 data-[empty=true]:before:opacity-100"
+      class="peer relative inline-block before:pointer-events-none before:absolute before:left-0 before:top-0 before:select-none before:whitespace-pre before:text-neutral-600 before:content-[attr(data-placeholder)] before:opacity-0 data-[empty=true]:before:opacity-100"
       @paste.prevent="onPaste"
       @keydown.enter.prevent="blurContenteditable"
       @input="updateInputValue"

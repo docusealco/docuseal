@@ -68,7 +68,7 @@
       </div>
       <div
         v-show="!isCodeSent"
-        class="flex w-full rounded-full outline-neutral-content outline-2 outline-offset-2 focus-within:outline phone-number-input-container"
+        class="flex w-full rounded-full phone-number-input-container"
       >
         <div
           id="country_code"

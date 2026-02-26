@@ -12,7 +12,7 @@
           <%= ff.hidden_field :uuid %>
           <div class="form-control">
             <div class="flex justify-between">
-              <%= ff.text_field :name, class: 'w-full outline-none border-transparent focus:border-base-content/50 focus:ring-1 focus:ring-base-content/20 bg-base-100 px-1 peer mb-2 focus:rounded-sm', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
+              <%= ff.text_field :name, class: 'w-full border-transparent focus:border-base-content/50 bg-base-100 px-1 peer mb-2', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
               <% if template.submitters.size > 2 %>
                 <div id="order_<%= submitter['uuid'] %>" class="mr-0.5">
                   <% if is_order_set %>
