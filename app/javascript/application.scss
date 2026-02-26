@@ -5,7 +5,14 @@
 @import "tailwindcss/utilities";
 
 :focus-visible,
-.btn:focus-visible {
+.btn:focus-visible,
+.input:focus-visible,
+.select:focus-visible,
+.checkbox:focus-visible,
+.radio:focus-visible,
+.toggle:focus-visible,
+.tab:focus-visible,
+.link:focus-visible {
   outline-color: rgb(14, 99, 200);
   outline-style: solid;
   outline-width: 8px;

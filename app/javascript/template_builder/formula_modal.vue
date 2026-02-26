@@ -55,7 +55,7 @@
             <textarea
               ref="textarea"
               v-model="formula"
-              class="base-textarea !rounded-xl !text-base font-mono w-full !outline-0 !ring-0 !px-3"
+              class="base-textarea !rounded-xl !text-base font-mono w-full !px-3"
               :readonly="!editable"
               required="true"
               @input="resizeTextarea"

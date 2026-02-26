@@ -48,7 +48,7 @@
       <input
         v-model="defaultFieldsSearch"
         :placeholder="t('search_field')"
-        class="input input-ghost input-xs px-0 text-base mb-2 !outline-0 !rounded bg-transparent w-full"
+        class="input input-ghost input-xs px-0 text-base mb-2 !rounded bg-transparent w-full"
       >
       <hr class="mb-2">
     </template>
@@ -137,7 +137,7 @@
       <input
         v-model="customFieldsSearch"
         :placeholder="t('search_field')"
-        class="input input-ghost input-xs px-0 text-base mb-1 !outline-0 !rounded bg-transparent w-full"
+        class="input input-ghost input-xs px-0 text-base mb-1 !rounded bg-transparent w-full"
       >
       <hr class="mb-2">
     </template>

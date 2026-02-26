@@ -6,7 +6,7 @@
   >
     <select
       :placeholder="t('method')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 bg-transparent"
       @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, $emit('save')]"
     >
       <option
@@ -34,7 +34,7 @@
     <select
       :placeholder="t('default_value')"
       dir="auto"
-      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
+      class="select select-bordered select-xs w-full max-w-xs h-7 font-normal bg-transparent"
       @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, $emit('save')]"
     >
       <option
@@ -70,7 +70,7 @@
       :placeholder="t('default_value')"
       dir="auto"
       :type="field.type"
-      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      class="input input-bordered input-xs w-full max-w-xs h-7 bg-transparent"
       @blur="$emit('save')"
     >
     <label
@@ -88,7 +88,7 @@
     @click.stop
   >
     <select
-      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
+      class="select select-bordered select-xs w-full max-w-xs h-7 font-normal bg-transparent"
       @change="onChangeValidation"
     >
       <option
@@ -131,7 +131,7 @@
         type="number"
         min="0"
         :value="lengthValidation.min"
-        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        class="input input-bordered w-full input-xs h-7 bg-transparent"
         @input="field.validation.pattern = `.{${$event.target.value || 0},${lengthValidation.max || ''}}`"
         @blur="$emit('save')"
       >
@@ -149,7 +149,7 @@
         :placeholder="t('max')"
         type="number"
         min="1"
-        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        class="input input-bordered w-full input-xs h-7 bg-transparent"
         :value="lengthValidation.max"
         @input="field.validation.pattern = `.{${lengthValidation.min},${$event.target.value || ''}}`"
         @blur="$emit('save')"
@@ -175,7 +175,7 @@
         type="number"
         min="0"
         :value="field.validation?.min"
-        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        class="input input-bordered w-full input-xs h-7 bg-transparent"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.min = $event.target.value : delete field.validation.min]"
         @blur="$emit('save')"
       >
@@ -193,7 +193,7 @@
         :placeholder="t('max')"
         type="number"
         min="1"
-        class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
+        class="input input-bordered w-full input-xs h-7 bg-transparent"
         :value="field.validation?.max"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.max = $event.target.value : delete field.validation.max]"
         @blur="$emit('save')"
@@ -215,7 +215,7 @@
   >
     <select
       :placeholder="t('format')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 bg-transparent"
       @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
@@ -245,7 +245,7 @@
       v-model="field.validation.pattern"
       :placeholder="t('regexp_validation')"
       dir="auto"
-      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      class="input input-bordered input-xs w-full max-w-xs h-7 bg-transparent"
       @blur="$emit('save')"
     >
     <label
@@ -266,7 +266,7 @@
       v-model="field.validation.message"
       :placeholder="t('error_message')"
       dir="auto"
-      class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
+      class="input input-bordered input-xs w-full max-w-xs h-7 bg-transparent"
       @blur="$emit('save')"
     >
     <label
@@ -286,7 +286,7 @@
     <select
       v-model="field.preferences.format"
       :placeholder="t('format')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 bg-transparent"
       @change="$emit('save')"
     >
       <option
@@ -312,7 +312,7 @@
   >
     <select
       :placeholder="t('format')"
-      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
+      class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 bg-transparent"
       @change="[field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
