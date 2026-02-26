@@ -720,6 +720,11 @@ export default {
       required: false,
       default: false
     },
+    withPrefillable: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     customFields: {
       type: Array,
       required: false,
@@ -947,13 +952,6 @@ export default {
           !submitter.is_requester &&
           !submitter.email
       })
-    },
-    withPrefillable () {
-      if (this.template.fields) {
-        return this.template.fields.some((f) => f.prefillable)
-      } else {
-        return false
-      }
     },
     isInlineSize () {
       return CSS.supports('container-type: size')
