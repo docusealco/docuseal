@@ -1,5 +1,5 @@
 <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, class: 'inline', html: { enctype: 'multipart/form-data' } do %>
-  <label for="upload_template" id="templates_upload_button" class="btn btn-ghost text-base">
+  <label for="upload_template" id="templates_upload_button" class="btn btn-ghost text-base" tabindex="0" role="button">
     <button type="submit" class="hidden peer"></button>
     <span class="peer-disabled:hidden">
       <span class="flex items-center justify-center space-x-2">
