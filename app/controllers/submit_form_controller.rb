@@ -115,7 +115,7 @@ class SubmitFormController < ApplicationController
 
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
-                             .preload(:blob).index_by(&:uuid)
+                             .index_by(&:uuid)
   end
 
   def require_email_2fa?(submitter)
