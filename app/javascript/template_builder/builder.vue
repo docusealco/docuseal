@@ -189,7 +189,7 @@
                 </span>
               </label>
               <ul
-                tabindex="0"
+                tabindex="-1"
                 class="dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right"
               >
                 <li>

@@ -121,7 +121,7 @@
             </label>
             <ul
               v-if="renderDropdown"
-              tabindex="0"
+              tabindex="-1"
               class="mt-1.5 dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
               :style="{ backgroundColor: dropdownBgColor }"
               draggable="true"

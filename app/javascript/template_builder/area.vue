@@ -129,7 +129,7 @@
           <ul
             v-if="renderDropdown"
             ref="settingsDropdown"
-            tabindex="0"
+            tabindex="-1"
             class="dropdown-content menu menu-xs px-2 pb-2 pt-1 shadow rounded-box w-52 z-10 rounded-t-none"
             :style="{ backgroundColor: 'white' }"
             @dragstart.prevent.stop

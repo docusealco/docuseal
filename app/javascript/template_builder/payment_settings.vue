@@ -14,7 +14,7 @@
       />
     </label>
     <ul
-      tabindex="0"
+      tabindex="-1"
       class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
       draggable="true"
       @dragstart.prevent.stop

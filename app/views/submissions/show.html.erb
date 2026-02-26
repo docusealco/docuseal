@@ -50,7 +50,7 @@
                     <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
                   </span>
                 </label>
-                <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
+                <ul tabindex="-1" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
                   <li>
                     <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: true }.compact) %>" class="flex items-center">
                       <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">

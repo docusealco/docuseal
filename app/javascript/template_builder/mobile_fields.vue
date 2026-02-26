@@ -17,7 +17,7 @@
       />
     </label>
     <ul
-      tabindex="0"
+      tabindex="-1"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3 mt-1.5 bg-base-100"
       @click="closeDropdown"
     >

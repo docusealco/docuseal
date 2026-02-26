@@ -20,7 +20,7 @@
     </slot>
     <ul
       v-if="editable && renderDropdown"
-      tabindex="0"
+      tabindex="-1"
       class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10 mb-3"
       :style="menuStyle"
       :class="menuClasses"

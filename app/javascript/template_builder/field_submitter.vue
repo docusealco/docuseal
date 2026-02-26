@@ -35,7 +35,7 @@
         </label>
         <ul
           v-if="editable && renderDropdown"
-          tabindex="0"
+          tabindex="-1"
           class="rounded-md min-w-max mb-2"
           :class="menuClasses"
           :style="menuStyle"
@@ -140,7 +140,7 @@
     </label>
     <ul
       v-if="(editable || !compact) && renderDropdown"
-      tabindex="0"
+      tabindex="-1"
       :class="menuClasses"
       :style="menuStyle"
       @click="closeDropdown"

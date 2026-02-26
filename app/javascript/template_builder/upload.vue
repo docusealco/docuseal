@@ -44,7 +44,7 @@
             <IconChevronDown class="w-5 h-5 flex-shrink-0" />
           </label>
           <ul
-            tabindex="0"
+            tabindex="-1"
             :style="{ backgroundColor }"
             class="dropdown-content p-2 mt-2 shadow menu text-base mb-1 rounded-box text-right !text-base-content"
           >

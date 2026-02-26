@@ -2,7 +2,7 @@
   <label tabindex="0" class="btn btn-sm h-10">
     <%= svg_icon('arrow_sort', class: 'w-5 h-5') %>
   </label>
-  <ul tabindex="0" class="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box mb-1 min-w-48">
+  <ul tabindex="-1" class="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box mb-1 min-w-48">
     <toggle-cookies data-value="created_at" data-key="dashboard_templates_order">
       <li>
         <button class="<%= 'bg-base-200' if selected_order == 'created_at' %>">

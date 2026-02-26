@@ -4,7 +4,7 @@
     <%= svg_icon('filter', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
     <span class="<%= filter_params.then { |f| f[:status].in?(%w[pending completed]) ? f.except(:status) : f }.present? ? 'md:hidden' : '' %>">Filter</span>
   </label>
-  <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px] text-right">
+  <ul tabindex="-1" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px] text-right">
     <li class="flex">
       <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('calendar_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>

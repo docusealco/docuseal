@@ -38,7 +38,7 @@
                   />
                 </label>
                 <div
-                  tabindex="0"
+                  tabindex="-1"
                   class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-white border border-base-300 rounded-md w-52"
                 >
                   <div
@@ -124,7 +124,7 @@
                   <component :is="valigns.find((v) => v.value === (preferences.valign || 'center'))?.icon" />
                 </label>
                 <div
-                  tabindex="0"
+                  tabindex="-1"
                   class="dropdown-content p-0 mt-1 block z-10 menu shadow bg-white border border-base-300 rounded-md"
                 >
                   <div

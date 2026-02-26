@@ -10,7 +10,7 @@
       />
     </label>
     <ul
-      tabindex="0"
+      tabindex="-1"
       :style="{ backgroundColor }"
       class="dropdown-content z-[1] shadow menu rounded-box"
     >
