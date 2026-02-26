@@ -96,7 +96,7 @@
          n_pages > 0 && pages_text.size >= n_pages
        end %>
     <% if has_full_text %>
-      <document-tabs class="flex flex-col w-full min-h-0">
+      <document-tabs class="flex flex-col w-full min-h-0" style="margin-top: 8px">
         <div role="tablist" aria-label="<%= t('document_view_options') %>"
              class="flex border-b border-base-300 px-0.5 flex-none bg-base-100">
           <button role="tab" id="tab-pdf" aria-selected="true"
