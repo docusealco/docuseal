@@ -1,6 +1,7 @@
 <template>
   <div
     class="list-field group"
+    :class="`list-field-${field.type}`"
   >
     <div
       class="border border-base-300 rounded relative group fields-list-item"
