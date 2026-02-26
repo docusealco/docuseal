@@ -210,18 +210,23 @@
         class="field-type-button group flex items-center justify-center border border-dashed w-full rounded relative fields-grid-item"
         :style="{ backgroundColor }"
         :class="drawFieldType === type ? 'border-base-content/40' : 'border-base-300 hover:border-base-content/20'"
+        :aria-pressed="drawFieldType === type"
         @dragstart="onDragstart($event, { type: type })"
         @dragend="$emit('drag-end')"
         @click="['file', 'payment', 'verification', 'kba'].includes(type) ? $emit('add-field', type) : $emit('set-draw-type', type)"
       >
         <div
+          aria-hidden="true"
           class="flex items-console transition-all cursor-grab h-full absolute left-0"
           :class="drawFieldType === type ? 'bg-base-200/50' : 'group-hover:bg-base-200/50'"
         >
           <IconDrag class="my-auto" />
         </div>
         <div class="flex items-center flex-col px-2 py-2">
-          <component :is="icon" />
+          <component
+            :is="icon"
+            aria-hidden="true"
+          />
           <span class="text-xs mt-1">
             {{ fieldNames[type] }}
           </span>
