@@ -457,3 +457,80 @@ All 4 sprint waves complete:
 3. **Automated tests**: Resolve Ruby version blocker (install rbenv + Ruby 4.0.1); run axe-core RSpec suite
 4. **Regression check**: Verify `user_menu.js` Escape handler coexists with global keyup guard
 5. **Retest audit**: Run a fresh accessibility audit to confirm all issues resolved and catch regressions
+
+---
+
+## Session: Deep-Dive Audit + Sprints 5–7 Implementation (2026-02-26)
+
+### What Was Done
+
+Ran a comprehensive second-pass audit via 3 parallel agents (submission_form Vue, template_builder Vue, settings/dashboard ERB + custom JS elements). Produced a full remediation plan saved at `.plans/refactored-forging-dream.md` covering Sprints 5–8.
+
+Then implemented Sprints 5 (Critical), 6 (High), and 7 (Medium) in a single commit.
+
+**Commit**: `cf209400` — "Implement accessibility plan: Sprints 5, 6, and 7 (WCAG 2.1 AA)"
+
+### Sprint 5: Critical WCAG Violations Fixed
+
+| Item | Fix | Files |
+|------|-----|-------|
+| 5-A Search input missing label | Added sr-only `<label>`, `aria-label` to clear link and submit button | `shared/_search_input.html.erb` |
+| 5-B Flash messages not announced | Added conditional `role`/`aria-live`/`aria-atomic`; `aria-label="dismiss"` on close | `shared/_flash.html.erb` |
+| 5-C HTML modal — no dialog semantics | Added `role="dialog" aria-modal="true" aria-labelledby` to modal-box; `id` to title span | `shared/_html_modal.html.erb` |
+| 5-D File upload keyboard inaccessible | Changed file `<input class="hidden">` → `class="sr-only"` in 4 templates; added `role/aria-label` in `file_dropzone.js` connectedCallback | `file_dropzone.js`, `_dropzone.html.erb`, `user_signatures/edit.html.erb`, `user_initials/edit.html.erb`, `esign_settings/show.html.erb` |
+| 5-E `<a href="#">` used as buttons | Converted all 11+ instances to `<button type="button">` in Vue submission_form | `signature_step.vue`, `initials_step.vue`, `phone_step.vue` |
+
+### Sprint 6: High Priority Fixes
+
+| Item | Fix | Files |
+|------|-----|-------|
+| 6-A Pagination landmark | `<div>` → `<nav aria-label="pagination">`; `aria-current="page"` on current span | `shared/_pagination.html.erb` |
+| 6-B Settings nav landmark | Wrapped `<menu-active>` in `<nav aria-label="settings">`; `aria-label` on GitHub/Discord/AI icon links | `shared/_settings_nav.html.erb` |
+| 6-B/7-J menu_active aria-current | Added `link.setAttribute('aria-current', 'page')` to active link | `elements/menu_active.js` |
+| 6-C/D Progress dots + focus mgmt | Converted dots to `<button>` with `aria-label="Step N of M"`, `aria-current="step"`; `role="group" aria-label="Form progress"` container; `aria-expanded/aria-controls` on expand button; `:aria-hidden="!isFormVisible"` | `submission_form/form.vue` |
+| 6-E Folder card link missing label | Added `aria-label="<%= folder.name %>"` | `template_folders/_folder.html.erb` |
+| 6-F Breadcrumb navigation | Wrapped in `<nav aria-label="Breadcrumb">`; sr-only `aria-current="page"` span | `template_folders/show.html.erb` |
+| 6-G scroll_to.js keyboard | Added Enter/Space keydown handler; focus target after scroll | `elements/scroll_to.js` |
+| 6-H Option × delete button label | `:aria-label="\`Remove option ${index + 1}\`"` | `template_builder/field.vue` |
+| 6-I fetch_form success announcement | `announcePolite(this.dataset.successMessage)` on successful response | `elements/fetch_form.js` |
+| 6-J turbo_drawer close button | `<a>`/`<span>` close → `<button type="button" aria-label="close">` | `shared/_turbo_drawer.html.erb` |
+
+### Sprint 7: Medium Priority Fixes
+
+| Item | Fix | Files |
+|------|-----|-------|
+| 7-A aria-errormessage on canvases | `id="signature-error"` on error div; `aria-invalid`/`aria-errormessage` on canvas | `signature_step.vue`, `initials_step.vue` |
+| 7-B aria-busy on async operations | `aria-busy="true"` on processing button; `:aria-busy="isCreatingCheckout"` on checkout button; `aria-hidden="true"` on spinners | `payment_step.vue` |
+| 7-D API settings collapse ARIA | Added `id`, `aria-label`, `aria-controls` to 3 DaisyUI collapse checkboxes | `api_settings/index.html.erb` |
+| 7-E Data table semantics | Added `<caption class="sr-only">`, `scope="col"` on all `<th>`, sr-only "Actions" header | `esign_settings/show.html.erb` |
+| 7-F SMTP radio fieldset | Wrapped radio buttons in `<fieldset><legend class="label">SMTP Security</legend>` | `email_smtp_settings/index.html.erb` |
+| 7-G Toggle view aria-pressed | Added `aria-pressed` to both templates/submissions toggle buttons | `dashboard/_toggle_view.html.erb` |
+| 7-I Phone country code select | `:aria-label="t('country_code')"` on native select overlay | `phone_step.vue` |
+
+### i18n Keys Added
+
+**`config/locales/i18n.yml`**: `dismiss`, `step`, `form_progress`, `breadcrumb`, `actions`
+**`submission_form/i18n.js`**: `step`, `of`, `form_progress`, `country_code`
+**`template_builder/i18n.js`**: `remove_option`
+
+### Files Modified (28 total)
+
+`fetch_form.js`, `file_dropzone.js`, `menu_active.js`, `scroll_to.js`, `submission_form/form.vue`, `submission_form/i18n.js`, `submission_form/initials_step.vue`, `submission_form/payment_step.vue`, `submission_form/phone_step.vue`, `submission_form/signature_step.vue`, `template_builder/field.vue`, `template_builder/i18n.js`, `api_settings/index.html.erb`, `dashboard/_toggle_view.html.erb`, `email_smtp_settings/index.html.erb`, `esign_settings/show.html.erb`, `shared/_flash.html.erb`, `shared/_html_modal.html.erb`, `shared/_pagination.html.erb`, `shared/_search_input.html.erb`, `shared/_settings_nav.html.erb`, `shared/_turbo_drawer.html.erb`, `template_folders/_folder.html.erb`, `template_folders/show.html.erb`, `templates/_dropzone.html.erb`, `user_initials/edit.html.erb`, `user_signatures/edit.html.erb`, `config/locales/i18n.yml`
+
+### Deferred: Sprint 8 (Complex — Template Builder Keyboard Access)
+
+The following items are deferred for a separate planning session due to complexity:
+
+- **8-A**: Keyboard alternative for drag-and-drop field placement (`fields.vue`, `field.vue`, `page.vue`, `area.vue`) — requires "Add to page" button + arrow-key nudging
+- **8-B**: Context menu keyboard trigger (Shift+F10) in `field_context_menu.vue`
+- **8-C**: Field settings dropdown focus trap + Escape handler in `field.vue`
+- **8-D**: Live region announcement when field added/removed in `builder.vue`
+
+### Next Session Recommendations
+
+1. **Sprint 8**: Plan and implement template builder keyboard access (items 8-A through 8-D above) — most impactful remaining gap
+2. **Manual verify Sprint 5-7**: Test search input with keyboard only; trigger flash messages; test file upload Tab flow; cycle through form progress dots with arrow keys
+3. **7-C skipped**: `v-show` + `aria-hidden` sync on `form.vue` container — double-check if added or still needed
+4. **7-H skipped**: `scroll_buttons.js` aria-hidden on hidden buttons — verify or add
+5. **7-I deeper fix**: Current fix adds `aria-label` to the native select; consider full combobox refactor for better AT experience (lower priority)
+6. **Retest audit**: Run fresh accessibility audit to confirm no regressions introduced
