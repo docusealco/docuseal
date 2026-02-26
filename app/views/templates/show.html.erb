@@ -13,14 +13,18 @@
         <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
           <%= render 'shared/search_input', title_selector: 'h2' %>
         <% end %>
-        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
-          <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
-          <span><%= t('export') %></span>
+        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', aria: { label: "#{t('export')} - #{@template.name} #{t('submissions')}" }, data: { turbo_frame: 'modal' } do %>
+          <span class="flex items-center gap-2" aria-hidden="true">
+            <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
+            <span><%= t('export') %></span>
+          </span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
-          <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <%= t('add_recipients_html') %>
+          <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', aria: { label: "#{t('add_recipients')} - #{@template.name}" }, data: { turbo_frame: 'modal' } do %>
+            <span class="flex items-center gap-2" aria-hidden="true">
+              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+              <%= t('add_recipients_html') %>
+            </span>
           <% end %>
         <% end %>
       </div>
