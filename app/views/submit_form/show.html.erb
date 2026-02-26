@@ -10,7 +10,7 @@
 <% font_scale = 1000.0 / PdfUtils::US_LETTER_W %>
 <% decline_modal_checkbox_uuid = nil %>
 <div style="max-height: -webkit-fill-available;">
-  <div id="scrollbox">
+  <div id="scrollbox" tabindex="-1">
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 transition-transform duration-300 %>
       <%= local_assigns[:banner_html] || capture do %>
@@ -67,7 +67,7 @@
       <% if has_full_text %>
         <document-tabs class="block" style="margin-top: 4rem">
           <div role="tablist" aria-label="<%= t('document_view_options') %>"
-               class="flex border-b border-base-300 mb-2">
+               class="flex border-b border-base-300 mb-2 sticky top-12 min-[1230px]:top-0 z-40 bg-base-100">
             <button role="tab" id="tab-pdf" aria-selected="true"
                     aria-controls="panel-pdf" tabindex="0"
                     class="px-4 py-2 text-sm font-semibold border-b-2 -mb-px border-neutral text-base-content">

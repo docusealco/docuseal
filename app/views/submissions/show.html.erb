@@ -7,7 +7,7 @@
 <% is_combined_enabled = configs.find { |e| e.key == AccountConfig::COMBINE_PDF_RESULT_KEY }&.value == true && !@submission.template_fields&.any? { |f| f['type'] == 'verification' } %>
 <% with_submitter_timezone = configs.find { |e| e.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true %>
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
-<div style="max-width: 1600px" class="mx-auto pl-4">
+<div id="main-content" tabindex="-1" style="max-width: 1600px" class="mx-auto pl-4">
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
@@ -89,35 +89,37 @@
         <% end %>
       <% end %>
     </div>
-    <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
-      <% has_full_text = schema.all? do |item|
-           doc = @submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
-           n_pages = doc.metadata.dig('pdf', 'number_of_pages').to_i
-           pages_text = doc.blob.metadata.dig('pdf', 'pages_text') || {}
-           n_pages > 0 && pages_text.size >= n_pages
-         end %>
-      <% if has_full_text %>
-        <document-tabs>
-          <div role="tablist" aria-label="<%= t('document_view_options') %>"
-               class="flex border-b border-base-300 px-0.5 mb-2">
-            <button role="tab" id="tab-pdf" aria-selected="true"
-                    aria-controls="panel-pdf" tabindex="0"
-                    class="px-4 py-2 text-sm font-semibold border-b-2 -mb-px border-neutral text-base-content">
-              <%= t('pdf_view') %>
-            </button>
-            <button role="tab" id="tab-text" aria-selected="false"
-                    aria-controls="panel-text" tabindex="-1"
-                    class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-transparent text-base-content">
-              <%= t('text_view') %>
-            </button>
-          </div>
+    <% has_full_text = schema.all? do |item|
+         doc = @submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
+         n_pages = doc.metadata.dig('pdf', 'number_of_pages').to_i
+         pages_text = doc.blob.metadata.dig('pdf', 'pages_text') || {}
+         n_pages > 0 && pages_text.size >= n_pages
+       end %>
+    <% if has_full_text %>
+      <document-tabs class="flex flex-col w-full min-h-0">
+        <div role="tablist" aria-label="<%= t('document_view_options') %>"
+             class="flex border-b border-base-300 px-0.5 flex-none bg-base-100">
+          <button role="tab" id="tab-pdf" aria-selected="true"
+                  aria-controls="panel-pdf" tabindex="0"
+                  class="px-4 py-2 text-sm font-semibold border-b-2 -mb-px border-neutral text-base-content">
+            <%= t('pdf_view') %>
+          </button>
+          <button role="tab" id="tab-text" aria-selected="false"
+                  aria-controls="panel-text" tabindex="-1"
+                  class="px-4 py-2 text-sm font-medium border-b-2 -mb-px border-transparent text-base-content">
+            <%= t('text_view') %>
+          </button>
+        </div>
+        <div id="document_view" class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
           <div id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" tabindex="0">
-      <% end %>
+    <% else %>
+      <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5">
+    <% end %>
       <div class="pr-3.5 pl-0.5">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
         <% submitters_order_index = nil %>
-        <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+        <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
         <% bg_classes = %w[bg-red-100 bg-sky-100 bg-emerald-100 bg-yellow-100 bg-purple-100 bg-pink-100 bg-cyan-100 bg-orange-100 bg-lime-100 bg-indigo-100] %>
         <% schema.each do |item| %>
@@ -170,7 +172,7 @@
           <% end %>
         <% end %>
       </div>
-      <% if has_full_text %>
+    <% if has_full_text %>
           </div>
           <div id="panel-text" role="tabpanel" aria-labelledby="tab-text" tabindex="0" hidden>
             <article class="prose max-w-none px-4 py-2">
@@ -187,9 +189,11 @@
               <% end %>
             </article>
           </div>
-        </document-tabs>
-      <% end %>
-    </div>
+        </div>
+      </document-tabs>
+    <% else %>
+      </div>
+    <% end %>
     <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
