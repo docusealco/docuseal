@@ -175,3 +175,14 @@ features:
 
   # Show the Discord link
   show_discord_link: false
+
+  # Show "Upgrade to Pro" upsell banners/buttons throughout the app
+  # Set to false to hide all Pro upgrade prompts (recommended for self-hosted)
+  show_pro_upsells: false
+
+# ---------------------------------------------------------------------------
+# Internal / technical settings
+# ---------------------------------------------------------------------------
+internal:
+  # Domain used for auto-generated duplicate/test account emails (never real addresses)
+  temp_email_domain: "intebec.ca"

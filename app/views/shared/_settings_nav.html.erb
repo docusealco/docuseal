@@ -46,7 +46,7 @@
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
-        <% if can?(:read, AccessToken) %>
+        <% if can?(:read, AccessToken) && current_user.role != User::USER_ROLE %>
           <li>
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
           </li>

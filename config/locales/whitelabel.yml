@@ -10,7 +10,7 @@
 # Languages: English (en) + French (fr)
 # =============================================================================
 
-en:
+en: &en_wl
   docuseal_trusted_signature: "Intébec Trusted Signature"
   sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">Intébec Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: 'Show "Sent with <span class="link">Intébec Pro</span>" attribution in emails'
@@ -28,13 +28,21 @@ en:
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using Intébec or cancel your subscription."
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'This submission has multiple signers, which prevents the use of a sharing link as it''s unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://intebec.ca/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.'
   welcome_to_docuseal: "Welcome to Intébec"
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: "Start a quick tour to learn how to create and send your first document with Intébec."
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: "Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@intebec.ca to log in."
   add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Add a unique Signature ID and timestamp to each signature for audit and traceability purposes along with the timestamp. Part of Intébec's 21 CFR Part 11 compliance settings."
   require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Require signers to provide a reason for signing before completing their signature (e.g., approvals, certifications). Part of Intébec's 21 CFR Part 11 compliance settings."
+  role_admin: "Administrator"
+  role_gestionnaire: "Manager"
+  role_user: "User"
+  unauthorized:
+    default: "You are not authorized to access this page."
+    manage:
+      all: "You are not authorized to perform this action."
   onboarding:
     support_description: "You can use our self-service AI assistant or email us at support@intebec.ca if you have any questions."
 
-fr:
+fr: &fr_wl
   docuseal_trusted_signature: "Signature de confiance Intébec"
   sent_with_docuseal_pro_html: 'Envoyé avec <a href="%{product_url}">Intébec Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: 'Afficher l''attribution « Envoyé avec <span class="link">Intébec Pro</span> » dans les courriels'
@@ -52,9 +60,13 @@ fr:
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser Intébec ou annuler votre abonnement."
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l''utilisation d''un lien de partage car on ne sait pas quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://intebec.ca/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
   welcome_to_docuseal: "Bienvenue sur Intébec"
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: "Lancez une visite rapide pour apprendre à créer et envoyer votre premier document avec Intébec."
   your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: "Votre courriel n'a pas pu être atteint. Cela peut arriver s'il y a une faute de frappe dans votre adresse ou si votre boîte de réception n'est pas disponible. Veuillez contacter support@intebec.ca pour vous connecter."
   add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Ajoutez un identifiant de signature unique et un horodatage à chaque signature à des fins d'audit et de traçabilité, ainsi que l'horodatage. Fait partie des paramètres de conformité 21 CFR Part 11 d'Intébec."
   require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Exiger que le signataire fournisse une raison de signature avant de terminer sa signature (ex. : approbations, certifications). Fait partie des paramètres de conformité 21 CFR Part 11 d'Intébec."
+  role_admin: "Administrateur"
+  role_gestionnaire: "Gestionnaire"
+  role_user: "Utilisateur"
   onboarding:
     support_description: "Vous pouvez utiliser notre assistant IA en libre-service ou nous écrire à support@intebec.ca si vous avez des questions."
   # -------------------------------------------------------------------------
@@ -75,3 +87,42 @@ fr:
   download: "Télécharger"
   powered_by: "Propulsé par"
   open_source_documents_software: "logiciel de signature de documents"
+  unauthorized:
+    default: "Vous n'êtes pas autorisé à accéder à cette page."
+    manage:
+      all: "Vous n'êtes pas autorisé à effectuer cette action."
+  devise:
+    sessions:
+      signed_in: "Connexion réussie."
+      signed_out: "Déconnexion réussie."
+      already_signed_in: "Vous êtes déjà connecté."
+    failure:
+      already_authenticated: "Vous êtes déjà connecté."
+      unauthenticated: "Vous devez vous connecter pour accéder à cette page."
+      locked: "Votre compte est verrouillé."
+      invalid: "Adresse courriel ou mot de passe invalide."
+      last_attempt: "Il vous reste une tentative avant que votre compte soit verrouillé."
+      not_found_in_database: "Adresse courriel ou mot de passe invalide."
+      timeout: "Votre session a expiré. Veuillez vous reconnecter."
+      inactive: "Votre compte n'est pas encore activé."
+    passwords:
+      send_instructions: "Vous recevrez un courriel avec les instructions pour réinitialiser votre mot de passe."
+      send_paranoid_instructions: "Si votre courriel est dans notre base de données, vous recevrez un lien pour réinitialiser votre mot de passe."
+      updated: "Votre mot de passe a été modifié. Vous êtes maintenant connecté."
+      updated_not_active: "Votre mot de passe a été modifié avec succès."
+    mailer:
+      reset_password_instructions:
+        subject: "Réinitialisation de votre mot de passe"
+
+# ---------------------------------------------------------------------------
+# Regional locale aliases — inherit all overrides from the base locales above
+# (mirrors the YAML anchor pattern used in i18n.yml)
+# ---------------------------------------------------------------------------
+en-US:
+  <<: *en_wl
+
+en-GB:
+  <<: *en_wl
+
+fr-FR:
+  <<: *fr_wl
