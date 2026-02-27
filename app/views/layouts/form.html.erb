@@ -2,6 +2,9 @@
 <html data-theme="docuseal" lang="<%= I18n.locale %>">
   <head>
     <%= render 'layouts/head_tags' %>
+    <meta name="brand-name" content="<%= Whitelabel.brand_name %>">
+    <meta name="brand-website-url" content="<%= Whitelabel.website_url %>">
+    <meta name="brand-github-url" content="<%= Whitelabel.github_url %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>

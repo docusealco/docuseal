@@ -2,27 +2,29 @@
 
 module Submitters
   module FormConfigs
-    DEFAULT_KEYS = [AccountConfig::FORM_COMPLETED_BUTTON_KEY,
-                    AccountConfig::FORM_COMPLETED_MESSAGE_KEY,
-                    AccountConfig::FORM_WITH_CONFETTI_KEY,
-                    AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
-                    AccountConfig::WITH_SIGNATURE_ID,
-                    AccountConfig::ALLOW_TO_DECLINE_KEY,
-                    AccountConfig::ENFORCE_SIGNING_ORDER_KEY,
-                    AccountConfig::REQUIRE_SIGNING_REASON_KEY,
-                    AccountConfig::REUSE_SIGNATURE_KEY,
-                    AccountConfig::WITH_FIELD_LABELS_KEY,
-                    AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
-                    AccountConfig::ALLOW_TYPED_SIGNATURE,
-                    AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
-                    AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
-                    AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
-                    *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
-
     module_function
 
+    def default_keys
+      [AccountConfig::FORM_COMPLETED_BUTTON_KEY,
+       AccountConfig::FORM_COMPLETED_MESSAGE_KEY,
+       AccountConfig::FORM_WITH_CONFETTI_KEY,
+       AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
+       AccountConfig::WITH_SIGNATURE_ID,
+       AccountConfig::ALLOW_TO_DECLINE_KEY,
+       AccountConfig::ENFORCE_SIGNING_ORDER_KEY,
+       AccountConfig::REQUIRE_SIGNING_REASON_KEY,
+       AccountConfig::REUSE_SIGNATURE_KEY,
+       AccountConfig::WITH_FIELD_LABELS_KEY,
+       AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
+       AccountConfig::ALLOW_TYPED_SIGNATURE,
+       AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
+       AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
+       AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
+       *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])]
+    end
+
     def call(submitter, keys = [])
-      configs = submitter.submission.account.account_configs.where(key: DEFAULT_KEYS + keys)
+      configs = submitter.submission.account.account_configs.where(key: default_keys + keys)
 
       completed_button = find_safe_value(configs, AccountConfig::FORM_COMPLETED_BUTTON_KEY) || {}
       completed_message = find_safe_value(configs, AccountConfig::FORM_COMPLETED_MESSAGE_KEY) || {}

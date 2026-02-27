@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Method
 
+  helper WhitelabelHelper
+
   check_authorization unless: :devise_controller?
 
   around_action :with_locale
@@ -122,6 +124,8 @@ class ApplicationController < ActionController::Base
   end
 
   def maybe_redirect_com
+    # NOTE: upstream DocuSeal cloud redirect — no-op for self-hosted / white-label
+    return unless Docuseal.multitenant?
     return if request.domain != 'docuseal.co'
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently

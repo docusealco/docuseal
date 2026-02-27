@@ -1,15 +1,15 @@
 {
-  "name": "<%= Docuseal.product_name %>",
-  "short_name": "<%= Docuseal.product_name %>",
+  "name": "<%= Whitelabel.brand_name %>",
+  "short_name": "<%= Whitelabel.brand_short_name %>",
   "id": "/",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "<%= Whitelabel.favicon_svg %>",
       "type": "image/svg+xml",
       "sizes": "any"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "<%= Whitelabel.apple_touch_icon %>",
       "type": "image/png",
       "sizes": "192x192"
     }
@@ -18,8 +18,8 @@
   "display": "standalone",
   "scope": "/",
   "orientation": "any",
-  "description": "<%= Docuseal.product_name %> is an open source platform that provides secure and efficient digital document signing and processing.",
+  "description": "<%= Whitelabel.pwa_description %>",
   "categories": ["productivity", "utilities"],
-  "theme_color": "#FAF7F4",
-  "background_color": "#FAF7F4"
+  "theme_color": "<%= Whitelabel.pwa_theme_color %>",
+  "background_color": "<%= Whitelabel.pwa_background_color %>"
 }

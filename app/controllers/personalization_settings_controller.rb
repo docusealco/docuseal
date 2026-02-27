@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
 class PersonalizationSettingsController < ApplicationController
-  ALLOWED_KEYS = [
-    AccountConfig::FORM_COMPLETED_BUTTON_KEY,
-    AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY,
-    AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY,
-    AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY,
-    AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY,
-    AccountConfig::FORM_COMPLETED_MESSAGE_KEY,
-    *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])
-  ].freeze
-
   InvalidKey = Class.new(StandardError)
 
   before_action :load_and_authorize_account_config, only: :create
@@ -45,9 +35,21 @@ class PersonalizationSettingsController < ApplicationController
 
     authorize!(:create, @account_config)
 
-    raise InvalidKey unless ALLOWED_KEYS.include?(@account_config.key)
+    raise InvalidKey unless allowed_keys.include?(@account_config.key)
 
     @account_config
+  end
+
+  def allowed_keys
+    [
+      AccountConfig::FORM_COMPLETED_BUTTON_KEY,
+      AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY,
+      AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY,
+      AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY,
+      AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY,
+      AccountConfig::FORM_COMPLETED_MESSAGE_KEY,
+      *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])
+    ]
   end
 
   def account_config_params

@@ -288,7 +288,7 @@
       class="text-base-content/60 text-xs text-center w-full mt-1 select-none"
     >
       {{ t('by_clicking_you_agree_to_the').replace('{button}', buttonText.charAt(0).toUpperCase() + buttonText.slice(1)) }} <a
-        href="https://www.docuseal.com/esign-disclosure"
+        :href="(document.querySelector('meta[name=brand-website-url]')?.content || '') + '/esign-disclosure'"
         target="_blank"
       >
         <span class="inline md:hidden">

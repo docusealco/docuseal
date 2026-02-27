@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SendWebhookRequest
-  USER_AGENT = 'DocuSeal.com Webhook'
+  USER_AGENT = Whitelabel.webhook_user_agent
 
   LOCALHOSTS = DownloadUtils::LOCALHOSTS
 

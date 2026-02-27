@@ -1,0 +1,177 @@
+# =============================================================================
+# White-Label Configuration — Single source of truth for all branding
+# =============================================================================
+#
+# Change the values below to rebrand the entire application for any client.
+# The application reads this file once at boot (and caches it).
+# After editing, restart the app (or call Whitelabel.reload! in a console).
+#
+# IMPORTANT: Keep the YAML keys exactly as they are — only change the values.
+# This file is designed to survive upstream DocuSeal merges since it lives in
+# a file that does not exist in the upstream repo.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Brand identity
+# ---------------------------------------------------------------------------
+brand:
+  # The name shown in the navbar, page titles, emails, PDFs, PWA manifest, etc.
+  name: "Intébec"
+
+  # Shorter variant (used in PWA short_name, compact UI areas)
+  short_name: "Intébec"
+
+  # Tagline — appears alongside the brand name in page titles, meta tags, etc.
+  tagline: "Signature"
+
+  # Description for meta tags, PWA manifest, and default OG description
+  description: "Outil de signature fait par Intébec. Permet de signer des documents facilement."
+
+  # Default page titles  (signed_in / signed_out)
+  page_title_signed_in: "Intébec Signature"
+  page_title_signed_out: "Intébec | Signature"
+
+# ---------------------------------------------------------------------------
+# URLs — your company's own links
+# ---------------------------------------------------------------------------
+urls:
+  # Main website (replaces docuseal.com links)
+  website: "https://intebec.ca"
+
+  # Support / contact email
+  support_email: "support@intebec.ca"
+
+  # Privacy policy & terms pages (set to null to hide links)
+  privacy_policy: "https://intebec.ca/privacy"
+  terms_of_service: "https://intebec.ca/terms"
+
+  # Social handles (set to null to hide)
+  twitter_url: ~
+  twitter_handle: ~
+  github_url: ~
+  discord_url: ~
+
+# ---------------------------------------------------------------------------
+# Email settings
+# ---------------------------------------------------------------------------
+email:
+  # "From" header: "Brand Name <address>"
+  from_name: "Intébec"
+  from_address: "info@intebec.ca"
+
+  # Attribution line at the bottom of transactional emails
+  # Supports basic HTML. Use %{brand} as a placeholder for the brand name.
+  # Use %{website} as a placeholder for the website URL.
+  attribution_html: 'Envoyé avec <a href="%{website}">%{brand}</a> — signature de documents sécurisée.'
+
+# ---------------------------------------------------------------------------
+# Assets — paths are relative to /public or full URLs
+# ---------------------------------------------------------------------------
+assets:
+  # Logo shown in the navbar and form banners
+  logo_path: "/logo.svg"
+  logo_width: 37
+  logo_height: 37
+
+  # Favicon files (place your files in /public)
+  favicon_svg: "/favicon.svg"
+  favicon_ico: "/favicon.ico"
+  favicon_16: "/favicon-16x16.png"
+  favicon_32: "/favicon-32x32.png"
+  favicon_96: "/favicon-96x96.png"
+  apple_touch_icon: "/apple-icon-180x180.png"
+
+  # Open Graph / social preview image
+  preview_image: "/preview.png"
+
+# ---------------------------------------------------------------------------
+# Theme — CSS custom properties injected into the DaisyUI `docuseal` theme
+# Values are HSL triplets "H S% L%" to match DaisyUI conventions.
+# Set a key to null to keep the compiled Tailwind default.
+# ---------------------------------------------------------------------------
+theme:
+  # Primary action colour (buttons, links, focus rings)
+  primary: "216 77% 52%"
+  primary_focus: "216 77% 44%"
+  primary_content: "0 0% 100%"
+
+  # Secondary colour
+  secondary: "220 12% 45%"
+  secondary_focus: "220 14% 36%"
+  secondary_content: "0 0% 100%"
+
+  # Accent colour
+  accent: "160 50% 40%"
+  accent_focus: "160 50% 34%"
+  accent_content: "0 0% 100%"
+
+  # Neutral / dark tones
+  neutral: "220 16% 12%"
+  neutral_focus: "220 16% 8%"
+  neutral_content: "0 0% 100%"
+
+  # Surfaces / backgrounds
+  base_100: "0 0% 100%"
+  base_200: "220 14% 96%"
+  base_300: "220 12% 93%"
+  base_content: "220 14% 10%"
+
+  # Functional colours
+  info: "205 80% 50%"
+  success: "154 55% 38%"
+  warning: "38 88% 48%"
+  error: "0 72% 50%"
+
+  # Border radius & misc
+  rounded_btn: "1.9rem"
+  tab_border: "2px"
+  tab_radius: ".5rem"
+
+# ---------------------------------------------------------------------------
+# PDF / Audit trail branding
+# ---------------------------------------------------------------------------
+pdf:
+  # Text embedded in PDF digital signatures (use %{name} for the signer name)
+  sign_reason: "Signed by %{name} with Intébec"
+
+  # Audit trail footer text
+  audit_trail_footer: "Signed with Intébec"
+
+  # PDF Creator metadata
+  creator: "Intébec"
+
+  # E-sign certificate default name
+  cert_name: "Intébec Self-Host Autogenerated"
+
+# ---------------------------------------------------------------------------
+# PWA (Progressive Web App) manifest
+# ---------------------------------------------------------------------------
+pwa:
+  description: "Intébec is a secure platform for digital document signing and processing."
+  theme_color: "#FAF7F4"
+  background_color: "#FAF7F4"
+
+# ---------------------------------------------------------------------------
+# Webhook user-agent string
+# ---------------------------------------------------------------------------
+webhooks:
+  user_agent: "Intébec Webhook"
+
+# ---------------------------------------------------------------------------
+# Feature flags — toggle upstream DocuSeal features
+# ---------------------------------------------------------------------------
+features:
+  # Show the "Star on GitHub" button in the navbar
+  show_github_button: false
+
+  # Show "Powered by …" attribution on public signing pages
+  show_powered_by: true
+
+  # Text for the "powered by" line (null = use brand name)
+  powered_by_text: ~
+
+  # Show the "Ask AI / ChatGPT" link in the user menu
+  show_ai_link: false
+
+  # Show the Discord link
+  show_discord_link: false

@@ -1,14 +1,14 @@
 <% if Docuseal.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<% title = content_for(:html_title) || (signed_in? ? 'Intébec Signature' : 'Intébec | Signature') %>
-<% description = content_for(:html_description) || 'Outil de signature fait par Intébec. Permet de signer des documents facilement.' %>
+<% title = content_for(:html_title) || (signed_in? ? wl.page_title(signed_in: true) : wl.page_title(signed_in: false)) %>
+<% description = content_for(:html_description) || wl.description %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
-<meta property="og:site_name" content="DocuSeal">
+<meta property="og:site_name" content="<%= wl.brand_name %>">
 <% if content_for(:disable_image_preview) %>
   <meta property="og:image" content="">
   <meta name="twitter:image" content="">
@@ -19,13 +19,15 @@
   <meta name="twitter:image" content="<%= content_for(:preview_image_url).presence || "#{root_url}preview.png" %>">
 <% end %>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@docusealco">
-<meta name="twitter:site" content="@docusealco">
+<% if wl.twitter_handle.present? %>
+  <meta name="twitter:creator" content="<%= wl.twitter_handle %>">
+  <meta name="twitter:site" content="<%= wl.twitter_handle %>">
+<% end %>
 <meta name="twitter:title" content="<%= title %>">
 <meta name="twitter:description" content="<%= description %>">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/svg+xml" href="/favicon.ico">
-<meta name="theme-color" content="#faf7f5">
+<link rel="apple-touch-icon" sizes="180x180" href="<%= wl.apple_touch_icon %>">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= wl.favicon_32 %>">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= wl.favicon_96 %>">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= wl.favicon_16 %>">
+<link rel="icon" type="image/svg+xml" href="<%= wl.favicon_svg %>">
+<meta name="theme-color" content="<%= wl.pwa_theme_color %>">

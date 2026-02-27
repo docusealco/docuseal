@@ -3,7 +3,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:latest
+    build: .
+    image: intebec/docuseal:latest
     ports:
       - 3000:3000
     volumes:
@@ -15,7 +16,7 @@ services:
   postgres:
     image: postgres:18
     volumes:
-      - './pg_data:/var/lib/postgresql/18/docker'
+      - "./pg_data:/var/lib/postgresql/18/docker"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
