@@ -1,8 +1,5 @@
 services:
   app:
-    depends_on:
-      postgres:
-        condition: service_healthy
     build: .
     image: intebec/docuseal:latest
     ports:
@@ -11,21 +8,6 @@ services:
       - ./docuseal:/data/docuseal
     environment:
       - FORCE_SSL=${HOST}
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
-
-  postgres:
-    image: postgres:18
-    volumes:
-      - "./pg_data:/var/lib/postgresql/18/docker"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: docuseal
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
   caddy:
     image: caddy:latest
