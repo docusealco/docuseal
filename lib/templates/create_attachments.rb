@@ -142,9 +142,11 @@ module Templates
         # Use LibreOffice headless mode to convert to PDF
         success = system(libreoffice_path, '--headless', '--convert-to', 'pdf', '--outdir', output_dir, input_temp.path, out: File::NULL, err: File::NULL)
         
-        if success && File.exist?(output_file)
-          pdf_data = File.binread(output_file)
-          return pdf_data
+        if success
+          generated_pdf = Dir.glob(File.join(output_dir, '*.pdf')).first
+          if generated_pdf && File.exist?(generated_pdf)
+            return File.binread(generated_pdf)
+          end
         end
       rescue StandardError => e
         Rails.logger.warn("Document conversion failed: #{e.message}")

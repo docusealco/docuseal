@@ -68,6 +68,7 @@ class Submission < ApplicationRecord
 
   has_many_attached :preview_documents
   has_many_attached :documents
+  has_many_attached :admin_result_documents
 
   has_many :template_accesses, primary_key: :template_id, foreign_key: :template_id, dependent: nil, inverse_of: false
 

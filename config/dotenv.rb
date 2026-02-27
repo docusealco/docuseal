@@ -70,6 +70,24 @@ if ENV['RAILS_ENV'] == 'production'
   end
 end
 
+# In non-production environments (e.g. development), also load `docuseal.env`
+# so that SMTP and other settings defined there are available via ENV.
+if ENV['RAILS_ENV'] != 'production'
+  dotenv_path = "#{ENV.fetch('WORKDIR', '.')}/docuseal.env"
+
+  if File.exist?(dotenv_path)
+    File.foreach(dotenv_path) do |line|
+      line = line.strip
+      next if line.empty? || line.start_with?('#')
+
+      key, value = line.split('=', 2)
+      next if key.to_s.empty?
+
+      ENV[key] = value.to_s
+    end
+  end
+end
+
 if ENV['DATABASE_URL'].to_s.split('@').last.to_s.split('/').first.to_s.include?('_')
   require 'addressable'
 

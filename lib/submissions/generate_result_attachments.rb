@@ -81,10 +81,10 @@ module Submissions
     module_function
 
     # rubocop:disable Metrics
-    def call(submitter)
+    def call(submitter, for_admin: false)
       return generate_detached_signature_attachments(submitter) if detached_signature?(submitter)
 
-      pdfs_index = generate_pdfs(submitter)
+      pdfs_index = generate_pdfs(submitter, for_admin:)
 
       account = submitter.account
       submission = submitter.submission
@@ -97,6 +97,8 @@ module Submissions
 
       result_attachments =
         submission.template_schema.filter_map do |item|
+          next if item.blank? || !item.is_a?(Hash)
+
           pdf = pdfs_index[item['attachment_uuid']]
 
           next if pdf.nil?
@@ -109,9 +111,11 @@ module Submissions
 
           build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
                                uuid: item['attachment_uuid'],
-                               name: item['name'])
+                               name: item['name'],
+                               for_admin:, submission:)
         end
 
+      submission.admin_result_documents.purge if for_admin
       return ApplicationRecord.no_touching { result_attachments.map { |e| e.tap(&:save!) } } if image_pdfs.size < 2
 
       images_pdf =
@@ -128,15 +132,18 @@ module Submissions
           tsa_url:,
           pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
-          name: submission.name || submission.template.name
+          name: submission.name || submission.template.name,
+          for_admin:,
+          submission:
         )
 
+      submission.admin_result_documents.purge if for_admin
       ApplicationRecord.no_touching do
         (result_attachments + [images_pdf_attachment]).map { |e| e.tap(&:save!) }
       end
     end
 
-    def generate_pdfs(submitter)
+    def generate_pdfs(submitter, for_admin: false)
       configs = submitter.account.account_configs.where(key: [AccountConfig::FLATTEN_RESULT_PDF_KEY,
                                                               AccountConfig::WITH_SIGNATURE_ID,
                                                               AccountConfig::WITH_FILE_LINKS_KEY,
@@ -195,13 +202,17 @@ module Submissions
       fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:,
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
-                                                                      with_signature_id_reason:)
+                                                                      with_signature_id_reason:,
+                                                                      for_admin:)
 
-      rasterize_redacted_pages(submitter.submission, pdfs_index)
+      rasterize_redacted_pages(submitter.submission, pdfs_index) unless for_admin
+
+      pdfs_index
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
-                              with_submitter_timezone: false, with_signature_id_reason: true, with_file_links: nil)
+                              with_submitter_timezone: false, with_signature_id_reason: true, with_file_links: nil,
+                              for_admin: false)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
 
       attachments_data_cache = {}
@@ -635,6 +646,8 @@ module Submissions
               end
             end
           when 'redact'
+            next if for_admin
+
             area_x = area['x'] * width
             area_y = area['y'] * height
             area_w = area['w'] * width
@@ -715,7 +728,7 @@ module Submissions
       pdfs_index
     end
 
-    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
+    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:, for_admin: false, submission: nil)
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
@@ -764,13 +777,16 @@ module Submissions
         end
       end
 
+      record = for_admin ? submission : submitter
+      attachment_name = for_admin ? 'admin_result_documents' : 'documents'
+
       ActiveStorage::Attachment.new(
         blob: ActiveStorage::Blob.create_and_upload!(io: io.tap(&:rewind), filename: "#{name}.pdf"),
         metadata: { original_uuid: uuid,
                     analyzed: true,
                     sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(io.string)) },
-        name: 'documents',
-        record: submitter
+        name: attachment_name,
+        record:
       )
     end
     # rubocop:enable Metrics
@@ -806,12 +822,21 @@ module Submissions
       documents   = latest_submitter&.documents&.preload(:blob).to_a.presence
       documents ||= submission.schema_documents.preload(:blob)
 
-      attachment_uuids = Submissions.filtered_conditions_schema(submission).pluck('attachment_uuid')
+      schema_documents = submission.schema_documents.preload(:blob)
+      schema_items = submission.template_schema || submission.template.schema
+
+      attachment_uuids =
+        schema_items.filter_map do |item|
+          next unless item.is_a?(Hash)
+
+          item['attachment_uuid']
+        end.uniq
+
       attachments_index = documents.index_by { |a| a.metadata['original_uuid'] || a.uuid }
 
       attachment_uuids.each_with_object({}) do |uuid, acc|
         attachment = attachments_index[uuid]
-        attachment ||= submission.schema_documents.preload(:blob).find { |a| a.uuid == uuid }
+        attachment ||= schema_documents.find { |a| a.uuid == uuid || a.metadata['original_uuid'] == uuid }
 
         next unless attachment
 

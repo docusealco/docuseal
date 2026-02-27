@@ -10,11 +10,12 @@ class SubmissionsDownloadController < ApplicationController
   def index
     @submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
 
-    signature_valid =
+    @signature_valid =
       if @submitter&.slug == params[:submitter_slug]
         true
       else
         @submitter = nil
+        false
       end
 
     @submitter ||= Submitter.find_by!(slug: params[:submitter_slug])
@@ -27,7 +28,7 @@ class SubmissionsDownloadController < ApplicationController
 
     Submissions::EnsureResultGenerated.call(last_submitter)
 
-    if last_submitter.completed_at < TTL.ago && !signature_valid && !current_user_submitter?(last_submitter)
+    if last_submitter.completed_at < TTL.ago && !@signature_valid && !current_user_submitter?(last_submitter)
       Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)
 
       return head :not_found
@@ -46,7 +47,31 @@ class SubmissionsDownloadController < ApplicationController
     end
   end
 
+  def signed_download_url
+    @submitter = Submitter.find_by!(slug: params[:slug])
+    last_submitter = @submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+
+    return head :not_found unless last_submitter
+
+    Submissions::EnsureResultGenerated.call(last_submitter)
+
+    if last_submitter.completed_at < TTL.ago && !current_user_submitter?(last_submitter)
+      return head :not_found
+    end
+
+    url = submitter_download_index_url(
+      @submitter.slug,
+      sig: @submitter.signed_id(expires_in: TTL, purpose: :download_completed)
+    )
+    render json: { url: url }
+  end
+
   private
+
+  def admin_download?(last_submitter)
+    # No valid signature link = download from app (e.g. submissions page) → serve unredacted
+    !@signature_valid
+  end
 
   def current_user_submitter?(submitter)
     current_user && current_user.account.submitters.exists?(id: submitter.id)
@@ -56,7 +81,14 @@ class SubmissionsDownloadController < ApplicationController
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    Submitters.select_attachments_for_download(submitter).map do |attachment|
+    attachments = if admin_download?(submitter)
+                     Submissions::GenerateResultAttachments.call(submitter, for_admin: true)
+                     Submitters.select_admin_attachments_for_download(submitter)
+                   else
+                     Submitters.select_attachments_for_download(submitter)
+                   end
+
+    attachments.map do |attachment|
       ActiveStorage::Blob.proxy_url(
         attachment.blob,
         expires_at: FILES_TTL.from_now.to_i,

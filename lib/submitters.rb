@@ -103,10 +103,7 @@ module Submitters
   end
 
   def select_attachments_for_download(submitter)
-    if AccountConfig.exists?(account_id: submitter.submission.account_id,
-                             key: AccountConfig::COMBINE_PDF_RESULT_KEY,
-                             value: true) &&
-       submitter.submission.submitters.all?(&:completed_at?) &&
+    if submitter.submission.submitters.all?(&:completed_at?) &&
        submitter.submission.template_fields.none? { |f| f['type'] == 'verification' }
       return [submitter.submission.combined_document_attachment || Submissions::EnsureCombinedGenerated.call(submitter)]
     end
@@ -115,6 +112,19 @@ module Submitters
     is_more_than_two_images = original_documents.many?(&:image?)
 
     submitter.documents.preload(:blob).reject do |attachment|
+      is_more_than_two_images &&
+        original_documents.find { |a| a.uuid == (attachment.metadata['original_uuid'] || attachment.uuid) }&.image?
+    end
+  end
+
+  def select_admin_attachments_for_download(submitter)
+    submission = submitter.submission
+    return [] unless submission.admin_result_documents.attached?
+
+    original_documents = submission.schema_documents.preload(:blob)
+    is_more_than_two_images = original_documents.many?(&:image?)
+
+    submission.admin_result_documents.reject do |attachment|
       is_more_than_two_images &&
         original_documents.find { |a| a.uuid == (attachment.metadata['original_uuid'] || attachment.uuid) }&.image?
     end

@@ -53,10 +53,21 @@ Rails.application.configure do
   config.active_storage.service = :disk
   config.active_storage.resolve_model_to_route = :rails_storage_proxy
 
-  # Don't care if the mailer can't send.
+  # Mailer: send real emails in development using SMTP (e.g. Gmail).
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              ENV.fetch('SMTP_ADDRESS', 'smtp.gmail.com'),
+    port:                 ENV.fetch('SMTP_PORT', 587),
+    domain:               ENV.fetch('SMTP_DOMAIN', 'gmail.com'),
+    user_name:            ENV.fetch('SMTP_USERNAME', nil),
+    password:             ENV.fetch('SMTP_PASSWORD', nil),
+    authentication:       (ENV['SMTP_PASSWORD'].present? ? ENV.fetch('SMTP_AUTHENTICATION', 'plain') : nil),
+    enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false',
+    openssl_verify_mode:  OpenSSL::SSL::VERIFY_NONE
+  }.compact
 
   config.action_mailer.perform_caching = false
 

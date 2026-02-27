@@ -21,7 +21,13 @@ class SendSubmitterInvitationEmailJob
 
     Submitters::ValidateSending.call(submitter, mail)
 
-    mail.deliver_now!
+    begin
+      mail.deliver_now!
+    rescue StandardError => e
+      Rollbar.error(e, submitter_id: submitter.id) if defined?(Rollbar)
+
+      raise
+    end
 
     SubmissionEvent.create!(submitter:, event_type: 'send_email')
 

@@ -9,7 +9,7 @@ class SubmitFormDownloadController < ApplicationController
   def index
     @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-    return redirect_to submitter_download_index_path(@submitter.slug) if @submitter.completed_at?
+    return redirect_to submitter_download_index_path(@submitter.slug, sig: @submitter.signed_id(expires_in: 40.minutes, purpose: :download_completed)) if @submitter.completed_at?
 
     return head :unprocessable_content if @submitter.declined_at? ||
                                           @submitter.submission.archived_at? ||
