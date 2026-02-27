@@ -39,11 +39,11 @@ urls:
   website: "https://intebec.ca"
 
   # Support / contact email
-  support_email: "support@intebec.ca"
+  support_email: "contact@intebec.ca"
 
   # Privacy policy & terms pages (set to null to hide links)
-  privacy_policy: "https://intebec.ca/privacy"
-  terms_of_service: "https://intebec.ca/terms"
+  privacy_policy: "https://intebec.ca/legal/privacy"
+  terms_of_service: "https://intebec.ca/legal/terms"
 
   # Social handles (set to null to hide)
   twitter_url: ~

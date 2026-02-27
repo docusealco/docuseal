@@ -182,6 +182,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       showTourStartForm: this.dataset.showTourStartForm === 'true'
     })
 
+    this.app.config.globalProperties.document = document
+
     this.component = this.app.mount(this.appElem)
 
     this.appendChild(this.appElem)
