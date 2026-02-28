@@ -14,7 +14,7 @@ export default class extends HTMLElement {
         this.target.classList.toggle(this.dataset.className, value !== dataValue)
 
         if (this.dataset.className === 'hidden' && this.target.tagName === 'INPUT') {
-          this.target.disabled = event.target.value !== this.dataset.value
+          this.target.disabled = value !== dataValue
         }
       }
 
