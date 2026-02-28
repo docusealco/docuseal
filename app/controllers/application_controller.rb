@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     rescue_from CanCan::AccessDenied do |e|
       Rollbar.warning(e) if defined?(Rollbar)
 
-      redirect_to root_path, alert: e.message
+      redirect_to root_path, alert: I18n.t('unauthorized.default', locale: current_account&.locale)
     end
   end
 
@@ -67,12 +67,13 @@ class ApplicationController < ActionController::Base
   private
 
   def with_locale(&)
-    return yield unless current_account
+    locale = if current_account
+               (params[:lang].presence if Rails.env.development?) || current_account.locale
+             else
+               request.env['HTTP_ACCEPT_LANGUAGE'].to_s[BROWSER_LOCALE_REGEXP].to_s.split('-').first.presence
+             end
 
-    locale   = params[:lang].presence if Rails.env.development?
-    locale ||= current_account.locale
-
-    I18n.with_locale(locale, &)
+    I18n.with_locale(locale || I18n.default_locale, &)
   end
 
   def with_browser_locale(&)

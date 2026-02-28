@@ -233,6 +233,18 @@ module Whitelabel
       config.dig('features', 'show_discord_link') == true
     end
 
+    def show_pro_upsells?
+      config.dig('features', 'show_pro_upsells') == true
+    end
+
+    # -----------------------------------------------------------------------
+    # Internal / technical
+    # -----------------------------------------------------------------------
+
+    def temp_email_domain
+      config.dig('internal', 'temp_email_domain') || 'example.com'
+    end
+
     private
 
     def load_config
