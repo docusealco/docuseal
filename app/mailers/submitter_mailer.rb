@@ -29,7 +29,7 @@ class SubmitterMailer < ApplicationMailer
 
     assign_message_metadata('submitter_invitation', @submitter)
 
-    reply_to = build_submitter_reply_to(@submitter)
+    reply_to = build_submitter_reply_to(@submitter, email_config: @email_config)
 
     maybe_set_custom_domain(@submitter)
 
