@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module LoadBmp
+  BPPS = [1, 4, 8, 24, 32].freeze
+
   module_function
 
   # rubocop:disable Metrics
@@ -16,18 +18,25 @@ module LoadBmp
       header_data[:height]
     )
 
-    final_pixel_data = prepare_unpadded_pixel_data_string(
-      raw_pixel_data_from_file,
-      header_data[:bpp],
-      header_data[:width],
-      header_data[:height],
-      header_data[:bmp_stride]
-    )
-
-    bands = header_data[:bpp] / 8
-
-    unless header_data[:bpp] == 24 || header_data[:bpp] == 32
-      raise ArgumentError, "Conversion for #{header_data[:bpp]}-bpp BMP not implemented."
+    if header_data[:bpp] <= 8
+      final_pixel_data = decode_indexed_pixel_data(
+        raw_pixel_data_from_file,
+        header_data[:bpp],
+        header_data[:width],
+        header_data[:height],
+        header_data[:bmp_stride],
+        header_data[:color_table]
+      )
+      bands = 3
+    else
+      final_pixel_data = prepare_unpadded_pixel_data_string(
+        raw_pixel_data_from_file,
+        header_data[:bpp],
+        header_data[:width],
+        header_data[:height],
+        header_data[:bmp_stride]
+      )
+      bands = header_data[:bpp] / 8
     end
 
     image = Vips::Image.new_from_memory(final_pixel_data, header_data[:width], header_data[:height], bands, :uchar)
@@ -35,7 +44,9 @@ module LoadBmp
     image = image.flip(:vertical) if header_data[:orientation] == -1
 
     image_rgb =
-      if bands == 3
+      if header_data[:bpp] <= 8
+        image
+      elsif bands == 3
         image.recomb(band3_recomb)
       elsif bands == 4
         image.recomb(band4_recomb)
@@ -93,15 +104,31 @@ module LoadBmp
             "Unsupported BMP compression type: #{compression}. Only uncompressed (0) is supported."
     end
 
-    unless [24, 32].include?(bpp)
-      raise ArgumentError, "Unsupported BMP bits per pixel: #{bpp}. Only 24-bit and 32-bit are supported."
+    if BPPS.exclude?(bpp)
+      raise ArgumentError, "Unsupported BMP bits per pixel: #{bpp}. Only 1, 4, 8, 24, and 32-bit are supported."
     end
 
     raise ArgumentError, "Unsupported BMP planes: #{planes}. Expected 1." if planes != 1
 
-    bytes_per_pixel = bpp / 8
-    row_size_unpadded = width * bytes_per_pixel
-    bmp_stride = (row_size_unpadded + 3) & ~3
+    bmp_stride = (((width * bpp) + 31) / 32) * 4
+
+    color_table = nil
+
+    if bpp <= 8
+      num_colors = 1 << bpp
+      color_table_offset = 14 + info_header_size
+      color_table_size = num_colors * 4
+
+      if bmp_bytes.bytesize < color_table_offset + color_table_size
+        raise ArgumentError, 'BMP data too short for color table.'
+      end
+
+      color_table = Array.new(num_colors) do |i|
+        offset = color_table_offset + (i * 4)
+        b, g, r = bmp_bytes.unpack("@#{offset}CCC")
+        [r, g, b]
+      end
+    end
 
     {
       width:,
@@ -109,7 +136,8 @@ module LoadBmp
       bpp:,
       pixel_data_offset:,
       bmp_stride:,
-      orientation:
+      orientation:,
+      color_table:
     }
   end
 
@@ -161,6 +189,37 @@ module LoadBmp
     end
 
     unpadded_rows.join
+  end
+
+  def decode_indexed_pixel_data(raw_data, bpp, width, height, bmp_stride, color_table)
+    palette = color_table.map { |r, g, b| [r, g, b].pack('CCC') }
+
+    output = String.new(capacity: width * height * 3)
+
+    height.times do |y|
+      row_offset = y * bmp_stride
+
+      case bpp
+      when 1
+        width.times do |x|
+          byte_val = raw_data.getbyte(row_offset + (x >> 3))
+          index = (byte_val >> (7 - (x & 7))) & 0x01
+          output << palette[index]
+        end
+      when 4
+        width.times do |x|
+          byte_val = raw_data.getbyte(row_offset + (x >> 1))
+          index = x.even? ? (byte_val >> 4) & 0x0F : byte_val & 0x0F
+          output << palette[index]
+        end
+      when 8
+        width.times do |x|
+          output << palette[raw_data.getbyte(row_offset + x)]
+        end
+      end
+    end
+
+    output
   end
 
   def band3_recomb

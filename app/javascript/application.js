@@ -155,12 +155,15 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
     this.appElem.classList.add('md:h-screen')
 
+    const template = reactive(JSON.parse(this.dataset.template))
+
     this.app = createApp(TemplateBuilder, {
-      template: reactive(JSON.parse(this.dataset.template)),
+      template,
       customFields: reactive(JSON.parse(this.dataset.customFields || '[]')),
       backgroundColor: '#faf7f5',
       locale: this.dataset.locale,
       withPhone: this.dataset.withPhone === 'true',
+      withPrefillable: template.fields?.some((f) => f.prefillable),
       withVerification: ['true', 'false'].includes(this.dataset.withVerification) ? this.dataset.withVerification === 'true' : null,
       withKba: ['true', 'false'].includes(this.dataset.withKba) ? this.dataset.withKba === 'true' : null,
       withLogo: this.dataset.withLogo !== 'false',

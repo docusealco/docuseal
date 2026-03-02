@@ -11,7 +11,7 @@
     >
       <label
         v-if="showRequired"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-required w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -26,7 +26,7 @@
       </label>
       <label
         v-if="showReadOnly"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-read-only w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -41,7 +41,7 @@
       </label>
       <label
         v-if="showPrefillable"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-prefillable w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -56,7 +56,7 @@
       </label>
       <label
         v-if="showSetSigningDate"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-set-signing-date w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -70,7 +70,7 @@
       </label>
       <label
         v-if="showWithLogo"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-with-logo w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -84,7 +84,7 @@
       </label>
       <label
         v-if="showSignatureId"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-signature-id w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -99,7 +99,7 @@
       </label>
       <label
         v-if="showChecked"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        class="field-settings-checked w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
         @click.stop
       >
         <input
@@ -113,6 +113,7 @@
       </label>
       <ContextSubmenu
         v-if="showVerificationMethod"
+        class="field-settings-verification-method"
         :icon="IconId"
         :label="t('method')"
         :options="methodOptions"
@@ -125,6 +126,7 @@
       >
       <ContextSubmenu
         v-if="showFormatSubmenu"
+        class="field-settings-format"
         :icon="IconAdjustmentsHorizontal"
         :label="t('format')"
         :options="formatOptions"
@@ -133,6 +135,7 @@
       />
       <ContextSubmenu
         v-if="showValidationSubmenu && field.type !== 'number'"
+        class="field-settings-validation"
         :icon="IconInputCheck"
         :label="t('validation')"
         :options="validationMenuItems.map(k => ({ value: k, label: t(k) }))"
@@ -141,7 +144,7 @@
       />
       <button
         v-if="field.type === 'number'"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        class="field-settings-validation w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
         @click.stop="openNumberRangeModal"
       >
         <IconInputCheck class="w-4 h-4" />
@@ -149,6 +152,7 @@
       </button>
       <ContextSubmenu
         v-if="showPaymentSettings"
+        class="field-settings-currency"
         :icon="IconCash"
         :label="t('currency')"
         :options="currencyOptions"
@@ -157,6 +161,7 @@
       />
       <ContextSubmenu
         v-if="showPaymentSettings"
+        class="field-settings-price"
         :icon="IconCoins"
         :label="t('price')"
         :options="priceTypeOptions"
@@ -165,7 +170,7 @@
       />
       <button
         v-if="showFont"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        class="field-settings-font w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
         @click.stop="openFontModal"
       >
         <IconTypography class="w-4 h-4" />
@@ -173,7 +178,7 @@
       </button>
       <button
         v-if="showDescription"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        class="field-settings-description w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
         @click.stop="openDescriptionModal"
       >
         <IconInfoCircle class="w-4 h-4" />
@@ -181,7 +186,7 @@
       </button>
       <button
         v-if="showCondition"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
+        class="field-settings-condition w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
         @click.stop="openConditionModal"
       >
         <span class="flex items-center space-x-2">
@@ -196,7 +201,7 @@
       </button>
       <button
         v-if="showFormula"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        class="field-settings-formula w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
         @click.stop="openFormulaModal"
       >
         <IconMathFunction class="w-4 h-4" />
@@ -207,7 +212,7 @@
         class="my-1 border-neutral-200"
       >
       <button
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
+        class="field-settings-copy w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
         @click.stop="$emit('copy')"
       >
         <span class="flex items-center space-x-2">
@@ -217,7 +222,7 @@
         <span class="text-xs text-base-content/60 ml-4">{{ isMac ? '⌘C' : 'Ctrl+C' }}</span>
       </button>
       <button
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm text-red-600"
+        class="field-settings-remove w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm text-red-600"
         @click.stop="$emit('delete')"
       >
         <span class="flex items-center space-x-2">
@@ -228,12 +233,13 @@
       </button>
       <ContextSubmenu
         v-if="showMoreSubmenu"
+        class="field-settings-more"
         :icon="IconDots"
         :label="t('more')"
       >
         <button
           v-if="showDrawNewArea"
-          class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+          class="field-settings-draw-new-area w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
           @click="handleMoreSelect('draw_new_area')"
         >
           <IconNewSection class="w-4 h-4" />
@@ -241,7 +247,7 @@
         </button>
         <button
           v-if="showCopyToAllPages"
-          class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+          class="field-settings-copy-to-all-pages w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
           @click="handleMoreSelect('copy_to_all_pages')"
         >
           <IconCopy class="w-4 h-4" />
@@ -249,7 +255,7 @@
         </button>
         <button
           v-if="showSaveAsCustom"
-          class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+          class="field-settings-save-as-custom-field w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
           @click="handleMoreSelect('save_as_custom')"
         >
           <IconForms class="w-4 h-4" />
