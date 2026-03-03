@@ -6,17 +6,11 @@ services:
       - 3000:3000
     volumes:
       - ./docuseal:/data/docuseal
+      - ${INTEBEC_CONFIG_FILE:-./config/config.yml}:/run/secrets/config.yml:ro
     environment:
       - FORCE_SSL=${HOST}
-
-  caddy:
-    image: caddy:latest
-    command: caddy reverse-proxy --from $HOST --to app:3000
-    ports:
-      - 80:80
-      - 443:443
-      - 443:443/udp
-    volumes:
-      - ./caddy:/data/caddy
-    environment:
-      - HOST=${HOST}
+      # File mode: mount a config.yml (see volumes below).
+      # API mode:  remove the volume mount and set INTEBEC_LICENCE_KEY + INTEBEC_SECRET_KEY.
+      - INTEBEC_CONFIG_PATH=/run/secrets/config.yml
+      - INTEBEC_LICENCE_KEY=${INTEBEC_LICENCE_KEY:-}
+      - INTEBEC_SECRET_KEY=${INTEBEC_SECRET_KEY:-}

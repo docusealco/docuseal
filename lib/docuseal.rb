@@ -4,7 +4,7 @@ module Docuseal
   URL_CACHE = ActiveSupport::Cache::MemoryStore.new
   # NOTE: These constants are kept for backward compatibility with upstream
   # DocuSeal code. User-visible values are overridden at runtime by the
-  # Whitelabel module (see config/whitelabel.yml + config/initializers/whitelabel.rb).
+  # Whitelabel module (see config/config.example.yml + config/initializers/whitelabel.rb).
   PRODUCT_URL = 'https://www.docuseal.com'
   PRODUCT_EMAIL_URL = ENV.fetch('PRODUCT_EMAIL_URL', PRODUCT_URL)
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze

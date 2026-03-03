@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   check_authorization unless: :devise_controller?
 
   around_action :with_locale
+  before_action :enforce_licence
   before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
@@ -96,6 +97,21 @@ class ApplicationController < ActionController::Base
 
   def sign_in_for_demo
     sign_in(User.active.order('random()').take) unless signed_in?
+  end
+
+  def enforce_licence
+    return if request.path == '/up'
+    return if request.path.start_with?('/assets', '/packs')
+
+    Whitelabel.ensure_valid!
+  rescue Whitelabel::ConfigError => e
+    Rails.logger.error(e.message)
+
+    if request.format.json?
+      render json: { error: 'service_unavailable' }, status: :service_unavailable
+    else
+      render plain: 'Service unavailable.', status: :service_unavailable
+    end
   end
 
   def current_account

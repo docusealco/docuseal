@@ -3,12 +3,10 @@
 # =============================================================================
 # Whitelabel initializer
 # =============================================================================
-# Loads config/whitelabel.yml and patches the Docuseal module constants so that
-# every existing call to Docuseal.product_name, Docuseal::PRODUCT_URL, etc.
-# automatically returns the white-labelled value.
-#
-# This approach means we do NOT have to change every single call-site — the
-# existing code keeps working, but returns branded values.
+# Triggers config loading (from local file or Dashboard API) and patches the
+# Docuseal module constants so that every existing call to
+# Docuseal.product_name, Docuseal::PRODUCT_URL, etc. automatically returns
+# the white-labelled value.
 # =============================================================================
 
 require_relative '../../lib/whitelabel'
@@ -54,6 +52,44 @@ module Docuseal
   def self.discord_url_value
     Whitelabel.discord_url || ''
   end
+end
+
+Rails.application.config.i18n.default_locale = Whitelabel.default_locale.to_sym
+Rails.application.config.i18n.available_locales = Whitelabel.available_locales.map(&:to_sym)
+Rails.application.config.i18n.fallbacks = [Whitelabel.fallback_locale.to_sym]
+
+deep_stringify_keys = lambda do |hash|
+  hash.each_with_object({}) do |(key, value), memo|
+    string_key = key.to_s
+    memo[string_key] = value.is_a?(Hash) ? deep_stringify_keys.call(value) : value
+  end
+end
+
+deep_merge_hash = lambda do |left, right|
+  left.merge(right) do |_key, left_value, right_value|
+    if left_value.is_a?(Hash) && right_value.is_a?(Hash)
+      deep_merge_hash.call(left_value, right_value)
+    else
+      right_value
+    end
+  end
+end
+
+undot_keys = lambda do |hash|
+  hash.each_with_object({}) do |(key, value), memo|
+    if key.include?('.')
+      head, *tail = key.split('.')
+      nested = tail.reverse.reduce(value) { |acc, segment| { segment => acc } }
+      memo[head] = memo.key?(head) ? deep_merge_hash.call(memo[head], nested) : nested
+    else
+      memo[key] = value.is_a?(Hash) ? undot_keys.call(value) : value
+    end
+  end
+end
+
+Whitelabel.translation_overrides.each do |locale, raw_values|
+  normalized = undot_keys.call(deep_stringify_keys.call(raw_values))
+  I18n.backend.store_translations(locale.to_sym, normalized)
 end
 
 Rails.logger.info "[Whitelabel] Loaded brand: #{Whitelabel.brand_name}"

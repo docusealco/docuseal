@@ -21,6 +21,7 @@
 /public/assets
 
 /config/master.key
+/config/config.yml
 
 /public/packs
 /public/packs-test
