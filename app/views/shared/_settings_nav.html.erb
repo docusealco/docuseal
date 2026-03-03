@@ -6,54 +6,57 @@
         <span class="!bg-transparent"><%= t('settings') %></span>
       </li>
       <li></li>
+      <%# Profile is always visible — personal section %>
       <li>
         <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
       </li>
-      <li>
-        <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
-      </li>
+      <% if Whitelabel.setting_section_visible?(current_user.role, 'account') %>
+        <li>
+          <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <% unless Docuseal.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
+        <% if Whitelabel.setting_section_visible?(current_user.role, 'email') && can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
           <li>
             <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
+        <% if Whitelabel.setting_section_visible?(current_user.role, 'storage') && can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
       <% end %>
-      <% if can?(:read, AccountConfig) %>
+      <% if Whitelabel.setting_section_visible?(current_user.role, 'notifications') && can?(:read, AccountConfig) %>
         <li>
           <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+      <% if Whitelabel.setting_section_visible?(current_user.role, 'esign') && can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
           <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, AccountConfig) %>
+      <% if Whitelabel.setting_section_visible?(current_user.role, 'personalization') && can?(:read, AccountConfig) %>
         <li>
           <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, User) %>
+      <% if Whitelabel.setting_section_visible?(current_user.role, 'users') && can?(:read, User) %>
         <li>
           <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
       <% if Docuseal.demo? || !Docuseal.multitenant? %>
-        <% if can?(:read, AccessToken) && current_user.role != User::USER_ROLE %>
+        <% if Whitelabel.setting_section_visible?(current_user.role, 'api') && can?(:read, AccessToken) %>
           <li>
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
       <% end %>
       <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
-        <% if can?(:read, WebhookUrl) %>
+        <% if Whitelabel.setting_section_visible?(current_user.role, 'webhooks') && can?(:read, WebhookUrl) %>
           <li>
             <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
           </li>

@@ -333,6 +333,127 @@ module Whitelabel
     end
 
     # =====================================================================
+    # Roles & Permissions (config-driven)
+    # =====================================================================
+    #
+    # Config format:
+    #   roles:
+    #     admin:
+    #       permissions:
+    #         templates:   [read, create, update, delete]
+    #         submissions: [read, create, update, delete]
+    #         users:       [read, create, update, delete]
+    #         settings:    [read, create, update, delete]
+    #     gestionnaire:
+    #       permissions:
+    #         templates:   [read, create, update, delete]
+    #         submissions: [read, create, update, delete]
+    #         users:       [read]
+    #         settings:    [read]
+    #     user:
+    #       permissions:
+    #         templates:   [read]
+    #         submissions: [read]
+    #
+
+    # Default permission matrix — used when no roles section in config.
+    DEFAULT_ROLES = {
+      'admin' => {
+        'permissions' => {
+          'templates'   => %w[read create update delete],
+          'submissions' => %w[read create update delete],
+          'users'       => %w[read create update delete],
+          'settings'    => %w[read create update delete]
+        }
+      },
+      'gestionnaire' => {
+        'permissions' => {
+          'templates'   => %w[read create update delete],
+          'submissions' => %w[read create update delete],
+          'users'       => %w[read],
+          'settings'    => %w[read]
+        }
+      },
+      'user' => {
+        'permissions' => {
+          'templates'   => %w[read],
+          'submissions' => %w[read],
+          'users'       => [],
+          'settings'    => []
+        }
+      }
+    }.freeze
+
+    # All available roles (keys).  Order matters — first is the default.
+    def roles
+      (config.dig('roles') || DEFAULT_ROLES).keys
+    end
+
+    # The default role assigned to new users.
+    def default_role
+      roles.first
+    end
+
+    # Full role definition hash for a given role slug.
+    def role_definition(role_slug)
+      all = config.dig('roles') || DEFAULT_ROLES
+      all[role_slug.to_s] || {}
+    end
+
+    # Permission list for a role + resource.
+    # Returns e.g. ["read", "create", "update"] or [].
+    def role_permissions(role_slug, resource)
+      perms = role_definition(role_slug).dig('permissions', resource.to_s)
+      perms.is_a?(Array) ? perms : []
+    end
+
+    # Check if a role has a specific action on a resource.
+    def role_can?(role_slug, resource, action)
+      role_permissions(role_slug, resource).include?(action.to_s)
+    end
+
+    # Check if a role is an admin (first role in the list is always the admin).
+    def admin_role?(role_slug)
+      role_slug.to_s == roles.first
+    end
+
+    # Validate that a role slug exists in config.
+    def role_valid?(role_slug)
+      roles.include?(role_slug.to_s)
+    end
+
+    # Returns the rank index of a role (0 = highest privilege = admin).
+    # Unknown roles return roles.size (treated as lowest).
+    def role_rank(role_slug)
+      roles.index(role_slug.to_s) || roles.size
+    end
+
+    # Returns only roles that the given actor_role can assign/manage.
+    # An actor can only work with roles at their own rank or lower (higher index).
+    def manageable_roles(actor_role)
+      rank = role_rank(actor_role.to_s)
+      roles[rank..]
+    end
+
+    # All known settings sections in display order.
+    ALL_SETTINGS_SECTIONS = %w[account email storage notifications esign personalization users api webhooks].freeze
+
+    # Returns true if the role is allowed to see the given settings section.
+    # Falls back to ALL_SETTINGS_SECTIONS for roles that have settings read
+    # permission but no explicit sections list (backward-compatible).
+    def setting_section_visible?(role_slug, section)
+      defn = role_definition(role_slug)
+      sections = defn['settings_sections']
+
+      if sections.is_a?(Array)
+        sections.map(&:to_s).include?(section.to_s)
+      else
+        # No explicit list → grant all sections to roles that can read settings.
+        role_permissions(role_slug, 'settings').include?('read')
+      end
+    end
+
+    # =====================================================================
     # Internal
     # =====================================================================
 

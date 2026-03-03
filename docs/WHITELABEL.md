@@ -4,8 +4,6 @@
 > Do NOT add config schema details, API contracts, or example YAML here.
 > The private config template is managed in the Intebec Dashboard, not in this repo.
 
-## Usage in Code
-
 ### In ERB views
 
 ```erb

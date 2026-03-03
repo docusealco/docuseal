@@ -1,9 +1,9 @@
 <div class="form-control">
   <%= f.label :role, class: 'label' %>
   <%= f.select :role, nil, {}, class: 'base-select' do %>
-    <option value="admin"><%= t('role_admin') %></option>
-    <option value="gestionnaire"><%= t('role_gestionnaire') %></option>
-    <option value="user"><%= t('role_user') %></option>
+    <% Whitelabel.manageable_roles(current_user.role).each do |role_slug| %>
+      <option value="<%= role_slug %>"><%= t("role_#{role_slug}", default: role_slug.humanize) %></option>
+    <% end %>
   <% end %>
   <% if Docuseal.multitenant? %>
     <label class="label">
