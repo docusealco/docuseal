@@ -66,7 +66,7 @@ export default {
     acceptFileTypes: {
       type: String,
       required: false,
-      default: 'image/*, application/pdf, application/zip'
+      default: 'image/*, application/pdf, application/zip, application/json'
     },
     withReplaceButton: {
       type: Boolean,

@@ -16,7 +16,7 @@
   </label>
   <input type="hidden" name="form_id" value="<%= form_id %>">
   <submit-form data-on="change" data-disable="true">
-    <input id="upload_template" name="files[]" class="hidden" type="file" accept="image/*, application/pdf, application/zip<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>" multiple>
+    <input id="upload_template" name="files[]" class="hidden" type="file" accept="image/*, application/pdf, application/zip, application/json<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>" multiple>
   </submit-form>
   <input hidden name="folder_name" value="<%= local_assigns[:folder_name] %>">
 <% end %>
