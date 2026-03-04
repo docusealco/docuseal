@@ -85,8 +85,11 @@ module Api
       render json: @template.as_json(only: %i[id archived_at])
     end
 
+    VALID_AUDIENCE_VALUES = %w[single_sided employee_then_manager manager_then_employee simultaneous].freeze
+
     def pdf
       template = build_template
+      audience = params[:audience]
       fields_from_request = params[:fields] if params[:fields].present?
 
       template.save!
@@ -98,6 +101,8 @@ module Api
         set_template_fields(template, fields_from_request, documents, schema) if template.fields.blank?
 
         template.update!(schema: schema)
+
+        apply_audience(template, audience)
 
         finalize_template_creation(template, documents)
       rescue StandardError => e
@@ -201,6 +206,17 @@ module Api
       end
     end
 
+    def apply_audience(template, audience)
+      return if audience.blank?
+
+      unless audience.in?(VALID_AUDIENCE_VALUES)
+        Rails.logger.warn("Invalid audience value '#{audience}' for template #{template.id}.")
+        return
+      end
+
+      template.update!(preferences: template.preferences.merge('submitters_order' => audience))
+    end
+
     def finalize_template_creation(template, documents)
       enqueue_template_created_webhooks(template)
       SearchEntries.enqueue_reindex(template)
@@ -252,7 +268,7 @@ module Api
           external_data_fields: {},
           submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email]],
           fields: [[:uuid, :question_id, :submitter_uuid, :name, :type,
-                    :required, :readonly, :default_value,
+                    :required, :readonly, :default_value, :prefill,
                     :title, :description,
                     { preferences: {},
                       conditions: [%i[field_uuid value action operation]],

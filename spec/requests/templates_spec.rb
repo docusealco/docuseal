@@ -150,6 +150,85 @@ describe 'Templates API' do
     end
   end
 
+  describe 'POST /api/templates/pdf' do
+    let(:pdf_base64) { Base64.strict_encode64(Rails.root.join('spec/fixtures/sample-document.pdf').read) }
+    let(:base_params) do
+      {
+        name: 'Test Template',
+        documents: [{ name: 'sample-document.pdf', file: pdf_base64 }]
+      }
+    end
+
+    it 'creates a template with audience set as submitters_order' do
+      post '/api/templates/pdf',
+           headers: { 'x-auth-token': author.access_token.token },
+           params: base_params.merge(audience: 'manager_then_employee').to_json,
+           env: { 'CONTENT_TYPE' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+
+      template = Template.last
+      expect(template.preferences['submitters_order']).to eq('manager_then_employee')
+    end
+
+    it 'creates a template with simultaneous audience' do
+      post '/api/templates/pdf',
+           headers: { 'x-auth-token': author.access_token.token },
+           params: base_params.merge(audience: 'simultaneous').to_json,
+           env: { 'CONTENT_TYPE' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(Template.last.preferences['submitters_order']).to eq('simultaneous')
+    end
+
+    it 'ignores audience when not provided' do
+      post '/api/templates/pdf',
+           headers: { 'x-auth-token': author.access_token.token },
+           params: base_params.to_json,
+           env: { 'CONTENT_TYPE' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(Template.last.preferences['submitters_order']).to eq('single_sided')
+    end
+
+    it 'ignores an invalid audience value' do
+      post '/api/templates/pdf',
+           headers: { 'x-auth-token': author.access_token.token },
+           params: base_params.merge(audience: 'invalid_value').to_json,
+           env: { 'CONTENT_TYPE' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(Template.last.preferences['submitters_order']).to eq('single_sided')
+    end
+
+    it 'stores prefill attribute on fields' do
+      employee_uuid = SecureRandom.uuid
+      fields = [
+        {
+          uuid: SecureRandom.uuid,
+          submitter_uuid: employee_uuid,
+          name: 'First Name',
+          type: 'text',
+          prefill: 'employee_first_name',
+          areas: [{ x: 0.1, y: 0.1, w: 0.2, h: 0.03, page: 0 }]
+        }
+      ]
+
+      post '/api/templates/pdf',
+           headers: { 'x-auth-token': author.access_token.token },
+           params: base_params.merge(
+             submitters: [{ name: 'Employee', uuid: employee_uuid }],
+             fields:
+           ).to_json,
+           env: { 'CONTENT_TYPE' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+
+      stored_field = Template.last.fields.find { |f| f['name'] == 'First Name' }
+      expect(stored_field['prefill']).to eq('employee_first_name')
+    end
+  end
+
   describe 'POST /api/templates/:id/clone' do
     it 'clones a template' do
       template = create(:template, account:,

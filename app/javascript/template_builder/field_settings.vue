@@ -595,10 +595,14 @@ export default {
   },
   methods: {
     formatPrefillFieldName (fieldName) {
-      // Convert snake_case to Title Case for display
+      const wordMap = {
+        firstname: 'First Name',
+        lastname: 'Last Name'
+      }
+
       return fieldName
         .split('_')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .map(word => wordMap[word.toLowerCase()] || (word.charAt(0).toUpperCase() + word.slice(1)))
         .join(' ')
     },
     onChangeValidation (event) {
