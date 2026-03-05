@@ -28,6 +28,8 @@ class DynamicDocument < ApplicationRecord
 
   has_many :versions, class_name: 'DynamicDocumentVersion', dependent: :destroy
 
+  attribute :fields, :json
+
   before_validation :set_sha1
 
   def set_sha1

@@ -3027,9 +3027,7 @@ export default {
         this.template.fields.splice(this.template.fields.indexOf(field), 1)
       })
 
-      if (toRemove.length) {
-        this.save()
-      }
+      this.save()
     }
   }
 }

@@ -187,6 +187,7 @@ import ReplaceButton from './replace'
 import GoogleDriveDocumentSettings from './google_drive_document_settings'
 import Field from './field'
 import FieldType from './field_type'
+import { v4 } from 'uuid'
 
 export default {
   name: 'DocumentPreview',
@@ -246,7 +247,7 @@ export default {
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'reorder', 'make-dynamic'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'reorder'],
   data () {
     return {
       isShowConditionsModal: false,
@@ -282,15 +283,76 @@ export default {
       }).then(async (resp) => {
         const dynamicDocument = await resp.json()
 
-        if (dynamicDocument.uuid) {
-          this.dynamicDocuments.push(dynamicDocument)
+        this.template.schema.find((item) => item.attachment_uuid === dynamicDocument.uuid).dynamic = true
+
+        this.removeFieldAreas()
+
+        if (dynamicDocument.fields?.length) {
+          this.addDynamicFields(dynamicDocument.fields)
         }
 
-        this.template.schema.find((item) => item.attachment_uuid === dynamicDocument.uuid).dynamic = true
+        if (dynamicDocument.uuid) {
+          delete dynamicDocument.fields
+
+          this.dynamicDocuments.push(dynamicDocument)
+        }
 
         this.$emit('change')
       }).finally(() => {
         this.isMakeDynamicLoading = false
+      })
+    },
+    removeFieldAreas () {
+      this.template.fields.forEach((field) => {
+        if (field.areas?.length) {
+          field.areas = field.areas.filter((a) => a.attachment_uuid !== this.document.uuid)
+        }
+      })
+
+      this.template.fields = this.template.fields.filter((field) => field.areas?.length)
+    },
+    addDynamicFields (fields) {
+      const submittersNameIndex = this.template.submitters.reduce((acc, submitter) => {
+        acc[submitter.name] = submitter
+
+        return acc
+      }, {})
+
+      fields.forEach((field) => {
+        const roleName = field.role || this.template.submitters[0]?.name || this.t('first_party')
+
+        let submitter = submittersNameIndex[roleName]
+
+        if (!submitter) {
+          submitter = { name: roleName, uuid: v4() }
+
+          this.template.submitters.push(submitter)
+
+          submittersNameIndex[roleName] = submitter
+        }
+
+        const existingField = this.template.fields.find((f) => {
+          return f.name && f.name === field.name && f.type === (field.type || 'text') && f.submitter_uuid === submitter.uuid
+        })
+
+        if (existingField) {
+          field.areas.forEach((area) => {
+            area.attachment_uuid = this.document.uuid
+
+            existingField.areas = existingField.areas || []
+            existingField.areas.push(area)
+          })
+        } else {
+          field.submitter_uuid = submitter.uuid
+
+          delete field.role
+
+          field.areas.forEach((area) => {
+            area.attachment_uuid = this.document.uuid
+          })
+
+          this.template.fields.push(field)
+        }
       })
     },
     onUpdateName (value) {
