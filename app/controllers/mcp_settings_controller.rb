@@ -15,9 +15,9 @@ class McpSettingsController < ApplicationController
     @mcp_token = current_user.mcp_tokens.new(mcp_token_params)
 
     if @mcp_token.save
-      flash[:mcp_token] = @mcp_token.token
+      @mcp_tokens = [@mcp_token]
 
-      redirect_back fallback_location: settings_mcp_index_path, notice: I18n.t('mcp_token_has_been_created')
+      render :index, status: :created
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'mcp_settings/new'), status: :unprocessable_content
     end

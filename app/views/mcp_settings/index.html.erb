@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <% if flash[:mcp_token].present? %>
+    <% if @mcp_token.present? %>
       <div class="space-y-4 mb-4">
         <div class="card bg-base-200">
           <div class="card-body p-6">
@@ -22,8 +22,8 @@
               <%= t('please_copy_the_token_below_now_as_it_wont_be_shown_again') %>:
             </label>
             <div class="flex w-full space-x-4">
-              <input id="mcp_token" type="text" value="<%= flash[:mcp_token] %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
-              <%= render 'shared/clipboard_copy', icon: 'copy', text: flash[:mcp_token], class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+              <input id="mcp_token" type="text" value="<%= @mcp_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text: @mcp_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             </div>
           </div>
         </div>
@@ -31,12 +31,12 @@
           <p class="text-2xl font-bold">
             <%= t('instructions') %>
           </p>
-          <div class="card bg-base-200/60 border-2 border-info">
+          <div class="card bg-base-200">
             <div class="card-body p-6">
               <p class="text-2xl font-semibold"><%= t('connect_to_docuseal_mcp') %></p>
               <p class="text-lg"><%= t('add_the_following_to_your_mcp_client_configuration') %>:</p>
               <div class="mockup-code overflow-hidden">
-                <% text = JSON.pretty_generate({ mcpServers: { docuseal: { type: 'http', url: "#{root_url(Docuseal.default_url_options)}mcp", headers: { Authorization: "Bearer #{flash[:mcp_token]}" } } } }).strip %>
+                <% text = JSON.pretty_generate({ mcpServers: { docuseal: { type: 'http', url: "#{root_url(Docuseal.default_url_options)}mcp", headers: { Authorization: "Bearer #{@mcp_token.token}" } } } }).strip %>
                 <span class="top-0 right-0 absolute">
                   <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
                 </span>
@@ -72,8 +72,8 @@
                 <%= mcp_token.name %>
               </td>
               <td>
-                <% if flash[:mcp_token].present? && mcp_token.token_prefix == flash[:mcp_token][0, 5] %>
-                  <%= flash[:mcp_token] %>
+                <% if @mcp_token.present? && mcp_token.id == @mcp_token.id %>
+                  <%= @mcp_token.token %>
                 <% else %>
                   <%= "#{mcp_token.token_prefix}#{'*' * 38}" %>
                 <% end %>
