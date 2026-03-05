@@ -90,6 +90,11 @@
             <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
+        <% if !Docuseal.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
+          <li>
+            <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
         <%= render 'shared/settings_nav_extra2' %>
         <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
           <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full' } do |f| %>

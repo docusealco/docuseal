@@ -20,6 +20,9 @@ class Ability
     can :manage, UserConfig, user_id: user.id
     can :manage, Account, id: user.account_id
     can :manage, AccessToken, user_id: user.id
+    can :manage, McpToken, user_id: user.id
     can :manage, WebhookUrl, account_id: user.account_id
+
+    can :manage, :mcp
   end
 end

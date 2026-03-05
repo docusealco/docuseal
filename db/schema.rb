@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_16_162053) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -249,6 +249,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_162053) do
     t.index ["key"], name: "index_lock_events_on_key"
   end
 
+  create_table "mcp_tokens", force: :cascade do |t|
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "sha256", null: false
+    t.string "token_prefix", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["sha256"], name: "index_mcp_tokens_on_sha256", unique: true
+    t.index ["user_id"], name: "index_mcp_tokens_on_user_id"
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -258,6 +270,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_162053) do
     t.string "scopes", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "revoked_at"
+    t.string "code_challenge"
+    t.string "code_challenge_method"
     t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
     t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true

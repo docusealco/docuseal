@@ -168,6 +168,7 @@ Rails.application.routes.draw do
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
       resources :sms, only: %i[index], controller: 'sms_settings'
+      resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
     if Docuseal.demo? || !Docuseal.multitenant?
       resources :api, only: %i[index create], controller: 'api_settings'
@@ -200,6 +201,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match '/mcp', to: 'mcp#call', via: %i[get post]
 
   get '/js/:filename', to: 'embed_scripts#show', as: :embed_script
 
