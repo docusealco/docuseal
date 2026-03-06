@@ -17,9 +17,9 @@
         </label>
       <% end %>
       <div class="flex gap-2 mt-3">
-        <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug) %>" class="base-input w-full" autocomplete="off" readonly>
+        <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full" autocomplete="off" readonly>
         <check-on-click data-element-id="template_shared_link">
-          <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+          <%= render 'shared/clipboard_copy', icon: 'copy', text: start_form_url(slug: @template.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
         </check-on-click>
       </div>
     <% end %>

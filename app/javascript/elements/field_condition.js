@@ -64,6 +64,22 @@ export default class extends HTMLElement {
     if (action === 'empty' || action === 'unchecked') return this.isEmpty(actual)
     if (action === 'not_empty' || action === 'checked') return !this.isEmpty(actual)
 
+    if (['equal', 'not_equal', 'greater_than', 'less_than'].includes(action) && this.sourceEl?.getAttribute('type') === 'number') {
+      if (this.isEmpty(actual) || this.isEmpty(expected)) return false
+
+      const actualNumber = parseFloat(actual)
+      const expectedNumber = parseFloat(expected)
+
+      if (Number.isNaN(actualNumber) || Number.isNaN(expectedNumber)) return false
+
+      if (action === 'equal') return Math.abs(actualNumber - expectedNumber) < Number.EPSILON
+      if (action === 'not_equal') return Math.abs(actualNumber - expectedNumber) > Number.EPSILON
+      if (action === 'greater_than') return actualNumber > expectedNumber
+      if (action === 'less_than') return actualNumber < expectedNumber
+
+      return false
+    }
+
     if (action === 'equal') {
       const list = Array.isArray(actual) ? actual : [actual]
       return list.filter((v) => v !== null && v !== undefined).map(String).includes(String(expected))

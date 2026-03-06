@@ -1,7 +1,7 @@
 <template>
   <span
     class="dropdown dropdown-end field-settings-dropdown"
-    :class="{ 'dropdown-open': ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
+    :class="{ 'dropdown-open': withForceOpen && ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
   >
     <label
       tabindex="0"
@@ -22,7 +22,7 @@
     >
       <div
         v-if="!('price_id' in field.preferences) && !('payment_link_id' in field.preferences)"
-        class="py-1.5 px-1 relative"
+        class="field-settings-currency py-1.5 px-1 relative"
         @click.stop
       >
         <select
@@ -48,7 +48,7 @@
         </label>
       </div>
       <div
-        class="py-1.5 px-1 relative"
+        class="field-settings-price py-1.5 px-1 relative"
         @click.stop
       >
         <input
@@ -121,7 +121,7 @@
       </div>
       <div
         v-if="!isConnected || isOauthSuccess"
-        class="py-1.5 px-1 relative"
+        class="field-settings-stripe-connect py-1.5 px-1 relative"
         @click.stop
       >
         <div
@@ -203,7 +203,7 @@
         >{{ t('learn_more') }}</a>
       </div>
       <li
-        class="mb-1"
+        class="field-settings-formula mb-1"
       >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
@@ -218,7 +218,7 @@
         </label>
       </li>
       <hr>
-      <li>
+      <li class="field-settings-description">
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-description')"
@@ -231,7 +231,10 @@
           </span>
         </label>
       </li>
-      <li class="mt-1">
+      <li
+        v-if="withCondition"
+        class="field-settings-condition mt-1"
+      >
         <label
           class="label-text cursor-pointer text-center w-full flex items-center"
           @click="$emit('click-condition')"
@@ -244,12 +247,32 @@
           </span>
         </label>
       </li>
+      <hr
+        v-if="withCustomFields"
+        class="pb-0.5 mt-0.5"
+      >
+      <li
+        v-if="withCustomFields"
+        class="field-settings-save-as-custom-field"
+      >
+        <a
+          href="#"
+          class="text-sm py-1 px-2"
+          @click.prevent="$emit('add-custom-field', field)"
+        >
+          <IconForms
+            :width="20"
+            :stroke-width="1.6"
+          />
+          {{ t('save_as_custom_field') }}
+        </a>
+      </li>
     </ul>
   </span>
 </template>
 
 <script>
-import { IconMathFunction, IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft } from '@tabler/icons-vue'
+import { IconMathFunction, IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft, IconForms } from '@tabler/icons-vue'
 import { ref } from 'vue'
 
 const isConnected = ref(false)
@@ -261,6 +284,7 @@ export default {
     IconCircleCheck,
     IconRouteAltLeft,
     IconInfoCircle,
+    IconForms,
     IconMathFunction,
     IconInnerShadowTop,
     IconBrandStripe
@@ -270,9 +294,24 @@ export default {
     field: {
       type: Object,
       required: true
+    },
+    withForceOpen: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withCondition: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
-  emits: ['click-condition', 'click-description', 'click-formula'],
+  emits: ['click-condition', 'click-description', 'click-formula', 'add-custom-field'],
   data () {
     return {
       isLoading: false

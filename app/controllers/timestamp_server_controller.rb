@@ -32,7 +32,7 @@ class TimestampServerController < ApplicationController
     uri = Addressable::URI.parse(url)
 
     conn = Faraday.new(uri.origin) do |c|
-      c.basic_auth(uri.user, uri.password) if uri.password.present?
+      c.request :authorization, :basic, uri.user, uri.password if uri.password.present?
     end
 
     response = conn.post(uri.path, req.to_der,

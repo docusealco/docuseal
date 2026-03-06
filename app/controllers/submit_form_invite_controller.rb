@@ -19,7 +19,9 @@ class SubmitFormInviteController < ApplicationController
         next unless attrs
         next if attrs[:email].blank?
 
-        submitter.submission.submitters.create!(**attrs, account_id: submitter.account_id)
+        email = Submissions.normalize_email(attrs[:email])
+
+        submitter.submission.submitters.create!(uuid: attrs[:uuid], email:, account_id: submitter.account_id)
 
         SubmissionEvents.create_with_tracking_data(submitter, 'invite_party', request, { uuid: submitter.uuid })
       end
@@ -45,7 +47,8 @@ class SubmitFormInviteController < ApplicationController
       !submitter.completed_at? &&
       !submitter.submission.archived_at? &&
       !submitter.submission.expired? &&
-      !submitter.submission.template&.archived_at?
+      !submitter.submission.template&.archived_at? &&
+      Submitters::AuthorizedForForm.call(submitter, current_user, request)
   end
 
   def filter_invite_submitters(submitter, key = 'invite_by_uuid')

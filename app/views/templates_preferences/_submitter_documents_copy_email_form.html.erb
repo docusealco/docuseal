@@ -20,15 +20,8 @@
         <%= ff.text_field :documents_copy_email_subject, required: true, class: 'base-input', dir: 'auto' %>
       </div>
       <div class="form-control">
-        <div class="flex items-center">
-          <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
-          <span class="tooltip tooltip-right" data-tip="<%= t('use_following_placeholders_text_') %> <%= AccountConfig::DEFAULT_VALUES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY].call['body'].scan(/{.*?}/).join(', ') %>">
-            <%= svg_icon('info_circle', class: 'w-4 h-4') %>
-          </span>
-        </div>
-        <autoresize-textarea>
-          <%= ff.text_area :documents_copy_email_body, required: true, class: 'base-input w-full py-2 !rounded-2xl', dir: 'auto' %>
-        </autoresize-textarea>
+        <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
+        <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:documents_copy_email_body), value: ff.object.documents_copy_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY] %>
       </div>
       <% if can?(:manage, :reply_to) %>
         <div class="form-control">

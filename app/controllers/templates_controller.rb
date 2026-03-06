@@ -97,7 +97,8 @@ class TemplatesController < ApplicationController
       :name,
       { schema: [[:attachment_uuid, :google_drive_file_id, :name,
                   { conditions: [%i[field_uuid value action operation]] }]],
-        submitters: [%i[name uuid is_requester linked_to_uuid invite_by_uuid optional_invite_by_uuid email order]],
+        submitters: [%i[name uuid is_requester linked_to_uuid invite_via_field_uuid
+                        invite_by_uuid optional_invite_by_uuid email order]],
         fields: [[:uuid, :submitter_uuid, :name, :type,
                   :required, :readonly, :default_value,
                   :title, :description, :prefillable,

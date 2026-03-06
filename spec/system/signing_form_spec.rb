@@ -626,6 +626,34 @@ RSpec.describe 'Signing Form' do
     end
   end
 
+  context 'when the signature step with signing reason' do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[signature]) }
+    let(:submission) { create(:submission, template:) }
+    let(:submitter) do
+      create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:)
+    end
+
+    before do
+      create(:account_config, account:, key: AccountConfig::REQUIRE_SIGNING_REASON_KEY, value: true)
+    end
+
+    it 'completes the form with signing reason selected' do
+      visit submit_form_path(slug: submitter.slug)
+
+      find('#expand_form_button').click
+      draw_canvas
+      select 'Approved'
+      click_button 'Sign and Complete'
+
+      expect(page).to have_content('Document has been signed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'Signature')).to be_present
+    end
+  end
+
   context 'when the number step' do
     let(:template) { create(:template, account:, author:, only_field_types: %w[number]) }
     let(:submission) { create(:submission, template:) }

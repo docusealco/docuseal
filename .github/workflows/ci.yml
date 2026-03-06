@@ -12,7 +12,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.2
+          ruby-version: 4.0.1
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -37,7 +37,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.2
+          ruby-version: 4.0.1
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -62,7 +62,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 20.9.0
+          node-version: 20.19.0
       - name: Cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -89,7 +89,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.2
+          ruby-version: 4.0.1
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -132,11 +132,11 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.2
+          ruby-version: 4.0.1
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 20.9.0
+          node-version: 20.19.0
       - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
         with:

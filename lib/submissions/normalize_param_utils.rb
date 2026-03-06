@@ -10,7 +10,8 @@ module Submissions
 
       Array.wrap(submissions_params).each do |submission|
         submission[:submitters].each_with_index do |submitter, index|
-          _, new_attachments, new_fields = normalize_submitter_params!(submitter, template, index, add_fields:)
+          _, new_attachments, new_fields =
+            normalize_submitter_params!(submitter, template, submitter[:index] || index, add_fields:)
 
           attachments.push(*new_attachments)
           fields.push(*new_fields)

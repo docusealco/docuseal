@@ -13,7 +13,7 @@
     </div>
     <div class="form-control">
       <%= fff.label :storage_access_key, 'Storage Access Key', class: 'label' %>
-      <%= fff.password_field :storage_access_key, value: configs['storage_access_key'], required: true, class: 'base-input' %>
+      <%= fff.password_field :storage_access_key, required: true, class: 'base-input', placeholder: configs['storage_access_key'].present? ? '*************' : '' %>
     </div>
   <% end %>
 <% end %>

@@ -119,6 +119,7 @@
       <ConditionsModal
         :item="item"
         :build-default-name="buildDefaultName"
+        @save="$emit('change')"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -145,7 +146,7 @@ export default {
     GoogleDriveDocumentSettings,
     IconSortDescending2
   },
-  inject: ['t'],
+  inject: ['t', 'getFieldTypeIndex'],
   props: {
     item: {
       type: Object,

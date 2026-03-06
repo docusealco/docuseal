@@ -107,7 +107,8 @@ module Api
         :external_id,
         :shared_link,
         {
-          submitters: [%i[name uuid is_requester invite_by_uuid optional_invite_by_uuid linked_to_uuid email order]],
+          submitters: [%i[name uuid is_requester invite_by_uuid invite_via_field_uuid
+                          optional_invite_by_uuid linked_to_uuid email order]],
           fields: [[:uuid, :submitter_uuid, :name, :type,
                     :required, :readonly, :default_value,
                     :title, :description, :prefillable,

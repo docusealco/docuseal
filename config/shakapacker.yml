@@ -8,7 +8,7 @@ default: &default
   shakapacker_precompile: true
   webpack_compile_output: true
   additional_paths: []
-  webpack_loader: 'babel'
+  javascript_transpiler: 'babel'
   compiler_strategy: digest
   cache_manifest: false
   ensure_consistent_versioning: false

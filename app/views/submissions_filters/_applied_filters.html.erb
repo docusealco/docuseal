@@ -5,7 +5,7 @@
       <%= svg_icon(icon, class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= t(params[:status]) %></span>
     <% end %>
-    <%= link_to url_for(params.to_unsafe_h.except(:status)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('status')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
@@ -16,7 +16,7 @@
       <%= svg_icon('folder', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= params[:folder] %></span>
     <% end %>
-    <%= link_to url_for(params.to_unsafe_h.except(:folder)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('folder')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
@@ -27,7 +27,7 @@
       <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= current_account.users.accessible_by(current_ability).where(account: current_account).find_by(email: params[:author])&.full_name || 'NA' %></span>
     <% end %>
-    <%= link_to url_for(params.to_unsafe_h.except(:author)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('author')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
@@ -46,7 +46,7 @@
         <% end %>
       </span>
     <% end %>
-    <%= link_to url_for(params.to_unsafe_h.except(:completed_at_from, :completed_at_to)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('completed_at_from', 'completed_at_to')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
@@ -65,7 +65,7 @@
         <% end %>
       </span>
     <% end %>
-    <%= link_to url_for(params.to_unsafe_h.except(:created_at_to, :created_at_from)), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('created_at_to', 'created_at_from')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>

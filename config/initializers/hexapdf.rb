@@ -64,6 +64,16 @@ module HexaPDF
         end
       end
 
+      # fix NoMethodError: undefined method `stream' for an instance of Symbol
+      class TextField
+        def field_value
+          return unless value[:V]
+          return self[:V].to_s if self[:V].is_a?(Symbol)
+
+          self[:V].is_a?(String) ? self[:V] : self[:V].stream
+        end
+      end
+
       class AppearanceGenerator
         def create_push_button_appearances
           nil

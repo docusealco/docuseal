@@ -47,13 +47,23 @@ class AccountConfig < ApplicationRecord
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
   RECIPIENT_FORM_FIELDS_KEY = 'recipient_form_fields'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
+  WITH_AUDIT_SENDER_KEY = 'with_audit_sender'
   WITH_SUBMITTER_TIMEZONE_KEY = 'with_submitter_timezone'
+  WITH_TIMESTAMP_SECONDS_KEY = 'with_timestamp_seconds'
   REQUIRE_SIGNING_REASON_KEY = 'require_signing_reason'
   REUSE_SIGNATURE_KEY = 'reuse_signature'
   WITH_FIELD_LABELS_KEY = 'with_field_labels'
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
+  TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
   POLICY_LINKS_KEY = 'policy_links'
+
+  EMAIL_VARIABLES = {
+    SUBMITTER_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
+    SUBMITTER_COMPLETED_EMAIL_KEY => %w[template.name submission.submitters submission.link].freeze,
+    SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
+    SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[template.name documents.link account.name].freeze
+  }.freeze
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => lambda {

@@ -34,6 +34,7 @@ module Api
       render json: Submitters::SerializeForApi.call(@submitter, with_template: true, with_events: true, params:)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def update
       if @submitter.completed_at?
         return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
@@ -60,7 +61,10 @@ module Api
 
         @submitter.submission.save!
 
-        SubmissionEvents.create_with_tracking_data(@submitter, 'api_complete_form', request) if @submitter.completed_at?
+        if @submitter.completed_at?
+          Submitters::SubmitValues.maybe_invite_via_field(@submitter, request)
+          SubmissionEvents.create_with_tracking_data(@submitter, 'api_complete_form', request)
+        end
       end
 
       if @submitter.completed_at?
@@ -78,6 +82,7 @@ module Api
 
       render json: { error: e.message }, status: :unprocessable_content
     end
+    # rubocop:enable Metrics/MethodLength
 
     def submitter_params
       submitter_params = params.key?(:submitter) ? params.require(:submitter) : params

@@ -35,4 +35,24 @@ function isValidSignatureCanvas (data) {
   return validStrokes.length > 0
 }
 
-export { isValidSignatureCanvas }
+function isCanvasBlocked () {
+  try {
+    const testCanvas = document.createElement('canvas')
+
+    testCanvas.width = 2
+    testCanvas.height = 2
+
+    const ctx = testCanvas.getContext('2d')
+
+    ctx.fillStyle = 'rgb(255, 0, 0)'
+    ctx.fillRect(0, 0, 2, 2)
+
+    const pixel = ctx.getImageData(0, 0, 1, 1).data
+
+    return pixel[0] !== 255 || pixel[1] !== 0 || pixel[2] !== 0 || pixel[3] !== 255
+  } catch (e) {
+    return true
+  }
+}
+
+export { isValidSignatureCanvas, isCanvasBlocked }

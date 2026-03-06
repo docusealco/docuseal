@@ -290,7 +290,11 @@ export default {
         if (resp.ok) {
           resp.json().then((data) => {
             this.$emit('success', data)
-            this.$refs.input.value = ''
+
+            if (this.$refs.input) {
+              this.$refs.input.value = ''
+            }
+
             this.isLoading = false
           })
         } else if (resp.status === 422) {

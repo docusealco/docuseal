@@ -1,16 +1,16 @@
 <template>
   <div
     v-if="field.type === 'verification'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-verification-method py-1.5 px-1 relative"
     @click.stop
   >
     <select
       :placeholder="t('method')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, save()]"
+      @change="[field.preferences ||= {}, field.preferences.method = $event.target.value, $emit('save')]"
     >
       <option
-        v-for="method in ['QeS', 'AeS']"
+        v-for="method in verificationMethods"
         :key="method"
         :value="method.toLowerCase()"
         :selected="method.toLowerCase() === field.preferences?.method || (method === 'QeS' && !field.preferences?.method)"
@@ -27,41 +27,15 @@
     </label>
   </div>
   <div
-    v-if="['cells'].includes(field.type)"
-    class="py-1.5 px-1 relative"
-    @click.stop
-  >
-    <select
-      class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.align = $event.target.value, save()]"
-    >
-      <option
-        v-for="value in ['left', 'right', field.type === 'cells' ? null : 'center'].filter(Boolean)"
-        :key="value"
-        :selected="field.preferences?.align ? value === field.preferences.align : value === 'left'"
-        :value="value"
-      >
-        {{ t(value) }}
-      </option>
-    </select>
-    <label
-      :style="{ backgroundColor }"
-      class="absolute -top-1 left-2.5 px-1 h-4"
-      style="font-size: 8px"
-    >
-      {{ t('align') }}
-    </label>
-  </div>
-  <div
     v-if="['select', 'radio'].includes(field.type) && !defaultField"
-    class="py-1.5 px-1 relative"
+    class="field-settings-default-value py-1.5 px-1 relative"
     @click.stop
   >
     <select
       :placeholder="t('default_value')"
       dir="auto"
       class="select select-bordered select-xs w-full max-w-xs h-7 !outline-0 font-normal bg-transparent"
-      @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, save()]"
+      @change="[field.default_value = $event.target.value, !field.default_value && delete field.default_value, $emit('save')]"
     >
       <option
         value=""
@@ -88,7 +62,7 @@
   </div>
   <div
     v-if="['text', 'number'].includes(field.type) && !defaultField"
-    class="py-1.5 px-1 relative"
+    class="field-settings-default-value py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -97,7 +71,7 @@
       dir="auto"
       :type="field.type"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.default_value"
@@ -110,7 +84,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type)"
-    class="py-1.5 px-1 relative"
+    class="field-settings-validation py-1.5 px-1 relative"
     @click.stop
   >
     <select
@@ -148,7 +122,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && lengthValidation"
-    class="py-1.5 px-1 relative flex space-x-1"
+    class="field-settings-length-validation py-1.5 px-1 relative flex space-x-1"
     @click.stop
   >
     <div class="w-1/2 relative">
@@ -159,7 +133,7 @@
         :value="lengthValidation.min"
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         @input="field.validation.pattern = `.{${$event.target.value || 0},${lengthValidation.max || ''}}`"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="lengthValidation.min"
@@ -178,7 +152,7 @@
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         :value="lengthValidation.max"
         @input="field.validation.pattern = `.{${lengthValidation.min},${$event.target.value || ''}}`"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="lengthValidation.max"
@@ -192,7 +166,7 @@
   </div>
   <div
     v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative flex space-x-1"
+    class="field-settings-number-range py-1.5 px-1 relative flex space-x-1"
     @click.stop
   >
     <div class="w-1/2 relative">
@@ -203,7 +177,7 @@
         :value="field.validation?.min"
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.min = $event.target.value : delete field.validation.min]"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="field.validation?.min"
@@ -222,7 +196,7 @@
         class="input input-bordered w-full input-xs h-7 !outline-0 bg-transparent"
         :value="field.validation?.max"
         @input="[field.validation ||= {}, $event.target.value ? field.validation.max = $event.target.value : delete field.validation.max]"
-        @blur="save"
+        @blur="$emit('save')"
       >
       <label
         v-if="field.validation?.max"
@@ -236,13 +210,13 @@
   </div>
   <div
     v-if="field.type === 'number'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-number-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, save()]"
+      @change="[field.preferences ||= {}, field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
         v-for="format in numberFormats"
@@ -263,7 +237,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
-    class="py-1.5 px-1 relative"
+    class="field-settings-custom-validation py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -272,7 +246,7 @@
       :placeholder="t('regexp_validation')"
       dir="auto"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.validation.pattern"
@@ -285,7 +259,7 @@
   </div>
   <div
     v-if="['text', 'cells'].includes(field.type) && field.validation && !validations[field.validation.pattern] && !lengthValidation"
-    class="py-1.5 px-1 relative"
+    class="field-settings-error-message py-1.5 px-1 relative"
     @click.stop
   >
     <input
@@ -293,7 +267,7 @@
       :placeholder="t('error_message')"
       dir="auto"
       class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
-      @blur="save"
+      @blur="$emit('save')"
     >
     <label
       v-if="field.validation.message"
@@ -306,14 +280,14 @@
   </div>
   <div
     v-if="field.type === 'date'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-date-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
       v-model="field.preferences.format"
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="save"
+      @change="$emit('save')"
     >
       <option
         v-for="format in dateFormats"
@@ -333,13 +307,13 @@
   </div>
   <div
     v-if="field.type === 'signature'"
-    class="py-1.5 px-1 relative"
+    class="field-settings-signature-format py-1.5 px-1 relative"
     @click.stop
   >
     <select
       :placeholder="t('format')"
       class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
-      @change="[field.preferences.format = $event.target.value, save()]"
+      @change="[field.preferences.format = $event.target.value, $emit('save')]"
     >
       <option
         value="any"
@@ -348,7 +322,7 @@
         {{ t('any') }}
       </option>
       <option
-        v-for="type in ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']"
+        v-for="type in signatureFormats"
         :key="type"
         :value="type"
         :selected="field.preferences?.format === type"
@@ -366,6 +340,7 @@
   </div>
   <li
     v-if="[true, false].includes(withSignatureId) && field.type === 'signature'"
+    class="field-settings-signature-id"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -374,13 +349,14 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
         class="toggle toggle-xs"
-        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, save()]"
+        @change="[field.preferences ||= {}, field.preferences.with_signature_id = $event.target.checked, $emit('save')]"
       >
       <span class="label-text">{{ t('signature_id') }}</span>
     </label>
   </li>
   <li
     v-if="withRequired && field.type !== 'phone' && field.type !== 'stamp' && field.type !== 'verification' && field.type !== 'strikethrough' && field.type !== 'heading'"
+    class="field-settings-required"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -389,13 +365,14 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.required))"
         class="toggle toggle-xs"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('required') }}</span>
     </label>
   </li>
   <li
     v-if="field.type == 'stamp'"
+    class="field-settings-with-logo"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -403,13 +380,14 @@
         :checked="field.preferences?.with_logo != false"
         type="checkbox"
         class="toggle toggle-xs"
-        @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, save()]"
+        @change="[field.preferences ||= {}, field.preferences.with_logo = field.preferences.with_logo == false, $emit('save')]"
       >
       <span class="label-text">{{ t('with_logo') }}</span>
     </label>
   </li>
   <li
     v-if="field.type == 'checkbox'"
+    class="field-settings-checked"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -417,13 +395,14 @@
         v-model="field.default_value"
         type="checkbox"
         class="toggle toggle-xs"
-        @update:model-value="[field.default_value = $event, field.readonly = $event, save()]"
+        @update:model-value="[field.default_value = $event, field.readonly = $event, $emit('save')]"
       >
       <span class="label-text">{{ t('checked') }}</span>
     </label>
   </li>
   <li
     v-if="field.type == 'date'"
+    class="field-settings-set-signing-date"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -431,13 +410,14 @@
         v-model="field.readonly"
         type="checkbox"
         class="toggle toggle-xs"
-        @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, save()]"
+        @update:model-value="[field.default_value = $event ? '{{date}}' : null, field.readonly = $event, $emit('save')]"
       >
       <span class="label-text">{{ t('set_signing_date') }}</span>
     </label>
   </li>
   <li
-    v-if="['text', 'number'].includes(field.type)"
+    v-if="['text', 'number', 'radio', 'multiple', 'select'].includes(field.type)"
+    class="field-settings-read-only"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -446,13 +426,14 @@
         type="checkbox"
         class="toggle toggle-xs"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.readonly))"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('read_only') }}</span>
     </label>
   </li>
   <li
-    v-if="withPrefillable && ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone'].includes(field['type'])"
+    v-if="withPrefillable && prefillableFieldTypes.includes(field['type'])"
+    class="field-settings-prefillable"
     @click.stop
   >
     <label class="cursor-pointer py-1.5">
@@ -461,7 +442,7 @@
         type="checkbox"
         :disabled="!editable || (defaultField && [true, false].includes(defaultField.prefillable))"
         class="toggle toggle-xs"
-        @update:model-value="save"
+        @update:model-value="$emit('save')"
       >
       <span class="label-text">{{ t('prefillable') }}</span>
     </label>
@@ -470,7 +451,10 @@
     v-if="field.type != 'stamp'"
     class="pb-0.5 mt-0.5"
   >
-  <li v-if="['text', 'number', 'date', 'select', 'heading'].includes(field.type)">
+  <li
+    v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)"
+    class="field-settings-font"
+  >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-font')"
@@ -485,6 +469,7 @@
   </li>
   <li
     v-if="field.type != 'stamp' && field.type != 'heading' && field.type != 'strikethrough'"
+    class="field-settings-description"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -499,7 +484,8 @@
     </label>
   </li>
   <li
-    v-if="field.type != 'stamp' && field.type != 'heading'"
+    v-if="withCondition && field.type != 'stamp' && field.type != 'heading'"
+    class="field-settings-condition"
   >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
@@ -513,7 +499,10 @@
       </span>
     </label>
   </li>
-  <li v-if="field.type == 'number'">
+  <li
+    v-if="field.type == 'number'"
+    class="field-settings-formula"
+  >
     <label
       class="label-text cursor-pointer text-center w-full flex items-center"
       @click="$emit('click-formula')"
@@ -526,11 +515,15 @@
       </span>
     </label>
   </li>
-  <hr class="pb-0.5 mt-0.5">
+  <hr
+    v-if="withCopyToAllPages || withAreas || withCustomFields"
+    class="pb-0.5 mt-0.5"
+  >
   <template v-if="withAreas">
     <li
       v-for="(area, index) in sortedAreas"
       :key="index"
+      class="field-settings-area"
     >
       <a
         href="#"
@@ -550,7 +543,10 @@
         />
       </a>
     </li>
-    <li v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)">
+    <li
+      v-if="!field.areas?.length || !['radio', 'multiple'].includes(field.type)"
+      class="field-settings-draw-new-area"
+    >
       <a
         href="#"
         class="text-sm py-1 px-2"
@@ -564,7 +560,10 @@
       </a>
     </li>
   </template>
-  <li v-if="field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)">
+  <li
+    v-if="withCopyToAllPages && field.areas?.length === 1 && ['date', 'signature', 'initials', 'text', 'cells', 'stamp'].includes(field.type)"
+    class="field-settings-copy-to-all-pages"
+  >
     <a
       href="#"
       class="text-sm py-1 px-2"
@@ -577,10 +576,26 @@
       {{ t('copy_to_all_pages') }}
     </a>
   </li>
+  <li
+    v-if="withCustomFields"
+    class="field-settings-save-as-custom-field"
+  >
+    <a
+      href="#"
+      class="text-sm py-1 px-2"
+      @click.prevent="$emit('add-custom-field', field)"
+    >
+      <IconForms
+        :width="20"
+        :stroke-width="1.6"
+      />
+      {{ t('save_as_custom_field') }}
+    </a>
+  </li>
 </template>
 
 <script>
-import { IconRouteAltLeft, IconTypography, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconTypography, IconShape, IconX, IconMathFunction, IconNewSection, IconInfoCircle, IconCopy, IconForms } from '@tabler/icons-vue'
 
 export default {
   name: 'FieldSettings',
@@ -589,16 +604,32 @@ export default {
     IconInfoCircle,
     IconMathFunction,
     IconRouteAltLeft,
+    IconForms,
     IconCopy,
     IconNewSection,
     IconTypography,
     IconX
   },
-  inject: ['template', 'save', 't'],
+  inject: ['template', 't'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    withCondition: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withCustomFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withCopyToAllPages: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withSignatureId: {
       type: Boolean,
@@ -636,7 +667,7 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area'],
+  emits: ['set-draw', 'scroll-to', 'click-formula', 'click-description', 'click-condition', 'click-font', 'remove-area', 'save', 'add-custom-field'],
   data () {
     return {
       selectedValidation: ''
@@ -686,7 +717,7 @@ export default {
     },
     lengthValidation () {
       if (this.field.validation?.pattern && this.selectedValidation !== 'custom') {
-        return this.field.validation.pattern.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups
+        return this.parseLengthPattern(this.field.validation.pattern)
       } else {
         return null
       }
@@ -702,6 +733,15 @@ export default {
         '^[0-9]+$': 'numbers_only',
         '^[a-zA-Z]+$': 'letters_only'
       }
+    },
+    signatureFormats () {
+      return ['drawn', 'typed', 'drawn_or_typed', 'drawn_or_upload', 'upload']
+    },
+    verificationMethods () {
+      return ['QeS', 'AeS']
+    },
+    prefillableFieldTypes () {
+      return ['text', 'number', 'cells', 'date', 'checkbox', 'select', 'radio', 'phone']
     },
     sortedAreas () {
       return (this.field.areas || []).sort((a, b) => {
@@ -730,7 +770,7 @@ export default {
         delete this.field.validation
       }
 
-      this.save()
+      this.$emit('save')
     },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
@@ -747,7 +787,7 @@ export default {
 
       this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
 
-      this.save()
+      this.$emit('save')
     },
     formatNumber (number, format) {
       if (format === 'comma') {
@@ -765,6 +805,9 @@ export default {
       } else {
         return number
       }
+    },
+    parseLengthPattern (pattern) {
+      return pattern?.match(/^\.{(?<min>\d+),(?<max>\d+)?}$/)?.groups || null
     },
     formatDate (date, format) {
       const monthFormats = {

@@ -22,7 +22,7 @@ module SendWebhookRequest
     end
 
     if Docuseal.multitenant?
-      raise HttpsError, 'Only HTTPS is allowed.' if uri.scheme != 'https' &&
+      raise HttpsError, 'Only HTTPS is allowed.' if (uri.scheme != 'https' || [443, nil].exclude?(uri.port)) &&
                                                     !AccountConfig.exists?(key: :allow_http,
                                                                            account_id: webhook_url.account_id)
       raise LocalhostError, "Can't send to localhost." if uri.host.in?(LOCALHOSTS)
@@ -43,7 +43,7 @@ module SendWebhookRequest
         data: data
       }.to_json
 
-      req.options.read_timeout = 8
+      req.options.read_timeout = 15
       req.options.open_timeout = 8
     end
 

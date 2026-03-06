@@ -150,6 +150,7 @@
 
 <script>
 import { cropCanvasAndExportToPNG } from './crop_canvas'
+import { isCanvasBlocked } from './validate_signature'
 import { IconReload, IconTextSize, IconUpload, IconSignature, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import SignaturePad from 'signature_pad'
 import AppearsOn from './appears_on'
@@ -172,6 +173,10 @@ export default {
   inject: ['baseUrl', 't'],
   props: {
     field: {
+      type: Object,
+      required: true
+    },
+    submitter: {
       type: Object,
       required: true
     },
@@ -257,6 +262,14 @@ export default {
 
             this.$refs.canvas.getContext('2d').scale(scale, scale)
 
+            if (!this.isDrawInitials) {
+              this.$nextTick(() => {
+                if (this.$refs.textInput) {
+                  this.initTextInitial()
+                }
+              })
+            }
+
             this.intersectionObserver?.disconnect()
           }
         })
@@ -332,10 +345,25 @@ export default {
 
       if (!this.isDrawInitials) {
         this.$nextTick(() => {
-          this.$refs.textInput.focus()
+          if (this.$refs.textInput) {
+            if (!this.submitter.name) {
+              this.$refs.textInput.focus()
+            }
 
-          this.$emit('start')
+            this.initTextInitial()
+
+            this.$emit('start')
+          }
         })
+      }
+    },
+    initTextInitial () {
+      if (this.submitter.name) {
+        this.$refs.textInput.value = this.submitter.name.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() || '').join('')
+      }
+
+      if (this.$refs.textInput.value) {
+        this.updateWrittenInitials({ target: this.$refs.textInput })
       }
     },
     async submit () {
@@ -392,7 +420,15 @@ export default {
           }
         }).catch((error) => {
           if (this.field.required === true) {
-            alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            if (isCanvasBlocked()) {
+              alert(this.t('browser_privacy_settings_block_canvas'))
+
+              if (window.Rollbar) {
+                window.Rollbar.info('Canvas blocked')
+              }
+            } else {
+              alert(this.t('signature_is_too_small_or_simple_please_redraw'))
+            }
 
             return reject(error)
           } else {

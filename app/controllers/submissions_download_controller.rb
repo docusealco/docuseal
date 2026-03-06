@@ -28,20 +28,18 @@ class SubmissionsDownloadController < ApplicationController
 
     Submissions::EnsureResultGenerated.call(last_submitter)
 
-    if last_submitter.completed_at < TTL.ago && !@signature_valid && !current_user_submitter?(last_submitter)
-      Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)
+    if !signature_valid && !current_user_submitter?(last_submitter)
+      return head :not_found unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
 
-      return head :not_found
+      if last_submitter.completed_at < TTL.ago
+        Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)
+
+        return head :not_found
+      end
     end
 
     if params[:combined] == 'true'
-      url = build_combined_url(@submitter)
-
-      if url
-        render json: [url]
-      else
-        head :not_found
-      end
+      respond_with_combined(last_submitter)
     else
       render json: build_urls(last_submitter)
     end
@@ -68,27 +66,15 @@ class SubmissionsDownloadController < ApplicationController
 
   private
 
-  def admin_download?(last_submitter)
-    # No valid signature link = download from app (e.g. submissions page) → serve unredacted
-    !@signature_valid
-  end
-
   def current_user_submitter?(submitter)
-    current_user && current_user.account.submitters.exists?(id: submitter.id)
+    current_user && current_ability.can?(:read, submitter)
   end
 
   def build_urls(submitter)
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    attachments = if admin_download?(submitter)
-                     Submissions::GenerateResultAttachments.call(submitter, for_admin: true)
-                     Submitters.select_admin_attachments_for_download(submitter)
-                   else
-                     Submitters.select_attachments_for_download(submitter)
-                   end
-
-    attachments.map do |attachment|
+    Submitters.select_attachments_for_download(submitter).map do |attachment|
       ActiveStorage::Blob.proxy_url(
         attachment.blob,
         expires_at: FILES_TTL.from_now.to_i,
@@ -107,7 +93,7 @@ class SubmissionsDownloadController < ApplicationController
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    ActiveStorage::Blob.proxy_url(
+    ActiveStorage::Blob.proxy_path(
       attachment.blob,
       expires_at: FILES_TTL.from_now.to_i,
       filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)

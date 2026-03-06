@@ -16,6 +16,10 @@ RSpec.describe SendFormViewedWebhookRequestJob do
   end
 
   describe '#perform' do
+    around do |example|
+      freeze_time { example.run }
+    end
+
     before do
       stub_request(:post, webhook_url.url).to_return(status: 200)
     end

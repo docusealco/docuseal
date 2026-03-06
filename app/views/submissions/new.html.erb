@@ -1,6 +1,7 @@
 <% require_phone_2fa = @template.preferences['require_phone_2fa'] == true %>
 <% require_email_2fa = @template.preferences['require_email_2fa'] == true %>
 <% prefillable_fields = @template.fields.select { |f| f['prefillable'] } %>
+<% default_tab = cookies.permanent[:add_recipients_tab].presence || 'email' %>
 <% recipient_form_fields = Accounts.load_recipient_form_fields(current_account) if prefillable_fields.blank? %>
 <% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? || recipient_form_fields.present? %>
 <%= render 'shared/turbo_modal_large', title: params[:selfsign] ? t('add_recipients') : t('add_new_recipients') do %>
@@ -8,25 +9,25 @@
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 mt-4 block">
     <div class="flex justify-center">
       <% options.each_with_index do |(label, value), index| %>
-        <div>
-          <%= radio_button_tag 'option', value, value == (only_detailed ? 'detailed' : 'email'), class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
+        <%= content_tag(value == 'list' ? 'span' : 'toggle-cookies', data: { value:, key: 'add_recipients_tab' }) do %>
+          <%= radio_button_tag 'option', value, value == (only_detailed ? 'detailed' : default_tab), class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
           <label for="option_<%= value %>" class="block bg-base-200 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 peer-checked:bg-base-300 <%= 'hidden sm:inline-block' if value == 'list' %> <%= 'rounded-l-3xl' if index.zero? %> <%= 'rounded-r-3xl sm:rounded-r-none' if value == 'detailed' %> <%= 'rounded-r-3xl' if index == options.size - 1 %>">
             <%= label %>
           </label>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </toggle-visible>
   <div class="px-5 mb-5 mt-4">
     <% unless only_detailed %>
-      <div id="email">
+      <div id="email" class="<%= 'hidden' if default_tab != 'email' %>">
         <%= render 'email_form', template: @template %>
       </div>
-      <div id="phone" class="hidden">
+      <div id="phone" class="<%= 'hidden' if default_tab != 'phone' %>">
         <%= render 'phone_form', template: @template %>
       </div>
     <% end %>
-    <div id="detailed" class="<%= 'hidden' unless only_detailed %>">
+    <div id="detailed" class="<%= 'hidden' if !only_detailed && default_tab != 'detailed' %>">
       <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields: %>
     </div>
     <div id="list" class="hidden">

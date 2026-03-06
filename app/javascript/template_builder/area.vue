@@ -134,6 +134,7 @@
             @focusout="maybeBlurSettings"
           >
             <FieldSettings
+              v-if="isMobile"
               :field="field"
               :default-field="defaultField"
               :editable="editable"
@@ -145,9 +146,17 @@
               @click-formula="isShowFormulaModal = true"
               @click-font="isShowFontModal = true"
               @click-description="isShowDescriptionModal = true"
+              @add-custom-field="$emit('add-custom-field')"
               @click-condition="isShowConditionsModal = true"
+              @save="save"
               @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
             />
+            <div
+              v-else
+              class="whitespace-normal"
+            >
+              The dots menu is retired in favor of the field context menu. Right-click the field to access field settings. Double-click the field to set a default value.
+            </div>
           </ul>
         </span>
       </div>
@@ -250,7 +259,8 @@
             </span>
             <div
               v-else-if="field.type === 'cells' && field.default_value"
-              class="w-full flex items-center"
+              class="w-full flex"
+              :class="fontClasses"
             >
               <div
                 v-for="(char, index) in field.default_value"
@@ -332,6 +342,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowFormulaModal = false"
       />
     </Teleport>
@@ -344,6 +355,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowFontModal = false"
       />
     </Teleport>
@@ -355,6 +367,7 @@
         :item="field"
         :build-default-name="buildDefaultName"
         :default-field="defaultField"
+        @save="save"
         @close="isShowConditionsModal = false"
       />
     </Teleport>
@@ -367,6 +380,7 @@
         :editable="editable && !defaultField"
         :default-field="defaultField"
         :build-default-name="buildDefaultName"
+        @save="save"
         @close="isShowDescriptionModal = false"
       />
     </Teleport>
@@ -399,7 +413,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['template', 'save', 't', 'isInlineSize', 'selectedAreasRef', 'isCmdKeyRef'],
+  inject: ['template', 'save', 't', 'isInlineSize', 'selectedAreasRef', 'isCmdKeyRef', 'getFieldTypeIndex'],
   props: {
     area: {
       type: Object,
@@ -465,13 +479,18 @@ export default {
       required: false,
       default: null
     },
+    isMobile: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isSelectMode: {
       type: Boolean,
       required: false,
       default: false
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field'],
   data () {
     return {
       isShowFormulaModal: false,
@@ -577,7 +596,7 @@ export default {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     },
     defaultName () {
-      return this.buildDefaultName(this.field, this.template.fields)
+      return this.buildDefaultName(this.field)
     },
     fontClasses () {
       if (!this.field.preferences) {

@@ -29,7 +29,12 @@ module LoadActiveStorageConfigs
 
     service_configurations = ActiveSupport::ConfigurationFile.parse(STORAGE_YML_PATH)
     service_configurations[service].merge!(configs) if configs.present?
-    service_configurations[service][:force_path_style] = true if configs&.dig('endpoint').present?
+    if configs&.dig('endpoint').present?
+      service_configurations[service][:force_path_style] = true
+      if configs['endpoint'].include?('cloudflarestorage.com')
+        service_configurations[service][:request_checksum_calculation] = 'when_required'
+      end
+    end
 
     if service == 'google'
       service_configurations[service][:credentials] = JSON.parse(configs.fetch('credentials', '{}'))

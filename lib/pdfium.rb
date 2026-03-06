@@ -364,9 +364,7 @@ class Pdfium
       @closed
     end
 
-    def form_handle
-      @document.form_handle
-    end
+    delegate :form_handle, to: :@document
 
     def ensure_not_closed!
       raise PdfiumError, 'Page is closed.' if closed?

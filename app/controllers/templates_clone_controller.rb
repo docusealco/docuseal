@@ -21,7 +21,7 @@ class TemplatesCloneController < ApplicationController
 
     authorize!(:create, @template)
 
-    if params[:account_id].present? && true_ability.authorize!(:manage, Account.find(params[:account_id]))
+    if params[:account_id].present? && true_ability.can?(:manage, Account.find(params[:account_id]))
       @template.account_id = params[:account_id]
       @template.author = true_user if true_user.account_id == @template.account_id
       @template.folder = @template.account.default_template_folder if @template.account_id != current_account.id

@@ -8,6 +8,13 @@
     class="fixed z-20 pointer-events-none"
     :editable="false"
   />
+  <CustomField
+    v-else-if="dragPlaceholder && isCustom && !isMask && field"
+    ref="dragPlaceholder"
+    :style="dragPlaceholderStyle"
+    :field="field"
+    class="fixed z-20 pointer-events-none opacity-90"
+  />
   <div
     v-else-if="dragPlaceholder && (isDefault || isRequired) && !isMask && field"
     ref="dragPlaceholder"
@@ -57,6 +64,7 @@
 
 <script>
 import Field from './field'
+import CustomField from './custom_field'
 import IconDrag from './icon_drag'
 import FieldType from './field_type'
 
@@ -64,6 +72,7 @@ export default {
   name: 'DragPlaceholder',
   components: {
     Field,
+    CustomField,
     IconDrag
   },
   inject: ['t', 'backgroundColor'],
@@ -84,6 +93,11 @@ export default {
       default: false
     },
     isField: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isCustom: {
       type: Boolean,
       required: false,
       default: false

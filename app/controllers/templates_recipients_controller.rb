@@ -22,7 +22,7 @@ class TemplatesRecipientsController < ApplicationController
 
   def submitters_params
     permit_params = { submitters: [%i[name uuid is_requester optional_invite_by_uuid
-                                      invite_by_uuid linked_to_uuid email option order]] }
+                                      invite_by_uuid invite_via_field_uuid linked_to_uuid email option order]] }
 
     params.require(:template).permit(permit_params).fetch(:submitters, {}).values.filter_map do |s|
       next if s[:uuid].blank?
@@ -36,6 +36,7 @@ class TemplatesRecipientsController < ApplicationController
       s[:order] = s[:order].to_i if s[:order].present?
       s.delete(:invite_by_uuid) if s[:invite_by_uuid].blank?
       s.delete(:optional_invite_by_uuid) if s[:optional_invite_by_uuid].blank?
+      s.delete(:invite_via_field_uuid) if s[:invite_via_field_uuid].blank?
 
       normalize_option_value(s)
     end
@@ -53,6 +54,7 @@ class TemplatesRecipientsController < ApplicationController
         attrs.delete(:email)
         attrs.delete(:linked_to_uuid)
         attrs.delete(:invite_by_uuid)
+        attrs.delete(:invite_via_field_uuid)
         attrs.delete(:optional_invite_by_uuid)
       when /\Alinked_to_(.*)\z/
         attrs[:linked_to_uuid] = ::Regexp.last_match(-1)

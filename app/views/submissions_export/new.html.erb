@@ -1,4 +1,4 @@
-<% filter_params = params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS) %>
+<% filter_params = params.permit(:q, :archived, *Submissions::Filter::ALLOWED_PARAMS) %>
 <%= render 'shared/turbo_modal', title: t('export'), close_after_submit: false do %>
   <div class="space-y-2">
     <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx, **filter_params }, method: :get, data: { turbo_frame: :_top } do %>

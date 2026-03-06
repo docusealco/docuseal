@@ -56,12 +56,15 @@ module Submissions
             template_submitter = template_submitters.find { |e| e['uuid'] == uuid }
           end
 
-          template_submitter = template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid')
+          template_submitter = template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid',
+                                                         'invite_via_field_uuid')
+
           template_submitter['order'] = submitter_attrs['order'] if submitter_attrs['order'].present?
 
           submission.template_submitters << template_submitter
 
-          is_order_sent = submitters_order == 'random' || (template_submitter['order'] || index).zero?
+          is_order_sent = submitters_order == 'random' ||
+                          (template_submitter['order'] || submitter_attrs[:index] || index).zero?
 
           build_submitter(submission:, attrs: submitter_attrs,
                           uuid:, is_order_sent:, user:, params:,
@@ -112,8 +115,13 @@ module Submissions
           item = item.merge('invite_by_uuid' => invite_by_uuid) if invite_by_uuid
         end
 
-        next if item['invite_by_uuid'].blank? && item['optional_invite_by_uuid'].blank?
+        next if item['invite_by_uuid'].blank? &&
+                item['optional_invite_by_uuid'].blank? &&
+                item['invite_via_field_uuid'].blank?
+
         next if submission.template_submitters.any? { |e| e['uuid'] == item['uuid'] }
+
+        item = item.merge('order' => submitter_attr['order']) if submitter_attr && submitter_attr['order'].present?
 
         if index.zero?
           submission.template_submitters.insert(1, item)
@@ -306,7 +314,7 @@ module Submissions
       uuid = attrs[:uuid].presence
       uuid ||= submitters.find { |e| e['name'].to_s.casecmp(attrs[:role].to_s).zero? }&.dig('uuid')
 
-      uuid || submitters[index]&.dig('uuid')
+      uuid || submitters[attrs[:index] || index]&.dig('uuid')
     end
 
     def build_submitter(submission:, attrs:, uuid:, is_order_sent:, user:, preferences:, params:)
