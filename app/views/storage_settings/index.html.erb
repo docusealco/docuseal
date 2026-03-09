@@ -4,9 +4,25 @@
     <h1 class="text-4xl font-bold mb-4">
       <%= t('storage') %>
     </h1>
-    <% value = @encrypted_config.value || { 'service' => 'disk' } %>
+    <% value = @storage_value %>
     <% configs = value['configs'] || {} %>
+    <% if @env_storage_service.present? %>
+      <div class="alert my-4">
+        <%= svg_icon('info_circle', class: 'stroke-current flex-shrink-0 w-6 h-6') %>
+        <div>
+          <p class="font-bold">
+            <%= t('storage_settings_are_managed_by_environment_variables') %>
+          </p>
+          <p class="text-gray-700">
+            <%= t('storage_provider_is_configured_by_env_var_html', service: @env_storage_service_label, variable: @env_storage_env_var) %>
+            <br>
+            <%= t('update_environment_variables_and_restart_the_app_to_change_storage') %>
+          </p>
+        </div>
+      </div>
+    <% end %>
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
+      <fieldset <%= 'disabled' if @env_storage_service.present? %>>
       <% options = [%w[Disk disk], %w[AWS aws_s3], %w[GCP google], %w[Azure azure]] %>
       <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
         <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
@@ -31,8 +47,9 @@
         <%= render 'azure_form', f:, configs:, value: %>
       </disable-hidden>
       <div class="form-control">
-        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button', disabled: @env_storage_service.present? %>
       </div>
+      </fieldset>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>

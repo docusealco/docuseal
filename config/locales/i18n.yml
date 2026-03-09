@@ -396,6 +396,9 @@ en: &en
   for_aws_s3_compatible_apis_like_minio: For AWS S3 compatible APIs like Minio.
   store_all_files_on_disk: Store all files on disk
   no_configs_are_needed_but_make_sure_your_disk_is_persistent: No configs are needed but make sure your disk is persistent
+  storage_settings_are_managed_by_environment_variables: Storage settings are managed by environment variables.
+  storage_provider_is_configured_by_env_var_html: 'Current provider: <b>%{service}</b> via <code>%{variable}</code>.'
+  update_environment_variables_and_restart_the_app_to_change_storage: Update environment variables and restart the app to change storage.
   not_suitable_for_heroku_and_other_paas: Not suitable for Heroku and other PaaS
   bulk_send_from_excel_xlsx_or_csv: Bulk send from Excel XLSX or CSV
   add_new: Add New
