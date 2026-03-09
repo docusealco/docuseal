@@ -8,9 +8,15 @@ services:
       - 3000:3000
     volumes:
       - ./docuseal:/data/docuseal
+      # Only override the one file we changed; do NOT replace all of /app/lib
+      # (the image ships Puma plugins under /app/lib).
+      - ./lib/docuseal.rb:/app/lib/docuseal.rb
     environment:
+      - RAILS_ENV=production
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+      # Bypass corrupted EncryptedConfig; set to your public URL (e.g. https://yourhost.com)
+      - APP_URL=${APP_URL:-http://localhost:3000}
 
   postgres:
     image: postgres:18

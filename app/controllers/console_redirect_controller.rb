@@ -18,12 +18,26 @@ class ConsoleRedirectController < ApplicationController
     return redirect_to(new_user_session_path({ redir: params[:redir] }.compact)) if true_user.blank?
 
     # In development, if console URL is localhost and doesn't exist, redirect to cloud URL instead
-    if Rails.env.development? && Docuseal::CONSOLE_URL.include?('localhost') && !Docuseal.multitenant?
-      if params[:redir].to_s.include?('/on_premises')
-        return redirect_to 'https://console.docuseal.com/on_premises', allow_other_host: true
-      elsif params[:redir].to_s.include?('/plans')
-        return redirect_to 'https://console.docuseal.com/plans', allow_other_host: true
-      end
+    def redirect_to_console
+      return unless development_console_redirect?
+    
+      url = console_redirect_url
+      redirect_to url, allow_other_host: true if url
+    end
+    
+    def development_console_redirect?
+      Rails.env.development? && console_localhost? && !Docuseal.multitenant?
+    end
+    
+    def console_localhost?
+      Docuseal::CONSOLE_URL.include?('localhost')
+    end
+    
+    def console_redirect_url
+      redir = params[:redir].to_s
+    
+      return 'https://console.docuseal.com/on_premises' if redir.include?('/on_premises')
+      return 'https://console.docuseal.com/plans' if redir.include?('/plans')
     end
 
     auth = JsonWebToken.encode(uuid: true_user.uuid,

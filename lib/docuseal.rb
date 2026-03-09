@@ -110,9 +110,20 @@ module Docuseal
     return DEFAULT_URL_OPTIONS if multitenant?
 
     @default_url_options ||= begin
-      value = EncryptedConfig.find_by(key: EncryptedConfig::APP_URL_KEY)&.value if ENV['APP_URL'].blank?
+      value =
+        if ENV['APP_URL'].blank?
+          begin
+            EncryptedConfig.find_by(key: EncryptedConfig::APP_URL_KEY)&.value
+          rescue ActiveRecord::Encryption::Errors::Decryption, OpenSSL::Cipher::CipherError
+            nil
+          end
+        end
+
       value ||= DEFAULT_APP_URL
       url = Addressable::URI.parse(value)
+      { host: url.host, port: url.port, protocol: url.scheme }
+    rescue ActiveRecord::Encryption::Errors::Decryption, OpenSSL::Cipher::CipherError
+      url = Addressable::URI.parse(DEFAULT_APP_URL)
       { host: url.host, port: url.port, protocol: url.scheme }
     end
   end

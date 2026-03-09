@@ -204,7 +204,6 @@ module Submissions
       fill_submitter_fields(submitter, submitter.account, pdfs_index, with_signature_id:, is_flatten:,
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
-<<<<<<< HEAD
                                                                       with_signature_id_reason:,
                                                                       for_admin:)
 
@@ -217,18 +216,6 @@ module Submissions
                               with_submitter_timezone: false, with_signature_id_reason: true, with_file_links: nil,
                               for_admin: false)
       cell_layouter = HexaPDF::Layout::TextLayouter.new(text_valign: :center, text_align: :center)
-=======
-                                                                      with_timestamp_seconds:,
-                                                                      with_signature_id_reason:)
-    end
-
-    def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
-                              with_submitter_timezone: false, with_signature_id_reason: true,
-                              with_timestamp_seconds: false, with_file_links: nil)
-      cell_layouters = Hash.new do |hash, valign|
-        hash[valign] = HexaPDF::Layout::TextLayouter.new(text_valign: valign.to_sym, text_align: :center)
-      end
->>>>>>> master
 
       attachments_data_cache = {}
 
