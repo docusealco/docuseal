@@ -81,7 +81,7 @@
         />
         <template v-else>
           <form
-            v-if="withSignYourselfButton && undefinedSubmitters.length < 2"
+            v-if="withSignYourselfButton && undefinedSubmitters.length < 2 && (!template.variables_schema || Object.keys(template.variables_schema).length === 0)"
             target="_blank"
             data-turbo="false"
             class="inline"
@@ -274,6 +274,8 @@
           :accept-file-types="acceptFileTypes"
           :with-replace-button="withUploadButton"
           :editable="editable"
+          :dynamic-documents="dynamicDocuments"
+          :with-dynamic-documents="withDynamicDocuments"
           :template="template"
           @scroll-to="scrollIntoDocument(item)"
           @remove="onDocumentRemove"
@@ -352,10 +354,20 @@
           </template>
           <template v-else>
             <template
-              v-for="document in sortedDocuments"
+              v-for="(document, index) in sortedDocuments"
               :key="document.uuid"
             >
+              <DynamicDocument
+                v-if="template.schema[index].dynamic"
+                :ref="setDocumentRefs"
+                :editable="editable"
+                :document="dynamicDocuments.find((dynamicDocument) => dynamicDocument.uuid === document.uuid)"
+                :selected-submitter="selectedSubmitter"
+                :drag-field="dragField"
+                @update="onDynamicDocumentUpdate"
+              />
               <Document
+                v-else
                 :ref="setDocumentRefs"
                 :areas-index="fieldAreasIndex[document.uuid]"
                 :selected-submitter="selectedSubmitter"
@@ -505,6 +517,7 @@
             @change-submitter="selectedSubmitter = $event"
             @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
             @scroll-to-area="scrollToArea"
+            @rebuild-variables-schema="rebuildVariablesSchema"
           />
         </div>
       </div>
@@ -592,12 +605,13 @@ import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
-import { ref, computed, toRaw } from 'vue'
+import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
 
 export default {
   name: 'TemplateBuilder',
   components: {
+    DynamicDocument: defineAsyncComponent(() => import(/* webpackChunkName: "dynamic-editor" */ './dynamic_document')),
     Upload,
     DragPlaceholder,
     Document,
@@ -725,6 +739,11 @@ export default {
       required: false,
       default: false
     },
+    dynamicDocuments: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     customFields: {
       type: Array,
       required: false,
@@ -783,7 +802,7 @@ export default {
     acceptFileTypes: {
       type: String,
       required: false,
-      default: 'image/*, application/pdf, application/zip'
+      default: 'image/*, application/pdf, application/zip, application/json'
     },
     baseUrl: {
       type: String,
@@ -845,6 +864,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    withDynamicDocuments: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withDocumentsList: {
       type: Boolean,
@@ -2520,7 +2544,7 @@ export default {
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
       // eslint-disable-next-line camelcase
-      const { google_drive_file_id, ...cleanedReplaceSchemaItem } = replaceSchemaItem
+      const { google_drive_file_id, dynamic, ...cleanedReplaceSchemaItem } = replaceSchemaItem
 
       this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...cleanedReplaceSchemaItem, ...schema[0] })
       this.template.documents.push(...documents)
@@ -2654,7 +2678,12 @@ export default {
         } else {
           this.isSaving = true
 
-          this.save().then(() => {
+          this.documentRefs.filter((ref) => ref.update).map((ref) => ref.update())
+          this.rebuildVariablesSchema({ disable: false })
+
+          const dynamicDocumentSaves = this.documentRefs.filter((ref) => ref.saveBody).map((ref) => ref.saveBody())
+
+          Promise.all([this.save(), ...dynamicDocumentSaves]).then(() => {
             window.Turbo.visit(`/templates/${this.template.id}`)
           }).finally(() => {
             this.isSaving = false
@@ -2893,7 +2922,8 @@ export default {
             name: this.template.name,
             schema: this.template.schema,
             submitters: this.template.submitters,
-            fields: this.template.fields
+            fields: this.template.fields,
+            variables_schema: this.template.variables_schema
           }
         }),
         headers: { 'Content-Type': 'application/json' }
@@ -2902,6 +2932,102 @@ export default {
           this.onSave(this.template)
         }
       })
+    },
+    onDynamicDocumentUpdate () {
+      this.rebuildVariablesSchema()
+
+      this.$nextTick(() => {
+        if (this.$el.closest('template-builder')) {
+          this.$el.closest('template-builder').dataset.dynamicDocuments = JSON.stringify(this.dynamicDocuments)
+        }
+      })
+
+      this.reconcileDynamicFields()
+    },
+    rebuildVariablesSchema ({ disable = true } = {}) {
+      const parsed = {}
+
+      const dynamicDocumentRef = this.documentRefs.find((e) => e.mergeSchemaProperties)
+
+      this.documentRefs.forEach((ref) => {
+        if (ref.updateVariablesSchema) {
+          ref.updateVariablesSchema()
+        }
+      })
+
+      this.dynamicDocuments.forEach((doc) => {
+        if (doc.variables_schema) {
+          dynamicDocumentRef.mergeSchemaProperties(parsed, doc.variables_schema)
+        }
+      })
+
+      if (!this.template.variables_schema) {
+        this.template.variables_schema = parsed
+      } else {
+        this.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
+      }
+    },
+    syncVariablesSchema (existing, parsed, { disable = true } = {}) {
+      for (const key of Object.keys(parsed)) {
+        if (!existing[key]) {
+          existing[key] = parsed[key]
+        }
+      }
+
+      for (const key of Object.keys(existing)) {
+        if (!parsed[key]) {
+          if (disable) {
+            existing[key].disabled = true
+          } else {
+            delete existing[key]
+          }
+        } else {
+          delete existing[key].disabled
+
+          if (!existing[key].form_type) {
+            existing[key].type = parsed[key].type
+          }
+
+          if (parsed[key].items) {
+            if (!existing[key].items) {
+              existing[key].items = parsed[key].items
+            } else if (existing[key].items.properties && parsed[key].items.properties) {
+              this.syncVariablesSchema(existing[key].items.properties, parsed[key].items.properties, { disable })
+            } else if (!existing[key].items.properties && !parsed[key].items.properties) {
+              existing[key].items.type = parsed[key].items.type
+            }
+          }
+
+          if (existing[key].properties && parsed[key].properties) {
+            this.syncVariablesSchema(existing[key].properties, parsed[key].properties, { disable })
+          }
+        }
+      }
+    },
+    reconcileDynamicFields () {
+      const dynamicFieldUuids = new Set()
+
+      this.dynamicDocuments.forEach((doc) => {
+        const body = doc.body || ''
+        const uuidRegex = /uuid="([^"]+)"/g
+        let match
+
+        while ((match = uuidRegex.exec(body)) !== null) {
+          dynamicFieldUuids.add(match[1])
+        }
+      })
+
+      const toRemove = this.template.fields.filter((field) => {
+        if (field.areas && field.areas.length > 0) return false
+
+        return field.uuid && !dynamicFieldUuids.has(field.uuid)
+      })
+
+      toRemove.forEach((field) => {
+        this.template.fields.splice(this.template.fields.indexOf(field), 1)
+      })
+
+      this.save()
     }
   }
 }

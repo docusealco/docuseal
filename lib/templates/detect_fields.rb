@@ -250,7 +250,7 @@ module Templates
 
           if ((current_field.endy - node.endy).abs < y_threshold &&
               (current_field.x <= node.x || node.content.in?(LINEBREAK))) ||
-             current_field.endy < node.y
+             current_field.endy < node.endy
             if tail_node.elem.is_a?(Templates::ImageToFields::Field)
               divider =
                 if (tail_node.elem.endy - current_field.endy).abs > y_threshold

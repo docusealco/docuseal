@@ -36,11 +36,9 @@ module Templates
           next unless new_attachment_uuid
 
           new_document =
-            template.documents_attachments.new(
-              uuid: new_attachment_uuid,
-              blob_id: document.blob_id
-            )
+            template.documents_attachments.new(uuid: new_attachment_uuid, blob_id: document.blob_id)
 
+          maybe_clone_dynamic_document(template, original_template, new_document, document)
           clone_document_preview_images_attachments(document:, new_document:)
 
           new_document
@@ -49,6 +47,32 @@ module Templates
       template.save! if save
 
       attachments
+    end
+
+    def maybe_clone_dynamic_document(template, original_template, document, original_document)
+      schema_item = original_template.schema.find { |e| e['attachment_uuid'] == original_document.uuid }
+
+      return unless schema_item
+      return unless schema_item['dynamic']
+
+      dynamic_document = original_template.dynamic_documents.find { |e| e.uuid == original_document.uuid }
+
+      return unless dynamic_document
+
+      new_dynamic_document = template.dynamic_documents.new(
+        uuid: document.uuid,
+        body: dynamic_document.body,
+        head: dynamic_document.head
+      )
+
+      dynamic_document.attachments_attachments.each do |attachment|
+        new_dynamic_document.attachments_attachments.new(
+          uuid: attachment.uuid,
+          blob_id: attachment.blob_id
+        )
+      end
+
+      new_dynamic_document
     end
 
     def clone_document_preview_images_attachments(document:, new_document:)

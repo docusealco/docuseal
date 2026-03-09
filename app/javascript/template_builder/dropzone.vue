@@ -122,7 +122,7 @@ export default {
     acceptFileTypes: {
       type: String,
       required: false,
-      default: 'image/*, application/pdf, application/zip'
+      default: 'image/*, application/pdf, application/zip, application/json'
     }
   },
   emits: ['success', 'error', 'loading', 'click-google-drive'],
@@ -146,7 +146,7 @@ export default {
     message () {
       if (this.isLoading) {
         return this.t('uploading')
-      } else if (this.acceptFileTypes === 'image/*, application/pdf, application/zip') {
+      } else if (this.acceptFileTypes === 'image/*, application/pdf, application/zip, application/json') {
         return this.title || this.t('add_pdf_documents_or_images')
       } else {
         return this.title || this.t('add_documents_or_images')
@@ -161,7 +161,7 @@ export default {
   methods: {
     upload: Upload.methods.upload,
     onDropFiles (e) {
-      if (this.acceptFileTypes !== 'image/*, application/pdf, application/zip' || [...e.dataTransfer.files].every((f) => f.type.match(/(?:image\/)|(?:application\/pdf)|(?:application\/zip)/))) {
+      if (this.acceptFileTypes !== 'image/*, application/pdf, application/zip, application/json' || [...e.dataTransfer.files].every((f) => f.type.match(/(?:image\/)|(?:application\/pdf)|(?:application\/zip)|(?:application\/json)/))) {
         this.$refs.input.files = e.dataTransfer.files
 
         this.upload()

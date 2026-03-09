@@ -111,7 +111,7 @@ Rails.application.routes.draw do
     resources :prefillable_fields, only: %i[create], controller: 'templates_prefillable_fields'
     resources :submissions_export, only: %i[index new]
   end
-  resources :preview_document_page, only: %i[show], path: '/preview/:signed_uuid'
+  resources :preview_document_page, only: %i[show], path: '/preview/:signed_key'
   resource :blobs_proxy, only: %i[show], path: '/file/:signed_uuid/*filename',
                          controller: 'api/active_storage_blobs_proxy'
   resource :blobs_proxy, only: %i[show], path: '/blobs_proxy/:signed_uuid/*filename',
@@ -168,6 +168,7 @@ Rails.application.routes.draw do
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
       resources :sms, only: %i[index], controller: 'sms_settings'
+      resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
     if Docuseal.demo? || !Docuseal.multitenant?
       resources :api, only: %i[index create], controller: 'api_settings'
@@ -200,6 +201,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match '/mcp', to: 'mcp#call', via: %i[get post]
 
   get '/js/:filename', to: 'embed_scripts#show', as: :embed_script
 

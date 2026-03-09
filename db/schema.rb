@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -168,6 +168,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
   end
 
+  create_table "dynamic_document_versions", force: :cascade do |t|
+    t.text "areas", null: false
+    t.datetime "created_at", null: false
+    t.bigint "dynamic_document_id", null: false
+    t.string "sha1", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dynamic_document_id", "sha1"], name: "idx_on_dynamic_document_id_sha1_3503adf557", unique: true
+  end
+
+  create_table "dynamic_documents", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.text "head"
+    t.string "sha1", null: false
+    t.bigint "template_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "uuid", null: false
+    t.index ["template_id"], name: "index_dynamic_documents_on_template_id"
+  end
+
   create_table "email_events", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "emailable_type", null: false
@@ -229,6 +249,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.index ["key"], name: "index_lock_events_on_key"
   end
 
+  create_table "mcp_tokens", force: :cascade do |t|
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "sha256", null: false
+    t.string "token_prefix", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["sha256"], name: "index_mcp_tokens_on_sha256", unique: true
+    t.index ["user_id"], name: "index_mcp_tokens_on_user_id"
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -238,6 +270,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
     t.string "scopes", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "revoked_at"
+    t.string "code_challenge"
+    t.string "code_challenge_method"
     t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
     t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
@@ -507,6 +541,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_25_194305) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "dynamic_documents", "templates"
   add_foreign_key "email_events", "accounts"
   add_foreign_key "email_messages", "accounts"
   add_foreign_key "email_messages", "users", column: "author_id"

@@ -1,0 +1,112 @@
+<div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
+  <%= render 'shared/settings_nav' %>
+  <div class="md:flex-grow">
+    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
+      <h1 class="text-4xl font-bold">
+        <%= t('mcp_server') %>
+      </h1>
+      <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
+        <div class="tooltip">
+          <%= link_to new_settings_mcp_path, class: 'btn btn-primary btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6') %>
+            <span><%= t('new_token') %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% if @mcp_token.present? %>
+      <div class="space-y-4 mb-4">
+        <div class="card bg-base-200">
+          <div class="card-body p-6">
+            <label for="mcp_token" class="text-sm font-semibold">
+              <%= t('please_copy_the_token_below_now_as_it_wont_be_shown_again') %>:
+            </label>
+            <div class="flex w-full space-x-4">
+              <input id="mcp_token" type="text" value="<%= @mcp_token.token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
+              <%= render 'shared/clipboard_copy', icon: 'copy', text: @mcp_token.token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <p class="text-2xl font-bold">
+            <%= t('instructions') %>
+          </p>
+          <div class="card bg-base-200">
+            <div class="card-body p-6">
+              <p class="text-2xl font-semibold"><%= t('connect_to_docuseal_mcp') %></p>
+              <p class="text-lg"><%= t('add_the_following_to_your_mcp_client_configuration') %>:</p>
+              <div class="mockup-code overflow-hidden">
+                <% text = JSON.pretty_generate({ mcpServers: { docuseal: { type: 'http', url: "#{root_url(Docuseal.default_url_options)}mcp", headers: { Authorization: "Bearer #{@mcp_token.token}" } } } }).strip %>
+                <span class="top-0 right-0 absolute">
+                  <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+                </span>
+                <pre class="before:!m-0 pl-4 pb-4"><code class="overflow-hidden w-full"><%== HighlightCode.call(text, 'JSON', theme: 'base16.dark') %></code></pre>
+              </div>
+              <p class="text-lg"><%= t('works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="overflow-x-auto">
+      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+        <thead class="bg-base-200">
+          <tr class="text-neutral uppercase">
+            <th>
+              <%= t('name') %>
+            </th>
+            <th>
+              <%= t('token') %>
+            </th>
+            <th>
+              <%= t('created_at') %>
+            </th>
+            <th class="text-right" width="1px">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @mcp_tokens.each do |mcp_token| %>
+            <tr scope="row">
+              <td>
+                <%= mcp_token.name %>
+              </td>
+              <td>
+                <% if @mcp_token.present? && mcp_token.id == @mcp_token.id %>
+                  <%= @mcp_token.token %>
+                <% else %>
+                  <%= "#{mcp_token.token_prefix}#{'*' * 38}" %>
+                <% end %>
+              </td>
+              <td>
+                <%= l(mcp_token.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>
+              </td>
+              <td class="flex items-center space-x-2 justify-end">
+                <%= button_to settings_mcp_path(mcp_token), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('remove'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                  <%= t('remove') %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ENABLE_MCP_KEY) %>
+    <% if can?(:manage, account_config) %>
+      <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+        <%= f.hidden_field :key %>
+        <div class="flex items-center gap-4 py-2.5">
+          <div class="flex items-center space-x-1">
+            <span class="text-left"><%= t('enable_mcp_server') %></span>
+            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
+              <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+            </span>
+          </div>
+          <submit-form data-on="change" class="flex">
+            <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
+          </submit-form>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

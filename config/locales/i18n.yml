@@ -29,6 +29,7 @@ en: &en
   pro: Pro
   thanks: Thanks
   private: Private
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Make all newly created templates private to their creator and admins by default.
   create_templates_with_admin_access_by_default: Create templates with admin access by default
   require_email_2fa: Require email 2FA
@@ -894,6 +895,18 @@ en: &en
   redo: Redo
   add_variable: Add variable
   enter_a_url_or_variable_name: Enter a URL or variable name
+  new_token: New token
+  token: Token
+  mcp_server: MCP Server
+  instructions: Instructions
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Please copy the token below now, as it won't be shown again
+  mcp_token_has_been_created: MCP token has been created.
+  mcp_token_has_been_removed: MCP token has been removed.
+  enable_mcp_server: Enable MCP server
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: All existing MCP connections will be stopped immediately when this setting is disabled.
+  connect_to_docuseal_mcp: Connect to DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Add the following to your MCP client configuration
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Works with Claude Desktop, Cursor, Windsurf, VS Code, and any MCP-compatible client.
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -991,6 +1004,8 @@ en: &en
     scopes:
       write: Update your data
       read: Read your data
+      mcp: Use MCP
+      claudeai: Use Claude AI
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} of %{count} submissions"
@@ -1049,6 +1064,7 @@ es: &es
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
   private: Privado
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Hacer que todas las plantillas recién creadas sean privadas para su creador y los administradores por defecto.
   create_templates_with_admin_access_by_default: Crear plantillas con acceso de administrador por defecto
   require_email_2fa: Requerir 2FA por correo electrónico
@@ -1896,6 +1912,18 @@ es: &es
   redo: Rehacer
   add_variable: Agregar variable
   enter_a_url_or_variable_name: Ingrese una URL o nombre de variable
+  new_token: Nuevo token
+  token: Token
+  mcp_server: Servidor MCP
+  instructions: Instrucciones
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Copie el token a continuación ahora, ya que no se mostrará de nuevo
+  mcp_token_has_been_created: El token MCP ha sido creado.
+  mcp_token_has_been_removed: El token MCP ha sido eliminado.
+  enable_mcp_server: Habilitar servidor MCP
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas las conexiones MCP existentes se detendrán inmediatamente cuando se desactive esta configuración.
+  connect_to_docuseal_mcp: Conectar a DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Agregue lo siguiente a la configuración de su cliente MCP
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona con Claude Desktop, Cursor, Windsurf, VS Code y cualquier cliente compatible con MCP.
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -1993,6 +2021,8 @@ es: &es
     scopes:
       write: Actualizar tus datos
       read: Leer tus datos
+      mcp: Usar MCP
+      claudeai: Usar Claude AI
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} de %{count} envíos"
@@ -2051,6 +2081,7 @@ it: &it
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
   private: Privato
+  _variables: Variabili
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendere tutte le nuove template private per il creatore e gli amministratori per impostazione predefinita.
   create_templates_with_admin_access_by_default: Crea modelli con accesso amministratore per impostazione predefinita
   require_email_2fa: Richiedi 2FA email
@@ -2899,6 +2930,18 @@ it: &it
   redo: Ripeti
   add_variable: Aggiungi variabile
   enter_a_url_or_variable_name: Inserisci un URL o nome variabile
+  new_token: Nuovo token
+  token: Token
+  mcp_server: Server MCP
+  instructions: Istruzioni
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Copia il token qui sotto ora, poiché non verrà mostrato di nuovo
+  mcp_token_has_been_created: Il token MCP è stato creato.
+  mcp_token_has_been_removed: Il token MCP è stato rimosso.
+  enable_mcp_server: Abilita server MCP
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Tutte le connessioni MCP esistenti verranno interrotte immediatamente quando questa impostazione viene disattivata.
+  connect_to_docuseal_mcp: Connetti a DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Aggiungi quanto segue alla configurazione del tuo client MCP
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funziona con Claude Desktop, Cursor, Windsurf, VS Code e qualsiasi client compatibile con MCP.
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -2996,6 +3039,8 @@ it: &it
     scopes:
       write: Aggiorna i tuoi dati
       read: Leggi i tuoi dati
+      mcp: Usa MCP
+      claudeai: Usa Claude AI
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} di %{count} invii"
@@ -3054,6 +3099,7 @@ fr: &fr
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
   private: Privé
+  _variables: Variables
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendre tous les nouveaux modèles privés pour leur créateur et les administrateurs par défaut.
   create_templates_with_admin_access_by_default: Créer des modèles avec un accès administrateur par défaut
   require_email_2fa: Exiger la 2FA par email
@@ -3898,6 +3944,18 @@ fr: &fr
   redo: Rétablir
   add_variable: Ajouter une variable
   enter_a_url_or_variable_name: Entrez une URL ou un nom de variable
+  new_token: Nouveau jeton
+  token: Jeton
+  mcp_server: Serveur MCP
+  instructions: Instructions
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Copiez le jeton ci-dessous maintenant, car il ne sera plus affiché
+  mcp_token_has_been_created: Le jeton MCP a été créé.
+  mcp_token_has_been_removed: Le jeton MCP a été supprimé.
+  enable_mcp_server: Activer le serveur MCP
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Toutes les connexions MCP existantes seront arrêtées immédiatement lorsque ce paramètre est désactivé.
+  connect_to_docuseal_mcp: Se connecter à DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Ajoutez ce qui suit à la configuration de votre client MCP
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Fonctionne avec Claude Desktop, Cursor, Windsurf, VS Code et tout client compatible MCP.
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -3995,6 +4053,8 @@ fr: &fr
     scopes:
       write: Mettre à jour vos données
       read: Lire vos données
+      mcp: Utiliser MCP
+      claudeai: Utiliser Claude AI
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} sur %{count} soumissions"
@@ -4053,6 +4113,7 @@ pt: &pt
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
   private: Privado
+  _variables: Variáveis
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Tornar todos os modelos recém-criados privados para seu criador e administradores por padrão.
   create_templates_with_admin_access_by_default: Criar modelos com acesso de administrador por padrão
   require_email_2fa: Exigir 2FA por email
@@ -4900,6 +4961,18 @@ pt: &pt
   redo: Refazer
   add_variable: Adicionar variável
   enter_a_url_or_variable_name: Digite uma URL ou nome de variável
+  new_token: Novo token
+  token: Token
+  mcp_server: Servidor MCP
+  instructions: Instruções
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Copie o token abaixo agora, pois ele não será exibido novamente
+  mcp_token_has_been_created: O token MCP foi criado.
+  mcp_token_has_been_removed: O token MCP foi removido.
+  enable_mcp_server: Ativar servidor MCP
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas as conexões MCP existentes serão interrompidas imediatamente quando esta configuração for desativada.
+  connect_to_docuseal_mcp: Conectar ao DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Adicione o seguinte à configuração do seu cliente MCP
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona com Claude Desktop, Cursor, Windsurf, VS Code e qualquer cliente compatível com MCP.
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -4997,6 +5070,8 @@ pt: &pt
     scopes:
       write: Atualizar seus dados
       read: Ler seus dados
+      mcp: Usar MCP
+      claudeai: Usar Claude AI
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} de %{count} submissões"
@@ -5041,6 +5116,7 @@ de: &de
   pro: Pro
   thanks: Danke
   private: Privat
+  _variables: Variablen
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Alle neu erstellten Vorlagen standardmäßig nur für ihren Ersteller und Administratoren sichtbar machen.
   create_templates_with_admin_access_by_default: Vorlagen standardmäßig mit Administratorzugriff erstellen
   require_email_2fa: E-Mail 2FA erforderlich
@@ -5902,6 +5978,18 @@ de: &de
   redo: Wiederholen
   add_variable: Variable hinzufügen
   enter_a_url_or_variable_name: Geben Sie eine URL oder einen Variablennamen ein
+  new_token: Neues Token
+  token: Token
+  mcp_server: MCP-Server
+  instructions: Anweisungen
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Kopieren Sie das Token jetzt, da es nicht erneut angezeigt wird
+  mcp_token_has_been_created: Das MCP-Token wurde erstellt.
+  mcp_token_has_been_removed: Das MCP-Token wurde entfernt.
+  enable_mcp_server: MCP-Server aktivieren
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestehenden MCP-Verbindungen werden sofort gestoppt, wenn diese Einstellung deaktiviert wird.
+  connect_to_docuseal_mcp: Mit DocuSeal MCP verbinden
+  add_the_following_to_your_mcp_client_configuration: Fügen Sie Folgendes zu Ihrer MCP-Client-Konfiguration hinzu
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funktioniert mit Claude Desktop, Cursor, Windsurf, VS Code und jedem MCP-kompatiblen Client.
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -5999,6 +6087,8 @@ de: &de
     scopes:
       write: Aktualisieren Sie Ihre Daten
       read: Lesen Sie Ihre Daten
+      mcp: MCP verwenden
+      claudeai: Claude AI verwenden
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} von %{count} Einreichungen"
@@ -6431,6 +6521,7 @@ nl: &nl
   pro: Pro
   thanks: Bedankt
   private: Privé
+  _variables: Variabelen
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker en admins.
   create_templates_with_admin_access_by_default: Sjablonen standaard met admin-toegang maken
   require_email_2fa: E-mail 2FA vereist
@@ -7289,6 +7380,18 @@ nl: &nl
   redo: Opnieuw
   add_variable: Variabele toevoegen
   enter_a_url_or_variable_name: Voer een URL of variabelenaam in
+  new_token: Nieuw token
+  token: Token
+  mcp_server: MCP-server
+  instructions: Instructies
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Kopieer het token hieronder nu, want het wordt niet opnieuw getoond
+  mcp_token_has_been_created: Het MCP-token is aangemaakt.
+  mcp_token_has_been_removed: Het MCP-token is verwijderd.
+  enable_mcp_server: MCP-server inschakelen
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestaande MCP-verbindingen worden onmiddellijk gestopt wanneer deze instelling wordt uitgeschakeld.
+  connect_to_docuseal_mcp: Verbinden met DocuSeal MCP
+  add_the_following_to_your_mcp_client_configuration: Voeg het volgende toe aan uw MCP-clientconfiguratie
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Werkt met Claude Desktop, Cursor, Windsurf, VS Code en elke MCP-compatibele client.
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
@@ -7386,6 +7489,8 @@ nl: &nl
     scopes:
       write: Uw gegevens bijwerken
       read: Uw gegevens lezen
+      mcp: MCP gebruiken
+      claudeai: Claude AI gebruiken
   pagination:
     submissions:
       range_with_total: "%{from}-%{to} van %{count} inzendingen"

@@ -6,7 +6,7 @@ module Templates
 
     # rubocop:disable Metrics
     def call(template, params = {}, extract_fields: false)
-      documents = Templates::CreateAttachments.call(template, params, extract_fields:)
+      documents, = Templates::CreateAttachments.call(template, params, extract_fields:)
       submitter = template.submitters.first
 
       documents.each_with_index do |document, index|

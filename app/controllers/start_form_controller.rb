@@ -172,6 +172,8 @@ class StartFormController < ApplicationController
                                             submitters: [submitter],
                                             source: :link)
 
+    Submissions::CreateFromSubmitters.maybe_set_dynamic_documents(submitter.submission)
+
     submitter.account_id = submitter.submission.account_id
 
     submitter

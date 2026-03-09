@@ -37,7 +37,7 @@ Puma::Plugin.create do
       wait_for_redis!
 
       configs = Sidekiq.configure_embed do |config|
-        config.logger.level = Logger::INFO
+        config.logger.level = Rails.env.development? ? Logger::DEBUG : Logger::INFO
         sidekiq_config = YAML.load_file('config/sidekiq.yml')
         sidekiq_config['queues'] << 'fields' if ENV['DEMO'] == 'true'
         config.queues = sidekiq_config['queues']

@@ -80,10 +80,8 @@ module Submissions
 
   def preload_with_pages(submission)
     ActiveRecord::Associations::Preloader.new(
-      records: [submission],
-      associations: [
-        submission.template_id? ? { template_schema_documents: :blob } : { documents_attachments: :blob }
-      ]
+      records: submission.schema_documents,
+      associations: [:blob]
     ).call
 
     total_pages =
@@ -92,7 +90,7 @@ module Submissions
     if total_pages < PRELOAD_ALL_PAGES_AMOUNT
       ActiveRecord::Associations::Preloader.new(
         records: submission.schema_documents,
-        associations: [:blob, { preview_images_attachments: :blob }]
+        associations: [{ preview_images_attachments: :blob }]
       ).call
     end
 
@@ -116,6 +114,8 @@ module Submissions
                                 account_id: user.account_id,
                                 preferences:,
                                 sent_at: mark_as_sent ? Time.current : nil)
+
+      Submissions::CreateFromSubmitters.maybe_set_dynamic_documents(submission)
 
       submission.save!
 

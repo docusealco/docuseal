@@ -10,6 +10,7 @@ module Templates
 
       template.external_id = external_id
       template.shared_link = original_template.shared_link
+      template.variables_schema = original_template.variables_schema
       template.author = author
       template.name = name.presence || "#{original_template.name} (#{I18n.t('clone')})"
 

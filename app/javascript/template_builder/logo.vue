@@ -2,7 +2,7 @@
   <svg
     height="40"
     width="40"
-    style="color: #e0753f"
+    style="color: #e97a42"
     viewBox="0 0 180 180"
     xmlns="http://www.w3.org/2000/svg"
   >

@@ -20,7 +20,7 @@
 #  index_submission_events_on_created_at        (created_at)
 #  index_submission_events_on_submission_id     (submission_id)
 #  index_submission_events_on_submitter_id      (submitter_id)
-#  index_submissions_events_on_sms_event_types  (account_id,created_at) WHERE ((event_type)::text = ANY ((ARRAY['send_sms'::character varying, 'send_2fa_sms'::character varying])::text[]))
+#  index_submissions_events_on_sms_event_types  (account_id,created_at) WHERE ((event_type)::text = ANY (ARRAY[('send_sms'::character varying)::text, ('send_2fa_sms'::character varying)::text]))
 #
 # Foreign Keys
 #
