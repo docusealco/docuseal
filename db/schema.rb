@@ -181,10 +181,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.text "head"
-    t.text "sha1", null: false
+    t.string "sha1", null: false
     t.bigint "template_id", null: false
     t.datetime "updated_at", null: false
-    t.uuid "uuid", null: false
+    t.string "uuid", null: false
     t.index ["template_id"], name: "index_dynamic_documents_on_template_id"
   end
 
