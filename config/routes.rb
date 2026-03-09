@@ -34,6 +34,11 @@ Rails.application.routes.draw do
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submitters, only: %i[index show update]
+    resources :submitters, only: %i[], param: 'slug' do
+      member do
+        post :request_changes, controller: 'submitters_request_changes'
+      end
+    end
     resources :submissions, only: %i[index show create destroy] do
       resources :documents, only: %i[index], controller: 'submission_documents'
       resource :signed_document_url, only: %i[show]
