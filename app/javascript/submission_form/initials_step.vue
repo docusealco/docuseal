@@ -359,7 +359,9 @@ export default {
     },
     initTextInitial () {
       if (this.submitter.name) {
-        this.$refs.textInput.value = this.submitter.name.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() || '').join('')
+        const parts = this.submitter.name.trim().split(/\s+/)
+
+        this.$refs.textInput.value = (parts.length > 1 ? [parts[0], parts[parts.length - 1]] : parts).map((part) => part[0]?.toUpperCase() || '').join('')
       }
 
       if (this.$refs.textInput.value) {
