@@ -6,6 +6,7 @@
       <section
         :id="section.id"
         ref="editorElement"
+        dir="auto"
         :class="section.classList.value"
         :style="section.style.cssText"
       />
