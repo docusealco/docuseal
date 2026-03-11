@@ -154,7 +154,7 @@ export default {
         const el = editor.view.dom.querySelector(`[data-area-uuid="${area.uuid}"]`)
 
         if (el) {
-          editor.chain().focus().setNodeSelection(editor.view.posAtDOM(el, 0)).run()
+          editor.commands.setNodeSelection(editor.view.posAtDOM(el, 0))
 
           el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         }
