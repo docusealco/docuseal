@@ -40,6 +40,10 @@ module Api
         return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
       end
 
+      if @submitter.declined_at?
+        return render json: { error: 'Submitter has already declined the submission.' }, status: :unprocessable_content
+      end
+
       submission = @submitter.submission
       role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
 
