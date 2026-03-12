@@ -131,21 +131,23 @@
             </div>
           <% end %>
         <% end %>
-        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
-        <% if can?(:manage, account_config) %>
-          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
-            <%= f.hidden_field :key %>
-            <div class="flex items-center justify-between gap-4 py-2.5">
-              <div class="flex items-center space-x-1">
-                <span class="text-left"><%= t('allow_to_decline_documents') %></span>
-                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester') %>">
-                  <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
-                </span>
+        <% if !Docuseal.multitenant? || can?(:manage, :disable_decline) %>
+          <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
+          <% if can?(:manage, account_config) %>
+            <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+              <%= f.hidden_field :key %>
+              <div class="flex items-center justify-between gap-4 py-2.5">
+                <div class="flex items-center space-x-1">
+                  <span class="text-left"><%= t('allow_to_decline_documents') %></span>
+                  <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester') %>">
+                    <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+                  </span>
+                </div>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
+                </submit-form>
               </div>
-              <submit-form data-on="change" class="flex">
-                <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
-              </submit-form>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORM_PREFILL_SIGNATURE_KEY) %>
