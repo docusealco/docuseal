@@ -28,7 +28,7 @@ tiptapStylesheet.replaceSync(
   white-space: break-spaces;
   -webkit-font-variant-ligatures: none;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0; /* the above doesn't seem to work in Edge */
+  font-feature-settings: "liga" 0;
 }
 
 .ProseMirror [contenteditable="false"] {
@@ -89,7 +89,7 @@ img.ProseMirror-separator {
 .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
-.variable-highlight {
+dynamic-variable {
   background-color: #fef3c7;
 }`)
 
@@ -533,7 +533,7 @@ function buildDecorations (doc) {
       const from = pos + match.index
       const to = from + match[0].length
 
-      decorations.push(Decoration.inline(from, to, { class: 'variable-highlight' }))
+      decorations.push(Decoration.inline(from, to, { nodeName: 'dynamic-variable' }))
     }
   })
 
