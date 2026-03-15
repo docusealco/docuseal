@@ -125,7 +125,7 @@ class Submission < ApplicationRecord
 
     dynamic_count = template_schema&.count { |e| e['dynamic'] }.to_i
 
-    if template.variables_schema.blank?
+    if variables_schema.blank?
       if dynamic_count > 0
         if dynamic_count == template_schema.size
           template_schema_dynamic_document_attachments
