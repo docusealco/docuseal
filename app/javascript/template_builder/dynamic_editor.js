@@ -584,7 +584,7 @@ const VariableHighlight = Extension.create({
   }
 })
 
-export function buildEditor ({ dynamicAreaProps, attachmentsIndex, onFieldDrop, onFieldDestroy, editorOptions }) {
+export function buildEditor ({ dynamicAreaProps, attachmentsIndex, renderHtmlForSaveRef, onFieldDrop, onFieldDestroy, editorOptions }) {
   const FieldNode = Node.create({
     name: 'fieldNode',
     inline: true,
@@ -617,11 +617,32 @@ export function buildEditor ({ dynamicAreaProps, attachmentsIndex, onFieldDrop, 
       }]
     },
     renderHTML ({ node }) {
-      return ['dynamic-field', {
+      const attrs = {
         uuid: node.attrs.uuid,
         'area-uuid': node.attrs.areaUuid,
         style: `width: ${node.attrs.width}; height: ${node.attrs.height}; display: ${node.attrs.display}; vertical-align: ${node.attrs.verticalAlign};`
-      }]
+      }
+
+      if (!renderHtmlForSaveRef.value) {
+        const fieldArea = dynamicAreaProps.findFieldArea(node.attrs.areaUuid)
+
+        if (fieldArea?.field && fieldArea?.area) {
+          const field = JSON.parse(JSON.stringify(fieldArea.field))
+          const area = JSON.parse(JSON.stringify(fieldArea.area))
+
+          delete field.areas
+          delete field.uuid
+          delete field.submitter_uuid
+          delete area.uuid
+          delete area.attachment_uuid
+
+          attrs['data-field'] = JSON.stringify(field)
+          attrs['data-area'] = JSON.stringify(area)
+          attrs['data-template-id'] = dynamicAreaProps.template.id
+        }
+      }
+
+      return ['dynamic-field', attrs]
     },
     addNodeView () {
       return ({ node, getPos, editor }) => {

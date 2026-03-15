@@ -5,7 +5,6 @@
     :draggable="editable"
     :style="[nodeStyle]"
     @mousedown="selectArea"
-    @click.stop
     @dragstart="onDragStart"
     @contextmenu.prevent.stop="onContextMenu"
   >
@@ -25,7 +24,14 @@
     <span
       v-if="field?.default_value"
       class="text-xs overflow-hidden text-ellipsis whitespace-nowrap pr-1 font-normal pl-0.5"
-    >{{ field.default_value }}</span>
+    >
+      <template v-if="field.default_value === '{{date}}'">
+        {{ t('signing_date') }}
+      </template>
+      <template v-else>
+        {{ field.default_value }}
+      </template>
+    </span>
     <span
       v-else-if="field && !iconOnlyField"
       class="text-xs overflow-hidden text-ellipsis whitespace-nowrap pr-1 opacity-70 font-normal pl-0.5"
@@ -227,6 +233,7 @@ export default {
       this.onAreaDragStart()
     },
     onContextMenu (e) {
+      this.selectArea()
       this.onAreaContextMenu(this.area, e)
     },
     onResizeStart (e) {
