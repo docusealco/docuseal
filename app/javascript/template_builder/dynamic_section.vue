@@ -182,6 +182,7 @@ export default {
         verification: { width: '150px', height: '80px' },
         image: { width: '200px', height: '100px' },
         date: { width: '100px', height: this.defaultHeight },
+        datenow: { width: '100px', height: this.defaultHeight },
         text: { width: '120px', height: this.defaultHeight },
         cells: { width: '120px', height: this.defaultHeight },
         file: { width: '120px', height: this.defaultHeight },
