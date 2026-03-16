@@ -2735,10 +2735,13 @@ export default {
         } else {
           this.isSaving = true
 
-          this.documentRefs.filter((ref) => ref.update).map((ref) => ref.update())
+          const dynamicDocumentRefs = this.documentRefs.filter((ref) => ref.isDynamic)
+
+          dynamicDocumentRefs.map((ref) => ref.update())
+
           this.rebuildVariablesSchema({ disable: false })
 
-          const dynamicDocumentSaves = this.documentRefs.filter((ref) => ref.saveBody).map((ref) => ref.saveBody())
+          const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
 
           Promise.all([this.save(), ...dynamicDocumentSaves]).then(() => {
             window.Turbo.visit(`/templates/${this.template.id}`)
@@ -3028,6 +3031,8 @@ export default {
         } else {
           dynamicDocumentRef.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
         }
+      } else {
+        this.template.variables_schema = {}
       }
     }
   }
