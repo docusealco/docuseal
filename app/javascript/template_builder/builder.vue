@@ -3006,26 +3006,28 @@ export default {
       this.save()
     },
     rebuildVariablesSchema ({ disable = true } = {}) {
-      const parsed = {}
-
       const dynamicDocumentRef = this.documentRefs.find((e) => e.isDynamic)
 
-      this.documentRefs.forEach((ref) => {
-        if (ref.isDynamic) {
-          ref.updateVariablesSchema()
-        }
-      })
+      if (dynamicDocumentRef) {
+        const parsed = {}
 
-      this.dynamicDocuments.forEach((doc) => {
-        if (doc.variables_schema) {
-          dynamicDocumentRef.mergeSchemaProperties(parsed, doc.variables_schema)
-        }
-      })
+        this.documentRefs.forEach((ref) => {
+          if (ref.isDynamic) {
+            ref.updateVariablesSchema()
+          }
+        })
 
-      if (!this.template.variables_schema) {
-        this.template.variables_schema = parsed
-      } else {
-        dynamicDocumentRef.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
+        this.dynamicDocuments.forEach((doc) => {
+          if (doc.variables_schema) {
+            dynamicDocumentRef.mergeSchemaProperties(parsed, doc.variables_schema)
+          }
+        })
+
+        if (!this.template.variables_schema) {
+          this.template.variables_schema = parsed
+        } else {
+          dynamicDocumentRef.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
+        }
       }
     }
   }
