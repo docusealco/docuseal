@@ -29,18 +29,28 @@
         :container="$refs.container"
         :editable="editable"
         :section="section"
+        :section-refs="sectionRefs"
         :container-width="containerWidth"
         :attachments-index="attachmentsIndex"
         :selected-submitter="selectedSubmitter"
         :drag-field="dragField"
+        :draw-field="drawField"
+        :draw-field-type="drawFieldType"
+        :draw-custom-field="drawCustomField"
+        :render-html-for-save-ref="renderHtmlForSaveRef"
+        :draw-option="drawOption"
         :attachment-uuid="document.uuid"
         @update="onSectionUpdate(section, $event)"
+        @draw="$emit('draw', $event)"
+        @add-custom-field="$emit('add-custom-field', $event)"
+        @set-draw="$emit('set-draw', $event)"
       />
     </Teleport>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
 import DynamicSection from './dynamic_section.vue'
 import { dynamicStylesheet, tiptapStylesheet } from './dynamic_editor.js'
 import { buildVariablesSchema, mergeSchemaProperties } from './dynamic_variables_schema.js'
@@ -70,9 +80,29 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    drawField: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    drawFieldType: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    drawCustomField: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    drawOption: {
+      type: Object,
+      required: false,
+      default: null
     }
   },
-  emits: ['update'],
+  emits: ['update', 'draw', 'set-draw', 'add-custom-field'],
   data () {
     return {
       containerWidth: 1040,
@@ -81,6 +111,10 @@ export default {
     }
   },
   computed: {
+    renderHtmlForSaveRef: () => ref(false),
+    isDynamic () {
+      return true
+    },
     attachmentsIndex () {
       return (this.document.attachments || []).reduce((acc, att) => {
         acc[att.uuid] = att.url
@@ -135,6 +169,15 @@ export default {
   },
   methods: {
     mergeSchemaProperties,
+    removeArea (area) {
+      this.sectionRefs.forEach((sectionRef) => {
+        const pos = sectionRef.findAreaNodePos(area.uuid)
+
+        if (pos !== -1) {
+          sectionRef.editor.chain().focus().deleteRange({ from: pos, to: pos + 1 }).run()
+        }
+      })
+    },
     setSectionRefs (ref) {
       if (ref) {
         this.sectionRefs.push(ref)
@@ -150,11 +193,13 @@ export default {
       }
     },
     scrollToArea (area) {
+      this.sectionRefs.forEach(({ editor }) => editor.commands.setNodeSelection(0))
+
       this.sectionRefs.forEach(({ editor }) => {
         const el = editor.view.dom.querySelector(`[data-area-uuid="${area.uuid}"]`)
 
         if (el) {
-          editor.chain().focus().setNodeSelection(editor.view.posAtDOM(el, 0)).run()
+          editor.commands.setNodeSelection(editor.view.posAtDOM(el, 0))
 
           el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         }
@@ -176,7 +221,7 @@ export default {
       const target = this.bodyDom.getElementById(section.id)
 
       if (target) {
-        target.innerHTML = editor.getHTML()
+        target.innerHTML = this.getHtmlForSave(editor)
       }
 
       this.document.body = this.bodyDom.body.innerHTML
@@ -200,7 +245,7 @@ export default {
       this.sectionRefs.forEach(({ section, editor }) => {
         const target = this.bodyDom.getElementById(section.id)
 
-        target.innerHTML = editor.getHTML()
+        target.innerHTML = this.getHtmlForSave(editor)
       })
 
       this.document.body = this.bodyDom.body.innerHTML
@@ -208,6 +253,15 @@ export default {
       this.updateVariablesSchema()
 
       this.$emit('update', this.document)
+    },
+    getHtmlForSave (editor) {
+      this.renderHtmlForSaveRef.value = true
+
+      const result = editor.getHTML()
+
+      this.renderHtmlForSaveRef.value = false
+
+      return result
     },
     saveBody () {
       clearTimeout(this.saveTimer)
@@ -219,6 +273,43 @@ export default {
         body: JSON.stringify({ body: this.bodyDom.body.innerHTML }),
         headers: { 'Content-Type': 'application/json' }
       })
+    },
+    syncVariablesSchema (existing, parsed, { disable = true } = {}) {
+      for (const key of Object.keys(parsed)) {
+        if (!existing[key]) {
+          existing[key] = parsed[key]
+        }
+      }
+
+      for (const key of Object.keys(existing)) {
+        if (!parsed[key]) {
+          if (disable) {
+            existing[key].disabled = true
+          } else {
+            delete existing[key]
+          }
+        } else {
+          delete existing[key].disabled
+
+          if (!existing[key].form_type) {
+            existing[key].type = parsed[key].type
+          }
+
+          if (parsed[key].items) {
+            if (!existing[key].items) {
+              existing[key].items = parsed[key].items
+            } else if (existing[key].items.properties && parsed[key].items.properties) {
+              this.syncVariablesSchema(existing[key].items.properties, parsed[key].items.properties, { disable })
+            } else if (!existing[key].items.properties && !parsed[key].items.properties) {
+              existing[key].items.type = parsed[key].items.type
+            }
+          }
+
+          if (existing[key].properties && parsed[key].properties) {
+            this.syncVariablesSchema(existing[key].properties, parsed[key].properties, { disable })
+          }
+        }
+      }
     }
   }
 }

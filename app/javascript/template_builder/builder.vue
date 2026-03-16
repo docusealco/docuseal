@@ -364,7 +364,14 @@
                 :document="dynamicDocuments.find((dynamicDocument) => dynamicDocument.uuid === document.uuid)"
                 :selected-submitter="selectedSubmitter"
                 :drag-field="dragField"
+                :draw-field="drawField"
+                :draw-field-type="drawFieldType"
+                :draw-custom-field="drawCustomField"
+                :draw-option="drawOption"
                 @update="onDynamicDocumentUpdate"
+                @draw="clearDrawField"
+                @add-custom-field="addCustomField"
+                @set-draw="[drawField = $event.field, drawOption = $event.option]"
               />
               <Document
                 v-else
@@ -509,6 +516,8 @@
             :show-tour-start-form="showTourStartForm"
             @add-field="addField"
             @set-draw="[drawField = $event.field, drawOption = $event.option]"
+            @remove-field="onRemoveField"
+            @remove-submitter="onRemoveSubmitter"
             @select-submitter="selectedSubmitter = $event"
             @set-draw-type="[drawFieldType = $event, showDrawField = true]"
             @set-draw-custom-field="[drawCustomField = $event, showDrawField = true]"
@@ -1154,6 +1163,32 @@ export default {
 
       this.drawCustomField = null
       this.showDrawField = false
+    },
+    onRemoveField (field) {
+      if (this.dynamicDocuments.length) {
+        field.areas?.forEach((area) => {
+          this.documentRefs.forEach((documentRef) => {
+            if (documentRef.isDynamic && documentRef.document.uuid === area.attachment_uuid) {
+              documentRef.removeArea(area)
+            }
+          })
+        })
+      }
+    },
+    onRemoveSubmitter (submitter) {
+      if (this.dynamicDocuments.length) {
+        this.template.fields.forEach((field) => {
+          if (field.submitter_uuid === submitter.uuid) {
+            field.areas?.forEach((area) => {
+              this.documentRefs.forEach((documentRef) => {
+                if (documentRef.isDynamic && documentRef.document.uuid === area.attachment_uuid) {
+                  documentRef.removeArea(area)
+                }
+              })
+            })
+          }
+        })
+      }
     },
     toggleSelectMode () {
       this.isSelectModeRef.value = !this.isSelectModeRef.value
@@ -2512,60 +2547,80 @@ export default {
 
       this.save()
     },
+    removeAreasByAttachmentUuid (attachmentUuid) {
+      const removedFieldUuids = []
+
+      this.selectedAreasRef.value = this.selectedAreasRef.value.filter((area) => area.attachment_uuid !== attachmentUuid)
+
+      this.template.fields.forEach((field) => {
+        [...(field.areas || [])].forEach((area) => {
+          if (area.attachment_uuid === attachmentUuid) {
+            field.areas.splice(field.areas.indexOf(area), 1)
+
+            removedFieldUuids.push(field.uuid)
+          }
+        })
+      })
+
+      this.template.fields = this.template.fields.reduce((acc, field) => {
+        if (removedFieldUuids.includes(field.uuid) && !field.areas?.length) {
+          this.removeFieldConditions(field)
+        } else {
+          acc.push(field)
+        }
+
+        return acc
+      }, [])
+    },
     onDocumentRemove (item) {
       if (window.confirm(this.t('are_you_sure_'))) {
         this.template.schema.splice(this.template.schema.indexOf(item), 1)
 
-        const removedFieldUuids = []
-
-        this.template.fields.forEach((field) => {
-          [...(field.areas || [])].forEach((area) => {
-            if (area.attachment_uuid === item.attachment_uuid) {
-              field.areas.splice(field.areas.indexOf(area), 1)
-
-              removedFieldUuids.push(field.uuid)
-            }
-          })
-        })
-
-        this.template.fields = this.template.fields.reduce((acc, f) => {
-          if (removedFieldUuids.includes(f.uuid) && !f.areas?.length) {
-            this.removeFieldConditions(f)
-          } else {
-            acc.push(f)
-          }
-
-          return acc
-        }, [])
+        this.removeAreasByAttachmentUuid(item.attachment_uuid)
 
         this.save()
       }
     },
     onDocumentReplace (data) {
       const { replaceSchemaItem, schema, documents } = data
+      const isReplacingDynamicDocument = !!replaceSchemaItem.dynamic
       // eslint-disable-next-line camelcase
       const { google_drive_file_id, dynamic, ...cleanedReplaceSchemaItem } = replaceSchemaItem
 
       this.template.schema.splice(this.template.schema.indexOf(replaceSchemaItem), 1, { ...cleanedReplaceSchemaItem, ...schema[0] })
       this.template.documents.push(...documents)
 
+      if (isReplacingDynamicDocument) {
+        this.removeAreasByAttachmentUuid(replaceSchemaItem.attachment_uuid)
+
+        const dynamicDocumentIndex = this.dynamicDocuments.findIndex((doc) => doc.uuid === replaceSchemaItem.attachment_uuid)
+
+        if (dynamicDocumentIndex !== -1) {
+          this.dynamicDocuments.splice(dynamicDocumentIndex, 1)
+        }
+      }
+
       if (data.fields) {
         this.template.fields = data.fields
 
-        const removedFieldUuids = []
+        if (isReplacingDynamicDocument) {
+          this.removeAreasByAttachmentUuid(replaceSchemaItem.attachment_uuid)
+        } else {
+          const removedFieldUuids = []
 
-        this.template.fields.forEach((field) => {
-          [...(field.areas || [])].forEach((area) => {
-            if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
-              field.areas.splice(field.areas.indexOf(area), 1)
+          this.template.fields.forEach((field) => {
+            [...(field.areas || [])].forEach((area) => {
+              if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
+                field.areas.splice(field.areas.indexOf(area), 1)
 
-              removedFieldUuids.push(field.uuid)
-            }
+                removedFieldUuids.push(field.uuid)
+              }
+            })
           })
-        })
 
-        this.template.fields =
-          this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+          this.template.fields =
+            this.template.fields.filter((f) => !removedFieldUuids.includes(f.uuid) || f.areas?.length)
+        }
       }
 
       if (data.submitters) {
@@ -2576,13 +2631,15 @@ export default {
         }
       }
 
-      this.template.fields.forEach((field) => {
-        (field.areas || []).forEach((area) => {
-          if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
-            area.attachment_uuid = schema[0].attachment_uuid
-          }
+      if (!isReplacingDynamicDocument) {
+        this.template.fields.forEach((field) => {
+          (field.areas || []).forEach((area) => {
+            if (area.attachment_uuid === replaceSchemaItem.attachment_uuid) {
+              area.attachment_uuid = schema[0].attachment_uuid
+            }
+          })
         })
-      })
+      }
 
       if (this.onUpload) {
         this.onUpload(this.template)
@@ -2694,9 +2751,13 @@ export default {
     scrollToArea (area) {
       const documentRef = this.documentRefs.find((a) => a.document.uuid === area.attachment_uuid)
 
-      documentRef.scrollToArea(area)
+      if (documentRef.isDynamic) {
+        this.selectedAreasRef.value = []
+      } else {
+        this.selectedAreasRef.value = [area]
+      }
 
-      this.selectedAreasRef.value = [area]
+      documentRef.scrollToArea(area)
     },
     baseFetch (path, options = {}) {
       return fetch(this.baseUrl + path, {
@@ -2942,15 +3003,15 @@ export default {
         }
       })
 
-      this.reconcileDynamicFields()
+      this.save()
     },
     rebuildVariablesSchema ({ disable = true } = {}) {
       const parsed = {}
 
-      const dynamicDocumentRef = this.documentRefs.find((e) => e.mergeSchemaProperties)
+      const dynamicDocumentRef = this.documentRefs.find((e) => e.isDynamic)
 
       this.documentRefs.forEach((ref) => {
-        if (ref.updateVariablesSchema) {
+        if (ref.isDynamic) {
           ref.updateVariablesSchema()
         }
       })
@@ -2964,70 +3025,8 @@ export default {
       if (!this.template.variables_schema) {
         this.template.variables_schema = parsed
       } else {
-        this.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
+        dynamicDocumentRef.syncVariablesSchema(this.template.variables_schema, parsed, { disable })
       }
-    },
-    syncVariablesSchema (existing, parsed, { disable = true } = {}) {
-      for (const key of Object.keys(parsed)) {
-        if (!existing[key]) {
-          existing[key] = parsed[key]
-        }
-      }
-
-      for (const key of Object.keys(existing)) {
-        if (!parsed[key]) {
-          if (disable) {
-            existing[key].disabled = true
-          } else {
-            delete existing[key]
-          }
-        } else {
-          delete existing[key].disabled
-
-          if (!existing[key].form_type) {
-            existing[key].type = parsed[key].type
-          }
-
-          if (parsed[key].items) {
-            if (!existing[key].items) {
-              existing[key].items = parsed[key].items
-            } else if (existing[key].items.properties && parsed[key].items.properties) {
-              this.syncVariablesSchema(existing[key].items.properties, parsed[key].items.properties, { disable })
-            } else if (!existing[key].items.properties && !parsed[key].items.properties) {
-              existing[key].items.type = parsed[key].items.type
-            }
-          }
-
-          if (existing[key].properties && parsed[key].properties) {
-            this.syncVariablesSchema(existing[key].properties, parsed[key].properties, { disable })
-          }
-        }
-      }
-    },
-    reconcileDynamicFields () {
-      const dynamicFieldUuids = new Set()
-
-      this.dynamicDocuments.forEach((doc) => {
-        const body = doc.body || ''
-        const uuidRegex = /uuid="([^"]+)"/g
-        let match
-
-        while ((match = uuidRegex.exec(body)) !== null) {
-          dynamicFieldUuids.add(match[1])
-        }
-      })
-
-      const toRemove = this.template.fields.filter((field) => {
-        if (field.areas && field.areas.length > 0) return false
-
-        return field.uuid && !dynamicFieldUuids.has(field.uuid)
-      })
-
-      toRemove.forEach((field) => {
-        this.template.fields.splice(this.template.fields.indexOf(field), 1)
-      })
-
-      this.save()
     }
   }
 }

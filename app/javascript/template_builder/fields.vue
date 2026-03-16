@@ -501,7 +501,7 @@ export default {
       default: false
     }
   },
-  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter', 'rebuild-variables-schema'],
+  emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter', 'rebuild-variables-schema', 'remove-field', 'remove-submitter'],
   data () {
     return {
       fieldPagesLoaded: null,
@@ -805,6 +805,8 @@ export default {
         this.$emit('change-submitter', this.submitters[0])
       }
 
+      this.$emit('remove-submitter', submitter)
+
       this.save()
     },
     removeField (field, save = true) {
@@ -829,6 +831,8 @@ export default {
       field.areas?.forEach((area) => {
         this.selectedAreasRef.value.splice(this.selectedAreasRef.value.indexOf(area), 1)
       })
+
+      this.$emit('remove-field', field)
 
       if (save) {
         this.save()

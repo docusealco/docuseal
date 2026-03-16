@@ -883,6 +883,13 @@ en: &en
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} email address is awaiting confirmation. Follow the link in the email to confirm."
   please_confirm_your_email_address_using_the_link_below_: 'Please confirm your email address using the link below:'
   confirm_email: Confirm email
+  please_verify_your_email_address_to_continue: Please verify your email address to continue.
+  verification_code_sent_click_link_or_enter_code: A verification code has been sent to your email. Click the email link or enter the one time code to confirm your email.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Use <b>%{code}</b> code to verify your email or click the link below:'
+  verify_your_email: Verify your email
+  your_email_has_been_confirmed: Your email has been confirmed.
+  invalid_or_expired_verification_code: Invalid or expired verification code.
+  didnt_receive_an_email: Did not receive an email?
   unconfirmed: Unconfirmed
   you_requested_to_reset_your_password_use_the_link_below_to_continue: You requested to reset your password. Use the link below to continue
   if_you_didnt_request_this_you_can_ignore_this_email: "If you didn't request this, please ignore this email."
@@ -1900,6 +1907,13 @@ es: &es
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está pendiente de confirmación. Sigue el enlace en el correo para confirmarla."
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirma tu dirección de correo electrónico utilizando el enlace a continuación:'
   confirm_email: Confirmar correo
+  please_verify_your_email_address_to_continue: Por favor, verifica tu dirección de correo electrónico para continuar.
+  verification_code_sent_click_link_or_enter_code: Se ha enviado un código de verificación a tu correo. Puedes hacer clic en el enlace del correo o ingresar el código a continuación.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Usa el código <b>%{code}</b> para verificar tu correo electrónico o haz clic en el enlace a continuación:'
+  verify_your_email: Verificar tu correo electrónico
+  your_email_has_been_confirmed: Tu correo electrónico ha sido confirmado.
+  invalid_or_expired_verification_code: Código de verificación inválido o expirado.
+  didnt_receive_an_email: "¿No recibiste un correo electrónico?"
   unconfirmed: No confirmado
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Solicitaste restablecer tu contraseña. Usa el enlace a continuación para continuar.
   if_you_didnt_request_this_you_can_ignore_this_email: "Si no solicitaste esto, puedes ignorar este correo electrónico."
@@ -2918,6 +2932,13 @@ it: &it
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} è in attesa di conferma. Segui il link nell'email per confermare."
   please_confirm_your_email_address_using_the_link_below_: 'Conferma il tuo indirizzo email utilizzando il link qui sotto:'
   confirm_email: Conferma email
+  please_verify_your_email_address_to_continue: Verifica il tuo indirizzo email per continuare.
+  verification_code_sent_click_link_or_enter_code: "È stato inviato un codice di verifica alla tua email. Puoi cliccare il link nell'email o inserire il codice qui sotto."
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Usa il codice <b>%{code}</b> per verificare la tua email o clicca il link qui sotto:'
+  verify_your_email: Verifica la tua email
+  your_email_has_been_confirmed: La tua email è stata confermata.
+  invalid_or_expired_verification_code: Codice di verifica non valido o scaduto.
+  didnt_receive_an_email: Non hai ricevuto un'email?
   unconfirmed: Non confermato
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Hai richiesto di reimpostare la tua password. Usa il link qui sotto per continuare.
   if_you_didnt_request_this_you_can_ignore_this_email: "Se non hai richiesto questo, puoi ignorare questa email."
@@ -3932,6 +3953,13 @@ fr: &fr
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} est en attente de confirmation. Suivez le lien dans l'e-mail pour la confirmer."
   please_confirm_your_email_address_using_the_link_below_: 'Veuillez confirmer votre adresse e-mail en utilisant le lien ci-dessous :'
   confirm_email: "Confirmer l'e-mail"
+  please_verify_your_email_address_to_continue: "Veuillez vérifier votre adresse e-mail pour continuer."
+  verification_code_sent_click_link_or_enter_code: "Un code de vérification a été envoyé à votre adresse e-mail. Vous pouvez cliquer sur le lien dans l'e-mail ou saisir le code ci-dessous."
+  use_otp_code_to_verify_email_or_click_link_below_html: "Utilisez le code <b>%{code}</b> pour vérifier votre e-mail ou cliquez sur le lien ci-dessous :"
+  verify_your_email: "Vérifier votre e-mail"
+  your_email_has_been_confirmed: "Votre adresse e-mail a été confirmée."
+  invalid_or_expired_verification_code: "Code de vérification invalide ou expiré."
+  didnt_receive_an_email: "Vous n'avez pas reçu d'e-mail ?"
   unconfirmed: Non confirmé
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Vous avez demandé à réinitialiser votre mot de passe. Utilisez le lien ci-dessous pour continuer.
   if_you_didnt_request_this_you_can_ignore_this_email: "Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail."
@@ -4949,6 +4977,13 @@ pt: &pt
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} está aguardando confirmação. Siga o link enviado para esse endereço de e-mail para confirmar."
   please_confirm_your_email_address_using_the_link_below_: 'Por favor, confirme seu endereço de e-mail usando o link abaixo:'
   confirm_email: Confirmar e-mail
+  please_verify_your_email_address_to_continue: Verifique seu endereço de e-mail para continuar.
+  verification_code_sent_click_link_or_enter_code: Um código de verificação foi enviado para seu e-mail. Você pode clicar no link do e-mail ou inserir o código abaixo.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Use o código <b>%{code}</b> para verificar seu e-mail ou clique no link abaixo:'
+  verify_your_email: Verificar seu e-mail
+  your_email_has_been_confirmed: Seu e-mail foi confirmado.
+  invalid_or_expired_verification_code: Código de verificação inválido ou expirado.
+  didnt_receive_an_email: Não recebeu um e-mail?
   unconfirmed: Não confirmado
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Você solicitou a redefinição da sua senha. Use o link abaixo para continuar.
   if_you_didnt_request_this_you_can_ignore_this_email: "Se você não solicitou isso, pode ignorar este e-mail."
@@ -5966,6 +6001,13 @@ de: &de
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wartet auf Bestätigung. Folgen Sie dem Link in der E-Mail, um sie zu bestätigen."
   please_confirm_your_email_address_using_the_link_below_: 'Bitte bestätigen Sie Ihre E-Mail-Adresse über den folgenden Link:'
   confirm_email: E-Mail bestätigen
+  please_verify_your_email_address_to_continue: Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren.
+  verification_code_sent_click_link_or_enter_code: Ein Verifizierungscode wurde an Ihre E-Mail gesendet. Sie können auf den Link in der E-Mail klicken oder den Code unten eingeben.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Verwenden Sie den Code <b>%{code}</b>, um Ihre E-Mail zu bestätigen, oder klicken Sie auf den Link unten:'
+  verify_your_email: E-Mail bestätigen
+  your_email_has_been_confirmed: Ihre E-Mail-Adresse wurde bestätigt.
+  invalid_or_expired_verification_code: Ungültiger oder abgelaufener Verifizierungscode.
+  didnt_receive_an_email: Keine E-Mail erhalten?
   unconfirmed: Unbestätigt
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Sie haben angefordert, Ihr Passwort zurückzusetzen. Verwenden Sie den untenstehenden Link, um fortzufahren.
   if_you_didnt_request_this_you_can_ignore_this_email: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren."
@@ -7368,6 +7410,13 @@ nl: &nl
   email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} wacht op bevestiging. Volg de link in de e-mail om te bevestigen."
   please_confirm_your_email_address_using_the_link_below_: 'Bevestig je e-mailadres via de onderstaande link:'
   confirm_email: E-mailadres bevestigen
+  please_verify_your_email_address_to_continue: Bevestig je e-mailadres om door te gaan.
+  verification_code_sent_click_link_or_enter_code: Er is een verificatiecode naar je e-mail gestuurd. Je kunt op de link in de e-mail klikken of de code hieronder invoeren.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'Gebruik code <b>%{code}</b> om je e-mail te verifiëren of klik op de link hieronder:'
+  verify_your_email: Je e-mail verifiëren
+  your_email_has_been_confirmed: Je e-mailadres is bevestigd.
+  invalid_or_expired_verification_code: Ongeldige of verlopen verificatiecode.
+  didnt_receive_an_email: Geen e-mail ontvangen?
   unconfirmed: Onbevestigd
   you_requested_to_reset_your_password_use_the_link_below_to_continue: Je hebt gevraagd je wachtwoord te resetten. Gebruik de onderstaande link om verder te gaan.
   if_you_didnt_request_this_you_can_ignore_this_email: "Als je dit niet hebt aangevraagd, kun je deze e-mail negeren."

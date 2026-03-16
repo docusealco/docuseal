@@ -274,13 +274,16 @@ export default {
     makeDynamic () {
       this.isMakeDynamicLoading = true
 
-      this.baseFetch(`/templates/${this.template.id}/dynamic_documents`, {
-        method: 'POST',
-        body: JSON.stringify({ uuid: this.document.uuid }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(async (resp) => {
+      Promise.all([
+        this.baseFetch(`/templates/${this.template.id}/dynamic_documents`, {
+          method: 'POST',
+          body: JSON.stringify({ uuid: this.document.uuid }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }),
+        import(/* webpackChunkName: "dynamic-editor" */ './dynamic_document')
+      ]).then(async ([resp, _]) => {
         const dynamicDocument = await resp.json()
 
         this.template.schema.find((item) => item.attachment_uuid === dynamicDocument.uuid).dynamic = true

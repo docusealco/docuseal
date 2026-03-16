@@ -2,7 +2,6 @@
 
 module Submitters
   TRUE_VALUES = ['1', 'true', true].freeze
-  PRELOAD_ALL_PAGES_AMOUNT = 200
 
   FIELD_NAME_WEIGHTS = {
     'email' => 'A',
