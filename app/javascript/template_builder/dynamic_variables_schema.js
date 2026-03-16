@@ -353,7 +353,26 @@ function extractConditionVariables (node, acc = []) {
   return acc
 }
 
+const IRREGULAR_PLURALS = {
+  people: 'person',
+  men: 'man',
+  women: 'woman',
+  children: 'child',
+  teeth: 'tooth',
+  feet: 'foot',
+  mice: 'mouse',
+  geese: 'goose',
+  oxen: 'ox',
+  criteria: 'criterion',
+  phenomena: 'phenomenon',
+  alumni: 'alumnus',
+  data: 'datum',
+  media: 'medium'
+}
+
 function singularize (word) {
+  if (IRREGULAR_PLURALS[word]) return IRREGULAR_PLURALS[word]
+
   if (word.endsWith('ies')) return word.slice(0, -3) + 'y'
   if (word.endsWith('ches') || word.endsWith('shes')) return word.slice(0, -2)
   if (word.endsWith('ses') || word.endsWith('xes') || word.endsWith('zes')) return word.slice(0, -2)
@@ -513,6 +532,12 @@ function processOperators (operators, propertiesHash = {}, parentProperties = {}
 
         assignNestedSchema(propertiesHash, parentProperties, op.variableName, { type: 'array', items: itemProperties })
         processOperators(op.children, propertiesHash, { ...parentProperties, [singularKey]: itemProperties })
+
+        if (itemProperties.type === 'object' && itemProperties.properties && Object.keys(itemProperties.properties).length === 0) {
+          delete itemProperties.properties
+          itemProperties.type = 'string'
+        }
+
         break
       }
     }

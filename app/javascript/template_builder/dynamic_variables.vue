@@ -22,28 +22,30 @@
             class="border-base-300"
           >
           <label class="peer flex items-center py-1.5 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              class="hidden peer"
-              checked
-            >
-            <IconChevronDown
-              class="hidden peer-checked:block"
-              :width="14"
-              :stroke-width="1.6"
-            />
-            <IconChevronRight
-              class="block peer-checked:hidden"
-              :width="14"
-              :stroke-width="1.6"
-            />
+            <span class="w-5 flex justify-center items-center">
+              <input
+                type="checkbox"
+                class="hidden peer"
+                checked
+              >
+              <IconChevronDown
+                class="hidden peer-checked:block ml-0.5"
+                :width="14"
+                :stroke-width="1.6"
+              />
+              <IconChevronRight
+                class="block peer-checked:hidden ml-0.5"
+                :width="14"
+                :stroke-width="1.6"
+              />
+            </span>
             <span class="ml-1">{{ key }}</span>
             <span
               v-if="node.type === 'array'"
               class="text-xs bg-base-200 rounded px-1 ml-1"
             >{{ t('list') }}</span>
           </label>
-          <div class="hidden peer-has-[:checked]:block pl-3.5">
+          <div class="hidden peer-has-[:checked]:block pl-5">
             <template
               v-for="[varNode, varPath] in nestedVariables(node, key)"
               :key="varPath"
@@ -101,7 +103,7 @@ export default {
   },
   methods: {
     isGroup (node) {
-      return (node.type === 'object' && node.properties) || (node.type === 'array' && node.items?.properties)
+      return (node.type === 'object' && node.properties) || (node.type === 'array' && node.items?.type === 'object' && node.items?.properties)
     },
     nestedVariables (node, groupKey) {
       const properties = node.type === 'array' ? node.items?.properties : node.properties
