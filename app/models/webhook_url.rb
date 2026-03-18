@@ -34,6 +34,7 @@ class WebhookUrl < ApplicationRecord
     submission.archived
     template.created
     template.updated
+    template.archived
   ].freeze
 
   belongs_to :account

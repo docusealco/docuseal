@@ -69,6 +69,7 @@ module Api
       SearchEntries.enqueue_reindex(@template)
 
       WebhookUrls.enqueue_events(@template, 'template.updated')
+      WebhookUrls.enqueue_events(@template, 'template.archived') if archived == true
 
       render json: @template.as_json(only: %i[id updated_at])
     end
@@ -78,6 +79,8 @@ module Api
         @template.destroy!
       else
         @template.update!(archived_at: Time.current)
+
+        WebhookUrls.enqueue_events(@template, 'template.archived')
       end
 
       render json: @template.as_json(only: %i[id archived_at])
