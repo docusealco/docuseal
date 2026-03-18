@@ -914,6 +914,9 @@ en: &en
   connect_to_docuseal_mcp: Connect to DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Add the following to your MCP client configuration
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Works with Claude Desktop, Cursor, Windsurf, VS Code, and any MCP-compatible client.
+  your_email_address_has_been_changed: Your email address has been changed
+  the_email_address_for_your_account_has_been_changed_to_new_email: The email address for your account has been changed to %{new_email}.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: If you did not make this change, please contact us by replying to this email.
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1938,6 +1941,9 @@ es: &es
   connect_to_docuseal_mcp: Conectar a DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Agregue lo siguiente a la configuración de su cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona con Claude Desktop, Cursor, Windsurf, VS Code y cualquier cliente compatible con MCP.
+  your_email_address_has_been_changed: Tu dirección de correo electrónico ha sido cambiada
+  the_email_address_for_your_account_has_been_changed_to_new_email: La dirección de correo electrónico de tu cuenta ha sido cambiada a %{new_email}.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Si no realizaste este cambio, contáctanos respondiendo a este correo electrónico.
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -2963,6 +2969,9 @@ it: &it
   connect_to_docuseal_mcp: Connetti a DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Aggiungi quanto segue alla configurazione del tuo client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funziona con Claude Desktop, Cursor, Windsurf, VS Code e qualsiasi client compatibile con MCP.
+  your_email_address_has_been_changed: Il tuo indirizzo email è stato modificato
+  the_email_address_for_your_account_has_been_changed_to_new_email: L'indirizzo email del tuo account è stato modificato in %{new_email}.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Se non hai effettuato questa modifica, contattaci rispondendo a questa email.
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -3984,6 +3993,9 @@ fr: &fr
   connect_to_docuseal_mcp: Se connecter à DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Ajoutez ce qui suit à la configuration de votre client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Fonctionne avec Claude Desktop, Cursor, Windsurf, VS Code et tout client compatible MCP.
+  your_email_address_has_been_changed: Votre adresse e-mail a été modifiée
+  the_email_address_for_your_account_has_been_changed_to_new_email: "L'adresse e-mail de votre compte a été modifiée en %{new_email}."
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Si vous n'avez pas effectué ce changement, veuillez nous contacter en répondant à cet e-mail.
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -5008,6 +5020,9 @@ pt: &pt
   connect_to_docuseal_mcp: Conectar ao DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Adicione o seguinte à configuração do seu cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona com Claude Desktop, Cursor, Windsurf, VS Code e qualquer cliente compatível com MCP.
+  your_email_address_has_been_changed: Seu endereço de e-mail foi alterado
+  the_email_address_for_your_account_has_been_changed_to_new_email: O endereço de e-mail da sua conta foi alterado para %{new_email}.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Se você não fez essa alteração, entre em contato conosco respondendo a este e-mail.
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -6032,6 +6047,9 @@ de: &de
   connect_to_docuseal_mcp: Mit DocuSeal MCP verbinden
   add_the_following_to_your_mcp_client_configuration: Fügen Sie Folgendes zu Ihrer MCP-Client-Konfiguration hinzu
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funktioniert mit Claude Desktop, Cursor, Windsurf, VS Code und jedem MCP-kompatiblen Client.
+  your_email_address_has_been_changed: Ihre E-Mail-Adresse wurde geändert
+  the_email_address_for_your_account_has_been_changed_to_new_email: Die E-Mail-Adresse Ihres Kontos wurde in %{new_email} geändert.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Wenn Sie diese Änderung nicht vorgenommen haben, kontaktieren Sie uns bitte, indem Sie auf diese E-Mail antworten.
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -7441,6 +7459,9 @@ nl: &nl
   connect_to_docuseal_mcp: Verbinden met DocuSeal MCP
   add_the_following_to_your_mcp_client_configuration: Voeg het volgende toe aan uw MCP-clientconfiguratie
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Werkt met Claude Desktop, Cursor, Windsurf, VS Code en elke MCP-compatibele client.
+  your_email_address_has_been_changed: Je e-mailadres is gewijzigd
+  the_email_address_for_your_account_has_been_changed_to_new_email: Het e-mailadres van je account is gewijzigd naar %{new_email}.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Als je deze wijziging niet hebt aangebracht, neem dan contact met ons op door op deze e-mail te antwoorden.
   devise:
     confirmations:
       confirmed: Je e-mailadres is succesvol bevestigd.
