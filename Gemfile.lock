@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/trilogy-libraries/trilogy.git
-  revision: 3963d490459df7a2b5bedb42424c3285f25eab22
-  glob: contrib/ruby/*.gemspec
-  specs:
-    trilogy (2.10.0)
-      bigdecimal
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -116,7 +108,7 @@ GEM
       cgi
       rexml
     base64 (0.3.0)
-    bcrypt (3.1.21)
+    bcrypt (3.1.22)
     better_html (2.2.0)
       actionview (>= 7.0)
       activesupport (>= 7.0)
@@ -285,7 +277,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.19.1)
+    json (2.19.2)
     jwt (3.1.2)
       base64
     language_server-protocol (3.17.0.5)
@@ -339,17 +331,17 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.19.1-aarch64-linux-gnu)
+    nokogiri (1.19.2-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.1-aarch64-linux-musl)
+    nokogiri (1.19.2-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.1-arm64-darwin)
+    nokogiri (1.19.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-gnu)
+    nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-musl)
+    nokogiri (1.19.2-x86_64-linux-musl)
       racc (~> 1.4)
-    numo-narray-alt (0.9.13)
+    numo-narray-alt (0.10.3)
     oj (3.16.13)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
@@ -564,6 +556,8 @@ GEM
     thor (1.5.0)
     timeout (0.6.0)
     trailblazer-option (0.1.2)
+    trilogy (2.10.0)
+      bigdecimal
     tsort (0.2.0)
     turbo-rails (2.0.21)
       actionpack (>= 7.1.0)
@@ -671,7 +665,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   strip_attributes
-  trilogy!
+  trilogy
   turbo-rails
   twitter_cldr
   tzinfo-data

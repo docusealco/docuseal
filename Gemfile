@@ -43,7 +43,7 @@ gem 'shakapacker'
 gem 'sidekiq'
 gem 'sqlite3', require: false
 gem 'strip_attributes'
-gem 'trilogy', github: 'trilogy-libraries/trilogy', glob: 'contrib/ruby/*.gemspec', require: false
+gem 'trilogy', require: false
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
