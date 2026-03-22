@@ -150,8 +150,6 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (1.21.1)
-      addressable
     csv (3.3.5)
     csv-safe (3.3.1)
       csv (~> 3.0)
@@ -264,7 +262,6 @@ GEM
       geom2d (~> 0.4, >= 0.4.1)
       openssl (>= 2.2.1)
       strscan (>= 3.1.2)
-    htmlentities (4.4.2)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -370,14 +367,6 @@ GEM
     pg (1.6.3-x86_64-linux-musl)
     pp (0.6.3)
       prettyprint
-    premailer (1.27.0)
-      addressable
-      css_parser (>= 1.19.0)
-      htmlentities (>= 4.0.0)
-    premailer-rails (1.12.0)
-      actionmailer (>= 3)
-      net-smtp
-      premailer (~> 1.7, >= 1.7.9)
     pretender (0.6.0)
       actionpack (>= 7.1)
     prettyprint (0.2.0)
@@ -607,6 +596,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  addressable
   annotaterb
   arabic-letter-connector
   aws-sdk-s3
@@ -643,7 +633,6 @@ DEPENDENCIES
   onnxruntime
   pagy
   pg
-  premailer-rails
   pretender
   pry-rails
   puma
