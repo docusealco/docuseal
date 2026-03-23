@@ -84,6 +84,8 @@ class TemplatesController < ApplicationController
       else
         @template.update!(archived_at: Time.current)
 
+        WebhookUrls.enqueue_events(@template, 'template.archived')
+
         I18n.t('template_has_been_archived')
       end
 

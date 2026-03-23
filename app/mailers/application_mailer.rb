@@ -5,6 +5,8 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   register_interceptor ActionMailerConfigsInterceptor
+  register_interceptor HtmlToPlainTextInterceptor
+  register_preview_interceptor HtmlToPlainTextInterceptor
 
   register_observer ActionMailerEventsObserver
 

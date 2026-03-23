@@ -6,6 +6,8 @@ class TemplatesRestoreController < ApplicationController
   def create
     @template.update!(archived_at: nil)
 
+    WebhookUrls.enqueue_events(@template, 'template.updated')
+
     redirect_to template_path(@template), notice: I18n.t('template_has_been_unarchived')
   end
 end

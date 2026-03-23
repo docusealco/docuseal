@@ -11,7 +11,8 @@ module WebhookUrls
     'submission.expired' => SendSubmissionExpiredWebhookRequestJob,
     'submission.archived' => SendSubmissionArchivedWebhookRequestJob,
     'template.created' => SendTemplateCreatedWebhookRequestJob,
-    'template.updated' => SendTemplateUpdatedWebhookRequestJob
+    'template.updated' => SendTemplateUpdatedWebhookRequestJob,
+    'template.archived' => SendTemplateArchivedWebhookRequestJob
   }.freeze
 
   EVENT_TYPE_ID_KEYS = {
