@@ -236,9 +236,10 @@ module Submissions
 
           page[:Annots] ||= []
           page[:Annots] = page[:Annots].try(:reject) do |e|
-            next if e.is_a?(Integer) || e.is_a?(Symbol)
+            next if e.is_a?(Integer) || e.is_a?(Symbol) || e.is_a?(HexaPDF::PDFArray)
 
-            e.present? && e[:A] && e[:A][:URI].to_s.starts_with?('file:///docuseal_field')
+            e.present? && e[:A] && !e[:A].is_a?(HexaPDF::PDFArray) &&
+              e[:A][:URI].to_s.starts_with?('file:///docuseal_field')
           end || page[:Annots]
 
           width = page.box.width
