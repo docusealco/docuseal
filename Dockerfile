@@ -49,7 +49,6 @@ ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
 ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
-ENV VIPS_MAX_COORD=15000
 
 WORKDIR /app
 
@@ -98,6 +97,7 @@ RUN ln -s /fonts /app/public/fonts && \
 WORKDIR /data/docuseal
 ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
+ENV VIPS_MAX_COORD=17000
 
 EXPOSE 3000
 CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]
