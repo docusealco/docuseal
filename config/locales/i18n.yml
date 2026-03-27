@@ -1988,6 +1988,7 @@ es: &es
     invite_party_by_html: '<b>Invitado</b> %{invited_submitter_name} por %{submitter_name}'
     complete_form_by_html: '<b>Envío completado</b> por %{submitter_name}'
     api_complete_form_by_html: '<b>Envío completado vía API</b> por %{submitter_name}'
+    decline_form_by_html: '<b>Formulario rechazado</b> por %{submitter_name}'
     delegate_form_by_html: '<b>Delegado</b> de %{from} a %{to}'
     start_verification_by_html: '<b>Verificación de identidad iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificación de identidad completada</b> por %{submitter_name} con %{provider}'
@@ -3022,6 +3023,7 @@ it: &it
     invite_party_by_html: '<b>Invitato</b> %{invited_submitter_name} da %{submitter_name}'
     complete_form_by_html: '<b>Invio completato</b> da %{submitter_name}'
     api_complete_form_by_html: '<b>Invio completato tramite API</b> da %{submitter_name}'
+    decline_form_by_html: '<b>Modulo rifiutato</b> da %{submitter_name}'
     delegate_form_by_html: '<b>Delegato</b> da %{from} a %{to}'
     start_verification_by_html: "<b>Verifica dell'identità iniziata</b> da %{submitter_name}"
     complete_verification_by_html: "<b>Verifica dell'identità completata</b> da %{submitter_name} con %{provider}"
@@ -4054,6 +4056,7 @@ fr: &fr
     start_verification_by_html: "<b>Vérification d’identité démarrée</b> par %{submitter_name}"
     complete_verification_by_html: "<b>Vérification d’identité terminée</b> par %{submitter_name} avec %{provider}"
     api_complete_form_by_html: "<b>Soumission terminée via API</b> par %{submitter_name}"
+    decline_form_by_html: "<b>Formulaire refusé</b> par %{submitter_name}"
     delegate_form_by_html: "<b>Délégué</b> de %{from} à %{to}"
     start_kba_by_html: "<b>KBA démarré</b> par %{submitter_name}"
     complete_kba_by_html: "<b>KBA terminé</b> par %{submitter_name}"
@@ -5087,6 +5090,7 @@ pt: &pt
     start_verification_by_html: '<b>Verificação de identidade iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificação de identidade concluída</b> por %{submitter_name} com %{provider}'
     api_complete_form_by_html: '<b>Submissão concluída via API</b> por %{submitter_name}'
+    decline_form_by_html: '<b>Formulário recusado</b> por %{submitter_name}'
     delegate_form_by_html: '<b>Delegado</b> de %{from} para %{to}'
     start_kba_by_html: '<b>KBA iniciada</b> por %{submitter_name}'
     complete_kba_by_html: '<b>KBA concluída</b> por %{submitter_name}'
@@ -6120,6 +6124,7 @@ de: &de
     start_verification_by_html: '<b>Identitätsüberprüfung gestartet</b> von %{submitter_name}'
     complete_verification_by_html: '<b>Identitätsüberprüfung abgeschlossen</b> von %{submitter_name} mit %{provider}'
     api_complete_form_by_html: '<b>Einreichung über API abgeschlossen</b> von %{submitter_name}'
+    decline_form_by_html: '<b>Formular abgelehnt</b> von %{submitter_name}'
     delegate_form_by_html: '<b>Delegiert</b> von %{from} an %{to}'
     start_kba_by_html: '<b>KBA gestartet</b> von %{submitter_name}'
     complete_kba_by_html: '<b>KBA abgeschlossen</b> von %{submitter_name}'
@@ -7550,6 +7555,7 @@ nl: &nl
     start_verification_by_html: "<b>Identiteitsverificatie gestart</b> door %{submitter_name}"
     complete_verification_by_html: "<b>Identiteitsverificatie voltooid</b> door %{submitter_name} met %{provider}"
     api_complete_form_by_html: "<b>Inzending via API voltooid</b> door %{submitter_name}"
+    decline_form_by_html: "<b>Formulier geweigerd</b> door %{submitter_name}"
     delegate_form_by_html: "<b>Gedelegeerd</b> van %{from} naar %{to}"
     start_kba_by_html: "<b>KBA gestart</b> door %{submitter_name}"
     complete_kba_by_html: "<b>KBA voltooid</b> door %{submitter_name}"
