@@ -16,6 +16,7 @@ class SubmissionEventsController < ApplicationController
     'email_verified' => 'email_check',
     'click_sms' => 'hand_click',
     'decline_form' => 'x',
+    'delegate_form' => 'user_share',
     'start_verification' => 'player_play',
     'complete_verification' => 'check',
     'invite_party' => 'user_plus'

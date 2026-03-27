@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_27_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "plpgsql"
@@ -364,6 +364,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
     t.index ["template_id"], name: "index_submissions_on_template_id"
   end
 
+  create_table "submitter_versions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "name"
+    t.string "phone"
+    t.string "slug", null: false
+    t.bigint "submitter_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_submitter_versions_on_slug"
+    t.index ["submitter_id"], name: "index_submitter_versions_on_submitter_id"
+  end
+
   create_table "submitters", force: :cascade do |t|
     t.bigint "submission_id", null: false
     t.string "uuid", null: false
@@ -541,12 +553,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "dynamic_document_versions", "dynamic_documents"
   add_foreign_key "dynamic_documents", "templates"
   add_foreign_key "email_events", "accounts"
   add_foreign_key "email_messages", "accounts"
   add_foreign_key "email_messages", "users", column: "author_id"
   add_foreign_key "encrypted_configs", "accounts"
   add_foreign_key "encrypted_user_configs", "users"
+  add_foreign_key "mcp_tokens", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
@@ -556,6 +570,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_193537) do
   add_foreign_key "submission_events", "submitters"
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
+  add_foreign_key "submitter_versions", "submitters"
   add_foreign_key "submitters", "submissions"
   add_foreign_key "template_accesses", "templates"
   add_foreign_key "template_folders", "accounts"

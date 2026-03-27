@@ -11,6 +11,7 @@ class AccountConfigsController < ApplicationController
     AccountConfig::FORCE_MFA,
     AccountConfig::ALLOW_TO_RESUBMIT,
     AccountConfig::ALLOW_TO_DECLINE_KEY,
+    AccountConfig::ALLOW_TO_DELEGATE_KEY,
     AccountConfig::FORM_PREFILL_SIGNATURE_KEY,
     AccountConfig::ESIGNING_PREFERENCE_KEY,
     AccountConfig::FORM_WITH_CONFETTI_KEY,
@@ -36,7 +37,7 @@ class AccountConfigsController < ApplicationController
   end
 
   def destroy
-    raise InvalidKey unless ALLOWED_KEYS.include?(@account_config.key)
+    raise InvalidKey unless allowed_keys.include?(@account_config.key)
 
     @account_config.destroy!
 
@@ -45,8 +46,12 @@ class AccountConfigsController < ApplicationController
 
   private
 
+  def allowed_keys
+    ALLOWED_KEYS
+  end
+
   def load_account_config
-    raise InvalidKey unless ALLOWED_KEYS.include?(account_config_params[:key])
+    raise InvalidKey unless allowed_keys.include?(account_config_params[:key])
 
     @account_config =
       AccountConfig.find_or_initialize_by(account: current_account, key: account_config_params[:key])

@@ -145,8 +145,10 @@ Rails.application.routes.draw do
     resources :values, only: %i[index], controller: 'submit_form_values'
     resources :download, only: %i[index], controller: 'submit_form_download'
     resources :decline, only: %i[create], controller: 'submit_form_decline'
+    resources :delegate, only: %i[create], controller: 'submit_form_delegate'
     resources :invite, only: %i[create], controller: 'submit_form_invite'
     get :completed
+    get :delegated
   end
 
   resources :submit_form_draw_signature, only: %i[show], path: 'p', param: 'slug'

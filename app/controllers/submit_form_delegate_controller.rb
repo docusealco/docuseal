@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubmitFormDeclineController < ApplicationController
+class SubmitFormDelegateController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
@@ -16,21 +16,27 @@ class SubmitFormDeclineController < ApplicationController
                                                                                                 current_user,
                                                                                                 request)
 
+    @submitter.account.account_configs.find_by!(key: AccountConfig::ALLOW_TO_DELEGATE_KEY, value: true)
+
+    email = Submissions.normalize_email(params[:email])
+
+    return redirect_to submit_form_path(@submitter.slug) if email.blank?
+
+    old_slug = @submitter.slug
+
     ApplicationRecord.transaction do
-      @submitter.update!(declined_at: Time.current)
+      @submitter.submitter_versions.create!(slug: old_slug, email: @submitter.email,
+                                            name: @submitter.name, phone: @submitter.phone)
 
-      SubmissionEvents.create_with_tracking_data(@submitter, 'decline_form', request, { reason: params[:reason] })
+      SubmissionEvents.create_with_tracking_data(@submitter, 'delegate_form', request,
+                                                 { old_email: @submitter.email, email: })
+
+      @submitter.update!(email:, phone: nil, name: nil, slug: SecureRandom.base58(14))
     end
 
-    user = @submitter.submission.created_by_user || @submitter.template.author
+    SendSubmitterInvitationEmailJob.perform_async('submitter_id' => @submitter.id)
 
-    if user.user_configs.find_by(key: UserConfig::RECEIVE_DECLINED_EMAIL)&.value != false
-      SubmitterMailer.declined_email(@submitter, user).deliver_later!
-    end
-
-    WebhookUrls.enqueue_events(@submitter, 'form.declined')
-
-    redirect_to submit_form_path(@submitter.slug)
+    redirect_to submit_form_delegated_path(old_slug)
   end
 
   private
