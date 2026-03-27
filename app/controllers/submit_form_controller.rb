@@ -8,7 +8,7 @@ class SubmitFormController < ApplicationController
   skip_authorization_check
 
   before_action :load_submitter, only: %i[show update completed]
-  before_action :maybe_redirect_delegated, only: :show
+  before_action :maybe_redirect_delegated, only: %i[show completed]
   before_action :maybe_render_locked_page, only: :show
   before_action :maybe_require_link_2fa, only: %i[show]
 
