@@ -438,7 +438,7 @@ module Submissions
 
       composer.text(I18n.t('event_log'), font_size: 12, padding: [10, 0, 20, 0])
 
-      submitter_versions_index = submission.submitters.each_with_object({}) do |s, h|
+      submitter_versions_index = submission.submitters.preload(:submitter_versions).each_with_object({}) do |s, h|
         h[s.id] = s.submitter_versions.to_a.sort_by(&:created_at)
       end
 

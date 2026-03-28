@@ -20,7 +20,7 @@
           <% end %>
         </p>
       </li>
-      <% submitter_versions_index = @submission.submitters.each_with_object({}) { |s, h| h[s.id] = s.submitter_versions.to_a.sort_by(&:created_at) } %>
+      <% submitter_versions_index = @submission.submitters.preload(:submitter_versions).each_with_object({}) { |s, h| h[s.id] = s.submitter_versions.to_a.sort_by(&:created_at) } %>
       <% @submission.submission_events.order(:event_timestamp).each do |event| %>
         <% submitter = @submission.submitters.find { |e| e.id == event.submitter_id } %>
         <% bg_class = event_colors[submitters_uuids.index(submitter.uuid) % event_colors.length] %>
