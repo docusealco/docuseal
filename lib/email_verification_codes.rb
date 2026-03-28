@@ -20,7 +20,7 @@ module EmailVerificationCodes
   def build_totp_secret(value)
     ROTP::Base32.encode(
       Digest::SHA1.digest(
-        [Rails.application.secret_key_base, value].join(':')
+        [Rails.application.secret_key_base, 'form_email_2fa', value].join(':')
       )
     )
   end
