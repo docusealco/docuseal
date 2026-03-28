@@ -791,6 +791,7 @@ en: &en
   share_link: Share link
   enable_shared_link: Enable shared link
   share_link_is_currently_disabled: Share link is currently disabled
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamic template with variables can't be used via a shared link
   select_data_residency: Select data residency
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Review or download completed documents. Fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.
@@ -1825,6 +1826,7 @@ es: &es
   share_link: Enlace para compartir
   enable_shared_link: Habilitar enlace compartido
   share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: La plantilla dinámica con variables no se puede usar mediante un enlace compartido
   select_data_residency: Seleccionar ubicación de datos
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} te ha invitado a completar y firmar documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Revisa o descarga los documentos completados. Completa y firma documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.
@@ -2859,6 +2861,7 @@ it: &it
   share_link: Link di condivisione
   enable_shared_link: Abilita link condiviso
   share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Il template dinamico con variabili non può essere utilizzato tramite link condiviso
   select_data_residency: Seleziona la residenza dei dati
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} ti ha invitato a compilare e firmare documenti online con facilità utilizzando una soluzione di firma digitale sicura, veloce e facile da usare.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Rivedi o scarica i documenti completati. Compila e firma documenti online facilmente con una soluzione di firma digitale sicura, veloce e facile da usare.
@@ -3891,6 +3894,7 @@ fr: &fr
   share_link: Lien de partage
   enable_shared_link: Activer le lien partagé
   share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Le modèle dynamique avec des variables ne peut pas être utilisé via un lien partagé
   select_data_residency: Sélectionner la résidence des données
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: "%{account_name} vous a invité à remplir et signer des documents en ligne facilement, grâce à une solution de signature numérique sécurisée, rapide et conviviale."
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Consultez ou téléchargez les documents complétés. Remplissez et signez des documents en ligne facilement, grâce à une solution de signature numérique sécurisée, rapide et conviviale.
@@ -4925,6 +4929,7 @@ pt: &pt
   share_link: Link de compartilhamento
   enable_shared_link: Ativar link compartilhado
   share_link_is_currently_disabled: O link compartilhado está desativado no momento
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: O template dinâmico com variáveis não pode ser usado por meio de link compartilhado
   select_data_residency: Selecionar local dos dados
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} convidou você para preencher e assinar documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Reveja ou baixe os documentos concluídos. Preencha e assine documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.
@@ -5959,6 +5964,7 @@ de: &de
   share_link: Freigabelink
   enable_shared_link: Freigabelink aktivieren
   share_link_is_currently_disabled: Freigabelink ist derzeit deaktiviert
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamische Vorlage mit Variablen kann nicht über einen Freigabelink verwendet werden
   select_data_residency: Datenstandort auswählen
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} hat Sie eingeladen, Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung auszufüllen und zu unterschreiben.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Überprüfen oder laden Sie abgeschlossene Dokumente herunter. Füllen und unterschreiben Sie Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung.
@@ -7391,6 +7397,7 @@ nl: &nl
   share_link: Deellink
   enable_shared_link: Deellink inschakelen
   share_link_is_currently_disabled: Deellink is momenteel uitgeschakeld
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamisch sjabloon met variabelen kan niet worden gebruikt via een deellink
   select_data_residency: Gegevensresidentie selecteren
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: "%{account_name} heeft u uitgenodigd om documenten online moeiteloos in te vullen en te ondertekenen met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing."
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Bekijk of download voltooide documenten. Vul en onderteken documenten online moeiteloos met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing.
