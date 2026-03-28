@@ -28,7 +28,7 @@ module Submitters
       completed_button = find_safe_value(configs, AccountConfig::FORM_COMPLETED_BUTTON_KEY) || {}
       completed_message = find_safe_value(configs, AccountConfig::FORM_COMPLETED_MESSAGE_KEY) || {}
       with_typed_signature = find_safe_value(configs, AccountConfig::ALLOW_TYPED_SIGNATURE) != false
-      with_confetti = find_safe_value(configs, AccountConfig::FORM_WITH_CONFETTI_KEY) != false
+      with_confetti = find_safe_value(configs, AccountConfig::FORM_WITH_CONFETTI_KEY) == true
       prefill_signature = find_safe_value(configs, AccountConfig::FORM_PREFILL_SIGNATURE_KEY) != false
       reuse_signature = find_safe_value(configs, AccountConfig::REUSE_SIGNATURE_KEY) != false
       with_decline = find_safe_value(configs, AccountConfig::ALLOW_TO_DECLINE_KEY) != false
