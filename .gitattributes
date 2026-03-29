@@ -1,1 +1,2 @@
 *.html linguist-detectable=false
+bin/* text eol=lf

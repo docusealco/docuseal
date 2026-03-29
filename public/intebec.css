@@ -1,0 +1,271 @@
+/* Intébec theme overrides for DocuSeal (DaisyUI/Tailwind)
+   Scope: only when docuseal theme is active.
+   v2 – Professional, restrained palette. Blue reserved for primary actions only. */
+
+[data-theme="docuseal"] {
+  /* Brand – used sparingly */
+  --ib-primary: var(--wl-ib-primary, 216 77% 52%);
+  --ib-primary-strong: var(--wl-ib-primary-strong, 216 77% 44%);
+  --ib-primary-soft: var(--wl-ib-primary-soft, 216 60% 95%);
+
+  /* Neutrals – the backbone of the UI */
+  --ib-neutral: var(--wl-ib-neutral, 220 16% 12%);
+  --ib-neutral-soft: var(--wl-ib-neutral-soft, 220 12% 96%);
+
+  --ib-bg: var(--wl-ib-bg, 220 14% 98%);
+  --ib-surface: var(--wl-ib-surface, 0 0% 100%);
+  --ib-surface-2: var(--wl-ib-surface-2, 220 14% 96%);
+  --ib-border: var(--wl-ib-border, 220 10% 88%);
+  --ib-text: var(--wl-ib-text, 220 14% 10%);
+  --ib-text-secondary: var(--wl-ib-text-secondary, 220 8% 40%);
+  --ib-muted: var(--wl-ib-muted, 220 6% 55%);
+
+  /* DaisyUI theme tokens (H S L space-separated) */
+  --p: var(--wl-p, var(--ib-primary));
+  --pf: var(--wl-pf, var(--ib-primary-strong));
+  --pc: var(--wl-pc, 0 0% 100%);
+
+  --s: var(--wl-s, 220 12% 45%);
+  --sf: var(--wl-sf, 220 14% 36%);
+  --sc: var(--wl-sc, 0 0% 100%);
+
+  --a: var(--wl-a, 160 50% 40%);
+  --af: var(--wl-af, 160 50% 34%);
+  --ac: var(--wl-ac, 0 0% 100%);
+
+  --n: var(--wl-n, var(--ib-neutral));
+  --nf: var(--wl-nf, 220 16% 8%);
+  --nc: var(--wl-nc, 0 0% 100%);
+
+  --b1: var(--wl-b1, var(--ib-surface));
+  --b2: var(--wl-b2, var(--ib-surface-2));
+  --b3: var(--wl-b3, 220 12% 93%);
+  --bc: var(--wl-bc, var(--ib-text));
+
+  --in: var(--wl-in, 205 80% 50%);
+  --su: var(--wl-su, 154 55% 38%);
+  --wa: var(--wl-wa, 38 88% 48%);
+  --er: var(--wl-er, 0 72% 50%);
+
+  /* Radii + shadow */
+  --rounded-box: 0.875rem;
+  --rounded-btn: var(--wl-rounded-btn, 0.625rem);
+  --rounded-badge: 9999px;
+}
+
+/* ─── Global polish ─── */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="docuseal"] body {
+  background: hsl(var(--ib-bg));
+  color: hsl(var(--ib-text));
+}
+
+/* ─── Links: dark by default, blue only on hover ─── */
+[data-theme="docuseal"] a {
+  color: hsl(var(--ib-text));
+  transition: color 0.15s ease;
+}
+[data-theme="docuseal"] a:hover {
+  color: hsl(var(--ib-primary));
+}
+
+/* Sidebar nav links — neutral dark, not blue */
+[data-theme="docuseal"] aside a,
+[data-theme="docuseal"] nav a,
+[data-theme="docuseal"] .menu a {
+  color: hsl(var(--ib-text-secondary));
+  font-weight: 500;
+}
+[data-theme="docuseal"] aside a:hover,
+[data-theme="docuseal"] nav a:hover,
+[data-theme="docuseal"] .menu a:hover {
+  color: hsl(var(--ib-text));
+  background: hsl(var(--ib-neutral-soft));
+}
+/* Active sidebar item */
+[data-theme="docuseal"] aside a.active,
+[data-theme="docuseal"] aside a[aria-current],
+[data-theme="docuseal"] .menu a.active {
+  color: hsl(var(--ib-primary));
+  font-weight: 600;
+  background: hsl(var(--ib-primary-soft));
+}
+
+/* ─── Navbar / header ─── */
+[data-theme="docuseal"] .navbar,
+[data-theme="docuseal"] header {
+  background: hsl(var(--ib-surface));
+  border-bottom: 1px solid hsl(var(--ib-border));
+}
+
+/* ─── Cards / panels ─── */
+[data-theme="docuseal"] .card,
+[data-theme="docuseal"] .modal-box,
+[data-theme="docuseal"] .rounded-box,
+[data-theme="docuseal"] .bg-base-100 {
+  background: hsl(var(--ib-surface));
+  border: 1px solid hsl(var(--ib-border));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="docuseal"] .bg-base-200 {
+  background: hsl(var(--ib-surface-2));
+}
+
+/* ─── Headings ─── */
+[data-theme="docuseal"] h1,
+[data-theme="docuseal"] h2,
+[data-theme="docuseal"] h3,
+[data-theme="docuseal"] h4 {
+  color: hsl(var(--ib-text));
+  font-weight: 700;
+}
+
+/* ─── Labels & secondary text ─── */
+[data-theme="docuseal"] label,
+[data-theme="docuseal"] .label-text {
+  color: hsl(var(--ib-text-secondary));
+  font-weight: 500;
+}
+
+/* ─── Buttons ─── */
+[data-theme="docuseal"] .btn {
+  border-radius: var(--rounded-btn);
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  border-width: 1px;
+  transition: all 0.15s ease;
+}
+
+/* Primary – the only blue button */
+[data-theme="docuseal"] .btn-primary,
+[data-theme="docuseal"] .base-button {
+  background: hsl(var(--ib-primary));
+  border-color: hsl(var(--ib-primary));
+  color: white;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.25);
+}
+[data-theme="docuseal"] .btn-primary:hover,
+[data-theme="docuseal"] .base-button:hover {
+  background: hsl(var(--ib-primary-strong));
+  border-color: hsl(var(--ib-primary-strong));
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.30);
+}
+
+/* Neutral button – dark, professional */
+[data-theme="docuseal"] .btn-neutral {
+  background: hsl(var(--ib-neutral));
+  border-color: hsl(var(--ib-neutral));
+  color: white;
+}
+[data-theme="docuseal"] .btn-neutral:hover {
+  filter: brightness(1.1);
+}
+
+/* Outline / ghost */
+[data-theme="docuseal"] .btn-outline {
+  background: transparent;
+  border-color: hsl(var(--ib-border));
+  color: hsl(var(--ib-text));
+}
+[data-theme="docuseal"] .btn-outline:hover {
+  background: hsl(var(--ib-neutral-soft));
+  border-color: hsl(220 10% 80%);
+  color: hsl(var(--ib-text));
+}
+
+/* White button */
+[data-theme="docuseal"] .white-button {
+  border-radius: var(--rounded-btn);
+  background: hsl(var(--ib-surface));
+  border: 1px solid hsl(var(--ib-border));
+  color: hsl(var(--ib-text));
+  font-weight: 600;
+}
+[data-theme="docuseal"] .white-button:hover {
+  background: hsl(var(--ib-surface-2));
+}
+
+/* ─── Badges ─── */
+[data-theme="docuseal"] .badge {
+  border-radius: var(--rounded-badge);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.2px;
+}
+[data-theme="docuseal"] .badge-success {
+  background: hsl(154 50% 93%);
+  border-color: hsl(154 35% 82%);
+  color: hsl(154 45% 22%);
+}
+[data-theme="docuseal"] .badge-info {
+  background: hsl(205 70% 94%);
+  border-color: hsl(205 45% 84%);
+  color: hsl(205 60% 22%);
+}
+[data-theme="docuseal"] .badge-warning {
+  background: hsl(38 80% 93%);
+  border-color: hsl(38 55% 82%);
+  color: hsl(38 60% 22%);
+}
+[data-theme="docuseal"] .badge-error {
+  background: hsl(0 70% 94%);
+  border-color: hsl(0 45% 84%);
+  color: hsl(0 55% 24%);
+}
+
+/* ─── Inputs ─── */
+[data-theme="docuseal"] .input,
+[data-theme="docuseal"] .select,
+[data-theme="docuseal"] .textarea {
+  border-radius: 0.625rem;
+  border-color: hsl(var(--ib-border));
+  background: hsl(var(--ib-surface));
+  color: hsl(var(--ib-text));
+}
+[data-theme="docuseal"] .input:focus,
+[data-theme="docuseal"] .select:focus,
+[data-theme="docuseal"] .textarea:focus,
+[data-theme="docuseal"] .input:focus-visible,
+[data-theme="docuseal"] .select:focus-visible,
+[data-theme="docuseal"] .textarea:focus-visible {
+  outline: none;
+  border-color: hsl(var(--ib-primary));
+  box-shadow: 0 0 0 3px hsla(216, 77%, 52%, 0.12);
+}
+
+/* ─── Tables ─── */
+[data-theme="docuseal"] .table :where(th, td) {
+  border-color: hsl(var(--ib-border));
+  color: hsl(var(--ib-text));
+}
+[data-theme="docuseal"] .table thead th {
+  background: hsl(var(--ib-surface-2));
+  color: hsl(var(--ib-text-secondary));
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Separators ─── */
+[data-theme="docuseal"] .divider,
+[data-theme="docuseal"] hr {
+  border-color: hsl(var(--ib-border));
+}
+
+/* ─── Dropzone ─── */
+[data-theme="docuseal"] [class*="border-dashed"] {
+  border-color: hsl(220 10% 82%);
+}
+
+/* ─── Root fallbacks ─── */
+:root {
+  --b1: 0 0% 100% !important;
+  --b2: 220 14% 96% !important;
+  --b3: 220 12% 93% !important;
+}

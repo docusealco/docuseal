@@ -1,0 +1,128 @@
+# =============================================================================
+# White-Label Locale Overrides
+# =============================================================================
+# This file overrides i18n keys that contain brand-specific text (DocuSeal).
+# Rails automatically merges locale files, so keys here take precedence.
+#
+# When upstream DocuSeal updates add new branded keys to i18n.yml,
+# add the override here — keeping the main file untouched for easy merging.
+#
+# Languages: English (en) + French (fr)
+# =============================================================================
+
+en: &en_wl
+  docuseal_trusted_signature: "Intébec Trusted Signature"
+  sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">Intébec Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: 'Show "Sent with <span class="link">Intébec Pro</span>" attribution in emails'
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Sign documents with trusted certificate provided by Intébec. Your documents and data are never shared with Intébec. PDF checksum is provided to generate a trusted signature."
+  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://intebec.ca/privacy">Privacy Policy</a> and <a target="_blank" href="https://intebec.ca/terms">Terms of Service</a>.'
+  connect_salesforce_account_to_integrate_with_docuseal: "Connect Salesforce account to integrate with Intébec"
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: "Sign up in Intébec Console to upgrade. On-premises app is completely standalone, Console is used only to manage your license."
+  unlock_with_docuseal_pro: "Unlock with Intébec Pro"
+  activate_with_docuseal_pro: "Activate with Intébec Pro"
+  send_signature_request_emails_without_limits_with_docuseal_pro: "Send signature request emails without limits with Intébec Pro"
+  unlock_more_user_roles_with_docuseal_pro: "Unlock more user roles with Intébec Pro."
+  docuseal_support: "Intébec Support"
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://intebec.ca/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: "On a scale of 1 to 10, how satisfied are you with the Intébec product?"
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using Intébec or cancel your subscription."
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'This submission has multiple signers, which prevents the use of a sharing link as it''s unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://intebec.ca/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.'
+  welcome_to_docuseal: "Welcome to Intébec"
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: "Start a quick tour to learn how to create and send your first document with Intébec."
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: "Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@intebec.ca to log in."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Add a unique Signature ID and timestamp to each signature for audit and traceability purposes along with the timestamp. Part of Intébec's 21 CFR Part 11 compliance settings."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Require signers to provide a reason for signing before completing their signature (e.g., approvals, certifications). Part of Intébec's 21 CFR Part 11 compliance settings."
+  role_admin: "Administrator"
+  role_gestionnaire: "Manager"
+  role_user: "User"
+  unauthorized:
+    default: "You are not authorized to access this page."
+    manage:
+      all: "You are not authorized to perform this action."
+  onboarding:
+    support_description: "You can use our self-service AI assistant or email us at support@intebec.ca if you have any questions."
+
+fr: &fr_wl
+  docuseal_trusted_signature: "Signature de confiance Intébec"
+  sent_with_docuseal_pro_html: 'Envoyé avec <a href="%{product_url}">Intébec Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: 'Afficher l''attribution « Envoyé avec <span class="link">Intébec Pro</span> » dans les courriels'
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Signez des documents avec un certificat de confiance fourni par Intébec. Vos documents et données ne sont jamais partagés avec Intébec. Une somme de contrôle PDF est fournie pour générer une signature de confiance."
+  by_creating_an_account_you_agree_to_our_html: 'En créant un compte, vous acceptez notre <a target="_blank" href="https://intebec.ca/privacy">Politique de confidentialité</a> et nos <a target="_blank" href="https://intebec.ca/terms">Conditions d''utilisation</a>.'
+  connect_salesforce_account_to_integrate_with_docuseal: "Connectez votre compte Salesforce pour l'intégrer à Intébec"
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: "Inscrivez-vous dans la console Intébec pour effectuer la mise à niveau. L'application sur site est entièrement autonome, la console est utilisée uniquement pour gérer votre licence."
+  unlock_with_docuseal_pro: "Débloquer avec Intébec Pro"
+  activate_with_docuseal_pro: "Activer avec Intébec Pro"
+  send_signature_request_emails_without_limits_with_docuseal_pro: "Envoyez des courriels de demande de signature sans limites avec Intébec Pro"
+  unlock_more_user_roles_with_docuseal_pro: "Débloquez plus de rôles utilisateurs avec Intébec Pro."
+  docuseal_support: "Soutien Intébec"
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://intebec.ca/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et les permissions des utilisateurs.'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: "Sur une échelle de 1 à 10, à quel point êtes-vous satisfait du produit Intébec?"
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre plan Pro a été suspendu en raison de factures impayées. Vous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser Intébec ou annuler votre abonnement."
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Cette soumission comporte plusieurs signataires, ce qui empêche l''utilisation d''un lien de partage car on ne sait pas quel signataire est responsable de quels champs. Pour résoudre ce problème, suivez ce <a href="https://intebec.ca/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.'
+  welcome_to_docuseal: "Bienvenue sur Intébec"
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: "Lancez une visite rapide pour apprendre à créer et envoyer votre premier document avec Intébec."
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: "Votre courriel n'a pas pu être atteint. Cela peut arriver s'il y a une faute de frappe dans votre adresse ou si votre boîte de réception n'est pas disponible. Veuillez contacter support@intebec.ca pour vous connecter."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Ajoutez un identifiant de signature unique et un horodatage à chaque signature à des fins d'audit et de traçabilité, ainsi que l'horodatage. Fait partie des paramètres de conformité 21 CFR Part 11 d'Intébec."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Exiger que le signataire fournisse une raison de signature avant de terminer sa signature (ex. : approbations, certifications). Fait partie des paramètres de conformité 21 CFR Part 11 d'Intébec."
+  role_admin: "Administrateur"
+  role_gestionnaire: "Gestionnaire"
+  role_user: "Utilisateur"
+  onboarding:
+    support_description: "Vous pouvez utiliser notre assistant IA en libre-service ou nous écrire à support@intebec.ca si vous avez des questions."
+  # -------------------------------------------------------------------------
+  # Common French overrides for base UI strings
+  # -------------------------------------------------------------------------
+  sign_in: "Connexion"
+  sign_out: "Déconnexion"
+  sign_up: "Inscription"
+  settings: "Paramètres"
+  profile: "Profil"
+  password: "Mot de passe"
+  email: "Courriel"
+  submit: "Soumettre"
+  save: "Enregistrer"
+  cancel: "Annuler"
+  delete: "Supprimer"
+  search: "Rechercher"
+  download: "Télécharger"
+  powered_by: "Propulsé par"
+  open_source_documents_software: "logiciel de signature de documents"
+  unauthorized:
+    default: "Vous n'êtes pas autorisé à accéder à cette page."
+    manage:
+      all: "Vous n'êtes pas autorisé à effectuer cette action."
+  devise:
+    sessions:
+      signed_in: "Connexion réussie."
+      signed_out: "Déconnexion réussie."
+      already_signed_in: "Vous êtes déjà connecté."
+    failure:
+      already_authenticated: "Vous êtes déjà connecté."
+      unauthenticated: "Vous devez vous connecter pour accéder à cette page."
+      locked: "Votre compte est verrouillé."
+      invalid: "Adresse courriel ou mot de passe invalide."
+      last_attempt: "Il vous reste une tentative avant que votre compte soit verrouillé."
+      not_found_in_database: "Adresse courriel ou mot de passe invalide."
+      timeout: "Votre session a expiré. Veuillez vous reconnecter."
+      inactive: "Votre compte n'est pas encore activé."
+    passwords:
+      send_instructions: "Vous recevrez un courriel avec les instructions pour réinitialiser votre mot de passe."
+      send_paranoid_instructions: "Si votre courriel est dans notre base de données, vous recevrez un lien pour réinitialiser votre mot de passe."
+      updated: "Votre mot de passe a été modifié. Vous êtes maintenant connecté."
+      updated_not_active: "Votre mot de passe a été modifié avec succès."
+    mailer:
+      reset_password_instructions:
+        subject: "Réinitialisation de votre mot de passe"
+
+# ---------------------------------------------------------------------------
+# Regional locale aliases — inherit all overrides from the base locales above
+# (mirrors the YAML anchor pattern used in i18n.yml)
+# ---------------------------------------------------------------------------
+en-US:
+  <<: *en_wl
+
+en-GB:
+  <<: *en_wl
+
+fr-FR:
+  <<: *fr_wl

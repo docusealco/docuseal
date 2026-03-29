@@ -13,7 +13,7 @@ module Accounts
     new_user.uuid = SecureRandom.uuid
     new_user.account = new_account
     new_user.encrypted_password = SecureRandom.hex
-    new_user.email = "#{SecureRandom.hex}@docuseal.com"
+    new_user.email = "#{SecureRandom.hex}@#{Whitelabel.temp_email_domain}"
 
     account.templates.each do |template|
       new_template = template.dup

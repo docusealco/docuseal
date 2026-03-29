@@ -37,7 +37,7 @@ module Submissions
       bold_italic: FONT_BOLD_NAME
     }.freeze
 
-    SIGN_REASON = 'Signed by %<name>s with DocuSeal.com'
+    SIGN_REASON = "Signed by %<name>s with #{Whitelabel.brand_name}"
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -952,7 +952,7 @@ module Submissions
     end
 
     def info_creator
-      "#{Docuseal.product_name} (#{Docuseal::PRODUCT_URL})"
+      Whitelabel.pdf_creator
     end
 
     def detached_signature?(_submitter)

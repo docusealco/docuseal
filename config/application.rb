@@ -19,6 +19,19 @@ module DocuSeal
   class Application < Rails::Application
     config.load_defaults 8.1
 
+    # Rails 8.x / Ruby 4.0 compatibility: several ActiveRecord class attributes
+    # that were formerly configurable were permanently hardcoded and their setter
+    # methods removed from ActiveRecord::Base.  load_defaults 8.1 still adds them
+    # to the config.active_record hash (via cumulative 5.x-7.x defaults), and the
+    # AR railtie's set_configs initializer blindly calls the setter for every key,
+    # raising NoMethodError.  Deleting the keys here prevents the setters from
+    # being called.
+    %i[
+      belongs_to_required_by_default
+      has_many_inversing
+      run_commit_callbacks_on_first_saved_instances_in_transaction
+    ].each { |key| config.active_record.delete(key) }
+
     config.autoload_lib(ignore: %w[assets tasks puma])
 
     config.active_storage.routes_prefix = ''

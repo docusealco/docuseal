@@ -1,39 +1,16 @@
 services:
   app:
-    depends_on:
-      postgres:
-        condition: service_healthy
-    image: docuseal/docuseal:latest
+    build: .
+    image: intebec/docuseal:latest
     ports:
       - 3000:3000
     volumes:
       - ./docuseal:/data/docuseal
+      - ${INTEBEC_CONFIG_FILE:-./config/config.yml}:/run/secrets/config.yml:ro
     environment:
-      - FORCE_SSL=${HOST}
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
-
-  postgres:
-    image: postgres:18
-    volumes:
-      - './pg_data:/var/lib/postgresql/18/docker'
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: docuseal
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  caddy:
-    image: caddy:latest
-    command: caddy reverse-proxy --from $HOST --to app:3000
-    ports:
-      - 80:80
-      - 443:443
-      - 443:443/udp
-    volumes:
-      - ./caddy:/data/caddy
-    environment:
-      - HOST=${HOST}
+      - FORCE_SSL=${FORCE_SSL:-false}
+      # File mode: mount a config.yml (see volumes below).
+      # API mode:  remove the volume mount and set INTEBEC_LICENCE_KEY + INTEBEC_SECRET_KEY.
+      - INTEBEC_CONFIG_PATH=/run/secrets/config.yml
+      - INTEBEC_LICENCE_KEY=${INTEBEC_LICENCE_KEY:-}
+      - INTEBEC_SECRET_KEY=${INTEBEC_SECRET_KEY:-}

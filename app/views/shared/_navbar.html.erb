@@ -11,7 +11,7 @@
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
       <% if Docuseal.demo? %>
-        <a href="https://docuseal.com/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
+        <a href="<%= Whitelabel.website_url %>" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
           <%= t('sign_up') %>
         </a>
         <span class="hidden sm:inline">
@@ -50,7 +50,7 @@
               <% end %>
             </li>
           <% end %>
-          <% if Docuseal.multitenant? || current_user.role == 'superadmin' %>
+          <% if Whitelabel.show_ai_link? && (Docuseal.multitenant? || current_user.role == 'superadmin') %>
             <li>
               <%= link_to Docuseal::CHATGPT_URL, target: 'blank', class: 'flex items-center' do %>
                 <%= svg_icon('sparkles', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>

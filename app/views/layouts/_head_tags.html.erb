@@ -1,4 +1,6 @@
 <title>
-  <%= content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
+  <%= content_for(:html_title) || (signed_in? ? wl.page_title(signed_in: true) : wl.page_title(signed_in: false)) %>
 </title>
 <%= render 'shared/meta' %>
+<link rel="stylesheet" href="/intebec.css">
+  <style id="whitelabel-theme-vars"><%= wl.inline_css_variables %></style>

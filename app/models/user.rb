@@ -48,8 +48,21 @@
 #
 class User < ApplicationRecord
   ROLES = [
-    ADMIN_ROLE = 'admin'
+    ADMIN_ROLE       = 'admin',
+    GESTIONNAIRE_ROLE = 'gestionnaire',
+    USER_ROLE        = 'user'
   ].freeze
+
+  # Config-driven role list.  Falls back to ROLES constant if no config.
+  def self.available_roles
+    Whitelabel.roles
+  rescue StandardError
+    ROLES
+  end
+
+  def self.admin_role
+    available_roles.first
+  end
 
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
@@ -70,12 +83,12 @@ class User < ApplicationRecord
 
   devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
-  attribute :role, :string, default: ADMIN_ROLE
+  attribute :role, :string, default: -> { User.admin_role }
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :admins, -> { where(role: ADMIN_ROLE) }
+  scope :admins, -> { where(role: admin_role) }
 
   validates :email, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\z/ }
 
@@ -94,7 +107,7 @@ class User < ApplicationRecord
   def sidekiq?
     return true if Rails.env.development?
 
-    role == 'admin'
+    role == User.admin_role
   end
 
   def self.sign_in_after_reset_password

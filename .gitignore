@@ -21,6 +21,7 @@
 /public/assets
 
 /config/master.key
+/config/config.yml
 
 /public/packs
 /public/packs-test
@@ -38,3 +39,7 @@ yarn-debug.log*
 /ee
 dump.rdb
 *.onnx
+pg_data/
+caddy/
+docuseal/
+.env

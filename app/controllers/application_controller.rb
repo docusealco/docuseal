@@ -6,9 +6,12 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Pagy::Method
 
+  helper WhitelabelHelper
+
   check_authorization unless: :devise_controller?
 
   around_action :with_locale
+  before_action :enforce_licence
   before_action :sign_in_for_demo, if: -> { Docuseal.demo? }
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
@@ -37,7 +40,7 @@ class ApplicationController < ActionController::Base
     rescue_from CanCan::AccessDenied do |e|
       Rollbar.warning(e) if defined?(Rollbar)
 
-      redirect_to root_path, alert: e.message
+      redirect_to root_path, alert: I18n.t('unauthorized.default', locale: current_account&.locale)
     end
   end
 
@@ -65,12 +68,13 @@ class ApplicationController < ActionController::Base
   private
 
   def with_locale(&)
-    return yield unless current_account
+    locale = if current_account
+               (params[:lang].presence if Rails.env.development?) || current_account.locale
+             else
+               request.env['HTTP_ACCEPT_LANGUAGE'].to_s[BROWSER_LOCALE_REGEXP].to_s.split('-').first.presence
+             end
 
-    locale   = params[:lang].presence if Rails.env.development?
-    locale ||= current_account.locale
-
-    I18n.with_locale(locale, &)
+    I18n.with_locale(locale || I18n.default_locale, &)
   end
 
   def with_browser_locale(&)
@@ -93,6 +97,21 @@ class ApplicationController < ActionController::Base
 
   def sign_in_for_demo
     sign_in(User.active.order('random()').take) unless signed_in?
+  end
+
+  def enforce_licence
+    return if request.path == '/up'
+    return if request.path.start_with?('/assets', '/packs')
+
+    Whitelabel.ensure_valid!
+  rescue Whitelabel::ConfigError => e
+    Rails.logger.error(e.message)
+
+    if request.format.json?
+      render json: { error: 'service_unavailable' }, status: :service_unavailable
+    else
+      render plain: 'Service unavailable.', status: :service_unavailable
+    end
   end
 
   def current_account
@@ -122,6 +141,8 @@ class ApplicationController < ActionController::Base
   end
 
   def maybe_redirect_com
+    # NOTE: upstream DocuSeal cloud redirect — no-op for self-hosted / white-label
+    return unless Docuseal.multitenant?
     return if request.domain != 'docuseal.co'
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently

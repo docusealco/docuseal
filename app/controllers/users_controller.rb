@@ -16,6 +16,9 @@ class UsersController < ApplicationController
         @users.active.where.not(role: 'integration')
       end
 
+    # Restrict visibility to roles at or below the current user's rank.
+    @users = @users.where(role: Whitelabel.manageable_roles(current_user.role))
+
     @pagy, @users = pagy(@users.preload(account: :account_accesses).where(account: current_account).order(id: :desc))
   end
 
@@ -40,12 +43,18 @@ class UsersController < ApplicationController
     end
 
     @user.password = SecureRandom.hex if @user.password.blank?
-    @user.role = User::ADMIN_ROLE unless role_valid?(@user.role)
+    @user.role = User.admin_role unless role_valid?(@user.role)
 
     if @user.save
-      UserMailer.invitation_email(@user).deliver_later!
+      begin
+        UserMailer.invitation_email(@user).deliver_later!
 
-      redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
+        redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
+      rescue StandardError => e
+        Rollbar.error(e) if defined?(Rollbar)
+
+        redirect_back fallback_location: settings_users_path, alert: I18n.t('failed')
+      end
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
     end
@@ -92,7 +101,8 @@ class UsersController < ApplicationController
   private
 
   def role_valid?(role)
-    User::ROLES.include?(role)
+    # Role must exist AND be at or below the current user's own rank.
+    Whitelabel.manageable_roles(current_user.role).include?(role.to_s)
   end
 
   def build_user
