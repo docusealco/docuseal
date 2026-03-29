@@ -46,9 +46,15 @@ class UsersController < ApplicationController
     @user.role = User.admin_role unless role_valid?(@user.role)
 
     if @user.save
-      UserMailer.invitation_email(@user).deliver_later!
+      begin
+        UserMailer.invitation_email(@user).deliver_later!
 
-      redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
+        redirect_back fallback_location: settings_users_path, notice: I18n.t('user_has_been_invited')
+      rescue StandardError => e
+        Rollbar.error(e) if defined?(Rollbar)
+
+        redirect_back fallback_location: settings_users_path, alert: I18n.t('failed')
+      end
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_content
     end

@@ -73,9 +73,9 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  # Keep delivery errors visible in production by default so failed invite
+  # emails are observable. Set to false to silence errors if needed.
+  config.action_mailer.raise_delivery_errors = ENV.fetch('RAISE_EMAIL_DELIVERY_ERRORS', 'true') == 'true'
 
   if ENV['SMTP_ADDRESS']
     config.action_mailer.delivery_method = :smtp
