@@ -64,7 +64,9 @@ class SubmissionEvent < ApplicationRecord
     invite_party: 'invite_party',
     complete_form: 'complete_form',
     decline_form: 'decline_form',
-    api_complete_form: 'api_complete_form'
+    api_complete_form: 'api_complete_form',
+    admin_reopen_form: 'admin_reopen_form',
+    admin_edit_values: 'admin_edit_values'
   }, scope: false
 
   private

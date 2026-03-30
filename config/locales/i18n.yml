@@ -565,6 +565,14 @@ en: &en
   unable_to_move_template_into_folder: Unable to move template into folder.
   template_has_been_unarchived: Template has been unarchived.
   submission_has_been_unarchived: Submission has been unarchived.
+  submission_has_been_reopened: Submission has been reopened and a new invitation link has been sent.
+  submission_values_have_been_updated: Submission values have been updated and document regenerated.
+  reopen_and_resend: Reopen & Resend
+  edit_values: Edit Values
+  save_and_regenerate: Save & Regenerate Document
+  edit_my_response: Edit My Response
+  edit_my_response_confirm: This will reopen the form so you can make changes. Your current submission will be cleared. Continue?
+  form_cannot_be_edited: This form can no longer be edited.
   unable_to_update_file: Unable to upload file.
   user_has_been_invited: User has been invited.
   unable_to_update_user: Unable to update user.

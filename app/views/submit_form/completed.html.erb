@@ -49,6 +49,17 @@
         <%= button_to button_title(title: t('resubmit'), disabled_with: t('resubmit'), icon: svg_icon('reload', class: 'w-6 h-6')), resubmit_form_path, params: { resubmit: @submitter.slug }, method: :put, class: 'white-button w-full' %>
       </toggle-submit>
     <% end %>
+    <% unless @submitter.submission.archived_at? || @submitter.submission.expired? %>
+      <div class="divider uppercase"><%= t('or') %></div>
+      <toggle-submit class="block">
+        <%= button_to button_title(title: t('edit_my_response'), disabled_with: t('loading'), icon: svg_icon('pencil', class: 'w-6 h-6')),
+                      submitter_edit_form_path,
+                      params: { submitter_slug: @submitter.slug },
+                      method: :put,
+                      class: 'white-button w-full',
+                      data: { turbo_confirm: t('edit_my_response_confirm') } %>
+      </toggle-submit>
+    <% end %>
   </div>
 </div>
 <%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>

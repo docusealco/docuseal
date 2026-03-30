@@ -1,0 +1,57 @@
+<%= render 'shared/turbo_modal_large', title: t('edit_values') do %>
+  <div class="px-5 mb-5 mt-4">
+    <%= form_for '', url: submitter_edit_value_path(@submitter), method: :patch,
+                     html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+      <% if @fields.empty? %>
+        <p class="text-base-content/60 text-center py-6">No editable text fields found for this submitter.</p>
+      <% else %>
+        <% field_counters = Hash.new { 0 } %>
+        <% @fields.each do |field| %>
+          <% field_counters[field['type']] += 1 %>
+          <% current_value = @submitter.values[field['uuid']] %>
+          <div class="form-control mb-4">
+            <label class="label py-0.5">
+              <span class="label-text font-medium" dir="auto">
+                <%= field['name'].presence || "#{field['type'].capitalize} Field #{field_counters[field['type']]}" %>
+              </span>
+              <span class="label-text-alt text-base-content/40 uppercase text-xs"><%= field['type'] %></span>
+            </label>
+            <% if field['type'] == 'select' && field['options'].present? %>
+              <%= select_tag "values[#{field['uuid']}]",
+                             options_for_select(field['options'], current_value),
+                             include_blank: true,
+                             class: 'select select-bordered w-full' %>
+            <% elsif field['type'] == 'checkbox' %>
+              <div class="flex items-center gap-2 mt-1">
+                <input type="hidden" name="values[<%= field['uuid'] %>]" value="">
+                <input type="checkbox" name="values[<%= field['uuid'] %>]" value="true"
+                       <%= 'checked' if current_value.to_s == 'true' %>
+                       class="checkbox checkbox-primary" />
+                <span class="text-sm text-base-content/60">Checked</span>
+              </div>
+            <% elsif field['type'] == 'radio' && field['options'].present? %>
+              <div class="flex flex-col gap-2 mt-1">
+                <% field['options'].each do |opt| %>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="values[<%= field['uuid'] %>]" value="<%= opt %>"
+                           <%= 'checked' if current_value.to_s == opt.to_s %>
+                           class="radio radio-primary radio-sm" />
+                    <span class="text-sm"><%= opt %></span>
+                  </label>
+                <% end %>
+              </div>
+            <% else %>
+              <%= text_field_tag "values[#{field['uuid']}]", current_value.to_s,
+                                 class: 'base-input w-full', dir: 'auto',
+                                 placeholder: field['name'].presence || field['type'] %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="form-control mt-5">
+        <%= f.button button_title(title: t('save_and_regenerate'), disabled_with: t('saving')),
+                     class: 'base-button', disabled: @fields.empty? %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

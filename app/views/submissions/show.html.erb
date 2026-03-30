@@ -19,6 +19,16 @@
       <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !is_all_completed %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
       <% end %>
+      <% if signed_in? && can?(:destroy, @submission) && !@submission.archived_at? %>
+        <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
+          <%= button_to button_title(title: t('archive'), disabled_with: t('archive')[0..-2], icon: svg_icon('archive', class: 'w-6 h-6')), submission_path(@submission), class: 'btn btn-ghost text-base hidden md:flex', method: :delete %>
+        </span>
+      <% end %>
+      <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? %>
+        <span data-tip="<%= t('remove') %>" class="sm:tooltip tooltip-top">
+          <%= button_to button_title(title: t('remove'), disabled_with: t('remove')[0..-2], icon: svg_icon('trash', class: 'w-6 h-6')), submission_path(@submission, permanently: true), class: 'btn btn-ghost btn-error text-base hidden md:flex', method: :delete, data: { turbo_confirm: t('submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
+        </span>
+      <% end %>
       <% if @submission.audit_trail.present? %>
       
       <% elsif signed_in? %>
@@ -240,6 +250,14 @@
             <% if signed_in? && submitter && submitter.completed_at? && submitter.email == current_user.email && submitter.completed_at > 1.month.ago && can?(:update, @submission) %>
               <div class="mt-2 mb-1">
                 <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
+              </div>
+            <% end %>
+            <% if signed_in? && submitter && submitter.completed_at? && can?(:update, @submission) && !@submission.archived_at? %>
+              <div class="mt-2 mb-1">
+                <%= link_to t('edit_values'), edit_submitter_edit_value_path(submitter), class: 'btn btn-sm btn-outline w-full', data: { turbo_frame: 'modal' } %>
+              </div>
+              <div class="mt-1 mb-1">
+                <%= button_to t('reopen_and_resend'), submitters_reopen_path(submitter), method: :put, class: 'btn btn-sm btn-warning w-full', data: { turbo_confirm: 'This will clear the completion status and send a new invitation link to the patient. Are you sure?' } %>
               </div>
             <% end %>
           </div>

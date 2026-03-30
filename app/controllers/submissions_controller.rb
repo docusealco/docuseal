@@ -79,6 +79,8 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
+    template = @submission.template
+
     notice =
       if params[:permanently].in?(['true', true])
         @submission.destroy!
@@ -92,7 +94,11 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
+    if params[:permanently].in?(['true', true])
+      redirect_to(template ? template_path(template) : root_path, notice:)
+    else
+      redirect_back(fallback_location: template ? template_path(template) : root_path, notice:)
+    end
   end
 
   private

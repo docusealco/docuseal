@@ -87,6 +87,8 @@ Rails.application.routes.draw do
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
   resources :submitters_resubmit, only: %i[update]
+  resources :submitters_reopen, only: %i[update]
+  resources :submitter_edit_values, only: %i[edit update]
   resources :template_folders_autocomplete, only: %i[index]
   resources :webhook_secret, only: %i[show update]
   resources :webhook_preferences, only: %i[update]
@@ -141,6 +143,7 @@ Rails.application.routes.draw do
   end
 
   resource :resubmit_form, controller: 'start_form', only: :update
+  resource :submitter_edit_form, controller: 'submitter_edit_form', only: %i[update]
   resource :submit_form_email_2fa, only: %i[create update]
   resources :start_form_email_2fa_send, only: :create
 
