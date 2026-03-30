@@ -2,6 +2,12 @@
 <% enough_defined_submitters = Templates.filter_undefined_submitters(@template.submitters).size < 2 %>
 <%= render 'shared/turbo_modal_large', title: t('share_link') do %>
   <div class="mt-2 mb-4 px-5">
+    <% if @template.variables_schema.present? %>
+      <div class="alert items-start bg-base-100 border-base-300 mt-4">
+        <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6') %>
+        <div><%= t('dynamic_template_with_variables_cannot_be_used_via_shared_link') %></div>
+      </div>
+    <% end %>
     <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
       <% if @template.preferences&.dig('require_email_2fa') || @template.preferences&.dig('require_phone_2fa') %>
         <label for="template_shared_link" class="tooltip tooltip-bottom flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300" data-tip="<%= t(:templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link) %>">
@@ -12,7 +18,7 @@
         <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
           <span><%= t('enable_shared_link') %></span>
           <submit-form data-on="change" class="flex">
-            <%= f.check_box :shared_link, { disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>
+            <%= f.check_box :shared_link, { disabled: !can?(:update, @template) || @template.variables_schema.present?, class: 'toggle' }, 'true', 'false' %>
           </submit-form>
         </label>
       <% end %>
@@ -23,7 +29,7 @@
         </check-on-click>
       </div>
     <% end %>
-    <% if multiple_submitters && !enough_defined_submitters %>
+    <% if multiple_submitters && !enough_defined_submitters && @template.variables_schema.blank? %>
       <div class="alert items-start bg-base-100 border-base-300 mt-4">
         <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6 mt-1') %>
         <div><%= t('this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link') %></div>

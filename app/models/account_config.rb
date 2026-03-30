@@ -30,6 +30,7 @@ class AccountConfig < ApplicationRecord
   ALLOW_TYPED_SIGNATURE = 'allow_typed_signature'
   ALLOW_TO_RESUBMIT = 'allow_to_resubmit'
   ALLOW_TO_DECLINE_KEY = 'allow_to_decline'
+  ALLOW_TO_DELEGATE_KEY = 'allow_to_delegate'
   ALLOW_TO_PARTIAL_DOWNLOAD_KEY = 'allow_to_partial_download'
   SUBMITTER_REMINDERS = 'submitter_reminders'
   ENFORCE_SIGNING_ORDER_KEY = 'enforce_signing_order'

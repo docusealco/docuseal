@@ -3,11 +3,12 @@
 class SubmitFormController < ApplicationController
   layout 'form'
 
-  around_action :with_browser_locale, only: %i[show completed success]
+  around_action :with_browser_locale, only: %i[show completed success delegated]
   skip_before_action :authenticate_user!
   skip_authorization_check
 
   before_action :load_submitter, only: %i[show update completed]
+  before_action :maybe_redirect_delegated, only: %i[show completed]
   before_action :maybe_render_locked_page, only: :show
   before_action :maybe_require_link_2fa, only: %i[show]
 
@@ -91,6 +92,12 @@ class SubmitFormController < ApplicationController
 
   def success; end
 
+  def delegated
+    submitter_version = SubmitterVersion.find_by!(slug: params[:slug] || params[:submit_form_slug])
+
+    @submitter = submitter_version.submitter
+  end
+
   private
 
   def maybe_require_link_2fa
@@ -108,8 +115,18 @@ class SubmitFormController < ApplicationController
     render :declined if @submitter.declined_at?
   end
 
+  def maybe_redirect_delegated
+    return if @submitter
+
+    submitter_version = SubmitterVersion.find_by!(slug: params[:slug] || params[:submit_form_slug])
+
+    submitter_version.submitter.submission_events.find_by!(event_type: :delegate_form)
+
+    redirect_to submit_form_delegated_path(submitter_version.slug)
+  end
+
   def load_submitter
-    @submitter = Submitter.find_by!(slug: params[:slug] || params[:submit_form_slug])
+    @submitter = Submitter.find_by(slug: params[:slug] || params[:submit_form_slug])
   end
 
   def build_attachments_index(submission)

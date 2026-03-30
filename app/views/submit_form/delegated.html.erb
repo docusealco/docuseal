@@ -1,0 +1,21 @@
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <%= render 'start_form/banner' %>
+      </div>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('user_share', class: 'w-10 h-10') %>
+          </div>
+          <div dir="auto">
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
+            <p class="text-sm"><%= t('document_has_been_delegated_on_html', time: l(@submitter.submission_events.order(event_timestamp: :desc).find_by!(event_type: :delegate_form).event_timestamp, format: :long)) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>

@@ -131,23 +131,50 @@
             </div>
           <% end %>
         <% end %>
-        <% if !Docuseal.multitenant? || can?(:manage, :disable_decline) %>
-          <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
-          <% if can?(:manage, account_config) %>
-            <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
-              <%= f.hidden_field :key %>
-              <div class="flex items-center justify-between gap-4 py-2.5">
-                <div class="flex items-center space-x-1">
-                  <span class="text-left"><%= t('allow_to_decline_documents') %></span>
-                  <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester') %>">
-                    <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
-                  </span>
-                </div>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between gap-4 py-2.5">
+              <div class="flex items-center space-x-1">
+                <span class="text-left"><%= t('allow_to_decline_documents') %></span>
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester') %>">
+                  <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+                </span>
+              </div>
+              <% if !Docuseal.multitenant? || can?(:manage, :disable_decline) %>
                 <submit-form data-on="change" class="flex">
                   <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
                 </submit-form>
+              <% else %>
+                <a href="<%= console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" data-on="change" class="flex tooltip">
+                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value != false, disabled: true %>
+                </a>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DELEGATE_KEY) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between gap-4 py-2.5">
+              <div class="flex items-center space-x-1">
+                <span class="text-left"><%= t('allow_to_delegate_documents') %></span>
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allow_recipients_to_delegate_documents') %>">
+                  <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+                </span>
               </div>
-            <% end %>
+              <% if !Docuseal.multitenant? || can?(:manage, :delegate_form) %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
+                </submit-form>
+              <% else %>
+                <a href="<%= console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" class="flex tooltip">
+                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value == true, disabled: true %>
+                </a>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::FORM_PREFILL_SIGNATURE_KEY) %>

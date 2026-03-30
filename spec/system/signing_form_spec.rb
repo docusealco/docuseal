@@ -1159,6 +1159,50 @@ RSpec.describe 'Signing Form' do
     end
   end
 
+  context 'when decline is enabled' do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text]) }
+    let(:submission) { create(:submission, template:) }
+    let(:submitter) { create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:) }
+
+    it 'declines the form and shows the declined page' do
+      visit submit_form_path(slug: submitter.slug)
+
+      find('#decline_button').click
+      fill_in 'reason', with: 'I do not agree with the terms'
+      click_button 'Decline'
+
+      expect(page).to have_content('Form has been declined')
+
+      submitter.reload
+
+      expect(submitter.declined_at).to be_present
+    end
+  end
+
+  context 'when delegate is enabled' do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text]) }
+    let(:submission) { create(:submission, template:) }
+    let(:submitter) { create(:submitter, submission:, uuid: template.submitters.first['uuid'], account:) }
+
+    before do
+      create(:account_config, account:, key: AccountConfig::ALLOW_TO_DELEGATE_KEY, value: true)
+    end
+
+    it 'delegates the form to another email and shows the delegated page' do
+      visit submit_form_path(slug: submitter.slug)
+
+      find('#delegate_button').click
+      fill_in 'email', with: 'delegate@example.com'
+      click_button 'Delegate'
+
+      expect(page).to have_content('Document has been delegated')
+
+      submitter.reload
+
+      expect(submitter.email).to eq('delegate@example.com')
+    end
+  end
+
   context 'when the 2FA email verification is enabled', sidekiq: :inline do
     let(:template) { create(:template, account:, author:, only_field_types: %w[text]) }
     let(:submission) { create(:submission, template:) }

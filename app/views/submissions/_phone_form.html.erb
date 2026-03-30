@@ -2,7 +2,7 @@
   <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? || e['invite_via_field_uuid'].present? } %>
   <dynamic-list class="space-y-4">
     <div class="space-y-4">
-      <div class="<%= 'p-4 rounded-xl bg-base-300/40' unless local_assigns[:variables_form] %>" data-targets="dynamic-list.items">
+      <div class="relative <%= 'p-4 rounded-xl bg-base-300/40' unless local_assigns[:variables_form] %>" data-targets="dynamic-list.items">
         <div>
           <div class="absolute right-4 top-5">
             <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2 top-1' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">

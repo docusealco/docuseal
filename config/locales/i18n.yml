@@ -163,10 +163,13 @@ en: &en
   download: Download
   decline: Decline
   declined: Declined
+  delegate: Delegate
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Enter the email address of the person you want to delegate to
   decline_reason: Decline reason
   provide_a_reason: Provide a reason
   notify_the_sender_with_the_reason_you_declined: Notify the sender with the reason you declined
   form_has_been_declined_on_html: 'Form has been declined on <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Document has been delegated on <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" declined by %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" has been declined by %{submitter} with the following reason:'
   completed_successfully: Completed Successfully
@@ -201,6 +204,7 @@ en: &en
   allow_typed_text_signatures: Allow typed text signatures
   allow_to_resubmit_completed_forms: Allow to resubmit completed forms
   allow_to_decline_documents: Allow to decline documents
+  allow_to_delegate_documents: Allow to delegate documents
   remember_and_pre_fill_signatures: Remember and pre-fill signatures
   require_authentication_for_file_download_links: Require authentication for file download links
   combine_completed_documents_and_audit_log: Combine completed documents and Audit Log
@@ -787,6 +791,7 @@ en: &en
   share_link: Share link
   enable_shared_link: Enable shared link
   share_link_is_currently_disabled: Share link is currently disabled
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamic template with variables can't be used via a shared link
   select_data_residency: Select data residency
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} has invited you to fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Review or download completed documents. Fill and sign documents online effortlessly with a secure, fast, and user-friendly digital document signing solution.
@@ -841,6 +846,7 @@ en: &en
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Allow signers to create signatures by typing their name instead of drawing or uploading one.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Allow signers to resubmit forms after completion, useful when corrections or multiple submissions are needed.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Allow recipients to decline signing a document. The decline reason notification will be sent to the signature requester.
+  allow_recipients_to_delegate_documents: Allow recipients to delegate documents to a different person via email. This can be useful when the original recipient needs to pass the document to the authorized signer.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: "Save a user's signature and automatically pre-fill it in future signing sessions."
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Make document download links expire after 40 minutes to prevent long-term access and enhance security.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Require authentication with user login or API key to access the document download links.
@@ -954,6 +960,8 @@ en: &en
     complete_kba_by_html: '<b>KBA completed</b> by %{submitter_name}'
     fail_kba_by_html: '<b>KBA failed</b> by %{submitter_name}'
     api_complete_form_by_html: '<b>Submission completed via API</b> by %{submitter_name}'
+    decline_form_by_html: '<b>Form declined</b> by %{submitter_name}'
+    delegate_form_by_html: '<b>Delegated</b> from %{from} to %{to}'
   import_list:
     select_worksheet: Select Worksheet
     open: Open
@@ -1192,11 +1200,14 @@ es: &es
   downloading: Descargando
   download: Descargar
   decline: Rechazar
+  delegate: Delegar
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Ingrese la dirección de correo electrónico de la persona a quien desea delegar
   declined: Rechazado
   decline_reason: Motivo de rechazo
   provide_a_reason: Proporcione un motivo
   notify_the_sender_with_the_reason_you_declined: Notifique al remitente con el motivo por el que rechazó
   form_has_been_declined_on_html: 'El formulario ha sido rechazado el <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'El documento ha sido delegado el <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" rechazado por %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" ha sido rechazado por %{submitter} con el siguiente motivo:'
   completed_successfully: Completado exitosamente
@@ -1231,6 +1242,7 @@ es: &es
   allow_typed_text_signatures: Permitir firmas de texto mecanografiadas
   allow_to_resubmit_completed_forms: Permitir reenviar formularios completados
   allow_to_decline_documents: Permitir rechazar documentos
+  allow_to_delegate_documents: Permitir delegar documentos
   remember_and_pre_fill_signatures: Recordar y prellenar firmas
   require_authentication_for_file_download_links: Requerir autenticación para enlaces de descarga de archivos
   combine_completed_documents_and_audit_log: Combinar documentos completados y Registro de Auditoría
@@ -1814,6 +1826,7 @@ es: &es
   share_link: Enlace para compartir
   enable_shared_link: Habilitar enlace compartido
   share_link_is_currently_disabled: El enlace compartido está deshabilitado actualmente
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: La plantilla dinámica con variables no se puede usar mediante un enlace compartido
   select_data_residency: Seleccionar ubicación de datos
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} te ha invitado a completar y firmar documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Revisa o descarga los documentos completados. Completa y firma documentos en línea fácilmente con una solución de firma digital segura, rápida y fácil de usar.
@@ -1868,6 +1881,7 @@ es: &es
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que los firmantes creen firmas escribiendo su nombre en lugar de dibujar o subir una.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que los firmantes vuelvan a enviar formularios después de completarlos, útil cuando se necesitan correcciones o múltiples envíos.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que los destinatarios rechacen firmar un documento. La notificación del motivo del rechazo se enviará al solicitante de la firma.
+  allow_recipients_to_delegate_documents: Permitir que los destinatarios deleguen documentos a otra persona por correo electrónico. Esto puede ser útil cuando el destinatario original necesita pasar el documento al firmante autorizado.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Guardar la firma de un usuario y rellenarla automáticamente en futuras sesiones de firma.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Hacer que los enlaces de descarga de documentos caduquen después de 40 minutos para evitar el acceso a largo plazo y mejorar la seguridad.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Requerir autenticación con inicio de sesión de usuario o clave API para acceder a los enlaces de descarga de documentos.
@@ -1976,6 +1990,8 @@ es: &es
     invite_party_by_html: '<b>Invitado</b> %{invited_submitter_name} por %{submitter_name}'
     complete_form_by_html: '<b>Envío completado</b> por %{submitter_name}'
     api_complete_form_by_html: '<b>Envío completado vía API</b> por %{submitter_name}'
+    decline_form_by_html: '<b>Formulario rechazado</b> por %{submitter_name}'
+    delegate_form_by_html: '<b>Delegado</b> de %{from} a %{to}'
     start_verification_by_html: '<b>Verificación de identidad iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificación de identidad completada</b> por %{submitter_name} con %{provider}'
     start_kba_by_html: '<b>KBA iniciado</b> por %{submitter_name}'
@@ -2219,11 +2235,14 @@ it: &it
   downloading: Scaricamento
   download: Scarica
   decline: Rifiuta
+  delegate: Delega
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Inserisci l'indirizzo email della persona a cui vuoi delegare
   declined: Rifiutato
   decline_reason: Motivo del rifiuto
   provide_a_reason: Fornisci un motivo
   notify_the_sender_with_the_reason_you_declined: Informare il mittente del motivo per cui hai rifiutato
   form_has_been_declined_on_html: 'Il modulo è stato rifiutato il <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Il documento è stato delegato il <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" rifiutato da %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" è stato rifiutato da %{submitter} per il seguente motivo:'
   completed_successfully: Completato con successo
@@ -2258,6 +2277,7 @@ it: &it
   allow_typed_text_signatures: Permettere firme con testo digitato
   allow_to_resubmit_completed_forms: Permettere di reinviare i moduli completati
   allow_to_decline_documents: Permettere di rifiutare i documenti
+  allow_to_delegate_documents: Permettere di delegare i documenti
   remember_and_pre_fill_signatures: Ricordare e precompilare le firme
   require_authentication_for_file_download_links: "Richiedere l'autenticazione per i link di download dei file"
   combine_completed_documents_and_audit_log: Combinare i documenti completati e il Registro di Audit
@@ -2841,6 +2861,7 @@ it: &it
   share_link: Link di condivisione
   enable_shared_link: Abilita link condiviso
   share_link_is_currently_disabled: Il link condiviso è attualmente disabilitato
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Il template dinamico con variabili non può essere utilizzato tramite link condiviso
   select_data_residency: Seleziona la residenza dei dati
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} ti ha invitato a compilare e firmare documenti online con facilità utilizzando una soluzione di firma digitale sicura, veloce e facile da usare.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Rivedi o scarica i documenti completati. Compila e firma documenti online facilmente con una soluzione di firma digitale sicura, veloce e facile da usare.
@@ -2896,6 +2917,7 @@ it: &it
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Consentire ai firmatari di creare firme digitando il proprio nome invece di disegnarle o caricarle.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Consentire ai firmatari di reinviare i moduli dopo il completamento, utile quando sono necessarie correzioni o più invii.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Consentire ai destinatari di rifiutare di firmare un documento. La notifica del motivo del rifiuto verrà inviata al richiedente della firma.
+  allow_recipients_to_delegate_documents: Consentire ai destinatari di delegare i documenti a un'altra persona tramite e-mail. Ciò può essere utile quando il destinatario originale deve passare il documento al firmatario autorizzato.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Salvare la firma di un utente e compilarla automaticamente nelle future sessioni di firma.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: "Fare in modo che i link di download dei documenti scadano dopo 40 minuti per prevenire l'accesso a lungo termine e migliorare la sicurezza."
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: "Richiedere l'autenticazione con login utente o chiave API per accedere ai link di download dei documenti."
@@ -3004,6 +3026,8 @@ it: &it
     invite_party_by_html: '<b>Invitato</b> %{invited_submitter_name} da %{submitter_name}'
     complete_form_by_html: '<b>Invio completato</b> da %{submitter_name}'
     api_complete_form_by_html: '<b>Invio completato tramite API</b> da %{submitter_name}'
+    decline_form_by_html: '<b>Modulo rifiutato</b> da %{submitter_name}'
+    delegate_form_by_html: '<b>Delegato</b> da %{from} a %{to}'
     start_verification_by_html: "<b>Verifica dell'identità iniziata</b> da %{submitter_name}"
     complete_verification_by_html: "<b>Verifica dell'identità completata</b> da %{submitter_name} con %{provider}"
     start_kba_by_html: "<b>KBA avviata</b> da %{submitter_name}"
@@ -3247,11 +3271,14 @@ fr: &fr
   downloading: Téléchargement
   download: Télécharger
   decline: Refuser
+  delegate: Déléguer
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Saisissez l'adresse e-mail de la personne à qui vous souhaitez déléguer
   declined: Refusé
   decline_reason: Motif du refus
   provide_a_reason: Fournissez un motif
   notify_the_sender_with_the_reason_you_declined: Notifier l’expéditeur avec le motif du refus
   form_has_been_declined_on_html: Le formulaire a été refusé le <span class="font-semibold">%{time}</span>
+  document_has_been_delegated_on_html: Le document a été délégué le <span class="font-semibold">%{time}</span>
   name_declined_by_submitter: '"%{name}" refusé par %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" a été refusé par %{submitter} pour le motif suivant :'
   completed_successfully: Terminé avec succès
@@ -3286,6 +3313,7 @@ fr: &fr
   allow_typed_text_signatures: Autoriser les signatures tapées
   allow_to_resubmit_completed_forms: Autoriser la nouvelle soumission des formulaires complétés
   allow_to_decline_documents: Autoriser le refus de documents
+  allow_to_delegate_documents: Autoriser la délégation de documents
   remember_and_pre_fill_signatures: Mémoriser et pré-remplir les signatures
   require_authentication_for_file_download_links: Exiger une authentification pour les liens de téléchargement
   combine_completed_documents_and_audit_log: Combiner les documents complétés et le journal d’audit
@@ -3866,6 +3894,7 @@ fr: &fr
   share_link: Lien de partage
   enable_shared_link: Activer le lien partagé
   share_link_is_currently_disabled: Le lien de partage est actuellement désactivé
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Le modèle dynamique avec des variables ne peut pas être utilisé via un lien partagé
   select_data_residency: Sélectionner la résidence des données
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: "%{account_name} vous a invité à remplir et signer des documents en ligne facilement, grâce à une solution de signature numérique sécurisée, rapide et conviviale."
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Consultez ou téléchargez les documents complétés. Remplissez et signez des documents en ligne facilement, grâce à une solution de signature numérique sécurisée, rapide et conviviale.
@@ -3919,6 +3948,7 @@ fr: &fr
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Autoriser les signataires à créer des signatures en tapant leur nom au lieu de dessiner ou téléverser une signature.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Autoriser les signataires à soumettre à nouveau les formulaires après finalisation, utile pour des corrections ou soumissions multiples.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Autoriser les destinataires à refuser de signer un document. Le motif du refus sera notifié au demandeur de signature.
+  allow_recipients_to_delegate_documents: Autoriser les destinataires à déléguer des documents à une autre personne par e-mail. Cela peut être utile lorsque le destinataire d'origine doit transmettre le document au signataire autorisé.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Mémoriser la signature d’un utilisateur et la pré‑remplir automatiquement lors de futures sessions de signature.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Faire expirer les liens de téléchargement des documents après 40 minutes pour éviter un accès à long terme et renforcer la sécurité.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Exiger une authentification par connexion utilisateur ou clé API pour accéder aux liens de téléchargement des documents.
@@ -4030,6 +4060,8 @@ fr: &fr
     start_verification_by_html: "<b>Vérification d’identité démarrée</b> par %{submitter_name}"
     complete_verification_by_html: "<b>Vérification d’identité terminée</b> par %{submitter_name} avec %{provider}"
     api_complete_form_by_html: "<b>Soumission terminée via API</b> par %{submitter_name}"
+    decline_form_by_html: "<b>Formulaire refusé</b> par %{submitter_name}"
+    delegate_form_by_html: "<b>Délégué</b> de %{from} à %{to}"
     start_kba_by_html: "<b>KBA démarré</b> par %{submitter_name}"
     complete_kba_by_html: "<b>KBA terminé</b> par %{submitter_name}"
     fail_kba_by_html: "<b>KBA échoué</b> par %{submitter_name}"
@@ -4271,11 +4303,14 @@ pt: &pt
   downloading: Baixando
   download: Baixar
   decline: Recusar
+  delegate: Delegar
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Insira o endereço de e-mail da pessoa para quem deseja delegar
   declined: Recusado
   decline_reason: Motivo da recusa
   provide_a_reason: Forneça um motivo
   notify_the_sender_with_the_reason_you_declined: Notifique o remetente com o motivo da sua recusa
   form_has_been_declined_on_html: "O formulário foi recusado em <span class='font-semibold'>%{time}</span>"
+  document_has_been_delegated_on_html: "O documento foi delegado em <span class='font-semibold'>%{time}</span>"
   name_declined_by_submitter: '"%{name}" foi recusado por %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" foi recusado por %{submitter} com o seguinte motivo:'
   completed_successfully: Concluído com sucesso
@@ -4310,6 +4345,7 @@ pt: &pt
   allow_typed_text_signatures: Permitir assinaturas digitadas
   allow_to_resubmit_completed_forms: Permitir reenviar formulários concluídos
   allow_to_decline_documents: Permitir recusar documentos
+  allow_to_delegate_documents: Permitir delegar documentos
   remember_and_pre_fill_signatures: Lembrar e preencher assinaturas automaticamente
   require_authentication_for_file_download_links: Requerer autenticação para links de download de arquivos
   combine_completed_documents_and_audit_log: Combinar documentos concluídos e log de auditoria
@@ -4893,6 +4929,7 @@ pt: &pt
   share_link: Link de compartilhamento
   enable_shared_link: Ativar link compartilhado
   share_link_is_currently_disabled: O link compartilhado está desativado no momento
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: O template dinâmico com variáveis não pode ser usado por meio de link compartilhado
   select_data_residency: Selecionar local dos dados
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} convidou você para preencher e assinar documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Reveja ou baixe os documentos concluídos. Preencha e assine documentos online com facilidade usando uma solução de assinatura digital segura, rápida e fácil de usar.
@@ -4947,6 +4984,7 @@ pt: &pt
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que os signatários criem assinaturas digitando seu nome em vez de desenhá-las ou carregá-las.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que os signatários reenviem formulários após o término, útil quando são necessárias correções ou múltiplos envios.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que os destinatários recusem assinar um documento. A notificação do motivo da recusa será enviada ao solicitante da assinatura.
+  allow_recipients_to_delegate_documents: Permitir que os destinatários deleguem documentos a outra pessoa por e-mail. Isso pode ser útil quando o destinatário original precisa passar o documento ao signatário autorizado.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Salvar a assinatura de um usuário e preenchê-la automaticamente em futuras sessões de assinatura.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Fazer os links de download de documentos expirarem após 40 minutos para evitar o acesso prolongado e aumentar a segurança.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Exigir autenticação com login do usuário ou chave API para acessar os links de download de documentos.
@@ -5057,6 +5095,8 @@ pt: &pt
     start_verification_by_html: '<b>Verificação de identidade iniciada</b> por %{submitter_name}'
     complete_verification_by_html: '<b>Verificação de identidade concluída</b> por %{submitter_name} com %{provider}'
     api_complete_form_by_html: '<b>Submissão concluída via API</b> por %{submitter_name}'
+    decline_form_by_html: '<b>Formulário recusado</b> por %{submitter_name}'
+    delegate_form_by_html: '<b>Delegado</b> de %{from} para %{to}'
     start_kba_by_html: '<b>KBA iniciada</b> por %{submitter_name}'
     complete_kba_by_html: '<b>KBA concluída</b> por %{submitter_name}'
     fail_kba_by_html: '<b>KBA reprovada</b> por %{submitter_name}'
@@ -5298,11 +5338,14 @@ de: &de
   downloading: Wird heruntergeladen
   download: Download
   decline: Ablehnen
+  delegate: Delegieren
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Geben Sie die E-Mail-Adresse der Person ein, an die Sie delegieren möchten
   declined: Abgelehnt
   decline_reason: Ablehnungsgrund
   provide_a_reason: Geben Sie einen Grund an
   notify_the_sender_with_the_reason_you_declined: Den Absender über den Grund Ihrer Ablehnung benachrichtigen
   form_has_been_declined_on_html: "Das Formular wurde am <span class='font-semibold'>%{time}</span> abgelehnt"
+  document_has_been_delegated_on_html: "Das Dokument wurde am <span class='font-semibold'>%{time}</span> delegiert"
   name_declined_by_submitter: '"%{name}" wurde von %{submitter} abgelehnt'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" wurde von %{submitter} mit folgendem Grund abgelehnt:'
   completed_successfully: Erfolgreich abgeschlossen
@@ -5337,6 +5380,7 @@ de: &de
   allow_typed_text_signatures: Getippte Unterschriften zulassen
   allow_to_resubmit_completed_forms: Erneutes Einreichen abgeschlossener Formulare zulassen
   allow_to_decline_documents: Ablehnen von Dokumenten erlauben
+  allow_to_delegate_documents: Delegieren von Dokumenten erlauben
   remember_and_pre_fill_signatures: Signaturen merken und vorab ausfüllen
   require_authentication_for_file_download_links: Authentifizierung für Dateidownload-Links erforderlich
   combine_completed_documents_and_audit_log: Abgeschlossene Dokumente und Prüfprotokoll kombinieren
@@ -5920,6 +5964,7 @@ de: &de
   share_link: Freigabelink
   enable_shared_link: Freigabelink aktivieren
   share_link_is_currently_disabled: Freigabelink ist derzeit deaktiviert
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamische Vorlage mit Variablen kann nicht über einen Freigabelink verwendet werden
   select_data_residency: Datenstandort auswählen
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} hat Sie eingeladen, Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung auszufüllen und zu unterschreiben.'
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Überprüfen oder laden Sie abgeschlossene Dokumente herunter. Füllen und unterschreiben Sie Dokumente mühelos online mit einer sicheren, schnellen und benutzerfreundlichen digitalen Signaturlösung.
@@ -5974,6 +6019,7 @@ de: &de
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Unterzeichner dürfen Signaturen erstellen, indem sie ihren Namen eingeben, statt eine Signatur zu zeichnen oder hochzuladen.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Unterzeichner dürfen Formulare nach Abschluss erneut einreichen – nützlich für Korrekturen oder mehrere Einreichungen.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Empfänger dürfen die Unterzeichnung eines Dokuments ablehnen. Die Benachrichtigung mit dem Ablehnungsgrund wird an den Anforderer der Signatur gesendet.
+  allow_recipients_to_delegate_documents: Empfängern erlauben, Dokumente per E-Mail an eine andere Person weiterzuleiten. Dies kann nützlich sein, wenn der ursprüngliche Empfänger das Dokument an den autorisierten Unterzeichner weiterleiten muss.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Die Signatur eines Benutzers speichern und sie in zukünftigen Signatursitzungen automatisch vorausfüllen.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Download-Links für Dokumente nach 40 Minuten ablaufen lassen, um langfristigen Zugriff zu verhindern und die Sicherheit zu erhöhen.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Authentifizierung mit Benutzeranmeldung oder API-Schlüssel erforderlich, um auf die Download-Links für Dokumente zuzugreifen.
@@ -6084,6 +6130,8 @@ de: &de
     start_verification_by_html: '<b>Identitätsüberprüfung gestartet</b> von %{submitter_name}'
     complete_verification_by_html: '<b>Identitätsüberprüfung abgeschlossen</b> von %{submitter_name} mit %{provider}'
     api_complete_form_by_html: '<b>Einreichung über API abgeschlossen</b> von %{submitter_name}'
+    decline_form_by_html: '<b>Formular abgelehnt</b> von %{submitter_name}'
+    delegate_form_by_html: '<b>Delegiert</b> von %{from} an %{to}'
     start_kba_by_html: '<b>KBA gestartet</b> von %{submitter_name}'
     complete_kba_by_html: '<b>KBA abgeschlossen</b> von %{submitter_name}'
     fail_kba_by_html: '<b>KBA fehlgeschlagen</b> von %{submitter_name}'
@@ -6190,11 +6238,14 @@ pl:
   hi_there: Cześć,
   download: Pobierz
   decline: Odrzuć
+  delegate: Deleguj
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Wprowadź adres e-mail osoby, do której chcesz delegować
   declined: Odrzucono
   decline_reason: Powód odrzucenia
   provide_a_reason: Podaj powód
   notify_the_sender_with_the_reason_you_declined: Powiadom nadawcę o powodzie, dla którego odrzuciłeś
   form_has_been_declined_on_html: 'Formularz został odrzucony o <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Dokument został oddelegowany o <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" odrzucono przez %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" został odrzucony przez %{submitter} z następującym powodem:'
   email: E-mail
@@ -6287,11 +6338,14 @@ uk:
   hi_there: Привіт,
   download: Завантажити
   decline: Відхилити
+  delegate: Делегувати
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Введіть адресу електронної пошти особи, якій ви хочете делегувати
   declined: Відхилено
   decline_reason: Причина відхилення
   provide_a_reason: Надайте причину
   notify_the_sender_with_the_reason_you_declined: Повідомте відправника про причину, з якої ви відхилили
   form_has_been_declined_on_html: 'Форму було відхилено о <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Документ було делеговано о <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" відхилено %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" було відхилено %{submitter} з такою причиною:'
   email: E-mail
@@ -6384,11 +6438,14 @@ cs:
   hi_there: Ahoj,
   download: Stáhnout
   decline: Odmítnout
+  delegate: Delegovat
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Zadejte e-mailovou adresu osoby, na kterou chcete delegovat
   declined: Odmítnuto
   decline_reason: Důvod odmítnutí
   provide_a_reason: Uveďte důvod
   notify_the_sender_with_the_reason_you_declined: Informujte odesílatele o důvodu odmítnutí
   form_has_been_declined_on_html: 'Formulář byl odmítnut dne <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Dokument byl delegován dne <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" odmítnuto %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" bylo odmítnuto %{submitter} s následujícím důvodem:'
   email: E-mail
@@ -6481,11 +6538,14 @@ he:
   hi_there: שלום,
   download: הורד
   decline: דחייה
+  delegate: הואלה
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: הזן את כתובת הדוא"ל של האדם שברצונך להאציל אליו
   declined: דחוי
   decline_reason: סיבת דחייה
   provide_a_reason: אנא ספק סיבה
   notify_the_sender_with_the_reason_you_declined: הודע לשולח על הסיבה לדחייה
   form_has_been_declined_on_html: 'הטופס נדחה בתאריך <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'המסמך הועבר בתאריך <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" נדחה על ידי %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" נדחה על ידי %{submitter} עם הסיבה הבאה:'
   email: דוא"ל
@@ -6714,11 +6774,14 @@ nl: &nl
   downloading: Downloaden
   download: Downloaden
   decline: Weigeren
+  delegate: Delegeren
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Voer het e-mailadres in van de persoon aan wie u wilt delegeren
   declined: Geweigerd
   decline_reason: Reden van weigering
   provide_a_reason: Geef een reden op
   notify_the_sender_with_the_reason_you_declined: Informeer de verzender over de reden van uw weigering
   form_has_been_declined_on_html: Formulier is geweigerd op <span class="font-semibold">%{time}</span>
+  document_has_been_delegated_on_html: Document is gedelegeerd op <span class="font-semibold">%{time}</span>
   name_declined_by_submitter: '"%{name}" geweigerd door %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" is geweigerd door %{submitter} met de volgende reden:'
   completed_successfully: Succesvol voltooid
@@ -6753,6 +6816,7 @@ nl: &nl
   allow_typed_text_signatures: Handtekeningen met getypte tekst toestaan
   allow_to_resubmit_completed_forms: Opnieuw indienen van voltooide formulieren toestaan
   allow_to_decline_documents: Weigeren van documenten toestaan
+  allow_to_delegate_documents: Delegeren van documenten toestaan
   remember_and_pre_fill_signatures: Handtekeningen onthouden en vooraf invullen
   require_authentication_for_file_download_links: Authenticatie vereisen voor links naar bestandsdownloads
   combine_completed_documents_and_audit_log: Voltooide documenten en auditlogboek combineren
@@ -7333,6 +7397,7 @@ nl: &nl
   share_link: Deellink
   enable_shared_link: Deellink inschakelen
   share_link_is_currently_disabled: Deellink is momenteel uitgeschakeld
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Dynamisch sjabloon met variabelen kan niet worden gebruikt via een deellink
   select_data_residency: Gegevensresidentie selecteren
   account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: "%{account_name} heeft u uitgenodigd om documenten online moeiteloos in te vullen en te ondertekenen met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing."
   review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Bekijk of download voltooide documenten. Vul en onderteken documenten online moeiteloos met een veilige, snelle en gebruiksvriendelijke digitale ondertekenoplossing.
@@ -7386,6 +7451,7 @@ nl: &nl
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Sta ondertekenaars toe handtekeningen te maken door hun naam te typen in plaats van te tekenen of te uploaden.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Sta ondertekenaars toe formulieren na voltooiing opnieuw in te dienen; nuttig wanneer correcties of meerdere inzendingen nodig zijn.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Sta ontvangers toe het ondertekenen van een document te weigeren. De melding met de reden van weigering wordt naar de aanvrager van de handtekening gestuurd.
+  allow_recipients_to_delegate_documents: Sta ontvangers toe documenten per e-mail te delegeren aan een andere persoon. Dit kan handig zijn wanneer de oorspronkelijke ontvanger het document moet doorgeven aan de gemachtigde ondertekenaar.
   save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: Sla de handtekening van een gebruiker op en vul deze automatisch vooraf in bij toekomstige ondertekeningssessies.
   make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Laat links voor het downloaden van documenten na 40 minuten verlopen om langdurige toegang te voorkomen en de beveiliging te verbeteren.
   require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Authenticatie met gebruikerslogin of API-sleutel vereisen om toegang te krijgen tot de documentdownloadlinks.
@@ -7496,6 +7562,8 @@ nl: &nl
     start_verification_by_html: "<b>Identiteitsverificatie gestart</b> door %{submitter_name}"
     complete_verification_by_html: "<b>Identiteitsverificatie voltooid</b> door %{submitter_name} met %{provider}"
     api_complete_form_by_html: "<b>Inzending via API voltooid</b> door %{submitter_name}"
+    decline_form_by_html: "<b>Formulier geweigerd</b> door %{submitter_name}"
+    delegate_form_by_html: "<b>Gedelegeerd</b> van %{from} naar %{to}"
     start_kba_by_html: "<b>KBA gestart</b> door %{submitter_name}"
     complete_kba_by_html: "<b>KBA voltooid</b> door %{submitter_name}"
     fail_kba_by_html: "<b>KBA mislukt</b> door %{submitter_name}"
@@ -7602,11 +7670,14 @@ ar:
   hi_there: مرحبا,
   download: تحميل
   decline: رفض
+  delegate: تفويض
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: أدخل عنوان البريد الإلكتروني للشخص الذي تريد التفويض إليه
   declined: مرفوض
   decline_reason: سبب الرفض
   provide_a_reason: قدم سببًا
   notify_the_sender_with_the_reason_you_declined: أخطر المرسل بسبب الرفض
   form_has_been_declined_on_html: 'تم رفض النموذج في <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'تم تفويض المستند في <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" مرفوض بواسطة %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" تم رفضه بواسطة %{submitter} مع السبب التالي:'
   email: البريد الإلكتروني
@@ -7699,11 +7770,14 @@ ko:
   hi_there: 안녕하세요,
   download: 다운로드
   decline: 거절
+  delegate: 위임
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: 위임할 사람의 이메일 주소를 입력하세요
   declined: 거절됨
   decline_reason: 거절 사유
   provide_a_reason: 사유를 제공하세요
   notify_the_sender_with_the_reason_you_declined: 거절한 이유로 발신자에게 알리기
   form_has_been_declined_on_html: '양식이 <span class="font-semibold">%{time}</span>에 거절되었습니다.'
+  document_has_been_delegated_on_html: '문서가 <span class="font-semibold">%{time}</span>에 위임되었습니다.'
   name_declined_by_submitter: '"%{name}"이(가) %{submitter}에 의해 거절되었습니다.'
   name_declined_by_submitter_with_the_following_reason: '"%{name}"이(가) %{submitter}에 의해 다음과 같은 사유로 거절되었습니다:'
   email: 이메일
@@ -7796,11 +7870,14 @@ ja:
   hi_there: こんにちは
   download: ダウンロード
   decline: 辞退
+  delegate: 委任
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: 委任したい人のメールアドレスを入力してください
   declined: 辞退済み
   decline_reason: 辞退の理由
   provide_a_reason: 理由を入力してください
   notify_the_sender_with_the_reason_you_declined: 辞退理由を送信者に通知してください
   form_has_been_declined_on_html: '<span class="font-semibold">%{time}</span> にフォームが辞退されました'
+  document_has_been_delegated_on_html: '<span class="font-semibold">%{time}</span> にドキュメントが委任されました'
   name_declined_by_submitter: '"%{name}" は %{submitter} により辞退されました'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" は %{submitter} により次の理由で辞退されました:'
   email: メール
