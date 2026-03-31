@@ -8,6 +8,8 @@ class SubmissionsDownloadController < ApplicationController
   FILES_TTL = 5.minutes
 
   def index
+    response.headers['Cache-Control'] = 'no-store'
+
     @submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
 
     signature_valid =

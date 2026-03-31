@@ -19,7 +19,18 @@ module Submissions
       total_wait_time ||= 0
       key = ['result_attachments', submitter.id].join(':')
 
-      return submitter.documents if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+      if ApplicationRecord.uncached { LockEvent.exists?(key:, event_name: :complete) }
+        documents = submitter.documents
+
+        # Guard against stale lock: documents were purged after the lock was set (e.g. admin reopen).
+        # Reset the lock so we fall through to regenerate below.
+        unless documents.any?
+          LockEvent.where(key:).delete_all
+          return call(submitter)
+        end
+
+        return documents
+      end
 
       events = ApplicationRecord.uncached { LockEvent.where(key:).order(:id).to_a }
 

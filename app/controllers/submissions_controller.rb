@@ -83,6 +83,8 @@ class SubmissionsController < ApplicationController
 
     notice =
       if params[:permanently].in?(['true', true])
+        WebhookUrls.enqueue_events(@submission, 'submission.archived')
+
         @submission.destroy!
 
         I18n.t('submission_has_been_removed')

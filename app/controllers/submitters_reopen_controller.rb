@@ -11,6 +11,15 @@ class SubmittersReopenController < ApplicationController
 
       @submitter.documents.each(&:purge)
 
+      # Clear stale LockEvents so EnsureResultGenerated regenerates on next completion
+      LockEvent.where(key: "result_attachments:#{@submitter.id}").delete_all
+      LockEvent.where(key: "combined_document:#{@submitter.id}").delete_all
+      LockEvent.where(key: "audit_trail:#{@submitter.submission_id}").delete_all
+
+      # Purge stale combined document and audit trail
+      @submitter.submission.combined_document.purge if @submitter.submission.combined_document.attached?
+      @submitter.submission.audit_trail.purge if @submitter.submission.audit_trail.attached?
+
       SubmissionEvent.create!(
         submitter: @submitter,
         event_type: :admin_reopen_form,

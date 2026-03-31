@@ -17,7 +17,7 @@ class SubmitterEditValuesController < ApplicationController
                                 .reject { |f| NON_EDITABLE_TYPES.include?(f['type']) }
     editable_uuids = editable_fields.map { |f| f['uuid'] }
 
-    submitted_values = params[:values].to_h.slice(*editable_uuids)
+    submitted_values = params[:values].to_unsafe_h.slice(*editable_uuids)
 
     ActiveRecord::Base.transaction do
       @submitter.update!(values: @submitter.values.merge(submitted_values))
