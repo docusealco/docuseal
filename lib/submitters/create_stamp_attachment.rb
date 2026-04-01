@@ -4,6 +4,7 @@ module Submitters
   module CreateStampAttachment
     WIDTH = 400
     HEIGHT = 200
+    LRM = "\u200E"
 
     TRANSPARENT_PIXEL = "\x89PNG\r\n\u001A\n\u0000\u0000\u0000\rIHDR\u0000" \
                         "\u0000\u0000\u0001\u0000\u0000\u0000\u0001\b\u0004" \
@@ -83,7 +84,8 @@ module Submitters
       name = ERB::Util.html_escape(name)
       role = ERB::Util.html_escape(role)
 
-      text = %(<span size="90">#{digitally_signed_by}:\n<b>#{name}</b>\n#{role}#{time} #{timezone}</span>)
+      text =
+        %(<span size="90">#{LRM}#{digitally_signed_by}:\n#{LRM}<b>#{name}</b>\n#{LRM}#{role}#{time} #{timezone}</span>)
 
       Vips::Image.text(text, width: WIDTH, height: HEIGHT, wrap: :'word-char')
     end
