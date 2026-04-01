@@ -106,6 +106,8 @@ module Submissions
       return submission if template.variables_schema.present? ||
                            submission.variables_schema.present?
 
+      return submission if template.schema.none? { |e| e['dynamic'] }
+
       areas_index = {}
       submission.template_schema = []
 
