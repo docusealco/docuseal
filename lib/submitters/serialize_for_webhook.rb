@@ -12,7 +12,7 @@ module Submitters
 
     def call(submitter, expires_at: Accounts.link_expires_at(Account.new(id: submitter.account_id)))
       ActiveRecord::Associations::Preloader.new(
-        records: [submitter], associations: [documents_attachments: :blob, attachments_attachments: :blob]
+        records: [submitter], associations: [{ documents_attachments: :blob, attachments_attachments: :blob }]
       ).call
 
       values = build_values_array(submitter, expires_at:)

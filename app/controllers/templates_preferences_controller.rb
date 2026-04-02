@@ -58,8 +58,8 @@ class TemplatesPreferencesController < ApplicationController
                       default_expire_at_duration shared_link_2fa default_expire_at request_email_enabled
                       completed_notification_email_subject completed_notification_email_body
                       completed_notification_email_enabled completed_notification_email_attach_audit] +
-                      [completed_message: %i[title body],
-                       submitters: [%i[uuid request_email_subject request_email_body]], link_form_fields: []]
+                      [{ completed_message: %i[title body],
+                         submitters: [%i[uuid request_email_subject request_email_body]], link_form_fields: [] }]
     ).tap do |attrs|
       attrs[:preferences].delete(:submitters) if params[:request_email_per_submitter] != '1'
 

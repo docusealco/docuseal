@@ -4,7 +4,7 @@ module Templates
   module DetectFields
     module_function
 
-    TextFieldBox = Struct.new(:x, :y, :w, :h, keyword_init: true) do
+    TextFieldBox = Struct.new(:x, :y, :w, :h) do
       def endy
         @endy ||= y + h
       end
@@ -14,7 +14,7 @@ module Templates
       end
     end
 
-    PageNode = Struct.new(:prev, :next, :elem, :page, :attachment_uuid, keyword_init: true)
+    PageNode = Struct.new(:prev, :next, :elem, :page, :attachment_uuid)
 
     DATE_REGEXP = /
       (?:

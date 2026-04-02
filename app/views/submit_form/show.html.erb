@@ -5,7 +5,7 @@
 <% fields_index = Templates.build_field_areas_index(@submitter.submission.template_fields || @submitter.submission.template.fields) %>
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
-<% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
+<% page_blob_struct = Struct.new(:url, :metadata) %>
 <% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
 <% font_scale = 1000.0 / PdfUtils::US_LETTER_W %>
 <% decline_modal_checkbox_uuid = nil %>

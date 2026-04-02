@@ -15,9 +15,9 @@ module Submitters
       ActiveRecord::Associations::Preloader.new(
         records: [submitter],
         associations: if with_documents
-                        [documents_attachments: :blob, attachments_attachments: :blob]
+                        [{ documents_attachments: :blob, attachments_attachments: :blob }]
                       elsif with_values
-                        [attachments_attachments: :blob]
+                        [{ attachments_attachments: :blob }]
                       end
       ).call
 

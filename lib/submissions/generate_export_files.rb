@@ -58,7 +58,7 @@ module Submissions
     end
 
     def build_table_rows(submissions, expires_at: nil)
-      submissions.preload(submitters: [attachments_attachments: :blob, documents_attachments: :blob])
+      submissions.preload(submitters: [{ attachments_attachments: :blob, documents_attachments: :blob }])
                  .find_each.map do |submission|
         submission_data = []
         submitters_count = submission.submitters.size

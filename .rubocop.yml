@@ -51,6 +51,15 @@ Style/NumericPredicate:
 Style/MinMaxComparison:
   Enabled: false
 
+Style/EmptyClassDefinition:
+  Enabled: false
+
+Style/OneClassPerFile:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
 Naming/PredicateMethod:
   Enabled: false
 

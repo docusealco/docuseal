@@ -96,7 +96,7 @@
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
         <% submitters_order_index = nil %>
         <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
-        <% page_blob_struct = Struct.new(:url, :metadata, keyword_init: true) %>
+        <% page_blob_struct = Struct.new(:url, :metadata) %>
         <% bg_classes = %w[bg-red-100 bg-sky-100 bg-emerald-100 bg-yellow-100 bg-purple-100 bg-pink-100 bg-cyan-100 bg-orange-100 bg-lime-100 bg-indigo-100] %>
         <% schema.each do |item| %>
           <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>

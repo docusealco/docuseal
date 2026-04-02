@@ -30,7 +30,7 @@ class TemplatesDebugController < ApplicationController
 
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
-      associations: [schema_documents: { preview_images_attachments: :blob }]
+      associations: [{ schema_documents: { preview_images_attachments: :blob } }]
     ).call
 
     @template_data =
