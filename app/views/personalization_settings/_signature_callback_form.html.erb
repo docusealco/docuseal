@@ -1,0 +1,29 @@
+<% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::SIGNATURE_CALLBACK_URL_KEY) %>
+<% if can?(:manage, account_config) %>
+  <div class="collapse collapse-plus bg-base-200 mt-4">
+    <input type="checkbox" <%= 'checked' if account_config.value.present? %>>
+    <div class="collapse-title text-xl font-medium">
+      Signature Callback URL
+    </div>
+    <div class="collapse-content">
+      <p class="text-sm text-base-content/60 mb-3">
+        When a Provider, Client/Caregiver, or Supervisor signature is collected, DocuSeal will POST
+        <code class="font-mono">{ template_id, form_id, email, signatures }</code> to this URL.
+        Leave blank to disable.
+      </p>
+      <%= form_for account_config, url: account_configs_path, method: :post,
+                   html: { autocomplete: 'off', class: 'space-y-3' } do |f| %>
+        <%= f.hidden_field :key %>
+        <div class="form-control">
+          <%= f.url_field :value,
+                          class: 'base-input w-full font-mono',
+                          placeholder: 'https://your-app.example.com/api/signature-callback',
+                          value: account_config.value.presence %>
+        </div>
+        <div class="form-control pt-1">
+          <%= f.button button_title(title: 'Save', disabled_with: 'Saving'), class: 'base-button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

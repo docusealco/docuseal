@@ -29,6 +29,9 @@
   { name: 'patient_language', type: 'text', title: 'Patient Language' },
   { name: 'patient_parent_name', type: 'text', title: 'Patient Parent Name' },
   { name: 'patient_first_seen_date', type: 'date', title: 'Patient First Seen Date' },
-  { name: 'payor_name', type: 'text', title: 'Payor Name' }
+  { name: 'payor_name', type: 'text', title: 'Payor Name' },
+  { name: 'provider_signature', type: 'signature', title: 'Provider Signature' },
+  { name: 'client_caregiver_signature', type: 'signature', title: 'Client/Caregiver Signature' },
+  { name: 'supervisor_signature', type: 'signature', title: "Supervisor's Signature" }
 ] %>
 <template-builder class="grid" data-template="<%= @template_data %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-fields-detection="true" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-locale="<%= I18n.locale %>" data-show-tour-start-form="<%= @show_tour_start_form %>" data-predefined-fields="<%= predefined_fields.to_json %>"></template-builder>

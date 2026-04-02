@@ -29,6 +29,8 @@ class ProcessSubmitterCompletionJob
     end
 
     enqueue_completed_webhooks(submitter, is_all_completed:)
+
+    SendSignatureCallbackJob.perform_async('submitter_id' => submitter.id)
   end
 
   def create_completed_submitter!(submitter)
