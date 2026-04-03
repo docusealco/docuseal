@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
+require 'resolv'
+require 'ipaddr'
+
 module DownloadUtils
+  BLOCKED_IP_RANGES = [
+    IPAddr.new('10.0.0.0/8'),
+    IPAddr.new('172.16.0.0/12'),
+    IPAddr.new('192.168.0.0/16'),
+    IPAddr.new('169.254.0.0/16'),
+    IPAddr.new('100.64.0.0/10'),
+    IPAddr.new('127.0.0.0/8'),
+    IPAddr.new('::1/128'),
+    IPAddr.new('fc00::/7'),
+    IPAddr.new('fe80::/10')
+  ].freeze
+
   LOCALHOSTS = Set[
     '0.0.0.0',
     '127.0.0.1',
@@ -55,6 +70,27 @@ module DownloadUtils
     raise UnableToDownload, "Error loading: #{uri}. Only HTTPS is allowed." if uri.scheme != 'https' ||
                                                                                [443, nil].exclude?(uri.port)
     raise UnableToDownload, "Error loading: #{uri}. Can't download from localhost." if uri.host.in?(LOCALHOSTS)
+
+    validate_resolved_ip!(uri.host)
+  end
+
+  def validate_resolved_ip!(host)
+    addresses = Resolv.getaddresses(host)
+
+    raise UnableToDownload, "Can't resolve host: #{host}" if addresses.empty?
+
+    addresses.each do |addr|
+      if addr.in?(LOCALHOSTS) || private_ip?(addr)
+        raise UnableToDownload, "Error loading: #{host}. Resolved to a blocked IP: #{addr}"
+      end
+    end
+  end
+
+  def private_ip?(ip_str)
+    ip = IPAddr.new(ip_str)
+    BLOCKED_IP_RANGES.any? { |range| range.include?(ip) }
+  rescue IPAddr::InvalidAddressError
+    false
   end
 
   def conn(validate: Docuseal.multitenant?)
