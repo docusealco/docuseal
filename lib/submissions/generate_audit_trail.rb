@@ -438,8 +438,8 @@ module Submissions
 
       composer.text(I18n.t('event_log'), font_size: 12, padding: [10, 0, 20, 0])
 
-      submitter_versions_index = submission.submitters.preload(:submitter_versions).each_with_object({}) do |s, h|
-        h[s.id] = s.submitter_versions.to_a.sort_by(&:created_at)
+      submitter_versions_index = submission.submitters.preload(:submitter_versions).to_h do |s|
+        [s.id, s.submitter_versions.to_a.sort_by(&:created_at)]
       end
 
       events_data = submission.submission_events.sort_by(&:event_timestamp).filter_map do |event|
@@ -475,7 +475,7 @@ module Submissions
             ].join("\n")
           elsif event.event_type == 'delegate_form'
             from = event.data['old_email'].presence ||
-                   versions.reverse.find { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone }
+                   versions.rfind { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone }
             I18n.t('submission_event_names.delegate_form_by_html', from:, to: event.data['email'])
           elsif event.event_type.include?('send_')
             I18n.t("submission_event_names.#{event.event_type}_to_html", submitter_name:)

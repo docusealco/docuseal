@@ -92,7 +92,7 @@ module Params
     def in_path(params, path = [], skip_blank: false)
       old_path = @current_path
 
-      @current_path = [old_path, *path].compact_blank.map(&:to_s).join('.')
+      @current_path = [old_path, *path].compact_blank.join('.')
 
       param = params.dig(*path)
       param = nil if skip_blank && param.blank?
@@ -106,7 +106,7 @@ module Params
       old_path = @current_path
 
       params.dig(*path)&.each_with_index do |item, index|
-        @current_path = [old_path, [*path].map(&:to_s).join('.') + "[#{index}]"].compact_blank.join('.')
+        @current_path = [old_path, [*path].join('.') + "[#{index}]"].compact_blank.join('.')
 
         yield item if item
       end

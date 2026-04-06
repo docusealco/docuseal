@@ -3,7 +3,7 @@
 module GenerateCertificate
   SIZE = 2**11
 
-  Pkcs12Struct = Struct.new(:certificate, :ca_certs, keyword_init: true)
+  Pkcs12Struct = Struct.new(:certificate, :ca_certs)
 
   module_function
 

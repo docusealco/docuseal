@@ -9,10 +9,9 @@ require 'rspec/rails'
 require 'capybara/cuprite'
 require 'capybara/rspec'
 require 'webmock/rspec'
-require 'sidekiq/testing'
 require 'signing_form_helper'
 
-Sidekiq::Testing.fake!
+Sidekiq.testing!(:fake)
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -69,11 +68,11 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-    Sidekiq::Testing.inline! if example.metadata[:sidekiq] == :inline
+    Sidekiq.testing!(:inline) if example.metadata[:sidekiq] == :inline
   end
 
   config.after do |example|
-    Sidekiq::Testing.fake! if example.metadata[:sidekiq] == :inline
+    Sidekiq.testing!(:fake) if example.metadata[:sidekiq] == :inline
   end
 
   config.before(multitenant: true) do

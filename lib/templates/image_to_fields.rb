@@ -4,7 +4,7 @@ module Templates
   module ImageToFields
     module_function
 
-    Field = Struct.new(:type, :x, :y, :w, :h, :confidence, keyword_init: true) do
+    Field = Struct.new(:type, :x, :y, :w, :h, :confidence) do
       def endy
         @endy ||= y + h
       end

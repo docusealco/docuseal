@@ -12,7 +12,7 @@ class TemplatesCloneController < ApplicationController
   def create
     ActiveRecord::Associations::Preloader.new(
       records: [@base_template],
-      associations: [schema_documents: :preview_images_attachments]
+      associations: [{ schema_documents: :preview_images_attachments }]
     ).call
 
     @template = Templates::Clone.call(@base_template, author: current_user,

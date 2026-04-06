@@ -26,7 +26,7 @@ class SubmissionsController < ApplicationController
     unless @submission.submitters.all?(&:completed_at?)
       ActiveRecord::Associations::Preloader.new(
         records: [@submission],
-        associations: [submitters: :start_form_submission_events]
+        associations: [{ submitters: :start_form_submission_events }]
       ).call
     end
 

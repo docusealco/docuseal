@@ -34,7 +34,7 @@ module Templates
 
         if index.positive? && pdf_fields.present?
           preview_document = template.schema[index - 1]
-          preview_document_last_field = template.fields.reverse.find do |f|
+          preview_document_last_field = template.fields.rfind do |f|
             f['areas']&.any? do |a|
               a['attachment_uuid'] == preview_document[:attachment_uuid]
             end

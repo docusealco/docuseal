@@ -29,7 +29,7 @@ class TemplatesController < ApplicationController
   def edit
     ActiveRecord::Associations::Preloader.new(
       records: [@template],
-      associations: [schema_documents: [:blob, { preview_images_attachments: :blob }]]
+      associations: [{ schema_documents: [:blob, { preview_images_attachments: :blob }] }]
     ).call
 
     @template_data =

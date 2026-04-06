@@ -20,7 +20,7 @@
           <% end %>
         </p>
       </li>
-      <% submitter_versions_index = @submission.submitters.preload(:submitter_versions).each_with_object({}) { |s, h| h[s.id] = s.submitter_versions.to_a.sort_by(&:created_at) } %>
+      <% submitter_versions_index = @submission.submitters.preload(:submitter_versions).to_h { |s| [s.id, s.submitter_versions.to_a.sort_by(&:created_at)] } %>
       <% @submission.submission_events.order(:event_timestamp).each do |event| %>
         <% submitter = @submission.submitters.find { |e| e.id == event.submitter_id } %>
         <% bg_class = event_colors[submitters_uuids.index(submitter.uuid) % event_colors.length] %>
@@ -47,7 +47,7 @@
             <% elsif event.event_type == 'invite_party' && (invited_submitter = @submission.submitters.find { |e| e.uuid == event.data['uuid'] }) && (name = @submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name')) %>
               <%= t('submission_event_names.invite_party_by_html', invited_submitter_name: [invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' '), submitter_name:) %>
             <% elsif event.event_type == 'delegate_form' %>
-              <% delegate_from = event.data['old_email'].presence || (versions.reverse.find { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone }) %>
+              <% delegate_from = event.data['old_email'].presence || versions.rfind { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone } %>
               <%= t('submission_event_names.delegate_form_by_html', from: delegate_from, to: event.data['email']) %>
             <% elsif event.event_type.include?('send_') %>
               <%= t("submission_event_names.#{event.event_type}_to_html", submitter_name:) %>
