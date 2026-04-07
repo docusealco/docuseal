@@ -138,7 +138,7 @@ module Submitters
 
     ActiveStorage::Attachment.create!(
       blob:,
-      name: params[:name],
+      name: 'attachments',
       record: submitter
     )
   end
