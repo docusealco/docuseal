@@ -10,6 +10,12 @@ module Api
     def create
       submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
+      unless can_upload?(submitter)
+        Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
+
+        return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
+      end
+
       if params[:type].in?(%w[initials signature])
         image = Vips::Image.new_from_file(params[:file].path)
 
@@ -38,6 +44,14 @@ module Api
       Rollbar.error(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_content
+    end
+
+    def can_upload?(submitter)
+      !submitter.declined_at? &&
+        !submitter.completed_at? &&
+        !submitter.submission.archived_at? &&
+        !submitter.submission.expired? &&
+        !submitter.submission.template&.archived_at?
     end
 
     def build_new_cookie_signatures_json(submitter, attachment)
