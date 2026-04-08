@@ -30,6 +30,7 @@ en: &en
   thanks: Thanks
   private: Private
   _variables: Variables
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Your email address has been released immediately. If you're joining a team, you can now be invited to your company team without waiting for the deletion period to end.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Make all newly created templates private to their creator and admins by default.
   create_templates_with_admin_access_by_default: Create templates with admin access by default
   require_email_2fa: Require email 2FA
@@ -218,7 +219,7 @@ en: &en
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "You are scheduling your account for deletion. After deletion, your data will be permanently removed and cannot be recovered.\n\nClick OK if you would like to continue."
   account_information_has_been_updated: Account information has been updated.
   should_be_a_valid_url: should be a valid URL
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account removal request will be processed within 2 months. Please contact us if you want to keep your account.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account will be permanently deleted within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
   copy: Copy
   copied: Copied
@@ -1083,6 +1084,7 @@ es: &es
   re_connect_stripe: Volver a conectar Stripe
   private: Privado
   _variables: Variables
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Su dirección de correo electrónico ha sido liberada inmediatamente. Si se une a un equipo, ahora puede ser invitado al equipo de su empresa sin esperar a que finalice el período de eliminación.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Hacer que todas las plantillas recién creadas sean privadas para su creador y los administradores por defecto.
   create_templates_with_admin_access_by_default: Crear plantillas con acceso de administrador por defecto
   require_email_2fa: Requerir 2FA por correo electrónico
@@ -1256,7 +1258,7 @@ es: &es
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Estás programando la eliminación de tu cuenta. Después de la eliminación, tus datos se eliminarán permanentemente y no podrán recuperarse.\n\nHaz clic en OK si deseas continuar."
   account_information_has_been_updated: La información de la cuenta ha sido actualizada.
   should_be_a_valid_url: debe ser una URL válida
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
   copy: Copiar
   copied: Copiado
@@ -2118,6 +2120,7 @@ it: &it
   re_connect_stripe: Ricollega Stripe
   private: Privato
   _variables: Variabili
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Il tuo indirizzo email è stato rilasciato immediatamente. Se stai per unirti a un team, ora puoi essere invitato nel team della tua azienda senza aspettare la fine del periodo di eliminazione.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendere tutte le nuove template private per il creatore e gli amministratori per impostazione predefinita.
   create_templates_with_admin_access_by_default: Crea modelli con accesso amministratore per impostazione predefinita
   require_email_2fa: Richiedi 2FA email
@@ -2291,7 +2294,7 @@ it: &it
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Stai programmando l'eliminazione del tuo account. Dopo l'eliminazione, i tuoi dati saranno rimossi in modo permanente e non potranno essere recuperati.\n\nFai clic su OK se desideri continuare."
   account_information_has_been_updated: "Le informazioni dell'account sono state aggiornate."
   should_be_a_valid_url: deve essere un URL valido
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
   copy: Copia
   copied: Copiato
@@ -3154,6 +3157,7 @@ fr: &fr
   re_connect_stripe: Reconnecter Stripe
   private: Privé
   _variables: Variables
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Votre adresse e-mail a été libérée immédiatement. Si vous rejoignez une équipe, vous pouvez maintenant être invité dans l'équipe de votre entreprise sans attendre la fin de la période de suppression.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Rendre tous les nouveaux modèles privés pour leur créateur et les administrateurs par défaut.
   create_templates_with_admin_access_by_default: Créer des modèles avec un accès administrateur par défaut
   require_email_2fa: Exiger la 2FA par email
@@ -3327,7 +3331,7 @@ fr: &fr
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Vous planifiez la suppression de votre compte. Après suppression, vos données seront définitivement supprimées et ne pourront pas être récupérées.\n\nCliquez sur OK pour continuer."
   account_information_has_been_updated: Les informations du compte ont été mises à jour.
   should_be_a_valid_url: doit être une URL valide
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression de compte sera traitée sous 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression de compte sera traitée sous 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
   copy: Copier
   copied: Copié
@@ -4186,6 +4190,7 @@ pt: &pt
   re_connect_stripe: Reconectar Stripe
   private: Privado
   _variables: Variáveis
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Seu endereço de e-mail foi liberado imediatamente. Se você estiver entrando em uma equipe, agora pode ser convidado para a equipe da sua empresa sem esperar o fim do período de exclusão.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Tornar todos os modelos recém-criados privados para seu criador e administradores por padrão.
   create_templates_with_admin_access_by_default: Criar modelos com acesso de administrador por padrão
   require_email_2fa: Exigir 2FA por email
@@ -4359,7 +4364,7 @@ pt: &pt
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Você está agendando a exclusão da sua conta. Após a exclusão, seus dados serão permanentemente removidos e não poderão ser recuperados.\n\nClique em OK se desejar continuar."
   account_information_has_been_updated: As informações da conta foram atualizadas.
   should_be_a_valid_url: deve ser um URL válido
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
   copy: Copiar
   copied: Copiado
@@ -5207,6 +5212,7 @@ de: &de
   thanks: Danke
   private: Privat
   _variables: Variablen
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Ihre E-Mail-Adresse wurde sofort freigegeben. Wenn Sie einem Team beitreten, können Sie jetzt in das Team Ihres Unternehmens eingeladen werden, ohne auf das Ende der Löschfrist warten zu müssen.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Alle neu erstellten Vorlagen standardmäßig nur für ihren Ersteller und Administratoren sichtbar machen.
   create_templates_with_admin_access_by_default: Vorlagen standardmäßig mit Administratorzugriff erstellen
   require_email_2fa: E-Mail 2FA erforderlich
@@ -5394,7 +5400,7 @@ de: &de
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Sie planen die Löschung Ihres Kontos. Nach der Löschung werden Ihre Daten dauerhaft entfernt und können nicht wiederhergestellt werden.\n\nKlicken Sie auf OK, wenn Sie fortfahren möchten."
   account_information_has_been_updated: Die Kontoinformationen wurden aktualisiert.
   should_be_a_valid_url: sollte eine gültige URL sein
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Ihre Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktieren Sie uns, wenn Sie Ihr Konto behalten möchten.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Ihre Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktieren Sie uns, wenn Sie Ihr Konto behalten möchten.
   test_mode: Testmodus
   copy: Kopieren
   copied: Kopiert
@@ -6642,6 +6648,7 @@ nl: &nl
   thanks: Bedankt
   private: Privé
   _variables: Variabelen
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Uw e-mailadres is onmiddellijk vrijgegeven. Als u lid wordt van een team, kunt u nu worden uitgenodigd voor het team van uw bedrijf zonder te wachten tot de verwijderingsperiode is afgelopen.
   make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Maak alle nieuw aangemaakte sjablonen standaard privé voor hun maker en admins.
   create_templates_with_admin_access_by_default: Sjablonen standaard met admin-toegang maken
   require_email_2fa: E-mail 2FA vereist
@@ -6830,7 +6837,7 @@ nl: &nl
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "U plant uw account voor verwijdering. Na verwijdering worden uw gegevens permanent verwijderd en kunnen ze niet worden hersteld.\n\nKlik op OK als u wilt doorgaan."
   account_information_has_been_updated: Accountinformatie is bijgewerkt.
   should_be_a_valid_url: moet een geldige URL zijn
-  your_account_removal_request_will_be_processed_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Uw verzoek tot verwijdering van uw account wordt binnen 2 maanden verwerkt. Neem contact met ons op als u uw account wilt behouden.
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Uw verzoek tot verwijdering van uw account wordt binnen 2 maanden verwerkt. Neem contact met ons op als u uw account wilt behouden.
   test_mode: Testmodus
   copy: Kopiëren
   copied: Gekopieerd
