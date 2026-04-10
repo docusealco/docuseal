@@ -38,7 +38,7 @@ class SubmissionsPreviewController < ApplicationController
 
     @submission = Submissions.preload_with_pages(@submission)
 
-    render 'submissions/show', layout: 'plain'
+    render 'submissions/show', layout: 'plain', locals: { is_preview: true }
   end
 
   def completed

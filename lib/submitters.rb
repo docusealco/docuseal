@@ -260,11 +260,11 @@ module Submitters
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
 
-    Submitters.select_attachments_for_download(submitter).map do |attachment|
+    select_attachments_for_download(submitter).map do |attachment|
       ActiveStorage::Blob.proxy_path(
         attachment.blob,
         expires_at: ttl.from_now.to_i,
-        filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+        filename: build_document_filename(submitter, attachment.blob, filename_format)
       )
     end
   end
@@ -282,7 +282,7 @@ module Submitters
     ActiveStorage::Blob.proxy_path(
       attachment.blob,
       expires_at: ttl.from_now.to_i,
-      filename: Submitters.build_document_filename(submitter, attachment.blob, filename_format)
+      filename: build_document_filename(submitter, attachment.blob, filename_format)
     )
   end
 

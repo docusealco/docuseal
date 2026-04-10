@@ -66,7 +66,7 @@
         <% if submitter.completed_at? %>
           <div class="flex-1 md:flex-none">
             <div class="w-full md:w-fit">
-              <download-button data-src="<%= submitter_download_index_path(submitter.slug) %>" class="btn btn-sm btn-neutral text-white w-full md:w-36">
+              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm btn-neutral text-white w-full md:w-36">
                 <span class="flex items-center justify-center space-x-1 <%= 'md:space-x-2' if t('download').length < 11 %>" data-target="download-button.defaultButton">
                   <%= svg_icon('download', class: 'w-5 h-5 stroke-2') %>
                   <span class="inline"><%= t('download') %></span>
@@ -154,7 +154,7 @@
                   </span>
                 </span>
                 <% if submitter.completed_at? && !is_submission_completed %>
-                  <download-button data-src="<%= submitter_download_index_path(submitter.slug) %>" class="absolute md:relative top-0 right-0 btn btn-xs btn-neutral text-white md:w-36 z-[1]">
+                  <download-button data-src="<%= submitter_download_index_path(submitter) %>" class="absolute md:relative top-0 right-0 btn btn-xs btn-neutral text-white md:w-36 z-[1]">
                     <span class="flex items-center justify-center space-x-1 md:space-x-2" data-target="download-button.defaultButton">
                       <%= svg_icon('download', class: 'w-4 h-4 stroke-2') %>
                       <span class="inline"><%= t('download') %></span>
@@ -190,7 +190,7 @@
           <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
           <div class="flex-1 md:flex-none">
             <div class="w-full md:w-fit">
-              <download-button data-src="<%= submitter_download_index_path(latest_submitter.slug) %>" class="btn btn-sm btn-neutral text-white w-full md:w-36 z-[1]">
+              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm btn-neutral text-white w-full md:w-36 z-[1]">
                 <span class="flex items-center justify-center space-x-1 md:space-x-2" data-target="download-button.defaultButton">
                   <%= svg_icon('download', class: 'w-5 h-5 stroke-2') %>
                   <span class="inline"><%= t('download') %></span>

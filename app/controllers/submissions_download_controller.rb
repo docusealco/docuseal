@@ -1,52 +1,25 @@
 # frozen_string_literal: true
 
 class SubmissionsDownloadController < ApplicationController
-  skip_before_action :authenticate_user!
-  skip_authorization_check
-
-  TTL = 40.minutes
+  load_and_authorize_resource :submission
 
   def index
-    @submission = Submission.find_by!(slug: params[:submission_slug] || params[:submissions_preview_slug])
-
     last_submitter = @submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+
+    return head :not_found unless last_submitter
 
     Submissions::EnsureResultGenerated.call(last_submitter)
 
-    unless current_user_submitter?(last_submitter)
-      unless Submitters::AuthorizedForForm.call(last_submitter, current_user, request)
-        Rollbar.info("2FA download error: #{last_submitter.id}") if defined?(Rollbar)
-
-        return head :not_found
-      end
-
-      if last_submitter.completed_at < TTL.ago
-        Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)
-
-        return head :not_found
-      end
-    end
-
     if params[:combined] == 'true'
-      respond_with_combined(last_submitter)
+      url = Submitters.build_combined_url(last_submitter)
+
+      if url
+        render json: [url]
+      else
+        head :not_found
+      end
     else
       render json: Submitters.build_document_urls(last_submitter)
     end
-  end
-
-  private
-
-  def respond_with_combined(submitter)
-    url = Submitters.build_combined_url(submitter)
-
-    if url
-      render json: [url]
-    else
-      head :not_found
-    end
-  end
-
-  def current_user_submitter?(submitter)
-    current_user && current_ability.can?(:read, submitter)
   end
 end
