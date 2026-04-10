@@ -1,20 +1,34 @@
 # frozen_string_literal: true
 
-class SubmissionsDownloadController < ApplicationController
+class SubmittersDownloadController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
   TTL = 40.minutes
+  FILES_TTL = 5.minutes
 
   def index
-    @submission = Submission.find_by!(slug: params[:submission_slug] || params[:submissions_preview_slug])
+    @submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
 
-    last_submitter = @submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+    signature_valid =
+      if @submitter&.slug == params[:submitter_slug]
+        true
+      else
+        @submitter = nil
+      end
+
+    @submitter ||= Submitter.find_by!(slug: params[:submitter_slug])
+
+    Submissions::EnsureResultGenerated.call(@submitter)
+
+    last_submitter = @submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
+
+    return head :not_found unless last_submitter
 
     Submissions::EnsureResultGenerated.call(last_submitter)
 
-    unless current_user_submitter?(last_submitter)
-      unless Submitters::AuthorizedForForm.call(last_submitter, current_user, request)
+    if !signature_valid && !current_user_submitter?(last_submitter)
+      unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
         Rollbar.info("2FA download error: #{last_submitter.id}") if defined?(Rollbar)
 
         return head :not_found

@@ -155,12 +155,13 @@ Rails.application.routes.draw do
 
   resources :submissions_preview, only: %i[show], path: 'e', param: 'slug' do
     get :completed
+    resources :download, only: %i[index], controller: 'submissions_download'
   end
 
   resources :send_submission_email, only: %i[create]
 
   resources :submitters, only: %i[], param: 'slug' do
-    resources :download, only: %i[index], controller: 'submissions_download'
+    resources :download, only: %i[index], controller: 'submitters_download'
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
   end
