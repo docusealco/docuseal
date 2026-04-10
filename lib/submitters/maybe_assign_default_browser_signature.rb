@@ -23,7 +23,7 @@ module Submitters
                                                                              { 'type' => 'signature' },
                                                                              submitter.account,
                                                                              attachments,
-                                                                             submitter)
+                                                                             for_submitter: submitter)
 
       attachment.record ||= submitter
 

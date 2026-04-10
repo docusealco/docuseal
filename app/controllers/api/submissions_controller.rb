@@ -156,7 +156,7 @@ module Api
                                        params:)
       else
         submissions_attrs, attachments =
-          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_params, template)
+          Submissions::NormalizeParamUtils.normalize_submissions_params!(submissions_params, template, purpose: :api)
 
         submissions = Submissions.create_from_submitters(
           template:,
