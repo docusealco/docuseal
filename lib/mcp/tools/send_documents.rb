@@ -31,6 +31,27 @@ module Mcp
                   phone: {
                     type: 'string',
                     description: 'Submitter phone number in E.164 format'
+                  },
+                  role: {
+                    type: 'string',
+                    description: 'Signing role name from the template'
+                  },
+                  fields: {
+                    type: 'array',
+                    description: 'Prefill field values for this submitter (fields become readonly)',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        name: {
+                          type: 'string',
+                          description: 'Field name'
+                        },
+                        value: {
+                          description: 'Prefilled value for the field'
+                        }
+                      },
+                      required: %w[name value]
+                    }
                   }
                 }
               }
@@ -59,9 +80,17 @@ module Mcp
         return { content: [{ type: 'text', text: 'Template has no fields' }], isError: true } if template.fields.blank?
 
         submitters = (arguments['submitters'] || []).map do |s|
-          s.slice('email', 'name', 'role', 'phone')
-           .compact_blank
-           .with_indifferent_access
+          attrs = s.slice('email', 'name', 'role', 'phone').compact_blank
+
+          fields = Array.wrap(s['fields']).filter_map do |f|
+            next if f['name'].blank?
+
+            { 'name' => f['name'], 'default_value' => f['value'], 'readonly' => true }
+          end
+
+          attrs['fields'] = fields if fields.present?
+
+          attrs.with_indifferent_access
         end
 
         submissions = Submissions.create_from_submitters(

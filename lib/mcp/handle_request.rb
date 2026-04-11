@@ -4,6 +4,7 @@ module Mcp
   module HandleRequest
     TOOLS = [
       Mcp::Tools::SearchTemplates,
+      Mcp::Tools::LoadTemplate,
       Mcp::Tools::CreateTemplate,
       Mcp::Tools::SendDocuments,
       Mcp::Tools::SearchDocuments
