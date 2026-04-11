@@ -402,6 +402,8 @@
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
             :require-signing-reason="requireSigningReason"
+            :signature-text="signatureText"
+            :signature-src="signatureSrc"
             :button-text="submitButtonText"
             :dry-run="dryRun"
             :with-disclosure="withDisclosure"
@@ -828,6 +830,16 @@ export default {
       default: () => []
     },
     backgroundColor: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    signatureText: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    signatureSrc: {
       type: String,
       required: false,
       default: ''
