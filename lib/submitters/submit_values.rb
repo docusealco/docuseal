@@ -463,7 +463,8 @@ module Submitters
     end
 
     def validate_value!(_value, field, _params, submitter, _request)
-      raise ValidationError, 'Invalid field' if field.nil? || field['submitter_uuid'] != submitter.uuid
+      raise ValidationError, 'Missing field' unless field
+      raise ValidationError, 'Invalid field' if field['submitter_uuid'] != submitter.uuid
 
       if field['readonly'] == true
         Rollbar.warning("Readonly field #{submitter.id}: #{field['uuid']}") if defined?(Rollbar)
