@@ -26,7 +26,7 @@
         container-type: size;
         width: min(100vw, <%= page_width %>);
         max-width: 100%;
-        aspect-ratio: <%= format('%.6f / %.6f', page_width_css, page_height_css) %>;
+        aspect-ratio: <%= format('%<width>.6f / %<height>.6f', width: page_width_css, height: page_height_css) %>;
         margin: 24px auto;
       }
 
