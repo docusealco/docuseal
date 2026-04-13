@@ -4,14 +4,14 @@ module Submissions
   module NormalizeParamUtils
     module_function
 
-    def normalize_submissions_params!(submissions_params, template, add_fields: false)
+    def normalize_submissions_params!(submissions_params, template, add_fields: false, purpose: nil)
       attachments = []
       fields = []
 
       Array.wrap(submissions_params).each do |submission|
         submission[:submitters].each_with_index do |submitter, index|
           _, new_attachments, new_fields =
-            normalize_submitter_params!(submitter, template, submitter[:index] || index, add_fields:)
+            normalize_submitter_params!(submitter, template, submitter[:index] || index, add_fields:, purpose:)
 
           attachments.push(*new_attachments)
           fields.push(*new_fields)
@@ -21,7 +21,8 @@ module Submissions
       [submissions_params, attachments, fields]
     end
 
-    def normalize_submitter_params!(submitter_params, template, index = nil, for_submitter: nil, add_fields: false)
+    def normalize_submitter_params!(submitter_params, template, index = nil, for_submitter: nil, add_fields: false,
+                                    purpose: nil)
       with_values = submitter_params[:values].present?
 
       default_values = with_values ? submitter_params[:values] : {}
@@ -44,7 +45,8 @@ module Submissions
           role_names: submitter_params[:roles],
           for_submitter:,
           add_fields:,
-          throw_errors: !with_values
+          throw_errors: !with_values,
+          purpose:
         )
 
       submitter_params[:values] = values

@@ -9,27 +9,11 @@ module Submitters
     def call(submitter, params, cookies = nil, attachments = [])
       attachments = attachments.select { |e| e.record_id == submitter.id && e.record_type == 'Submitter' }
 
-      if (value = params[:signature_src].presence || params[:signature].presence)
-        find_or_create_signature_from_value(submitter, value, attachments)
-      elsif params[:signed_signature_uuids].present?
+      if params[:signed_signature_uuids].present?
         find_storage_signature(submitter, params[:signed_signature_uuids], attachments)
       elsif cookies
         find_session_signature(submitter, cookies, attachments)
       end
-    end
-
-    def find_or_create_signature_from_value(submitter, value, attachments)
-      _, attachment = Submitters::NormalizeValues.normalize_attachment_value(value,
-                                                                             { 'type' => 'signature' },
-                                                                             submitter.account,
-                                                                             attachments,
-                                                                             submitter)
-
-      attachment.record ||= submitter
-
-      attachment.save!
-
-      attachment
     end
 
     def sign_signature_uuid(uuid)

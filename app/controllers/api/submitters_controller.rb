@@ -50,7 +50,8 @@ module Api
       normalized_params, new_attachments = Submissions::NormalizeParamUtils.normalize_submitter_params!(
         submitter_params.merge(role:),
         @submitter.template || Template.new(submitters: submission.template_submitters, account: @submitter.account),
-        for_submitter: @submitter
+        for_submitter: @submitter,
+        purpose: :api
       )
 
       Submissions::CreateFromSubmitters.maybe_set_template_fields(submission, [normalized_params],

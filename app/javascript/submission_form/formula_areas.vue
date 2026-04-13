@@ -68,34 +68,9 @@ export default {
     }
   },
   async mounted () {
-    const {
-      create,
-      evaluateDependencies,
-      addDependencies,
-      subtractDependencies,
-      divideDependencies,
-      multiplyDependencies,
-      powDependencies,
-      roundDependencies,
-      absDependencies,
-      sinDependencies,
-      tanDependencies,
-      cosDependencies
-    } = await import('mathjs')
+    const { Calculator } = await import('./calculator')
 
-    this.math = create({
-      evaluateDependencies,
-      addDependencies,
-      subtractDependencies,
-      divideDependencies,
-      multiplyDependencies,
-      powDependencies,
-      roundDependencies,
-      absDependencies,
-      sinDependencies,
-      tanDependencies,
-      cosDependencies
-    })
+    this.math = new Calculator()
 
     this.isMathLoaded = true
   },

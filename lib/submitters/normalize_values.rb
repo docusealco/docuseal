@@ -19,7 +19,7 @@ module Submitters
 
     # rubocop:disable Metrics
     def call(template, values, submitter_name: nil, role_names: nil, for_submitter: nil, throw_errors: false,
-             add_fields: false)
+             add_fields: false, purpose: nil)
       fields =
         if role_names.present?
           fetch_roles_fields(template, roles: role_names)
@@ -68,7 +68,7 @@ module Submitters
         value_fields.each do |field|
           if field['type'].in?(%w[initials signature image file stamp]) && value.present?
             new_value, new_attachments =
-              normalize_attachment_value(value, field, template.account, attachments, for_submitter)
+              normalize_attachment_value(value, field, template.account, attachments, for_submitter:, purpose:)
 
             attachments.push(*new_attachments)
 
@@ -153,17 +153,17 @@ module Submitters
             .merge(fields.group_by { |e| e['name'].to_s.downcase })
     end
 
-    def normalize_attachment_value(value, field, account, attachments, for_submitter = nil)
+    def normalize_attachment_value(value, field, account, attachments, for_submitter: nil, purpose: nil)
       if value.is_a?(Array)
         new_attachments = value.map do |v|
-          new_attachment = find_or_build_attachment(v, field, account, for_submitter)
+          new_attachment = find_or_build_attachment(v, field, account, for_submitter:, purpose:)
 
           attachments.find { |a| a.blob_id == new_attachment.blob_id } || new_attachment
         end
 
         [new_attachments.map(&:uuid), new_attachments]
       else
-        new_attachment = find_or_build_attachment(value, field, account, for_submitter)
+        new_attachment = find_or_build_attachment(value, field, account, for_submitter:, purpose:)
 
         existing_attachment = attachments.find { |a| a.blob_id == new_attachment.blob_id }
 
@@ -173,11 +173,15 @@ module Submitters
       end
     end
 
-    def find_or_build_attachment(value, field, account, for_submitter = nil)
+    def find_or_build_attachment(value, field, account, for_submitter: nil, purpose: nil)
       type = field['type']
+
+      raise InvalidDefaultValue, "Invalid #{type} value" if purpose == :bulk
 
       blob =
         if value.match?(%r{\Ahttps?://})
+          raise InvalidDefaultValue, "Invalid #{type} value" unless purpose == :api
+
           find_or_create_blob_from_url(account, value)
         elsif type.in?(%w[signature initials]) && value.length < 60
           find_or_create_blob_from_text(account, value, type)
@@ -185,6 +189,8 @@ module Submitters
               Marcel::MimeType.for(data).exclude?('octet-stream')
           find_or_create_blob_from_base64(account, data, type)
         elsif type == 'image' && (value.starts_with?('<html>') || value.starts_with?('<!DOCTYPE'))
+          raise InvalidDefaultValue, "Invalid #{type} value" unless purpose == :api
+
           find_or_create_blob_from_html(account, value, field)
         else
           raise InvalidDefaultValue, "Invalid value, url, base64 or text < 60 chars is expected: #{value.first(200)}..."

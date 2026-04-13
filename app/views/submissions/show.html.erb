@@ -1,4 +1,4 @@
-<% if params[:controller] == 'submissions_preview' %>
+<% if local_assigns[:is_preview] %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
 <% font_scale = 1040.0 / PdfUtils::US_LETTER_W %>
@@ -15,7 +15,6 @@
       <span class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template.name).split(/(_)/).each do |item| %><%= item %><wbr><% end %></span>
     </a>
     <div class="space-x-3 flex items-center">
-      <% last_submitter = @submission.submitters.to_a.select(&:completed_at?).max_by(&:completed_at) %>
       <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
       <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !is_all_completed %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
@@ -31,10 +30,10 @@
           <span class="hidden md:block"><%= t('event_log') %></span>
         <% end %>
       <% end %>
-      <% if last_submitter %>
+      <% if @submission.submitters.to_a.any?(&:completed_at?) %>
         <% if is_all_completed || !is_combined_enabled %>
           <div class="join relative">
-            <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
+            <download-button data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
               <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                 <%= svg_icon('download', class: 'w-6 h-6') %>
                 <span class="hidden md:inline"><%= t('download') %></span>
@@ -53,7 +52,7 @@
                 </label>
                 <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
                   <li>
-                    <download-button data-src="<%= submitter_download_index_path(last_submitter.slug, { sig: params[:sig], combined: true }.compact) %>" class="flex items-center">
+                    <download-button data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: true }.compact) : submissions_preview_download_index_path(@submission.slug, combined: true)) : submission_download_index_path(@submission, combined: true) %>" class="flex items-center">
                       <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                         <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
                         <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
@@ -228,7 +227,7 @@
             <% end %>
             <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
-                <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter_slug: submitter.slug), class: 'btn btn-sm btn-primary w-full' %>
+                <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
             <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>

@@ -408,6 +408,16 @@ export default {
       required: false,
       default: ''
     },
+    signatureText: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    signatureSrc: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
@@ -422,7 +432,7 @@ export default {
       isOtherReason: false,
       isUsePreviousValue: true,
       isTouchAttachment: false,
-      isTextSignature: this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload',
+      isTextSignature: !this.signatureSrc && (!!this.signatureText || this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload'),
       uploadImageInputKey: Math.random().toString()
     }
   },
@@ -482,7 +492,9 @@ export default {
           if (entry.isIntersecting) {
             this.setCanvasSize()
 
-            if (this.isTextSignature) {
+            if (this.signatureSrc) {
+              this.$nextTick(() => this.drawSignatureSrc())
+            } else if (this.isTextSignature) {
               this.$nextTick(() => {
                 if (this.$refs.textInput) {
                   this.initTypedSignature()
@@ -686,7 +698,9 @@ export default {
       }
     },
     async initTypedSignature () {
-      if (this.submitter.name) {
+      if (this.signatureText) {
+        this.$refs.textInput.value = this.signatureText
+      } else if (this.submitter.name) {
         this.$refs.textInput.value = this.submitter.name
       }
 
@@ -695,6 +709,48 @@ export default {
       if (this.$refs.textInput.value) {
         this.updateWrittenSignature({ target: this.$refs.textInput })
       }
+    },
+    drawSignatureSrc () {
+      const canvas = this.$refs.canvas
+
+      if (!canvas) return
+
+      const img = new Image()
+
+      img.crossOrigin = 'anonymous'
+
+      img.onload = () => {
+        const context = canvas.getContext('2d')
+
+        const aspectRatio = img.width / img.height
+        const canvasWidth = canvas.width / scale
+        const canvasHeight = canvas.height / scale
+
+        let targetWidth = canvasWidth
+        let targetHeight = canvasHeight
+
+        if (canvasWidth / canvasHeight > aspectRatio) {
+          targetWidth = canvasHeight * aspectRatio
+        } else {
+          targetHeight = canvasWidth / aspectRatio
+        }
+
+        const x = (canvasWidth - targetWidth) / 2
+        const y = (canvasHeight - targetHeight) / 2
+
+        context.clearRect(0, 0, canvasWidth, canvasHeight)
+        context.drawImage(img, x, y, targetWidth, targetHeight)
+
+        this.isSignatureStarted = true
+
+        this.$emit('start')
+      }
+
+      img.onerror = () => {
+        console.error(`Failed to load signature image from ${this.signatureSrc}. The remote server must send an Access-Control-Allow-Origin header to allow CORS access.`)
+      }
+
+      img.src = this.signatureSrc
     },
     drawImage (event) {
       this.remove()

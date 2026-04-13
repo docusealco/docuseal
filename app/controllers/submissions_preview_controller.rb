@@ -10,13 +10,15 @@ class SubmissionsPreviewController < ApplicationController
   TTL = 40.minutes
 
   def show
-    submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
+    @sig_submitter = Submitter.find_signed(params[:sig], purpose: :download_completed) if params[:sig].present?
 
     signature_valid =
-      if submitter && submitter.submission.slug == params[:slug]
-        @submission = submitter.submission
+      if @sig_submitter && @sig_submitter.submission.slug == params[:slug]
+        @submission = @sig_submitter.submission
 
         true
+      else
+        @sig_submitter = nil
       end
 
     @submission ||= Submission.find_by!(slug: params[:slug])
@@ -36,7 +38,7 @@ class SubmissionsPreviewController < ApplicationController
 
     @submission = Submissions.preload_with_pages(@submission)
 
-    render 'submissions/show', layout: 'plain'
+    render 'submissions/show', layout: 'plain', locals: { is_preview: true }
   end
 
   def completed

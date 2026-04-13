@@ -19,10 +19,6 @@ export const tiptapStylesheet = new CSSStyleSheet()
 
 tiptapStylesheet.replaceSync(
 `.ProseMirror {
-  position: relative;
-}
-
-.ProseMirror {
   word-wrap: break-word;
   white-space: pre-wrap;
   white-space: break-spaces;

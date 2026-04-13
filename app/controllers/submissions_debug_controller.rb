@@ -9,7 +9,7 @@ class SubmissionsDebugController < ApplicationController
   def index
     @submitter = Submitter.preload({ attachments_attachments: :blob },
                                    submission: { template: { documents_attachments: :blob } })
-                          .find_by(slug: params[:submitter_slug])
+                          .find_by(slug: params[:submit_form_slug])
 
     respond_to do |f|
       f.html do

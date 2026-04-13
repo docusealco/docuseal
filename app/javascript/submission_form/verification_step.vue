@@ -20,8 +20,11 @@
     {{ t('complete_all_required_fields_to_proceed_with_identity_verification') }}
   </div>
   <div v-else>
+    <div v-if="errorMessage">
+      {{ errorMessage }}
+    </div>
     <div
-      v-if="isLoading"
+      v-else-if="isLoading"
       class="w-full flex space-x-2 justify-center mb-2"
     >
       <IconInnerShadowTop
@@ -96,6 +99,7 @@ export default {
       isMathLoaded: false,
       redirectUrl: '',
       isLoading: false,
+      errorMessage: '',
       eidEasyData: {}
     }
   },
@@ -161,6 +165,12 @@ export default {
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {
         this.eidEasyData = await resp.json()
+
+        if (this.eidEasyData.error) {
+          this.errorMessage = this.eidEasyData.error
+
+          return
+        }
 
         if (this.eidEasyData.check_completed) {
           this.$emit('submit')

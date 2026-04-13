@@ -1,15 +1,27 @@
 <div class="flex items-center space-x-1">
+  <% if (is_with_download = can?(:manage, :download_users) && can?(:manage, current_account)) %>
+    <%= button_to(t(:download), url_for(format: :csv), class: 'link text-sm', form: { class: 'flex' }, method: :get) %>
+  <% end %>
   <% if %w[archived integration].include?(params[:status]) %>
+    <% if is_with_download %>
+      <span class="text-neutral-700">|</span>
+    <% end %>
     <%= link_to t('view_active'), settings_users_path, class: 'link text-sm' %>
   <% else %>
     <% archived_exists = current_account.users.archived.where.not(role: 'integration').exists? %>
-    <% if current_account.users.active.exists?(role: 'integration') %>
+    <% if (integration_exists = current_account.users.active.exists?(role: 'integration')) %>
+      <% if is_with_download %>
+        <span class="text-neutral-700">|</span>
+      <% end %>
       <%= link_to t('view_embedding_users'), settings_integration_users_path, class: 'link text-sm' %>
       <% if archived_exists %>
         <span class="text-neutral-700">|</span>
       <% end %>
     <% end %>
     <% if archived_exists %>
+      <% if !integration_exists && is_with_download %>
+        <span class="text-neutral-700">|</span>
+      <% end %>
       <%= link_to t('view_archived'), settings_archived_users_path, class: 'link text-sm' %>
     <% end %>
   <% end %>
