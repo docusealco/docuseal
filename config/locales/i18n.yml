@@ -367,6 +367,9 @@ en: &en
   sign_out: Sign out
   page_number: 'Page %{number}'
   powered_by: Powered by
+  qr_code: QR Code
+  print: Print
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan the QR code above with your phone camera to open and sign this document.
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
   storage: Storage
   notifications: Notifications
@@ -1406,6 +1409,9 @@ es: &es
   sign_out: Cerrar sesión
   page_number: 'Página %{number}'
   powered_by: Desarrollado por
+  qr_code: Código QR
+  print: Imprimir
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escanea el código QR de arriba con la cámara de tu teléfono para abrir y firmar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos firmados con'
   storage: Almacenamiento
   notifications: Notificaciones
@@ -2442,6 +2448,9 @@ it: &it
   sign_out: Esci
   page_number: 'Pagina %{number}'
   powered_by: Fornito da
+  qr_code: Codice QR
+  print: Stampa
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scansiona il codice QR qui sopra con la fotocamera del tuo telefono per aprire e firmare questo documento.
   count_documents_signed_with_html: '<b>%{count}</b> documenti firmati con'
   storage: Archiviazione
   notifications: Notifiche
@@ -3479,6 +3488,9 @@ fr: &fr
   sign_out: Se déconnecter
   page_number: Page %{number}
   powered_by: Propulsé par
+  qr_code: Code QR
+  print: Imprimer
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannez le code QR ci-dessus avec l'appareil photo de votre téléphone pour ouvrir et signer ce document.
   count_documents_signed_with_html: "<b>%{count}</b> documents signés avec"
   storage: Stockage
   notifications: Notifications
@@ -4512,6 +4524,9 @@ pt: &pt
   sign_out: Sair
   page_number: 'Página %{number}'
   powered_by: Desenvolvido por
+  qr_code: Código QR
+  print: Imprimir
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escaneie o código QR acima com a câmera do seu telefone para abrir e assinar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos assinados com'
   storage: Armazenamento
   notifications: Notificações
@@ -5548,6 +5563,9 @@ de: &de
   sign_out: Abmelden
   page_number: 'Seite %{number}'
   powered_by: Bereitgestellt von
+  qr_code: QR-Code
+  print: Drucken
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannen Sie den QR-Code oben mit Ihrer Handykamera, um dieses Dokument zu öffnen und zu unterzeichnen.
   count_documents_signed_with_html: '<b>%{count}</b> Dokumente signiert mit'
   storage: Speicher
   notifications: Benachrichtigungen
@@ -6985,6 +7003,9 @@ nl: &nl
   sign_out: Afmelden
   page_number: Pagina %{number}
   powered_by: Aangedreven door
+  qr_code: QR-code
+  print: Afdrukken
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan de bovenstaande QR-code met je telefooncamera om dit document te openen en te ondertekenen.
   count_documents_signed_with_html: "<b>%{count}</b> documenten ondertekend met"
   storage: Opslag
   notifications: Meldingen
