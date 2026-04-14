@@ -56,6 +56,8 @@ module Submissions
             template_submitter = template_submitters.find { |e| e['uuid'] == uuid }
           end
 
+          raise BaseError, 'Invalid submitter params' unless template_submitter
+
           template_submitter = template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid',
                                                          'invite_via_field_uuid')
 
