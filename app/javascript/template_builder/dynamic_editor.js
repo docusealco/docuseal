@@ -188,6 +188,8 @@ const CustomHeading = Node.create({
 
 const SectionNode = createBlockNode('section', 'section')
 const ArticleNode = createBlockNode('article', 'article')
+const HeaderNode = createBlockNode('header', 'header')
+const FooterNode = createBlockNode('footer', 'footer')
 const DivNode = createBlockNode('div', 'div')
 const BlockquoteNode = createBlockNode('blockquote', 'blockquote')
 const PreNode = createBlockNode('pre', 'pre')
@@ -738,14 +740,12 @@ export function buildEditor ({ dynamicAreaProps, attachmentsIndex, renderHtmlFor
       History,
       Gapcursor,
       Dropcursor,
-      CustomBold,
-      CustomItalic,
-      CustomUnderline,
-      CustomStrike,
       CustomParagraph,
       CustomHeading,
       SectionNode,
       ArticleNode,
+      HeaderNode,
+      FooterNode,
       DivNode,
       BlockquoteNode,
       PreNode,
@@ -764,6 +764,10 @@ export function buildEditor ({ dynamicAreaProps, attachmentsIndex, renderHtmlFor
       EmptySpanNode,
       LinkMark,
       SpanMark,
+      CustomBold,
+      CustomItalic,
+      CustomUnderline,
+      CustomStrike,
       SubscriptMark,
       SuperscriptMark,
       VariableHighlight,
