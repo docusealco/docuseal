@@ -25,6 +25,13 @@ tiptapStylesheet.replaceSync(
   -webkit-font-variant-ligatures: none;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0;
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: inherit;
+}
+
+.ProseMirror > article {
+  margin-bottom: auto;
 }
 
 .ProseMirror [contenteditable="false"] {
