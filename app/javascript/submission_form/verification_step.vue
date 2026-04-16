@@ -30,6 +30,7 @@
       <IconInnerShadowTop
         width="40"
         class="animate-spin h-10"
+        aria-hidden="true"
       />
     </div>
     <div v-else-if="redirectUrl">

@@ -2,7 +2,7 @@
 <% I18n.with_locale(@submitter.account.locale) do %>
   <% content_for(:html_description, t('account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution', account_name: @submitter.account.name)) %>
 <% end %>
-<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+<main class="max-w-md mx-auto px-2 mt-12 mb-4">
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
       <div class="flex items-center justify-center">
@@ -46,7 +46,7 @@
                 <% end %>
               </span>
               <span>
-                <label for="resend_code" id="resend_label" class="link"><%= t(:re_send_email) %></label>
+                <button type="submit" form="resend_code_form" class="link"><%= t(:re_send_email) %></button>
               </span>
             </div>
           </div>
@@ -54,7 +54,7 @@
             <%= f.button button_title(title: t('submit')), class: 'base-button' %>
           </toggle-submit>
         <% end %>
-        <%= button_to t(:re_send_email), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, resend: true }, method: :put, id: 'resend_code', class: 'hidden' %>
+        <%= button_to t(:re_send_email), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, resend: true }, method: :put, form: { id: 'resend_code_form', class: 'hidden' } %>
       <% else %>
         <% if params[:t] %>
           <fetch-form data-onload="true">
@@ -69,4 +69,4 @@
       <div><%= t('please_contact_the_requester_to_specify_your_email_for_two_factor_authentication') %></div>
     <% end %>
   </div>
-</div>
+</main>

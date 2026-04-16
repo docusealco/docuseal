@@ -57,6 +57,7 @@
         <IconInnerShadowTop
           v-if="isSubmittingComplete"
           class="mr-1 animate-spin w-5 h-5"
+          aria-hidden="true"
         />
         <span>
           {{ t('complete') }}
@@ -88,6 +89,7 @@
       class="absolute right-0 mr-4"
       :width="20"
       :height="20"
+      aria-hidden="true"
     />
   </button>
   <div
@@ -103,11 +105,13 @@
       class="absolute right-0 top-0 minimize-form-button"
       :class="currentField?.description?.length > 100 ? 'mr-1 mt-1 md:mr-2 md:mt-2': 'mr-2 mt-2 hidden md:block'"
       :title="t('minimize')"
+      :aria-label="t('minimize')"
       @click.prevent="minimizeForm"
     >
       <IconArrowsDiagonalMinimize2
         :width="20"
         :height="20"
+        aria-hidden="true"
       />
     </button>
     <div
@@ -193,6 +197,7 @@
             />
             <div
               v-if="currentField.description"
+              :id="currentField.uuid + '-desc'"
               dir="auto"
               class="mb-3 px-1 field-description-text"
             >
@@ -203,6 +208,7 @@
               :id="currentField.uuid"
               dir="auto"
               :required="currentField.required"
+              :aria-describedby="currentField.description ? currentField.uuid + '-desc' : undefined"
               class="select base-input !text-2xl w-full text-center font-normal"
               :class="{ 'text-gray-300': !values[currentField.uuid] }"
               :name="`values[${currentField.uuid}]`"
@@ -250,6 +256,7 @@
             </label>
             <div
               v-if="currentField.description"
+              :id="currentField.uuid + '-desc'"
               dir="auto"
               class="mb-3 px-1 field-description-text"
             >
@@ -309,6 +316,7 @@
           >
             <div
               v-if="currentField.description"
+              :id="currentField.uuid + '-desc'"
               dir="auto"
               class="mb-3 px-1 field-description-text"
             >
@@ -511,6 +519,7 @@
               <IconInnerShadowTop
                 v-if="isSubmitting"
                 class="mr-1 animate-spin"
+                aria-hidden="true"
               />
               <span>
                 {{ submitButtonText }}
@@ -522,6 +531,7 @@
           </button>
           <div
             v-if="showFillAllRequiredFields"
+            role="alert"
             class="text-center mt-1"
           >
             {{ t('please_fill_all_required_fields') }}
@@ -554,8 +564,9 @@
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
       />
-      <div
+      <nav
         v-if="stepFields.length < 80"
+        :aria-label="t('form_progress')"
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
       >
         <div class="flex items-center flex-wrap steps-progress">
@@ -563,16 +574,18 @@
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
           >
-            <a
+            <button
               v-if="!onlyRequiredFields || step.some((f) => f.required)"
-              href="#"
-              class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
+              type="button"
+              :aria-label="`${t('step')} ${index + 1}`"
+              :aria-current="index === currentStep ? 'step' : undefined"
+              class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1 p-0"
               :class="{ 'bg-base-300 steps-progress-current': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-              @click.prevent="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
+              @click="isCompleted ? '' : [saveStep(), goToStep(index, true)]"
             />
           </template>
         </div>
-      </div>
+      </nav>
       <div
         v-else
         class="mt-5"
@@ -1458,7 +1471,7 @@ export default {
           }
 
           this.enableScrollIntoField = false
-          this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+          this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], input[type="tel"], textarea, select')?.focus()
           this.enableScrollIntoField = true
 
           if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
@@ -1629,6 +1642,15 @@ export default {
 
       if (this.completedRedirectUrl) {
         window.location.href = sanitizeUrl(this.completedRedirectUrl)
+      } else {
+        this.$nextTick(() => {
+          const root = this.$root.$el.parentNode.getRootNode()
+          const completedEl = root.getElementById('form_completed')
+
+          if (completedEl) {
+            completedEl.focus()
+          }
+        })
       }
     }
   }

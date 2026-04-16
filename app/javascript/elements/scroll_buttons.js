@@ -47,11 +47,13 @@ export default class extends HTMLElement {
 
     this.classList.remove('hidden', '-translate-y-10', 'opacity-0')
     this.classList.add('translate-y-0', 'opacity-100')
+    this.querySelectorAll('[tabindex]').forEach((el) => { el.tabIndex = 0 })
   }
 
   hideButtons () {
     this.classList.remove('translate-y-0', 'opacity-100')
     this.classList.add('-translate-y-10', 'opacity-0')
+    this.querySelectorAll('[tabindex]').forEach((el) => { el.tabIndex = -1 })
 
     setTimeout(() => {
       if (this.classList.contains('-translate-y-10')) {

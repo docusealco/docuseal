@@ -1,4 +1,10 @@
 const en = {
+  step: 'Step',
+  form_progress: 'Form progress',
+  close: 'Close',
+  uploaded_files: 'Uploaded files',
+  minimize: 'Minimize',
+  signature_drawing_area: 'Signature drawing area. Use mouse or touch to draw your signature.',
   kba: 'KBA',
   please_upload_an_image_file: 'Please upload an image file',
   must_be_characters_length: 'Must be {number} characters long',
@@ -102,6 +108,11 @@ const en = {
 }
 
 const es = {
+  step: 'Paso',
+  form_progress: 'Progreso del formulario',
+  close: 'Cerrar',
+  uploaded_files: 'Archivos subidos',
+  signature_drawing_area: 'Área de dibujo de firma. Use el ratón o toque para dibujar su firma.',
   kba: 'KBA',
   please_upload_an_image_file: 'Por favor, sube un archivo de imagen',
   must_be_characters_length: 'Debe tener {number} caracteres de longitud',
@@ -205,6 +216,11 @@ const es = {
 }
 
 const it = {
+  step: 'Passo',
+  form_progress: 'Progresso del modulo',
+  close: 'Chiudi',
+  uploaded_files: 'File caricati',
+  signature_drawing_area: 'Area di disegno della firma. Usa il mouse o il tocco per disegnare la tua firma.',
   kba: 'KBA',
   please_upload_an_image_file: 'Per favore carica un file immagine',
   must_be_characters_length: 'Deve essere lungo {number} caratteri',
@@ -308,6 +324,11 @@ const it = {
 }
 
 const de = {
+  step: 'Schritt',
+  form_progress: 'Formularfortschritt',
+  close: 'Schließen',
+  uploaded_files: 'Hochgeladene Dateien',
+  signature_drawing_area: 'Unterschriftszeichenbereich. Verwenden Sie die Maus oder Berührung, um Ihre Unterschrift zu zeichnen.',
   kba: 'KBA',
   please_upload_an_image_file: 'Bitte laden Sie eine Bilddatei hoch',
   must_be_characters_length: 'Muss {number} Zeichen lang sein',
@@ -411,6 +432,11 @@ const de = {
 }
 
 const fr = {
+  step: 'Étape',
+  form_progress: 'Progression du formulaire',
+  close: 'Fermer',
+  uploaded_files: 'Fichiers téléchargés',
+  signature_drawing_area: 'Zone de dessin de signature. Utilisez la souris ou le toucher pour dessiner votre signature.',
   kba: 'KBA',
   please_upload_an_image_file: 'Veuillez téléverser un fichier image',
   must_be_characters_length: 'Doit comporter {number} caractères',
@@ -514,6 +540,11 @@ const fr = {
 }
 
 const pl = {
+  step: 'Krok',
+  form_progress: 'Postęp formularza',
+  close: 'Zamknij',
+  uploaded_files: 'Przesłane pliki',
+  signature_drawing_area: 'Obszar rysowania podpisu. Użyj myszy lub dotyku, aby narysować swój podpis.',
   kba: 'KBA',
   please_upload_an_image_file: 'Proszę przesłać plik obrazu',
   must_be_characters_length: 'Musi mieć długość {number} znaków',
@@ -617,6 +648,11 @@ const pl = {
 }
 
 const uk = {
+  step: 'Крок',
+  form_progress: 'Прогрес форми',
+  close: 'Закрити',
+  uploaded_files: 'Завантажені файли',
+  signature_drawing_area: 'Область малювання підпису. Використовуйте мишу або дотик, щоб намалювати свій підпис.',
   kba: 'KBA',
   please_upload_an_image_file: 'Будь ласка, завантажте файл зображення',
   must_be_characters_length: 'Має містити {number} символів',
@@ -720,6 +756,11 @@ const uk = {
 }
 
 const cs = {
+  step: 'Krok',
+  form_progress: 'Průběh formuláře',
+  close: 'Zavřít',
+  uploaded_files: 'Nahrané soubory',
+  signature_drawing_area: 'Oblast pro kreslení podpisu. Použijte myš nebo dotyk k nakreslení podpisu.',
   kba: 'KBA',
   please_upload_an_image_file: 'Nahrajte prosím obrázkový soubor',
   must_be_characters_length: 'Musí mít délku {number} znaků',
@@ -823,6 +864,11 @@ const cs = {
 }
 
 const pt = {
+  step: 'Passo',
+  form_progress: 'Progresso do formulário',
+  close: 'Fechar',
+  uploaded_files: 'Arquivos enviados',
+  signature_drawing_area: 'Área de desenho da assinatura. Use o mouse ou toque para desenhar sua assinatura.',
   kba: 'KBA',
   please_upload_an_image_file: 'Por favor, envie um arquivo de imagem',
   must_be_characters_length: 'Deve ter {number} caracteres',
@@ -926,6 +972,11 @@ const pt = {
 }
 
 const he = {
+  step: 'שלב',
+  form_progress: 'התקדמות הטופס',
+  close: 'סגור',
+  uploaded_files: 'קבצים שהועלו',
+  signature_drawing_area: 'אזור ציור חתימה. השתמש בעכבר או במגע כדי לצייר את החתימה שלך.',
   kba: 'KBA',
   please_upload_an_image_file: 'אנא העלה קובץ תמונה',
   must_be_characters_length: 'חייב להיות באורך של {number} תווים',
@@ -1029,6 +1080,11 @@ const he = {
 }
 
 const nl = {
+  step: 'Stap',
+  form_progress: 'Formuliervoortgang',
+  close: 'Sluiten',
+  uploaded_files: 'Geüploade bestanden',
+  signature_drawing_area: 'Handtekening tekengebied. Gebruik de muis of aanraking om uw handtekening te tekenen.',
   kba: 'KBA',
   please_upload_an_image_file: 'Upload alstublieft een afbeeldingsbestand',
   must_be_characters_length: 'Moet {number} tekens lang zijn',
@@ -1132,6 +1188,11 @@ const nl = {
 }
 
 const ar = {
+  step: 'خطوة',
+  form_progress: 'تقدم النموذج',
+  close: 'إغلاق',
+  uploaded_files: 'الملفات المرفوعة',
+  signature_drawing_area: 'منطقة رسم التوقيع. استخدم الماوس أو اللمس لرسم توقيعك.',
   kba: 'KBA',
   please_upload_an_image_file: 'يرجى تحميل ملف صورة',
   must_be_characters_length: 'يجب أن يكون الطول {number} حرفًا',
@@ -1235,6 +1296,11 @@ const ar = {
 }
 
 const ko = {
+  step: '단계',
+  form_progress: '양식 진행',
+  close: '닫기',
+  uploaded_files: '업로드된 파일',
+  signature_drawing_area: '서명 그리기 영역. 마우스 또는 터치를 사용하여 서명을 그리세요.',
   kba: 'KBA',
   please_upload_an_image_file: '이미지 파일을 업로드해 주세요',
   must_be_characters_length: '{number}자여야 합니다',
@@ -1338,6 +1404,11 @@ const ko = {
 }
 
 const ja = {
+  step: 'ステップ',
+  form_progress: 'フォームの進捗',
+  close: '閉じる',
+  uploaded_files: 'アップロードされたファイル',
+  signature_drawing_area: '署名描画エリア。マウスまたはタッチを使用して署名を描いてください。',
   kba: 'KBA',
   please_upload_an_image_file: '画像ファイルをアップロードしてください',
   must_be_characters_length: '{number}文字でなければなりません',

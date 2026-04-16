@@ -5,6 +5,12 @@ export default targetable(class extends HTMLElement {
 
   connectedCallback () {
     this.addEventListener('click', () => this.downloadFiles())
+    this.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        this.downloadFiles()
+      }
+    })
   }
 
   toggleState () {

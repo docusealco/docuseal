@@ -162,6 +162,7 @@ en: &en
   download_documents: Download documents
   downloading: Downloading
   download: Download
+  page: Page
   decline: Decline
   declined: Declined
   delegate: Delegate
@@ -1204,6 +1205,7 @@ es: &es
   download_documents: Descargar documentos
   downloading: Descargando
   download: Descargar
+  page: Página
   decline: Rechazar
   delegate: Delegar
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Ingrese la dirección de correo electrónico de la persona a quien desea delegar
@@ -2243,6 +2245,7 @@ it: &it
   download_documents: Scarica documenti
   downloading: Scaricamento
   download: Scarica
+  page: Pagina
   decline: Rifiuta
   delegate: Delega
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Inserisci l'indirizzo email della persona a cui vuoi delegare
@@ -3283,6 +3286,7 @@ fr: &fr
   download_documents: Télécharger les documents
   downloading: Téléchargement
   download: Télécharger
+  page: Page
   decline: Refuser
   delegate: Déléguer
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Saisissez l'adresse e-mail de la personne à qui vous souhaitez déléguer
@@ -4319,6 +4323,7 @@ pt: &pt
   download_documents: Baixar documentos
   downloading: Baixando
   download: Baixar
+  page: Página
   decline: Recusar
   delegate: Delegar
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Insira o endereço de e-mail da pessoa para quem deseja delegar
@@ -5358,6 +5363,7 @@ de: &de
   download_documents: Dokumente herunterladen
   downloading: Wird heruntergeladen
   download: Download
+  page: Seite
   decline: Ablehnen
   delegate: Delegieren
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Geben Sie die E-Mail-Adresse der Person ein, an die Sie delegieren möchten
@@ -6261,6 +6267,7 @@ pl:
   view: Widok
   hi_there: Cześć,
   download: Pobierz
+  page: Strona
   decline: Odrzuć
   delegate: Deleguj
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Wprowadź adres e-mail osoby, do której chcesz delegować
@@ -6361,6 +6368,7 @@ uk:
   view: Переглянути
   hi_there: Привіт,
   download: Завантажити
+  page: Сторінка
   decline: Відхилити
   delegate: Делегувати
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Введіть адресу електронної пошти особи, якій ви хочете делегувати
@@ -6461,6 +6469,7 @@ cs:
   view: Zobrazit
   hi_there: Ahoj,
   download: Stáhnout
+  page: Stránka
   decline: Odmítnout
   delegate: Delegovat
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Zadejte e-mailovou adresu osoby, na kterou chcete delegovat
@@ -6561,6 +6570,7 @@ he:
   view: תצוגה
   hi_there: שלום,
   download: הורד
+  page: עמוד
   decline: דחייה
   delegate: הואלה
   enter_the_email_address_of_the_person_you_want_to_delegate_to: הזן את כתובת הדוא"ל של האדם שברצונך להאציל אליו
@@ -6798,6 +6808,7 @@ nl: &nl
   download_documents: Documenten downloaden
   downloading: Downloaden
   download: Downloaden
+  page: Pagina
   decline: Weigeren
   delegate: Delegeren
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Voer het e-mailadres in van de persoon aan wie u wilt delegeren
@@ -7697,6 +7708,7 @@ ar:
   view: عرض
   hi_there: مرحبا,
   download: تحميل
+  page: صفحة
   decline: رفض
   delegate: تفويض
   enter_the_email_address_of_the_person_you_want_to_delegate_to: أدخل عنوان البريد الإلكتروني للشخص الذي تريد التفويض إليه
@@ -7797,6 +7809,7 @@ ko:
   view: 보기
   hi_there: 안녕하세요,
   download: 다운로드
+  page: 페이지
   decline: 거절
   delegate: 위임
   enter_the_email_address_of_the_person_you_want_to_delegate_to: 위임할 사람의 이메일 주소를 입력하세요
@@ -7897,6 +7910,7 @@ ja:
   view: 表示
   hi_there: こんにちは
   download: ダウンロード
+  page: ページ
   decline: 辞退
   delegate: 委任
   enter_the_email_address_of_the_person_you_want_to_delegate_to: 委任したい人のメールアドレスを入力してください

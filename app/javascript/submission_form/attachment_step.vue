@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="value.length">
-      <div
+    <ul v-if="value.length" :aria-label="t('uploaded_files')" class="list-none p-0 m-0">
+      <li
         v-for="(val, index) in value"
         :key="index"
         class="flex mb-2"
@@ -21,22 +21,26 @@
             :width="16"
             class="flex-none"
             :heigh="16"
+            aria-hidden="true"
           />
           <span>
             {{ attachmentsIndex[val].filename }}
           </span>
         </a>
         <button
+          type="button"
           class="remove-attachment-button"
+          :aria-label="`${t('clear')} ${attachmentsIndex[val].filename}`"
           @click.prevent="removeAttachment(val)"
         >
           <IconTrashX
             :width="18"
             :heigh="19"
+            aria-hidden="true"
           />
         </button>
-      </div>
-    </div>
+      </li>
+    </ul>
     <template v-else>
       <input
         value=""

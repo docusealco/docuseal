@@ -23,6 +23,7 @@
   />
   <div
     v-if="field.description"
+    :id="field.uuid + '-desc'"
     dir="auto"
     class="mb-3 px-1 field-description-text"
   >
@@ -40,6 +41,7 @@
       :class="{ '!pr-11 -mr-10': !field.validation?.pattern }"
       :required="field.required"
       :pattern="field.validation?.pattern"
+      :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       type="text"
       :name="`values[${field.uuid}]`"
@@ -54,6 +56,7 @@
       v-model="text"
       dir="auto"
       class="base-textarea !text-2xl w-full"
+      :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       :required="field.required"
       :name="`values[${field.uuid}]`"
@@ -65,13 +68,14 @@
       class="tooltip"
       :data-tip="t('toggle_multiline_text')"
     >
-      <a
-        href="#"
+      <button
+        type="button"
+        :aria-label="t('toggle_multiline_text')"
         class="btn btn-ghost btn-circle btn-sm toggle-multiline-text-button"
-        @click.prevent="toggleTextArea"
+        @click="toggleTextArea"
       >
-        <IconAlignBoxLeftTop />
-      </a>
+        <IconAlignBoxLeftTop aria-hidden="true" />
+      </button>
     </div>
   </div>
 </template>

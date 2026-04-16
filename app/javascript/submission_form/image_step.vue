@@ -18,13 +18,14 @@
         class="btn btn-outline btn-sm reupload-button"
         @click.prevent="remove"
       >
-        <IconReload :width="16" />
+        <IconReload :width="16" aria-hidden="true" />
         {{ t('reupload') }}
       </button>
     </div>
     <div>
       <img
         :src="attachmentsIndex[modelValue].url"
+        :alt="field.name || t('image')"
         class="h-52 border border-base-300 rounded mx-auto uploaded-image-preview"
       >
     </div>

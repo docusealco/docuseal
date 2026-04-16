@@ -3,6 +3,9 @@
     id="form_completed"
     class="mx-auto max-w-md flex flex-col completed-form"
     dir="auto"
+    role="status"
+    aria-live="assertive"
+    tabindex="-1"
   >
     <div class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
       <IconCircleCheck
@@ -42,6 +45,7 @@
         <IconInnerShadowTop
           v-if="isSendingCopy"
           class="animate-spin"
+          aria-hidden="true"
         />
         <IconMail v-else />
         <span>
@@ -57,6 +61,7 @@
         <IconInnerShadowTop
           v-if="isDownloading"
           class="animate-spin"
+          aria-hidden="true"
         />
         <IconDownload v-else />
         <span>
@@ -199,7 +204,7 @@ export default {
       })
     }
 
-    document.querySelectorAll('#decline_button').forEach((button) => {
+    document.querySelectorAll('#decline_button, #decline_button_mobile, #delegate_button, #delegate_button_mobile').forEach((button) => {
       button.setAttribute('disabled', 'true')
     })
   },

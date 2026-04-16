@@ -19,6 +19,7 @@
   </label>
   <div
     v-if="field.description"
+    :id="field.uuid + '-desc'"
     dir="auto"
     class="mb-3 px-1 field-description-text"
   >
@@ -59,6 +60,7 @@
             type="checkbox"
             :name="`values[${field.uuid}][]`"
             :value="optionValue(option, index)"
+            :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
             class="base-checkbox !h-7 !w-7"
             :checked="(modelValue || []).includes(optionValue(option, index))"
             @change="onChange"
