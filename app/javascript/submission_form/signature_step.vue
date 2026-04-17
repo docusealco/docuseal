@@ -69,13 +69,11 @@
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
-          <label
-            role="button"
-            tabindex="0"
+          <button
+            type="button"
             :aria-label="t('take_photo')"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
-            @keydown.enter.prevent="$el.querySelector('input')?.click()"
-            @keydown.space.prevent="$el.querySelector('input')?.click()"
+            @click="$refs.takePhotoInput.click()"
           >
             <IconCamera
               :width="16"
@@ -83,6 +81,7 @@
             />
             <input
               :key="uploadImageInputKey"
+              ref="takePhotoInput"
               type="file"
               hidden
               accept="image/*"
@@ -91,7 +90,7 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
         <button
           v-if="modelValue || computedPreviousValue"

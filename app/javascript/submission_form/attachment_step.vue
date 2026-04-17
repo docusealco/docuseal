@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ul v-if="value.length" :aria-label="t('uploaded_files')" class="list-none p-0 m-0">
+    <ul
+      v-if="value.length"
+      :aria-label="t('uploaded_files')"
+      class="list-none p-0 m-0"
+    >
       <li
         v-for="(val, index) in value"
         :key="index"
@@ -20,7 +24,7 @@
           <IconPaperclip
             :width="16"
             class="flex-none"
-            :heigh="16"
+            :height="16"
             aria-hidden="true"
           />
           <span>
@@ -35,7 +39,7 @@
         >
           <IconTrashX
             :width="18"
-            :heigh="19"
+            :height="19"
             aria-hidden="true"
           />
         </button>

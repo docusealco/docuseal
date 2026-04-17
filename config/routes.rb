@@ -150,6 +150,7 @@ Rails.application.routes.draw do
     resources :decline, only: %i[create], controller: 'submit_form_decline'
     resources :delegate, only: %i[create], controller: 'submit_form_delegate'
     resources :invite, only: %i[create], controller: 'submit_form_invite'
+    resources :metadata, only: %i[index], controller: 'submit_form_metadata'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
     get :completed
     get :delegated

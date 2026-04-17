@@ -4,11 +4,11 @@
     dir="auto"
     :style="[computedStyle, fontStyle]"
     :class="{ 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
-    :role="submittable && field.type !== 'checkbox' && field.type !== 'radio' && field.type !== 'multiple' ? 'button' : undefined"
-    :tabindex="submittable ? 0 : undefined"
-    :aria-label="submittable ? fieldAreaLabel : undefined"
-    @keydown.enter.prevent="submittable ? $el.click() : undefined"
-    @keydown.space.prevent="submittable ? $el.click() : undefined"
+    :role="submittable && !isNativeInputField ? 'button' : undefined"
+    :tabindex="submittable && !isNativeInputField ? 0 : undefined"
+    :aria-label="submittable && !isNativeInputField ? fieldAreaLabel : undefined"
+    @keydown.enter.prevent="submittable && !isNativeInputField ? $el.click() : undefined"
+    @keydown.space.prevent="submittable && !isNativeInputField ? $el.click() : undefined"
   >
     <div
       v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -23,6 +23,7 @@
           width="100%"
           height="100%"
           class="max-h-10 text-base-content"
+          aria-hidden="true"
         />
       </span>
     </div>
@@ -155,6 +156,7 @@
         v-if="submittable"
         type="radio"
         :value="false"
+        :name="`radio-area-${field.uuid}`"
         :aria-label="optionValue(option)"
         class="aspect-square checked:checkbox checked:checkbox-xs"
         :class="{ 'base-radio': !modelValue || modelValue !== optionValue(option), '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
@@ -407,6 +409,9 @@ export default {
         verification: this.t('verify_id'),
         kba: this.t('kba')
       }
+    },
+    isNativeInputField () {
+      return ['checkbox', 'radio', 'multiple'].includes(this.field.type)
     },
     fieldAreaLabel () {
       const name = this.field.name || this.fieldNames[this.field.type] || this.field.type

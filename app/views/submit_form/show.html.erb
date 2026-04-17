@@ -12,6 +12,7 @@
 <% delegate_modal_id = nil %>
 <div style="max-height: -webkit-fill-available;">
   <main id="scrollbox">
+    <div id="sr_only_content"></div>
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 transition-transform duration-300 %>
       <%= local_assigns[:banner_html] || capture do %>
@@ -63,10 +64,10 @@
             <% end %>
           </div>
         </header>
-        <scroll-buttons class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
+        <scroll-buttons inert class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10">
           <% if @form_configs[:with_delegate] %>
             <modal-button data-target="<%= delegate_modal_id %>">
-              <button id="delegate_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:delegate) %>" tabindex="-1">
+              <button id="delegate_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:delegate) %>">
                 <span class="min-[1366px]:inline hidden px-3">
                   <%= t(:delegate) %>
                 </span>
@@ -77,12 +78,12 @@
             </modal-button>
             <% if @form_configs[:with_decline] %>
               <modal-button data-target="<%= decline_modal_id %>">
-                <button id="decline_button_mobile" type="button" class="btn btn-sm px-2" aria-label="<%= t(:decline) %>" tabindex="-1">
+                <button id="decline_button_mobile" type="button" class="btn btn-sm px-2" aria-label="<%= t(:decline) %>">
                   <%= svg_icon('x', class: 'w-5 h-5') %>
                 </button>
               </modal-button>
             <% end %>
-            <download-button role="button" tabindex="-1" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2" aria-label="<%= t('download') %>">
+            <download-button role="button" tabindex="0" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2" aria-label="<%= t('download') %>">
               <span data-target="download-button.defaultButton">
                 <%= svg_icon('download', class: 'w-5 h-5') %>
               </span>
@@ -93,7 +94,7 @@
           <% else %>
             <% if @form_configs[:with_decline] %>
               <modal-button data-target="<%= decline_modal_id %>">
-                <button id="decline_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:decline) %>" tabindex="-1">
+                <button id="decline_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:decline) %>">
                   <span class="min-[1366px]:inline hidden px-3">
                     <%= t(:decline) %>
                   </span>
@@ -103,7 +104,7 @@
                 </button>
               </modal-button>
             <% end %>
-            <download-button role="button" tabindex="-1" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2" aria-label="<%= t('download') %>">
+            <download-button role="button" tabindex="0" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2" aria-label="<%= t('download') %>">
               <span data-target="download-button.defaultButton">
                 <%= svg_icon('download', class: 'w-5 h-5') %>
               </span>
@@ -117,6 +118,7 @@
       <% schema.each do |item| %>
         <% document = @submitter.submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] } %>
         <div id="document-<%= document.uuid %>">
+          <div class="sr_only_content"></div>
           <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
           <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
           <% lazyload_metadata = document.preview_images.last&.metadata || Templates::ProcessDocument::US_LETTER_SIZE %>

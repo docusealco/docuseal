@@ -18,7 +18,10 @@
         class="btn btn-outline btn-sm reupload-button"
         @click.prevent="remove"
       >
-        <IconReload :width="16" aria-hidden="true" />
+        <IconReload
+          :width="16"
+          aria-hidden="true"
+        />
         {{ t('reupload') }}
       </button>
     </div>

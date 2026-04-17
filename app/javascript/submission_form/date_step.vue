@@ -30,7 +30,10 @@
         class="btn btn-outline btn-sm !normal-case font-normal set-current-date-button"
         @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
-        <IconCalendarCheck :width="16" aria-hidden="true" />
+        <IconCalendarCheck
+          :width="16"
+          aria-hidden="true"
+        />
         {{ t('set_today') }}
       </button>
     </div>

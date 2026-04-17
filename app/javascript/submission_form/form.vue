@@ -1,5 +1,52 @@
 <template>
+  <Teleport
+    v-if="withAccessibilityAreas === null && !isAccessibilityMode"
+    to="#sr_only_content"
+  >
+    <button
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-base-100 focus:text-base-content focus:rounded focus:shadow-lg"
+      @click="isAccessibilityMode = true"
+    >
+      {{ t('enter_screen_reader_mode') }}
+    </button>
+  </Teleport>
+  <Teleport
+    v-for="item in (withAccessibilityAreas === null ? schema : [])"
+    :key="item.attachment_uuid"
+    :to="`#document-${item.attachment_uuid} .sr_only_content`"
+  >
+    <button
+      v-if="!isAccessibilityMode"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-base-100 focus:text-base-content focus:rounded focus:shadow-lg"
+      @click="isAccessibilityMode = true"
+    >
+      {{ t('enter_screen_reader_mode') }}
+    </button>
+  </Teleport>
+  <AccessibilityAreas
+    v-if="withAccessibilityAreas || isAccessibilityMode"
+    ref="areas"
+    :submitter-slug="submitterSlug"
+    :steps="stepFields"
+    :readonly-conditional-fields="readonlyConditionalFields"
+    :readonly-conditional-field-values="readonlyConditionalFieldValues"
+    :formula-fields="formulaFields"
+    :values="values"
+    :readonly-values="readonlyFieldValues"
+    :submitter="submitter"
+    :scroll-el="scrollEl"
+    :current-step="currentStepFields"
+    :with-field-placeholder="withFieldPlaceholder"
+    :with-signature-id="withSignatureId"
+    :with-label="withFieldLabels && !isAnonymousChecboxes && showFieldNames"
+    :scroll-padding="scrollPadding"
+    :attachments-index="attachmentsIndex"
+    :fetch-options="fetchOptions"
+    :filled-fields-index="filledFieldsIndex"
+    @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
+  />
   <FieldAreas
+    v-if="!withAccessibilityAreas && !isAccessibilityMode"
     ref="areas"
     :steps="stepFields"
     :values="values"
@@ -14,6 +61,7 @@
     @focus-step="[saveStep(), currentField.type !== 'checkbox' ? isFormVisible = true : '', goToStep($event, false, true)]"
   />
   <FieldAreas
+    v-if="!withAccessibilityAreas && !isAccessibilityMode"
     :steps="readonlyConditionalFields.map((e) => [e])"
     :values="readonlyConditionalFieldValues"
     :submitter="submitter"
@@ -21,7 +69,7 @@
     :submittable="false"
   />
   <FormulaFieldAreas
-    v-if="formulaFields.length"
+    v-if="!withAccessibilityAreas && !isAccessibilityMode && formulaFields.length"
     :fields="formulaFields"
     :readonly-values="readonlyFieldValues"
     :values="values"
@@ -567,6 +615,7 @@
       <nav
         v-if="stepFields.length < 80"
         :aria-label="t('form_progress')"
+        :aria-hidden="isCompleted"
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
       >
         <div class="flex items-center flex-wrap steps-progress">
@@ -597,6 +646,7 @@
 <script>
 import FieldAreas from './areas'
 import FormulaFieldAreas from './formula_areas'
+import AccessibilityAreas from './accessibility_areas'
 import ImageStep from './image_step'
 import SignatureStep from './signature_step'
 import InitialsStep from './initials_step'
@@ -655,6 +705,7 @@ export default {
   name: 'SubmissionForm',
   components: {
     FieldAreas,
+    AccessibilityAreas,
     ImageStep,
     SignatureStep,
     AppearsOn,
@@ -837,6 +888,16 @@ export default {
       required: false,
       default: ''
     },
+    filledFieldsIndex: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    withAccessibilityAreas: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
     fields: {
       type: Array,
       required: false,
@@ -947,7 +1008,8 @@ export default {
       isSubmitting: false,
       isSubmittingComplete: false,
       submittedValues: {},
-      recalculateButtonDisabledKey: ''
+      recalculateButtonDisabledKey: '',
+      isAccessibilityMode: false
     }
   },
   computed: {

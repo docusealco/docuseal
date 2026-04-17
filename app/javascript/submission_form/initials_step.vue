@@ -29,7 +29,10 @@
             class="btn btn-outline font-medium btn-sm type-text-button"
             @click="toggleTextInput"
           >
-            <IconTextSize :width="16" aria-hidden="true" />
+            <IconTextSize
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
@@ -47,7 +50,10 @@
             class="btn btn-outline font-medium btn-sm type-text-button"
             @click="toggleTextInput"
           >
-            <IconSignature :width="16" aria-hidden="true" />
+            <IconSignature
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
@@ -57,10 +63,19 @@
           class="md:tooltip"
           :data-tip="t('click_to_upload')"
         >
-          <label role="button" tabindex="0" :aria-label="t('click_to_upload')" class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button" @keydown.enter.prevent="$el.querySelector('input')?.click()" @keydown.space.prevent="$el.querySelector('input')?.click()">
-            <IconUpload :width="16" aria-hidden="true" />
+          <button
+            type="button"
+            :aria-label="t('click_to_upload')"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
+            @click="$refs.uploadInput.click()"
+          >
+            <IconUpload
+              :width="16"
+              aria-hidden="true"
+            />
             <input
               :key="uploadImageInputKey"
+              ref="uploadInput"
               type="file"
               hidden
               accept="image/*"
@@ -69,7 +84,7 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
         <button
           v-if="modelValue || computedPreviousValue"
@@ -77,7 +92,10 @@
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click="remove"
         >
-          <IconReload :width="16" aria-hidden="true" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
         </button>
         <button
@@ -86,7 +104,10 @@
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
           @click="clear"
         >
-          <IconReload :width="16" aria-hidden="true" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
         </button>
         <button

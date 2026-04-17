@@ -4,12 +4,12 @@
     class="mx-auto max-w-md flex flex-col completed-form"
     dir="auto"
     role="status"
-    aria-live="assertive"
     tabindex="-1"
   >
     <div class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
       <IconCircleCheck
         class="inline text-green-600"
+        aria-hidden="true"
         :width="30"
         :height="30"
       />
@@ -47,7 +47,10 @@
           class="animate-spin"
           aria-hidden="true"
         />
-        <IconMail v-else />
+        <IconMail
+          v-else
+          aria-hidden="true"
+        />
         <span>
           {{ t('send_copy_via_email') }}
         </span>
@@ -63,7 +66,10 @@
           class="animate-spin"
           aria-hidden="true"
         />
-        <IconDownload v-else />
+        <IconDownload
+          v-else
+          aria-hidden="true"
+        />
         <span>
           {{ t('download') }}
         </span>

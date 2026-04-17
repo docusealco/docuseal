@@ -613,7 +613,7 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: submitter.slug)
 
       find('#expand_form_button').click
-      click_link 'Type'
+      click_button 'Type'
       fill_in 'signature_text_input', with: 'John Doe'
       click_button 'Sign and Complete'
 
@@ -752,7 +752,7 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: submitter.slug)
 
       find('#expand_form_button').click
-      click_link 'Draw'
+      click_button 'Draw'
       draw_canvas
       click_button 'Complete'
 
@@ -1169,7 +1169,7 @@ RSpec.describe 'Signing Form' do
 
       find('#decline_button').click
       fill_in 'reason', with: 'I do not agree with the terms'
-      click_button 'Decline'
+      within('dialog[open]') { click_button 'Decline' }
 
       expect(page).to have_content('Form has been declined')
 
@@ -1193,7 +1193,7 @@ RSpec.describe 'Signing Form' do
 
       find('#delegate_button').click
       fill_in 'email', with: 'delegate@example.com'
-      click_button 'Delegate'
+      within('dialog[open]') { click_button 'Delegate' }
 
       expect(page).to have_content('Document has been delegated')
 
