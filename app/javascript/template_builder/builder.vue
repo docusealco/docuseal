@@ -1097,6 +1097,16 @@ export default {
       }
     })
 
+    const deduplicateUuidsIndex = {}
+
+    this.template.submitters.forEach((submitter) => {
+      if (deduplicateUuidsIndex[submitter.uuid]) {
+        submitter.uuid = v4()
+      }
+
+      deduplicateUuidsIndex[submitter.uuid] = true
+    })
+
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
