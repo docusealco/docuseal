@@ -322,6 +322,7 @@ en: &en
   button_title: Button title
   button_url: Button URL
   upload_logo: Upload Logo
+  remove_logo: Remove Logo
   show_confetti_on_successful_completion: Show confetti on successful completion
   attach_audit_log_pdf: Attach audit log PDF
   attach_documents: Attach documents

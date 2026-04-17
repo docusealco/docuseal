@@ -1,2 +1,6 @@
-<%= render 'shared/logo' %>
-<span>DocuSeal</span>
+<% if current_account&.logo&.attached? %>
+  <%= render 'accounts/logo' %>
+<% else %>
+  <%= render 'shared/logo' %>
+  <span>DocuSeal</span>
+<% end %>

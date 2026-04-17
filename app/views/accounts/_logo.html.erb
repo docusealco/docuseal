@@ -1,0 +1,4 @@
+<%= image_tag url_for(current_account.logo),
+    class: "h-10 object-contain",
+    alt: current_account.name.presence || "Company Logo" %>
+<span><%= current_account.name %></span>

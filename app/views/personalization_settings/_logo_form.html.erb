@@ -1,1 +1,5 @@
-<%= render 'logo_placeholder' %>
+<% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+  <%= render 'logo_upload_form' %>
+<% else %>
+  <%= render 'logo_placeholder' %>
+<% end %>

@@ -1,0 +1,58 @@
+<%= form_for '', url: account_logo_path, id: form_id = SecureRandom.uuid, method: :post,
+    class: 'mt-8 block', html: { enctype: 'multipart/form-data' } do %>
+
+  <input type="hidden" name="form_id" value="<%= form_id %>">
+  <button type="submit" class="hidden"></button>
+
+  <file-dropzone data-submit-on-upload="true" class="w-full">
+    <label for="logo_dropzone_input"
+      class="w-full block h-40 relative hover:bg-base-200/30 rounded-xl border-2 border-base-300 border-dashed"
+      data-target="file-dropzone.area">
+
+      <div class="absolute inset-0 flex items-center justify-center p-2 pointer-events-none">
+        <div class="flex flex-col items-center text-center">
+
+          <!-- Upload State -->
+          <span data-target="file-dropzone.icon" class="flex flex-col items-center mb-3">
+            <span>
+              <%= svg_icon('cloud_upload', class: 'w-8 h-8') %>
+            </span>
+
+            <div class="font-medium mb-1">
+              <%= t('upload_logo') %>
+            </div>
+
+            <div class="text-sm">
+              <%= t('click_to_upload_or_drag_and_drop_html') %>
+            </div>
+
+            <div class="text-xs opacity-60 mt-1">
+              PNG, JPG, SVG
+            </div>
+          </span>
+
+          <!-- Loading State -->
+          <span data-target="file-dropzone.loading" class="flex flex-col items-center hidden">
+            <%= svg_icon('loader', class: 'w-8 h-8 animate-spin') %>
+            <div class="font-medium mb-1">
+              <%= t('uploading') %>...
+            </div>
+          </span>
+
+        </div>
+
+        <!-- Input -->
+        <input
+          id="logo_dropzone_input"
+          name="account_logo[logo]"
+          class="hidden"
+          data-action="change:file-dropzone#onSelectFiles"
+          data-target="file-dropzone.input"
+          type="file"
+          accept="image/*"
+        >
+      </div>
+    </label>
+  </file-dropzone>
+
+<% end %>

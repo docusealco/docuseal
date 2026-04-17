@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  mount ActiveStorage::Engine => "/rails/active_storage"
 
   if !Docuseal.multitenant? && defined?(Sidekiq::Web)
     authenticated :user, ->(u) { u.sidekiq? } do
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :account_logo, controller: 'logos', only: [:create, :destroy]
   resources :verify_pdf_signature, only: %i[create]
   resource :mfa_setup, only: %i[show new edit create destroy], controller: 'mfa_setup'
   resources :account_configs, only: %i[create destroy]

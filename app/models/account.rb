@@ -50,6 +50,7 @@ class Account < ApplicationRecord
   has_many :testing_accounts, through: :account_testing_accounts, source: :linked_account
   has_many :active_users, -> { active }, dependent: :destroy,
                                          inverse_of: :account, class_name: 'User'
+  has_one_attached :logo
 
   attribute :timezone, :string, default: 'UTC'
   attribute :locale, :string, default: 'en-US'
