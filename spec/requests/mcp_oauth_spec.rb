@@ -33,7 +33,7 @@ RSpec.describe 'MCP endpoint authentication', type: :request do
     end
 
     it 'succeeds and dispatches to HandleRequest' do
-      post_mcp(access_token.token)
+      post_mcp(access_token.plaintext_token)
       expect(response).to have_http_status(:ok).or have_http_status(:accepted)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe 'MCP endpoint authentication', type: :request do
       token = create(:oauth_access_token, resource_owner_id: user.id, scopes: 'mcp', expires_in: 1)
 
       travel_to(2.hours.from_now) do
-        post_mcp(token.token)
+        post_mcp(token.plaintext_token)
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -56,7 +56,7 @@ RSpec.describe 'MCP endpoint authentication', type: :request do
     end
 
     it 'returns 401' do
-      post_mcp(access_token.token)
+      post_mcp(access_token.plaintext_token)
       expect(response).to have_http_status(:unauthorized)
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe 'MCP endpoint authentication', type: :request do
     end
 
     it 'returns 401' do
-      post_mcp(access_token.token)
+      post_mcp(access_token.plaintext_token)
       expect(response).to have_http_status(:unauthorized)
     end
   end

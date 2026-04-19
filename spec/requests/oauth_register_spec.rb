@@ -58,6 +58,8 @@ RSpec.describe 'Dynamic Client Registration (RFC 7591)', type: :request do
   end
 
   it 'throttles after 20 requests from the same IP within an hour' do
+    allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new)
+
     20.times { post_register(valid_body) }
     post_register(valid_body)
     expect(response).to have_http_status(:too_many_requests)

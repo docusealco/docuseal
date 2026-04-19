@@ -27,6 +27,11 @@ Doorkeeper.configure do
   pkce_code_challenge_methods %w[S256]
   force_pkce
 
+  # Require HTTPS for redirect_uri except for loopback (OAuth 2.1 §8.4.2).
+  force_ssl_in_redirect_uri do |uri|
+    !%w[localhost 127.0.0.1 ::1].include?(uri.host)
+  end
+
   default_scopes  :mcp
   optional_scopes :mcp
 
