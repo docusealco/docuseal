@@ -1,0 +1,38 @@
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: test
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/docuseal_test
+      # Silence bootsnap cache warnings when mounting source read-write.
+      BOOTSNAP_CACHE_DIR: /tmp/bootsnap
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    command: >
+      bash -c "
+        bin/rails db:prepare &&
+        bundle exec rspec ${SPEC_FILES:-spec}
+      "
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: docuseal_test
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  bundle:
