@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<% page_width_css = @page_size == 'Letter' ? 8.5 * 96.0 : 210.0 * 96.0 / 25.4 %>
+<% page_height_css = @page_size == 'Letter' ? 11.0 * 96.0 : 297.0 * 96.0 / 25.4 %>
+<% page_width = @page_size == 'Letter' ? '8.5in' : '210mm' %>
+<% page_cqw = ->(px) { format('%.6fcqw', px / page_width_css * 100.0) } %>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @template.name %></title>
+    <style>
+      @page {
+        size: <%= @page_size %> portrait;
+        margin: 0.5in;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #111;
+        background: #faf7f5;
+      }
+
+      .qr-page-wrapper {
+        container-type: size;
+        width: min(100vw, <%= page_width %>);
+        max-width: 100%;
+        aspect-ratio: <%= format('%<width>.6f / %<height>.6f', width: page_width_css, height: page_height_css) %>;
+        margin: 24px auto;
+      }
+
+      .qr-page {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: <%= page_cqw.call(72) %>;
+        background: #ffffff;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .qr-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: <%= page_cqw.call(10) %>;
+        font-size: <%= page_cqw.call(20) %>;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .qr-logo svg {
+        width: <%= page_cqw.call(32) %>;
+        height: <%= page_cqw.call(32) %>;
+      }
+
+      .qr-logo img {
+        height: <%= page_cqw.call(50) %>;
+      }
+
+      .qr-content {
+        align-self: center;
+        text-align: center;
+        min-width: 0;
+        margin-bottom: <%= page_cqw.call(80) %>;
+      }
+
+      .qr-header {
+        font-size: <%= page_cqw.call(36) %>;
+        font-weight: 700;
+        line-height: 1.2;
+        padding: 0 <%= page_cqw.call(8) %>;
+        margin-bottom: <%= page_cqw.call(48) %>;
+        word-break: break-word;
+      }
+
+      .qr-main svg {
+        display: block;
+        width: <%= page_cqw.call(480) %>;
+        height: auto;
+        max-width: 100%;
+        margin: 0 auto;
+        shape-rendering: crispEdges;
+      }
+
+      .qr-footer {
+        font-size: <%= page_cqw.call(22) %>;
+        line-height: 1.4;
+        padding: 0 <%= page_cqw.call(8) %>;
+        margin-top: <%= page_cqw.call(48) %>;
+        word-break: break-word;
+      }
+
+      .qr-branding {
+        align-self: end;
+        text-align: center;
+        font-size: <%= page_cqw.call(11) %>;
+        color: #6b7280;
+        padding-top: <%= page_cqw.call(24) %>;
+      }
+
+      .qr-branding a {
+        color: #4b5563;
+        text-decoration: none;
+      }
+
+      [contenteditable="true"] {
+        outline: 1px dashed #cbd5e1;
+        outline-offset: 6px;
+        cursor: text;
+        transition: outline-color 0.15s ease;
+      }
+
+      [contenteditable="true"]:hover {
+        outline-color: #94a3b8;
+      }
+
+      [contenteditable="true"]:focus {
+        outline: 1px dashed #291334;
+        outline-offset: 6px;
+      }
+
+      .print-button {
+        position: fixed;
+        right: 24px;
+        top: 24px;
+        z-index: 100;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 3rem;
+        height: 3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border: 1px solid #291334;
+        border-radius: 1.9rem;
+        background-color: #291334;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1em;
+        font-family: inherit;
+        text-transform: none;
+        letter-spacing: normal;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+      }
+
+      .print-button:hover {
+        background-color: #1a0c22;
+        border-color: #1a0c22;
+      }
+
+      .print-button:active {
+        transform: scale(0.97);
+      }
+
+      .print-button:focus-visible {
+        outline: 2px solid #291334;
+        outline-offset: 2px;
+      }
+
+      .print-button svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      @media screen and (max-width: 820px) {
+        .print-button {
+          top: auto;
+          right: 12px;
+          bottom: 12px;
+        }
+      }
+
+      @media print {
+        html, body {
+          background: #ffffff;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .qr-page-wrapper {
+          width: 100%;
+          height: 100%;
+          aspect-ratio: auto;
+          margin: 0;
+        }
+
+        .qr-page {
+          margin: 0;
+          box-shadow: none;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
+          padding: 0.25in;
+          page-break-inside: avoid;
+          page-break-after: avoid;
+        }
+
+        .qr-logo {
+          gap: 10px;
+          font-size: 20px;
+        }
+
+        .qr-logo svg {
+          width: 32px;
+          height: 32px;
+        }
+
+        .qr-logo img {
+          height: 50px;
+        }
+
+        .qr-content {
+          margin-bottom: 80px;
+        }
+
+        .qr-header {
+          font-size: 36px;
+          padding: 0 8px;
+          margin-bottom: 48px;
+        }
+
+        .qr-main svg {
+          width: 5in;
+          height: 5in;
+        }
+
+        .qr-footer {
+          font-size: 22px;
+          padding: 0 8px;
+          margin-top: 48px;
+        }
+
+        .qr-branding {
+          font-size: 11px;
+          padding-top: 24px;
+        }
+
+        .print-button {
+          display: none !important;
+        }
+
+        [contenteditable="true"],
+        [contenteditable="true"]:focus {
+          outline: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="qr-page-wrapper">
+      <div class="qr-page">
+        <div class="qr-logo">
+          <%= render 'logo' %>
+        </div>
+        <div class="qr-content">
+          <div class="qr-header" contenteditable="true" spellcheck="false"><%= @template.name %></div>
+          <div class="qr-main">
+            <%== @qr_svg_code %>
+          </div>
+          <div class="qr-footer" contenteditable="true" spellcheck="false">
+            <%= t('scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document') %>
+          </div>
+        </div>
+        <div class="qr-branding">
+          <%= render 'branding' %>
+        </div>
+      </div>
+    </div>
+    <button type="button" id="qr-print-button" class="print-button">
+      <%= svg_icon('printer') %>
+      <span><%= t('print') %></span>
+    </button>
+    <script nonce="<%= content_security_policy_nonce %>">
+      document.getElementById('qr-print-button').addEventListener('click', function () {
+        window.print();
+      });
+    </script>
+  </body>
+</html>

@@ -114,36 +114,44 @@ module Templates
       head_node = PageNode.new(elem: ''.b, page: 0, attachment_uuid: attachment&.uuid)
       tail_node = head_node
 
-      page_range = page_number ? [page_number] : (0...doc.page_count)
+      page_indexes = page_number ? [page_number] : (0...doc.page_count).to_a
 
-      fields = page_range.flat_map do |current_page_number|
-        next [] if current_page_number >= doc.page_count
+      prep_opts  = { aspect_ratio:, padding:, split_page: }
+      infer_opts = { confidence: confidence / 3.0, nms:, nmm:, temperature: }
 
-        page = doc.get_page(current_page_number)
+      image = prepare_page_image(doc.get_page(page_indexes.first), inference:, padding:)
+      current_args = inference.prepare_input(image, **prep_opts)
+      current_wait = inference.enqueue(**current_args, **infer_opts)
 
-        size_key = page.width > page.height ? :width : :height
-        size = padding ? inference.resolution * 1.5 : inference.resolution
+      all_fields = []
 
-        data, width, height = page.render_to_bitmap(size_key => size)
+      page_indexes.each_with_index do |current_page_number, i|
+        next_n = page_indexes[i + 1]
 
-        image = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
+        next_image = next_n ? prepare_page_image(doc.get_page(next_n), inference:, padding:) : nil
+        next_args  = next_image ? inference.prepare_input(next_image, **prep_opts) : nil
 
-        fields = inference.call(image, confidence: confidence / 3.0, nms:, nmm:, split_page:,
-                                       temperature:, aspect_ratio:, padding:)
+        outputs = current_wait.call
 
-        text_fields = extract_text_fields_from_page(page)
-        line_fields = extract_line_fields_from_page(page)
+        next_wait = next_args ? inference.enqueue(**next_args, **infer_opts) : nil
 
-        fields = sort_fields(fields, y_threshold: 10.0 / image.height)
+        fields = inference.process_outputs(outputs, **current_args, **infer_opts)
+
+        current_page = doc.get_page(current_page_number)
+
+        fields = sort_fields(fields, y_threshold: 10.0 / current_args[:image].height)
+
+        text_fields = extract_text_fields_from_page(current_page)
+        line_fields = extract_line_fields_from_page(current_page)
 
         fields = increase_confidence_for_overlapping_fields(fields, text_fields, confidence:)
         fields = increase_confidence_for_overlapping_fields(fields, line_fields, confidence:)
 
         fields = fields.reject { |f| f.confidence < confidence }
 
-        field_nodes, tail_node = build_page_nodes(page, fields, tail_node, attachment_uuid: attachment&.uuid)
+        field_nodes, tail_node = build_page_nodes(current_page, fields, tail_node, attachment_uuid: attachment&.uuid)
 
-        fields = field_nodes.map do |node|
+        page_fields = field_nodes.map do |node|
           field = node.elem
 
           type = regexp_type ? type_from_page_node(node) : field.type
@@ -162,18 +170,30 @@ module Templates
           }
         end
 
-        yield [attachment&.uuid, current_page_number, fields] if block_given?
+        yield [attachment&.uuid, current_page_number, page_fields] if block_given?
 
-        fields
+        all_fields.concat(page_fields)
+
+        current_args = next_args
+        current_wait = next_wait
       ensure
-        page.close
+        current_page&.close
       end
 
       print_debug(head_node) if Rails.env.development?
 
-      [fields, head_node]
+      [all_fields, head_node]
     ensure
       doc.close
+    end
+
+    def prepare_page_image(page, inference:, padding:)
+      size_key = page.width > page.height ? :width : :height
+      size = padding ? inference.resolution * 1.5 : inference.resolution
+
+      data, width, height = page.render_to_bitmap(size_key => size)
+
+      Vips::Image.new_from_memory(data, width, height, 4, :uchar)
     end
 
     def sort_fields(fields, y_threshold: 0.01)

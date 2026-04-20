@@ -25,17 +25,21 @@
           class="md:tooltip"
           :data-tip="t('draw_signature')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('draw_signature')"
             class="btn btn-outline btn-sm font-medium type-text-button"
-            @click.prevent="[toggleTextInput(), hideQr()]"
+            @click="[toggleTextInput(), hideQr()]"
           >
-            <IconSignature :width="16" />
+            <IconSignature
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-else-if="withTypedSignature && format !== 'drawn_or_upload' && format !== 'typed_or_upload' && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
@@ -43,17 +47,21 @@
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('type_text')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('type_text')"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap type-text-button"
-            @click.prevent="[toggleTextInput(), hideQr()]"
+            @click="[toggleTextInput(), hideQr()]"
           >
-            <IconTextSize :width="16" />
+            <IconTextSize
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
@@ -61,10 +69,19 @@
           :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
           :data-tip="t('take_photo')"
         >
-          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
-            <IconCamera :width="16" />
+          <button
+            type="button"
+            :aria-label="t('take_photo')"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
+            @click="$refs.takePhotoInput.click()"
+          >
+            <IconCamera
+              :width="16"
+              aria-hidden="true"
+            />
             <input
               :key="uploadImageInputKey"
+              ref="takePhotoInput"
               type="file"
               hidden
               accept="image/*"
@@ -73,49 +90,57 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
-        <a
+        <button
           v-if="modelValue || computedPreviousValue"
-          href="#"
+          type="button"
           class="btn btn-outline btn-sm font-medium reupload-button"
-          @click.prevent="remove"
+          @click="remove"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
-        </a>
+        </button>
         <span
           v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
           class="md:tooltip before:translate-x-[-90%]"
           :data-tip="t('sign_on_the_touchscreen')"
         >
-          <a
-            href="#"
+          <button
+            type="button"
+            :aria-label="t('sign_on_the_touchscreen')"
             class="btn btn-sm btn-neutral font-medium hidden md:flex"
             :class="{ 'btn-outline': !isShowQr, 'text-white': isShowQr }"
-            @click.prevent="isShowQr ? hideQr() : [isTextSignature = false, showQr()]"
+            @click="isShowQr ? hideQr() : [isTextSignature = false, showQr()]"
           >
             <IconQrcode
               :width="19"
               :height="19"
+              aria-hidden="true"
             />
-          </a>
+          </button>
         </span>
-        <a
-          href="#"
+        <button
+          type="button"
           :title="t('minimize')"
+          :aria-label="t('minimize')"
           class="py-1.5 inline md:hidden"
-          @click.prevent="$emit('minimize')"
+          @click="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
             :width="20"
             :height="20"
+            aria-hidden="true"
           />
-        </a>
+        </button>
       </div>
     </div>
     <div
       v-if="field.description"
+      :id="field.uuid + '-desc'"
       dir="auto"
       class="mb-3 px-1 field-description-text"
     >
@@ -136,6 +161,7 @@
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      :alt="field.name || t('signature')"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <FileDropzone
@@ -154,14 +180,17 @@
         v-if="!modelValue && !computedPreviousValue && !isShowQr && !isTextSignature && isSignatureStarted"
         class="absolute top-0.5 right-0.5"
       >
-        <a
-          href="#"
+        <button
+          type="button"
           class="btn btn-ghost font-medium btn-xs md:btn-sm"
-          @click.prevent="[clear(), hideQr()]"
+          @click="[clear(), hideQr()]"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
+        </button>
       </div>
       <div
         v-if="isTextSignature"
@@ -170,6 +199,8 @@
       <canvas
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
+        role="application"
+        :aria-label="t('signature_drawing_area')"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
       />
@@ -182,13 +213,14 @@
         class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
       >
         <div class="absolute top-1.5 right-1.5">
-          <a
-            href="#"
+          <button
+            type="button"
             class="btn btn-sm btn-circle btn-normal btn-outline"
-            @click.prevent="hideQr"
+            :aria-label="t('close')"
+            @click="hideQr"
           >
-            <IconX />
-          </a>
+            <IconX aria-hidden="true" />
+          </button>
         </div>
         <div class="flex items-center justify-center w-full h-full p-4">
           <div

@@ -39,6 +39,16 @@ class Pdfium
   FPDF_RENDER_FORCEHALFTONE = 0x400
   FPDF_PRINTING = 0x800
 
+  TextObject = Struct.new(:content, :x, :y, :w, :h, :font_size) do
+    def endx
+      @endx ||= x + w
+    end
+
+    def endy
+      @endy ||= y + h
+    end
+  end
+
   TextNode = Struct.new(:content, :x, :y, :w, :h) do
     def endx
       @endx ||= x + w
@@ -116,6 +126,10 @@ class Pdfium
   attach_function :FPDFPath_GetPathSegment, %i[FPDF_PAGEOBJECT int], :FPDF_PATHSEGMENT
   attach_function :FPDFPathSegment_GetType, [:FPDF_PATHSEGMENT], :int
   attach_function :FPDFPathSegment_GetPoint, %i[FPDF_PATHSEGMENT pointer pointer], :int
+
+  # Text page object functions (per-run Tj/TJ extraction)
+  attach_function :FPDFTextObj_GetText, %i[FPDF_PAGEOBJECT FPDF_TEXTPAGE pointer ulong], :ulong
+  attach_function :FPDFTextObj_GetFontSize, %i[FPDF_PAGEOBJECT pointer], :int
 
   # Page object types
   FPDF_PAGEOBJ_UNKNOWN = 0
@@ -509,6 +523,90 @@ class Pdfium
       y_threshold = 4.0 / width
 
       @text_nodes = @text_nodes.sort do |a, b|
+        (a.endy - b.endy).abs < y_threshold ? a.x <=> b.x : a.endy <=> b.endy
+      end
+    ensure
+      Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
+    end
+
+    def text_objects
+      return @text_objects if @text_objects
+
+      ensure_not_closed!
+
+      @text_objects = []
+
+      object_count = Pdfium.FPDFPage_CountObjects(page_ptr)
+
+      return @text_objects if object_count.zero?
+
+      text_page = Pdfium.FPDFText_LoadPage(page_ptr)
+
+      if text_page.null?
+        Pdfium.check_last_error("Failed to load text page #{page_index}")
+
+        raise PdfiumError, "Failed to load text page #{page_index}, pointer is NULL."
+      end
+
+      left_ptr = FFI::MemoryPointer.new(:float)
+      bottom_ptr = FFI::MemoryPointer.new(:float)
+      right_ptr = FFI::MemoryPointer.new(:float)
+      top_ptr = FFI::MemoryPointer.new(:float)
+      font_size_ptr = FFI::MemoryPointer.new(:float)
+
+      object_count.times do |i|
+        page_object = Pdfium.FPDFPage_GetObject(page_ptr, i)
+
+        next if page_object.null?
+
+        next unless Pdfium.FPDFPageObj_GetType(page_object) == Pdfium::FPDF_PAGEOBJ_TEXT
+
+        needed_bytes = Pdfium.FPDFTextObj_GetText(page_object, text_page, FFI::Pointer::NULL, 0)
+
+        next if needed_bytes < 4
+
+        buffer = FFI::MemoryPointer.new(:uint8, needed_bytes)
+
+        written = Pdfium.FPDFTextObj_GetText(page_object, text_page, buffer, needed_bytes)
+
+        next if written < 4
+
+        content = buffer.read_bytes(written - 2).force_encoding('UTF-16LE').encode('UTF-8')
+
+        next if content.empty?
+
+        next if Pdfium.FPDFPageObj_GetBounds(page_object, left_ptr, bottom_ptr, right_ptr, top_ptr).zero?
+
+        obj_left = left_ptr.read_float
+        obj_bottom = bottom_ptr.read_float
+        obj_right = right_ptr.read_float
+        obj_top = top_ptr.read_float
+
+        obj_width = obj_right - obj_left
+        obj_height = obj_top - obj_bottom
+
+        next if obj_width <= 0 || obj_height <= 0
+
+        font_size =
+          if Pdfium.FPDFTextObj_GetFontSize(page_object, font_size_ptr) == 0
+            obj_height
+          else
+            font_size_ptr.read_float
+          end
+
+        font_size = 8 if font_size == 1
+
+        norm_x = obj_left / width
+        norm_y = (height - obj_top) / height
+        norm_w = obj_width / width
+        norm_h = obj_height / height
+
+        @text_objects << TextObject.new(content, norm_x, norm_y, norm_w, norm_h, font_size)
+      end
+
+      y_threshold = 4.0 / width
+
+      @text_objects = @text_objects.sort do |a, b|
         (a.endy - b.endy).abs < y_threshold ? a.x <=> b.x : a.endy <=> b.endy
       end
     ensure

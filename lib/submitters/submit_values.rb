@@ -107,23 +107,32 @@ module Submitters
       reason_field_uuid = params[:with_reason]
       signature_field_uuid = values.except(reason_field_uuid).keys.first
 
-      signature_field = submitter.submission.template_fields.find { |e| e['uuid'] == signature_field_uuid }
+      signature_field = submitter.submission.template_fields.find do |e|
+        e['uuid'] == signature_field_uuid && e['submitter_uuid'] == submitter.uuid
+      end
 
-      signature_field['preferences'] ||= {}
-      signature_field['preferences']['reason_field_uuid'] = reason_field_uuid
+      reason_field = submitter.submission.template_fields.find do |e|
+        e['uuid'] == reason_field_uuid && e['submitter_uuid'] == submitter.uuid
+      end
 
-      reason_field = submitter.submission.template_fields.find { |e| e['uuid'] == reason_field_uuid }
-
-      unless reason_field
+      if reason_field
+        if reason_field.dig('preferences', 'signature_field_uuid') != signature_field['uuid']
+          raise ValidationError, 'Invalid field'
+        end
+      else
         reason_field = { 'type' => 'text',
                          'uuid' => reason_field_uuid,
                          'name' => I18n.t(:reason),
                          'readonly' => true,
+                         'preferences' => { 'signature_field_uuid' => signature_field['uuid'] },
                          'submitter_uuid' => submitter.uuid }
 
         submitter.submission.template_fields.insert(submitter.submission.template_fields.index(signature_field) + 1,
                                                     reason_field)
       end
+
+      signature_field['preferences'] ||= {}
+      signature_field['preferences']['reason_field_uuid'] = reason_field_uuid
 
       submitter.submission.save!
 
@@ -454,6 +463,9 @@ module Submitters
     end
 
     def validate_value!(_value, field, _params, submitter, _request)
+      raise ValidationError, 'Missing field' unless field
+      raise ValidationError, 'Invalid field' if field['submitter_uuid'] != submitter.uuid
+
       if field['readonly'] == true
         Rollbar.warning("Readonly field #{submitter.id}: #{field['uuid']}") if defined?(Rollbar)
 

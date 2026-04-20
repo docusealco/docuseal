@@ -79,6 +79,8 @@ class SubmitFormController < ApplicationController
 
     render json: { field_uuid: e.message }, status: :unprocessable_content
   rescue Submitters::SubmitValues::ValidationError => e
+    Rollbar.warning("Validation error #{@submitter.id}: #{e.message}") if defined?(Rollbar)
+
     render json: { error: e.message }, status: :unprocessable_content
   end
 

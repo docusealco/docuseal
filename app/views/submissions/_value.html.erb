@@ -5,12 +5,12 @@
 <% font = field.dig('preferences', 'font') %>
 <% font_type = field.dig('preferences', 'font_type') %>
 <% font_size_px = (field.dig('preferences', 'font_size').presence || Submissions::GenerateResultAttachments::FONT_SIZE).to_i * local_assigns.fetch(:font_scale) { 1000.0 / PdfUtils::US_LETTER_W } %>
-<field-value dir="auto" class="flex absolute <%= 'font-courier' if font == 'Courier' %> <%= 'font-times' if font == 'Times' %> <%= 'font-bold' if font_type == 'bold' || font_type == 'bold_italic' %> <%= 'italic' if font_type == 'italic' || font_type == 'bold_italic' %> <%= align == 'right' ? 'text-right' : (align == 'center' ? 'text-center' : '') %>" style="<%= "color: #{color}; " if color.present? %><%= "background: #{bg_color}; " if bg_color.present? %>width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; font-size: <%= fs = "clamp(1pt, #{font_size_px / 10}vw, #{font_size_px}px)" %>; line-height: calc(<%= fs %> * 1.3); font-size: <%= fs = "#{font_size_px / 10}cqmin" %>; line-height: calc(<%= fs %> * 1.3)">
+<field-value dir="auto" aria-hidden="true" class="flex absolute <%= 'font-courier' if font == 'Courier' %> <%= 'font-times' if font == 'Times' %> <%= 'font-bold' if font_type == 'bold' || font_type == 'bold_italic' %> <%= 'italic' if font_type == 'italic' || font_type == 'bold_italic' %> <%= align == 'right' ? 'text-right' : (align == 'center' ? 'text-center' : '') %>" style="<%= "color: #{color}; " if color.present? %><%= "background: #{bg_color}; " if bg_color.present? %>width: <%= area['w'] * 100 %>%; height: <%= area['h'] * 100 %>%; left: <%= area['x'] * 100 %>%; top: <%= area['y'] * 100 %>%; font-size: <%= fs = "clamp(1pt, #{font_size_px / 10}vw, #{font_size_px}px)" %>; line-height: calc(<%= fs %> * 1.3); font-size: <%= fs = "#{font_size_px / 10}cqmin" %>; line-height: calc(<%= fs %> * 1.3)">
   <% if field['type'] == 'signature' %>
     <% is_narrow = area['h'].positive? && ((area['w'] * local_assigns[:page_width]).to_f / (area['h'] * local_assigns[:page_height])) > 4.5 %>
     <div class="flex justify-between w-full h-full gap-1 <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'flex-row' : 'flex-col' %>">
       <div class="flex overflow-hidden <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
-        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>">
+        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
       </div>
       <% if (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) && attachment = attachments_index[value] %>
         <div class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem] <%= is_narrow ? 'w-1/2' : 'w-full' %>">
@@ -35,7 +35,7 @@
       <% end %>
     </div>
   <% elsif field['type'].in?(['image', 'initials', 'stamp', 'kba']) && attachments_index[value].image? %>
-    <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy">
+    <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
   <% elsif field['type'].in?(['file', 'payment', 'image']) %>
     <autosize-field></autosize-field>
     <div class="px-0.5 flex flex-col justify-center">
@@ -48,6 +48,7 @@
     </div>
   <% elsif field['type'] == 'checkbox' %>
     <div class="w-full flex items-center justify-center">
+      <span class="sr-only">☑</span>
       <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
     </div>
   <% elsif field['type'].in?(%w[multiple radio]) && area['option_uuid'] %>
@@ -55,6 +56,7 @@
       <% option_name = option['value'].presence || "Option #{field['options'].index(option) + 1}" %>
       <% if Array.wrap(value).include?(option_name) %>
         <div class="w-full flex items-center justify-center">
+          <span class="sr-only">☑</span>
           <%= svg_icon('check', class: "aspect-square #{area['w'] > area['h'] ? '!w-auto !h-full' : '!w-full !h-auto'}") %>
         </div>
       <% end %>

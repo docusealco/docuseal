@@ -162,6 +162,7 @@ en: &en
   download_documents: Download documents
   downloading: Downloading
   download: Download
+  page: Page
   decline: Decline
   declined: Declined
   delegate: Delegate
@@ -367,6 +368,9 @@ en: &en
   sign_out: Sign out
   page_number: 'Page %{number}'
   powered_by: Powered by
+  qr_code: QR Code
+  print: Print
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan the QR code above with your phone camera to open and sign this document.
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
   storage: Storage
   notifications: Notifications
@@ -1201,6 +1205,7 @@ es: &es
   download_documents: Descargar documentos
   downloading: Descargando
   download: Descargar
+  page: Página
   decline: Rechazar
   delegate: Delegar
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Ingrese la dirección de correo electrónico de la persona a quien desea delegar
@@ -1406,6 +1411,9 @@ es: &es
   sign_out: Cerrar sesión
   page_number: 'Página %{number}'
   powered_by: Desarrollado por
+  qr_code: Código QR
+  print: Imprimir
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escanea el código QR de arriba con la cámara de tu teléfono para abrir y firmar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos firmados con'
   storage: Almacenamiento
   notifications: Notificaciones
@@ -2237,6 +2245,7 @@ it: &it
   download_documents: Scarica documenti
   downloading: Scaricamento
   download: Scarica
+  page: Pagina
   decline: Rifiuta
   delegate: Delega
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Inserisci l'indirizzo email della persona a cui vuoi delegare
@@ -2442,6 +2451,9 @@ it: &it
   sign_out: Esci
   page_number: 'Pagina %{number}'
   powered_by: Fornito da
+  qr_code: Codice QR
+  print: Stampa
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scansiona il codice QR qui sopra con la fotocamera del tuo telefono per aprire e firmare questo documento.
   count_documents_signed_with_html: '<b>%{count}</b> documenti firmati con'
   storage: Archiviazione
   notifications: Notifiche
@@ -3274,6 +3286,7 @@ fr: &fr
   download_documents: Télécharger les documents
   downloading: Téléchargement
   download: Télécharger
+  page: Page
   decline: Refuser
   delegate: Déléguer
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Saisissez l'adresse e-mail de la personne à qui vous souhaitez déléguer
@@ -3479,6 +3492,9 @@ fr: &fr
   sign_out: Se déconnecter
   page_number: Page %{number}
   powered_by: Propulsé par
+  qr_code: Code QR
+  print: Imprimer
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannez le code QR ci-dessus avec l'appareil photo de votre téléphone pour ouvrir et signer ce document.
   count_documents_signed_with_html: "<b>%{count}</b> documents signés avec"
   storage: Stockage
   notifications: Notifications
@@ -4307,6 +4323,7 @@ pt: &pt
   download_documents: Baixar documentos
   downloading: Baixando
   download: Baixar
+  page: Página
   decline: Recusar
   delegate: Delegar
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Insira o endereço de e-mail da pessoa para quem deseja delegar
@@ -4512,6 +4529,9 @@ pt: &pt
   sign_out: Sair
   page_number: 'Página %{number}'
   powered_by: Desenvolvido por
+  qr_code: Código QR
+  print: Imprimir
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escaneie o código QR acima com a câmera do seu telefone para abrir e assinar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos assinados com'
   storage: Armazenamento
   notifications: Notificações
@@ -5343,6 +5363,7 @@ de: &de
   download_documents: Dokumente herunterladen
   downloading: Wird heruntergeladen
   download: Download
+  page: Seite
   decline: Ablehnen
   delegate: Delegieren
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Geben Sie die E-Mail-Adresse der Person ein, an die Sie delegieren möchten
@@ -5548,6 +5569,9 @@ de: &de
   sign_out: Abmelden
   page_number: 'Seite %{number}'
   powered_by: Bereitgestellt von
+  qr_code: QR-Code
+  print: Drucken
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannen Sie den QR-Code oben mit Ihrer Handykamera, um dieses Dokument zu öffnen und zu unterzeichnen.
   count_documents_signed_with_html: '<b>%{count}</b> Dokumente signiert mit'
   storage: Speicher
   notifications: Benachrichtigungen
@@ -6243,6 +6267,7 @@ pl:
   view: Widok
   hi_there: Cześć,
   download: Pobierz
+  page: Strona
   decline: Odrzuć
   delegate: Deleguj
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Wprowadź adres e-mail osoby, do której chcesz delegować
@@ -6343,6 +6368,7 @@ uk:
   view: Переглянути
   hi_there: Привіт,
   download: Завантажити
+  page: Сторінка
   decline: Відхилити
   delegate: Делегувати
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Введіть адресу електронної пошти особи, якій ви хочете делегувати
@@ -6443,6 +6469,7 @@ cs:
   view: Zobrazit
   hi_there: Ahoj,
   download: Stáhnout
+  page: Stránka
   decline: Odmítnout
   delegate: Delegovat
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Zadejte e-mailovou adresu osoby, na kterou chcete delegovat
@@ -6543,6 +6570,7 @@ he:
   view: תצוגה
   hi_there: שלום,
   download: הורד
+  page: עמוד
   decline: דחייה
   delegate: הואלה
   enter_the_email_address_of_the_person_you_want_to_delegate_to: הזן את כתובת הדוא"ל של האדם שברצונך להאציל אליו
@@ -6780,6 +6808,7 @@ nl: &nl
   download_documents: Documenten downloaden
   downloading: Downloaden
   download: Downloaden
+  page: Pagina
   decline: Weigeren
   delegate: Delegeren
   enter_the_email_address_of_the_person_you_want_to_delegate_to: Voer het e-mailadres in van de persoon aan wie u wilt delegeren
@@ -6985,6 +7014,9 @@ nl: &nl
   sign_out: Afmelden
   page_number: Pagina %{number}
   powered_by: Aangedreven door
+  qr_code: QR-code
+  print: Afdrukken
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan de bovenstaande QR-code met je telefooncamera om dit document te openen en te ondertekenen.
   count_documents_signed_with_html: "<b>%{count}</b> documenten ondertekend met"
   storage: Opslag
   notifications: Meldingen
@@ -7676,6 +7708,7 @@ ar:
   view: عرض
   hi_there: مرحبا,
   download: تحميل
+  page: صفحة
   decline: رفض
   delegate: تفويض
   enter_the_email_address_of_the_person_you_want_to_delegate_to: أدخل عنوان البريد الإلكتروني للشخص الذي تريد التفويض إليه
@@ -7776,6 +7809,7 @@ ko:
   view: 보기
   hi_there: 안녕하세요,
   download: 다운로드
+  page: 페이지
   decline: 거절
   delegate: 위임
   enter_the_email_address_of_the_person_you_want_to_delegate_to: 위임할 사람의 이메일 주소를 입력하세요
@@ -7876,6 +7910,7 @@ ja:
   view: 表示
   hi_there: こんにちは
   download: ダウンロード
+  page: ページ
   decline: 辞退
   delegate: 委任
   enter_the_email_address_of_the_person_you_want_to_delegate_to: 委任したい人のメールアドレスを入力してください

@@ -73,6 +73,18 @@ module Templates
       build_fields_from_detections(detections, image)
     end
 
+    def prepare_input(image, **opts)
+      { image:, **opts }
+    end
+
+    def enqueue(image:, **infer_opts)
+      -> { call(image, **infer_opts) }
+    end
+
+    def process_outputs(outputs, **)
+      outputs
+    end
+
     def call_v2(image, offset_x, offset_y, split_page, confidence:, resolution:)
       if split_page && image.height > image.width
         regions = build_split_image_regions(image)

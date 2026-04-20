@@ -6,27 +6,22 @@ module Mcp
       SCHEMA = {
         name: 'create_template',
         title: 'Create Template',
-        description: 'Create a template from a PDF. Provide a URL or base64-encoded file content.',
+        description: 'Create a document template. Provide a URL to upload a PDF/DOCX file, or provide only a name ' \
+                     'to create an empty template and receive an edit URL where the file can be uploaded via the UI.',
         inputSchema: {
           type: 'object',
           properties: {
-            url: {
-              type: 'string',
-              description: 'URL of the document file to upload'
-            },
-            file: {
-              type: 'string',
-              description: 'Base64-encoded file content'
-            },
-            filename: {
-              type: 'string',
-              description: 'Filename with extension (required when using file)'
-            },
             name: {
               type: 'string',
-              description: 'Template name (defaults to filename)'
+              description: 'Template name (used as the template name and required when url is not provided)'
+            },
+            url: {
+              type: 'string',
+              description: 'Optional URL of a PDF or DOCX file to upload. If omitted, an empty template is ' \
+                           'created and the returned edit_url can be used to upload a file via the UI.'
             }
-          }
+          },
+          required: %w[name]
         },
         annotations: {
           readOnlyHint: false,
@@ -44,47 +39,43 @@ module Mcp
 
         account = current_user.account
 
-        if arguments['file'].present?
-          tempfile = Tempfile.new
-          tempfile.binmode
-          tempfile.write(Base64.decode64(arguments['file']))
-          tempfile.rewind
+        template = Template.new(
+          account:,
+          author: current_user,
+          folder: account.default_template_folder,
+          name: arguments['name'].to_s.presence || 'New Template',
+          fields: [],
+          schema: []
+        )
 
-          filename = arguments['filename'] || 'document.pdf'
-        elsif arguments['url'].present?
+        if arguments['url'].present?
           tempfile = Tempfile.new
           tempfile.binmode
           tempfile.write(DownloadUtils.call(arguments['url'], validate: true).body)
           tempfile.rewind
 
           filename = File.basename(URI.decode_www_form_component(arguments['url']))
+
+          file = ActionDispatch::Http::UploadedFile.new(
+            tempfile:,
+            filename:,
+            type: Marcel::MimeType.for(tempfile)
+          )
+
+          template.name = arguments['name'].presence || File.basename(filename, '.*')
+          template.save!
+
+          documents, = Templates::CreateAttachments.call(template, { files: [file] }, extract_fields: true)
+          schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+
+          if template.fields.blank?
+            template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
+          end
+
+          template.update!(schema:)
         else
-          return { content: [{ type: 'text', text: 'Provide either url or file' }], isError: true }
+          template.save!
         end
-
-        file = ActionDispatch::Http::UploadedFile.new(
-          tempfile:,
-          filename:,
-          type: Marcel::MimeType.for(tempfile)
-        )
-
-        template = Template.new(
-          account:,
-          author: current_user,
-          folder: account.default_template_folder,
-          name: arguments['name'].presence || File.basename(filename, '.*')
-        )
-
-        template.save!
-
-        documents, = Templates::CreateAttachments.call(template, { files: [file] }, extract_fields: true)
-        schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
-
-        if template.fields.blank?
-          template.fields = Templates::ProcessDocument.normalize_attachment_fields(template, documents)
-        end
-
-        template.update!(schema:)
 
         WebhookUrls.enqueue_events(template, 'template.created')
 
@@ -104,7 +95,7 @@ module Mcp
           ]
         }
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
     end
-    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
   end
 end

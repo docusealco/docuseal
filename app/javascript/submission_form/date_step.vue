@@ -30,12 +30,16 @@
         class="btn btn-outline btn-sm !normal-case font-normal set-current-date-button"
         @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
-        <IconCalendarCheck :width="16" />
+        <IconCalendarCheck
+          :width="16"
+          aria-hidden="true"
+        />
         {{ t('set_today') }}
       </button>
     </div>
     <div
       v-if="field.description"
+      :id="field.uuid + '-desc'"
       class="mb-3 px-1 field-description-text"
       dir="auto"
     >
@@ -51,6 +55,7 @@
         :max="validationMax"
         class="base-input !text-2xl text-center w-full"
         :required="field.required"
+        :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
         type="date"
         :name="`values[${field.uuid}]`"
         @keydown.enter="onEnter"

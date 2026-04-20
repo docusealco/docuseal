@@ -22,43 +22,60 @@
           class="md:tooltip"
           :data-tip="t('type_initial')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('type_initial')"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
-            <IconTextSize :width="16" />
+            <IconTextSize
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-else
           class="md:tooltip ml-2"
           :data-tip="t('draw_initials')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('draw_initials')"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
-            <IconSignature :width="16" />
+            <IconSignature
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           class="md:tooltip"
           :data-tip="t('click_to_upload')"
         >
-          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
-            <IconUpload :width="16" />
+          <button
+            type="button"
+            :aria-label="t('click_to_upload')"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
+            @click="$refs.uploadInput.click()"
+          >
+            <IconUpload
+              :width="16"
+              aria-hidden="true"
+            />
             <input
               :key="uploadImageInputKey"
+              ref="uploadInput"
               type="file"
               hidden
               accept="image/*"
@@ -67,37 +84,45 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
-        <a
+        <button
           v-if="modelValue || computedPreviousValue"
-          href="#"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="remove"
+          @click="remove"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
           v-else
-          href="#"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="clear"
+          @click="clear"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
+          type="button"
           :title="t('minimize')"
-          href="#"
+          :aria-label="t('minimize')"
           class="py-1.5 inline md:hidden"
-          @click.prevent="$emit('minimize')"
+          @click="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
             :width="20"
             :height="20"
+            aria-hidden="true"
           />
-        </a>
+        </button>
       </div>
     </div>
     <div

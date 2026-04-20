@@ -16,6 +16,7 @@
     </label>
     <div
       v-if="field.description"
+      :id="field.uuid + '-desc'"
       dir="auto"
       class="mb-3 px-1 field-description-text"
     >
@@ -42,28 +43,28 @@
           @input="onInputCode"
         >
         <div class="flex justify-between mt-2 -mb-2 md:-mb-4">
-          <a
+          <button
             v-if="!defaultValue"
-            href="#"
+            type="button"
             class="link change-phone-number-link"
-            @click.prevent="isCodeSent = false"
+            @click="isCodeSent = false"
           >
             {{ t('change_phone_number') }}
-          </a>
+          </button>
           <span
             v-if="resendCodeCountdown > 0"
             class="link"
           >
             {{ t('wait_countdown_seconds').replace('{countdown}', resendCodeCountdown) }}
           </span>
-          <a
+          <button
             v-else
-            href="#"
+            type="button"
             class="link resend-code-link"
-            @click.prevent="resendCode"
+            @click="resendCode"
           >
             {{ isResendLoading ? t('sending') : t('resend_code') }}
-          </a>
+          </button>
         </div>
       </div>
       <div
@@ -107,6 +108,7 @@
           type="tel"
           inputmode="tel"
           :required="field.required"
+          :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
           placeholder="234 567-8900"
           @input="onPhoneInput"
           @focus="$emit('focus')"

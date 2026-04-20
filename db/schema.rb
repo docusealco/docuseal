@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_27_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -166,6 +166,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_27_100000) do
     t.datetime "updated_at", null: false
     t.index ["submitter_id", "event_name"], name: "index_document_generation_events_on_submitter_id_and_event_name", unique: true, where: "((event_name)::text = ANY (ARRAY[('start'::character varying)::text, ('complete'::character varying)::text]))"
     t.index ["submitter_id"], name: "index_document_generation_events_on_submitter_id"
+  end
+
+  create_table "document_metadata", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "blob_checksum", null: false
+    t.datetime "created_at", null: false
+    t.text "text_runs", null: false
+    t.index ["account_id", "blob_checksum"], name: "index_document_metadata_on_account_id_and_blob_checksum", unique: true
   end
 
   create_table "dynamic_document_versions", force: :cascade do |t|
@@ -553,6 +561,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_27_100000) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "document_generation_events", "submitters"
+  add_foreign_key "document_metadata", "accounts"
   add_foreign_key "dynamic_document_versions", "dynamic_documents"
   add_foreign_key "dynamic_documents", "templates"
   add_foreign_key "email_events", "accounts"

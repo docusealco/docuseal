@@ -39,8 +39,9 @@
         ref="input"
         :multiple="multiple"
         :accept="accept"
+        :aria-label="message"
         type="file"
-        class="hidden"
+        class="sr-only"
         @change="onSelectFiles"
       >
     </label>
