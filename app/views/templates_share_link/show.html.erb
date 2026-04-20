@@ -25,7 +25,7 @@
       <div class="flex gap-2 mt-3">
         <div class="relative flex-grow">
           <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full pr-10" autocomplete="off" readonly>
-          <a href="<%= template_share_link_qr_path(@template) %>" target="_blank" rel="noopener" class="absolute top-1/2 -translate-y-1/2 right-2 flex items-center justify-center tooltip tooltip-left text-base-content/70 hover:text-base-content bg-white rounded px-1 py-0.5" data-tip="<%= t('qr_code') %>" aria-label="<%= t('qr_code') %>">
+          <a href="<%= template_share_link_qr_path(@template) %>" target="_blank" rel="noopener" class="absolute top-1/2 -translate-y-1/2 right-2 flex items-center justify-center tooltip text-base-content/70 hover:text-base-content bg-white rounded px-1 py-0.5" data-tip="<%= t('qr_code') %>" aria-label="<%= t('qr_code') %>">
             <%= svg_icon('qrcode', class: 'w-6 h-6') %>
           </a>
         </div>
