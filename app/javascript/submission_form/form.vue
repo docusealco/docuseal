@@ -505,7 +505,7 @@
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
-            :locale="language?.toLowerCase() || browserLanguage"
+            :locale="selectedLanguage"
             :show-field-names="showFieldNames"
             :verified-value="phoneVerifiedValues[currentField.uuid]"
             :default-value="submitter.phone"
@@ -542,7 +542,7 @@
             v-else-if="currentField.type === 'verification'"
             ref="currentStep"
             :key="currentField.uuid"
-            :locale="language?.toLowerCase() || browserLanguage"
+            :locale="selectedLanguage"
             :submitter="submitter"
             :empty-value-required-step="emptyValueRequiredStep"
             :field="currentField"
@@ -998,6 +998,7 @@ export default {
     return {
       isCompleted: false,
       isInvite: false,
+      selectedLanguage: (this.language || '').toLowerCase() || (navigator.language || navigator.userLanguage || 'en').split('-')[0],
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
@@ -1095,6 +1096,9 @@ export default {
     },
     browserLanguage () {
       return (navigator.language || navigator.userLanguage || 'en').split('-')[0]
+    },
+    availableLanguages () {
+      return Object.keys(i18n)
     },
     queryParams () {
       return new URLSearchParams(window.location.search)
@@ -1334,7 +1338,7 @@ export default {
   },
   methods: {
     t (key) {
-      return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+      return this.i18n[key] || i18n[this.selectedLanguage]?.[key] || i18n.en[key] || key
     },
     onOrientationChange (event) {
       this.orientation = event.target.type
@@ -1704,6 +1708,20 @@ export default {
 
       if (this.completedRedirectUrl) {
         window.location.href = sanitizeUrl(this.completedRedirectUrl)
+      } else {
+        this.$nextTick(() => {
+          const root = this.$root.$el.parentNode.getRootNode()
+          const completedEl = root.getElementById('form_completed')
+
+          if (completedEl) {
+            completedEl.focus()
+          }
+        })
+      }
+    }
+  }
+}
+</script>
       } else {
         this.$nextTick(() => {
           const root = this.$root.$el.parentNode.getRootNode()
