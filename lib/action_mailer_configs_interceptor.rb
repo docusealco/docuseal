@@ -15,6 +15,17 @@ module ActionMailerConfigsInterceptor
       return message
     end
 
+    # External SMTP config via env vars takes precedence over EncryptedConfig.
+    if ExternalConfig.smtp_configured?
+      settings = ExternalConfig.smtp_settings
+      from = settings.delete(:from)
+
+      message.delivery_method(:smtp, settings)
+      message.from = from if from.present? && message[:from].blank?
+
+      return message
+    end
+
     if Rails.env.production? && Rails.application.config.action_mailer.delivery_method
       from = ENV.fetch('SMTP_FROM').to_s.split(',').sample
 

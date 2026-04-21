@@ -3,7 +3,15 @@
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">Email SMTP</h1>
     <% value = @encrypted_config.value || {} %>
+    <% external_smtp = ExternalConfig.smtp_configured? %>
+    <% if external_smtp %>
+      <div class="alert alert-info mb-4" role="status">
+        SMTP is configured via environment variables. These settings are read-only.
+      </div>
+      <% value = value.merge(ExternalConfig.smtp_settings.transform_keys { |k| { address: 'host', user_name: 'username' }.fetch(k, k.to_s) }.stringify_keys) %>
+    <% end %>
     <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <fieldset <%= 'disabled' if external_smtp %> class="space-y-4">
       <%= f.fields_for :value do |ff| %>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="form-control">
@@ -56,6 +64,7 @@
       <div class="form-control pt-2">
         <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
+      </fieldset>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
