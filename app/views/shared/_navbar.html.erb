@@ -20,7 +20,12 @@
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
           <%= render 'shared/navbar_buttons' %>
-          <%= link_to t('settings'), settings_profile_index_path, class: 'hidden md:inline-flex font-medium text-lg', id: 'account_settings_button' %>
+          <div class="hidden md:flex flex-col items-start leading-none">
+            <%= link_to t('settings'), settings_profile_index_path, class: 'inline-flex font-medium text-lg', id: 'account_settings_button' %>
+            <% if ENV['APP_VERSION'].present? %>
+              <span class="text-xs text-base-content/60" id="app_version"><%= ENV['APP_VERSION'] %></span>
+            <% end %>
+          </div>
         </div>
       <% end %>
       <div class="dropdown dropdown-end">
