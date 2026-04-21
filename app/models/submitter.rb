@@ -68,6 +68,11 @@ class Submitter < ApplicationRecord
 
   scope :completed, -> { where.not(completed_at: nil) }
 
+  # Submitters are visible when attached to a submission visible to the user.
+  scope :visible_to, lambda { |user|
+    where(submission_id: Submission.visible_to(user).select(:id))
+  }
+
   after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
 
   def status

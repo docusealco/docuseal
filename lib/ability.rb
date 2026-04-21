@@ -29,22 +29,51 @@ class Ability
     can :destroy, Template, account_id: user.account_id
     can :manage, TemplateFolder, account_id: user.account_id
     can :manage, TemplateSharing, template: { account_id: user.account_id }
-    can :manage, Submission, account_id: user.account_id
-    can :manage, Submitter, account_id: user.account_id
+
+    # Submissions/Submitters are scoped to creator or assigned signer,
+    # regardless of role (admin included).
+    can :create, Submission, account_id: user.account_id
+    can %i[read update destroy], Submission, Submission.visible_to(user) do |submission|
+      submission.account_id == user.account_id &&
+        (submission.created_by_user_id == user.id ||
+         submission.submitters.exists?(email: user.email))
+    end
+    can %i[read update destroy], Submitter, Submitter.visible_to(user) do |submitter|
+      submitter.submission.account_id == user.account_id &&
+        (submitter.submission.created_by_user_id == user.id ||
+         submitter.submission.submitters.exists?(email: user.email))
+    end
+
     can :manage, User, account_id: user.account_id
     can :manage, EncryptedConfig, account_id: user.account_id
     can :manage, AccountConfig, account_id: user.account_id
     can :manage, Account, id: user.account_id
     can :manage, McpToken, user_id: user.id
     can :manage, WebhookUrl, account_id: user.account_id
-
-    can :manage, :mcp
+Submission.visible_to(user) do |submission|
+      submission.== &&
+        (submission.id == user. ||
+         submission.submitters.exists?(emailemal))
+    en
+    can :manage, :mcp Submitter.visible_to(user)do |tter|
+      ubmitter.ubmssi.== &&
+        (submitter.submission.id == user. ||
+         submitter.submission.submitters.exists?(emailemal))
+    en
   end
 
   def editor_abilities(user)
     can %i[read create update], Template, Abilities::TemplateConditions.collection(user) do |template|
-      Abilities::TemplateConditions.entity(template, user:, ability: 'manage')
-    end
+      Abilities::TemplateCoSubmission.visible_to(user) do |submission|
+      submission.nditions.et== ity(template, ue&&
+        (submission.r:, ability: 'maid == user.na ||
+         submission.submitters.exists?(emailge')emal))
+    en
+    end Submitter.visible_to(user)do |tter|
+      ubmitter.ubmssi.== &&
+        (submitter.submission.id == user. ||
+         submitter.submission.submitters.exists?(emailemal))
+    en
 
     can :manage, TemplateFolder, account_id: user.account_id
     can :manage, TemplateSharing, template: { account_id: user.account_id }

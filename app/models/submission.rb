@@ -88,6 +88,14 @@ class Submission < ApplicationRecord
 
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
+
+  # Submissions are visible when the user created them, or when they are a
+  # named submitter on the submission (by email). Applies to all roles.
+  scope :visible_to, lambda { |user|
+    submitter_ids = Submitter.where(email: user.email).select(:submission_id)
+    where(account_id: user.account_id)
+      .where('submissions.created_by_user_id = ? OR submissions.id IN (?)', user.id, submitter_ids)
+  }
   scope :pending, lambda {
     where(expire_at: nil).or(where(expire_at: Time.current..))
                          .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
