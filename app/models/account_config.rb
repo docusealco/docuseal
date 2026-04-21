@@ -59,6 +59,7 @@ class AccountConfig < ApplicationRecord
   TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
   POLICY_LINKS_KEY = 'policy_links'
   ENABLE_MCP_KEY = 'enable_mcp'
+  EMAIL_FOOTER_MESSAGE_KEY = 'email_footer_message'
   SHOW_CONSOLE_LINK_KEY = 'show_console_link'
   SHOW_API_LINK_KEY = 'show_api_link'
   SHOW_TEST_MODE_KEY = 'show_test_mode'

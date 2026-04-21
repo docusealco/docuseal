@@ -8,6 +8,8 @@ en: &en
   visibility_private: "Private (only you)"
   visibility_public: "Public (all account users)"
   visibility_help: "Private templates are only visible to their author. Public templates are visible to all users in the account."
+  email_footer_message: Email footer message
+  email_footer_help: "Appended at the bottom of every outgoing email (e.g. a confidentiality notice)."
   language_en: English
   language_en-US: English (US)
   language_en-GB: English (UK)

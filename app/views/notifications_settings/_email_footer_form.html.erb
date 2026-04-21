@@ -1,0 +1,27 @@
+<% locked = AccountConfig.locked_by_env?(AccountConfig::EMAIL_FOOTER_MESSAGE_KEY) %>
+<%= form_for config, url: settings_notifications_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+  <%= f.hidden_field :key %>
+  <div class="form-control">
+    <%= f.label :value, class: 'label' do %>
+      <span class="flex items-center space-x-1">
+        <span><%= t('email_footer_message') %></span>
+        <span class="tooltip" data-tip="<%= t('email_footer_help') %>">
+          <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+        </span>
+      </span>
+    <% end %>
+    <autoresize-textarea>
+      <%= f.text_area :value, class: 'base-input w-full py-2', rows: 3, disabled: locked, dir: 'auto' %>
+    </autoresize-textarea>
+    <% if locked %>
+      <label class="label">
+        <span class="label-text-alt"><%= t('locked_by_env') %></span>
+      </label>
+    <% end %>
+  </div>
+  <% unless locked %>
+    <div class="form-control pt-2">
+      <%= f.button button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button' %>
+    </div>
+  <% end %>
+<% end %>

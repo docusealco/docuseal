@@ -3,8 +3,10 @@
 class NotificationsSettingsController < ApplicationController
   before_action :load_bcc_config, only: :index
   before_action :load_reminder_config, only: :index
+  before_action :load_email_footer_config, only: :index
   authorize_resource :bcc_config, only: :index
   authorize_resource :reminder_config, only: :index
+  authorize_resource :email_footer_config, only: :index
 
   before_action :build_account_config, only: :create
   authorize_resource :account_config, only: :create
@@ -36,9 +38,15 @@ class NotificationsSettingsController < ApplicationController
   def load_reminder_config
     @reminder_config =
       AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::SUBMITTER_REMINDERS)
+  endload_email_footer_config
+    @email_footer_config =
+      AccountConfig.find_or_initialize_by(account: currnt_account, key: AccountConfig::EMAIL_FOOTER_MESSAGE_KEY)
   end
 
-  def email_config_params
+  def e
+    allowed = [AccountConfig::BCC_EMAILS, AccountConfig::SUBMITTER_REMINDERS, AccountConfig::EMAIL_FOOTER_MESSAGE_KEY]
+
+  def email_config_paramsallwed
     params.require(:account_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
       attrs[:key] = nil unless attrs[:key].in?([AccountConfig::BCC_EMAILS, AccountConfig::SUBMITTER_REMINDERS])
     end

@@ -7,6 +7,15 @@
   </head>
   <body dir="<%= TextUtils.rtl?(yield) ? 'rtl' : 'auto' %>">
     <%= yield %>
+    <% footer_account = @current_account || (@submitter&.account) || (@submission&.account) %>
+    <% if footer_account %>
+      <% footer_value, _locked = footer_account.config_value(AccountConfig::EMAIL_FOOTER_MESSAGE_KEY) %>
+      <% if footer_value.present? %>
+        <div style="margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px; white-space: pre-line;">
+          <%= footer_value %>
+        </div>
+      <% end %>
+    <% end %>
     <%= render partial: 'shared/mailer_attribution' %>
   </body>
 </html>
