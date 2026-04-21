@@ -39,7 +39,7 @@
               <span class="mr-1"><%= t('profile') %></span>
             <% end %>
           </li>
-          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
+          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && current_account.ui_visible?(AccountConfig::SHOW_CONSOLE_LINK_KEY) %>
             <li>
               <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
                 <%= svg_icon('terminal', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
@@ -63,7 +63,7 @@
               <% end %>
             </li>
           <% end %>
-          <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
+          <% if ((can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?)) && current_account.ui_visible?(AccountConfig::SHOW_TEST_MODE_KEY) %>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full py-1' } do |f| %>
               <label class="flex items-center pl-6 pr-4 py-2 border-y border-base-300 -ml-2 -mr-2" for="testing_toggle">
                 <submit-form data-on="change" class="flex">

@@ -59,6 +59,9 @@ class AccountConfig < ApplicationRecord
   TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
   POLICY_LINKS_KEY = 'policy_links'
   ENABLE_MCP_KEY = 'enable_mcp'
+  SHOW_CONSOLE_LINK_KEY = 'show_console_link'
+  SHOW_API_LINK_KEY = 'show_api_link'
+  SHOW_TEST_MODE_KEY = 'show_test_mode'
 
   EMAIL_VARIABLES = {
     SUBMITTER_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,

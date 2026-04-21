@@ -50,7 +50,7 @@
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>
-      <% if Docuseal.demo? || !Docuseal.multitenant? %>
+      <% if (Docuseal.demo? || !Docuseal.multitenant?) && current_account.ui_visible?(AccountConfig::SHOW_API_LINK_KEY) %>
         <% if can?(:read, AccessToken) %>
           <li>
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
@@ -64,15 +64,7 @@
           </li>
         <% end %>
       <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
-        <li>
-          <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
-            <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('pro') %></span>
-          <% end %>
-        </li>
-      <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
+      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) && current_account.ui_visible?(AccountConfig::SHOW_CONSOLE_LINK_KEY) %>
         <li>
           <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
             <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
@@ -96,7 +88,7 @@
           </li>
         <% end %>
         <%= render 'shared/settings_nav_extra2' %>
-        <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
+        <% if ((can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?)) && current_account.ui_visible?(AccountConfig::SHOW_TEST_MODE_KEY) %>
           <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full' } do |f| %>
             <li>
               <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">

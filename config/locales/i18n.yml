@@ -1,4 +1,9 @@
 en: &en
+  ui_visibility: UI Visibility
+  show_console_link: Show Console Link
+  show_api_link: Show API Link
+  show_test_mode: Show Test Mode
+  locked_by_env: Locked by environment variable
   language_en: English
   language_en-US: English (US)
   language_en-GB: English (UK)
