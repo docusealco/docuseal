@@ -21,6 +21,20 @@
   <div id="general" class="px-5 mb-4">
     <%= render 'access' %>
     <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
+      <div class="form-control">
+        <%= f.label :visibility, t('visibility'), class: 'label' %>
+        <%= f.select :visibility,
+                     [[t('visibility_private'), Template::VISIBILITY_PRIVATE],
+                      [t('visibility_public'), Template::VISIBILITY_PUBLIC]],
+                     {}, class: 'base-select', data: { action: 'change->submit-form#submit' } %>
+        <label class="label">
+          <span class="label-text-alt">
+            <%= t('visibility_help') %>
+          </span>
+        </label>
+      </div>
+    <% end %>
+    <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
       <toggle-on-submit data-element-id="bcc_saved_alert"></toggle-on-submit>
       <%= f.fields_for :preferences, Struct.new(:bcc_completed).new(@template.preferences['bcc_completed']) do |ff| %>
         <div class="form-control">

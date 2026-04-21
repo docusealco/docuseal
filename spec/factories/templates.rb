@@ -6,6 +6,7 @@ FactoryBot.define do
 
     author factory: %i[user]
     name { Faker::Book.title }
+    visibility { Template::VISIBILITY_PRIVATE }
 
     transient do
       submitter_count { 1 }

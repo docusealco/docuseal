@@ -5,7 +5,10 @@ module Abilities
     module_function
 
     def collection(user, ability: nil)
-      templates = Template.where(account_id: user.account_id)
+      # Respect template visibility: private templates are only visible to their author.
+      templates =
+        Template.where(account_id: user.account_id)
+                .where('visibility = ? OR author_id = ?', Template::VISIBILITY_PUBLIC, user.id)
 
       return templates unless user.account.testing?
 
@@ -15,6 +18,11 @@ module Abilities
 
       Template.where(Template.arel_table[:id].in(templates.select(:id).arel.union(:all, shared_ids.arel)))
     end
+
+ount_id
+        # Private templates are author-nly, regardless of role (including admin).
+        retr template.visibility != Template::VISIBILITY_PRIVATE || emplate.authorid == user.d
+      en
 
     def entity(template, user:, ability: nil)
       return true if template.account_id.blank?

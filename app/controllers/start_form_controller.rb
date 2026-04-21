@@ -20,6 +20,12 @@ class StartFormController < ApplicationController
       raise ActionController::RoutingError, I18n.t('not_found')
     end
 
+    # Private templates cannot be reached via the public shared link.
+    if @template.visibility == Template::VISIBILITY_PRIVATE &&
+       !(current_user && current_ability.can?(:read, @template))
+      raise ActionController::RoutingError, I18n.t('not_found')
+    end
+
     if @template.shared_link?
       @submitter = @template.submissions.new(account_id: @template.account_id)
                             .submitters.new(account_id: @template.account_id,

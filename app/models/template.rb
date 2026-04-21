@@ -41,6 +41,18 @@
 class Template < ApplicationRecord
   DEFAULT_SUBMITTER_NAME = 'First Party'
 
+  VISIBILITY_PUBLIC = 'public'
+  VISIBILITY_PRIVATE = 'private'
+  VISIBILITIES = [VISIBILITY_PUBLIC, VISIBILITY_PRIVATE].freeze
+
+  attribute :visibility, :string, default: VISIBILITY_PRIVATE
+  validates :visibility, inclusion: { in: VISIBILITIES }
+
+  scope :visible_to, lambda { |user|
+    where(account_id: user.account_id)
+      .where('visibility = ? OR author_id = ?', VISIBILITY_PUBLIC, user.id)
+  }
+
   belongs_to :author, class_name: 'User'
   belongs_to :account
   belongs_to :folder, class_name: 'TemplateFolder'

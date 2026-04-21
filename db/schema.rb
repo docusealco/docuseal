@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_21_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -461,8 +461,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
     t.text "submitters", null: false
     t.datetime "updated_at", null: false
     t.text "variables_schema"
+    t.string "visibility", default: "private", null: false
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "id"], name: "index_templates_on_account_id_and_id_archived", where: "(archived_at IS NOT NULL)"
+    t.index ["account_id", "visibility"], name: "index_templates_on_account_id_and_visibility"
     t.index ["account_id"], name: "index_templates_on_account_id"
     t.index ["author_id"], name: "index_templates_on_author_id"
     t.index ["external_id"], name: "index_templates_on_external_id"

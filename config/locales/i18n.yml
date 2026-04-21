@@ -4,6 +4,10 @@ en: &en
   show_api_link: Show API Link
   show_test_mode: Show Test Mode
   locked_by_env: Locked by environment variable
+  visibility: Visibility
+  visibility_private: "Private (only you)"
+  visibility_public: "Public (all account users)"
+  visibility_help: "Private templates are only visible to their author. Public templates are visible to all users in the account."
   language_en: English
   language_en-US: English (US)
   language_en-GB: English (UK)

@@ -17,8 +17,15 @@ class TemplatesPreferencesController < ApplicationController
   def create
     authorize!(:update, @template)
 
-    @template.preferences = @template.preferences.merge(template_params[:preferences])
-    @template.preferences = @template.preferences.reject { |_, v| (v.is_a?(String) || v.is_a?(Hash)) && v.blank? }
+    if template_params[:visibility].present?
+      @template.visibility = template_params[:visibility]
+    end
+
+    if template_params[:preferences].present?
+      @template.preferences = @template.preferences.merge(template_params[:preferences])
+      @template.preferences = @template.preferences.reject { |_, v| (v.is_a?(String) || v.is_a?(Hash)) && v.blank? }
+    end
+
     @template.save!
 
     head :ok
@@ -40,6 +47,7 @@ class TemplatesPreferencesController < ApplicationController
 
     render turbo_stream: turbo_stream.replace("#{config_key}_form",
                                               partial: "templates_preferences/#{config_key}_form"),
+      :visibility,
            status: :ok
   end
 
