@@ -5,6 +5,8 @@
       :key="image.id"
       :ref="setPageRefs"
       :input-mode="inputMode"
+      :conditional-field-index="conditionalFieldIndex"
+      :formula-values-index="formulaValuesIndex"
       :number="index"
       :editable="editable"
       :data-page="index"
@@ -63,6 +65,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    conditionalFieldIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    formulaValuesIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     areasIndex: {
       type: Object,

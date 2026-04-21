@@ -381,6 +381,8 @@
                 :document="document"
                 :is-drag="!!dragField"
                 :input-mode="inputMode"
+                :conditional-field-index="conditionalFieldIndex"
+                :formula-values-index="formulaValuesIndex"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields || drawField || drawCustomField"
                 :with-signature-id="withSignatureId"
@@ -618,6 +620,16 @@ import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, Ic
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
+
+const isEmpty = (obj) => {
+  if (obj == null) return true
+  if (Array.isArray(obj)) return obj.length === 0
+  if (typeof obj === 'string') return obj.trim().length === 0
+  if (typeof obj === 'object') return Object.keys(obj).length === 0
+  if (obj === false) return true
+
+  return false
+}
 
 export default {
   name: 'TemplateBuilder',
@@ -971,7 +983,8 @@ export default {
       drawCustomField: null,
       drawOption: null,
       dragField: null,
-      isDragFile: false
+      isDragFile: false,
+      isMathLoaded: false
     }
   },
   computed: {
@@ -1051,6 +1064,43 @@ export default {
       })
 
       return map
+    },
+    fieldsUuidIndex () {
+      return this.template.fields.reduce((acc, f) => {
+        acc[f.uuid] = f
+
+        return acc
+      }, {})
+    },
+    conditionalFieldIndex () {
+      if (!this.inputMode) return {}
+
+      const cache = {}
+
+      return this.template.fields.reduce((acc, f) => {
+        acc[f.uuid] = this.checkFieldConditions(f, cache)
+
+        return acc
+      }, {})
+    },
+    formulaValuesIndex () {
+      const formulaFields = this.template.fields.filter((f) => f.preferences?.formula && f.type !== 'payment' && this.hasFormulaDependencyValue(f))
+
+      if (!formulaFields.length) return {}
+
+      if (!this.isMathLoaded) {
+        this.loadCalculator()
+
+        return {}
+      }
+
+      return formulaFields.reduce((acc, f) => {
+        if (this.conditionalFieldIndex[f.uuid] !== false) {
+          acc[f.uuid] = this.calculateFormula(f)
+        }
+
+        return acc
+      }, {})
     },
     isAllRequiredFieldsAdded () {
       return !this.defaultRequiredFields?.some((f) => {
@@ -1190,6 +1240,130 @@ export default {
     toRaw,
     applyCustomFieldAttributes: Fields.methods.applyCustomFieldAttributes,
     buildExistingFields: Fields.methods.buildExistingFields,
+    async loadCalculator () {
+      if (this.math) return
+
+      const { Calculator } = await import('../submission_form/calculator')
+
+      this.math = new Calculator()
+      this.isMathLoaded = true
+    },
+    optionValue (option, index) {
+      if (option.value) {
+        return option.value
+      } else {
+        return `${this.t('option')} ${index + 1}`
+      }
+    },
+    checkFieldConditions (field, cache = {}) {
+      const cacheKey = field.uuid || field.attachment_uuid
+
+      if (cache[cacheKey] !== undefined) {
+        return cache[cacheKey]
+      }
+
+      if (field.conditions?.length) {
+        const result = field.conditions.reduce((acc, cond) => {
+          if (cond.operation === 'or') {
+            acc.push(acc.pop() || this.checkFieldCondition(cond, cache))
+          } else {
+            acc.push(this.checkFieldCondition(cond, cache))
+          }
+
+          return acc
+        }, [])
+
+        cache[cacheKey] = !result.includes(false)
+      } else {
+        cache[cacheKey] = true
+      }
+
+      return cache[cacheKey]
+    },
+    checkFieldCondition (condition, cache = {}) {
+      const field = this.fieldsUuidIndex[condition.field_uuid]
+
+      if (['not_empty', 'checked', 'equal', 'contains', 'greater_than', 'less_than'].includes(condition.action) && field && !this.checkFieldConditions(field, cache)) {
+        return false
+      }
+
+      const defaultValue = !field || isEmpty(field.default_value) ? null : field.default_value
+
+      if (['empty', 'unchecked'].includes(condition.action)) {
+        return isEmpty(defaultValue)
+      } else if (['not_empty', 'checked'].includes(condition.action)) {
+        return !isEmpty(defaultValue)
+      } else if (field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) {
+        const value = defaultValue
+
+        if (isEmpty(value) || isEmpty(condition.value)) return false
+
+        const actual = parseFloat(value)
+        const expected = parseFloat(condition.value)
+
+        if (Number.isNaN(actual) || Number.isNaN(expected)) return false
+
+        if (condition.action === 'equal') return Math.abs(actual - expected) < Number.EPSILON
+        if (condition.action === 'not_equal') return Math.abs(actual - expected) > Number.EPSILON
+        if (condition.action === 'greater_than') return actual > expected
+        if (condition.action === 'less_than') return actual < expected
+
+        return false
+      } else if (['equal', 'contains'].includes(condition.action) && field) {
+        if (field.options) {
+          const option = field.options.find((o) => o.uuid === condition.value)
+
+          if (option) {
+            const values = [defaultValue].flat()
+
+            return values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return false
+          }
+        } else {
+          return [defaultValue].flat().includes(condition.value)
+        }
+      } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
+        if (field.options) {
+          const option = field.options.find((o) => o.uuid === condition.value)
+
+          if (option) {
+            const values = [defaultValue].flat()
+
+            return !values.includes(this.optionValue(option, field.options.indexOf(option)))
+          } else {
+            return false
+          }
+        } else {
+          return false
+        }
+      } else {
+        return true
+      }
+    },
+    normalizeFormula (formula, depth = 0) {
+      if (depth > 10) return formula
+
+      return formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        if (this.fieldsUuidIndex[uuid]?.preferences?.formula) {
+          return `(${this.normalizeFormula(this.fieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
+        } else {
+          return match
+        }
+      })
+    },
+    calculateFormula (field) {
+      const transformedFormula = this.normalizeFormula(field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
+        return this.fieldsUuidIndex[uuid]?.default_value || 0.0
+      })
+
+      return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    hasFormulaDependencyValue (field) {
+      const normalized = this.normalizeFormula(field.preferences.formula)
+
+      return [...normalized.matchAll(/{{(.*?)}}/g)].some(([, uuid]) => !isEmpty(this.fieldsUuidIndex[uuid]?.default_value))
+    },
     addCustomField (field) {
       return this.$refs.fields.addCustomField(field)
     },

@@ -113,7 +113,7 @@
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
-            :style="{ color: field.preferences?.color }"
+            :style="{ color: isConditionMatch ? field.preferences?.color : '#9ca3af' }"
             :class="{ 'w-full h-full': isWFullType }"
           >
             <IconCheck
@@ -131,9 +131,9 @@
               />
             </template>
             <span
-              v-else-if="field.type === 'number' && !isValueInput && (field.default_value || field.default_value == 0)"
+              v-else-if="field.type === 'number' && !isContenteditable && (displayValue || displayValue == 0)"
               class="whitespace-pre-wrap"
-            >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
+            >{{ formatNumber(displayValue, field.preferences?.format) }}</span>
             <span
               v-else-if="field.default_value === '{{date}}'"
             >
@@ -183,12 +183,12 @@
               :contenteditable="isValueInput"
               class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-base-content/30"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
+              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (isConditionMatch ? (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value')) : '')"
               @blur="onDefaultValueBlur"
               @focus="selectedAreasRef.value = [area]"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
-            >{{ field.default_value }}</span>
+            >{{ displayValue }}</span>
           </div>
         </div>
         <component
@@ -240,6 +240,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    conditionalFieldIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    formulaValuesIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     isDraw: {
       type: Boolean,
@@ -323,11 +333,27 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
+    isConditionMatch () {
+      return !this.inputMode || this.conditionalFieldIndex[this.field.uuid] !== false
+    },
+    displayValue () {
+      if (this.field.preferences?.formula && this.field.type !== 'payment') {
+        const computed = this.formulaValuesIndex[this.field.uuid]
+
+        if (computed != null) {
+          return computed
+        }
+      }
+
+      return this.field.default_value
+    },
     bgClasses () {
       if (this.field.type === 'heading') {
         return 'bg-gray-50'
       } else if (this.field.type === 'strikethrough') {
         return 'bg-transparent'
+      } else if (!this.isConditionMatch) {
+        return 'bg-gray-100'
       } else {
         return this.bgColors[this.submitterIndex % this.bgColors.length]
       }
@@ -337,6 +363,8 @@ export default {
         return ''
       } else if (this.field.type === 'strikethrough') {
         return 'border-dashed border-gray-300'
+      } else if (!this.isConditionMatch) {
+        return 'border-gray-300'
       } else {
         return this.borderColors[this.submitterIndex % this.borderColors.length]
       }
@@ -390,7 +418,7 @@ export default {
       return this.basePageWidth / 612.0
     },
     isDefaultValuePresent () {
-      return this.field?.default_value || this.field?.default_value === 0
+      return this.field?.default_value || this.field?.default_value === 0 || this.displayValue || this.displayValue === 0
     },
     isSelectInput () {
       return this.inputMode && (this.field.type === 'select' || (this.field.type === 'radio' && this.field.areas?.length < 2))
@@ -399,6 +427,8 @@ export default {
       return this.inputMode && (this.field.type === 'checkbox' || (['radio', 'multiple'].includes(this.field.type) && this.area.option_uuid))
     },
     isValueInput () {
+      if (this.inputMode && this.field.preferences?.formula) return false
+
       return (this.field.type === 'heading' && this.isHeadingSelected) || this.isContenteditable ||
         (this.inputMode && (['text', 'number'].includes(this.field.type) || (this.field.type === 'date' && this.field.default_value !== '{{date}}')))
     },
@@ -511,7 +541,7 @@ export default {
       return option?.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
     },
     maybeToggleDefaultValue () {
-      if (!this.editable || this.isCmdKeyRef.value) {
+      if (!this.editable || this.isCmdKeyRef.value || this.field.preferences?.formula) {
         return
       }
 
@@ -559,6 +589,10 @@ export default {
       }
     },
     focusValueInput (e) {
+      if (this.inputMode && this.field.type === 'number' && !this.isContenteditable && !this.field.preferences?.formula) {
+        this.isContenteditable = true
+      }
+
       this.$nextTick(() => {
         if (this.$refs.defaultValue && this.$refs.defaultValue !== document.activeElement) {
           this.$refs.defaultValue.focus()
@@ -624,6 +658,12 @@ export default {
       }
     },
     onDefaultValueBlur (e) {
+      if (this.field.preferences?.formula) {
+        this.isContenteditable = false
+
+        return
+      }
+
       const text = this.$refs.defaultValue.innerText.trim()
 
       this.isContenteditable = false
