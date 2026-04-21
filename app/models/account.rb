@@ -56,6 +56,46 @@ class Account < ApplicationRecord
 
   scope :active, -> { where(archived_at: nil) }
 
+  after_create_commit :apply_env_config_overrides
+
+  # Collect all DOCUSEAL_CONFIG_* env vars as a { key => casted_value } hash.
+  def self.env_config_overrides
+    prefix = AccountConfig::ENV_PREFIX
+    ENV.each_with_object({}) do |(var, _), acc|
+      next unless var.start_with?(prefix)
+
+      key = var.sub(prefix, '').downcase
+      acc[key] = AccountConfig.env_override_cast(key)
+    end
+  end
+
+  # Upsert env overrides into this account's account_configs rows.
+  def apply_env_config_overrides
+    self.class.env_config_overrides.each do |key, value|
+      cfg = account_configs.find_or_initialize_by(key: key)
+      cfg.value = value
+      cfg.save!
+    end
+  end
+
+  # Returns [value, locked_by_env?] for a config key. Env value takes precedence.
+  def config_value(key, default: nil)
+    if AccountConfig.locked_by_env?(key)
+      [AccountConfig.env_override_cast(key), true]
+    else
+      row = account_configs.find_by(key: key)
+      [row ? row.value : default, false]
+    end
+  end
+
+  # Convenience: treats the config value as a boolean visibility flag.
+  def ui_visible?(key, default: true)
+    value, _locked = config_value(key, default: default)
+    return default if value.nil?
+
+    ActiveModel::Type::Boolean.new.cast(value)
+  end
+
   def testing?
     linked_account_account&.testing?
   end

@@ -94,7 +94,48 @@ class AccountConfig < ApplicationRecord
     }
   }.freeze
 
+  ENV_PREFIX = 'DOCUSEAL_CONFIG_'
+
+  BOOLEAN_ENV_VALUES = {
+    'true' => true, '1' => true, 'yes' => true, 'on' => true,
+    'false' => false, '0' => false, 'no' => false, 'off' => false
+  }.freeze
+
   belongs_to :account
 
   serialize :value, coder: JSON
+
+  # Returns the ENV variable name for a given account_config key.
+  # Example: env_key_for('allow_typed_signature') => 'DOCUSEAL_CONFIG_ALLOW_TYPED_SIGNATURE'
+  def self.env_key_for(key)
+    "#{ENV_PREFIX}#{key.to_s.upcase}"
+  end
+
+  # Returns the raw ENV value for a key (or nil if not set).
+  def self.env_override(key)
+    ENV[env_key_for(key)]
+  end
+
+  # True when the corresponding ENV variable is set (non-nil, non-empty).
+  def self.locked_by_env?(key)
+    ENV.fetch(env_key_for(key), nil).present?
+  end
+
+  # Parses the ENV override for a given key:
+  # - boolean-ish strings -> true/false
+  # - valid JSON -> parsed structure
+  # - otherwise -> raw string
+  def self.env_override_cast(key)
+    raw = env_override(key)
+    return nil if raw.nil?
+
+    downcased = raw.downcase
+    return BOOLEAN_ENV_VALUES[downcased] if BOOLEAN_ENV_VALUES.key?(downcased)
+
+    begin
+      JSON.parse(raw)
+    rescue JSON::ParserError
+      raw
+    end
+  end
 end
