@@ -3146,6 +3146,9 @@ it: &it
       detailed: "%d %B %Y %H:%M:%S"
 
 fr: &fr
+  user_role_help: "Les administrateurs ont un accès complet. Les éditeurs peuvent créer et modifier des modèles. Les lecteurs peuvent uniquement consulter les modèles auxquels ils ont accès."
+  editor: Éditeur
+  viewer: Lecteur
   knowledge_based_authentication: Authentification basée sur la connaissance
   kba_field: KBA
   passed: Réussi
@@ -8038,6 +8041,9 @@ de-DE:
 
 it-IT:
   <<: *it
+
+nl-NL:
+  <<: *nl
 
 nl-NL:
   <<: *nl
