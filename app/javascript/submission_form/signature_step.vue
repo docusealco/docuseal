@@ -261,6 +261,12 @@
         {{ f }}
       </option>
     </select>
+    <div
+      v-if="isTextSignature && !modelValue && !computedPreviousValue"
+      class="text-xs text-gray-400 mt-1"
+    >
+      {{ t('generated_by_docuseal') }}
+    </div>
     <input
       v-if="isTextSignature"
       type="hidden"
