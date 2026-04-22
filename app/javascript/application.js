@@ -186,7 +186,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withDownload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
-      showTourStartForm: this.dataset.showTourStartForm === 'true'
+      showTourStartForm: this.dataset.showTourStartForm === 'true',
+      detectionAlgorithms: JSON.parse(this.dataset.detectionAlgorithms || '[]')
     })
 
     this.component = this.app.mount(this.appElem)

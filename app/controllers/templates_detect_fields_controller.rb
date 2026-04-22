@@ -6,6 +6,26 @@ class TemplatesDetectFieldsController < ApplicationController
   load_and_authorize_resource :template
 
   def create
+    if params[:algorithm].present?
+      create_with_algorithm
+    else
+      create_with_ml_detection
+    end
+  end
+
+  private
+
+  def create_with_algorithm
+    documents = @template.schema_documents.preload(:blob)
+
+    fields = Templates::FieldDetection.call(@template, params[:algorithm], documents)
+
+    render json: { fields: fields, submitters: @template.submitters, completed: true }
+  rescue ArgumentError => e
+    render json: { error: e.message }, status: :unprocessable_content
+  end
+
+  def create_with_ml_detection
     response.headers['Content-Type'] = 'text/event-stream'
 
     sse = SSE.new(response.stream)

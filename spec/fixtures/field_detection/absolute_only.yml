@@ -1,0 +1,23 @@
+submitters:
+  - name: signer
+fields:
+  - name: "full-name"
+    type: "text"
+    submitter: "signer"
+    required: true
+    position:
+      page: 0
+      x: 0.10
+      y: 0.20
+      w: 0.30
+      h: 0.04
+  - name: "signature"
+    type: "signature"
+    submitter: "signer"
+    required: true
+    position:
+      page: -1
+      x: 0.50
+      y: 0.80
+      w: 0.25
+      h: 0.05

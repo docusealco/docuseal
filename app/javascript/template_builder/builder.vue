@@ -509,6 +509,7 @@
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :with-fields-detection="withFieldsDetection"
+            :detection-algorithms="detectionAlgorithms"
             :with-signature-id="withSignatureId"
             :with-prefillable="withPrefillable"
             :only-defined-fields="onlyDefinedFields"
@@ -737,6 +738,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    detectionAlgorithms: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withCustomFields: {
       type: Boolean,

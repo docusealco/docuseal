@@ -4,6 +4,8 @@
 # Currently exposes SMTP settings; additional external config concerns can be
 # added here as needed.
 module ExternalConfig
+  CONFIG_DIR = ENV.fetch('DOCUSEAL_CONFIG_DIR', '/etc/docuseal')
+
   SMTP_ENV_KEYS = {
     address: 'DOCUSEAL_CONFIG_SMTP_ADDRESS',
     port: 'DOCUSEAL_CONFIG_SMTP_PORT',

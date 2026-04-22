@@ -325,7 +325,89 @@
     v-if="!isShowVariables && withFieldsDetection && editable && fields.length < 2 && !template.schema.some((item) => item.dynamic)"
     class="my-2"
   >
+    <div
+      v-if="detectionAlgorithms.length"
+      class="flex"
+    >
+      <button
+        class="btn flex-1 !rounded-r-none"
+        :class="{ 'bg-base-300': fieldPagesLoaded !== null || isAlgorithmLoading }"
+        @click="fieldPagesLoaded !== null || isAlgorithmLoading ? null : detectFields()"
+      >
+        <template v-if="fieldPagesLoaded !== null">
+          <IconInnerShadowTop
+            width="22"
+            class="animate-spin"
+          />
+          <span
+            v-if="analyzingProgress"
+            class="hidden md:inline"
+          >
+            {{ Math.round(analyzingProgress * 100) }}% {{ t('analyzing_') }}
+          </span>
+          <span
+            v-else
+            class="hidden md:inline"
+          >
+            {{ fieldPagesLoaded }} / {{ numberOfPages }} {{ t('processing_') }}
+          </span>
+        </template>
+        <template v-else-if="isAlgorithmLoading">
+          <IconInnerShadowTop
+            width="22"
+            class="animate-spin"
+          />
+          <span class="hidden md:inline">
+            {{ t('processing_') }}
+          </span>
+        </template>
+        <template v-else>
+          <IconSparkles width="22" />
+          <span class="hidden md:inline">
+            {{ t('autodetect_fields') }}
+          </span>
+        </template>
+      </button>
+      <div class="dropdown dropdown-end">
+        <label
+          tabindex="0"
+          class="btn !rounded-l-none !border-l-0 !px-2"
+          :class="{ 'bg-base-300': fieldPagesLoaded !== null || isAlgorithmLoading }"
+        >
+          <IconChevronDown class="w-4 h-4" />
+        </label>
+        <ul
+          tabindex="0"
+          class="dropdown-content z-30 p-2 mt-1 shadow menu bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-2"
+              @click.prevent="detectFields()"
+            >
+              <IconSparkles class="w-4 h-4 flex-shrink-0" />
+              <span>{{ t('autodetect_fields') }}</span>
+            </a>
+          </li>
+          <li
+            v-for="algo in detectionAlgorithms"
+            :key="algo"
+          >
+            <a
+              href="#"
+              class="flex items-center space-x-2"
+              @click.prevent="detectFieldsWithAlgorithm(algo)"
+            >
+              <IconSparkles class="w-4 h-4 flex-shrink-0" />
+              <span>{{ algo }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <button
+      v-else
       class="btn w-full"
       :class="{ 'bg-base-300': fieldPagesLoaded !== null }"
       @click="fieldPagesLoaded !== null ? null : detectFields()"
@@ -383,7 +465,7 @@ import CustomField from './custom_field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
 import { defineAsyncComponent } from 'vue'
-import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles, IconBracketsContain } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles, IconBracketsContain, IconChevronDown } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 import { v4 } from 'uuid'
 
@@ -400,6 +482,7 @@ export default {
     IconDrag,
     IconLock,
     IconBracketsContain,
+    IconChevronDown,
     DynamicVariables: defineAsyncComponent(() => import(/* webpackChunkName: "dynamic-editor" */ './dynamic_variables'))
   },
   inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
@@ -427,6 +510,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    detectionAlgorithms: {
+      type: Array,
+      required: false,
+      default: () => []
     },
     withSignatureId: {
       type: Boolean,
@@ -510,7 +598,8 @@ export default {
       showCustomTab: false,
       defaultFieldsSearch: '',
       customFieldsSearch: '',
-      isShowVariables: false
+      isShowVariables: false,
+      isAlgorithmLoading: false
     }
   },
   computed: {
@@ -732,6 +821,34 @@ export default {
         this.fieldPagesLoaded = null
         this.analyzingProgress = null
         this.isFieldsLoading = false
+      })
+    },
+    detectFieldsWithAlgorithm (algorithm) {
+      this.isAlgorithmLoading = true
+
+      this.baseFetch(`/templates/${this.template.id}/detect_fields`, {
+        method: 'POST',
+        body: JSON.stringify({ algorithm }),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(async (resp) => {
+        const data = await resp.json()
+
+        if (data.error) {
+          alert(data.error)
+        } else if (data.fields) {
+          this.template.fields = data.fields
+
+          if (data.submitters) {
+            this.template.submitters = data.submitters
+            this.$emit('select-submitter', this.template.submitters[0])
+          }
+
+          this.save()
+        }
+      }).catch(error => {
+        console.error('Error detecting fields with algorithm: ', error)
+      }).finally(() => {
+        this.isAlgorithmLoading = false
       })
     },
     setDragPlaceholder (event) {

@@ -1,0 +1,35 @@
+submitters:
+  - name: seller
+  - name: customer
+fields:
+  - name: "signature-seller"
+    type: "signature"
+    submitter: "seller"
+    required: true
+    anchor:
+      text: "Seller Signature"
+      page: -1
+    area:
+      x_offset: 0.0
+      y_offset: 0.02
+      w: 0.25
+      h: 0.05
+  - name: "date-seller"
+    type: "date"
+    submitter: "seller"
+    position:
+      page: -1
+      x: 0.60
+      y: 0.85
+      w: 0.15
+      h: 0.04
+  - name: "name-customer"
+    type: "text"
+    submitter: "customer"
+    required: true
+    position:
+      page: 0
+      x: 0.10
+      y: 0.20
+      w: 0.30
+      h: 0.04
