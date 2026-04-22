@@ -13,7 +13,7 @@ RUN apk --no-cache add wget && \
     wget -O Caveat-Regular.ttf "https://github.com/google/fonts/raw/main/ofl/caveat/Caveat%5Bwght%5D.ttf" && \
     wget https://github.com/google/fonts/raw/main/apache/homemadeapple/HomemadeApple-Regular.ttf && \
     wget https://github.com/google/fonts/raw/main/ofl/mrssaintdelafield/MrsSaintDelafield-Regular.ttf && \
-    wget https://github.com/google/fonts/raw/main/ofl/shadowsintolight/ShadowsIntoLight-Regular.ttf && \
+    wget -O ShadowsIntoLight-Regular.ttf https://github.com/google/fonts/raw/main/ofl/shadowsintolight/ShadowsIntoLight.ttf && \
     wget https://github.com/google/fonts/raw/main/ofl/alexbrush/AlexBrush-Regular.ttf && \
     wget https://github.com/google/fonts/raw/main/ofl/kalam/Kalam-Regular.ttf && \
     wget https://github.com/google/fonts/raw/main/ofl/sacramento/Sacramento-Regular.ttf && \
