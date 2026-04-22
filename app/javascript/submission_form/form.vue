@@ -147,6 +147,20 @@
     :class="{ 'md:bottom-4': isBreakpointMd }"
     :style="{ backgroundColor: backgroundColor }"
   >
+    <select
+      v-if="!isCompleted"
+      v-model="selectedLanguage"
+      class="absolute left-0 top-0 ml-2 mt-2 text-xs bg-base-100 border border-base-200 rounded px-1 py-0.5 language-switcher"
+      :aria-label="t('language')"
+    >
+      <option
+        v-for="code in availableLanguages"
+        :key="code"
+        :value="code"
+      >
+        {{ code.toUpperCase() }}
+      </option>
+    </select>
     <button
       v-if="!isCompleted"
       id="minimize_form_button"
@@ -1708,20 +1722,6 @@ export default {
 
       if (this.completedRedirectUrl) {
         window.location.href = sanitizeUrl(this.completedRedirectUrl)
-      } else {
-        this.$nextTick(() => {
-          const root = this.$root.$el.parentNode.getRootNode()
-          const completedEl = root.getElementById('form_completed')
-
-          if (completedEl) {
-            completedEl.focus()
-          }
-        })
-      }
-    }
-  }
-}
-</script>
       } else {
         this.$nextTick(() => {
           const root = this.$root.$el.parentNode.getRootNode()
