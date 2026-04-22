@@ -18,6 +18,10 @@
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
+          <%= link_to template_quick_send_path(@template), id: 'quick_send_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('send', class: 'w-6 h-6 stroke-2') %>
+            <%= t('quick_send') %>
+          <% end %>
           <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
             <%= t('add_recipients_html') %>
@@ -89,7 +93,11 @@
             <p><%= t('send_an_invitation_to_fill_and_complete_the_form') %></p>
             <div class="space-y-2 flex flex-col">
               <% if can?(:create, Submission) %>
-                <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+                <%= link_to template_quick_send_path(@template), id: 'quick_send_button', class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
+                  <%= svg_icon('send', class: 'w-6 h-6 stroke-2') %>
+                  <span class="mr-1"><%= t('quick_send') %></span>
+                <% end %>
+                <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'white-button w-full', data: { turbo_frame: 'modal' } do %>
                   <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
                   <span class="mr-1"><%= t('send_to_recipients') %></span>
                 <% end %>

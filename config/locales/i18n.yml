@@ -493,6 +493,15 @@ en: &en
   there_are_no_submissions: There are no Submissions
   send_an_invitation_to_fill_and_complete_the_form: Send an invitation to fill and complete the form
   send_to_recipients: Send to Recipients
+  quick_send: Quick Send
+  send_now: Send Now
+  recipient_email: Recipient Email
+  all_fields_have_defaults: All fields have defaults or are auto-fillable.
+  some_fields_require_manual_input: Some required fields do not have default values.
+  auto_filled_fields: Auto-filled Fields
+  filled_by_recipient: Filled by recipient
+  submission_has_been_sent: Submission has been sent.
+  required: Required
   sign_it_yourself: Sign it Yourself
   api_and_embedding: API and Embedding
   template_id: Template ID
@@ -1539,6 +1548,15 @@ es: &es
   there_are_no_submissions: No hay envíos
   send_an_invitation_to_fill_and_complete_the_form: Enviar una invitación para completar el formulario
   send_to_recipients: Enviar a los destinatarios
+  quick_send: Envío rápido
+  send_now: Enviar ahora
+  recipient_email: Correo del destinatario
+  all_fields_have_defaults: Todos los campos tienen valores predeterminados o se completan automáticamente.
+  some_fields_require_manual_input: Algunos campos obligatorios no tienen valores predeterminados.
+  auto_filled_fields: Campos autocompletados
+  filled_by_recipient: Completado por el destinatario
+  submission_has_been_sent: El envío ha sido realizado.
+  required: Obligatorio
   sign_it_yourself: Fírmalo tú mismo
   api_and_embedding: API e Integración
   template_id: ID de plantilla
@@ -2582,6 +2600,15 @@ it: &it
   there_are_no_submissions: Non ci sono invii
   send_an_invitation_to_fill_and_complete_the_form: Invia un invito per compilare e completare il modulo
   send_to_recipients: Invia ai destinatari
+  quick_send: Invio rapido
+  send_now: Invia ora
+  recipient_email: Email del destinatario
+  all_fields_have_defaults: Tutti i campi hanno valori predefiniti o sono compilabili automaticamente.
+  some_fields_require_manual_input: Alcuni campi obbligatori non hanno valori predefiniti.
+  auto_filled_fields: Campi compilati automaticamente
+  filled_by_recipient: Compilato dal destinatario
+  submission_has_been_sent: L'invio è stato effettuato.
+  required: Obbligatorio
   sign_it_yourself: Firmalo tu stesso
   api_and_embedding: API e Incorporazione
   template_id: ID modello
@@ -3629,6 +3656,15 @@ fr: &fr
   there_are_no_submissions: Il n’y a aucune soumission
   send_an_invitation_to_fill_and_complete_the_form: Envoyer une invitation pour remplir et terminer le formulaire
   send_to_recipients: Envoyer aux destinataires
+  quick_send: Envoi rapide
+  send_now: Envoyer maintenant
+  recipient_email: Email du destinataire
+  all_fields_have_defaults: Tous les champs ont des valeurs par défaut ou sont remplis automatiquement.
+  some_fields_require_manual_input: Certains champs obligatoires n'ont pas de valeurs par défaut.
+  auto_filled_fields: Champs remplis automatiquement
+  filled_by_recipient: Rempli par le destinataire
+  submission_has_been_sent: L'envoi a été effectué.
+  required: Obligatoire
   sign_it_yourself: Signer vous‑même
   api_and_embedding: API et Embedding
   template_id: ID du modèle
@@ -4669,6 +4705,15 @@ pt: &pt
   there_are_no_submissions: Não há submissões
   send_an_invitation_to_fill_and_complete_the_form: Enviar um convite para preencher e concluir o formulário
   send_to_recipients: Enviar para destinatários
+  quick_send: Envio rápido
+  send_now: Enviar agora
+  recipient_email: Email do destinatário
+  all_fields_have_defaults: Todos os campos têm valores padrão ou são preenchidos automaticamente.
+  some_fields_require_manual_input: Alguns campos obrigatórios não têm valores padrão.
+  auto_filled_fields: Campos preenchidos automaticamente
+  filled_by_recipient: Preenchido pelo destinatário
+  submission_has_been_sent: O envio foi realizado.
+  required: Obrigatório
   sign_it_yourself: Assine você mesmo
   api_and_embedding: API e Incorporação
   template_id: ID do modelo
@@ -5712,6 +5757,15 @@ de: &de
   there_are_no_submissions: Es gibt keine Einreichungen
   send_an_invitation_to_fill_and_complete_the_form: Einladung zum Ausfüllen und Abschließen des Formulars senden
   send_to_recipients: An Empfänger senden
+  quick_send: Schnellversand
+  send_now: Jetzt senden
+  recipient_email: Empfänger-E-Mail
+  all_fields_have_defaults: Alle Felder haben Standardwerte oder werden automatisch ausgefüllt.
+  some_fields_require_manual_input: Einige Pflichtfelder haben keine Standardwerte.
+  auto_filled_fields: Automatisch ausgefüllte Felder
+  filled_by_recipient: Vom Empfänger ausgefüllt
+  submission_has_been_sent: Die Übermittlung wurde gesendet.
+  required: Erforderlich
   sign_it_yourself: Selbst unterschreiben
   api_and_embedding: API und Einbettung
   template_id: Vorlagen-ID
@@ -7160,6 +7214,15 @@ nl: &nl
   there_are_no_submissions: Er zijn geen inzendingen
   send_an_invitation_to_fill_and_complete_the_form: Stuur een uitnodiging om het formulier in te vullen en te voltooien
   send_to_recipients: Verzenden naar ontvangers
+  quick_send: Snel verzenden
+  send_now: Nu verzenden
+  recipient_email: E-mail van ontvanger
+  all_fields_have_defaults: Alle velden hebben standaardwaarden of worden automatisch ingevuld.
+  some_fields_require_manual_input: Sommige verplichte velden hebben geen standaardwaarden.
+  auto_filled_fields: Automatisch ingevulde velden
+  filled_by_recipient: Ingevuld door ontvanger
+  submission_has_been_sent: De inzending is verzonden.
+  required: Vereist
   sign_it_yourself: Zelf ondertekenen
   api_and_embedding: API en insluiten
   template_id: Sjabloon-ID

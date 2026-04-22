@@ -1,0 +1,63 @@
+<%= render 'shared/turbo_modal_large', title: t('quick_send') do %>
+  <div class="mt-2 mb-4 px-5">
+    <% submitter_fields = @fields.select { |f| f['submitter_uuid'] == @submitters.first['uuid'] } %>
+    <% auto_fillable = submitter_fields.all? { |f| f['default_value'].present? || !f['required'] || f['type'].in?(%w[signature initials stamp]) } %>
+    <% if auto_fillable %>
+      <div class="alert bg-base-200 border-base-300 mt-3 mb-4">
+        <%= svg_icon('circle_check', class: 'w-5 h-5 stroke-current shrink-0') %>
+        <span><%= t('all_fields_have_defaults') %></span>
+      </div>
+    <% else %>
+      <div class="alert bg-warning/10 border-warning/30 mt-3 mb-4">
+        <%= svg_icon('alert_circle', class: 'w-5 h-5 stroke-current shrink-0') %>
+        <span><%= t('some_fields_require_manual_input') %></span>
+      </div>
+    <% end %>
+    <% if submitter_fields.present? %>
+      <div class="mb-4">
+        <label class="text-sm font-semibold"><%= t('auto_filled_fields') %></label>
+        <div class="overflow-x-auto mt-2">
+          <table class="table table-sm table-zebra">
+            <thead>
+              <tr>
+                <th><%= t('name') %></th>
+                <th><%= t('type') %></th>
+                <th><%= t('value') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% submitter_fields.each do |field| %>
+                <tr>
+                  <td class="font-medium"><%= field['name'].presence || field['type'].humanize %></td>
+                  <td><span class="badge badge-outline badge-sm"><%= field['type'] %></span></td>
+                  <td>
+                    <% if field['default_value'].present? %>
+                      <span class="text-sm"><%= truncate(Array(field['default_value']).join(', '), length: 40) %></span>
+                    <% elsif field['type'].in?(%w[signature initials stamp]) %>
+                      <span class="text-xs text-base-content/50"><%= t('filled_by_recipient') %></span>
+                    <% elsif !field['required'] %>
+                      <span class="text-xs text-base-content/50"><%= t('optional') %></span>
+                    <% else %>
+                      <span class="text-xs text-warning"><%= t('required') %></span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+    <%= form_for '', url: template_quick_send_path(@template), method: :post, html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+      <div class="form-control mb-4">
+        <label class="label">
+          <span class="label-text font-semibold"><%= t('recipient_email') %></span>
+        </label>
+        <input type="email" name="email" class="base-input w-full" placeholder="<%= t('email') %>" required autofocus autocomplete="off">
+      </div>
+      <div class="form-control">
+        <%= f.button button_title(title: t('send_now'), icon: svg_icon('send', class: 'w-5 h-5')), class: 'base-button' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
