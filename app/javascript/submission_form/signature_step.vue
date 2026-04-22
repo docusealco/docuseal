@@ -247,6 +247,27 @@
       @input="updateWrittenSignature"
     >
     <select
+      v-if="isTextSignature && !modelValue && !computedPreviousValue"
+      v-model="selectedFont"
+      class="base-input mt-2 text-sm"
+      :aria-label="t('font')"
+      @change="onFontChange"
+    >
+      <option
+        v-for="f in availableFonts"
+        :key="f"
+        :value="f"
+      >
+        {{ f }}
+      </option>
+    </select>
+    <input
+      v-if="isTextSignature"
+      type="hidden"
+      name="signature_font"
+      :value="selectedFont"
+    >
+    <select
       v-if="withSigningReason && !isOtherReason"
       class="select base-input !text-2xl w-full mt-6 text-center"
       :class="{ 'text-gray-300': !reason }"
@@ -348,7 +369,21 @@ import FileDropzone from './dropzone'
 import MarkdownContent from './markdown_content'
 import { v4 } from 'uuid'
 
-let fontLoadPromise = null
+const SIGNATURE_FONTS = {
+  'Dancing Script': 'DancingScript-Regular.otf',
+  'Great Vibes': 'GreatVibes-Regular.ttf',
+  'Pacifico': 'Pacifico-Regular.ttf',
+  'Caveat': 'Caveat-Regular.ttf',
+  'Homemade Apple': 'HomemadeApple-Regular.ttf',
+  'Mrs Saint Delafield': 'MrsSaintDelafield-Regular.ttf',
+  'Shadows Into Light': 'ShadowsIntoLight-Regular.ttf',
+  'Alex Brush': 'AlexBrush-Regular.ttf',
+  'Kalam': 'Kalam-Regular.ttf',
+  'Sacramento': 'Sacramento-Regular.ttf',
+  'Herr Von Muellerhoff': 'HerrVonMuellerhoff-Regular.ttf'
+}
+
+const fontLoadPromises = {}
 
 const scale = 3
 
@@ -465,7 +500,9 @@ export default {
       isUsePreviousValue: true,
       isTouchAttachment: false,
       isTextSignature: !this.signatureSrc && (!!this.signatureText || this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload'),
-      uploadImageInputKey: Math.random().toString()
+      uploadImageInputKey: Math.random().toString(),
+      selectedFont: 'Dancing Script',
+      availableFonts: Object.keys(SIGNATURE_FONTS)
     }
   },
   computed: {
@@ -606,18 +643,29 @@ export default {
       this.isUsePreviousValue = false
       this.isSignatureStarted = false
     },
-    loadFont () {
-      if (!fontLoadPromise) {
-        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript-Regular.otf) format("opentype")`)
+    async onFontChange () {
+      await this.loadFont()
+      if (this.$refs.textInput && this.$refs.textInput.value) {
+        this.updateWrittenSignature({ target: this.$refs.textInput })
+      }
+    },
+    loadFont (name) {
+      const fontName = name || this.selectedFont
+      const file = SIGNATURE_FONTS[fontName]
+      if (!file) return Promise.resolve()
 
-        fontLoadPromise = font.load().then((loadedFont) => {
+      if (!fontLoadPromises[fontName]) {
+        const ext = file.endsWith('.otf') ? 'opentype' : 'truetype'
+        const font = new FontFace(fontName, `url(${this.baseUrl}/fonts/${file}) format("${ext}")`)
+
+        fontLoadPromises[fontName] = font.load().then((loadedFont) => {
           document.fonts.add(loadedFont)
         }).catch((error) => {
           console.error('Font loading failed:', error)
         })
       }
 
-      return fontLoadPromise
+      return fontLoadPromises[fontName]
     },
     showQr () {
       this.isShowQr = true
@@ -684,7 +732,7 @@ export default {
       const canvas = this.$refs.canvas
       const context = canvas.getContext('2d')
 
-      const fontFamily = 'Dancing Script'
+      const fontFamily = this.selectedFont
       const initialFontSize = 44
       const fontStyle = 'italic'
       const fontWeight = ''
