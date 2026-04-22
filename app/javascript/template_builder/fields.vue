@@ -428,6 +428,11 @@ export default {
       required: false,
       default: false
     },
+    withDetectExistingFields: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withSignatureId: {
       type: Boolean,
       required: false,
@@ -494,6 +499,11 @@ export default {
     selectedSubmitter: {
       type: Object,
       required: true
+    },
+    detectCustomFieldsIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     showTourStartForm: {
       type: Boolean,
@@ -656,6 +666,78 @@ export default {
         this.customFields.splice(0, this.customFields.length, ...fields)
       })
     },
+    buildExistingFields () {
+      const existing = []
+      const seen = new Set()
+
+      const submittersByUuid = this.template.submitters.reduce((acc, s) => {
+        acc[s.uuid] = s
+
+        return acc
+      }, {})
+
+      const add = (field, role) => {
+        if (!field?.name) return
+
+        const key = field.name.toLowerCase() + ':' + (role || '').toLowerCase()
+
+        if (seen.has(key)) return
+
+        seen.add(key)
+
+        const item = { name: field.name, type: field.type || 'text' }
+
+        if (role) item.role = role
+
+        const optionValues = Array.isArray(field.options)
+          ? field.options.map((o) => (typeof o === 'string' ? o : o?.value)).filter(Boolean)
+          : []
+
+        if (optionValues.length) item.options = optionValues
+
+        existing.push(item)
+      }
+
+      this.template.fields.forEach((f) => add(f, submittersByUuid[f.submitter_uuid]?.name))
+      this.defaultRequiredFields.forEach((f) => add(f, f.role))
+      this.defaultFields.forEach((f) => add(f, f.role))
+      this.customFields.forEach((f) => add(f, f.role))
+
+      return existing
+    },
+    enrichDetectedField (field) {
+      if (!this.withDetectExistingFields || !field.name) return field
+
+      const role = this.template.submitters.find((s) => s.uuid === field.submitter_uuid)?.name
+      const nameKey = field.name.toLowerCase()
+      const indexKey = [field.name, role].filter(Boolean).join(':').toLowerCase()
+
+      const customField = this.detectCustomFieldsIndex[indexKey] || this.detectCustomFieldsIndex[nameKey]
+
+      if (customField) this.applyCustomFieldAttributes(field, customField)
+
+      return field
+    },
+    applyCustomFieldAttributes (field, customField) {
+      const skipKeys = new Set(['uuid', 'areas', 'submitter_uuid', 'conditions', 'prefillable', 'role'])
+
+      Object.entries(customField).forEach(([key, value]) => {
+        if (skipKeys.has(key)) return
+        if (value === null || value === undefined) return
+
+        if (key === 'options') {
+          if (Array.isArray(value) && !Array.isArray(field.options)) {
+            field.options = value.map((o) => (
+              typeof o === 'string' ? { value: o, uuid: v4() } : { ...o, uuid: v4() }
+            ))
+          }
+        } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+          field[key] = JSON.parse(JSON.stringify(value))
+        } else {
+          field[key] = value
+        }
+      })
+    },
     detectFields () {
       const fields = []
 
@@ -665,7 +747,10 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        ...(this.withDetectExistingFields
+          ? { body: JSON.stringify({ fields: this.buildExistingFields() }) }
+          : {})
       }).then(async (response) => {
         const reader = response.body.getReader()
         const decoder = new TextDecoder('utf-8')
@@ -687,7 +772,7 @@ export default {
 
               if (data.error) {
                 if ((data.fields || fields).length) {
-                  this.template.fields = data.fields || fields
+                  this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                   this.save()
                 } else {
@@ -705,7 +790,7 @@ export default {
                   this.$emit('select-submitter', this.template.submitters[0])
                 }
 
-                this.template.fields = data.fields || fields
+                this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                 this.save()
 

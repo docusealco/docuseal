@@ -506,9 +506,11 @@
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
             :template="template"
             :default-required-fields="defaultRequiredFields"
+            :detect-custom-fields-index="detectCustomFieldsIndex"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
             :with-fields-detection="withFieldsDetection"
+            :with-detect-existing-fields="withDetectExistingFields"
             :with-signature-id="withSignatureId"
             :with-prefillable="withPrefillable"
             :only-defined-fields="onlyDefinedFields"
@@ -734,6 +736,11 @@ export default {
       default: true
     },
     withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withDetectExistingFields: {
       type: Boolean,
       required: false,
       default: false
@@ -1053,6 +1060,39 @@ export default {
     selectedField () {
       return this.template.fields.find((f) => f.areas?.includes(this.lastSelectedArea))
     },
+    detectFieldsIndex () {
+      const submittersByUuid = {}
+
+      this.template.submitters.forEach((s) => {
+        submittersByUuid[s.uuid] = s
+      })
+
+      const index = {}
+
+      this.template.fields.forEach((f) => {
+        if (!f.name) return
+
+        const role = submittersByUuid[f.submitter_uuid]?.name
+        const key = [f.name, role].filter(Boolean).join(':').toLowerCase()
+
+        if (!index[key]) index[key] = f
+      })
+
+      return index
+    },
+    detectCustomFieldsIndex () {
+      const index = {}
+
+      ;[...this.customFields, ...this.defaultRequiredFields, ...this.defaultFields].forEach((c) => {
+        if (!c.name) return
+
+        const key = [c.name, c.role].filter(Boolean).join(':').toLowerCase()
+
+        if (!index[key]) index[key] = c
+      })
+
+      return index
+    },
     sortedDocuments () {
       return this.template.schema.map((item) => {
         return this.template.documents.find(doc => doc.uuid === item.attachment_uuid)
@@ -1148,6 +1188,8 @@ export default {
   },
   methods: {
     toRaw,
+    applyCustomFieldAttributes: Fields.methods.applyCustomFieldAttributes,
+    buildExistingFields: Fields.methods.buildExistingFields,
     addCustomField (field) {
       return this.$refs.fields.addCustomField(field)
     },
@@ -1491,6 +1533,30 @@ export default {
         this.template.fields.splice(insertIndex, 0, field)
       } else {
         this.template.fields.push(field)
+      }
+    },
+    insertDetectedField (field) {
+      if (!this.withDetectExistingFields || !field.name) {
+        this.insertField(field)
+
+        return
+      }
+
+      const role = this.template.submitters.find((s) => s.uuid === field.submitter_uuid)?.name
+      const nameKey = field.name.toLowerCase()
+      const indexKey = [field.name, role].filter(Boolean).join(':').toLowerCase()
+
+      const existingField = this.detectFieldsIndex[indexKey]
+
+      if (existingField) {
+        existingField.areas = existingField.areas || []
+        existingField.areas.push(...(field.areas || []))
+      } else {
+        const customField = this.detectCustomFieldsIndex[indexKey] || this.detectCustomFieldsIndex[nameKey]
+
+        if (customField) this.applyCustomFieldAttributes(field, customField)
+
+        this.insertField(field)
       }
     },
     closeDropdown () {
@@ -2828,7 +2894,11 @@ export default {
       this.baseFetch(`/templates/${this.template.id}/detect_fields`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attachment_uuid: attachmentUuid, page })
+        body: JSON.stringify({
+          attachment_uuid: attachmentUuid,
+          page,
+          ...(this.withDetectExistingFields ? { fields: this.buildExistingFields() } : {})
+        })
       }).then(async (response) => {
         const reader = response.body.getReader()
         const decoder = new TextDecoder('utf-8')
@@ -2857,7 +2927,7 @@ export default {
                     if (!f.submitter_uuid) {
                       f.submitter_uuid = this.template.submitters[0].uuid
                     }
-                    this.insertField(f)
+                    this.insertDetectedField(f)
                   })
 
                   totalFieldsAdded += errorFields.length
@@ -2886,7 +2956,7 @@ export default {
 
                     const nonOverlappingFields = filterNonOverlappingFields(finalFields)
 
-                    nonOverlappingFields.forEach((f) => this.insertField(f))
+                    nonOverlappingFields.forEach((f) => this.insertDetectedField(f))
                     totalFieldsAdded += nonOverlappingFields.length
 
                     if (nonOverlappingFields.length) {
@@ -2924,7 +2994,7 @@ export default {
 
                     const nonOverlappingFields = filterNonOverlappingFields(finalFields)
 
-                    nonOverlappingFields.forEach((f) => this.insertField(f))
+                    nonOverlappingFields.forEach((f) => this.insertDetectedField(f))
                     totalFieldsAdded += nonOverlappingFields.length
 
                     if (nonOverlappingFields.length) {
@@ -2942,7 +3012,7 @@ export default {
 
                   const nonOverlappingFields = filterNonOverlappingFields(finalFields)
 
-                  nonOverlappingFields.forEach((f) => this.insertField(f))
+                  nonOverlappingFields.forEach((f) => this.insertDetectedField(f))
                   totalFieldsAdded += nonOverlappingFields.length
 
                   if (nonOverlappingFields.length) {

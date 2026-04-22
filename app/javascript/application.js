@@ -169,6 +169,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withKba: ['true', 'false'].includes(this.dataset.withKba) ? this.dataset.withKba === 'true' : null,
       withLogo: this.dataset.withLogo !== 'false',
       withFieldsDetection: this.dataset.withFieldsDetection === 'true',
+      withDetectExistingFields: this.dataset.withDetectExistingFields === 'true',
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       withCustomFields: true,
