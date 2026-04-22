@@ -953,6 +953,7 @@ export default {
       isLoadingBlankPage: false,
       isSaving: false,
       isDetectingPageFields: false,
+      detectFieldsQueue: [],
       detectingAnalyzingProgress: null,
       detectingFieldsAddedCount: null,
       selectedSubmitter: null,
@@ -2783,6 +2784,12 @@ export default {
       })
     },
     detectFieldsForPage ({ page, attachmentUuid }) {
+      if (this.isDetectingPageFields) {
+        this.detectFieldsQueue.push({ page, attachmentUuid })
+
+        return
+      }
+
       this.isDetectingPageFields = true
       this.detectingAnalyzingProgress = null
       this.detectingFieldsAddedCount = null
@@ -2968,6 +2975,10 @@ export default {
         setTimeout(() => {
           this.detectingFieldsAddedCount = null
         }, 1000)
+
+        if (this.detectFieldsQueue.length) {
+          this.detectFieldsForPage(this.detectFieldsQueue.shift())
+        }
       })
     },
     save ({ force } = { force: false }) {
