@@ -1,5 +1,7 @@
+<% signature_fonts = ['Dancing Script', 'Great Vibes', 'Pacifico', 'Caveat', 'Homemade Apple', 'Mrs Saint Delafield', 'Shadows Into Light', 'Alex Brush', 'Kalam', 'Sacramento', 'Herr Von Muellerhoff'] %>
+<% saved_font = @font_config&.value || 'Dancing Script' %>
 <%= render 'shared/turbo_modal', title: t('update_signature') do %>
-  <% options = [[t('draw'), 'draw'], [t('upload'), 'upload']] %>
+  <% options = [[t('draw'), 'draw'], [t('type'), 'type'], [t('upload'), 'upload']] %>
   <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
@@ -22,6 +24,22 @@
           <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button', data: { target: 'signature-form.button' } %>
         </div>
       </signature-form>
+    <% end %>
+  </div>
+  <div id="type" class="hidden mt-3">
+    <%= form_for @user_config, url: user_signature_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
+      <typed-signature-form class="relative block">
+        <canvas data-target="typed-signature-form.canvas" class="bg-white border border-base-300 w-full rounded"></canvas>
+        <input name="file" class="hidden" data-target="typed-signature-form.input" type="file" accept="image/png,image/jpeg,image/jpg">
+        <input type="text" data-target="typed-signature-form.textInput" class="base-input !text-2xl w-full mt-4" placeholder="<%= t('type_signature_here') %>...">
+        <select data-target="typed-signature-form.fontSelect" class="base-input mt-2 text-sm">
+          <%= options_for_select(signature_fonts.map { |f| [f, f] }, saved_font) %>
+        </select>
+        <input type="hidden" name="font" value="<%= saved_font %>" data-target="typed-signature-form.fontHidden">
+        <div class="form-control mt-4">
+          <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button', data: { target: 'typed-signature-form.button' } %>
+        </div>
+      </typed-signature-form>
     <% end %>
   </div>
   <div id="upload" class="hidden mt-3">

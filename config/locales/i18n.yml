@@ -527,6 +527,8 @@ en: &en
   processing: Processing
   upload_initials: Upload Initials
   draw: Draw
+  type: Type
+  type_signature_here: Type signature here
   upload_signature: Upload Signature
   integration: Integration
   admin: Admin
@@ -1570,6 +1572,8 @@ es: &es
   processing: Procesando
   upload_initials: Subir iniciales
   draw: Dibujar
+  type: Escribir
+  type_signature_here: Escribe la firma aquí
   upload_signature: Subir firma
   integration: Integración
   admin: Administrador
@@ -2610,6 +2614,8 @@ it: &it
   processing: Elaborazione in corso
   upload_initials: Carica iniziali
   draw: Disegna
+  type: Digitare
+  type_signature_here: Scrivi la firma qui
   upload_signature: Carica firma
   integration: Integrazione
   admin: Amministratore
@@ -3654,6 +3660,8 @@ fr: &fr
   processing: Traitement en cours
   upload_initials: Téléverser les initiales
   draw: Dessiner
+  type: Saisir
+  type_signature_here: Saisissez la signature ici
   upload_signature: Téléverser la signature
   integration: Intégration
   admin: Administrateur
@@ -4691,6 +4699,8 @@ pt: &pt
   processing: Processando
   upload_initials: Enviar iniciais
   draw: Desenhar
+  type: Digitar
+  type_signature_here: Digite a assinatura aqui
   upload_signature: Enviar assinatura
   integration: Integração
   admin: Administrador
@@ -5731,6 +5741,8 @@ de: &de
   processing: Verarbeitung
   upload_initials: Initialen hochladen
   draw: Zeichnen
+  type: Eingeben
+  type_signature_here: Unterschrift hier eingeben
   upload_signature: Unterschrift hochladen
   integration: Integration
   admin: Administrator
@@ -7176,6 +7188,8 @@ nl: &nl
   processing: Verwerken
   upload_initials: Initialen uploaden
   draw: Tekenen
+  type: Typen
+  type_signature_here: Typ hier uw handtekening
   upload_signature: Handtekening uploaden
   integration: Integratie
   admin: Beheerder

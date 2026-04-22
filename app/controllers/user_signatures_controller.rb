@@ -4,7 +4,10 @@ class UserSignaturesController < ApplicationController
   before_action :load_user_config
   authorize_resource :user_config
 
-  def edit; end
+  def edit
+    @font_config =
+      UserConfig.find_or_initialize_by(user: current_user, key: UserConfig::SIGNATURE_FONT_KEY)
+  end
 
   def update
     file = params[:file]
@@ -22,6 +25,7 @@ class UserSignaturesController < ApplicationController
     )
 
     if @user_config.update(value: attachment.uuid)
+      save_font_preference(UserConfig::SIGNATURE_FONT_KEY)
       redirect_to settings_profile_index_path, notice: I18n.t('signature_has_been_saved')
     else
       redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_signature')
@@ -39,5 +43,12 @@ class UserSignaturesController < ApplicationController
   def load_user_config
     @user_config =
       UserConfig.find_or_initialize_by(user: current_user, key: UserConfig::SIGNATURE_KEY)
+  end
+
+  def save_font_preference(key)
+    return if params[:font].blank?
+
+    font_config = UserConfig.find_or_initialize_by(user: current_user, key:)
+    font_config.update(value: params[:font])
   end
 end
