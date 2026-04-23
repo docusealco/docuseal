@@ -103,15 +103,41 @@ module Submitters
     end
 
     def normalize_date(field, value)
-      if value.is_a?(Integer)
+      format = field.dig('preferences', 'format')
+
+      if TimeUtils.format_with_time?(format)
+        normalize_date_time(value, format)
+      elsif TimeUtils.month_only_format?(format)
+        normalize_date_month(value, format)
+      elsif value.is_a?(Integer)
         Time.zone.at(value.to_s.first(10).to_i).to_date.to_s
-      elsif value.gsub(/\w/, '0') == field.dig('preferences', 'format').to_s.gsub(/\w/, '0')
-        TimeUtils.parse_date_string(value, field.dig('preferences', 'format')).to_s
+      elsif value.gsub(/\w/, '0') == format.to_s.gsub(/\w/, '0')
+        TimeUtils.parse_date_string(value, format).to_s
       else
         Date.parse(value).to_s
       end
-    rescue Date::Error
+    rescue ArgumentError
       value
+    end
+
+    def normalize_date_time(value, format)
+      if value.is_a?(Integer)
+        Time.zone.at(value.to_s.first(10).to_i).utc.iso8601
+      elsif value.to_s.match?(/T\d{2}:\d{2}/)
+        Time.iso8601(value).utc.iso8601
+      else
+        TimeUtils.parse_date_string(value, format).utc.iso8601
+      end
+    end
+
+    def normalize_date_month(value, format)
+      if value.is_a?(Integer)
+        Time.zone.at(value.to_s.first(10).to_i).strftime('%Y-%m')
+      elsif value.to_s.match?(/\A\d{4}-\d{2}\z/)
+        value
+      else
+        TimeUtils.parse_date_string(value, format).strftime('%Y-%m')
+      end
     end
 
     def fetch_fields(template, submitter_name: nil, for_submitter: nil)

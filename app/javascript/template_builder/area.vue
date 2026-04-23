@@ -137,7 +137,7 @@
             <span
               v-else-if="field.default_value === '{{date}}'"
             >
-              {{ t('signing_date') }}
+              {{ /[HhAasz]/.test(field.preferences?.format || '') ? t('signing_date_and_time') : t('signing_date') }}
             </span>
             <div
               v-else-if="field.type === 'cells' && field.default_value"

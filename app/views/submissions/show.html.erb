@@ -281,7 +281,7 @@
                   <% if field['type'] == 'number' %>
                     <% value = NumberUtils.format_number(value, field.dig('preferences', 'format')) %>
                   <% elsif field['type'] == 'date' %>
-                    <% value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale) %>
+                    <% value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), @submission.account.locale, timezone: (with_submitter_timezone ? (submitter.timezone.presence || @submission.account.timezone) : @submission.account.timezone)) %>
                   <% end %>
                   <% if (mask = field.dig('preferences', 'mask').presence) %>
                     <% if signed_in? && can?(:read, @submission) %>

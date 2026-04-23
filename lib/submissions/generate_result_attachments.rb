@@ -652,7 +652,10 @@ module Submissions
             end
           else
             if field['type'] == 'date'
-              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale)
+              timezone = submitter.account.timezone
+              timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
+
+              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale, timezone:)
             end
 
             value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'

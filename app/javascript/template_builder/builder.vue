@@ -669,6 +669,7 @@ export default {
       locale: this.locale,
       baseFetch: this.baseFetch,
       fieldTypes: this.fieldTypes,
+      dateFormats: this.dateFormats,
       backgroundColor: this.backgroundColor,
       withPhone: this.withPhone,
       withVerification: this.withVerification,
@@ -819,6 +820,11 @@ export default {
       default: () => []
     },
     fieldTypes: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    dateFormats: {
       type: Array,
       required: false,
       default: () => []
@@ -1030,6 +1036,8 @@ export default {
       return isMobileSafariIos || /android|iphone|ipad/i.test(navigator.userAgent)
     },
     defaultDateFormat () {
+      if (this.dateFormats.length) return this.dateFormats[0]
+
       const isUsBrowser = Intl.DateTimeFormat().resolvedOptions().locale.endsWith('-US')
       const isUsTimezone = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).format(new Date()).match(/\s(?:CST|CDT|PST|PDT|EST|EDT)$/)
 
